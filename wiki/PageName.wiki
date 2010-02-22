@@ -160,11 +160,11 @@ bool AtEof() { return pos_ == kEOF; }  // Uses our namespace's EOF.
 }}}
 
   However, file-scope declarations that are associated with a particular class may be declared in that class as types, static data members or static member functions rather than as members of an unnamed namespace. Terminate the unnamed namespace as shown, with a comment // namespace. 
-	*	Do not use unnamed namespaces in .h files.
+ * Do not use unnamed namespaces in .h files.
 
 =====Named Namespaces======
 Named namespaces should be used as follows:
-	•	Namespaces wrap the entire source file after includes, gflags definitions/declarations, and forward declarations of classes from other namespaces:
+ * Namespaces wrap the entire source file after includes, gflags definitions/declarations, and forward declarations of classes from other namespaces:
 {{{
 // In the .h file
 namespace mynamespace {
