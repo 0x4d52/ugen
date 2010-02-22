@@ -538,253 +538,349 @@ You could find long and complicated functions when working with some code. Do no
 
 =Other C++ Features=
 ==Reference Arguments==
-▽ All parameters passed by reference must be labeled const.
+▽ All parameters passed by reference must be labeled `const`.
 
-Definition: In C, if a function needs to modify a variable, the parameter must use a pointer, eg int foo(int *pval). In C++, the function can alternatively declare a reference parameter: int foo(int &val).
-Pros: Defining a parameter as reference avoids ugly code like (*pval)++. Necessary for some applications like copy constructors. Makes it clear, unlike with pointers, that NULL is not a possible value.
-Cons: References can be confusing, as they have value syntax but pointer semantics.
-Decision:
+====Definition:====
+In C, if a function needs to modify a variable, the parameter must use a pointer, eg `int foo(int *pval)`. In C++, the function can alternatively declare a reference parameter: `int foo(int &val)`.
+
+====Pros:====
+Defining a parameter as reference avoids ugly code like (*pval)++. Necessary for some applications like copy constructors. Makes it clear, unlike with pointers, that NULL is not a possible value.
+
+====Cons:====
+References can be confusing, as they have value syntax but pointer semantics.
+
+====Decision:====
 Within function parameter lists all references must be const:
 void Foo(const string &in, string *out);
 
-Function Overloading
+==Function Overloading==
 ▽ Use overloaded functions (including constructors) only in cases where input can be specified in different types that contain the same information. Do not use function overloading to simulate default function parameters unless inline performance is required (functions with default parameters can not be inlined).
 
-Definition:
+====Definition:====
 You may write a function that takes a const string& and overload it with another that takes const char*.
+{{{
 class MyClass {
  public:
   void Analyze(const string &text);
   void Analyze(const char *text, size_t textlen);
 };
+}}}
 
-Pros: Overloading can make code more intuitive by allowing an identically-named function to take different arguments. It may be necessary for templatised code, and it can be convenient for Visitors.
-Cons: One reason to minimise function overloading is that overloading can make it hard to tell which function is being called at a particular call site. Another one is that most people are confused by the semantics of inheritance if a deriving class overrides only some of the variants of a function. Moreover, reading client code of a library may become unnecessarily hard because of all the reasons against default function parameters.
-Decision: If you want to overload a function, consider qualifying the name with some information about the arguments, e.g., AppendString(), AppendInt() rather than just Append().
-Default Arguments
+====Pros:====
+Overloading can make code more intuitive by allowing an identically-named function to take different arguments. It may be necessary for templatised code, and it can be convenient for Visitors.
+
+====Cons:====
+One reason to minimise function overloading is that overloading can make it hard to tell which function is being called at a particular call site. Another one is that most people are confused by the semantics of inheritance if a deriving class overrides only some of the variants of a function. Moreover, reading client code of a library may become unnecessarily hard because of all the reasons against default function parameters.
+
+====Decision:====
+If you want to overload a function, consider qualifying the name with some information about the arguments, e.g., AppendString(), AppendInt() rather than just Append().
+
+
+==Default Arguments==
 ▽ We do not allow default function parameters, except in a few uncommon situations explained below.
 
-Pros: Often you have a function that uses lots of default values, but occasionally you want to override the defaults. Default parameters allow an easy way to do this without having to define many functions for the rare exceptions.
-Cons: People often figure out how to use an API by looking at existing code that uses it. Default parameters are more difficult to maintain because copy-and-paste from previous code may not reveal all the parameters. Copy-and-pasting of code segments can cause major problems when the default arguments are not appropriate for the new code.
-Decision:
+====Pros:====
+Often you have a function that uses lots of default values, but occasionally you want to override the defaults. Default parameters allow an easy way to do this without having to define many functions for the rare exceptions.
+
+====Cons:====
+People often figure out how to use an API by looking at existing code that uses it. Default parameters are more difficult to maintain because copy-and-paste from previous code may not reveal all the parameters. Copy-and-pasting of code segments can cause major problems when the default arguments are not appropriate for the new code.
+
+====Decision:====
 Except as described below, we require all arguments to be explicitly specified, to force programmers to consider the API and the values they are passing for each argument rather than silently accepting defaults they may not be aware of.
+
 One specific exception is when default arguments are used to simulate variable-length argument lists.
+{{{
 // Support up to 4 params by using a default empty AlphaNum.
 string StrCat(const AlphaNum &a,
               const AlphaNum &b = gEmptyAlphaNum,
               const AlphaNum &c = gEmptyAlphaNum,
               const AlphaNum &d = gEmptyAlphaNum);
+}}}
 
-Variable-Length Arrays and alloca()
+==Variable-Length Arrays and alloca()==
 ▽ We do not allow variable-length arrays or alloca() unless the variable is defined const.
 
-Pros: Variable-length arrays have natural-looking syntax. Both variable-length arrays and alloca() are very efficient.
-Cons: Variable-length arrays and alloca are not part of Standard C++. More importantly, they allocate a data-dependent amount of stack space that can trigger difficult-to-find memory overwriting bugs: "It ran fine on my machine, but dies mysteriously in production".
-Decision: Use a safe allocator instead, such as HeapBlock/Array.
-Friends
+====Pros:====
+Variable-length arrays have natural-looking syntax. Both variable-length arrays and alloca() are very efficient.
+
+====Cons:====
+Variable-length arrays and alloca are not part of Standard C++. More importantly, they allocate a data-dependent amount of stack space that can trigger difficult-to-find memory overwriting bugs: "It ran fine on my machine, but dies mysteriously in production".
+
+====Decision:====
+Use a safe allocator instead, such as HeapBlock/Array.
+
+==Friends==
 ▽ We allow use of friend classes and functions, within reason.
 
 Friends should usually be defined in the same file so that the reader does not have to look in another file to find uses of the private members of a class. A common use of friend is to have a FooBuilder class be a friend of Foo so that it can construct the inner state of Foo correctly, without exposing this state to the world. In some cases it may be useful to make a unittest class a friend of the class it tests.
+
 Friends extend, but do not break, the encapsulation boundary of a class. In some cases this is better than making a member public when you want to give only one other class access to it. However, most classes should interact with other classes solely through their public members.
-Exceptions
+
+==Exceptions==
 ▽ We do not use C++ exceptions.
 
-Pros:
-	•	Exceptions allow higher levels of an application to decide how to handle "can't happen" failures in deeply nested functions, without the obscuring and error-prone bookkeeping of error codes.
-	•	Exceptions are used by most other modern languages. Using them in C++ would make it more consistent with Python, Java, and the C++ that others are familiar with.
-	•	Some third-party C++ libraries use exceptions, and turning them off internally makes it harder to integrate with those libraries.
-	•	Exceptions are the only way for a constructor to fail. We can simulate this with a factory function or an Init() method, but these require heap allocation or a new "invalid" state, respectively.
-	•	Exceptions are really handy in testing frameworks.
+====Pros:====
+* Exceptions allow higher levels of an application to decide how to handle "can't happen" failures in deeply nested functions, without the obscuring and error-prone bookkeeping of error codes.
+* Exceptions are used by most other modern languages. Using them in C++ would make it more consistent with Python, Java, and the C++ that others are familiar with.
+* Some third-party C++ libraries use exceptions, and turning them off internally makes it harder to integrate with those libraries.
+* Exceptions are the only way for a constructor to fail. We can simulate this with a factory function or an Init() method, but these require heap allocation or a new "invalid" state, respectively.
+* Exceptions are really handy in testing frameworks.
 
-Cons:
-	•	When you add a throw statement to an existing function, you must examine all of its transitive callers. Either they must make at least the basic exception safety guarantee, or they must never catch the exception and be happy with the program terminating as a result. For instance, if f() calls g() calls h(), and h throws an exception that f catches, g has to be careful or it may not clean up properly.
-	•	More generally, exceptions make the control flow of programs difficult to evaluate by looking at code: functions may return in places you don't expect. This results maintainability and debugging difficulties. You can minimize this cost via some rules on how and where exceptions can be used, but at the cost of more that a developer needs to know and understand.
-	•	Exception safety requires both RAII and different coding practices. Lots of supporting machinery is needed to make writing correct exception-safe code easy. Further, to avoid requiring readers to understand the entire call graph, exception-safe code must isolate logic that writes to persistent state into a "commit" phase. This will have both benefits and costs (perhaps where you're forced to obfuscate code to isolate the commit). Allowing exceptions would force us to always pay those costs even when they're not worth it.
-	•	Turning on exceptions adds data to each binary produced, increasing compile time (probably slightly) and possibly increasing address space pressure.
-	•	The availability of exceptions may encourage developers to throw them when they are not appropriate or recover from them when it's not safe to do so. For example, invalid user input should not cause exceptions to be thrown. We would need to make the style guide even longer to document these restrictions!
+====Cons:====
+* When you add a throw statement to an existing function, you must examine all of its transitive callers. Either they must make at least the basic exception safety guarantee, or they must never catch the exception and be happy with the program terminating as a result. For instance, if f() calls g() calls h(), and h throws an exception that f catches, g has to be careful or it may not clean up properly.
+* More generally, exceptions make the control flow of programs difficult to evaluate by looking at code: functions may return in places you don't expect. This results maintainability and debugging difficulties. You can minimize this cost via some rules on how and where exceptions can be used, but at the cost of more that a developer needs to know and understand.
+* Exception safety requires both RAII and different coding practices. Lots of supporting machinery is needed to make writing correct exception-safe code easy. Further, to avoid requiring readers to understand the entire call graph, exception-safe code must isolate logic that writes to persistent state into a "commit" phase. This will have both benefits and costs (perhaps where you're forced to obfuscate code to isolate the commit). Allowing exceptions would force us to always pay those costs even when they're not worth it.
+* Turning on exceptions adds data to each binary produced, increasing compile time (probably slightly) and possibly increasing address space pressure.
+* The availability of exceptions may encourage developers to throw them when they are not appropriate or recover from them when it's not safe to do so. For example, invalid user input should not cause exceptions to be thrown. We would need to make the style guide even longer to document these restrictions!
 
-Decision:
+====Decision:====
 On their face, the benefits of using exceptions outweigh the costs, especially in new projects. However, for existing code, the introduction of exceptions has implications on all dependent code. If exceptions can be propagated beyond a new project, it also becomes problematic to integrate the new project into existing exception-free code. Because most existing C++ code at Google is not prepared to deal with exceptions, it is comparatively difficult to adopt new code that generates exceptions.
+
 Given that Google's existing code is not exception-tolerant, the costs of using exceptions are somewhat greater than the costs in in a new project. The conversion process would be slow and error-prone. We don't believe that the available alternatives to exceptions, such as error codes and assertions, introduce a significant burden.
+
 Our advice against using exceptions is not predicated on philosophical or moral grounds, but practical ones. Because we'd like to use our open-source projects at Google and it's difficult to do so if those projects use exceptions, we need to advise against exceptions in Google open-source projects as well. Things would probably be different if we had to do it all over again from scratch.
 
-Run-Time Type Information (RTTI)
+==Run-Time Type Information (RTTI)==
 ▽ We do not use Run Time Type Information (RTTI).
 
-Definition: RTTI allows a programmer to query the C++ class of an object at run time.
-Pros:
+====Definition:====
+RTTI allows a programmer to query the C++ class of an object at run time.
+
+====Pros:====
 It is useful in some unittests. For example, it is useful in tests of factory classes where the test has to verify that a newly created object has the expected dynamic type.
 In rare circumstances, it is useful even outside of tests.
 
-Cons: A query of type during run-time typically means a design problem. If you need to know the type of an object at runtime, that is often an indication that you should reconsider the design of your class.
-Decision:
+====Cons:====
+A query of type during run-time typically means a design problem. If you need to know the type of an object at runtime, that is often an indication that you should reconsider the design of your class.
+
+====Decision:====
 Do not use RTTI, except in unittests. If you find yourself in need of writing code that behaves differently based on the class of an object, consider one of the alternatives to querying the type.
+
 Virtual methods are the preferred way of executing different code paths depending on a specific subclass type. This puts the work within the object itself.
+
 If the work belongs outside the object and instead in some processing code, consider a double-dispatch solution, such as the Visitor design pattern. This allows a facility outside the object itself to determine the type of class using the built-in type system.
 If you think you truly cannot use those ideas, you may use RTTI. But think twice about it. :-) Then think twice again. Do not hand-implement an RTTI-like workaround. The arguments against RTTI apply just as much to workarounds like class hierarchies with type tags.
 
-Casting
+==Casting==
 ▽ Use C++ casts like static_cast<>() preferably. If the long syntax make code difficult to read it is possible to use C-type casts for type conversion only.
 
-Definition: C++ introduced a different cast system from C that distinguishes the types of cast operations.
-Pros: The problem with C casts is the ambiguity of the operation; sometimes you are doing a conversion (e.g., (int)3.5) and sometimes you are doing a cast (e.g., (int)"hello"); C++ casts avoid this. Additionally C++ casts are more visible when searching for them.
-Cons: The syntax is nasty.
-Decision:
-Do not use C-style casts. Instead, use these C++-style casts.
-	•	Use static_cast as the equivalent of a C-style cast that does value conversion, or when you need to explicitly up-cast a pointer from a class to its superclass.
-	•	Use const_cast to remove the const qualifier (see const).
-	•	Use reinterpret_cast to do unsafe conversions of pointer types to and from integer and other pointer types. Use this only if you know what you are doing and you understand the aliasing issues.
-	•	Do not use dynamic_cast except in test code. If you need to know type information at runtime in this way outside of a unittest, you probably have a design flaw.
+====Definition:====
+C++ introduced a different cast system from C that distinguishes the types of cast operations.
 
-Streams
+====Pros:====
+The problem with C casts is the ambiguity of the operation; sometimes you are doing a conversion (e.g., (int)3.5) and sometimes you are doing a cast (e.g., (int)"hello"); C++ casts avoid this. Additionally C++ casts are more visible when searching for them.
+Cons: The syntax is nasty.
+
+====Decision:====
+Do not use C-style casts. Instead, use these C++-style casts.
+* Use static_cast as the equivalent of a C-style cast that does value conversion, or when you need to explicitly up-cast a pointer from a class to its superclass.
+* Use const_cast to remove the const qualifier (see const).
+* Use reinterpret_cast to do unsafe conversions of pointer types to and from integer and other pointer types. Use this only if you know what you are doing and you understand the aliasing issues.
+* Do not use dynamic_cast except in test code. If you need to know type information at runtime in this way outside of a unittest, you probably have a design flaw.
+
+==Streams==
 ▽ Use streams only for logging.
 
-Definition: Streams are a replacement for printf() and scanf().
-Pros: With streams, you do not need to know the type of the object you are printing. You do not have problems with format strings not matching the argument list. (Though with gcc, you do not have that problem with printf either.) Streams have automatic constructors and destructors that open and close the relevant files.
-Cons: Streams make it difficult to do functionality like pread(). Some formatting (particularly the common format string idiom %.*s) is difficult if not impossible to do efficiently using streams without using printf-like hacks. Streams do not support operator reordering (the %1s directive), which is helpful for internationalization.
-Decision:
+====Definition:====
+Streams are a replacement for printf() and scanf().
+
+====Pros:====
+With streams, you do not need to know the type of the object you are printing. You do not have problems with format strings not matching the argument list. (Though with gcc, you do not have that problem with printf either.) Streams have automatic constructors and destructors that open and close the relevant files.
+
+====Cons:====
+Streams make it difficult to do functionality like pread(). Some formatting (particularly the common format string idiom %.*s) is difficult if not impossible to do efficiently using streams without using printf-like hacks. Streams do not support operator reordering (the %1s directive), which is helpful for internationalization.
+
+====Decision:====
 Do not use streams, except where required by a logging interface. Use printf-like routines instead.
+
 There are various pros and cons to using streams, but in this case, as in many other cases, consistency trumps the debate. Do not use streams in your code.
-Extended Discussion
+
+====Extended Discussion====
 There has been debate on this issue, so this explains the reasoning in greater depth. Recall the Only One Way guiding principle: we want to make sure that whenever we do a certain type of I/O, the code looks the same in all those places. Because of this, we do not want to allow users to decide between using streams or using printf plus Read/Write/etc. Instead, we should settle on one or the other. We made an exception for logging because it is a pretty specialized application, and for historical reasons.
+
 Proponents of streams have argued that streams are the obvious choice of the two, but the issue is not actually so clear. For every advantage of streams they point out, there is an equivalent disadvantage. The biggest advantage is that you do not need to know the type of the object to be printing. This is a fair point. But, there is a downside: you can easily use the wrong type, and the compiler will not warn you. It is easy to make this kind of mistake without knowing when using streams.
+{{{
 cout << this;  // Prints the address
 cout << *this;  // Prints the contents
+}}}
 The compiler does not generate an error because << has been overloaded. We discourage overloading for just this reason.
+
 Some say printf formatting is ugly and hard to read, but streams are often no better. Consider the following two fragments, both with the same typo. Which is easier to discover?
+{{{
 cerr << "Error connecting to '" << foo->bar()->hostname.first
      << ":" << foo->bar()->hostname.second << ": " << strerror(errno);
 
 fprintf(stderr, "Error connecting to '%s:%u: %s",
         foo->bar()->hostname.first, foo->bar()->hostname.second,
         strerror(errno));
+}}}
 And so on and so forth for any issue you might bring up. (You could argue, "Things would be better with the right wrappers," but if it is true for one scheme, is it not also true for the other? Also, remember the goal is to make the language smaller, not add yet more machinery that someone has to learn.)
+
 Either path would yield different advantages and disadvantages, and there is not a clearly superior solution. The simplicity doctrine mandates we settle on one of them though, and the majority decision was on printf + read/write.
 
 
-Preincrement and Predecrement
+==Preincrement and Predecrement==
 ▽ Use prefix form (++i) of the increment and decrement operators with iterators and other template objects.
 
-Definition: When a variable is incremented (++i or i++) or decremented (--i or i--) and the value of the expression is not used, one must decide whether to preincrement (decrement) or postincrement (decrement).
-Pros: When the return value is ignored, the "pre" form (++i) is never less efficient than the "post" form (i++), and is often more efficient. This is because post-increment (or decrement) requires a copy of i to be made, which is the value of the expression. If i is an iterator or other non-scalar type, copying i could be expensive. Since the two types of increment behave the same when the value is ignored, why not just always pre-increment?
-Cons: The tradition developed, in C, of using post-increment when the expression value is not used, especially in for loops. Some find post-increment easier to read, since the "subject" (i) precedes the "verb" (++), just like in English.
-Decision: For simple scalar (non-object) values there is no reason to prefer one form and we allow either. For iterators and other template types, use pre-increment.
-Use of const
+====Definition:====
+When a variable is incremented (++i or i++) or decremented (--i or i--) and the value of the expression is not used, one must decide whether to preincrement (decrement) or postincrement (decrement).
+
+====Pros:====
+When the return value is ignored, the "pre" form (++i) is never less efficient than the "post" form (i++), and is often more efficient. This is because post-increment (or decrement) requires a copy of i to be made, which is the value of the expression. If i is an iterator or other non-scalar type, copying i could be expensive. Since the two types of increment behave the same when the value is ignored, why not just always pre-increment?
+
+====Cons:====
+The tradition developed, in C, of using post-increment when the expression value is not used, especially in for loops. Some find post-increment easier to read, since the "subject" (i) precedes the "verb" (++), just like in English.
+
+====Decision:====
+For simple scalar (non-object) values there is no reason to prefer one form and we allow either. For iterators and other template types, use pre-increment.
+
+==Use of const==
 ▽ We strongly recommend that you use const whenever it makes sense to do so.
 
-Definition: Declared variables and parameters can be preceded by the keyword const to indicate the variables are not changed (e.g., const int foo). Class functions can have the const qualifier to indicate the function does not change the state of the class member variables (e.g., class Foo { int Bar(char c) const; };).
-Pros: Easier for people to understand how variables are being used. Allows the compiler to do better type checking, and, conceivably, generate better code. Helps people convince themselves of program correctness because they know the functions they call are limited in how they can modify your variables. Helps people know what functions are safe to use without locks in multi-threaded programs.
-Cons: const is viral: if you pass a const variable to a function, that function must have const in its prototype (or the variable will need a const_cast). This can be a particular problem when calling library functions.
-Decision:
+====Definition:====
+Declared variables and parameters can be preceded by the keyword const to indicate the variables are not changed (e.g., const int foo). Class functions can have the const qualifier to indicate the function does not change the state of the class member variables (e.g., class Foo { int Bar(char c) const; };).
+
+====Pros:====
+Easier for people to understand how variables are being used. Allows the compiler to do better type checking, and, conceivably, generate better code. Helps people convince themselves of program correctness because they know the functions they call are limited in how they can modify your variables. Helps people know what functions are safe to use without locks in multi-threaded programs.
+
+====Cons:====
+const is viral: if you pass a const variable to a function, that function must have const in its prototype (or the variable will need a const_cast). This can be a particular problem when calling library functions.
+
+====Decision:====
 const variables, data members, methods and arguments add a level of compile-time type checking; it is better to detect errors as soon as possible. Therefore we strongly recommend that you use const whenever it makes sense to do so:
-	•	If a function does not modify an argument passed by reference or by pointer, that argument should be const.
-	•	Declare methods to be const whenever possible. Accessors should almost always be const. Other methods should be const if they do not modify any data members, do not call any non-const methods, and do not return a non-const pointer or non-const reference to a data member.
-	•	Consider making data members const whenever they do not need to be modified after construction.
+* If a function does not modify an argument passed by reference or by pointer, that argument should be const.
+* Declare methods to be const whenever possible. Accessors should almost always be const. Other methods should be const if they do not modify any data members, do not call any non-const methods, and do not return a non-const pointer or non-const reference to a data member.
+* Consider making data members const whenever they do not need to be modified after construction.
+
 However, do not go crazy with const. Something like const int * const * const x; is likely overkill, even if it accurately describes how const x is. Focus on what's really useful to know: in this case, const int** x is probably sufficient.
 The mutable keyword is allowed but is unsafe when used with threads, so thread safety should be carefully considered first.
 
-Where to put the const
+====Where to put the const====
 Some people favour the form int const *foo to const int* foo. They argue that this is more readable because it's more consistent: it keeps the rule that const always follows the object it's describing. However, this consistency argument doesn't apply in this case, because the "don't go crazy" dictum eliminates most of the uses you'd have to be consistent with. Putting the const first is arguably more readable, since it follows English in putting the "adjective" (const) before the "noun" (int).
 That said, while we encourage putting const first, we do not require it. But be consistent with the code around you!
 
-Integer Types
-▽ Of the built-in C++ integer types, the only one used is int. If a program needs a variable of a different size, use a precise-width integer type from <stdint.h>, such as int16_t.
+==Integer Types==
+▽ Of the built-in C++ integer types, the only one used is int. If a program needs a variable of a different size, use a precise-width integer type from <stdint.h>, such as `int16_t`.
 
-Definition: C++ does not specify the sizes of its integer types. Typically people assume that short is 16 bits, int is 32 bits, long is 32 bits and long long is 64 bits.
-Pros: Uniformity of declaration.
-Cons: The sizes of integral types in C++ can vary based on compiler and architecture.
-Decision:
+====Definition:====
+C++ does not specify the sizes of its integer types. Typically people assume that short is 16 bits, int is 32 bits, long is 32 bits and long long is 64 bits.
+
+====Pros:====
+Uniformity of declaration.
+
+====Cons:====
+The sizes of integral types in C++ can vary based on compiler and architecture.
+
+====Decision:====
 <stdint.h> defines types like int16_t, uint32_t, int64_t, etc. You should always use those in preference to short, unsigned long long and the like, when you need a guarantee on the size of an integer. Of the C integer types, only int should be used. When appropriate, you are welcome to use standard types like size_t and ptrdiff_t.
+
 We use int very often, for integers we know are not going to be too big, e.g., loop counters. Use plain old int for such things. You should assume that an int is at least 32 bits, but don't assume that it has more than 32 bits. If you need a 64-bit integer type, use int64_t or uint64_t.
+
 For integers we know can be "big", use int64_t.
+
 You should not use the unsigned integer types such as uint32_t, unless the quantity you are representing is really a bit pattern rather than a number, or unless you need defined twos-complement overflow. In particular, do not use unsigned types to say a number will never be negative. Instead, use assertions for this.
 
-On Unsigned Integers
+====On Unsigned Integers====
 Some people, including some textbook authors, recommend using unsigned types to represent numbers that are never negative. This is intended as a form of self-documentation. However, in C, the advantages of such documentation are outweighed by the real bugs it can introduce. Consider:
+{{{
 for (unsigned int i = foo.Length()-1; i >= 0; --i) ...
+}}}
 This code will never terminate! Sometimes gcc will notice this bug and warn you, but often it will not. Equally bad bugs can occur when comparing signed and unsigned variables. Basically, C's type-promotion scheme causes unsigned types to behave differently than one might expect.
+
 So, document that a variable is non-negative using assertions. Don't use an unsigned type.
 
-64-bit Portability
+==64-bit Portability==
 ▽ Code should be 64-bit and 32-bit friendly. Bear in mind problems of printing, comparisons, and structure alignment.
 
-	•	printf() specifiers for some types are not cleanly portable between 32-bit and 64-bit systems. C99 defines some portable format specifiers. Unfortunately, MSVC 7.1 does not understand some of these specifiers and the standard is missing a few, so we have to define our own ugly versions in some cases (in the style of the standard include file inttypes.h):  // printf macros for size_t, in the style of inttypes.h
-	•	#ifdef _LP64
-	•	#define __PRIS_PREFIX "z"
-	•	#else
-	•	#define __PRIS_PREFIX
-	•	#endif
-	•	
-	•	// Use these macros after a % in a printf format string
-	•	// to get correct 32/64 bit behavior, like this:
-	•	// size_t size = records.size();
-	•	// printf("%"PRIuS"\n", size);
-	•	
-	•	#define PRIdS __PRIS_PREFIX "d"
-	•	#define PRIxS __PRIS_PREFIX "x"
-	•	#define PRIuS __PRIS_PREFIX "u"
-	•	#define PRIXS __PRIS_PREFIX "X"
-	•	#define PRIoS __PRIS_PREFIX "o" 
-	•	Type
-	•	DO NOT use
-	•	DO use
-	•	Notes
-	•	void * (or any pointer)
-	•	%lx
-	•	%p
-	•	
-	•	int64_t
-	•	%qd, %lld
-	•	%"PRId64"
-	•	
-	•	uint64_t
-	•	%qu, %llu, %llx
-	•	%"PRIu64", %"PRIx64"
-	•	
-	•	size_t
-	•	%u
-	•	%"PRIuS", %"PRIxS"
-	•	C99 specifies %zu
-	•	ptrdiff_t
-	•	%d
-	•	%"PRIdS"
-	•	C99 specifies %zd
-	•	Note that the PRI* macros expand to independent strings which are concatenated by the compiler. Hence if you are using a non-constant format string, you need to insert the value of the macro into the format, rather than the name. It is still possible, as usual, to include length specifiers, etc., after the % when using the PRI* macros. So, e.g. printf("x = %30"PRIuS"\n", x) would expand on 32-bit Linux to printf("x = %30" "u" "\n", x), which the compiler will treat as printf("x = %30u\n", x). 
-	•	Remember that sizeof(void *) != sizeof(int). Use intptr_t if you want a pointer-sized integer.
-	•	You may need to be careful with structure alignments, particularly for structures being stored on disk. Any class/structure with a int64_t/uint64_t member will by default end up being 8-byte aligned on a 64-bit system. If you have such structures being shared on disk between 32-bit and 64-bit code, you will need to ensure that they are packed the same on both architectures. Most compilers offer a way to alter structure alignment. For gcc, you can use __attribute__((packed)). MSVC offers #pragma pack() and __declspec(align()).
-	•	Use the LL or ULL suffixes as needed to create 64-bit constants. For example: int64_t my_value = 0x123456789LL;
-	•	uint64_t my_mask = 3ULL << 48; 
-	•	If you really need different code on 32-bit and 64-bit systems, use #ifdef _LP64 to choose between the code variants. (But please avoid this if possible, and keep any such changes localized.)
+* printf() specifiers for some types are not cleanly portable between 32-bit and 64-bit systems. C99 defines some portable format specifiers. Unfortunately, MSVC 7.1 does not understand some of these specifiers and the standard is missing a few, so we have to define our own ugly versions in some cases (in the style of the standard include file inttypes.h):
+{{{
+ // printf macros for size_t, in the style of inttypes.h
+#ifdef _LP64
+#define __PRIS_PREFIX "z"
+#else
+#define __PRIS_PREFIX
+#endif
 
-Preprocessor Macros
+// Use these macros after a % in a printf format string
+// to get correct 32/64 bit behavior, like this:
+// size_t size = records.size();
+// printf("%"PRIuS"\n", size);
+
+#define PRIdS __PRIS_PREFIX "d"
+#define PRIxS __PRIS_PREFIX "x"
+#define PRIuS __PRIS_PREFIX "u"
+#define PRIXS __PRIS_PREFIX "X"
+#define PRIoS __PRIS_PREFIX "o" 
+Type
+DO NOT use
+DO use
+Notes
+void * (or any pointer)
+%lx
+%p
+
+int64_t
+%qd, %lld
+%"PRId64"
+
+uint64_t
+%qu, %llu, %llx
+%"PRIu64", %"PRIx64"
+
+size_t
+%u
+%"PRIuS", %"PRIxS"
+C99 specifies %zu
+ptrdiff_t
+%d
+%"PRIdS"
+C99 specifies %zd
+}}}
+
+* Note that the PRI* macros expand to independent strings which are concatenated by the compiler. Hence if you are using a non-constant format string, you need to insert the value of the macro into the format, rather than the name. It is still possible, as usual, to include length specifiers, etc., after the % when using the PRI* macros. So, e.g. printf("x = %30"PRIuS"\n", x) would expand on 32-bit Linux to printf("x = %30" "u" "\n", x), which the compiler will treat as printf("x = %30u\n", x). 
+* Remember that sizeof(void *) != sizeof(int). Use intptr_t if you want a pointer-sized integer.
+* You may need to be careful with structure alignments, particularly for structures being stored on disk. Any class/structure with a int64_t/uint64_t member will by default end up being 8-byte aligned on a 64-bit system. If you have such structures being shared on disk between 32-bit and 64-bit code, you will need to ensure that they are packed the same on both architectures. Most compilers offer a way to alter structure alignment. For gcc, you can use __attribute__((packed)). MSVC offers #pragma pack() and __declspec(align()).
+* Use the LL or ULL suffixes as needed to create 64-bit constants. For example: int64_t my_value = 0x123456789LL;
+* uint64_t my_mask = 3ULL << 48; 
+* If you really need different code on 32-bit and 64-bit systems, use #ifdef _LP64 to choose between the code variants. (But please avoid this if possible, and keep any such changes localized.)
+
+==Preprocessor Macros==
 ▽ Be very cautious with macros. Prefer inline functions, enums, and const variables to macros. One special case is when describing platform specific code. Try and keep this code separate from standard implementations within classes though.
 
 Macros mean that the code you see is not the same as the code the compiler sees. This can introduce unexpected behaviour, especially since macros have global scope.
-Luckily, macros are not nearly as necessary in C++ as they are in C. Instead of using a macro to inline performance-critical code, use an inline function. Instead of using a macro to store a constant, use a const variable. Instead of using a macro to "abbreviate" a long variable name, use a reference. Instead of using a macro to conditionally compile code ... well, don't do that at all (except, of course, for the #define guards to prevent double inclusion of header files). It makes testing much more difficult.
-Macros can do things these other techniques cannot, and you do see them in the codebase, especially in the lower-level libraries. And some of their special features (like stringifying, concatenation, and so forth) are not available through the language proper. But before using a macro, consider carefully whether there's a non-macro way to achieve the same result.
-The following usage pattern will avoid many problems with macros; if you use macros, follow it whenever possible:
-	•	Don't define macros in a .h file.
-	•	#define macros right before you use them, and #undef them right after.
-	•	Do not just #undef an existing macro before replacing it with your own; instead, pick a name that's likely to be unique.
-	•	Try not to use macros that expand to unbalanced C++ constructs, or at least document that behavior well.
-	•	Prefer not using ## to generate function/class/variable names.
 
-0 and NULL
+Luckily, macros are not nearly as necessary in C++ as they are in C. Instead of using a macro to inline performance-critical code, use an inline function. Instead of using a macro to store a constant, use a const variable. Instead of using a macro to "abbreviate" a long variable name, use a reference. Instead of using a macro to conditionally compile code ... well, don't do that at all (except, of course, for the #define guards to prevent double inclusion of header files). It makes testing much more difficult.
+
+Macros can do things these other techniques cannot, and you do see them in the codebase, especially in the lower-level libraries. And some of their special features (like stringifying, concatenation, and so forth) are not available through the language proper. But before using a macro, consider carefully whether there's a non-macro way to achieve the same result.
+
+The following usage pattern will avoid many problems with macros; if you use macros, follow it whenever possible:
+* Don't define macros in a .h file.
+* #define macros right before you use them, and #undef them right after.
+* Do not just #undef an existing macro before replacing it with your own; instead, pick a name that's likely to be unique.
+* Try not to use macros that expand to unbalanced C++ constructs, or at least document that behavior well.
+* Prefer not using ## to generate function/class/variable names.
+
+==0 and NULL==
 ▽ Use 0 for integers, 0.0 for reals, NULL for pointers, and '\0' for chars.
 
 Use 0 for integers and 0.0 for reals. This is not controversial.
+
 For pointers (address values), there is a choice between 0 and NULL. Bjarne Stroustrup prefers an unadorned 0. We prefer NULL because it looks like a pointer. In fact, some C++ compilers, such as gcc 4.1.0, provide special definitions of NULL which enable them to give useful warnings, particularly in situations where sizeof(NULL) is not equal to sizeof(0).
+
 Use '\0' for chars. This is the correct type and also makes code more readable.
-sizeof
+
+==sizeof==
 ▽ Use sizeof(varname) instead of sizeof(type) whenever possible.
 
 Use sizeof(varname) because it will update appropriately if the type of the variable changes. sizeof(type) may make sense in some cases, but should generally be avoided because it can fall out of sync if the variable's type changes.
-
+{{{
 Struct data;
 memset(&data, 0, sizeof(data));
 memset(&data, 0, sizeof(Struct));
+}}}
 
-Naming
+
+=Naming=
 The most important consistency rules are those that govern naming. The style of a name immediately informs us what sort of thing the named entity is: a type, a variable, a function, a constant, a macro, etc., without requiring us to search for the declaration of that entity. The pattern-matching engine in our brains relies a great deal on these naming rules.
 Naming rules are pretty arbitrary, but we feel that consistency is more important than individual preferences in this area, so regardless of whether you find them sensible or not, the rules are the rules.
 General Naming Rules
