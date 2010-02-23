@@ -147,7 +147,8 @@ Use of unnamed spaces in header files can easily cause violations of the C++ One
 
 ====Decision:====
 Use namespaces according to the policy described below.
- =====Unnamed Namespaces=====
+ 
+ ====Unnamed Namespaces====
  Unnamed namespaces are allowed and even encouraged in .cpp files, to avoid runtime naming conflicts:
 {{{
 namespace {                           // This is in a .cpp file.
@@ -159,11 +160,11 @@ bool AtEof() { return pos_ == kEOF; }  // Uses our namespace's EOF.
 }  // namespace
 }}}
 
-  However, file-scope declarations that are associated with a particular class may be declared in that class as types, static data members or static member functions rather than as members of an unnamed namespace. Terminate the unnamed namespace as shown, with a comment // namespace. 
+   However, file-scope declarations that are associated with a particular class may be declared in that class as types, static data members or static member functions rather than as members of an unnamed namespace. Terminate the unnamed namespace as shown, with a comment // namespace. 
  * Do not use unnamed namespaces in .h files.
 
-=====Named Namespaces======
-Named namespaces should be used as follows:
+ ====Named Namespaces=====
+ Named namespaces should be used as follows:
  * Namespaces wrap the entire source file after includes, gflags definitions/declarations, and forward declarations of classes from other namespaces
 {{{
 // In the .h file
@@ -192,7 +193,7 @@ void MyClass::Foo() {
 }  // namespace mynamespace  
 }}}
 
- * The typical .cpp file might have more complex detail, including the need to reference classes in other namespaces. 
+  * The typical .cpp file might have more complex detail, including the need to reference classes in other namespaces. 
 {{{
 #include "a.h"
 
@@ -208,19 +209,19 @@ namespace b {
 }  // namespace b 
 }}}
 
- * Do not declare anything in namespace std, not even forward declarations of standard library classes. Declaring entities in namespace std is undefined behavior, i.e., not portable. To declare entities from the standard library, include the appropriate header file.
- * You may not use a using-directive to make all names from a namespace available.
+  * Do not declare anything in namespace std, not even forward declarations of standard library classes. Declaring entities in namespace std is undefined behavior, i.e., not portable. To declare entities from the standard library, include the appropriate header file.
+  * You may not use a using-directive to make all names from a namespace available.
 {{{
 // Forbidden -- This pollutes the namespace.
 using namespace foo; 
 }}}
- * You may use a using-declaration anywhere in a .cpp file, and in functions, methods or classes in .h files.
+  * You may use a using-declaration anywhere in a .cpp file, and in functions, methods or classes in .h files.
 {{{
 // OK in .cpp files.
 // Must be in a function, method or class in .h files.
 using ::foo::bar; 
 }}}
- * Namespace aliases are allowed anywhere in a .cpp file, and in functions and methods in .h files.
+  * Namespace aliases are allowed anywhere in a .cpp file, and in functions and methods in .h files.
 {{{
 // OK in .cpp files.
 // Must be in a function or method in .h files.
