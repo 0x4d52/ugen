@@ -12,17 +12,10 @@
 
 =Overview=
 
-=Important Note=
-
-==Displaying Hidden Details in this Guide==
-▽ This style guide contains many details that are initially hidden from view. They are marked by the triangle icon, which you see here on your left. Click it now. You should see "Hooray" appear below.
-
-Hooray! Now you know you can expand points to get more details. Alternatively, there's an "expand all" at the top of this document.
-
 =Background=
-C++ is the main development language used by many of Google's open-source projects. As every C++ programmer knows, the language has many powerful features, but this power brings with it complexity, which in turn can make code more bug-prone and harder to read and maintain.
+C++ is a very popular development language used by many open-source projects. As every C++ programmer knows, the language has many powerful features, but this power brings with it complexity, which in turn can make code more bug-prone and harder to read and maintain.
 
-The goal of this guide is to manage this complexity by describing in detail the dos and don'ts of writing C++ code. These rules exist to keep the code base manageable while still allowing coders to use C++ language features productively.
+The goal of this guide is to manage this complexity by describing in detail the dos and don'ts of writing C++ code and specifically in relation to Ugen++. These rules exist to keep the code base manageable while still allowing coders to use C++ language features productively.
 
 Style, also known as readability, is what we call the conventions that govern our C++ code. The term Style is a bit of a misnomer, since these conventions cover far more than just source file formatting.
 
@@ -30,7 +23,7 @@ One way in which we keep the code base manageable is by enforcing consistency. I
 
 Another issue this guide addresses is that of C++ feature bloat. C++ is a huge language with many advanced features. In some cases we constrain, or even ban, use of certain features. We do this to keep code simple and to avoid the various common errors and problems that these features can cause. This guide lists these features and explains why their use is restricted.
 
-Open-source projects developed by Google conform to the requirements in this guide.
+Any code written for Ugen++ should conform to the style set out by this guide.
 Note that this guide is not a C++ tutorial: we assume that the reader is familiar with the language.
 
 =Header Files=
@@ -48,7 +41,7 @@ The following rules will guide you through the various pitfalls of using header 
 
 Guard ends should have the associated starting guard as a comment next to them e.g.
 
-`#endif  // UGEN_<FILENAME>_H_`
+`#endif  //UGEN_<FILENAME>_H_`
 
 
 ==Header File Dependencies==
@@ -57,12 +50,12 @@ Guard ends should have the associated starting guard as a comment next to them e
 
 When you include a header file you introduce a dependency that will cause your code to be recompiled whenever the header file changes. If your header file includes other header files, any change to those files will cause any code that includes your header to be recompiled. Therefore, we prefer to minimize includes, particularly includes of header files in other header files.
 
-You can significantly minimize the number of header files you need to include in your own header files by using forward declarations. For example, if your header file uses the File class in ways that do not require access to the declaration of the File class, your header file can just forward declare `class File;` instead of having to `#include "file/base/file.h"`.
+You can significantly minimize the number of header files you need to include in your own header files by using forward declarations. For example, if your header file uses the `File` class in ways that do not require access to the declaration of the `File` class, your header file can just forward declare `class File;` instead of having to `#include "file/base/File.h"`.
 
 How can we use a class `Foo` in a header file without access to its definition?
  * We can declare data members of type `Foo*` or `Foo&`.
  * We can declare (but not define) functions with arguments, and/or return values, of type `Foo`.
- * We can declare static data members of type Foo. This is because static data members are defined outside the class definition.
+ * We can declare static data members of type `Foo`. This is because static data members are defined outside the class definition.
 
 On the other hand, you must include the header file for `Foo` if your class subclasses `Foo` or has a data member of type `Foo`.
 
@@ -100,7 +93,7 @@ This is not a hard-and-fast rule. Parameters that are both input and output (oft
 ▽ Use standard order for readability and to avoid hidden dependencies: C library, C++ library, other libraries' .h, your project's .h.
 
 Header files should be included as relative path names to the current file using UNIX directory shortcuts (.. for the parent directory)
-#include "base/logging.h"
+`#include "base/logging.h"`
 
 In `dir/foo.cpp`, whose main purpose is to implement or test the stuff in `dir2/foo2.h`, order your includes as follows:
 	#	`dir2/foo2.h` (preferred location — see details below).
@@ -114,7 +107,7 @@ The preferred ordering reduces hidden dependencies. We want every header file to
 `dir/foo.cpp` and `dir2/foo2.h` are often in the same directory (e.g. `base/basictypes_unittest.cpp` and `base/basictypes.h`), but can be in different directories too.
 
 Within each section it is nice to order the includes alphabetically.
-For example, the includes in `google-awesome-project/src/foo/internal/fooserver.cpp` might look like this:
+For example, the includes in `awesome-project/src/foo/internal/fooserver.cpp` might look like this:
 {{{
 #include "foo/public/fooserver.h"  // Preferred location.
 
@@ -248,7 +241,7 @@ private:
 This is useful when the nested (or member) class is only used by the enclosing class; making it a member puts it in the enclosing class scope rather than polluting the outer scope with the class name. Nested classes can be forward declared within the enclosing class and then defined in the .cpp file to avoid including the nested class definition in the enclosing class declaration, since the nested class definition is usually only relevant to the implementation.
 
 ====Cons:====
-Nested classes can be forward-declared only within the definition of the enclosing class. Thus, any header file manipulating a Foo::Bar* pointer will have to include the full class declaration for Foo.
+Nested classes can be forward-declared only within the definition of the enclosing class. Thus, any header file manipulating a `Foo::Bar*` pointer will have to include the full class declaration for `Foo`.
 
 ====Decision:====
 Do not make nested classes public unless they are actually part of the interface, e.g., a class that holds a set of options for some method.
@@ -265,7 +258,7 @@ Nonmember and static member functions may make more sense as members of a new cl
 ====Decision:====
 Sometimes it is useful, or even necessary, to define a function not bound to a class instance. Such a function can be either a static member or a nonmember function. Nonmember functions should not depend on external variables, and should nearly always exist in a namespace. Rather than creating classes only to group static member functions which do not share static data, use namespaces instead.
 Functions defined in the same compilation unit as production classes may introduce unnecessary coupling and link-time dependencies when directly called from other compilation units; static member functions are particularly susceptible to this. Consider extracting a new class, or placing the functions in a namespace possibly in a separate library.
-If you must define a nonmember function and it is only needed in its .cc file, use an unnamed namespace or static linkage (eg `static int Foo() {...}`) to limit its scope.
+If you must define a nonmember function and it is only needed in its .cpp file, use an unnamed namespace or static linkage (eg `static int Foo() {...}`) to limit its scope.
 
 ===Local Variables===
 ▽ Place a function's variables in the narrowest scope possible, and initialise variables in the declaration.
@@ -277,8 +270,8 @@ i = f();      // Bad -- initialization separate from declaration.
 int j = g();  // Good -- declaration has initialization.
 }}}
 
-Note that gcc implements for (int i = 0; i < 10; ++i) correctly (the scope of i is only the scope of the for loop), so you can then reuse i in another for loop in the same scope. It also correctly scopes declarations in if and while statements, e.g.
-while (const char* p = strchr(str, '/')) str = p + 1;
+Note that gcc implements `for (int i = 0; i < 10; ++i)` correctly (the scope of `i` is only the scope of the for loop), so you can then reuse `i` in another for loop in the same scope. It also correctly scopes declarations in if and while statements, e.g.
+`while (const char* p = strchr(str, '/')) str = p + 1;`
 
 There is one caveat: if the variable is an object, its constructor is invoked every time it enters scope and is created, and its destructor is invoked every time it goes out of scope.
 {{{
