@@ -1,0 +1,338 @@
+#summary Guidelines for writing code for the UGen library.
+#labels Featured
+
+=Developing UGen Style Guide=
+
+==Preface==
+This style guide is intended to help those new to UGen or C++ programming in general to code in a consistent and logical manner. While some aspects of coding are discussed in great detail here with fairly stringent guidelines these are not meant to be the last word. The key to this guide is that it is a reference if you are unsure of what style to code in but you must make deacons for yourself as well. If something looks more readable a different way, do it that way. Do not get too heavily tied down to how many spaces to leave between if statements and brackets.
+
+Try to be consistent with what you are coding. If you are modifying somebody else's code use the style they have to avoid confusion. Having a consistent style improves code readability, understandably and speed.
+
+This guide will try to outline the main coding styles and practices used in UGen and you should aim to follow these when developing UGen to maintain a consistent code base. Code submissions may be rejected if their style is too at odds with existing code. While is will outline general C++ conventions and styles used there will also be specific areas that will act like a tutorial for developing UGens.
+
+Above all try to have fun when programming and don't let style conformities get in the way of inventive and creative programming.
+
+Header Files
+ The #deine Guard
+ Header File Dependancies
+ Inline Functions
+ Function Parameter Ordering
+ Names and Order of Includes
+
+Scoping
+	Namespaces
+	Nested Classes
+	Nonmember, Static Member and Global Functions
+	Local Variables
+	Static and Global Variables
+
+Classes
+	Doing Work In Constructors
+	Default Constructors
+	Explicit constructors
+	copy Constructors
+	Structs vs Classes
+	Inheritance
+	Multiple Inheritance
+	Interfaces
+	Operator Overloading
+	Access Control
+	Declaration Order
+	Write Short Functions
+
+Other C++ Features
+	Reference Arguments 
+	Function Overloading 
+	Default Arguments
+	Variable-Length Arrays and alloca()
+	Friends
+	Exceptions 
+	Run-Time Type Information (RTTI)
+	Casting
+	Streams
+	Preincrement and Predecrement
+	Use of const
+	Integer Types
+	64-bit Portability
+	Preprocessor Macros
+	0 and NULL  sizeof
+
+Naming
+	General Naming Rules
+	File Names
+	Type Names
+	Variable Names
+	Constant Names
+	Function Names
+	Namespace Names
+	Enumerator Names
+	Macro Names
+	Exceptions to Naming Rules
+
+Comments
+	Comment Style
+	File Comments
+	Class Comments
+	Function Comments
+	Variable Comments
+	Implementation Comments
+	Punctuation, Spelling and Grammar
+	TODO Comments
+
+Formatting
+	Line Length
+	Non-ASCII Characters
+	Spaces vs. Tabs
+	Function Declarations and Definitions
+	Function Calls
+	Conditionals
+	Loops and Switch Statements
+	Pointer and Reference Expressions
+	Boolean Expressions
+	Return Values
+	Variable and Array Initialization
+	Preprocessor Directives
+	Class Format
+	Constructor Initializer Lists
+	Namespace Formatting
+	Horizontal Whitespace
+	Vertical Whitespace
+
+Writing UGens
+	
+
+=Header Files=
+
+In general, every .cpp file should have an associated .h file. There are some common exceptions, such as small classes and abstract base classes.
+
+Correct use of header files can make a huge difference to the readability, size and performance of your code.
+
+The following rules will guide you through the various pitfalls of using header files.
+
+==The #define Guard==
+
+All header files should have `#define` guards to prevent multiple inclusion. The format of the symbol name should be `_UGEN_<FILENAME>_H_`.
+
+Guard ends should have the associated guard symbol as a comment next to them e.g.
+
+`#endif //_UGEN_<FILENAME>_H_`
+
+==Header File Dependencies==
+
+Try to minimise the use of header file includes to reduce the amount of dependencies. This can significantly speed up build times and reduce binary file size.
+
+To do this only include header files that are actually needed. If you are just declaring a pointer to a class and not actually calling any of its methods then use a forward declaration of the class instead. e.g. class File;
+
+It is cleaner to include necessary header files required in both .h files and their corresponding .cpp files in just the header file. Then only the header file and the ugen_StandardHeader.h need be included in the .cpp file. Doing this makes it easier to spot what classes the file uses and manipulates.
+
+==Inline Functions==
+
+Define functions inline only when they are small, say, 10 lines or less.
+
+Function declared inline will indicate to the compiler that they should be expanded inline rather than calling them through the usual function call mechanism. This can speed up code but may increase code size.
+
+In general small functions, especially accessors, mutators and time critical functions such as maths ones should be declared inline
+
+==Function Parameter Ordering==
+
+When defining a function, parameter order is: inputs, then outputs. In general more important parameters come first.
+
+Parameters to C/C++ functions are either input to the function, output from the function, or both. Input parameters are usually values or const references, while output and input/output parameters will be non-const pointers. When ordering function parameters, put all input-only parameters before any output parameters. In particular, do not add new parameters to the end of the function just because they are new; place new input-only parameters before the output parameters.
+
+==Names and Order of Includes==
+
+Use standard order for readability and to avoid hidden dependencies: C library, C++ library, other libraries' .h, your project's .h.
+
+Header files should be included as relative path names to the current file using UNIX directory shortcuts (.. for the parent directory) #include "base/logging.h" 
+
+
+=Scoping=
+
+==Namespaces==
+
+The use of namespaces is encouraged in UGen, especially around constants and stateless functions i.e. those that are not part of a class.
+
+Try to avoid using the using directive as this pollutes the namespace. Instead when accessing function and variable within a namespace use the scope identifier e.g. Constant::pi
+
+When creating UGens they should be within the UGen namespace. For ease of use and namespace consistency two macros defined in the ugen_StandardHeader.h can be used around all of your code, BEGIN_UGEN_NAMESPACE and END_UGEN_NAMESPACE.
+
+The content of a namespace should not be indented e.g.
+
+{{{
+// In the .h file
+namespace mynamespace {
+
+// All declarations are within the namespace scope.
+// Notice the lack of indentation.
+class MyClass
+{
+public:
+  ...
+  void Foo();
+};
+
+}  // namespace mynamespace  
+
+// In the .cpp file
+namespace mynamespace
+{
+
+// Definition of functions is within scope of the namespace.
+void MyClass::Foo() {
+...
+}
+
+}  // namespace mynamespace }}}
+
+==Nested Classes==
+
+Nested classes are encouraged when the nested class is related only to its parent class e.g. a listener interface.
+
+As with normal class variables a nested class's scope should be as narrow as possible. If only the parent class requires the use of it it should remain private. e.g.
+
+{{{
+class Foo {
+private:
+  // Bar is a member class, nested within Foo.
+  class Bar {
+    ...
+  };
+};
+}}}
+
+==Nonmember, Static Member, and Global Functions==
+
+Prefer nonmember functions within a namespace or static member functions to global functions; use completely global functions rarely.
+
+Nonmember and static member functions can be useful in some situations. Putting nonmember functions in a namespace avoids polluting the global namespace.
+
+Nonmember and static member functions may make more sense as members of a new class, especially if they access external resources or have significant dependencies. 
+
+==Local Variables==
+
+Place a function's variables in the narrowest scope possible, and initialise variables in the declaration.
+
+C++ allows you to declare variables anywhere in a function. We encourage you to declare them in as local a scope as possible, and as close to the first use as possible. This makes it easier for the reader to find the declaration and see what type the variable is and what it was initialised to. In particular, initialisation should be used instead of declaration and assignment, e.g.
+
+{{{
+int i;
+i = f();      // Bad -- initialization separate from declaration.
+int j = g();  // Good -- declaration has initialization.
+}}}
+
+Note that gcc implements for (int i = 0; i < 10; ++i) correctly (the scope of i is only the scope of the for loop), so you can then reuse i in another for loop in the same scope. It also correctly scopes declarations in if and while statements, e.g. while (const char* p = strchr(str, '/')) str = p + 1;
+
+There is one caveat: if the variable is an object, its constructor is invoked every time it enters scope and is created, and its destructor is invoked every time it goes out of scope.
+
+{{{
+// Inefficient implementation:
+for (int i = 0; i < 1000000; ++i) {
+  Foo f;  // My ctor and dtor get called 1000000 times each.
+  f.DoSomething(i);
+}
+}}}
+
+It may be more efficient to declare such a variable used in a loop outside that loop:
+
+{{{
+Foo f;  // My ctor and dtor get called once each.
+for (int i = 0; i < 1000000; ++i) {
+  f.DoSomething(i);
+}
+}}}
+
+
+==Static and Global Variables==
+
+Static or global variables of class type are forbidden: they cause hard-to-find bugs due to indeterminate order of construction and destruction. Consider refactoring or grouping these variables into a class or namespace or use a singleton instance.
+
+
+=Classes=
+
+Classes are the fundamental unit of code in C++. Naturally, we use them extensively. This section lists the main dos and don'ts you should follow when writing a class.
+
+==Doing Work in Constructors==
+
+In general, constructors should merely set member variables to their initial values. Although light work can go in a constructor any complex initialisation should go in an explicit Init() method or several methods for different stages of initialisation. This makes constructor readability much simpler. 
+
+==Default Constructors==
+
+If your class defines member variables and has no other constructors you must define a default constructor (one that takes no arguments). It should preferably initialise the object in such a way that its internal state is consistent and valid.
+
+The reason for this is that if you have no other constructors and do not define a default constructor, the compiler will generate one for you. This compiler generated constructor may not initialise your object sensibly.
+
+If your class inherits from an existing class but you add no new member variables, you are not required to have a default constructor. 
+
+==Explicit Constructors==
+
+Use the C++ keyword explicit for constructors with one argument.
+
+Normally, if a constructor takes one argument, it can be used as a conversion. For instance, if you define Foo::Foo(string name) and then pass a string to a function that expects a Foo, the constructor will be called to convert the string into a Foo and will pass the Foo to your function for you. This can be convenient but is also a source of trouble when things get converted and new objects created without you meaning them to. Declaring a constructor explicit prevents it from being invoked implicitly as a conversion. 
+
+==Copy Constructors==
+
+Provide a copy constructor and assignment operator when necessary. If a class should not be copied disable it by declaring a default copy constructor private.
+
+==Structs vs. Classes==
+
+In general use a struct only for passive objects that carry data; everything else is a class. 
+
+==Inheritance==
+
+Composition is often more appropriate than inheritance. When using inheritance, make it public.
+
+Definition:
+
+When a sub-class inherits from a base class, it includes the definitions of all the data and operations that the parent base class defines. In practice, inheritance is used in two major ways in C++: implementation inheritance, in which actual code is inherited by the child, and interface inheritance, in which only method names are inherited.
+
+Pros:
+
+Implementation inheritance reduces code size by re-using the base class code as it specialises an existing type. Because inheritance is a compile-time declaration, you and the compiler can understand the operation and detect errors. Interface inheritance can be used to programmatically enforce that a class expose a particular API. Again, the compiler can detect errors, in this case, when a class does not define a necessary method of the API.
+
+Cons:
+
+For implementation inheritance, because the code implementing a sub-class is spread between the base and the sub-class, it can be more difficult to understand an implementation. The sub-class cannot override functions that are not virtual, so the sub-class cannot change implementation. The base class may also define some data members, so that specifies physical layout of the base class.
+Decision:
+
+All inheritance should be public. If you want to do private inheritance, you should be including an instance of the base class as a member instead.
+
+Do not overuse implementation inheritance. Composition is often more appropriate. Try to restrict use of inheritance to the "is-a" case: Bar subclasses Foo if it can reasonably be said that Bar "is a kind of" Foo.
+
+Make your destructor virtual if necessary. If your class has virtual methods, its destructor should be virtual.
+
+Limit the use of protected to those member functions that might need to be accessed from subclasses. Note that data members should be private.
+
+When redefining an inherited virtual function, explicitly declare it virtual in the declaration of the derived class. Rationale: If virtual is omitted, the reader has to check all ancestors of the class in question to determine if the function is virtual or not. 
+
+==Multiple Inheritance==
+
+Multiple inheritance should be used sparingly. Subclassing from many base classes can cause complex implementations and make bug-tracing hard. Try to keep inheritance to a minimum, sticking to inheriting mainly from pure interface classes. 
+
+==Access Control==
+
+Make all data members private, and provide access to them through accessor functions as needed. Typically a variable would be called foo and the accessor function foo(). You may also want a mutator function set_foo().
+
+The definitions of accessors are usually inlined in the header file. See also Inheritance and Function Names. 
+
+==Declaration Order==
+
+Use the specified order of declarations within a class: public: before private:, methods before data members (variables), etc.
+
+Your class definition should start with its public: section, followed by its protected: section and then its private: section. If any of these sections are empty, omit them. Within each section, the declarations generally should be in the following order:
+
+* Typedefs and Enums
+* Constants
+* Constructors
+* Destructor
+* Methods, including static methods
+* Data Members, including static data members 
+
+Do not put large method definitions inline in the class definition. Usually, only trivial or performance-critical, and very short, methods may be defined inline. See Inline Functions for more details. 
+
+==Write Short Functions==
+
+Prefer small and focused functions.
+
+We recognise that long functions are sometimes appropriate, so no hard limit is placed on functions length. If a function exceeds about 40 lines, think about whether it can be broken up without harming the structure of the program.
+
+Even if your long function works perfectly now, someone modifying it in a few months may add new behaviour. This could result in bugs that are hard to find. Keeping your functions short and simple makes it easier for other people to read and modify your code. You could find long and complicated functions when working with some code. Do not be intimidated by modifying existing code: if working with such a function proves to be difficult, you find that errors are hard to debug, or you want to use a piece of it in several different contexts, consider breaking up the function into smaller and more manageable pieces.
