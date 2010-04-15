@@ -479,16 +479,18 @@ memset(&data, 0, sizeof(Struct));
 
 The most important consistency rules are those that govern naming. The style of a name immediately informs us what sort of thing the named entity is: a type, a variable, a function, a constant, a macro, etc., without requiring us to search for the declaration of that entity. The pattern-matching engine in our brains relies a great deal on these naming rules.
 
-Naming rules are pretty arbitrary, but we feel that consistency is more important than individual preferences in this area, so regardless of whether you find them sensible or not, the rules are the rules.
+Naming rules are pretty arbitrary, but we feel that consistency is the most important thing in this area. If you are editing a file, make sure you continue with its naming scheme.
+
+The following rules govern general naming conventions however in UGen there are specific ways of naming classes depending on their job and use these will be covered under the Developing UGen wiki.
 
 ==General Naming Rules==
-▽ Function names, variable names, and filenames should be descriptive; eschew abbreviation. Types and variables should be nouns, while functions should be "command" verbs.
+Function names, variable names, and filenames should be descriptive; eschew abbreviation. Types and variables should be nouns, while functions should be "command" verbs.
 
 ====How to Name====
 Give as descriptive a name as possible, within reason. Do not worry about saving horizontal space as it is far more important to make your code immediately understandable by a new reader. Examples of well-chosen names:
 {{{
 int numErrors;                  // Good.
-int numCompletedConnections;   // Good.
+int numCompletedConnections;    // Good.
 }}}
 Poorly-chosen names use ambiguous abbreviations or arbitrary characters that do not convey meaning:
 {{{
@@ -518,7 +520,7 @@ int errorCnt;    // Bad.
 }}}
 
 ==File Names==
-▽ Filenames should start with lowercase `ugen_` then the name of the file in camel case starting with a capital. It is usual practice to name the file after the class it contains.
+Filenames should start with lowercase `ugen_` then the name of the file in camel case starting with a capital. It is usual practice to name the file after the class it contains.
 
 Eg. `ugen_MyUsefulClass.cpp` 
 
@@ -528,17 +530,10 @@ Do not use filenames that already exist in /usr/include, such as db.h.
 
 In general, make your filenames very specific. For example, use HttpServerLogs.h rather than logs.h. A very common case is to have a pair of files called, e.g., fooBar.h and fooBar.cpp, defining a class called FooBar.
 
-Inline functions must be in a .h file. If your inline functions are very short, they should go directly into your .h file. However, if your inline functions include a lot of code, they may go into a third file that ends in -inl.h. In a class with a lot of inline code, your class could have three files:
-{{{
-urlTable.h      // The class declaration.
-urlTable.cpp     // The class definition.
-urlTable-inl.h  // Inline functions that include lots of code.
-}}}
-
-See also the section -inl.h Files
+Inline functions should be included in the .h header file along with the class definition.
 
 ==Type Names==
-▽ Type names start with a capital letter and have a capital letter for each new word, with no underscores: `MyExcitingClass`, `MyExcitingEnum`. The internal workings of a `ugen` have the same name as the interface class with `UGenInternal` appended
+Type names start with a capital letter and have a capital letter for each new word, with no underscores: `MyExcitingClass`, `MyExcitingEnum`. The internal workings of a `ugen` have the same name as the interface class with `UGenInternal` appended
 
 The names of all types — classes, structs, typedefs, and enums — have the same naming convention. Type names should start with a capital letter and have a capital letter for each new word. No underscores. For example:
 {{{
@@ -555,20 +550,20 @@ enum UrlTableErrors { ...
 }}}
 
 ==Variable Names==
-▽ Variable names are all camel case starting with a lowercase letter. Class member variables can have trailing underscores but do not require them. For instance: `myExcitingLocalVariable`.
+Variable names are all camel case starting with a lowercase letter. Class member variables can have trailing underscores but do not require them. For instance: `myExcitingLocalVariable`.
 
 Although not required it is sometimes useful to prepend a letter describing the variable's data type to its name e.g. i or f. This is particularly useful if there are two variables describing the same thing e.g. buffer positions: `iBufferPosition`, `fBufferPosition`
 
 This is usually only done for basic types where it is immediately obvious what the letter refers to.
 
 ==Constant Names==
-▽ There are no fixed rules regarding constants but as with variable names a `k` could prepend the constant: `kDaysInAWeek`.
+In general there are no fixed rules regarding constants but as with variable names a `k` could prepend the constant: `kDaysInAWeek`.
 
 This rule can apply to compile-time constants, whether they are declared locally, globally, or as part of a class. Use a k followed by words with uppercase first letters:
 `const int kDaysInAWeek = 7;`
 
 ==Function Names==
-▽ Regular functions have camel case; accessors and mutators generally prepend the word get or set to the name of the variable: `myExcitingFunction(), myExcitingMethod(), getMyExcitingMemberVariable(), setMyExcitingMemberVariable()`.
+Regular functions have camel case; accessors and mutators generally prepend the word get or set to the name of the variable: `myExcitingFunction(), myExcitingMethod(), getMyExcitingMemberVariable(), setMyExcitingMemberVariable()`.
 
 ====Regular Functions====
 Functions should start with a lower case letter and have a capital letter for each new word. No underscores:
@@ -592,30 +587,24 @@ class MyClass {
 }}}
 
 ==Namespace Names==
-▽ Namespace names are all lower-case, and based on project names and possibly their directory structure: `ugen_project`.
+Namespace names are all lower-case, and based on project names and possibly their directory structure: `ugen_project`.
 
 See Namespaces for a discussion of namespaces and how to name them.
 
 ==Enumerator Names==
-▽ Enumerators should be named either like constants or like macros: either `kEnumName` or `ENUM_NAME`.
+Enumerators should be named either like types eg. camel case beginning with a capital.
 
-Preferably, the individual enumerators should be named like constants. However, it is also acceptable to name them like macros. The enumeration name, `UrlTableErrors` (and `AlternateUrlTableErrors`), is a type, and therefore mixed case.
 {{{
-enum UrlTableErrors {
-  kOK = 0,
-  kErrorOutOfMemory,
-  kErrorMalformedInput,
-};
-
-enum AlternateUrlTableErrors {
-  OK = 0,
-  OUT_OF_MEMORY = 1,
-  MALFORMED_INPUT = 2,
+enum Inputs
+{
+    Input,
+    Trig,
+    NumInputs
 };
 }}}
 
 ==Macro Names==
-▽ Macros should be defined all upper case with words separated by underscores: `MY_MACRO_THAT_SCARES_SMALL_CHILDREN`.
+Macros should be defined all upper case with words separated by underscores: `MY_MACRO_THAT_SCARES_SMALL_CHILDREN`.
 
 Please see the description of macros; in general macros should not be used. However, if they are absolutely needed, then they should be named like enum value names with all capitals and underscores.
 {{{
@@ -623,20 +612,7 @@ Please see the description of macros; in general macros should not be used. Howe
 #define PI_ROUNDED 3.0
 }}}
 
-==Exceptions to Naming Rules==
-▽ If you are naming something that is analogous to an existing C or C++ entity then you can follow the existing naming convention scheme.
-{{{
-bigopen()
-function name, follows form of open()
-uint
-typedef
-bigpos
-struct or class, follows form of pos
-sparse_hash_map
-STL-like entity; follows STL naming conventions
-LONGLONG_MAX
-a constant, as in INT_MAX
-}}}
+One exception to this rule is the use of Macros internally within UGen for quick class creation. These are named like Types because they create a Type eg.`DirectMulAddUGenDeclaration`.
 
 =Comments=
 Though a pain to write, comments are absolutely vital to keeping our code readable. The following rules describe what you should comment and where. But remember: while comments are very important, the best code is self-documenting. Giving sensible names to types and variables is much better than using obscure names that you must then explain through comments.
