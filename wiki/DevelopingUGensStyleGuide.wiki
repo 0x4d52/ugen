@@ -337,3 +337,140 @@ Prefer small and focused functions.
 We recognise that long functions are sometimes appropriate, so no hard limit is placed on functions length. If a function exceeds about 40 lines, think about whether it can be broken up without harming the structure of the program.
 
 Even if your long function works perfectly now, someone modifying it in a few months may add new behaviour. This could result in bugs that are hard to find. Keeping your functions short and simple makes it easier for other people to read and modify your code. You could find long and complicated functions when working with some code. Do not be intimidated by modifying existing code: if working with such a function proves to be difficult, you find that errors are hard to debug, or you want to use a piece of it in several different contexts, consider breaking up the function into smaller and more manageable pieces.
+
+=Other C++ Features=
+
+==Reference Arguments==
+
+Sometimes it is appropriate to pass parameters by reference. This can be used to avoid ugly syntax like (pval)++. Where possible these should be labelled const to indicate that a function will not change the variables. If it is going to change them e.g. in some geometric operation this should be clearly labelled in the documentation.
+
+==Function Overloading==
+
+Use overloaded functions (including constructors) only in cases where input can be specified in different types that contain the same information. Do not use function overloading to simulate default function parameters unless inline performance is required (functions with default parameters can not be inlined).
+
+==Default Arguments==
+
+Default arguments are used heavily throughout the UGen library mainly to avoid duplicate code such as overloaded functions. When using default arguments make sure that they are sensible and documented where necessary. They should initialise the function to a workable state.
+
+One specific example of their use is when default arguments are used to simulate variable-length argument lists.
+
+// Support up to 4 params by using a default empty AlphaNum.
+{{{
+string StrCat(const AlphaNum &a,
+              const AlphaNum &b = gEmptyAlphaNum,
+              const AlphaNum &c = gEmptyAlphaNum,
+              const AlphaNum &d = gEmptyAlphaNum);
+}}}
+
+==Variable-Length Arrays and alloca()==
+
+For cross platform compatibility and code safety make sure any variable-length arrays are defined with a const variable.
+
+==Friends==
+
+The use of friend classes is allowed but within reason. The purpose of the friend class should be closely related to what they are befriending. One example of this is when defining the internal workings of a class that will be held within many classes e.g. BufferChannelInternal.  
+
+Another common use of friend is to have a FooBuilder? class be a friend of Foo so that it can construct the inner state of Foo correctly, without exposing this state to the world. 
+Friends extend, but do not break, the encapsulation boundary of a class. In some cases this is better than making a member public when you want to give only one other class access to it. However, most classes should interact with other classes solely through their public members. 
+
+==Exceptions==
+
+We do not use C++ exceptions.
+
+Pros:
+
+ * Exceptions allow higher levels of an application to decide how to handle "can't happen" failures in deeply nested functions, without the obscuring and error-prone bookkeeping of error codes.
+ * Exceptions are used by most other modern languages. Using them in C++ would make it more consistent with Python, Java, and the C++ that others are familiar with.
+ * Some third-party C++ libraries use exceptions, and turning them off internally makes it harder to integrate with those libraries.
+ * Exceptions are the only way for a constructor to fail. We can simulate this with a factory function or an Init() method, but these require heap allocation or a new "invalid" state, respectively.
+ * Exceptions are really handy in testing frameworks. 
+
+Cons:
+
+ * When you add a throw statement to an existing function, you must examine all of its transitive callers. Either they must make at least the basic exception safety guarantee, or they must never catch the exception and be happy with the program terminating as a result. For instance, if f() calls g() calls h(), and h throws an exception that f catches, g has to be careful or it may not clean up properly.
+ * More generally, exceptions make the control flow of programs difficult to evaluate by looking at code: functions may return in places you don't expect. This results maintainability and debugging difficulties. You can minimize this cost via some rules on how and where exceptions can be used, but at the cost of more that a developer needs to know and understand.
+ * Exception safety requires both RAII and different coding practices. Lots of supporting machinery is needed to make writing correct exception-safe code easy. Further, to avoid requiring readers to understand the entire call graph, exception-safe code must isolate logic that writes to persistent state into a "commit" phase. This will have both benefits and costs (perhaps where you're forced to obfuscate code to isolate the commit). Allowing exceptions would force us to always pay those costs even when they're not worth it.
+ * Turning on exceptions adds data to each binary produced, increasing compile time (probably slightly) and possibly increasing address space pressure.
+ * The availability of exceptions may encourage developers to throw them when they are not appropriate or recover from them when it's not safe to do so. For example, invalid user input should not cause exceptions to be thrown. We would need to make the style guide even longer to document these restrictions! 
+
+Decision:
+
+On their face, the benefits of using exceptions outweigh the costs, especially in new projects. However, for existing code, the introduction of exceptions has implications on all dependent code. If exceptions can be propagated beyond a new project, it also becomes problematic to integrate the new project into existing exception-free code. 
+
+Given that UGen's existing code is not exception-tolerant, the costs of using exceptions are somewhat greater than the costs in in a new project. The conversion process would be slow and error-prone. We don't believe that the available alternatives to exceptions, such as error codes and assertions, introduce a significant burden.
+
+==Run-Time Type Information (RTTI)==
+
+RTTI is used internally within UGen in order for it to work in a very end-user friendly manner however when extending UGen or using the library you should think carefully about whether this is the best method.
+
+==Casting==
+
+Use C++ casts like static_cast<>() preferably. If the long syntax make code difficult to read it is possible to use C-type casts for type conversion only.
+
+C++ introduced a different cast system from C that distinguishes the types of cast operations. The problem with C casts is the ambiguity of the operation; sometimes you are doing a conversion (e.g., (int)3.5) and sometimes you are doing a cast (e.g., (int)"hello"); C++ casts avoid this. Additionally C++ casts are more visible when searching for them.
+
+==Streams==
+
+Preincrement and Predecrement
+
+Use suffix form (i++) of the increment and decrement operators where the return value is ignored where possible for readability. Otherwise use the prefix form to distinguish what it is doing and for the performance boost it will give.
+
+==Use of const==
+
+We strongly recommend that you use const whenever it makes sense to do so.
+
+Definition:
+
+Declared variables and parameters can be preceded by the keyword const to indicate the variables are not changed (e.g., const int foo). Class functions can have the const qualifier to indicate the function does not change the state of the class member variables (e.g., class Foo { int Bar(char c) const; };).
+Pros:
+
+Easier for people to understand how variables are being used. Allows the compiler to do better type checking, and, conceivably, generate better code. Helps people convince themselves of program correctness because they know the functions they call are limited in how they can modify your variables. Helps people know what functions are safe to use without locks in multi-threaded programs.
+Cons:
+
+const is viral: if you pass a const variable to a function, that function must have const in its prototype (or the variable will need a const_cast). This can be a particular problem when calling library functions.
+Decision:
+
+const variables, data members, methods and arguments add a level of compile-time type checking; it is better to detect errors as soon as possible. Therefore we strongly recommend that you use const whenever it makes sense to do so:
+
+ * If a function does not modify an argument passed by reference or by pointer, that argument should be const.
+ * Declare methods to be const whenever possible. Accessors should almost always be const. Other methods should be const if they do not modify any data members, do not call any non-const methods, and do not return a non-const pointer or non-const reference to a data member.
+ * Consider making data members const whenever they do not need to be modified after construction. 
+
+However, do not go crazy with const. Something like const int const const x; is likely overkill, even if it accurately describes how const x is. Focus on what's really useful to know: in this case, const int x is probably sufficient. The mutable keyword is allowed but is unsafe when used with threads, so thread safety should be carefully considered first.
+Where to put the const
+
+Some people favour the form int const foo to const int foo. They argue that this is more readable because it's more consistent: it keeps the rule that const always follows the object it's describing. However, this consistency argument doesn't apply in this case, because the "don't go crazy" dictum eliminates most of the uses you'd have to be consistent with. Putting the const first is arguably more readable, since it follows English in putting the "adjective" (const) before the "noun" (int). That said, while we encourage putting const first, we do not require it. But be consistent with the code around you! 
+
+==Integer Types==
+
+Use the type of integer that is appropriate. If you know it should never go below 0 use an unsigned int as a form of self documentation. However be carful when mixing types such as comparing an unsigned int to an int. Remember that the ranges and overflow behaviour will be different to avoid this where possible.
+
+==Preprocessor Macros==
+
+Be very cautious with macros. Prefer inline functions, enums, and const variables to macros. One special case is when describing platform specific code. Try and keep this code separate from standard implementations within classes though.
+
+Macros mean that the code you see is not the same as the code the compiler sees. This can introduce unexpected behaviour, especially since macros have global scope. 
+
+One large exception to these rules are the way UGen internally uses macros to reduce code size by expanding reused code. Although this is used extensively throughout the library you should not define your own macros where another method is possible. If you can't think of another way, rethink your design.
+
+==0 and NULL==
+
+Use 0 for integers, 0.0 for reals, NULL for pointers, and '\0' for chars.
+
+Use 0 for integers and 0.0 for reals. This is not controversial.
+
+For pointers (address values), there is a choice between 0 and NULL. Bjarne Stroustrup prefers an unadorned 0. We prefer NULL because it looks like a pointer. In fact, some C++ compilers, such as gcc 4.1.0, provide special definitions of NULL which enable them to give useful warnings, particularly in situations where sizeof(NULL) is not equal to sizeof(0).
+
+Use '\0' for chars. This is the correct type and also makes code more readable.
+
+==sizeof==
+
+Use sizeof(varname) instead of sizeof(type) whenever possible.
+
+Use sizeof(varname) because it will update appropriately if the type of the variable changes. sizeof(type) may make sense in some cases, but should generally be avoided because it can fall out of sync if the variable's type changes.
+
+{{{
+Struct data;
+memset(&data, 0, sizeof(data));
+memset(&data, 0, sizeof(Struct));
+}}}
