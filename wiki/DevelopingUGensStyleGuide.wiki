@@ -615,12 +615,12 @@ Please see the description of macros; in general macros should not be used. Howe
 One exception to this rule is the use of Macros internally within UGen for quick class creation. These are named like Types because they create a Type eg.`DirectMulAddUGenDeclaration`.
 
 =Comments=
-Though a pain to write, comments are absolutely vital to keeping our code readable. The following rules describe what you should comment and where. But remember: while comments are very important, the best code is self-documenting. Giving sensible names to types and variables is much better than using obscure names that you must then explain through comments.
+Though a pain to write, comments are absolutely vital to keeping code readable. The following rules describe what you should comment and where. But remember: while comments are very important, the best code is self-documenting. Giving sensible names to types and variables is much better than using obscure names that you must then explain through comments.
 
 When writing your comments, write for your audience: the next contributor who will need to understand your code. Be generous — the next one may be you!
 
 ==Comment Style==
-▽ Use either the `//` or `/*` `*/` syntax, as long as you are consistent.
+Use either the `//` or `/*` `*/` syntax, as long as you are consistent.
 
 You can use either the `//` or the `/* */` syntax; however, `//` is much more common. Be consistent with how you comment and what style you use where.
 
@@ -633,11 +633,11 @@ e.g.
 }}}
 
 ==File Comments==
-▽ Start each file with a copyright notice, followed by a description of the contents of the file.
+Start each file with a copyright notice, followed by a description of the contents of the file.
 
 ====Legal Notice and Author Line====
 Every file should contain the following items, in order:
- * a copyright statement (for example, Copyright 2008 Google Inc.)
+ * a copyright statement (for example, Copyright 2008 UGen Inc.)
  * a license boilerplate. Choose the appropriate boilerplate for the license used by the project (for example, Apache 2.0, BSD, LGPL, GPL)
  * an author line to identify the original author of the file
 
@@ -651,7 +651,7 @@ Generally a `.h` file will describe the classes that are declared in the file wi
 Do not duplicate comments in both the `.h` and the `.cpp`. Duplicated comments diverge.
 
 ==Class Comments==
-▽ Every class definition should have an accompanying comment that describes what it is for and how it should be used. It can optionally include an example.
+Every class definition should have an accompanying comment that describes what it is for and how it should be used. It can optionally include an example.
 {{{
 /**	Iterates over the contents of a GargantuanTable.
 	
@@ -672,7 +672,7 @@ If you have already described a class in detail in the comments at the top of yo
 Document the synchronisation assumptions the class makes, if any. If an instance of the class can be accessed by multiple threads, take extra care to document the rules and invariants surrounding multithreaded use.
 
 ==Function Comments==
-▽ Declaration comments describe use of the function; comments at the definition of a function describe operation.
+Declaration comments describe use of the function; comments at the definition of a function describe operation.
 
 ====Function Declarations====
 Every function declaration should have comments immediately preceding it that describe what the function does and how to use it. These comments should be descriptive ("Opens the file") rather than imperative ("Open the file"); the comment describes the function, it does not tell the function what to do. In general, these comments do not describe how the function performs its task. Instead, that should be left to comments in the function definition.
@@ -704,7 +704,7 @@ Here is an example:
 	returned iterator, it will be faster to use NewIterator()
 	and avoid the extra seek.
  */
-Iterator* GetIterator() const;
+Iterator* getIterator() const;
 }}}
 However, do not be unnecessarily verbose or state the completely obvious. Notice below that it is not necessary to say "returns false otherwise" because this is implied.
 {{{
@@ -719,10 +719,10 @@ Each function definition should have a comment describing what the function does
 Note you should not just repeat the comments given with the function declaration, in the `.h` file or wherever. It's okay to recapitulate briefly what the function does, but the focus of the comments should be on how it does it.
 
 ==Variable Comments==
-▽ In general the actual name of the variable should be descriptive enough to give a good idea of what the variable is used for. In certain cases, more comments are required.
+In general the actual name of the variable should be descriptive enough to give a good idea of what the variable is used for. In certain cases, more comments are required.
 
 ====Class Data Members====
-Each class data member (also called an instance variable or member variable) should have a comment describing what it is used for. If the variable can take sentinel values with special meanings, such as `NULL` or `-1`, document this. For example:
+Each class data member (also called an instance variable or member variable) may have a comment describing what it is used for. If the variable can take sentinel values with special meanings, such as `NULL` or `-1`, document this. For example:
 {{{
 private:
  // Keeps track of the total number of entries in the table.
@@ -739,7 +739,7 @@ const int kNumTestCases = 6;
 }}}
 
 ==Implementation Comments==
-▽ In your implementation you should have comments in tricky, non-obvious, interesting, or important parts of your code.
+In your implementation you should have comments in tricky, non-obvious, interesting, or important parts of your code.
 
 ====Class Data Members====
 Tricky or complicated code blocks should have comments before them. Example:
@@ -756,9 +756,9 @@ for (int i = 0; i < result->size(); i++) {
 ====Line Comments====
 Also, lines that are non-obvious should get a comment at the end of the line. These end-of-line comments should be separated from the code by 2 spaces. Example:
 {{{
-// If we have enough memory, mmap the data portion too.
-mmap_budget = max<int64>(0, mmap_budget - index_->length());
-if (mmap_budget >= data_size_ && !MmapData(mmap_chunk_bytes, mlock))
+// If we have enough memory, map the data portion too.
+mapBudget = max(0, mapBudget - index->getLength());
+if (mapBudget >= dataSize_ && !MapData(mapChunkBytes, mlock))
   return;  // Error already logged.
 }}}
 
@@ -809,14 +809,14 @@ Note that you should never describe the code itself. Assume that the person read
 }}}
 
 ==Punctuation, Spelling and Grammar==
-▽ Pay attention to punctuation, spelling, and grammar; it is easier to read well-written comments than badly written ones.
+Pay attention to punctuation, spelling, and grammar; it is easier to read well-written comments than badly written ones.
 
 Comments should usually be written as complete sentences with proper capitalisation and periods at the end. Shorter comments, such as comments at the end of a line of code, can sometimes be less formal, but you should be consistent with your style. Complete sentences are more readable, and they provide some assurance that the comment is complete and not an unfinished thought.
 
 Although it can be frustrating to have a code reviewer point out that you are using a comma when you should be using a semicolon, it is very important that source code maintain a high level of clarity and readability. Proper punctuation, spelling, and grammar help with that goal.
 
 ==TODO Comments==
-▽ Use TODO comments for code that is temporary, a short-term solution, or good-enough but not perfect.
+Use TODO comments for code that is temporary, a short-term solution, or good-enough but not perfect.
 
 TODOs should include the string TODO in all caps, followed by your name, e-mail address, or other identifier in parentheses. A colon is optional. The main purpose is to have a consistent TODO format searchable by the person adding the comment (who can provide more details upon request). A TODO is not a commitment to provide the fix yourself.
 {{{
@@ -829,7 +829,7 @@ If your TODO is of the form "At a future date do something" make sure that you e
 Coding style and formatting are pretty arbitrary, but a project is much easier to follow if everyone uses the same style. Individuals may not agree with every aspect of the formatting rules, and some of the rules may take some getting used to, but it is important that all project contributors follow the style rules so that they can all read and understand everyone's code easily.
 
 ==Line Length==
-▽ Each line of text in your code should be at most 80 characters long.
+Each line of text in your code should be at most 80 characters long.
 
 We recognise that this rule is controversial, but so much existing code already adheres to it, and we feel that consistency is important.
 
@@ -847,15 +847,15 @@ Exception: an #include statement with a long path may exceed 80 columns. Try to 
 Exception: you needn't be concerned about header guards that exceed the maximum length.
 
 ==Non-ASCII Characters==
-▽ Non-ASCII characters should be rare, and must use UTF-8 formatting.
+Non-ASCII characters should be rare, and must use UTF-8 formatting.
 
 You shouldn't hard-code user-facing text in source, even English, so use of non-ASCII characters should be rare. However, in certain cases it is appropriate to include such words in your code. For example, if your code parses data files from foreign it may be appropriate to hard-code the non-ASCII string(s) used in those data files as delimiters. More commonly, unittest code (which does not need to be localized) might contain non-ASCII strings. In such cases, you should use UTF-8, since that is an encoding understood by most tools able to handle more than just ASCII. Hex encoding is also OK, and encouraged where it enhances readability — for example, "\xEF\xBB\xBF" is the Unicode zero-width no-break space character, which would be invisible if included in the source as straight UTF-8.
 
 ==Spaces vs. Tabs==
-▽ Tabs can be used but should be 4 spaces in width.
+Tabs can be used but should be 4 spaces in width.
 
 ==Function Declarations and Definitions==
-▽ Return type on the same line as function name, parameters on the same line if they fit.
+Return type on the same line as function name, parameters on the same line if they fit.
 {{{
 Functions look like this:
 ReturnType ClassName::functionName(Type parName1, Type parName2) {
@@ -934,7 +934,7 @@ void Circle::rotate(double) {}
 }}}
 
 ==Function Calls==
-▽ On one line if it fits; otherwise, wrap arguments at the parenthesis.
+On one line if it fits; otherwise, wrap arguments at the parenthesis.
 
 Function calls have the following format:
 `bool retval = doSomething(argument1, argument2, argument3);`
@@ -967,7 +967,7 @@ if (...) {
 }}}
 
 ==Conditionals==
-▽ Prefer no spaces inside parentheses. The else keyword belongs on a new line.
+Prefer no spaces inside parentheses. The else keyword belongs on a new line.
 
 There are two acceptable formats for a basic conditional statement. One includes spaces between the parentheses and the condition, and one does not.
 
@@ -983,10 +983,10 @@ else {  // The else goes on a new line
 If you prefer you may add spaces inside the parentheses:
 {{{
 if ( condition ) {  // spaces inside parentheses - rare
-	...  // 4 space indent.
+    ...  // 4 space indent.
 }
 else {  // The else goes on a new line
-	...
+    ...
 }
 }}}
 Note that in all cases you must have a space between the if and the open parenthesis. You must also have a space between the close parenthesis and the curly brace, if you're using one.
@@ -999,21 +999,21 @@ if (condition) {  // Good - proper space after IF and before {.
 Short conditional statements may be written on two lines if this enhances readability. You may use this only when the line is brief and the statement does not use the else clause.
 {{{
 if (x == kFoo)
-	return new Foo();
+    return new Foo();
 if (x == kBar)
-	return new Bar();
+    return new Bar();
 
 // Not allowed - IF statement on one line when there is an ELSE clause
 if (x) DoThis();
 else DoThat();
 }}}
-In general, curly braces are not required for single-line statements, but they are allowed if you like them; conditional or loop statements with complex conditions or statements may be more readable with curly braces. Some projects require that an if must always always have an accompanying brace.
+In general, curly braces are not required for single-line statements, but they are allowed if you like them; conditional or loop statements with complex conditions or statements may be more readable with curly braces.
 {{{
 if (condition)
-	doSomething();  // 2 space indent.
+    doSomething();  // 4 space indent.
 
 if (condition) {
-	doSomething();  // 2 space indent.
+    doSomething();  // 4 space indent.
 }
 }}}
 However, if one part of an if-else statement uses curly braces, the other part must too:
@@ -1040,7 +1040,7 @@ if (condition) {
 }}}
 
 ==Loops and Switch Statements==
-▽ Switch statements may use braces for blocks. Empty loop bodies should use `{}` or continue.
+Switch statements may use braces for blocks. Empty loop bodies should use `{}` or continue.
 
 case blocks in switch statements can have curly braces or not, depending on your preference. If you do include curly braces they should be placed as shown below.
 
@@ -1071,7 +1071,7 @@ while (condition);  // Bad - looks like part of do/while loop.
 }}}
 
 ==Pointer and Reference Expressions==
-▽ No spaces around period or arrow. Pointer operators do not have trailing spaces.
+No spaces around period or arrow. Pointer operators do not have trailing spaces.
 
 The following are examples of correctly-formatted pointer and reference expressions:
 {{{
@@ -1098,7 +1098,7 @@ const string & str;  // Bad - spaces on both sides of &
 You should do this consistently within a single file, so, when modifying an existing file, use the style in that file.
 
 ==Boolean Expressions==
-▽ When you have a boolean expression that is longer than the standard line length, be consistent in how you break up the lines.
+When you have a boolean expression that is longer than the standard line length, be consistent in how you break up the lines.
 
 In this example, the logical AND operator is always at the end of the lines:
 {{{
@@ -1111,7 +1111,7 @@ if (this_one_thing > this_other_thing &&
 Note that when the code wraps in this example, both of the && logical AND operators are at the end of the line. Wrapping all operators at the beginning of the line is also allowed. Feel free to insert extra parentheses judiciously, because they can be very helpful in increasing readability when used appropriately.
 
 ==Return Values==
-▽ Do not surround the return expression with parentheses.
+Do not surround the return expression with parentheses.
 
 Return values should not have parentheses:
 {{{
@@ -1119,7 +1119,7 @@ return x;  // not return(x);
 }}}
 
 ==Variable and Array Initialisation==
-▽ Your choice of = or () although = is preferential.
+Your choice of = or () although = is preferential.
 
 You may choose between = and (); the following are all correct:
 {{{
@@ -1130,7 +1130,7 @@ string name = "Some Name";
 }}}
 
 ==Preprocessor Directives==
-▽ Preprocessor directives should not be indented but should instead start at the beginning of the line.
+Preprocessor directives should not be indented but should instead start at the beginning of the line.
 
 Even when pre-processor directives are within the body of indented code, the directives should start at the beginning of the line.
 {{{
@@ -1151,7 +1151,7 @@ Even when pre-processor directives are within the body of indented code, the dir
 }}}
 
 ==Class Format==
-▽ Sections in public, protected and private order, not indented.
+Sections in public, protected and private order, not indented.
 
 The basic format for a class declaration (lacking the comments, see Class Comments for a discussion of what comments are needed) is:
 {{{
@@ -1164,18 +1164,17 @@ public:
 
     void someFunction();
     void someFunctionThatDoesNothing()
-	{
-	}
+    {
+    }
 
-  void setSomeVar(int var) { someVar = var; }
-  int getSomeVar() const { return someVar_; }
+    void setSomeVar(int var) { someVar = var; }
+    int getSomeVar() const { return someVar_; }
 
 private:
     bool someInternalFunction();
 
     int someVar_;
     int someOtherVar_;
-    DISALLOW_COPY_AND_ASSIGN(MyClass);
 };
 }}}
 
@@ -1188,14 +1187,8 @@ Things to note:
  * See Declaration Order for rules on ordering declarations within each of these sections.
 
 ==Constructor Initialiser Lists==
-▽ Constructor initialiser lists can be all on one line or with subsequent lines indented four spaces.
+Constructor initialiser lists should all be on a new line with subsequent lines indented four spaces.
 
-There are two acceptable formats for initialiser lists:
-{{{
-// When it all fits on one line:
-MyClass::MyClass(int var) : some_var_(var), some_other_var_(var + 1) {}
-}}}
-or
 {{{
 // When it requires multiple lines, indent 4 spaces, putting the colon on
 // the first initialiser line:
@@ -1210,7 +1203,7 @@ MyClass::MyClass(int var)
 }}}
 
 ==Namespace Formatting==
-▽ The contents of namespaces are not indented.
+The contents of namespaces are not indented.
 
 Namespaces do not add an extra level of indentation. For example, use:
 {{{
@@ -1240,13 +1233,13 @@ namespace bar {
 }}}
 
 ==Horizontal Whitespace==
-▽ Use of horizontal whitespace depends on location. Never put trailing whitespace at the end of a line.
+Use of horizontal whitespace depends on location. Never put trailing whitespace at the end of a line.
 
 ====General====
 {{{
 void f(bool b) {  // Open braces should always have a space before them or begin on a new line.
   ...
-int i = 0;  // Semicolons usually have no space before them.
+int i = 0;        // Semicolons usually have no space before them.
 int x[] = { 0 };  // Spaces inside braces for array initialisation are
 int x[] = {0};    // optional.  If you use them, put them on both sides!
 
@@ -1279,7 +1272,7 @@ for ( int i = 0; i < 5; ++i ) {
 for ( ; i < 5 ; ++i) {  // For loops always have a space after the
   ...                   // semicolon, and may have a space before the
                         // semicolon.
-switch (i) {
+switch(i) {
   case 1:         // No space before colon in a switch case.
     ...
   case 2: break;  // Use a space after a colon if there's code after it.
@@ -1311,7 +1304,7 @@ set< list<string> > x;      // You may optionally use
 }}}
 
 ==Vertical Whitespace==
-▽ Minimize use of vertical whitespace.
+Minimize use of vertical whitespace.
 
 This is more a principle than a rule: don't use blank lines when you don't have to. In particular, don't put more than one or two blank lines between functions, don't start or end functions with a blank line, and be discriminating with your use of blank lines inside functions.
 
@@ -1351,7 +1344,7 @@ if (condition) {
 The coding conventions described above are mandatory. However, like all good rules, these sometimes have exceptions, which we discuss here.
 
 ==Existing Non-conformant Code==
-▽ You may diverge from the rules when dealing with code that does not conform to this style guide.
+You may diverge from the rules when dealing with code that does not conform to this style guide.
 
 If you find yourself modifying code that was written to specifications other than those presented by this guide, you may have to diverge from these rules in order to stay consistent with the local conventions in that code. If you are in doubt about how to do this, ask the original author or the person currently responsible for the code. Remember that consistency includes local consistency, too.
 
