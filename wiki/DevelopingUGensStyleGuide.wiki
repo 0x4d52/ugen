@@ -12,94 +12,16 @@ This guide will try to outline the main coding styles and practices used in UGen
 
 Above all try to have fun when programming and don't let style conformities get in the way of inventive and creative programming.
 
-Header Files
- * The #define Guard
- * Header File Dependancies
- * Inline Functions
- * Function Parameter Ordering
- * Names and Order of Includes
+=Table of Contents=
 
-Scoping
- * Namespaces
- * Nested Classes
- * Nonmember, Static Member and Global Functions
- * Local Variables
- * Static and Global Variables
-
-Classes
- * Doing Work In Constructors
- * Default Constructors
- * Explicit constructors
- * copy Constructors
- * Structs vs Classes
- * Inheritance
- * Multiple Inheritance
- * Interfaces
- * Operator Overloading
- * Access Control
- * Declaration Order
- * Write Short Functions
-
-Other C++ Features
- * Reference Arguments 
- * Function Overloading 
- * Default Arguments
- * Variable-Length Arrays and alloca()
- * Friends
- * Exceptions 
- * Run-Time Type Information (RTTI)
- * Casting
- * Streams
- * Preincrement and Predecrement
- * Use of const
- * Integer Types
- * 64-bit Portability
- * Preprocessor Macros
- * 0 and NULL  sizeof
-
-Naming
- * General Naming Rules
- * File Names
- * Type Names
- * Variable Names
- * Constant Names
- * Function Names
- * Namespace Names
- * Enumerator Names
- * Macro Names
- * Exceptions to Naming Rules
-
-Comments
- * Comment Style
- * File Comments
- * Class Comments
- * Function Comments
- * Variable Comments
- * Implementation Comments
- * Punctuation, Spelling and Grammar
- * TODO Comments
-
-Formatting
- * Line Length
- * Non-ASCII Characters
- * Spaces vs. Tabs
- * Function Declarations and Definitions
- * Function Calls
- * Conditionals
- * Loops and Switch Statements
- * Pointer and Reference Expressions
- * Boolean Expressions
- * Return Values
- * Variable and Array Initialization
- * Preprocessor Directives
- * Class Format
- * Constructor Initializer Lists
- * Namespace Formatting
- * Horizontal Whitespace
- * Vertical Whitespace
-
-Writing UGens
-	
+||[#Header_Files Header Files]||[#Header_Files The #define Guard] [#Header_File_Dependencies Header File Dependencies] [#Inline_Functions Inline Functions] [#Function_Parameter_Ordering Function Parameter Ordering] [#Names_and_Order_of_Includes Names and Order of Includes]||
+||[#Scoping Scoping]||[#Namespaces Namespaces] [#Nested_Classes Nested Classes] [#Nonmember,_Static_Member,_and_Global_Functions Nonmember, Static Member, and Global Functions] [#Local_Variables Local Variables] [#Static_and_Global_Variables Static and Global Variables]||
+||[#Classes Classes]||[#Doing_Work_in_Constructors Doing Work in Constructors] [#Default_Constructors Default Constructors] [#Explicit_Constructors Explicit Constructors] [#Copy_Constructors Copy Constructors] [#Structs_vs._Classes Structs vs. Classes] [#Inheritance Inheritance] [#Multiple_Inheritance Multiple Inheritance] [#Interfaces Interfaces] [#Operator_Overloading Operator Overloading] [#Access_Control Access Control] [#Declaration_Order Declaration Order] [#Write_Short_Functions Write Short Functions]||
+||[#Other_C++_Features Other C++ Features]||[#Reference_Arguments Reference Arguments] [#Function_Overloading Function Overloading] [#Default_Arguments Default Arguments] [#Variable-Length_Arrays_and_alloca() Variable-Length Arrays and alloca()] [#Friends Friends] [#Exceptions Exceptions] [#Run-Time_Type_Information_(RTTI) Run-Time Type Information (RTTI)] [#Casting Casting] [#Streams Streams] [#Preincrement_and_Predecrement Preincrement and Predecrement] [#Use_of_const Use of const] [#Integer_Types Integer Types] [#64-bit_Portability 64-bit Portability] [#Preprocessor_Macros Preprocessor Macros] [#0_and_NULL 0 and NULL] [#sizeof sizeof]||
+||[#Naming Naming]||[#General_Naming_Rules General Naming Rules] [#File_Names File Names] [#Type_Names Type Names] [#Variable_Names Variable Names] [#Constant_Names Constant Names] [#Function_Names Function Names] [#Namespace_Names Namespace Names] [#Enumerator_Names Enumerator Names] [#Macro_Names Macro Names] [#Exceptions_to_Naming_Rules Exceptions to Naming Rules]||
+||[#Comments Comments]||[#Comment_Style Comment Style] [#File_Comments File Comments] [#Class_Comments Class Comments] [#Function_Comments Function Comments] [#Variable_Comments Variable Comments] [#Implementation_Comments Implementation Comments] [#Punctuation,_Spelling_and_Grammar Punctuation, Spelling and Grammar] [#TODO_Comments TODO Comments]||
+||[#Formatting Formatting]||[#Line_Length Line Length] [#Non-ASCII_Characters Non-ASCII Characters] [#Spaces_vs._Tabs Spaces vs. Tabs] [#Function_Declarations_and_Definitions Function Declarations and Definitions] [#Function_Calls Function Calls] [#Conditionals Conditionals] [#Loops_and_Switch_Statements Loops and Switch Statements] [#Pointer_and Reference_Expressions Pointer and Reference Expressions] [#Boolean_Expressions Boolean Expressions] [#Return_Values Return Values] [#Variable_and_Array_Initialization Variable and Array Initialization] [#Preprocessor_Directives Preprocessor Directives] [#Class_Format Class Format] [#Constructor_Initializer_Lists Constructor Initializer Lists] [#Namespace_Formatting Namespace Formatting] [#Horizontal_Whitespace Horizontal Whitespace] [#Vertical_Whitespace Vertical Whitespace]||
+||[#Exceptions_to_the_Rules Exceptions to the Rules]||[#Existing_Non-conformant_Code Existing Non-conformant Code]||	
 
 =Header Files=
 
