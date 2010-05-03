@@ -1,0 +1,1176 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		84078F3E09E6B42E004E7BCD /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84078F3D09E6B42E004E7BCD /* AGL.framework */; };
+		8407902B09E6B5BD004E7BCD /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8407902A09E6B5BD004E7BCD /* QuickTime.framework */; };
+		841136A00D0480DE0054B790 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8411369F0D0480DE0054B790 /* OpenGL.framework */; };
+		84F30CED08FEAD7A0087E26C /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84F30CEC08FEAD7A0087E26C /* CoreAudio.framework */; };
+		84FAD61A0C7C3CCB00AF3028 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84FAD6190C7C3CCB00AF3028 /* IOKit.framework */; };
+		8D0C4E920486CD37000505A6 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20286C33FDCF999611CA2CEA /* Carbon.framework */; };
+		A80AFA110E8E157B006B49BD /* libjuce.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A80AFA100E8E14EF006B49BD /* libjuce.a */; };
+		A81994480FC457AE008F1D98 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A81994470FC457AE008F1D98 /* Accelerate.framework */; };
+		A85724E40EC3115E007D5B17 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9504C8FFE6A3BC11CA0CBA /* ApplicationServices.framework */; };
+		A85724E50EC3115F007D5B17 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9504CAFFE6A41611CA0CBA /* CoreServices.framework */; };
+		A85DB1C70DCB0D99005D552A /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A85DB1C60DCB0D99005D552A /* CoreMIDI.framework */; };
+		A86E06BA0EC39D140013D893 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A86E06B90EC39D140013D893 /* QTKit.framework */; };
+		A873260310AD4620003082A7 /* ugen_Amplitude.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873251810AD4620003082A7 /* ugen_Amplitude.cpp */; };
+		A873260410AD4620003082A7 /* ugen_DataRecorder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873251A10AD4620003082A7 /* ugen_DataRecorder.cpp */; };
+		A873260510AD4620003082A7 /* ugen_Maxima.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873251C10AD4620003082A7 /* ugen_Maxima.cpp */; };
+		A873260610AD4620003082A7 /* ugen_BinaryOpUGens.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873251F10AD4620003082A7 /* ugen_BinaryOpUGens.cpp */; };
+		A873260710AD4620003082A7 /* ugen_Chain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873252110AD4620003082A7 /* ugen_Chain.cpp */; };
+		A873260810AD4620003082A7 /* ugen_MappingUGens.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873252510AD4620003082A7 /* ugen_MappingUGens.cpp */; };
+		A873260910AD4620003082A7 /* ugen_MixUGen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873252710AD4620003082A7 /* ugen_MixUGen.cpp */; };
+		A873260A10AD4620003082A7 /* ugen_MulAdd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873252910AD4620003082A7 /* ugen_MulAdd.cpp */; };
+		A873260B10AD4620003082A7 /* ugen_Pause.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873252B10AD4620003082A7 /* ugen_Pause.cpp */; };
+		A873260C10AD4620003082A7 /* ugen_Plug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873252D10AD4620003082A7 /* ugen_Plug.cpp */; };
+		A873260D10AD4620003082A7 /* ugen_RawInputUGens.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873252F10AD4620003082A7 /* ugen_RawInputUGens.cpp */; };
+		A873260E10AD4620003082A7 /* ugen_ScalarUGens.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873253110AD4620003082A7 /* ugen_ScalarUGens.cpp */; };
+		A873260F10AD4620003082A7 /* ugen_Thru.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873253410AD4620003082A7 /* ugen_Thru.cpp */; };
+		A873261010AD4620003082A7 /* ugen_UnaryOpUGens.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873253610AD4620003082A7 /* ugen_UnaryOpUGens.cpp */; };
+		A873261110AD4620003082A7 /* ugen_WrapFold.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873253810AD4620003082A7 /* ugen_WrapFold.cpp */; };
+		A873261210AD4620003082A7 /* ugen_Buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873253B10AD4620003082A7 /* ugen_Buffer.cpp */; };
+		A873261310AD4620003082A7 /* ugen_IntBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873253D10AD4620003082A7 /* ugen_IntBuffer.cpp */; };
+		A873261410AD4620003082A7 /* ugen_PlayBuf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873253F10AD4620003082A7 /* ugen_PlayBuf.cpp */; };
+		A873261510AD4620003082A7 /* ugen_Convolution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873254210AD4620003082A7 /* ugen_Convolution.cpp */; };
+		A873261610AD4620003082A7 /* ugen_SimpleConvolution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873254410AD4620003082A7 /* ugen_SimpleConvolution.cpp */; };
+		A873261710AD4620003082A7 /* ugen_Arrays.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873254710AD4620003082A7 /* ugen_Arrays.cpp */; };
+		A873261810AD4620003082A7 /* ugen_Bits.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873254910AD4620003082A7 /* ugen_Bits.cpp */; };
+		A873261910AD4620003082A7 /* ugen_Deleter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873254C10AD4620003082A7 /* ugen_Deleter.cpp */; };
+		A873261A10AD4620003082A7 /* ugen_ExternalControlSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873254E10AD4620003082A7 /* ugen_ExternalControlSource.cpp */; };
+		A873261B10AD4620003082A7 /* ugen_Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873255010AD4620003082A7 /* ugen_Random.cpp */; };
+		A873261C10AD4620003082A7 /* ugen_SmartPointer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873255210AD4620003082A7 /* ugen_SmartPointer.cpp */; };
+		A873261D10AD4620003082A7 /* ugen_Text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873255510AD4620003082A7 /* ugen_Text.cpp */; };
+		A873261E10AD4620003082A7 /* ugen_TextFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873255710AD4620003082A7 /* ugen_TextFile.cpp */; };
+		A873261F10AD4620003082A7 /* ugen_UGen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873255910AD4620003082A7 /* ugen_UGen.cpp */; };
+		A873262010AD4620003082A7 /* ugen_UGenArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873255B10AD4620003082A7 /* ugen_UGenArray.cpp */; };
+		A873262110AD4620003082A7 /* ugen_UGenInternal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873255D10AD4620003082A7 /* ugen_UGenInternal.cpp */; };
+		A873262210AD4620003082A7 /* ugen_Value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873255F10AD4620003082A7 /* ugen_Value.cpp */; };
+		A873262310AD4620003082A7 /* ugen_BlockDelay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873256210AD4620003082A7 /* ugen_BlockDelay.cpp */; };
+		A873262410AD4620003082A7 /* ugen_Delay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873256410AD4620003082A7 /* ugen_Delay.cpp */; };
+		A873262510AD4620003082A7 /* ugen_ASR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873256710AD4620003082A7 /* ugen_ASR.cpp */; };
+		A873262610AD4620003082A7 /* ugen_Env.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873256910AD4620003082A7 /* ugen_Env.cpp */; };
+		A873262710AD4620003082A7 /* ugen_EnvCurve.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873256B10AD4620003082A7 /* ugen_EnvCurve.cpp */; };
+		A873262810AD4620003082A7 /* ugen_EnvGen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873256D10AD4620003082A7 /* ugen_EnvGen.cpp */; };
+		A873262910AD4620003082A7 /* ugen_Lines.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873256F10AD4620003082A7 /* ugen_Lines.cpp */; };
+		A873262A10AD4620003082A7 /* ugen_FFTEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873257210AD4620003082A7 /* ugen_FFTEngine.cpp */; };
+		A873262B10AD4620003082A7 /* ugen_FFTEngineInternal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873257410AD4620003082A7 /* ugen_FFTEngineInternal.cpp */; };
+		A873262C10AD4620003082A7 /* ugen_FFTMagnitude.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873257610AD4620003082A7 /* ugen_FFTMagnitude.cpp */; };
+		A873262D10AD4620003082A7 /* ugen_FFTMagnitudeSelection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873257810AD4620003082A7 /* ugen_FFTMagnitudeSelection.cpp */; };
+		A873262E10AD4620003082A7 /* ugen_Decay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873259110AD4620003082A7 /* ugen_Decay.cpp */; };
+		A873262F10AD4620003082A7 /* ugen_Lag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873259310AD4620003082A7 /* ugen_Lag.cpp */; };
+		A873263010AD4620003082A7 /* ugen_HPF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873259610AD4620003082A7 /* ugen_HPF.cpp */; };
+		A873263110AD4620003082A7 /* ugen_LPF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873259810AD4620003082A7 /* ugen_LPF.cpp */; };
+		A873263210AD4620003082A7 /* ugen_BEQ.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873259A10AD4620003082A7 /* ugen_BEQ.cpp */; };
+		A873263310AD4620003082A7 /* ugen_LeakDC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873259C10AD4620003082A7 /* ugen_LeakDC.cpp */; };
+		A873263410AD4620003082A7 /* ugen_SOS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873259E10AD4620003082A7 /* ugen_SOS.cpp */; };
+		A873263510AD4620003082A7 /* ugen_Scope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325A110AD4620003082A7 /* ugen_Scope.cpp */; };
+		A873263610AD4620003082A7 /* ugen_AudioQueueIOHost.mm in Sources */ = {isa = PBXBuildFile; fileRef = A87325A510AD4620003082A7 /* ugen_AudioQueueIOHost.mm */; };
+		A873263710AD4620003082A7 /* ugen_NSDeleter.mm in Sources */ = {isa = PBXBuildFile; fileRef = A87325A710AD4620003082A7 /* ugen_NSDeleter.mm */; };
+		A873263810AD4620003082A7 /* ugen_NSUtilities.mm in Sources */ = {isa = PBXBuildFile; fileRef = A87325A910AD4620003082A7 /* ugen_NSUtilities.mm */; };
+		A873263910AD4620003082A7 /* ugen_ScopeView.mm in Sources */ = {isa = PBXBuildFile; fileRef = A87325AB10AD4620003082A7 /* ugen_ScopeView.mm */; };
+		A873263A10AD4620003082A7 /* ugen_UIAcceleration.mm in Sources */ = {isa = PBXBuildFile; fileRef = A87325AD10AD4620003082A7 /* ugen_UIAcceleration.mm */; };
+		A873263B10AD4620003082A7 /* ugen_UIButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = A87325AF10AD4620003082A7 /* ugen_UIButton.mm */; };
+		A873263C10AD4620003082A7 /* ugen_UIKitAUIOHost.mm in Sources */ = {isa = PBXBuildFile; fileRef = A87325B110AD4620003082A7 /* ugen_UIKitAUIOHost.mm */; };
+		A873263D10AD4620003082A7 /* ugen_UISlider.mm in Sources */ = {isa = PBXBuildFile; fileRef = A87325B310AD4620003082A7 /* ugen_UISlider.mm */; };
+		A873263E10AD4620003082A7 /* ugen_JuceMultiSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325B610AD4620003082A7 /* ugen_JuceMultiSlider.cpp */; };
+		A873263F10AD4620003082A7 /* ugen_JuceScope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325B810AD4620003082A7 /* ugen_JuceScope.cpp */; };
+		A873264010AD4620003082A7 /* ugen_AudioFilePlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325BB10AD4620003082A7 /* ugen_AudioFilePlayer.cpp */; };
+		A873264110AD4620003082A7 /* ugen_DiskIn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325BD10AD4620003082A7 /* ugen_DiskIn.cpp */; };
+		A873264210AD4620003082A7 /* ugen_DiskOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325BF10AD4620003082A7 /* ugen_DiskOut.cpp */; };
+		A873264310AD4620003082A7 /* ugen_JuceMIDIController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325C210AD4620003082A7 /* ugen_JuceMIDIController.cpp */; };
+		A873264410AD4620003082A7 /* ugen_JuceMIDIInputBroadcaster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325C410AD4620003082A7 /* ugen_JuceMIDIInputBroadcaster.cpp */; };
+		A873264510AD4620003082A7 /* ugen_JuceMIDIMostRecentNote.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325C610AD4620003082A7 /* ugen_JuceMIDIMostRecentNote.cpp */; };
+		A873264610AD4620003082A7 /* ugen_JuceSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325C810AD4620003082A7 /* ugen_JuceSlider.cpp */; };
+		A873264710AD4620003082A7 /* ugen_JuceTimerDeleter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325CA10AD4620003082A7 /* ugen_JuceTimerDeleter.cpp */; };
+		A873264810AD4620003082A7 /* ugen_JuceUtility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325CC10AD4620003082A7 /* ugen_JuceUtility.cpp */; };
+		A873264910AD4620003082A7 /* ugen_JuceVoicer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325CE10AD4620003082A7 /* ugen_JuceVoicer.cpp */; };
+		A873264A10AD4620003082A7 /* ugen_NeuralLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325D110AD4620003082A7 /* ugen_NeuralLayer.cpp */; };
+		A873264B10AD4620003082A7 /* ugen_NeuralNetwork.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325D310AD4620003082A7 /* ugen_NeuralNetwork.cpp */; };
+		A873264C10AD4620003082A7 /* ugen_NeuralNetworkUGen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325D610AD4620003082A7 /* ugen_NeuralNetworkUGen.cpp */; };
+		A873264D10AD4620003082A7 /* ugen_NeuralNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325D810AD4620003082A7 /* ugen_NeuralNode.cpp */; };
+		A873264E10AD4620003082A7 /* ugen_NeuralPattern.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325DA10AD4620003082A7 /* ugen_NeuralPattern.cpp */; };
+		A873264F10AD4620003082A7 /* ugen_BrownNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325DD10AD4620003082A7 /* ugen_BrownNoise.cpp */; };
+		A873265010AD4620003082A7 /* ugen_Dust.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325DF10AD4620003082A7 /* ugen_Dust.cpp */; };
+		A873265110AD4620003082A7 /* ugen_LFNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325E110AD4620003082A7 /* ugen_LFNoise.cpp */; };
+		A873265210AD4620003082A7 /* ugen_PinkNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325E310AD4620003082A7 /* ugen_PinkNoise.cpp */; };
+		A873265310AD4620003082A7 /* ugen_WhiteNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325E510AD4620003082A7 /* ugen_WhiteNoise.cpp */; };
+		A873265410AD4620003082A7 /* ugen_FSinOsc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325E910AD4620003082A7 /* ugen_FSinOsc.cpp */; };
+		A873265510AD4620003082A7 /* ugen_Impulse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325EB10AD4620003082A7 /* ugen_Impulse.cpp */; };
+		A873265610AD4620003082A7 /* ugen_LFPulse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325ED10AD4620003082A7 /* ugen_LFPulse.cpp */; };
+		A873265710AD4620003082A7 /* ugen_LFSaw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325EF10AD4620003082A7 /* ugen_LFSaw.cpp */; };
+		A873265810AD4620003082A7 /* ugen_OscillatorUGens.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325F110AD4620003082A7 /* ugen_OscillatorUGens.cpp */; };
+		A873265910AD4620003082A7 /* ugen_TableOsc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325F410AD4620003082A7 /* ugen_TableOsc.cpp */; };
+		A873265A10AD4620003082A7 /* ugen_BasicPan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325F710AD4620003082A7 /* ugen_BasicPan.cpp */; };
+		A873265B10AD4620003082A7 /* ugen_Spawn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325FA10AD4620003082A7 /* ugen_Spawn.cpp */; };
+		A873265C10AD4620003082A7 /* ugen_Textures.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325FC10AD4620003082A7 /* ugen_Textures.cpp */; };
+		A873265D10AD4620003082A7 /* ugen_TSpawn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87325FE10AD4620003082A7 /* ugen_TSpawn.cpp */; };
+		A873265E10AD4620003082A7 /* ugen_VoicerBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A873260010AD4620003082A7 /* ugen_VoicerBase.cpp */; };
+		A88A90150DF46B4700DF4080 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A88A90140DF46B4700DF4080 /* AudioUnit.framework */; };
+		A88A90170DF46B5000DF4080 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A88A90160DF46B5000DF4080 /* Cocoa.framework */; };
+		A88A90190DF46B7500DF4080 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A88A90180DF46B7500DF4080 /* CoreFoundation.framework */; };
+		A88A901B0DF46B7E00DF4080 /* DiscRecording.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A88A901A0DF46B7E00DF4080 /* DiscRecording.framework */; };
+		A88A901D0DF46B8A00DF4080 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A88A901C0DF46B8A00DF4080 /* WebKit.framework */; };
+		A8951ABB0EB1EC2800F4CA45 /* MainAppWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8951AB90EB1EC2800F4CA45 /* MainAppWindow.cpp */; };
+		A8951ABC0EB1EC2800F4CA45 /* ApplicationStartup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8951ABA0EB1EC2800F4CA45 /* ApplicationStartup.cpp */; };
+		A8A2638310036FA700E93330 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8A2638210036FA700E93330 /* QuartzCore.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A80AFA0F0E8E14EF006B49BD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A80AFA080E8E14EF006B49BD /* Juce.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC046055464E500DB518D;
+			remoteInfo = Juce;
+		};
+		A8732C1010ADEF8B003082A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A80AFA080E8E14EF006B49BD /* Juce.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 84816E3510809B4F008FEC33;
+			remoteInfo = "Juce (iPhone)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		20286C33FDCF999611CA2CEA /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		4A9504C8FFE6A3BC11CA0CBA /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
+		4A9504CAFFE6A41611CA0CBA /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		84078F3D09E6B42E004E7BCD /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = System/Library/Frameworks/AGL.framework; sourceTree = SDKROOT; };
+		8407902A09E6B5BD004E7BCD /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = System/Library/Frameworks/QuickTime.framework; sourceTree = SDKROOT; };
+		8411369F0D0480DE0054B790 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		84F30CEC08FEAD7A0087E26C /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		84FAD6190C7C3CCB00AF3028 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		8D0C4E960486CD37000505A6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8D0C4E970486CD37000505A6 /* 01_03_UGenGraphs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 01_03_UGenGraphs.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A80AFA080E8E14EF006B49BD /* Juce.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Juce.xcodeproj; path = juce/build/macosx/Juce.xcodeproj; sourceTree = JUCE_SOURCE; };
+		A81994470FC457AE008F1D98 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = /System/Library/Frameworks/Accelerate.framework; sourceTree = "<absolute>"; };
+		A85DB1C60DCB0D99005D552A /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
+		A86E06B90EC39D140013D893 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
+		A873251810AD4620003082A7 /* ugen_Amplitude.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_Amplitude.cpp; sourceTree = "<group>"; };
+		A873251910AD4620003082A7 /* ugen_Amplitude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Amplitude.h; sourceTree = "<group>"; };
+		A873251A10AD4620003082A7 /* ugen_DataRecorder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_DataRecorder.cpp; sourceTree = "<group>"; };
+		A873251B10AD4620003082A7 /* ugen_DataRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_DataRecorder.h; sourceTree = "<group>"; };
+		A873251C10AD4620003082A7 /* ugen_Maxima.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_Maxima.cpp; sourceTree = "<group>"; };
+		A873251D10AD4620003082A7 /* ugen_Maxima.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Maxima.h; sourceTree = "<group>"; };
+		A873251F10AD4620003082A7 /* ugen_BinaryOpUGens.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_BinaryOpUGens.cpp; sourceTree = "<group>"; };
+		A873252010AD4620003082A7 /* ugen_BinaryOpUGens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_BinaryOpUGens.h; sourceTree = "<group>"; };
+		A873252110AD4620003082A7 /* ugen_Chain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_Chain.cpp; sourceTree = "<group>"; };
+		A873252210AD4620003082A7 /* ugen_Chain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Chain.h; sourceTree = "<group>"; };
+		A873252310AD4620003082A7 /* ugen_InlineBinaryOps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_InlineBinaryOps.h; sourceTree = "<group>"; };
+		A873252410AD4620003082A7 /* ugen_InlineUnaryOps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_InlineUnaryOps.h; sourceTree = "<group>"; };
+		A873252510AD4620003082A7 /* ugen_MappingUGens.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_MappingUGens.cpp; sourceTree = "<group>"; };
+		A873252610AD4620003082A7 /* ugen_MappingUGens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_MappingUGens.h; sourceTree = "<group>"; };
+		A873252710AD4620003082A7 /* ugen_MixUGen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_MixUGen.cpp; sourceTree = "<group>"; };
+		A873252810AD4620003082A7 /* ugen_MixUGen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_MixUGen.h; sourceTree = "<group>"; };
+		A873252910AD4620003082A7 /* ugen_MulAdd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_MulAdd.cpp; sourceTree = "<group>"; };
+		A873252A10AD4620003082A7 /* ugen_MulAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_MulAdd.h; sourceTree = "<group>"; };
+		A873252B10AD4620003082A7 /* ugen_Pause.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_Pause.cpp; sourceTree = "<group>"; };
+		A873252C10AD4620003082A7 /* ugen_Pause.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Pause.h; sourceTree = "<group>"; };
+		A873252D10AD4620003082A7 /* ugen_Plug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_Plug.cpp; sourceTree = "<group>"; };
+		A873252E10AD4620003082A7 /* ugen_Plug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Plug.h; sourceTree = "<group>"; };
+		A873252F10AD4620003082A7 /* ugen_RawInputUGens.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_RawInputUGens.cpp; sourceTree = "<group>"; };
+		A873253010AD4620003082A7 /* ugen_RawInputUGens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_RawInputUGens.h; sourceTree = "<group>"; };
+		A873253110AD4620003082A7 /* ugen_ScalarUGens.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_ScalarUGens.cpp; sourceTree = "<group>"; };
+		A873253210AD4620003082A7 /* ugen_ScalarUGens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_ScalarUGens.h; sourceTree = "<group>"; };
+		A873253310AD4620003082A7 /* ugen_Temporary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Temporary.h; sourceTree = "<group>"; };
+		A873253410AD4620003082A7 /* ugen_Thru.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_Thru.cpp; sourceTree = "<group>"; };
+		A873253510AD4620003082A7 /* ugen_Thru.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Thru.h; sourceTree = "<group>"; };
+		A873253610AD4620003082A7 /* ugen_UnaryOpUGens.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_UnaryOpUGens.cpp; sourceTree = "<group>"; };
+		A873253710AD4620003082A7 /* ugen_UnaryOpUGens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_UnaryOpUGens.h; sourceTree = "<group>"; };
+		A873253810AD4620003082A7 /* ugen_WrapFold.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_WrapFold.cpp; sourceTree = "<group>"; };
+		A873253910AD4620003082A7 /* ugen_WrapFold.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_WrapFold.h; sourceTree = "<group>"; };
+		A873253B10AD4620003082A7 /* ugen_Buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_Buffer.cpp; sourceTree = "<group>"; };
+		A873253C10AD4620003082A7 /* ugen_Buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Buffer.h; sourceTree = "<group>"; };
+		A873253D10AD4620003082A7 /* ugen_IntBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_IntBuffer.cpp; sourceTree = "<group>"; };
+		A873253E10AD4620003082A7 /* ugen_IntBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_IntBuffer.h; sourceTree = "<group>"; };
+		A873253F10AD4620003082A7 /* ugen_PlayBuf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_PlayBuf.cpp; sourceTree = "<group>"; };
+		A873254010AD4620003082A7 /* ugen_PlayBuf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_PlayBuf.h; sourceTree = "<group>"; };
+		A873254210AD4620003082A7 /* ugen_Convolution.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_Convolution.cpp; sourceTree = "<group>"; };
+		A873254310AD4620003082A7 /* ugen_Convolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Convolution.h; sourceTree = "<group>"; };
+		A873254410AD4620003082A7 /* ugen_SimpleConvolution.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_SimpleConvolution.cpp; sourceTree = "<group>"; };
+		A873254510AD4620003082A7 /* ugen_SimpleConvolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_SimpleConvolution.h; sourceTree = "<group>"; };
+		A873254710AD4620003082A7 /* ugen_Arrays.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_Arrays.cpp; sourceTree = "<group>"; };
+		A873254810AD4620003082A7 /* ugen_Arrays.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Arrays.h; sourceTree = "<group>"; };
+		A873254910AD4620003082A7 /* ugen_Bits.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_Bits.cpp; sourceTree = "<group>"; };
+		A873254A10AD4620003082A7 /* ugen_Bits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Bits.h; sourceTree = "<group>"; };
+		A873254B10AD4620003082A7 /* ugen_Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Constants.h; sourceTree = "<group>"; };
+		A873254C10AD4620003082A7 /* ugen_Deleter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_Deleter.cpp; sourceTree = "<group>"; };
+		A873254D10AD4620003082A7 /* ugen_Deleter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Deleter.h; sourceTree = "<group>"; };
+		A873254E10AD4620003082A7 /* ugen_ExternalControlSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_ExternalControlSource.cpp; sourceTree = "<group>"; };
+		A873254F10AD4620003082A7 /* ugen_ExternalControlSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_ExternalControlSource.h; sourceTree = "<group>"; };
+		A873255010AD4620003082A7 /* ugen_Random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_Random.cpp; sourceTree = "<group>"; };
+		A873255110AD4620003082A7 /* ugen_Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Random.h; sourceTree = "<group>"; };
+		A873255210AD4620003082A7 /* ugen_SmartPointer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_SmartPointer.cpp; sourceTree = "<group>"; };
+		A873255310AD4620003082A7 /* ugen_SmartPointer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_SmartPointer.h; sourceTree = "<group>"; };
+		A873255410AD4620003082A7 /* ugen_StandardHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_StandardHeader.h; sourceTree = "<group>"; };
+		A873255510AD4620003082A7 /* ugen_Text.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_Text.cpp; sourceTree = "<group>"; };
+		A873255610AD4620003082A7 /* ugen_Text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Text.h; sourceTree = "<group>"; };
+		A873255710AD4620003082A7 /* ugen_TextFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_TextFile.cpp; sourceTree = "<group>"; };
+		A873255810AD4620003082A7 /* ugen_TextFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_TextFile.h; sourceTree = "<group>"; };
+		A873255910AD4620003082A7 /* ugen_UGen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_UGen.cpp; sourceTree = "<group>"; };
+		A873255A10AD4620003082A7 /* ugen_UGen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_UGen.h; sourceTree = "<group>"; };
+		A873255B10AD4620003082A7 /* ugen_UGenArray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_UGenArray.cpp; sourceTree = "<group>"; };
+		A873255C10AD4620003082A7 /* ugen_UGenArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_UGenArray.h; sourceTree = "<group>"; };
+		A873255D10AD4620003082A7 /* ugen_UGenInternal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_UGenInternal.cpp; sourceTree = "<group>"; };
+		A873255E10AD4620003082A7 /* ugen_UGenInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_UGenInternal.h; sourceTree = "<group>"; };
+		A873255F10AD4620003082A7 /* ugen_Value.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_Value.cpp; sourceTree = "<group>"; };
+		A873256010AD4620003082A7 /* ugen_Value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Value.h; sourceTree = "<group>"; };
+		A873256210AD4620003082A7 /* ugen_BlockDelay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_BlockDelay.cpp; sourceTree = "<group>"; };
+		A873256310AD4620003082A7 /* ugen_BlockDelay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_BlockDelay.h; sourceTree = "<group>"; };
+		A873256410AD4620003082A7 /* ugen_Delay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_Delay.cpp; sourceTree = "<group>"; };
+		A873256510AD4620003082A7 /* ugen_Delay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Delay.h; sourceTree = "<group>"; };
+		A873256710AD4620003082A7 /* ugen_ASR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_ASR.cpp; sourceTree = "<group>"; };
+		A873256810AD4620003082A7 /* ugen_ASR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_ASR.h; sourceTree = "<group>"; };
+		A873256910AD4620003082A7 /* ugen_Env.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_Env.cpp; sourceTree = "<group>"; };
+		A873256A10AD4620003082A7 /* ugen_Env.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Env.h; sourceTree = "<group>"; };
+		A873256B10AD4620003082A7 /* ugen_EnvCurve.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_EnvCurve.cpp; sourceTree = "<group>"; };
+		A873256C10AD4620003082A7 /* ugen_EnvCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_EnvCurve.h; sourceTree = "<group>"; };
+		A873256D10AD4620003082A7 /* ugen_EnvGen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_EnvGen.cpp; sourceTree = "<group>"; };
+		A873256E10AD4620003082A7 /* ugen_EnvGen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_EnvGen.h; sourceTree = "<group>"; };
+		A873256F10AD4620003082A7 /* ugen_Lines.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_Lines.cpp; sourceTree = "<group>"; };
+		A873257010AD4620003082A7 /* ugen_Lines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Lines.h; sourceTree = "<group>"; };
+		A873257210AD4620003082A7 /* ugen_FFTEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_FFTEngine.cpp; sourceTree = "<group>"; };
+		A873257310AD4620003082A7 /* ugen_FFTEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_FFTEngine.h; sourceTree = "<group>"; };
+		A873257410AD4620003082A7 /* ugen_FFTEngineInternal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_FFTEngineInternal.cpp; sourceTree = "<group>"; };
+		A873257510AD4620003082A7 /* ugen_FFTEngineInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_FFTEngineInternal.h; sourceTree = "<group>"; };
+		A873257610AD4620003082A7 /* ugen_FFTMagnitude.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_FFTMagnitude.cpp; sourceTree = "<group>"; };
+		A873257710AD4620003082A7 /* ugen_FFTMagnitude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_FFTMagnitude.h; sourceTree = "<group>"; };
+		A873257810AD4620003082A7 /* ugen_FFTMagnitudeSelection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_FFTMagnitudeSelection.cpp; sourceTree = "<group>"; };
+		A873257910AD4620003082A7 /* ugen_FFTMagnitudeSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_FFTMagnitudeSelection.h; sourceTree = "<group>"; };
+		A873257B10AD4620003082A7 /* Array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Array.h; sourceTree = "<group>"; };
+		A873257C10AD4620003082A7 /* Array.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Array.hpp; sourceTree = "<group>"; };
+		A873257D10AD4620003082A7 /* def.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = def.h; sourceTree = "<group>"; };
+		A873257E10AD4620003082A7 /* DynArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynArray.h; sourceTree = "<group>"; };
+		A873257F10AD4620003082A7 /* DynArray.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DynArray.hpp; sourceTree = "<group>"; };
+		A873258010AD4620003082A7 /* FFTReal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFTReal.h; sourceTree = "<group>"; };
+		A873258110AD4620003082A7 /* FFTReal.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FFTReal.hpp; sourceTree = "<group>"; };
+		A873258210AD4620003082A7 /* FFTRealFixLen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFTRealFixLen.h; sourceTree = "<group>"; };
+		A873258310AD4620003082A7 /* FFTRealFixLen.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FFTRealFixLen.hpp; sourceTree = "<group>"; };
+		A873258410AD4620003082A7 /* FFTRealFixLenParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFTRealFixLenParam.h; sourceTree = "<group>"; };
+		A873258510AD4620003082A7 /* FFTRealPassDirect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFTRealPassDirect.h; sourceTree = "<group>"; };
+		A873258610AD4620003082A7 /* FFTRealPassDirect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FFTRealPassDirect.hpp; sourceTree = "<group>"; };
+		A873258710AD4620003082A7 /* FFTRealPassInverse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFTRealPassInverse.h; sourceTree = "<group>"; };
+		A873258810AD4620003082A7 /* FFTRealPassInverse.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FFTRealPassInverse.hpp; sourceTree = "<group>"; };
+		A873258910AD4620003082A7 /* FFTRealSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFTRealSelect.h; sourceTree = "<group>"; };
+		A873258A10AD4620003082A7 /* FFTRealSelect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FFTRealSelect.hpp; sourceTree = "<group>"; };
+		A873258B10AD4620003082A7 /* FFTRealUseTrigo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFTRealUseTrigo.h; sourceTree = "<group>"; };
+		A873258C10AD4620003082A7 /* FFTRealUseTrigo.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FFTRealUseTrigo.hpp; sourceTree = "<group>"; };
+		A873258D10AD4620003082A7 /* OscSinCos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OscSinCos.h; sourceTree = "<group>"; };
+		A873258E10AD4620003082A7 /* OscSinCos.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OscSinCos.hpp; sourceTree = "<group>"; };
+		A873259110AD4620003082A7 /* ugen_Decay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_Decay.cpp; sourceTree = "<group>"; };
+		A873259210AD4620003082A7 /* ugen_Decay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Decay.h; sourceTree = "<group>"; };
+		A873259310AD4620003082A7 /* ugen_Lag.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_Lag.cpp; sourceTree = "<group>"; };
+		A873259410AD4620003082A7 /* ugen_Lag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Lag.h; sourceTree = "<group>"; };
+		A873259610AD4620003082A7 /* ugen_HPF.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_HPF.cpp; sourceTree = "<group>"; };
+		A873259710AD4620003082A7 /* ugen_HPF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_HPF.h; sourceTree = "<group>"; };
+		A873259810AD4620003082A7 /* ugen_LPF.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_LPF.cpp; sourceTree = "<group>"; };
+		A873259910AD4620003082A7 /* ugen_LPF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_LPF.h; sourceTree = "<group>"; };
+		A873259A10AD4620003082A7 /* ugen_BEQ.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_BEQ.cpp; sourceTree = "<group>"; };
+		A873259B10AD4620003082A7 /* ugen_BEQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_BEQ.h; sourceTree = "<group>"; };
+		A873259C10AD4620003082A7 /* ugen_LeakDC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_LeakDC.cpp; sourceTree = "<group>"; };
+		A873259D10AD4620003082A7 /* ugen_LeakDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_LeakDC.h; sourceTree = "<group>"; };
+		A873259E10AD4620003082A7 /* ugen_SOS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_SOS.cpp; sourceTree = "<group>"; };
+		A873259F10AD4620003082A7 /* ugen_SOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_SOS.h; sourceTree = "<group>"; };
+		A87325A110AD4620003082A7 /* ugen_Scope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_Scope.cpp; sourceTree = "<group>"; };
+		A87325A210AD4620003082A7 /* ugen_Scope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Scope.h; sourceTree = "<group>"; };
+		A87325A410AD4620003082A7 /* ugen_AudioQueueIOHost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_AudioQueueIOHost.h; sourceTree = "<group>"; };
+		A87325A510AD4620003082A7 /* ugen_AudioQueueIOHost.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ugen_AudioQueueIOHost.mm; sourceTree = "<group>"; };
+		A87325A610AD4620003082A7 /* ugen_NSDeleter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_NSDeleter.h; sourceTree = "<group>"; };
+		A87325A710AD4620003082A7 /* ugen_NSDeleter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ugen_NSDeleter.mm; sourceTree = "<group>"; };
+		A87325A810AD4620003082A7 /* ugen_NSUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_NSUtilities.h; sourceTree = "<group>"; };
+		A87325A910AD4620003082A7 /* ugen_NSUtilities.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ugen_NSUtilities.mm; sourceTree = "<group>"; };
+		A87325AA10AD4620003082A7 /* ugen_ScopeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_ScopeView.h; sourceTree = "<group>"; };
+		A87325AB10AD4620003082A7 /* ugen_ScopeView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ugen_ScopeView.mm; sourceTree = "<group>"; };
+		A87325AC10AD4620003082A7 /* ugen_UIAcceleration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_UIAcceleration.h; sourceTree = "<group>"; };
+		A87325AD10AD4620003082A7 /* ugen_UIAcceleration.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ugen_UIAcceleration.mm; sourceTree = "<group>"; };
+		A87325AE10AD4620003082A7 /* ugen_UIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_UIButton.h; sourceTree = "<group>"; };
+		A87325AF10AD4620003082A7 /* ugen_UIButton.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ugen_UIButton.mm; sourceTree = "<group>"; };
+		A87325B010AD4620003082A7 /* ugen_UIKitAUIOHost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_UIKitAUIOHost.h; sourceTree = "<group>"; };
+		A87325B110AD4620003082A7 /* ugen_UIKitAUIOHost.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ugen_UIKitAUIOHost.mm; sourceTree = "<group>"; };
+		A87325B210AD4620003082A7 /* ugen_UISlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_UISlider.h; sourceTree = "<group>"; };
+		A87325B310AD4620003082A7 /* ugen_UISlider.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ugen_UISlider.mm; sourceTree = "<group>"; };
+		A87325B610AD4620003082A7 /* ugen_JuceMultiSlider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_JuceMultiSlider.cpp; sourceTree = "<group>"; };
+		A87325B710AD4620003082A7 /* ugen_JuceMultiSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_JuceMultiSlider.h; sourceTree = "<group>"; };
+		A87325B810AD4620003082A7 /* ugen_JuceScope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_JuceScope.cpp; sourceTree = "<group>"; };
+		A87325B910AD4620003082A7 /* ugen_JuceScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_JuceScope.h; sourceTree = "<group>"; };
+		A87325BB10AD4620003082A7 /* ugen_AudioFilePlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_AudioFilePlayer.cpp; sourceTree = "<group>"; };
+		A87325BC10AD4620003082A7 /* ugen_AudioFilePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_AudioFilePlayer.h; sourceTree = "<group>"; };
+		A87325BD10AD4620003082A7 /* ugen_DiskIn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_DiskIn.cpp; sourceTree = "<group>"; };
+		A87325BE10AD4620003082A7 /* ugen_DiskIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_DiskIn.h; sourceTree = "<group>"; };
+		A87325BF10AD4620003082A7 /* ugen_DiskOut.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_DiskOut.cpp; sourceTree = "<group>"; };
+		A87325C010AD4620003082A7 /* ugen_DiskOut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_DiskOut.h; sourceTree = "<group>"; };
+		A87325C110AD4620003082A7 /* ugen_JuceIOHost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_JuceIOHost.h; sourceTree = "<group>"; };
+		A87325C210AD4620003082A7 /* ugen_JuceMIDIController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_JuceMIDIController.cpp; sourceTree = "<group>"; };
+		A87325C310AD4620003082A7 /* ugen_JuceMIDIController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_JuceMIDIController.h; sourceTree = "<group>"; };
+		A87325C410AD4620003082A7 /* ugen_JuceMIDIInputBroadcaster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_JuceMIDIInputBroadcaster.cpp; sourceTree = "<group>"; };
+		A87325C510AD4620003082A7 /* ugen_JuceMIDIInputBroadcaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_JuceMIDIInputBroadcaster.h; sourceTree = "<group>"; };
+		A87325C610AD4620003082A7 /* ugen_JuceMIDIMostRecentNote.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_JuceMIDIMostRecentNote.cpp; sourceTree = "<group>"; };
+		A87325C710AD4620003082A7 /* ugen_JuceMIDIMostRecentNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_JuceMIDIMostRecentNote.h; sourceTree = "<group>"; };
+		A87325C810AD4620003082A7 /* ugen_JuceSlider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_JuceSlider.cpp; sourceTree = "<group>"; };
+		A87325C910AD4620003082A7 /* ugen_JuceSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_JuceSlider.h; sourceTree = "<group>"; };
+		A87325CA10AD4620003082A7 /* ugen_JuceTimerDeleter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_JuceTimerDeleter.cpp; sourceTree = "<group>"; };
+		A87325CB10AD4620003082A7 /* ugen_JuceTimerDeleter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_JuceTimerDeleter.h; sourceTree = "<group>"; };
+		A87325CC10AD4620003082A7 /* ugen_JuceUtility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_JuceUtility.cpp; sourceTree = "<group>"; };
+		A87325CD10AD4620003082A7 /* ugen_JuceUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_JuceUtility.h; sourceTree = "<group>"; };
+		A87325CE10AD4620003082A7 /* ugen_JuceVoicer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_JuceVoicer.cpp; sourceTree = "<group>"; };
+		A87325CF10AD4620003082A7 /* ugen_JuceVoicer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_JuceVoicer.h; sourceTree = "<group>"; };
+		A87325D110AD4620003082A7 /* ugen_NeuralLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_NeuralLayer.cpp; sourceTree = "<group>"; };
+		A87325D210AD4620003082A7 /* ugen_NeuralLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_NeuralLayer.h; sourceTree = "<group>"; };
+		A87325D310AD4620003082A7 /* ugen_NeuralNetwork.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_NeuralNetwork.cpp; sourceTree = "<group>"; };
+		A87325D410AD4620003082A7 /* ugen_NeuralNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_NeuralNetwork.h; sourceTree = "<group>"; };
+		A87325D510AD4620003082A7 /* ugen_NeuralNetworkConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_NeuralNetworkConfig.h; sourceTree = "<group>"; };
+		A87325D610AD4620003082A7 /* ugen_NeuralNetworkUGen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_NeuralNetworkUGen.cpp; sourceTree = "<group>"; };
+		A87325D710AD4620003082A7 /* ugen_NeuralNetworkUGen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_NeuralNetworkUGen.h; sourceTree = "<group>"; };
+		A87325D810AD4620003082A7 /* ugen_NeuralNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_NeuralNode.cpp; sourceTree = "<group>"; };
+		A87325D910AD4620003082A7 /* ugen_NeuralNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_NeuralNode.h; sourceTree = "<group>"; };
+		A87325DA10AD4620003082A7 /* ugen_NeuralPattern.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_NeuralPattern.cpp; sourceTree = "<group>"; };
+		A87325DB10AD4620003082A7 /* ugen_NeuralPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_NeuralPattern.h; sourceTree = "<group>"; };
+		A87325DD10AD4620003082A7 /* ugen_BrownNoise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_BrownNoise.cpp; sourceTree = "<group>"; };
+		A87325DE10AD4620003082A7 /* ugen_BrownNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_BrownNoise.h; sourceTree = "<group>"; };
+		A87325DF10AD4620003082A7 /* ugen_Dust.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_Dust.cpp; sourceTree = "<group>"; };
+		A87325E010AD4620003082A7 /* ugen_Dust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Dust.h; sourceTree = "<group>"; };
+		A87325E110AD4620003082A7 /* ugen_LFNoise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_LFNoise.cpp; sourceTree = "<group>"; };
+		A87325E210AD4620003082A7 /* ugen_LFNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_LFNoise.h; sourceTree = "<group>"; };
+		A87325E310AD4620003082A7 /* ugen_PinkNoise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_PinkNoise.cpp; sourceTree = "<group>"; };
+		A87325E410AD4620003082A7 /* ugen_PinkNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_PinkNoise.h; sourceTree = "<group>"; };
+		A87325E510AD4620003082A7 /* ugen_WhiteNoise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_WhiteNoise.cpp; sourceTree = "<group>"; };
+		A87325E610AD4620003082A7 /* ugen_WhiteNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_WhiteNoise.h; sourceTree = "<group>"; };
+		A87325E910AD4620003082A7 /* ugen_FSinOsc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_FSinOsc.cpp; sourceTree = "<group>"; };
+		A87325EA10AD4620003082A7 /* ugen_FSinOsc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_FSinOsc.h; sourceTree = "<group>"; };
+		A87325EB10AD4620003082A7 /* ugen_Impulse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_Impulse.cpp; sourceTree = "<group>"; };
+		A87325EC10AD4620003082A7 /* ugen_Impulse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Impulse.h; sourceTree = "<group>"; };
+		A87325ED10AD4620003082A7 /* ugen_LFPulse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_LFPulse.cpp; sourceTree = "<group>"; };
+		A87325EE10AD4620003082A7 /* ugen_LFPulse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_LFPulse.h; sourceTree = "<group>"; };
+		A87325EF10AD4620003082A7 /* ugen_LFSaw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_LFSaw.cpp; sourceTree = "<group>"; };
+		A87325F010AD4620003082A7 /* ugen_LFSaw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_LFSaw.h; sourceTree = "<group>"; };
+		A87325F110AD4620003082A7 /* ugen_OscillatorUGens.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_OscillatorUGens.cpp; sourceTree = "<group>"; };
+		A87325F210AD4620003082A7 /* ugen_OscillatorUGens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_OscillatorUGens.h; sourceTree = "<group>"; };
+		A87325F410AD4620003082A7 /* ugen_TableOsc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_TableOsc.cpp; sourceTree = "<group>"; };
+		A87325F510AD4620003082A7 /* ugen_TableOsc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_TableOsc.h; sourceTree = "<group>"; };
+		A87325F710AD4620003082A7 /* ugen_BasicPan.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_BasicPan.cpp; sourceTree = "<group>"; };
+		A87325F810AD4620003082A7 /* ugen_BasicPan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_BasicPan.h; sourceTree = "<group>"; };
+		A87325FA10AD4620003082A7 /* ugen_Spawn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_Spawn.cpp; sourceTree = "<group>"; };
+		A87325FB10AD4620003082A7 /* ugen_Spawn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Spawn.h; sourceTree = "<group>"; };
+		A87325FC10AD4620003082A7 /* ugen_Textures.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_Textures.cpp; sourceTree = "<group>"; };
+		A87325FD10AD4620003082A7 /* ugen_Textures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Textures.h; sourceTree = "<group>"; };
+		A87325FE10AD4620003082A7 /* ugen_TSpawn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_TSpawn.cpp; sourceTree = "<group>"; };
+		A87325FF10AD4620003082A7 /* ugen_TSpawn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_TSpawn.h; sourceTree = "<group>"; };
+		A873260010AD4620003082A7 /* ugen_VoicerBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_VoicerBase.cpp; sourceTree = "<group>"; };
+		A873260110AD4620003082A7 /* ugen_VoicerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_VoicerBase.h; sourceTree = "<group>"; };
+		A873260210AD4620003082A7 /* UGen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGen.h; sourceTree = "<group>"; };
+		A88A90140DF46B4700DF4080 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		A88A90160DF46B5000DF4080 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		A88A90180DF46B7500DF4080 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		A88A901A0DF46B7E00DF4080 /* DiscRecording.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DiscRecording.framework; path = System/Library/Frameworks/DiscRecording.framework; sourceTree = SDKROOT; };
+		A88A901C0DF46B8A00DF4080 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		A8951AB70EB1EC2800F4CA45 /* MainComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainComponent.h; sourceTree = "<group>"; };
+		A8951AB80EB1EC2800F4CA45 /* MainAppWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainAppWindow.h; sourceTree = "<group>"; };
+		A8951AB90EB1EC2800F4CA45 /* MainAppWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainAppWindow.cpp; sourceTree = "<group>"; };
+		A8951ABA0EB1EC2800F4CA45 /* ApplicationStartup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApplicationStartup.cpp; sourceTree = "<group>"; };
+		A8A2638210036FA700E93330 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A8B652CD0FCFB5B7006DE0C3 /* TutorialDoc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TutorialDoc.h; path = ../doc/TutorialDoc.h; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D0C4E910486CD37000505A6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A80AFA110E8E157B006B49BD /* libjuce.a in Frameworks */,
+				8D0C4E920486CD37000505A6 /* Carbon.framework in Frameworks */,
+				84F30CED08FEAD7A0087E26C /* CoreAudio.framework in Frameworks */,
+				84078F3E09E6B42E004E7BCD /* AGL.framework in Frameworks */,
+				8407902B09E6B5BD004E7BCD /* QuickTime.framework in Frameworks */,
+				84FAD61A0C7C3CCB00AF3028 /* IOKit.framework in Frameworks */,
+				841136A00D0480DE0054B790 /* OpenGL.framework in Frameworks */,
+				A85DB1C70DCB0D99005D552A /* CoreMIDI.framework in Frameworks */,
+				A88A90150DF46B4700DF4080 /* AudioUnit.framework in Frameworks */,
+				A88A90170DF46B5000DF4080 /* Cocoa.framework in Frameworks */,
+				A88A90190DF46B7500DF4080 /* CoreFoundation.framework in Frameworks */,
+				A88A901B0DF46B7E00DF4080 /* DiscRecording.framework in Frameworks */,
+				A88A901D0DF46B8A00DF4080 /* WebKit.framework in Frameworks */,
+				A85724E40EC3115E007D5B17 /* ApplicationServices.framework in Frameworks */,
+				A85724E50EC3115F007D5B17 /* CoreServices.framework in Frameworks */,
+				A86E06BA0EC39D140013D893 /* QTKit.framework in Frameworks */,
+				A81994480FC457AE008F1D98 /* Accelerate.framework in Frameworks */,
+				A8A2638310036FA700E93330 /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		195DF8CFFE9D517E11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D0C4E970486CD37000505A6 /* 01_03_UGenGraphs.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		20286C29FDCF999611CA2CEA /* juce_application */ = {
+			isa = PBXGroup;
+			children = (
+				20286C2AFDCF999611CA2CEA /* Sources */,
+				A8B652A70FCFB0A9006DE0C3 /* Doc */,
+				20286C2CFDCF999611CA2CEA /* Resources */,
+				20286C32FDCF999611CA2CEA /* External Frameworks and Libraries */,
+				195DF8CFFE9D517E11CA2CBB /* Products */,
+			);
+			name = juce_application;
+			sourceTree = "<group>";
+		};
+		20286C2AFDCF999611CA2CEA /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A873251610AD4620003082A7 /* UGen */,
+				A8951AB70EB1EC2800F4CA45 /* MainComponent.h */,
+				A8951AB80EB1EC2800F4CA45 /* MainAppWindow.h */,
+				A8951AB90EB1EC2800F4CA45 /* MainAppWindow.cpp */,
+				A8951ABA0EB1EC2800F4CA45 /* ApplicationStartup.cpp */,
+			);
+			name = Sources;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		20286C2CFDCF999611CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8D0C4E960486CD37000505A6 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		20286C32FDCF999611CA2CEA /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				A80AFA080E8E14EF006B49BD /* Juce.xcodeproj */,
+				A8A2638210036FA700E93330 /* QuartzCore.framework */,
+				A81994470FC457AE008F1D98 /* Accelerate.framework */,
+				A88A90140DF46B4700DF4080 /* AudioUnit.framework */,
+				A85DB1C60DCB0D99005D552A /* CoreMIDI.framework */,
+				A88A90160DF46B5000DF4080 /* Cocoa.framework */,
+				20286C33FDCF999611CA2CEA /* Carbon.framework */,
+				A88A90180DF46B7500DF4080 /* CoreFoundation.framework */,
+				4A9504CAFFE6A41611CA0CBA /* CoreServices.framework */,
+				84F30CEC08FEAD7A0087E26C /* CoreAudio.framework */,
+				A88A901A0DF46B7E00DF4080 /* DiscRecording.framework */,
+				4A9504C8FFE6A3BC11CA0CBA /* ApplicationServices.framework */,
+				84078F3D09E6B42E004E7BCD /* AGL.framework */,
+				8407902A09E6B5BD004E7BCD /* QuickTime.framework */,
+				A86E06B90EC39D140013D893 /* QTKit.framework */,
+				84FAD6190C7C3CCB00AF3028 /* IOKit.framework */,
+				8411369F0D0480DE0054B790 /* OpenGL.framework */,
+				A88A901C0DF46B8A00DF4080 /* WebKit.framework */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		A80AFA090E8E14EF006B49BD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A80AFA100E8E14EF006B49BD /* libjuce.a */,
+				A8732C1110ADEF8B003082A7 /* libjucedebug.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A873251610AD4620003082A7 /* UGen */ = {
+			isa = PBXGroup;
+			children = (
+				A873251710AD4620003082A7 /* analysis */,
+				A873251E10AD4620003082A7 /* basics */,
+				A873253A10AD4620003082A7 /* buffers */,
+				A873254110AD4620003082A7 /* convolution */,
+				A873254610AD4620003082A7 /* core */,
+				A873256110AD4620003082A7 /* delays */,
+				A873256610AD4620003082A7 /* envelopes */,
+				A873257110AD4620003082A7 /* fft */,
+				A873257A10AD4620003082A7 /* fftreal */,
+				A873258F10AD4620003082A7 /* filters */,
+				A87325A010AD4620003082A7 /* gui */,
+				A87325A310AD4620003082A7 /* iphone */,
+				A87325B410AD4620003082A7 /* juce */,
+				A87325D010AD4620003082A7 /* neuralnet */,
+				A87325DC10AD4620003082A7 /* noise */,
+				A87325E710AD4620003082A7 /* oscillators */,
+				A87325F610AD4620003082A7 /* pan */,
+				A87325F910AD4620003082A7 /* spawn */,
+				A873260210AD4620003082A7 /* UGen.h */,
+			);
+			name = UGen;
+			path = ../../../UGen;
+			sourceTree = SOURCE_ROOT;
+		};
+		A873251710AD4620003082A7 /* analysis */ = {
+			isa = PBXGroup;
+			children = (
+				A873251810AD4620003082A7 /* ugen_Amplitude.cpp */,
+				A873251910AD4620003082A7 /* ugen_Amplitude.h */,
+				A873251A10AD4620003082A7 /* ugen_DataRecorder.cpp */,
+				A873251B10AD4620003082A7 /* ugen_DataRecorder.h */,
+				A873251C10AD4620003082A7 /* ugen_Maxima.cpp */,
+				A873251D10AD4620003082A7 /* ugen_Maxima.h */,
+			);
+			path = analysis;
+			sourceTree = "<group>";
+		};
+		A873251E10AD4620003082A7 /* basics */ = {
+			isa = PBXGroup;
+			children = (
+				A873251F10AD4620003082A7 /* ugen_BinaryOpUGens.cpp */,
+				A873252010AD4620003082A7 /* ugen_BinaryOpUGens.h */,
+				A873252110AD4620003082A7 /* ugen_Chain.cpp */,
+				A873252210AD4620003082A7 /* ugen_Chain.h */,
+				A873252310AD4620003082A7 /* ugen_InlineBinaryOps.h */,
+				A873252410AD4620003082A7 /* ugen_InlineUnaryOps.h */,
+				A873252510AD4620003082A7 /* ugen_MappingUGens.cpp */,
+				A873252610AD4620003082A7 /* ugen_MappingUGens.h */,
+				A873252710AD4620003082A7 /* ugen_MixUGen.cpp */,
+				A873252810AD4620003082A7 /* ugen_MixUGen.h */,
+				A873252910AD4620003082A7 /* ugen_MulAdd.cpp */,
+				A873252A10AD4620003082A7 /* ugen_MulAdd.h */,
+				A873252B10AD4620003082A7 /* ugen_Pause.cpp */,
+				A873252C10AD4620003082A7 /* ugen_Pause.h */,
+				A873252D10AD4620003082A7 /* ugen_Plug.cpp */,
+				A873252E10AD4620003082A7 /* ugen_Plug.h */,
+				A873252F10AD4620003082A7 /* ugen_RawInputUGens.cpp */,
+				A873253010AD4620003082A7 /* ugen_RawInputUGens.h */,
+				A873253110AD4620003082A7 /* ugen_ScalarUGens.cpp */,
+				A873253210AD4620003082A7 /* ugen_ScalarUGens.h */,
+				A873253310AD4620003082A7 /* ugen_Temporary.h */,
+				A873253410AD4620003082A7 /* ugen_Thru.cpp */,
+				A873253510AD4620003082A7 /* ugen_Thru.h */,
+				A873253610AD4620003082A7 /* ugen_UnaryOpUGens.cpp */,
+				A873253710AD4620003082A7 /* ugen_UnaryOpUGens.h */,
+				A873253810AD4620003082A7 /* ugen_WrapFold.cpp */,
+				A873253910AD4620003082A7 /* ugen_WrapFold.h */,
+			);
+			path = basics;
+			sourceTree = "<group>";
+		};
+		A873253A10AD4620003082A7 /* buffers */ = {
+			isa = PBXGroup;
+			children = (
+				A873253B10AD4620003082A7 /* ugen_Buffer.cpp */,
+				A873253C10AD4620003082A7 /* ugen_Buffer.h */,
+				A873253D10AD4620003082A7 /* ugen_IntBuffer.cpp */,
+				A873253E10AD4620003082A7 /* ugen_IntBuffer.h */,
+				A873253F10AD4620003082A7 /* ugen_PlayBuf.cpp */,
+				A873254010AD4620003082A7 /* ugen_PlayBuf.h */,
+			);
+			path = buffers;
+			sourceTree = "<group>";
+		};
+		A873254110AD4620003082A7 /* convolution */ = {
+			isa = PBXGroup;
+			children = (
+				A873254210AD4620003082A7 /* ugen_Convolution.cpp */,
+				A873254310AD4620003082A7 /* ugen_Convolution.h */,
+				A873254410AD4620003082A7 /* ugen_SimpleConvolution.cpp */,
+				A873254510AD4620003082A7 /* ugen_SimpleConvolution.h */,
+			);
+			path = convolution;
+			sourceTree = "<group>";
+		};
+		A873254610AD4620003082A7 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				A873254710AD4620003082A7 /* ugen_Arrays.cpp */,
+				A873254810AD4620003082A7 /* ugen_Arrays.h */,
+				A873254910AD4620003082A7 /* ugen_Bits.cpp */,
+				A873254A10AD4620003082A7 /* ugen_Bits.h */,
+				A873254B10AD4620003082A7 /* ugen_Constants.h */,
+				A873254C10AD4620003082A7 /* ugen_Deleter.cpp */,
+				A873254D10AD4620003082A7 /* ugen_Deleter.h */,
+				A873254E10AD4620003082A7 /* ugen_ExternalControlSource.cpp */,
+				A873254F10AD4620003082A7 /* ugen_ExternalControlSource.h */,
+				A873255010AD4620003082A7 /* ugen_Random.cpp */,
+				A873255110AD4620003082A7 /* ugen_Random.h */,
+				A873255210AD4620003082A7 /* ugen_SmartPointer.cpp */,
+				A873255310AD4620003082A7 /* ugen_SmartPointer.h */,
+				A873255410AD4620003082A7 /* ugen_StandardHeader.h */,
+				A873255510AD4620003082A7 /* ugen_Text.cpp */,
+				A873255610AD4620003082A7 /* ugen_Text.h */,
+				A873255710AD4620003082A7 /* ugen_TextFile.cpp */,
+				A873255810AD4620003082A7 /* ugen_TextFile.h */,
+				A873255910AD4620003082A7 /* ugen_UGen.cpp */,
+				A873255A10AD4620003082A7 /* ugen_UGen.h */,
+				A873255B10AD4620003082A7 /* ugen_UGenArray.cpp */,
+				A873255C10AD4620003082A7 /* ugen_UGenArray.h */,
+				A873255D10AD4620003082A7 /* ugen_UGenInternal.cpp */,
+				A873255E10AD4620003082A7 /* ugen_UGenInternal.h */,
+				A873255F10AD4620003082A7 /* ugen_Value.cpp */,
+				A873256010AD4620003082A7 /* ugen_Value.h */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		A873256110AD4620003082A7 /* delays */ = {
+			isa = PBXGroup;
+			children = (
+				A873256210AD4620003082A7 /* ugen_BlockDelay.cpp */,
+				A873256310AD4620003082A7 /* ugen_BlockDelay.h */,
+				A873256410AD4620003082A7 /* ugen_Delay.cpp */,
+				A873256510AD4620003082A7 /* ugen_Delay.h */,
+			);
+			path = delays;
+			sourceTree = "<group>";
+		};
+		A873256610AD4620003082A7 /* envelopes */ = {
+			isa = PBXGroup;
+			children = (
+				A873256710AD4620003082A7 /* ugen_ASR.cpp */,
+				A873256810AD4620003082A7 /* ugen_ASR.h */,
+				A873256910AD4620003082A7 /* ugen_Env.cpp */,
+				A873256A10AD4620003082A7 /* ugen_Env.h */,
+				A873256B10AD4620003082A7 /* ugen_EnvCurve.cpp */,
+				A873256C10AD4620003082A7 /* ugen_EnvCurve.h */,
+				A873256D10AD4620003082A7 /* ugen_EnvGen.cpp */,
+				A873256E10AD4620003082A7 /* ugen_EnvGen.h */,
+				A873256F10AD4620003082A7 /* ugen_Lines.cpp */,
+				A873257010AD4620003082A7 /* ugen_Lines.h */,
+			);
+			path = envelopes;
+			sourceTree = "<group>";
+		};
+		A873257110AD4620003082A7 /* fft */ = {
+			isa = PBXGroup;
+			children = (
+				A873257210AD4620003082A7 /* ugen_FFTEngine.cpp */,
+				A873257310AD4620003082A7 /* ugen_FFTEngine.h */,
+				A873257410AD4620003082A7 /* ugen_FFTEngineInternal.cpp */,
+				A873257510AD4620003082A7 /* ugen_FFTEngineInternal.h */,
+				A873257610AD4620003082A7 /* ugen_FFTMagnitude.cpp */,
+				A873257710AD4620003082A7 /* ugen_FFTMagnitude.h */,
+				A873257810AD4620003082A7 /* ugen_FFTMagnitudeSelection.cpp */,
+				A873257910AD4620003082A7 /* ugen_FFTMagnitudeSelection.h */,
+			);
+			path = fft;
+			sourceTree = "<group>";
+		};
+		A873257A10AD4620003082A7 /* fftreal */ = {
+			isa = PBXGroup;
+			children = (
+				A873257B10AD4620003082A7 /* Array.h */,
+				A873257C10AD4620003082A7 /* Array.hpp */,
+				A873257D10AD4620003082A7 /* def.h */,
+				A873257E10AD4620003082A7 /* DynArray.h */,
+				A873257F10AD4620003082A7 /* DynArray.hpp */,
+				A873258010AD4620003082A7 /* FFTReal.h */,
+				A873258110AD4620003082A7 /* FFTReal.hpp */,
+				A873258210AD4620003082A7 /* FFTRealFixLen.h */,
+				A873258310AD4620003082A7 /* FFTRealFixLen.hpp */,
+				A873258410AD4620003082A7 /* FFTRealFixLenParam.h */,
+				A873258510AD4620003082A7 /* FFTRealPassDirect.h */,
+				A873258610AD4620003082A7 /* FFTRealPassDirect.hpp */,
+				A873258710AD4620003082A7 /* FFTRealPassInverse.h */,
+				A873258810AD4620003082A7 /* FFTRealPassInverse.hpp */,
+				A873258910AD4620003082A7 /* FFTRealSelect.h */,
+				A873258A10AD4620003082A7 /* FFTRealSelect.hpp */,
+				A873258B10AD4620003082A7 /* FFTRealUseTrigo.h */,
+				A873258C10AD4620003082A7 /* FFTRealUseTrigo.hpp */,
+				A873258D10AD4620003082A7 /* OscSinCos.h */,
+				A873258E10AD4620003082A7 /* OscSinCos.hpp */,
+			);
+			path = fftreal;
+			sourceTree = "<group>";
+		};
+		A873258F10AD4620003082A7 /* filters */ = {
+			isa = PBXGroup;
+			children = (
+				A873259010AD4620003082A7 /* control */,
+				A873259510AD4620003082A7 /* simple */,
+				A873259A10AD4620003082A7 /* ugen_BEQ.cpp */,
+				A873259B10AD4620003082A7 /* ugen_BEQ.h */,
+				A873259C10AD4620003082A7 /* ugen_LeakDC.cpp */,
+				A873259D10AD4620003082A7 /* ugen_LeakDC.h */,
+				A873259E10AD4620003082A7 /* ugen_SOS.cpp */,
+				A873259F10AD4620003082A7 /* ugen_SOS.h */,
+			);
+			path = filters;
+			sourceTree = "<group>";
+		};
+		A873259010AD4620003082A7 /* control */ = {
+			isa = PBXGroup;
+			children = (
+				A873259110AD4620003082A7 /* ugen_Decay.cpp */,
+				A873259210AD4620003082A7 /* ugen_Decay.h */,
+				A873259310AD4620003082A7 /* ugen_Lag.cpp */,
+				A873259410AD4620003082A7 /* ugen_Lag.h */,
+			);
+			path = control;
+			sourceTree = "<group>";
+		};
+		A873259510AD4620003082A7 /* simple */ = {
+			isa = PBXGroup;
+			children = (
+				A873259610AD4620003082A7 /* ugen_HPF.cpp */,
+				A873259710AD4620003082A7 /* ugen_HPF.h */,
+				A873259810AD4620003082A7 /* ugen_LPF.cpp */,
+				A873259910AD4620003082A7 /* ugen_LPF.h */,
+			);
+			path = simple;
+			sourceTree = "<group>";
+		};
+		A87325A010AD4620003082A7 /* gui */ = {
+			isa = PBXGroup;
+			children = (
+				A87325A110AD4620003082A7 /* ugen_Scope.cpp */,
+				A87325A210AD4620003082A7 /* ugen_Scope.h */,
+			);
+			path = gui;
+			sourceTree = "<group>";
+		};
+		A87325A310AD4620003082A7 /* iphone */ = {
+			isa = PBXGroup;
+			children = (
+				A87325A410AD4620003082A7 /* ugen_AudioQueueIOHost.h */,
+				A87325A510AD4620003082A7 /* ugen_AudioQueueIOHost.mm */,
+				A87325A610AD4620003082A7 /* ugen_NSDeleter.h */,
+				A87325A710AD4620003082A7 /* ugen_NSDeleter.mm */,
+				A87325A810AD4620003082A7 /* ugen_NSUtilities.h */,
+				A87325A910AD4620003082A7 /* ugen_NSUtilities.mm */,
+				A87325AA10AD4620003082A7 /* ugen_ScopeView.h */,
+				A87325AB10AD4620003082A7 /* ugen_ScopeView.mm */,
+				A87325AC10AD4620003082A7 /* ugen_UIAcceleration.h */,
+				A87325AD10AD4620003082A7 /* ugen_UIAcceleration.mm */,
+				A87325AE10AD4620003082A7 /* ugen_UIButton.h */,
+				A87325AF10AD4620003082A7 /* ugen_UIButton.mm */,
+				A87325B010AD4620003082A7 /* ugen_UIKitAUIOHost.h */,
+				A87325B110AD4620003082A7 /* ugen_UIKitAUIOHost.mm */,
+				A87325B210AD4620003082A7 /* ugen_UISlider.h */,
+				A87325B310AD4620003082A7 /* ugen_UISlider.mm */,
+			);
+			path = iphone;
+			sourceTree = "<group>";
+		};
+		A87325B410AD4620003082A7 /* juce */ = {
+			isa = PBXGroup;
+			children = (
+				A87325B510AD4620003082A7 /* gui */,
+				A87325BA10AD4620003082A7 /* io */,
+				A87325C810AD4620003082A7 /* ugen_JuceSlider.cpp */,
+				A87325C910AD4620003082A7 /* ugen_JuceSlider.h */,
+				A87325CA10AD4620003082A7 /* ugen_JuceTimerDeleter.cpp */,
+				A87325CB10AD4620003082A7 /* ugen_JuceTimerDeleter.h */,
+				A87325CC10AD4620003082A7 /* ugen_JuceUtility.cpp */,
+				A87325CD10AD4620003082A7 /* ugen_JuceUtility.h */,
+				A87325CE10AD4620003082A7 /* ugen_JuceVoicer.cpp */,
+				A87325CF10AD4620003082A7 /* ugen_JuceVoicer.h */,
+			);
+			path = juce;
+			sourceTree = "<group>";
+		};
+		A87325B510AD4620003082A7 /* gui */ = {
+			isa = PBXGroup;
+			children = (
+				A87325B610AD4620003082A7 /* ugen_JuceMultiSlider.cpp */,
+				A87325B710AD4620003082A7 /* ugen_JuceMultiSlider.h */,
+				A87325B810AD4620003082A7 /* ugen_JuceScope.cpp */,
+				A87325B910AD4620003082A7 /* ugen_JuceScope.h */,
+			);
+			path = gui;
+			sourceTree = "<group>";
+		};
+		A87325BA10AD4620003082A7 /* io */ = {
+			isa = PBXGroup;
+			children = (
+				A87325BB10AD4620003082A7 /* ugen_AudioFilePlayer.cpp */,
+				A87325BC10AD4620003082A7 /* ugen_AudioFilePlayer.h */,
+				A87325BD10AD4620003082A7 /* ugen_DiskIn.cpp */,
+				A87325BE10AD4620003082A7 /* ugen_DiskIn.h */,
+				A87325BF10AD4620003082A7 /* ugen_DiskOut.cpp */,
+				A87325C010AD4620003082A7 /* ugen_DiskOut.h */,
+				A87325C110AD4620003082A7 /* ugen_JuceIOHost.h */,
+				A87325C210AD4620003082A7 /* ugen_JuceMIDIController.cpp */,
+				A87325C310AD4620003082A7 /* ugen_JuceMIDIController.h */,
+				A87325C410AD4620003082A7 /* ugen_JuceMIDIInputBroadcaster.cpp */,
+				A87325C510AD4620003082A7 /* ugen_JuceMIDIInputBroadcaster.h */,
+				A87325C610AD4620003082A7 /* ugen_JuceMIDIMostRecentNote.cpp */,
+				A87325C710AD4620003082A7 /* ugen_JuceMIDIMostRecentNote.h */,
+			);
+			path = io;
+			sourceTree = "<group>";
+		};
+		A87325D010AD4620003082A7 /* neuralnet */ = {
+			isa = PBXGroup;
+			children = (
+				A87325D110AD4620003082A7 /* ugen_NeuralLayer.cpp */,
+				A87325D210AD4620003082A7 /* ugen_NeuralLayer.h */,
+				A87325D310AD4620003082A7 /* ugen_NeuralNetwork.cpp */,
+				A87325D410AD4620003082A7 /* ugen_NeuralNetwork.h */,
+				A87325D510AD4620003082A7 /* ugen_NeuralNetworkConfig.h */,
+				A87325D610AD4620003082A7 /* ugen_NeuralNetworkUGen.cpp */,
+				A87325D710AD4620003082A7 /* ugen_NeuralNetworkUGen.h */,
+				A87325D810AD4620003082A7 /* ugen_NeuralNode.cpp */,
+				A87325D910AD4620003082A7 /* ugen_NeuralNode.h */,
+				A87325DA10AD4620003082A7 /* ugen_NeuralPattern.cpp */,
+				A87325DB10AD4620003082A7 /* ugen_NeuralPattern.h */,
+			);
+			path = neuralnet;
+			sourceTree = "<group>";
+		};
+		A87325DC10AD4620003082A7 /* noise */ = {
+			isa = PBXGroup;
+			children = (
+				A87325DD10AD4620003082A7 /* ugen_BrownNoise.cpp */,
+				A87325DE10AD4620003082A7 /* ugen_BrownNoise.h */,
+				A87325DF10AD4620003082A7 /* ugen_Dust.cpp */,
+				A87325E010AD4620003082A7 /* ugen_Dust.h */,
+				A87325E110AD4620003082A7 /* ugen_LFNoise.cpp */,
+				A87325E210AD4620003082A7 /* ugen_LFNoise.h */,
+				A87325E310AD4620003082A7 /* ugen_PinkNoise.cpp */,
+				A87325E410AD4620003082A7 /* ugen_PinkNoise.h */,
+				A87325E510AD4620003082A7 /* ugen_WhiteNoise.cpp */,
+				A87325E610AD4620003082A7 /* ugen_WhiteNoise.h */,
+			);
+			path = noise;
+			sourceTree = "<group>";
+		};
+		A87325E710AD4620003082A7 /* oscillators */ = {
+			isa = PBXGroup;
+			children = (
+				A87325E810AD4620003082A7 /* simple */,
+				A87325F110AD4620003082A7 /* ugen_OscillatorUGens.cpp */,
+				A87325F210AD4620003082A7 /* ugen_OscillatorUGens.h */,
+				A87325F310AD4620003082A7 /* wavetable */,
+			);
+			path = oscillators;
+			sourceTree = "<group>";
+		};
+		A87325E810AD4620003082A7 /* simple */ = {
+			isa = PBXGroup;
+			children = (
+				A87325E910AD4620003082A7 /* ugen_FSinOsc.cpp */,
+				A87325EA10AD4620003082A7 /* ugen_FSinOsc.h */,
+				A87325EB10AD4620003082A7 /* ugen_Impulse.cpp */,
+				A87325EC10AD4620003082A7 /* ugen_Impulse.h */,
+				A87325ED10AD4620003082A7 /* ugen_LFPulse.cpp */,
+				A87325EE10AD4620003082A7 /* ugen_LFPulse.h */,
+				A87325EF10AD4620003082A7 /* ugen_LFSaw.cpp */,
+				A87325F010AD4620003082A7 /* ugen_LFSaw.h */,
+			);
+			path = simple;
+			sourceTree = "<group>";
+		};
+		A87325F310AD4620003082A7 /* wavetable */ = {
+			isa = PBXGroup;
+			children = (
+				A87325F410AD4620003082A7 /* ugen_TableOsc.cpp */,
+				A87325F510AD4620003082A7 /* ugen_TableOsc.h */,
+			);
+			path = wavetable;
+			sourceTree = "<group>";
+		};
+		A87325F610AD4620003082A7 /* pan */ = {
+			isa = PBXGroup;
+			children = (
+				A87325F710AD4620003082A7 /* ugen_BasicPan.cpp */,
+				A87325F810AD4620003082A7 /* ugen_BasicPan.h */,
+			);
+			path = pan;
+			sourceTree = "<group>";
+		};
+		A87325F910AD4620003082A7 /* spawn */ = {
+			isa = PBXGroup;
+			children = (
+				A87325FA10AD4620003082A7 /* ugen_Spawn.cpp */,
+				A87325FB10AD4620003082A7 /* ugen_Spawn.h */,
+				A87325FC10AD4620003082A7 /* ugen_Textures.cpp */,
+				A87325FD10AD4620003082A7 /* ugen_Textures.h */,
+				A87325FE10AD4620003082A7 /* ugen_TSpawn.cpp */,
+				A87325FF10AD4620003082A7 /* ugen_TSpawn.h */,
+				A873260010AD4620003082A7 /* ugen_VoicerBase.cpp */,
+				A873260110AD4620003082A7 /* ugen_VoicerBase.h */,
+			);
+			path = spawn;
+			sourceTree = "<group>";
+		};
+		A8B652A70FCFB0A9006DE0C3 /* Doc */ = {
+			isa = PBXGroup;
+			children = (
+				A8B652CD0FCFB5B7006DE0C3 /* TutorialDoc.h */,
+			);
+			name = Doc;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D0C4E890486CD37000505A6 /* Target App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84F30CBF08FEAA620087E26C /* Build configuration list for PBXNativeTarget "Target App" */;
+			buildPhases = (
+				8D0C4E8C0486CD37000505A6 /* Resources */,
+				8D0C4E8F0486CD37000505A6 /* Sources */,
+				8D0C4E910486CD37000505A6 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Target App";
+			productInstallPath = "$(HOME)/Applications";
+			productName = juce_application;
+			productReference = 8D0C4E970486CD37000505A6 /* 01_03_UGenGraphs.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		20286C28FDCF999611CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 84F30CC308FEAA620087E26C /* Build configuration list for PBXProject "01_03_UGenGraphs" */;
+			compatibilityVersion = "Xcode 2.4";
+			hasScannedForEncodings = 1;
+			mainGroup = 20286C29FDCF999611CA2CEA /* juce_application */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = A80AFA090E8E14EF006B49BD /* Products */;
+					ProjectRef = A80AFA080E8E14EF006B49BD /* Juce.xcodeproj */;
+				},
+			);
+			projectRoot = ..;
+			targets = (
+				8D0C4E890486CD37000505A6 /* Target App */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		A80AFA100E8E14EF006B49BD /* libjuce.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libjuce.a;
+			remoteRef = A80AFA0F0E8E14EF006B49BD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A8732C1110ADEF8B003082A7 /* libjucedebug.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libjuce.a;
+			remoteRef = A8732C1010ADEF8B003082A7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D0C4E8C0486CD37000505A6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D0C4E8F0486CD37000505A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8951ABB0EB1EC2800F4CA45 /* MainAppWindow.cpp in Sources */,
+				A8951ABC0EB1EC2800F4CA45 /* ApplicationStartup.cpp in Sources */,
+				A873260310AD4620003082A7 /* ugen_Amplitude.cpp in Sources */,
+				A873260410AD4620003082A7 /* ugen_DataRecorder.cpp in Sources */,
+				A873260510AD4620003082A7 /* ugen_Maxima.cpp in Sources */,
+				A873260610AD4620003082A7 /* ugen_BinaryOpUGens.cpp in Sources */,
+				A873260710AD4620003082A7 /* ugen_Chain.cpp in Sources */,
+				A873260810AD4620003082A7 /* ugen_MappingUGens.cpp in Sources */,
+				A873260910AD4620003082A7 /* ugen_MixUGen.cpp in Sources */,
+				A873260A10AD4620003082A7 /* ugen_MulAdd.cpp in Sources */,
+				A873260B10AD4620003082A7 /* ugen_Pause.cpp in Sources */,
+				A873260C10AD4620003082A7 /* ugen_Plug.cpp in Sources */,
+				A873260D10AD4620003082A7 /* ugen_RawInputUGens.cpp in Sources */,
+				A873260E10AD4620003082A7 /* ugen_ScalarUGens.cpp in Sources */,
+				A873260F10AD4620003082A7 /* ugen_Thru.cpp in Sources */,
+				A873261010AD4620003082A7 /* ugen_UnaryOpUGens.cpp in Sources */,
+				A873261110AD4620003082A7 /* ugen_WrapFold.cpp in Sources */,
+				A873261210AD4620003082A7 /* ugen_Buffer.cpp in Sources */,
+				A873261310AD4620003082A7 /* ugen_IntBuffer.cpp in Sources */,
+				A873261410AD4620003082A7 /* ugen_PlayBuf.cpp in Sources */,
+				A873261510AD4620003082A7 /* ugen_Convolution.cpp in Sources */,
+				A873261610AD4620003082A7 /* ugen_SimpleConvolution.cpp in Sources */,
+				A873261710AD4620003082A7 /* ugen_Arrays.cpp in Sources */,
+				A873261810AD4620003082A7 /* ugen_Bits.cpp in Sources */,
+				A873261910AD4620003082A7 /* ugen_Deleter.cpp in Sources */,
+				A873261A10AD4620003082A7 /* ugen_ExternalControlSource.cpp in Sources */,
+				A873261B10AD4620003082A7 /* ugen_Random.cpp in Sources */,
+				A873261C10AD4620003082A7 /* ugen_SmartPointer.cpp in Sources */,
+				A873261D10AD4620003082A7 /* ugen_Text.cpp in Sources */,
+				A873261E10AD4620003082A7 /* ugen_TextFile.cpp in Sources */,
+				A873261F10AD4620003082A7 /* ugen_UGen.cpp in Sources */,
+				A873262010AD4620003082A7 /* ugen_UGenArray.cpp in Sources */,
+				A873262110AD4620003082A7 /* ugen_UGenInternal.cpp in Sources */,
+				A873262210AD4620003082A7 /* ugen_Value.cpp in Sources */,
+				A873262310AD4620003082A7 /* ugen_BlockDelay.cpp in Sources */,
+				A873262410AD4620003082A7 /* ugen_Delay.cpp in Sources */,
+				A873262510AD4620003082A7 /* ugen_ASR.cpp in Sources */,
+				A873262610AD4620003082A7 /* ugen_Env.cpp in Sources */,
+				A873262710AD4620003082A7 /* ugen_EnvCurve.cpp in Sources */,
+				A873262810AD4620003082A7 /* ugen_EnvGen.cpp in Sources */,
+				A873262910AD4620003082A7 /* ugen_Lines.cpp in Sources */,
+				A873262A10AD4620003082A7 /* ugen_FFTEngine.cpp in Sources */,
+				A873262B10AD4620003082A7 /* ugen_FFTEngineInternal.cpp in Sources */,
+				A873262C10AD4620003082A7 /* ugen_FFTMagnitude.cpp in Sources */,
+				A873262D10AD4620003082A7 /* ugen_FFTMagnitudeSelection.cpp in Sources */,
+				A873262E10AD4620003082A7 /* ugen_Decay.cpp in Sources */,
+				A873262F10AD4620003082A7 /* ugen_Lag.cpp in Sources */,
+				A873263010AD4620003082A7 /* ugen_HPF.cpp in Sources */,
+				A873263110AD4620003082A7 /* ugen_LPF.cpp in Sources */,
+				A873263210AD4620003082A7 /* ugen_BEQ.cpp in Sources */,
+				A873263310AD4620003082A7 /* ugen_LeakDC.cpp in Sources */,
+				A873263410AD4620003082A7 /* ugen_SOS.cpp in Sources */,
+				A873263510AD4620003082A7 /* ugen_Scope.cpp in Sources */,
+				A873263610AD4620003082A7 /* ugen_AudioQueueIOHost.mm in Sources */,
+				A873263710AD4620003082A7 /* ugen_NSDeleter.mm in Sources */,
+				A873263810AD4620003082A7 /* ugen_NSUtilities.mm in Sources */,
+				A873263910AD4620003082A7 /* ugen_ScopeView.mm in Sources */,
+				A873263A10AD4620003082A7 /* ugen_UIAcceleration.mm in Sources */,
+				A873263B10AD4620003082A7 /* ugen_UIButton.mm in Sources */,
+				A873263C10AD4620003082A7 /* ugen_UIKitAUIOHost.mm in Sources */,
+				A873263D10AD4620003082A7 /* ugen_UISlider.mm in Sources */,
+				A873263E10AD4620003082A7 /* ugen_JuceMultiSlider.cpp in Sources */,
+				A873263F10AD4620003082A7 /* ugen_JuceScope.cpp in Sources */,
+				A873264010AD4620003082A7 /* ugen_AudioFilePlayer.cpp in Sources */,
+				A873264110AD4620003082A7 /* ugen_DiskIn.cpp in Sources */,
+				A873264210AD4620003082A7 /* ugen_DiskOut.cpp in Sources */,
+				A873264310AD4620003082A7 /* ugen_JuceMIDIController.cpp in Sources */,
+				A873264410AD4620003082A7 /* ugen_JuceMIDIInputBroadcaster.cpp in Sources */,
+				A873264510AD4620003082A7 /* ugen_JuceMIDIMostRecentNote.cpp in Sources */,
+				A873264610AD4620003082A7 /* ugen_JuceSlider.cpp in Sources */,
+				A873264710AD4620003082A7 /* ugen_JuceTimerDeleter.cpp in Sources */,
+				A873264810AD4620003082A7 /* ugen_JuceUtility.cpp in Sources */,
+				A873264910AD4620003082A7 /* ugen_JuceVoicer.cpp in Sources */,
+				A873264A10AD4620003082A7 /* ugen_NeuralLayer.cpp in Sources */,
+				A873264B10AD4620003082A7 /* ugen_NeuralNetwork.cpp in Sources */,
+				A873264C10AD4620003082A7 /* ugen_NeuralNetworkUGen.cpp in Sources */,
+				A873264D10AD4620003082A7 /* ugen_NeuralNode.cpp in Sources */,
+				A873264E10AD4620003082A7 /* ugen_NeuralPattern.cpp in Sources */,
+				A873264F10AD4620003082A7 /* ugen_BrownNoise.cpp in Sources */,
+				A873265010AD4620003082A7 /* ugen_Dust.cpp in Sources */,
+				A873265110AD4620003082A7 /* ugen_LFNoise.cpp in Sources */,
+				A873265210AD4620003082A7 /* ugen_PinkNoise.cpp in Sources */,
+				A873265310AD4620003082A7 /* ugen_WhiteNoise.cpp in Sources */,
+				A873265410AD4620003082A7 /* ugen_FSinOsc.cpp in Sources */,
+				A873265510AD4620003082A7 /* ugen_Impulse.cpp in Sources */,
+				A873265610AD4620003082A7 /* ugen_LFPulse.cpp in Sources */,
+				A873265710AD4620003082A7 /* ugen_LFSaw.cpp in Sources */,
+				A873265810AD4620003082A7 /* ugen_OscillatorUGens.cpp in Sources */,
+				A873265910AD4620003082A7 /* ugen_TableOsc.cpp in Sources */,
+				A873265A10AD4620003082A7 /* ugen_BasicPan.cpp in Sources */,
+				A873265B10AD4620003082A7 /* ugen_Spawn.cpp in Sources */,
+				A873265C10AD4620003082A7 /* ugen_Textures.cpp in Sources */,
+				A873265D10AD4620003082A7 /* ugen_TSpawn.cpp in Sources */,
+				A873265E10AD4620003082A7 /* ugen_VoicerBase.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		84F30CC008FEAA620087E26C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		84F30CC108FEAA620087E26C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		84F30CC408FEAA620087E26C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"UGEN_CONVOLUTION=1",
+					"UGEN_JUCE=1",
+					"$(GCC_PREPROCESSOR_DEFINITIONS_QUOTED_FOR_PROJECT_1)",
+					"UGEN_VDSP=1",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS_QUOTED_FOR_PROJECT_1 = "\"PROJECT_NAME=\\\"$(PROJECT_NAME)\\\"\"";
+				HEADER_SEARCH_PATHS = "$(JUCE_SOURCE)";
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+			};
+			name = Debug;
+		};
+		84F30CC508FEAA620087E26C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"UGEN_CONVOLUTION=1",
+					"UGEN_JUCE=1",
+					"$(GCC_PREPROCESSOR_DEFINITIONS_QUOTED_FOR_PROJECT_1)",
+					"UGEN_VDSP=1",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS_QUOTED_FOR_PROJECT_1 = "\"PROJECT_NAME=\\\"$(PROJECT_NAME)\\\"\"";
+				HEADER_SEARCH_PATHS = "$(JUCE_SOURCE)";
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		84F30CBF08FEAA620087E26C /* Build configuration list for PBXNativeTarget "Target App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84F30CC008FEAA620087E26C /* Debug */,
+				84F30CC108FEAA620087E26C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		84F30CC308FEAA620087E26C /* Build configuration list for PBXProject "01_03_UGenGraphs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84F30CC408FEAA620087E26C /* Debug */,
+				84F30CC508FEAA620087E26C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 20286C28FDCF999611CA2CEA /* Project object */;
+}

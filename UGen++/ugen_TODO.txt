@@ -1,0 +1,46 @@
+UGen to do list:
+
+
+TODO
+- test the Delay Ugens after the change to the way inputs are handled (these may have got broken)
+- test the Plug shouldDelete stuff 
+- rethink the KR stuff again at some point - 
+- remove SC style ar/kr calls?
+- need to test the getChannel() stuff again (haven't checked it works properly for a while)
+- use templates and virtual functions to rewrite the Binary/Unary op stuff? (this might actually be one place where macros are better but it is difficult to debug using the macros)
+- add a (non-pure) virtual function to the VoicerEventBase which controls the voice stealing priority so this can be customised by the user?
+- get Buffer to check if a file is valid before trying to use it
+
+
+DONE
+- Amplitude UGen
+- sustaining/releasing envelopes via a ReleasableUGenInternal class, then UGens can be told to release which will iterate through its graph releasing any ReleasableUGenInternal subclasses
+- add thr AR and KR static UGen methods to: Mix, DiskIn, DiskOut, all the Spawns?
+- there is a bug when the final output array of UGens conatains the same internal ugens 
+	e.g. a = WhiteNoise::AR(); b = UGen(a, a); b.setOutputs(...) etc
+	...since the internal UGens have only one output channel buffer and gets changed twice using setOutputs() hmmm!!!!!
+	(solved with the Thru UGen)
+- noise ugens including UGen++'s own random number generator (independent of rand() for example)
+- need to add getChannel() to MulAdd
+- need to add getChannel() to Dust
+- how about a MapUGenInternal that is a MulAdd an uses a buffer for lookup
+- TSpawn needs a more custom Event due to the extraArgs
+- template the Spawn (etc) classes
+- Delay classes need tweaks, - if the max = delay then the delay is actually zero! fixed
+- bug in Lag::KR - doesn't work ! (Decay:KR probably doesn't work either then) fixed
+- LFNoise0, 1, 2
+- other areas for multichannel expansion e.g., Line, XLine have float inlets, perhaps they could have Buffer inlets which expand (started this)
+- added sloping to LFPulse::KR, perhaps add this to other KRs?
+- fixed a bug in MulAdd which may not generate enough channels
+- FSinOsc
+- Chain ?? - a UGen that somehow passes its output to the input of the next UGen - this would be to avoid excessively long call stacks (e.g., Allpass-based reverbs)
+- added a Value class
+- Added a RecircBaseChain which uses Values to specify
+- a ValueUGen which evaluates a value every samples (AR) or control block (KR)
+- need to add the unary - operator and binary / operators to Value
+- function UGEen too? perhaps this could be a templated Value class?
+- Passing in a specific Event to a Spawn (etc) class
+- LoopValue? - implemented usng the existing Geom and Series classes
+- opposite of Chain - Bank? done
+- add audio input to the AudioQueusIOHostController for iPhone
+- there's a bug in the Voicer where the envelopes are a fixed duration, perhaps release() should be ignored if releaseNode==-1 ??
