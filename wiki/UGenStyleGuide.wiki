@@ -83,7 +83,7 @@ The content of a namespace should not be indented e.g.
 
 {{{
 // In the .h file
-namespace mynamespace {
+namespace UGEN_NAMESPACE {
 
 // All declarations are within the namespace scope.
 // Notice the lack of indentation.
@@ -94,10 +94,10 @@ public:
   void Foo();
 };
 
-}  // namespace mynamespace  
+}  // namespace UGEN_NAMESPACE
 
 // In the .cpp file
-namespace mynamespace
+namespace UGEN_NAMESPACE
 {
 
 // Definition of functions is within scope of the namespace.
@@ -105,7 +105,7 @@ void MyClass::Foo() {
 ...
 }
 
-}  // namespace mynamespace
+}  // namespace UGEN_NAMESPACE
 }}}
 
 ==Nested Classes==
@@ -277,12 +277,12 @@ Default arguments are used heavily throughout the UGen library mainly to avoid d
 
 One specific example of their use is when default arguments are used to simulate variable-length argument lists.
 
-// Support up to 4 params by using a default empty AlphaNum.
+// Support up to 4 params by using a default INFINITY.
 {{{
-string StrCat(const AlphaNum &a,
-              const AlphaNum &b = gEmptyAlphaNum,
-              const AlphaNum &c = gEmptyAlphaNum,
-              const AlphaNum &d = gEmptyAlphaNum);
+Buffer(double i00,
+       double i01, 
+       double i02 = INFINITY, 
+       double i03 = INFINITY);
 }}}
 
 ==Variable-Length Arrays and alloca()==
@@ -388,11 +388,15 @@ Use '\0' for chars. This is the correct type and also makes code more readable.
 
 ==sizeof==
 
-Use sizeof(varname) instead of sizeof(type) whenever possible.
+Use sizeof(varname) instead of sizeof(type) unless dealing with primitive types.
 
 Use sizeof(varname) because it will update appropriately if the type of the variable changes. sizeof(type) may make sense in some cases, but should generally be avoided because it can fall out of sync if the variable's type changes.
 
 {{{
+memset(bufferData, 0, numChannels * sizeof(float*));
+
+// or
+
 Struct data;
 memset(&data, 0, sizeof(data));
 memset(&data, 0, sizeof(Struct));
@@ -461,15 +465,15 @@ Type names start with a capital letter and have a capital letter for each new wo
 The names of all types — classes, structs, typedefs, and enums — have the same naming convention. Type names should start with a capital letter and have a capital letter for each new word. No underscores. For example:
 {{{
 // classes and structs
-class UrlTable { ...
-class UrlTableTester { ...
-struct UrlTableProperties { ...
+class DataRecorderUGenInternal { ...
+class PlayBufUGenInternal { ...
+struct AQCallbackStruct { ...
 
 // typedefs
-typedef hash_map<UrlTableProperties *, string> PropertiesMap;
+typedef ObjectArray<BufferReceiver*> BufferReceiverArray;
 
 // enums
-enum UrlTableErrors { ...
+enum Inputs { Input, NumInputs };
 }}}
 
 ==Variable Names==
@@ -491,8 +495,8 @@ Regular functions have camel case; accessors and mutators generally prepend the 
 ====Regular Functions====
 Functions should start with a lower case letter and have a capital letter for each new word. No underscores:
 {{{
-addTableEntry()
-deleteUrl()
+processBlock(...)
+handleBuffer(...)
 }}}
 
 ====Accessors and Mutators====
@@ -1005,7 +1009,7 @@ x = r->y;
 }}}
 Note that:
  * There are no spaces around the period or arrow when accessing a member.
- * Pointer operators have no space after the * or &.
+ * Pointer operators have no space after the `*` or &.
 When declaring a pointer variable or argument, you may place the asterisk adjacent to either the type or to the variable name:
 {{{
 // These are fine, space preceding.
