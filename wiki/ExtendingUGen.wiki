@@ -128,30 +128,34 @@ void MaximaUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 	float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
 	
 	// The dsp loop:
-	while(numSamplesToProcess--)
-	{
-		float input = *inputSamples;	// Pull a sample out of the input array.
-		float output;
-		
-		bool didIncreaseThisTime = false;
-		
-		if(input > lastValue)
-			didIncreaseThisTime = true;
-		
-		if((didIncreaseThisTime == false) && (didIncreaseLastTime == true))
-			output = 1.f;
-		else
-			output = 0.f;
-		
-		lastValue = input;
-		didIncreaseLastTime = didIncreaseThisTime;
-		
-		*outputSamples = output;		// Put a sample into the output array.
-		
-		// Increment the array pointers for the next loop iteration.
-		inputSamples++;		
-		outputSamples++;
-	}
+        while(numSamplesToProcess--)
+        {
+                float input = *inputSamples;    // Pull a sample out of the input array.
+                
+                bool didIncreaseThisTime;
+                
+                if(input > lastValue)
+                        didIncreaseThisTime = true;
+                else
+                        didIncreaseThisTime = false;
+                
+                float output;
+                
+                if((didIncreaseThisTime == false) && (didIncreaseLastTime == true))
+                        output = 1.f;
+                else
+                        output = 0.f;
+                
+                lastValue = input;
+                didIncreaseLastTime = didIncreaseThisTime;
+                
+                *outputSamples = output;                // Put a sample into the output array.
+                
+                // Increment the array pointers for the next loop iteration.
+                inputSamples++;         
+                outputSamples++;
+        }
+
 }
 }}}
 
@@ -252,31 +256,35 @@ void MaximaUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 	// Get a pointer to the input sample array.
 	float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
 	
-	// The dsp loop:
-	while(numSamplesToProcess--)
-	{
-		float input = *inputSamples;	// Pull a sample out of the input array.
-		float output;
-		
-		bool didIncreaseThisTime;
-		
-		if(input > lastValue)
-			didIncreaseThisTime = true;
-		
-		if((didIncreaseThisTime == false) && (didIncreaseLastTime == true))
-			output = 1.f;
-		else
-			output = 0.f;
-		
-		lastValue = input;
-		didIncreaseLastTime = didIncreaseThisTime;
-		
-		*outputSamples = output;		// Put a sample into the output array.
-		
-		// Increment the array pointers for the next loop iteration.
-		inputSamples++;		
-		outputSamples++;
-	}
+        // The dsp loop:
+        while(numSamplesToProcess--)
+        {
+                float input = *inputSamples;    // Pull a sample out of the input array.
+                
+                bool didIncreaseThisTime;
+                
+                if(input > lastValue)
+                        didIncreaseThisTime = true;
+                else
+                        didIncreaseThisTime = false;
+                
+                float output;
+                
+                if((didIncreaseThisTime == false) && (didIncreaseLastTime == true))
+                        output = 1.f;
+                else
+                        output = 0.f;
+                
+                lastValue = input;
+                didIncreaseLastTime = didIncreaseThisTime;
+                
+                *outputSamples = output;                // Put a sample into the output array.
+                
+                // Increment the array pointers for the next loop iteration.
+                inputSamples++;         
+                outputSamples++;
+        }
+
 }
 
 Maxima::Maxima(UGen const& input) throw()
