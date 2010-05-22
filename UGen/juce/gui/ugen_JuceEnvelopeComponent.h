@@ -58,8 +58,8 @@ public:
 	
 	void checkBounds (Rectangle<int>& bounds,
 					  const Rectangle<int>& old, const Rectangle<int>& limits,
-					  const bool isStretchingTop, const bool isStretchingLeft,
-					  const bool isStretchingBottom, const bool isStretchingRight);
+					  bool isStretchingTop, bool isStretchingLeft,
+					  bool isStretchingBottom, bool isStretchingRight);
 	
 	void setAdjacentHandleLimits(int setLeftLimit, int setRightLimit);
 	

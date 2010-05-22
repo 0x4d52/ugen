@@ -48,11 +48,14 @@ public:
 	 UGen::initialise() to setup UGen++ and creates a Juce AudioDeviceManager for handling audio IO.
 	 The creation of the AudioDeviceManager is deferred until after the constructor returns so that we don't
 	 crash when the constructGraph() function is called (since it's pure virtual).
+	 
+	 If @c preferredBufferSize is zero (or less) the default buffer size for the device will be used.
+
 	 */
-	JuceIOHost(const int numInputs = 2, const int numOutputs = 2, const int preferredBufferSize = 512, const bool useTimerDeleter = false) throw()
+	JuceIOHost(const int numInputs = 2, const int numOutputs = 2, const int preferredBufferSize = 0, const bool useTimerDeleter = false) throw()
 	:	numInputs_(numInputs < 0 ? 0 : numInputs),
 		numOutputs_(numOutputs < 0 ? 0 : numOutputs),
-		bufferSize(preferredBufferSize < 64 ? 64 : preferredBufferSize),
+		bufferSize(preferredBufferSize),
 		juceDeleter(0)
 	{
 		ugen_assert(numInputs == numInputs_);
@@ -106,9 +109,16 @@ public:
 
 		AudioDeviceManager::AudioDeviceSetup setup;
 		audioDeviceManager.getAudioDeviceSetup(setup);
-		setup.bufferSize = bufferSize;
-		audioDeviceManager.setAudioDeviceSetup(setup, false);
-		
+
+		if(bufferSize < 1)
+		{
+			bufferSize = setup.bufferSize;
+		}
+		else
+		{
+			setup.bufferSize = bufferSize;
+			audioDeviceManager.setAudioDeviceSetup(setup, false);
+		}
 		
 		if (error.isNotEmpty())
 		{
@@ -269,7 +279,8 @@ protected:
 	AudioDeviceManager audioDeviceManager;
 	
 private:
-	const int numInputs_, numOutputs_, bufferSize;
+	const int numInputs_, numOutputs_;
+	int bufferSize;
 	UGen input_;
 	UGen output_;
 	UGenArray others;
