@@ -241,7 +241,7 @@ class RandomValueBaseInternal : public ValueBaseInternal
 {
 public:
 	RandomValueBaseInternal() 
-	: random((unsigned int)this * 872345U + 184031U + Ran088::defaultGenerator().nextLong(72634429)) 
+	: random(Ran088::defaultGenerator().next()) 
 	{ 
 	}
 	
