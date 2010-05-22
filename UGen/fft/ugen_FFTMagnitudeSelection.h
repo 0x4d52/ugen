@@ -67,6 +67,7 @@ protected:
 	float** outputSampleData;
 };
 
+/*
 //#define FFTMagnitudeSelection_Docs	@param input		The input signal to perform the FFT on, this should be mono		\
 //							@param fftSize		The FFT size which should be a power of 2						\
 //												(if not, it will be rounded up to the next power of 2).			\
@@ -78,6 +79,7 @@ protected:
 //							@param numBins		The number of bins to report. The maximum if firstBin is zero	\
 //												is equal to one greater than half the FFT size (e.g., if FFT	\
 //												size is	128 the maximum is 65 assuming firstBin is zero).
+*/
 
 /** Get the magnitude from one or more bins in an FFT.
  

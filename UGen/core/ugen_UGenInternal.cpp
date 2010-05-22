@@ -194,11 +194,11 @@ UGenInternal::UGenInternal(const int numInputs) throw()
 
 UGenInternal::UGenInternal(UGen *mixInputToUse) throw()
 :	numInputs_(1),
-	inputs(mixInputToUse),
-	ownsInputsPointer(false),
-	lastBlockID(-1),
 	rate(AudioAndControlRate),
+	ownsInputsPointer(false),
 	isScheduledForDeletion(false),
+	inputs(mixInputToUse),
+	lastBlockID(-1),
 	blockIDtoBeDeletedAfter(0xFFFFFFFF)
 {
 }
