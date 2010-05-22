@@ -271,8 +271,8 @@ SequenceValueInternal::SequenceValueInternal(Value const& start,
 	threshold_(threshold),
 	loopType(threshold_.getValue() > currentValue ? ThresholdIncreasing : ThresholdDecreasing),
 	loopDirection_(loopDirection),
-	currentStep(0),
 	numSteps_(0),
+	currentStep(0),
 	loopCount(0)
 {
 }

@@ -63,13 +63,6 @@
 		}
 
 
-
-//#define BinaryOpSymbolUGenLoopBody(OUT, ASSIGN, LEFT, OPSYMBOL_INTERNAL, RIGHT)											\
-//		*OUT++ ASSIGN (*LEFT++ OPSYMBOL_INTERNAL *RIGHT++)
-//
-//#define BinaryOpFunctionUGenLoopBody(OUT, ASSIGN, LEFT, OPFUNCTION_INTERNAL, RIGHT)										\
-//		*OUT++ ASSIGN (float)OPFUNCTION_INTERNAL(*LEFT++, *RIGHT++)
-
 #define BinaryOpSymbolUGenProcessBlock(shouldDelete_, blockID_, channel_, OPSYMBOL_INTERNAL)							\
 		const int numSamplesToProcess = uGenOutput.getBlockSize();														\
 		float* outputSamples = uGenOutput.getSampleData();																\
@@ -80,18 +73,6 @@
 			outputSamples[i] = leftOperandSamples[i] OPSYMBOL_INTERNAL rightOperandSamples[i];							\
 		}
 	
-//#define BinaryOpSymbolUGenProcessBlock(shouldDelete_, blockID_, channel_, OPSYMBOL_INTERNAL)							\
-//int numSamplesToProcess = uGenOutput.getBlockSize();															\
-//float* outputSamples = uGenOutput.getSampleData();																\
-//float* leftOperandSamples = inputs[LeftOperand].processBlock(shouldDelete, blockID_, channel_);					\
-//float* rightOperandSamples = inputs[RightOperand].processBlock(shouldDelete, blockID_, channel_);				\
-//\
-//while(numSamplesToProcess--)																				\
-//{																											\
-//BinaryOpSymbolUGenLoopBody(outputSamples, =,															\
-//leftOperandSamples, OPSYMBOL_INTERNAL, rightOperandSamples);										\
-//}																											\
-
 
 #define BinaryOpSymbolUGenProcessBlock_K(shouldDelete_, blockID_, channel_, OPSYMBOL_INTERNAL)							\
 		const int krBlockSize = UGen::getControlRateBlockSize();														\
@@ -142,18 +123,6 @@
 		for(int i = 0; i < numSamplesToProcess; ++i) {																	\
 			outputSamples[i] = OPFUNCTION_INTERNAL(leftOperandSamples[i], rightOperandSamples[i]);						\
 		}
-
-//#define BinaryOpFunctionUGenProcessBlock(shouldDelete_, blockID_, channel_, OPFUNCTION_INTERNAL)						\
-//int numSamplesToProcess = uGenOutput.getBlockSize();															\
-//float* outputSamples = uGenOutput.getSampleData();																\
-//float* leftOperandSamples = inputs[LeftOperand].processBlock(shouldDelete, blockID_, channel_);					\
-//float* rightOperandSamples = inputs[RightOperand].processBlock(shouldDelete, blockID_, channel_);				\
-//\
-//while(numSamplesToProcess--)																				\
-//{																											\
-//BinaryOpFunctionUGenLoopBody(outputSamples,	=,															\
-//leftOperandSamples, OPFUNCTION_INTERNAL, rightOperandSamples);										\
-//}																											\
 
 
 #define BinaryOpFunctionUGenProcessBlock_K(shouldDelete_, blockID_, channel_, OPFUNCTION_INTERNAL)						\
