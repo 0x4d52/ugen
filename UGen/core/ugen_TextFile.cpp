@@ -223,7 +223,7 @@ bool TextFileReaderInternal::readArray(NumericalArray<double> *array) throw()
 		text = readLine();
 		int index;
 		double value;
-		sscanf(text.getArray(), "[%d]=%g", &index, &value);
+		sscanf(text.getArray(), "[%d]=%lg", &index, &value);
 		
 		if(index != i) return false;
 		
@@ -285,7 +285,7 @@ void TextFileWriterInternal::writeValue(const long value) throw()
 {
 	const int size = 64;
 	char buf[size];
-	snprintf(buf, size, "%d", value);
+	snprintf(buf, size, "%ld", value);
 	write(buf);
 }
 
@@ -293,7 +293,7 @@ void TextFileWriterInternal::writeValue(const unsigned long value) throw()
 {
 	const int size = 64;
 	char buf[size];
-	snprintf(buf, size, "%u", value);
+	snprintf(buf, size, "%lu", value);
 	write(buf);
 }
 

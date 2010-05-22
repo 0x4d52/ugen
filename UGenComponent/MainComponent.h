@@ -10,7 +10,7 @@ class UGenComponent : public Component
 		enum IOType { Input, Output, Other };
 		enum IOPosition { Left, Top, Right, Bottom };
 		
-		UGenComponent (String ugenClass = T("UGen"), 
+		UGenComponent (String ugenClass = "UGen", 
 					   StringArray const& inputs = StringArray(), 
 					   StringArray const& outputs = StringArray(), 
 					   String ugenName = String::empty,
@@ -436,12 +436,18 @@ public:
 		
 		const char* inputs[] = {"freq", "phase", "mul", "add", 0};
 		const char* outputs[] = {"out", 0};
-		graph->addAndMakeVisible(new UGenComponent(T("SinOsc"), inputs, outputs, T("modulator")));//, UGenComponent::Top, UGenComponent::Right));
-		graph->addAndMakeVisible(new UGenComponent(T("SinOsc"), inputs, outputs, T("carrier")));
-		graph->addAndMakeVisible(new UGenWire(graph->getUGenComponent(T("modulator")), T("out"), 
-											  graph->getUGenComponent(T("carrier")), T("freq")));
-		graph->addAndMakeVisible(new UGenWire(graph->getUGenComponent(T("carrier")), T("out"),
-											  graph->getUGenComponent(T("modulator")), T("mul")));
+		graph->addAndMakeVisible(new UGenComponent("SinOsc", 
+												   StringArray(inputs), 
+												   StringArray(outputs), 
+												   "modulator"));
+		graph->addAndMakeVisible(new UGenComponent("SinOsc", 
+												   StringArray(inputs), 
+												   StringArray(outputs), 
+												   "carrier"));
+		graph->addAndMakeVisible(new UGenWire(graph->getUGenComponent("modulator"), "out", 
+											  graph->getUGenComponent("carrier"), "freq"));
+		graph->addAndMakeVisible(new UGenWire(graph->getUGenComponent("carrier"), "out",
+											  graph->getUGenComponent("modulator"), "mul"));
 		
 		
 		graph->getUGenComponent(T("modulator"))->setBounds(30, 30, 100, 80);
