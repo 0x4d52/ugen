@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module>
+  <ModulePrefs title="" width="100%">
+    <Require feature="dynamic-height" /> 
+  </ModulePrefs>
+  <UserPref name="remote_url" display_name="Remote URL" required="true" /> 
+  <Content type="html">
+    <![CDATA[ 
+      <script type="text/javascript">
+          function doResize() {
+            var height = document.getElementById('doxy').contentWindow.document.body.scrollHeight;
+            document.getElementById('doxy').height = height;
+            gadgets.window.adjustHeight();
+          };
+      </script>
+      <base href="__UP_remote_url__">
+      <iframe id="doxy" src="__UP_remote_url__" width="100%" height="100%" frameborder="0" onload="doResize();" />
+    ]]> 
+  </Content>
+</Module>
+
