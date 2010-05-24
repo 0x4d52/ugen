@@ -1,5 +1,5 @@
-// $Id: ugen_Value.h 979 2010-01-09 15:47:39Z mgrobins $
-// $HeadURL: http://164.11.131.73/svn/CEMS/mt/other/UGenProject/UGen/core/ugen_Value.h $
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================

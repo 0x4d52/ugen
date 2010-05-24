@@ -1,5 +1,5 @@
-// $Id: ugen_VoicerBase.cpp 1011 2010-05-12 16:24:29Z mgrobins $
-// $HeadURL: http://164.11.131.73/svn/CEMS/mt/other/UGenProject/UGen/spawn/ugen_VoicerBase.cpp $
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================

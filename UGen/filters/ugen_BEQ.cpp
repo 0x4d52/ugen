@@ -1,5 +1,5 @@
-// $Id: ugen_BEQ.cpp 1006 2010-03-18 12:26:09Z mgrobins $
-// $HeadURL: http://164.11.131.73/svn/CEMS/mt/other/UGenProject/UGen/filters/ugen_BEQ.cpp $
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================

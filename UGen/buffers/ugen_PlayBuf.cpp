@@ -1,5 +1,5 @@
-// $Id: ugen_PlayBuf.cpp 1008 2010-05-08 20:27:58Z mgrobins $
-// $HeadURL: http://164.11.131.73/svn/CEMS/mt/other/UGenProject/UGen/buffers/ugen_PlayBuf.cpp $
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================

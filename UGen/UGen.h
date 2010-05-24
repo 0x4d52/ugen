@@ -1,5 +1,5 @@
-// $Id: UGen.h 1005 2010-03-16 23:10:34Z mgrobins $
-// $HeadURL: http://164.11.131.73/svn/CEMS/mt/other/UGenProject/UGen/UGen.h $
+// $Id$
+// $HeadURL$
  
 /*
  ==============================================================================
@@ -201,7 +201,7 @@ using namespace UGEN_NAMESPACE;
  
  @section Installation Installation
  Check out the source code using SVN using the command:
- @code svn co http://164.11.131.73/svn/CEMS/mt/other/UGenProject/ @endcode
+ @code svn co http://ugen.googlecode.com/svn/trunk/ ugen @endcode
  In Xcode on the Mac for the Juce projects the directory containing Juce (i.e., juce.h) should be defined 
  as a Source Tree "JUCE_SOURCE" such that it can be found using:
  @code #include <juce/juce.h> @endcode

@@ -1,5 +1,5 @@
-// $Id: ugen_TableOsc.cpp 1010 2010-05-12 15:47:52Z mgrobins $
-// $HeadURL: http://164.11.131.73/svn/CEMS/mt/other/UGenProject/UGen/oscillators/wavetable/ugen_TableOsc.cpp $
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================
