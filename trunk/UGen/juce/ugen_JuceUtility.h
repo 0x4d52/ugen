@@ -1,5 +1,5 @@
-// $Id: ugen_JuceUtility.h 1003 2010-03-12 16:29:12Z mgrobins $
-// $HeadURL: http://164.11.131.73/svn/CEMS/mt/other/UGenProject/UGen/juce/ugen_JuceUtility.h $
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================

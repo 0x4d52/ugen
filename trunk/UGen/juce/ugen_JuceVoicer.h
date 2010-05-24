@@ -1,5 +1,5 @@
-// $Id: ugen_JuceVoicer.h 979 2010-01-09 15:47:39Z mgrobins $
-// $HeadURL: http://164.11.131.73/svn/CEMS/mt/other/UGenProject/UGen/juce/ugen_JuceVoicer.h $
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================

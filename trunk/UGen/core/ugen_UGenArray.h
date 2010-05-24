@@ -1,5 +1,5 @@
-// $Id: ugen_UGenArray.h 1000 2010-03-09 23:27:20Z mgrobins $
-// $HeadURL: http://164.11.131.73/svn/CEMS/mt/other/UGenProject/UGen/core/ugen_UGenArray.h $
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================

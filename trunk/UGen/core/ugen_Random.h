@@ -1,5 +1,5 @@
-// $Id: ugen_Random.h 1008 2010-05-08 20:27:58Z mgrobins $
-// $HeadURL: http://164.11.131.73/svn/CEMS/mt/other/UGenProject/UGen/core/ugen_Random.h $
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================

@@ -1,5 +1,5 @@
-// $Id: ugen_SmartPointer.cpp 981 2010-01-27 22:20:29Z mgrobins $
-// $HeadURL: http://164.11.131.73/svn/CEMS/mt/other/UGenProject/UGen/core/ugen_SmartPointer.cpp $
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================

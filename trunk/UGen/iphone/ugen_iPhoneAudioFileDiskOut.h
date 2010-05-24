@@ -1,5 +1,5 @@
-// $Id: ugen_DiskOut.h 892 2009-09-29 18:28:29Z mgrobins $
-// $HeadURL: http://164.11.131.73/svn/CEMS/mt/other/UGenProject/UGen/juce/io/ugen_DiskOut.h $
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================

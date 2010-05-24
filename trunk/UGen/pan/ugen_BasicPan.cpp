@@ -1,5 +1,5 @@
-// $Id: ugen_BasicPan.cpp 1015 2010-05-21 22:19:13Z mgrobins $
-// $HeadURL: http://164.11.131.73/svn/CEMS/mt/other/UGenProject/UGen/pan/ugen_BasicPan.cpp $
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================

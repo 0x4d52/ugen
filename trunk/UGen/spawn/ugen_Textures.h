@@ -1,5 +1,5 @@
-// $Id: ugen_Textures.h 980 2010-01-15 21:59:10Z mgrobins $
-// $HeadURL: http://164.11.131.73/svn/CEMS/mt/other/UGenProject/UGen/spawn/ugen_Textures.h $
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================

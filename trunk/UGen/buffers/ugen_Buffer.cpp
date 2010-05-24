@@ -1,5 +1,5 @@
-// $Id: ugen_Buffer.cpp 1010 2010-05-12 15:47:52Z mgrobins $
-// $HeadURL: http://164.11.131.73/svn/CEMS/mt/other/UGenProject/UGen/buffers/ugen_Buffer.cpp $
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================

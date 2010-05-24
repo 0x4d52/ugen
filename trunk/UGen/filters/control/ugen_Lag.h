@@ -1,5 +1,5 @@
-// $Id: ugen_Lag.h 998 2010-03-08 10:33:23Z mgrobins $
-// $HeadURL: http://164.11.131.73/svn/CEMS/mt/other/UGenProject/UGen/filters/control/ugen_Lag.h $
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================

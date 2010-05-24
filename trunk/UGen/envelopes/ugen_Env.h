@@ -1,5 +1,5 @@
-// $Id: ugen_Env.h 1014 2010-05-20 18:33:07Z mgrobins $
-// $HeadURL: http://164.11.131.73/svn/CEMS/mt/other/UGenProject/UGen/envelopes/ugen_Env.h $
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================

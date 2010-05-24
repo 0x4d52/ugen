@@ -1,5 +1,5 @@
-// $Id: ugen_AudioQueueIOHost.mm 1005 2010-03-16 23:10:34Z mgrobins $
-// $HeadURL: http://164.11.131.73/svn/CEMS/mt/other/UGenProject/UGen/iphone/ugen_AudioQueueIOHost.mm $
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================

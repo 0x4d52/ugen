@@ -1,5 +1,5 @@
-// $Id: ugen_JuceScope.cpp 1013 2010-05-14 10:40:16Z mgrobins $
-// $HeadURL: http://164.11.131.73/svn/CEMS/mt/other/UGenProject/UGen/juce/gui/ugen_JuceScope.cpp $
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================

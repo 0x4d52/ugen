@@ -1,5 +1,5 @@
-// $Id: ugen_FFTEngine.h 744 2009-08-20 05:41:34Z mgrobins $
-// $HeadURL: http://164.11.131.73/svn/CEMS/mt/other/UGenProject/UGen/fft/ugen_FFTEngine.h $
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================
