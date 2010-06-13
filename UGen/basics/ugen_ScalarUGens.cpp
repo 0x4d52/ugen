@@ -137,28 +137,92 @@ void BoolPtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
 	float nextValue = (float)(*ptr != 0);
+		
+	value_ = nextValue;
+	for(int i = 0; i < numSamplesToProcess; ++i)
+		outputSamples[i] = value_;
 	
-	memset(outputSamples, 0, numSamplesToProcess * sizeof(float));
-	if(nextValue == value_)	{
-		for(int i = 0; i < numSamplesToProcess; ++i)
-			outputSamples[i] += nextValue;
-	} else {
-		int numKrSamplesToProcess = UGen::getControlRateBlockSize();
-		float valueSlope = (nextValue - value_) * UGen::getControlSlopeFactor();
-		numSamplesToProcess -= numKrSamplesToProcess;
-		for(int i = 0; i < numKrSamplesToProcess; ++i) {
-			*outputSamples++ += value_;
-			value_ += valueSlope;
-		}
-		if(numSamplesToProcess > 0) {
-			for(int i = 0; i < numSamplesToProcess; ++i)
-				outputSamples[i] += nextValue;
-		}
-		value_ = nextValue;
-	}	
+//	memset(outputSamples, 0, numSamplesToProcess * sizeof(float));
+//	if(nextValue == value_)	{
+//		for(int i = 0; i < numSamplesToProcess; ++i)
+//			outputSamples[i] += nextValue;
+//	} else {
+//		int numKrSamplesToProcess = UGen::getControlRateBlockSize();
+//		float valueSlope = (nextValue - value_) * UGen::getControlSlopeFactor();
+//		numSamplesToProcess -= numKrSamplesToProcess;
+//		for(int i = 0; i < numKrSamplesToProcess; ++i) {
+//			*outputSamples++ += value_;
+//			value_ += valueSlope;
+//		}
+//		if(numSamplesToProcess > 0) {
+//			for(int i = 0; i < numSamplesToProcess; ++i)
+//				outputSamples[i] += nextValue;
+//		}
+//		value_ = nextValue;
+//	}	
 }
 #endif
 
+CharPtrUGenInternal::CharPtrUGenInternal(char const *valuePtr) throw()
+:	ScalarBaseUGenInternal(*valuePtr),
+	ptr(valuePtr) 
+{
+}
+
+void CharPtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
+{
+	PtrUGenProcessBlock();
+}
+
+UnsignedCharPtrUGenInternal::UnsignedCharPtrUGenInternal(unsigned char const *valuePtr) throw()
+:	ScalarBaseUGenInternal(*valuePtr),
+	ptr(valuePtr) 
+{
+}
+
+void UnsignedCharPtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
+{
+	PtrUGenProcessBlock();
+}
+
+#if defined(UGEN_IPHONE)
+BOOLPtrUGenInternal::BOOLPtrUGenInternal(signed char *valuePtr) throw()
+:	ScalarBaseUGenInternal(*valuePtr),
+	ptr(valuePtr) 
+{
+}
+
+void BOOLPtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
+{
+	int numSamplesToProcess = uGenOutput.getBlockSize();
+	float* outputSamples = uGenOutput.getSampleData();
+	float nextValue = (float)(*ptr != 0);
+	
+	value_ = nextValue;
+	for(int i = 0; i < numSamplesToProcess; ++i)
+		outputSamples[i] = value_;
+	
+//	memset(outputSamples, 0, numSamplesToProcess * sizeof(float));
+//	if(nextValue == value_)	{
+//		for(int i = 0; i < numSamplesToProcess; ++i)
+//			outputSamples[i] += nextValue;
+//	} else {
+//		int numKrSamplesToProcess = UGen::getControlRateBlockSize();
+//		float valueSlope = (nextValue - value_) * UGen::getControlSlopeFactor();
+//		numSamplesToProcess -= numKrSamplesToProcess;
+//		for(int i = 0; i < numKrSamplesToProcess; ++i) {
+//			*outputSamples++ += value_;
+//			value_ += valueSlope;
+//		}
+//		if(numSamplesToProcess > 0) {
+//			for(int i = 0; i < numSamplesToProcess; ++i)
+//				outputSamples[i] += nextValue;
+//		}
+//		value_ = nextValue;
+//	}	
+}
+
+#endif
 
 
 END_UGEN_NAMESPACE

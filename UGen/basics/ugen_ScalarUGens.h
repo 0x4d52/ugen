@@ -41,27 +41,38 @@
 #include "../core/ugen_UGen.h"
 
 
+//#define PtrUGenProcessBlock()														\
+//	int numSamplesToProcess = uGenOutput.getBlockSize();							\
+//	float* outputSamples = uGenOutput.getSampleData();								\
+//	float nextValue = (float)*ptr;													\
+//	memset(outputSamples, 0, numSamplesToProcess * sizeof(float));					\
+//	if(nextValue == value_)	{														\
+//		for(int i = 0; i < numSamplesToProcess; ++i)								\
+//			outputSamples[i] += nextValue;											\
+//	} else {																		\
+//		int numKrSamplesToProcess = UGen::getControlRateBlockSize();				\
+//		float valueSlope = (nextValue - value_) * UGen::getControlSlopeFactor();	\
+//		numSamplesToProcess -= numKrSamplesToProcess;								\
+//		for(int i = 0; i < numKrSamplesToProcess; ++i) {							\
+//			*outputSamples++ += value_;												\
+//			value_ += valueSlope;													\
+//		}																			\
+//		if(numSamplesToProcess > 0) {												\
+//			for(int i = 0; i < numSamplesToProcess; ++i)							\
+//				outputSamples[i] += nextValue;										\
+//		}																			\
+//		value_ = nextValue;															\
+//	}
+
+
 #define PtrUGenProcessBlock()														\
 	int numSamplesToProcess = uGenOutput.getBlockSize();							\
 	float* outputSamples = uGenOutput.getSampleData();								\
 	float nextValue = (float)*ptr;													\
-	memset(outputSamples, 0, numSamplesToProcess * sizeof(float));					\
-	if(nextValue == value_)	{														\
-		for(int i = 0; i < numSamplesToProcess; ++i)								\
-			outputSamples[i] += nextValue;											\
-	} else {																		\
-		int numKrSamplesToProcess = UGen::getControlRateBlockSize();				\
-		float valueSlope = (nextValue - value_) * UGen::getControlSlopeFactor();	\
-		numSamplesToProcess -= numKrSamplesToProcess;								\
-		for(int i = 0; i < numKrSamplesToProcess; ++i) {							\
-			*outputSamples++ += value_;												\
-			value_ += valueSlope;													\
-		}																			\
-		if(numSamplesToProcess > 0) {												\
-			for(int i = 0; i < numSamplesToProcess; ++i)							\
-				outputSamples[i] += nextValue;										\
-		}																			\
-		value_ = nextValue;															\
+	value_ = nextValue;																\
+	for(int i = 0; i < numSamplesToProcess; ++i)									\
+	{																				\
+		outputSamples[i] = nextValue;												\
 	}
 
 
@@ -142,6 +153,41 @@ public:
 private:
 	bool const *ptr;
 };
+
+/** @ingroup UGenInternals */
+class CharPtrUGenInternal : public ScalarBaseUGenInternal
+{
+public:
+	CharPtrUGenInternal(char const *valuePtr) throw();
+	void processBlock(bool& shouldDelete, const unsigned int blockID,const  int channel) throw();
+	
+private:
+	char const *ptr;
+};
+
+/** @ingroup UGenInternals */
+class UnsignedCharPtrUGenInternal : public ScalarBaseUGenInternal
+{
+public:
+	UnsignedCharPtrUGenInternal(unsigned char const *valuePtr) throw();
+	void processBlock(bool& shouldDelete, const unsigned int blockID,const  int channel) throw();
+	
+private:
+	unsigned char const *ptr;
+};
+
+#if defined(UGEN_IPHONE)
+/** @ingroup UGenInternals */
+class BOOLPtrUGenInternal : public ScalarBaseUGenInternal
+{
+public:
+	BOOLPtrUGenInternal(signed char *valuePtr) throw();
+	void processBlock(bool& shouldDelete, const unsigned int blockID,const  int channel) throw();
+	
+private:
+	signed char *ptr;
+};
+#endif
 
 
 

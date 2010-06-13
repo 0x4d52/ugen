@@ -84,6 +84,11 @@ public:
 	UIAccelerationUGenInternal(UIAccelerationSingleton::Directions direction) throw();
 };
 
+/** A UGen which takes its value source from a UIAccelerometer (iPhone) X, Y & Z directions.
+ @ingroup ControlUGens */
+DirectMulAddUGenDeclaration(Accel, (), (MulAdd_ArgsCall), (), (MulAdd_ArgsDeclare), 
+							COMMON_UGEN_DOCS MulAddArgs_Docs);
+
 /** A UGen which takes its value source from a UIAccelerometer (iPhone) X direction.
  @ingroup ControlUGens */
 DirectMulAddUGenDeclaration(AccelX, (), (MulAdd_ArgsCall), (), (MulAdd_ArgsDeclare), 
@@ -97,6 +102,11 @@ DirectMulAddUGenDeclaration(AccelY, (), (MulAdd_ArgsCall), (), (MulAdd_ArgsDecla
 /** A UGen which takes its value source from a UIAccelerometer (iPhone) Z direction.
  @ingroup ControlUGens */
 DirectMulAddUGenDeclaration(AccelZ, (), (MulAdd_ArgsCall), (), (MulAdd_ArgsDeclare), 
+							COMMON_UGEN_DOCS MulAddArgs_Docs);
+
+/** A UGen which takes its value source from a UIAccelerometer (iPhone) delta X, Y & Z directions.
+ @ingroup ControlUGens */
+DirectMulAddUGenDeclaration(AccelDelta, (), (MulAdd_ArgsCall), (), (MulAdd_ArgsDeclare), 
 							COMMON_UGEN_DOCS MulAddArgs_Docs);
 
 /** A UGen which takes its value source from a UIAccelerometer (iPhone) delta X direction.
@@ -114,17 +124,22 @@ DirectMulAddUGenDeclaration(AccelDeltaY, (), (MulAdd_ArgsCall), (), (MulAdd_Args
 DirectMulAddUGenDeclaration(AccelDeltaZ, (), (MulAdd_ArgsCall), (), (MulAdd_ArgsDeclare), 
 							COMMON_UGEN_DOCS MulAddArgs_Docs);
 
-/** A UGen which takes its value source from a UIAccelerometer (iPhone) delta X direction.
+/** A UGen which takes its value source from a UIAccelerometer (iPhone) change of delta X, Y & Z directions.
+ @ingroup ControlUGens */
+DirectMulAddUGenDeclaration(AccelDeltaDelta, (), (MulAdd_ArgsCall), (), (MulAdd_ArgsDeclare), 
+							COMMON_UGEN_DOCS MulAddArgs_Docs);
+
+/** A UGen which takes its value source from a UIAccelerometer (iPhone) change of delta X direction.
  @ingroup ControlUGens */
 DirectMulAddUGenDeclaration(AccelDeltaDeltaX, (), (MulAdd_ArgsCall), (), (MulAdd_ArgsDeclare), 
 							COMMON_UGEN_DOCS MulAddArgs_Docs);
 
-/** A UGen which takes its value source from a UIAccelerometer (iPhone) delta Y direction.
+/** A UGen which takes its value source from a UIAccelerometer (iPhone) change of delta Y direction.
  @ingroup ControlUGens */
 DirectMulAddUGenDeclaration(AccelDeltaDeltaY, (), (MulAdd_ArgsCall), (), (MulAdd_ArgsDeclare), 
 							COMMON_UGEN_DOCS MulAddArgs_Docs);
 
-/** A UGen which takes its value source from a UIAccelerometer (iPhone) delta Z direction.
+/** A UGen which takes its value source from a UIAccelerometer (iPhone) change of delta Z direction.
  @ingroup ControlUGens */
 DirectMulAddUGenDeclaration(AccelDeltaDeltaZ, (), (MulAdd_ArgsCall), (), (MulAdd_ArgsDeclare), 
 							COMMON_UGEN_DOCS MulAddArgs_Docs);

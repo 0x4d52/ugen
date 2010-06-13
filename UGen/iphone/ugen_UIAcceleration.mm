@@ -97,7 +97,7 @@ UIAccelerationSingleton& UIAccelerationSingleton::getInstance()
 
 void UIAccelerationSingleton::set(double newX, double newY, double newZ) throw()
 {
-	printf("accel: %f %f %f\n", newX, newY, newZ);
+//	printf("accel: %f %f %f\n", newX, newY, newZ);
 	
 	double newDx = newX-x;
 	double newDy = newY-y;
@@ -155,6 +155,15 @@ UIAccelerationUGenInternal::UIAccelerationUGenInternal(UIAccelerationSingleton::
 {	
 }
 
+Accel::Accel() throw()
+{
+	initInternal(3);	
+	internalUGens[0] = new UIAccelerationUGenInternal(UIAccelerationSingleton::AccelerationX);
+	internalUGens[1] = new UIAccelerationUGenInternal(UIAccelerationSingleton::AccelerationY);
+	internalUGens[2] = new UIAccelerationUGenInternal(UIAccelerationSingleton::AccelerationZ);
+}
+
+
 AccelX::AccelX() throw()
 {
 	initInternal(1);	
@@ -173,6 +182,14 @@ AccelZ::AccelZ() throw()
 	internalUGens[0] = new UIAccelerationUGenInternal(UIAccelerationSingleton::AccelerationZ);
 }
 
+AccelDelta::AccelDelta() throw()
+{
+	initInternal(3);	
+	internalUGens[0] = new UIAccelerationUGenInternal(UIAccelerationSingleton::DeltaX);
+	internalUGens[1] = new UIAccelerationUGenInternal(UIAccelerationSingleton::DeltaY);
+	internalUGens[2] = new UIAccelerationUGenInternal(UIAccelerationSingleton::DeltaZ);
+}
+
 AccelDeltaX::AccelDeltaX() throw()
 {
 	initInternal(1);	
@@ -189,6 +206,14 @@ AccelDeltaZ::AccelDeltaZ() throw()
 {
 	initInternal(1);	
 	internalUGens[0] = new UIAccelerationUGenInternal(UIAccelerationSingleton::DeltaZ);
+}
+
+AccelDeltaDelta::AccelDeltaDelta() throw()
+{
+	initInternal(3);	
+	internalUGens[0] = new UIAccelerationUGenInternal(UIAccelerationSingleton::DeltaDeltaX);
+	internalUGens[1] = new UIAccelerationUGenInternal(UIAccelerationSingleton::DeltaDeltaY);
+	internalUGens[2] = new UIAccelerationUGenInternal(UIAccelerationSingleton::DeltaDeltaZ);
 }
 
 AccelDeltaDeltaX::AccelDeltaDeltaX() throw()
