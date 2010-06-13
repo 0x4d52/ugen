@@ -83,6 +83,7 @@ BEGIN_UGEN_NAMESPACE
 #include "envelopes/ugen_ASR.h"
 #include "analysis/ugen_Amplitude.h"
 #include "analysis/ugen_Maxima.h"
+#include "analysis/ugen_Poll.h"
 #include "analysis/ugen_DataRecorder.h"
 #include "pan/ugen_BasicPan.h"
 #include "buffers/ugen_Buffer.h"

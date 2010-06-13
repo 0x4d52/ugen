@@ -308,6 +308,8 @@ public:
 	 @param valuePtr	A pointer to an int, the UGen output will change if the 
 						int pointed to changes. This will be cast to a float. */
 	UGen(int const *valuePtr) throw();
+	UGen(char const *valuePtr) throw();
+	UGen(unsigned char const *valuePtr) throw();
 	UGen(bool const *valuePtr) throw();
 	
 	/** Construct a multichannel UGen from an array of values.
@@ -377,6 +379,7 @@ public:
 	 This registers listeners to the Slider and changes the UGen output value accordingly.
 	 @param slider The Slider to use.*/
 	UGen(UISlider *slider) throw();
+	UGen(signed char *valuePtr) throw();
 #endif
 	
 	UGen(Env const& env) throw();

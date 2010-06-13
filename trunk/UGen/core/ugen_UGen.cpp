@@ -214,6 +214,24 @@ UGen::UGen(bool const *valuePtr) throw()
 	internalUGens[0] = new BoolPtrUGenInternal(valuePtr);
 }
 
+UGen::UGen(char const *valuePtr) throw()
+:	userData(UGen::defaultUserData),
+	numInternalUGens(0),
+	internalUGens(0)						
+{
+	initInternal(1);
+	internalUGens[0] = new CharPtrUGenInternal(valuePtr);
+}
+
+UGen::UGen(unsigned char const *valuePtr) throw()
+:	userData(UGen::defaultUserData),
+	numInternalUGens(0),
+	internalUGens(0)						
+{
+	initInternal(1);
+	internalUGens[0] = new UnsignedCharPtrUGenInternal(valuePtr);
+}
+
 UGen::UGen(Buffer const& buffer) throw()
 :	userData(UGen::defaultUserData),
 	numInternalUGens(0),
@@ -341,6 +359,15 @@ UGen::UGen(UISlider *slider) throw()
 	ugen_assert(slider != 0);
 	initInternal(1);
 	internalUGens[0] = new UISliderUGenInternal(slider);
+}
+
+UGen::UGen(signed char *valuePtr) throw()
+:	userData(UGen::defaultUserData),
+	numInternalUGens(0),
+	internalUGens(0)						
+{
+	initInternal(1);
+	internalUGens[0] = new BOOLPtrUGenInternal(valuePtr);
 }
 #endif
 
