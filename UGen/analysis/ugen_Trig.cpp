@@ -38,50 +38,46 @@
 
 BEGIN_UGEN_NAMESPACE
 
-#include "ugen_Poll.h"
+#include "ugen_Trig.h"
 
-PollUGenInternal::PollUGenInternal(UGen const& input, UGen const& trig) throw()
+TrigUGenInternal::TrigUGenInternal(UGen const& input) throw()
 :	UGenInternal(NumInputs)
 {
 	inputs[Input] = input;
-	inputs[Trig] = trig;
 	lastTrig = 0.f;
 }
 
-void PollUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
+void TrigUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
-	const int numSamplesToProcess = uGenOutput.getBlockSize();
+	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
-	float* const trigSamples = inputs[Trig].processBlock(shouldDelete, blockID, 0);
+	float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
 	
-	for(int sample = 0; sample < numSamplesToProcess; sample++)
+	LOCAL_DECLARE(float, lastTrig);
+	
+	while(numSamplesToProcess--)
 	{
-		float thisTrig = trigSamples[sample];
+		float thisTrig = *inputSamples++;
 		
 		if(thisTrig > 0.f && lastTrig <= 0.f)
-		{
-			const int numChannels = inputs[Input].getNumChannels();
-			Buffer poll = Buffer::newClear(numChannels);
-			float * const pollSamples = poll.getData(0);
-			
-			for(int channel = 0; channel < numChannels; channel++)
-			{
-				float* const inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
-				pollSamples[channel] = inputSamples[sample];
-			}
-			
-			sendBuffer(poll);
-		}
+			*outputSamples++ = 1.f;
+		else
+			*outputSamples++ = 0.f;
 		
-		*outputSamples++ = 0.f;
 		lastTrig = thisTrig;
 	}
+	
+	LOCAL_COPY(lastTrig);
 }
 
-Poll::Poll(UGen const& input, UGen const& trig) throw()
+Trig::Trig(UGen const& input) throw()
 {
-	initInternal(1);
-	internalUGens[0] = new PollUGenInternal(input, trig.mix());
+	initInternal(input.getNumChannels());
+	
+	for(int i = 0; i < numInternalUGens; i++)
+	{
+		internalUGens[i] = new TrigUGenInternal(input);
+	}
 }
 
 END_UGEN_NAMESPACE

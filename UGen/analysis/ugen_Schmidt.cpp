@@ -38,50 +38,58 @@
 
 BEGIN_UGEN_NAMESPACE
 
-#include "ugen_Poll.h"
+#include "ugen_Schmidt.h"
 
-PollUGenInternal::PollUGenInternal(UGen const& input, UGen const& trig) throw()
+SchmidtUGenInternal::SchmidtUGenInternal(UGen const& input, UGen const& lo, UGen const& hi) throw()
 :	UGenInternal(NumInputs)
 {
 	inputs[Input] = input;
-	inputs[Trig] = trig;
-	lastTrig = 0.f;
+	inputs[Lo] = lo;
+	inputs[Hi] = hi;
+	state = 0.f;
 }
 
-void PollUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
+void SchmidtUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
-	const int numSamplesToProcess = uGenOutput.getBlockSize();
+	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
-	float* const trigSamples = inputs[Trig].processBlock(shouldDelete, blockID, 0);
+	float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
+	float* loSamples = inputs[Lo].processBlock(shouldDelete, blockID, channel);
+	float* hiSamples = inputs[Hi].processBlock(shouldDelete, blockID, channel);
 	
-	for(int sample = 0; sample < numSamplesToProcess; sample++)
+	LOCAL_DECLARE(float, state);
+	
+	while(numSamplesToProcess--)
 	{
-		float thisTrig = trigSamples[sample];
+		float input = *inputSamples++;
+		float lo = *loSamples++;
+		float hi = *hiSamples++;
 		
-		if(thisTrig > 0.f && lastTrig <= 0.f)
+		if(state > 0.f)
 		{
-			const int numChannels = inputs[Input].getNumChannels();
-			Buffer poll = Buffer::newClear(numChannels);
-			float * const pollSamples = poll.getData(0);
-			
-			for(int channel = 0; channel < numChannels; channel++)
-			{
-				float* const inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
-				pollSamples[channel] = inputSamples[sample];
-			}
-			
-			sendBuffer(poll);
+			if(input < lo) state = 0.f;
+		}
+		else
+		{
+			if(input > hi) state = 1.f;
 		}
 		
-		*outputSamples++ = 0.f;
-		lastTrig = thisTrig;
+		*outputSamples++ = state;
 	}
+	
+	LOCAL_COPY(state);
 }
 
-Poll::Poll(UGen const& input, UGen const& trig) throw()
-{
-	initInternal(1);
-	internalUGens[0] = new PollUGenInternal(input, trig.mix());
+Schmidt::Schmidt(UGen const& input, UGen const& lo, UGen const& hi) throw()
+{	
+	UGen inputs[] = { input, lo, hi };
+	const int numInputChannels = findMaxInputChannels(numElementsInArray(inputs), inputs);
+	initInternal(numInputChannels);	
+	
+	for(int i = 0; i < numInternalUGens; i++)
+	{
+		internalUGens[i] = new SchmidtUGenInternal(input, lo, hi);
+	}
 }
 
 END_UGEN_NAMESPACE

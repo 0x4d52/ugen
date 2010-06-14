@@ -34,54 +34,33 @@
  ==============================================================================
  */
 
-#include "../core/ugen_StandardHeader.h"
+#ifndef _UGEN_Trig_H_
+#define _UGEN_Trig_H_
 
-BEGIN_UGEN_NAMESPACE
+#include "../core/ugen_UGen.h"
 
-#include "ugen_Poll.h"
-
-PollUGenInternal::PollUGenInternal(UGen const& input, UGen const& trig) throw()
-:	UGenInternal(NumInputs)
+class TrigUGenInternal : public UGenInternal
 {
-	inputs[Input] = input;
-	inputs[Trig] = trig;
-	lastTrig = 0.f;
-}
-
-void PollUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
-{
-	const int numSamplesToProcess = uGenOutput.getBlockSize();
-	float* outputSamples = uGenOutput.getSampleData();
-	float* const trigSamples = inputs[Trig].processBlock(shouldDelete, blockID, 0);
+public:
+	TrigUGenInternal(UGen const& input) throw();
+	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
-	for(int sample = 0; sample < numSamplesToProcess; sample++)
-	{
-		float thisTrig = trigSamples[sample];
-		
-		if(thisTrig > 0.f && lastTrig <= 0.f)
-		{
-			const int numChannels = inputs[Input].getNumChannels();
-			Buffer poll = Buffer::newClear(numChannels);
-			float * const pollSamples = poll.getData(0);
-			
-			for(int channel = 0; channel < numChannels; channel++)
-			{
-				float* const inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
-				pollSamples[channel] = inputSamples[sample];
-			}
-			
-			sendBuffer(poll);
-		}
-		
-		*outputSamples++ = 0.f;
-		lastTrig = thisTrig;
-	}
-}
+	enum Inputs { Input, NumInputs };
+	
+protected:
+	float lastTrig;
+};
 
-Poll::Poll(UGen const& input, UGen const& trig) throw()
-{
-	initInternal(1);
-	internalUGens[0] = new PollUGenInternal(input, trig.mix());
-}
+UGenSublcassDeclarationNoDefault
+(
+ Trig,
+ (input),
+ (UGen const& input),
+ COMMON_UGEN_DOCS
+);
 
-END_UGEN_NAMESPACE
+#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
+#define Trig Trig()
+#endif
+
+#endif // _UGEN_Trig_H_

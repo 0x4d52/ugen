@@ -170,6 +170,8 @@ END_UGEN_NAMESPACE
 		class UIButton;
 	#endif
 
+	//class UIScopeView;
+	
 	#include <sys/sysctl.h>
 	#include <AudioToolbox/AudioQueue.h>
 	#include <AudioToolbox/AudioServices.h>

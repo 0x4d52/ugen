@@ -233,6 +233,7 @@ class ExternalControlSource;
 class MultiSlider;
 class Env;
 
+
 /**	The UGen class!
 
  This is the main class you use to construct audio processing graphs.  Each UGen contains an 
@@ -941,6 +942,10 @@ public:
 	void removeBufferReceiver(BufferReceiver* const receiver) throw();
 	void addBufferReceiver(UGen const& receiver) throw();
 	void removeBufferReceiver(UGen const& receiver) throw();
+//#if defined(UGEN_IPHONE) || defined(DOXYGEN)
+//	void addBufferReceiver(UIScopeView* receiver) throw();
+//	void removeBufferReceiver(UIScopeView* receiver) throw();
+//#endif
 	
 	/// @} <!-- end UGen-specific control messages ------------------------------------- -->
 	
