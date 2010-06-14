@@ -78,7 +78,16 @@ UIAccelerationSingleton::UIAccelerationSingleton()
 {
 	UIAccelerationSingletonPeer* peer = [UIAccelerationSingletonPeer alloc];
 	[peer setOwner:this];
-	[[UIAccelerometer sharedAccelerometer] setDelegate:peer]; 
+	
+	UIAccelerometer *accel = [UIAccelerometer sharedAccelerometer];
+	
+	[accel setDelegate:peer]; 
+	
+	//printf("UIAccelerometer update interval = %f\n", [accel updateInterval]);
+	
+	accel.updateInterval = 1024.0 / 44100.0;
+	
+	printf("UIAccelerometer update interval = %f\n", [accel updateInterval]);
 	
 	voidPeer = (void*)peer;
 }

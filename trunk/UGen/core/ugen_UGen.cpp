@@ -1294,6 +1294,19 @@ void UGen::removeBufferReceiver(UGen const& receiverUGen) throw()
 	}
 }
 
+//#if defined(UGEN_IPHONE)
+//#include "../iphone/ugen_ScopeView.h"
+//void UGen::addBufferReceiver(UIScopeView* receiver) throw()
+//{
+//	addBufferReceiver(receiver.peer);
+//}
+//
+//void UGen::removeBufferReceiver(UIScopeView* receiver) throw()
+//{
+//	removeBufferReceiver(receiver.peer);
+//}
+//#endif
+
 
 void UGen::prepareToPlay(const double sampleRate, const int estimatedSamplesPerBlock, const int newControlRateBlockSize) throw()
 {	
