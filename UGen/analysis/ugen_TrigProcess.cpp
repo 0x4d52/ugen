@@ -38,50 +38,64 @@
 
 BEGIN_UGEN_NAMESPACE
 
-#include "ugen_Trig.h"
+#include "ugen_TrigProcess.h"
 
-TrigUGenInternal::TrigUGenInternal(UGen const& input) throw()
+DebounceUGenInternal::DebounceUGenInternal(UGen const& input, UGen const& time) throw()
 :	UGenInternal(NumInputs)
 {
 	inputs[Input] = input;
-	lastTrig = 0.f;
+	inputs[Time] = time;
+	count = 0;
 }
 
-UGenInternal* TrigUGenInternal::getChannel(const int channel) throw()
+UGenInternal* DebounceUGenInternal::getChannel(const int channel) throw()
 {
-	return new TrigUGenInternal(inputs[Input].getChannel(channel));
+	return new DebounceUGenInternal(inputs[Input].getChannel(channel),
+									inputs[Time].getChannel(channel));
 }
 
-void TrigUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void DebounceUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
-	int numSamplesToProcess = uGenOutput.getBlockSize();
-	float* outputSamples = uGenOutput.getSampleData();
-	float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
+	const int numSamplesToProcess = uGenOutput.getBlockSize();
+	float* const outputSamples = uGenOutput.getSampleData();
+	float* const inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
+	float* const timeSamples = inputs[Time].processBlock(shouldDelete, blockID, channel);
 	
-	LOCAL_DECLARE(float, lastTrig);
+	LOCAL_DECLARE(int, count);
 	
-	while(numSamplesToProcess--)
+	for(int i = 0; i < numSamplesToProcess; i++)
 	{
-		float thisTrig = *inputSamples++;
+		// should un wrap this loop a bit..
 		
-		if(thisTrig > 0.f && lastTrig <= 0.f)
-			*outputSamples++ = 1.f;
+		if(count > 0)
+		{
+			outputSamples[i] = 1.f;
+			count--;
+		}
 		else
-			*outputSamples++ = 0.f;
-		
-		lastTrig = thisTrig;
+		{
+			if(inputSamples[i] > 0.f)
+			{
+				outputSamples[i] = 1.f;
+				count = timeSamples[i] * UGen::getSampleRate();
+			}
+			else
+			{
+				outputSamples[i] = 0;
+			}
+		}
 	}
 	
-	LOCAL_COPY(lastTrig);
+	LOCAL_COPY(count);
 }
 
-Trig::Trig(UGen const& input) throw()
+Debounce::Debounce(UGen const& input, UGen const& time) throw()
 {
 	initInternal(input.getNumChannels());
 	
 	for(int i = 0; i < numInternalUGens; i++)
 	{
-		internalUGens[i] = new TrigUGenInternal(input);
+		internalUGens[i] = new DebounceUGenInternal(input, time);
 	}
 }
 

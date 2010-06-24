@@ -48,6 +48,8 @@ public:
 	// Constructor.
 	MaximaUGenInternal(UGen const& input) throw();
 	
+	UGenInternal* getChannel(const int channel) throw();
+	
 	// This is called when the internal is needed to process a new block of samples.
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	

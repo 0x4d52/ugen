@@ -48,6 +48,11 @@ MaximaUGenInternal::MaximaUGenInternal(UGen const& input) throw()
 	lastValue = 0.f;
 }
 
+UGenInternal* MaximaUGenInternal::getChannel(const int channel) throw()
+{
+	return new MaximaUGenInternal(inputs[Input].getChannel(channel));
+}
+
 void MaximaUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
 	// Get the number of samples to process this block.

@@ -43,6 +43,7 @@ class SchmidtUGenInternal :	public UGenInternal
 {
 public:
 	SchmidtUGenInternal(UGen const& input, UGen const& lo, UGen const& hi) throw();
+	UGenInternal* getChannel(const int channel) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
 	enum Inputs { Input, Lo, Hi, NumInputs };

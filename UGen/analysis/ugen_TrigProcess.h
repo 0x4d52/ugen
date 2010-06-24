@@ -34,55 +34,34 @@
  ==============================================================================
  */
 
-#include "../core/ugen_StandardHeader.h"
+#ifndef _UGEN_TrigProcess_H_
+#define _UGEN_TrigProcess_H_
 
-BEGIN_UGEN_NAMESPACE
+#include "../core/ugen_UGen.h"
 
-#include "ugen_Trig.h"
-
-TrigUGenInternal::TrigUGenInternal(UGen const& input) throw()
-:	UGenInternal(NumInputs)
+class DebounceUGenInternal : public UGenInternal
 {
-	inputs[Input] = input;
-	lastTrig = 0.f;
-}
-
-UGenInternal* TrigUGenInternal::getChannel(const int channel) throw()
-{
-	return new TrigUGenInternal(inputs[Input].getChannel(channel));
-}
-
-void TrigUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
-{
-	int numSamplesToProcess = uGenOutput.getBlockSize();
-	float* outputSamples = uGenOutput.getSampleData();
-	float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
+public:
+	DebounceUGenInternal(UGen const& input, UGen const& time) throw();
+	UGenInternal* getChannel(const int channel) throw();
+	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
-	LOCAL_DECLARE(float, lastTrig);
+	enum Inputs { Input, Time, NumInputs };
 	
-	while(numSamplesToProcess--)
-	{
-		float thisTrig = *inputSamples++;
-		
-		if(thisTrig > 0.f && lastTrig <= 0.f)
-			*outputSamples++ = 1.f;
-		else
-			*outputSamples++ = 0.f;
-		
-		lastTrig = thisTrig;
-	}
-	
-	LOCAL_COPY(lastTrig);
-}
+protected:
+	int count;
+};
 
-Trig::Trig(UGen const& input) throw()
-{
-	initInternal(input.getNumChannels());
-	
-	for(int i = 0; i < numInternalUGens; i++)
-	{
-		internalUGens[i] = new TrigUGenInternal(input);
-	}
-}
+UGenSublcassDeclarationNoDefault
+(
+ Debounce,
+ (input, time),
+ (UGen const& input, UGen const& time = 0.01),
+ COMMON_UGEN_DOCS
+);
 
-END_UGEN_NAMESPACE
+#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
+#define Debounce Debounce()
+#endif
+
+#endif // _UGEN_TrigProcess_H_

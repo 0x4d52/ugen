@@ -49,6 +49,14 @@ SchmidtUGenInternal::SchmidtUGenInternal(UGen const& input, UGen const& lo, UGen
 	state = 0.f;
 }
 
+UGenInternal* SchmidtUGenInternal::getChannel(const int channel) throw()
+{
+	return new SchmidtUGenInternal(inputs[Input].getChannel(channel), 
+								   inputs[Lo].getChannel(channel),
+								   inputs[Hi].getChannel(channel));
+}
+
+
 void SchmidtUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
 	int numSamplesToProcess = uGenOutput.getBlockSize();
