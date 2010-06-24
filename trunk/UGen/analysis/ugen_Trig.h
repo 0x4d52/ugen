@@ -43,6 +43,7 @@ class TrigUGenInternal : public UGenInternal
 {
 public:
 	TrigUGenInternal(UGen const& input) throw();
+	UGenInternal* getChannel(const int channel) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
 	enum Inputs { Input, NumInputs };

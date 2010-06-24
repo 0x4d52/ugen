@@ -86,6 +86,7 @@ BEGIN_UGEN_NAMESPACE
 #include "analysis/ugen_Poll.h"
 #include "analysis/ugen_Schmidt.h"
 #include "analysis/ugen_Trig.h"
+#include "analysis/ugen_TrigProcess.h"
 #include "analysis/ugen_DataRecorder.h"
 #include "pan/ugen_BasicPan.h"
 #include "buffers/ugen_Buffer.h"

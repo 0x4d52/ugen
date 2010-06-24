@@ -47,6 +47,11 @@ TrigUGenInternal::TrigUGenInternal(UGen const& input) throw()
 	lastTrig = 0.f;
 }
 
+UGenInternal* TrigUGenInternal::getChannel(const int channel) throw()
+{
+	return new TrigUGenInternal(inputs[Input].getChannel(channel));
+}
+
 void TrigUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
 	int numSamplesToProcess = uGenOutput.getBlockSize();
