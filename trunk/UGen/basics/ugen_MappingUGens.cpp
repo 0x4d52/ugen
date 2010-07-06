@@ -283,7 +283,7 @@ UGenInternal* LinLinSignalUGenInternal::getKr() throw()
 										 inputs[OutHigh].kr()); 
 }
 
-#if !defined(UGEN_VFP) && !defined(UGEN_NEON)
+#if !defined(UGEN_VFP) && !defined(UGEN_NEON) // && !defined(UGEN_VDSP)
 void LinLinSignalUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
 	int numSamplesToProcess = uGenOutput.getBlockSize();
@@ -386,7 +386,7 @@ UGenInternal* LinLinScalarUGenInternal::getKr() throw()
 										 inputs[OutHigh].kr()); 
 }
 
-#if !defined(UGEN_VFP) && !defined(UGEN_NEON)
+#if !defined(UGEN_VFP) && !defined(UGEN_NEON) // && !defined(UGEN_VDSP)
 void LinLinScalarUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
 	int numSamplesToProcess = uGenOutput.getBlockSize();

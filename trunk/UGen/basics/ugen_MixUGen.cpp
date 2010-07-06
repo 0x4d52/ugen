@@ -70,7 +70,7 @@ MixUGenInternal::MixUGenInternal(UGen* array, bool shouldAllowAutoDelete) throw(
 }
 
 
-#if !defined(UGEN_VFP) && !defined(UGEN_NEON)
+#if !defined(UGEN_VFP) && !defined(UGEN_NEON) && !defined(UGEN_VDSP)
 void MixUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {
 	int channel = 0;
@@ -165,7 +165,7 @@ float MixArrayUGenInternal::getValue(const int channel) const throw()
 	return value;
 }
 
-#if !defined(UGEN_VFP) && !defined(UGEN_NEON)
+#if !defined(UGEN_VFP) && !defined(UGEN_NEON) && !defined(UGEN_VDSP)
 void MixArrayUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {	
 	bool shouldDeleteLocal;

@@ -165,12 +165,22 @@ void PartBuffer::partitionImpulseChannel(Buffer const& original, const int chann
 		if (impulseLength >= (bufferPos + fftSizeHalved)) numSamples = fftSizeHalved;
 		else numSamples = impulseLength - bufferPos;
 		
+#ifdef UGEN_VDSP
+//	#ifdef UGEN_IPHONE
+//		cblas_ccopy(numSamples, (float*)bufferSamples + startPoint + bufferPos, 1, (float*)bufferTemp1, 1);
+//	#else
+//		vScopy(numSamples, bufferSamples + startPoint + bufferPos, bufferTemp1);
+//	#endif	
+		memcpy(bufferTemp1, bufferSamples + startPoint + bufferPos, sizeof(float) * numSamples);
+		vDSP_vclr(bufferTemp1+numSamples, 1, partTempBuffer.size()-numSamples);
+#else
 		// copy real time domain samples to Buffer_Temp1
 		memcpy(bufferTemp1, bufferSamples + startPoint + bufferPos, sizeof(float) * numSamples);
 		
 		// zero pad the rest of Buffer_Temp1
 		for (int j = numSamples; j < partTempBuffer.size(); j++)
 			bufferTemp1[j] = 0;
+#endif
 		
 		// Do FFT Straight Into Position...
 		
@@ -264,8 +274,11 @@ void PartConvolveUGenInternal::processBlock(bool& shouldDelete, const unsigned i
 	LOCAL_DECLARE(const int, fftSizeLog2);
 	const int fftSizeHalvedLog2 = fftSizeLog2-1;
 	LOCAL_DECLARE(const int, bufferSize);
+	
+#ifndef UGEN_VDSP
 	LOCAL_DECLARE(const int, fftSizeOver4);
-						 
+#endif
+	
 	DSPSplitComplex fftTemp;
 	fftTemp.realp = fftTempBufferSamples;
 	fftTemp.imagp = fftTemp.realp + fftSizeHalved;
@@ -285,7 +298,7 @@ void PartConvolveUGenInternal::processBlock(bool& shouldDelete, const unsigned i
 	LOCAL_DECLARE(vFloat **, fftBuffers);
 	vFloat *tempvPointer1, *tempvPointer2;
 	
-	int numSamplesRemaining = numSamples >> 2;
+	int numVectorsRemaining = numSamples >> 2;
 	
 	LOCAL_DECLARE(vFloat, scaleMult);
 	vFloat zero = {0.,0.,0.,0.};
@@ -300,13 +313,17 @@ void PartConvolveUGenInternal::processBlock(bool& shouldDelete, const unsigned i
 		rwPointer1 = (fftSizeHalved >> 2) - tillNextFFT;
 		rwPointer2 = rwPointer1 + tillNextFFT;
 		fftOffset = 0;
-		
+
+#ifdef UGEN_VDSP
+		vDSP_vclr(fftTempBufferSamples, 1, fftSize);
+		vDSP_vclr(fftBuffersMemorySamples, 1, fftSize<<2);
+#else
 		tempvPointer1 = (vFloat*)fftTempBufferSamples;
 		for (int i = 0; i < fftSizeOver4; i++)	tempvPointer1[i] = zero;
 		
 		tempvPointer1 = (vFloat*)fftBuffersMemorySamples;
 		for (int i = 0; i < fftSize; i++)		tempvPointer1[i] = zero;
-				
+#endif			
 		// Scheduling Related
 		bufPosition = 0;
 		scheduleCounter = 0;
@@ -319,22 +336,49 @@ void PartConvolveUGenInternal::processBlock(bool& shouldDelete, const unsigned i
 		this->resetAll = 0;
 	}
 	
-	while (numSamplesRemaining > 0) {
+	while (numVectorsRemaining > 0) {
 		// Check whether there will be another FFT this vector
 		int loop;
-		int fftTest = numSamplesRemaining - tillNextFFT;
+		int fftTest = numVectorsRemaining - tillNextFFT;
 		if (fftTest > 0) {
 			loop = tillNextFFT;
-			numSamplesRemaining -= tillNextFFT;
+			numVectorsRemaining -= tillNextFFT;
 			tillNextFFT = 0;
 		} else {
-			loop = numSamplesRemaining;
-			tillNextFFT -= numSamplesRemaining;
-			numSamplesRemaining = 0;
+			loop = numVectorsRemaining;
+			tillNextFFT -= numVectorsRemaining;
+			numVectorsRemaining = 0;
 		}
 		
 		// Load input into buffer (twice) and output from the output buffer
 		// Put it straight into the right place - using overlap save it would seem....
+		
+		
+//#if 0 //defined(UGEN_VDSP) // not sure why this doesn't work
+//		const int loopX4 = loop<<2;
+//	#ifdef UGEN_IPHONE
+//		cblas_ccopy(loopX4, (float*)inputSamples, 1, (float*)(fftBuffers[0] + rwPointer1), 1);
+//		cblas_ccopy(loopX4, (float*)inputSamples, 1, (float*)(fftBuffers[1] + rwPointer2), 1);
+//		cblas_ccopy(loopX4, (float*)(fftBuffers[3] + rwPointer1), 1, (float*)outputSamples, 1);
+//	#else
+//		vScopy(loopX4, inputSamples, fftBuffers[0] + rwPointer1);
+//		vScopy(loopX4, inputSamples, fftBuffers[1] + rwPointer2);
+//		vScopy(loopX4, fftBuffers[3] + rwPointer1, outputSamples);
+//	#endif	
+//		rwPointer1 += loop;
+//		rwPointer2 += loop;
+//		inputSamples += loop;
+//		outputSamples += loop;
+#if 1 // let's try this...
+		const int loopX4 = loop<<2;
+		memcpy(fftBuffers[0] + rwPointer1, inputSamples, loopX4*sizeof(float));
+		memcpy(fftBuffers[1] + rwPointer2, inputSamples, loopX4*sizeof(float));
+		memcpy(outputSamples, fftBuffers[3] + rwPointer1, loopX4*sizeof(float));
+		rwPointer1 += loop;
+		rwPointer2 += loop;
+		inputSamples += loop;
+		outputSamples += loop;		
+#else
 		for (int i = 0; i < loop; i++)
 		{
 			*(fftBuffers[0] + rwPointer1) = *inputSamples; 
@@ -346,6 +390,7 @@ void PartConvolveUGenInternal::processBlock(bool& shouldDelete, const unsigned i
 			rwPointer2++;
 			inputSamples++;
 		}
+#endif
 		
 		// Work Loop
 		
@@ -423,18 +468,28 @@ void PartConvolveUGenInternal::processBlock(bool& shouldDelete, const unsigned i
 			tempvPointer2 = fftBuffers[3] + (loop * test);
 			
 			// post ifft scaling required by vDSP fft processes
+			
+#ifdef UGEN_VDSP
+			vDSP_vsmsa((float*)fftBuffers[2], 1, (float*)&scaleMult, (float*)&zero, (float*)tempvPointer1, 1, loop<<2);
+			vDSP_vsma((float*)(fftBuffers[2]+loop), 1, (float*)&scaleMult, (float*)tempvPointer2, 1, (float*)tempvPointer2, 1, loop<<2);
+#else
 			for (int i = 0; i < loop; i++)
 				*(tempvPointer1++) = VEC_MUL_OP(*(fftBuffers[2] + i), scaleMult ZEROARG);
-			
+
 			for (int i = loop; i < fftSize >> 2; i++) {
 				*(tempvPointer2) = VEC_ADD_OP(*(tempvPointer2), VEC_MUL_OP(*(fftBuffers[2] + i), scaleMult ZEROARG)); 
 				tempvPointer2++;
-			}
-			
+			}			
+#endif		
+
 			// Clear Buffer
-			for (int i = 0; i < fftSizeHalved; i++) fftTemp.realp[i] = 0;
-			for (int i = 0; i < fftSizeHalved; i++) fftTemp.imagp[i] = 0;
-						
+#ifdef UGEN_VDSP
+			vDSP_vclr(fftTemp.realp, 1, fftSizeHalved);
+			vDSP_vclr(fftTemp.imagp, 1, fftSizeHalved);
+#else
+			for (int i = 0; i < fftSizeHalved; i++) fftTemp.realp[i] = 0.f;
+			for (int i = 0; i < fftSizeHalved; i++) fftTemp.imagp[i] = 0.f;
+#endif					
 			// Set wait till next data to hop time
 			tillNextFFT = loop;
 			

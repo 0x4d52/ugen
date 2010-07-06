@@ -66,7 +66,11 @@ void PauseUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 	
 	if(currentLevel == 0.f && prevLevel == 0.f)
 	{
+#ifdef UGEN_VDSP
+		vDSP_vclr(outputSamples, 1, numSamplesToProcess);
+#else
 		memset(outputSamples, 0, numSamplesToProcess * sizeof(float));
+#endif
 	}
 	else
 	{
@@ -84,10 +88,15 @@ void PauseUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 		}
 		else
 		{
+#ifdef UGEN_VDSP
+			float zero = 0.f;
+			vDSP_vsmsa(inputSamples, 1, &currentLevel, &zero, outputSamples, 1, numSamplesToProcess);
+#else
 			while(numSamplesToProcess--)
 			{
 				*outputSamples++ = *inputSamples++ * currentLevel;
 			}
+#endif
 		}
 	}
 	
