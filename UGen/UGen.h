@@ -162,7 +162,11 @@ BEGIN_UGEN_NAMESPACE
 	#ifdef UGEN_VDSP
 		#include <Accelerate/Accelerate.h>
 	#endif
-	#include "convolution/ugen_Convolution.h"
+
+	#ifdef UGEN_CONVOLUTION
+		#include "convolution/ugen_Convolution.h"
+		#include "convolution/ugen_SimpleConvolution.h"
+	#endif
 #endif
 
 #ifdef UGEN_IPHONE

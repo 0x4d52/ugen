@@ -67,7 +67,7 @@ ScalarUGenInternal::ScalarUGenInternal(const float value) throw()
 }
 
 
-#if !defined(UGEN_VFP) && !defined(UGEN_NEON)
+#if !defined(UGEN_VFP) && !defined(UGEN_NEON) && !defined(UGEN_VDSP)
 void ScalarUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {		
 	int numSamplesToProcess = uGenOutput.getBlockSize();
@@ -90,7 +90,7 @@ FloatPtrUGenInternal::FloatPtrUGenInternal(float const *valuePtr) throw()
 {
 }
 
-#if !defined(UGEN_VFP) && !defined(UGEN_NEON)
+#if !defined(UGEN_VFP) && !defined(UGEN_NEON) && !defined(UGEN_VDSP)
 void FloatPtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {
 	PtrUGenProcessBlock();
@@ -103,7 +103,7 @@ DoublePtrUGenInternal::DoublePtrUGenInternal(double const *valuePtr) throw()
 {	
 }
 
-#if !defined(UGEN_VFP) && !defined(UGEN_NEON)
+#if !defined(UGEN_VFP) && !defined(UGEN_NEON) && !defined(UGEN_VDSP)
 void DoublePtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {
 	PtrUGenProcessBlock();
@@ -117,7 +117,7 @@ IntPtrUGenInternal::IntPtrUGenInternal(int const *valuePtr) throw()
 {
 }
 
-#if !defined(UGEN_VFP) && !defined(UGEN_NEON)
+#if !defined(UGEN_VFP) && !defined(UGEN_NEON) && !defined(UGEN_VDSP)
 void IntPtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {
 	PtrUGenProcessBlock();
@@ -131,7 +131,7 @@ BoolPtrUGenInternal::BoolPtrUGenInternal(bool const *valuePtr) throw()
 {
 }
 
-#if !defined(UGEN_VFP) && !defined(UGEN_NEON)
+#if !defined(UGEN_VFP) && !defined(UGEN_NEON) && !defined(UGEN_VDSP)
 void BoolPtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {
 	int numSamplesToProcess = uGenOutput.getBlockSize();
@@ -141,25 +141,6 @@ void BoolPtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*
 	value_ = nextValue;
 	for(int i = 0; i < numSamplesToProcess; ++i)
 		outputSamples[i] = value_;
-	
-//	memset(outputSamples, 0, numSamplesToProcess * sizeof(float));
-//	if(nextValue == value_)	{
-//		for(int i = 0; i < numSamplesToProcess; ++i)
-//			outputSamples[i] += nextValue;
-//	} else {
-//		int numKrSamplesToProcess = UGen::getControlRateBlockSize();
-//		float valueSlope = (nextValue - value_) * UGen::getControlSlopeFactor();
-//		numSamplesToProcess -= numKrSamplesToProcess;
-//		for(int i = 0; i < numKrSamplesToProcess; ++i) {
-//			*outputSamples++ += value_;
-//			value_ += valueSlope;
-//		}
-//		if(numSamplesToProcess > 0) {
-//			for(int i = 0; i < numSamplesToProcess; ++i)
-//				outputSamples[i] += nextValue;
-//		}
-//		value_ = nextValue;
-//	}	
 }
 #endif
 
@@ -201,25 +182,6 @@ void BOOLPtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*
 	value_ = nextValue;
 	for(int i = 0; i < numSamplesToProcess; ++i)
 		outputSamples[i] = value_;
-	
-//	memset(outputSamples, 0, numSamplesToProcess * sizeof(float));
-//	if(nextValue == value_)	{
-//		for(int i = 0; i < numSamplesToProcess; ++i)
-//			outputSamples[i] += nextValue;
-//	} else {
-//		int numKrSamplesToProcess = UGen::getControlRateBlockSize();
-//		float valueSlope = (nextValue - value_) * UGen::getControlSlopeFactor();
-//		numSamplesToProcess -= numKrSamplesToProcess;
-//		for(int i = 0; i < numKrSamplesToProcess; ++i) {
-//			*outputSamples++ += value_;
-//			value_ += valueSlope;
-//		}
-//		if(numSamplesToProcess > 0) {
-//			for(int i = 0; i < numSamplesToProcess; ++i)
-//				outputSamples[i] += nextValue;
-//		}
-//		value_ = nextValue;
-//	}	
 }
 
 #endif

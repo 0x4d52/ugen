@@ -190,14 +190,15 @@ END_UGEN_NAMESPACE
 
 	#define UGEN_ALIGN __attribute__ ((aligned))
 
-	#ifdef UGEN_VDSP
-		#include <Accelerate/Accelerate.h>
-	#endif
 #else
-	// vfp only valid on iPhone / iPod touch
+	// vfp only valid on iPhone / iPod touch - consider using iOS4 and UGEN_VDSP
 	#undef UGEN_VFP
+	#undef UGEN_NEON
 #endif
 
+#ifdef UGEN_VDSP // mac/iphone(4) only and must not be used in conjunction with UGEN_VFP or UGEN_NEON
+#include <Accelerate/Accelerate.h>
+#endif
 
 #define UGEN_MAJOR_VERSION      0
 #define UGEN_MINOR_VERSION      1
@@ -205,7 +206,7 @@ END_UGEN_NAMESPACE
 
 
 #if defined (UGEN_DEBUG) && UGEN_DEBUG
-	#if defined(UGEN_JUCE) && UGEN_JUCE
+	#if defined(UGEN_JUCE) && UGEN_JUCE && defined(juce_breakDebugger)
 		#define ugen_breakDebugger				juce_breakDebugger
 		#define ugen_isRunningUnderDebugger		juce_isRunningUnderDebugger
 		#define ugen_breakRunningUnderDebugger	{ if (JUCE_NAMESPACE::juce_isRunningUnderDebugger()) juce_breakDebugger; }

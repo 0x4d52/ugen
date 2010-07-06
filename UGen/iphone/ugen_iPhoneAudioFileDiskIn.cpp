@@ -1,5 +1,5 @@
-// $Id:$
-// $HeadURL:$
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================
@@ -69,7 +69,7 @@ DiskInUGenInternal::DiskInUGenInternal(AudioFileID audioFile,
 		result = AudioFileGetProperty(audioFile, kAudioFilePropertyAudioDataPacketCount, &dataSize, &packetCount);
 		if (result != noErr) 
 		{
-			printf("DiskIn: error: Could not get packet count: ID=%p err=%d\n", audioFile_, result);
+			printf("DiskIn: error: Could not get packet count: ID=%p err=%d\n", audioFile_, (int)result);
 			AudioFileClose(audioFile_);
 			audioFile_ = 0;
 		}	
@@ -434,7 +434,7 @@ void DiskIn::initWithAudioFile(const char* audioFilePath, const bool loopFlag, c
 	CFRelease(audioFileURL);
 	if (result != noErr) 
 	{
-		printf("DiskIn: error: Could not open file: %s err=%d\n", audioFilePath, result);
+		printf("DiskIn: error: Could not open file: %s err=%d\n", audioFilePath, (int)result);
 		audioFile = 0;
 	}
 	
@@ -445,7 +445,7 @@ void DiskIn::initWithAudioFile(const char* audioFilePath, const bool loopFlag, c
 		result = AudioFileGetProperty(audioFile, kAudioFilePropertyDataFormat, &dataSize, &format);
 		if (result != noErr) 
 		{
-			printf("DiskIn: error: Could not get data format: %s err=%d\n", audioFilePath, result);
+			printf("DiskIn: error: Could not get data format: %s err=%d\n", audioFilePath, (int)result);
 			AudioFileClose(audioFile);
 			audioFile = 0;
 		}

@@ -61,7 +61,7 @@ UGenInternal* MulAddUGenInternal::getKr() throw()
 	return new MulAddUGenInternal(inputs[Input].kr(), inputs[Mul].kr(), inputs[Add].kr()); 
 }
 
-#if !defined(UGEN_VFP) && !defined(UGEN_NEON)
+#if !defined(UGEN_VFP) && !defined(UGEN_NEON) && !defined(UGEN_VDSP)
 void MulAddUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
 	int numSamplesToProcess = uGenOutput.getBlockSize();

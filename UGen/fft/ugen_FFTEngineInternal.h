@@ -70,6 +70,27 @@
 		#define VEC_MUL_OP vmulq_f32
 		#define VEC_ADD_OP vaddq_f32
 		#define VEC_SUB_OP vsubq_f32
+//	#elif defined(UGEN_VDSP)
+//		inline vFloat VEC_MUL_OP(vFloat const& leftVec, vFloat const& rightVec)
+//		{
+//			vFloat returnVec;
+//			vDSP_vmul((float*)&leftVec, 1, (float*)&rightVec, 1, (float*)&returnVec, 1, 4);
+//			return returnVec;
+//		}
+//
+//		inline vFloat VEC_ADD_OP(vFloat const& leftVec, vFloat const& rightVec)
+//		{
+//			vFloat returnVec;
+//			vDSP_vadd((float*)&leftVec, 1, (float*)&rightVec, 1, (float*)&returnVec, 1, 4);			
+//			return returnVec;
+//		}
+//
+//		inline vFloat VEC_SUB_OP(vFloat const& leftVec, vFloat const& rightVec)
+//		{
+//			vFloat returnVec;
+//			vDSP_vsub((float*)&leftVec, 1, (float*)&rightVec, 1, (float*)&returnVec, 1, 4);
+//			return returnVec;
+//		}
 	#else // other platform windows or non vfp/neon iphone for example....
 		inline vFloat VEC_MUL_OP(vFloat const& leftVec, vFloat const& rightVec)
 		{
@@ -229,8 +250,8 @@ public:
 #else
 		static float scale = 0.5f;
 		vDSP_vsmul(inputBuffer, 1, &scale, transformBufferSamples, 1, fftSize);
-		ctoz ((COMPLEX *) transformBufferSamples, 2, &outputBuffer, 1, fftSizeHalved);
-		fft_zrip (fftvDSP, &outputBuffer, 1, fftSizeLog2, FFT_FORWARD);
+		vDSP_ctoz ((COMPLEX *) transformBufferSamples, 2, &outputBuffer, 1, fftSizeHalved);
+		vDSP_fft_zrip (fftvDSP, &outputBuffer, 1, fftSizeLog2, FFT_FORWARD);
 		
 #endif
 	}
@@ -272,9 +293,14 @@ public:
 #elif defined(UGEN_FFTREAL)
 		memcpy(transformBufferSplit.realp, inputBuffer.realp, fftSizeBytes);
 #else
+//	#ifdef UGEN_IPHONE
+//		cblas_ccopy(fftSize, inputBuffer.realp, 1, transformBufferSplit.realp, 1);
+//	#else
+//		vScopy(fftSize, (const vFloat*)inputBuffer.realp, (vFloat*)transformBufferSplit.realp);
+//	#endif			
 		memcpy(transformBufferSplit.realp, inputBuffer.realp, fftSizeBytes);
-		fft_zrip (fftvDSP, &transformBufferSplit, 1, fftSizeLog2, FFT_INVERSE);
-		ztoc (&transformBufferSplit, 1, (COMPLEX *) outputBuffer, 2, fftSizeHalved);
+		vDSP_fft_zrip (fftvDSP, &transformBufferSplit, 1, fftSizeLog2, FFT_INVERSE);
+		vDSP_ztoc (&transformBufferSplit, 1, (COMPLEX *) outputBuffer, 2, fftSizeHalved);
 #endif		
 	}
 	
@@ -327,7 +353,38 @@ private:
 	float * const windowingBufferSamples;
 };
 
-#if !defined(UGEN_VFP) // && !defined(UGEN_NEON)
+#if  defined(UGEN_VDSP)
+
+#define TEMPSIZE 65536
+static float tempData[TEMPSIZE];
+
+inline void MultAndAdd(DSPSplitComplex& In1, DSPSplitComplex& In2, DSPSplitComplex& Out, const int VecLength) throw()
+{
+	ugen_assert(VecLength > 0);
+	ugen_assert(VecLength*4/2 <= TEMPSIZE);
+		
+	float Nyquist1, Nyquist2;
+	Nyquist1 = In1.imagp[0];
+	Nyquist2 = In2.imagp[0];
+	
+	In1.imagp[0] = 0.f;
+	In2.imagp[0] = 0.f;
+	
+	Out.imagp[0] += Nyquist1 * Nyquist2;
+	
+	const int VecLengthX4 = VecLength<<2;
+	
+	DSPSplitComplex temp;
+	temp.realp = tempData;
+	temp.imagp = tempData + VecLengthX4;
+	
+	vDSP_zvmul(&In1, 1, &In2, 1, &temp, 1, VecLengthX4, 1);
+	vDSP_zvadd(&temp, 1, &Out, 1, &Out, 1, VecLengthX4);
+	
+	In1.imagp[0] = Nyquist1;
+	In2.imagp[0] = Nyquist2;
+}
+#elif !defined(UGEN_VFP) // && !defined(UGEN_NEON)
 inline void MultAndAdd(DSPSplitComplex& In1, DSPSplitComplex& In2, DSPSplitComplex& Out, const int VecLength) throw()
 {
 	ugen_assert(VecLength > 0);

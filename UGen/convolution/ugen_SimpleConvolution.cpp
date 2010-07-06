@@ -34,6 +34,8 @@
  ==============================================================================
  */
 
+#if defined(UGEN_CONVOLUTION) && UGEN_CONVOLUTION
+
 #if !defined(WIN32) && !defined(UGEN_IPHONE)
 	#include <Accelerate/Accelerate.h>
 	#include <CoreServices/CoreServices.h>
@@ -197,3 +199,5 @@ OverlapConvolution::OverlapConvolution(UGen const& inputA, UGen const& inputB, c
 
 
 END_UGEN_NAMESPACE
+
+#endif // UGEN_CONVOLUTION

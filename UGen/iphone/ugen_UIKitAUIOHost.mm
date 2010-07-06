@@ -174,7 +174,7 @@ void InterruptionListener(void *inClientData, UInt32 inInterruption)
 }
 
 #ifdef UGEN_VFP
-static inline void audioFloatToShort(const float *src, short* dst, unsigned int length)
+static inline void audioFloatToShort(float *src, short* dst, unsigned int length)
 {
 	static const float scale = 32767.f;
 	int temp[16] UGEN_ALIGN; 
@@ -215,7 +215,7 @@ static inline void audioFloatToShort(const float *src, short* dst, unsigned int 
 	}	
 }
 
-static inline void audioFloatToShortChannels(const float *src[], AudioBufferList* dst, unsigned int length, unsigned int numChannels)
+static inline void audioFloatToShortChannels(float *src[], AudioBufferList* dst, unsigned int length, unsigned int numChannels)
 {
 	VFP_SWITCH_TO_ARM_ASM;
 	VFP_VECTOR_LENGTH_ASM(7);
@@ -230,7 +230,7 @@ static inline void audioFloatToShortChannels(const float *src[], AudioBufferList
 	VFP_SWITCH_TO_THUMB_ASM;
 }
 
-static inline void audioShortToFloat(const short *src, float* dst, unsigned int length)
+static inline void audioShortToFloat(short *src, float* dst, unsigned int length)
 {
 	static const float scale = 1.f / 32767.f;
 	int temp[16] UGEN_ALIGN; 
@@ -288,7 +288,7 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 
 #elif defined(UGEN_NEON)
 
-static inline void audioFloatToShort(const float *src, short* dst, unsigned int length)
+static inline void audioFloatToShort(float *src, short* dst, unsigned int length)
 {
 	static const float scale = 32767.f;
 	static const vFloat scaleVec = vdupq_n_f32(scale);
@@ -311,7 +311,7 @@ static inline void audioFloatToShort(const float *src, short* dst, unsigned int 
 		dst += 4;
 	}
 	
-	src = (const float*)srcVec;
+	src = (float*)srcVec;
 	
 	while(numScalars--)
 	{
@@ -319,7 +319,7 @@ static inline void audioFloatToShort(const float *src, short* dst, unsigned int 
 	}	
 }
 
-static inline void audioFloatToShortChannels(const float *src[], AudioBufferList* dst, unsigned int length, unsigned int numChannels)
+static inline void audioFloatToShortChannels(float *src[], AudioBufferList* dst, unsigned int length, unsigned int numChannels)
 {	
 	for (UInt32 channel = 0; channel < numChannels; channel++)
 	{
@@ -328,7 +328,7 @@ static inline void audioFloatToShortChannels(const float *src[], AudioBufferList
 	}
 }
 
-static inline void audioShortToFloat(const short *src, float* dst, unsigned int length)
+static inline void audioShortToFloat(short *src, float* dst, unsigned int length)
 {
 	static const float scale = 1.f / 32767.f;
 	static const vFloat scaleVec = vdupq_n_f32(scale);
@@ -368,9 +368,45 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 	}	
 }
 
-#else // non vfp/neon
+#elif defined(UGEN_VDSP) 
 
-static inline void audioFloatToShort(const float *src, short* dst, unsigned int length)
+static inline void audioFloatToShort(float *src, short* dst, unsigned int length)
+{
+	static float scale = 32767.f;
+	static float zero = 0.f;
+	vDSP_vsmsa(src, 1, &scale, &zero, src, 1, length);	
+	vDSP_vfix16(src, 1, dst, 1, length);
+}
+
+static inline void audioFloatToShortChannels(float *src[], AudioBufferList* dst, unsigned int length, unsigned int numChannels)
+{
+	for (UInt32 channel = 0; channel < numChannels; channel++)
+	{
+		AudioSampleType *audioUnitBuffer = (AudioSampleType*)dst->mBuffers[channel].mData;		
+		audioFloatToShort(src[channel], audioUnitBuffer, length);
+	}
+}
+
+static inline void audioShortToFloat(short *src, float* dst, unsigned int length)
+{
+	static float scale = 1.f / 32767.f;
+	static float zero = 0.f;
+	vDSP_vflt16(src, 1, dst, 1, length);
+	vDSP_vsmsa(dst, 1, &scale, &zero, dst, 1, length);
+}
+
+static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[], unsigned int length, unsigned int numChannels)
+{
+	for (UInt32 channel = 0; channel < numChannels; channel++)
+	{
+		AudioSampleType *audioUnitBuffer = (AudioSampleType*)src->mBuffers[0].mData; // need this other than 0?...		
+		audioShortToFloat(audioUnitBuffer, dst[channel], length);
+	}	
+}
+
+#else // normal code...
+
+static inline void audioFloatToShort(float *src, short* dst, unsigned int length)
 {
 	static const float scale = 32767.f;
 	
@@ -380,7 +416,7 @@ static inline void audioFloatToShort(const float *src, short* dst, unsigned int 
 	}		
 }
 
-static inline void audioFloatToShortChannels(const float *src[], AudioBufferList* dst, unsigned int length, unsigned int numChannels)
+static inline void audioFloatToShortChannels(float *src[], AudioBufferList* dst, unsigned int length, unsigned int numChannels)
 {
 	for (UInt32 channel = 0; channel < numChannels; channel++)
 	{
@@ -389,7 +425,7 @@ static inline void audioFloatToShortChannels(const float *src[], AudioBufferList
 	}
 }
 
-static inline void audioShortToFloat(const short *src, float* dst, unsigned int length)
+static inline void audioShortToFloat(short *src, float* dst, unsigned int length)
 {
 	static const float scale = 1.f / 32767.f;
 	
@@ -459,7 +495,7 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 	
 	[self unlock];
 	
-	audioFloatToShortChannels((const float**)floatBufferData, ioData, inNumberFrames, ioData->mNumberBuffers);
+	audioFloatToShortChannels(floatBufferData, ioData, inNumberFrames, ioData->mNumberBuffers);
 			
 	return err;	
 }	
@@ -495,7 +531,7 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 	AudioSessionGetProperty(kAudioSessionProperty_CurrentHardwareOutputNumberChannels, &size, &numOutputChannels);
 	AudioSessionGetProperty(kAudioSessionProperty_AudioInputAvailable, &size, &audioInputIsAvailable);
 	
-	printf("inputs=%d outputs=%d audioInputIsAvailable=%d\n", numInputChannels, numOutputChannels, audioInputIsAvailable);
+	printf("inputs=%d outputs=%d audioInputIsAvailable=%d\n", (int)numInputChannels, (int)numOutputChannels, (int)audioInputIsAvailable);
 	
 	if(rioUnit)	AudioComponentInstanceDispose(rioUnit);
 	

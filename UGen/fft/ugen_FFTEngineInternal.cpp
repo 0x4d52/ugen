@@ -84,8 +84,10 @@ FFTEngineInternal::FFTEngineInternal(const int fftSizeToUse) throw()
 	fftSizeLog2 = 4;
 	while((1 << fftSizeLog2) < fftSize)
 		fftSizeLog2++;
-	fftvDSP = create_fftsetup (fftSizeLog2, 0);
+	fftvDSP = vDSP_create_fftsetup (fftSizeLog2, 0);
 #endif
+	
+	printf("fftsize=%d\n", fftSize);
 }
 
 FFTEngineInternal::~FFTEngineInternal()
@@ -96,7 +98,7 @@ FFTEngineInternal::~FFTEngineInternal()
 #elif defined(UGEN_FFTREAL)
 	delete fftReal;
 #else
-	destroy_fftsetup(fftvDSP);
+	vDSP_destroy_fftsetup(fftvDSP);
 #endif		
 }
 

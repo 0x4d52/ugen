@@ -63,7 +63,7 @@ UnaryOpValueInternal::UnaryOpValueInternal(Value const& operand) throw()
 
 
 // using vfp the internal process block functions are defined in iphone/armasm/ugen_vfp_UnaryOpUGens.cpp
-#if defined(UGEN_VFP) || defined(UGEN_NEON)
+#if defined(UGEN_VFP) || defined(UGEN_NEON) || defined(UGEN_VDSP)
 UnaryOpUGenDefinitionNoProcessBlock(Neg,		neg,			neg);
 UnaryOpUGenDefinitionNoProcessBlock(Abs,		abs,			abs);
 UnaryOpUGenDefinitionNoProcessBlock(Reciprocal,	reciprocal,		reciprocal);

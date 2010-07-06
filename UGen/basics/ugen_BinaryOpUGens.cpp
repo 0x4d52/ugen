@@ -69,8 +69,8 @@ BinaryOpValueInternal::BinaryOpValueInternal(Value const& leftOperand, Value con
 {
 }
 
-// using vfp the internal process block functions are defined in iphone/armasm/ugen_vfp_BinaryOpUGens.cpp
-#if defined(UGEN_VFP) || defined(UGEN_NEON)
+// using vector ops these might be defined elsewhere...
+#if defined(UGEN_VFP) || defined(UGEN_NEON) || defined(UGEN_VDSP)
 BinaryOpSymbolUGenDefinitionNoProcessBlock(Add,				+,	+);
 BinaryOpSymbolUGenDefinitionNoProcessBlock(Subtract,		-,	-);
 BinaryOpSymbolUGenDefinitionNoProcessBlock(Multiply,		*,	*);
@@ -166,7 +166,7 @@ BinaryDivideUGen::BinaryDivideUGen(UGen const& leftOperand, UGen const& rightOpe
 	}
 } 
 
-#if !defined(UGEN_VFP) && !defined(UGEN_NEON)
+#if !defined(UGEN_VFP) && !defined(UGEN_NEON) && !defined(UGEN_VDSP)
 void BinaryDivideUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw() 
 { 
 	int numSamplesToProcess = uGenOutput.getBlockSize(); 

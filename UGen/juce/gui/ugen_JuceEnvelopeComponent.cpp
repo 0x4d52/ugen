@@ -684,9 +684,12 @@ void EnvelopeComponent::paint(Graphics& g)
 				if(loopY == releaseY)
 					g.setColour(colours[LoopNode]);
 				
-				g.drawArrow(loopX + arrowLength, releaseY, 
-							loopX, releaseY, 
+//				g.drawArrow(loopX + arrowLength, releaseY, 
+//							loopX, releaseY, 
+//							0.5f, HANDLESIZE, arrowLength);
+				g.drawArrow(juce::Line<float>((float)(loopX + arrowLength), releaseY, loopX, releaseY), 
 							0.5f, HANDLESIZE, arrowLength);
+				
 			}
 		}
 	}

@@ -622,7 +622,7 @@ double Buffer::initFromAudioFile(const char* audioFilePath) throw()
 	CFRelease(audioFileURL);
 	if (result != noErr) 
 	{
-		printf("Buffer: Could not open file: %s err=%d\n", audioFilePath, result);
+		printf("Buffer: Could not open file: %s err=%d\n", audioFilePath, (int)result);
 		return 0.0;
 	}
 	
@@ -631,7 +631,7 @@ double Buffer::initFromAudioFile(const char* audioFilePath) throw()
 	result = AudioFileGetProperty(audioFile, kAudioFilePropertyAudioDataPacketCount, &dataSize, &packetCount);
 	if (result != noErr) 
 	{
-		printf("Buffer: Could not get packet count: %s err=%d\n", audioFilePath, result);
+		printf("Buffer: Could not get packet count: %s err=%d\n", audioFilePath, (int)result);
 		AudioFileClose(audioFile);
 		return 0.0;
 	}
@@ -641,7 +641,7 @@ double Buffer::initFromAudioFile(const char* audioFilePath) throw()
 	result = AudioFileGetProperty(audioFile, kAudioFilePropertyDataFormat, &dataSize, &format);
 	if (result != noErr) 
 	{
-		printf("Buffer: Could not get data format: %s err=%d\n", audioFilePath, result);
+		printf("Buffer: Could not get data format: %s err=%d\n", audioFilePath, (int)result);
 		AudioFileClose(audioFile);
 		return 0.0;
 	}
@@ -656,7 +656,7 @@ double Buffer::initFromAudioFile(const char* audioFilePath) throw()
 		
 		if (result != noErr) 
 		{
-			printf("Buffer: Could not read audio packets: %s err=%d\n", audioFilePath, result);
+			printf("Buffer: Could not read audio packets: %s err=%d\n", audioFilePath, (int)result);
 			free(audioData);
 			AudioFileClose(audioFile);
 			return 0.0;
@@ -833,7 +833,7 @@ double Buffer::initFromAudioFile(const char* audioFilePath) throw()
 	}
 	else
 	{
-		printf("Buffer: Could not allocate memory for audio : %s err=%d\n", audioFilePath, result);
+		printf("Buffer: Could not allocate memory for audio : %s err=%d\n", audioFilePath, (int)result);
 	}
 	
 	free(audioData);
