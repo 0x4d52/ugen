@@ -123,7 +123,6 @@ void FFTEngineInternal::fft(Buffer const& outputBuffer,
 	fftBuffer.realp = Buffer(outputBuffer).getData(outputChannel);
 	fftBuffer.imagp = fftBuffer.realp + fftSizeHalved;
 	
-	//fft(fftBuffer, inputBuffer.getDataReadOnly(inputChannel), applyWindow);
 	fft(fftBuffer, inputBuffer.getData(inputChannel), applyWindow);
 }
  
@@ -160,7 +159,6 @@ void FFTEngineInternal::ifft(Buffer const& outputBuffer,
 	}
 	
 	DSPSplitComplex fftBuffer;
-	//fftBuffer.realp = (float*)inputBuffer.getDataReadOnly(inputChannel);
 	fftBuffer.realp = (float*)inputBuffer.getData(inputChannel);
 	fftBuffer.imagp = fftBuffer.realp + fftSizeHalved;
 	
