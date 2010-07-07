@@ -70,7 +70,7 @@
 		#define VEC_MUL_OP vmulq_f32
 		#define VEC_ADD_OP vaddq_f32
 		#define VEC_SUB_OP vsubq_f32
-//	#elif defined(UGEN_VDSP)
+//	#elif defined(UGEN_VDSP) // these are slow...
 //		inline vFloat VEC_MUL_OP(vFloat const& leftVec, vFloat const& rightVec)
 //		{
 //			vFloat returnVec;
@@ -292,6 +292,7 @@ public:
 		memcpy(outputBuffer, transformBufferSamples, fftSizeBytes);
 #elif defined(UGEN_FFTREAL)
 		memcpy(transformBufferSplit.realp, inputBuffer.realp, fftSizeBytes);
+		fftReal->do_ifft(transformBufferSamples, outputBuffer);
 #else
 //	#ifdef UGEN_IPHONE
 //		cblas_ccopy(fftSize, inputBuffer.realp, 1, transformBufferSplit.realp, 1);
@@ -353,7 +354,7 @@ private:
 	float * const windowingBufferSamples;
 };
 
-#if  defined(UGEN_VDSP)
+#if defined(UGEN_VDSP)
 
 #define TEMPSIZE 65536
 static float tempData[TEMPSIZE];
