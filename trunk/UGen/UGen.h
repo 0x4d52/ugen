@@ -111,6 +111,7 @@ BEGIN_UGEN_NAMESPACE
 #include "filters/simple/ugen_HPF.h"
 #include "filters/control/ugen_Lag.h"
 #include "filters/control/ugen_Decay.h"
+#include "filters/dynamics/ugen_Normaliser.h"
 #include "delays/ugen_Delay.h"
 #include "delays/ugen_BlockDelay.h"
 #include "spawn/ugen_Spawn.h"
