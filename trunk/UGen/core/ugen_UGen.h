@@ -99,14 +99,6 @@
 			/** Construct and return a control rate UGEN_NAME (if available, otherise returns an audio version by default). DOCS 
 				@return The control rate UGEN_NAME.	 */																				\
 			static inline UGen KR CONSTRUCTOR_ARGS_DECLARE throw()	{ return UGen(UGEN_NAME CONSTRUCTOR_ARGS_CALL).kr();	}		\
-			/** Construct and return an audio rate UGEN_NAME (SC compatability). DOCS 
-				@return The audio rate UGEN_NAME.	 	*/																			\
-			inline UGen ar CONSTRUCTOR_ARGS_DECLARE	throw()			{ return UGEN_NAME CONSTRUCTOR_ARGS_CALL;				}		\
-			/** Construct and return a control rate UGEN_NAME (SC compatability). DOCS 
-				@return The control rate UGEN_NAME.	 	*/																			\
-			inline UGen kr CONSTRUCTOR_ARGS_DECLARE	throw()			{ return UGen(UGEN_NAME CONSTRUCTOR_ARGS_CALL).kr();	}		\
-			/** @internal SC compatability */																						\
-			inline UGen operator() CONSTRUCTOR_ARGS_DECLARE	throw() { return UGEN_NAME CONSTRUCTOR_ARGS_CALL;				}		\
 		}
 
 /**
@@ -144,14 +136,6 @@
 			/** Construct and return a control rate UGEN_NAME (if available, otherise returns an audio version by default). DOCS 
 				@return The control rate UGEN_NAME.	 */																					\
 			static inline UGen KR CONSTRUCTOR_ARGS_DECLARE throw()		{ return UGen(UGEN_NAME CONSTRUCTOR_ARGS_CALL).kr();	}		\
-			/** Construct and return an audio rate UGEN_NAME (SC compatability). DOCS 
-				@return The audio rate UGEN_NAME.	 	*/																				\
-			inline UGen ar CONSTRUCTOR_ARGS_DECLARE throw()				{ return UGEN_NAME CONSTRUCTOR_ARGS_CALL;				}		\
-			/** Construct and return a control rate UGEN_NAME (SC compatability). DOCS 
-				@return The control rate UGEN_NAME.	 	*/																				\
-			inline UGen kr CONSTRUCTOR_ARGS_DECLARE throw()				{ return UGen(UGEN_NAME CONSTRUCTOR_ARGS_CALL).kr();	}		\
-			/** @internal SC compatability */																							\
-			inline UGen operator() CONSTRUCTOR_ARGS_DECLARE	throw()		{ return UGEN_NAME CONSTRUCTOR_ARGS_CALL;				}		\
 		}
 
 /**
@@ -191,14 +175,6 @@
 			/** Construct and return a control rate UGEN_NAME (if available, otherise returns an audio version by default). DOCS 
 				@return The control rate UGEN_NAME.	 */																				\
 			static inline UGen KR CONSTRUCTOR_ARGS_DECLARE throw()		{ return UGen CONSTRUCTOR_ARGS_CALL .kr();		}			\
-			/** Construct and return an audio rate UGEN_NAME (SC compatability). DOCS 
-				@return The audio rate UGEN_NAME.	 	*/																			\
-			inline UGen ar CONSTRUCTOR_ARGS_DECLARE	throw()				{ return UGen CONSTRUCTOR_ARGS_CALL ;			}			\
-			/** Construct and return a control rate UGEN_NAME (SC compatability). DOCS 
-				@return The control rate UGEN_NAME.	 	*/																			\
-			inline UGen kr CONSTRUCTOR_ARGS_DECLARE	throw()				{ return UGen CONSTRUCTOR_ARGS_CALL .kr();		}			\
-			/** @internal SC compatability */																						\
-			inline UGen operator() CONSTRUCTOR_ARGS_DECLARE	throw()		{ return UGen CONSTRUCTOR_ARGS_CALL ;			}			\
 		}
 
 
@@ -1343,26 +1319,26 @@ private:
 UGenArray operator<< (float leftOperand, UGen const& rightOperand) throw();
 UGen operator, (float leftOperand, UGen const& rightOperand) throw();
 
-UGen kr() throw(); /**< SC compatability. */
-UGen kr(UGen const& operand) throw(); /**< SC compatability. */
-UGen kr(UGen const& arg1, UGen const& arg2) throw(); /**< SC compatability. */
-UGen kr(UGen const& arg1, UGen const& arg2, UGen const& arg3) throw(); /**< SC compatability. */
-UGen kr(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4) throw(); /**< SC compatability. */
-UGen kr(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5) throw(); /**< SC compatability. */
-UGen kr(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5, UGen const& arg6) throw(); /**< SC compatability. */
-UGen kr(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5, UGen const& arg6, UGen const& arg7) throw(); /**< SC compatability. */
-UGen kr(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5, UGen const& arg6, UGen const& arg7, UGen const& arg8) throw(); /**< SC compatability. */
-
-
-UGen ar() throw(); /**< SC compatability. */
-UGen ar(UGen const& operand) throw(); /**< SC compatability. */
-UGen ar(UGen const& arg1, UGen const& arg2) throw(); /**< SC compatability. */
-UGen ar(UGen const& arg1, UGen const& arg2, UGen const& arg3) throw(); /**< SC compatability. */
-UGen ar(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4) throw(); /**< SC compatability. */
-UGen ar(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5) throw(); /**< SC compatability. */
-UGen ar(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5, UGen const& arg6) throw(); /**< SC compatability. */
-UGen ar(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5, UGen const& arg6, UGen const& arg7) throw(); /**< SC compatability. */
-UGen ar(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5, UGen const& arg6, UGen const& arg7, UGen const& arg8) throw(); /**< SC compatability. */
+//UGen kr() throw(); /**< SC compatability. */
+//UGen kr(UGen const& operand) throw(); /**< SC compatability. */
+//UGen kr(UGen const& arg1, UGen const& arg2) throw(); /**< SC compatability. */
+//UGen kr(UGen const& arg1, UGen const& arg2, UGen const& arg3) throw(); /**< SC compatability. */
+//UGen kr(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4) throw(); /**< SC compatability. */
+//UGen kr(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5) throw(); /**< SC compatability. */
+//UGen kr(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5, UGen const& arg6) throw(); /**< SC compatability. */
+//UGen kr(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5, UGen const& arg6, UGen const& arg7) throw(); /**< SC compatability. */
+//UGen kr(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5, UGen const& arg6, UGen const& arg7, UGen const& arg8) throw(); /**< SC compatability. */
+//
+//
+//UGen ar() throw(); /**< SC compatability. */
+//UGen ar(UGen const& operand) throw(); /**< SC compatability. */
+//UGen ar(UGen const& arg1, UGen const& arg2) throw(); /**< SC compatability. */
+//UGen ar(UGen const& arg1, UGen const& arg2, UGen const& arg3) throw(); /**< SC compatability. */
+//UGen ar(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4) throw(); /**< SC compatability. */
+//UGen ar(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5) throw(); /**< SC compatability. */
+//UGen ar(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5, UGen const& arg6) throw(); /**< SC compatability. */
+//UGen ar(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5, UGen const& arg6, UGen const& arg7) throw(); /**< SC compatability. */
+//UGen ar(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5, UGen const& arg6, UGen const& arg7, UGen const& arg8) throw(); /**< SC compatability. */
 
 
 // UGen docs groups
@@ -1527,27 +1503,14 @@ UGen ar(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, 
 #define EventUGenStaticMethodDeclare(UGEN_NAME, METHOD_NAME, EVENT_TYPE, OWNER_TYPE, ARGS_CALL, ARGS_DECLARE)	\
 	static inline UGen METHOD_NAME ARGS_DECLARE throw() { return UGEN_NAME<EVENT_TYPE, OWNER_TYPE> ARGS_CALL; }
 
-#define EventUGenSCMethodDeclare(UGEN_NAME, METHOD_NAME, EVENT_TYPE, OWNER_TYPE, ARGS_CALL, ARGS_DECLARE)		\
-	inline UGen METHOD_NAME ARGS_DECLARE throw() { return UGEN_NAME<EVENT_TYPE, OWNER_TYPE> ARGS_CALL; }
-
 
 #define EventUGenMethodsDeclare(UGEN_NAME, EVENT_TYPE, OWNER_TYPE, OWNER_ARGS_CALL, OWNER_ARGS_DECLARE, EVENT_ARGS_CALL, EVENT_ARGS_DECLARE, DOCS) \
 	/** Construct and return an audio rate UGEN_NAME creating the event using an owner (or NULL). DOCS	
 		@return The audio rate UGEN_NAME. */																					\
 	EventUGenStaticMethodDeclare(UGEN_NAME, AR,         EVENT_TYPE, OWNER_TYPE, OWNER_ARGS_CALL, OWNER_ARGS_DECLARE)			\
-	/** Construct and return an audio rate UGEN_NAME creating the event using an owner (SC compatability). DOCS	
-		@return The audio rate UGEN_NAME. */																					\
-	EventUGenSCMethodDeclare    (UGEN_NAME, ar,         EVENT_TYPE, OWNER_TYPE, OWNER_ARGS_CALL, OWNER_ARGS_DECLARE)			\
-	/** @internal SC compatability */																							\
-	EventUGenSCMethodDeclare    (UGEN_NAME, operator(), EVENT_TYPE, OWNER_TYPE, OWNER_ARGS_CALL, OWNER_ARGS_DECLARE)			\
 	/** Construct and return an audio rate UGEN_NAME passing an event to use. DOCS	
 		@return The audio rate UGEN_NAME. */																					\
 	EventUGenStaticMethodDeclare(UGEN_NAME, AR,         EVENT_TYPE, OWNER_TYPE, EVENT_ARGS_CALL, EVENT_ARGS_DECLARE)			\
-	/** Construct and return an audio rate UGEN_NAME passing an event to use (SC compatability). DOCS	
-		@return The audio rate UGEN_NAME. */																					\
-	EventUGenSCMethodDeclare    (UGEN_NAME, ar,         EVENT_TYPE, OWNER_TYPE, EVENT_ARGS_CALL, EVENT_ARGS_DECLARE)			\
-	/** @internal SC compatability */																							\
-	EventUGenSCMethodDeclare    (UGEN_NAME, operator(), EVENT_TYPE, OWNER_TYPE, EVENT_ARGS_CALL, EVENT_ARGS_DECLARE)
 
 /** The base for all event classes.
  Event classes are used to create new UGen graphs based on some kind of specification, the event classes

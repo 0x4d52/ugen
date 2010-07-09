@@ -34,6 +34,8 @@
  ==============================================================================
  */
 
+#ifndef UGEN_NOEXTGPL
+
 #include "../core/ugen_StandardHeader.h"
 
 BEGIN_UGEN_NAMESPACE
@@ -191,3 +193,5 @@ LeakDC::LeakDC(UGen const& input, UGen const& coeff) throw()
 
 
 END_UGEN_NAMESPACE
+
+#endif // gpl

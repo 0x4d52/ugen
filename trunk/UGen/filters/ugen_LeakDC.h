@@ -69,9 +69,6 @@ DirectMulAddUGenDeclaration(LeakDC,	(input, coeff),
 									(UGen const& input, UGen const& coeff = 0.99, MulAdd_ArgsDeclare), COMMON_UGEN_DOCS);
 
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define LeakDC LeakDC()
-#endif
 
 
 #endif // _UGEN_ugen_LeakDC_H_

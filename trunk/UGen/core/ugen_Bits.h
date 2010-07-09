@@ -34,6 +34,9 @@
  ==============================================================================
  */
 
+// check gpl
+// most of this appears to be "common knowledge"?
+
 #ifndef _UGEN_ugen_Bits_H_
 #define _UGEN_ugen_Bits_H_
 

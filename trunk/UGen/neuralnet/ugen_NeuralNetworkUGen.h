@@ -77,9 +77,6 @@ UGenSublcassDeclarationNoDefault(NeuralNetworkUGen,
 								  NeuralPatternArray const& patterns),
 								 COMMON_UGEN_DOCS);
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define NeuralNetworkUGen NeuralNetworkUGen()
-#endif
 
 
 #endif // _UGEN_ugen_NeuralNetworkUGen_H_

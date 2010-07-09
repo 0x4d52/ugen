@@ -85,9 +85,6 @@ DirectMulAddUGenDeclaration(SOS,	(SOS_InputsNoTypes),
 									(SOS_InputsWithTypesAndDefaults, MulAdd_ArgsDeclare), 
 							COMMON_UGEN_DOCS SOS_Docs MulAddArgs_Docs);
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define SOS SOS()
-#endif
 
 
 #endif // _UGEN_ugen_SOS_H_

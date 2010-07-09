@@ -2145,15 +2145,15 @@ Buffer Buffer::changeSampleRate(const double oldSampleRate, const double newSamp
 Buffer Buffer::rand(const int size, const double lower, const double upper, const int numChannels) throw()
 {
 	Buffer newBuffer(BufferSpec(size, numChannels, false));
-	Ran088 random((unsigned int)newBuffer.getData() + 345098L * 853L + ugen::rand(82701)); // seed
 	
 	double range = upper-lower;
+	double rangeFactor = range / RAND_MAX;
 	
 	for(int channel = 0; channel < numChannels; channel++)
 	{
 		for(int sample = 0; sample < size; sample++)
 		{
-			newBuffer.setSampleUnchecked(channel, sample, (float)(random.nextDouble(range) + lower));
+			newBuffer.setSampleUnchecked(channel, sample, std::rand() * rangeFactor * + lower);
 		}
 	}
 	
@@ -2165,6 +2165,7 @@ Buffer Buffer::rand2(const int size, const double positive, const int numChannel
 	return Buffer::rand(size, -positive, positive, numChannels);
 }
 
+#ifndef UGEN_NOEXTGPL
 Buffer Buffer::exprand(const int size, const double lower, const double upper, const int numChannels) throw()
 {
 	Buffer newBuffer(BufferSpec(size, numChannels, false));
@@ -2198,6 +2199,7 @@ Buffer Buffer::linrand(const int size, const double lower, const double upper, c
 	
 	return newBuffer;
 }
+#endif // gpl
 
 Buffer Buffer::sineTable(const int size, const float repeats) throw()
 {

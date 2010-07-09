@@ -37,6 +37,8 @@
 #ifndef UGEN_JUCEENVELOPECOMPONENT_H
 #define UGEN_JUCEENVELOPECOMPONENT_H
 
+#ifndef UGEN_NOEXTGPL
+
 #include "../../core/ugen_UGen.h"
 #include "../../envelopes/ugen_Env.h"
 #include "../../core/ugen_Text.h"
@@ -368,7 +370,7 @@ public:
 	void buttonClicked(Button *button);
 };
 
-
+#endif // gpl
 
 
 #endif //UGEN_JUCEENVELOPECOMPONENT_H

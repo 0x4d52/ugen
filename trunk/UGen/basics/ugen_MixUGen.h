@@ -417,9 +417,5 @@ public:
 };
 
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define Mix Mix()
-#define MixFill MixFill()
-#endif
 
 #endif // UGEN_MIXUGEN_H

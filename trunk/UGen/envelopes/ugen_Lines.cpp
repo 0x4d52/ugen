@@ -197,6 +197,8 @@ LLine::LLine(Buffer const& start,
 	}
 }
 
+#ifndef UGEN_NOEXTGPL
+
 XLine::XLine(Buffer const& startBuffer,	
 			 Buffer const& endBuffer,
 			 Buffer const& durationBuffer,
@@ -260,6 +262,7 @@ XLine::XLine(Buffer const& startBuffer,
 	}
 }
 
+#endif // gpl
 
 
 //=============================== Linen ======================================

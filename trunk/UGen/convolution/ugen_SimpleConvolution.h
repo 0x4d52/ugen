@@ -82,10 +82,6 @@ UGenSublcassDeclaration(OverlapConvolution,
 						(UGen const& inputA, UGen const& inputB, const int fftSize = 512, const int overlap = 2), 
 						COMMON_UGEN_DOCS);
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define SimpleConvolution SimpleConvolution()
-#define OverlapConvolution OverlapConvolution()
-#endif
 
 
 #endif // _UGEN_ugen_SimpleConvolution_H_

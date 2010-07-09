@@ -62,9 +62,6 @@ protected:
  @ingroup AllUGens NoiseUGens */
 ExpandingMulAddUGenDeclaration(PinkNoise, (), (MulAdd_ArgsCall), (), (MulAdd_ArgsDeclare), COMMON_UGEN_DOCS MulAddArgs_Docs);
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define PinkNoise PinkNoise()
-#endif
 
 
 #endif // _UGEN_ugen_PinkNoise_H_

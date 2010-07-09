@@ -34,6 +34,8 @@
  ==============================================================================
  */
 
+#ifndef UGEN_NOEXTGPL
+
 #include "../core/ugen_StandardHeader.h"
 
 BEGIN_UGEN_NAMESPACE
@@ -144,3 +146,5 @@ Dust2::Dust2(Dust_InputsWithTypesOnly) throw()
 
 
 END_UGEN_NAMESPACE
+
+#endif // gpl

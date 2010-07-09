@@ -97,9 +97,6 @@ UGenSublcassDeclarationNoDefault(FFTMagnitude,
 								 (UGen const& input, FFTEngine const& fft, const int overlap, const int firstBin = 0, const int numBins = 0), 
 								COMMON_UGEN_DOCS FFTMagnitude_Docs);
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define FFTMagnitude FFTMagnitude()
-#endif
 
 
 #endif // _UGEN_ugen_FFTMagnitude_H_

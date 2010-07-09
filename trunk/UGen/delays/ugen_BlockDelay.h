@@ -69,9 +69,5 @@ protected:
  */
 UGenSublcassDeclarationNoDefault(BlockDelay, (input), (UGen const& input), COMMON_UGEN_DOCS);
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define BlockDelay BlockDelay()
-#endif
-
 
 #endif // _UGEN_ugen_BlockDelay_H_

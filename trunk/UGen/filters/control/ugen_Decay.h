@@ -82,9 +82,6 @@ DirectMulAddUGenDeclaration(Decay,	(input, decayTime),
 							Decay_Docs COMMON_UGEN_DOCS MulAddArgs_Docs);
 
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define Decay Decay()
-#endif
 
 
 #endif // _UGEN_ugen_Decay_H_

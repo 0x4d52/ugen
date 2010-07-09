@@ -337,9 +337,5 @@ UGenSublcassDeclarationNoDefault(FFTSender,
 
 
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define Scope Scope()
-#define SpectralScope SpectralScope()
-#endif
 
 #endif // _UGEN_ugen_Scope_H_

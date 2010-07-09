@@ -105,9 +105,6 @@ protected:
  @see UGen::setSource(), UGen::fadeSource() */
 UGenSublcassDeclaration(Plug, (source, shouldAllowAutoDelete), (UGen const& source, bool shouldAllowAutoDelete = true), COMMON_UGEN_DOCS);
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define Plug Plug()
-#endif
 
 
 #endif // _UGEN_ugen_Plug_H_

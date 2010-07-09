@@ -60,8 +60,5 @@ UGenSublcassDeclarationNoDefault
  COMMON_UGEN_DOCS
 );
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define Trig Trig()
-#endif
 
 #endif // _UGEN_Trig_H_

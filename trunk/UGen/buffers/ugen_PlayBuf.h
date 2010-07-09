@@ -41,6 +41,10 @@
 #include "../core/ugen_UGen.h"
 #include "ugen_Buffer.h"
 
+#ifdef Trig
+#undef Trig
+#endif
+
 /** A UGenInternal which can playback a Buffer.
  
  This is a ProxyOwnerUGenInternal so creates a number of proxy outputs
@@ -106,9 +110,6 @@ protected:
 UGenSublcassDeclaration(BufferValues, (buffer), (Buffer const& buffer), COMMON_UGEN_DOCS);
 
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define PlayBuf PlayBuf()
-#endif
 
 
 #endif // _UGEN_ugen_PlayBuf_H_

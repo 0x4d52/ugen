@@ -264,7 +264,23 @@ void ScopeGUI::handleBuffer(Buffer const& buffer, const double offset, const int
 void ScopeGUI::setWrap(const double amount) throw()
 {
 	lock();
-	bufferWrap = ugen::wrap(amount, 0.0, 1.0);
+//	bufferWrap = ugen::wrap(amount, 0.0, 1.0);
+	
+	double wrappedAmount = amount;
+	
+	if(amount < 0.0)
+	{
+		while(amount < 0.0)
+			wrappedAmount += 1.0;
+	}
+	else
+	{
+		while(amount > 1.0)
+			wrappedAmount -= 1.0;
+	}
+	
+	bufferWrap = wrappedAmount;
+
 	unlock();
 	
 	updateGUI();

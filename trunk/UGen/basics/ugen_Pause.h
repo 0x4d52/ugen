@@ -68,9 +68,6 @@ protected:
  @ingroup AllUGens ControlUGens */
 UGenSublcassDeclarationNoDefault(Pause, (Pause_InputsNoTypes), (Pause_InputsWithTypesAndDefaults), COMMON_UGEN_DOCS);
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define Pause Pause()
-#endif
 
 
 #endif // _UGEN_ugen_Pause_H_

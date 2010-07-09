@@ -127,11 +127,6 @@ ExpandingMulAddUGenDeclaration(LFNoise2,
 							   (UGen const& freq = 500.f, MulAdd_ArgsDeclare), 
 							   COMMON_UGEN_DOCS LFNoise_Docs MulAddArgs_Docs);
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define LFNoise0 LFNoise0()
-#define LFNoise1 LFNoise1()
-#define LFNoise2 LFNoise2()
-#endif
 
 
 #endif // _UGEN_ugen_LFNoise_H_

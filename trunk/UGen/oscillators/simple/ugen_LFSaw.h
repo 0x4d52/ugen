@@ -75,9 +75,6 @@ DirectMulAddUGenDeclaration(LFSaw,
 							(UGen const& freq = 440.f, Buffer const& initialPhase = 0.f),
 							(UGen const& freq = 440.f, Buffer const& initialPhase = 0.f, MulAdd_ArgsDeclare), COMMON_UGEN_DOCS);
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define LFSaw LFSaw()
-#endif
 
 
 #endif // _UGEN_ugen_LFSaw_H_

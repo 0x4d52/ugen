@@ -212,8 +212,6 @@ inline unsigned int min (const unsigned int a, const unsigned int b) throw()			{
 inline unsigned int max (const unsigned int a, const unsigned int b) throw()			{ return (a < b) ? b : a;			}
 inline unsigned long min (const unsigned long a, const unsigned long b) throw()			{ return (a > b) ? b : a;			}
 inline unsigned long max (const unsigned long a, const unsigned long b) throw()			{ return (a < b) ? b : a;			}
-inline float clip2 (const float v, const float r) throw()		{ return (v > r) ? r : (v < -r) ? -r : v; }
-inline double clip2 (const double v, const double r) throw()	{ return (v > r) ? r : (v < -r) ? -r : v; }
 
 
 inline double clip(const double value, const double lower, const double upper) throw() // actually ternery!
@@ -239,6 +237,11 @@ inline int clip(const int value, const int lower, const int upper) throw() // ac
 	ret = min(ret, upper);
 	return ret;
 }
+
+inline float clip2 (const float value, const float range) throw()		{ return clip(value, -range, range); }
+inline double clip2 (const double value, const double range) throw()	{ return clip(value, -range, range); }
+
+#ifndef UGEN_NOEXTGPL
 
 inline float wrap(float in, float lo, float hi) throw()
 {
@@ -398,6 +401,8 @@ inline float sqrdif(float a, float b) throw() { float c = a-b; return c*c; }
 inline float absdif(float a, float b) throw() { return fabs(a-b); }
 inline float thresh(float a, float b) throw() { return (a < b) ? 0.f : a; }
 
+#endif
+
 inline float linlin(const float input, 
 					const float inLow, const float inHigh,
 					const float outLow, const float outHigh) throw()
@@ -424,6 +429,7 @@ inline float linlin2(const float input,
 	return (input - inLow) * outRange / inRange + outLow;
 }
 
+#ifndef UGEN_NOEXTGPL
 
 inline float linsin(const float input, 
 					const float inLow, const float inHigh,
@@ -505,6 +511,8 @@ inline float linwelch(const float input,
 		return outHigh - outRange * std::sin(pi2 - pi2 * inPos);
 	
 }
+
+#endif // gpl
 
 #endif // UGEN_INLINEBINARYOPS_H
 

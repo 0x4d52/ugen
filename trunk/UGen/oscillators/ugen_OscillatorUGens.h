@@ -77,8 +77,5 @@ DirectMulAddUGenDeclaration(Phasor,
 							(Phasor_InputsWithTypesAndDefaults, MulAdd_ArgsDeclare), COMMON_UGEN_DOCS);
 
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define Phasor Phasor()
-#endif
 
 #endif // OSCILLATORUGENS_H

@@ -81,9 +81,6 @@ DirectMulAddUGenDeclaration(Impulse,	(Impulse_InputsNoTypes),
 										(Impulse_InputsWithTypesAndDefaults, MulAdd_ArgsDeclare), 
 							COMMON_UGEN_DOCS Impulse_Docs MulAddArgs_Docs);
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define Impulse Impulse()
-#endif
 
 
 #endif // _UGEN_ugen_Impulse_H_

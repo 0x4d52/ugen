@@ -40,6 +40,7 @@
 #include "../basics/ugen_InlineUnaryOps.h"
 #include "../basics/ugen_InlineBinaryOps.h"
 
+#ifndef UGEN_NOEXTGPL
 
 class Ran088 
 {
@@ -432,7 +433,12 @@ inline float Ran088::coin( unsigned long& s1, unsigned long& s2, unsigned long& 
 	return u.f;
 }
 
-
+#else
+class Ran088
+{
+	// fixme:  to allow headers to compile for now
+};
+#endif // gpl
 
 
 

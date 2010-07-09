@@ -106,9 +106,6 @@ private:
 	void initWithJuceFile(File const& file, bool loopFlag = false, const double startTime = 0.0, const int numFrames = 32768) throw();
 };
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define DiskIn DiskIn()
-#endif
 
 
 #endif // _UGEN_ugen_DiskIn_H_

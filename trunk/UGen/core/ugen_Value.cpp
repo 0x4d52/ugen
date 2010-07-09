@@ -34,6 +34,7 @@
  ==============================================================================
  */
 
+
 #include "ugen_StandardHeader.h"
 
 BEGIN_UGEN_NAMESPACE
@@ -161,6 +162,13 @@ Value& Value::operator/= (Value const& other) throw()
 
 Value Value::null = 0.0;
 
+#ifndef UGEN_NOEXTGPL
+
+RandomValueBaseInternal::RandomValueBaseInternal()
+: random(Ran088::defaultGenerator().next()) 
+{ 
+}
+
 RandomDoubleRangeValueInternal::RandomDoubleRangeValueInternal(Value const& lo, Value const& hi) throw()
 :	lo_(lo), hi_(hi)
 {
@@ -231,6 +239,8 @@ RandomValue::RandomValue(const int lo, const int hi) throw()
 :	Value(new RandomIntRangeValueInternal(lo, hi))
 {
 }
+
+#endif // gpl
 
 SequenceValueInternal::SequenceValueInternal(Value const& start, Value const& grow) throw()
 :	start_(start),
@@ -752,3 +762,4 @@ ValueUGen::ValueUGen(ValueArray const& values) throw()
 }
 
 END_UGEN_NAMESPACE
+

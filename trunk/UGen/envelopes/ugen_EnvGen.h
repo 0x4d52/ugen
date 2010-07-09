@@ -88,9 +88,6 @@ DirectMulAddUGenDeclaration(EnvGen,		(env, doneAction),
 							COMMON_UGEN_DOCS EnvGen_Docs MulAddArgs_Docs);
 
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define EnvGen EnvGen()
-#endif
 
 
 #endif // _UGEN_ugen_EnvGen_H_

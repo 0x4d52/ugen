@@ -72,9 +72,6 @@ public:
 UGenSublcassDeclarationNoDefault(Wrap, (WrapFold_InputsNoTypes), (WrapFold_InputsWithTypesAndDefaults), COMMON_UGEN_DOCS);
 UGenSublcassDeclarationNoDefault(Fold, (WrapFold_InputsNoTypes), (WrapFold_InputsWithTypesAndDefaults), COMMON_UGEN_DOCS);
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define WrapFold WrapFold()
-#endif
 
 
 #endif // _UGEN_ugen_WrapFold_H_

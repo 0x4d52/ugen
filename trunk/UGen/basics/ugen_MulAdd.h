@@ -146,25 +146,6 @@
 			}																															\
 			return UGen(source).kr();																									\
 		}																																\
-																																		\
-		/** Construct and return an audio rate UGEN_NAME (SC compatability). 
-			A "mul" operation will not be added if the multiplier is 1.0, an "add" operation will not be
-			added if the "add" value is 0.0. 
-			\n\n
-			DOCS 
-			@return The audio rate UGEN_NAME.	 	*/																					\
-		inline UGen ar ARGS_DECLARE_MULADD throw() { return UGEN_NAME::AR ARGS_CALL_MULADD; }											\
-																																		\
-		/** Construct and return a control rate UGEN_NAME (SC compatability). 
-			A "mul" operation will not be added if the multiplier is 1.0, an "add" operation will not be
-			added if the "add" value is 0.0. 
-			\n\n
-			DOCS 
-			@return The control rate UGEN_NAME.	 	*/																					\
-		inline UGen kr ARGS_DECLARE_MULADD throw() { return UGEN_NAME::KR ARGS_CALL_MULADD; }											\
-																																		\
-		/** @internal SC compatability */																								\
-		inline UGen operator() ARGS_DECLARE_MULADD throw() { return UGEN_NAME::AR ARGS_CALL_MULADD; }									\
 	}
 
 /** Declare a UGen with multiply and add inputs.
@@ -241,25 +222,6 @@
 			else 						return UGen(MulAdd (source, MulAdd_ArgsCall)).kr();												\
 			return UGen(source).kr();																									\
 		}																																\
-																																		\
-		/** Construct and return an audio rate UGEN_NAME (SC compatability). 
-			A "mul" operation will not be added if the multiplier is 1.0, an "add" operation will not be
-			added if the "add" value is 0.0. 
-			\n\n
-			DOCS 
-			@return The audio rate UGEN_NAME.	 	*/																					\
-		inline UGen ar ARGS_DECLARE_MULADD throw() { return UGEN_NAME::AR ARGS_CALL_MULADD; }											\
-																																		\
-		/** Construct and return a control rate UGEN_NAME (SC compatability). 
-			A "mul" operation will not be added if the multiplier is 1.0, an "add" operation will not be
-			added if the "add" value is 0.0. 
-			\n\n
-			DOCS 
-			@return The control rate UGEN_NAME.	 	*/																					\
-		inline UGen kr ARGS_DECLARE_MULADD throw() { return UGEN_NAME::KR ARGS_CALL_MULADD; }											\
-																																		\
-		/** @internal SC compatability */																								\
-		inline UGen operator() ARGS_DECLARE_MULADD throw() { return UGEN_NAME::AR ARGS_CALL_MULADD; }									\
 	}
 
 /** @ingroup UGenInternals */
@@ -292,14 +254,11 @@ UGenInternalControlRateDeclaration(MulAddUGenInternal, (input, mul, add),
  tests the mul and add inputs to see if the mul and add inputs really need adding. 
  @ingroup AllUGens MathsUGens 
  @see BinaryOpMulUGen, BinaryOpAddUGen, UGen::operator*(), UGen::operator+() */
-UGenSublcassDeclarationNoDefault(MulAdd, (input, mul, add),
+UGenSublcassDeclaration(MulAdd, (input, mul, add),//UGenSublcassDeclarationNoDefault(MulAdd, (input, mul, add),
 								 (UGen const& input, UGen const& mul = 1.f, UGen const& add = 0.f), 
 								 COMMON_UGEN_DOCS MulAdd_Docs);
 
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define MulAdd MulAdd()
-#endif
 
 
 #endif // _UGEN_ugen_MulAdd_H_

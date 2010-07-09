@@ -351,14 +351,6 @@ private:
 };
 
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define DelayN DelayN()
-#define DelayL DelayL()
-#define CombN CombN()
-#define CombL CombL()
-#define AllpassN AllpassN()
-#define AllpassL AllpassL()
-#endif
 
 
 #endif // _UGEN_ugen_Delay_H_

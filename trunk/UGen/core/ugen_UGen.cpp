@@ -283,6 +283,7 @@ UGen::UGen(UGenArray const& array) throw()
 	constructMultichannel(array.size(), array.getArray());
 }
 
+#ifndef UGEN_NOEXTGPL
 UGen::UGen(ExternalControlSource const& externalControlSource) throw()
 :	userData(UGen::defaultUserData),
 	numInternalUGens(0),
@@ -291,6 +292,7 @@ UGen::UGen(ExternalControlSource const& externalControlSource) throw()
 	initInternal(1);
 	internalUGens[0] = new ExternalControlSourceUGenInternal(externalControlSource);
 }
+#endif
 
 #if defined(JUCE_VERSION) || defined(DOXYGEN)
 #include "../juce/ugen_JuceSlider.h"
@@ -371,6 +373,7 @@ UGen::UGen(signed char *valuePtr) throw()
 }
 #endif
 
+#ifndef UGEN_NOEXTGPL
 UGen::UGen(Env const& env) throw()
 :	userData(UGen::defaultUserData),
 	numInternalUGens(0),
@@ -379,6 +382,7 @@ UGen::UGen(Env const& env) throw()
 	initInternal(1);
 	internalUGens[0] = new EnvGenUGenInternal(env, UGen::DeleteWhenDone);
 }
+#endif // gpl
 
 void UGen::constructMultichannel(const int numUGens, const UGen uGenArray[]) throw()
 {
@@ -1694,6 +1698,7 @@ UGen UGen::operator- () const throw()
 	return UnaryNegUGen(*this);
 }
 
+#ifndef UGEN_NOEXTGPL
 UGen UGen::lag(UGen const& rightOperand) const throw()
 {
 	if(isNull())
@@ -1728,6 +1733,9 @@ UGen UGen::linexp(UGen const& inLow, UGen const& inHigh, UGen const& outLow, UGe
 {
 	return LinExp::AR(*this, inLow, inHigh, outLow, outHigh);
 }
+
+#endif gpl
+
 
 UGen kr() throw()
 {

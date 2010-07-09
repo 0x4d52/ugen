@@ -34,6 +34,8 @@
  ==============================================================================
  */
 
+#ifndef UGEN_NOEXTGPL
+
 #include "../core/ugen_StandardHeader.h"
 
 BEGIN_UGEN_NAMESPACE
@@ -350,3 +352,5 @@ Env Env::asr(const double attackTime,
 
 
 END_UGEN_NAMESPACE
+
+#endif // gpl

@@ -92,14 +92,17 @@ UnaryOpUGenDefinition(Log,			log,			log);
 UnaryOpUGenDefinition(Log2,			log2,			log2);
 UnaryOpUGenDefinition(Log10,		log10,			log10);
 UnaryOpUGenDefinition(Exp,			exp,			exp);
-UnaryOpUGenDefinition(MIDICPS,		midicps,		midicps);
-UnaryOpUGenDefinition(CPSMIDI,		cpsmidi,		cpsmidi);
-UnaryOpUGenDefinition(Distort,		distort,		distort);
-UnaryOpUGenDefinition(BesselI0,		besselI0,		besselI0);
 UnaryOpUGenDefinition(Ceil,			ceil,			ceil);
 UnaryOpUGenDefinition(Floor,		floor,			floor);
 UnaryOpUGenDefinition(Frac,			frac,			frac);
 UnaryOpUGenDefinition(Sign,			sign,			sign);
+
+#ifndef UGEN_NOEXTGPL
+UnaryOpUGenDefinition(MIDICPS,		midicps,		midicps);
+UnaryOpUGenDefinition(CPSMIDI,		cpsmidi,		cpsmidi);
+UnaryOpUGenDefinition(Distort,		distort,		distort);
+UnaryOpUGenDefinition(BesselI0,		besselI0,		besselI0);
 UnaryOpUGenDefinition(Zap,			zap,			zap);
+#endif
 
 END_UGEN_NAMESPACE

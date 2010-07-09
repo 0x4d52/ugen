@@ -364,18 +364,6 @@ DirectMulAddUGenDeclaration(BAllPass,
  Resonant high pass filter. */ 
 #define RHPF BHiPass
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define BLowPass BLowPass()
-#define BHiPass BHiPass()
-#define BBandPass BBandPass()
-#define BBandStop BBandStop()
-#define BPeakEQ BPeakEQ()
-#define BLowShelf BLowShelf()
-#define BHiShelf BHiShelf()
-#define BAllPass BAllPass()
-#define RLPF RLPF()
-#define RHPF RHPF()
-#endif
 
 
 #endif // _UGEN_ugen_BEQ_H_

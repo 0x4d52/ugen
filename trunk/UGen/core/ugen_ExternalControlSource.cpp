@@ -34,6 +34,8 @@
  ==============================================================================
  */
 
+#ifndef UGEN_NOEXTGPL
+
 #include "ugen_StandardHeader.h"
 
 BEGIN_UGEN_NAMESPACE
@@ -116,3 +118,5 @@ ExternalControlSourceUGenInternal::ExternalControlSourceUGenInternal
 
 
 END_UGEN_NAMESPACE
+
+#endif // gpl

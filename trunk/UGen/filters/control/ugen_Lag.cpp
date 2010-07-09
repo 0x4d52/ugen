@@ -34,6 +34,8 @@
  ==============================================================================
  */
 
+#ifndef UGEN_NOEXTGPL
+
 #include "../../core/ugen_StandardHeader.h"
 
 BEGIN_UGEN_NAMESPACE
@@ -458,3 +460,5 @@ LagUD::LagUD(UGen const& input, UGen const& lagTimeUp, UGen const& lagTimeDown) 
 
 
 END_UGEN_NAMESPACE
+
+#endif // gpl

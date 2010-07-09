@@ -234,16 +234,15 @@ protected:
 };
 #define V(v) Value(v)
 
+#ifndef UGEN_NOEXTGPL
+
 /** An intermediate internal class that contains a random number generator.
  This is an intermediate since it doesn't implement getValue(). 
  @ingroup Values */ 
 class RandomValueBaseInternal : public ValueBaseInternal
 {
 public:
-	RandomValueBaseInternal() 
-	: random(Ran088::defaultGenerator().next()) 
-	{ 
-	}
+	RandomValueBaseInternal();
 	
 protected:
 	Ran088 random;
@@ -331,6 +330,8 @@ private:
 	RandomValue(); // no default constructor!
 };
 #define R	RandomValue
+
+#endif // gpl
 
 /** An intermediate internal class that generates sequences.
  This is an intermediate since it doesn't implement getValue(). 

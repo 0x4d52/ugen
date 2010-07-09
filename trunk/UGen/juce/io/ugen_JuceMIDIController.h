@@ -37,6 +37,8 @@
 #ifndef _UGEN_ugen_JuceMIDIController_H_
 #define _UGEN_ugen_JuceMIDIController_H_
 
+#ifndef UGEN_NOEXTGPL
+
 #include "../../core/ugen_UGen.h"
 #include "../../core/ugen_ExternalControlSource.h"
 #include "ugen_JuceMIDIInputBroadcaster.h"
@@ -71,10 +73,7 @@ DeclareJuceMIDIDataSourceNoDefault(MIDIController,
 									const double lagTime = 0.1,
 									void* port = 0));
 
-
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define MIDIController MIDIController()
-#endif
+#endif // gpl
 
 
 #endif // _UGEN_ugen_JuceMIDIController_H_
