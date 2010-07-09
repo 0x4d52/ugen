@@ -84,9 +84,6 @@ DirectMulAddUGenDeclaration(FSinOsc,	(freq),
 										(UGen const& freq = 440.f, MulAdd_ArgsDeclare), 
 							COMMON_UGEN_DOCS FSinOsc_Docs MulAddArgs_Docs);
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define FSinOsc FSinOsc()
-#endif
 
 
 #endif // _UGEN_ugen_FSinOsc_H_

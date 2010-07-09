@@ -62,8 +62,5 @@ UGenSublcassDeclarationNoDefault
  COMMON_UGEN_DOCS
 );
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define Poll Poll()
-#endif
 
 #endif // _UGEN_Poll_H_

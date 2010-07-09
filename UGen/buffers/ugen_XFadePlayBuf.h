@@ -34,6 +34,8 @@
 #ifndef _UGEN_ugen_XFadePlayBuf_H_
 #define _UGEN_ugen_XFadePlayBuf_H_
 
+#ifndef UGEN_NOEXTGPL
+
 #include "../core/ugen_UGen.h"
 #include "../spawn/ugen_Textures.h"
 
@@ -119,5 +121,7 @@ public:
 		return XFadeLoopPlayBuf (spec, rate); 
 	} 		
 };
+
+#endif // gpl
 
 #endif // _UGEN_ugen_XFadePlayBuf_H_

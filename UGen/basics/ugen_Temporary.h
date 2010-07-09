@@ -80,10 +80,6 @@ DefineCustomUGen(Invert,
 
 
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define Clip Clip() 
-//#define Clip2 Clip2() 
-#endif
 
 
 #endif // _UGEN_ugen_Temporary_H_

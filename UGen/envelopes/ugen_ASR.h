@@ -114,9 +114,6 @@ protected:
  @see EnvGen */
 UGenSublcassDeclaration(ASR, (ASR_InputsNoTypes), (ASR_InputsWithTypesAndDefaults), COMMON_UGEN_DOCS);
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define ASR ASR()
-#endif
 
 
 #endif // _UGEN_ugen_ASR_H_

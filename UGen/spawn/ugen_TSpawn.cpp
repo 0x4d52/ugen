@@ -34,6 +34,9 @@
  ==============================================================================
  */
 
+// NB same name as SC but no derived code, the helper event classes do have derived code though
+
+
 #include "../core/ugen_StandardHeader.h"
 
 BEGIN_UGEN_NAMESPACE

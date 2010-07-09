@@ -70,9 +70,6 @@ protected:
  @ingroup AllUGens ControlUGens */
 UGenSublcassDeclaration(Thru, (Thru_InputsNoTypes), (Thru_InputsWithTypesAndDefaults), COMMON_UGEN_DOCS Thru_Docs);
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define Thru Thru()
-#endif
 
 
 #endif // _UGEN_ugen_Thru_H_

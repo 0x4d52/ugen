@@ -60,9 +60,6 @@ protected:
  @ingroup AllUGens NoiseUGens */
 ExpandingMulAddUGenDeclaration(WhiteNoise, (), (MulAdd_ArgsCall), (), (MulAdd_ArgsDeclare), COMMON_UGEN_DOCS MulAddArgs_Docs);
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define WhiteNoise WhiteNoise()
-#endif
 
 
 #endif // _UGEN_ugen_WhiteNoise_H_

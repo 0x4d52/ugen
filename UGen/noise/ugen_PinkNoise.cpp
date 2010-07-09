@@ -34,6 +34,8 @@
  ==============================================================================
  */
 
+#ifndef UGEN_NOEXTGPL
+
 #include "../core/ugen_StandardHeader.h"
 
 BEGIN_UGEN_NAMESPACE
@@ -93,3 +95,5 @@ PinkNoise::PinkNoise() throw()
 }
 
 END_UGEN_NAMESPACE
+
+#endif // gpl

@@ -360,10 +360,6 @@ public:
 };
 
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define Chain Chain()
-#define Bank Bank()
-#endif
 
 
 #endif // _UGEN_ugen_Chain_H_

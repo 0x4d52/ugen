@@ -69,9 +69,6 @@ DirectMulAddUGenDeclaration(HPF, (input, freq),
 							COMMON_UGEN_DOCS HPF_Docs MulAddArgs_Docs);
 
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define HPF HPF()
-#endif
 
 
 #endif // _UGEN_ugen_HPF_H_

@@ -39,6 +39,10 @@
 
 #include "../../core/ugen_UGen.h"
 
+#ifdef Trig
+#undef Trig
+#endif
+
 class SAHUGenInternal : public UGenInternal
 {
 public:
@@ -89,10 +93,6 @@ protected:
 UGenSublcassDeclarationNoDefault(ToggleFF, (trig), (UGen const& trig), COMMON_UGEN_DOCS);
 
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define SAH SAH()
-#define ToggleFF ToggleFF()
-#endif
 
 
 #endif // _UGEN_ugen_Triggers_H_

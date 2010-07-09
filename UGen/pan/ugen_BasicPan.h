@@ -92,9 +92,5 @@ UGenSublcassDeclaration(Pan2, (input, position, level),
 					    (UGen const& input, UGen const& position = 0.f, UGen const& level = 1.f), 
 						COMMON_UGEN_DOCS Pan_Doc);
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define LinPan2 LinPan2()
-#define Pan2 Pan2()
-#endif
 
 #endif // UGEN_BASICPAN_H

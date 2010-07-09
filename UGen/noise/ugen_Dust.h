@@ -94,9 +94,6 @@ ExpandingMulAddUGenDeclaration(Dust2,
 							   (Dust_InputsWithTypesAndDefaults, MulAdd_ArgsDeclare), 
 							   COMMON_UGEN_DOCS Dust_Docs MulAddArgs_Docs);
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define Dust Dust()
-#endif
 
 
 #endif // _UGEN_ugen_Dust_H_

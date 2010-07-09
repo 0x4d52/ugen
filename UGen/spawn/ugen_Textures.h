@@ -37,6 +37,8 @@
 #ifndef _UGEN_ugen_Textures_H_
 #define _UGEN_ugen_Textures_H_
 
+#ifndef UGEN_NOEXTGPL
+
 #include "../core/ugen_UGen.h"
 #include "../basics/ugen_BinaryOpUGens.h"
 #include "../basics/ugen_UnaryOpUGens.h"
@@ -317,7 +319,7 @@ public:
 		Env env(Buffer(0.0, 1.0, 1.0, 0.0), 
 				Buffer(transitionTime, sustainTime, transitionTime), 
 				EnvCurve::Welch);
-		return event * EnvGen::KR(env, UGen::DeleteWhenDone);
+		return event * EnvGen::KR(env, UGen::DeleteWhenDone); 
 	}
 
 protected:
@@ -357,7 +359,7 @@ public:
 		Env env(Buffer(0.0, 1.0, 1.0, 0.0), 
 				Buffer(eventCount == 0 ? 0.f : transitionTime, sustainTime, transitionTime), 
 				EnvCurve::Welch);
-		return event * EnvGen::KR(env, UGen::DeleteWhenDone);
+		return event * EnvGen::KR(env, UGen::DeleteWhenDone); 
 	}
 	
 protected:
@@ -496,7 +498,7 @@ public:
 		event_(e)
 	{ 
 	}
-
+	
 	UGen spawnEvent(TSpawnUGenInternal& spawn, const int eventCount, void* extraArgs = 0)
 	{
 		events.release();
@@ -506,7 +508,7 @@ public:
 				EnvCurve::Welch, 1);
 		return event * EnvGen::KR(env, UGen::DeleteWhenDone);
 	}
-
+	
 protected:
 	TrigXFadeEventType event_;
 };
@@ -684,5 +686,7 @@ public:
 };
 
 typedef GenericEventBase<> GenericEventDefault;
+
+#endif // gpl
 
 #endif // _UGEN_ugen_Textures_H_

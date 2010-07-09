@@ -66,9 +66,6 @@ UGenSublcassDeclaration(AudioIn, (numChannels),
 						COMMON_UGEN_DOCS AudioIn_Docs);
 
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define AudioIn AudioIn()
-#endif
 
 
 #endif // _UGEN_ugen_RawInputUGens_H_

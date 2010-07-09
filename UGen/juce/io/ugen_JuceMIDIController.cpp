@@ -34,6 +34,8 @@
  ==============================================================================
  */
 
+#ifndef UGEN_NOEXTGPL
+
 #include "../../core/ugen_StandardHeader.h"
 
 #ifdef JUCE_VERSION
@@ -72,5 +74,7 @@ MIDIController::MIDIController(const int midiChannel, const int controllerNumber
 
 
 END_UGEN_NAMESPACE
+
+#endif
 
 #endif

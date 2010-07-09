@@ -41,6 +41,8 @@
 #include "../core/ugen_UGen.h"
 #include "../basics/ugen_MulAdd.h"
 
+#ifndef UGEN_NOEXTGPL
+
 #define MappingBase_InputsWithTypesAndDefaults	UGen const& input, UGen const& inLow, UGen const& inHigh, UGen const& outLow, UGen const& outHigh
 #define MappingBase_InputsWithTypesOnly			UGen const& input, UGen const& inLow, UGen const& inHigh, UGen const& outLow, UGen const& outHigh
 #define MappingBase_InputsNoTypes				input, inLow, inHigh, outLow, outHigh
@@ -136,7 +138,7 @@ public:
 /** @ingroup UGenInternals */
 UGenInternalControlRateDeclaration(LinSinScalarUGenInternal, (MappingBase_InputsNoTypes), (MappingBase_InputsWithTypesAndDefaults));
 
-
+#endif // gpl
 
 #define MapTableBase_InputsWithTypesAndDefaults		UGen const& input, UGen const& inLow, UGen const& inHigh, Buffer const& table
 #define MapTableBase_InputsWithTypesOnly			UGen const& input, UGen const& inLow, UGen const& inHigh, Buffer const& table
@@ -202,6 +204,8 @@ UGenInternalControlRateDeclaration(MapTableScalarUGenInternal,
 								@param outLow	The lower range of the desired output value.							\
 								@param outHigh	The upper range of the desired output value.
 
+#ifndef UGEN_NOEXTGPL
+
 /** Map a linear to exponential scale.
  @ingroup AllUGens MathsUGens
  @see LinLin, LinSin, Map */
@@ -223,6 +227,8 @@ UGenSublcassDeclaration(LinSin, (MappingBase_InputsNoTypes),
 								(MappingBase_InputsWithTypesAndDefaults), 
 						COMMON_UGEN_DOCS MappingBase_Docs);
 
+#endif // gpl
+
 #define Map_Docs				MappingBaseBase_Docs																	\
 								@param table	A single channel Buffer used as a lookup table. Here an input			\
 												value of inLow would output the first value in the table, an			\
@@ -241,12 +247,6 @@ DirectMulAddUGenDeclaration(Map,
 							(UGen const& input, UGen const& inLow, UGen const& inHigh, Buffer const& table, MulAdd_ArgsDeclare), 
 							COMMON_UGEN_DOCS Map_Docs MulAddArgs_Docs);
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define LinExp LinExp()
-#define LinLin LinLin()
-#define LinSin LinSin()
-#define Map Map()
-#endif
 
 
 #endif // _UGEN_ugen_MappingUGens_H_

@@ -34,6 +34,8 @@
  ==============================================================================
  */
 
+#ifndef UGEN_NOEXTGPL
+
 #include "../../core/ugen_StandardHeader.h"
 
 BEGIN_UGEN_NAMESPACE
@@ -152,3 +154,5 @@ Normaliser::Normaliser(UGen const& input, UGen const& level, const float duratio
 
 
 END_UGEN_NAMESPACE
+
+#endif // gpl

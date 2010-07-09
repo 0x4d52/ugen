@@ -34,6 +34,8 @@
  ==============================================================================
  */
 
+#ifndef UGEN_NOEXTGPL
+
 #include "../../core/ugen_StandardHeader.h"
 
 BEGIN_UGEN_NAMESPACE
@@ -169,3 +171,5 @@ LFPulse::LFPulse(LFPulse_InputsWithTypesOnly) throw()
 }
 
 END_UGEN_NAMESPACE
+
+#endif // gpl

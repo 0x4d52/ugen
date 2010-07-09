@@ -39,7 +39,6 @@
 
 #include "../core/ugen_SmartPointer.h"
 #include "../core/ugen_Arrays.h"
-#include "../core/ugen_Random.h"
 #include "ugen_NeuralNetworkConfig.h"
 
 class NeuralNodeBaseInternal : public SmartPointer
@@ -90,8 +89,6 @@ private:
 	static const float ne1; // cached version of e1 for the float/double depending on type of network
 	static const float one; // cached versions of 0.0 and 1.0 for the float/double depending on type of network
 	static const float zero;
-	
-	Ran088& random;
 };
 
 class NeuralNode : public SmartPointerContainer<NeuralNodeBaseInternal>

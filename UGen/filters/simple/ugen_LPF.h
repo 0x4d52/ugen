@@ -68,9 +68,6 @@ DirectMulAddUGenDeclaration(LPF, (input, freq),
 							COMMON_UGEN_DOCS LPF_Docs MulAddArgs_Docs);
 
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define LPF LPF()
-#endif
 
 
 #endif // _UGEN_ugen_LPF_H_

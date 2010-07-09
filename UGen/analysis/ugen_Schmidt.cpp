@@ -34,6 +34,8 @@
  ==============================================================================
  */
 
+#ifndef UGEN_NOEXTGPL
+
 #include "../core/ugen_StandardHeader.h"
 
 BEGIN_UGEN_NAMESPACE
@@ -101,3 +103,5 @@ Schmidt::Schmidt(UGen const& input, UGen const& lo, UGen const& hi) throw()
 }
 
 END_UGEN_NAMESPACE
+
+#endif // gpl

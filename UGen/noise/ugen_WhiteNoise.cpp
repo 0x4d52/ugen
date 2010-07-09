@@ -34,6 +34,8 @@
  ==============================================================================
  */
 
+#ifndef UGEN_NOEXTGPL
+
 #include "../core/ugen_StandardHeader.h"
 
 BEGIN_UGEN_NAMESPACE
@@ -71,3 +73,5 @@ WhiteNoise::WhiteNoise() throw()
 }
 
 END_UGEN_NAMESPACE
+
+#endif GPL

@@ -60,8 +60,5 @@ UGenSublcassDeclarationNoDefault
  COMMON_UGEN_DOCS
 );
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define Debounce Debounce()
-#endif
 
 #endif // _UGEN_TrigProcess_H_

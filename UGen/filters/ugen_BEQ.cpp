@@ -34,6 +34,8 @@
  ==============================================================================
  */
 
+#ifndef UGEN_NOEXTGPL
+
 #include "../core/ugen_StandardHeader.h"
 
 BEGIN_UGEN_NAMESPACE
@@ -617,3 +619,5 @@ BAllPass::BAllPass(UGen const& input, UGen const& freq, UGen const& rq) throw()
 
 
 END_UGEN_NAMESPACE
+
+#endif // gpl

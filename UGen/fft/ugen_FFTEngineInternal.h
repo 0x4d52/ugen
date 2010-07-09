@@ -185,6 +185,11 @@
 	//7           | f [1]          | -f [5]          | f [5]
 #endif
 
+#if defined(UGEN_NOEXTGPL) && (defined(UGEN_FFTW) || defined(UGEN_FFTREAL))
+#warning UGEN_NOEXTGPL: FFT Real and FFTW are GPL!
+#endif
+
+
 /**
  Provides real to complex FFT and complex to real IFFT processes using a selection of underlying libraries.
  

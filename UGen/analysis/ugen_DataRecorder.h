@@ -40,6 +40,7 @@
 #include "../core/ugen_UGen.h"
 #include "../core/ugen_TextFile.h"
 
+
 class DataRecorderUGenInternal : public ProxyOwnerUGenInternal
 {
 public:
@@ -55,14 +56,11 @@ protected:
 };
 
 
-UGenSublcassDeclarationNoDefault(DataRecorder, 
+UGenSublcassDeclaration(DataRecorder, //UGenSublcassDeclarationNoDefault(DataRecorder, 
 								 (input, trig, file, timeStamp), 
 								 (UGen const& input, UGen const& trig, Text const& file, const bool timeStamp = false),
 								 COMMON_UGEN_DOCS);
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define DataRecorder DataRecorder()
-#endif
 
 
 #endif // _UGEN_ugen_DataRecorder_H_

@@ -148,9 +148,6 @@ private:
 	void initWithAudioFile(const char* audioFilePath, const bool loopFlag = false, const double startTime = 0.0) throw();
 };
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define DiskIn DiskIn()
-#endif
 
 
 #endif // _UGEN_ugen_iPhoneAudioFileDiskIn_H_

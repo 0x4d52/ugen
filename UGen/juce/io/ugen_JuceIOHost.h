@@ -70,8 +70,9 @@ public:
 			UGen::setDeleter(juceDeleter);
 		}
 		
+#ifndef UGEN_NOEXTGPL
 		Ran088::defaultGenerator().setSeed(Time::currentTimeMillis());
-		
+#endif
 		startTimer(50);
 		
 		output_ = Plug::AR(UGen::emptyChannels(numOutputs_));

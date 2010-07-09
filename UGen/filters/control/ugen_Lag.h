@@ -115,10 +115,6 @@ DirectMulAddUGenDeclaration(LagUD,	(input, lagTimeUp, lagTimeDown),
 
 
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define Lag Lag()
-#define LagUD LagUD()
-#endif
 
 
 #endif // _UGEN_ugen_Lag_H_

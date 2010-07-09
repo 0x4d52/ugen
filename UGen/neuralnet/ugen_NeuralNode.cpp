@@ -42,6 +42,8 @@ BEGIN_UGEN_NAMESPACE
 #include "../core/ugen_Constants.h"
 #include "../basics/ugen_InlineBinaryOps.h"
 
+static const double randomFactor = 1.0 / RAND_MAX;
+
 const float NeuralNodeSimpleInternal::defaultWeight = 0.1;
 const float NeuralNodeSimpleInternal::ne1 = (float)e1;
 const float NeuralNodeSimpleInternal::one = (float)1.0;
@@ -49,29 +51,28 @@ const float NeuralNodeSimpleInternal::zero = (float)0.0;
 
 NeuralNodeSimpleInternal::NeuralNodeSimpleInternal(const int numWeights) throw()
 :	threshold(zero), output(zero), //input(zero), act(zero),
-	weightVector(NumericalArray<float>::newClear(numWeights < 1 ? 1 : numWeights)),
-	random(Ran088::defaultGenerator())
+	weightVector(NumericalArray<float>::newClear(numWeights < 1 ? 1 : numWeights))
 {		
 	init(defaultWeight);
 }
 
 void NeuralNodeSimpleInternal::init(const float weightMaximum) throw()
 {
-	threshold = random.nextBiLinearDouble(weightMaximum);
+	threshold = rand() * randomFactor * 2 * weightMaximum - weightMaximum;
 	
 	for(int i = 0; i < weightVector.size(); i++)
 	{
-		weightVector[i] = random.nextBiLinearDouble(weightMaximum);
+		weightVector[i] = rand() * randomFactor * 2 * weightMaximum - weightMaximum;
 	}	
 }
 
 void NeuralNodeSimpleInternal::randomise(const float amount) throw()
 {
-	threshold += random.nextBiLinearDouble(amount);
+	threshold += rand() * randomFactor * 2 * amount - amount;
 	
 	for(int i = 0; i < weightVector.size(); i++)
 	{
-		weightVector[i] += random.nextBiLinearDouble(amount);
+		weightVector[i] += rand() * randomFactor * 2 * amount - amount;
 	}	
 }
 

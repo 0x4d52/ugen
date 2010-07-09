@@ -79,9 +79,6 @@ DirectMulAddUGenDeclaration(LFPulse,
 							(LFPulse_InputsWithTypesAndDefaults), 
 							(LFPulse_InputsWithTypesAndDefaults, MulAdd_ArgsDeclare), COMMON_UGEN_DOCS);
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define LFPulse LFPulse()
-#endif
 
 
 #endif // _UGEN_ugen_LFPulse_H_

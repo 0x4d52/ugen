@@ -165,10 +165,6 @@ UGenSublcassDeclaration(Linen, (Linen_InputsNoTypes), (Linen_InputsWithTypes), C
 								const UGen::DoneAction doneAction
 
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define LLine LLine()
-#define Linen Linen()
-#endif
 
 
 

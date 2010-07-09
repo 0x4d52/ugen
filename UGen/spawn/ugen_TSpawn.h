@@ -40,8 +40,6 @@
 #include "../core/ugen_UGen.h"
 #include "ugen_Spawn.h"
 
-#define _FILEID_ _UGEN_ugen_TSpawn_H_
-
 
 /** @ingroup UGenInternals */
 class TSpawnUGenInternal : public SpawnBaseUGenInternal
@@ -175,9 +173,5 @@ public:
 };
 
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define TSpawn TSpawn()
-#endif
 
-#undef _FILEID_
 #endif // _UGEN_ugen_TSpawn_H_

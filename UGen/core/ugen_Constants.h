@@ -37,6 +37,8 @@
 #ifndef _UGEN_ugen_Constants_H_
 #define _UGEN_ugen_Constants_H_
 
+// same names as SC but hardly enough to consider this to be gpl'd
+
 /** @file 
 	Some useful maths constants.
  */

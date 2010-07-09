@@ -235,12 +235,6 @@ DefineCustomUGen(TrueStereoConvolve,
 				 (UGen const& input, Buffer const& impulseLeft, Buffer const& impulseRight),
 				 COMMON_UGEN_DOCS);
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define PartConvolve PartConvolve()
-#define TimeConvolve TimeConvolve()
-#define ZeroLatencyConvolve ZeroLatencyConvolve()
-#define TrueStereoConvolve TrueStereoConvolve()
-#endif
 
 
 #endif // _UGEN_ugen_Convolution_H_

@@ -65,11 +65,6 @@ UGenSublcassDeclarationNoDefault
 );
 
 
-#define Normalizer Normaliser
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define Normaliser Normaliser()
-#define Normalizer Normaliser()
-#endif
 
 
 #endif // _UGEN_Normaliser_H_

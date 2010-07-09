@@ -141,9 +141,6 @@ private:
 
 };
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define DiskOut DiskOut()
-#endif
 
 
 #endif // _UGEN_ugen_iPhoneAudioFileDiskOut_H_

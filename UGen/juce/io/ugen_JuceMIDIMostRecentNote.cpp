@@ -34,6 +34,8 @@
  ==============================================================================
  */
 
+#ifndef UGEN_NOEXTGPL
+
 #include "../../core/ugen_StandardHeader.h"
 
 #ifdef JUCE_VERSION
@@ -73,3 +75,5 @@ MIDIMostRecentNote::MIDIMostRecentNote(const int midiChannel,
 END_UGEN_NAMESPACE
 
 #endif
+
+#endif // gpl

@@ -92,9 +92,6 @@ UGenSublcassDeclarationNoDefault(FFTMagnitudeSelection,
 								 (UGen const& input, FFTEngine const& fft, const int overlap, IntArray const& bins), 
 								COMMON_UGEN_DOCS);
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define FFTMagnitudeSelection FFTMagnitudeSelection()
-#endif
 
 
 #endif // _UGEN_ugen_FFTMagnitudeSelection_H_

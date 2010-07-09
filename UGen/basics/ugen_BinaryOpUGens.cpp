@@ -34,6 +34,8 @@
  ==============================================================================
  */
 
+// need to check gpl 
+
 #include <math.h>
 #include "../core/ugen_StandardHeader.h"
 
@@ -95,16 +97,16 @@ BinaryOpFunctionUGenDefinition(Min,			min,	min);
 BinaryOpFunctionUGenDefinition(Max,			max,	max);
 
 BinaryOpFunctionUGenDefinition(Clip2,		clip2,	clip2);
+
+#ifndef UGEN_NOEXTGPL
 BinaryOpFunctionUGenDefinition(Wrap,		wrap,	wrap);
 BinaryOpFunctionUGenDefinition(Wrap2,		wrap2,	wrap2);
 BinaryOpFunctionUGenDefinition(Fold,		fold,	fold);
-BinaryOpFunctionUGenDefinition(Fold2,		fold2,	fold2);
-
+BinaryOpFunctionUGenDefinition(Fold2,		fold2,	fold2)
 BinaryOpFunctionUGenDefinition(Ring1,		ring1,	ring1);
 BinaryOpFunctionUGenDefinition(Ring2,		ring2,	ring2);
 BinaryOpFunctionUGenDefinition(Ring3,		ring3,	ring3);
-BinaryOpFunctionUGenDefinition(Ring4,		ring4,	ring4);
-
+BinaryOpFunctionUGenDefinition(Ring4,		ring4,	ring4)
 BinaryOpFunctionUGenDefinition(Round,		round,	round);
 BinaryOpFunctionUGenDefinition(Trunc,		trunc,	trunc);
 BinaryOpFunctionUGenDefinition(SumSqr,		sumsqr, sumsqr);
@@ -113,7 +115,7 @@ BinaryOpFunctionUGenDefinition(SqrSum,		sqrsum, sqrsum);
 BinaryOpFunctionUGenDefinition(SqrDif,		sqrdif, sqrdif);
 BinaryOpFunctionUGenDefinition(AbsDif,		absdif, absdif);
 BinaryOpFunctionUGenDefinition(Thresh,		thresh, thresh);
-
+#endif // gpl
 
 // special case for division... partly to demonstrate what these marcos output but
 // also to avoid some divide by zero warnings

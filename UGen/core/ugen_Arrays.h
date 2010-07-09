@@ -1342,10 +1342,15 @@ public:
 		
 		NumericalArray<NumericalType> newArray = NumericalArray<NumericalType>::withSize(numValues);
 		NumericalType *outputValues = newArray.getArray();
+		NumericalType diff = upper-lower;
+		NumericalType randFactor = (NumericalType)1 / (NumericalType)RAND_MAX;
 		
 		for(int i = 0; i < numValues; i++)
 		{
-			outputValues[i] = Ran088::defaultGenerator().next(lower, upper);
+			NumericalType randomValue = rand() * randFactor;
+			
+			//outputValues[i] = Ran088::defaultGenerator().next(lower, upper);
+			outputValues[i] = randomValue * diff + lower;
 		}
 		
 		return newArray;
@@ -1357,6 +1362,7 @@ public:
 		return rand(size, -positive, positive);
 	}
 	
+#ifndef UGEN_NOEXTGPL
 	static NumericalArray<NumericalType> exprand(const int size, 
 												 const NumericalType lower, 
 												 const NumericalType upper) throw()
@@ -1394,6 +1400,7 @@ public:
 		
 		return newArray;				
 	}
+#endif // gpl
 	
 	static NumericalArray<NumericalType> sineTable(const int size, 
 												   const float repeats = 1.f, 
@@ -1892,11 +1899,13 @@ public:
 	NumericalArrayUnaryFunctionDefinition(log2);
 	NumericalArrayUnaryFunctionDefinition(log10);
 	NumericalArrayUnaryFunctionDefinition(exp);
-	NumericalArrayUnaryFunctionDefinition(midicps);
-	NumericalArrayUnaryFunctionDefinition(cpsmidi);
 	NumericalArrayUnaryFunctionDefinition(squared);
 	NumericalArrayUnaryFunctionDefinition(cubed);
+#ifndef UGEN_NOEXTGPL
+	NumericalArrayUnaryFunctionDefinition(midicps);
+	NumericalArrayUnaryFunctionDefinition(cpsmidi);
 	NumericalArrayUnaryFunctionDefinition(distort);
+#endif
 	
 	NumericalArray<NumericalType> operator- () throw()
 	{

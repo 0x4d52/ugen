@@ -43,6 +43,8 @@ BEGIN_UGEN_NAMESPACE
 #include "../basics/ugen_InlineUnaryOps.h"
 #include "../basics/ugen_InlineBinaryOps.h"
 
+#ifndef UGEN_NOEXTGPL
+
 MappingBaseUGenInternal::MappingBaseUGenInternal(MappingBase_InputsWithTypesOnly) throw()
 :	UGenInternal(NumInputs)
 {
@@ -664,6 +666,8 @@ void LinSinScalarUGenInternalK::processBlock(bool& shouldDelete, const unsigned 
 	}
 }
 
+#endif // gpl
+
 MapTableBaseUGenInternal::MapTableBaseUGenInternal(MapTableBase_InputsWithTypesOnly) throw()
 :	UGenInternal(NumInputs),
 	table_(table),
@@ -873,7 +877,7 @@ void MapTableScalarUGenInternalK::processBlock(bool& shouldDelete, const unsigne
 	}
 }
 
-
+#ifndef UGEN_NOEXTGPL
 
 LinExp::LinExp(MappingBase_InputsWithTypesOnly) throw()
 {
@@ -976,6 +980,8 @@ LinSin::LinSin(MappingBase_InputsWithTypesOnly) throw()
 		}
 	}
 }
+
+#endif // gpl
 
 Map::Map(MapTableBase_InputsWithTypesAndDefaults) throw()
 {

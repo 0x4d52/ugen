@@ -71,9 +71,6 @@ UGenSublcassDeclarationNoDefault
 	COMMON_UGEN_DOCS		// Documentation (for Doxygen)
 );
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define Maxima Maxima()
-#endif
 
 
 #endif // _UGEN_Maxima_H_

@@ -144,16 +144,19 @@ inline float log10 (const float a) throw()			{	return (float)::log10(a);					}
 inline float exp (const float a) throw()			{	return (float)::exp(a);						}
 //inline double exp (const double a) throw()			{	return ::exp(a);							}
 
+inline float squared(const float a) throw()			{	return a*a;													}
+inline double squared(const double a) throw()		{	return a*a;													}
+inline float cubed(const float a) throw()			{	return a*a*a;												}
+inline double cubed(const double a) throw()			{	return a*a*a;												}
+
+
+#ifndef UGEN_NOEXTGPL
 inline double midicps(const int a) throw()			{	return 440.0 * ::pow(2.0, (a - 69.0) * r12);				}
 inline float midicps(const float a) throw()			{	return (float)(440.0 * ::pow(2.0, (a - 69.0) * r12));		}
 inline double midicps(const double a) throw()		{	return 440.0 * ::pow(2.0, (a - 69.0) * r12);				}
 inline double cpsmidi(const int a) throw()			{	return log2(a * r440) * 12.0 + 69.0;						}
 inline float cpsmidi(const float a) throw()			{	return (float)(log2(a * r440) * 12.0 + 69.0);				}
 inline double cpsmidi(const double a) throw()		{	return log2(a * r440) * 12.0 + 69.0;						}
-inline float squared(const float a) throw()			{	return a*a;													}
-inline double squared(const double a) throw()		{	return a*a;													}
-inline float cubed(const float a) throw()			{	return a*a*a;												}
-inline double cubed(const double a) throw()			{	return a*a*a;												}
 inline float distort(const float a) throw()			{	return a / (1.f + fabs(a));									}
 inline double distort(const double a) throw()		{	return a / (1.0 + ::abs(a));								}
 
@@ -231,6 +234,7 @@ inline int roundFloatToInt (const float value) throw()
 	
     return n.asInt [0];
 }
+#endif // gpl
 
 inline double ceil(double a) throw()	{ int n = (int)a; return (double)(n+1); }
 inline float ceil(float a) throw()		{ int n = (int)a; return (float)(n+1); }

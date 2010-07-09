@@ -540,9 +540,6 @@ UGenSublcassDeclarationNoDefault(MultiSliderUGen,
 								 (UGen const& input, MultiSlider *sliders),
 								 COMMON_UGEN_DOCS);
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define MultiSliderUGen MultiSliderUGen()
-#endif
 
 
 #endif // _UGEN_ugen_JuceMultiSlider_H_

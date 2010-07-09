@@ -47,13 +47,16 @@ BEGIN_UGEN_NAMESPACE
 
 
 
-/** 
- Option to allow more SuperCollider-style code.
- 
- e.g. SinOsc.ar(440, 0, 0.5) rather than SinOsc(440, 0, 0.5) or SinOsc::AR(440, 0, 0.5)
- or SinOsc.kr(4, 0, 1) rather than SinOsc(4, 0, 1).kr() or SinOsc::KR(4, 0, 1)
- */
-//#define UGEN_SCSTYLE
+#ifdef UGEN_SCSTYLE
+	#warning UGEN_SCSTYLE: SC style was too complex to maintain and support has been removed
+#endif
+
+#ifdef UGEN_NOEXTGPL
+	#warning UGEN_NOEXTGPL: any linker errors might be due to your use of externally GPL'd code
+	#ifdef UGEN_JUCE
+		#warning UGEN_NOEXTGPL: NB that Juce is GPL unless you have a closed source license!
+	#endif
+#endif
 
 #include "core/ugen_UGen.h"
 #include "core/ugen_UGenInternal.h"

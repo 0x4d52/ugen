@@ -34,6 +34,8 @@
  ==============================================================================
  */
 
+// same name a SC Plug but no derived code
+
 #include "../core/ugen_StandardHeader.h"
 
 BEGIN_UGEN_NAMESPACE

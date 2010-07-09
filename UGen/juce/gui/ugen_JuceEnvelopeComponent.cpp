@@ -34,6 +34,8 @@
  ==============================================================================
  */
 
+#ifndef UGEN_NOEXTGPL
+
 #include "../../core/ugen_StandardHeader.h"
 
 #ifdef JUCE_VERSION
@@ -1662,6 +1664,8 @@ const int EnvelopeNodePopup::idOffset = 2000;
 END_UGEN_NAMESPACE
 
 #endif // juce
+
+#endif // gpl
 
 
 

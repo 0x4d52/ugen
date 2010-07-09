@@ -164,11 +164,6 @@ DirectMulAddUGenDeclaration(SinOsc,
 							(UGen const& freq = 440.f, Buffer const& initialPhase = 0.f, MulAdd_ArgsDeclare), 
 							COMMON_UGEN_DOCS Osc_Docs MulAddArgs_Docs);
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define TableOsc	TableOsc()
-#define HarmonicOsc HarmonicOsc()
-#define SinOsc		SinOsc()
-#endif
 
 
 #endif // _UGEN_ugen_TableOsc_H_
