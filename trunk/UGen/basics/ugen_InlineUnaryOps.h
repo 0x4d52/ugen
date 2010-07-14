@@ -107,8 +107,8 @@
 
 
 #ifdef _WIN32
-inline float log2 (const float a) throw()			{	return (float)(::log(a) * rlog2);		}
-inline double log2 (const double a) throw()			{	return ::log(a) * rlog2;				}
+inline float log2 (const float a) throw()			{	return (float)(::log(a) * oneOverLog2);		}
+inline double log2 (const double a) throw()			{	return ::log(a) * oneOverLog2;				}
 #else
 inline float log2 (const float a) throw()			{	return (float)::log2(a);					}
 inline double log2 (const double a) throw()			{	return ::log2(a);							}
@@ -149,22 +149,24 @@ inline double squared(const double a) throw()		{	return a*a;													}
 inline float cubed(const float a) throw()			{	return a*a*a;												}
 inline double cubed(const double a) throw()			{	return a*a*a;												}
 
-
-#ifndef UGEN_NOEXTGPL
-inline double midicps(const int a) throw()			{	return 440.0 * ::pow(2.0, (a - 69.0) * r12);				}
-inline float midicps(const float a) throw()			{	return (float)(440.0 * ::pow(2.0, (a - 69.0) * r12));		}
-inline double midicps(const double a) throw()		{	return 440.0 * ::pow(2.0, (a - 69.0) * r12);				}
-inline double cpsmidi(const int a) throw()			{	return log2(a * r440) * 12.0 + 69.0;						}
-inline float cpsmidi(const float a) throw()			{	return (float)(log2(a * r440) * 12.0 + 69.0);				}
-inline double cpsmidi(const double a) throw()		{	return log2(a * r440) * 12.0 + 69.0;						}
-inline float distort(const float a) throw()			{	return a / (1.f + fabs(a));									}
-inline double distort(const double a) throw()		{	return a / (1.0 + ::abs(a));								}
-
+// from music-dsp list
 inline float zap(const float x) throw()
 {
 	float absx = std::abs(x);
 	return (absx > (float)1e-15 && absx < (float)1e15) ? x : 0.f;
 }
+
+inline double midicps(const int a) throw()			{	return 440.0 * ::pow(2.0, (a - 69.0) * oneOver12);				}
+inline float midicps(const float a) throw()			{	return (float)(440.0 * ::pow(2.0, (a - 69.0) * oneOver12));		}
+inline double midicps(const double a) throw()		{	return 440.0 * ::pow(2.0, (a - 69.0) * oneOver12);				}
+inline double cpsmidi(const int a) throw()			{	return log2(a * oneOver440) * 12.0 + 69.0;						}
+inline float cpsmidi(const float a) throw()			{	return (float)(log2(a * oneOver440) * 12.0 + 69.0);				}
+inline double cpsmidi(const double a) throw()		{	return log2(a * oneOver440) * 12.0 + 69.0;						}
+
+
+#ifndef UGEN_NOEXTGPL
+inline float distort(const float a) throw()			{	return a / (1.f + fabs(a));									}
+inline double distort(const double a) throw()		{	return a / (1.0 + ::abs(a));								}
 
 inline double besselI0(double p) throw()
 {

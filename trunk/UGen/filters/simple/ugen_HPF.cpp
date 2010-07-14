@@ -64,20 +64,16 @@ UGenInternal* HPFUGenInternal::getChannel(const int channel) throw()
 void HPFUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
 	double piOverSampleRate = UGen::getReciprocalSampleRate() * pi;
-	int filterLoops = UGen::getFilterLoops();
-	int filterRemain = UGen::getFilterRemain();
-	double oneOverFilterLoops = 1.0 / filterLoops;
+	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
 	float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
 	float* freqSamples = inputs[Freq].processBlock(shouldDelete, blockID, channel);
 	float y0;
 	float newFreq = *freqSamples;
 	
-//	ugen_assert(newFreq > 0.f);
-//	ugen_assert(newFreq < (UGen::getSampleRate() * 0.5));
-	
 	if(newFreq != currentFreq)
 	{
+		float slope = 1.f / numSamplesToProcess;
 		float pfreq = (float)(max(0.01f, newFreq) * piOverSampleRate);
 		
 		float C = tan(pfreq);
@@ -88,52 +84,28 @@ void HPFUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockI
 		float next_b1 = 2.f * (1.f - C2) * next_a0 ;
 		float next_b2 = -(1.f - sqrt2C + C2) * next_a0;
 		
-		float a0_slope = (float)((next_a0 - a0) * oneOverFilterLoops);
-		float b1_slope = (float)((next_b1 - b1) * oneOverFilterLoops);
-		float b2_slope = (float)((next_b2 - b2) * oneOverFilterLoops);
+		float a0_slope = (next_a0 - a0) * slope;
+		float b1_slope = (next_b1 - b1) * slope;
+		float b2_slope = (next_b2 - b2) * slope;
 		
-		while(filterLoops--)
-		{				
+		while(numSamplesToProcess--)
+		{
 			y0 = *inputSamples++ + b1 * y1 + b2 * y2; 
-			*outputSamples++ = a0 * (y0 - 2.f * y1 + y2);
-			
-			y2 = *inputSamples++ + b1 * y0 + b2 * y1; 
-			*outputSamples++ = a0 * (y2 - 2.f * y0 + y1);
-			
-			y1 = *inputSamples++ + b1 * y2 + b2 * y0; 
-			*outputSamples++ = a0 * (y1 - 2.f * y2 + y0);
+			*outputSamples++ = a0 * (y0 + 2.f * y1 + y2);
+			y2 = y1; 
+			y1 = y0;			
 			
 			a0 += a0_slope;
 			b1 += b1_slope;
 			b2 += b2_slope;
-		}
-		
-		while(filterRemain--)
-		{
-			y0 = *inputSamples++ + b1 * y1 + b2 * y2; 
-			*outputSamples++ = a0 * (y0 - 2.f * y1 + y2);
-			y2 = y1; 
-			y1 = y0;			
-		}
+		}		
 	}
 	else
 	{
-		while(filterLoops--)
-		{				
-			y0 = *inputSamples++ + b1 * y1 + b2 * y2; 
-			*outputSamples++ = a0 * (y0 - 2.f * y1 + y2);
-			
-			y2 = *inputSamples++ + b1 * y0 + b2 * y1; 
-			*outputSamples++ = a0 * (y2 - 2.f * y0 + y1);
-			
-			y1 = *inputSamples++ + b1 * y2 + b2 * y0; 
-			*outputSamples++ = a0 * (y1 - 2.f * y2 + y0);
-		}
-		
-		while(filterRemain--)
+		while(numSamplesToProcess--)
 		{
 			y0 = *inputSamples++ + b1 * y1 + b2 * y2; 
-			*outputSamples++ = a0 * (y0 - 2.f * y1 + y2);
+			*outputSamples++ = a0 * (y0 + 2.f * y1 + y2);
 			y2 = y1; 
 			y1 = y0;			
 		}
@@ -143,6 +115,7 @@ void HPFUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockI
 	y2 = zap(y2);
 	currentFreq = newFreq;
 }
+
 
 
 HPF::HPF(UGen const& input, UGen const& freq) throw()

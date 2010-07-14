@@ -56,7 +56,7 @@ FSinOscUGenInternal::FSinOscUGenInternal(UGen const& freq, const float initialPh
 	if(inputs[Freq].isScalar(channel))
 		currentFreq = inputs[Freq].getValue(channel);
 	
-	double w = currentFreq * twopi * UGen::getReciprocalSampleRate();
+	double w = currentFreq * twoPi * UGen::getReciprocalSampleRate();
 	b1 = 2. * std::cos(w);
 	y1 = std::sin(initialPhase);
 	y2 = std::sin(initialPhase-w);
@@ -92,7 +92,7 @@ void FSinOscUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 		
 		if((1.0-std::abs(y1)) < 0.00001)
 		{
-			initialPhase = y1 > 0.0 ? pi2 : -pi2;
+			initialPhase = y1 > 0.0 ? piOverTwo : -piOverTwo;
 		}
 		else
 		{
@@ -105,7 +105,7 @@ void FSinOscUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 			}
 		}
 
-		double w = currentFreq * twopi * UGen::getReciprocalSampleRate();
+		double w = currentFreq * twoPi * UGen::getReciprocalSampleRate();
 		b1 = zap(2. * std::cos(w));
 		y1 = zap(std::sin(initialPhase));
 		y2 = zap(std::sin(initialPhase-w));

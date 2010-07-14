@@ -1407,7 +1407,7 @@ public:
 												   const NumericalType peak = 1) throw()
 	{
 		ugen_assert(repeats > 0.f);
-		return NumericalArray<double>::line(size, 0.0, twopi * repeats).sin() * peak;
+		return NumericalArray<double>::line(size, 0.0, twoPi * repeats).sin() * peak;
 	}
 	
 	static NumericalArray<NumericalType> cosineTable(const int size, 
@@ -1415,7 +1415,7 @@ public:
 													 const NumericalType peak = 1) throw()
 	{
 		ugen_assert(repeats > 0.f);
-		return NumericalArray<double>::line(size, 0.0, twopi * repeats).cos() * peak;
+		return NumericalArray<double>::line(size, 0.0, twoPi * repeats).cos() * peak;
 	}
 	
 	static NumericalArray<NumericalType> cosineWindow(const int size, 

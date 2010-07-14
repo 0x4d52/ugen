@@ -58,21 +58,21 @@ NeuralNodeSimpleInternal::NeuralNodeSimpleInternal(const int numWeights) throw()
 
 void NeuralNodeSimpleInternal::init(const float weightMaximum) throw()
 {
-	threshold = rand() * randomFactor * 2 * weightMaximum - weightMaximum;
+	threshold = std::rand() * randomFactor * 2 * weightMaximum - weightMaximum;
 	
 	for(int i = 0; i < weightVector.size(); i++)
 	{
-		weightVector[i] = rand() * randomFactor * 2 * weightMaximum - weightMaximum;
+		weightVector[i] = std::rand() * randomFactor * 2 * weightMaximum - weightMaximum;
 	}	
 }
 
 void NeuralNodeSimpleInternal::randomise(const float amount) throw()
 {
-	threshold += rand() * randomFactor * 2 * amount - amount;
+	threshold += std::rand() * randomFactor * 2 * amount - amount;
 	
 	for(int i = 0; i < weightVector.size(); i++)
 	{
-		weightVector[i] += rand() * randomFactor * 2 * amount - amount;
+		weightVector[i] += std::rand() * randomFactor * 2 * amount - amount;
 	}	
 }
 

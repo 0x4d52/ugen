@@ -46,7 +46,6 @@ BEGIN_UGEN_NAMESPACE
 #define UGEN_USER_MODE
 
 
-
 #ifdef UGEN_SCSTYLE
 	#warning UGEN_SCSTYLE: SC style was too complex to maintain and support has been removed
 #endif

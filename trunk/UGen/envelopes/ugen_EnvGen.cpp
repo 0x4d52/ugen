@@ -283,12 +283,12 @@ bool EnvGenUGenInternal::setSegment(const int segment, const double stepsPerSeco
 			a2 = (targetValue + currentValue) * 0.5;
 			b1 = 2.0 * std::cos(w);
 			y1 = (targetValue - currentValue) * 0.5;
-			y2 = y1 * std::sin(pi2 - w);
+			y2 = y1 * std::sin(piOverTwo - w);
 			currentValue = a2 - y1;
 			
 			break;
 		case EnvCurve::Welch:
-			w = pi2 / (double)stepsUntilTarget;
+			w = piOverTwo / (double)stepsUntilTarget;
 			
 			b1 = 2.0 * std::cos(w);
 			

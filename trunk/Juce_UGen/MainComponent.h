@@ -183,7 +183,10 @@ public:
 //		scope = Scope::AR(&scopeComponent, synth, U(ampSlider2) / 10); 
 		
 		// new way
-		scope = Sender::AR(synth, U(ampSlider2) / 10);
+		//scope = Sender::AR(synth, U(ampSlider2) / 10);
+		scope = FFTSender::AR(synth, FFTEngine::Magnitude, 1024, 2);
+		scopeComponent->setSmoothing(-0.05);
+		scopeComponent->setYMaximum(0.25);
 		scope.addBufferReceiver(scopeComponent);
 	}
 
@@ -293,7 +296,30 @@ public:
 			
 	UGen constructUGenGraph()
 	{
-		return SinOsc::AR(U(freqSlider1, freqSlider2), 0, Lag::AR(ampSlider1));
+//		//return SinOsc::AR(U(freqSlider1, freqSlider2), 0, Lag::AR(ampSlider1));
+//
+//		int n = 50; // 1600 SinOscs uses 80% cpu!
+//		UGen signal;
+//		
+//		UGen src = LFSaw::AR(200);
+//		
+//		for(int i = 0; i < n; i++)
+//		{
+//			//signal = (signal, BLowPass::AR(LFSaw::AR(exprand(100.0, 1000.0)), SinOsc::AR(exprand(0.25, 4.0)).linexp(-1, 1, 200, 5000), exprand(0.3, 3.0)));
+//			signal = (signal, BLowPass::AR(src, exprand(100.0, 10000.0), exprand(0.3, 3.0)));
+//			//signal = (signal, LPF::AR(src, exprand(100.0, 10000.0)));
+//			//signal = (signal, SinOsc::AR(exprand(100.0, 10000.0)));
+//			
+//			UGen a = BHiShelf::AR(input, 2000, 1.0, 6);
+//		}
+//		
+//		float scale = 1.f / n * 0.2;
+//		return signal.mix() * scale;	
+//		
+//		//return BLowPass::AR(LFSaw::AR(exprand(100.0, 1000.0)), SinOsc::AR(exprand(0.25, 4.0)).linexp(-1, 1, 200, 5000), exprand(0.3, 3.0)) * 0.3;
+		
+		return BHiShelf::AR(WhiteNoise::AR(0.3), 2000, 0.5, 12);
+		//return WhiteNoise::AR(0.3);
 	}
 	
 	

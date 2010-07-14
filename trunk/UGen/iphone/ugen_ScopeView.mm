@@ -1078,8 +1078,8 @@ void RadialScopeView::paintXScale(CGRect const& rect, const int radius) throw()
 //		ugen_assert(bufferWrap == 0.0); // need to upate this function if the waveform is rotated...
 		
 		const double audioBufferSize = audioBuffer.size();
-		const double radiansPerSample = twopi / audioBufferSize;
-		const double radiansOffset = bufferWrap * twopi;
+		const double radiansPerSample = twoPi / audioBufferSize;
+		const double radiansOffset = bufferWrap * twoPi;
 		
 		const int markSpacing = markSpacingX;
 		const unsigned int labelHop = labelHopX;
@@ -1133,7 +1133,7 @@ void RadialScopeView::paintXScale(CGRect const& rect, const int radius) throw()
 						snprintf(label, sizeof(label), "%d", (int)(audioIndex + offsetSamples + 0.5));
 					}
 					
-					const double rotation = pi2-angle;
+					const double rotation = piOverTwo-angle;
 					//if(angle > pi) rotation += pi;					
 					CGAffineTransform transform = CGAffineTransformRotate(flipTransform, rotation);
 					CGContextSetTextMatrix(context, transform);
@@ -1173,7 +1173,7 @@ double RadialScopeView::getDeltaAngle() const throw()
 int RadialScopeView::getDisplayBufferSize() const throw()
 {
 	const double angle = getDeltaAngle();
-	return twopi / angle + 0.5;
+	return twoPi / angle + 0.5;
 }
 
 int RadialScopeView::getRadius() const throw()

@@ -628,7 +628,9 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 	deleter = new NSDeleter();
 	UGen::setDeleter(deleter);
 	
+#ifndef UGEN_NOEXTGPL
 	Ran088::defaultGenerator().setSeed((int)[[NSDate date] timeIntervalSince1970]);
+#endif
 	
 	//UGen::prepareToPlay(hwSampleRate, DEFAULT_BUFFERSIZE);
 	UGen::prepareToPlay(hwSampleRate, preferredBufferSize);

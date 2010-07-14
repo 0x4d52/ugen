@@ -591,8 +591,8 @@ void RadialScopeComponent::paintXScale(Graphics& g, const int radius)
 //		ugen_assert(bufferWrap == 0.0); // need to upate this function if the waveform is rotated...
 		
 		const double audioBufferSize = audioBuffer.size();
-		const double radiansPerSample = twopi / audioBufferSize;
-		const double radiansOffset = bufferWrap * twopi;
+		const double radiansPerSample = twoPi / audioBufferSize;
+		const double radiansOffset = bufferWrap * twoPi;
 		
 		const int markSpacing = markSpacingX;
 		const unsigned int labelHop = labelHopX;
@@ -646,7 +646,7 @@ void RadialScopeComponent::paintXScale(Graphics& g, const int radius)
 					}
 					
 					g.setColour(Colour(colours[TextX].get32bitColour()));				
-					const double rotation = -pi2+angle;
+					const double rotation = -piOverTwo+angle;
 					//if(angle > pi) rotation += pi;
 					AffineTransform transform = AffineTransform::identity.rotated(rotation).translated(centreX+endX*1.01, centreY-endY*1.01);
 					g.drawTextAsPath(label, transform);
@@ -689,7 +689,7 @@ double RadialScopeComponent::getDeltaAngle() const throw()
 int RadialScopeComponent::getDisplayBufferSize() const throw()
 {
 	const double angle = getDeltaAngle();
-	return twopi / angle + 0.5;
+	return twoPi / angle + 0.5;
 }
 
 int RadialScopeComponent::getRadius() const throw()

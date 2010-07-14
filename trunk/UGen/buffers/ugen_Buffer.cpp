@@ -2028,7 +2028,7 @@ Buffer Buffer::blend(Buffer const& other, double dfraction) const throw()
 //				a2 = 0.5;
 //				b1 = 2.0 * std::cos(w);
 //				y1 = 0.5;
-//				y2 = y1 * std::sin(pi2 - w);
+//				y2 = y1 * std::sin(piOverTwo - w);
 //				currentValue = a2 - y1;
 //				
 //			} break;
@@ -2203,12 +2203,12 @@ Buffer Buffer::linrand(const int size, const double lower, const double upper, c
 
 Buffer Buffer::sineTable(const int size, const float repeats) throw()
 {
-	return Buffer::line(size, 0.0, twopi * repeats).sin();
+	return Buffer::line(size, 0.0, twoPi * repeats).sin();
 }
 
 Buffer Buffer::cosineTable(const int size, const float repeats) throw()
 {
-	return Buffer::line(size, 0.0, twopi * repeats).cos();
+	return Buffer::line(size, 0.0, twoPi * repeats).cos();
 }
 
 Buffer Buffer::cosineWindow(const int size, const float repeats) throw()
@@ -2421,8 +2421,8 @@ const Buffer& Buffer::getTableCosine8192() throw()
 static Buffer ugen_calculatePanTable512() throw()
 {
 	Buffer constantPanTemp;
-	constantPanTemp = Buffer::line(512, -pi4, pi4) << Buffer::line(512, pi4, -pi4);
-	return (constantPanTemp.cos() - constantPanTemp.sin()) * sqrt22;
+	constantPanTemp = Buffer::line(512, -piOverFour, piOverFour) << Buffer::line(512, piOverFour, -piOverFour);
+	return (constantPanTemp.cos() - constantPanTemp.sin()) * sqrt2OverTwo;
 }
 
 const Buffer& Buffer::getTableConstantPan512() throw()

@@ -102,14 +102,12 @@ public:
 
 	static inline unsigned long countOnes(unsigned long x)
 	{
-		unsigned long t; 
-		x = x - ((x >> 1) & 0x55555555); 
-		t = ((x >> 2) & 0x33333333); 
-		x = (x & 0x33333333) + t; 
-		x = (x + (x >> 4)) & 0x0F0F0F0F; 
-		x = x + (x << 8); 
-		x = x + (x << 16); 
-		return x >> 24; 
+		x -= ((x >> 1) & 0x55555555);
+        x = (((x >> 2) & 0x33333333) + (x & 0x33333333));
+        x = (((x >> 4) + x) & 0x0f0f0f0f);
+        x += (x >> 8);
+        x += (x >> 16);
+        return(x & 0x0000003f);		
 	}
 	
 	static inline void endianSwap(unsigned short& x)
@@ -129,6 +127,7 @@ public:
 			((x << 8) & 0x00FF0000) |
 			((x >> 8) & 0x0000FF00) |
 			(x << 24);
+		
 	}
 	
 	static inline void endianSwap(int& x)
