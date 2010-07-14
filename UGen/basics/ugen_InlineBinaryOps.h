@@ -506,9 +506,9 @@ inline float linwelch(const float input,
 	float inPos = (input - inLow) / inRange;
 
 	if (outLow < outHigh)
-		return outLow + outRange * std::sin(pi2 * inPos);
+		return outLow + outRange * std::sin(piOverTwo * inPos);
 	else
-		return outHigh - outRange * std::sin(pi2 - pi2 * inPos);
+		return outHigh - outRange * std::sin(piOverTwo - piOverTwo * inPos);
 	
 }
 

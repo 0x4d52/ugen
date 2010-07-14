@@ -181,7 +181,7 @@ HarmonicOsc::HarmonicOsc(Buffer const& harmonicWeights, UGen const& freq, Buffer
 	for(int harmonic = 1; harmonic <= harmonicWeights.size(); harmonic++)
 	{
 		float amp = harmonicWeights.getSampleUnchecked(0, harmonic-1);
-		table += Buffer::line(8193, 0.0, harmonic * twopi).sin() * amp;
+		table += Buffer::line(8193, 0.0, harmonic * twoPi).sin() * amp;
 	}
 	
 	table = table.shrinkSize();

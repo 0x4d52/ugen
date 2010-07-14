@@ -37,7 +37,7 @@
 #ifndef _UGEN_ugen_Constants_H_
 #define _UGEN_ugen_Constants_H_
 
-// same names as SC but hardly enough to consider this to be gpl'd
+// some similar names as SC but hardly enough to consider this to be gpl'd
 
 /** @file 
 	Some useful maths constants.
@@ -45,24 +45,25 @@
  
 //namespace Constant {
 
-	const double pi     = std::acos(-1.0);
-	const double pi2    = pi * .5;
-	const double pi4    = pi * .25;
-	const double pi32   = pi * 1.5;
-	const double twopi  = pi * 2.0;
-	const double fourpi = pi * 4.0;
-	const double rtwopi = 1.0 / twopi;
-	const double log001 = std::log(0.001);
-	const double log01  = std::log(0.01);
-	const double log1   = std::log(0.1);
-	const double rlog2  = 1.0/std::log(2.0);
-	const double sqrt2  = std::sqrt(2.0);
-	const double rsqrt2 = 1.0 / sqrt2;
-	const double sqrt22 = sqrt2 * 0.5;
-	const double r440	= 1.0 / 440.0;
-	const double r12	= 1.0 / 12.0;
-	const double zero	= 0.0;
-	const double e1		= std::exp(1.0);
+	const double pi					= std::acos(-1.0);
+	const double piOverTwo			= pi * 0.5;
+	const double piOverFour			= pi * 0.25;
+	const double threePiOverTwo		= pi * 1.5;
+	const double twoPi				= pi * 2.0;
+	const double fourPi				= pi * 4.0;
+	const double oneOverTwoPi		= 1.0 / twoPi;
+	const double log001				= std::log(0.001);
+	const double log01				= std::log(0.01);
+	const double log1				= std::log(0.1);
+	const double oneOverLog2		= 1.0/std::log(2.0);
+	const double sqrt2				= std::sqrt(2.0);
+	const double oneOverSqrt2		= 1.0 / sqrt2;
+	const double sqrt2OverTwo		= sqrt2 * 0.5;
+	const double logSqrt2			= std::log(sqrt2);
+	const double oneOver440			= 1.0 / 440.0;
+	const double oneOver12			= 1.0 / 12.0;
+	const double zero				= 0.0;
+	const double e1					= std::exp(1.0);
 
 
 //}

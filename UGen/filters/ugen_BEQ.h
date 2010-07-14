@@ -41,6 +41,8 @@
 #include "../core/ugen_UGen.h"
 #include "../basics/ugen_MulAdd.h"
 
+#define BEQ_COEFF_TYPE float
+#define BEQ_CALC_TYPE float
 
 /**
  Base class for the internal BEQ classes.
@@ -51,31 +53,18 @@
 class BEQBaseUGenInternal : public UGenInternal
 {
 public:
-	BEQBaseUGenInternal(UGen const& input, UGen const& freq, UGen const& control, UGen const& gain, const bool faster) throw();
+	BEQBaseUGenInternal(UGen const& input, UGen const& freq, UGen const& control, UGen const& gain) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
 	enum Inputs { Input, Freq, Control, Gain, NumInputs }; // subclass should define their own interpretation of "Control" whether rQ, rS or bw
 	
-	virtual void calculateCoeffs(const float freq, const float control, const float gain, 
-								 double& a0, double& a1, double& a2, double& b1, double& b2) = 0;
-	
-	inline void calculateCoeffs(const float freq, const float control, const float gain = 1.f)
-	{
-		calculateCoeffs(currentFreq		= freq, 
-						currentControl	= control, 
-						currentGain		= gain, 
-						a0, a1, a2, b1, b2);
-	}
-	
+	virtual void calculateCoeffs(const float freq, const float control, const float gain) = 0;
+		
 	void initValue(const float value) throw();
 	
-private:
-	double y1, y2, a0, a1, a2, b1, b2;
-	float currentFreq, currentControl, currentGain;
-//	bool initialised;
-	
 protected:
-	const bool faster_;
+	BEQ_COEFF_TYPE y1, y2, a0, a1, a2, b1, b2;
+	float currentFreq, currentControl, currentGain;	
 };
 
 /**
@@ -84,13 +73,12 @@ protected:
 class BLowPassUGenInternal : public BEQBaseUGenInternal
 {
 public:
-	BLowPassUGenInternal(UGen const& input, UGen const& freq, UGen const& rq, const bool faster) throw();
+	BLowPassUGenInternal(UGen const& input, UGen const& freq, UGen const& rq) throw();
 	UGenInternal* getChannel(const int channel) throw();
 	
 	enum ControlInput { ReciprocalQ = Control };
 	
-	void calculateCoeffs(const float freq, const float control, const float gain, 
-						 double& a0, double& a1, double& a2, double& b1, double& b2);
+	void calculateCoeffs(const float freq, const float control, const float gain);
 };
 
 #define BHiAndLowPass_Docs	@param input	The input source to filter.								\
@@ -131,13 +119,12 @@ DirectMulAddUGenDeclaration(BLowPass4, (input, freq, rq),
 class BHiPassUGenInternal : public BEQBaseUGenInternal
 {
 public:
-	BHiPassUGenInternal(UGen const& input, UGen const& freq, UGen const& rq, const bool faster) throw();
+	BHiPassUGenInternal(UGen const& input, UGen const& freq, UGen const& rq) throw();
 	UGenInternal* getChannel(const int channel) throw();
 	
 	enum ControlInput { ReciprocalQ = Control };
 	
-	void calculateCoeffs(const float freq, const float control, const float gain, 
-						 double& a0, double& a1, double& a2, double& b1, double& b2);
+	void calculateCoeffs(const float freq, const float control, const float gain);
 };
 
 /**
@@ -174,13 +161,12 @@ DirectMulAddUGenDeclaration(BHiPass4, (input, freq, rq),
 class BBandPassUGenInternal : public BEQBaseUGenInternal
 {
 public:
-	BBandPassUGenInternal(UGen const& input, UGen const& freq, UGen const& bw, const bool faster) throw();
+	BBandPassUGenInternal(UGen const& input, UGen const& freq, UGen const& bw) throw();
 	UGenInternal* getChannel(const int channel) throw();
 	
 	enum ControlInput { BW = Control };
 	
-	void calculateCoeffs(const float freq, const float control, const float gain, 
-						 double& a0, double& a1, double& a2, double& b1, double& b2);
+	void calculateCoeffs(const float freq, const float control, const float gain);
 };
 
 #define BBandPassAndStop_Docs	@param input	The input source to filter.								\
@@ -206,13 +192,12 @@ DirectMulAddUGenDeclaration(BBandPass, (input, freq, bw),
 class BBandStopUGenInternal : public BEQBaseUGenInternal
 {
 public:
-	BBandStopUGenInternal(UGen const& input, UGen const& freq, UGen const& bw, const bool faster) throw();
+	BBandStopUGenInternal(UGen const& input, UGen const& freq, UGen const& bw) throw();
 	UGenInternal* getChannel(const int channel) throw();
 	
 	enum ControlInput { BW = Control };
 	
-	void calculateCoeffs(const float freq, const float control, const float gain, 
-						 double& a0, double& a1, double& a2, double& b1, double& b2);
+	void calculateCoeffs(const float freq, const float control, const float gain);
 };
 
 /**
@@ -233,13 +218,12 @@ DirectMulAddUGenDeclaration(BBandStop, (input, freq, bw),
 class BPeakEQUGenInternal : public BEQBaseUGenInternal
 {
 public:
-	BPeakEQUGenInternal(UGen const& input, UGen const& freq, UGen const& rq, UGen const& gain, const bool faster) throw();
+	BPeakEQUGenInternal(UGen const& input, UGen const& freq, UGen const& rq, UGen const& gain) throw();
 	UGenInternal* getChannel(const int channel) throw();
 	
 	enum ControlInput { ReciprocalQ = Control };
 	
-	void calculateCoeffs(const float freq, const float control, const float gain, 
-						 double& a0, double& a1, double& a2, double& b1, double& b2);
+	void calculateCoeffs(const float freq, const float control, const float gain);
 };
 
 #define BPeapEQ_Docs	@param input	The input source to filter.								\
@@ -265,13 +249,12 @@ DirectMulAddUGenDeclaration(BPeakEQ, (input, freq, rq, gain),
 class BLowShelfUGenInternal : public BEQBaseUGenInternal
 	{
 	public:
-		BLowShelfUGenInternal(UGen const& input, UGen const& freq, UGen const& rs, UGen const& gain, const bool faster) throw();
+		BLowShelfUGenInternal(UGen const& input, UGen const& freq, UGen const& rs, UGen const& gain) throw();
 		UGenInternal* getChannel(const int channel) throw();
 		
 		enum ControlInput { ReciprocalS = Control };
 		
-		void calculateCoeffs(const float freq, const float control, const float gain, 
-							 double& a0, double& a1, double& a2, double& b1, double& b2);
+		void calculateCoeffs(const float freq, const float control, const float gain);
 	};
 
 #define BShelf_Docs		@param input	The input source to filter.								\
@@ -301,13 +284,12 @@ DirectMulAddUGenDeclaration(BLowShelf,
 class BHiShelfUGenInternal : public BEQBaseUGenInternal
 	{
 	public:
-		BHiShelfUGenInternal(UGen const& input, UGen const& freq, UGen const& rs, UGen const& gain, const bool faster) throw();
+		BHiShelfUGenInternal(UGen const& input, UGen const& freq, UGen const& rs, UGen const& gain) throw();
 		UGenInternal* getChannel(const int channel) throw();
 		
 		enum ControlInput { ReciprocalS = Control };
 		
-		void calculateCoeffs(const float freq, const float control, const float gain, 
-							 double& a0, double& a1, double& a2, double& b1, double& b2);
+		void calculateCoeffs(const float freq, const float control, const float gain);
 	};
 
 /**
@@ -329,13 +311,12 @@ DirectMulAddUGenDeclaration(BHiShelf,
 class BAllPassUGenInternal : public BEQBaseUGenInternal
 	{
 	public:
-		BAllPassUGenInternal(UGen const& input, UGen const& freq, UGen const& rq, const bool faster) throw();
+		BAllPassUGenInternal(UGen const& input, UGen const& freq, UGen const& rq) throw();
 		UGenInternal* getChannel(const int channel) throw();
 		
 		enum ControlInput { ReciprocalQ = Control };
 		
-		void calculateCoeffs(const float freq, const float control, const float gain, 
-							 double& a0, double& a1, double& a2, double& b1, double& b2);
+		void calculateCoeffs(const float freq, const float control, const float gain);
 	};
 
 #define BAllPass_Docs	@param input	The input source to filter.								\

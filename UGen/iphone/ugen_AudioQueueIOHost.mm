@@ -34,6 +34,8 @@
  ==============================================================================
  */
 
+#ifndef UGEN_NOEXTGPL // can't be bothered to remove the use of Env/EnvGen - this file should probably be deprecated anyway..
+
 #include "../core/ugen_StandardHeader.h"
 
 #if defined(UGEN_IPHONE) && !defined(UGEN_JUCE)
@@ -319,8 +321,8 @@ inline void AQOutputBufferCallback(void					*in,
 				
 				while(numFramesToProcess--)
 				{
-					*outChannel0 = ugen::roundFloatToInt(*ugenChannel0 * maxVal);
-					*outChannel1 = ugen::roundFloatToInt(*ugenChannel1 * maxVal);
+					*outChannel0 = *ugenChannel0 * maxVal;
+					*outChannel1 = *ugenChannel1 * maxVal;
 					
 					outChannel0 += NUM_CHANNELS;
 					outChannel1 += NUM_CHANNELS;
@@ -396,3 +398,5 @@ END_UGEN_NAMESPACE
 #undef AUDIO_BUFFERS
 
 #endif
+
+#endif // gpl
