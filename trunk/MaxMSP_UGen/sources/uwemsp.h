@@ -2,7 +2,7 @@
 
 // MSP
 #include "z_dsp.h"
-typedef long t_int32_atomic; // hackery to get this to compile with the new SDK (must check how this is supposed to be done)
+//typedef long t_int32_atomic; // now seems fixed in SDK5.1.1
 #include "buffer.h"
 
 #include "math.h"

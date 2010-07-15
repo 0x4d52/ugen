@@ -37,6 +37,14 @@
 #ifndef UGEN_H
 #define UGEN_H
 
+#ifdef min
+#undef min
+#endif
+
+#ifdef max
+#undef max
+#endif
+
 #include "core/ugen_StandardHeader.h"
 
 
