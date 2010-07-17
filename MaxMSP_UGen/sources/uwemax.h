@@ -7,11 +7,11 @@
 		paths to the c74support/max-includes directory
 
 	*/
-#ifdef WIN_VERSION
-	#include "common\dllmain_win.c"					// includes ext.h
-#else
+//#ifdef WIN_VERSION
+//	#include "common\dllmain_win.c"					// includes ext.h
+//#else
 	#include "ext.h"
-#endif
+//#endif
 
 // Max
 #include "ext_obex.h"

@@ -1259,6 +1259,7 @@
 		2FBBEAD108F335010078DB84 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				MAX5_FRAMEWORKS = /Applications/Max5/MaxMSP.app/Contents/Frameworks;
 			};
 			name = Release;
@@ -1277,7 +1278,12 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(MAX5_FRAMEWORKS)/MaxAPI.framework/Headers/macho-prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "PROJECT_NAME=\\\"$(PROJECT_NAME)\\\"";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_DEBUG=1",
+					"DEBUG=1",
+					"$(GCC_PREPROCESSOR_DEFINITIONS_QUOTED_FOR_TARGET_1)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS_QUOTED_FOR_TARGET_1 = "PROJECT_NAME=\\\"$(PROJECT_NAME)\\\"";
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(DEVELOPER_DIR)/Headers/FlatCarbon",
@@ -1293,11 +1299,12 @@
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = "$(PROJECT_NAME)~";
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 				SECTORDER_FLAGS = "";
 				SKIP_INSTALL = NO;
 				SYMROOT = build;
 				WARNING_CFLAGS = (
+					"-Wno-write-strings",
 					"-Wmost",
 					"-Wno-four-char-constants",
 					"-Wno-unknown-pragmas",
@@ -1319,10 +1326,16 @@
 				DEPLOYMENT_LOCATION = NO;
 				DSTROOT = "/tmp/$(PROJECT_NAME).dst";
 				FRAMEWORK_SEARCH_PATHS = "$(MAX5_FRAMEWORKS)";
+				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SDKROOT_DIR)/System/Library/Frameworks/MaxAPI.framework/Headers/macho-prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "PROJECT_NAME=\\\"$(PROJECT_NAME)\\\"";
+				GCC_PREFIX_HEADER = "$(MAX5_FRAMEWORKS)/MaxAPI.framework/Headers/macho-prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_NDEBUG=1",
+					"NDEBUG=1",
+					"$(GCC_PREPROCESSOR_DEFINITIONS_QUOTED_FOR_TARGET_1)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS_QUOTED_FOR_TARGET_1 = "PROJECT_NAME=\\\"$(PROJECT_NAME)\\\"";
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(DEVELOPER_DIR)/Headers/FlatCarbon",
@@ -1337,10 +1350,11 @@
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = "$(PROJECT_NAME)~";
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 				SECTORDER_FLAGS = "";
 				SKIP_INSTALL = NO;
 				WARNING_CFLAGS = (
+					"-Wno-write-strings",
 					"-Wmost",
 					"-Wno-four-char-constants",
 					"-Wno-unknown-pragmas",

@@ -93,7 +93,7 @@ void PlugUGenInternal::processBlock(bool& shouldDelete, const unsigned int block
 		{
 			if(fadeSourceIndex != -1)
 			{
-				float fadeSourceFadeLevel, currentSourceFadeLevel;
+				float fadeSourceFadeLevel = 0.f, currentSourceFadeLevel = 0.f;
 				const int numChannels = getNumChannels();
 				
 				for(int channel = 0; channel < numChannels; channel++)

@@ -3,7 +3,7 @@
 // MSP
 #include "z_dsp.h"
 //typedef long t_int32_atomic; // now seems fixed in SDK5.1.1
-#include "buffer.h"
+//#include "buffer.h"
 
 #include "math.h"
 
