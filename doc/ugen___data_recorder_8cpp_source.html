@@ -75,13 +75,13 @@
 <a name="l00051"></a>00051     timeStamp(_timeStamp)
 <a name="l00052"></a>00052 {
 <a name="l00053"></a>00053     inputs[Input] = input;
-<a name="l00054"></a>00054     inputs[Trig] = trig;
+<a name="l00054"></a>00054     inputs[<a class="code" href="class_trig.html">Trig</a>] = trig;
 <a name="l00055"></a>00055 }
 <a name="l00056"></a><a class="code" href="class_data_recorder_u_gen_internal.html#067bfae578ac4f2055db54acdb80af18">00056</a> 
 <a name="l00057"></a>00057 <span class="keywordtype">void</span> <a class="code" href="class_data_recorder_u_gen_internal.html#067bfae578ac4f2055db54acdb80af18" title="Process a block of samples for this blockID and channel.">DataRecorderUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*channel*/</span>) throw()
 <a name="l00058"></a>00058 {
 <a name="l00059"></a>00059     <span class="keywordtype">int</span> numSamplesToProcess = <a class="code" href="class_u_gen_internal.html#66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#118a3566a4758eb4719c57843c25bd57">getBlockSize</a>();
-<a name="l00060"></a>00060     <span class="keyword">const</span> <span class="keywordtype">float</span> *trigSamples = <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_data_recorder_u_gen_internal.html#123195b5830c55ceb646a15b34a060a3a5aa244d887c09f98bb42a9541cec59e">Trig</a>].<a class="code" href="class_u_gen.html#326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
+<a name="l00060"></a>00060     <span class="keyword">const</span> <span class="keywordtype">float</span> *trigSamples = <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_trig.html">Trig</a>].<a class="code" href="class_u_gen.html#326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
 <a name="l00061"></a>00061     
 <a name="l00062"></a>00062     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numSamplesToProcess; i++)
 <a name="l00063"></a>00063     {
@@ -117,7 +117,7 @@
 <a name="l00093"></a>00093     }
 <a name="l00094"></a>00094 }
 <a name="l00095"></a><a class="code" href="class_data_recorder.html#e84a67f662f50a2e6bfa57ca1028f05d">00095</a> 
-<a name="l00096"></a>00096 <a class="code" href="class_data_recorder.html#e84a67f662f50a2e6bfa57ca1028f05d" title="Base DataRecorder Constuctor, use the AR() and KR() versions in user code.">DataRecorder::DataRecorder</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; trig, <a class="code" href="class_text.html">Text</a> <span class="keyword">const</span>&amp; file, <span class="keyword">const</span> <span class="keywordtype">bool</span> timeStamp) <span class="keywordflow">throw</span>()
+<a name="l00096"></a>00096 <a class="code" href="class_data_recorder.html#209cfaa161ce16323157d06302eccc81">DataRecorder::DataRecorder</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; trig, <a class="code" href="class_text.html">Text</a> <span class="keyword">const</span>&amp; file, <span class="keyword">const</span> <span class="keywordtype">bool</span> timeStamp) <span class="keywordflow">throw</span>()
 <a name="l00097"></a>00097 {
 <a name="l00098"></a>00098     <a class="code" href="class_data_recorder_u_gen_internal.html">DataRecorderUGenInternal</a> *<span class="keyword">internal</span> = <span class="keyword">new</span> <a class="code" href="class_data_recorder_u_gen_internal.html">DataRecorderUGenInternal</a>(input, trig.mix(), file, timeStamp);
 <a name="l00099"></a>00099     initInternal(input.getNumChannels());
@@ -126,7 +126,7 @@
 <a name="l00102"></a>00102 
 <a name="l00103"></a>00103 <a class="code" href="ugen___standard_header_8h.html#c007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:08 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:03 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

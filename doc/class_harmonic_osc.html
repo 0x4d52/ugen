@@ -44,14 +44,6 @@ Inherits <a class="el" href="class_u_gen.html">UGen</a>.
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_harmonic_osc.html#6db75cf88c47f1aee8ef317bf26d523f">HarmonicOsc</a> (<a class="el" href="class_buffer.html">Buffer</a> const &amp;harmonicWeights, <a class="el" href="class_u_gen.html">UGen</a> const &amp;freq=440.f, <a class="el" href="class_buffer.html">Buffer</a> const &amp;initialPhase=0.f)  throw ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Base <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> <a class="el" href="class_harmonic_osc.html" title="A wavetable-based oscillator initialised with an array of the harmonic amplitudes...">HarmonicOsc</a> Constuctor (without "mul" or "add"), use the <a class="el" href="class_harmonic_osc.html#be0ccec349b580715e472d1078bfbc82" title="Construct and return an audio rate HarmonicOsc adding &quot;mul&quot; and/or &quot;add&quot;...">AR()</a> and <a class="el" href="class_harmonic_osc.html#8c95b8167dfd6c25844d9895842de020" title="Construct and return a control rate HarmonicOsc (if available, otherise returns an...">KR()</a> versions in user code.  <a href="#6db75cf88c47f1aee8ef317bf26d523f"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_harmonic_osc.html#c3684a7c36f3cc19192f2a4e74fccafe">ar</a> (<a class="el" href="class_buffer.html">Buffer</a> const &amp;harmonicWeights, <a class="el" href="class_u_gen.html">UGen</a> const &amp;freq=440.f, <a class="el" href="class_buffer.html">Buffer</a> const &amp;initialPhase=0.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;mul=1.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;add=0.f)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return an audio rate <a class="el" href="class_harmonic_osc.html" title="A wavetable-based oscillator initialised with an array of the harmonic amplitudes...">HarmonicOsc</a> (SC compatability).  <a href="#c3684a7c36f3cc19192f2a4e74fccafe"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_harmonic_osc.html#3d3cab2a599f5697c43d6c457f4945f3">kr</a> (<a class="el" href="class_buffer.html">Buffer</a> const &amp;harmonicWeights, <a class="el" href="class_u_gen.html">UGen</a> const &amp;freq=440.f, <a class="el" href="class_buffer.html">Buffer</a> const &amp;initialPhase=0.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;mul=1.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;add=0.f)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return a control rate <a class="el" href="class_harmonic_osc.html" title="A wavetable-based oscillator initialised with an array of the harmonic amplitudes...">HarmonicOsc</a> (SC compatability).  <a href="#3d3cab2a599f5697c43d6c457f4945f3"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_harmonic_osc.html#bd9cccdc02ade336ac8d234f62319adf">operator()</a> (<a class="el" href="class_buffer.html">Buffer</a> const &amp;harmonicWeights, <a class="el" href="class_u_gen.html">UGen</a> const &amp;freq=440.f, <a class="el" href="class_buffer.html">Buffer</a> const &amp;initialPhase=0.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;mul=1.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;add=0.f)  throw ()</td></tr>
-
 <tr><td colspan="2"><br><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static <a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_harmonic_osc.html#be0ccec349b580715e472d1078bfbc82">AR</a> (<a class="el" href="class_buffer.html">Buffer</a> const &amp;harmonicWeights, <a class="el" href="class_u_gen.html">UGen</a> const &amp;freq=440.f, <a class="el" href="class_buffer.html">Buffer</a> const &amp;initialPhase=0.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;mul=1.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;add=0.f)  throw ()</td></tr>
 
@@ -107,72 +99,6 @@ This uses the "direct" version of <a class="el" href="class_mul_add.html" title=
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="c3684a7c36f3cc19192f2a4e74fccafe"></a><!-- doxytag: member="HarmonicOsc::ar" ref="c3684a7c36f3cc19192f2a4e74fccafe" args="(Buffer const &amp;harmonicWeights, UGen const &amp;freq=440.f, Buffer const &amp;initialPhase=0.f, UGen const &amp;mul=1.f, UGen const &amp;add=0.f)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> HarmonicOsc::ar           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_buffer.html">Buffer</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>harmonicWeights</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>freq</em> = <code>440.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_buffer.html">Buffer</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>initialPhase</em> = <code>0.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>mul</em> = <code>1.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>add</em> = <code>0.f</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return an audio rate <a class="el" href="class_harmonic_osc.html" title="A wavetable-based oscillator initialised with an array of the harmonic amplitudes...">HarmonicOsc</a> (SC compatability). 
-<p>
-A "mul" operation will not be added if the multiplier is 1.0, an "add" operation will not be added if the "add" value is 0.0. <br>
-<br>
- <b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>harmonicWeights</em>&nbsp;</td><td>This creates an internal wavetable using a series of sine wave harmonics. The amplitude of these sines is govened by this single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>. e.g., <div class="fragment"><pre class="fragment"> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(1.0, 0.5, 0.333, 0.25, 0.2, 0.167, 0.143, 0.125) 
-</pre></div> .. would make a pseudo-sawtooth wave. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>freq</em>&nbsp;</td><td>The fundamental frequency of the wave. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>initialPhase</em>&nbsp;</td><td>The phase (0-1) at which the wave should start on creation. This may be specified with multiple values using a single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> as an array. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>mul</em>&nbsp;</td><td>This is multiplied by the output. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>add</em>&nbsp;</td><td>This is added to the output (after mul has been applied). </td></tr>
-  </table>
-</dl>
-<dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_harmonic_osc.html" title="A wavetable-based oscillator initialised with an array of the harmonic amplitudes...">HarmonicOsc</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___table_osc_8h_source.html#l00152">152</a> of file <a class="el" href="ugen___table_osc_8h_source.html">ugen_TableOsc.h</a>.</p>
-
-</div>
-</div><p>
 <a class="anchor" name="be0ccec349b580715e472d1078bfbc82"></a><!-- doxytag: member="HarmonicOsc::AR" ref="be0ccec349b580715e472d1078bfbc82" args="(Buffer const &amp;harmonicWeights, UGen const &amp;freq=440.f, Buffer const &amp;initialPhase=0.f, UGen const &amp;mul=1.f, UGen const &amp;add=0.f)" -->
 <div class="memitem">
 <div class="memproto">
@@ -234,72 +160,6 @@ A "mul" operation will not be added if the multiplier is 1.0, an "add" operation
   </table>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_harmonic_osc.html" title="A wavetable-based oscillator initialised with an array of the harmonic amplitudes...">HarmonicOsc</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___table_osc_8h_source.html#l00152">152</a> of file <a class="el" href="ugen___table_osc_8h_source.html">ugen_TableOsc.h</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="3d3cab2a599f5697c43d6c457f4945f3"></a><!-- doxytag: member="HarmonicOsc::kr" ref="3d3cab2a599f5697c43d6c457f4945f3" args="(Buffer const &amp;harmonicWeights, UGen const &amp;freq=440.f, Buffer const &amp;initialPhase=0.f, UGen const &amp;mul=1.f, UGen const &amp;add=0.f)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> HarmonicOsc::kr           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_buffer.html">Buffer</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>harmonicWeights</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>freq</em> = <code>440.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_buffer.html">Buffer</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>initialPhase</em> = <code>0.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>mul</em> = <code>1.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>add</em> = <code>0.f</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return a control rate <a class="el" href="class_harmonic_osc.html" title="A wavetable-based oscillator initialised with an array of the harmonic amplitudes...">HarmonicOsc</a> (SC compatability). 
-<p>
-A "mul" operation will not be added if the multiplier is 1.0, an "add" operation will not be added if the "add" value is 0.0. <br>
-<br>
- <b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>harmonicWeights</em>&nbsp;</td><td>This creates an internal wavetable using a series of sine wave harmonics. The amplitude of these sines is govened by this single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>. e.g., <div class="fragment"><pre class="fragment"> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(1.0, 0.5, 0.333, 0.25, 0.2, 0.167, 0.143, 0.125) 
-</pre></div> .. would make a pseudo-sawtooth wave. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>freq</em>&nbsp;</td><td>The fundamental frequency of the wave. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>initialPhase</em>&nbsp;</td><td>The phase (0-1) at which the wave should start on creation. This may be specified with multiple values using a single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> as an array. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>mul</em>&nbsp;</td><td>This is multiplied by the output. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>add</em>&nbsp;</td><td>This is added to the output (after mul has been applied). </td></tr>
-  </table>
-</dl>
-<dl class="return" compact><dt><b>Returns:</b></dt><dd>The control rate <a class="el" href="class_harmonic_osc.html" title="A wavetable-based oscillator initialised with an array of the harmonic amplitudes...">HarmonicOsc</a> . </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___table_osc_8h_source.html#l00152">152</a> of file <a class="el" href="ugen___table_osc_8h_source.html">ugen_TableOsc.h</a>.</p>
 
@@ -371,59 +231,10 @@ A "mul" operation will not be added if the multiplier is 1.0, an "add" operation
 
 </div>
 </div><p>
-<a class="anchor" name="bd9cccdc02ade336ac8d234f62319adf"></a><!-- doxytag: member="HarmonicOsc::operator()" ref="bd9cccdc02ade336ac8d234f62319adf" args="(Buffer const &amp;harmonicWeights, UGen const &amp;freq=440.f, Buffer const &amp;initialPhase=0.f, UGen const &amp;mul=1.f, UGen const &amp;add=0.f)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> HarmonicOsc::operator()           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_buffer.html">Buffer</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>harmonicWeights</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>freq</em> = <code>440.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_buffer.html">Buffer</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>initialPhase</em> = <code>0.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>mul</em> = <code>1.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>add</em> = <code>0.f</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Definition at line <a class="el" href="ugen___table_osc_8h_source.html#l00152">152</a> of file <a class="el" href="ugen___table_osc_8h_source.html">ugen_TableOsc.h</a>.</p>
-
-</div>
-</div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>oscillators/wavetable/<a class="el" href="ugen___table_osc_8h_source.html">ugen_TableOsc.h</a><li>oscillators/wavetable/<a class="el" href="ugen___table_osc_8cpp_source.html">ugen_TableOsc.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:16 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:11 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

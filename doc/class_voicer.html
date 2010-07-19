@@ -45,16 +45,6 @@ Inherits <a class="el" href="class_u_gen.html">UGen</a>.
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_voicer.html#78332a4035846c90f7ff9eb0a30a53c9">Voicer</a> (VoicerEventType const &amp;e, const int numChannels=1, const int midiChannel=1, const int numVoices=0, const bool forcedSteal=false, const bool direct=true)  throw ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_voicer.html#7d4149e9c0e7fccf5d2d44c9d599e198">ar</a> (const int numChannels=1, const int midiChannel=1, OwnerType *o=0, const int numVoices=0, const bool forcedSteal=false, const bool direct=true)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return an audio rate <a class="el" href="class_voicer.html" title="Voice events from MIDI events.">Voicer</a> creating the event using an owner (SC compatability).  <a href="#7d4149e9c0e7fccf5d2d44c9d599e198"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_voicer.html#51e17b4923e2758d8cd0eee7d2e0602a">operator()</a> (const int numChannels=1, const int midiChannel=1, OwnerType *o=0, const int numVoices=0, const bool forcedSteal=false, const bool direct=true)  throw ()</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_voicer.html#8fde826b1996eb0959aaf2b9fea4b637">ar</a> (VoicerEventType const &amp;e, const int numChannels=1, const int midiChannel=1, const int numVoices=0, const bool forcedSteal=false, const bool direct=true)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return an audio rate <a class="el" href="class_voicer.html" title="Voice events from MIDI events.">Voicer</a> passing an event to use (SC compatability).  <a href="#8fde826b1996eb0959aaf2b9fea4b637"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_voicer.html#ae37d92a65a35a3472acec56ac470353">operator()</a> (VoicerEventType const &amp;e, const int numChannels=1, const int midiChannel=1, const int numVoices=0, const bool forcedSteal=false, const bool direct=true)  throw ()</td></tr>
-
 <tr><td colspan="2"><br><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static <a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_voicer.html#c6cee5e79e95e649786d18aa05716a54">AR</a> (const int numChannels=1, const int midiChannel=1, OwnerType *o=0, const int numVoices=0, const bool forcedSteal=false, const bool direct=true)  throw ()</td></tr>
 
@@ -195,86 +185,6 @@ template&lt;class VoicerEventType , class OwnerType  = void&gt; </div>
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="8fde826b1996eb0959aaf2b9fea4b637"></a><!-- doxytag: member="Voicer::ar" ref="8fde826b1996eb0959aaf2b9fea4b637" args="(VoicerEventType const &amp;e, const int numChannels=1, const int midiChannel=1, const int numVoices=0, const bool forcedSteal=false, const bool direct=true)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class VoicerEventType , class OwnerType  = void&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> <a class="el" href="class_voicer.html">Voicer</a>&lt; VoicerEventType, OwnerType &gt;::ar           </td>
-          <td>(</td>
-          <td class="paramtype">VoicerEventType const &amp;&nbsp;</td>
-          <td class="paramname"> <em>e</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>numChannels</em> = <code>1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>midiChannel</em> = <code>1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>numVoices</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool&nbsp;</td>
-          <td class="paramname"> <em>forcedSteal</em> = <code>false</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool&nbsp;</td>
-          <td class="paramname"> <em>direct</em> = <code>true</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return an audio rate <a class="el" href="class_voicer.html" title="Voice events from MIDI events.">Voicer</a> passing an event to use (SC compatability). 
-<p>
-<b>Generic Event-based UGen argument documentation:</b> Event-based <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> instances are created using a template where the first template parameter is an "event" class (i.e., a sublclass of <a class="el" href="class_event_base.html">EventBase&lt;OwnerType&gt;</a>) and the second template parameter is an "owner" type. This must be the same owner type as the event. Generally a event <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> will be constructed in one of two ways: using a pointer to the owner which will be used to construct an event of the appropriate type (in turn passing the owner pointer); or the event <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> may be constructed by passing in an existing event. This is useful if the event is complex and/or has a custom constructor and the default constructor(s) are therfore insufficient. <br>
-<br>
- <b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl compact><dt><b>Template Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>VoicerEventType</em>&nbsp;</td><td>The name of the <a class="el" href="class_voicer_event_base.html" title="An event class for use with a VoicerBase UGen.">VoicerEventBase</a> to use for this <a class="el" href="class_voicer.html" title="Voice events from MIDI events.">Voicer</a> object. The OwnerType of the VoicerEventType must be the same as the the OwnerType for this <a class="el" href="class_voicer.html" title="Voice events from MIDI events.">Voicer</a> . </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>OwnerType</em>&nbsp;</td><td>Optional owner type (defaults to void). </td></tr>
-  </table>
-</dl>
-<dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>e/o</em>&nbsp;</td><td>The event object (e) to use to generate event instances or a pointer to its owner (o). The owner (o) may be 0 if there`s no owner (and OwnerType is void). </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>numChannels</em>&nbsp;</td><td>Number of output channels the <a class="el" href="class_voicer.html" title="Voice events from MIDI events.">Voicer</a> will have. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>midiChannel</em>&nbsp;</td><td>The MIDI channel to listen to (currently listens on all ports). </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>numVoices</em>&nbsp;</td><td>The maximum number of voices before voices are stolen. Set this to 0 or less for no limit. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>forcedSteal</em>&nbsp;</td><td>If false, voices will be stolen with a very rapid fade. If true voices are stolen immediately (and thus may introduce a noticeable click). </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>direct</em>&nbsp;</td><td>Whether to listen directly to MIDI input or to rely soley on being sent timestamped juce::MidiBuffer objects conatining MIDI data using <a class="el" href="class_u_gen.html#9be3591e068174aea175c7e72c1a31c0">UGen::sendMidiBuffer()</a> </td></tr>
-  </table>
-</dl>
-<dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_voicer.html" title="Voice events from MIDI events.">Voicer</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___juce_voicer_8h_source.html#l00268">268</a> of file <a class="el" href="ugen___juce_voicer_8h_source.html">ugen_JuceVoicer.h</a>.</p>
-
-</div>
-</div><p>
 <a class="anchor" name="ff6700487e568d561ca207e723d985dc"></a><!-- doxytag: member="Voicer::AR" ref="ff6700487e568d561ca207e723d985dc" args="(VoicerEventType const &amp;e, const int numChannels=1, const int midiChannel=1, const int numVoices=0, const bool forcedSteal=false, const bool direct=true)" -->
 <div class="memitem">
 <div class="memproto">
@@ -328,86 +238,6 @@ template&lt;class VoicerEventType , class OwnerType  = void&gt; </div>
 
 <p>
 Construct and return an audio rate <a class="el" href="class_voicer.html" title="Voice events from MIDI events.">Voicer</a> passing an event to use. 
-<p>
-<b>Generic Event-based UGen argument documentation:</b> Event-based <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> instances are created using a template where the first template parameter is an "event" class (i.e., a sublclass of <a class="el" href="class_event_base.html">EventBase&lt;OwnerType&gt;</a>) and the second template parameter is an "owner" type. This must be the same owner type as the event. Generally a event <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> will be constructed in one of two ways: using a pointer to the owner which will be used to construct an event of the appropriate type (in turn passing the owner pointer); or the event <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> may be constructed by passing in an existing event. This is useful if the event is complex and/or has a custom constructor and the default constructor(s) are therfore insufficient. <br>
-<br>
- <b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl compact><dt><b>Template Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>VoicerEventType</em>&nbsp;</td><td>The name of the <a class="el" href="class_voicer_event_base.html" title="An event class for use with a VoicerBase UGen.">VoicerEventBase</a> to use for this <a class="el" href="class_voicer.html" title="Voice events from MIDI events.">Voicer</a> object. The OwnerType of the VoicerEventType must be the same as the the OwnerType for this <a class="el" href="class_voicer.html" title="Voice events from MIDI events.">Voicer</a> . </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>OwnerType</em>&nbsp;</td><td>Optional owner type (defaults to void). </td></tr>
-  </table>
-</dl>
-<dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>e/o</em>&nbsp;</td><td>The event object (e) to use to generate event instances or a pointer to its owner (o). The owner (o) may be 0 if there`s no owner (and OwnerType is void). </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>numChannels</em>&nbsp;</td><td>Number of output channels the <a class="el" href="class_voicer.html" title="Voice events from MIDI events.">Voicer</a> will have. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>midiChannel</em>&nbsp;</td><td>The MIDI channel to listen to (currently listens on all ports). </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>numVoices</em>&nbsp;</td><td>The maximum number of voices before voices are stolen. Set this to 0 or less for no limit. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>forcedSteal</em>&nbsp;</td><td>If false, voices will be stolen with a very rapid fade. If true voices are stolen immediately (and thus may introduce a noticeable click). </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>direct</em>&nbsp;</td><td>Whether to listen directly to MIDI input or to rely soley on being sent timestamped juce::MidiBuffer objects conatining MIDI data using <a class="el" href="class_u_gen.html#9be3591e068174aea175c7e72c1a31c0">UGen::sendMidiBuffer()</a> </td></tr>
-  </table>
-</dl>
-<dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_voicer.html" title="Voice events from MIDI events.">Voicer</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___juce_voicer_8h_source.html#l00268">268</a> of file <a class="el" href="ugen___juce_voicer_8h_source.html">ugen_JuceVoicer.h</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="7d4149e9c0e7fccf5d2d44c9d599e198"></a><!-- doxytag: member="Voicer::ar" ref="7d4149e9c0e7fccf5d2d44c9d599e198" args="(const int numChannels=1, const int midiChannel=1, OwnerType *o=0, const int numVoices=0, const bool forcedSteal=false, const bool direct=true)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class VoicerEventType , class OwnerType  = void&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> <a class="el" href="class_voicer.html">Voicer</a>&lt; VoicerEventType, OwnerType &gt;::ar           </td>
-          <td>(</td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>numChannels</em> = <code>1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>midiChannel</em> = <code>1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">OwnerType *&nbsp;</td>
-          <td class="paramname"> <em>o</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>numVoices</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool&nbsp;</td>
-          <td class="paramname"> <em>forcedSteal</em> = <code>false</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool&nbsp;</td>
-          <td class="paramname"> <em>direct</em> = <code>true</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return an audio rate <a class="el" href="class_voicer.html" title="Voice events from MIDI events.">Voicer</a> creating the event using an owner (SC compatability). 
 <p>
 <b>Generic Event-based UGen argument documentation:</b> Event-based <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> instances are created using a template where the first template parameter is an "event" class (i.e., a sublclass of <a class="el" href="class_event_base.html">EventBase&lt;OwnerType&gt;</a>) and the second template parameter is an "owner" type. This must be the same owner type as the event. Generally a event <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> will be constructed in one of two ways: using a pointer to the owner which will be used to construct an event of the appropriate type (in turn passing the owner pointer); or the event <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> may be constructed by passing in an existing event. This is useful if the event is complex and/or has a custom constructor and the default constructor(s) are therfore insufficient. <br>
 <br>
@@ -515,124 +345,10 @@ Construct and return an audio rate <a class="el" href="class_voicer.html" title=
 
 </div>
 </div><p>
-<a class="anchor" name="ae37d92a65a35a3472acec56ac470353"></a><!-- doxytag: member="Voicer::operator()" ref="ae37d92a65a35a3472acec56ac470353" args="(VoicerEventType const &amp;e, const int numChannels=1, const int midiChannel=1, const int numVoices=0, const bool forcedSteal=false, const bool direct=true)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class VoicerEventType , class OwnerType  = void&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> <a class="el" href="class_voicer.html">Voicer</a>&lt; VoicerEventType, OwnerType &gt;::operator()           </td>
-          <td>(</td>
-          <td class="paramtype">VoicerEventType const &amp;&nbsp;</td>
-          <td class="paramname"> <em>e</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>numChannels</em> = <code>1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>midiChannel</em> = <code>1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>numVoices</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool&nbsp;</td>
-          <td class="paramname"> <em>forcedSteal</em> = <code>false</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool&nbsp;</td>
-          <td class="paramname"> <em>direct</em> = <code>true</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Definition at line <a class="el" href="ugen___juce_voicer_8h_source.html#l00268">268</a> of file <a class="el" href="ugen___juce_voicer_8h_source.html">ugen_JuceVoicer.h</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="51e17b4923e2758d8cd0eee7d2e0602a"></a><!-- doxytag: member="Voicer::operator()" ref="51e17b4923e2758d8cd0eee7d2e0602a" args="(const int numChannels=1, const int midiChannel=1, OwnerType *o=0, const int numVoices=0, const bool forcedSteal=false, const bool direct=true)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class VoicerEventType , class OwnerType  = void&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> <a class="el" href="class_voicer.html">Voicer</a>&lt; VoicerEventType, OwnerType &gt;::operator()           </td>
-          <td>(</td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>numChannels</em> = <code>1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>midiChannel</em> = <code>1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">OwnerType *&nbsp;</td>
-          <td class="paramname"> <em>o</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>numVoices</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool&nbsp;</td>
-          <td class="paramname"> <em>forcedSteal</em> = <code>false</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool&nbsp;</td>
-          <td class="paramname"> <em>direct</em> = <code>true</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Definition at line <a class="el" href="ugen___juce_voicer_8h_source.html#l00268">268</a> of file <a class="el" href="ugen___juce_voicer_8h_source.html">ugen_JuceVoicer.h</a>.</p>
-
-</div>
-</div><p>
 <hr>The documentation for this class was generated from the following file:<ul>
 <li>juce/<a class="el" href="ugen___juce_voicer_8h_source.html">ugen_JuceVoicer.h</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:21 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:15 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

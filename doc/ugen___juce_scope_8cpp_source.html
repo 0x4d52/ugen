@@ -22,7 +22,7 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-<h1>juce/gui/ugen_JuceScope.cpp</h1><a href="ugen___juce_scope_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_JuceScope.cpp 77 2010-05-24 10:34:11Z 0x4d52 $</span>
+<h1>juce/gui/ugen_JuceScope.cpp</h1><a href="ugen___juce_scope_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_JuceScope.cpp 90 2010-07-14 21:03:59Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/juce/gui/ugen_JuceScope.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -615,8 +615,8 @@
 <a name="l00591"></a>00591 <span class="comment">//      ugen_assert(bufferWrap == 0.0); // need to upate this function if the waveform is rotated...</span>
 <a name="l00592"></a>00592         
 <a name="l00593"></a>00593         <span class="keyword">const</span> <span class="keywordtype">double</span> audioBufferSize = <a class="code" href="class_scope_g_u_i.html#9661127b15f16b7e01de74d787a7d243">audioBuffer</a>.<a class="code" href="class_buffer.html#4215e8b20079c26ddf2335c1a6083a96">size</a>();
-<a name="l00594"></a>00594         <span class="keyword">const</span> <span class="keywordtype">double</span> radiansPerSample = <a class="code" href="ugen___constants_8h.html#d996edbbc287b4e5f3dd072a10bd6122">twopi</a> / audioBufferSize;
-<a name="l00595"></a>00595         <span class="keyword">const</span> <span class="keywordtype">double</span> radiansOffset = <a class="code" href="class_scope_g_u_i.html#35a381cddb9245f4add9228e0ee42126">bufferWrap</a> * <a class="code" href="ugen___constants_8h.html#d996edbbc287b4e5f3dd072a10bd6122">twopi</a>;
+<a name="l00594"></a>00594         <span class="keyword">const</span> <span class="keywordtype">double</span> radiansPerSample = <a class="code" href="ugen___constants_8h.html#41456563667051ed589712c38e7427e6">twoPi</a> / audioBufferSize;
+<a name="l00595"></a>00595         <span class="keyword">const</span> <span class="keywordtype">double</span> radiansOffset = <a class="code" href="class_scope_g_u_i.html#35a381cddb9245f4add9228e0ee42126">bufferWrap</a> * <a class="code" href="ugen___constants_8h.html#41456563667051ed589712c38e7427e6">twoPi</a>;
 <a name="l00596"></a>00596         
 <a name="l00597"></a>00597         <span class="keyword">const</span> <span class="keywordtype">int</span> markSpacing = <a class="code" href="class_scope_g_u_i.html#d4d1f756f89efcb0e0ce3bc1f0e3387f">markSpacingX</a>;
 <a name="l00598"></a>00598         <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> labelHop = <a class="code" href="class_scope_g_u_i.html#01711879dff81ea1ccd0fb58a867bb82">labelHopX</a>;
@@ -670,7 +670,7 @@
 <a name="l00646"></a>00646                     }
 <a name="l00647"></a>00647                     
 <a name="l00648"></a>00648                     g.setColour(Colour(<a class="code" href="class_scope_g_u_i.html#42b6db50103320027f8218f75d502054">colours</a>[<a class="code" href="class_scope_g_u_i.html#63bdb7e1d850e13113594db7c37059b4dfd49bb846c6750d94ac420150205380">TextX</a>].get32bitColour()));               
-<a name="l00649"></a>00649                     <span class="keyword">const</span> <span class="keywordtype">double</span> rotation = -<a class="code" href="ugen___constants_8h.html#2c0cc2347cdb41873a6b0dbc108b15d3">pi2</a>+angle;
+<a name="l00649"></a>00649                     <span class="keyword">const</span> <span class="keywordtype">double</span> rotation = -<a class="code" href="ugen___constants_8h.html#b0bf38bc19b14ba80f346e7b22ddec9f">piOverTwo</a>+angle;
 <a name="l00650"></a>00650                     <span class="comment">//if(angle &gt; pi) rotation += pi;</span>
 <a name="l00651"></a>00651                     AffineTransform transform = AffineTransform::identity.rotated(rotation).translated(centreX+endX*1.01, centreY-endY*1.01);
 <a name="l00652"></a>00652                     g.drawTextAsPath(label, transform);
@@ -713,7 +713,7 @@
 <a name="l00689"></a>00689 <span class="keywordtype">int</span> <a class="code" href="class_radial_scope_component.html#5e4b799f85169c29a737a0d2b99aa1bc">RadialScopeComponent::getDisplayBufferSize</a>() <span class="keyword">const</span> throw()
 <a name="l00690"></a>00690 {
 <a name="l00691"></a>00691     <span class="keyword">const</span> <span class="keywordtype">double</span> angle = <a class="code" href="class_radial_scope_component.html#ecacb26dc923ee18d66d89f8344e1318">getDeltaAngle</a>();
-<a name="l00692"></a>00692     <span class="keywordflow">return</span> twopi / angle + 0.5;
+<a name="l00692"></a>00692     <span class="keywordflow">return</span> twoPi / angle + 0.5;
 <a name="l00693"></a>00693 }
 <a name="l00694"></a>00694 
 <a name="l00695"></a>00695 <span class="keywordtype">int</span> <a class="code" href="class_radial_scope_component.html#7650aa91350c89eb81847e66aba1f25f">RadialScopeComponent::getRadius</a>() <span class="keyword">const</span> throw()
@@ -739,7 +739,7 @@
 <a name="l00715"></a>00715 
 <a name="l00716"></a>00716 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:10 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:06 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

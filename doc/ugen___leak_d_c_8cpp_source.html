@@ -22,7 +22,7 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-<h1>filters/ugen_LeakDC.cpp</h1><a href="ugen___leak_d_c_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_LeakDC.cpp 77 2010-05-24 10:34:11Z 0x4d52 $</span>
+<h1>filters/ugen_LeakDC.cpp</h1><a href="ugen___leak_d_c_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_LeakDC.cpp 89 2010-07-09 16:20:21Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/filters/ugen_LeakDC.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -58,165 +58,169 @@
 <a name="l00034"></a>00034 <span class="comment"> ==============================================================================</span>
 <a name="l00035"></a>00035 <span class="comment"> */</span>
 <a name="l00036"></a>00036 
-<a name="l00037"></a>00037 <span class="preprocessor">#include "../core/ugen_StandardHeader.h"</span>
-<a name="l00038"></a>00038 
-<a name="l00039"></a>00039 <a class="code" href="ugen___standard_header_8h.html#e236e43a85c6905c3285f031bf456685">BEGIN_UGEN_NAMESPACE</a>
+<a name="l00037"></a>00037 <span class="preprocessor">#ifndef UGEN_NOEXTGPL</span>
+<a name="l00038"></a>00038 <span class="preprocessor"></span>
+<a name="l00039"></a>00039 <span class="preprocessor">#include "../core/ugen_StandardHeader.h"</span>
 <a name="l00040"></a>00040 
-<a name="l00041"></a>00041 <span class="preprocessor">#include "<a class="code" href="ugen___leak_d_c_8h.html">ugen_LeakDC.h</a>"</span>
-<a name="l00042"></a><a class="code" href="class_leak_d_c_u_gen_internal.html#bc72cac5d645ac0addac66c4dc5c34a9">00042</a> <span class="preprocessor">#include "../core/ugen_Constants.h"</span>
-<a name="l00043"></a>00043 <span class="preprocessor">#include "../basics/ugen_InlineUnaryOps.h"</span>
-<a name="l00044"></a>00044 <span class="preprocessor">#include "../basics/ugen_InlineBinaryOps.h"</span>
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046 <a class="code" href="class_leak_d_c_u_gen_internal.html#bc72cac5d645ac0addac66c4dc5c34a9">LeakDCUGenInternal::LeakDCUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; coeff) <span class="keywordflow">throw</span>()
-<a name="l00047"></a>00047 :   <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(NumInputs),
-<a name="l00048"></a>00048     b1(0.f),
-<a name="l00049"></a>00049     y1(0.f),
-<a name="l00050"></a>00050     x1(0.f)
-<a name="l00051"></a>00051 {
-<a name="l00052"></a><a class="code" href="class_leak_d_c_u_gen_internal.html#3c9c62c921b84ec8fc8d8eb73d635592">00052</a>     inputs[Input] = input;
-<a name="l00053"></a>00053     inputs[Coeff] = coeff;
-<a name="l00054"></a>00054 }
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056 <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_leak_d_c_u_gen_internal.html#3c9c62c921b84ec8fc8d8eb73d635592">LeakDCUGenInternal::getKr</a>() throw()
-<a name="l00057"></a><a class="code" href="class_leak_d_c_u_gen_internal.html#33c184e78e11ee4bf257ec3a5b353409">00057</a> {
-<a name="l00058"></a>00058     <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_leak_d_c_u_gen_internal_k.html">LeakDCUGenInternalK</a>(<a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_leak_d_c_u_gen_internal.html#b5569cdab792c8a74383a1c7c8d3dc8701baf37b37f6c1d3db67bc51c110d055">Input</a>].<a class="code" href="namespaceugen.html#f17dc36462ee9d9f533a4ac4cb3e5c0d" title="SC compatability.">kr</a>(), <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_leak_d_c_u_gen_internal.html#b5569cdab792c8a74383a1c7c8d3dc8773aefbe4445fd3c90b2f5429bc97601f">Coeff</a>].<a class="code" href="namespaceugen.html#f17dc36462ee9d9f533a4ac4cb3e5c0d" title="SC compatability.">kr</a>()); 
-<a name="l00059"></a>00059 }
-<a name="l00060"></a>00060 
-<a name="l00061"></a>00061 <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_leak_d_c_u_gen_internal.html#33c184e78e11ee4bf257ec3a5b353409">LeakDCUGenInternal::getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
-<a name="l00062"></a>00062 {
-<a name="l00063"></a><a class="code" href="class_leak_d_c_u_gen_internal.html#cc4e077cf54b7ca2d0902e68ef4e1720">00063</a>     <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_leak_d_c_u_gen_internal.html">LeakDCUGenInternal</a>(inputs[Input].getChannel(channel), 
-<a name="l00064"></a>00064                                   inputs[Coeff].getChannel(channel));
-<a name="l00065"></a>00065 }
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067 <span class="keywordtype">void</span> <a class="code" href="class_leak_d_c_u_gen_internal.html#cc4e077cf54b7ca2d0902e68ef4e1720" title="Process a block of samples for this blockID and channel.">LeakDCUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
-<a name="l00068"></a>00068 {
-<a name="l00069"></a>00069     <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
-<a name="l00070"></a>00070     <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
-<a name="l00071"></a>00071     <span class="keywordtype">float</span>* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
-<a name="l00072"></a>00072     <span class="keywordtype">float</span>* b1Samples = inputs[Coeff].processBlock(shouldDelete, blockID, channel);
-<a name="l00073"></a>00073     <span class="keywordtype">float</span> newb1 = *b1Samples;
-<a name="l00074"></a>00074     
-<a name="l00075"></a>00075     <span class="keywordflow">if</span>(newb1 != b1)
-<a name="l00076"></a>00076     {
-<a name="l00077"></a>00077         <span class="keywordtype">float</span> b1_slope = (newb1 - b1) * <a class="code" href="class_u_gen.html#6ab609b3a5d7e8a44dbcaccd1f53a469" title="Get the current slope factor i.e., 1.0 / (block size).">UGen::getSlopeFactor</a>();
-<a name="l00078"></a>00078         
-<a name="l00079"></a>00079         <span class="keywordflow">while</span>(numSamplesToProcess--)
-<a name="l00080"></a>00080         {
-<a name="l00081"></a>00081             <span class="keywordtype">float</span> x0 = *inputSamples++; 
-<a name="l00082"></a>00082             *outputSamples++ = y1 = x0 - x1 + b1 * y1; 
-<a name="l00083"></a>00083             x1 = x0;
-<a name="l00084"></a>00084             b1 += b1_slope;         
-<a name="l00085"></a>00085         }
-<a name="l00086"></a>00086         
-<a name="l00087"></a>00087         b1 = newb1;
-<a name="l00088"></a>00088     }
-<a name="l00089"></a>00089     <span class="keywordflow">else</span>
-<a name="l00090"></a>00090     {
-<a name="l00091"></a>00091         <span class="keywordflow">while</span>(numSamplesToProcess--)
-<a name="l00092"></a>00092         {
-<a name="l00093"></a>00093             <span class="keywordtype">float</span> x0 = *inputSamples++; 
-<a name="l00094"></a>00094             *outputSamples++ = y1 = x0 - x1 + b1 * y1; 
-<a name="l00095"></a>00095             x1 = x0;
-<a name="l00096"></a>00096         }
-<a name="l00097"></a>00097     }
-<a name="l00098"></a><a class="code" href="class_leak_d_c_u_gen_internal.html#26216456bdf2451560c3a5dac0590254">00098</a>     
-<a name="l00099"></a>00099     y1 = <a class="code" href="ugen___inline_unary_ops_8h.html#6ed2bbde65e0032256bd4e8832b99b91">zap</a>(y1); <span class="comment">// denormal!</span>
-<a name="l00100"></a>00100 }
-<a name="l00101"></a>00101 
-<a name="l00102"></a>00102 <span class="keywordtype">void</span> <a class="code" href="class_leak_d_c_u_gen_internal.html#26216456bdf2451560c3a5dac0590254" title="Initialise the UGen output value.">LeakDCUGenInternal::initValue</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> value) <span class="keywordflow">throw</span>()
-<a name="l00103"></a>00103 {
-<a name="l00104"></a>00104     <span class="keywordtype">float</span> checkedValue = <a class="code" href="ugen___inline_unary_ops_8h.html#6ed2bbde65e0032256bd4e8832b99b91">zap</a>(value);
-<a name="l00105"></a><a class="code" href="class_leak_d_c_u_gen_internal_k.html#60c666906ca3de8657ed40bc2947d666">00105</a>     <a class="code" href="class_u_gen_internal.html#3b9de200fa163a233dab85b3388fd469" title="Initialise the UGen output value.">UGenInternal::initValue</a>(checkedValue);
-<a name="l00106"></a>00106     y1 = checkedValue;
-<a name="l00107"></a>00107 }
-<a name="l00108"></a>00108 
-<a name="l00109"></a>00109 <span class="keywordtype">void</span> <a class="code" href="class_leak_d_c_u_gen_internal_k.html#60c666906ca3de8657ed40bc2947d666" title="Process a block of samples for this blockID and channel.">LeakDCUGenInternalK::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
-<a name="l00110"></a>00110 {
-<a name="l00111"></a>00111     <span class="keyword">const</span> <span class="keywordtype">int</span> krBlockSize = <a class="code" href="class_u_gen.html#2c362eee1cdf755de0eed14727494235" title="Get the current control rate block size.">UGen::getControlRateBlockSize</a>();
-<a name="l00112"></a>00112     <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockPosition = blockID % krBlockSize;
-<a name="l00113"></a>00113     <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
-<a name="l00114"></a>00114     <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
-<a name="l00115"></a>00115     <span class="keywordtype">float</span>* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
-<a name="l00116"></a>00116     <span class="keywordtype">float</span>* b1Samples = inputs[Coeff].processBlock(shouldDelete, blockID, channel);
-<a name="l00117"></a>00117     <span class="keywordtype">float</span> newb1 = *b1Samples;
-<a name="l00118"></a>00118     
-<a name="l00119"></a>00119     <span class="keywordtype">int</span> numKrSamples = blockPosition % krBlockSize;
+<a name="l00041"></a>00041 <a class="code" href="ugen___standard_header_8h.html#e236e43a85c6905c3285f031bf456685">BEGIN_UGEN_NAMESPACE</a>
+<a name="l00042"></a>00042 
+<a name="l00043"></a>00043 <span class="preprocessor">#include "<a class="code" href="ugen___leak_d_c_8h.html">ugen_LeakDC.h</a>"</span>
+<a name="l00044"></a><a class="code" href="class_leak_d_c_u_gen_internal.html#bc72cac5d645ac0addac66c4dc5c34a9">00044</a> <span class="preprocessor">#include "../core/ugen_Constants.h"</span>
+<a name="l00045"></a>00045 <span class="preprocessor">#include "../basics/ugen_InlineUnaryOps.h"</span>
+<a name="l00046"></a>00046 <span class="preprocessor">#include "../basics/ugen_InlineBinaryOps.h"</span>
+<a name="l00047"></a>00047 
+<a name="l00048"></a>00048 <a class="code" href="class_leak_d_c_u_gen_internal.html#bc72cac5d645ac0addac66c4dc5c34a9">LeakDCUGenInternal::LeakDCUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; coeff) <span class="keywordflow">throw</span>()
+<a name="l00049"></a>00049 :   <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(NumInputs),
+<a name="l00050"></a>00050     b1(0.f),
+<a name="l00051"></a>00051     y1(0.f),
+<a name="l00052"></a>00052     x1(0.f)
+<a name="l00053"></a>00053 {
+<a name="l00054"></a><a class="code" href="class_leak_d_c_u_gen_internal.html#3c9c62c921b84ec8fc8d8eb73d635592">00054</a>     inputs[Input] = input;
+<a name="l00055"></a>00055     inputs[Coeff] = coeff;
+<a name="l00056"></a>00056 }
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058 <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_leak_d_c_u_gen_internal.html#3c9c62c921b84ec8fc8d8eb73d635592">LeakDCUGenInternal::getKr</a>() throw()
+<a name="l00059"></a><a class="code" href="class_leak_d_c_u_gen_internal.html#33c184e78e11ee4bf257ec3a5b353409">00059</a> {
+<a name="l00060"></a>00060     <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_leak_d_c_u_gen_internal_k.html">LeakDCUGenInternalK</a>(<a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_leak_d_c_u_gen_internal.html#b5569cdab792c8a74383a1c7c8d3dc8701baf37b37f6c1d3db67bc51c110d055">Input</a>].<a class="code" href="namespaceugen.html#f17dc36462ee9d9f533a4ac4cb3e5c0d">kr</a>(), <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_leak_d_c_u_gen_internal.html#b5569cdab792c8a74383a1c7c8d3dc8773aefbe4445fd3c90b2f5429bc97601f">Coeff</a>].<a class="code" href="namespaceugen.html#f17dc36462ee9d9f533a4ac4cb3e5c0d">kr</a>()); 
+<a name="l00061"></a>00061 }
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063 <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_leak_d_c_u_gen_internal.html#33c184e78e11ee4bf257ec3a5b353409">LeakDCUGenInternal::getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
+<a name="l00064"></a>00064 {
+<a name="l00065"></a><a class="code" href="class_leak_d_c_u_gen_internal.html#cc4e077cf54b7ca2d0902e68ef4e1720">00065</a>     <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_leak_d_c_u_gen_internal.html">LeakDCUGenInternal</a>(inputs[Input].getChannel(channel), 
+<a name="l00066"></a>00066                                   inputs[Coeff].getChannel(channel));
+<a name="l00067"></a>00067 }
+<a name="l00068"></a>00068 
+<a name="l00069"></a>00069 <span class="keywordtype">void</span> <a class="code" href="class_leak_d_c_u_gen_internal.html#cc4e077cf54b7ca2d0902e68ef4e1720" title="Process a block of samples for this blockID and channel.">LeakDCUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
+<a name="l00070"></a>00070 {
+<a name="l00071"></a>00071     <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
+<a name="l00072"></a>00072     <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
+<a name="l00073"></a>00073     <span class="keywordtype">float</span>* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
+<a name="l00074"></a>00074     <span class="keywordtype">float</span>* b1Samples = inputs[Coeff].processBlock(shouldDelete, blockID, channel);
+<a name="l00075"></a>00075     <span class="keywordtype">float</span> newb1 = *b1Samples;
+<a name="l00076"></a>00076     
+<a name="l00077"></a>00077     <span class="keywordflow">if</span>(newb1 != b1)
+<a name="l00078"></a>00078     {
+<a name="l00079"></a>00079         <span class="keywordtype">float</span> b1_slope = (newb1 - b1) * <a class="code" href="class_u_gen.html#6ab609b3a5d7e8a44dbcaccd1f53a469" title="Get the current slope factor i.e., 1.0 / (block size).">UGen::getSlopeFactor</a>();
+<a name="l00080"></a>00080         
+<a name="l00081"></a>00081         <span class="keywordflow">while</span>(numSamplesToProcess--)
+<a name="l00082"></a>00082         {
+<a name="l00083"></a>00083             <span class="keywordtype">float</span> x0 = *inputSamples++; 
+<a name="l00084"></a>00084             *outputSamples++ = y1 = x0 - x1 + b1 * y1; 
+<a name="l00085"></a>00085             x1 = x0;
+<a name="l00086"></a>00086             b1 += b1_slope;         
+<a name="l00087"></a>00087         }
+<a name="l00088"></a>00088         
+<a name="l00089"></a>00089         b1 = newb1;
+<a name="l00090"></a>00090     }
+<a name="l00091"></a>00091     <span class="keywordflow">else</span>
+<a name="l00092"></a>00092     {
+<a name="l00093"></a>00093         <span class="keywordflow">while</span>(numSamplesToProcess--)
+<a name="l00094"></a>00094         {
+<a name="l00095"></a>00095             <span class="keywordtype">float</span> x0 = *inputSamples++; 
+<a name="l00096"></a>00096             *outputSamples++ = y1 = x0 - x1 + b1 * y1; 
+<a name="l00097"></a>00097             x1 = x0;
+<a name="l00098"></a>00098         }
+<a name="l00099"></a>00099     }
+<a name="l00100"></a><a class="code" href="class_leak_d_c_u_gen_internal.html#26216456bdf2451560c3a5dac0590254">00100</a>     
+<a name="l00101"></a>00101     y1 = <a class="code" href="ugen___inline_unary_ops_8h.html#6ed2bbde65e0032256bd4e8832b99b91">zap</a>(y1); <span class="comment">// denormal!</span>
+<a name="l00102"></a>00102 }
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104 <span class="keywordtype">void</span> <a class="code" href="class_leak_d_c_u_gen_internal.html#26216456bdf2451560c3a5dac0590254" title="Initialise the UGen output value.">LeakDCUGenInternal::initValue</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> value) <span class="keywordflow">throw</span>()
+<a name="l00105"></a>00105 {
+<a name="l00106"></a>00106     <span class="keywordtype">float</span> checkedValue = <a class="code" href="ugen___inline_unary_ops_8h.html#6ed2bbde65e0032256bd4e8832b99b91">zap</a>(value);
+<a name="l00107"></a><a class="code" href="class_leak_d_c_u_gen_internal_k.html#60c666906ca3de8657ed40bc2947d666">00107</a>     <a class="code" href="class_u_gen_internal.html#3b9de200fa163a233dab85b3388fd469" title="Initialise the UGen output value.">UGenInternal::initValue</a>(checkedValue);
+<a name="l00108"></a>00108     y1 = checkedValue;
+<a name="l00109"></a>00109 }
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111 <span class="keywordtype">void</span> <a class="code" href="class_leak_d_c_u_gen_internal_k.html#60c666906ca3de8657ed40bc2947d666" title="Process a block of samples for this blockID and channel.">LeakDCUGenInternalK::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
+<a name="l00112"></a>00112 {
+<a name="l00113"></a>00113     <span class="keyword">const</span> <span class="keywordtype">int</span> krBlockSize = <a class="code" href="class_u_gen.html#2c362eee1cdf755de0eed14727494235" title="Get the current control rate block size.">UGen::getControlRateBlockSize</a>();
+<a name="l00114"></a>00114     <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockPosition = blockID % krBlockSize;
+<a name="l00115"></a>00115     <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
+<a name="l00116"></a>00116     <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
+<a name="l00117"></a>00117     <span class="keywordtype">float</span>* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
+<a name="l00118"></a>00118     <span class="keywordtype">float</span>* b1Samples = inputs[Coeff].processBlock(shouldDelete, blockID, channel);
+<a name="l00119"></a>00119     <span class="keywordtype">float</span> newb1 = *b1Samples;
 <a name="l00120"></a>00120     
-<a name="l00121"></a>00121     <span class="keywordflow">if</span>(newb1 != b1)
-<a name="l00122"></a>00122     {
-<a name="l00123"></a>00123         <span class="keywordtype">float</span> b1_slope = (newb1 - b1) * <a class="code" href="class_u_gen.html#6ab609b3a5d7e8a44dbcaccd1f53a469" title="Get the current slope factor i.e., 1.0 / (block size).">UGen::getSlopeFactor</a>() * krBlockSize;
-<a name="l00124"></a>00124                         
-<a name="l00125"></a>00125         <span class="keywordflow">while</span>(numSamplesToProcess &gt; 0)
-<a name="l00126"></a>00126         {
-<a name="l00127"></a>00127             <span class="keywordflow">if</span>(numKrSamples == 0)           
-<a name="l00128"></a>00128             {
-<a name="l00129"></a>00129                 b1 += b1_slope; 
-<a name="l00130"></a>00130                 <span class="keywordtype">float</span> x0 = *inputSamples; 
-<a name="l00131"></a>00131                 value = y1 = x0 - x1 + b1 * y1; 
-<a name="l00132"></a>00132                 x1 = x0;
-<a name="l00133"></a>00133             }
-<a name="l00134"></a>00134             
-<a name="l00135"></a>00135             numKrSamples = krBlockSize - numKrSamples;
+<a name="l00121"></a>00121     <span class="keywordtype">int</span> numKrSamples = blockPosition % krBlockSize;
+<a name="l00122"></a>00122     
+<a name="l00123"></a>00123     <span class="keywordflow">if</span>(newb1 != b1)
+<a name="l00124"></a>00124     {
+<a name="l00125"></a>00125         <span class="keywordtype">float</span> b1_slope = (newb1 - b1) * <a class="code" href="class_u_gen.html#6ab609b3a5d7e8a44dbcaccd1f53a469" title="Get the current slope factor i.e., 1.0 / (block size).">UGen::getSlopeFactor</a>() * krBlockSize;
+<a name="l00126"></a>00126                         
+<a name="l00127"></a>00127         <span class="keywordflow">while</span>(numSamplesToProcess &gt; 0)
+<a name="l00128"></a>00128         {
+<a name="l00129"></a>00129             <span class="keywordflow">if</span>(numKrSamples == 0)           
+<a name="l00130"></a>00130             {
+<a name="l00131"></a>00131                 b1 += b1_slope; 
+<a name="l00132"></a>00132                 <span class="keywordtype">float</span> x0 = *inputSamples; 
+<a name="l00133"></a>00133                 value = y1 = x0 - x1 + b1 * y1; 
+<a name="l00134"></a>00134                 x1 = x0;
+<a name="l00135"></a>00135             }
 <a name="l00136"></a>00136             
-<a name="l00137"></a>00137             blockPosition       += numKrSamples;
-<a name="l00138"></a>00138             inputSamples        += numKrSamples;
-<a name="l00139"></a>00139             
-<a name="l00140"></a>00140             <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
-<a name="l00141"></a>00141             {
-<a name="l00142"></a>00142                 *outputSamples++ = value;
-<a name="l00143"></a>00143                 --numSamplesToProcess;
-<a name="l00144"></a>00144                 --numKrSamples;
-<a name="l00145"></a>00145             }
-<a name="l00146"></a>00146         }
-<a name="l00147"></a>00147         
-<a name="l00148"></a>00148         b1 = newb1;
+<a name="l00137"></a>00137             numKrSamples = krBlockSize - numKrSamples;
+<a name="l00138"></a>00138             
+<a name="l00139"></a>00139             blockPosition       += numKrSamples;
+<a name="l00140"></a>00140             inputSamples        += numKrSamples;
+<a name="l00141"></a>00141             
+<a name="l00142"></a>00142             <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
+<a name="l00143"></a>00143             {
+<a name="l00144"></a>00144                 *outputSamples++ = value;
+<a name="l00145"></a>00145                 --numSamplesToProcess;
+<a name="l00146"></a>00146                 --numKrSamples;
+<a name="l00147"></a>00147             }
+<a name="l00148"></a>00148         }
 <a name="l00149"></a>00149         
-<a name="l00150"></a>00150     }
-<a name="l00151"></a>00151     <span class="keywordflow">else</span>
-<a name="l00152"></a>00152     {
-<a name="l00153"></a>00153         <span class="keywordflow">while</span>(numSamplesToProcess &gt; 0)
-<a name="l00154"></a>00154         {
-<a name="l00155"></a>00155             <span class="keywordflow">if</span>(numKrSamples == 0)           
-<a name="l00156"></a>00156             {
-<a name="l00157"></a>00157                 <span class="keywordtype">float</span> x0 = *inputSamples; 
-<a name="l00158"></a>00158                 value = y1 = x0 - x1 + b1 * y1; 
-<a name="l00159"></a>00159                 x1 = x0;
-<a name="l00160"></a>00160             }
-<a name="l00161"></a>00161             
-<a name="l00162"></a>00162             numKrSamples = krBlockSize - numKrSamples;
+<a name="l00150"></a>00150         b1 = newb1;
+<a name="l00151"></a>00151         
+<a name="l00152"></a>00152     }
+<a name="l00153"></a>00153     <span class="keywordflow">else</span>
+<a name="l00154"></a>00154     {
+<a name="l00155"></a>00155         <span class="keywordflow">while</span>(numSamplesToProcess &gt; 0)
+<a name="l00156"></a>00156         {
+<a name="l00157"></a>00157             <span class="keywordflow">if</span>(numKrSamples == 0)           
+<a name="l00158"></a>00158             {
+<a name="l00159"></a>00159                 <span class="keywordtype">float</span> x0 = *inputSamples; 
+<a name="l00160"></a>00160                 value = y1 = x0 - x1 + b1 * y1; 
+<a name="l00161"></a>00161                 x1 = x0;
+<a name="l00162"></a>00162             }
 <a name="l00163"></a>00163             
-<a name="l00164"></a>00164             blockPosition       += numKrSamples;
-<a name="l00165"></a>00165             inputSamples        += numKrSamples;
-<a name="l00166"></a>00166             
-<a name="l00167"></a>00167             <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
-<a name="l00168"></a>00168             {
-<a name="l00169"></a>00169                 *outputSamples++ = value;
-<a name="l00170"></a>00170                 --numSamplesToProcess;
-<a name="l00171"></a>00171                 --numKrSamples;
-<a name="l00172"></a>00172             }
-<a name="l00173"></a>00173         }
-<a name="l00174"></a>00174     }
-<a name="l00175"></a><a class="code" href="class_leak_d_c.html#fbd34fa8187c60888858b8d9a0be6b18">00175</a>     
-<a name="l00176"></a>00176     y1 = <a class="code" href="ugen___inline_unary_ops_8h.html#6ed2bbde65e0032256bd4e8832b99b91">zap</a>(y1);
-<a name="l00177"></a>00177 }
-<a name="l00178"></a>00178 
-<a name="l00179"></a>00179 <a class="code" href="class_leak_d_c.html#fbd34fa8187c60888858b8d9a0be6b18" title="Base MulAdd LeakDC Constuctor (without &amp;quot;mul&amp;quot; or &amp;quot;add&amp;quot;), use the...">LeakDC::LeakDC</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; coeff) <span class="keywordflow">throw</span>()
-<a name="l00180"></a>00180 {
-<a name="l00181"></a>00181     <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> inputs[] = { input, coeff };
-<a name="l00182"></a>00182     <span class="keyword">const</span> <span class="keywordtype">int</span> numInputChannels = findMaxInputChannels(<a class="code" href="ugen___standard_header_8h.html#3b96e342c541e61ffe6104777007f4b5">numElementsInArray</a>(inputs), inputs);      
-<a name="l00183"></a>00183     initInternal(numInputChannels);
-<a name="l00184"></a>00184     
-<a name="l00185"></a>00185     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++)
-<a name="l00186"></a>00186     {
-<a name="l00187"></a>00187         internalUGens[i] = <span class="keyword">new</span> <a class="code" href="class_leak_d_c_u_gen_internal.html">LeakDCUGenInternal</a>(input, coeff);
-<a name="l00188"></a>00188         internalUGens[i]-&gt;initValue(input.getValue(i));
-<a name="l00189"></a>00189     }
-<a name="l00190"></a>00190 }
-<a name="l00191"></a>00191 
-<a name="l00192"></a>00192 
-<a name="l00193"></a>00193 <a class="code" href="ugen___standard_header_8h.html#c007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
+<a name="l00164"></a>00164             numKrSamples = krBlockSize - numKrSamples;
+<a name="l00165"></a>00165             
+<a name="l00166"></a>00166             blockPosition       += numKrSamples;
+<a name="l00167"></a>00167             inputSamples        += numKrSamples;
+<a name="l00168"></a>00168             
+<a name="l00169"></a>00169             <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
+<a name="l00170"></a>00170             {
+<a name="l00171"></a>00171                 *outputSamples++ = value;
+<a name="l00172"></a>00172                 --numSamplesToProcess;
+<a name="l00173"></a>00173                 --numKrSamples;
+<a name="l00174"></a>00174             }
+<a name="l00175"></a>00175         }
+<a name="l00176"></a>00176     }
+<a name="l00177"></a><a class="code" href="class_leak_d_c.html#fbd34fa8187c60888858b8d9a0be6b18">00177</a>     
+<a name="l00178"></a>00178     y1 = <a class="code" href="ugen___inline_unary_ops_8h.html#6ed2bbde65e0032256bd4e8832b99b91">zap</a>(y1);
+<a name="l00179"></a>00179 }
+<a name="l00180"></a>00180 
+<a name="l00181"></a>00181 <a class="code" href="class_leak_d_c.html#fbd34fa8187c60888858b8d9a0be6b18" title="Base MulAdd LeakDC Constuctor (without &amp;quot;mul&amp;quot; or &amp;quot;add&amp;quot;), use the...">LeakDC::LeakDC</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; coeff) <span class="keywordflow">throw</span>()
+<a name="l00182"></a>00182 {
+<a name="l00183"></a>00183     <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> inputs[] = { input, coeff };
+<a name="l00184"></a>00184     <span class="keyword">const</span> <span class="keywordtype">int</span> numInputChannels = findMaxInputChannels(<a class="code" href="ugen___standard_header_8h.html#3b96e342c541e61ffe6104777007f4b5">numElementsInArray</a>(inputs), inputs);      
+<a name="l00185"></a>00185     initInternal(numInputChannels);
+<a name="l00186"></a>00186     
+<a name="l00187"></a>00187     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++)
+<a name="l00188"></a>00188     {
+<a name="l00189"></a>00189         internalUGens[i] = <span class="keyword">new</span> <a class="code" href="class_leak_d_c_u_gen_internal.html">LeakDCUGenInternal</a>(input, coeff);
+<a name="l00190"></a>00190         internalUGens[i]-&gt;initValue(input.getValue(i));
+<a name="l00191"></a>00191     }
+<a name="l00192"></a>00192 }
+<a name="l00193"></a>00193 
+<a name="l00194"></a>00194 
+<a name="l00195"></a>00195 <a class="code" href="ugen___standard_header_8h.html#c007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
+<a name="l00196"></a>00196 
+<a name="l00197"></a>00197 <span class="preprocessor">#endif // gpl</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:10 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:06 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

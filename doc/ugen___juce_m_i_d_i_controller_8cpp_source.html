@@ -22,7 +22,7 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-<h1>juce/io/ugen_JuceMIDIController.cpp</h1><a href="ugen___juce_m_i_d_i_controller_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_JuceMIDIController.cpp 77 2010-05-24 10:34:11Z 0x4d52 $</span>
+<h1>juce/io/ugen_JuceMIDIController.cpp</h1><a href="ugen___juce_m_i_d_i_controller_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_JuceMIDIController.cpp 89 2010-07-09 16:20:21Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/juce/io/ugen_JuceMIDIController.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -58,48 +58,52 @@
 <a name="l00034"></a>00034 <span class="comment"> ==============================================================================</span>
 <a name="l00035"></a>00035 <span class="comment"> */</span>
 <a name="l00036"></a>00036 
-<a name="l00037"></a>00037 <span class="preprocessor">#include "../../core/ugen_StandardHeader.h"</span>
-<a name="l00038"></a>00038 
-<a name="l00039"></a>00039 <span class="preprocessor">#ifdef JUCE_VERSION</span>
-<a name="l00040"></a>00040 <span class="preprocessor"></span>
-<a name="l00041"></a>00041 <a class="code" href="ugen___standard_header_8h.html#e236e43a85c6905c3285f031bf456685">BEGIN_UGEN_NAMESPACE</a>
-<a name="l00042"></a>00042 
-<a name="l00043"></a>00043 <span class="preprocessor">#include "<a class="code" href="ugen___juce_m_i_d_i_controller_8h.html">ugen_JuceMIDIController.h</a>"</span>
+<a name="l00037"></a>00037 <span class="preprocessor">#ifndef UGEN_NOEXTGPL</span>
+<a name="l00038"></a>00038 <span class="preprocessor"></span>
+<a name="l00039"></a>00039 <span class="preprocessor">#include "../../core/ugen_StandardHeader.h"</span>
+<a name="l00040"></a>00040 
+<a name="l00041"></a>00041 <span class="preprocessor">#ifdef JUCE_VERSION</span>
+<a name="l00042"></a>00042 <span class="preprocessor"></span>
+<a name="l00043"></a>00043 <a class="code" href="ugen___standard_header_8h.html#e236e43a85c6905c3285f031bf456685">BEGIN_UGEN_NAMESPACE</a>
 <a name="l00044"></a>00044 
-<a name="l00045"></a>00045 <a class="code" href="class_m_i_d_i_controller_internal.html#5c973442d1100653561c8da6db0ce3d0">MIDIControllerInternal::MIDIControllerInternal</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> midiChannel, <span class="keyword">const</span> <span class="keywordtype">int</span> controllerNumber,
-<a name="l00046"></a>00046                                                <span class="keyword">const</span> <span class="keywordtype">float</span> minVal, <span class="keyword">const</span> <span class="keywordtype">float</span> maxVal,
-<a name="l00047"></a>00047                                                <span class="keyword">const</span> <a class="code" href="class_external_control_source.html#ff9fc7f26e97fc5c886377f964b1a810">ExternalControlSource::Warp</a> warp, <span class="keywordtype">void</span>* port) <span class="keywordflow">throw</span>()
-<a name="l00048"></a>00048 :   <a class="code" href="class_external_control_source_internal.html">ExternalControlSourceInternal</a>(minVal, maxVal, warp),
-<a name="l00049"></a>00049     midiChannel_(midiChannel),
-<a name="l00050"></a>00050     controllerNumber_(controllerNumber),
-<a name="l00051"></a>00051     port_(port)
-<a name="l00052"></a>00052 {
-<a name="l00053"></a>00053 }
-<a name="l00054"></a>00054 
-<a name="l00055"></a>00055 <span class="keywordtype">void</span> <a class="code" href="class_m_i_d_i_controller_internal.html#aad9cca9ab7c32d79a3ffcabc7ccd273">MIDIControllerInternal::handleIncomingMidiMessage</a> (MidiInput* source, <span class="keyword">const</span> MidiMessage&amp; message) <span class="keywordflow">throw</span>()
-<a name="l00056"></a>00056 {   
-<a name="l00057"></a>00057     <span class="keywordflow">if</span>(port_ != 0 &amp;&amp; port_ != source)                       <span class="keywordflow">return</span>;
-<a name="l00058"></a>00058     <span class="keywordflow">if</span>(message.isForChannel(midiChannel_) == <span class="keyword">false</span>)         <span class="keywordflow">return</span>;
-<a name="l00059"></a>00059     <span class="keywordflow">if</span>(message.isController() == <span class="keyword">false</span>)                     <span class="keywordflow">return</span>;
-<a name="l00060"></a>00060     <span class="keywordflow">if</span>(message.getControllerNumber() != controllerNumber_)  <span class="keywordflow">return</span>;
-<a name="l00061"></a>00061     
-<a name="l00062"></a>00062     setNormalisedValue(message.getControllerValue() / 127.f);
-<a name="l00063"></a>00063 }
-<a name="l00064"></a>00064 
-<a name="l00065"></a>00065 <a class="code" href="class_m_i_d_i_controller.html#96f9d2d36f9b1c5300f6681345e5d708">MIDIController::MIDIController</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> midiChannel, <span class="keyword">const</span> <span class="keywordtype">int</span> controllerNumber,
-<a name="l00066"></a>00066                                <span class="keyword">const</span> <span class="keywordtype">float</span> minVal, <span class="keyword">const</span> <span class="keywordtype">float</span> maxVal, 
-<a name="l00067"></a>00067                                <span class="keyword">const</span> <a class="code" href="class_external_control_source.html#ff9fc7f26e97fc5c886377f964b1a810">ExternalControlSource::Warp</a> warp, 
-<a name="l00068"></a>00068                                <span class="keywordtype">void</span>* port) <span class="keywordflow">throw</span>()
-<a name="l00069"></a>00069 {
-<a name="l00070"></a>00070     <span class="keyword">internal</span> = <span class="keyword">new</span> <a class="code" href="class_m_i_d_i_controller_internal.html">MIDIControllerInternal</a>(midiChannel, controllerNumber, minVal, maxVal, warp, port);
-<a name="l00071"></a>00071 }
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073 
-<a name="l00074"></a>00074 <a class="code" href="ugen___standard_header_8h.html#c007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
+<a name="l00045"></a>00045 <span class="preprocessor">#include "<a class="code" href="ugen___juce_m_i_d_i_controller_8h.html">ugen_JuceMIDIController.h</a>"</span>
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047 <a class="code" href="class_m_i_d_i_controller_internal.html#5c973442d1100653561c8da6db0ce3d0">MIDIControllerInternal::MIDIControllerInternal</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> midiChannel, <span class="keyword">const</span> <span class="keywordtype">int</span> controllerNumber,
+<a name="l00048"></a>00048                                                <span class="keyword">const</span> <span class="keywordtype">float</span> minVal, <span class="keyword">const</span> <span class="keywordtype">float</span> maxVal,
+<a name="l00049"></a>00049                                                <span class="keyword">const</span> <a class="code" href="class_external_control_source.html#ff9fc7f26e97fc5c886377f964b1a810">ExternalControlSource::Warp</a> warp, <span class="keywordtype">void</span>* port) <span class="keywordflow">throw</span>()
+<a name="l00050"></a>00050 :   <a class="code" href="class_external_control_source_internal.html">ExternalControlSourceInternal</a>(minVal, maxVal, warp),
+<a name="l00051"></a>00051     midiChannel_(midiChannel),
+<a name="l00052"></a>00052     controllerNumber_(controllerNumber),
+<a name="l00053"></a>00053     port_(port)
+<a name="l00054"></a>00054 {
+<a name="l00055"></a>00055 }
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 <span class="keywordtype">void</span> <a class="code" href="class_m_i_d_i_controller_internal.html#aad9cca9ab7c32d79a3ffcabc7ccd273">MIDIControllerInternal::handleIncomingMidiMessage</a> (MidiInput* source, <span class="keyword">const</span> MidiMessage&amp; message) <span class="keywordflow">throw</span>()
+<a name="l00058"></a>00058 {   
+<a name="l00059"></a>00059     <span class="keywordflow">if</span>(port_ != 0 &amp;&amp; port_ != source)                       <span class="keywordflow">return</span>;
+<a name="l00060"></a>00060     <span class="keywordflow">if</span>(message.isForChannel(midiChannel_) == <span class="keyword">false</span>)         <span class="keywordflow">return</span>;
+<a name="l00061"></a>00061     <span class="keywordflow">if</span>(message.isController() == <span class="keyword">false</span>)                     <span class="keywordflow">return</span>;
+<a name="l00062"></a>00062     <span class="keywordflow">if</span>(message.getControllerNumber() != controllerNumber_)  <span class="keywordflow">return</span>;
+<a name="l00063"></a>00063     
+<a name="l00064"></a>00064     setNormalisedValue(message.getControllerValue() / 127.f);
+<a name="l00065"></a>00065 }
+<a name="l00066"></a>00066 
+<a name="l00067"></a>00067 <a class="code" href="class_m_i_d_i_controller.html#96f9d2d36f9b1c5300f6681345e5d708">MIDIController::MIDIController</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> midiChannel, <span class="keyword">const</span> <span class="keywordtype">int</span> controllerNumber,
+<a name="l00068"></a>00068                                <span class="keyword">const</span> <span class="keywordtype">float</span> minVal, <span class="keyword">const</span> <span class="keywordtype">float</span> maxVal, 
+<a name="l00069"></a>00069                                <span class="keyword">const</span> <a class="code" href="class_external_control_source.html#ff9fc7f26e97fc5c886377f964b1a810">ExternalControlSource::Warp</a> warp, 
+<a name="l00070"></a>00070                                <span class="keywordtype">void</span>* port) <span class="keywordflow">throw</span>()
+<a name="l00071"></a>00071 {
+<a name="l00072"></a>00072     <span class="keyword">internal</span> = <span class="keyword">new</span> <a class="code" href="class_m_i_d_i_controller_internal.html">MIDIControllerInternal</a>(midiChannel, controllerNumber, minVal, maxVal, warp, port);
+<a name="l00073"></a>00073 }
+<a name="l00074"></a>00074 
 <a name="l00075"></a>00075 
-<a name="l00076"></a>00076 <span class="preprocessor">#endif</span>
+<a name="l00076"></a>00076 <a class="code" href="ugen___standard_header_8h.html#c007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
+<a name="l00077"></a>00077 
+<a name="l00078"></a>00078 <span class="preprocessor">#endif</span>
+<a name="l00079"></a>00079 <span class="preprocessor"></span>
+<a name="l00080"></a>00080 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:10 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:06 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

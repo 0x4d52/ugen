@@ -54,35 +54,30 @@ Inherited by <a class="el" href="class_b_all_pass_u_gen_internal.html">BAllPassU
  }</td></tr>
 
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#d9b4e78f6164ef55a66f1f2202b5b021">BEQBaseUGenInternal</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_u_gen.html">UGen</a> const &amp;freq, <a class="el" href="class_u_gen.html">UGen</a> const &amp;control, <a class="el" href="class_u_gen.html">UGen</a> const &amp;gain, const bool faster)  throw ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#1548f28a0d92aab959891b2b572e585a">BEQBaseUGenInternal</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_u_gen.html">UGen</a> const &amp;freq, <a class="el" href="class_u_gen.html">UGen</a> const &amp;control, <a class="el" href="class_u_gen.html">UGen</a> const &amp;gain)  throw ()</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#c2ce98457e60caa872a04b5aec2d990c">processBlock</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Process a block of samples for this blockID and channel.  <a href="#c2ce98457e60caa872a04b5aec2d990c"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#a8864927c976a2b8eee143014f0c1a4f">calculateCoeffs</a> (const float freq, const float control, const float gain, double &amp;<a class="el" href="class_b_e_q_base_u_gen_internal.html#bf1a33e45253a6f8747952e99db92c3c">a0</a>, double &amp;<a class="el" href="class_b_e_q_base_u_gen_internal.html#662f67caf185ed45a0b995a9927c76a6">a1</a>, double &amp;<a class="el" href="class_b_e_q_base_u_gen_internal.html#71de6df6f5f0fffa7e1cefcf3ee4306a">a2</a>, double &amp;<a class="el" href="class_b_e_q_base_u_gen_internal.html#f356c63d1fc09daa7ab1a1d03cebf664">b1</a>, double &amp;<a class="el" href="class_b_e_q_base_u_gen_internal.html#8382ea6afb5f8ab9f04a1b21ae796c2c">b2</a>)=0</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#36e8403ba065f0b96f7c965bb403d5b1">calculateCoeffs</a> (const float freq, const float control, const float gain=1.f)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#cc5c6c434063ec021a5a167d8840d240">calculateCoeffs</a> (const float freq, const float control, const float gain)=0</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#4ca73a49b4203918c937b1c9f5b816f0">initValue</a> (const float value)  throw ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> output value.  <a href="#4ca73a49b4203918c937b1c9f5b816f0"></a><br></td></tr>
 <tr><td colspan="2"><br><h2>Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#edaf7cf559f550d3794fc290d6fec408">faster_</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#8d2e3f97d7da434da70ac0650d3db870">y1</a></td></tr>
 
-<tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#15ce1ffe8b091e2fb8db663fd695ac65">y1</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#285e9e78785f71bb51eac20b41bc7ad1">y2</a></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#afd7d7024af798d5fdb4e7f0e36076ec">y2</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#c390ce3358690df2759aaea6e986c9a6">a0</a></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#bf1a33e45253a6f8747952e99db92c3c">a0</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#bda79226b78e374b7640f093f1cbe6c8">a1</a></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#662f67caf185ed45a0b995a9927c76a6">a1</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#515c60b71851a4dbe09218b0798b5031">a2</a></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#71de6df6f5f0fffa7e1cefcf3ee4306a">a2</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#161d7e24a20ede91e0fae018e2acb96f">b1</a></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#f356c63d1fc09daa7ab1a1d03cebf664">b1</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#8382ea6afb5f8ab9f04a1b21ae796c2c">b2</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#471b717264e10ca90fe4ccc753d44e8b">b2</a></td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#0672edd167bcada52bb2906e526c64e7">currentFreq</a></td></tr>
 
@@ -95,7 +90,7 @@ Inherited by <a class="el" href="class_b_all_pass_u_gen_internal.html">BAllPassU
 Base class for the internal BEQ classes. 
 <p>
 Inherit from this using the control input for whatever use is appropriate for the base class (e.g., reciprocal of Q, S, or bandwidth. 
-<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00051">51</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00053">53</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
 <hr><h2>Member Enumeration Documentation</h2>
 <a class="anchor" name="2cde61a5e8cb4b3d27120de6bd6f94be"></a><!-- doxytag: member="BEQBaseUGenInternal::Inputs" ref="2cde61a5e8cb4b3d27120de6bd6f94be" args="" -->
 <div class="memitem">
@@ -124,12 +119,12 @@ Inherit from this using the control input for whatever use is appropriate for th
 </table>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00057">57</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00059">59</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
 
 </div>
 </div><p>
 <hr><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" name="d9b4e78f6164ef55a66f1f2202b5b021"></a><!-- doxytag: member="BEQBaseUGenInternal::BEQBaseUGenInternal" ref="d9b4e78f6164ef55a66f1f2202b5b021" args="(UGen const &amp;input, UGen const &amp;freq, UGen const &amp;control, UGen const &amp;gain, const bool faster)" -->
+<a class="anchor" name="1548f28a0d92aab959891b2b572e585a"></a><!-- doxytag: member="BEQBaseUGenInternal::BEQBaseUGenInternal" ref="1548f28a0d92aab959891b2b572e585a" args="(UGen const &amp;input, UGen const &amp;freq, UGen const &amp;control, UGen const &amp;gain)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -155,13 +150,7 @@ Inherit from this using the control input for whatever use is appropriate for th
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>gain</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool&nbsp;</td>
-          <td class="paramname"> <em>faster</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>gain</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -174,51 +163,12 @@ Inherit from this using the control input for whatever use is appropriate for th
 
 <p>
 
-<p>Definition at line <a class="el" href="ugen___b_e_q_8cpp_source.html#l00044">44</a> of file <a class="el" href="ugen___b_e_q_8cpp_source.html">ugen_BEQ.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___b_e_q_8cpp_source.html#l00046">46</a> of file <a class="el" href="ugen___b_e_q_8cpp_source.html">ugen_BEQ.cpp</a>.</p>
 
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="36e8403ba065f0b96f7c965bb403d5b1"></a><!-- doxytag: member="BEQBaseUGenInternal::calculateCoeffs" ref="36e8403ba065f0b96f7c965bb403d5b1" args="(const float freq, const float control, const float gain=1.f)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void BEQBaseUGenInternal::calculateCoeffs           </td>
-          <td>(</td>
-          <td class="paramtype">const float&nbsp;</td>
-          <td class="paramname"> <em>freq</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const float&nbsp;</td>
-          <td class="paramname"> <em>control</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const float&nbsp;</td>
-          <td class="paramname"> <em>gain</em> = <code>1.f</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00062">62</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
-
-<p>References <a class="el" href="ugen___b_e_q_8h_source.html#l00073">a0</a>, <a class="el" href="ugen___b_e_q_8h_source.html#l00073">a1</a>, <a class="el" href="ugen___b_e_q_8h_source.html#l00073">a2</a>, <a class="el" href="ugen___b_e_q_8h_source.html#l00073">b1</a>, <a class="el" href="ugen___b_e_q_8h_source.html#l00073">b2</a>, <a class="el" href="class_b_e_q_base_u_gen_internal.html#a8864927c976a2b8eee143014f0c1a4f">calculateCoeffs()</a>, <a class="el" href="ugen___b_e_q_8h_source.html#l00074">currentControl</a>, <a class="el" href="ugen___b_e_q_8h_source.html#l00074">currentFreq</a>, and <a class="el" href="ugen___b_e_q_8h_source.html#l00074">currentGain</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="a8864927c976a2b8eee143014f0c1a4f"></a><!-- doxytag: member="BEQBaseUGenInternal::calculateCoeffs" ref="a8864927c976a2b8eee143014f0c1a4f" args="(const float freq, const float control, const float gain, double &amp;a0, double &amp;a1, double &amp;a2, double &amp;b1, double &amp;b2)=0" -->
+<a class="anchor" name="cc5c6c434063ec021a5a167d8840d240"></a><!-- doxytag: member="BEQBaseUGenInternal::calculateCoeffs" ref="cc5c6c434063ec021a5a167d8840d240" args="(const float freq, const float control, const float gain)=0" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -238,37 +188,7 @@ Inherit from this using the control input for whatever use is appropriate for th
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const float&nbsp;</td>
-          <td class="paramname"> <em>gain</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double &amp;&nbsp;</td>
-          <td class="paramname"> <em>a0</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double &amp;&nbsp;</td>
-          <td class="paramname"> <em>a1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double &amp;&nbsp;</td>
-          <td class="paramname"> <em>a2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double &amp;&nbsp;</td>
-          <td class="paramname"> <em>b1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double &amp;&nbsp;</td>
-          <td class="paramname"> <em>b2</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>gain</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -281,9 +201,9 @@ Inherit from this using the control input for whatever use is appropriate for th
 
 <p>
 
-<p>Implemented in <a class="el" href="class_b_low_pass_u_gen_internal.html#b3ca52dd17b91744ddb49fc80510050d">BLowPassUGenInternal</a>, <a class="el" href="class_b_hi_pass_u_gen_internal.html#1df6e8292602e737e80d84f1dd1b159e">BHiPassUGenInternal</a>, <a class="el" href="class_b_band_pass_u_gen_internal.html#76253fa532c71fadbcfdbc419fd75eea">BBandPassUGenInternal</a>, <a class="el" href="class_b_band_stop_u_gen_internal.html#5f9df582745882a7d2298f8dab7e0e43">BBandStopUGenInternal</a>, <a class="el" href="class_b_peak_e_q_u_gen_internal.html#fa66615012803b38e983c65591ebd7e2">BPeakEQUGenInternal</a>, <a class="el" href="class_b_low_shelf_u_gen_internal.html#149e7c9e5ea9f57e93b9402121355546">BLowShelfUGenInternal</a>, <a class="el" href="class_b_hi_shelf_u_gen_internal.html#688ab29bf55a0fb5855a331a6afea1ce">BHiShelfUGenInternal</a>, and <a class="el" href="class_b_all_pass_u_gen_internal.html#46e53325892ccf7e75a51739f8c337cb">BAllPassUGenInternal</a>.</p>
+<p>Implemented in <a class="el" href="class_b_low_pass_u_gen_internal.html#fb9f50cf0a1eb08dbe14b3b0acad8077">BLowPassUGenInternal</a>, <a class="el" href="class_b_hi_pass_u_gen_internal.html#b631ba11651a5f647b3072726415dbbf">BHiPassUGenInternal</a>, <a class="el" href="class_b_band_pass_u_gen_internal.html#ab310d3e67a97654a61d16758c13a391">BBandPassUGenInternal</a>, <a class="el" href="class_b_band_stop_u_gen_internal.html#da56f537c662a5d9f0b0553f77831235">BBandStopUGenInternal</a>, <a class="el" href="class_b_peak_e_q_u_gen_internal.html#2bcf6b78d36d5149802d85b027c5d8e6">BPeakEQUGenInternal</a>, <a class="el" href="class_b_low_shelf_u_gen_internal.html#ca8ad7c7685cec33512574b819c247bf">BLowShelfUGenInternal</a>, <a class="el" href="class_b_hi_shelf_u_gen_internal.html#d927044312fd4a092300fe1bbc07dc9d">BHiShelfUGenInternal</a>, and <a class="el" href="class_b_all_pass_u_gen_internal.html#c4f0a3e40377cf46d77a64c8ac36d726">BAllPassUGenInternal</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___b_e_q_8h_source.html#l00062">calculateCoeffs()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___b_e_q_8cpp_source.html#l00248">BLowPass::BLowPass()</a>.</p>
 
 </div>
 </div><p>
@@ -309,7 +229,9 @@ Initialise the <a class="el" href="class_u_gen.html" title="The UGen class!">UGe
 This helps <a class="el" href="class_u_gen_internal.html#8025c9bdaa987546001e2da23f97e3c8">getValue()</a> return the correct (or at lease approximately correct) value even before processing begins. Oscillators can generally set their own value here in their UGenInternal-inherited constructor. Processing-type <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> classes will probably need to set the values in the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> class as the <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> classes are created (since they may contain multichannel inputs). 
 <p>Reimplemented from <a class="el" href="class_u_gen_internal.html#3b9de200fa163a233dab85b3388fd469">UGenInternal</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___b_e_q_8cpp_source.html#l00203">203</a> of file <a class="el" href="ugen___b_e_q_8cpp_source.html">ugen_BEQ.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___b_e_q_8cpp_source.html#l00161">161</a> of file <a class="el" href="ugen___b_e_q_8cpp_source.html">ugen_BEQ.cpp</a>.</p>
+
+<p>Referenced by <a class="el" href="ugen___b_e_q_8cpp_source.html#l00248">BLowPass::BLowPass()</a>.</p>
 
 </div>
 </div><p>
@@ -358,17 +280,19 @@ This is the main rendering function and needs to be implement by all subclasses.
 
 <p>Implements <a class="el" href="class_u_gen_internal.html#e1c9c941ea6f372d8af8cc5f9ae32ace">UGenInternal</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___b_e_q_8cpp_source.html#l00057">57</a> of file <a class="el" href="ugen___b_e_q_8cpp_source.html">ugen_BEQ.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___b_e_q_8cpp_source.html#l00115">115</a> of file <a class="el" href="ugen___b_e_q_8cpp_source.html">ugen_BEQ.cpp</a>.</p>
+
+<p>References <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00142">zap()</a>.</p>
 
 </div>
 </div><p>
 <hr><h2>Member Data Documentation</h2>
-<a class="anchor" name="bf1a33e45253a6f8747952e99db92c3c"></a><!-- doxytag: member="BEQBaseUGenInternal::a0" ref="bf1a33e45253a6f8747952e99db92c3c" args="" -->
+<a class="anchor" name="c390ce3358690df2759aaea6e986c9a6"></a><!-- doxytag: member="BEQBaseUGenInternal::a0" ref="c390ce3358690df2759aaea6e986c9a6" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="class_b_e_q_base_u_gen_internal.html#bf1a33e45253a6f8747952e99db92c3c">BEQBaseUGenInternal::a0</a><code> [private]</code>          </td>
+          <td class="memname">float <a class="el" href="class_b_e_q_base_u_gen_internal.html#c390ce3358690df2759aaea6e986c9a6">BEQBaseUGenInternal::a0</a><code> [protected]</code>          </td>
         </tr>
       </table>
 </div>
@@ -376,18 +300,18 @@ This is the main rendering function and needs to be implement by all subclasses.
 
 <p>
 
-<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00073">73</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00066">66</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___b_e_q_8h_source.html#l00062">calculateCoeffs()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___b_e_q_8cpp_source.html#l00227">BLowPassUGenInternal::calculateCoeffs()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="662f67caf185ed45a0b995a9927c76a6"></a><!-- doxytag: member="BEQBaseUGenInternal::a1" ref="662f67caf185ed45a0b995a9927c76a6" args="" -->
+<a class="anchor" name="bda79226b78e374b7640f093f1cbe6c8"></a><!-- doxytag: member="BEQBaseUGenInternal::a1" ref="bda79226b78e374b7640f093f1cbe6c8" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="class_b_e_q_base_u_gen_internal.html#662f67caf185ed45a0b995a9927c76a6">BEQBaseUGenInternal::a1</a><code> [private]</code>          </td>
+          <td class="memname">float <a class="el" href="class_b_e_q_base_u_gen_internal.html#bda79226b78e374b7640f093f1cbe6c8">BEQBaseUGenInternal::a1</a><code> [protected]</code>          </td>
         </tr>
       </table>
 </div>
@@ -395,18 +319,18 @@ This is the main rendering function and needs to be implement by all subclasses.
 
 <p>
 
-<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00073">73</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00066">66</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___b_e_q_8h_source.html#l00062">calculateCoeffs()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___b_e_q_8cpp_source.html#l00227">BLowPassUGenInternal::calculateCoeffs()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="71de6df6f5f0fffa7e1cefcf3ee4306a"></a><!-- doxytag: member="BEQBaseUGenInternal::a2" ref="71de6df6f5f0fffa7e1cefcf3ee4306a" args="" -->
+<a class="anchor" name="515c60b71851a4dbe09218b0798b5031"></a><!-- doxytag: member="BEQBaseUGenInternal::a2" ref="515c60b71851a4dbe09218b0798b5031" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="class_b_e_q_base_u_gen_internal.html#71de6df6f5f0fffa7e1cefcf3ee4306a">BEQBaseUGenInternal::a2</a><code> [private]</code>          </td>
+          <td class="memname">float <a class="el" href="class_b_e_q_base_u_gen_internal.html#515c60b71851a4dbe09218b0798b5031">BEQBaseUGenInternal::a2</a><code> [protected]</code>          </td>
         </tr>
       </table>
 </div>
@@ -414,18 +338,18 @@ This is the main rendering function and needs to be implement by all subclasses.
 
 <p>
 
-<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00073">73</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00066">66</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___b_e_q_8h_source.html#l00062">calculateCoeffs()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___b_e_q_8cpp_source.html#l00227">BLowPassUGenInternal::calculateCoeffs()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="f356c63d1fc09daa7ab1a1d03cebf664"></a><!-- doxytag: member="BEQBaseUGenInternal::b1" ref="f356c63d1fc09daa7ab1a1d03cebf664" args="" -->
+<a class="anchor" name="161d7e24a20ede91e0fae018e2acb96f"></a><!-- doxytag: member="BEQBaseUGenInternal::b1" ref="161d7e24a20ede91e0fae018e2acb96f" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="class_b_e_q_base_u_gen_internal.html#f356c63d1fc09daa7ab1a1d03cebf664">BEQBaseUGenInternal::b1</a><code> [private]</code>          </td>
+          <td class="memname">float <a class="el" href="class_b_e_q_base_u_gen_internal.html#161d7e24a20ede91e0fae018e2acb96f">BEQBaseUGenInternal::b1</a><code> [protected]</code>          </td>
         </tr>
       </table>
 </div>
@@ -433,18 +357,18 @@ This is the main rendering function and needs to be implement by all subclasses.
 
 <p>
 
-<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00073">73</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00066">66</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___b_e_q_8h_source.html#l00062">calculateCoeffs()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___b_e_q_8cpp_source.html#l00227">BLowPassUGenInternal::calculateCoeffs()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="8382ea6afb5f8ab9f04a1b21ae796c2c"></a><!-- doxytag: member="BEQBaseUGenInternal::b2" ref="8382ea6afb5f8ab9f04a1b21ae796c2c" args="" -->
+<a class="anchor" name="471b717264e10ca90fe4ccc753d44e8b"></a><!-- doxytag: member="BEQBaseUGenInternal::b2" ref="471b717264e10ca90fe4ccc753d44e8b" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="class_b_e_q_base_u_gen_internal.html#8382ea6afb5f8ab9f04a1b21ae796c2c">BEQBaseUGenInternal::b2</a><code> [private]</code>          </td>
+          <td class="memname">float <a class="el" href="class_b_e_q_base_u_gen_internal.html#471b717264e10ca90fe4ccc753d44e8b">BEQBaseUGenInternal::b2</a><code> [protected]</code>          </td>
         </tr>
       </table>
 </div>
@@ -452,9 +376,9 @@ This is the main rendering function and needs to be implement by all subclasses.
 
 <p>
 
-<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00073">73</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00066">66</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___b_e_q_8h_source.html#l00062">calculateCoeffs()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___b_e_q_8cpp_source.html#l00227">BLowPassUGenInternal::calculateCoeffs()</a>.</p>
 
 </div>
 </div><p>
@@ -463,7 +387,7 @@ This is the main rendering function and needs to be implement by all subclasses.
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">float <a class="el" href="class_b_e_q_base_u_gen_internal.html#34e6f723a3a54817714dbf35931a2ed2">BEQBaseUGenInternal::currentControl</a><code> [private]</code>          </td>
+          <td class="memname">float <a class="el" href="class_b_e_q_base_u_gen_internal.html#34e6f723a3a54817714dbf35931a2ed2">BEQBaseUGenInternal::currentControl</a><code> [protected]</code>          </td>
         </tr>
       </table>
 </div>
@@ -471,9 +395,7 @@ This is the main rendering function and needs to be implement by all subclasses.
 
 <p>
 
-<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00074">74</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
-
-<p>Referenced by <a class="el" href="ugen___b_e_q_8h_source.html#l00062">calculateCoeffs()</a>.</p>
+<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00067">67</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
 
 </div>
 </div><p>
@@ -482,7 +404,7 @@ This is the main rendering function and needs to be implement by all subclasses.
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">float <a class="el" href="class_b_e_q_base_u_gen_internal.html#0672edd167bcada52bb2906e526c64e7">BEQBaseUGenInternal::currentFreq</a><code> [private]</code>          </td>
+          <td class="memname">float <a class="el" href="class_b_e_q_base_u_gen_internal.html#0672edd167bcada52bb2906e526c64e7">BEQBaseUGenInternal::currentFreq</a><code> [protected]</code>          </td>
         </tr>
       </table>
 </div>
@@ -490,9 +412,7 @@ This is the main rendering function and needs to be implement by all subclasses.
 
 <p>
 
-<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00074">74</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
-
-<p>Referenced by <a class="el" href="ugen___b_e_q_8h_source.html#l00062">calculateCoeffs()</a>.</p>
+<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00067">67</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
 
 </div>
 </div><p>
@@ -501,7 +421,7 @@ This is the main rendering function and needs to be implement by all subclasses.
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">float <a class="el" href="class_b_e_q_base_u_gen_internal.html#5ea9a67679895383e6f80a4abb66ecb5">BEQBaseUGenInternal::currentGain</a><code> [private]</code>          </td>
+          <td class="memname">float <a class="el" href="class_b_e_q_base_u_gen_internal.html#5ea9a67679895383e6f80a4abb66ecb5">BEQBaseUGenInternal::currentGain</a><code> [protected]</code>          </td>
         </tr>
       </table>
 </div>
@@ -509,18 +429,16 @@ This is the main rendering function and needs to be implement by all subclasses.
 
 <p>
 
-<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00074">74</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
-
-<p>Referenced by <a class="el" href="ugen___b_e_q_8h_source.html#l00062">calculateCoeffs()</a>.</p>
+<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00067">67</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="edaf7cf559f550d3794fc290d6fec408"></a><!-- doxytag: member="BEQBaseUGenInternal::faster_" ref="edaf7cf559f550d3794fc290d6fec408" args="" -->
+<a class="anchor" name="8d2e3f97d7da434da70ac0650d3db870"></a><!-- doxytag: member="BEQBaseUGenInternal::y1" ref="8d2e3f97d7da434da70ac0650d3db870" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const bool <a class="el" href="class_b_e_q_base_u_gen_internal.html#edaf7cf559f550d3794fc290d6fec408">BEQBaseUGenInternal::faster_</a><code> [protected]</code>          </td>
+          <td class="memname">float <a class="el" href="class_b_e_q_base_u_gen_internal.html#8d2e3f97d7da434da70ac0650d3db870">BEQBaseUGenInternal::y1</a><code> [protected]</code>          </td>
         </tr>
       </table>
 </div>
@@ -528,16 +446,16 @@ This is the main rendering function and needs to be implement by all subclasses.
 
 <p>
 
-<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00078">78</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00066">66</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="15ce1ffe8b091e2fb8db663fd695ac65"></a><!-- doxytag: member="BEQBaseUGenInternal::y1" ref="15ce1ffe8b091e2fb8db663fd695ac65" args="" -->
+<a class="anchor" name="285e9e78785f71bb51eac20b41bc7ad1"></a><!-- doxytag: member="BEQBaseUGenInternal::y2" ref="285e9e78785f71bb51eac20b41bc7ad1" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="class_b_e_q_base_u_gen_internal.html#15ce1ffe8b091e2fb8db663fd695ac65">BEQBaseUGenInternal::y1</a><code> [private]</code>          </td>
+          <td class="memname">float <a class="el" href="class_b_e_q_base_u_gen_internal.html#285e9e78785f71bb51eac20b41bc7ad1">BEQBaseUGenInternal::y2</a><code> [protected]</code>          </td>
         </tr>
       </table>
 </div>
@@ -545,31 +463,14 @@ This is the main rendering function and needs to be implement by all subclasses.
 
 <p>
 
-<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00073">73</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="afd7d7024af798d5fdb4e7f0e36076ec"></a><!-- doxytag: member="BEQBaseUGenInternal::y2" ref="afd7d7024af798d5fdb4e7f0e36076ec" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double <a class="el" href="class_b_e_q_base_u_gen_internal.html#afd7d7024af798d5fdb4e7f0e36076ec">BEQBaseUGenInternal::y2</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00073">73</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00066">66</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>filters/<a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a><li>filters/<a class="el" href="ugen___b_e_q_8cpp_source.html">ugen_BEQ.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:14 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:09 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

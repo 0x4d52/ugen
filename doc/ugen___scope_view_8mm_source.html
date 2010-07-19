@@ -22,7 +22,7 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-<h1>iphone/ugen_ScopeView.mm</h1><a href="ugen___scope_view_8mm.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_ScopeView.mm 77 2010-05-24 10:34:11Z 0x4d52 $</span>
+<h1>iphone/ugen_ScopeView.mm</h1><a href="ugen___scope_view_8mm.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_ScopeView.mm 90 2010-07-14 21:03:59Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/iphone/ugen_ScopeView.mm $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -1102,8 +1102,8 @@
 <a name="l01078"></a>01078 <span class="comment">//      ugen_assert(bufferWrap == 0.0); // need to upate this function if the waveform is rotated...</span>
 <a name="l01079"></a>01079         
 <a name="l01080"></a>01080         <span class="keyword">const</span> <span class="keywordtype">double</span> audioBufferSize = audioBuffer.size();
-<a name="l01081"></a>01081         <span class="keyword">const</span> <span class="keywordtype">double</span> radiansPerSample = <a class="code" href="ugen___constants_8h.html#d996edbbc287b4e5f3dd072a10bd6122">twopi</a> / audioBufferSize;
-<a name="l01082"></a>01082         <span class="keyword">const</span> <span class="keywordtype">double</span> radiansOffset = bufferWrap * <a class="code" href="ugen___constants_8h.html#d996edbbc287b4e5f3dd072a10bd6122">twopi</a>;
+<a name="l01081"></a>01081         <span class="keyword">const</span> <span class="keywordtype">double</span> radiansPerSample = <a class="code" href="ugen___constants_8h.html#41456563667051ed589712c38e7427e6">twoPi</a> / audioBufferSize;
+<a name="l01082"></a>01082         <span class="keyword">const</span> <span class="keywordtype">double</span> radiansOffset = bufferWrap * <a class="code" href="ugen___constants_8h.html#41456563667051ed589712c38e7427e6">twoPi</a>;
 <a name="l01083"></a>01083         
 <a name="l01084"></a>01084         <span class="keyword">const</span> <span class="keywordtype">int</span> markSpacing = markSpacingX;
 <a name="l01085"></a>01085         <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> labelHop = labelHopX;
@@ -1157,7 +1157,7 @@
 <a name="l01133"></a>01133                         snprintf(label, <span class="keyword">sizeof</span>(label), <span class="stringliteral">"%d"</span>, (<span class="keywordtype">int</span>)(audioIndex + offsetSamples + 0.5));
 <a name="l01134"></a>01134                     }
 <a name="l01135"></a>01135                     
-<a name="l01136"></a>01136                     <span class="keyword">const</span> <span class="keywordtype">double</span> rotation = <a class="code" href="ugen___constants_8h.html#2c0cc2347cdb41873a6b0dbc108b15d3">pi2</a>-angle;
+<a name="l01136"></a>01136                     <span class="keyword">const</span> <span class="keywordtype">double</span> rotation = <a class="code" href="ugen___constants_8h.html#b0bf38bc19b14ba80f346e7b22ddec9f">piOverTwo</a>-angle;
 <a name="l01137"></a>01137                     <span class="comment">//if(angle &gt; pi) rotation += pi;                    </span>
 <a name="l01138"></a>01138                     CGAffineTransform transform = CGAffineTransformRotate(flipTransform, rotation);
 <a name="l01139"></a>01139                     CGContextSetTextMatrix(context, transform);
@@ -1197,7 +1197,7 @@
 <a name="l01173"></a>01173 <span class="keywordtype">int</span> <a class="code" href="class_radial_scope_view.html#a10f120f646d0f5c9b0fb95b21ffc09f">RadialScopeView::getDisplayBufferSize</a>() <span class="keyword">const</span> throw()
 <a name="l01174"></a>01174 {
 <a name="l01175"></a>01175     <span class="keyword">const</span> <span class="keywordtype">double</span> angle = <a class="code" href="class_radial_scope_view.html#d8c650bbb78f3ca32fceaada082fc9d1">getDeltaAngle</a>();
-<a name="l01176"></a>01176     <span class="keywordflow">return</span> twopi / angle + 0.5;
+<a name="l01176"></a>01176     <span class="keywordflow">return</span> twoPi / angle + 0.5;
 <a name="l01177"></a>01177 }
 <a name="l01178"></a>01178 
 <a name="l01179"></a>01179 <span class="keywordtype">int</span> <a class="code" href="class_radial_scope_view.html#a03f29e495647867e0e57ccad1a47413">RadialScopeView::getRadius</a>() <span class="keyword">const</span> throw()
@@ -1234,7 +1234,7 @@
 <a name="l01210"></a>01210 <span class="comment"> }</span>
 <a name="l01211"></a>01211 <span class="comment"> */</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:10 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:06 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

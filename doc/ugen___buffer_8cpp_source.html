@@ -22,7 +22,7 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-<h1>buffers/ugen_Buffer.cpp</h1><a href="ugen___buffer_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Buffer.cpp 77 2010-05-24 10:34:11Z 0x4d52 $</span>
+<h1>buffers/ugen_Buffer.cpp</h1><a href="ugen___buffer_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Buffer.cpp 90 2010-07-14 21:03:59Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/buffers/ugen_Buffer.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -646,7 +646,7 @@
 <a name="l00622"></a>00622     CFRelease(audioFileURL);
 <a name="l00623"></a>00623     <span class="keywordflow">if</span> (result != noErr) 
 <a name="l00624"></a>00624     {
-<a name="l00625"></a>00625         printf(<span class="stringliteral">"Buffer: Could not open file: %s err=%d\n"</span>, audioFilePath, result);
+<a name="l00625"></a>00625         printf(<span class="stringliteral">"Buffer: Could not open file: %s err=%d\n"</span>, audioFilePath, (<span class="keywordtype">int</span>)result);
 <a name="l00626"></a>00626         <span class="keywordflow">return</span> 0.0;
 <a name="l00627"></a>00627     }
 <a name="l00628"></a>00628     
@@ -655,7 +655,7 @@
 <a name="l00631"></a>00631     result = AudioFileGetProperty(audioFile, kAudioFilePropertyAudioDataPacketCount, &amp;dataSize, &amp;packetCount);
 <a name="l00632"></a>00632     <span class="keywordflow">if</span> (result != noErr) 
 <a name="l00633"></a>00633     {
-<a name="l00634"></a>00634         printf(<span class="stringliteral">"Buffer: Could not get packet count: %s err=%d\n"</span>, audioFilePath, result);
+<a name="l00634"></a>00634         printf(<span class="stringliteral">"Buffer: Could not get packet count: %s err=%d\n"</span>, audioFilePath, (<span class="keywordtype">int</span>)result);
 <a name="l00635"></a>00635         AudioFileClose(audioFile);
 <a name="l00636"></a>00636         <span class="keywordflow">return</span> 0.0;
 <a name="l00637"></a>00637     }
@@ -665,7 +665,7 @@
 <a name="l00641"></a>00641     result = AudioFileGetProperty(audioFile, kAudioFilePropertyDataFormat, &amp;dataSize, &amp;format);
 <a name="l00642"></a>00642     <span class="keywordflow">if</span> (result != noErr) 
 <a name="l00643"></a>00643     {
-<a name="l00644"></a>00644         printf(<span class="stringliteral">"Buffer: Could not get data format: %s err=%d\n"</span>, audioFilePath, result);
+<a name="l00644"></a>00644         printf(<span class="stringliteral">"Buffer: Could not get data format: %s err=%d\n"</span>, audioFilePath, (<span class="keywordtype">int</span>)result);
 <a name="l00645"></a>00645         AudioFileClose(audioFile);
 <a name="l00646"></a>00646         <span class="keywordflow">return</span> 0.0;
 <a name="l00647"></a>00647     }
@@ -680,7 +680,7 @@
 <a name="l00656"></a>00656         
 <a name="l00657"></a>00657         <span class="keywordflow">if</span> (result != noErr) 
 <a name="l00658"></a>00658         {
-<a name="l00659"></a>00659             printf(<span class="stringliteral">"Buffer: Could not read audio packets: %s err=%d\n"</span>, audioFilePath, result);
+<a name="l00659"></a>00659             printf(<span class="stringliteral">"Buffer: Could not read audio packets: %s err=%d\n"</span>, audioFilePath, (<span class="keywordtype">int</span>)result);
 <a name="l00660"></a>00660             free(audioData);
 <a name="l00661"></a>00661             AudioFileClose(audioFile);
 <a name="l00662"></a>00662             <span class="keywordflow">return</span> 0.0;
@@ -857,7 +857,7 @@
 <a name="l00833"></a>00833     }
 <a name="l00834"></a>00834     <span class="keywordflow">else</span>
 <a name="l00835"></a>00835     {
-<a name="l00836"></a>00836         printf(<span class="stringliteral">"Buffer: Could not allocate memory for audio : %s err=%d\n"</span>, audioFilePath, result);
+<a name="l00836"></a>00836         printf(<span class="stringliteral">"Buffer: Could not allocate memory for audio : %s err=%d\n"</span>, audioFilePath, (<span class="keywordtype">int</span>)result);
 <a name="l00837"></a>00837     }
 <a name="l00838"></a>00838     
 <a name="l00839"></a>00839     free(audioData);
@@ -2052,7 +2052,7 @@
 <a name="l02028"></a>02028 <span class="comment">//              a2 = 0.5;</span>
 <a name="l02029"></a>02029 <span class="comment">//              b1 = 2.0 * std::cos(w);</span>
 <a name="l02030"></a>02030 <span class="comment">//              y1 = 0.5;</span>
-<a name="l02031"></a>02031 <span class="comment">//              y2 = y1 * std::sin(pi2 - w);</span>
+<a name="l02031"></a>02031 <span class="comment">//              y2 = y1 * std::sin(piOverTwo - w);</span>
 <a name="l02032"></a>02032 <span class="comment">//              currentValue = a2 - y1;</span>
 <a name="l02033"></a>02033 <span class="comment">//              </span>
 <a name="l02034"></a>02034 <span class="comment">//          } break;</span>
@@ -2169,461 +2169,463 @@
 <a name="l02145"></a>02145 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#a6d1470f9469bdf1b0e710b4297ece97">Buffer::rand</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, <span class="keyword">const</span> <span class="keywordtype">double</span> lower, <span class="keyword">const</span> <span class="keywordtype">double</span> upper, <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels) <span class="keywordflow">throw</span>()
 <a name="l02146"></a>02146 {
 <a name="l02147"></a>02147     <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> newBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(size, numChannels, <span class="keyword">false</span>));
-<a name="l02148"></a>02148     <a class="code" href="class_ran088.html">Ran088</a> random((<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)newBuffer.<a class="code" href="class_buffer.html#f00bb945c19cd82f9acc3bd38f177777">getData</a>() + 345098L * 853L + <a class="code" href="ugen___random_8h.html#4a9d748503ef7330212b77884f7fb4b6">ugen::rand</a>(82701)); <span class="comment">// seed</span>
-<a name="l02149"></a>02149     
-<a name="l02150"></a>02150     <span class="keywordtype">double</span> range = upper-lower;
+<a name="l02148"></a>02148     
+<a name="l02149"></a>02149     <span class="keywordtype">double</span> range = upper-lower;
+<a name="l02150"></a>02150     <span class="keywordtype">double</span> rangeFactor = range / RAND_MAX;
 <a name="l02151"></a>02151     
 <a name="l02152"></a>02152     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numChannels; channel++)
 <a name="l02153"></a>02153     {
 <a name="l02154"></a>02154         <span class="keywordflow">for</span>(<span class="keywordtype">int</span> sample = 0; sample &lt; size; sample++)
 <a name="l02155"></a>02155         {
-<a name="l02156"></a>02156             newBuffer.<a class="code" href="class_buffer.html#21f77aa00b5362bd1efa0ff1bc7765fb">setSampleUnchecked</a>(channel, sample, (<span class="keywordtype">float</span>)(random.nextDouble(range) + lower));
+<a name="l02156"></a>02156             newBuffer.<a class="code" href="class_buffer.html#21f77aa00b5362bd1efa0ff1bc7765fb">setSampleUnchecked</a>(channel, sample, <a class="code" href="ugen___random_8h.html#4a9d748503ef7330212b77884f7fb4b6">std::rand</a>() * rangeFactor * + lower);
 <a name="l02157"></a><a class="code" href="class_buffer.html#988f4ed80af6b0e39e6cd11fae4c5ad1">02157</a>         }
 <a name="l02158"></a>02158     }
 <a name="l02159"></a>02159     
 <a name="l02160"></a>02160     <span class="keywordflow">return</span> newBuffer;
 <a name="l02161"></a>02161 }
-<a name="l02162"></a><a class="code" href="class_buffer.html#1b0ee3b56bdf9f82fac719176d4b3850">02162</a> 
-<a name="l02163"></a>02163 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#988f4ed80af6b0e39e6cd11fae4c5ad1">Buffer::rand2</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, <span class="keyword">const</span> <span class="keywordtype">double</span> positive, <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels) <span class="keywordflow">throw</span>()
+<a name="l02162"></a>02162 
+<a name="l02163"></a><a class="code" href="class_buffer.html#1b0ee3b56bdf9f82fac719176d4b3850">02163</a> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#988f4ed80af6b0e39e6cd11fae4c5ad1">Buffer::rand2</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, <span class="keyword">const</span> <span class="keywordtype">double</span> positive, <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels) <span class="keywordflow">throw</span>()
 <a name="l02164"></a>02164 {
 <a name="l02165"></a>02165     <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a6d1470f9469bdf1b0e710b4297ece97">Buffer::rand</a>(size, -positive, positive, numChannels);
 <a name="l02166"></a>02166 }
 <a name="l02167"></a>02167 
-<a name="l02168"></a>02168 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#1b0ee3b56bdf9f82fac719176d4b3850">Buffer::exprand</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, <span class="keyword">const</span> <span class="keywordtype">double</span> lower, <span class="keyword">const</span> <span class="keywordtype">double</span> upper, <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels) <span class="keywordflow">throw</span>()
-<a name="l02169"></a>02169 {
-<a name="l02170"></a>02170     <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> newBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(size, numChannels, <span class="keyword">false</span>));
-<a name="l02171"></a>02171     <a class="code" href="class_ran088.html">Ran088</a> random((<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)newBuffer.<a class="code" href="class_buffer.html#f00bb945c19cd82f9acc3bd38f177777">getData</a>() + 993877L * 4994L + <a class="code" href="ugen___random_8h.html#4a9d748503ef7330212b77884f7fb4b6">ugen::rand</a>(2876)); <span class="comment">// seed</span>
-<a name="l02172"></a>02172         
-<a name="l02173"></a>02173     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numChannels; channel++)
-<a name="l02174"></a>02174     {
-<a name="l02175"></a>02175         <span class="keywordflow">for</span>(<span class="keywordtype">int</span> sample = 0; sample &lt; size; sample++)
-<a name="l02176"></a>02176         {
-<a name="l02177"></a>02177             newBuffer.<a class="code" href="class_buffer.html#21f77aa00b5362bd1efa0ff1bc7765fb">setSampleUnchecked</a>(channel, sample, (<span class="keywordtype">float</span>)random.nextExpRandRange(lower, upper));
-<a name="l02178"></a><a class="code" href="class_buffer.html#093533bef8e0ffe9a694780322ebd25a">02178</a>         }
-<a name="l02179"></a>02179     }
-<a name="l02180"></a>02180     
-<a name="l02181"></a>02181     <span class="keywordflow">return</span> newBuffer;
-<a name="l02182"></a>02182 }
-<a name="l02183"></a>02183 
-<a name="l02184"></a>02184 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#093533bef8e0ffe9a694780322ebd25a">Buffer::linrand</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, <span class="keyword">const</span> <span class="keywordtype">double</span> lower, <span class="keyword">const</span> <span class="keywordtype">double</span> upper, <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels) <span class="keywordflow">throw</span>()
-<a name="l02185"></a>02185 {
-<a name="l02186"></a>02186     <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> newBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(size, numChannels, <span class="keyword">false</span>));
-<a name="l02187"></a>02187     <a class="code" href="class_ran088.html">Ran088</a> random((<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)newBuffer.<a class="code" href="class_buffer.html#f00bb945c19cd82f9acc3bd38f177777">getData</a>() + 1122408L * 98823L + <a class="code" href="ugen___random_8h.html#4a9d748503ef7330212b77884f7fb4b6">ugen::rand</a>(8188123)); <span class="comment">// seed</span>
-<a name="l02188"></a>02188     
-<a name="l02189"></a>02189     <span class="keywordtype">double</span> range = upper-lower;
-<a name="l02190"></a>02190     
-<a name="l02191"></a>02191     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numChannels; channel++)
-<a name="l02192"></a>02192     {
-<a name="l02193"></a>02193         <span class="keywordflow">for</span>(<span class="keywordtype">int</span> sample = 0; sample &lt; size; sample++)
-<a name="l02194"></a>02194         {
-<a name="l02195"></a>02195             newBuffer.<a class="code" href="class_buffer.html#21f77aa00b5362bd1efa0ff1bc7765fb">setSampleUnchecked</a>(channel, sample, (<span class="keywordtype">float</span>)random.nextDouble(range) + lower);
-<a name="l02196"></a><a class="code" href="class_buffer.html#d6b583737bd26e109f91f19112c6c82f">02196</a>         }
-<a name="l02197"></a>02197     }
-<a name="l02198"></a>02198     
-<a name="l02199"></a>02199     <span class="keywordflow">return</span> newBuffer;
-<a name="l02200"></a>02200 }
-<a name="l02201"></a><a class="code" href="class_buffer.html#cd62d9fddf2056e649cac46c6176660c">02201</a> 
-<a name="l02202"></a>02202 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#d6b583737bd26e109f91f19112c6c82f">Buffer::sineTable</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, <span class="keyword">const</span> <span class="keywordtype">float</span> repeats) <span class="keywordflow">throw</span>()
-<a name="l02203"></a>02203 {
-<a name="l02204"></a>02204     <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(size, 0.0, <a class="code" href="ugen___constants_8h.html#d996edbbc287b4e5f3dd072a10bd6122">twopi</a> * repeats).<a class="code" href="class_buffer.html#7e5f6fb28836e76ee6bb4605ac2cc63d" title="Unary sine.">sin</a>();
-<a name="l02205"></a>02205 }
-<a name="l02206"></a><a class="code" href="class_buffer.html#d2efad8c3a4a5635d7bc2b99e0d32fed">02206</a> 
-<a name="l02207"></a>02207 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#cd62d9fddf2056e649cac46c6176660c">Buffer::cosineTable</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, <span class="keyword">const</span> <span class="keywordtype">float</span> repeats) <span class="keywordflow">throw</span>()
-<a name="l02208"></a>02208 {
-<a name="l02209"></a>02209     <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(size, 0.0, <a class="code" href="ugen___constants_8h.html#d996edbbc287b4e5f3dd072a10bd6122">twopi</a> * repeats).<a class="code" href="class_buffer.html#a1b947accbf151eabfd345b1784f9348" title="Unary cosine.">cos</a>();
-<a name="l02210"></a>02210 }
-<a name="l02211"></a><a class="code" href="class_buffer.html#6862661fa406b246a4237a37acff7d51">02211</a> 
-<a name="l02212"></a>02212 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#d2efad8c3a4a5635d7bc2b99e0d32fed">Buffer::cosineWindow</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, <span class="keyword">const</span> <span class="keywordtype">float</span> repeats) <span class="keywordflow">throw</span>()
-<a name="l02213"></a>02213 {
-<a name="l02214"></a>02214     <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(size, 0.0, <a class="code" href="ugen___constants_8h.html#43016d873124d39034edb8cd164794db">pi</a> * repeats).<a class="code" href="class_buffer.html#7e5f6fb28836e76ee6bb4605ac2cc63d" title="Unary sine.">sin</a>();
-<a name="l02215"></a>02215 }
-<a name="l02216"></a>02216 
-<a name="l02217"></a>02217 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#6862661fa406b246a4237a37acff7d51">Buffer::triangleWindow</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size) <span class="keywordflow">throw</span>()
-<a name="l02218"></a>02218 {
-<a name="l02219"></a>02219     <span class="keyword">const</span> <span class="keywordtype">int</span> rampUpSize = size/2;
-<a name="l02220"></a><a class="code" href="class_buffer.html#7084e2812bff24aabb5fd0bfd295c2cb">02220</a>     <span class="keyword">const</span> <span class="keywordtype">int</span> rampDownSize = size-rampUpSize;
-<a name="l02221"></a>02221     <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> rampUp = <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(rampUpSize+2, 0.0, 1.0).<a class="code" href="class_buffer.html#ec8ce25f140ed02d4fd9c4a87b34193a" title="Reduce the apparent size of the Buffer without deallocating the extra memory.">shrinkSize</a>(1).<a class="code" href="class_buffer.html#b6d2424995bb36bc1305dc7cfca910dc">getRegion</a>(1);
-<a name="l02222"></a>02222     <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> rampDown = <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(rampDownSize+1, 1.0, 0.0).<a class="code" href="class_buffer.html#ec8ce25f140ed02d4fd9c4a87b34193a" title="Reduce the apparent size of the Buffer without deallocating the extra memory.">shrinkSize</a>(1);
-<a name="l02223"></a>02223     <span class="keywordflow">return</span> (rampUp, rampDown);
-<a name="l02224"></a>02224 }
-<a name="l02225"></a>02225 
-<a name="l02226"></a>02226 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#7084e2812bff24aabb5fd0bfd295c2cb">Buffer::bartlettWindow</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size) <span class="keywordflow">throw</span>()
-<a name="l02227"></a>02227 {
-<a name="l02228"></a>02228     <span class="keyword">const</span> <span class="keywordtype">int</span> rampUpSize = size/2;
-<a name="l02229"></a><a class="code" href="class_buffer.html#d040319c28bb18d206ed06133d1c76ee">02229</a>     <span class="keyword">const</span> <span class="keywordtype">int</span> rampDownSize = size-rampUpSize;
-<a name="l02230"></a>02230     <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> rampUp = <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(rampUpSize+1, 0.0, 1.0).<a class="code" href="class_buffer.html#ec8ce25f140ed02d4fd9c4a87b34193a" title="Reduce the apparent size of the Buffer without deallocating the extra memory.">shrinkSize</a>(1);
-<a name="l02231"></a>02231     <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> rampDown = <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(rampDownSize, 1.0, 0.0);
-<a name="l02232"></a>02232     <span class="keywordflow">return</span> (rampUp, rampDown);
-<a name="l02233"></a>02233 }
-<a name="l02234"></a><a class="code" href="class_buffer.html#436c8c17af0f5946c13c3df667ed3194">02234</a> 
-<a name="l02235"></a>02235 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#d040319c28bb18d206ed06133d1c76ee">Buffer::hannWindow</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size) <span class="keywordflow">throw</span>()
-<a name="l02236"></a>02236 {
-<a name="l02237"></a>02237     <span class="keywordflow">return</span> (-cosineTable(size) + 1.f) * 0.5f;
-<a name="l02238"></a>02238 }
-<a name="l02239"></a><a class="code" href="class_buffer.html#e2f2bc634d1ed1dd5ebf2bdc8c96479c">02239</a> 
-<a name="l02240"></a>02240 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#436c8c17af0f5946c13c3df667ed3194">Buffer::hammingWindow</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size) <span class="keywordflow">throw</span>()
-<a name="l02241"></a>02241 {
-<a name="l02242"></a>02242     <span class="keywordflow">return</span>  -cosineTable(size) * 0.46f + 0.54f;
-<a name="l02243"></a>02243 }
-<a name="l02244"></a>02244 
-<a name="l02245"></a>02245 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#e2f2bc634d1ed1dd5ebf2bdc8c96479c">Buffer::blackmanWindow</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, <span class="keyword">const</span> <span class="keywordtype">float</span> alpha) <span class="keywordflow">throw</span>()
-<a name="l02246"></a>02246 {
-<a name="l02247"></a>02247     <span class="keywordtype">float</span> a0 = (1.f-alpha) * 0.5f;
-<a name="l02248"></a>02248     <span class="keywordtype">float</span> a1 = 0.5f;
-<a name="l02249"></a>02249     <span class="keywordtype">float</span> a2 = alpha * 0.5f;
-<a name="l02250"></a>02250     
-<a name="l02251"></a>02251     <span class="keywordflow">return</span> -cosineTable(size) * a1 + cosineTable(size, 2.f) * a2 + a0;
-<a name="l02252"></a>02252 }
-<a name="l02253"></a>02253 
-<a name="l02254"></a>02254 
+<a name="l02168"></a>02168 <span class="preprocessor">#ifndef UGEN_NOEXTGPL</span>
+<a name="l02169"></a>02169 <span class="preprocessor"></span><a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#1b0ee3b56bdf9f82fac719176d4b3850">Buffer::exprand</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, <span class="keyword">const</span> <span class="keywordtype">double</span> lower, <span class="keyword">const</span> <span class="keywordtype">double</span> upper, <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels) <span class="keywordflow">throw</span>()
+<a name="l02170"></a>02170 {
+<a name="l02171"></a>02171     <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> newBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(size, numChannels, <span class="keyword">false</span>));
+<a name="l02172"></a>02172     <a class="code" href="class_ran088.html">Ran088</a> random((<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)newBuffer.<a class="code" href="class_buffer.html#f00bb945c19cd82f9acc3bd38f177777">getData</a>() + 993877L * 4994L + <a class="code" href="ugen___random_8h.html#4a9d748503ef7330212b77884f7fb4b6">ugen::rand</a>(2876)); <span class="comment">// seed</span>
+<a name="l02173"></a>02173         
+<a name="l02174"></a>02174     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numChannels; channel++)
+<a name="l02175"></a>02175     {
+<a name="l02176"></a>02176         <span class="keywordflow">for</span>(<span class="keywordtype">int</span> sample = 0; sample &lt; size; sample++)
+<a name="l02177"></a>02177         {
+<a name="l02178"></a>02178             newBuffer.<a class="code" href="class_buffer.html#21f77aa00b5362bd1efa0ff1bc7765fb">setSampleUnchecked</a>(channel, sample, (<span class="keywordtype">float</span>)random.nextExpRandRange(lower, upper));
+<a name="l02179"></a><a class="code" href="class_buffer.html#093533bef8e0ffe9a694780322ebd25a">02179</a>         }
+<a name="l02180"></a>02180     }
+<a name="l02181"></a>02181     
+<a name="l02182"></a>02182     <span class="keywordflow">return</span> newBuffer;
+<a name="l02183"></a>02183 }
+<a name="l02184"></a>02184 
+<a name="l02185"></a>02185 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#093533bef8e0ffe9a694780322ebd25a">Buffer::linrand</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, <span class="keyword">const</span> <span class="keywordtype">double</span> lower, <span class="keyword">const</span> <span class="keywordtype">double</span> upper, <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels) <span class="keywordflow">throw</span>()
+<a name="l02186"></a>02186 {
+<a name="l02187"></a>02187     <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> newBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(size, numChannels, <span class="keyword">false</span>));
+<a name="l02188"></a>02188     <a class="code" href="class_ran088.html">Ran088</a> random((<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)newBuffer.<a class="code" href="class_buffer.html#f00bb945c19cd82f9acc3bd38f177777">getData</a>() + 1122408L * 98823L + <a class="code" href="ugen___random_8h.html#4a9d748503ef7330212b77884f7fb4b6">ugen::rand</a>(8188123)); <span class="comment">// seed</span>
+<a name="l02189"></a>02189     
+<a name="l02190"></a>02190     <span class="keywordtype">double</span> range = upper-lower;
+<a name="l02191"></a>02191     
+<a name="l02192"></a>02192     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numChannels; channel++)
+<a name="l02193"></a>02193     {
+<a name="l02194"></a>02194         <span class="keywordflow">for</span>(<span class="keywordtype">int</span> sample = 0; sample &lt; size; sample++)
+<a name="l02195"></a>02195         {
+<a name="l02196"></a>02196             newBuffer.<a class="code" href="class_buffer.html#21f77aa00b5362bd1efa0ff1bc7765fb">setSampleUnchecked</a>(channel, sample, (<span class="keywordtype">float</span>)random.nextDouble(range) + lower);
+<a name="l02197"></a>02197         }
+<a name="l02198"></a><a class="code" href="class_buffer.html#d6b583737bd26e109f91f19112c6c82f">02198</a>     }
+<a name="l02199"></a>02199     
+<a name="l02200"></a>02200     <span class="keywordflow">return</span> newBuffer;
+<a name="l02201"></a>02201 }
+<a name="l02202"></a>02202 <span class="preprocessor">#endif // gpl</span>
+<a name="l02203"></a><a class="code" href="class_buffer.html#cd62d9fddf2056e649cac46c6176660c">02203</a> <span class="preprocessor"></span>
+<a name="l02204"></a>02204 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#d6b583737bd26e109f91f19112c6c82f">Buffer::sineTable</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, <span class="keyword">const</span> <span class="keywordtype">float</span> repeats) <span class="keywordflow">throw</span>()
+<a name="l02205"></a>02205 {
+<a name="l02206"></a>02206     <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(size, 0.0, <a class="code" href="ugen___constants_8h.html#41456563667051ed589712c38e7427e6">twoPi</a> * repeats).<a class="code" href="class_buffer.html#7e5f6fb28836e76ee6bb4605ac2cc63d" title="Unary sine.">sin</a>();
+<a name="l02207"></a>02207 }
+<a name="l02208"></a><a class="code" href="class_buffer.html#d2efad8c3a4a5635d7bc2b99e0d32fed">02208</a> 
+<a name="l02209"></a>02209 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#cd62d9fddf2056e649cac46c6176660c">Buffer::cosineTable</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, <span class="keyword">const</span> <span class="keywordtype">float</span> repeats) <span class="keywordflow">throw</span>()
+<a name="l02210"></a>02210 {
+<a name="l02211"></a>02211     <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(size, 0.0, <a class="code" href="ugen___constants_8h.html#41456563667051ed589712c38e7427e6">twoPi</a> * repeats).<a class="code" href="class_buffer.html#a1b947accbf151eabfd345b1784f9348" title="Unary cosine.">cos</a>();
+<a name="l02212"></a>02212 }
+<a name="l02213"></a><a class="code" href="class_buffer.html#6862661fa406b246a4237a37acff7d51">02213</a> 
+<a name="l02214"></a>02214 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#d2efad8c3a4a5635d7bc2b99e0d32fed">Buffer::cosineWindow</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, <span class="keyword">const</span> <span class="keywordtype">float</span> repeats) <span class="keywordflow">throw</span>()
+<a name="l02215"></a>02215 {
+<a name="l02216"></a>02216     <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(size, 0.0, <a class="code" href="ugen___constants_8h.html#43016d873124d39034edb8cd164794db">pi</a> * repeats).<a class="code" href="class_buffer.html#7e5f6fb28836e76ee6bb4605ac2cc63d" title="Unary sine.">sin</a>();
+<a name="l02217"></a>02217 }
+<a name="l02218"></a>02218 
+<a name="l02219"></a>02219 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#6862661fa406b246a4237a37acff7d51">Buffer::triangleWindow</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size) <span class="keywordflow">throw</span>()
+<a name="l02220"></a>02220 {
+<a name="l02221"></a>02221     <span class="keyword">const</span> <span class="keywordtype">int</span> rampUpSize = size/2;
+<a name="l02222"></a><a class="code" href="class_buffer.html#7084e2812bff24aabb5fd0bfd295c2cb">02222</a>     <span class="keyword">const</span> <span class="keywordtype">int</span> rampDownSize = size-rampUpSize;
+<a name="l02223"></a>02223     <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> rampUp = <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(rampUpSize+2, 0.0, 1.0).<a class="code" href="class_buffer.html#ec8ce25f140ed02d4fd9c4a87b34193a" title="Reduce the apparent size of the Buffer without deallocating the extra memory.">shrinkSize</a>(1).<a class="code" href="class_buffer.html#b6d2424995bb36bc1305dc7cfca910dc">getRegion</a>(1);
+<a name="l02224"></a>02224     <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> rampDown = <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(rampDownSize+1, 1.0, 0.0).<a class="code" href="class_buffer.html#ec8ce25f140ed02d4fd9c4a87b34193a" title="Reduce the apparent size of the Buffer without deallocating the extra memory.">shrinkSize</a>(1);
+<a name="l02225"></a>02225     <span class="keywordflow">return</span> (rampUp, rampDown);
+<a name="l02226"></a>02226 }
+<a name="l02227"></a>02227 
+<a name="l02228"></a>02228 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#7084e2812bff24aabb5fd0bfd295c2cb">Buffer::bartlettWindow</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size) <span class="keywordflow">throw</span>()
+<a name="l02229"></a>02229 {
+<a name="l02230"></a>02230     <span class="keyword">const</span> <span class="keywordtype">int</span> rampUpSize = size/2;
+<a name="l02231"></a><a class="code" href="class_buffer.html#d040319c28bb18d206ed06133d1c76ee">02231</a>     <span class="keyword">const</span> <span class="keywordtype">int</span> rampDownSize = size-rampUpSize;
+<a name="l02232"></a>02232     <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> rampUp = <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(rampUpSize+1, 0.0, 1.0).<a class="code" href="class_buffer.html#ec8ce25f140ed02d4fd9c4a87b34193a" title="Reduce the apparent size of the Buffer without deallocating the extra memory.">shrinkSize</a>(1);
+<a name="l02233"></a>02233     <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> rampDown = <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(rampDownSize, 1.0, 0.0);
+<a name="l02234"></a>02234     <span class="keywordflow">return</span> (rampUp, rampDown);
+<a name="l02235"></a>02235 }
+<a name="l02236"></a><a class="code" href="class_buffer.html#436c8c17af0f5946c13c3df667ed3194">02236</a> 
+<a name="l02237"></a>02237 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#d040319c28bb18d206ed06133d1c76ee">Buffer::hannWindow</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size) <span class="keywordflow">throw</span>()
+<a name="l02238"></a>02238 {
+<a name="l02239"></a>02239     <span class="keywordflow">return</span> (-cosineTable(size) + 1.f) * 0.5f;
+<a name="l02240"></a>02240 }
+<a name="l02241"></a><a class="code" href="class_buffer.html#e2f2bc634d1ed1dd5ebf2bdc8c96479c">02241</a> 
+<a name="l02242"></a>02242 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#436c8c17af0f5946c13c3df667ed3194">Buffer::hammingWindow</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size) <span class="keywordflow">throw</span>()
+<a name="l02243"></a>02243 {
+<a name="l02244"></a>02244     <span class="keywordflow">return</span>  -cosineTable(size) * 0.46f + 0.54f;
+<a name="l02245"></a>02245 }
+<a name="l02246"></a>02246 
+<a name="l02247"></a>02247 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#e2f2bc634d1ed1dd5ebf2bdc8c96479c">Buffer::blackmanWindow</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, <span class="keyword">const</span> <span class="keywordtype">float</span> alpha) <span class="keywordflow">throw</span>()
+<a name="l02248"></a>02248 {
+<a name="l02249"></a>02249     <span class="keywordtype">float</span> a0 = (1.f-alpha) * 0.5f;
+<a name="l02250"></a>02250     <span class="keywordtype">float</span> a1 = 0.5f;
+<a name="l02251"></a>02251     <span class="keywordtype">float</span> a2 = alpha * 0.5f;
+<a name="l02252"></a>02252     
+<a name="l02253"></a>02253     <span class="keywordflow">return</span> -cosineTable(size) * a1 + cosineTable(size, 2.f) * a2 + a0;
+<a name="l02254"></a>02254 }
 <a name="l02255"></a>02255 
-<a name="l02256"></a>02256 <span class="comment">//Buffer Buffer::kaiserWindow(const int size, const float alpha) throw()</span>
-<a name="l02257"></a>02257 <span class="comment">//{ </span>
-<a name="l02258"></a>02258 <span class="comment">//  Buffer window = Buffer::line(size, 0.0, 2.0) - 1.f;</span>
-<a name="l02259"></a>02259 <span class="comment">//  window = -window.squared() + 1.f;</span>
-<a name="l02260"></a>02260 <span class="comment">//  window = window.sqrt() * alpha;</span>
-<a name="l02261"></a>02261 <span class="comment">//  window = window.besselI0() / ugen::besselI0(alpha);</span>
-<a name="l02262"></a>02262 <span class="comment">//  </span>
-<a name="l02263"></a>02263 <span class="comment">//  return window;</span>
-<a name="l02264"></a>02264 <span class="comment">//}</span>
-<a name="l02265"></a>02265 
-<a name="l02266"></a>02266 <span class="comment">//Buffer Buffer::normalise() const</span>
-<a name="l02267"></a>02267 <span class="comment">//{</span>
-<a name="l02268"></a>02268 <span class="comment">//  Buffer newBuffer(size_, numChannels_, false);</span>
-<a name="l02269"></a>02269 <span class="comment">//  </span>
-<a name="l02270"></a>02270 <span class="comment">//  for(int channelIndex = 0; channelIndex &lt; numChannels_; channelIndex++)</span>
-<a name="l02271"></a>02271 <span class="comment">//  {</span>
-<a name="l02272"></a>02272 <span class="comment">//  float sumOver1 = 1.f / sum(channelIndex);</span>
-<a name="l02273"></a>02273 <span class="comment">//  </span>
-<a name="l02274"></a>02274 <span class="comment">//  for(int channelIndex = 0; channelIndex &lt; numChannels_; channelIndex++)</span>
-<a name="l02275"></a>02275 <span class="comment">//  {</span>
-<a name="l02276"></a>02276 <span class="comment">//      </span>
-<a name="l02277"></a>02277 <span class="comment">//      int numSamples = size_;</span>
-<a name="l02278"></a>02278 <span class="comment">//      float* inputSamples = channels[channelIndex]-&gt;data;</span>
-<a name="l02279"></a>02279 <span class="comment">//      float* outputSamples = newBuffer.channels[channelIndex]-&gt;data;</span>
-<a name="l02280"></a>02280 <span class="comment">//      </span>
-<a name="l02281"></a>02281 <span class="comment">//      while(--numSamples &gt;= 0) {</span>
-<a name="l02282"></a>02282 <span class="comment">//          *outputSamples++ = *inputSamples++ * sumOver1;</span>
-<a name="l02283"></a>02283 <span class="comment">//      }</span>
-<a name="l02284"></a>02284 <span class="comment">//  }</span>
-<a name="l02285"></a>02285 <span class="comment">//  </span>
-<a name="l02286"></a>02286 <span class="comment">//  return newBuffer;</span>
-<a name="l02287"></a>02287 <span class="comment">//}</span>
-<a name="l02288"></a>02288 
-<a name="l02289"></a>02289 <span class="comment">//Buffer Buffer::normaliseEach() const</span>
-<a name="l02290"></a>02290 <span class="comment">//{</span>
-<a name="l02291"></a>02291 <span class="comment">//  Buffer newBuffer(size_, numChannels_, false);</span>
-<a name="l02292"></a>02292 <span class="comment">//  </span>
-<a name="l02293"></a>02293 <span class="comment">//  for(int channelIndex = 0; channelIndex &lt; numChannels_; channelIndex++)</span>
-<a name="l02294"></a>02294 <span class="comment">//  {</span>
-<a name="l02295"></a>02295 <span class="comment">//      float sumOver1 = 1.f / sum(channelIndex);</span>
-<a name="l02296"></a>02296 <span class="comment">//      int numSamples = size_;</span>
-<a name="l02297"></a>02297 <span class="comment">//      float* inputSamples = channels[channelIndex]-&gt;data;</span>
-<a name="l02298"></a>02298 <span class="comment">//      float* outputSamples = newBuffer.channels[channelIndex]-&gt;data;</span>
-<a name="l02299"></a>02299 <span class="comment">//      </span>
-<a name="l02300"></a>02300 <span class="comment">//      while(--numSamples &gt;= 0) {</span>
-<a name="l02301"></a>02301 <span class="comment">//          *outputSamples++ = *inputSamples++ * sumOver1;</span>
-<a name="l02302"></a><a class="code" href="class_buffer.html#c10102db89c05260acc20bea9aaa6d3a">02302</a> <span class="comment">//      }</span>
-<a name="l02303"></a>02303 <span class="comment">//  }</span>
-<a name="l02304"></a>02304 <span class="comment">//  </span>
-<a name="l02305"></a>02305 <span class="comment">//  return newBuffer;</span>
-<a name="l02306"></a>02306 <span class="comment">//}</span>
-<a name="l02307"></a>02307 
-<a name="l02308"></a>02308 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#c10102db89c05260acc20bea9aaa6d3a">Buffer::reciprocalExceptZero</a>() <span class="keyword">const</span> throw()
-<a name="l02309"></a>02309 {
-<a name="l02310"></a>02310     <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> newBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(size_, numChannels_, <span class="keyword">false</span>));
-<a name="l02311"></a>02311     
-<a name="l02312"></a>02312     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channelIndex = 0; channelIndex &lt; numChannels_; channelIndex++)
-<a name="l02313"></a>02313     {
-<a name="l02314"></a>02314         <span class="keywordtype">int</span> numSamples = size_;
-<a name="l02315"></a>02315         <span class="keywordtype">float</span>* inputSamples = <a class="code" href="class_buffer.html#4d8cb3226251d4ab95385cd2019500fa">channels</a>[channelIndex]-&gt;<a class="code" href="class_buffer_channel_internal.html#5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>;
-<a name="l02316"></a>02316         <span class="keywordtype">float</span>* outputSamples = newBuffer.<a class="code" href="class_buffer.html#4d8cb3226251d4ab95385cd2019500fa">channels</a>[channelIndex]-&gt;<a class="code" href="class_buffer_channel_internal.html#5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>;
-<a name="l02317"></a>02317         
-<a name="l02318"></a>02318         <span class="keywordflow">while</span>(--numSamples &gt;= 0) {
-<a name="l02319"></a>02319             <span class="keywordtype">float</span> value = *inputSamples++;
-<a name="l02320"></a>02320             <span class="keywordflow">if</span>(value == 0.f || value == -0.f)
-<a name="l02321"></a>02321                 *outputSamples++ = 0.f;
-<a name="l02322"></a>02322             <span class="keywordflow">else</span>
-<a name="l02323"></a>02323                 *outputSamples++ = 1.f / value;
-<a name="l02324"></a><a class="code" href="class_buffer.html#a171c51b63f14e494f18b89aa02a19a7">02324</a>         }
-<a name="l02325"></a>02325     }
-<a name="l02326"></a>02326     
-<a name="l02327"></a>02327     <span class="keywordflow">return</span> newBuffer;
-<a name="l02328"></a>02328 }
-<a name="l02329"></a>02329 
-<a name="l02330"></a>02330 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#a171c51b63f14e494f18b89aa02a19a7">Buffer::reverse</a>() <span class="keyword">const</span> throw()
-<a name="l02331"></a>02331 {
-<a name="l02332"></a>02332     <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> newBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(size_, numChannels_, <span class="keyword">false</span>));
-<a name="l02333"></a>02333     
-<a name="l02334"></a>02334     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channelIndex = 0; channelIndex &lt; numChannels_; channelIndex++)
-<a name="l02335"></a>02335     {
-<a name="l02336"></a>02336         <span class="keywordtype">int</span> numSamples = size_;
-<a name="l02337"></a>02337         <span class="keywordtype">float</span>* inputSamples = <a class="code" href="class_buffer.html#4d8cb3226251d4ab95385cd2019500fa">channels</a>[channelIndex]-&gt;<a class="code" href="class_buffer_channel_internal.html#5ac00cc6d7ff9d61e833f7199b6b7e96">data</a> + numSamples - 1;
-<a name="l02338"></a>02338         <span class="keywordtype">float</span>* outputSamples = newBuffer.<a class="code" href="class_buffer.html#4d8cb3226251d4ab95385cd2019500fa">channels</a>[channelIndex]-&gt;<a class="code" href="class_buffer_channel_internal.html#5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>;
-<a name="l02339"></a>02339         
-<a name="l02340"></a>02340         <span class="keywordflow">while</span>(--numSamples &gt;= 0) {
-<a name="l02341"></a>02341             *outputSamples++ = *inputSamples--;
-<a name="l02342"></a><a class="code" href="class_buffer.html#0a70ff184047479336856a3c5dc188bf">02342</a>         }
-<a name="l02343"></a>02343     }
-<a name="l02344"></a>02344     
-<a name="l02345"></a>02345     <span class="keywordflow">return</span> newBuffer;
-<a name="l02346"></a>02346 }
-<a name="l02347"></a>02347 
-<a name="l02348"></a>02348 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#0a70ff184047479336856a3c5dc188bf">Buffer::mix</a>() <span class="keyword">const</span> throw()
-<a name="l02349"></a>02349 {
-<a name="l02350"></a>02350     <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> newBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(size_, 1, <span class="keyword">true</span>));
-<a name="l02351"></a>02351     
-<a name="l02352"></a>02352     <span class="keywordtype">int</span> channelIndex = 0;
+<a name="l02256"></a>02256 
+<a name="l02257"></a>02257 
+<a name="l02258"></a>02258 <span class="comment">//Buffer Buffer::kaiserWindow(const int size, const float alpha) throw()</span>
+<a name="l02259"></a>02259 <span class="comment">//{ </span>
+<a name="l02260"></a>02260 <span class="comment">//  Buffer window = Buffer::line(size, 0.0, 2.0) - 1.f;</span>
+<a name="l02261"></a>02261 <span class="comment">//  window = -window.squared() + 1.f;</span>
+<a name="l02262"></a>02262 <span class="comment">//  window = window.sqrt() * alpha;</span>
+<a name="l02263"></a>02263 <span class="comment">//  window = window.besselI0() / ugen::besselI0(alpha);</span>
+<a name="l02264"></a>02264 <span class="comment">//  </span>
+<a name="l02265"></a>02265 <span class="comment">//  return window;</span>
+<a name="l02266"></a>02266 <span class="comment">//}</span>
+<a name="l02267"></a>02267 
+<a name="l02268"></a>02268 <span class="comment">//Buffer Buffer::normalise() const</span>
+<a name="l02269"></a>02269 <span class="comment">//{</span>
+<a name="l02270"></a>02270 <span class="comment">//  Buffer newBuffer(size_, numChannels_, false);</span>
+<a name="l02271"></a>02271 <span class="comment">//  </span>
+<a name="l02272"></a>02272 <span class="comment">//  for(int channelIndex = 0; channelIndex &lt; numChannels_; channelIndex++)</span>
+<a name="l02273"></a>02273 <span class="comment">//  {</span>
+<a name="l02274"></a>02274 <span class="comment">//  float sumOver1 = 1.f / sum(channelIndex);</span>
+<a name="l02275"></a>02275 <span class="comment">//  </span>
+<a name="l02276"></a>02276 <span class="comment">//  for(int channelIndex = 0; channelIndex &lt; numChannels_; channelIndex++)</span>
+<a name="l02277"></a>02277 <span class="comment">//  {</span>
+<a name="l02278"></a>02278 <span class="comment">//      </span>
+<a name="l02279"></a>02279 <span class="comment">//      int numSamples = size_;</span>
+<a name="l02280"></a>02280 <span class="comment">//      float* inputSamples = channels[channelIndex]-&gt;data;</span>
+<a name="l02281"></a>02281 <span class="comment">//      float* outputSamples = newBuffer.channels[channelIndex]-&gt;data;</span>
+<a name="l02282"></a>02282 <span class="comment">//      </span>
+<a name="l02283"></a>02283 <span class="comment">//      while(--numSamples &gt;= 0) {</span>
+<a name="l02284"></a>02284 <span class="comment">//          *outputSamples++ = *inputSamples++ * sumOver1;</span>
+<a name="l02285"></a>02285 <span class="comment">//      }</span>
+<a name="l02286"></a>02286 <span class="comment">//  }</span>
+<a name="l02287"></a>02287 <span class="comment">//  </span>
+<a name="l02288"></a>02288 <span class="comment">//  return newBuffer;</span>
+<a name="l02289"></a>02289 <span class="comment">//}</span>
+<a name="l02290"></a>02290 
+<a name="l02291"></a>02291 <span class="comment">//Buffer Buffer::normaliseEach() const</span>
+<a name="l02292"></a>02292 <span class="comment">//{</span>
+<a name="l02293"></a>02293 <span class="comment">//  Buffer newBuffer(size_, numChannels_, false);</span>
+<a name="l02294"></a>02294 <span class="comment">//  </span>
+<a name="l02295"></a>02295 <span class="comment">//  for(int channelIndex = 0; channelIndex &lt; numChannels_; channelIndex++)</span>
+<a name="l02296"></a>02296 <span class="comment">//  {</span>
+<a name="l02297"></a>02297 <span class="comment">//      float sumOver1 = 1.f / sum(channelIndex);</span>
+<a name="l02298"></a>02298 <span class="comment">//      int numSamples = size_;</span>
+<a name="l02299"></a>02299 <span class="comment">//      float* inputSamples = channels[channelIndex]-&gt;data;</span>
+<a name="l02300"></a>02300 <span class="comment">//      float* outputSamples = newBuffer.channels[channelIndex]-&gt;data;</span>
+<a name="l02301"></a>02301 <span class="comment">//      </span>
+<a name="l02302"></a>02302 <span class="comment">//      while(--numSamples &gt;= 0) {</span>
+<a name="l02303"></a>02303 <span class="comment">//          *outputSamples++ = *inputSamples++ * sumOver1;</span>
+<a name="l02304"></a><a class="code" href="class_buffer.html#c10102db89c05260acc20bea9aaa6d3a">02304</a> <span class="comment">//      }</span>
+<a name="l02305"></a>02305 <span class="comment">//  }</span>
+<a name="l02306"></a>02306 <span class="comment">//  </span>
+<a name="l02307"></a>02307 <span class="comment">//  return newBuffer;</span>
+<a name="l02308"></a>02308 <span class="comment">//}</span>
+<a name="l02309"></a>02309 
+<a name="l02310"></a>02310 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#c10102db89c05260acc20bea9aaa6d3a">Buffer::reciprocalExceptZero</a>() <span class="keyword">const</span> throw()
+<a name="l02311"></a>02311 {
+<a name="l02312"></a>02312     <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> newBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(size_, numChannels_, <span class="keyword">false</span>));
+<a name="l02313"></a>02313     
+<a name="l02314"></a>02314     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channelIndex = 0; channelIndex &lt; numChannels_; channelIndex++)
+<a name="l02315"></a>02315     {
+<a name="l02316"></a>02316         <span class="keywordtype">int</span> numSamples = size_;
+<a name="l02317"></a>02317         <span class="keywordtype">float</span>* inputSamples = <a class="code" href="class_buffer.html#4d8cb3226251d4ab95385cd2019500fa">channels</a>[channelIndex]-&gt;<a class="code" href="class_buffer_channel_internal.html#5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>;
+<a name="l02318"></a>02318         <span class="keywordtype">float</span>* outputSamples = newBuffer.<a class="code" href="class_buffer.html#4d8cb3226251d4ab95385cd2019500fa">channels</a>[channelIndex]-&gt;<a class="code" href="class_buffer_channel_internal.html#5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>;
+<a name="l02319"></a>02319         
+<a name="l02320"></a>02320         <span class="keywordflow">while</span>(--numSamples &gt;= 0) {
+<a name="l02321"></a>02321             <span class="keywordtype">float</span> value = *inputSamples++;
+<a name="l02322"></a>02322             <span class="keywordflow">if</span>(value == 0.f || value == -0.f)
+<a name="l02323"></a>02323                 *outputSamples++ = 0.f;
+<a name="l02324"></a>02324             <span class="keywordflow">else</span>
+<a name="l02325"></a>02325                 *outputSamples++ = 1.f / value;
+<a name="l02326"></a><a class="code" href="class_buffer.html#a171c51b63f14e494f18b89aa02a19a7">02326</a>         }
+<a name="l02327"></a>02327     }
+<a name="l02328"></a>02328     
+<a name="l02329"></a>02329     <span class="keywordflow">return</span> newBuffer;
+<a name="l02330"></a>02330 }
+<a name="l02331"></a>02331 
+<a name="l02332"></a>02332 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#a171c51b63f14e494f18b89aa02a19a7">Buffer::reverse</a>() <span class="keyword">const</span> throw()
+<a name="l02333"></a>02333 {
+<a name="l02334"></a>02334     <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> newBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(size_, numChannels_, <span class="keyword">false</span>));
+<a name="l02335"></a>02335     
+<a name="l02336"></a>02336     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channelIndex = 0; channelIndex &lt; numChannels_; channelIndex++)
+<a name="l02337"></a>02337     {
+<a name="l02338"></a>02338         <span class="keywordtype">int</span> numSamples = size_;
+<a name="l02339"></a>02339         <span class="keywordtype">float</span>* inputSamples = <a class="code" href="class_buffer.html#4d8cb3226251d4ab95385cd2019500fa">channels</a>[channelIndex]-&gt;<a class="code" href="class_buffer_channel_internal.html#5ac00cc6d7ff9d61e833f7199b6b7e96">data</a> + numSamples - 1;
+<a name="l02340"></a>02340         <span class="keywordtype">float</span>* outputSamples = newBuffer.<a class="code" href="class_buffer.html#4d8cb3226251d4ab95385cd2019500fa">channels</a>[channelIndex]-&gt;<a class="code" href="class_buffer_channel_internal.html#5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>;
+<a name="l02341"></a>02341         
+<a name="l02342"></a>02342         <span class="keywordflow">while</span>(--numSamples &gt;= 0) {
+<a name="l02343"></a>02343             *outputSamples++ = *inputSamples--;
+<a name="l02344"></a><a class="code" href="class_buffer.html#0a70ff184047479336856a3c5dc188bf">02344</a>         }
+<a name="l02345"></a>02345     }
+<a name="l02346"></a>02346     
+<a name="l02347"></a>02347     <span class="keywordflow">return</span> newBuffer;
+<a name="l02348"></a>02348 }
+<a name="l02349"></a>02349 
+<a name="l02350"></a>02350 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#0a70ff184047479336856a3c5dc188bf">Buffer::mix</a>() <span class="keyword">const</span> throw()
+<a name="l02351"></a>02351 {
+<a name="l02352"></a>02352     <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> newBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(size_, 1, <span class="keyword">true</span>));
 <a name="l02353"></a>02353     
-<a name="l02354"></a>02354     <span class="keywordflow">do</span>
-<a name="l02355"></a>02355     {
-<a name="l02356"></a>02356         <span class="keywordtype">int</span> numSamples = size_;
-<a name="l02357"></a>02357         <span class="keywordtype">float</span>* inputSamples = <a class="code" href="class_buffer.html#4d8cb3226251d4ab95385cd2019500fa">channels</a>[channelIndex]-&gt;<a class="code" href="class_buffer_channel_internal.html#5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>;
-<a name="l02358"></a>02358         <span class="keywordtype">float</span>* outputSamples = newBuffer.<a class="code" href="class_buffer.html#4d8cb3226251d4ab95385cd2019500fa">channels</a>[0]-&gt;<a class="code" href="class_buffer_channel_internal.html#5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>;
-<a name="l02359"></a>02359         
-<a name="l02360"></a>02360         <span class="keywordflow">while</span>(--numSamples &gt;= 0) {
-<a name="l02361"></a>02361             *outputSamples++ += *inputSamples++;
-<a name="l02362"></a>02362         }
-<a name="l02363"></a>02363         
-<a name="l02364"></a>02364         channelIndex++;
-<a name="l02365"></a><a class="code" href="class_buffer.html#952181b24df3f80193d6e0201649d350">02365</a>     }
-<a name="l02366"></a>02366     <span class="keywordflow">while</span>(channelIndex &lt; numChannels_);
-<a name="l02367"></a>02367     
-<a name="l02368"></a>02368     <span class="keywordflow">return</span> newBuffer;
-<a name="l02369"></a>02369 }
-<a name="l02370"></a>02370 
-<a name="l02371"></a>02371 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#952181b24df3f80193d6e0201649d350">Buffer::operator- </a>() <span class="keyword">const</span> throw()
-<a name="l02372"></a>02372 {   
-<a name="l02373"></a>02373     <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> newBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(size_, numChannels_, <span class="keyword">false</span>));
-<a name="l02374"></a>02374     
-<a name="l02375"></a>02375     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channelIndex = 0; channelIndex &lt; numChannels_; channelIndex++)
-<a name="l02376"></a>02376     {
-<a name="l02377"></a>02377         <span class="keywordtype">int</span> numSamples = size_;
-<a name="l02378"></a>02378         <span class="keywordtype">float</span>* inputSamples = <a class="code" href="class_buffer.html#4d8cb3226251d4ab95385cd2019500fa">channels</a>[channelIndex]-&gt;<a class="code" href="class_buffer_channel_internal.html#5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>;
-<a name="l02379"></a>02379         <span class="keywordtype">float</span>* outputSamples = newBuffer.<a class="code" href="class_buffer.html#4d8cb3226251d4ab95385cd2019500fa">channels</a>[channelIndex]-&gt;<a class="code" href="class_buffer_channel_internal.html#5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>;
-<a name="l02380"></a>02380         
-<a name="l02381"></a>02381         <span class="keywordflow">while</span>(--numSamples &gt;= 0) {
-<a name="l02382"></a>02382             *outputSamples++ = -(*inputSamples++);
-<a name="l02383"></a>02383         }
-<a name="l02384"></a>02384     }
-<a name="l02385"></a>02385     
-<a name="l02386"></a>02386     <span class="keywordflow">return</span> newBuffer;
-<a name="l02387"></a>02387 }
-<a name="l02388"></a>02388 
-<a name="l02389"></a><a class="code" href="class_buffer.html#d47185fb964500cacaa9da2bcc6b25e0">02389</a> <span class="comment">//Buffer Buffer::tableSine512;</span>
-<a name="l02390"></a>02390 <span class="comment">//Buffer Buffer::tableSine8192;</span>
-<a name="l02391"></a>02391 <span class="comment">//Buffer Buffer::tableCosine512;</span>
-<a name="l02392"></a>02392 <span class="comment">//Buffer Buffer::tableCosine8192;</span>
-<a name="l02393"></a>02393 <span class="comment">//Buffer Buffer::tableConstantPan512;</span>
-<a name="l02394"></a>02394 
-<a name="l02395"></a><a class="code" href="class_buffer.html#2b97468cb8247dfef12757501dd5cd67">02395</a> <span class="keyword">const</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp; <a class="code" href="class_buffer.html#d47185fb964500cacaa9da2bcc6b25e0">Buffer::getTableSine512</a>() throw()
-<a name="l02396"></a>02396 {
-<a name="l02397"></a>02397     <span class="keyword">static</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> table = <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(513, 0.0, 2.0 * <a class="code" href="ugen___constants_8h.html#43016d873124d39034edb8cd164794db">pi</a>).<a class="code" href="class_buffer.html#7e5f6fb28836e76ee6bb4605ac2cc63d" title="Unary sine.">sin</a>().<a class="code" href="class_buffer.html#ec8ce25f140ed02d4fd9c4a87b34193a" title="Reduce the apparent size of the Buffer without deallocating the extra memory.">shrinkSize</a>();
-<a name="l02398"></a>02398     <span class="keywordflow">return</span> table;
-<a name="l02399"></a>02399 }
-<a name="l02400"></a>02400 
-<a name="l02401"></a><a class="code" href="class_buffer.html#932d0e8405607540eaefc96b05c71b65">02401</a> <span class="keyword">const</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp; <a class="code" href="class_buffer.html#2b97468cb8247dfef12757501dd5cd67">Buffer::getTableSine8192</a>() throw()
-<a name="l02402"></a>02402 {
-<a name="l02403"></a>02403     <span class="keyword">static</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> table = <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(8193, 0.0, 2.0 * <a class="code" href="ugen___constants_8h.html#43016d873124d39034edb8cd164794db">pi</a>).<a class="code" href="class_buffer.html#7e5f6fb28836e76ee6bb4605ac2cc63d" title="Unary sine.">sin</a>().<a class="code" href="class_buffer.html#ec8ce25f140ed02d4fd9c4a87b34193a" title="Reduce the apparent size of the Buffer without deallocating the extra memory.">shrinkSize</a>();
-<a name="l02404"></a>02404     <span class="keywordflow">return</span> table;   
-<a name="l02405"></a>02405 }
-<a name="l02406"></a>02406 
-<a name="l02407"></a><a class="code" href="class_buffer.html#02c29a5992e81dc9bd1dc71e6fc4f73f">02407</a> <span class="keyword">const</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp; <a class="code" href="class_buffer.html#932d0e8405607540eaefc96b05c71b65">Buffer::getTableCosine512</a>() throw()
-<a name="l02408"></a>02408 {
-<a name="l02409"></a>02409     <span class="keyword">static</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> table = <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(513, 0.0, 2.0 * <a class="code" href="ugen___constants_8h.html#43016d873124d39034edb8cd164794db">pi</a>).<a class="code" href="class_buffer.html#a1b947accbf151eabfd345b1784f9348" title="Unary cosine.">cos</a>().<a class="code" href="class_buffer.html#ec8ce25f140ed02d4fd9c4a87b34193a" title="Reduce the apparent size of the Buffer without deallocating the extra memory.">shrinkSize</a>();
-<a name="l02410"></a>02410     <span class="keywordflow">return</span> table;
-<a name="l02411"></a>02411 }
-<a name="l02412"></a>02412 
-<a name="l02413"></a><a class="code" href="namespaceugen.html#43a02e9de70d0d76eed7ce8b669d605e">02413</a> <span class="keyword">const</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp; <a class="code" href="class_buffer.html#02c29a5992e81dc9bd1dc71e6fc4f73f">Buffer::getTableCosine8192</a>() throw()
-<a name="l02414"></a>02414 {
-<a name="l02415"></a>02415     <span class="keyword">static</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> table = <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(8193, 0.0, 2.0 * <a class="code" href="ugen___constants_8h.html#43016d873124d39034edb8cd164794db">pi</a>).<a class="code" href="class_buffer.html#a1b947accbf151eabfd345b1784f9348" title="Unary cosine.">cos</a>().<a class="code" href="class_buffer.html#ec8ce25f140ed02d4fd9c4a87b34193a" title="Reduce the apparent size of the Buffer without deallocating the extra memory.">shrinkSize</a>();
-<a name="l02416"></a>02416     <span class="keywordflow">return</span> table;
-<a name="l02417"></a>02417 }
-<a name="l02418"></a>02418 
-<a name="l02419"></a>02419 <span class="keyword">static</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="namespaceugen.html#43a02e9de70d0d76eed7ce8b669d605e">ugen_calculatePanTable512</a>() throw()
-<a name="l02420"></a><a class="code" href="class_buffer.html#17073d4758748887cef08453d5d9b336">02420</a> {
-<a name="l02421"></a>02421     <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> constantPanTemp;
-<a name="l02422"></a>02422     constantPanTemp = <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(512, -<a class="code" href="ugen___constants_8h.html#f7ce90ac803f53595f0e8bb790ee04ce">pi4</a>, <a class="code" href="ugen___constants_8h.html#f7ce90ac803f53595f0e8bb790ee04ce">pi4</a>) &lt;&lt; <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(512, <a class="code" href="ugen___constants_8h.html#f7ce90ac803f53595f0e8bb790ee04ce">pi4</a>, -<a class="code" href="ugen___constants_8h.html#f7ce90ac803f53595f0e8bb790ee04ce">pi4</a>);
-<a name="l02423"></a>02423     <span class="keywordflow">return</span> (constantPanTemp.<a class="code" href="class_buffer.html#a1b947accbf151eabfd345b1784f9348" title="Unary cosine.">cos</a>() - constantPanTemp.<a class="code" href="class_buffer.html#7e5f6fb28836e76ee6bb4605ac2cc63d" title="Unary sine.">sin</a>()) * <a class="code" href="ugen___constants_8h.html#2770e77eba56716b63c0b747ed6855fd">sqrt22</a>;
-<a name="l02424"></a>02424 }
-<a name="l02425"></a>02425 
-<a name="l02426"></a>02426 <span class="keyword">const</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp; <a class="code" href="class_buffer.html#17073d4758748887cef08453d5d9b336">Buffer::getTableConstantPan512</a>() throw()
-<a name="l02427"></a><a class="code" href="class_complex_buffer.html#83f16268073d8ca176117df81ae378d4">02427</a> {
-<a name="l02428"></a>02428     <span class="keyword">static</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> table = <a class="code" href="namespaceugen.html#43a02e9de70d0d76eed7ce8b669d605e">ugen_calculatePanTable512</a>();
-<a name="l02429"></a>02429     <span class="keywordflow">return</span> table;
-<a name="l02430"></a>02430 }
-<a name="l02431"></a>02431 
-<a name="l02432"></a><a class="code" href="class_complex_buffer.html#cd9dfa8dc3b9523b46ac10ef572eacfc">02432</a> 
-<a name="l02433"></a>02433 <a class="code" href="class_complex_buffer.html#83f16268073d8ca176117df81ae378d4">ComplexBuffer::ComplexBuffer</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, <span class="keywordtype">bool</span> zeroData) <span class="keywordflow">throw</span>()
-<a name="l02434"></a>02434 :   <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(size, 2, zeroData))
-<a name="l02435"></a>02435 {   
-<a name="l02436"></a>02436 }
-<a name="l02437"></a>02437 
-<a name="l02438"></a>02438 <a class="code" href="class_complex_buffer.html#83f16268073d8ca176117df81ae378d4">ComplexBuffer::ComplexBuffer</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, <span class="keyword">const</span> <span class="keywordtype">float</span>* realSource, <span class="keyword">const</span> <span class="keywordtype">float</span>* imagSource) <span class="keywordflow">throw</span>()
-<a name="l02439"></a>02439 :   <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(size, 2, <span class="keyword">false</span>))
-<a name="l02440"></a>02440 {
-<a name="l02441"></a>02441     <span class="keywordtype">float</span>* realSamples = getDataReal();
-<a name="l02442"></a>02442     <span class="keywordtype">float</span>* imagSamples = getDataImag();
-<a name="l02443"></a>02443     
-<a name="l02444"></a>02444     <span class="keywordflow">if</span>(realSource)
-<a name="l02445"></a>02445         memcpy(realSamples, realSource, size_ * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
-<a name="l02446"></a>02446     <span class="keywordflow">else</span>
-<a name="l02447"></a>02447         memset(realSamples, 0, size_ * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
-<a name="l02448"></a>02448     
-<a name="l02449"></a><a class="code" href="class_complex_buffer.html#dfe98d4ee63f681808339ad414f7cabf">02449</a>     <span class="keywordflow">if</span>(imagSource)
-<a name="l02450"></a>02450         memcpy(imagSamples, imagSource, size_ * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
-<a name="l02451"></a>02451     <span class="keywordflow">else</span>
-<a name="l02452"></a>02452         memset(imagSamples, 0, size_ * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
-<a name="l02453"></a>02453 }
-<a name="l02454"></a>02454 
-<a name="l02455"></a>02455 <a class="code" href="class_complex_buffer.html#83f16268073d8ca176117df81ae378d4">ComplexBuffer::ComplexBuffer</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; realBuffer) <span class="keywordflow">throw</span>()
-<a name="l02456"></a>02456 :   <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(realBuffer.size(), 2, <span class="keyword">false</span>))
-<a name="l02457"></a>02457 {
-<a name="l02458"></a>02458     <span class="comment">//const float* sourceSamples = realBuffer.getDataReadOnly(0); // ignore other channels</span>
-<a name="l02459"></a>02459     <span class="keyword">const</span> <span class="keywordtype">float</span>* sourceSamples = realBuffer.getData(0); <span class="comment">// ignore other channels</span>
-<a name="l02460"></a>02460     
-<a name="l02461"></a>02461     <span class="keywordtype">float</span>* realSamples = getDataReal();
-<a name="l02462"></a><a class="code" href="class_complex_buffer.html#52e33fb8130496de9e66586e0905a8c7">02462</a>     <span class="keywordtype">float</span>* imagSamples = getDataImag();
-<a name="l02463"></a>02463     
-<a name="l02464"></a>02464     memcpy(realSamples, sourceSamples, size_ * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
-<a name="l02465"></a>02465     memset(imagSamples, 0, size_ * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
-<a name="l02466"></a><a class="code" href="class_complex_buffer.html#e71bd7f3a004736120f8d347e790bb02">02466</a> }
-<a name="l02467"></a>02467 
-<a name="l02468"></a>02468 <a class="code" href="class_complex_buffer.html#52e33fb8130496de9e66586e0905a8c7">ComplexBuffer::~ComplexBuffer</a>()
-<a name="l02469"></a>02469 {
-<a name="l02470"></a>02470 }
-<a name="l02471"></a>02471 
-<a name="l02472"></a>02472 <a class="code" href="class_complex_buffer.html" title="A buffer for storing complex value.">ComplexBuffer</a> <a class="code" href="class_complex_buffer.html#e71bd7f3a004736120f8d347e790bb02">ComplexBuffer::operator+ </a>(<a class="code" href="class_complex_buffer.html" title="A buffer for storing complex value.">ComplexBuffer</a> <span class="keyword">const</span>&amp; rightOperand) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
-<a name="l02473"></a>02473 {
-<a name="l02474"></a>02474     <a class="code" href="class_complex_buffer.html" title="A buffer for storing complex value.">ComplexBuffer</a> newBuffer(size_);
-<a name="l02475"></a>02475     
-<a name="l02476"></a>02476     <span class="keyword">const</span> <span class="keywordtype">float</span> *leftRealSamples = getDataRealReadOnly();
-<a name="l02477"></a>02477     <span class="keyword">const</span> <span class="keywordtype">float</span> *leftImagSamples = getDataImagReadOnly();
-<a name="l02478"></a>02478     <span class="keyword">const</span> <span class="keywordtype">float</span> *rightRealSamples = rightOperand.getDataRealReadOnly();
-<a name="l02479"></a>02479     <span class="keyword">const</span> <span class="keywordtype">float</span> *rightImagSamples = rightOperand.getDataImagReadOnly();
-<a name="l02480"></a>02480     <span class="keywordtype">float</span> *newRealSamples = newBuffer.getDataReal();
-<a name="l02481"></a>02481     <span class="keywordtype">float</span> *newImagSamples = newBuffer.getDataImag();
-<a name="l02482"></a>02482     
-<a name="l02483"></a>02483     <span class="keywordtype">int</span> numSamples = size_;
+<a name="l02354"></a>02354     <span class="keywordtype">int</span> channelIndex = 0;
+<a name="l02355"></a>02355     
+<a name="l02356"></a>02356     <span class="keywordflow">do</span>
+<a name="l02357"></a>02357     {
+<a name="l02358"></a>02358         <span class="keywordtype">int</span> numSamples = size_;
+<a name="l02359"></a>02359         <span class="keywordtype">float</span>* inputSamples = <a class="code" href="class_buffer.html#4d8cb3226251d4ab95385cd2019500fa">channels</a>[channelIndex]-&gt;<a class="code" href="class_buffer_channel_internal.html#5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>;
+<a name="l02360"></a>02360         <span class="keywordtype">float</span>* outputSamples = newBuffer.<a class="code" href="class_buffer.html#4d8cb3226251d4ab95385cd2019500fa">channels</a>[0]-&gt;<a class="code" href="class_buffer_channel_internal.html#5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>;
+<a name="l02361"></a>02361         
+<a name="l02362"></a>02362         <span class="keywordflow">while</span>(--numSamples &gt;= 0) {
+<a name="l02363"></a>02363             *outputSamples++ += *inputSamples++;
+<a name="l02364"></a>02364         }
+<a name="l02365"></a>02365         
+<a name="l02366"></a>02366         channelIndex++;
+<a name="l02367"></a><a class="code" href="class_buffer.html#952181b24df3f80193d6e0201649d350">02367</a>     }
+<a name="l02368"></a>02368     <span class="keywordflow">while</span>(channelIndex &lt; numChannels_);
+<a name="l02369"></a>02369     
+<a name="l02370"></a>02370     <span class="keywordflow">return</span> newBuffer;
+<a name="l02371"></a>02371 }
+<a name="l02372"></a>02372 
+<a name="l02373"></a>02373 <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#952181b24df3f80193d6e0201649d350">Buffer::operator- </a>() <span class="keyword">const</span> throw()
+<a name="l02374"></a>02374 {   
+<a name="l02375"></a>02375     <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> newBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(size_, numChannels_, <span class="keyword">false</span>));
+<a name="l02376"></a>02376     
+<a name="l02377"></a>02377     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channelIndex = 0; channelIndex &lt; numChannels_; channelIndex++)
+<a name="l02378"></a>02378     {
+<a name="l02379"></a>02379         <span class="keywordtype">int</span> numSamples = size_;
+<a name="l02380"></a>02380         <span class="keywordtype">float</span>* inputSamples = <a class="code" href="class_buffer.html#4d8cb3226251d4ab95385cd2019500fa">channels</a>[channelIndex]-&gt;<a class="code" href="class_buffer_channel_internal.html#5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>;
+<a name="l02381"></a>02381         <span class="keywordtype">float</span>* outputSamples = newBuffer.<a class="code" href="class_buffer.html#4d8cb3226251d4ab95385cd2019500fa">channels</a>[channelIndex]-&gt;<a class="code" href="class_buffer_channel_internal.html#5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>;
+<a name="l02382"></a>02382         
+<a name="l02383"></a>02383         <span class="keywordflow">while</span>(--numSamples &gt;= 0) {
+<a name="l02384"></a>02384             *outputSamples++ = -(*inputSamples++);
+<a name="l02385"></a>02385         }
+<a name="l02386"></a>02386     }
+<a name="l02387"></a>02387     
+<a name="l02388"></a>02388     <span class="keywordflow">return</span> newBuffer;
+<a name="l02389"></a>02389 }
+<a name="l02390"></a>02390 
+<a name="l02391"></a><a class="code" href="class_buffer.html#d47185fb964500cacaa9da2bcc6b25e0">02391</a> <span class="comment">//Buffer Buffer::tableSine512;</span>
+<a name="l02392"></a>02392 <span class="comment">//Buffer Buffer::tableSine8192;</span>
+<a name="l02393"></a>02393 <span class="comment">//Buffer Buffer::tableCosine512;</span>
+<a name="l02394"></a>02394 <span class="comment">//Buffer Buffer::tableCosine8192;</span>
+<a name="l02395"></a>02395 <span class="comment">//Buffer Buffer::tableConstantPan512;</span>
+<a name="l02396"></a>02396 
+<a name="l02397"></a><a class="code" href="class_buffer.html#2b97468cb8247dfef12757501dd5cd67">02397</a> <span class="keyword">const</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp; <a class="code" href="class_buffer.html#d47185fb964500cacaa9da2bcc6b25e0">Buffer::getTableSine512</a>() throw()
+<a name="l02398"></a>02398 {
+<a name="l02399"></a>02399     <span class="keyword">static</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> table = <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(513, 0.0, 2.0 * <a class="code" href="ugen___constants_8h.html#43016d873124d39034edb8cd164794db">pi</a>).<a class="code" href="class_buffer.html#7e5f6fb28836e76ee6bb4605ac2cc63d" title="Unary sine.">sin</a>().<a class="code" href="class_buffer.html#ec8ce25f140ed02d4fd9c4a87b34193a" title="Reduce the apparent size of the Buffer without deallocating the extra memory.">shrinkSize</a>();
+<a name="l02400"></a>02400     <span class="keywordflow">return</span> table;
+<a name="l02401"></a>02401 }
+<a name="l02402"></a>02402 
+<a name="l02403"></a><a class="code" href="class_buffer.html#932d0e8405607540eaefc96b05c71b65">02403</a> <span class="keyword">const</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp; <a class="code" href="class_buffer.html#2b97468cb8247dfef12757501dd5cd67">Buffer::getTableSine8192</a>() throw()
+<a name="l02404"></a>02404 {
+<a name="l02405"></a>02405     <span class="keyword">static</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> table = <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(8193, 0.0, 2.0 * <a class="code" href="ugen___constants_8h.html#43016d873124d39034edb8cd164794db">pi</a>).<a class="code" href="class_buffer.html#7e5f6fb28836e76ee6bb4605ac2cc63d" title="Unary sine.">sin</a>().<a class="code" href="class_buffer.html#ec8ce25f140ed02d4fd9c4a87b34193a" title="Reduce the apparent size of the Buffer without deallocating the extra memory.">shrinkSize</a>();
+<a name="l02406"></a>02406     <span class="keywordflow">return</span> table;   
+<a name="l02407"></a>02407 }
+<a name="l02408"></a>02408 
+<a name="l02409"></a><a class="code" href="class_buffer.html#02c29a5992e81dc9bd1dc71e6fc4f73f">02409</a> <span class="keyword">const</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp; <a class="code" href="class_buffer.html#932d0e8405607540eaefc96b05c71b65">Buffer::getTableCosine512</a>() throw()
+<a name="l02410"></a>02410 {
+<a name="l02411"></a>02411     <span class="keyword">static</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> table = <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(513, 0.0, 2.0 * <a class="code" href="ugen___constants_8h.html#43016d873124d39034edb8cd164794db">pi</a>).<a class="code" href="class_buffer.html#a1b947accbf151eabfd345b1784f9348" title="Unary cosine.">cos</a>().<a class="code" href="class_buffer.html#ec8ce25f140ed02d4fd9c4a87b34193a" title="Reduce the apparent size of the Buffer without deallocating the extra memory.">shrinkSize</a>();
+<a name="l02412"></a>02412     <span class="keywordflow">return</span> table;
+<a name="l02413"></a>02413 }
+<a name="l02414"></a>02414 
+<a name="l02415"></a><a class="code" href="namespaceugen.html#43a02e9de70d0d76eed7ce8b669d605e">02415</a> <span class="keyword">const</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp; <a class="code" href="class_buffer.html#02c29a5992e81dc9bd1dc71e6fc4f73f">Buffer::getTableCosine8192</a>() throw()
+<a name="l02416"></a>02416 {
+<a name="l02417"></a>02417     <span class="keyword">static</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> table = <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(8193, 0.0, 2.0 * <a class="code" href="ugen___constants_8h.html#43016d873124d39034edb8cd164794db">pi</a>).<a class="code" href="class_buffer.html#a1b947accbf151eabfd345b1784f9348" title="Unary cosine.">cos</a>().<a class="code" href="class_buffer.html#ec8ce25f140ed02d4fd9c4a87b34193a" title="Reduce the apparent size of the Buffer without deallocating the extra memory.">shrinkSize</a>();
+<a name="l02418"></a>02418     <span class="keywordflow">return</span> table;
+<a name="l02419"></a>02419 }
+<a name="l02420"></a>02420 
+<a name="l02421"></a>02421 <span class="keyword">static</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="namespaceugen.html#43a02e9de70d0d76eed7ce8b669d605e">ugen_calculatePanTable512</a>() throw()
+<a name="l02422"></a><a class="code" href="class_buffer.html#17073d4758748887cef08453d5d9b336">02422</a> {
+<a name="l02423"></a>02423     <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> constantPanTemp;
+<a name="l02424"></a>02424     constantPanTemp = <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(512, -<a class="code" href="ugen___constants_8h.html#6bcd541d71bafcccc3a9fcc6e3fe77b0">piOverFour</a>, <a class="code" href="ugen___constants_8h.html#6bcd541d71bafcccc3a9fcc6e3fe77b0">piOverFour</a>) &lt;&lt; <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(512, <a class="code" href="ugen___constants_8h.html#6bcd541d71bafcccc3a9fcc6e3fe77b0">piOverFour</a>, -<a class="code" href="ugen___constants_8h.html#6bcd541d71bafcccc3a9fcc6e3fe77b0">piOverFour</a>);
+<a name="l02425"></a>02425     <span class="keywordflow">return</span> (constantPanTemp.<a class="code" href="class_buffer.html#a1b947accbf151eabfd345b1784f9348" title="Unary cosine.">cos</a>() - constantPanTemp.<a class="code" href="class_buffer.html#7e5f6fb28836e76ee6bb4605ac2cc63d" title="Unary sine.">sin</a>()) * <a class="code" href="ugen___constants_8h.html#c5144327b363f48ae75110ad01268e5e">sqrt2OverTwo</a>;
+<a name="l02426"></a>02426 }
+<a name="l02427"></a>02427 
+<a name="l02428"></a>02428 <span class="keyword">const</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp; <a class="code" href="class_buffer.html#17073d4758748887cef08453d5d9b336">Buffer::getTableConstantPan512</a>() throw()
+<a name="l02429"></a><a class="code" href="class_complex_buffer.html#83f16268073d8ca176117df81ae378d4">02429</a> {
+<a name="l02430"></a>02430     <span class="keyword">static</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> table = <a class="code" href="namespaceugen.html#43a02e9de70d0d76eed7ce8b669d605e">ugen_calculatePanTable512</a>();
+<a name="l02431"></a>02431     <span class="keywordflow">return</span> table;
+<a name="l02432"></a>02432 }
+<a name="l02433"></a>02433 
+<a name="l02434"></a><a class="code" href="class_complex_buffer.html#cd9dfa8dc3b9523b46ac10ef572eacfc">02434</a> 
+<a name="l02435"></a>02435 <a class="code" href="class_complex_buffer.html#83f16268073d8ca176117df81ae378d4">ComplexBuffer::ComplexBuffer</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, <span class="keywordtype">bool</span> zeroData) <span class="keywordflow">throw</span>()
+<a name="l02436"></a>02436 :   <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(size, 2, zeroData))
+<a name="l02437"></a>02437 {   
+<a name="l02438"></a>02438 }
+<a name="l02439"></a>02439 
+<a name="l02440"></a>02440 <a class="code" href="class_complex_buffer.html#83f16268073d8ca176117df81ae378d4">ComplexBuffer::ComplexBuffer</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, <span class="keyword">const</span> <span class="keywordtype">float</span>* realSource, <span class="keyword">const</span> <span class="keywordtype">float</span>* imagSource) <span class="keywordflow">throw</span>()
+<a name="l02441"></a>02441 :   <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(size, 2, <span class="keyword">false</span>))
+<a name="l02442"></a>02442 {
+<a name="l02443"></a>02443     <span class="keywordtype">float</span>* realSamples = getDataReal();
+<a name="l02444"></a>02444     <span class="keywordtype">float</span>* imagSamples = getDataImag();
+<a name="l02445"></a>02445     
+<a name="l02446"></a>02446     <span class="keywordflow">if</span>(realSource)
+<a name="l02447"></a>02447         memcpy(realSamples, realSource, size_ * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l02448"></a>02448     <span class="keywordflow">else</span>
+<a name="l02449"></a>02449         memset(realSamples, 0, size_ * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l02450"></a>02450     
+<a name="l02451"></a><a class="code" href="class_complex_buffer.html#dfe98d4ee63f681808339ad414f7cabf">02451</a>     <span class="keywordflow">if</span>(imagSource)
+<a name="l02452"></a>02452         memcpy(imagSamples, imagSource, size_ * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l02453"></a>02453     <span class="keywordflow">else</span>
+<a name="l02454"></a>02454         memset(imagSamples, 0, size_ * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l02455"></a>02455 }
+<a name="l02456"></a>02456 
+<a name="l02457"></a>02457 <a class="code" href="class_complex_buffer.html#83f16268073d8ca176117df81ae378d4">ComplexBuffer::ComplexBuffer</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; realBuffer) <span class="keywordflow">throw</span>()
+<a name="l02458"></a>02458 :   <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(realBuffer.size(), 2, <span class="keyword">false</span>))
+<a name="l02459"></a>02459 {
+<a name="l02460"></a>02460     <span class="comment">//const float* sourceSamples = realBuffer.getDataReadOnly(0); // ignore other channels</span>
+<a name="l02461"></a>02461     <span class="keyword">const</span> <span class="keywordtype">float</span>* sourceSamples = realBuffer.getData(0); <span class="comment">// ignore other channels</span>
+<a name="l02462"></a>02462     
+<a name="l02463"></a>02463     <span class="keywordtype">float</span>* realSamples = getDataReal();
+<a name="l02464"></a><a class="code" href="class_complex_buffer.html#52e33fb8130496de9e66586e0905a8c7">02464</a>     <span class="keywordtype">float</span>* imagSamples = getDataImag();
+<a name="l02465"></a>02465     
+<a name="l02466"></a>02466     memcpy(realSamples, sourceSamples, size_ * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l02467"></a>02467     memset(imagSamples, 0, size_ * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l02468"></a><a class="code" href="class_complex_buffer.html#e71bd7f3a004736120f8d347e790bb02">02468</a> }
+<a name="l02469"></a>02469 
+<a name="l02470"></a>02470 <a class="code" href="class_complex_buffer.html#52e33fb8130496de9e66586e0905a8c7">ComplexBuffer::~ComplexBuffer</a>()
+<a name="l02471"></a>02471 {
+<a name="l02472"></a>02472 }
+<a name="l02473"></a>02473 
+<a name="l02474"></a>02474 <a class="code" href="class_complex_buffer.html" title="A buffer for storing complex value.">ComplexBuffer</a> <a class="code" href="class_complex_buffer.html#e71bd7f3a004736120f8d347e790bb02">ComplexBuffer::operator+ </a>(<a class="code" href="class_complex_buffer.html" title="A buffer for storing complex value.">ComplexBuffer</a> <span class="keyword">const</span>&amp; rightOperand) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l02475"></a>02475 {
+<a name="l02476"></a>02476     <a class="code" href="class_complex_buffer.html" title="A buffer for storing complex value.">ComplexBuffer</a> newBuffer(size_);
+<a name="l02477"></a>02477     
+<a name="l02478"></a>02478     <span class="keyword">const</span> <span class="keywordtype">float</span> *leftRealSamples = getDataRealReadOnly();
+<a name="l02479"></a>02479     <span class="keyword">const</span> <span class="keywordtype">float</span> *leftImagSamples = getDataImagReadOnly();
+<a name="l02480"></a>02480     <span class="keyword">const</span> <span class="keywordtype">float</span> *rightRealSamples = rightOperand.getDataRealReadOnly();
+<a name="l02481"></a>02481     <span class="keyword">const</span> <span class="keywordtype">float</span> *rightImagSamples = rightOperand.getDataImagReadOnly();
+<a name="l02482"></a>02482     <span class="keywordtype">float</span> *newRealSamples = newBuffer.getDataReal();
+<a name="l02483"></a>02483     <span class="keywordtype">float</span> *newImagSamples = newBuffer.getDataImag();
 <a name="l02484"></a>02484     
-<a name="l02485"></a>02485     <span class="keywordflow">while</span>(numSamples--)
-<a name="l02486"></a>02486     {
-<a name="l02487"></a>02487         *newRealSamples++ = *leftRealSamples++ + *rightRealSamples++;
-<a name="l02488"></a><a class="code" href="class_complex_buffer.html#69294815b48017ebe763f3c1c7ba7872">02488</a>         *newImagSamples++ = *leftImagSamples++ + *rightImagSamples++;
-<a name="l02489"></a>02489     }
-<a name="l02490"></a>02490     
-<a name="l02491"></a>02491     <span class="keywordflow">return</span> newBuffer;
-<a name="l02492"></a>02492 }
-<a name="l02493"></a>02493 
-<a name="l02494"></a>02494 <a class="code" href="class_complex_buffer.html" title="A buffer for storing complex value.">ComplexBuffer</a> <a class="code" href="class_buffer.html#952181b24df3f80193d6e0201649d350">ComplexBuffer::operator- </a>(<a class="code" href="class_complex_buffer.html" title="A buffer for storing complex value.">ComplexBuffer</a> <span class="keyword">const</span>&amp; rightOperand) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
-<a name="l02495"></a>02495 {
-<a name="l02496"></a>02496     <a class="code" href="class_complex_buffer.html" title="A buffer for storing complex value.">ComplexBuffer</a> newBuffer(size_);
-<a name="l02497"></a>02497     
-<a name="l02498"></a>02498     <span class="keyword">const</span> <span class="keywordtype">float</span> *leftRealSamples = getDataRealReadOnly();
-<a name="l02499"></a>02499     <span class="keyword">const</span> <span class="keywordtype">float</span> *leftImagSamples = getDataImagReadOnly();
-<a name="l02500"></a>02500     <span class="keyword">const</span> <span class="keywordtype">float</span> *rightRealSamples = rightOperand.getDataRealReadOnly();
-<a name="l02501"></a>02501     <span class="keyword">const</span> <span class="keywordtype">float</span> *rightImagSamples = rightOperand.getDataImagReadOnly();
-<a name="l02502"></a>02502     <span class="keywordtype">float</span> *newRealSamples = newBuffer.<a class="code" href="class_complex_buffer.html#c82087705b252e30292d6b1f0158ad73">getDataReal</a>();
-<a name="l02503"></a>02503     <span class="keywordtype">float</span> *newImagSamples = newBuffer.<a class="code" href="class_complex_buffer.html#e63cf9eccaa5d97500c882cc749c0c6f">getDataImag</a>();
-<a name="l02504"></a>02504     
-<a name="l02505"></a>02505     <span class="keywordtype">int</span> numSamples = size_;
+<a name="l02485"></a>02485     <span class="keywordtype">int</span> numSamples = size_;
+<a name="l02486"></a>02486     
+<a name="l02487"></a>02487     <span class="keywordflow">while</span>(numSamples--)
+<a name="l02488"></a>02488     {
+<a name="l02489"></a>02489         *newRealSamples++ = *leftRealSamples++ + *rightRealSamples++;
+<a name="l02490"></a><a class="code" href="class_complex_buffer.html#69294815b48017ebe763f3c1c7ba7872">02490</a>         *newImagSamples++ = *leftImagSamples++ + *rightImagSamples++;
+<a name="l02491"></a>02491     }
+<a name="l02492"></a>02492     
+<a name="l02493"></a>02493     <span class="keywordflow">return</span> newBuffer;
+<a name="l02494"></a>02494 }
+<a name="l02495"></a>02495 
+<a name="l02496"></a>02496 <a class="code" href="class_complex_buffer.html" title="A buffer for storing complex value.">ComplexBuffer</a> <a class="code" href="class_buffer.html#952181b24df3f80193d6e0201649d350">ComplexBuffer::operator- </a>(<a class="code" href="class_complex_buffer.html" title="A buffer for storing complex value.">ComplexBuffer</a> <span class="keyword">const</span>&amp; rightOperand) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l02497"></a>02497 {
+<a name="l02498"></a>02498     <a class="code" href="class_complex_buffer.html" title="A buffer for storing complex value.">ComplexBuffer</a> newBuffer(size_);
+<a name="l02499"></a>02499     
+<a name="l02500"></a>02500     <span class="keyword">const</span> <span class="keywordtype">float</span> *leftRealSamples = getDataRealReadOnly();
+<a name="l02501"></a>02501     <span class="keyword">const</span> <span class="keywordtype">float</span> *leftImagSamples = getDataImagReadOnly();
+<a name="l02502"></a>02502     <span class="keyword">const</span> <span class="keywordtype">float</span> *rightRealSamples = rightOperand.getDataRealReadOnly();
+<a name="l02503"></a>02503     <span class="keyword">const</span> <span class="keywordtype">float</span> *rightImagSamples = rightOperand.getDataImagReadOnly();
+<a name="l02504"></a>02504     <span class="keywordtype">float</span> *newRealSamples = newBuffer.<a class="code" href="class_complex_buffer.html#c82087705b252e30292d6b1f0158ad73">getDataReal</a>();
+<a name="l02505"></a>02505     <span class="keywordtype">float</span> *newImagSamples = newBuffer.<a class="code" href="class_complex_buffer.html#e63cf9eccaa5d97500c882cc749c0c6f">getDataImag</a>();
 <a name="l02506"></a>02506     
-<a name="l02507"></a>02507     <span class="keywordflow">while</span>(numSamples--)
-<a name="l02508"></a>02508     {
-<a name="l02509"></a>02509         *newRealSamples++ = *leftRealSamples++ - *rightRealSamples++;
-<a name="l02510"></a><a class="code" href="class_complex_buffer.html#4ed7b21c13ca316ca590808d4db73242">02510</a>         *newImagSamples++ = *leftImagSamples++ - *rightImagSamples++;
-<a name="l02511"></a>02511     }
-<a name="l02512"></a>02512     
-<a name="l02513"></a>02513     <span class="keywordflow">return</span> newBuffer;
-<a name="l02514"></a>02514 }
-<a name="l02515"></a>02515 
-<a name="l02516"></a>02516 <a class="code" href="class_complex_buffer.html" title="A buffer for storing complex value.">ComplexBuffer</a> <a class="code" href="class_complex_buffer.html#4ed7b21c13ca316ca590808d4db73242">ComplexBuffer::operator* </a>(<a class="code" href="class_complex_buffer.html" title="A buffer for storing complex value.">ComplexBuffer</a> <span class="keyword">const</span>&amp; rightOperand) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
-<a name="l02517"></a>02517 {
-<a name="l02518"></a>02518     <a class="code" href="class_complex_buffer.html" title="A buffer for storing complex value.">ComplexBuffer</a> newBuffer(size_);
-<a name="l02519"></a>02519     
-<a name="l02520"></a>02520     <span class="keyword">const</span> <span class="keywordtype">float</span> *leftRealSamples = getDataRealReadOnly();
-<a name="l02521"></a>02521     <span class="keyword">const</span> <span class="keywordtype">float</span> *leftImagSamples = getDataImagReadOnly();
-<a name="l02522"></a>02522     <span class="keyword">const</span> <span class="keywordtype">float</span> *rightRealSamples = rightOperand.getDataRealReadOnly();
-<a name="l02523"></a>02523     <span class="keyword">const</span> <span class="keywordtype">float</span> *rightImagSamples = rightOperand.getDataImagReadOnly();
-<a name="l02524"></a>02524     <span class="keywordtype">float</span> *newRealSamples = newBuffer.<a class="code" href="class_complex_buffer.html#c82087705b252e30292d6b1f0158ad73">getDataReal</a>();
-<a name="l02525"></a>02525     <span class="keywordtype">float</span> *newImagSamples = newBuffer.<a class="code" href="class_complex_buffer.html#e63cf9eccaa5d97500c882cc749c0c6f">getDataImag</a>();
-<a name="l02526"></a>02526     
-<a name="l02527"></a>02527     <span class="keywordtype">int</span> numSamples = size_;
+<a name="l02507"></a>02507     <span class="keywordtype">int</span> numSamples = size_;
+<a name="l02508"></a>02508     
+<a name="l02509"></a>02509     <span class="keywordflow">while</span>(numSamples--)
+<a name="l02510"></a>02510     {
+<a name="l02511"></a>02511         *newRealSamples++ = *leftRealSamples++ - *rightRealSamples++;
+<a name="l02512"></a><a class="code" href="class_complex_buffer.html#4ed7b21c13ca316ca590808d4db73242">02512</a>         *newImagSamples++ = *leftImagSamples++ - *rightImagSamples++;
+<a name="l02513"></a>02513     }
+<a name="l02514"></a>02514     
+<a name="l02515"></a>02515     <span class="keywordflow">return</span> newBuffer;
+<a name="l02516"></a>02516 }
+<a name="l02517"></a>02517 
+<a name="l02518"></a>02518 <a class="code" href="class_complex_buffer.html" title="A buffer for storing complex value.">ComplexBuffer</a> <a class="code" href="class_complex_buffer.html#4ed7b21c13ca316ca590808d4db73242">ComplexBuffer::operator* </a>(<a class="code" href="class_complex_buffer.html" title="A buffer for storing complex value.">ComplexBuffer</a> <span class="keyword">const</span>&amp; rightOperand) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l02519"></a>02519 {
+<a name="l02520"></a>02520     <a class="code" href="class_complex_buffer.html" title="A buffer for storing complex value.">ComplexBuffer</a> newBuffer(size_);
+<a name="l02521"></a>02521     
+<a name="l02522"></a>02522     <span class="keyword">const</span> <span class="keywordtype">float</span> *leftRealSamples = getDataRealReadOnly();
+<a name="l02523"></a>02523     <span class="keyword">const</span> <span class="keywordtype">float</span> *leftImagSamples = getDataImagReadOnly();
+<a name="l02524"></a>02524     <span class="keyword">const</span> <span class="keywordtype">float</span> *rightRealSamples = rightOperand.getDataRealReadOnly();
+<a name="l02525"></a>02525     <span class="keyword">const</span> <span class="keywordtype">float</span> *rightImagSamples = rightOperand.getDataImagReadOnly();
+<a name="l02526"></a>02526     <span class="keywordtype">float</span> *newRealSamples = newBuffer.<a class="code" href="class_complex_buffer.html#c82087705b252e30292d6b1f0158ad73">getDataReal</a>();
+<a name="l02527"></a>02527     <span class="keywordtype">float</span> *newImagSamples = newBuffer.<a class="code" href="class_complex_buffer.html#e63cf9eccaa5d97500c882cc749c0c6f">getDataImag</a>();
 <a name="l02528"></a>02528     
-<a name="l02529"></a>02529     <span class="keywordflow">while</span>(numSamples--)
-<a name="l02530"></a>02530     {
-<a name="l02531"></a>02531         *newRealSamples++ = (*leftRealSamples * *rightRealSamples) - (*leftImagSamples * *rightImagSamples);
-<a name="l02532"></a>02532         *newImagSamples++ = (*leftImagSamples * *rightRealSamples) + (*leftRealSamples * *rightImagSamples);
-<a name="l02533"></a>02533         leftRealSamples++;
-<a name="l02534"></a>02534         leftImagSamples++;
-<a name="l02535"></a>02535         rightRealSamples++;
-<a name="l02536"></a>02536         rightImagSamples++;
-<a name="l02537"></a>02537     }
-<a name="l02538"></a>02538         
-<a name="l02539"></a>02539     <span class="keywordflow">return</span> newBuffer;
-<a name="l02540"></a>02540 }
-<a name="l02541"></a>02541 
-<a name="l02542"></a>02542 <span class="comment">//ComplexBuffer ComplexBuffer::operator/ (ComplexBuffer const&amp; rightOperand) const throw()</span>
-<a name="l02543"></a>02543 <span class="comment">//{</span>
-<a name="l02544"></a>02544 <span class="comment">//  //(a+ib)/(c+id)=(ac+bd+i(bc-ad))/(c2+d2) </span>
-<a name="l02545"></a>02545 <span class="comment">//  </span>
-<a name="l02546"></a>02546 <span class="comment">//  ComplexBuffer newBuffer(size_);</span>
+<a name="l02529"></a>02529     <span class="keywordtype">int</span> numSamples = size_;
+<a name="l02530"></a>02530     
+<a name="l02531"></a>02531     <span class="keywordflow">while</span>(numSamples--)
+<a name="l02532"></a>02532     {
+<a name="l02533"></a>02533         *newRealSamples++ = (*leftRealSamples * *rightRealSamples) - (*leftImagSamples * *rightImagSamples);
+<a name="l02534"></a>02534         *newImagSamples++ = (*leftImagSamples * *rightRealSamples) + (*leftRealSamples * *rightImagSamples);
+<a name="l02535"></a>02535         leftRealSamples++;
+<a name="l02536"></a>02536         leftImagSamples++;
+<a name="l02537"></a>02537         rightRealSamples++;
+<a name="l02538"></a>02538         rightImagSamples++;
+<a name="l02539"></a>02539     }
+<a name="l02540"></a>02540         
+<a name="l02541"></a>02541     <span class="keywordflow">return</span> newBuffer;
+<a name="l02542"></a>02542 }
+<a name="l02543"></a>02543 
+<a name="l02544"></a>02544 <span class="comment">//ComplexBuffer ComplexBuffer::operator/ (ComplexBuffer const&amp; rightOperand) const throw()</span>
+<a name="l02545"></a>02545 <span class="comment">//{</span>
+<a name="l02546"></a>02546 <span class="comment">//  //(a+ib)/(c+id)=(ac+bd+i(bc-ad))/(c2+d2) </span>
 <a name="l02547"></a>02547 <span class="comment">//  </span>
-<a name="l02548"></a>02548 <span class="comment">//  float *leftRealSamples = getDataReal();</span>
-<a name="l02549"></a>02549 <span class="comment">//  float *leftImagSamples = getDataImag();</span>
-<a name="l02550"></a>02550 <span class="comment">//  float *rightRealSamples = rightOperand.getDataReal();</span>
-<a name="l02551"></a>02551 <span class="comment">//  float *rightImagSamples = rightOperand.getDataImag();</span>
-<a name="l02552"></a>02552 <span class="comment">//  float *newRealSamples = newBuffer.getDataReal();</span>
-<a name="l02553"></a>02553 <span class="comment">//  float *newImagSamples = newBuffer.getDataImag();</span>
-<a name="l02554"></a>02554 <span class="comment">//  </span>
-<a name="l02555"></a>02555 <span class="comment">//  int numSamples = size_;</span>
+<a name="l02548"></a>02548 <span class="comment">//  ComplexBuffer newBuffer(size_);</span>
+<a name="l02549"></a>02549 <span class="comment">//  </span>
+<a name="l02550"></a>02550 <span class="comment">//  float *leftRealSamples = getDataReal();</span>
+<a name="l02551"></a>02551 <span class="comment">//  float *leftImagSamples = getDataImag();</span>
+<a name="l02552"></a>02552 <span class="comment">//  float *rightRealSamples = rightOperand.getDataReal();</span>
+<a name="l02553"></a>02553 <span class="comment">//  float *rightImagSamples = rightOperand.getDataImag();</span>
+<a name="l02554"></a>02554 <span class="comment">//  float *newRealSamples = newBuffer.getDataReal();</span>
+<a name="l02555"></a>02555 <span class="comment">//  float *newImagSamples = newBuffer.getDataImag();</span>
 <a name="l02556"></a>02556 <span class="comment">//  </span>
-<a name="l02557"></a>02557 <span class="comment">//  while(numSamples--)</span>
-<a name="l02558"></a>02558 <span class="comment">//  {</span>
-<a name="l02559"></a>02559 <span class="comment">//      // to do</span>
-<a name="l02560"></a>02560 <span class="comment">//  }</span>
-<a name="l02561"></a>02561 <span class="comment">//  </span>
-<a name="l02562"></a><a class="code" href="class_buffer_sender.html#7eaf2a4ea325bf4e1f57ef76cd817b93">02562</a> <span class="comment">//  return newBuffer;</span>
+<a name="l02557"></a>02557 <span class="comment">//  int numSamples = size_;</span>
+<a name="l02558"></a>02558 <span class="comment">//  </span>
+<a name="l02559"></a>02559 <span class="comment">//  while(numSamples--)</span>
+<a name="l02560"></a>02560 <span class="comment">//  {</span>
+<a name="l02561"></a>02561 <span class="comment">//      // to do</span>
+<a name="l02562"></a>02562 <span class="comment">//  }</span>
 <a name="l02563"></a>02563 <span class="comment">//  </span>
-<a name="l02564"></a>02564 <span class="comment">//}</span>
-<a name="l02565"></a>02565 <span class="comment">//</span>
-<a name="l02566"></a><a class="code" href="class_buffer_sender.html#5283c2ae8e64fe70c85d5a04f327feb8">02566</a> 
-<a name="l02567"></a>02567 
-<a name="l02568"></a>02568 <a class="code" href="class_buffer_sender.html#7eaf2a4ea325bf4e1f57ef76cd817b93">BufferSender::BufferSender</a>() throw()
-<a name="l02569"></a>02569 {
-<a name="l02570"></a><a class="code" href="class_buffer_sender.html#100effb40370f2a7a2561b945c55d9a0">02570</a> }
-<a name="l02571"></a>02571 
-<a name="l02572"></a>02572 <a class="code" href="class_buffer_sender.html#5283c2ae8e64fe70c85d5a04f327feb8">BufferSender::~BufferSender</a>()
-<a name="l02573"></a>02573 {
-<a name="l02574"></a>02574 }
-<a name="l02575"></a>02575 
-<a name="l02576"></a>02576 <span class="keywordtype">void</span> <a class="code" href="class_buffer_sender.html#100effb40370f2a7a2561b945c55d9a0">BufferSender::addBufferReceiver</a>(<a class="code" href="class_buffer_receiver.html" title="Subclasses of this receiver Buffer objects from BufferSender objects.">BufferReceiver</a>* <span class="keyword">const</span> receiver) <span class="keywordflow">throw</span>()
-<a name="l02577"></a>02577 {
-<a name="l02578"></a><a class="code" href="class_buffer_sender.html#92b256dff16716d297d5ed1fad6a58f9">02578</a>     <span class="keywordflow">if</span>(receiver == 0) { <a class="code" href="ugen___standard_header_8h.html#45e513feae0e4100e40ac3917d4b7e7c">ugen_assertfalse</a>; <span class="keywordflow">return</span>; }
-<a name="l02579"></a>02579     <span class="keywordflow">if</span>(receivers.contains(receiver)) <span class="keywordflow">return</span>;
-<a name="l02580"></a>02580     
-<a name="l02581"></a>02581     receivers &lt;&lt;= receiver;
-<a name="l02582"></a>02582 }
-<a name="l02583"></a>02583 
-<a name="l02584"></a>02584 <span class="keywordtype">void</span> <a class="code" href="class_buffer_sender.html#92b256dff16716d297d5ed1fad6a58f9">BufferSender::removeBufferReceiver</a>(<a class="code" href="class_buffer_receiver.html" title="Subclasses of this receiver Buffer objects from BufferSender objects.">BufferReceiver</a>* <span class="keyword">const</span> receiver) <span class="keywordflow">throw</span>()
-<a name="l02585"></a><a class="code" href="class_buffer_sender.html#00bdf5c568fa87cd1f1bd8472a1e4558">02585</a> {
-<a name="l02586"></a>02586     <span class="keywordflow">if</span>(receiver == 0) { <a class="code" href="ugen___standard_header_8h.html#45e513feae0e4100e40ac3917d4b7e7c">ugen_assertfalse</a>; <span class="keywordflow">return</span>; }
-<a name="l02587"></a>02587     
-<a name="l02588"></a>02588     receivers = receivers.remove(receiver);
-<a name="l02589"></a>02589 }
-<a name="l02590"></a>02590 
-<a name="l02591"></a>02591 <span class="keywordtype">void</span> <a class="code" href="class_buffer_sender.html#00bdf5c568fa87cd1f1bd8472a1e4558">BufferSender::sendBuffer</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; buffer, <span class="keyword">const</span> <span class="keywordtype">double</span> value1, <span class="keyword">const</span> <span class="keywordtype">int</span> value2) <span class="keywordflow">throw</span>()
-<a name="l02592"></a>02592 {
-<a name="l02593"></a>02593     <span class="keyword">const</span> <span class="keywordtype">int</span> size = receivers.size();
-<a name="l02594"></a>02594     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++)
-<a name="l02595"></a>02595     {
-<a name="l02596"></a>02596         receivers[i]-&gt;handleBuffer(buffer, value1, value2);
-<a name="l02597"></a>02597     }
-<a name="l02598"></a>02598 }
-<a name="l02599"></a>02599 
-<a name="l02600"></a>02600 <a class="code" href="ugen___standard_header_8h.html#c007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
+<a name="l02564"></a><a class="code" href="class_buffer_sender.html#7eaf2a4ea325bf4e1f57ef76cd817b93">02564</a> <span class="comment">//  return newBuffer;</span>
+<a name="l02565"></a>02565 <span class="comment">//  </span>
+<a name="l02566"></a>02566 <span class="comment">//}</span>
+<a name="l02567"></a>02567 <span class="comment">//</span>
+<a name="l02568"></a><a class="code" href="class_buffer_sender.html#5283c2ae8e64fe70c85d5a04f327feb8">02568</a> 
+<a name="l02569"></a>02569 
+<a name="l02570"></a>02570 <a class="code" href="class_buffer_sender.html#7eaf2a4ea325bf4e1f57ef76cd817b93">BufferSender::BufferSender</a>() throw()
+<a name="l02571"></a>02571 {
+<a name="l02572"></a><a class="code" href="class_buffer_sender.html#100effb40370f2a7a2561b945c55d9a0">02572</a> }
+<a name="l02573"></a>02573 
+<a name="l02574"></a>02574 <a class="code" href="class_buffer_sender.html#5283c2ae8e64fe70c85d5a04f327feb8">BufferSender::~BufferSender</a>()
+<a name="l02575"></a>02575 {
+<a name="l02576"></a>02576 }
+<a name="l02577"></a>02577 
+<a name="l02578"></a>02578 <span class="keywordtype">void</span> <a class="code" href="class_buffer_sender.html#100effb40370f2a7a2561b945c55d9a0">BufferSender::addBufferReceiver</a>(<a class="code" href="class_buffer_receiver.html" title="Subclasses of this receiver Buffer objects from BufferSender objects.">BufferReceiver</a>* <span class="keyword">const</span> receiver) <span class="keywordflow">throw</span>()
+<a name="l02579"></a>02579 {
+<a name="l02580"></a><a class="code" href="class_buffer_sender.html#92b256dff16716d297d5ed1fad6a58f9">02580</a>     <span class="keywordflow">if</span>(receiver == 0) { <a class="code" href="ugen___standard_header_8h.html#45e513feae0e4100e40ac3917d4b7e7c">ugen_assertfalse</a>; <span class="keywordflow">return</span>; }
+<a name="l02581"></a>02581     <span class="keywordflow">if</span>(receivers.contains(receiver)) <span class="keywordflow">return</span>;
+<a name="l02582"></a>02582     
+<a name="l02583"></a>02583     receivers &lt;&lt;= receiver;
+<a name="l02584"></a>02584 }
+<a name="l02585"></a>02585 
+<a name="l02586"></a>02586 <span class="keywordtype">void</span> <a class="code" href="class_buffer_sender.html#92b256dff16716d297d5ed1fad6a58f9">BufferSender::removeBufferReceiver</a>(<a class="code" href="class_buffer_receiver.html" title="Subclasses of this receiver Buffer objects from BufferSender objects.">BufferReceiver</a>* <span class="keyword">const</span> receiver) <span class="keywordflow">throw</span>()
+<a name="l02587"></a><a class="code" href="class_buffer_sender.html#00bdf5c568fa87cd1f1bd8472a1e4558">02587</a> {
+<a name="l02588"></a>02588     <span class="keywordflow">if</span>(receiver == 0) { <a class="code" href="ugen___standard_header_8h.html#45e513feae0e4100e40ac3917d4b7e7c">ugen_assertfalse</a>; <span class="keywordflow">return</span>; }
+<a name="l02589"></a>02589     
+<a name="l02590"></a>02590     receivers = receivers.remove(receiver);
+<a name="l02591"></a>02591 }
+<a name="l02592"></a>02592 
+<a name="l02593"></a>02593 <span class="keywordtype">void</span> <a class="code" href="class_buffer_sender.html#00bdf5c568fa87cd1f1bd8472a1e4558">BufferSender::sendBuffer</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; buffer, <span class="keyword">const</span> <span class="keywordtype">double</span> value1, <span class="keyword">const</span> <span class="keywordtype">int</span> value2) <span class="keywordflow">throw</span>()
+<a name="l02594"></a>02594 {
+<a name="l02595"></a>02595     <span class="keyword">const</span> <span class="keywordtype">int</span> size = receivers.size();
+<a name="l02596"></a>02596     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++)
+<a name="l02597"></a>02597     {
+<a name="l02598"></a>02598         receivers[i]-&gt;handleBuffer(buffer, value1, value2);
+<a name="l02599"></a>02599     }
+<a name="l02600"></a>02600 }
+<a name="l02601"></a>02601 
+<a name="l02602"></a>02602 <a class="code" href="ugen___standard_header_8h.html#c007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:08 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:04 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

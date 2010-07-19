@@ -44,6 +44,10 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bool_ptr_u_gen_internal.html">BoolPtrUGenInternal</a></td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_char_ptr_u_gen_internal.html">CharPtrUGenInternal</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_unsigned_char_ptr_u_gen_internal.html">UnsignedCharPtrUGenInternal</a></td></tr>
+
 <tr><td colspan="2"><br><h2>Defines</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="ugen___scalar_u_gens_8h.html#e330499cf29286f2a017c9e8f55b549c">PtrUGenProcessBlock</a>()</td></tr>
 
@@ -69,33 +73,20 @@
 <b>Value:</b><div class="fragment"><pre class="fragment"><span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();                            \
     <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();                              \
     <span class="keywordtype">float</span> nextValue = (float)*ptr;                                                  \
-    memset(outputSamples, 0, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));                  \
-    <span class="keywordflow">if</span>(nextValue == value_) {                                                       \
-        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numSamplesToProcess; ++i)                                \
-            outputSamples[i] += nextValue;                                          \
-    } <span class="keywordflow">else</span> {                                                                        \
-        <span class="keywordtype">int</span> numKrSamplesToProcess = <a class="code" href="class_u_gen.html#2c362eee1cdf755de0eed14727494235" title="Get the current control rate block size.">UGen::getControlRateBlockSize</a>();                \
-        <span class="keywordtype">float</span> valueSlope = (nextValue - value_) * <a class="code" href="class_u_gen.html#a74b2f078838a887bcb29c95ea76b82c" title="Get the current control rate slope factor i.e., 1.0 / (control rate block size).">UGen::getControlSlopeFactor</a>();    \
-        numSamplesToProcess -= numKrSamplesToProcess;                               \
-        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numKrSamplesToProcess; ++i) {                            \
-            *outputSamples++ += value_;                                             \
-            value_ += valueSlope;                                                   \
-        }                                                                           \
-        <span class="keywordflow">if</span>(numSamplesToProcess &gt; 0) {                                               \
-            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numSamplesToProcess; ++i)                            \
-                outputSamples[i] += nextValue;                                      \
-        }                                                                           \
-        value_ = nextValue;                                                         \
+    value_ = nextValue;                                                             \
+    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numSamplesToProcess; ++i)                                    \
+    {                                                                               \
+        outputSamples[i] = nextValue;                                               \
     }
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___scalar_u_gens_8h_source.html#l00044">44</a> of file <a class="el" href="ugen___scalar_u_gens_8h_source.html">ugen_ScalarUGens.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___scalar_u_gens_8cpp_source.html#l00120">IntPtrUGenInternal::processBlock()</a>, <a class="el" href="ugen___scalar_u_gens_8cpp_source.html#l00106">DoublePtrUGenInternal::processBlock()</a>, and <a class="el" href="ugen___scalar_u_gens_8cpp_source.html#l00093">FloatPtrUGenInternal::processBlock()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___scalar_u_gens_8cpp_source.html#l00163">UnsignedCharPtrUGenInternal::processBlock()</a>, <a class="el" href="ugen___scalar_u_gens_8cpp_source.html#l00152">CharPtrUGenInternal::processBlock()</a>, <a class="el" href="ugen___scalar_u_gens_8cpp_source.html#l00120">IntPtrUGenInternal::processBlock()</a>, <a class="el" href="ugen___scalar_u_gens_8cpp_source.html#l00106">DoublePtrUGenInternal::processBlock()</a>, and <a class="el" href="ugen___scalar_u_gens_8cpp_source.html#l00093">FloatPtrUGenInternal::processBlock()</a>.</p>
 
 </div>
 </div><p>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:12 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:07 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

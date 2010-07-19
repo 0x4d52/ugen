@@ -44,14 +44,6 @@ Inherits <a class="el" href="class_u_gen.html">UGen</a>.
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pause.html#9424ebfe201ee6424266b21fb18c05b5">Pause</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_u_gen.html">UGen</a> const &amp;level=0.f)  throw ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Base <a class="el" href="class_pause.html" title="A UGen which saves processing power when an amlitude value is zero.">Pause</a> Constuctor, use the <a class="el" href="class_pause.html#2b5b90f325aa0ce5d2aac0223036ab63" title="Construct and return an audio rate Pause .">AR()</a> and <a class="el" href="class_pause.html#6279e5963eaee695eba13143cbfc0826" title="Construct and return a control rate Pause (if available, otherise returns an audio...">KR()</a> versions in user code.  <a href="#9424ebfe201ee6424266b21fb18c05b5"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pause.html#89a3462ab30e84f47d42051c12b7d896">ar</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_u_gen.html">UGen</a> const &amp;level=0.f)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return an audio rate <a class="el" href="class_pause.html" title="A UGen which saves processing power when an amlitude value is zero.">Pause</a> (SC compatability).  <a href="#89a3462ab30e84f47d42051c12b7d896"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pause.html#e535342b3b8896d69c513cfd29a7cca8">kr</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_u_gen.html">UGen</a> const &amp;level=0.f)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return a control rate <a class="el" href="class_pause.html" title="A UGen which saves processing power when an amlitude value is zero.">Pause</a> (SC compatability).  <a href="#e535342b3b8896d69c513cfd29a7cca8"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pause.html#5902f9bf255059d8f281a1c0a5c4abf3">operator()</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_u_gen.html">UGen</a> const &amp;level=0.f)  throw ()</td></tr>
-
 <tr><td colspan="2"><br><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static <a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pause.html#2b5b90f325aa0ce5d2aac0223036ab63">AR</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_u_gen.html">UGen</a> const &amp;level=0.f)  throw ()</td></tr>
 
@@ -95,47 +87,11 @@ Base <a class="el" href="class_pause.html" title="A UGen which saves processing 
 <b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
  <br>
  
-<p>Definition at line <a class="el" href="ugen___pause_8cpp_source.html#l00095">95</a> of file <a class="el" href="ugen___pause_8cpp_source.html">ugen_Pause.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___pause_8cpp_source.html#l00107">107</a> of file <a class="el" href="ugen___pause_8cpp_source.html">ugen_Pause.cpp</a>.</p>
 
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="89a3462ab30e84f47d42051c12b7d896"></a><!-- doxytag: member="Pause::ar" ref="89a3462ab30e84f47d42051c12b7d896" args="(UGen const &amp;input, UGen const &amp;level=0.f)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> Pause::ar           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>level</em> = <code>0.f</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return an audio rate <a class="el" href="class_pause.html" title="A UGen which saves processing power when an amlitude value is zero.">Pause</a> (SC compatability). 
-<p>
-<b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_pause.html" title="A UGen which saves processing power when an amlitude value is zero.">Pause</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___pause_8h_source.html#l00069">69</a> of file <a class="el" href="ugen___pause_8h_source.html">ugen_Pause.h</a>.</p>
-
-</div>
-</div><p>
 <a class="anchor" name="2b5b90f325aa0ce5d2aac0223036ab63"></a><!-- doxytag: member="Pause::AR" ref="2b5b90f325aa0ce5d2aac0223036ab63" args="(UGen const &amp;input, UGen const &amp;level=0.f)" -->
 <div class="memitem">
 <div class="memproto">
@@ -167,42 +123,6 @@ Construct and return an audio rate <a class="el" href="class_pause.html" title="
 <b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
  <br>
  <dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_pause.html" title="A UGen which saves processing power when an amlitude value is zero.">Pause</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___pause_8h_source.html#l00069">69</a> of file <a class="el" href="ugen___pause_8h_source.html">ugen_Pause.h</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="e535342b3b8896d69c513cfd29a7cca8"></a><!-- doxytag: member="Pause::kr" ref="e535342b3b8896d69c513cfd29a7cca8" args="(UGen const &amp;input, UGen const &amp;level=0.f)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> Pause::kr           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>level</em> = <code>0.f</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return a control rate <a class="el" href="class_pause.html" title="A UGen which saves processing power when an amlitude value is zero.">Pause</a> (SC compatability). 
-<p>
-<b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl class="return" compact><dt><b>Returns:</b></dt><dd>The control rate <a class="el" href="class_pause.html" title="A UGen which saves processing power when an amlitude value is zero.">Pause</a> . </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___pause_8h_source.html#l00069">69</a> of file <a class="el" href="ugen___pause_8h_source.html">ugen_Pause.h</a>.</p>
 
@@ -244,41 +164,10 @@ Construct and return a control rate <a class="el" href="class_pause.html" title=
 
 </div>
 </div><p>
-<a class="anchor" name="5902f9bf255059d8f281a1c0a5c4abf3"></a><!-- doxytag: member="Pause::operator()" ref="5902f9bf255059d8f281a1c0a5c4abf3" args="(UGen const &amp;input, UGen const &amp;level=0.f)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> Pause::operator()           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>level</em> = <code>0.f</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Definition at line <a class="el" href="ugen___pause_8h_source.html#l00069">69</a> of file <a class="el" href="ugen___pause_8h_source.html">ugen_Pause.h</a>.</p>
-
-</div>
-</div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>basics/<a class="el" href="ugen___pause_8h_source.html">ugen_Pause.h</a><li>basics/<a class="el" href="ugen___pause_8cpp_source.html">ugen_Pause.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:18 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:12 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

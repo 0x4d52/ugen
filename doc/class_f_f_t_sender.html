@@ -38,14 +38,6 @@ Inherits <a class="el" href="class_u_gen.html">UGen</a>.
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_sender.html#d75e7b4d7480880b50060cf78a30d778">FFTSender</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_f_f_t_engine.html#031641a7a727847346ada093094756f4">FFTEngine::FFTModes</a> mode, <a class="el" href="class_f_f_t_engine.html">FFTEngine</a> const &amp;fft=1024, const int overlap=1, const int firstBin=1, const int numBins=0)  throw ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Base <a class="el" href="class_f_f_t_sender.html">FFTSender</a> Constuctor, use the <a class="el" href="class_f_f_t_sender.html#98cea60cb170c5a7746f34ffb584ec85" title="Construct and return an audio rate FFTSender .">AR()</a> and <a class="el" href="class_f_f_t_sender.html#34b8f628ff9543156eff09eca6958ec8" title="Construct and return a control rate FFTSender (if available, otherise returns an...">KR()</a> versions in user code.  <a href="#d75e7b4d7480880b50060cf78a30d778"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_sender.html#03153c9195e35e597f188aa66258f05c">ar</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_f_f_t_engine.html#031641a7a727847346ada093094756f4">FFTEngine::FFTModes</a> mode, <a class="el" href="class_f_f_t_engine.html">FFTEngine</a> const &amp;fft=1024, const int overlap=1, const int firstBin=1, const int numBins=0)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return an audio rate <a class="el" href="class_f_f_t_sender.html">FFTSender</a> (SC compatability).  <a href="#03153c9195e35e597f188aa66258f05c"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_sender.html#8e5f9882893072d3afbc6c602bc3876a">kr</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_f_f_t_engine.html#031641a7a727847346ada093094756f4">FFTEngine::FFTModes</a> mode, <a class="el" href="class_f_f_t_engine.html">FFTEngine</a> const &amp;fft=1024, const int overlap=1, const int firstBin=1, const int numBins=0)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return a control rate <a class="el" href="class_f_f_t_sender.html">FFTSender</a> (SC compatability).  <a href="#8e5f9882893072d3afbc6c602bc3876a"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_sender.html#0aa67d0491eb8c09d9c0d4487a8d5cb3">operator()</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_f_f_t_engine.html#031641a7a727847346ada093094756f4">FFTEngine::FFTModes</a> mode, <a class="el" href="class_f_f_t_engine.html">FFTEngine</a> const &amp;fft=1024, const int overlap=1, const int firstBin=1, const int numBins=0)  throw ()</td></tr>
-
 <tr><td colspan="2"><br><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static <a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_sender.html#98cea60cb170c5a7746f34ffb584ec85">AR</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_f_f_t_engine.html#031641a7a727847346ada093094756f4">FFTEngine::FFTModes</a> mode, <a class="el" href="class_f_f_t_engine.html">FFTEngine</a> const &amp;fft=1024, const int overlap=1, const int firstBin=1, const int numBins=0)  throw ()</td></tr>
 
@@ -113,71 +105,11 @@ Base <a class="el" href="class_f_f_t_sender.html">FFTSender</a> Constuctor, use 
 <b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
  <br>
  
-<p>Definition at line <a class="el" href="ugen___scope_8cpp_source.html#l00922">922</a> of file <a class="el" href="ugen___scope_8cpp_source.html">ugen_Scope.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___scope_8cpp_source.html#l00938">938</a> of file <a class="el" href="ugen___scope_8cpp_source.html">ugen_Scope.cpp</a>.</p>
 
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="03153c9195e35e597f188aa66258f05c"></a><!-- doxytag: member="FFTSender::ar" ref="03153c9195e35e597f188aa66258f05c" args="(UGen const &amp;input, FFTEngine::FFTModes mode, FFTEngine const &amp;fft=1024, const int overlap=1, const int firstBin=1, const int numBins=0)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> FFTSender::ar           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_f_f_t_engine.html#031641a7a727847346ada093094756f4">FFTEngine::FFTModes</a>&nbsp;</td>
-          <td class="paramname"> <em>mode</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_f_f_t_engine.html">FFTEngine</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>fft</em> = <code>1024</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>overlap</em> = <code>1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>firstBin</em> = <code>1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>numBins</em> = <code>0</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return an audio rate <a class="el" href="class_f_f_t_sender.html">FFTSender</a> (SC compatability). 
-<p>
-<b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_f_f_t_sender.html">FFTSender</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___scope_8h_source.html#l00336">336</a> of file <a class="el" href="ugen___scope_8h_source.html">ugen_Scope.h</a>.</p>
-
-</div>
-</div><p>
 <a class="anchor" name="98cea60cb170c5a7746f34ffb584ec85"></a><!-- doxytag: member="FFTSender::AR" ref="98cea60cb170c5a7746f34ffb584ec85" args="(UGen const &amp;input, FFTEngine::FFTModes mode, FFTEngine const &amp;fft=1024, const int overlap=1, const int firstBin=1, const int numBins=0)" -->
 <div class="memitem">
 <div class="memproto">
@@ -233,66 +165,6 @@ Construct and return an audio rate <a class="el" href="class_f_f_t_sender.html">
 <b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
  <br>
  <dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_f_f_t_sender.html">FFTSender</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___scope_8h_source.html#l00336">336</a> of file <a class="el" href="ugen___scope_8h_source.html">ugen_Scope.h</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="8e5f9882893072d3afbc6c602bc3876a"></a><!-- doxytag: member="FFTSender::kr" ref="8e5f9882893072d3afbc6c602bc3876a" args="(UGen const &amp;input, FFTEngine::FFTModes mode, FFTEngine const &amp;fft=1024, const int overlap=1, const int firstBin=1, const int numBins=0)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> FFTSender::kr           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_f_f_t_engine.html#031641a7a727847346ada093094756f4">FFTEngine::FFTModes</a>&nbsp;</td>
-          <td class="paramname"> <em>mode</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_f_f_t_engine.html">FFTEngine</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>fft</em> = <code>1024</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>overlap</em> = <code>1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>firstBin</em> = <code>1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>numBins</em> = <code>0</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return a control rate <a class="el" href="class_f_f_t_sender.html">FFTSender</a> (SC compatability). 
-<p>
-<b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl class="return" compact><dt><b>Returns:</b></dt><dd>The control rate <a class="el" href="class_f_f_t_sender.html">FFTSender</a> . </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___scope_8h_source.html#l00336">336</a> of file <a class="el" href="ugen___scope_8h_source.html">ugen_Scope.h</a>.</p>
 
@@ -358,65 +230,10 @@ Construct and return a control rate <a class="el" href="class_f_f_t_sender.html"
 
 </div>
 </div><p>
-<a class="anchor" name="0aa67d0491eb8c09d9c0d4487a8d5cb3"></a><!-- doxytag: member="FFTSender::operator()" ref="0aa67d0491eb8c09d9c0d4487a8d5cb3" args="(UGen const &amp;input, FFTEngine::FFTModes mode, FFTEngine const &amp;fft=1024, const int overlap=1, const int firstBin=1, const int numBins=0)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> FFTSender::operator()           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_f_f_t_engine.html#031641a7a727847346ada093094756f4">FFTEngine::FFTModes</a>&nbsp;</td>
-          <td class="paramname"> <em>mode</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_f_f_t_engine.html">FFTEngine</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>fft</em> = <code>1024</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>overlap</em> = <code>1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>firstBin</em> = <code>1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>numBins</em> = <code>0</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Definition at line <a class="el" href="ugen___scope_8h_source.html#l00336">336</a> of file <a class="el" href="ugen___scope_8h_source.html">ugen_Scope.h</a>.</p>
-
-</div>
-</div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>gui/<a class="el" href="ugen___scope_8h_source.html">ugen_Scope.h</a><li>gui/<a class="el" href="ugen___scope_8cpp_source.html">ugen_Scope.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:16 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:11 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

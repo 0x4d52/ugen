@@ -22,7 +22,7 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-<h1>oscillators/simple/ugen_LFPulse.cpp</h1><a href="ugen___l_f_pulse_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_LFPulse.cpp 77 2010-05-24 10:34:11Z 0x4d52 $</span>
+<h1>oscillators/simple/ugen_LFPulse.cpp</h1><a href="ugen___l_f_pulse_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_LFPulse.cpp 89 2010-07-09 16:20:21Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/oscillators/simple/ugen_LFPulse.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -58,143 +58,147 @@
 <a name="l00034"></a>00034 <span class="comment"> ==============================================================================</span>
 <a name="l00035"></a>00035 <span class="comment"> */</span>
 <a name="l00036"></a>00036 
-<a name="l00037"></a>00037 <span class="preprocessor">#include "../../core/ugen_StandardHeader.h"</span>
-<a name="l00038"></a>00038 
-<a name="l00039"></a>00039 <a class="code" href="ugen___standard_header_8h.html#e236e43a85c6905c3285f031bf456685">BEGIN_UGEN_NAMESPACE</a>
+<a name="l00037"></a>00037 <span class="preprocessor">#ifndef UGEN_NOEXTGPL</span>
+<a name="l00038"></a>00038 <span class="preprocessor"></span>
+<a name="l00039"></a>00039 <span class="preprocessor">#include "../../core/ugen_StandardHeader.h"</span>
 <a name="l00040"></a>00040 
-<a name="l00041"></a>00041 <span class="preprocessor">#include "<a class="code" href="ugen___l_f_pulse_8h.html">ugen_LFPulse.h</a>"</span>
+<a name="l00041"></a>00041 <a class="code" href="ugen___standard_header_8h.html#e236e43a85c6905c3285f031bf456685">BEGIN_UGEN_NAMESPACE</a>
 <a name="l00042"></a>00042 
-<a name="l00043"></a><a class="code" href="class_l_f_pulse_u_gen_internal.html#b73382647042e8ed9ae325fbf59b8466">00043</a> 
-<a name="l00044"></a>00044 <a class="code" href="class_l_f_pulse_u_gen_internal.html#b73382647042e8ed9ae325fbf59b8466">LFPulseUGenInternal::LFPulseUGenInternal</a>(<a class="code" href="ugen___l_f_pulse_8h.html#c32f68fcb74205b2dd848c9f8b3ff6dd">LFPulse_InputsWithTypesOnly</a>) throw()
-<a name="l00045"></a>00045 :   <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(NumInputs),
-<a name="l00046"></a>00046     currentPhase(0.f)
-<a name="l00047"></a>00047 {
-<a name="l00048"></a>00048     <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_l_f_pulse_u_gen_internal.html#40455aaa3e2e06732824cfaf304bfdca5093f601224481236f8e511250f59c08">Freq</a>] = freq;
-<a name="l00049"></a>00049     <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_l_f_pulse_u_gen_internal.html#40455aaa3e2e06732824cfaf304bfdca5245f520fdf9b96e0387238a896b37a8">Duty</a>] = duty;
-<a name="l00050"></a>00050     
-<a name="l00051"></a>00051     <a class="code" href="class_u_gen_internal.html#3b9de200fa163a233dab85b3388fd469" title="Initialise the UGen output value.">initValue</a>(1.f);
-<a name="l00052"></a>00052 }
-<a name="l00053"></a><a class="code" href="class_l_f_pulse_u_gen_internal.html#f8e5ad06302dc1fe029dff80ff644fb4">00053</a> 
-<a name="l00054"></a>00054 <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_l_f_pulse_u_gen_internal.html#f8e5ad06302dc1fe029dff80ff644fb4">LFPulseUGenInternal::getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
-<a name="l00055"></a>00055 {
-<a name="l00056"></a>00056     <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html">LFPulseUGenInternal</a>(inputs[Freq].getChannel(channel),
-<a name="l00057"></a>00057                                    inputs[Duty].getChannel(channel));
-<a name="l00058"></a>00058 }   
-<a name="l00059"></a><a class="code" href="class_l_f_pulse_u_gen_internal.html#71e31dceac6cfbaa568536d03bdb0548">00059</a> 
-<a name="l00060"></a>00060 <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_l_f_pulse_u_gen_internal.html#71e31dceac6cfbaa568536d03bdb0548">LFPulseUGenInternal::getKr</a>() throw()
-<a name="l00061"></a>00061 { 
-<a name="l00062"></a>00062     <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_l_f_pulse_u_gen_internal_k.html">LFPulseUGenInternalK</a>(<a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_l_f_pulse_u_gen_internal.html#40455aaa3e2e06732824cfaf304bfdca5093f601224481236f8e511250f59c08">Freq</a>].<a class="code" href="namespaceugen.html#f17dc36462ee9d9f533a4ac4cb3e5c0d" title="SC compatability.">kr</a>(), <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_l_f_pulse_u_gen_internal.html#40455aaa3e2e06732824cfaf304bfdca5245f520fdf9b96e0387238a896b37a8">Duty</a>].<a class="code" href="namespaceugen.html#f17dc36462ee9d9f533a4ac4cb3e5c0d" title="SC compatability.">kr</a>()); 
-<a name="l00063"></a>00063 }
-<a name="l00064"></a><a class="code" href="class_l_f_pulse_u_gen_internal.html#dc2e0f8a28d9ddf4b2360a7079870994">00064</a> 
-<a name="l00065"></a>00065 <span class="keywordtype">void</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html#dc2e0f8a28d9ddf4b2360a7079870994" title="Process a block of samples for this blockID and channel.">LFPulseUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
-<a name="l00066"></a>00066 {   
-<a name="l00067"></a>00067     <span class="keywordtype">double</span> reciprocalSampleRate = <a class="code" href="class_u_gen.html#2e6ab64a2e5ea263113ab4993603537e" title="Get the recirprocal of the current sample rate.">UGen::getReciprocalSampleRate</a>();
-<a name="l00068"></a>00068     <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
-<a name="l00069"></a>00069     <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
-<a name="l00070"></a>00070     <span class="keywordtype">float</span>* freqSamples = inputs[Freq].processBlock(shouldDelete, blockID, channel);
-<a name="l00071"></a>00071     <span class="keywordtype">float</span>* dutySamples = inputs[Duty].processBlock(shouldDelete, blockID, channel);
-<a name="l00072"></a>00072     
-<a name="l00073"></a>00073     <span class="keywordflow">while</span>(numSamplesToProcess--)
-<a name="l00074"></a>00074     {
-<a name="l00075"></a>00075         <span class="keywordtype">float</span> out;
-<a name="l00076"></a>00076         
-<a name="l00077"></a>00077         <span class="keywordflow">if</span>(currentPhase &gt;= 1.f) {
-<a name="l00078"></a>00078             currentPhase -= 1.f;
-<a name="l00079"></a>00079             out = *dutySamples++ &lt; 0.5f ? 1.f : 0.f;
-<a name="l00080"></a>00080         } <span class="keywordflow">else</span> {
-<a name="l00081"></a>00081             out = currentPhase &lt; *dutySamples++ ? 1.f : 0.f;
-<a name="l00082"></a>00082         }
-<a name="l00083"></a>00083         
-<a name="l00084"></a>00084         currentPhase += *freqSamples++ * reciprocalSampleRate;
-<a name="l00085"></a>00085         *outputSamples++ = out;
-<a name="l00086"></a>00086     }
-<a name="l00087"></a>00087 }
-<a name="l00088"></a><a class="code" href="class_l_f_pulse_u_gen_internal_k.html#81cc2c4a5838600fd51a8071d484009e">00088</a> 
-<a name="l00089"></a>00089 <a class="code" href="class_l_f_pulse_u_gen_internal_k.html#81cc2c4a5838600fd51a8071d484009e">LFPulseUGenInternalK::LFPulseUGenInternalK</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; duty) <span class="keywordflow">throw</span>()
-<a name="l00090"></a>00090 :   <a class="code" href="class_l_f_pulse_u_gen_internal.html">LFPulseUGenInternal</a>(freq, duty),
-<a name="l00091"></a>00091     value(1.f)
-<a name="l00092"></a>00092 {
-<a name="l00093"></a>00093     rate = ControlRate;
-<a name="l00094"></a>00094 }
-<a name="l00095"></a><a class="code" href="class_l_f_pulse_u_gen_internal_k.html#a7f385659c9fcab156967884e29fd4c9">00095</a> 
-<a name="l00096"></a>00096 <span class="keywordtype">void</span> <a class="code" href="class_l_f_pulse_u_gen_internal_k.html#a7f385659c9fcab156967884e29fd4c9" title="Process a block of samples for this blockID and channel.">LFPulseUGenInternalK::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
-<a name="l00097"></a>00097 {   
-<a name="l00098"></a>00098     <span class="keyword">const</span> <span class="keywordtype">int</span> krBlockSize = <a class="code" href="class_u_gen.html#2c362eee1cdf755de0eed14727494235" title="Get the current control rate block size.">UGen::getControlRateBlockSize</a>();
-<a name="l00099"></a>00099     <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockPosition = blockID % krBlockSize;
-<a name="l00100"></a>00100     <span class="keywordtype">double</span> krBlockSizeOverSampleRate = <a class="code" href="class_u_gen.html#2e6ab64a2e5ea263113ab4993603537e" title="Get the recirprocal of the current sample rate.">UGen::getReciprocalSampleRate</a>() * krBlockSize;
-<a name="l00101"></a>00101     <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
-<a name="l00102"></a>00102     <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
-<a name="l00103"></a>00103     <span class="keywordtype">float</span>* freqSamples = inputs[Freq].processBlock(shouldDelete, blockID, channel);
-<a name="l00104"></a>00104     <span class="keywordtype">float</span>* dutySamples = inputs[Duty].processBlock(shouldDelete, blockID, channel);
-<a name="l00105"></a>00105     
-<a name="l00106"></a>00106     <span class="keywordtype">int</span> numKrSamples = blockPosition % krBlockSize;
+<a name="l00043"></a>00043 <span class="preprocessor">#include "<a class="code" href="ugen___l_f_pulse_8h.html">ugen_LFPulse.h</a>"</span>
+<a name="l00044"></a>00044 
+<a name="l00045"></a><a class="code" href="class_l_f_pulse_u_gen_internal.html#b73382647042e8ed9ae325fbf59b8466">00045</a> 
+<a name="l00046"></a>00046 <a class="code" href="class_l_f_pulse_u_gen_internal.html#b73382647042e8ed9ae325fbf59b8466">LFPulseUGenInternal::LFPulseUGenInternal</a>(<a class="code" href="ugen___l_f_pulse_8h.html#c32f68fcb74205b2dd848c9f8b3ff6dd">LFPulse_InputsWithTypesOnly</a>) throw()
+<a name="l00047"></a>00047 :   <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(NumInputs),
+<a name="l00048"></a>00048     currentPhase(0.f)
+<a name="l00049"></a>00049 {
+<a name="l00050"></a>00050     <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_l_f_pulse_u_gen_internal.html#40455aaa3e2e06732824cfaf304bfdca5093f601224481236f8e511250f59c08">Freq</a>] = freq;
+<a name="l00051"></a>00051     <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_l_f_pulse_u_gen_internal.html#40455aaa3e2e06732824cfaf304bfdca5245f520fdf9b96e0387238a896b37a8">Duty</a>] = duty;
+<a name="l00052"></a>00052     
+<a name="l00053"></a>00053     <a class="code" href="class_u_gen_internal.html#3b9de200fa163a233dab85b3388fd469" title="Initialise the UGen output value.">initValue</a>(1.f);
+<a name="l00054"></a>00054 }
+<a name="l00055"></a><a class="code" href="class_l_f_pulse_u_gen_internal.html#f8e5ad06302dc1fe029dff80ff644fb4">00055</a> 
+<a name="l00056"></a>00056 <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_l_f_pulse_u_gen_internal.html#f8e5ad06302dc1fe029dff80ff644fb4">LFPulseUGenInternal::getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
+<a name="l00057"></a>00057 {
+<a name="l00058"></a>00058     <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html">LFPulseUGenInternal</a>(inputs[Freq].getChannel(channel),
+<a name="l00059"></a>00059                                    inputs[Duty].getChannel(channel));
+<a name="l00060"></a>00060 }   
+<a name="l00061"></a><a class="code" href="class_l_f_pulse_u_gen_internal.html#71e31dceac6cfbaa568536d03bdb0548">00061</a> 
+<a name="l00062"></a>00062 <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_l_f_pulse_u_gen_internal.html#71e31dceac6cfbaa568536d03bdb0548">LFPulseUGenInternal::getKr</a>() throw()
+<a name="l00063"></a>00063 { 
+<a name="l00064"></a>00064     <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_l_f_pulse_u_gen_internal_k.html">LFPulseUGenInternalK</a>(<a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_l_f_pulse_u_gen_internal.html#40455aaa3e2e06732824cfaf304bfdca5093f601224481236f8e511250f59c08">Freq</a>].<a class="code" href="namespaceugen.html#f17dc36462ee9d9f533a4ac4cb3e5c0d">kr</a>(), <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_l_f_pulse_u_gen_internal.html#40455aaa3e2e06732824cfaf304bfdca5245f520fdf9b96e0387238a896b37a8">Duty</a>].<a class="code" href="namespaceugen.html#f17dc36462ee9d9f533a4ac4cb3e5c0d">kr</a>()); 
+<a name="l00065"></a>00065 }
+<a name="l00066"></a><a class="code" href="class_l_f_pulse_u_gen_internal.html#dc2e0f8a28d9ddf4b2360a7079870994">00066</a> 
+<a name="l00067"></a>00067 <span class="keywordtype">void</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html#dc2e0f8a28d9ddf4b2360a7079870994" title="Process a block of samples for this blockID and channel.">LFPulseUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
+<a name="l00068"></a>00068 {   
+<a name="l00069"></a>00069     <span class="keywordtype">double</span> reciprocalSampleRate = <a class="code" href="class_u_gen.html#2e6ab64a2e5ea263113ab4993603537e" title="Get the recirprocal of the current sample rate.">UGen::getReciprocalSampleRate</a>();
+<a name="l00070"></a>00070     <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
+<a name="l00071"></a>00071     <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
+<a name="l00072"></a>00072     <span class="keywordtype">float</span>* freqSamples = inputs[Freq].processBlock(shouldDelete, blockID, channel);
+<a name="l00073"></a>00073     <span class="keywordtype">float</span>* dutySamples = inputs[Duty].processBlock(shouldDelete, blockID, channel);
+<a name="l00074"></a>00074     
+<a name="l00075"></a>00075     <span class="keywordflow">while</span>(numSamplesToProcess--)
+<a name="l00076"></a>00076     {
+<a name="l00077"></a>00077         <span class="keywordtype">float</span> out;
+<a name="l00078"></a>00078         
+<a name="l00079"></a>00079         <span class="keywordflow">if</span>(currentPhase &gt;= 1.f) {
+<a name="l00080"></a>00080             currentPhase -= 1.f;
+<a name="l00081"></a>00081             out = *dutySamples++ &lt; 0.5f ? 1.f : 0.f;
+<a name="l00082"></a>00082         } <span class="keywordflow">else</span> {
+<a name="l00083"></a>00083             out = currentPhase &lt; *dutySamples++ ? 1.f : 0.f;
+<a name="l00084"></a>00084         }
+<a name="l00085"></a>00085         
+<a name="l00086"></a>00086         currentPhase += *freqSamples++ * reciprocalSampleRate;
+<a name="l00087"></a>00087         *outputSamples++ = out;
+<a name="l00088"></a>00088     }
+<a name="l00089"></a>00089 }
+<a name="l00090"></a><a class="code" href="class_l_f_pulse_u_gen_internal_k.html#81cc2c4a5838600fd51a8071d484009e">00090</a> 
+<a name="l00091"></a>00091 <a class="code" href="class_l_f_pulse_u_gen_internal_k.html#81cc2c4a5838600fd51a8071d484009e">LFPulseUGenInternalK::LFPulseUGenInternalK</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; duty) <span class="keywordflow">throw</span>()
+<a name="l00092"></a>00092 :   <a class="code" href="class_l_f_pulse_u_gen_internal.html">LFPulseUGenInternal</a>(freq, duty),
+<a name="l00093"></a>00093     value(1.f)
+<a name="l00094"></a>00094 {
+<a name="l00095"></a>00095     rate = ControlRate;
+<a name="l00096"></a>00096 }
+<a name="l00097"></a><a class="code" href="class_l_f_pulse_u_gen_internal_k.html#a7f385659c9fcab156967884e29fd4c9">00097</a> 
+<a name="l00098"></a>00098 <span class="keywordtype">void</span> <a class="code" href="class_l_f_pulse_u_gen_internal_k.html#a7f385659c9fcab156967884e29fd4c9" title="Process a block of samples for this blockID and channel.">LFPulseUGenInternalK::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
+<a name="l00099"></a>00099 {   
+<a name="l00100"></a>00100     <span class="keyword">const</span> <span class="keywordtype">int</span> krBlockSize = <a class="code" href="class_u_gen.html#2c362eee1cdf755de0eed14727494235" title="Get the current control rate block size.">UGen::getControlRateBlockSize</a>();
+<a name="l00101"></a>00101     <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockPosition = blockID % krBlockSize;
+<a name="l00102"></a>00102     <span class="keywordtype">double</span> krBlockSizeOverSampleRate = <a class="code" href="class_u_gen.html#2e6ab64a2e5ea263113ab4993603537e" title="Get the recirprocal of the current sample rate.">UGen::getReciprocalSampleRate</a>() * krBlockSize;
+<a name="l00103"></a>00103     <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
+<a name="l00104"></a>00104     <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
+<a name="l00105"></a>00105     <span class="keywordtype">float</span>* freqSamples = inputs[Freq].processBlock(shouldDelete, blockID, channel);
+<a name="l00106"></a>00106     <span class="keywordtype">float</span>* dutySamples = inputs[Duty].processBlock(shouldDelete, blockID, channel);
 <a name="l00107"></a>00107     
-<a name="l00108"></a>00108     <span class="keywordflow">while</span>(numSamplesToProcess &gt; 0)
-<a name="l00109"></a>00109     {
-<a name="l00110"></a>00110         <span class="keywordtype">float</span> nextValue = value;
-<a name="l00111"></a>00111         
-<a name="l00112"></a>00112         <span class="keywordflow">if</span>(numKrSamples == 0)           
-<a name="l00113"></a>00113         {
-<a name="l00114"></a>00114             <span class="keywordtype">float</span> out;
-<a name="l00115"></a>00115             
-<a name="l00116"></a>00116             <span class="keywordflow">if</span>(currentPhase &gt;= 1.f) {
-<a name="l00117"></a>00117                 currentPhase -= 1.f;
-<a name="l00118"></a>00118                 out = *dutySamples &lt; 0.5f ? 1.f : 0.f;
-<a name="l00119"></a>00119             } <span class="keywordflow">else</span> {
-<a name="l00120"></a>00120                 out = currentPhase &lt; *dutySamples ? 1.f : 0.f;
-<a name="l00121"></a>00121             }
-<a name="l00122"></a>00122             
-<a name="l00123"></a>00123             currentPhase += *freqSamples * krBlockSizeOverSampleRate;
-<a name="l00124"></a>00124             nextValue = out;
-<a name="l00125"></a>00125         }
-<a name="l00126"></a>00126         
-<a name="l00127"></a>00127         numKrSamples = krBlockSize - numKrSamples;
+<a name="l00108"></a>00108     <span class="keywordtype">int</span> numKrSamples = blockPosition % krBlockSize;
+<a name="l00109"></a>00109     
+<a name="l00110"></a>00110     <span class="keywordflow">while</span>(numSamplesToProcess &gt; 0)
+<a name="l00111"></a>00111     {
+<a name="l00112"></a>00112         <span class="keywordtype">float</span> nextValue = value;
+<a name="l00113"></a>00113         
+<a name="l00114"></a>00114         <span class="keywordflow">if</span>(numKrSamples == 0)           
+<a name="l00115"></a>00115         {
+<a name="l00116"></a>00116             <span class="keywordtype">float</span> out;
+<a name="l00117"></a>00117             
+<a name="l00118"></a>00118             <span class="keywordflow">if</span>(currentPhase &gt;= 1.f) {
+<a name="l00119"></a>00119                 currentPhase -= 1.f;
+<a name="l00120"></a>00120                 out = *dutySamples &lt; 0.5f ? 1.f : 0.f;
+<a name="l00121"></a>00121             } <span class="keywordflow">else</span> {
+<a name="l00122"></a>00122                 out = currentPhase &lt; *dutySamples ? 1.f : 0.f;
+<a name="l00123"></a>00123             }
+<a name="l00124"></a>00124             
+<a name="l00125"></a>00125             currentPhase += *freqSamples * krBlockSizeOverSampleRate;
+<a name="l00126"></a>00126             nextValue = out;
+<a name="l00127"></a>00127         }
 <a name="l00128"></a>00128         
-<a name="l00129"></a>00129         blockPosition       += numKrSamples;
-<a name="l00130"></a>00130         freqSamples         += numKrSamples;
-<a name="l00131"></a>00131         dutySamples         += numKrSamples;
-<a name="l00132"></a>00132         
-<a name="l00133"></a>00133         <span class="keywordflow">if</span>(value == nextValue)
-<a name="l00134"></a>00134         {
-<a name="l00135"></a>00135             <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
-<a name="l00136"></a>00136             {
-<a name="l00137"></a>00137                 *outputSamples++ = nextValue;
-<a name="l00138"></a>00138                 --numSamplesToProcess;
-<a name="l00139"></a>00139                 --numKrSamples;
-<a name="l00140"></a>00140             }
-<a name="l00141"></a>00141         }
-<a name="l00142"></a>00142         <span class="keywordflow">else</span>
-<a name="l00143"></a>00143         {
-<a name="l00144"></a>00144             <span class="keywordtype">float</span> valueSlope = (nextValue - value) * <a class="code" href="class_u_gen.html#a74b2f078838a887bcb29c95ea76b82c" title="Get the current control rate slope factor i.e., 1.0 / (control rate block size).">UGen::getControlSlopeFactor</a>();
-<a name="l00145"></a>00145             
-<a name="l00146"></a>00146             <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
-<a name="l00147"></a>00147             {
-<a name="l00148"></a>00148                 *outputSamples++ = value;
-<a name="l00149"></a>00149                 value += valueSlope;
-<a name="l00150"></a>00150                 --numSamplesToProcess;
-<a name="l00151"></a>00151                 --numKrSamples;
-<a name="l00152"></a>00152             }
-<a name="l00153"></a>00153             
-<a name="l00154"></a>00154             value = nextValue;
-<a name="l00155"></a>00155         }
-<a name="l00156"></a>00156     }
-<a name="l00157"></a>00157 }
-<a name="l00158"></a>00158 
-<a name="l00159"></a><a class="code" href="class_l_f_pulse.html#64aee22db98cd6fb21346e8b1ef652d5">00159</a> 
-<a name="l00160"></a>00160 <a class="code" href="class_l_f_pulse.html#64aee22db98cd6fb21346e8b1ef652d5" title="Base MulAdd LFPulse Constuctor (without &amp;quot;mul&amp;quot; or &amp;quot;add&amp;quot;), use...">LFPulse::LFPulse</a>(<a class="code" href="ugen___l_f_pulse_8h.html#c32f68fcb74205b2dd848c9f8b3ff6dd">LFPulse_InputsWithTypesOnly</a>) throw()
-<a name="l00161"></a>00161 {   
-<a name="l00162"></a>00162     <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> inputs[] = { <a class="code" href="ugen___l_f_pulse_8h.html#3eb1a6cb7520127102499bab36ea2b4d">LFPulse_InputsNoTypes</a> };
-<a name="l00163"></a>00163     <span class="keyword">const</span> <span class="keywordtype">int</span> numInputChannels = <a class="code" href="class_u_gen.html#b40c76e992156358e4254ae8ad46e520">findMaxInputChannels</a>(<a class="code" href="ugen___standard_header_8h.html#3b96e342c541e61ffe6104777007f4b5">numElementsInArray</a>(inputs), inputs);
-<a name="l00164"></a>00164     <a class="code" href="class_u_gen.html#0d18108fe75e774a48e51382b091671f">initInternal</a>(numInputChannels);
-<a name="l00165"></a>00165     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_u_gen.html#2fc8fefb17c555a8443dc18c74bf3382">numInternalUGens</a>; i++)
-<a name="l00166"></a>00166     {
-<a name="l00167"></a>00167         <a class="code" href="class_u_gen.html#d9e8ba9e81ce7f3909ac9f3c3b69ab45">internalUGens</a>[i] = <span class="keyword">new</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html">LFPulseUGenInternal</a>(<a class="code" href="ugen___l_f_pulse_8h.html#3eb1a6cb7520127102499bab36ea2b4d">LFPulse_InputsNoTypes</a>);
-<a name="l00168"></a>00168     }
-<a name="l00169"></a>00169 }
-<a name="l00170"></a>00170 
-<a name="l00171"></a>00171 <a class="code" href="ugen___standard_header_8h.html#c007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
+<a name="l00129"></a>00129         numKrSamples = krBlockSize - numKrSamples;
+<a name="l00130"></a>00130         
+<a name="l00131"></a>00131         blockPosition       += numKrSamples;
+<a name="l00132"></a>00132         freqSamples         += numKrSamples;
+<a name="l00133"></a>00133         dutySamples         += numKrSamples;
+<a name="l00134"></a>00134         
+<a name="l00135"></a>00135         <span class="keywordflow">if</span>(value == nextValue)
+<a name="l00136"></a>00136         {
+<a name="l00137"></a>00137             <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
+<a name="l00138"></a>00138             {
+<a name="l00139"></a>00139                 *outputSamples++ = nextValue;
+<a name="l00140"></a>00140                 --numSamplesToProcess;
+<a name="l00141"></a>00141                 --numKrSamples;
+<a name="l00142"></a>00142             }
+<a name="l00143"></a>00143         }
+<a name="l00144"></a>00144         <span class="keywordflow">else</span>
+<a name="l00145"></a>00145         {
+<a name="l00146"></a>00146             <span class="keywordtype">float</span> valueSlope = (nextValue - value) * <a class="code" href="class_u_gen.html#a74b2f078838a887bcb29c95ea76b82c" title="Get the current control rate slope factor i.e., 1.0 / (control rate block size).">UGen::getControlSlopeFactor</a>();
+<a name="l00147"></a>00147             
+<a name="l00148"></a>00148             <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
+<a name="l00149"></a>00149             {
+<a name="l00150"></a>00150                 *outputSamples++ = value;
+<a name="l00151"></a>00151                 value += valueSlope;
+<a name="l00152"></a>00152                 --numSamplesToProcess;
+<a name="l00153"></a>00153                 --numKrSamples;
+<a name="l00154"></a>00154             }
+<a name="l00155"></a>00155             
+<a name="l00156"></a>00156             value = nextValue;
+<a name="l00157"></a>00157         }
+<a name="l00158"></a>00158     }
+<a name="l00159"></a>00159 }
+<a name="l00160"></a>00160 
+<a name="l00161"></a><a class="code" href="class_l_f_pulse.html#64aee22db98cd6fb21346e8b1ef652d5">00161</a> 
+<a name="l00162"></a>00162 <a class="code" href="class_l_f_pulse.html#64aee22db98cd6fb21346e8b1ef652d5" title="Base MulAdd LFPulse Constuctor (without &amp;quot;mul&amp;quot; or &amp;quot;add&amp;quot;), use...">LFPulse::LFPulse</a>(<a class="code" href="ugen___l_f_pulse_8h.html#c32f68fcb74205b2dd848c9f8b3ff6dd">LFPulse_InputsWithTypesOnly</a>) throw()
+<a name="l00163"></a>00163 {   
+<a name="l00164"></a>00164     <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> inputs[] = { <a class="code" href="ugen___l_f_pulse_8h.html#3eb1a6cb7520127102499bab36ea2b4d">LFPulse_InputsNoTypes</a> };
+<a name="l00165"></a>00165     <span class="keyword">const</span> <span class="keywordtype">int</span> numInputChannels = <a class="code" href="class_u_gen.html#b40c76e992156358e4254ae8ad46e520">findMaxInputChannels</a>(<a class="code" href="ugen___standard_header_8h.html#3b96e342c541e61ffe6104777007f4b5">numElementsInArray</a>(inputs), inputs);
+<a name="l00166"></a>00166     <a class="code" href="class_u_gen.html#0d18108fe75e774a48e51382b091671f">initInternal</a>(numInputChannels);
+<a name="l00167"></a>00167     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_u_gen.html#2fc8fefb17c555a8443dc18c74bf3382">numInternalUGens</a>; i++)
+<a name="l00168"></a>00168     {
+<a name="l00169"></a>00169         <a class="code" href="class_u_gen.html#d9e8ba9e81ce7f3909ac9f3c3b69ab45">internalUGens</a>[i] = <span class="keyword">new</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html">LFPulseUGenInternal</a>(<a class="code" href="ugen___l_f_pulse_8h.html#3eb1a6cb7520127102499bab36ea2b4d">LFPulse_InputsNoTypes</a>);
+<a name="l00170"></a>00170     }
+<a name="l00171"></a>00171 }
+<a name="l00172"></a>00172 
+<a name="l00173"></a>00173 <a class="code" href="ugen___standard_header_8h.html#c007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
+<a name="l00174"></a>00174 
+<a name="l00175"></a>00175 <span class="preprocessor">#endif // gpl</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:11 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:06 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

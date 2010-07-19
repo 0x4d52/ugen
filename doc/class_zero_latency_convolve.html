@@ -40,14 +40,6 @@ Inherits <a class="el" href="class_u_gen.html">UGen</a>.
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_zero_latency_convolve.html#5e3c3ce6366220544df90c3393f1ff88">ZeroLatencyConvolve</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_buffer.html">Buffer</a> const &amp;impulse)  throw ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Base <a class="el" href="class_zero_latency_convolve.html">ZeroLatencyConvolve</a> Constuctor, use the <a class="el" href="class_zero_latency_convolve.html#ce635209380a3001e15d1fad7fede43e" title="Construct and return an audio rate ZeroLatencyConvolve .">AR()</a> and <a class="el" href="class_zero_latency_convolve.html#5c726a73ae8f0faede402630ceefc10f" title="Construct and return a control rate ZeroLatencyConvolve (if available, otherise returns...">KR()</a> versions in user code.  <a href="#5e3c3ce6366220544df90c3393f1ff88"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_zero_latency_convolve.html#bb5bb9104e6916e37862d181cf933960">ar</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_buffer.html">Buffer</a> const &amp;impulse)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return an audio rate <a class="el" href="class_zero_latency_convolve.html">ZeroLatencyConvolve</a> (SC compatability).  <a href="#bb5bb9104e6916e37862d181cf933960"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_zero_latency_convolve.html#d859f22eea24d942e625fbe912955fee">kr</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_buffer.html">Buffer</a> const &amp;impulse)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return a control rate <a class="el" href="class_zero_latency_convolve.html">ZeroLatencyConvolve</a> (SC compatability).  <a href="#d859f22eea24d942e625fbe912955fee"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_zero_latency_convolve.html#bfc82970449769326bce6598dd8133d6">operator()</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_buffer.html">Buffer</a> const &amp;impulse)  throw ()</td></tr>
-
 <tr><td colspan="2"><br><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static <a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_zero_latency_convolve.html#ce635209380a3001e15d1fad7fede43e">AR</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_buffer.html">Buffer</a> const &amp;impulse)  throw ()</td></tr>
 
@@ -119,42 +111,6 @@ Base <a class="el" href="class_zero_latency_convolve.html">ZeroLatencyConvolve</
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="bb5bb9104e6916e37862d181cf933960"></a><!-- doxytag: member="ZeroLatencyConvolve::ar" ref="bb5bb9104e6916e37862d181cf933960" args="(UGen const &amp;input, Buffer const &amp;impulse)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> ZeroLatencyConvolve::ar           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_buffer.html">Buffer</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>impulse</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return an audio rate <a class="el" href="class_zero_latency_convolve.html">ZeroLatencyConvolve</a> (SC compatability). 
-<p>
-<b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_zero_latency_convolve.html">ZeroLatencyConvolve</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___convolution_8h_source.html#l00179">179</a> of file <a class="el" href="ugen___convolution_8h_source.html">ugen_Convolution.h</a>.</p>
-
-</div>
-</div><p>
 <a class="anchor" name="ce635209380a3001e15d1fad7fede43e"></a><!-- doxytag: member="ZeroLatencyConvolve::AR" ref="ce635209380a3001e15d1fad7fede43e" args="(UGen const &amp;input, Buffer const &amp;impulse)" -->
 <div class="memitem">
 <div class="memproto">
@@ -186,42 +142,6 @@ Construct and return an audio rate <a class="el" href="class_zero_latency_convol
 <b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
  <br>
  <dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_zero_latency_convolve.html">ZeroLatencyConvolve</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___convolution_8h_source.html#l00179">179</a> of file <a class="el" href="ugen___convolution_8h_source.html">ugen_Convolution.h</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="d859f22eea24d942e625fbe912955fee"></a><!-- doxytag: member="ZeroLatencyConvolve::kr" ref="d859f22eea24d942e625fbe912955fee" args="(UGen const &amp;input, Buffer const &amp;impulse)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> ZeroLatencyConvolve::kr           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_buffer.html">Buffer</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>impulse</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return a control rate <a class="el" href="class_zero_latency_convolve.html">ZeroLatencyConvolve</a> (SC compatability). 
-<p>
-<b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl class="return" compact><dt><b>Returns:</b></dt><dd>The control rate <a class="el" href="class_zero_latency_convolve.html">ZeroLatencyConvolve</a> . </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___convolution_8h_source.html#l00179">179</a> of file <a class="el" href="ugen___convolution_8h_source.html">ugen_Convolution.h</a>.</p>
 
@@ -263,41 +183,10 @@ Construct and return a control rate <a class="el" href="class_zero_latency_convo
 
 </div>
 </div><p>
-<a class="anchor" name="bfc82970449769326bce6598dd8133d6"></a><!-- doxytag: member="ZeroLatencyConvolve::operator()" ref="bfc82970449769326bce6598dd8133d6" args="(UGen const &amp;input, Buffer const &amp;impulse)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> ZeroLatencyConvolve::operator()           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_buffer.html">Buffer</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>impulse</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Definition at line <a class="el" href="ugen___convolution_8h_source.html#l00179">179</a> of file <a class="el" href="ugen___convolution_8h_source.html">ugen_Convolution.h</a>.</p>
-
-</div>
-</div><p>
 <hr>The documentation for this class was generated from the following file:<ul>
 <li>convolution/<a class="el" href="ugen___convolution_8h_source.html">ugen_Convolution.h</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:21 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:15 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

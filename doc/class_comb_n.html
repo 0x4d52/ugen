@@ -46,14 +46,6 @@ Inherits <a class="el" href="class_u_gen.html">UGen</a>.
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_comb_n.html#10cdda2cfaafaa1342db76bd260d93df">CombN</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, const float maximumDelayTime=0.2f, UGen const &amp;delayTime=0.2f, UGen const &amp;decayTime=0.2f)  throw ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Base <a class="el" href="class_comb_n.html" title="Comb delay with no interpolation.">CombN</a> Constuctor, use the <a class="el" href="class_comb_n.html#e9be0f7e265c93da41ebd3a93a3a9ee1" title="Construct and return an audio rate CombN .">AR()</a> and <a class="el" href="class_comb_n.html#7f911f325f30fd4576453fc83efcc9d0" title="Construct and return a control rate CombN (if available, otherise returns an audio...">KR()</a> versions in user code.  <a href="#10cdda2cfaafaa1342db76bd260d93df"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_comb_n.html#374b4ae9e9089f19b43447f871fc70a3">ar</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, const float maximumDelayTime=0.2f, UGen const &amp;delayTime=0.2f, UGen const &amp;decayTime=0.2f)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return an audio rate <a class="el" href="class_comb_n.html" title="Comb delay with no interpolation.">CombN</a> (SC compatability).  <a href="#374b4ae9e9089f19b43447f871fc70a3"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_comb_n.html#91d2a78d4da1df508d1ca178c45470c8">kr</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, const float maximumDelayTime=0.2f, UGen const &amp;delayTime=0.2f, UGen const &amp;decayTime=0.2f)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return a control rate <a class="el" href="class_comb_n.html" title="Comb delay with no interpolation.">CombN</a> (SC compatability).  <a href="#91d2a78d4da1df508d1ca178c45470c8"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_comb_n.html#7393509e6826219c1d68aff73abbfeaf">operator()</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, const float maximumDelayTime=0.2f, UGen const &amp;delayTime=0.2f, UGen const &amp;decayTime=0.2f)  throw ()</td></tr>
-
 <tr><td colspan="2"><br><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static <a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_comb_n.html#e9be0f7e265c93da41ebd3a93a3a9ee1">AR</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, const float maximumDelayTime=0.2f, UGen const &amp;delayTime=0.2f, UGen const &amp;decayTime=0.2f)  throw ()</td></tr>
 
@@ -141,67 +133,11 @@ Base <a class="el" href="class_comb_n.html" title="Comb delay with no interpolat
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___delay_8cpp_source.html#l00770">770</a> of file <a class="el" href="ugen___delay_8cpp_source.html">ugen_Delay.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___delay_8cpp_source.html#l00773">773</a> of file <a class="el" href="ugen___delay_8cpp_source.html">ugen_Delay.cpp</a>.</p>
 
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="374b4ae9e9089f19b43447f871fc70a3"></a><!-- doxytag: member="CombN::ar" ref="374b4ae9e9089f19b43447f871fc70a3" args="(UGen const &amp;input, const float maximumDelayTime=0.2f, UGen const &amp;delayTime=0.2f, UGen const &amp;decayTime=0.2f)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> CombN::ar           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const float&nbsp;</td>
-          <td class="paramname"> <em>maximumDelayTime</em> = <code>0.2f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>delayTime</em> = <code>0.2f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>decayTime</em> = <code>0.2f</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return an audio rate <a class="el" href="class_comb_n.html" title="Comb delay with no interpolation.">CombN</a> (SC compatability). 
-<p>
-<b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>input</em>&nbsp;</td><td>Input source to delay. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>maximumDelayTime</em>&nbsp;</td><td>The maximum delay time in seconds this delay <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> could use, this governs the amount of memory allocated when the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> is created. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>delayTime</em>&nbsp;</td><td>The delay time to use, this must be between 0 and the value given for the maximumDelayTime on the UGen`s creation </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>decayTime</em>&nbsp;</td><td>The time in seconds for the recirculated signal to decay by 60 dBs </td></tr>
-  </table>
-</dl>
-<dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_comb_n.html" title="Comb delay with no interpolation.">CombN</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___delay_8h_source.html#l00252">252</a> of file <a class="el" href="ugen___delay_8h_source.html">ugen_Delay.h</a>.</p>
-
-</div>
-</div><p>
 <a class="anchor" name="e9be0f7e265c93da41ebd3a93a3a9ee1"></a><!-- doxytag: member="CombN::AR" ref="e9be0f7e265c93da41ebd3a93a3a9ee1" args="(UGen const &amp;input, const float maximumDelayTime=0.2f, UGen const &amp;delayTime=0.2f, UGen const &amp;decayTime=0.2f)" -->
 <div class="memitem">
 <div class="memproto">
@@ -253,62 +189,6 @@ Construct and return an audio rate <a class="el" href="class_comb_n.html" title=
   </table>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_comb_n.html" title="Comb delay with no interpolation.">CombN</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___delay_8h_source.html#l00252">252</a> of file <a class="el" href="ugen___delay_8h_source.html">ugen_Delay.h</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="91d2a78d4da1df508d1ca178c45470c8"></a><!-- doxytag: member="CombN::kr" ref="91d2a78d4da1df508d1ca178c45470c8" args="(UGen const &amp;input, const float maximumDelayTime=0.2f, UGen const &amp;delayTime=0.2f, UGen const &amp;decayTime=0.2f)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> CombN::kr           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const float&nbsp;</td>
-          <td class="paramname"> <em>maximumDelayTime</em> = <code>0.2f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>delayTime</em> = <code>0.2f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>decayTime</em> = <code>0.2f</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return a control rate <a class="el" href="class_comb_n.html" title="Comb delay with no interpolation.">CombN</a> (SC compatability). 
-<p>
-<b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>input</em>&nbsp;</td><td>Input source to delay. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>maximumDelayTime</em>&nbsp;</td><td>The maximum delay time in seconds this delay <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> could use, this governs the amount of memory allocated when the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> is created. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>delayTime</em>&nbsp;</td><td>The delay time to use, this must be between 0 and the value given for the maximumDelayTime on the UGen`s creation </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>decayTime</em>&nbsp;</td><td>The time in seconds for the recirculated signal to decay by 60 dBs </td></tr>
-  </table>
-</dl>
-<dl class="return" compact><dt><b>Returns:</b></dt><dd>The control rate <a class="el" href="class_comb_n.html" title="Comb delay with no interpolation.">CombN</a> . </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___delay_8h_source.html#l00252">252</a> of file <a class="el" href="ugen___delay_8h_source.html">ugen_Delay.h</a>.</p>
 
@@ -370,53 +250,10 @@ Construct and return a control rate <a class="el" href="class_comb_n.html" title
 
 </div>
 </div><p>
-<a class="anchor" name="7393509e6826219c1d68aff73abbfeaf"></a><!-- doxytag: member="CombN::operator()" ref="7393509e6826219c1d68aff73abbfeaf" args="(UGen const &amp;input, const float maximumDelayTime=0.2f, UGen const &amp;delayTime=0.2f, UGen const &amp;decayTime=0.2f)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> CombN::operator()           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const float&nbsp;</td>
-          <td class="paramname"> <em>maximumDelayTime</em> = <code>0.2f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>delayTime</em> = <code>0.2f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>decayTime</em> = <code>0.2f</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Definition at line <a class="el" href="ugen___delay_8h_source.html#l00252">252</a> of file <a class="el" href="ugen___delay_8h_source.html">ugen_Delay.h</a>.</p>
-
-</div>
-</div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>delays/<a class="el" href="ugen___delay_8h_source.html">ugen_Delay.h</a><li>delays/<a class="el" href="ugen___delay_8cpp_source.html">ugen_Delay.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:15 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:10 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

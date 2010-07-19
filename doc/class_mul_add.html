@@ -41,17 +41,11 @@ Inherits <a class="el" href="class_u_gen.html">UGen</a>.
 <a href="class_mul_add-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mul_add.html#1178fd5f27f5d583a52b2f4077a1c4d5">MulAdd</a> ()  throw ()</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mul_add.html#11f57b47a4b00b8ab74db7c12355247e">MulAdd</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_u_gen.html">UGen</a> const &amp;mul=1.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;add=0.f)  throw ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Base <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> Constuctor, use the <a class="el" href="class_mul_add.html#b349a54e951a1f58ddc720ee0111471f" title="Construct and return an audio rate MulAdd .">AR()</a> and <a class="el" href="class_mul_add.html#379aebf89c99e09d5ef9954a68998f9f" title="Construct and return a control rate MulAdd (if available, otherise returns an audio...">KR()</a> versions in user code.  <a href="#11f57b47a4b00b8ab74db7c12355247e"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mul_add.html#2b2c92aa5bed7222344a768cd21d7b9e">ar</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_u_gen.html">UGen</a> const &amp;mul=1.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;add=0.f)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return an audio rate <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> (SC compatability).  <a href="#2b2c92aa5bed7222344a768cd21d7b9e"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mul_add.html#98936f56fe876c96b807d49c9810b4d7">kr</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_u_gen.html">UGen</a> const &amp;mul=1.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;add=0.f)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return a control rate <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> (SC compatability).  <a href="#98936f56fe876c96b807d49c9810b4d7"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mul_add.html#7666bed56483e32461d7a007c28cf083">operator()</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_u_gen.html">UGen</a> const &amp;mul=1.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;add=0.f)  throw ()</td></tr>
-
 <tr><td colspan="2"><br><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static <a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mul_add.html#b349a54e951a1f58ddc720ee0111471f">AR</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_u_gen.html">UGen</a> const &amp;mul=1.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;add=0.f)  throw ()</td></tr>
 
@@ -66,8 +60,31 @@ Inherits <a class="el" href="class_u_gen.html">UGen</a>.
 You may use this directly but it is more common to declare a new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> by using the macros <a class="el" href="ugen___mul_add_8h.html#3c1d2336ae0f1e00bd9ee86f556e4909" title="Declare a UGen with multiply and add inputs.">DirectMulAddUGenDeclaration()</a> or <a class="el" href="ugen___mul_add_8h.html#c731e636f4aa5cd0991452268098e7b3" title="Declare a UGen with multiply and add inputs.">ExpandingMulAddUGenDeclaration()</a> which tests the mul and add inputs to see if the mul and add inputs really need adding.<p>
 <dl class="see" compact><dt><b>See also:</b></dt><dd>BinaryOpMulUGen, BinaryOpAddUGen, <a class="el" href="class_u_gen.html#6f6836abf7db25c32a7990cef6279749" title="Binary multiplication.">UGen::operator*()</a>, <a class="el" href="class_u_gen.html#b728c319cc06f6dbaaf65657baef3af0" title="Binary addition.">UGen::operator+()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___mul_add_8h_source.html#l00250">250</a> of file <a class="el" href="ugen___mul_add_8h_source.html">ugen_MulAdd.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___mul_add_8h_source.html#l00232">232</a> of file <a class="el" href="ugen___mul_add_8h_source.html">ugen_MulAdd.h</a>.</p>
 <hr><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" name="1178fd5f27f5d583a52b2f4077a1c4d5"></a><!-- doxytag: member="MulAdd::MulAdd" ref="1178fd5f27f5d583a52b2f4077a1c4d5" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MulAdd::MulAdd           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>  throw ()<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="ugen___mul_add_8h_source.html#l00232">232</a> of file <a class="el" href="ugen___mul_add_8h_source.html">ugen_MulAdd.h</a>.</p>
+
+<p>References <a class="el" href="ugen___mul_add_8h_source.html#l00209">MulAddUGenInternal::Add</a>, <a class="el" href="ugen___mul_add_8h_source.html#l00209">MulAddUGenInternal::Input</a>, <a class="el" href="ugen___mul_add_8h_source.html#l00209">MulAddUGenInternal::Mul</a>, and <a class="el" href="ugen___mul_add_8h_source.html#l00209">MulAddUGenInternal::NumInputs</a>.</p>
+
+</div>
+</div><p>
 <a class="anchor" name="11f57b47a4b00b8ab74db7c12355247e"></a><!-- doxytag: member="MulAdd::MulAdd" ref="11f57b47a4b00b8ab74db7c12355247e" args="(UGen const &amp;input, UGen const &amp;mul=1.f, UGen const &amp;add=0.f)" -->
 <div class="memitem">
 <div class="memproto">
@@ -117,55 +134,6 @@ Base <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply an
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="2b2c92aa5bed7222344a768cd21d7b9e"></a><!-- doxytag: member="MulAdd::ar" ref="2b2c92aa5bed7222344a768cd21d7b9e" args="(UGen const &amp;input, UGen const &amp;mul=1.f, UGen const &amp;add=0.f)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> MulAdd::ar           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>mul</em> = <code>1.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>add</em> = <code>0.f</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return an audio rate <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> (SC compatability). 
-<p>
-<b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>input</em>&nbsp;</td><td>The input source to modify. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>mul</em>&nbsp;</td><td>This is multiplied by the output. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>add</em>&nbsp;</td><td>This is added to the output (after mul has been applied). </td></tr>
-  </table>
-</dl>
-<dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___mul_add_8h_source.html#l00250">250</a> of file <a class="el" href="ugen___mul_add_8h_source.html">ugen_MulAdd.h</a>.</p>
-
-</div>
-</div><p>
 <a class="anchor" name="b349a54e951a1f58ddc720ee0111471f"></a><!-- doxytag: member="MulAdd::AR" ref="b349a54e951a1f58ddc720ee0111471f" args="(UGen const &amp;input, UGen const &amp;mul=1.f, UGen const &amp;add=0.f)" -->
 <div class="memitem">
 <div class="memproto">
@@ -211,56 +179,7 @@ Construct and return an audio rate <a class="el" href="class_mul_add.html" title
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> . </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___mul_add_8h_source.html#l00250">250</a> of file <a class="el" href="ugen___mul_add_8h_source.html">ugen_MulAdd.h</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="98936f56fe876c96b807d49c9810b4d7"></a><!-- doxytag: member="MulAdd::kr" ref="98936f56fe876c96b807d49c9810b4d7" args="(UGen const &amp;input, UGen const &amp;mul=1.f, UGen const &amp;add=0.f)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> MulAdd::kr           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>mul</em> = <code>1.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>add</em> = <code>0.f</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return a control rate <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> (SC compatability). 
-<p>
-<b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>input</em>&nbsp;</td><td>The input source to modify. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>mul</em>&nbsp;</td><td>This is multiplied by the output. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>add</em>&nbsp;</td><td>This is added to the output (after mul has been applied). </td></tr>
-  </table>
-</dl>
-<dl class="return" compact><dt><b>Returns:</b></dt><dd>The control rate <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___mul_add_8h_source.html#l00250">250</a> of file <a class="el" href="ugen___mul_add_8h_source.html">ugen_MulAdd.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___mul_add_8h_source.html#l00232">232</a> of file <a class="el" href="ugen___mul_add_8h_source.html">ugen_MulAdd.h</a>.</p>
 
 </div>
 </div><p>
@@ -309,51 +228,14 @@ Construct and return a control rate <a class="el" href="class_mul_add.html" titl
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>The control rate <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> . </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___mul_add_8h_source.html#l00250">250</a> of file <a class="el" href="ugen___mul_add_8h_source.html">ugen_MulAdd.h</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="7666bed56483e32461d7a007c28cf083"></a><!-- doxytag: member="MulAdd::operator()" ref="7666bed56483e32461d7a007c28cf083" args="(UGen const &amp;input, UGen const &amp;mul=1.f, UGen const &amp;add=0.f)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> MulAdd::operator()           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>mul</em> = <code>1.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>add</em> = <code>0.f</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Definition at line <a class="el" href="ugen___mul_add_8h_source.html#l00250">250</a> of file <a class="el" href="ugen___mul_add_8h_source.html">ugen_MulAdd.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___mul_add_8h_source.html#l00232">232</a> of file <a class="el" href="ugen___mul_add_8h_source.html">ugen_MulAdd.h</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>basics/<a class="el" href="ugen___mul_add_8h_source.html">ugen_MulAdd.h</a><li>basics/<a class="el" href="ugen___mul_add_8cpp_source.html">ugen_MulAdd.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:17 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:12 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

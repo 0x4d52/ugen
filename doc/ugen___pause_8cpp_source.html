@@ -22,7 +22,7 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-<h1>basics/ugen_Pause.cpp</h1><a href="ugen___pause_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Pause.cpp 77 2010-05-24 10:34:11Z 0x4d52 $</span>
+<h1>basics/ugen_Pause.cpp</h1><a href="ugen___pause_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Pause.cpp 89 2010-07-09 16:20:21Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/basics/ugen_Pause.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -58,81 +58,93 @@
 <a name="l00034"></a>00034 <span class="comment"> ==============================================================================</span>
 <a name="l00035"></a>00035 <span class="comment"> */</span>
 <a name="l00036"></a>00036 
-<a name="l00037"></a>00037 <span class="preprocessor">#include "../core/ugen_StandardHeader.h"</span>
-<a name="l00038"></a>00038 
-<a name="l00039"></a>00039 <a class="code" href="ugen___standard_header_8h.html#e236e43a85c6905c3285f031bf456685">BEGIN_UGEN_NAMESPACE</a>
-<a name="l00040"></a>00040 
-<a name="l00041"></a>00041 <span class="preprocessor">#include "<a class="code" href="ugen___pause_8h.html">ugen_Pause.h</a>"</span>
-<a name="l00042"></a>00042 <span class="preprocessor">#include "<a class="code" href="ugen___inline_unary_ops_8h.html">ugen_InlineUnaryOps.h</a>"</span>
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038 <span class="comment">// check gpl</span>
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040 <span class="preprocessor">#include "../core/ugen_StandardHeader.h"</span>
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042 <a class="code" href="ugen___standard_header_8h.html#e236e43a85c6905c3285f031bf456685">BEGIN_UGEN_NAMESPACE</a>
 <a name="l00043"></a>00043 
-<a name="l00044"></a><a class="code" href="class_pause_u_gen_internal.html#9252f22ab55664d8a8a38b935493210b">00044</a> 
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046 <a class="code" href="class_pause_u_gen_internal.html#9252f22ab55664d8a8a38b935493210b">PauseUGenInternal::PauseUGenInternal</a>(<a class="code" href="ugen___pause_8h.html#85ac13bebc77491e081456a8aa574360">Pause_InputsWithTypesOnly</a>) throw()
-<a name="l00047"></a>00047 :   <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(NumInputs),
-<a name="l00048"></a>00048     prevLevel(0.f)
-<a name="l00049"></a>00049 {
-<a name="l00050"></a>00050     <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_pause_u_gen_internal.html#74b6f037eef3b26561a26db1fd1a30cf2a461a6eea4c48193fad38e9f5c28a94">Input</a>] = input;
-<a name="l00051"></a>00051     <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_pause_u_gen_internal.html#74b6f037eef3b26561a26db1fd1a30cf08510ab7bb9673c31fbab3b61224f1fb">Level</a>] = level;
-<a name="l00052"></a><a class="code" href="class_pause_u_gen_internal.html#170542a85b3fd0d5ae64adfb644ca2ef">00052</a> }
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054 <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_pause_u_gen_internal.html#170542a85b3fd0d5ae64adfb644ca2ef">PauseUGenInternal::getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
-<a name="l00055"></a>00055 {
-<a name="l00056"></a>00056     <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_pause_u_gen_internal.html" title="A UGenInternal which saves processing power when an amlitude value is zero.">PauseUGenInternal</a>(inputs[Input].getChannel(channel),
-<a name="l00057"></a>00057                                  inputs[Level].getChannel(channel));
-<a name="l00058"></a><a class="code" href="class_pause_u_gen_internal.html#6f4d4f24bec45dbc5b91145fea7c3c1d">00058</a> }
-<a name="l00059"></a>00059 
-<a name="l00060"></a>00060 <span class="keywordtype">void</span> <a class="code" href="class_pause_u_gen_internal.html#6f4d4f24bec45dbc5b91145fea7c3c1d" title="Process a block of samples for this blockID and channel.">PauseUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
-<a name="l00061"></a>00061 {
-<a name="l00062"></a>00062     <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
-<a name="l00063"></a>00063     <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
-<a name="l00064"></a>00064     
-<a name="l00065"></a>00065     <span class="keywordtype">float</span> currentLevel = *(inputs[Level].processBlock(shouldDelete, blockID, channel));
-<a name="l00066"></a>00066     
-<a name="l00067"></a>00067     <span class="keywordflow">if</span>(currentLevel == 0.f &amp;&amp; prevLevel == 0.f)
-<a name="l00068"></a>00068     {
-<a name="l00069"></a>00069         memset(outputSamples, 0, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
-<a name="l00070"></a>00070     }
-<a name="l00071"></a>00071     <span class="keywordflow">else</span>
-<a name="l00072"></a>00072     {
-<a name="l00073"></a>00073         <span class="keywordtype">float</span>* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
-<a name="l00074"></a>00074         
-<a name="l00075"></a>00075         <span class="keywordflow">if</span>(currentLevel != prevLevel)
-<a name="l00076"></a>00076         {
-<a name="l00077"></a>00077             <span class="keywordtype">float</span> inc = (currentLevel - prevLevel) / (<span class="keywordtype">float</span>)numSamplesToProcess;
-<a name="l00078"></a>00078             <span class="keywordtype">float</span> level = prevLevel;
-<a name="l00079"></a>00079             <span class="keywordflow">while</span>(numSamplesToProcess--)
-<a name="l00080"></a>00080             {
-<a name="l00081"></a>00081                 *outputSamples++ = *inputSamples++ * level;
-<a name="l00082"></a>00082                 level += inc;
-<a name="l00083"></a>00083             }
-<a name="l00084"></a>00084         }
-<a name="l00085"></a>00085         <span class="keywordflow">else</span>
-<a name="l00086"></a>00086         {
-<a name="l00087"></a>00087             <span class="keywordflow">while</span>(numSamplesToProcess--)
-<a name="l00088"></a>00088             {
-<a name="l00089"></a>00089                 *outputSamples++ = *inputSamples++ * currentLevel;
+<a name="l00044"></a>00044 <span class="preprocessor">#include "<a class="code" href="ugen___pause_8h.html">ugen_Pause.h</a>"</span>
+<a name="l00045"></a>00045 <span class="preprocessor">#include "<a class="code" href="ugen___inline_unary_ops_8h.html">ugen_InlineUnaryOps.h</a>"</span>
+<a name="l00046"></a>00046 
+<a name="l00047"></a><a class="code" href="class_pause_u_gen_internal.html#9252f22ab55664d8a8a38b935493210b">00047</a> 
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049 <a class="code" href="class_pause_u_gen_internal.html#9252f22ab55664d8a8a38b935493210b">PauseUGenInternal::PauseUGenInternal</a>(<a class="code" href="ugen___pause_8h.html#85ac13bebc77491e081456a8aa574360">Pause_InputsWithTypesOnly</a>) throw()
+<a name="l00050"></a>00050 :   <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(NumInputs),
+<a name="l00051"></a>00051     prevLevel(0.f)
+<a name="l00052"></a>00052 {
+<a name="l00053"></a>00053     <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_pause_u_gen_internal.html#74b6f037eef3b26561a26db1fd1a30cf2a461a6eea4c48193fad38e9f5c28a94">Input</a>] = input;
+<a name="l00054"></a>00054     <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_pause_u_gen_internal.html#74b6f037eef3b26561a26db1fd1a30cf08510ab7bb9673c31fbab3b61224f1fb">Level</a>] = level;
+<a name="l00055"></a><a class="code" href="class_pause_u_gen_internal.html#170542a85b3fd0d5ae64adfb644ca2ef">00055</a> }
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_pause_u_gen_internal.html#170542a85b3fd0d5ae64adfb644ca2ef">PauseUGenInternal::getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
+<a name="l00058"></a>00058 {
+<a name="l00059"></a>00059     <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_pause_u_gen_internal.html" title="A UGenInternal which saves processing power when an amlitude value is zero.">PauseUGenInternal</a>(inputs[Input].getChannel(channel),
+<a name="l00060"></a>00060                                  inputs[Level].getChannel(channel));
+<a name="l00061"></a><a class="code" href="class_pause_u_gen_internal.html#6f4d4f24bec45dbc5b91145fea7c3c1d">00061</a> }
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063 <span class="keywordtype">void</span> <a class="code" href="class_pause_u_gen_internal.html#6f4d4f24bec45dbc5b91145fea7c3c1d" title="Process a block of samples for this blockID and channel.">PauseUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
+<a name="l00064"></a>00064 {
+<a name="l00065"></a>00065     <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
+<a name="l00066"></a>00066     <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
+<a name="l00067"></a>00067     
+<a name="l00068"></a>00068     <span class="keywordtype">float</span> currentLevel = *(inputs[Level].processBlock(shouldDelete, blockID, channel));
+<a name="l00069"></a>00069     
+<a name="l00070"></a>00070     <span class="keywordflow">if</span>(currentLevel == 0.f &amp;&amp; prevLevel == 0.f)
+<a name="l00071"></a>00071     {
+<a name="l00072"></a>00072 <span class="preprocessor">#ifdef UGEN_VDSP</span>
+<a name="l00073"></a>00073 <span class="preprocessor"></span>        vDSP_vclr(outputSamples, 1, numSamplesToProcess);
+<a name="l00074"></a>00074 <span class="preprocessor">#else</span>
+<a name="l00075"></a>00075 <span class="preprocessor"></span>        memset(outputSamples, 0, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00076"></a>00076 <span class="preprocessor">#endif</span>
+<a name="l00077"></a>00077 <span class="preprocessor"></span>    }
+<a name="l00078"></a>00078     <span class="keywordflow">else</span>
+<a name="l00079"></a>00079     {
+<a name="l00080"></a>00080         <span class="keywordtype">float</span>* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
+<a name="l00081"></a>00081         
+<a name="l00082"></a>00082         <span class="keywordflow">if</span>(currentLevel != prevLevel)
+<a name="l00083"></a>00083         {
+<a name="l00084"></a>00084             <span class="keywordtype">float</span> inc = (currentLevel - prevLevel) / (<span class="keywordtype">float</span>)numSamplesToProcess;
+<a name="l00085"></a>00085             <span class="keywordtype">float</span> level = prevLevel;
+<a name="l00086"></a>00086             <span class="keywordflow">while</span>(numSamplesToProcess--)
+<a name="l00087"></a>00087             {
+<a name="l00088"></a>00088                 *outputSamples++ = *inputSamples++ * level;
+<a name="l00089"></a>00089                 level += inc;
 <a name="l00090"></a>00090             }
 <a name="l00091"></a>00091         }
-<a name="l00092"></a>00092     }
-<a name="l00093"></a>00093     
-<a name="l00094"></a>00094     prevLevel = currentLevel;
-<a name="l00095"></a><a class="code" href="class_pause.html#9424ebfe201ee6424266b21fb18c05b5">00095</a> }
-<a name="l00096"></a>00096 
-<a name="l00097"></a>00097 <a class="code" href="class_pause.html#9424ebfe201ee6424266b21fb18c05b5" title="Base Pause Constuctor, use the AR() and KR() versions in user code.">Pause::Pause</a>(<a class="code" href="ugen___pause_8h.html#85ac13bebc77491e081456a8aa574360">Pause_InputsWithTypesOnly</a>) throw()
-<a name="l00098"></a>00098 {
-<a name="l00099"></a>00099     <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> inputs[] = { <a class="code" href="ugen___pause_8h.html#e5449f4a8ee5d8bc3e7d0745c9379620">Pause_InputsNoTypes</a> };
-<a name="l00100"></a>00100     <span class="keyword">const</span> <span class="keywordtype">int</span> numInputChannels = <a class="code" href="class_u_gen.html#b40c76e992156358e4254ae8ad46e520">findMaxInputChannels</a>(<a class="code" href="ugen___standard_header_8h.html#3b96e342c541e61ffe6104777007f4b5">numElementsInArray</a>(inputs), inputs);
-<a name="l00101"></a>00101     <a class="code" href="class_u_gen.html#0d18108fe75e774a48e51382b091671f">initInternal</a>(numInputChannels);
-<a name="l00102"></a>00102     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_u_gen.html#2fc8fefb17c555a8443dc18c74bf3382">numInternalUGens</a>; i++)
-<a name="l00103"></a>00103     {
-<a name="l00104"></a>00104         <a class="code" href="class_u_gen.html#d9e8ba9e81ce7f3909ac9f3c3b69ab45">internalUGens</a>[i] = <span class="keyword">new</span> <a class="code" href="class_pause_u_gen_internal.html" title="A UGenInternal which saves processing power when an amlitude value is zero.">PauseUGenInternal</a>(<a class="code" href="ugen___pause_8h.html#e5449f4a8ee5d8bc3e7d0745c9379620">Pause_InputsNoTypes</a>);
-<a name="l00105"></a>00105         <a class="code" href="class_u_gen.html#d9e8ba9e81ce7f3909ac9f3c3b69ab45">internalUGens</a>[i]-&gt;<a class="code" href="class_u_gen_internal.html#3b9de200fa163a233dab85b3388fd469" title="Initialise the UGen output value.">initValue</a>(input.getValue(i) * level.getValue(i));
-<a name="l00106"></a>00106     }
-<a name="l00107"></a>00107 }
+<a name="l00092"></a>00092         <span class="keywordflow">else</span>
+<a name="l00093"></a>00093         {
+<a name="l00094"></a>00094 <span class="preprocessor">#ifdef UGEN_VDSP</span>
+<a name="l00095"></a>00095 <span class="preprocessor"></span>            <span class="keywordtype">float</span> <a class="code" href="ugen___constants_8h.html#554f7b66b1ba49443447eb746978c268">zero</a> = 0.f;
+<a name="l00096"></a>00096             vDSP_vsmsa(inputSamples, 1, &amp;currentLevel, &amp;zero, outputSamples, 1, numSamplesToProcess);
+<a name="l00097"></a>00097 <span class="preprocessor">#else</span>
+<a name="l00098"></a>00098 <span class="preprocessor"></span>            <span class="keywordflow">while</span>(numSamplesToProcess--)
+<a name="l00099"></a>00099             {
+<a name="l00100"></a>00100                 *outputSamples++ = *inputSamples++ * currentLevel;
+<a name="l00101"></a>00101             }
+<a name="l00102"></a>00102 <span class="preprocessor">#endif</span>
+<a name="l00103"></a>00103 <span class="preprocessor"></span>        }
+<a name="l00104"></a>00104     }
+<a name="l00105"></a>00105     
+<a name="l00106"></a>00106     prevLevel = currentLevel;
+<a name="l00107"></a><a class="code" href="class_pause.html#9424ebfe201ee6424266b21fb18c05b5">00107</a> }
 <a name="l00108"></a>00108 
-<a name="l00109"></a>00109 <a class="code" href="ugen___standard_header_8h.html#c007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
+<a name="l00109"></a>00109 <a class="code" href="class_pause.html#9424ebfe201ee6424266b21fb18c05b5" title="Base Pause Constuctor, use the AR() and KR() versions in user code.">Pause::Pause</a>(<a class="code" href="ugen___pause_8h.html#85ac13bebc77491e081456a8aa574360">Pause_InputsWithTypesOnly</a>) throw()
+<a name="l00110"></a>00110 {
+<a name="l00111"></a>00111     <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> inputs[] = { <a class="code" href="ugen___pause_8h.html#e5449f4a8ee5d8bc3e7d0745c9379620">Pause_InputsNoTypes</a> };
+<a name="l00112"></a>00112     <span class="keyword">const</span> <span class="keywordtype">int</span> numInputChannels = <a class="code" href="class_u_gen.html#b40c76e992156358e4254ae8ad46e520">findMaxInputChannels</a>(<a class="code" href="ugen___standard_header_8h.html#3b96e342c541e61ffe6104777007f4b5">numElementsInArray</a>(inputs), inputs);
+<a name="l00113"></a>00113     <a class="code" href="class_u_gen.html#0d18108fe75e774a48e51382b091671f">initInternal</a>(numInputChannels);
+<a name="l00114"></a>00114     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_u_gen.html#2fc8fefb17c555a8443dc18c74bf3382">numInternalUGens</a>; i++)
+<a name="l00115"></a>00115     {
+<a name="l00116"></a>00116         <a class="code" href="class_u_gen.html#d9e8ba9e81ce7f3909ac9f3c3b69ab45">internalUGens</a>[i] = <span class="keyword">new</span> <a class="code" href="class_pause_u_gen_internal.html" title="A UGenInternal which saves processing power when an amlitude value is zero.">PauseUGenInternal</a>(<a class="code" href="ugen___pause_8h.html#e5449f4a8ee5d8bc3e7d0745c9379620">Pause_InputsNoTypes</a>);
+<a name="l00117"></a>00117         <a class="code" href="class_u_gen.html#d9e8ba9e81ce7f3909ac9f3c3b69ab45">internalUGens</a>[i]-&gt;<a class="code" href="class_u_gen_internal.html#3b9de200fa163a233dab85b3388fd469" title="Initialise the UGen output value.">initValue</a>(input.getValue(i) * level.getValue(i));
+<a name="l00118"></a>00118     }
+<a name="l00119"></a>00119 }
+<a name="l00120"></a>00120 
+<a name="l00121"></a>00121 <a class="code" href="ugen___standard_header_8h.html#c007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:08 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:04 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

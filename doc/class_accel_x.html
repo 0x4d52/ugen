@@ -44,14 +44,6 @@ Inherits <a class="el" href="class_u_gen.html">UGen</a>.
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_accel_x.html#0c17d693518e85099231db2dd285c10b">AccelX</a> ()  throw ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Base <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> <a class="el" href="class_accel_x.html" title="A UGen which takes its value source from a UIAccelerometer (iPhone) X direction.">AccelX</a> Constuctor (without "mul" or "add"), use the <a class="el" href="class_accel_x.html#94f29f8269d978adfabc59e0b5ddbba3" title="Construct and return an audio rate AccelX adding &quot;mul&quot; and/or &quot;add&quot;...">AR()</a> and <a class="el" href="class_accel_x.html#f0ca6646faa13e18468d29376c2f550b" title="Construct and return a control rate AccelX (if available, otherise returns an audio...">KR()</a> versions in user code.  <a href="#0c17d693518e85099231db2dd285c10b"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_accel_x.html#e095f59bb58ed97cc5dbd8ae41323545">ar</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;mul=1.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;add=0.f)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return an audio rate <a class="el" href="class_accel_x.html" title="A UGen which takes its value source from a UIAccelerometer (iPhone) X direction.">AccelX</a> (SC compatability).  <a href="#e095f59bb58ed97cc5dbd8ae41323545"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_accel_x.html#690388b14c0deaeb8ccdec50cb3f8c1b">kr</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;mul=1.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;add=0.f)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return a control rate <a class="el" href="class_accel_x.html" title="A UGen which takes its value source from a UIAccelerometer (iPhone) X direction.">AccelX</a> (SC compatability).  <a href="#690388b14c0deaeb8ccdec50cb3f8c1b"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_accel_x.html#4df43612abf9cb765e29ef7897ea05a8">operator()</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;mul=1.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;add=0.f)  throw ()</td></tr>
-
 <tr><td colspan="2"><br><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static <a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_accel_x.html#94f29f8269d978adfabc59e0b5ddbba3">AR</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;mul=1.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;add=0.f)  throw ()</td></tr>
 
@@ -62,7 +54,7 @@ Inherits <a class="el" href="class_u_gen.html">UGen</a>.
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 A <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which takes its value source from a UIAccelerometer (iPhone) X direction. 
-<p>Definition at line <a class="el" href="ugen___u_i_acceleration_8h_source.html#l00090">90</a> of file <a class="el" href="ugen___u_i_acceleration_8h_source.html">ugen_UIAcceleration.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_i_acceleration_8h_source.html#l00095">95</a> of file <a class="el" href="ugen___u_i_acceleration_8h_source.html">ugen_UIAcceleration.h</a>.</p>
 <hr><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" name="0c17d693518e85099231db2dd285c10b"></a><!-- doxytag: member="AccelX::AccelX" ref="0c17d693518e85099231db2dd285c10b" args="()" -->
 <div class="memitem">
@@ -86,50 +78,6 @@ This uses the "direct" version of <a class="el" href="class_mul_add.html" title=
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="e095f59bb58ed97cc5dbd8ae41323545"></a><!-- doxytag: member="AccelX::ar" ref="e095f59bb58ed97cc5dbd8ae41323545" args="(UGen const &amp;mul=1.f, UGen const &amp;add=0.f)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> AccelX::ar           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>mul</em> = <code>1.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>add</em> = <code>0.f</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return an audio rate <a class="el" href="class_accel_x.html" title="A UGen which takes its value source from a UIAccelerometer (iPhone) X direction.">AccelX</a> (SC compatability). 
-<p>
-A "mul" operation will not be added if the multiplier is 1.0, an "add" operation will not be added if the "add" value is 0.0. <br>
-<br>
- <b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>mul</em>&nbsp;</td><td>This is multiplied by the output. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>add</em>&nbsp;</td><td>This is added to the output (after mul has been applied). </td></tr>
-  </table>
-</dl>
-<dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_accel_x.html" title="A UGen which takes its value source from a UIAccelerometer (iPhone) X direction.">AccelX</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___u_i_acceleration_8h_source.html#l00090">90</a> of file <a class="el" href="ugen___u_i_acceleration_8h_source.html">ugen_UIAcceleration.h</a>.</p>
-
-</div>
-</div><p>
 <a class="anchor" name="94f29f8269d978adfabc59e0b5ddbba3"></a><!-- doxytag: member="AccelX::AR" ref="94f29f8269d978adfabc59e0b5ddbba3" args="(UGen const &amp;mul=1.f, UGen const &amp;add=0.f)" -->
 <div class="memitem">
 <div class="memproto">
@@ -170,51 +118,7 @@ A "mul" operation will not be added if the multiplier is 1.0, an "add" operation
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_accel_x.html" title="A UGen which takes its value source from a UIAccelerometer (iPhone) X direction.">AccelX</a> . </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___u_i_acceleration_8h_source.html#l00090">90</a> of file <a class="el" href="ugen___u_i_acceleration_8h_source.html">ugen_UIAcceleration.h</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="690388b14c0deaeb8ccdec50cb3f8c1b"></a><!-- doxytag: member="AccelX::kr" ref="690388b14c0deaeb8ccdec50cb3f8c1b" args="(UGen const &amp;mul=1.f, UGen const &amp;add=0.f)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> AccelX::kr           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>mul</em> = <code>1.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>add</em> = <code>0.f</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return a control rate <a class="el" href="class_accel_x.html" title="A UGen which takes its value source from a UIAccelerometer (iPhone) X direction.">AccelX</a> (SC compatability). 
-<p>
-A "mul" operation will not be added if the multiplier is 1.0, an "add" operation will not be added if the "add" value is 0.0. <br>
-<br>
- <b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>mul</em>&nbsp;</td><td>This is multiplied by the output. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>add</em>&nbsp;</td><td>This is added to the output (after mul has been applied). </td></tr>
-  </table>
-</dl>
-<dl class="return" compact><dt><b>Returns:</b></dt><dd>The control rate <a class="el" href="class_accel_x.html" title="A UGen which takes its value source from a UIAccelerometer (iPhone) X direction.">AccelX</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___u_i_acceleration_8h_source.html#l00090">90</a> of file <a class="el" href="ugen___u_i_acceleration_8h_source.html">ugen_UIAcceleration.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_i_acceleration_8h_source.html#l00095">95</a> of file <a class="el" href="ugen___u_i_acceleration_8h_source.html">ugen_UIAcceleration.h</a>.</p>
 
 </div>
 </div><p>
@@ -258,45 +162,14 @@ A "mul" operation will not be added if the multiplier is 1.0, an "add" operation
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>The control rate <a class="el" href="class_accel_x.html" title="A UGen which takes its value source from a UIAccelerometer (iPhone) X direction.">AccelX</a> . </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___u_i_acceleration_8h_source.html#l00090">90</a> of file <a class="el" href="ugen___u_i_acceleration_8h_source.html">ugen_UIAcceleration.h</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="4df43612abf9cb765e29ef7897ea05a8"></a><!-- doxytag: member="AccelX::operator()" ref="4df43612abf9cb765e29ef7897ea05a8" args="(UGen const &amp;mul=1.f, UGen const &amp;add=0.f)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> AccelX::operator()           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>mul</em> = <code>1.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>add</em> = <code>0.f</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Definition at line <a class="el" href="ugen___u_i_acceleration_8h_source.html#l00090">90</a> of file <a class="el" href="ugen___u_i_acceleration_8h_source.html">ugen_UIAcceleration.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_i_acceleration_8h_source.html#l00095">95</a> of file <a class="el" href="ugen___u_i_acceleration_8h_source.html">ugen_UIAcceleration.h</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following file:<ul>
 <li>iphone/<a class="el" href="ugen___u_i_acceleration_8h_source.html">ugen_UIAcceleration.h</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:13 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:09 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

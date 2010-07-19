@@ -22,7 +22,7 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-<h1>oscillators/wavetable/ugen_TableOsc.cpp</h1><a href="ugen___table_osc_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_TableOsc.cpp 77 2010-05-24 10:34:11Z 0x4d52 $</span>
+<h1>oscillators/wavetable/ugen_TableOsc.cpp</h1><a href="ugen___table_osc_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_TableOsc.cpp 90 2010-07-14 21:03:59Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/oscillators/wavetable/ugen_TableOsc.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -90,7 +90,7 @@
 <a name="l00066"></a>00066 
 <a name="l00067"></a>00067 <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_table_osc_u_gen_internal.html#361806f78c766ce5e89493563ad71100">TableOscUGenInternal::getKr</a>() throw() 
 <a name="l00068"></a>00068 { 
-<a name="l00069"></a>00069     <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_table_osc_u_gen_internal_k.html">TableOscUGenInternalK</a>(<a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_table_osc_u_gen_internal.html#1f8b633e694dcd8db98f438daa106ae6c068687b5f4ae6706ff981a4ff8dbd31">Freq</a>].<a class="code" href="namespaceugen.html#f17dc36462ee9d9f533a4ac4cb3e5c0d" title="SC compatability.">kr</a>(), <a class="code" href="class_table_osc_u_gen_internal.html#84f11af8afbf83a3713ba88e0e7f71df">currentPhase</a>, <a class="code" href="class_table_osc_u_gen_internal.html#b878c55b992b698debb734fc25acc3e6">table_</a>); 
+<a name="l00069"></a>00069     <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_table_osc_u_gen_internal_k.html">TableOscUGenInternalK</a>(<a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_table_osc_u_gen_internal.html#1f8b633e694dcd8db98f438daa106ae6c068687b5f4ae6706ff981a4ff8dbd31">Freq</a>].<a class="code" href="namespaceugen.html#f17dc36462ee9d9f533a4ac4cb3e5c0d">kr</a>(), <a class="code" href="class_table_osc_u_gen_internal.html#84f11af8afbf83a3713ba88e0e7f71df">currentPhase</a>, <a class="code" href="class_table_osc_u_gen_internal.html#b878c55b992b698debb734fc25acc3e6">table_</a>); 
 <a name="l00070"></a><a class="code" href="class_table_osc_u_gen_internal.html#a68b8536bb5df1ed2f6f555333b277a4">00070</a> }
 <a name="l00071"></a>00071 
 <a name="l00072"></a>00072 <span class="keywordtype">void</span> <a class="code" href="class_table_osc_u_gen_internal.html#a68b8536bb5df1ed2f6f555333b277a4" title="Process a block of samples for this blockID and channel.">TableOscUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
@@ -205,7 +205,7 @@
 <a name="l00181"></a>00181     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> harmonic = 1; harmonic &lt;= harmonicWeights.size(); harmonic++)
 <a name="l00182"></a>00182     {
 <a name="l00183"></a>00183         <span class="keywordtype">float</span> amp = harmonicWeights.getSampleUnchecked(0, harmonic-1);
-<a name="l00184"></a>00184         table += <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(8193, 0.0, harmonic * <a class="code" href="ugen___constants_8h.html#d996edbbc287b4e5f3dd072a10bd6122">twopi</a>).<a class="code" href="class_buffer.html#7e5f6fb28836e76ee6bb4605ac2cc63d" title="Unary sine.">sin</a>() * amp;
+<a name="l00184"></a>00184         table += <a class="code" href="class_buffer.html#571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(8193, 0.0, harmonic * <a class="code" href="ugen___constants_8h.html#41456563667051ed589712c38e7427e6">twoPi</a>).<a class="code" href="class_buffer.html#7e5f6fb28836e76ee6bb4605ac2cc63d" title="Unary sine.">sin</a>() * amp;
 <a name="l00185"></a>00185     }
 <a name="l00186"></a>00186     
 <a name="l00187"></a>00187     table = table.<a class="code" href="class_buffer.html#ec8ce25f140ed02d4fd9c4a87b34193a" title="Reduce the apparent size of the Buffer without deallocating the extra memory.">shrinkSize</a>();
@@ -230,7 +230,7 @@
 <a name="l00206"></a>00206 
 <a name="l00207"></a>00207 <a class="code" href="ugen___standard_header_8h.html#c007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:11 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:06 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

@@ -46,14 +46,6 @@ Inherits <a class="el" href="class_u_gen.html">UGen</a>.
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plug.html#91b53a332b80a645bd9f808efcdd7978">Plug</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;source, bool shouldAllowAutoDelete=true)  throw ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Base <a class="el" href="class_plug.html" title="A UGen which allows repatching.">Plug</a> Constuctor, use the <a class="el" href="class_plug.html#3af4b01a76a7264a9837b002995cf7a4" title="Construct and return an audio rate Plug .">AR()</a> and <a class="el" href="class_plug.html#e97e609af827f382cffa26b07b236963" title="Construct and return a control rate Plug (if available, otherise returns an audio...">KR()</a> versions in user code.  <a href="#91b53a332b80a645bd9f808efcdd7978"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plug.html#0823a537a4f9f857687f92ecd7408f31">ar</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;source, bool shouldAllowAutoDelete=true)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return an audio rate <a class="el" href="class_plug.html" title="A UGen which allows repatching.">Plug</a> (SC compatability).  <a href="#0823a537a4f9f857687f92ecd7408f31"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plug.html#a068e7497f6351cf2fb14e3c984b3382">kr</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;source, bool shouldAllowAutoDelete=true)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return a control rate <a class="el" href="class_plug.html" title="A UGen which allows repatching.">Plug</a> (SC compatability).  <a href="#a068e7497f6351cf2fb14e3c984b3382"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plug.html#729e814deb0f2bee6df5865628ddcac1">operator()</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;source, bool shouldAllowAutoDelete=true)  throw ()</td></tr>
-
 <tr><td colspan="2"><br><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static <a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plug.html#3af4b01a76a7264a9837b002995cf7a4">AR</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;source, bool shouldAllowAutoDelete=true)  throw ()</td></tr>
 
@@ -122,49 +114,13 @@ Base <a class="el" href="class_plug.html" title="A UGen which allows repatching.
 <b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
  <br>
  
-<p>Definition at line <a class="el" href="ugen___plug_8cpp_source.html#l00205">205</a> of file <a class="el" href="ugen___plug_8cpp_source.html">ugen_Plug.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___plug_8cpp_source.html#l00207">207</a> of file <a class="el" href="ugen___plug_8cpp_source.html">ugen_Plug.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___standard_header_8h_source.html#l00243">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___standard_header_8h_source.html#l00246">ugen_assert</a>.</p>
 
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="0823a537a4f9f857687f92ecd7408f31"></a><!-- doxytag: member="Plug::ar" ref="0823a537a4f9f857687f92ecd7408f31" args="(UGen const &amp;source, bool shouldAllowAutoDelete=true)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> Plug::ar           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>source</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&nbsp;</td>
-          <td class="paramname"> <em>shouldAllowAutoDelete</em> = <code>true</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return an audio rate <a class="el" href="class_plug.html" title="A UGen which allows repatching.">Plug</a> (SC compatability). 
-<p>
-<b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_plug.html" title="A UGen which allows repatching.">Plug</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___plug_8h_source.html#l00106">106</a> of file <a class="el" href="ugen___plug_8h_source.html">ugen_Plug.h</a>.</p>
-
-</div>
-</div><p>
 <a class="anchor" name="3af4b01a76a7264a9837b002995cf7a4"></a><!-- doxytag: member="Plug::AR" ref="3af4b01a76a7264a9837b002995cf7a4" args="(UGen const &amp;source, bool shouldAllowAutoDelete=true)" -->
 <div class="memitem">
 <div class="memproto">
@@ -200,42 +156,6 @@ Construct and return an audio rate <a class="el" href="class_plug.html" title="A
 <p>Definition at line <a class="el" href="ugen___plug_8h_source.html#l00106">106</a> of file <a class="el" href="ugen___plug_8h_source.html">ugen_Plug.h</a>.</p>
 
 <p>Referenced by <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00055">JuceIOHost::JuceIOHost()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="a068e7497f6351cf2fb14e3c984b3382"></a><!-- doxytag: member="Plug::kr" ref="a068e7497f6351cf2fb14e3c984b3382" args="(UGen const &amp;source, bool shouldAllowAutoDelete=true)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> Plug::kr           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>source</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&nbsp;</td>
-          <td class="paramname"> <em>shouldAllowAutoDelete</em> = <code>true</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return a control rate <a class="el" href="class_plug.html" title="A UGen which allows repatching.">Plug</a> (SC compatability). 
-<p>
-<b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl class="return" compact><dt><b>Returns:</b></dt><dd>The control rate <a class="el" href="class_plug.html" title="A UGen which allows repatching.">Plug</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___plug_8h_source.html#l00106">106</a> of file <a class="el" href="ugen___plug_8h_source.html">ugen_Plug.h</a>.</p>
 
 </div>
 </div><p>
@@ -275,41 +195,10 @@ Construct and return a control rate <a class="el" href="class_plug.html" title="
 
 </div>
 </div><p>
-<a class="anchor" name="729e814deb0f2bee6df5865628ddcac1"></a><!-- doxytag: member="Plug::operator()" ref="729e814deb0f2bee6df5865628ddcac1" args="(UGen const &amp;source, bool shouldAllowAutoDelete=true)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> Plug::operator()           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>source</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&nbsp;</td>
-          <td class="paramname"> <em>shouldAllowAutoDelete</em> = <code>true</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Definition at line <a class="el" href="ugen___plug_8h_source.html#l00106">106</a> of file <a class="el" href="ugen___plug_8h_source.html">ugen_Plug.h</a>.</p>
-
-</div>
-</div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>basics/<a class="el" href="ugen___plug_8h_source.html">ugen_Plug.h</a><li>basics/<a class="el" href="ugen___plug_8cpp_source.html">ugen_Plug.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:18 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:12 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

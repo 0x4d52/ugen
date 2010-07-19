@@ -45,16 +45,16 @@ Inherits <a class="el" href="class_b_e_q_base_u_gen_internal.html">BEQBaseUGenIn
  }</td></tr>
 
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_low_shelf_u_gen_internal.html#60d896e93359179e39329cfcdc7f30ce">BLowShelfUGenInternal</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_u_gen.html">UGen</a> const &amp;freq, <a class="el" href="class_u_gen.html">UGen</a> const &amp;rs, <a class="el" href="class_u_gen.html">UGen</a> const &amp;gain, const bool faster)  throw ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_low_shelf_u_gen_internal.html#a98f3b0802c9e79effe739b5b9e73987">BLowShelfUGenInternal</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_u_gen.html">UGen</a> const &amp;freq, <a class="el" href="class_u_gen.html">UGen</a> const &amp;rs, <a class="el" href="class_u_gen.html">UGen</a> const &amp;gain)  throw ()</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_low_shelf_u_gen_internal.html#a57b2e46085a4411b42bfbab55c472aa">getChannel</a> (const int channel)  throw ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_low_shelf_u_gen_internal.html#149e7c9e5ea9f57e93b9402121355546">calculateCoeffs</a> (const float freq, const float control, const float gain, double &amp;<a class="el" href="class_b_e_q_base_u_gen_internal.html#bf1a33e45253a6f8747952e99db92c3c">a0</a>, double &amp;<a class="el" href="class_b_e_q_base_u_gen_internal.html#662f67caf185ed45a0b995a9927c76a6">a1</a>, double &amp;<a class="el" href="class_b_e_q_base_u_gen_internal.html#71de6df6f5f0fffa7e1cefcf3ee4306a">a2</a>, double &amp;<a class="el" href="class_b_e_q_base_u_gen_internal.html#f356c63d1fc09daa7ab1a1d03cebf664">b1</a>, double &amp;<a class="el" href="class_b_e_q_base_u_gen_internal.html#8382ea6afb5f8ab9f04a1b21ae796c2c">b2</a>)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_low_shelf_u_gen_internal.html#ca8ad7c7685cec33512574b819c247bf">calculateCoeffs</a> (const float freq, const float control, const float gain)</td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 Low shelving filter internal. 
-<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00265">265</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00249">249</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
 <hr><h2>Member Enumeration Documentation</h2>
 <a class="anchor" name="a297de825a4e9e3c1a5cce525e8ccb5b"></a><!-- doxytag: member="BLowShelfUGenInternal::ControlInput" ref="a297de825a4e9e3c1a5cce525e8ccb5b" args="" -->
 <div class="memitem">
@@ -75,12 +75,12 @@ Low shelving filter internal.
 </table>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00271">271</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___b_e_q_8h_source.html#l00255">255</a> of file <a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a>.</p>
 
 </div>
 </div><p>
 <hr><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" name="60d896e93359179e39329cfcdc7f30ce"></a><!-- doxytag: member="BLowShelfUGenInternal::BLowShelfUGenInternal" ref="60d896e93359179e39329cfcdc7f30ce" args="(UGen const &amp;input, UGen const &amp;freq, UGen const &amp;rs, UGen const &amp;gain, const bool faster)" -->
+<a class="anchor" name="a98f3b0802c9e79effe739b5b9e73987"></a><!-- doxytag: member="BLowShelfUGenInternal::BLowShelfUGenInternal" ref="a98f3b0802c9e79effe739b5b9e73987" args="(UGen const &amp;input, UGen const &amp;freq, UGen const &amp;rs, UGen const &amp;gain)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -106,13 +106,7 @@ Low shelving filter internal.
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>gain</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool&nbsp;</td>
-          <td class="paramname"> <em>faster</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>gain</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -130,7 +124,7 @@ Low shelving filter internal.
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="149e7c9e5ea9f57e93b9402121355546"></a><!-- doxytag: member="BLowShelfUGenInternal::calculateCoeffs" ref="149e7c9e5ea9f57e93b9402121355546" args="(const float freq, const float control, const float gain, double &amp;a0, double &amp;a1, double &amp;a2, double &amp;b1, double &amp;b2)" -->
+<a class="anchor" name="ca8ad7c7685cec33512574b819c247bf"></a><!-- doxytag: member="BLowShelfUGenInternal::calculateCoeffs" ref="ca8ad7c7685cec33512574b819c247bf" args="(const float freq, const float control, const float gain)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -150,37 +144,7 @@ Low shelving filter internal.
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const float&nbsp;</td>
-          <td class="paramname"> <em>gain</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double &amp;&nbsp;</td>
-          <td class="paramname"> <em>a0</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double &amp;&nbsp;</td>
-          <td class="paramname"> <em>a1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double &amp;&nbsp;</td>
-          <td class="paramname"> <em>a2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double &amp;&nbsp;</td>
-          <td class="paramname"> <em>b1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double &amp;&nbsp;</td>
-          <td class="paramname"> <em>b2</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>gain</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -193,9 +157,9 @@ Low shelving filter internal.
 
 <p>
 
-<p>Implements <a class="el" href="class_b_e_q_base_u_gen_internal.html#a8864927c976a2b8eee143014f0c1a4f">BEQBaseUGenInternal</a>.</p>
+<p>Implements <a class="el" href="class_b_e_q_base_u_gen_internal.html#cc5c6c434063ec021a5a167d8840d240">BEQBaseUGenInternal</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___b_e_q_8cpp_source.html#l00481">481</a> of file <a class="el" href="ugen___b_e_q_8cpp_source.html">ugen_BEQ.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___b_e_q_8cpp_source.html#l00480">480</a> of file <a class="el" href="ugen___b_e_q_8cpp_source.html">ugen_BEQ.cpp</a>.</p>
 
 </div>
 </div><p>
@@ -226,7 +190,7 @@ Low shelving filter internal.
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>filters/<a class="el" href="ugen___b_e_q_8h_source.html">ugen_BEQ.h</a><li>filters/<a class="el" href="ugen___b_e_q_8cpp_source.html">ugen_BEQ.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:15 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:10 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

@@ -22,7 +22,7 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-<h1>basics/ugen_MulAdd.cpp</h1><a href="ugen___mul_add_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_MulAdd.cpp 77 2010-05-24 10:34:11Z 0x4d52 $</span>
+<h1>basics/ugen_MulAdd.cpp</h1><a href="ugen___mul_add_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_MulAdd.cpp 86 2010-07-06 23:12:05Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/basics/ugen_MulAdd.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -82,10 +82,10 @@
 <a name="l00058"></a>00058 
 <a name="l00059"></a>00059 <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_mul_add_u_gen_internal.html#a2c58f03cbb5ebf4491bc812d3a3aa47">MulAddUGenInternal::getKr</a>() throw()
 <a name="l00060"></a>00060 { 
-<a name="l00061"></a>00061     <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_mul_add_u_gen_internal.html#c3daa670f1d6b5f691d85ae8ea64875b">MulAddUGenInternal</a>(<a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_mul_add_u_gen_internal.html#eab70439aef4491eae0f2b01a78d4ac9dc489fc7a8357f7f23d1aa2f678af61a">Input</a>].<a class="code" href="namespaceugen.html#f17dc36462ee9d9f533a4ac4cb3e5c0d" title="SC compatability.">kr</a>(), <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_mul_add_u_gen_internal.html#eab70439aef4491eae0f2b01a78d4ac9b76f6cc2094f5da2c3bd9c2519e72002">Mul</a>].<a class="code" href="namespaceugen.html#f17dc36462ee9d9f533a4ac4cb3e5c0d" title="SC compatability.">kr</a>(), <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_mul_add_u_gen_internal.html#eab70439aef4491eae0f2b01a78d4ac9fc32e0592e3edd162ad04e98128d73fe">Add</a>].<a class="code" href="namespaceugen.html#f17dc36462ee9d9f533a4ac4cb3e5c0d" title="SC compatability.">kr</a>()); 
+<a name="l00061"></a>00061     <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_mul_add_u_gen_internal.html#c3daa670f1d6b5f691d85ae8ea64875b">MulAddUGenInternal</a>(<a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_mul_add_u_gen_internal.html#eab70439aef4491eae0f2b01a78d4ac9dc489fc7a8357f7f23d1aa2f678af61a">Input</a>].<a class="code" href="namespaceugen.html#f17dc36462ee9d9f533a4ac4cb3e5c0d">kr</a>(), <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_mul_add_u_gen_internal.html#eab70439aef4491eae0f2b01a78d4ac9b76f6cc2094f5da2c3bd9c2519e72002">Mul</a>].<a class="code" href="namespaceugen.html#f17dc36462ee9d9f533a4ac4cb3e5c0d">kr</a>(), <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_mul_add_u_gen_internal.html#eab70439aef4491eae0f2b01a78d4ac9fc32e0592e3edd162ad04e98128d73fe">Add</a>].<a class="code" href="namespaceugen.html#f17dc36462ee9d9f533a4ac4cb3e5c0d">kr</a>()); 
 <a name="l00062"></a>00062 }
 <a name="l00063"></a><a class="code" href="class_mul_add_u_gen_internal.html#7b75d4d4091f2849a83ad0b4961d9a2e">00063</a> 
-<a name="l00064"></a>00064 <span class="preprocessor">#if !defined(UGEN_VFP) &amp;&amp; !defined(UGEN_NEON)</span>
+<a name="l00064"></a>00064 <span class="preprocessor">#if !defined(UGEN_VFP) &amp;&amp; !defined(UGEN_NEON) &amp;&amp; !defined(UGEN_VDSP)</span>
 <a name="l00065"></a>00065 <span class="preprocessor"></span><span class="keywordtype">void</span> <a class="code" href="class_mul_add_u_gen_internal.html#7b75d4d4091f2849a83ad0b4961d9a2e" title="Process a block of samples for this blockID and channel.">MulAddUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
 <a name="l00066"></a>00066 {
 <a name="l00067"></a>00067     <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
@@ -154,7 +154,7 @@
 <a name="l00130"></a>00130     }
 <a name="l00131"></a><a class="code" href="class_mul_add.html#11f57b47a4b00b8ab74db7c12355247e">00131</a> }
 <a name="l00132"></a>00132 
-<a name="l00133"></a>00133 <a class="code" href="class_mul_add.html#11f57b47a4b00b8ab74db7c12355247e" title="Base MulAdd Constuctor, use the AR() and KR() versions in user code.">MulAdd::MulAdd</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; mul, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; add) <span class="keywordflow">throw</span>()
+<a name="l00133"></a>00133 <a class="code" href="class_mul_add.html#1178fd5f27f5d583a52b2f4077a1c4d5">MulAdd::MulAdd</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; mul, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; add) <span class="keywordflow">throw</span>()
 <a name="l00134"></a>00134 {   
 <a name="l00135"></a>00135     <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> inputs[] = { input, mul, add };
 <a name="l00136"></a>00136     <span class="keyword">const</span> <span class="keywordtype">int</span> numInputChannels = findMaxInputChannels(<a class="code" href="ugen___standard_header_8h.html#3b96e342c541e61ffe6104777007f4b5">numElementsInArray</a>(inputs), inputs);
@@ -171,7 +171,7 @@
 <a name="l00147"></a>00147 
 <a name="l00148"></a>00148 <a class="code" href="ugen___standard_header_8h.html#c007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:08 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:04 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

@@ -22,7 +22,7 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-<h1>filters/control/ugen_Lag.h</h1><a href="ugen___lag_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Lag.h 77 2010-05-24 10:34:11Z 0x4d52 $</span>
+<h1>filters/control/ugen_Lag.h</h1><a href="ugen___lag_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Lag.h 89 2010-07-09 16:20:21Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/filters/control/ugen_Lag.h $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -90,7 +90,7 @@
 <a name="l00079"></a>00079                                     (input, lagTime, <a class="code" href="ugen___mul_add_8h.html#0948ded88972de1849c249f13e99c70c">MulAdd_ArgsCall</a>),
 <a name="l00080"></a>00080                                     (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; lagTime = 0.2), 
 <a name="l00081"></a>00081                                     (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; lagTime = 0.2, <a class="code" href="ugen___mul_add_8h.html#26f64cd22a6e4e0933b39d2031396f26">MulAdd_ArgsDeclare</a>), 
-<a name="l00082"></a><a class="code" href="class_lag.html#2005566be53bc389be5c24798f810a5f">00082</a>                             <a class="code" href="ugen___lag_8h.html#7b1a8397032964997c8e13d8fbfc6800">Lag_Docs</a> <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___mul_add_8h.html#9fbd19ed1cc830caeacbe23a214bbb5e">MulAddArgs_Docs</a>);
+<a name="l00082"></a><a class="code" href="class_lag.html#f9e67e9893875b5da62129ef5d3b9d30">00082</a>                             <a class="code" href="ugen___lag_8h.html#7b1a8397032964997c8e13d8fbfc6800">Lag_Docs</a> <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___mul_add_8h.html#9fbd19ed1cc830caeacbe23a214bbb5e">MulAddArgs_Docs</a>);
 <a name="l00083"></a>00083 
 <a name="l00084"></a>00084 
 <a name="l00086"></a><a class="code" href="class_lag_u_d_u_gen_internal.html">00086</a> <span class="keyword">class </span><a class="code" href="class_lag_u_d_u_gen_internal.html">LagUDUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>
@@ -116,19 +116,15 @@
 <a name="l00111"></a>00111                             (input, lagTimeUp, lagTimeDown, <a class="code" href="ugen___mul_add_8h.html#0948ded88972de1849c249f13e99c70c">MulAdd_ArgsCall</a>),
 <a name="l00112"></a>00112                             (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; lagTimeUp = 0.2, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; lagTimeDown = 0.2), 
 <a name="l00113"></a>00113                             (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; lagTimeUp = 0.2, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; lagTimeDown = 0.2, <a class="code" href="ugen___mul_add_8h.html#26f64cd22a6e4e0933b39d2031396f26">MulAdd_ArgsDeclare</a>), 
-<a name="l00114"></a><a class="code" href="class_lag_u_d.html#7aad609890fc1c2ea34fcae55502839d">00114</a>                             <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___mul_add_8h.html#9fbd19ed1cc830caeacbe23a214bbb5e">MulAddArgs_Docs</a>);
+<a name="l00114"></a><a class="code" href="class_lag_u_d.html#28fff0363ca56357e7873e4fd4285e58">00114</a>                             <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___mul_add_8h.html#9fbd19ed1cc830caeacbe23a214bbb5e">MulAddArgs_Docs</a>);
 <a name="l00115"></a>00115 
 <a name="l00116"></a>00116 
 <a name="l00117"></a>00117 
-<a name="l00118"></a>00118 <span class="preprocessor">#if defined(UGEN_USER_MODE) &amp;&amp; defined(UGEN_SCSTYLE)</span>
-<a name="l00119"></a>00119 <span class="preprocessor"></span><span class="preprocessor">#define Lag Lag()</span>
-<a name="l00120"></a>00120 <span class="preprocessor"></span><span class="preprocessor">#define LagUD LagUD()</span>
-<a name="l00121"></a>00121 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00122"></a>00122 <span class="preprocessor"></span>
-<a name="l00123"></a>00123 
-<a name="l00124"></a>00124 <span class="preprocessor">#endif // _UGEN_ugen_Lag_H_</span>
+<a name="l00118"></a>00118 
+<a name="l00119"></a>00119 
+<a name="l00120"></a>00120 <span class="preprocessor">#endif // _UGEN_ugen_Lag_H_</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:10 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:05 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

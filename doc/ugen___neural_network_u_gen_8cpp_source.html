@@ -84,7 +84,7 @@
 <a name="l00060"></a>00060     targetSampleData(<span class="keyword">new</span> <span class="keywordtype">float</span>*[network.getNumOutputs()])
 <a name="l00061"></a>00061 {
 <a name="l00062"></a>00062     inputs[Input] = input;
-<a name="l00063"></a>00063     inputs[Trig] = trig;
+<a name="l00063"></a>00063     inputs[<a class="code" href="class_trig.html">Trig</a>] = trig;
 <a name="l00064"></a>00064     inputs[Target] = target;
 <a name="l00065"></a>00065     inputs[PatternTrig] = patternTrig;
 <a name="l00066"></a>00066 }
@@ -99,7 +99,7 @@
 <a name="l00075"></a>00075 <span class="keywordtype">void</span> <a class="code" href="class_neural_network_u_gen_u_gen_internal.html#514b7212cbbdf2c9fc1483e9752e4f6e" title="Process a block of samples for this blockID and channel.">NeuralNetworkUGenUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*channel*/</span>) throw()
 <a name="l00076"></a>00076 {
 <a name="l00077"></a>00077     <span class="keyword">const</span> <span class="keywordtype">int</span> blockSize = <a class="code" href="class_u_gen_internal.html#66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#118a3566a4758eb4719c57843c25bd57">getBlockSize</a>();
-<a name="l00078"></a>00078     <span class="keyword">const</span> <span class="keywordtype">float</span>* trigSamples = <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_neural_network_u_gen_u_gen_internal.html#3c60753a3cc5593ee6cb5f078a9b1ffc4609f2c55a70c652ab4621bbbf0a028a">Trig</a>].<a class="code" href="class_u_gen.html#326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
+<a name="l00078"></a>00078     <span class="keyword">const</span> <span class="keywordtype">float</span>* trigSamples = <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_trig.html">Trig</a>].<a class="code" href="class_u_gen.html#326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
 <a name="l00079"></a>00079     <span class="keyword">const</span> <span class="keywordtype">float</span>* patternTrigSamples = <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_neural_network_u_gen_u_gen_internal.html#3c60753a3cc5593ee6cb5f078a9b1ffc21215bd7d9c69ef0aa5e196dd5cbf0d4">PatternTrig</a>].<a class="code" href="class_u_gen.html#326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
 <a name="l00080"></a>00080     
 <a name="l00081"></a>00081     <span class="comment">// get input pointers</span>
@@ -180,7 +180,7 @@
 <a name="l00156"></a>00156 
 <a name="l00157"></a>00157 <a class="code" href="ugen___standard_header_8h.html#c007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:11 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:06 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

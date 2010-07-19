@@ -38,14 +38,6 @@ Inherits <a class="el" href="class_u_gen.html">UGen</a>.
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sender.html#84c2d9307dd1c1d183ded60100e59aa8">Sender</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_u_gen.html">UGen</a> const &amp;duration=0.1)  throw ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Base <a class="el" href="class_sender.html">Sender</a> Constuctor, use the <a class="el" href="class_sender.html#f6a9238b2cb0b8279155ade73867da63" title="Construct and return an audio rate Sender .">AR()</a> and <a class="el" href="class_sender.html#56c4d7b71f60aeda74c3229d9dcb7dba" title="Construct and return a control rate Sender (if available, otherise returns an audio...">KR()</a> versions in user code.  <a href="#84c2d9307dd1c1d183ded60100e59aa8"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sender.html#45bb475890354e14794611fb3a376554">ar</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_u_gen.html">UGen</a> const &amp;duration=0.1)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return an audio rate <a class="el" href="class_sender.html">Sender</a> (SC compatability).  <a href="#45bb475890354e14794611fb3a376554"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sender.html#a7485d5b3ba59b4222f73e8e1456a6b9">kr</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_u_gen.html">UGen</a> const &amp;duration=0.1)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return a control rate <a class="el" href="class_sender.html">Sender</a> (SC compatability).  <a href="#a7485d5b3ba59b4222f73e8e1456a6b9"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sender.html#ba60bc169147b6307c9a7f1a7415255c">operator()</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_u_gen.html">UGen</a> const &amp;duration=0.1)  throw ()</td></tr>
-
 <tr><td colspan="2"><br><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static <a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sender.html#f6a9238b2cb0b8279155ade73867da63">AR</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_u_gen.html">UGen</a> const &amp;duration=0.1)  throw ()</td></tr>
 
@@ -89,47 +81,11 @@ Base <a class="el" href="class_sender.html">Sender</a> Constuctor, use the <a cl
 <b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
  <br>
  
-<p>Definition at line <a class="el" href="ugen___scope_8cpp_source.html#l00644">644</a> of file <a class="el" href="ugen___scope_8cpp_source.html">ugen_Scope.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___scope_8cpp_source.html#l00660">660</a> of file <a class="el" href="ugen___scope_8cpp_source.html">ugen_Scope.cpp</a>.</p>
 
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="45bb475890354e14794611fb3a376554"></a><!-- doxytag: member="Sender::ar" ref="45bb475890354e14794611fb3a376554" args="(UGen const &amp;input, UGen const &amp;duration=0.1)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> Sender::ar           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>duration</em> = <code>0.1</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return an audio rate <a class="el" href="class_sender.html">Sender</a> (SC compatability). 
-<p>
-<b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_sender.html">Sender</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___scope_8h_source.html#l00268">268</a> of file <a class="el" href="ugen___scope_8h_source.html">ugen_Scope.h</a>.</p>
-
-</div>
-</div><p>
 <a class="anchor" name="f6a9238b2cb0b8279155ade73867da63"></a><!-- doxytag: member="Sender::AR" ref="f6a9238b2cb0b8279155ade73867da63" args="(UGen const &amp;input, UGen const &amp;duration=0.1)" -->
 <div class="memitem">
 <div class="memproto">
@@ -161,42 +117,6 @@ Construct and return an audio rate <a class="el" href="class_sender.html">Sender
 <b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
  <br>
  <dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_sender.html">Sender</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___scope_8h_source.html#l00268">268</a> of file <a class="el" href="ugen___scope_8h_source.html">ugen_Scope.h</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="a7485d5b3ba59b4222f73e8e1456a6b9"></a><!-- doxytag: member="Sender::kr" ref="a7485d5b3ba59b4222f73e8e1456a6b9" args="(UGen const &amp;input, UGen const &amp;duration=0.1)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> Sender::kr           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>duration</em> = <code>0.1</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return a control rate <a class="el" href="class_sender.html">Sender</a> (SC compatability). 
-<p>
-<b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl class="return" compact><dt><b>Returns:</b></dt><dd>The control rate <a class="el" href="class_sender.html">Sender</a> . </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___scope_8h_source.html#l00268">268</a> of file <a class="el" href="ugen___scope_8h_source.html">ugen_Scope.h</a>.</p>
 
@@ -238,41 +158,10 @@ Construct and return a control rate <a class="el" href="class_sender.html">Sende
 
 </div>
 </div><p>
-<a class="anchor" name="ba60bc169147b6307c9a7f1a7415255c"></a><!-- doxytag: member="Sender::operator()" ref="ba60bc169147b6307c9a7f1a7415255c" args="(UGen const &amp;input, UGen const &amp;duration=0.1)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> Sender::operator()           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>duration</em> = <code>0.1</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Definition at line <a class="el" href="ugen___scope_8h_source.html#l00268">268</a> of file <a class="el" href="ugen___scope_8h_source.html">ugen_Scope.h</a>.</p>
-
-</div>
-</div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>gui/<a class="el" href="ugen___scope_8h_source.html">ugen_Scope.h</a><li>gui/<a class="el" href="ugen___scope_8cpp_source.html">ugen_Scope.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:19 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:13 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

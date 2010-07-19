@@ -44,14 +44,6 @@ Inherits <a class="el" href="class_u_gen.html">UGen</a>.
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_magnitude.html#294d2f007d051a8df10118525d5dab52">FFTMagnitude</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_f_f_t_engine.html">FFTEngine</a> const &amp;fft, const int overlap, const int firstBin=0, const int numBins=0)  throw ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Base <a class="el" href="class_f_f_t_magnitude.html" title="Get the magnitude from one or more bins in an FFT.">FFTMagnitude</a> Constuctor, use the <a class="el" href="class_f_f_t_magnitude.html#e38fe49dace9af2aa06b7e9898acac24" title="Construct and return an audio rate FFTMagnitude .">AR()</a> and <a class="el" href="class_f_f_t_magnitude.html#674457c21385489ffd2f3956098817e8" title="Construct and return a control rate FFTMagnitude (if available, otherise returns...">KR()</a> versions in user code.  <a href="#294d2f007d051a8df10118525d5dab52"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_magnitude.html#b428332719031a175bc4fd5a7f30ee62">ar</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_f_f_t_engine.html">FFTEngine</a> const &amp;fft, const int overlap, const int firstBin=0, const int numBins=0)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return an audio rate <a class="el" href="class_f_f_t_magnitude.html" title="Get the magnitude from one or more bins in an FFT.">FFTMagnitude</a> (SC compatability).  <a href="#b428332719031a175bc4fd5a7f30ee62"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_magnitude.html#5dbe1d3cba67acffa882589c85de3d89">kr</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_f_f_t_engine.html">FFTEngine</a> const &amp;fft, const int overlap, const int firstBin=0, const int numBins=0)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return a control rate <a class="el" href="class_f_f_t_magnitude.html" title="Get the magnitude from one or more bins in an FFT.">FFTMagnitude</a> (SC compatability).  <a href="#5dbe1d3cba67acffa882589c85de3d89"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_magnitude.html#f8927ca6ff07810aed0172a359eb7774">operator()</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_f_f_t_engine.html">FFTEngine</a> const &amp;fft, const int overlap, const int firstBin=0, const int numBins=0)  throw ()</td></tr>
-
 <tr><td colspan="2"><br><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static <a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_magnitude.html#e38fe49dace9af2aa06b7e9898acac24">AR</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_f_f_t_engine.html">FFTEngine</a> const &amp;fft, const int overlap, const int firstBin=0, const int numBins=0)  throw ()</td></tr>
 
@@ -129,69 +121,6 @@ Base <a class="el" href="class_f_f_t_magnitude.html" title="Get the magnitude fr
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="b428332719031a175bc4fd5a7f30ee62"></a><!-- doxytag: member="FFTMagnitude::ar" ref="b428332719031a175bc4fd5a7f30ee62" args="(UGen const &amp;input, FFTEngine const &amp;fft, const int overlap, const int firstBin=0, const int numBins=0)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> FFTMagnitude::ar           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_f_f_t_engine.html">FFTEngine</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>fft</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>overlap</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>firstBin</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>numBins</em> = <code>0</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return an audio rate <a class="el" href="class_f_f_t_magnitude.html" title="Get the magnitude from one or more bins in an FFT.">FFTMagnitude</a> (SC compatability). 
-<p>
-<b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>input</em>&nbsp;</td><td>The input signal to perform the FFT on, this should be mono </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>fft</em>&nbsp;</td><td>The <a class="el" href="class_f_f_t_engine.html">FFTEngine</a> to use. This can be just an int which will be used to create an <a class="el" href="class_f_f_t_engine.html">FFTEngine</a> or you can pass in an existing <a class="el" href="class_f_f_t_engine.html">FFTEngine</a> object. The FFT size should be a power of 2 (if not, it will be rounded up to the next power of 2). </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>overlap</em>&nbsp;</td><td>Overlap factor for the FFT. E.g., if overlap is 2 and FFT size is 1024, an FFT will be performed every 512 samples. This should be a small power of 2 (e.g., 1, 2, 4, 8, 16 etc). </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>firstBin</em>&nbsp;</td><td>The first bin index to report, 0 is the DC bin and the bin at index equal to the FFT size is the Nyquist bin. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>numBins</em>&nbsp;</td><td>The number of bins to report. The maximum if firstBin is zero is equal to one greater than half the FFT size (e.g., if FFT size is 128 the maximum is 65 assuming firstBin is zero). </td></tr>
-  </table>
-</dl>
-<dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_f_f_t_magnitude.html" title="Get the magnitude from one or more bins in an FFT.">FFTMagnitude</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___f_f_t_magnitude_8h_source.html#l00098">98</a> of file <a class="el" href="ugen___f_f_t_magnitude_8h_source.html">ugen_FFTMagnitude.h</a>.</p>
-
-</div>
-</div><p>
 <a class="anchor" name="e38fe49dace9af2aa06b7e9898acac24"></a><!-- doxytag: member="FFTMagnitude::AR" ref="e38fe49dace9af2aa06b7e9898acac24" args="(UGen const &amp;input, FFTEngine const &amp;fft, const int overlap, const int firstBin=0, const int numBins=0)" -->
 <div class="memitem">
 <div class="memproto">
@@ -250,69 +179,6 @@ Construct and return an audio rate <a class="el" href="class_f_f_t_magnitude.htm
   </table>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_f_f_t_magnitude.html" title="Get the magnitude from one or more bins in an FFT.">FFTMagnitude</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___f_f_t_magnitude_8h_source.html#l00098">98</a> of file <a class="el" href="ugen___f_f_t_magnitude_8h_source.html">ugen_FFTMagnitude.h</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="5dbe1d3cba67acffa882589c85de3d89"></a><!-- doxytag: member="FFTMagnitude::kr" ref="5dbe1d3cba67acffa882589c85de3d89" args="(UGen const &amp;input, FFTEngine const &amp;fft, const int overlap, const int firstBin=0, const int numBins=0)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> FFTMagnitude::kr           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_f_f_t_engine.html">FFTEngine</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>fft</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>overlap</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>firstBin</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>numBins</em> = <code>0</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return a control rate <a class="el" href="class_f_f_t_magnitude.html" title="Get the magnitude from one or more bins in an FFT.">FFTMagnitude</a> (SC compatability). 
-<p>
-<b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>input</em>&nbsp;</td><td>The input signal to perform the FFT on, this should be mono </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>fft</em>&nbsp;</td><td>The <a class="el" href="class_f_f_t_engine.html">FFTEngine</a> to use. This can be just an int which will be used to create an <a class="el" href="class_f_f_t_engine.html">FFTEngine</a> or you can pass in an existing <a class="el" href="class_f_f_t_engine.html">FFTEngine</a> object. The FFT size should be a power of 2 (if not, it will be rounded up to the next power of 2). </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>overlap</em>&nbsp;</td><td>Overlap factor for the FFT. E.g., if overlap is 2 and FFT size is 1024, an FFT will be performed every 512 samples. This should be a small power of 2 (e.g., 1, 2, 4, 8, 16 etc). </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>firstBin</em>&nbsp;</td><td>The first bin index to report, 0 is the DC bin and the bin at index equal to the FFT size is the Nyquist bin. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>numBins</em>&nbsp;</td><td>The number of bins to report. The maximum if firstBin is zero is equal to one greater than half the FFT size (e.g., if FFT size is 128 the maximum is 65 assuming firstBin is zero). </td></tr>
-  </table>
-</dl>
-<dl class="return" compact><dt><b>Returns:</b></dt><dd>The control rate <a class="el" href="class_f_f_t_magnitude.html" title="Get the magnitude from one or more bins in an FFT.">FFTMagnitude</a> . </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___f_f_t_magnitude_8h_source.html#l00098">98</a> of file <a class="el" href="ugen___f_f_t_magnitude_8h_source.html">ugen_FFTMagnitude.h</a>.</p>
 
@@ -381,59 +247,10 @@ Construct and return a control rate <a class="el" href="class_f_f_t_magnitude.ht
 
 </div>
 </div><p>
-<a class="anchor" name="f8927ca6ff07810aed0172a359eb7774"></a><!-- doxytag: member="FFTMagnitude::operator()" ref="f8927ca6ff07810aed0172a359eb7774" args="(UGen const &amp;input, FFTEngine const &amp;fft, const int overlap, const int firstBin=0, const int numBins=0)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> FFTMagnitude::operator()           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_f_f_t_engine.html">FFTEngine</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>fft</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>overlap</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>firstBin</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>numBins</em> = <code>0</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Definition at line <a class="el" href="ugen___f_f_t_magnitude_8h_source.html#l00098">98</a> of file <a class="el" href="ugen___f_f_t_magnitude_8h_source.html">ugen_FFTMagnitude.h</a>.</p>
-
-</div>
-</div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>fft/<a class="el" href="ugen___f_f_t_magnitude_8h_source.html">ugen_FFTMagnitude.h</a><li>fft/<a class="el" href="ugen___f_f_t_magnitude_8cpp_source.html">ugen_FFTMagnitude.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:16 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:11 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

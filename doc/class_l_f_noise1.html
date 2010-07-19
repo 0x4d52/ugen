@@ -44,14 +44,6 @@ Inherits <a class="el" href="class_u_gen.html">UGen</a>.
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_f_noise1.html#fbacfac38161f01a0ff55f81ff4940bd">LFNoise1</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;freq=500.f)  throw ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Base <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> <a class="el" href="class_l_f_noise1.html" title="Generates linearly interpolated random values at a specified rate.">LFNoise1</a> Constuctor (without "mul" or "add"), use the <a class="el" href="class_l_f_noise1.html#4a37c4507fae43d83ee471908e61bfb6" title="Construct and return an audio rate LFNoise1 adding &quot;mul&quot; and/or &quot;add&quot;...">AR()</a> and <a class="el" href="class_l_f_noise1.html#7671e6bbc1af19311142a9fc95a2af92" title="Construct and return a control rate LFNoise1 (if available, otherise returns an audio...">KR()</a> versions in user code.  <a href="#fbacfac38161f01a0ff55f81ff4940bd"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_f_noise1.html#caff804513ae2214ed1d162db48472cc">ar</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;freq=500.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;mul=1.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;add=0.f)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return an audio rate <a class="el" href="class_l_f_noise1.html" title="Generates linearly interpolated random values at a specified rate.">LFNoise1</a> (SC compatability).  <a href="#caff804513ae2214ed1d162db48472cc"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_f_noise1.html#8b034e642da91282b04088b7faf73525">kr</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;freq=500.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;mul=1.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;add=0.f)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return a control rate <a class="el" href="class_l_f_noise1.html" title="Generates linearly interpolated random values at a specified rate.">LFNoise1</a> (SC compatability).  <a href="#8b034e642da91282b04088b7faf73525"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_f_noise1.html#10d10d6438ef4c698475945fcb5ec5d0">operator()</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;freq=500.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;mul=1.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;add=0.f)  throw ()</td></tr>
-
 <tr><td colspan="2"><br><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static <a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_f_noise1.html#4a37c4507fae43d83ee471908e61bfb6">AR</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;freq=500.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;mul=1.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;add=0.f)  throw ()</td></tr>
 
@@ -87,62 +79,11 @@ This is given by the nearest integer division of the sample rate by the freq arg
 Base <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> <a class="el" href="class_l_f_noise1.html" title="Generates linearly interpolated random values at a specified rate.">LFNoise1</a> Constuctor (without "mul" or "add"), use the <a class="el" href="class_l_f_noise1.html#4a37c4507fae43d83ee471908e61bfb6" title="Construct and return an audio rate LFNoise1 adding &quot;mul&quot; and/or &quot;add&quot;...">AR()</a> and <a class="el" href="class_l_f_noise1.html#7671e6bbc1af19311142a9fc95a2af92" title="Construct and return a control rate LFNoise1 (if available, otherise returns an audio...">KR()</a> versions in user code. 
 <p>
 This uses the "expanding" version of <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> which is generally used for random-based <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> classes (e.g., <a class="el" href="class_white_noise.html" title="White noise generator.">WhiteNoise</a>). This is "expanding" in the sense that multiple channels of the Base <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> are generated depending on the number of channels in the "mul" and/or "add" inputs. 
-<p>Definition at line <a class="el" href="ugen___l_f_noise_8cpp_source.html#l00202">202</a> of file <a class="el" href="ugen___l_f_noise_8cpp_source.html">ugen_LFNoise.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___l_f_noise_8cpp_source.html#l00204">204</a> of file <a class="el" href="ugen___l_f_noise_8cpp_source.html">ugen_LFNoise.cpp</a>.</p>
 
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="caff804513ae2214ed1d162db48472cc"></a><!-- doxytag: member="LFNoise1::ar" ref="caff804513ae2214ed1d162db48472cc" args="(UGen const &amp;freq=500.f, UGen const &amp;mul=1.f, UGen const &amp;add=0.f)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> LFNoise1::ar           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>freq</em> = <code>500.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>mul</em> = <code>1.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>add</em> = <code>0.f</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return an audio rate <a class="el" href="class_l_f_noise1.html" title="Generates linearly interpolated random values at a specified rate.">LFNoise1</a> (SC compatability). 
-<p>
-A "mul" operation will not be added if the multiplier is 1.0, an "add" operation will not be added if the "add" value is 0.0. <br>
-<br>
- <b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>freq</em>&nbsp;</td><td>The approximate rate at which to generate random values. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>mul</em>&nbsp;</td><td>This is multiplied by the output. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>add</em>&nbsp;</td><td>This is added to the output (after mul has been applied). </td></tr>
-  </table>
-</dl>
-<dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_l_f_noise1.html" title="Generates linearly interpolated random values at a specified rate.">LFNoise1</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___l_f_noise_8h_source.html#l00116">116</a> of file <a class="el" href="ugen___l_f_noise_8h_source.html">ugen_LFNoise.h</a>.</p>
-
-</div>
-</div><p>
 <a class="anchor" name="4a37c4507fae43d83ee471908e61bfb6"></a><!-- doxytag: member="LFNoise1::AR" ref="4a37c4507fae43d83ee471908e61bfb6" args="(UGen const &amp;freq=500.f, UGen const &amp;mul=1.f, UGen const &amp;add=0.f)" -->
 <div class="memitem">
 <div class="memproto">
@@ -189,57 +130,6 @@ A "mul" operation will not be added if the multiplier is 1.0, an "add" operation
   </table>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_l_f_noise1.html" title="Generates linearly interpolated random values at a specified rate.">LFNoise1</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___l_f_noise_8h_source.html#l00116">116</a> of file <a class="el" href="ugen___l_f_noise_8h_source.html">ugen_LFNoise.h</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="8b034e642da91282b04088b7faf73525"></a><!-- doxytag: member="LFNoise1::kr" ref="8b034e642da91282b04088b7faf73525" args="(UGen const &amp;freq=500.f, UGen const &amp;mul=1.f, UGen const &amp;add=0.f)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> LFNoise1::kr           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>freq</em> = <code>500.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>mul</em> = <code>1.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>add</em> = <code>0.f</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return a control rate <a class="el" href="class_l_f_noise1.html" title="Generates linearly interpolated random values at a specified rate.">LFNoise1</a> (SC compatability). 
-<p>
-A "mul" operation will not be added if the multiplier is 1.0, an "add" operation will not be added if the "add" value is 0.0. <br>
-<br>
- <b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>freq</em>&nbsp;</td><td>The approximate rate at which to generate random values. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>mul</em>&nbsp;</td><td>This is multiplied by the output. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>add</em>&nbsp;</td><td>This is added to the output (after mul has been applied). </td></tr>
-  </table>
-</dl>
-<dl class="return" compact><dt><b>Returns:</b></dt><dd>The control rate <a class="el" href="class_l_f_noise1.html" title="Generates linearly interpolated random values at a specified rate.">LFNoise1</a> . </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___l_f_noise_8h_source.html#l00116">116</a> of file <a class="el" href="ugen___l_f_noise_8h_source.html">ugen_LFNoise.h</a>.</p>
 
@@ -296,47 +186,10 @@ A "mul" operation will not be added if the multiplier is 1.0, an "add" operation
 
 </div>
 </div><p>
-<a class="anchor" name="10d10d6438ef4c698475945fcb5ec5d0"></a><!-- doxytag: member="LFNoise1::operator()" ref="10d10d6438ef4c698475945fcb5ec5d0" args="(UGen const &amp;freq=500.f, UGen const &amp;mul=1.f, UGen const &amp;add=0.f)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> LFNoise1::operator()           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>freq</em> = <code>500.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>mul</em> = <code>1.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>add</em> = <code>0.f</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Definition at line <a class="el" href="ugen___l_f_noise_8h_source.html#l00116">116</a> of file <a class="el" href="ugen___l_f_noise_8h_source.html">ugen_LFNoise.h</a>.</p>
-
-</div>
-</div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>noise/<a class="el" href="ugen___l_f_noise_8h_source.html">ugen_LFNoise.h</a><li>noise/<a class="el" href="ugen___l_f_noise_8cpp_source.html">ugen_LFNoise.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:17 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:11 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

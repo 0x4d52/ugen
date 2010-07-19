@@ -22,7 +22,7 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-<h1>gui/ugen_Scope.h</h1><a href="ugen___scope_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Scope.h 77 2010-05-24 10:34:11Z 0x4d52 $</span>
+<h1>gui/ugen_Scope.h</h1><a href="ugen___scope_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Scope.h 89 2010-07-09 16:20:21Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/gui/ugen_Scope.h $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -225,7 +225,7 @@
 <a name="l00242"></a>00242 
 <a name="l00245"></a>00245 <a class="code" href="ugen___u_gen_8h.html#0f0716514ac2b6232e40f134d1f1049c" title="Macro for declaring a simple UGen.">UGenSublcassDeclarationNoDefault</a>(<a class="code" href="class_scope.html" title="Scope UGen for use with a ScopeGUI.">Scope</a>, 
 <a name="l00246"></a>00246                                  (scopeGUI, input, duration), 
-<a name="l00247"></a><a class="code" href="class_scope.html#0b8eb0b6430beff5acb4206c957d46af">00247</a>                                  (<a class="code" href="ugen___scope_8h.html#331a3a6e179f3664c56c2372ac4ba01b">ScopeGUIPtrPtr</a> scopeGUI, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; duration = 0.1), <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>);
+<a name="l00247"></a><a class="code" href="class_scope.html#80acea1e3cc72a4f63319727e3dedc13">00247</a>                                  (<a class="code" href="ugen___scope_8h.html#331a3a6e179f3664c56c2372ac4ba01b">ScopeGUIPtrPtr</a> scopeGUI, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; duration = 0.1), <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>);
 <a name="l00248"></a>00248 
 <a name="l00249"></a>00249 
 <a name="l00250"></a><a class="code" href="class_buffer_sender_u_gen_internal.html">00250</a> <span class="keyword">class </span><a class="code" href="class_buffer_sender_u_gen_internal.html">BufferSenderUGenInternal</a> :    <span class="keyword">public</span> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>,
@@ -246,7 +246,7 @@
 <a name="l00265"></a>00265 
 <a name="l00266"></a>00266 <a class="code" href="ugen___u_gen_8h.html#0f0716514ac2b6232e40f134d1f1049c" title="Macro for declaring a simple UGen.">UGenSublcassDeclarationNoDefault</a>(<a class="code" href="class_sender.html">Sender</a>, 
 <a name="l00267"></a>00267                                  (input, duration), 
-<a name="l00268"></a><a class="code" href="class_sender.html#ba60bc169147b6307c9a7f1a7415255c">00268</a>                                  (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; duration = 0.1), <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>);
+<a name="l00268"></a><a class="code" href="class_sender.html#56c4d7b71f60aeda74c3229d9dcb7dba">00268</a>                                  (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; duration = 0.1), <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>);
 <a name="l00269"></a>00269 
 <a name="l00271"></a><a class="code" href="class_spectral_scope_u_gen_internal.html">00271</a> <span class="keyword">class </span><a class="code" href="class_spectral_scope_u_gen_internal.html">SpectralScopeUGenInternal</a> :   <span class="keyword">public</span> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> <span class="comment">// this SHOULDN'T be a ProxyOwner so that</span>
 <a name="l00272"></a>00272 {                                                       <span class="comment">// the number channels can be dynamic!</span>
@@ -279,7 +279,7 @@
 <a name="l00301"></a>00301                                   <a class="code" href="class_f_f_t_engine.html">FFTEngine</a> <span class="keyword">const</span>&amp; fft = 1024, 
 <a name="l00302"></a>00302                                   <span class="keyword">const</span> <span class="keywordtype">int</span> overlap = 1,
 <a name="l00303"></a>00303                                   <span class="keyword">const</span> <span class="keywordtype">int</span> firstBin = 1,
-<a name="l00304"></a><a class="code" href="class_spectral_scope.html#f8cf7386d2cba0cfad3cbd0a2e83fb88">00304</a>                                   <span class="keyword">const</span> <span class="keywordtype">int</span> numBins = 0), <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>);
+<a name="l00304"></a><a class="code" href="class_spectral_scope.html#8c5bdc1fe64671e352bab71f94c82fc7">00304</a>                                   <span class="keyword">const</span> <span class="keywordtype">int</span> numBins = 0), <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>);
 <a name="l00305"></a>00305 
 <a name="l00306"></a>00306 
 <a name="l00307"></a><a class="code" href="class_f_f_t_sender_u_gen_internal.html">00307</a> <span class="keyword">class </span><a class="code" href="class_f_f_t_sender_u_gen_internal.html">FFTSenderUGenInternal</a> :   <span class="keyword">public</span> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>, <span class="comment">// this SHOULDN'T be a ProxyOwner so that</span>
@@ -311,18 +311,14 @@
 <a name="l00333"></a>00333                                   <a class="code" href="class_f_f_t_engine.html">FFTEngine</a> <span class="keyword">const</span>&amp; fft = 1024, 
 <a name="l00334"></a>00334                                   <span class="keyword">const</span> <span class="keywordtype">int</span> overlap = 1,
 <a name="l00335"></a>00335                                   <span class="keyword">const</span> <span class="keywordtype">int</span> firstBin = 1,
-<a name="l00336"></a><a class="code" href="class_f_f_t_sender.html#0aa67d0491eb8c09d9c0d4487a8d5cb3">00336</a>                                   <span class="keyword">const</span> <span class="keywordtype">int</span> numBins = 0), <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>);
+<a name="l00336"></a><a class="code" href="class_f_f_t_sender.html#34b8f628ff9543156eff09eca6958ec8">00336</a>                                   <span class="keyword">const</span> <span class="keywordtype">int</span> numBins = 0), <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>);
 <a name="l00337"></a>00337 
 <a name="l00338"></a>00338 
 <a name="l00339"></a>00339 
-<a name="l00340"></a>00340 <span class="preprocessor">#if defined(UGEN_USER_MODE) &amp;&amp; defined(UGEN_SCSTYLE)</span>
-<a name="l00341"></a>00341 <span class="preprocessor"></span><span class="preprocessor">#define Scope Scope()</span>
-<a name="l00342"></a>00342 <span class="preprocessor"></span><span class="preprocessor">#define SpectralScope SpectralScope()</span>
-<a name="l00343"></a>00343 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00344"></a>00344 <span class="preprocessor"></span>
-<a name="l00345"></a>00345 <span class="preprocessor">#endif // _UGEN_ugen_Scope_H_</span>
+<a name="l00340"></a>00340 
+<a name="l00341"></a>00341 <span class="preprocessor">#endif // _UGEN_ugen_Scope_H_</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:10 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:06 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

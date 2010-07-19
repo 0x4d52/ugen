@@ -40,14 +40,6 @@ Inherits <a class="el" href="class_u_gen.html">UGen</a>.
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer_values.html#63c65020be4537ba104e3f593aec70b3">BufferValues</a> (<a class="el" href="class_buffer.html">Buffer</a> const &amp;buffer)  throw ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Base <a class="el" href="class_buffer_values.html">BufferValues</a> Constuctor, use the <a class="el" href="class_buffer_values.html#c818276c99e6be2c4d912d2ccfa332ce" title="Construct and return an audio rate BufferValues .">AR()</a> and <a class="el" href="class_buffer_values.html#fd5695f2bf9ad7d0648f643fbb6467b6" title="Construct and return a control rate BufferValues (if available, otherise returns...">KR()</a> versions in user code.  <a href="#63c65020be4537ba104e3f593aec70b3"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer_values.html#f5d0fe1fe77f86b9167e52c3d40884ff">ar</a> (<a class="el" href="class_buffer.html">Buffer</a> const &amp;buffer)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return an audio rate <a class="el" href="class_buffer_values.html">BufferValues</a> (SC compatability).  <a href="#f5d0fe1fe77f86b9167e52c3d40884ff"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer_values.html#05b6d57d68f880b65defe83c0142b5cb">kr</a> (<a class="el" href="class_buffer.html">Buffer</a> const &amp;buffer)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return a control rate <a class="el" href="class_buffer_values.html">BufferValues</a> (SC compatability).  <a href="#05b6d57d68f880b65defe83c0142b5cb"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer_values.html#5345ca7a6a0fa2aa3114b89eaa05ddbb">operator()</a> (<a class="el" href="class_buffer.html">Buffer</a> const &amp;buffer)  throw ()</td></tr>
-
 <tr><td colspan="2"><br><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static <a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer_values.html#c818276c99e6be2c4d912d2ccfa332ce">AR</a> (<a class="el" href="class_buffer.html">Buffer</a> const &amp;buffer)  throw ()</td></tr>
 
@@ -58,7 +50,7 @@ Inherits <a class="el" href="class_u_gen.html">UGen</a>.
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 
-<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00106">106</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00110">110</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
 <hr><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" name="67f9ae757b7701df2fa1302b9fe74e24"></a><!-- doxytag: member="BufferValues::BufferValues" ref="67f9ae757b7701df2fa1302b9fe74e24" args="()" -->
 <div class="memitem">
@@ -77,7 +69,7 @@ Inherits <a class="el" href="class_u_gen.html">UGen</a>.
 
 <p>
 
-<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00106">106</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00110">110</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
 
 </div>
 </div><p>
@@ -103,40 +95,13 @@ Base <a class="el" href="class_buffer_values.html">BufferValues</a> Constuctor, 
 <b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
  <br>
  
-<p>Definition at line <a class="el" href="ugen___play_buf_8cpp_source.html#l00211">211</a> of file <a class="el" href="ugen___play_buf_8cpp_source.html">ugen_PlayBuf.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___play_buf_8cpp_source.html#l00214">214</a> of file <a class="el" href="ugen___play_buf_8cpp_source.html">ugen_PlayBuf.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___standard_header_8h_source.html#l00243">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___standard_header_8h_source.html#l00246">ugen_assert</a>.</p>
 
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="f5d0fe1fe77f86b9167e52c3d40884ff"></a><!-- doxytag: member="BufferValues::ar" ref="f5d0fe1fe77f86b9167e52c3d40884ff" args="(Buffer const &amp;buffer)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> BufferValues::ar           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_buffer.html">Buffer</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>buffer</em>          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return an audio rate <a class="el" href="class_buffer_values.html">BufferValues</a> (SC compatability). 
-<p>
-<b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_buffer_values.html">BufferValues</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00106">106</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
-
-</div>
-</div><p>
 <a class="anchor" name="c818276c99e6be2c4d912d2ccfa332ce"></a><!-- doxytag: member="BufferValues::AR" ref="c818276c99e6be2c4d912d2ccfa332ce" args="(Buffer const &amp;buffer)" -->
 <div class="memitem">
 <div class="memproto">
@@ -160,34 +125,7 @@ Construct and return an audio rate <a class="el" href="class_buffer_values.html"
  <br>
  <dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_buffer_values.html">BufferValues</a> . </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00106">106</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="05b6d57d68f880b65defe83c0142b5cb"></a><!-- doxytag: member="BufferValues::kr" ref="05b6d57d68f880b65defe83c0142b5cb" args="(Buffer const &amp;buffer)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> BufferValues::kr           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_buffer.html">Buffer</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>buffer</em>          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return a control rate <a class="el" href="class_buffer_values.html">BufferValues</a> (SC compatability). 
-<p>
-<b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl class="return" compact><dt><b>Returns:</b></dt><dd>The control rate <a class="el" href="class_buffer_values.html">BufferValues</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00106">106</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00110">110</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
 
 </div>
 </div><p>
@@ -214,36 +152,14 @@ Construct and return a control rate <a class="el" href="class_buffer_values.html
  <br>
  <dl class="return" compact><dt><b>Returns:</b></dt><dd>The control rate <a class="el" href="class_buffer_values.html">BufferValues</a> . </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00106">106</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="5345ca7a6a0fa2aa3114b89eaa05ddbb"></a><!-- doxytag: member="BufferValues::operator()" ref="5345ca7a6a0fa2aa3114b89eaa05ddbb" args="(Buffer const &amp;buffer)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> BufferValues::operator()           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_buffer.html">Buffer</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>buffer</em>          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00106">106</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00110">110</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>buffers/<a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a><li>buffers/<a class="el" href="ugen___play_buf_8cpp_source.html">ugen_PlayBuf.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:15 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:10 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

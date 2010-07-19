@@ -22,7 +22,7 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-<h1>basics/ugen_Temporary.h</h1><a href="ugen___temporary_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Temporary.h 77 2010-05-24 10:34:11Z 0x4d52 $</span>
+<h1>basics/ugen_Temporary.h</h1><a href="ugen___temporary_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Temporary.h 89 2010-07-09 16:20:21Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/basics/ugen_Temporary.h $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -74,7 +74,7 @@
 <a name="l00054"></a>00054 <a class="code" href="ugen___u_gen_8h.html#254ceb88c7d6c3c576dd70991c53b332" title="Macro for declaring a custom UGen by combining other UGens.">DefineCustomUGen</a>(<a class="code" href="class_clip.html" title="Clip (i.e., limit) between min and max.">Clip</a>,
 <a name="l00055"></a>00055                 (input.min(<a class="code" href="namespaceugen.html#ba1654f77a583ccbda001f7f7261cb52" title="Global function for the UGen::max() binary operator.">max</a>).max(<a class="code" href="namespaceugen.html#07c2f070fbf0d8996559f78122972cd0" title="Global function for the UGen::min() binary operator.">min</a>)),
 <a name="l00056"></a>00056                 (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; <a class="code" href="namespaceugen.html#07c2f070fbf0d8996559f78122972cd0" title="Global function for the UGen::min() binary operator.">min</a>, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; <a class="code" href="namespaceugen.html#ba1654f77a583ccbda001f7f7261cb52" title="Global function for the UGen::max() binary operator.">max</a>),
-<a name="l00057"></a><a class="code" href="class_clip.html#ec4566b688464aa30dbd25511f7034e6">00057</a>                  <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___temporary_8h.html#e01ed71d3634f32f5dcc4ce72f080a4c">Clip_Docs</a>);
+<a name="l00057"></a><a class="code" href="class_clip.html#618bbd65a5f9486a0b5bbcf68df50c17">00057</a>                  <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___temporary_8h.html#e01ed71d3634f32f5dcc4ce72f080a4c">Clip_Docs</a>);
 <a name="l00058"></a>00058 
 <a name="l00060"></a>00060 <span class="comment">// Clip between -clip and clip.</span>
 <a name="l00061"></a>00061 <span class="comment">// */</span>
@@ -88,20 +88,16 @@
 <a name="l00075"></a>00075 <a class="code" href="ugen___u_gen_8h.html#254ceb88c7d6c3c576dd70991c53b332" title="Macro for declaring a custom UGen by combining other UGens.">DefineCustomUGen</a>(<a class="code" href="class_invert.html" title="Invert about a particular value.">Invert</a>,
 <a name="l00076"></a>00076                  (<a class="code" href="namespaceugen.html#ba1654f77a583ccbda001f7f7261cb52" title="Global function for the UGen::max() binary operator.">max</a>-input),
 <a name="l00077"></a>00077                  (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; <a class="code" href="namespaceugen.html#ba1654f77a583ccbda001f7f7261cb52" title="Global function for the UGen::max() binary operator.">max</a> = 1.f),
-<a name="l00078"></a><a class="code" href="class_invert.html#f82868bf7e6845f00ce84d6f691e7727">00078</a>                  <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___temporary_8h.html#4ce5a12cca201e993048c92b43fbecea" title="Clip between -clip and clip.">Invert_Docs</a>);
+<a name="l00078"></a><a class="code" href="class_invert.html#0b641ddd6dbaee9e658c527c7809b257">00078</a>                  <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___temporary_8h.html#4ce5a12cca201e993048c92b43fbecea" title="Clip between -clip and clip.">Invert_Docs</a>);
 <a name="l00079"></a>00079 
 <a name="l00080"></a>00080 
 <a name="l00081"></a>00081 
 <a name="l00082"></a>00082 
-<a name="l00083"></a>00083 <span class="preprocessor">#if defined(UGEN_USER_MODE) &amp;&amp; defined(UGEN_SCSTYLE)</span>
-<a name="l00084"></a>00084 <span class="preprocessor"></span><span class="preprocessor">#define Clip Clip() </span>
-<a name="l00085"></a>00085 <span class="preprocessor"></span><span class="comment">//#define Clip2 Clip2() </span>
-<a name="l00086"></a>00086 <span class="preprocessor">#endif</span>
-<a name="l00087"></a>00087 <span class="preprocessor"></span>
-<a name="l00088"></a>00088 
-<a name="l00089"></a>00089 <span class="preprocessor">#endif // _UGEN_ugen_Temporary_H_</span>
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085 <span class="preprocessor">#endif // _UGEN_ugen_Temporary_H_</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:08 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:04 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

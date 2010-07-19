@@ -22,7 +22,7 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-<h1>delays/ugen_Delay.h</h1><a href="ugen___delay_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Delay.h 77 2010-05-24 10:34:11Z 0x4d52 $</span>
+<h1>delays/ugen_Delay.h</h1><a href="ugen___delay_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Delay.h 89 2010-07-09 16:20:21Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/delays/ugen_Delay.h $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -246,27 +246,27 @@
 <a name="l00232"></a>00232 <span class="preprocessor"></span>
 <a name="l00236"></a>00236 <a class="code" href="ugen___u_gen_8h.html#7db186e77855232bec685ee47ef99496" title="Macro for declaring a simple UGen.">UGenSublcassDeclaration</a>(<a class="code" href="class_delay_n.html" title="Simple delay with no interpolation.">DelayN</a>, (input, maximumDelayTime, delayTime),
 <a name="l00237"></a>00237                        (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <span class="keyword">const</span> <span class="keywordtype">float</span> maximumDelayTime = 0.2f, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; delayTime = 0.2f), 
-<a name="l00238"></a><a class="code" href="class_delay_n.html#f53e22bc770b5ec68e1ce2875f8ee79c">00238</a>                         <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___delay_8h.html#69c24229a63c7c3546fe977f8a3189e6">Delay_Docs</a>);
+<a name="l00238"></a><a class="code" href="class_delay_n.html#2b7b25f57d6e51eb204cdd23e0d8663a">00238</a>                         <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___delay_8h.html#69c24229a63c7c3546fe977f8a3189e6">Delay_Docs</a>);
 <a name="l00239"></a>00239 
 <a name="l00243"></a>00243 <a class="code" href="ugen___u_gen_8h.html#7db186e77855232bec685ee47ef99496" title="Macro for declaring a simple UGen.">UGenSublcassDeclaration</a>(<a class="code" href="class_delay_l.html" title="Simple delay with linear interpolation.">DelayL</a>, (input, maximumDelayTime, delayTime),
 <a name="l00244"></a>00244                        (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <span class="keyword">const</span> <span class="keywordtype">float</span> maximumDelayTime = 0.2f, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; delayTime = 0.2f), 
-<a name="l00245"></a><a class="code" href="class_delay_l.html#04b6a25a1f36e0bd882e20c7dfc73c45">00245</a>                         <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___delay_8h.html#69c24229a63c7c3546fe977f8a3189e6">Delay_Docs</a>);
+<a name="l00245"></a><a class="code" href="class_delay_l.html#d3a313a07c5e62d50f1cd9565991a8f4">00245</a>                         <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___delay_8h.html#69c24229a63c7c3546fe977f8a3189e6">Delay_Docs</a>);
 <a name="l00246"></a>00246 
 <a name="l00250"></a>00250 <a class="code" href="ugen___u_gen_8h.html#7db186e77855232bec685ee47ef99496" title="Macro for declaring a simple UGen.">UGenSublcassDeclaration</a>(<a class="code" href="class_comb_n.html" title="Comb delay with no interpolation.">CombN</a>, (input, maximumDelayTime, delayTime, decayTime),
 <a name="l00251"></a>00251                        (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <span class="keyword">const</span> <span class="keywordtype">float</span> maximumDelayTime = 0.2f, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; delayTime = 0.2f, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; decayTime = 0.2f), 
-<a name="l00252"></a><a class="code" href="class_comb_n.html#7393509e6826219c1d68aff73abbfeaf">00252</a>                         <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___delay_8h.html#69c24229a63c7c3546fe977f8a3189e6">Delay_Docs</a> <a class="code" href="ugen___delay_8h.html#2fa4a1a255f778bd5f80c8f0dff808ce">Recirc_Docs</a>);
+<a name="l00252"></a><a class="code" href="class_comb_n.html#7f911f325f30fd4576453fc83efcc9d0">00252</a>                         <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___delay_8h.html#69c24229a63c7c3546fe977f8a3189e6">Delay_Docs</a> <a class="code" href="ugen___delay_8h.html#2fa4a1a255f778bd5f80c8f0dff808ce">Recirc_Docs</a>);
 <a name="l00253"></a>00253 
 <a name="l00257"></a>00257 <a class="code" href="ugen___u_gen_8h.html#7db186e77855232bec685ee47ef99496" title="Macro for declaring a simple UGen.">UGenSublcassDeclaration</a>(<a class="code" href="class_comb_l.html" title="Comb delay with linear interpolation.">CombL</a>, (input, maximumDelayTime, delayTime, decayTime),
 <a name="l00258"></a>00258                         (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <span class="keyword">const</span> <span class="keywordtype">float</span> maximumDelayTime = 0.2f, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; delayTime = 0.2f, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; decayTime = 0.2f), 
-<a name="l00259"></a><a class="code" href="class_comb_l.html#14ad8a348076e4f4f6ad5dd5f96e2ce9">00259</a>                         <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___delay_8h.html#69c24229a63c7c3546fe977f8a3189e6">Delay_Docs</a> <a class="code" href="ugen___delay_8h.html#2fa4a1a255f778bd5f80c8f0dff808ce">Recirc_Docs</a>);
+<a name="l00259"></a><a class="code" href="class_comb_l.html#452e769d0a3851d797cfa68c04cee7a4">00259</a>                         <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___delay_8h.html#69c24229a63c7c3546fe977f8a3189e6">Delay_Docs</a> <a class="code" href="ugen___delay_8h.html#2fa4a1a255f778bd5f80c8f0dff808ce">Recirc_Docs</a>);
 <a name="l00260"></a>00260 
 <a name="l00264"></a>00264 <a class="code" href="ugen___u_gen_8h.html#7db186e77855232bec685ee47ef99496" title="Macro for declaring a simple UGen.">UGenSublcassDeclaration</a>(<a class="code" href="class_allpass_n.html" title="Allpass delay with no interpolation.">AllpassN</a>, (input, maximumDelayTime, delayTime, decayTime),
 <a name="l00265"></a>00265                         (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <span class="keyword">const</span> <span class="keywordtype">float</span> maximumDelayTime = 0.2f, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; delayTime = 0.2f, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; decayTime = 0.2f), 
-<a name="l00266"></a><a class="code" href="class_allpass_n.html#b1c60ed0bf8b67358c35c11dc45f9be0">00266</a>                         <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>  <a class="code" href="ugen___delay_8h.html#69c24229a63c7c3546fe977f8a3189e6">Delay_Docs</a> <a class="code" href="ugen___delay_8h.html#2fa4a1a255f778bd5f80c8f0dff808ce">Recirc_Docs</a>);
+<a name="l00266"></a><a class="code" href="class_allpass_n.html#61f68660c6e4f0f8d9f529e9329e6341">00266</a>                         <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>  <a class="code" href="ugen___delay_8h.html#69c24229a63c7c3546fe977f8a3189e6">Delay_Docs</a> <a class="code" href="ugen___delay_8h.html#2fa4a1a255f778bd5f80c8f0dff808ce">Recirc_Docs</a>);
 <a name="l00267"></a>00267 
 <a name="l00271"></a>00271 <a class="code" href="ugen___u_gen_8h.html#7db186e77855232bec685ee47ef99496" title="Macro for declaring a simple UGen.">UGenSublcassDeclaration</a>(<a class="code" href="class_allpass_l.html" title="Allpass delay with linear interpolation.">AllpassL</a>, (input, maximumDelayTime, delayTime, decayTime),
 <a name="l00272"></a>00272                         (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <span class="keyword">const</span> <span class="keywordtype">float</span> maximumDelayTime = 0.2f, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; delayTime = 0.2f, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; decayTime = 0.2f), 
-<a name="l00273"></a><a class="code" href="class_allpass_l.html#84f49ed0d99f596236a6c798a8a05ec8">00273</a>                         <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>  <a class="code" href="ugen___delay_8h.html#69c24229a63c7c3546fe977f8a3189e6">Delay_Docs</a> <a class="code" href="ugen___delay_8h.html#2fa4a1a255f778bd5f80c8f0dff808ce">Recirc_Docs</a>);
+<a name="l00273"></a><a class="code" href="class_allpass_l.html#f06f3fe23d2e17b0fd1cc73417fbada3">00273</a>                         <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>  <a class="code" href="ugen___delay_8h.html#69c24229a63c7c3546fe977f8a3189e6">Delay_Docs</a> <a class="code" href="ugen___delay_8h.html#2fa4a1a255f778bd5f80c8f0dff808ce">Recirc_Docs</a>);
 <a name="l00274"></a>00274 
 <a name="l00279"></a>00279 <span class="keyword">template</span>&lt;<span class="keyword">class</span> RecircBaseType&gt;
 <a name="l00280"></a><a class="code" href="class_recirc_base_chain.html">00280</a> <span class="keyword">class </span><a class="code" href="class_recirc_base_chain.html" title="Creat a chain of allpass or comb delays.">RecircBaseChain</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>
@@ -319,19 +319,11 @@
 <a name="l00351"></a>00351 };
 <a name="l00352"></a>00352 
 <a name="l00353"></a>00353 
-<a name="l00354"></a>00354 <span class="preprocessor">#if defined(UGEN_USER_MODE) &amp;&amp; defined(UGEN_SCSTYLE)</span>
-<a name="l00355"></a>00355 <span class="preprocessor"></span><span class="preprocessor">#define DelayN DelayN()</span>
-<a name="l00356"></a>00356 <span class="preprocessor"></span><span class="preprocessor">#define DelayL DelayL()</span>
-<a name="l00357"></a>00357 <span class="preprocessor"></span><span class="preprocessor">#define CombN CombN()</span>
-<a name="l00358"></a>00358 <span class="preprocessor"></span><span class="preprocessor">#define CombL CombL()</span>
-<a name="l00359"></a>00359 <span class="preprocessor"></span><span class="preprocessor">#define AllpassN AllpassN()</span>
-<a name="l00360"></a>00360 <span class="preprocessor"></span><span class="preprocessor">#define AllpassL AllpassL()</span>
-<a name="l00361"></a>00361 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00362"></a>00362 <span class="preprocessor"></span>
-<a name="l00363"></a>00363 
-<a name="l00364"></a>00364 <span class="preprocessor">#endif // _UGEN_ugen_Delay_H_</span>
+<a name="l00354"></a>00354 
+<a name="l00355"></a>00355 
+<a name="l00356"></a>00356 <span class="preprocessor">#endif // _UGEN_ugen_Delay_H_</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:09 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:05 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

@@ -22,7 +22,7 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-<h1>pan/ugen_BasicPan.h</h1><a href="ugen___basic_pan_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_BasicPan.h 77 2010-05-24 10:34:11Z 0x4d52 $</span>
+<h1>pan/ugen_BasicPan.h</h1><a href="ugen___basic_pan_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_BasicPan.h 89 2010-07-09 16:20:21Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/pan/ugen_BasicPan.h $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -86,7 +86,7 @@
 <a name="l00063"></a>00063 <span class="preprocessor"></span>
 <a name="l00067"></a>00067 <a class="code" href="ugen___u_gen_8h.html#7db186e77855232bec685ee47ef99496" title="Macro for declaring a simple UGen.">UGenSublcassDeclaration</a>(<a class="code" href="class_lin_pan2.html" title="A linear panner UGen across two channels.">LinPan2</a>, (input, position, level),
 <a name="l00068"></a>00068                         (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; position = 0.f, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; level = 1.f), 
-<a name="l00069"></a><a class="code" href="class_lin_pan2.html#86dc280a767a7816f5837c0c24042fc7">00069</a>                         <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___basic_pan_8h.html#63ef9a281602ea8fa2c9fb4708d88fa5">Pan_Doc</a>);
+<a name="l00069"></a><a class="code" href="class_lin_pan2.html#e073bbb66c4de8d50c7ea0800d16ea3a">00069</a>                         <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___basic_pan_8h.html#63ef9a281602ea8fa2c9fb4708d88fa5">Pan_Doc</a>);
 <a name="l00070"></a>00070 
 <a name="l00072"></a><a class="code" href="class_pan2_u_gen_internal.html">00072</a> <span class="keyword">class </span><a class="code" href="class_pan2_u_gen_internal.html">Pan2UGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal...">ProxyOwnerUGenInternal</a>
 <a name="l00073"></a>00073 {
@@ -108,14 +108,10 @@
 <a name="l00092"></a>00092                         (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; position = 0.f, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; level = 1.f), 
 <a name="l00093"></a><a class="code" href="class_pan2.html#ec5a009333180ade0a3b2401319a5d60">00093</a>                         <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___basic_pan_8h.html#63ef9a281602ea8fa2c9fb4708d88fa5">Pan_Doc</a>);
 <a name="l00094"></a>00094 
-<a name="l00095"></a>00095 <span class="preprocessor">#if defined(UGEN_USER_MODE) &amp;&amp; defined(UGEN_SCSTYLE)</span>
-<a name="l00096"></a>00096 <span class="preprocessor"></span><span class="preprocessor">#define LinPan2 LinPan2()</span>
-<a name="l00097"></a>00097 <span class="preprocessor"></span><span class="preprocessor">#define Pan2 Pan2()</span>
-<a name="l00098"></a>00098 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00099"></a>00099 <span class="preprocessor"></span>
-<a name="l00100"></a>00100 <span class="preprocessor">#endif // UGEN_BASICPAN_H</span>
+<a name="l00095"></a>00095 
+<a name="l00096"></a>00096 <span class="preprocessor">#endif // UGEN_BASICPAN_H</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:11 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:06 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

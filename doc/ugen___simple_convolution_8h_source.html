@@ -22,7 +22,7 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-<h1>convolution/ugen_SimpleConvolution.h</h1><a href="ugen___simple_convolution_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_SimpleConvolution.h 77 2010-05-24 10:34:11Z 0x4d52 $</span>
+<h1>convolution/ugen_SimpleConvolution.h</h1><a href="ugen___simple_convolution_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_SimpleConvolution.h 89 2010-07-09 16:20:21Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/convolution/ugen_SimpleConvolution.h $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -72,7 +72,7 @@
 <a name="l00048"></a>00048                                   <span class="keyword">const</span> <span class="keywordtype">int</span> fftSize, 
 <a name="l00049"></a>00049                                   <span class="keyword">const</span> <span class="keywordtype">int</span> initialDelay) <span class="keywordflow">throw</span>();
 <a name="l00050"></a>00050     <a class="code" href="class_simple_convolution_u_gen_internal.html#f9ae47fcdfcdd2b7dc7df62acd7b996f">~SimpleConvolutionUGenInternal</a>();
-<a name="l00051"></a>00051     <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_simple_convolution_u_gen_internal.html#88d8b9c066c14a9c68445f0806048638">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00051"></a>00051     <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_simple_convolution_u_gen_internal.html#110fa5653cdc4cc28ccf5754a52e9580">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
 <a name="l00052"></a>00052     <span class="keywordtype">void</span> <a class="code" href="class_simple_convolution_u_gen_internal.html#909ea8eb3520dc2b794992f7361bc30d" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
 <a name="l00053"></a>00053     
 <a name="l00054"></a><a class="code" href="class_simple_convolution_u_gen_internal.html#ec09aacfb7f13a55884520be86928eaf2d1c34d4bf4bde0277e149d49b86085e">00054</a>     <span class="keyword">enum</span> <a class="code" href="class_simple_convolution_u_gen_internal.html#ec09aacfb7f13a55884520be86928eaf">Inputs</a> { <a class="code" href="class_simple_convolution_u_gen_internal.html#ec09aacfb7f13a55884520be86928eaf6cdafdff367621cbf52fdcca7203d405">InputA</a>, <a class="code" href="class_simple_convolution_u_gen_internal.html#ec09aacfb7f13a55884520be86928eaf893b88991ffe54e838c186e3c7cf6111">InputB</a>, <a class="code" href="class_simple_convolution_u_gen_internal.html#ec09aacfb7f13a55884520be86928eaf2d1c34d4bf4bde0277e149d49b86085e">NumInputs</a> };
@@ -106,15 +106,11 @@
 <a name="l00082"></a>00082                         (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; inputA, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; inputB, <span class="keyword">const</span> <span class="keywordtype">int</span> fftSize = 512, <span class="keyword">const</span> <span class="keywordtype">int</span> overlap = 2), 
 <a name="l00083"></a><a class="code" href="class_overlap_convolution.html#1bb73316a6346c9c4704ab459e69347a">00083</a>                         <a class="code" href="ugen___u_gen_8h.html#b83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>);
 <a name="l00084"></a>00084 
-<a name="l00085"></a>00085 <span class="preprocessor">#if defined(UGEN_USER_MODE) &amp;&amp; defined(UGEN_SCSTYLE)</span>
-<a name="l00086"></a>00086 <span class="preprocessor"></span><span class="preprocessor">#define SimpleConvolution SimpleConvolution()</span>
-<a name="l00087"></a>00087 <span class="preprocessor"></span><span class="preprocessor">#define OverlapConvolution OverlapConvolution()</span>
-<a name="l00088"></a>00088 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00089"></a>00089 <span class="preprocessor"></span>
-<a name="l00090"></a>00090 
-<a name="l00091"></a>00091 <span class="preprocessor">#endif // _UGEN_ugen_SimpleConvolution_H_</span>
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086 
+<a name="l00087"></a>00087 <span class="preprocessor">#endif // _UGEN_ugen_SimpleConvolution_H_</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:09 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:04 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

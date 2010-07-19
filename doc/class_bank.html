@@ -47,16 +47,6 @@ Inherits <a class="el" href="class_u_gen.html">UGen</a>.
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bank.html#00243c32630fced6a763be79d5be97b5">Bank</a> (BankEventType const &amp;e, <a class="el" href="class_u_gen.html">UGen</a> const &amp;input=0.f, const int size=4, const int numChannels=-1)  throw ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Base <a class="el" href="class_bank.html" title="Construct a bank of UGen instances.">Bank</a> Constuctor, use the <a class="el" href="class_bank.html#1521b60642a471d9739759f4186f7a66" title="Construct and return an audio rate Bank creating the event using an owner (or NULL)...">AR()</a> versions in user code.  <a href="#00243c32630fced6a763be79d5be97b5"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bank.html#4726651fe815002ec29c1d0d656e79ea">ar</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input=0.f, const int size=4, const int numChannels=-1, OwnerType *o=0)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return an audio rate <a class="el" href="class_bank.html" title="Construct a bank of UGen instances.">Bank</a> creating the event using an owner (SC compatability).  <a href="#4726651fe815002ec29c1d0d656e79ea"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bank.html#0245729d379c63064f5a3916d9463adb">operator()</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input=0.f, const int size=4, const int numChannels=-1, OwnerType *o=0)  throw ()</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bank.html#f7919d6ea0d62ad4e0543383773b6021">ar</a> (BankEventType const &amp;e, <a class="el" href="class_u_gen.html">UGen</a> const &amp;input=0.f, const int size=4, const int numChannels=-1)  throw ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return an audio rate <a class="el" href="class_bank.html" title="Construct a bank of UGen instances.">Bank</a> passing an event to use (SC compatability).  <a href="#f7919d6ea0d62ad4e0543383773b6021"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bank.html#6ec8e445e13a04ce3493176da7319867">operator()</a> (BankEventType const &amp;e, <a class="el" href="class_u_gen.html">UGen</a> const &amp;input=0.f, const int size=4, const int numChannels=-1)  throw ()</td></tr>
-
 <tr><td colspan="2"><br><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static <a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bank.html#1521b60642a471d9739759f4186f7a66">AR</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input=0.f, const int size=4, const int numChannels=-1, OwnerType *o=0)  throw ()</td></tr>
 
@@ -205,72 +195,6 @@ Base <a class="el" href="class_bank.html" title="Construct a bank of UGen instan
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="f7919d6ea0d62ad4e0543383773b6021"></a><!-- doxytag: member="Bank::ar" ref="f7919d6ea0d62ad4e0543383773b6021" args="(BankEventType const &amp;e, UGen const &amp;input=0.f, const int size=4, const int numChannels=&#45;1)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class BankEventType , class OwnerType  = void&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> <a class="el" href="class_bank.html">Bank</a>&lt; BankEventType, OwnerType &gt;::ar           </td>
-          <td>(</td>
-          <td class="paramtype">BankEventType const &amp;&nbsp;</td>
-          <td class="paramname"> <em>e</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>input</em> = <code>0.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>size</em> = <code>4</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>numChannels</em> = <code>-1</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return an audio rate <a class="el" href="class_bank.html" title="Construct a bank of UGen instances.">Bank</a> passing an event to use (SC compatability). 
-<p>
-<b>Generic Event-based UGen argument documentation:</b> Event-based <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> instances are created using a template where the first template parameter is an "event" class (i.e., a sublclass of <a class="el" href="class_event_base.html">EventBase&lt;OwnerType&gt;</a>) and the second template parameter is an "owner" type. This must be the same owner type as the event. Generally a event <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> will be constructed in one of two ways: using a pointer to the owner which will be used to construct an event of the appropriate type (in turn passing the owner pointer); or the event <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> may be constructed by passing in an existing event. This is useful if the event is complex and/or has a custom constructor and the default constructor(s) are therfore insufficient. <br>
-<br>
- <b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl compact><dt><b>Template Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>BankEventType</em>&nbsp;</td><td>The name of the <a class="el" href="class_chain_bank_event.html" title="An event class for use with a Chain or Bank UGen.">ChainBankEvent</a> to use for this <a class="el" href="class_bank.html" title="Construct a bank of UGen instances.">Bank</a> object. The OwnerType of the BankEventType must be the same as the the OwnerType for this <a class="el" href="class_bank.html" title="Construct a bank of UGen instances.">Bank</a> . </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>OwnerType</em>&nbsp;</td><td>Optional owner type (defaults to void). </td></tr>
-  </table>
-</dl>
-<dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>e/o</em>&nbsp;</td><td>The event object (e) to use to generate event instances or a pointer to its owner (o). The owner (o) may be 0 if there`s no owner (and OwnerType is void). </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>input</em>&nbsp;</td><td>The input to the <a class="el" href="class_bank.html" title="Construct a bank of UGen instances.">Bank</a>. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>size</em>&nbsp;</td><td>The number of events to generate and mix. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>numChannels</em>&nbsp;</td><td>Number of output channels the <a class="el" href="class_bank.html" title="Construct a bank of UGen instances.">Bank</a> will have. </td></tr>
-  </table>
-</dl>
-<dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_bank.html" title="Construct a bank of UGen instances.">Bank</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___chain_8h_source.html#l00359">359</a> of file <a class="el" href="ugen___chain_8h_source.html">ugen_Chain.h</a>.</p>
-
-</div>
-</div><p>
 <a class="anchor" name="c02ecbaf0e4d9baf88a59759ed5a8e59"></a><!-- doxytag: member="Bank::AR" ref="c02ecbaf0e4d9baf88a59759ed5a8e59" args="(BankEventType const &amp;e, UGen const &amp;input=0.f, const int size=4, const int numChannels=&#45;1)" -->
 <div class="memitem">
 <div class="memproto">
@@ -312,72 +236,6 @@ template&lt;class BankEventType , class OwnerType  = void&gt; </div>
 
 <p>
 Construct and return an audio rate <a class="el" href="class_bank.html" title="Construct a bank of UGen instances.">Bank</a> passing an event to use. 
-<p>
-<b>Generic Event-based UGen argument documentation:</b> Event-based <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> instances are created using a template where the first template parameter is an "event" class (i.e., a sublclass of <a class="el" href="class_event_base.html">EventBase&lt;OwnerType&gt;</a>) and the second template parameter is an "owner" type. This must be the same owner type as the event. Generally a event <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> will be constructed in one of two ways: using a pointer to the owner which will be used to construct an event of the appropriate type (in turn passing the owner pointer); or the event <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> may be constructed by passing in an existing event. This is useful if the event is complex and/or has a custom constructor and the default constructor(s) are therfore insufficient. <br>
-<br>
- <b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br>
- <br>
- <dl compact><dt><b>Template Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>BankEventType</em>&nbsp;</td><td>The name of the <a class="el" href="class_chain_bank_event.html" title="An event class for use with a Chain or Bank UGen.">ChainBankEvent</a> to use for this <a class="el" href="class_bank.html" title="Construct a bank of UGen instances.">Bank</a> object. The OwnerType of the BankEventType must be the same as the the OwnerType for this <a class="el" href="class_bank.html" title="Construct a bank of UGen instances.">Bank</a> . </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>OwnerType</em>&nbsp;</td><td>Optional owner type (defaults to void). </td></tr>
-  </table>
-</dl>
-<dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>e/o</em>&nbsp;</td><td>The event object (e) to use to generate event instances or a pointer to its owner (o). The owner (o) may be 0 if there`s no owner (and OwnerType is void). </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>input</em>&nbsp;</td><td>The input to the <a class="el" href="class_bank.html" title="Construct a bank of UGen instances.">Bank</a>. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>size</em>&nbsp;</td><td>The number of events to generate and mix. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>numChannels</em>&nbsp;</td><td>Number of output channels the <a class="el" href="class_bank.html" title="Construct a bank of UGen instances.">Bank</a> will have. </td></tr>
-  </table>
-</dl>
-<dl class="return" compact><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_bank.html" title="Construct a bank of UGen instances.">Bank</a> . </dd></dl>
-
-<p>Definition at line <a class="el" href="ugen___chain_8h_source.html#l00359">359</a> of file <a class="el" href="ugen___chain_8h_source.html">ugen_Chain.h</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="4726651fe815002ec29c1d0d656e79ea"></a><!-- doxytag: member="Bank::ar" ref="4726651fe815002ec29c1d0d656e79ea" args="(UGen const &amp;input=0.f, const int size=4, const int numChannels=&#45;1, OwnerType *o=0)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class BankEventType , class OwnerType  = void&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> <a class="el" href="class_bank.html">Bank</a>&lt; BankEventType, OwnerType &gt;::ar           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>input</em> = <code>0.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>size</em> = <code>4</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>numChannels</em> = <code>-1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">OwnerType *&nbsp;</td>
-          <td class="paramname"> <em>o</em> = <code>0</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Construct and return an audio rate <a class="el" href="class_bank.html" title="Construct a bank of UGen instances.">Bank</a> creating the event using an owner (SC compatability). 
 <p>
 <b>Generic Event-based UGen argument documentation:</b> Event-based <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> instances are created using a template where the first template parameter is an "event" class (i.e., a sublclass of <a class="el" href="class_event_base.html">EventBase&lt;OwnerType&gt;</a>) and the second template parameter is an "owner" type. This must be the same owner type as the event. Generally a event <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> will be constructed in one of two ways: using a pointer to the owner which will be used to construct an event of the appropriate type (in turn passing the owner pointer); or the event <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> may be constructed by passing in an existing event. This is useful if the event is complex and/or has a custom constructor and the default constructor(s) are therfore insufficient. <br>
 <br>
@@ -469,100 +327,10 @@ Construct and return an audio rate <a class="el" href="class_bank.html" title="C
 
 </div>
 </div><p>
-<a class="anchor" name="6ec8e445e13a04ce3493176da7319867"></a><!-- doxytag: member="Bank::operator()" ref="6ec8e445e13a04ce3493176da7319867" args="(BankEventType const &amp;e, UGen const &amp;input=0.f, const int size=4, const int numChannels=&#45;1)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class BankEventType , class OwnerType  = void&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> <a class="el" href="class_bank.html">Bank</a>&lt; BankEventType, OwnerType &gt;::operator()           </td>
-          <td>(</td>
-          <td class="paramtype">BankEventType const &amp;&nbsp;</td>
-          <td class="paramname"> <em>e</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>input</em> = <code>0.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>size</em> = <code>4</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>numChannels</em> = <code>-1</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Definition at line <a class="el" href="ugen___chain_8h_source.html#l00359">359</a> of file <a class="el" href="ugen___chain_8h_source.html">ugen_Chain.h</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="0245729d379c63064f5a3916d9463adb"></a><!-- doxytag: member="Bank::operator()" ref="0245729d379c63064f5a3916d9463adb" args="(UGen const &amp;input=0.f, const int size=4, const int numChannels=&#45;1, OwnerType *o=0)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class BankEventType , class OwnerType  = void&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> <a class="el" href="class_bank.html">Bank</a>&lt; BankEventType, OwnerType &gt;::operator()           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>input</em> = <code>0.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>size</em> = <code>4</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>numChannels</em> = <code>-1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">OwnerType *&nbsp;</td>
-          <td class="paramname"> <em>o</em> = <code>0</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Definition at line <a class="el" href="ugen___chain_8h_source.html#l00359">359</a> of file <a class="el" href="ugen___chain_8h_source.html">ugen_Chain.h</a>.</p>
-
-</div>
-</div><p>
 <hr>The documentation for this class was generated from the following file:<ul>
 <li>basics/<a class="el" href="ugen___chain_8h_source.html">ugen_Chain.h</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:14 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:09 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

@@ -22,7 +22,7 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-<h1>iphone/armasm/ugen_vfp_Basics.cpp</h1><a href="ugen__vfp___basics_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_vfp_Basics.cpp 77 2010-05-24 10:34:11Z 0x4d52 $</span>
+<h1>iphone/armasm/ugen_vfp_Basics.cpp</h1><a href="ugen__vfp___basics_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_vfp_Basics.cpp 82 2010-06-13 15:58:47Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/iphone/armasm/ugen_vfp_Basics.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -89,225 +89,237 @@
 <a name="l00065"></a>00065     <span class="keywordtype">float</span>* outputSamples = <a class="code" href="class_u_gen_internal.html#66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#2f81d76a08bdae1136fb9eb94c34aa14">getSampleData</a>(); 
 <a name="l00066"></a>00066     <span class="keywordtype">float</span> nextValue = (float)*<a class="code" href="class_float_ptr_u_gen_internal.html#a65558333e0c38ed2079e873ea1d5ec4">ptr</a>; 
 <a name="l00067"></a>00067 
-<a name="l00068"></a>00068     <span class="keywordflow">if</span>(nextValue == <a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a>) 
-<a name="l00069"></a>00069     { 
-<a name="l00070"></a>00070         <a class="code" href="class_v_f_p.html#e5a304a8d8c81ebb53a1c686dfaff865">VFP::splat16</a>(<a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a>, outputSamples, numSamplesToProcess);
-<a name="l00071"></a>00071     } 
-<a name="l00072"></a>00072     <span class="keywordflow">else</span> 
-<a name="l00073"></a>00073     { 
-<a name="l00074"></a>00074         <span class="keywordtype">int</span> numKrSamplesToProcess = <a class="code" href="class_u_gen.html#2c362eee1cdf755de0eed14727494235" title="Get the current control rate block size.">UGen::getControlRateBlockSize</a>(); 
-<a name="l00075"></a>00075         <span class="keywordtype">float</span> valueSlope = (nextValue - <a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a>) * <a class="code" href="class_u_gen.html#a74b2f078838a887bcb29c95ea76b82c" title="Get the current control rate slope factor i.e., 1.0 / (control rate block size).">UGen::getControlSlopeFactor</a>(); 
-<a name="l00076"></a>00076         numSamplesToProcess -= numKrSamplesToProcess; 
-<a name="l00077"></a>00077         
-<a name="l00078"></a>00078         <span class="keywordflow">while</span>(numKrSamplesToProcess--)
-<a name="l00079"></a>00079         { 
-<a name="l00080"></a>00080             *outputSamples++ = <a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a>; 
-<a name="l00081"></a>00081             <a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a> += valueSlope; 
-<a name="l00082"></a>00082         } 
-<a name="l00083"></a>00083         
-<a name="l00084"></a>00084         <span class="keywordflow">if</span>(numSamplesToProcess &gt; 0) 
-<a name="l00085"></a>00085         { 
-<a name="l00086"></a>00086             <a class="code" href="class_v_f_p.html#e5a304a8d8c81ebb53a1c686dfaff865">VFP::splat16</a>(nextValue, outputSamples, numSamplesToProcess);
-<a name="l00087"></a>00087         } 
-<a name="l00088"></a>00088         
-<a name="l00089"></a>00089         <a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a> = nextValue; 
-<a name="l00090"></a>00090     }
-<a name="l00091"></a>00091 }
-<a name="l00092"></a>00092 
-<a name="l00093"></a>00093 <span class="keywordtype">void</span> <a class="code" href="class_double_ptr_u_gen_internal.html#939292220e02644d8b6cf3e56298c2fe" title="Process a block of samples for this blockID and channel.">DoublePtrUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="comment">/*blockID*/</span>, <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*channel*/</span>) throw()
-<a name="l00094"></a>00094 {
-<a name="l00095"></a>00095     <span class="keywordtype">int</span> numSamplesToProcess = <a class="code" href="class_u_gen_internal.html#66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#118a3566a4758eb4719c57843c25bd57">getBlockSize</a>(); 
-<a name="l00096"></a>00096     <span class="keywordtype">float</span>* outputSamples = <a class="code" href="class_u_gen_internal.html#66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#2f81d76a08bdae1136fb9eb94c34aa14">getSampleData</a>(); 
-<a name="l00097"></a>00097     <span class="keywordtype">float</span> nextValue = (float)*<a class="code" href="class_double_ptr_u_gen_internal.html#ca6398733c7d211e63d36473c11c9cbc">ptr</a>; 
-<a name="l00098"></a>00098     
-<a name="l00099"></a>00099     <span class="keywordflow">if</span>(nextValue == <a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a>) 
-<a name="l00100"></a>00100     { 
-<a name="l00101"></a>00101         <a class="code" href="class_v_f_p.html#e5a304a8d8c81ebb53a1c686dfaff865">VFP::splat16</a>(<a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a>, outputSamples, numSamplesToProcess);
-<a name="l00102"></a>00102     } 
-<a name="l00103"></a>00103     <span class="keywordflow">else</span> 
-<a name="l00104"></a>00104     { 
-<a name="l00105"></a>00105         <span class="keywordtype">int</span> numKrSamplesToProcess = <a class="code" href="class_u_gen.html#2c362eee1cdf755de0eed14727494235" title="Get the current control rate block size.">UGen::getControlRateBlockSize</a>(); 
-<a name="l00106"></a>00106         <span class="keywordtype">float</span> valueSlope = (nextValue - <a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a>) * <a class="code" href="class_u_gen.html#a74b2f078838a887bcb29c95ea76b82c" title="Get the current control rate slope factor i.e., 1.0 / (control rate block size).">UGen::getControlSlopeFactor</a>(); 
-<a name="l00107"></a>00107         numSamplesToProcess -= numKrSamplesToProcess; 
-<a name="l00108"></a>00108         
-<a name="l00109"></a>00109         <span class="keywordflow">while</span>(numKrSamplesToProcess--)
-<a name="l00110"></a>00110         { 
-<a name="l00111"></a>00111             *outputSamples++ = <a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a>; 
-<a name="l00112"></a>00112             <a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a> += valueSlope; 
-<a name="l00113"></a>00113         } 
-<a name="l00114"></a>00114         
-<a name="l00115"></a>00115         <span class="keywordflow">if</span>(numSamplesToProcess &gt; 0) 
-<a name="l00116"></a>00116         { 
-<a name="l00117"></a>00117             <a class="code" href="class_v_f_p.html#e5a304a8d8c81ebb53a1c686dfaff865">VFP::splat16</a>(nextValue, outputSamples, numSamplesToProcess);
-<a name="l00118"></a>00118         } 
-<a name="l00119"></a>00119         
-<a name="l00120"></a>00120         <a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a> = nextValue; 
-<a name="l00121"></a>00121     }
-<a name="l00122"></a>00122 }
-<a name="l00123"></a>00123 
-<a name="l00124"></a>00124 <span class="keywordtype">void</span> <a class="code" href="class_int_ptr_u_gen_internal.html#9f55cca4dc7057b060013f5fb1bb9b2d" title="Process a block of samples for this blockID and channel.">IntPtrUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="comment">/*blockID*/</span>, <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*channel*/</span>) throw()
-<a name="l00125"></a>00125 {
-<a name="l00126"></a>00126     <span class="keywordtype">int</span> numSamplesToProcess = <a class="code" href="class_u_gen_internal.html#66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#118a3566a4758eb4719c57843c25bd57">getBlockSize</a>(); 
-<a name="l00127"></a>00127     <span class="keywordtype">float</span>* outputSamples = <a class="code" href="class_u_gen_internal.html#66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#2f81d76a08bdae1136fb9eb94c34aa14">getSampleData</a>(); 
-<a name="l00128"></a>00128     <span class="keywordtype">float</span> nextValue = (float)*<a class="code" href="class_int_ptr_u_gen_internal.html#181b9806b8b79b559ae16adf0f7284b0">ptr</a>; 
-<a name="l00129"></a>00129     
-<a name="l00130"></a>00130     <span class="keywordflow">if</span>(nextValue == <a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a>) 
-<a name="l00131"></a>00131     { 
-<a name="l00132"></a>00132         <a class="code" href="class_v_f_p.html#e5a304a8d8c81ebb53a1c686dfaff865">VFP::splat16</a>(<a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a>, outputSamples, numSamplesToProcess);
-<a name="l00133"></a>00133     } 
-<a name="l00134"></a>00134     <span class="keywordflow">else</span> 
-<a name="l00135"></a>00135     { 
-<a name="l00136"></a>00136         <span class="keywordtype">int</span> numKrSamplesToProcess = <a class="code" href="class_u_gen.html#2c362eee1cdf755de0eed14727494235" title="Get the current control rate block size.">UGen::getControlRateBlockSize</a>(); 
-<a name="l00137"></a>00137         <span class="keywordtype">float</span> valueSlope = (nextValue - <a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a>) * <a class="code" href="class_u_gen.html#a74b2f078838a887bcb29c95ea76b82c" title="Get the current control rate slope factor i.e., 1.0 / (control rate block size).">UGen::getControlSlopeFactor</a>(); 
-<a name="l00138"></a>00138         numSamplesToProcess -= numKrSamplesToProcess; 
-<a name="l00139"></a>00139         
-<a name="l00140"></a>00140         <span class="keywordflow">while</span>(numKrSamplesToProcess--)
-<a name="l00141"></a>00141         { 
-<a name="l00142"></a>00142             *outputSamples++ = <a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a>; 
-<a name="l00143"></a>00143             <a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a> += valueSlope; 
-<a name="l00144"></a>00144         } 
-<a name="l00145"></a>00145         
-<a name="l00146"></a>00146         <span class="keywordflow">if</span>(numSamplesToProcess &gt; 0) 
-<a name="l00147"></a>00147         { 
-<a name="l00148"></a>00148             <a class="code" href="class_v_f_p.html#e5a304a8d8c81ebb53a1c686dfaff865">VFP::splat16</a>(nextValue, outputSamples, numSamplesToProcess);
-<a name="l00149"></a>00149         } 
-<a name="l00150"></a>00150         
-<a name="l00151"></a>00151         <a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a> = nextValue; 
-<a name="l00152"></a>00152     }
-<a name="l00153"></a>00153 }
-<a name="l00154"></a>00154 
-<a name="l00155"></a>00155 <span class="keywordtype">void</span> <a class="code" href="class_bool_ptr_u_gen_internal.html#2fdefa5a3c74db9a7634128ab88e5780" title="Process a block of samples for this blockID and channel.">BoolPtrUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="comment">/*blockID*/</span>, <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*channel*/</span>) throw()
-<a name="l00156"></a>00156 {
-<a name="l00157"></a>00157     <span class="keywordtype">int</span> numSamplesToProcess = <a class="code" href="class_u_gen_internal.html#66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#118a3566a4758eb4719c57843c25bd57">getBlockSize</a>(); 
-<a name="l00158"></a>00158     <span class="keywordtype">float</span>* outputSamples = <a class="code" href="class_u_gen_internal.html#66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#2f81d76a08bdae1136fb9eb94c34aa14">getSampleData</a>(); 
-<a name="l00159"></a>00159     <span class="keywordtype">float</span> nextValue = (float)(*<a class="code" href="class_bool_ptr_u_gen_internal.html#ee288dd1e568a46b281d2695339defaa">ptr</a> != 0);
-<a name="l00160"></a>00160     
-<a name="l00161"></a>00161     <span class="keywordflow">if</span>(nextValue == <a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a>) 
-<a name="l00162"></a>00162     { 
-<a name="l00163"></a>00163         <a class="code" href="class_v_f_p.html#e5a304a8d8c81ebb53a1c686dfaff865">VFP::splat16</a>(<a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a>, outputSamples, numSamplesToProcess);
-<a name="l00164"></a>00164     } 
-<a name="l00165"></a>00165     <span class="keywordflow">else</span> 
-<a name="l00166"></a>00166     { 
-<a name="l00167"></a>00167         <span class="keywordtype">int</span> numKrSamplesToProcess = <a class="code" href="class_u_gen.html#2c362eee1cdf755de0eed14727494235" title="Get the current control rate block size.">UGen::getControlRateBlockSize</a>(); 
-<a name="l00168"></a>00168         <span class="keywordtype">float</span> valueSlope = (nextValue - <a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a>) * <a class="code" href="class_u_gen.html#a74b2f078838a887bcb29c95ea76b82c" title="Get the current control rate slope factor i.e., 1.0 / (control rate block size).">UGen::getControlSlopeFactor</a>(); 
-<a name="l00169"></a>00169         numSamplesToProcess -= numKrSamplesToProcess; 
-<a name="l00170"></a>00170         
-<a name="l00171"></a>00171         <span class="keywordflow">while</span>(numKrSamplesToProcess--)
-<a name="l00172"></a>00172         { 
-<a name="l00173"></a>00173             *outputSamples++ = <a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a>; 
-<a name="l00174"></a>00174             <a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a> += valueSlope; 
-<a name="l00175"></a>00175         } 
-<a name="l00176"></a>00176         
-<a name="l00177"></a>00177         <span class="keywordflow">if</span>(numSamplesToProcess &gt; 0) 
-<a name="l00178"></a>00178         { 
-<a name="l00179"></a>00179             <a class="code" href="class_v_f_p.html#e5a304a8d8c81ebb53a1c686dfaff865">VFP::splat16</a>(nextValue, outputSamples, numSamplesToProcess);
-<a name="l00180"></a>00180         } 
-<a name="l00181"></a>00181         
-<a name="l00182"></a>00182         <a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a> = nextValue; 
-<a name="l00183"></a>00183     }
-<a name="l00184"></a>00184 }
-<a name="l00185"></a>00185 
-<a name="l00186"></a>00186 <span class="keywordtype">void</span> <a class="code" href="class_mix_u_gen_internal.html#1c9ff40b79174cbff3316fe627bbb016" title="Render a block of audio.">MixUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*channel*/</span>) throw()
-<a name="l00187"></a>00187 {
-<a name="l00188"></a>00188     <span class="keywordtype">int</span> channel = 0;
-<a name="l00189"></a>00189     
-<a name="l00190"></a>00190     <span class="keywordtype">bool</span> shouldDeleteLocal = <span class="keyword">false</span>;
-<a name="l00191"></a>00191     <span class="keywordtype">bool</span>&amp; shouldDeleteToPass = <a class="code" href="class_mix_u_gen_internal.html#c44b80804914f2ca56a3001415d1505e">shouldAllowAutoDelete_</a> ? shouldDelete : shouldDeleteLocal;   
-<a name="l00192"></a>00192     <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesToProcess = <a class="code" href="class_u_gen_internal.html#66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#118a3566a4758eb4719c57843c25bd57">getBlockSize</a>();
-<a name="l00193"></a>00193     <span class="keywordtype">float</span>* <span class="keyword">const</span> outputSamples = <a class="code" href="class_u_gen_internal.html#66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#2f81d76a08bdae1136fb9eb94c34aa14">getSampleData</a>();
-<a name="l00194"></a>00194     <span class="keywordtype">float</span>* <span class="keyword">const</span> channelSamples = <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>-&gt;<a class="code" href="class_u_gen.html#326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDeleteToPass, blockID, channel);
-<a name="l00195"></a>00195     
-<a name="l00196"></a>00196     memcpy(outputSamples, channelSamples, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
-<a name="l00197"></a>00197     
-<a name="l00198"></a>00198     channel++;
-<a name="l00199"></a>00199     
-<a name="l00200"></a>00200     <span class="keywordtype">int</span> numChannels = <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>-&gt;<a class="code" href="class_u_gen.html#996ea2091a1af960134353f9780f2ae9" title="Get the number of channels (i.e., number of internals).">getNumChannels</a>();
+<a name="l00068"></a>00068     <a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a> = nextValue;
+<a name="l00069"></a>00069     <a class="code" href="class_v_f_p.html#e5a304a8d8c81ebb53a1c686dfaff865">VFP::splat16</a>(<a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a>, outputSamples, numSamplesToProcess);
+<a name="l00070"></a>00070     
+<a name="l00071"></a>00071 <span class="comment">//  if(nextValue == value_) </span>
+<a name="l00072"></a>00072 <span class="comment">//  { </span>
+<a name="l00073"></a>00073 <span class="comment">//      VFP::splat16(value_, outputSamples, numSamplesToProcess);</span>
+<a name="l00074"></a>00074 <span class="comment">//  } </span>
+<a name="l00075"></a>00075 <span class="comment">//  else </span>
+<a name="l00076"></a>00076 <span class="comment">//  { </span>
+<a name="l00077"></a>00077 <span class="comment">//      int numKrSamplesToProcess = UGen::getControlRateBlockSize(); </span>
+<a name="l00078"></a>00078 <span class="comment">//      float valueSlope = (nextValue - value_) * UGen::getControlSlopeFactor(); </span>
+<a name="l00079"></a>00079 <span class="comment">//      numSamplesToProcess -= numKrSamplesToProcess; </span>
+<a name="l00080"></a>00080 <span class="comment">//      </span>
+<a name="l00081"></a>00081 <span class="comment">//      while(numKrSamplesToProcess--)</span>
+<a name="l00082"></a>00082 <span class="comment">//      { </span>
+<a name="l00083"></a>00083 <span class="comment">//          *outputSamples++ = value_; </span>
+<a name="l00084"></a>00084 <span class="comment">//          value_ += valueSlope; </span>
+<a name="l00085"></a>00085 <span class="comment">//      } </span>
+<a name="l00086"></a>00086 <span class="comment">//      </span>
+<a name="l00087"></a>00087 <span class="comment">//      if(numSamplesToProcess &gt; 0) </span>
+<a name="l00088"></a>00088 <span class="comment">//      { </span>
+<a name="l00089"></a>00089 <span class="comment">//          VFP::splat16(nextValue, outputSamples, numSamplesToProcess);</span>
+<a name="l00090"></a>00090 <span class="comment">//      } </span>
+<a name="l00091"></a>00091 <span class="comment">//      </span>
+<a name="l00092"></a>00092 <span class="comment">//      value_ = nextValue; </span>
+<a name="l00093"></a>00093 <span class="comment">//  }</span>
+<a name="l00094"></a>00094 }
+<a name="l00095"></a>00095 
+<a name="l00096"></a>00096 <span class="keywordtype">void</span> <a class="code" href="class_double_ptr_u_gen_internal.html#939292220e02644d8b6cf3e56298c2fe" title="Process a block of samples for this blockID and channel.">DoublePtrUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="comment">/*blockID*/</span>, <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*channel*/</span>) throw()
+<a name="l00097"></a>00097 {
+<a name="l00098"></a>00098     <span class="keywordtype">int</span> numSamplesToProcess = <a class="code" href="class_u_gen_internal.html#66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#118a3566a4758eb4719c57843c25bd57">getBlockSize</a>(); 
+<a name="l00099"></a>00099     <span class="keywordtype">float</span>* outputSamples = <a class="code" href="class_u_gen_internal.html#66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#2f81d76a08bdae1136fb9eb94c34aa14">getSampleData</a>(); 
+<a name="l00100"></a>00100     <span class="keywordtype">float</span> nextValue = (float)*<a class="code" href="class_double_ptr_u_gen_internal.html#ca6398733c7d211e63d36473c11c9cbc">ptr</a>; 
+<a name="l00101"></a>00101     
+<a name="l00102"></a>00102     <a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a> = nextValue;
+<a name="l00103"></a>00103     <a class="code" href="class_v_f_p.html#e5a304a8d8c81ebb53a1c686dfaff865">VFP::splat16</a>(<a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a>, outputSamples, numSamplesToProcess);
+<a name="l00104"></a>00104     
+<a name="l00105"></a>00105 <span class="comment">//  if(nextValue == value_) </span>
+<a name="l00106"></a>00106 <span class="comment">//  { </span>
+<a name="l00107"></a>00107 <span class="comment">//      VFP::splat16(value_, outputSamples, numSamplesToProcess);</span>
+<a name="l00108"></a>00108 <span class="comment">//  } </span>
+<a name="l00109"></a>00109 <span class="comment">//  else </span>
+<a name="l00110"></a>00110 <span class="comment">//  { </span>
+<a name="l00111"></a>00111 <span class="comment">//      int numKrSamplesToProcess = UGen::getControlRateBlockSize(); </span>
+<a name="l00112"></a>00112 <span class="comment">//      float valueSlope = (nextValue - value_) * UGen::getControlSlopeFactor(); </span>
+<a name="l00113"></a>00113 <span class="comment">//      numSamplesToProcess -= numKrSamplesToProcess; </span>
+<a name="l00114"></a>00114 <span class="comment">//      </span>
+<a name="l00115"></a>00115 <span class="comment">//      while(numKrSamplesToProcess--)</span>
+<a name="l00116"></a>00116 <span class="comment">//      { </span>
+<a name="l00117"></a>00117 <span class="comment">//          *outputSamples++ = value_; </span>
+<a name="l00118"></a>00118 <span class="comment">//          value_ += valueSlope; </span>
+<a name="l00119"></a>00119 <span class="comment">//      } </span>
+<a name="l00120"></a>00120 <span class="comment">//      </span>
+<a name="l00121"></a>00121 <span class="comment">//      if(numSamplesToProcess &gt; 0) </span>
+<a name="l00122"></a>00122 <span class="comment">//      { </span>
+<a name="l00123"></a>00123 <span class="comment">//          VFP::splat16(nextValue, outputSamples, numSamplesToProcess);</span>
+<a name="l00124"></a>00124 <span class="comment">//      } </span>
+<a name="l00125"></a>00125 <span class="comment">//      </span>
+<a name="l00126"></a>00126 <span class="comment">//      value_ = nextValue; </span>
+<a name="l00127"></a>00127 <span class="comment">//  }</span>
+<a name="l00128"></a>00128 }
+<a name="l00129"></a>00129 
+<a name="l00130"></a>00130 <span class="keywordtype">void</span> <a class="code" href="class_int_ptr_u_gen_internal.html#9f55cca4dc7057b060013f5fb1bb9b2d" title="Process a block of samples for this blockID and channel.">IntPtrUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="comment">/*blockID*/</span>, <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*channel*/</span>) throw()
+<a name="l00131"></a>00131 {
+<a name="l00132"></a>00132     <span class="keywordtype">int</span> numSamplesToProcess = <a class="code" href="class_u_gen_internal.html#66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#118a3566a4758eb4719c57843c25bd57">getBlockSize</a>(); 
+<a name="l00133"></a>00133     <span class="keywordtype">float</span>* outputSamples = <a class="code" href="class_u_gen_internal.html#66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#2f81d76a08bdae1136fb9eb94c34aa14">getSampleData</a>(); 
+<a name="l00134"></a>00134     <span class="keywordtype">float</span> nextValue = (float)*<a class="code" href="class_int_ptr_u_gen_internal.html#181b9806b8b79b559ae16adf0f7284b0">ptr</a>; 
+<a name="l00135"></a>00135     
+<a name="l00136"></a>00136     <a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a> = nextValue;
+<a name="l00137"></a>00137     <a class="code" href="class_v_f_p.html#e5a304a8d8c81ebb53a1c686dfaff865">VFP::splat16</a>(<a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a>, outputSamples, numSamplesToProcess);
+<a name="l00138"></a>00138     
+<a name="l00139"></a>00139 <span class="comment">//  if(nextValue == value_) </span>
+<a name="l00140"></a>00140 <span class="comment">//  { </span>
+<a name="l00141"></a>00141 <span class="comment">//      VFP::splat16(value_, outputSamples, numSamplesToProcess);</span>
+<a name="l00142"></a>00142 <span class="comment">//  } </span>
+<a name="l00143"></a>00143 <span class="comment">//  else </span>
+<a name="l00144"></a>00144 <span class="comment">//  { </span>
+<a name="l00145"></a>00145 <span class="comment">//      int numKrSamplesToProcess = UGen::getControlRateBlockSize(); </span>
+<a name="l00146"></a>00146 <span class="comment">//      float valueSlope = (nextValue - value_) * UGen::getControlSlopeFactor(); </span>
+<a name="l00147"></a>00147 <span class="comment">//      numSamplesToProcess -= numKrSamplesToProcess; </span>
+<a name="l00148"></a>00148 <span class="comment">//      </span>
+<a name="l00149"></a>00149 <span class="comment">//      while(numKrSamplesToProcess--)</span>
+<a name="l00150"></a>00150 <span class="comment">//      { </span>
+<a name="l00151"></a>00151 <span class="comment">//          *outputSamples++ = value_; </span>
+<a name="l00152"></a>00152 <span class="comment">//          value_ += valueSlope; </span>
+<a name="l00153"></a>00153 <span class="comment">//      } </span>
+<a name="l00154"></a>00154 <span class="comment">//      </span>
+<a name="l00155"></a>00155 <span class="comment">//      if(numSamplesToProcess &gt; 0) </span>
+<a name="l00156"></a>00156 <span class="comment">//      { </span>
+<a name="l00157"></a>00157 <span class="comment">//          VFP::splat16(nextValue, outputSamples, numSamplesToProcess);</span>
+<a name="l00158"></a>00158 <span class="comment">//      } </span>
+<a name="l00159"></a>00159 <span class="comment">//      </span>
+<a name="l00160"></a>00160 <span class="comment">//      value_ = nextValue; </span>
+<a name="l00161"></a>00161 <span class="comment">//  }</span>
+<a name="l00162"></a>00162 }
+<a name="l00163"></a>00163 
+<a name="l00164"></a>00164 <span class="keywordtype">void</span> <a class="code" href="class_bool_ptr_u_gen_internal.html#2fdefa5a3c74db9a7634128ab88e5780" title="Process a block of samples for this blockID and channel.">BoolPtrUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="comment">/*blockID*/</span>, <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*channel*/</span>) throw()
+<a name="l00165"></a>00165 {
+<a name="l00166"></a>00166     <span class="keywordtype">int</span> numSamplesToProcess = <a class="code" href="class_u_gen_internal.html#66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#118a3566a4758eb4719c57843c25bd57">getBlockSize</a>(); 
+<a name="l00167"></a>00167     <span class="keywordtype">float</span>* outputSamples = <a class="code" href="class_u_gen_internal.html#66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#2f81d76a08bdae1136fb9eb94c34aa14">getSampleData</a>(); 
+<a name="l00168"></a>00168     <span class="keywordtype">float</span> nextValue = (float)(*<a class="code" href="class_bool_ptr_u_gen_internal.html#ee288dd1e568a46b281d2695339defaa">ptr</a> != 0);
+<a name="l00169"></a>00169     
+<a name="l00170"></a>00170     <a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a> = nextValue;
+<a name="l00171"></a>00171     <a class="code" href="class_v_f_p.html#e5a304a8d8c81ebb53a1c686dfaff865">VFP::splat16</a>(<a class="code" href="class_scalar_base_u_gen_internal.html#86f2ef73de129af4e9a467c16296aec5">value_</a>, outputSamples, numSamplesToProcess);
+<a name="l00172"></a>00172     
+<a name="l00173"></a>00173 <span class="comment">//  if(nextValue == value_) </span>
+<a name="l00174"></a>00174 <span class="comment">//  { </span>
+<a name="l00175"></a>00175 <span class="comment">//      VFP::splat16(value_, outputSamples, numSamplesToProcess);</span>
+<a name="l00176"></a>00176 <span class="comment">//  } </span>
+<a name="l00177"></a>00177 <span class="comment">//  else </span>
+<a name="l00178"></a>00178 <span class="comment">//  { </span>
+<a name="l00179"></a>00179 <span class="comment">//      int numKrSamplesToProcess = UGen::getControlRateBlockSize(); </span>
+<a name="l00180"></a>00180 <span class="comment">//      float valueSlope = (nextValue - value_) * UGen::getControlSlopeFactor(); </span>
+<a name="l00181"></a>00181 <span class="comment">//      numSamplesToProcess -= numKrSamplesToProcess; </span>
+<a name="l00182"></a>00182 <span class="comment">//      </span>
+<a name="l00183"></a>00183 <span class="comment">//      while(numKrSamplesToProcess--)</span>
+<a name="l00184"></a>00184 <span class="comment">//      { </span>
+<a name="l00185"></a>00185 <span class="comment">//          *outputSamples++ = value_; </span>
+<a name="l00186"></a>00186 <span class="comment">//          value_ += valueSlope; </span>
+<a name="l00187"></a>00187 <span class="comment">//      } </span>
+<a name="l00188"></a>00188 <span class="comment">//      </span>
+<a name="l00189"></a>00189 <span class="comment">//      if(numSamplesToProcess &gt; 0) </span>
+<a name="l00190"></a>00190 <span class="comment">//      { </span>
+<a name="l00191"></a>00191 <span class="comment">//          VFP::splat16(nextValue, outputSamples, numSamplesToProcess);</span>
+<a name="l00192"></a>00192 <span class="comment">//      } </span>
+<a name="l00193"></a>00193 <span class="comment">//      </span>
+<a name="l00194"></a>00194 <span class="comment">//      value_ = nextValue; </span>
+<a name="l00195"></a>00195 <span class="comment">//  }</span>
+<a name="l00196"></a>00196 }
+<a name="l00197"></a>00197 
+<a name="l00198"></a>00198 <span class="keywordtype">void</span> <a class="code" href="class_mix_u_gen_internal.html#1c9ff40b79174cbff3316fe627bbb016" title="Render a block of audio.">MixUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*channel*/</span>) throw()
+<a name="l00199"></a>00199 {
+<a name="l00200"></a>00200     <span class="keywordtype">int</span> channel = 0;
 <a name="l00201"></a>00201     
-<a name="l00202"></a>00202     <span class="keywordflow">for</span>(<span class="comment">/* leave channel value alone */</span>; channel &lt; numChannels; channel++)
-<a name="l00203"></a>00203     {
-<a name="l00204"></a>00204         shouldDeleteLocal = <span class="keyword">false</span>;
-<a name="l00205"></a>00205         <span class="keywordtype">float</span>* <span class="keyword">const</span> channelSamples = <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>-&gt;<a class="code" href="class_u_gen.html#326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDeleteToPass, blockID, channel);
-<a name="l00206"></a>00206         
-<a name="l00207"></a>00207         <a class="code" href="class_v_f_p.html#41778dbdc3fcb64f6ffbe0c50bbb7f32">VFP::add</a>(outputSamples, channelSamples, outputSamples, numSamplesToProcess);
-<a name="l00208"></a>00208     }   
-<a name="l00209"></a>00209 }
-<a name="l00210"></a>00210 
-<a name="l00211"></a>00211 
-<a name="l00212"></a>00212 <span class="keywordtype">void</span> <a class="code" href="class_mix_array_u_gen_internal.html#9daadccd7c9358f91b835c5abaf62352" title="Process a block of samples for this blockID and channel.">MixArrayUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*channel*/</span>) throw()
-<a name="l00213"></a>00213 {   
-<a name="l00214"></a>00214     <span class="keywordtype">bool</span> shouldDeleteLocal;
-<a name="l00215"></a>00215     <span class="keywordtype">bool</span>&amp; shouldDeleteToPass = <a class="code" href="class_mix_array_u_gen_internal.html#7bbb2e784c67ccdfec6b560304a0824d">shouldAllowAutoDelete_</a> ? shouldDelete : shouldDeleteLocal;   
-<a name="l00216"></a>00216     <span class="keywordtype">int</span> numOutputChannels = <a class="code" href="class_proxy_owner_u_gen_internal.html#43e6fd05ba69f1ef135463c028e656cd">getNumChannels</a>();
-<a name="l00217"></a>00217     <span class="keyword">const</span> <span class="keywordtype">int</span> arraySize = <a class="code" href="class_mix_array_u_gen_internal.html#f22a183c92abb7871b44f2f003dbae50">arrayRef</a>.<a class="code" href="class_u_gen_array.html#dbc33ce837a273d3c5b198e7e2ea7c42" title="Get the available size of the UGenArray.">size</a>();
-<a name="l00218"></a>00218     <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesToProcess = <a class="code" href="class_u_gen_internal.html#66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#118a3566a4758eb4719c57843c25bd57">getBlockSize</a>();
-<a name="l00219"></a>00219     
-<a name="l00220"></a>00220     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numOutputChannels; channel++)
-<a name="l00221"></a>00221     {
-<a name="l00222"></a>00222         <span class="keywordtype">float</span>* <span class="keyword">const</span> outputSamples = <a class="code" href="class_proxy_owner_u_gen_internal.html#c415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#af9b03d885dd885b748d4122d7d760a4">getSampleData</a>();     
-<a name="l00223"></a>00223         memset(outputSamples, 0, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
-<a name="l00224"></a>00224         
-<a name="l00225"></a>00225         <span class="keywordflow">for</span>(<span class="keywordtype">int</span> arrayIndex = 0; arrayIndex &lt; arraySize; arrayIndex++)
-<a name="l00226"></a>00226         {
-<a name="l00227"></a>00227             shouldDeleteLocal = <span class="keyword">false</span>;
-<a name="l00228"></a>00228             <span class="keywordtype">float</span>* <span class="keyword">const</span> channelSamples = <a class="code" href="class_mix_array_u_gen_internal.html#f22a183c92abb7871b44f2f003dbae50">arrayRef</a>[arrayIndex].processBlock(shouldDeleteToPass, blockID, channel);
-<a name="l00229"></a>00229             
-<a name="l00230"></a>00230             <a class="code" href="class_v_f_p.html#41778dbdc3fcb64f6ffbe0c50bbb7f32">VFP::add</a>(outputSamples, channelSamples, outputSamples, numSamplesToProcess);            
-<a name="l00231"></a>00231         }
-<a name="l00232"></a>00232     }
-<a name="l00233"></a>00233 }
-<a name="l00234"></a>00234 
-<a name="l00235"></a>00235 
-<a name="l00236"></a>00236 <span class="keywordtype">void</span> <a class="code" href="class_mul_add_u_gen_internal.html#7b75d4d4091f2849a83ad0b4961d9a2e" title="Process a block of samples for this blockID and channel.">MulAddUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
-<a name="l00237"></a>00237 {
-<a name="l00238"></a>00238     <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
-<a name="l00239"></a>00239     <span class="keywordtype">float</span>* <span class="keyword">const</span> outputSamples = uGenOutput.getSampleData();
-<a name="l00240"></a>00240     <span class="keywordtype">float</span>* <span class="keyword">const</span> inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
-<a name="l00241"></a>00241     <span class="keywordtype">float</span>* <span class="keyword">const</span> mulSamples = inputs[Mul].processBlock(shouldDelete, blockID, channel);
-<a name="l00242"></a>00242     <span class="keywordtype">float</span>* <span class="keyword">const</span> addSamples = inputs[Add].processBlock(shouldDelete, blockID, channel); 
-<a name="l00243"></a>00243     <a class="code" href="class_v_f_p.html#84429d1b6a72af8b89d5f22261fec4a4">VFP::muladd</a>(inputSamples, mulSamples, addSamples, outputSamples, numSamplesToProcess);
-<a name="l00244"></a>00244 }
-<a name="l00245"></a>00245 
+<a name="l00202"></a>00202     <span class="keywordtype">bool</span> shouldDeleteLocal = <span class="keyword">false</span>;
+<a name="l00203"></a>00203     <span class="keywordtype">bool</span>&amp; shouldDeleteToPass = <a class="code" href="class_mix_u_gen_internal.html#c44b80804914f2ca56a3001415d1505e">shouldAllowAutoDelete_</a> ? shouldDelete : shouldDeleteLocal;   
+<a name="l00204"></a>00204     <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesToProcess = <a class="code" href="class_u_gen_internal.html#66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#118a3566a4758eb4719c57843c25bd57">getBlockSize</a>();
+<a name="l00205"></a>00205     <span class="keywordtype">float</span>* <span class="keyword">const</span> outputSamples = <a class="code" href="class_u_gen_internal.html#66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#2f81d76a08bdae1136fb9eb94c34aa14">getSampleData</a>();
+<a name="l00206"></a>00206     <span class="keywordtype">float</span>* <span class="keyword">const</span> channelSamples = <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>-&gt;<a class="code" href="class_u_gen.html#326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDeleteToPass, blockID, channel);
+<a name="l00207"></a>00207     
+<a name="l00208"></a>00208     memcpy(outputSamples, channelSamples, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00209"></a>00209     
+<a name="l00210"></a>00210     channel++;
+<a name="l00211"></a>00211     
+<a name="l00212"></a>00212     <span class="keywordtype">int</span> numChannels = <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>-&gt;<a class="code" href="class_u_gen.html#996ea2091a1af960134353f9780f2ae9" title="Get the number of channels (i.e., number of internals).">getNumChannels</a>();
+<a name="l00213"></a>00213     
+<a name="l00214"></a>00214     <span class="keywordflow">for</span>(<span class="comment">/* leave channel value alone */</span>; channel &lt; numChannels; channel++)
+<a name="l00215"></a>00215     {
+<a name="l00216"></a>00216         shouldDeleteLocal = <span class="keyword">false</span>;
+<a name="l00217"></a>00217         <span class="keywordtype">float</span>* <span class="keyword">const</span> channelSamples = <a class="code" href="class_u_gen_internal.html#ac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>-&gt;<a class="code" href="class_u_gen.html#326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDeleteToPass, blockID, channel);
+<a name="l00218"></a>00218         
+<a name="l00219"></a>00219         <a class="code" href="class_v_f_p.html#41778dbdc3fcb64f6ffbe0c50bbb7f32">VFP::add</a>(outputSamples, channelSamples, outputSamples, numSamplesToProcess);
+<a name="l00220"></a>00220     }   
+<a name="l00221"></a>00221 }
+<a name="l00222"></a>00222 
+<a name="l00223"></a>00223 
+<a name="l00224"></a>00224 <span class="keywordtype">void</span> <a class="code" href="class_mix_array_u_gen_internal.html#9daadccd7c9358f91b835c5abaf62352" title="Process a block of samples for this blockID and channel.">MixArrayUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*channel*/</span>) throw()
+<a name="l00225"></a>00225 {   
+<a name="l00226"></a>00226     <span class="keywordtype">bool</span> shouldDeleteLocal;
+<a name="l00227"></a>00227     <span class="keywordtype">bool</span>&amp; shouldDeleteToPass = <a class="code" href="class_mix_array_u_gen_internal.html#7bbb2e784c67ccdfec6b560304a0824d">shouldAllowAutoDelete_</a> ? shouldDelete : shouldDeleteLocal;   
+<a name="l00228"></a>00228     <span class="keywordtype">int</span> numOutputChannels = <a class="code" href="class_proxy_owner_u_gen_internal.html#43e6fd05ba69f1ef135463c028e656cd">getNumChannels</a>();
+<a name="l00229"></a>00229     <span class="keyword">const</span> <span class="keywordtype">int</span> arraySize = <a class="code" href="class_mix_array_u_gen_internal.html#f22a183c92abb7871b44f2f003dbae50">arrayRef</a>.<a class="code" href="class_u_gen_array.html#dbc33ce837a273d3c5b198e7e2ea7c42" title="Get the available size of the UGenArray.">size</a>();
+<a name="l00230"></a>00230     <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesToProcess = <a class="code" href="class_u_gen_internal.html#66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#118a3566a4758eb4719c57843c25bd57">getBlockSize</a>();
+<a name="l00231"></a>00231     
+<a name="l00232"></a>00232     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numOutputChannels; channel++)
+<a name="l00233"></a>00233     {
+<a name="l00234"></a>00234         <span class="keywordtype">float</span>* <span class="keyword">const</span> outputSamples = <a class="code" href="class_proxy_owner_u_gen_internal.html#c415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#af9b03d885dd885b748d4122d7d760a4">getSampleData</a>();     
+<a name="l00235"></a>00235         memset(outputSamples, 0, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00236"></a>00236         
+<a name="l00237"></a>00237         <span class="keywordflow">for</span>(<span class="keywordtype">int</span> arrayIndex = 0; arrayIndex &lt; arraySize; arrayIndex++)
+<a name="l00238"></a>00238         {
+<a name="l00239"></a>00239             shouldDeleteLocal = <span class="keyword">false</span>;
+<a name="l00240"></a>00240             <span class="keywordtype">float</span>* <span class="keyword">const</span> channelSamples = <a class="code" href="class_mix_array_u_gen_internal.html#f22a183c92abb7871b44f2f003dbae50">arrayRef</a>[arrayIndex].processBlock(shouldDeleteToPass, blockID, channel);
+<a name="l00241"></a>00241             
+<a name="l00242"></a>00242             <a class="code" href="class_v_f_p.html#41778dbdc3fcb64f6ffbe0c50bbb7f32">VFP::add</a>(outputSamples, channelSamples, outputSamples, numSamplesToProcess);            
+<a name="l00243"></a>00243         }
+<a name="l00244"></a>00244     }
+<a name="l00245"></a>00245 }
 <a name="l00246"></a>00246 
 <a name="l00247"></a>00247 
-<a name="l00248"></a>00248 <span class="keywordtype">void</span> <a class="code" href="class_lin_lin_scalar_u_gen_internal.html#e53aedda4e9a56cc79ac4ea1d3870e3f" title="Process a block of samples for this blockID and channel.">LinLinScalarUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
+<a name="l00248"></a>00248 <span class="keywordtype">void</span> <a class="code" href="class_mul_add_u_gen_internal.html#7b75d4d4091f2849a83ad0b4961d9a2e" title="Process a block of samples for this blockID and channel.">MulAddUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
 <a name="l00249"></a>00249 {
 <a name="l00250"></a>00250     <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
 <a name="l00251"></a>00251     <span class="keywordtype">float</span>* <span class="keyword">const</span> outputSamples = uGenOutput.getSampleData();
-<a name="l00252"></a>00252     <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
-<a name="l00253"></a>00253     <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inLowSamples = inputs[InLow].processBlock(shouldDelete, blockID, channel);
-<a name="l00254"></a>00254     <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inHighSamples = inputs[InHigh].processBlock(shouldDelete, blockID, channel);
-<a name="l00255"></a>00255     <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> outLowSamples = inputs[OutLow].processBlock(shouldDelete, blockID, channel);
-<a name="l00256"></a>00256     <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> outHighSamples = inputs[OutHigh].processBlock(shouldDelete, blockID, channel);
-<a name="l00257"></a>00257     
-<a name="l00258"></a>00258     <a class="code" href="class_v_f_p.html#fa4e20e8fde85c5cca7f767d40a6f3f2">VFP::linlin</a>(inputSamples, 
-<a name="l00259"></a>00259                 inLowSamples, inHighSamples, 
-<a name="l00260"></a>00260                 outLowSamples, outHighSamples, 
-<a name="l00261"></a>00261                 outputSamples, numSamplesToProcess);
-<a name="l00262"></a>00262 }
-<a name="l00263"></a>00263 
-<a name="l00264"></a>00264 
-<a name="l00265"></a>00265 <span class="keywordtype">void</span> <a class="code" href="class_lin_lin_signal_u_gen_internal.html#3fb4e1bae45c1a845fe93090e1a872d7" title="Process a block of samples for this blockID and channel.">LinLinSignalUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
-<a name="l00266"></a>00266 {
-<a name="l00267"></a>00267     <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
-<a name="l00268"></a>00268     <span class="keywordtype">float</span>* <span class="keyword">const</span> outputSamples = uGenOutput.getSampleData();
-<a name="l00269"></a>00269     <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
-<a name="l00270"></a>00270     <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inLowSamples = inputs[InLow].processBlock(shouldDelete, blockID, channel);
-<a name="l00271"></a>00271     <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inHighSamples = inputs[InHigh].processBlock(shouldDelete, blockID, channel);
-<a name="l00272"></a>00272     <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> outLowSamples = inputs[OutLow].processBlock(shouldDelete, blockID, channel);
-<a name="l00273"></a>00273     <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> outHighSamples = inputs[OutHigh].processBlock(shouldDelete, blockID, channel);
-<a name="l00274"></a>00274     
-<a name="l00275"></a>00275     <a class="code" href="class_v_f_p.html#fa4e20e8fde85c5cca7f767d40a6f3f2">VFP::linlin</a>(inputSamples, 
-<a name="l00276"></a>00276                 inLowSamples, inHighSamples, 
-<a name="l00277"></a>00277                 outLowSamples, outHighSamples, 
-<a name="l00278"></a>00278                 outputSamples, numSamplesToProcess);
-<a name="l00279"></a>00279 }
-<a name="l00280"></a>00280 
-<a name="l00281"></a>00281 
-<a name="l00282"></a>00282 <a class="code" href="ugen___standard_header_8h.html#c007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
-<a name="l00283"></a>00283 
-<a name="l00284"></a>00284 <span class="preprocessor">#endif</span>
+<a name="l00252"></a>00252     <span class="keywordtype">float</span>* <span class="keyword">const</span> inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
+<a name="l00253"></a>00253     <span class="keywordtype">float</span>* <span class="keyword">const</span> mulSamples = inputs[Mul].processBlock(shouldDelete, blockID, channel);
+<a name="l00254"></a>00254     <span class="keywordtype">float</span>* <span class="keyword">const</span> addSamples = inputs[Add].processBlock(shouldDelete, blockID, channel); 
+<a name="l00255"></a>00255     <a class="code" href="class_v_f_p.html#84429d1b6a72af8b89d5f22261fec4a4">VFP::muladd</a>(inputSamples, mulSamples, addSamples, outputSamples, numSamplesToProcess);
+<a name="l00256"></a>00256 }
+<a name="l00257"></a>00257 
+<a name="l00258"></a>00258 
+<a name="l00259"></a>00259 
+<a name="l00260"></a>00260 <span class="keywordtype">void</span> <a class="code" href="class_lin_lin_scalar_u_gen_internal.html#e53aedda4e9a56cc79ac4ea1d3870e3f" title="Process a block of samples for this blockID and channel.">LinLinScalarUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
+<a name="l00261"></a>00261 {
+<a name="l00262"></a>00262     <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
+<a name="l00263"></a>00263     <span class="keywordtype">float</span>* <span class="keyword">const</span> outputSamples = uGenOutput.getSampleData();
+<a name="l00264"></a>00264     <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
+<a name="l00265"></a>00265     <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inLowSamples = inputs[InLow].processBlock(shouldDelete, blockID, channel);
+<a name="l00266"></a>00266     <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inHighSamples = inputs[InHigh].processBlock(shouldDelete, blockID, channel);
+<a name="l00267"></a>00267     <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> outLowSamples = inputs[OutLow].processBlock(shouldDelete, blockID, channel);
+<a name="l00268"></a>00268     <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> outHighSamples = inputs[OutHigh].processBlock(shouldDelete, blockID, channel);
+<a name="l00269"></a>00269     
+<a name="l00270"></a>00270     <a class="code" href="class_v_f_p.html#fa4e20e8fde85c5cca7f767d40a6f3f2">VFP::linlin</a>(inputSamples, 
+<a name="l00271"></a>00271                 inLowSamples, inHighSamples, 
+<a name="l00272"></a>00272                 outLowSamples, outHighSamples, 
+<a name="l00273"></a>00273                 outputSamples, numSamplesToProcess);
+<a name="l00274"></a>00274 }
+<a name="l00275"></a>00275 
+<a name="l00276"></a>00276 
+<a name="l00277"></a>00277 <span class="keywordtype">void</span> <a class="code" href="class_lin_lin_signal_u_gen_internal.html#3fb4e1bae45c1a845fe93090e1a872d7" title="Process a block of samples for this blockID and channel.">LinLinSignalUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
+<a name="l00278"></a>00278 {
+<a name="l00279"></a>00279     <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
+<a name="l00280"></a>00280     <span class="keywordtype">float</span>* <span class="keyword">const</span> outputSamples = uGenOutput.getSampleData();
+<a name="l00281"></a>00281     <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
+<a name="l00282"></a>00282     <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inLowSamples = inputs[InLow].processBlock(shouldDelete, blockID, channel);
+<a name="l00283"></a>00283     <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inHighSamples = inputs[InHigh].processBlock(shouldDelete, blockID, channel);
+<a name="l00284"></a>00284     <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> outLowSamples = inputs[OutLow].processBlock(shouldDelete, blockID, channel);
+<a name="l00285"></a>00285     <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> outHighSamples = inputs[OutHigh].processBlock(shouldDelete, blockID, channel);
+<a name="l00286"></a>00286     
+<a name="l00287"></a>00287     <a class="code" href="class_v_f_p.html#fa4e20e8fde85c5cca7f767d40a6f3f2">VFP::linlin</a>(inputSamples, 
+<a name="l00288"></a>00288                 inLowSamples, inHighSamples, 
+<a name="l00289"></a>00289                 outLowSamples, outHighSamples, 
+<a name="l00290"></a>00290                 outputSamples, numSamplesToProcess);
+<a name="l00291"></a>00291 }
+<a name="l00292"></a>00292 
+<a name="l00293"></a>00293 
+<a name="l00294"></a>00294 <a class="code" href="ugen___standard_header_8h.html#c007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
+<a name="l00295"></a>00295 
+<a name="l00296"></a>00296 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:10 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:06 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

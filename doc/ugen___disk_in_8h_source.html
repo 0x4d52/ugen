@@ -22,7 +22,7 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-<h1>juce/io/ugen_DiskIn.h</h1><a href="ugen___disk_in_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_DiskIn.h 77 2010-05-24 10:34:11Z 0x4d52 $</span>
+<h1>juce/io/ugen_DiskIn.h</h1><a href="ugen___disk_in_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_DiskIn.h 89 2010-07-09 16:20:21Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/juce/io/ugen_DiskIn.h $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -102,12 +102,12 @@
 <a name="l00082"></a>00082         <span class="keywordflow">return</span> <a class="code" href="class_disk_in.html" title="Streams a soundfile from disk.">DiskIn</a> (file, loopFlag, startTime, numFrames); 
 <a name="l00083"></a>00083     }       
 <a name="l00084"></a>00084     
-<a name="l00085"></a><a class="code" href="class_disk_in.html#28e27eee67e9efbae88e40664294f352">00085</a>     <span class="keyword">inline</span> UGen <a class="code" href="namespaceugen.html#03fc298ec8d868a64dbc5d353777801d" title="SC compatability.">ar</a> (File <span class="keyword">const</span>&amp; file, <span class="keywordtype">bool</span> loopFlag = <span class="keyword">false</span>, <span class="keyword">const</span> <span class="keywordtype">double</span> startTime = 0.0, <span class="keyword">const</span> <span class="keywordtype">int</span> numFrames = 32768) throw() 
+<a name="l00085"></a><a class="code" href="class_disk_in.html#28e27eee67e9efbae88e40664294f352">00085</a>     <span class="keyword">inline</span> UGen <a class="code" href="namespaceugen.html#03fc298ec8d868a64dbc5d353777801d">ar</a> (File <span class="keyword">const</span>&amp; file, <span class="keywordtype">bool</span> loopFlag = <span class="keyword">false</span>, <span class="keyword">const</span> <span class="keywordtype">double</span> startTime = 0.0, <span class="keyword">const</span> <span class="keywordtype">int</span> numFrames = 32768) throw() 
 <a name="l00086"></a>00086     { 
 <a name="l00087"></a>00087         <span class="keywordflow">return</span> <a class="code" href="class_disk_in.html" title="Streams a soundfile from disk.">DiskIn</a> (file, loopFlag, startTime, numFrames); 
 <a name="l00088"></a>00088     } 
 <a name="l00089"></a>00089     
-<a name="l00090"></a><a class="code" href="class_disk_in.html#2e58c7c2828a0694e641c547297ab0bd">00090</a>     <span class="keyword">inline</span> UGen <a class="code" href="namespaceugen.html#03fc298ec8d868a64dbc5d353777801d" title="SC compatability.">ar</a> (String <span class="keyword">const</span>&amp; path, <span class="keywordtype">bool</span> loopFlag = <span class="keyword">false</span>, <span class="keyword">const</span> <span class="keywordtype">double</span> startTime = 0.0, <span class="keyword">const</span> <span class="keywordtype">int</span> numFrames = 32768) throw() 
+<a name="l00090"></a><a class="code" href="class_disk_in.html#2e58c7c2828a0694e641c547297ab0bd">00090</a>     <span class="keyword">inline</span> UGen <a class="code" href="namespaceugen.html#03fc298ec8d868a64dbc5d353777801d">ar</a> (String <span class="keyword">const</span>&amp; path, <span class="keywordtype">bool</span> loopFlag = <span class="keyword">false</span>, <span class="keyword">const</span> <span class="keywordtype">double</span> startTime = 0.0, <span class="keyword">const</span> <span class="keywordtype">int</span> numFrames = 32768) throw() 
 <a name="l00091"></a>00091     { 
 <a name="l00092"></a>00092         <span class="keywordflow">return</span> <a class="code" href="class_disk_in.html" title="Streams a soundfile from disk.">DiskIn</a> (path, loopFlag, startTime, numFrames); 
 <a name="l00093"></a>00093     } 
@@ -126,14 +126,11 @@
 <a name="l00106"></a>00106     <span class="keywordtype">void</span> initWithJuceFile(File <span class="keyword">const</span>&amp; file, <span class="keywordtype">bool</span> loopFlag = <span class="keyword">false</span>, <span class="keyword">const</span> <span class="keywordtype">double</span> startTime = 0.0, <span class="keyword">const</span> <span class="keywordtype">int</span> numFrames = 32768) throw();
 <a name="l00107"></a>00107 };
 <a name="l00108"></a>00108 
-<a name="l00109"></a>00109 <span class="preprocessor">#if defined(UGEN_USER_MODE) &amp;&amp; defined(UGEN_SCSTYLE)</span>
-<a name="l00110"></a>00110 <span class="preprocessor"></span><span class="preprocessor">#define DiskIn DiskIn()</span>
-<a name="l00111"></a>00111 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00112"></a>00112 <span class="preprocessor"></span>
-<a name="l00113"></a>00113 
-<a name="l00114"></a>00114 <span class="preprocessor">#endif // _UGEN_ugen_DiskIn_H_</span>
+<a name="l00109"></a>00109 
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111 <span class="preprocessor">#endif // _UGEN_ugen_DiskIn_H_</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:10 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:06 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

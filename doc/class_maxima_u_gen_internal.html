@@ -42,6 +42,8 @@ Inherits <a class="el" href="class_u_gen_internal.html">UGenInternal</a>.
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_maxima_u_gen_internal.html#f49800478df156e5b7e46f67ad1fd440">MaximaUGenInternal</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input)  throw ()</td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_maxima_u_gen_internal.html#eafe1bb70f9e60d43ccb60eade84ab53">getChannel</a> (const int channel)  throw ()</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_maxima_u_gen_internal.html#c71e3c1b3748288ae49afc30fb0b7f32">processBlock</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Process a block of samples for this blockID and channel.  <a href="#c71e3c1b3748288ae49afc30fb0b7f32"></a><br></td></tr>
@@ -76,7 +78,7 @@ Inherits <a class="el" href="class_u_gen_internal.html">UGenInternal</a>.
 </table>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___maxima_8h_source.html#l00054">54</a> of file <a class="el" href="ugen___maxima_8h_source.html">ugen_Maxima.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___maxima_8h_source.html#l00056">56</a> of file <a class="el" href="ugen___maxima_8h_source.html">ugen_Maxima.h</a>.</p>
 
 </div>
 </div><p>
@@ -104,6 +106,30 @@ Inherits <a class="el" href="class_u_gen_internal.html">UGenInternal</a>.
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
+<a class="anchor" name="eafe1bb70f9e60d43ccb60eade84ab53"></a><!-- doxytag: member="MaximaUGenInternal::getChannel" ref="eafe1bb70f9e60d43ccb60eade84ab53" args="(const int channel)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> * MaximaUGenInternal::getChannel           </td>
+          <td>(</td>
+          <td class="paramtype">const int&nbsp;</td>
+          <td class="paramname"> <em>channel</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>  throw ()<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#6838029815ab52d3263cfacb6c584d2f">UGenInternal</a>.</p>
+
+<p>Definition at line <a class="el" href="ugen___maxima_8cpp_source.html#l00050">50</a> of file <a class="el" href="ugen___maxima_8cpp_source.html">ugen_Maxima.cpp</a>.</p>
+
+</div>
+</div><p>
 <a class="anchor" name="c71e3c1b3748288ae49afc30fb0b7f32"></a><!-- doxytag: member="MaximaUGenInternal::processBlock" ref="c71e3c1b3748288ae49afc30fb0b7f32" args="(bool &amp;shouldDelete, const unsigned int blockID, const int channel)" -->
 <div class="memitem">
 <div class="memproto">
@@ -149,7 +175,7 @@ This is the main rendering function and needs to be implement by all subclasses.
 
 <p>Implements <a class="el" href="class_u_gen_internal.html#e1c9c941ea6f372d8af8cc5f9ae32ace">UGenInternal</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___maxima_8cpp_source.html#l00050">50</a> of file <a class="el" href="ugen___maxima_8cpp_source.html">ugen_Maxima.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___maxima_8cpp_source.html#l00055">55</a> of file <a class="el" href="ugen___maxima_8cpp_source.html">ugen_Maxima.cpp</a>.</p>
 
 </div>
 </div><p>
@@ -167,7 +193,7 @@ This is the main rendering function and needs to be implement by all subclasses.
 
 <p>
 
-<p>Definition at line <a class="el" href="ugen___maxima_8h_source.html#l00057">57</a> of file <a class="el" href="ugen___maxima_8h_source.html">ugen_Maxima.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___maxima_8h_source.html#l00059">59</a> of file <a class="el" href="ugen___maxima_8h_source.html">ugen_Maxima.h</a>.</p>
 
 </div>
 </div><p>
@@ -184,14 +210,14 @@ This is the main rendering function and needs to be implement by all subclasses.
 
 <p>
 
-<p>Definition at line <a class="el" href="ugen___maxima_8h_source.html#l00058">58</a> of file <a class="el" href="ugen___maxima_8h_source.html">ugen_Maxima.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___maxima_8h_source.html#l00060">60</a> of file <a class="el" href="ugen___maxima_8h_source.html">ugen_Maxima.h</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>analysis/<a class="el" href="ugen___maxima_8h_source.html">ugen_Maxima.h</a><li>analysis/<a class="el" href="ugen___maxima_8cpp_source.html">ugen_Maxima.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 24 12:17:17 2010 for ugen by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jul 19 08:38:12 2010 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>
