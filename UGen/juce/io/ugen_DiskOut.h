@@ -72,46 +72,17 @@ public:
 	{ 
 		return DiskOut (file, input, overwriteExisitingFile, bitDepth); 
 	}
-	
-	inline UGen ar (File const& file, UGen const& input, bool overwriteExisitingFile = false, int bitDepth = 24)  throw()
-	{ 
-		return DiskOut (file, input, overwriteExisitingFile, bitDepth); 
-	}
-	
+		
 	static inline UGen AR (String const& path, UGen const& input, bool overwriteExisitingFile = false, int bitDepth = 24)  throw()
 	{ 
 		return DiskOut (path, input, overwriteExisitingFile, bitDepth); 
 	}
-	
-	inline UGen ar (String const& path, UGen const& input, bool overwriteExisitingFile = false, int bitDepth = 24)  throw()
-	{ 
-		return DiskOut (path, input, overwriteExisitingFile, bitDepth); 
-	}
-	
+		
 	static inline UGen AR (const File::SpecialLocationType directory, UGen const& input, bool overwriteExisitingFile = false, int bitDepth = 24)  throw()
 	{ 
 		return DiskOut (directory, input, overwriteExisitingFile, bitDepth); 
 	}
 	
-	inline UGen ar (const File::SpecialLocationType directory, UGen const& input, bool overwriteExisitingFile = false, int bitDepth = 24)  throw()
-	{ 
-		return DiskOut (directory, input, overwriteExisitingFile, bitDepth); 
-	}
-		
-	inline UGen operator() (File const& file, UGen const& input, bool overwriteExisitingFile = false, int bitDepth = 24)  throw()
-	{ 
-		return DiskOut (file, input, overwriteExisitingFile, bitDepth); 
-	}
-	
-	inline UGen operator() (String const& path, UGen const& input, bool overwriteExisitingFile = false, int bitDepth = 24)  throw()
-	{ 
-		return DiskOut (path, input, overwriteExisitingFile, bitDepth); 
-	}
-	
-	inline UGen operator() (const File::SpecialLocationType directory, UGen const& input, bool overwriteExisitingFile = false, int bitDepth = 24)  throw()
-	{ 
-		return DiskOut (directory, input, overwriteExisitingFile, bitDepth); 
-	}
 	
 private:
 	void initWithJuceFile(File const& file, UGen const& input, bool overwriteExisitingFile = false, int bitDepth = 24) throw(); 

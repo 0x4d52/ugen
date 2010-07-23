@@ -166,16 +166,7 @@ public:
 	
 	/// Control rate @see Mix (UGen const& array, bool shouldAllowAutoDelete)
 	static inline UGen KR (UGen const& array, bool shouldAllowAutoDelete = true) throw()		{ return UGen(Mix (array, shouldAllowAutoDelete)).kr(); } 
-	
-	/// Audio rate SC compatability @see Mix (UGen const& array, bool shouldAllowAutoDelete)
-	inline UGen ar (UGen const& array, bool shouldAllowAutoDelete = true) throw()				{ return Mix (array, shouldAllowAutoDelete);			} 
-	
-	/// Control rate SC compatability @see Mix (UGen const& array, bool shouldAllowAutoDelete)
-	inline UGen kr (UGen const& array, bool shouldAllowAutoDelete = true) throw()				{ return UGen(Mix (array, shouldAllowAutoDelete)).kr(); } 
-	
-	/// @internal
-	inline UGen operator() (UGen const& array, bool shouldAllowAutoDelete = true) throw()		{ return Mix (array, shouldAllowAutoDelete);			} 
-	
+		
 	/** %Mix UGen channels to a single channel using a pointer to a UGen.
 	 @param array					A pointer to the UGen to be mixed.
 									Make sure the object this points to is not deleted before this object.
@@ -190,16 +181,7 @@ public:
 	
 	/// Control rate @see Mix (UGen* array, bool shouldAllowAutoDelete)
 	static inline UGen KR (UGen* array, bool shouldAllowAutoDelete = true) throw()				{ return UGen(Mix (array, shouldAllowAutoDelete)).kr(); } 
-	
-	/// Audio rate SC compatability @see Mix (UGen* array, bool shouldAllowAutoDelete)
-	inline UGen ar (UGen* array, bool shouldAllowAutoDelete = true) throw()						{ return Mix (array, shouldAllowAutoDelete);			} 
-	
-	/// Control rate SC compatability @see Mix (UGen* array, bool shouldAllowAutoDelete)
-	inline UGen kr (UGen* array, bool shouldAllowAutoDelete = true) throw()						{ return UGen(Mix (array, shouldAllowAutoDelete)).kr(); } 
-	
-	/// @internal
-	inline UGen operator() (UGen* array, bool shouldAllowAutoDelete = true) throw()				{ return Mix (array, shouldAllowAutoDelete);			} 
-	
+		
 	/** %Mix a UGenArray to a multichannel UGen using a reference to a UGenArray.
 	 @param array					A reference to the UGenArray to be mixed.
 	 @param shouldAllowAutoDelete	If true this behaves like most other UGenInternal objects
@@ -213,16 +195,7 @@ public:
 	
 	/// Control rate @see Mix (UGenArray const& array, bool shouldAllowAutoDelete)
 	static inline UGen KR (UGenArray const& array, bool shouldAllowAutoDelete = true) throw()	{ return UGen(Mix (array, shouldAllowAutoDelete)).kr(); } 
-	
-	/// Audio rate SC compatability @see Mix (UGenArray const& array, bool shouldAllowAutoDelete)
-	inline UGen ar (UGenArray const& array, bool shouldAllowAutoDelete = true) throw()			{ return Mix (array, shouldAllowAutoDelete);			} 
-	
-	/// Control rate SC compatability @see Mix (UGenArray const& array, bool shouldAllowAutoDelete)
-	inline UGen kr (UGenArray const& array, bool shouldAllowAutoDelete = true) throw()			{ return UGen(Mix (array, shouldAllowAutoDelete)).kr(); } 
-	
-	/// @internal
-	inline UGen operator() (UGenArray const& array, bool shouldAllowAutoDelete = true) throw()	{ return Mix (array, shouldAllowAutoDelete);			} 
-	
+		
 	/** %Mix a UGenArray to a multichannel UGen using a pointer to a UGenArray.
 	 @param array					A pointer to the UGenArray to be mixed.
 									Make sure the object this points to is not deleted before this object.
@@ -238,15 +211,6 @@ public:
 	/// Control rate @see Mix (UGenArray* array, bool shouldAllowAutoDelete)
 	static inline UGen KR (UGenArray* array, bool shouldAllowAutoDelete = true) throw()			{ return UGen(Mix (array, shouldAllowAutoDelete)).kr(); } 
 	
-	/// Audio rate SC compatability @see Mix (UGenArray* array, bool shouldAllowAutoDelete)
-	inline UGen ar (UGenArray* array, bool shouldAllowAutoDelete = true) throw()				{ return Mix (array, shouldAllowAutoDelete);			} 
-	
-	/// Control rate SC compatability @see Mix (UGenArray* array, bool shouldAllowAutoDelete)
-	inline UGen kr (UGenArray* array, bool shouldAllowAutoDelete = true) throw()				{ return UGen(Mix (array, shouldAllowAutoDelete)).kr(); } 
-	
-	/// @internal
-	inline UGen operator() (UGenArray* array, bool shouldAllowAutoDelete = true) throw()		{ return Mix (array, shouldAllowAutoDelete);			} 
-
 private:
 	void constructMixArrayWithProxies(MixArrayUGenInternal* internal);
 };
@@ -366,7 +330,7 @@ protected:
 								EVENT_UGEN_NUMCHANNELS_DOC(MixFill)																\
 								@param	shouldAllowAutoDelete	If true this behaves like most other UGen classes				\
 																i.e., it may be deleted by a DoneAction (e.g., an envelope		\
-																ending). If false this protects UGen instances further down		\
+																ending). If false this protects UGen instances further up		\
 																the chain (and itself) from being deleted by DoneActions.
 
 /** Fill a UGen array using an event and mix it down.

@@ -163,8 +163,8 @@
 			/** @internal */																										\
 			UGEN_NAME () throw() : UGen() { }																						\
 			/** Base UGEN_NAME Constuctor, use the AR() and KR() versions in user code. 
-				CONSTRUCTOR_ARGS_CALL is used as the call to the UGen constructor (including
-				the parentheses which is why they are required.
+				@code CONSTRUCTOR_ARGS_CALL @endcode is used as the call to the UGen constructor 
+				(including the parentheses which is why they are required).
 				\n\n
 				DOCS */																												\
 			UGEN_NAME CONSTRUCTOR_ARGS_DECLARE throw() : UGen CONSTRUCTOR_ARGS_CALL { }												\
@@ -719,34 +719,7 @@ public:
 	 
 	 @param actualBlockSize		The actual block size to prepare.
 	 @param blockID				The sample block ID of the block to prepare. */
-	//inline 
 	void prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw();
-//	{	
-//		ugen_assert(actualBlockSize > 0);
-//		ugen_assert(numInternalUGens > 0);
-//		ugen_assert(internalUGens != 0);
-//		
-//		bool shouldDelete = false;
-//		
-//		for(int i = 0; i < numInternalUGens; i++) {
-//			if(internalUGens[i]->shouldBeDeletedNow(blockID)) {
-//				shouldDelete = true;
-//				break;
-//			}
-//		}
-//		
-//		if(shouldDelete) {
-//			for(int i = 0; i < numInternalUGens; i++)
-//				internalUGens[i]->decrementRefCount();
-//			
-//			numInternalUGens = 1;
-//			internalUGens[0] = getNullInternal();
-//			internalUGens[0]->prepareForBlockInternal(actualBlockSize, blockID);		
-//		} else {
-//			for(int i = 0; i < numInternalUGens; i++)
-//				internalUGens[i]->prepareForBlockInternal(actualBlockSize, blockID);
-//		}
-//	}
 	
 	/// @} <!-- end Rendering --------------------------------------------------- -->
 	
@@ -1434,8 +1407,9 @@ UGen operator, (float leftOperand, UGen const& rightOperand) throw();
 #define PREDOC(DOCS) /** DOCS */
 
 /** Wrap some text in a "post" Doxygen comment, after the item to be documented. */
-//#define POSTDOC(DOCS) /**< DOCS */
-#define POSTDOC PREDOC
+#define POSTDOC(DOCS) /**< DOCS */
+//#define POSTDOC PREDOC
+
 
 #define EVENT_DOCS_OWNED(UGEN_NAME, EVENT_NAME)	/**	An event class for use with a UGEN_NAME UGen.	
 													You can use an OwnerType to reference another object when the UGen
