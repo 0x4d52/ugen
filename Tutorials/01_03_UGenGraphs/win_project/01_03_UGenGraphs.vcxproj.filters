@@ -1,0 +1,774 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4a8d3cdd-cb49-4f8d-a464-2c5f2afe94c6}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Doc">
+      <UniqueIdentifier>{77c5341d-8885-4c51-a752-86af7e742a3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{e00a622e-707b-42b4-8e5a-4289cede3599}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{966c5d41-3a39-4285-ad7e-5aba4eba4813}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="Source Files\UGen">
+      <UniqueIdentifier>{eb83ed31-2176-4b5e-aba5-9f18e47f1af6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\ApplicationStartup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MainAppWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\analysis\ugen_Amplitude.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\analysis\ugen_DataRecorder.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\analysis\ugen_Maxima.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\analysis\ugen_Poll.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\analysis\ugen_Schmidt.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\analysis\ugen_Trig.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\analysis\ugen_TrigProcess.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\basics\ugen_BinaryOpUGens.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\basics\ugen_Chain.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\basics\ugen_MappingUGens.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\basics\ugen_MixUGen.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\basics\ugen_MulAdd.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\basics\ugen_Pause.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\basics\ugen_Plug.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\basics\ugen_RawInputUGens.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\basics\ugen_ScalarUGens.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\basics\ugen_Thru.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\basics\ugen_UnaryOpUGens.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\basics\ugen_WrapFold.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\buffers\ugen_Buffer.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\buffers\ugen_IntBuffer.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\buffers\ugen_PlayBuf.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\buffers\ugen_XFadePlayBuf.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\convolution\ugen_Convolution.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\convolution\ugen_SimpleConvolution.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\core\ugen_Arrays.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\core\ugen_Bits.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\core\ugen_Deleter.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\core\ugen_ExternalControlSource.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\core\ugen_Random.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\core\ugen_SmartPointer.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\core\ugen_Text.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\core\ugen_TextFile.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\core\ugen_UGen.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\core\ugen_UGenArray.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\core\ugen_UGenInternal.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\core\ugen_Value.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\delays\ugen_BlockDelay.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\delays\ugen_Delay.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\envelopes\ugen_ASR.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\envelopes\ugen_Env.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\envelopes\ugen_EnvCurve.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\envelopes\ugen_EnvGen.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\envelopes\ugen_Lines.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\fft\ugen_FFTEngine.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\fft\ugen_FFTEngineInternal.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\fft\ugen_FFTMagnitude.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\fft\ugen_FFTMagnitudeSelection.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\filters\control\ugen_Decay.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\filters\control\ugen_Lag.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\filters\dynamics\ugen_Normaliser.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\filters\simple\ugen_HPF.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\filters\simple\ugen_LPF.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\filters\ugen_BEQ.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\filters\ugen_LeakDC.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\filters\ugen_SOS.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\gui\ugen_Scope.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\iphone\armasm\ugen_neon_Basics.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\iphone\armasm\ugen_neon_BinaryOpUGens.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\iphone\armasm\ugen_neon_Filters.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\iphone\armasm\ugen_neon_UnaryOpUGens.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\iphone\armasm\ugen_neon_Utilities.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\iphone\armasm\ugen_vfp_Basics.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\iphone\armasm\ugen_vfp_BinaryOpUGens.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\iphone\armasm\ugen_vfp_Filters.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\iphone\armasm\ugen_vfp_UnaryOpUGens.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\iphone\armasm\ugen_vfp_Utilities.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\iphone\ugen_iPhoneAudioFileDiskIn.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\iphone\ugen_iPhoneAudioFileDiskOut.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\juce\gui\ugen_JuceEnvelopeComponent.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\juce\gui\ugen_JuceMultiSlider.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\juce\gui\ugen_JuceScope.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\juce\io\ugen_AudioFilePlayer.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\juce\io\ugen_DiskIn.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\juce\io\ugen_DiskOut.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\juce\io\ugen_JuceMIDIController.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\juce\io\ugen_JuceMIDIInputBroadcaster.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\juce\io\ugen_JuceMIDIMostRecentNote.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\juce\ugen_JuceSlider.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\juce\ugen_JuceTimerDeleter.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\juce\ugen_JuceUtility.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\juce\ugen_JuceVoicer.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\neuralnet\ugen_NeuralLayer.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\neuralnet\ugen_NeuralNetwork.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\neuralnet\ugen_NeuralNetworkUGen.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\neuralnet\ugen_NeuralNode.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\neuralnet\ugen_NeuralPattern.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\noise\ugen_BrownNoise.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\noise\ugen_Dust.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\noise\ugen_LFNoise.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\noise\ugen_PinkNoise.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\noise\ugen_WhiteNoise.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\oscillators\simple\ugen_FSinOsc.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\oscillators\simple\ugen_Impulse.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\oscillators\simple\ugen_LFPulse.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\oscillators\simple\ugen_LFSaw.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\oscillators\simple\ugen_Triggers.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\oscillators\ugen_OscillatorUGens.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\oscillators\wavetable\ugen_TableOsc.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\pan\ugen_BasicPan.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\spawn\ugen_Spawn.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\spawn\ugen_Textures.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\spawn\ugen_TSpawn.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\spawn\ugen_VoicerBase.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\vec\ugen_vdsp_Basics.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\vec\ugen_vdsp_BinaryOpUGens.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\UGen\vec\ugen_vdsp_UnaryOpUGens.cpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\MainAppWindow.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MainComponent.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\doc\TutorialDoc.h">
+      <Filter>Source Files\Doc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\analysis\ugen_Amplitude.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\analysis\ugen_DataRecorder.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\analysis\ugen_Maxima.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\analysis\ugen_Poll.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\analysis\ugen_Schmidt.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\analysis\ugen_Trig.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\analysis\ugen_TrigProcess.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\basics\ugen_BinaryOpUGens.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\basics\ugen_Chain.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\basics\ugen_InlineBinaryOps.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\basics\ugen_InlineUnaryOps.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\basics\ugen_MappingUGens.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\basics\ugen_MixUGen.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\basics\ugen_MulAdd.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\basics\ugen_Pause.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\basics\ugen_Plug.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\basics\ugen_RawInputUGens.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\basics\ugen_ScalarUGens.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\basics\ugen_Temporary.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\basics\ugen_Thru.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\basics\ugen_UnaryOpUGens.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\basics\ugen_WrapFold.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\buffers\ugen_Buffer.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\buffers\ugen_IntBuffer.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\buffers\ugen_PlayBuf.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\buffers\ugen_XFadePlayBuf.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\convolution\ugen_Convolution.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\convolution\ugen_SimpleConvolution.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\core\ugen_Arrays.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\core\ugen_Bits.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\core\ugen_Constants.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\core\ugen_Deleter.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\core\ugen_ExternalControlSource.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\core\ugen_Random.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\core\ugen_SmartPointer.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\core\ugen_StandardHeader.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\core\ugen_Text.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\core\ugen_TextFile.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\core\ugen_UGen.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\core\ugen_UGenArray.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\core\ugen_UGenInternal.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\core\ugen_Value.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\delays\ugen_BlockDelay.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\delays\ugen_Delay.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\envelopes\ugen_ASR.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\envelopes\ugen_Env.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\envelopes\ugen_EnvCurve.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\envelopes\ugen_EnvGen.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\envelopes\ugen_Lines.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\fft\ugen_FFTEngine.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\fft\ugen_FFTEngineInternal.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\fft\ugen_FFTMagnitude.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\fft\ugen_FFTMagnitudeSelection.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\fftreal\Array.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\fftreal\Array.hpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\fftreal\def.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\fftreal\DynArray.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\fftreal\DynArray.hpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\fftreal\FFTReal.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\fftreal\FFTReal.hpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\fftreal\FFTRealFixLen.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\fftreal\FFTRealFixLen.hpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\fftreal\FFTRealFixLenParam.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\fftreal\FFTRealPassDirect.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\fftreal\FFTRealPassDirect.hpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\fftreal\FFTRealPassInverse.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\fftreal\FFTRealPassInverse.hpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\fftreal\FFTRealSelect.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\fftreal\FFTRealSelect.hpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\fftreal\FFTRealUseTrigo.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\fftreal\FFTRealUseTrigo.hpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\fftreal\OscSinCos.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\fftreal\OscSinCos.hpp">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\filters\control\ugen_Decay.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\filters\control\ugen_Lag.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\filters\dynamics\ugen_Normaliser.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\filters\simple\ugen_HPF.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\filters\simple\ugen_LPF.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\filters\ugen_BEQ.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\filters\ugen_LeakDC.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\filters\ugen_SOS.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\gui\ugen_GUI.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\gui\ugen_Scope.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\iphone\armasm\ugen_neon_FFTUtilities.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\iphone\armasm\ugen_neon_Utilities.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\iphone\armasm\ugen_vfp_clobbers.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\iphone\armasm\ugen_vfp_FFTUtilities.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\iphone\armasm\ugen_vfp_macros.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\iphone\armasm\ugen_vfp_Utilities.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\iphone\ugen_AudioQueueIOHost.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\iphone\ugen_iPhoneAudioFileDiskIn.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\iphone\ugen_iPhoneAudioFileDiskOut.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\iphone\ugen_NSDeleter.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\iphone\ugen_NSUtilities.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\iphone\ugen_ScopeView.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\iphone\ugen_UIAcceleration.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\iphone\ugen_UIButton.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\iphone\ugen_UIKitAUIOHost.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\iphone\ugen_UISlider.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\juce\gui\ugen_JuceEnvelopeComponent.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\juce\gui\ugen_JuceMultiSlider.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\juce\gui\ugen_JuceScope.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\juce\io\ugen_AudioFilePlayer.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\juce\io\ugen_DiskIn.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\juce\io\ugen_DiskOut.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\juce\io\ugen_JuceIOHost.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\juce\io\ugen_JuceMIDIController.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\juce\io\ugen_JuceMIDIInputBroadcaster.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\juce\io\ugen_JuceMIDIMostRecentNote.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\juce\ugen_JuceSlider.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\juce\ugen_JuceTimerDeleter.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\juce\ugen_JuceUtility.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\juce\ugen_JuceVoicer.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\neuralnet\ugen_NeuralLayer.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\neuralnet\ugen_NeuralNetwork.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\neuralnet\ugen_NeuralNetworkConfig.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\neuralnet\ugen_NeuralNetworkUGen.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\neuralnet\ugen_NeuralNode.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\neuralnet\ugen_NeuralPattern.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\noise\ugen_BrownNoise.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\noise\ugen_Dust.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\noise\ugen_LFNoise.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\noise\ugen_PinkNoise.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\noise\ugen_WhiteNoise.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\oscillators\simple\ugen_FSinOsc.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\oscillators\simple\ugen_Impulse.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\oscillators\simple\ugen_LFPulse.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\oscillators\simple\ugen_LFSaw.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\oscillators\simple\ugen_Triggers.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\oscillators\ugen_OscillatorUGens.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\oscillators\wavetable\ugen_TableOsc.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\pan\ugen_BasicPan.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\spawn\ugen_Spawn.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\spawn\ugen_Textures.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\spawn\ugen_TSpawn.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\spawn\ugen_VoicerBase.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\UGen\UGen.h">
+      <Filter>Source Files\UGen</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
