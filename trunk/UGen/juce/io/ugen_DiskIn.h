@@ -81,27 +81,7 @@ public:
 	{ 
 		return DiskIn (file, loopFlag, startTime, numFrames); 
 	} 		
-	
-	inline UGen ar (File const& file, bool loopFlag = false, const double startTime = 0.0, const int numFrames = 32768) throw() 
-	{ 
-		return DiskIn (file, loopFlag, startTime, numFrames); 
-	} 
-	
-	inline UGen ar (String const& path, bool loopFlag = false, const double startTime = 0.0, const int numFrames = 32768) throw() 
-	{ 
-		return DiskIn (path, loopFlag, startTime, numFrames); 
-	} 
 		
-	inline UGen operator() (File const& file, bool loopFlag = false, const double startTime = 0.0, const int numFrames = 32768) throw() 
-	{ 
-		return DiskIn (file, loopFlag, startTime, numFrames); 
-	} 
-	
-	inline UGen operator() (String const& path, bool loopFlag = false, const double startTime = 0.0, const int numFrames = 32768) throw() 
-	{ 
-		return DiskIn (path, loopFlag, startTime, numFrames); 
-	} 
-	
 private:
 	void initWithJuceFile(File const& file, bool loopFlag = false, const double startTime = 0.0, const int numFrames = 32768) throw();
 };

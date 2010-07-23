@@ -2169,7 +2169,7 @@ Buffer Buffer::rand2(const int size, const double positive, const int numChannel
 Buffer Buffer::exprand(const int size, const double lower, const double upper, const int numChannels) throw()
 {
 	Buffer newBuffer(BufferSpec(size, numChannels, false));
-	Ran088 random((unsigned int)newBuffer.getData() + 993877L * 4994L + ugen::rand(2876)); // seed
+	Ran088 random((unsigned long)newBuffer.getData() + 993877L * 4994L + ugen::rand(2876)); // seed
 		
 	for(int channel = 0; channel < numChannels; channel++)
 	{
@@ -2185,7 +2185,7 @@ Buffer Buffer::exprand(const int size, const double lower, const double upper, c
 Buffer Buffer::linrand(const int size, const double lower, const double upper, const int numChannels) throw()
 {
 	Buffer newBuffer(BufferSpec(size, numChannels, false));
-	Ran088 random((unsigned int)newBuffer.getData() + 1122408L * 98823L + ugen::rand(8188123)); // seed
+	Ran088 random((unsigned long)newBuffer.getData() + 1122408L * 98823L + ugen::rand(8188123)); // seed
 	
 	double range = upper-lower;
 	

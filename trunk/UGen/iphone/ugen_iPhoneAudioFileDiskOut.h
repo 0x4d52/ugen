@@ -119,17 +119,7 @@ public:
 	{ 
 		return DiskOut (path, input, overwriteExisitingFile, bitDepth); 
 	}
-	
-	inline UGen ar (Text const& path, UGen const& input, bool overwriteExisitingFile = false, int bitDepth = 24)  throw()
-	{ 
-		return DiskOut (path, input, overwriteExisitingFile, bitDepth); 
-	}
-				
-	inline UGen operator() (Text const& path, UGen const& input, bool overwriteExisitingFile = false, int bitDepth = 24)  throw()
-	{ 
-		return DiskOut (path, input, overwriteExisitingFile, bitDepth); 
-	}
-	
+		
 	
 private:
 	bool initWithAudioFileWav16(const char *audioFilePath, UGen const& input, bool overwriteExisitingFile = false) throw(); 

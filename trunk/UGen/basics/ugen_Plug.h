@@ -47,7 +47,6 @@ class PlugUGenInternal : public ProxyOwnerUGenInternal
 {
 public:
 	PlugUGenInternal(UGen const& source, bool shouldAllowAutoDelete = true) throw();
-	//UGenInternal* getKr() throw();														// necessary if there is an actual control rate version (see below)
 	void prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
@@ -96,15 +95,16 @@ protected:
 									UGen::setSource(), UGen::fadeSource()											\
 					@param shouldAllowAutoDelete	If true this behaves like most other UGen classes				\
 													i.e., it may be deleted by a DoneAction (e.g., an envelope		\
-													ending). If false this protects UGen instances further down		\
+													ending). If false this protects UGen instances further up		\
 													the chain (and itself) from being deleted by DoneActions.
 
 /** A UGen which allows repatching.
  This allows its source UGen to be changed after construction optionally with a crossfade. 
  @ingroup AllUGens ControlUGens EnvUGens
  @see UGen::setSource(), UGen::fadeSource() */
-UGenSublcassDeclaration(Plug, (source, shouldAllowAutoDelete), (UGen const& source, bool shouldAllowAutoDelete = true), COMMON_UGEN_DOCS);
-
-
+UGenSublcassDeclaration(Plug, 
+						(source, shouldAllowAutoDelete), 
+						(UGen const& source, bool shouldAllowAutoDelete = true), 
+						COMMON_UGEN_DOCS Plug_Docs);
 
 #endif // _UGEN_ugen_Plug_H_

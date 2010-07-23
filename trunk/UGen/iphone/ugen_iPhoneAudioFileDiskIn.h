@@ -133,17 +133,7 @@ public:
 	{ 
 		return DiskIn (path, loopFlag, startTime); 
 	} 	
-			
-	inline UGen ar (Text const& path, const bool loopFlag = false, const double startTime = 0.0) throw() 
-	{ 
-		return DiskIn (path, loopFlag, startTime); 
-	} 
-			
-	inline UGen operator() (Text const& path, const bool loopFlag = false, const double startTime = 0.0) throw() 
-	{ 
-		return DiskIn (path, loopFlag, startTime); 
-	} 
-		
+					
 private:
 	void initWithAudioFile(const char* audioFilePath, const bool loopFlag = false, const double startTime = 0.0) throw();
 };

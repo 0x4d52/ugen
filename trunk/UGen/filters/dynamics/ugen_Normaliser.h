@@ -39,7 +39,7 @@
 
 #include "../../core/ugen_UGen.h"
 
-
+/** @ingroup UGenInternals */
 class NormaliserUGenInternal : public UGenInternal
 {
 public:
@@ -55,7 +55,10 @@ protected:
 	Buffer inputBuffer, midBuffer, outputBuffer;
 };
 
-
+/** Normalise a signal to a specified level.
+ Not that there is a delay of double the duration argument (which defaults to 0.01s so the
+ default delay is 0.02s).
+ @ingroup AllUGens FilterUGens */
 UGenSublcassDeclarationNoDefault
 (
 	Normaliser,

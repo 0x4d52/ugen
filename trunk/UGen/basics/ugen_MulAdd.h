@@ -254,7 +254,7 @@ UGenInternalControlRateDeclaration(MulAddUGenInternal, (input, mul, add),
  tests the mul and add inputs to see if the mul and add inputs really need adding. 
  @ingroup AllUGens MathsUGens 
  @see BinaryOpMulUGen, BinaryOpAddUGen, UGen::operator*(), UGen::operator+() */
-UGenSublcassDeclaration(MulAdd, (input, mul, add),//UGenSublcassDeclarationNoDefault(MulAdd, (input, mul, add),
+UGenSublcassDeclaration(MulAdd, (input, mul, add),
 								 (UGen const& input, UGen const& mul = 1.f, UGen const& add = 0.f), 
 								 COMMON_UGEN_DOCS MulAdd_Docs);
 
