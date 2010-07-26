@@ -74,94 +74,94 @@
 <a name="l00042"></a>00042 
 <a name="l00043"></a>00043 
 <a name="l00044"></a><a class="code" href="class_neural_layer_simple_internal.html#a6d7e489aa429e7010fe1729ec664625f">00044</a> <a class="code" href="class_neural_layer_simple_internal.html#a6d7e489aa429e7010fe1729ec664625f">NeuralLayerSimpleInternal::NeuralLayerSimpleInternal</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> numNodes, <span class="keyword">const</span> <span class="keywordtype">int</span> numNodesOnPreviousLayer) <span class="keywordflow">throw</span>()
-<a name="l00045"></a>00045 :   nodes(numNodes &lt; 1 ? 1 : numNodes),
-<a name="l00046"></a>00046     outputVector(<a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;::newClear</a>(nodes.size())),
-<a name="l00047"></a>00047     inputVector(<a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;::newClear</a>(numNodesOnPreviousLayer &lt; 1 ? 1 : numNodesOnPreviousLayer)),
-<a name="l00048"></a>00048     adjustVector(<a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;::newClear</a>(inputVector.size()))
-<a name="l00049"></a>00049 {   
-<a name="l00050"></a>00050     <span class="keyword">const</span> <span class="keywordtype">int</span> numWeights = inputVector.size();
-<a name="l00051"></a>00051     <span class="keyword">const</span> <span class="keywordtype">int</span> size = nodes.size();
-<a name="l00052"></a>00052     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++)
-<a name="l00053"></a>00053     {
-<a name="l00054"></a>00054         nodes[i] = <a class="code" href="class_neural_node.html">NeuralNode</a>(numWeights);
-<a name="l00055"></a>00055     }
+<a name="l00045"></a>00045 : nodes(numNodes &lt; 1 ? 1 : numNodes),
+<a name="l00046"></a>00046  outputVector(<a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;::newClear</a>(nodes.size())),
+<a name="l00047"></a>00047  inputVector(<a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;::newClear</a>(numNodesOnPreviousLayer &lt; 1 ? 1 : numNodesOnPreviousLayer)),
+<a name="l00048"></a>00048  adjustVector(<a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;::newClear</a>(inputVector.size()))
+<a name="l00049"></a>00049 { 
+<a name="l00050"></a>00050  <span class="keyword">const</span> <span class="keywordtype">int</span> numWeights = inputVector.size();
+<a name="l00051"></a>00051  <span class="keyword">const</span> <span class="keywordtype">int</span> size = nodes.size();
+<a name="l00052"></a>00052  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++)
+<a name="l00053"></a>00053  {
+<a name="l00054"></a>00054   nodes[i] = <a class="code" href="class_neural_node.html">NeuralNode</a>(numWeights);
+<a name="l00055"></a>00055  }
 <a name="l00056"></a>00056 }
 <a name="l00057"></a>00057 
 <a name="l00058"></a><a class="code" href="class_neural_layer_simple_internal.html#a56a7e09098d1e318a8f71190b2997d3f">00058</a> <span class="keywordtype">void</span> <a class="code" href="class_neural_layer_simple_internal.html#a56a7e09098d1e318a8f71190b2997d3f">NeuralLayerSimpleInternal::init</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> weightMaximum) <span class="keywordflow">throw</span>()
 <a name="l00059"></a>00059 {
-<a name="l00060"></a>00060     <span class="keyword">const</span> <span class="keywordtype">int</span> size = nodes.size();
-<a name="l00061"></a>00061     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++)
-<a name="l00062"></a>00062     {
-<a name="l00063"></a>00063         nodes[i].init(weightMaximum);
-<a name="l00064"></a>00064     }
+<a name="l00060"></a>00060  <span class="keyword">const</span> <span class="keywordtype">int</span> size = nodes.size();
+<a name="l00061"></a>00061  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++)
+<a name="l00062"></a>00062  {
+<a name="l00063"></a>00063   nodes[i].init(weightMaximum);
+<a name="l00064"></a>00064  }
 <a name="l00065"></a>00065 }
 <a name="l00066"></a>00066 
 <a name="l00067"></a><a class="code" href="class_neural_layer_simple_internal.html#ac95856d07933f9bb2f63e31ae04e9745">00067</a> <span class="keywordtype">void</span> <a class="code" href="class_neural_layer_simple_internal.html#ac95856d07933f9bb2f63e31ae04e9745">NeuralLayerSimpleInternal::randomise</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> amount) <span class="keywordflow">throw</span>()
 <a name="l00068"></a>00068 {
-<a name="l00069"></a>00069     <span class="keyword">const</span> <span class="keywordtype">int</span> size = nodes.size();
-<a name="l00070"></a>00070     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++)
-<a name="l00071"></a>00071     {
-<a name="l00072"></a>00072         nodes[i].init(amount);
-<a name="l00073"></a>00073     }
+<a name="l00069"></a>00069  <span class="keyword">const</span> <span class="keywordtype">int</span> size = nodes.size();
+<a name="l00070"></a>00070  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++)
+<a name="l00071"></a>00071  {
+<a name="l00072"></a>00072   nodes[i].init(amount);
+<a name="l00073"></a>00073  }
 <a name="l00074"></a>00074 }
 <a name="l00075"></a>00075 
 <a name="l00076"></a><a class="code" href="class_neural_layer_simple_internal.html#a873eae093e098948ab609866d633ebf4">00076</a> <span class="keywordtype">void</span> <a class="code" href="class_neural_layer_simple_internal.html#a873eae093e098948ab609866d633ebf4">NeuralLayerSimpleInternal::set</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> node, <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a> <span class="keyword">const</span>&amp; weightVector, <span class="keyword">const</span> <span class="keywordtype">float</span> threshold) <span class="keywordflow">throw</span>()
 <a name="l00077"></a>00077 {
-<a name="l00078"></a>00078     nodes[node].set(weightVector, threshold);
+<a name="l00078"></a>00078  nodes[node].set(weightVector, threshold);
 <a name="l00079"></a>00079 }
 <a name="l00080"></a>00080 
 <a name="l00081"></a><a class="code" href="class_neural_layer_simple_internal.html#a0b8a85b7154d49de582adac766d6f8e5">00081</a> <span class="keywordtype">void</span> <a class="code" href="class_neural_layer_simple_internal.html#a0b8a85b7154d49de582adac766d6f8e5">NeuralLayerSimpleInternal::setThreshold</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> node, <span class="keyword">const</span> <span class="keywordtype">float</span> threshold) <span class="keywordflow">throw</span>()
 <a name="l00082"></a>00082 {
-<a name="l00083"></a>00083     nodes[node].setThreshold(threshold);
+<a name="l00083"></a>00083  nodes[node].setThreshold(threshold);
 <a name="l00084"></a>00084 }
 <a name="l00085"></a>00085 
 <a name="l00086"></a><a class="code" href="class_neural_layer_simple_internal.html#a3f91c6874b15a8ed0e2bf048190e11d2">00086</a> <span class="keywordtype">void</span> <a class="code" href="class_neural_layer_simple_internal.html#a3f91c6874b15a8ed0e2bf048190e11d2">NeuralLayerSimpleInternal::setWeight</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> node, <span class="keyword">const</span> <span class="keywordtype">int</span> weightIndex, <span class="keyword">const</span> <span class="keywordtype">float</span> weight) <span class="keywordflow">throw</span>()
 <a name="l00087"></a>00087 {
-<a name="l00088"></a>00088     nodes[node].setWeight(weightIndex, weight);
+<a name="l00088"></a>00088  nodes[node].setWeight(weightIndex, weight);
 <a name="l00089"></a>00089 }
 <a name="l00090"></a>00090 
 <a name="l00091"></a><a class="code" href="class_neural_layer_simple_internal.html#a7daa46df1f4db85688e404f6f1c6e4e3">00091</a> <span class="keywordtype">void</span> <a class="code" href="class_neural_layer_simple_internal.html#a7daa46df1f4db85688e404f6f1c6e4e3">NeuralLayerSimpleInternal::get</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> node, <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a> *weightVector, <span class="keywordtype">float</span>&amp; threshold) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00092"></a>00092 {
-<a name="l00093"></a>00093     nodes[node].get(weightVector, threshold); 
+<a name="l00093"></a>00093  nodes[node].get(weightVector, threshold); 
 <a name="l00094"></a>00094 }
 <a name="l00095"></a>00095 
 <a name="l00096"></a><a class="code" href="class_neural_layer_simple_internal.html#ade1b08c1fd3e1315b017b01d5d35dc2b">00096</a> <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a>&amp; <a class="code" href="class_neural_layer_simple_internal.html#ade1b08c1fd3e1315b017b01d5d35dc2b">NeuralLayerSimpleInternal::propogate</a>(<a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a> <span class="keyword">const</span>&amp; _inputVector) <span class="keywordflow">throw</span>()
 <a name="l00097"></a>00097 {
-<a name="l00098"></a>00098     memcpy(inputVector.getArray(), _inputVector.getArray(), inputVector.size() * <span class="keyword">sizeof</span>(float));
-<a name="l00099"></a>00099     
-<a name="l00100"></a>00100     <span class="keywordtype">float</span>* outputVectorPtr = outputVector.getArray();
-<a name="l00101"></a>00101     
-<a name="l00102"></a>00102     <a class="code" href="class_neural_node.html">NeuralNode</a> *nodesPtr = nodes.getArray();
-<a name="l00103"></a>00103     <span class="keyword">const</span> <span class="keywordtype">int</span> size = nodes.size();
-<a name="l00104"></a>00104     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++)
-<a name="l00105"></a>00105     {
-<a name="l00106"></a>00106         outputVectorPtr[i] = nodesPtr[i].<a class="code" href="class_neural_node.html#ad4a691a957119031a8630bf102d12212">propogate</a>(inputVector);
-<a name="l00107"></a>00107     }   
-<a name="l00108"></a>00108     
-<a name="l00109"></a>00109     <span class="keywordflow">return</span> outputVector;
+<a name="l00098"></a>00098  memcpy(inputVector.getArray(), _inputVector.getArray(), inputVector.size() * <span class="keyword">sizeof</span>(float));
+<a name="l00099"></a>00099  
+<a name="l00100"></a>00100  <span class="keywordtype">float</span>* outputVectorPtr = outputVector.getArray();
+<a name="l00101"></a>00101  
+<a name="l00102"></a>00102  <a class="code" href="class_neural_node.html">NeuralNode</a> *nodesPtr = nodes.getArray();
+<a name="l00103"></a>00103  <span class="keyword">const</span> <span class="keywordtype">int</span> size = nodes.size();
+<a name="l00104"></a>00104  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++)
+<a name="l00105"></a>00105  {
+<a name="l00106"></a>00106   outputVectorPtr[i] = nodesPtr[i].<a class="code" href="class_neural_node.html#ad4a691a957119031a8630bf102d12212">propogate</a>(inputVector);
+<a name="l00107"></a>00107  } 
+<a name="l00108"></a>00108  
+<a name="l00109"></a>00109  <span class="keywordflow">return</span> outputVector;
 <a name="l00110"></a>00110 }
 <a name="l00111"></a>00111 
 <a name="l00112"></a><a class="code" href="class_neural_layer_simple_internal.html#aa2f7f26f9e74ab90e11205b73ab6a947">00112</a> <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a>&amp; <a class="code" href="class_neural_layer_simple_internal.html#aa2f7f26f9e74ab90e11205b73ab6a947">NeuralLayerSimpleInternal::backProp</a>(<a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a>&amp; errorVector, <span class="keyword">const</span> <span class="keywordtype">float</span> actFuncOffset, <span class="keyword">const</span> <span class="keywordtype">float</span> learnRate) <span class="keywordflow">throw</span>()
 <a name="l00113"></a>00113 {
-<a name="l00114"></a>00114     memset(adjustVector.getArray(), 0, adjustVector.size() * <span class="keyword">sizeof</span>(float));
-<a name="l00115"></a>00115     
-<a name="l00116"></a>00116     <span class="keywordtype">float</span>* errorVectorPtr = errorVector.getArray();
-<a name="l00117"></a>00117     
-<a name="l00118"></a>00118     <a class="code" href="class_neural_node.html">NeuralNode</a> *nodesPtr = nodes.getArray();
-<a name="l00119"></a>00119     <span class="keyword">const</span> <span class="keywordtype">int</span> size = nodes.size();
-<a name="l00120"></a>00120     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++)
-<a name="l00121"></a>00121     {
-<a name="l00122"></a>00122         nodesPtr[i].<a class="code" href="class_neural_node.html#aba6060b594dca93f8608ca250d9a0c70">backProp</a>(inputVector, errorVectorPtr[i], actFuncOffset, learnRate, adjustVector);
-<a name="l00123"></a>00123     }
-<a name="l00124"></a>00124     
-<a name="l00125"></a>00125     <span class="keywordflow">return</span> adjustVector;
+<a name="l00114"></a>00114  memset(adjustVector.getArray(), 0, adjustVector.size() * <span class="keyword">sizeof</span>(float));
+<a name="l00115"></a>00115  
+<a name="l00116"></a>00116  <span class="keywordtype">float</span>* errorVectorPtr = errorVector.getArray();
+<a name="l00117"></a>00117  
+<a name="l00118"></a>00118  <a class="code" href="class_neural_node.html">NeuralNode</a> *nodesPtr = nodes.getArray();
+<a name="l00119"></a>00119  <span class="keyword">const</span> <span class="keywordtype">int</span> size = nodes.size();
+<a name="l00120"></a>00120  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++)
+<a name="l00121"></a>00121  {
+<a name="l00122"></a>00122   nodesPtr[i].<a class="code" href="class_neural_node.html#aba6060b594dca93f8608ca250d9a0c70">backProp</a>(inputVector, errorVectorPtr[i], actFuncOffset, learnRate, adjustVector);
+<a name="l00123"></a>00123  }
+<a name="l00124"></a>00124  
+<a name="l00125"></a>00125  <span class="keywordflow">return</span> adjustVector;
 <a name="l00126"></a>00126 }
 <a name="l00127"></a>00127 
 <a name="l00128"></a>00128 
 <a name="l00129"></a>00129 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:29 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:58 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

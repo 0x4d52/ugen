@@ -101,18 +101,18 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment">&lt;<a class="code" href="ugen___standard_header_8h.html#a111da81ae5883147168bbb8366377b10">B</a>&gt;Generic %<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> argument documentation:&lt;/<a class="code" href="ugen___standard_header_8h.html#a111da81ae5883147168bbb8366377b10">B</a>&gt;                                        \
-                            Arguments which are <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these              \
-                            may generally be multichannel (although there are some exceptions).                 \
-                            Arguments which are constant/literal values (e.g., <span class="keywordtype">float</span> or <span class="keywordtype">int</span>) are clearly        \
-                            not continuously controllable and not multichannel (therefore will                  \
-                            generallly be applied identically to each channel should the <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> being             \
-                            created is made multichannel via other arguments.                                   \
-                            Arguments which are <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keywordflow">for</span> some specific              \
-                            purpose (e.g, <a class="code" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer <span class="keywordflow">for</span> its wavetable) but single channel          \
-                            <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="code" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>)    \
-                            \n\
-                            \n\
+<b>Value:</b><div class="fragment"><pre class="fragment">&lt;<a class="code" href="ugen___standard_header_8h.html#a111da81ae5883147168bbb8366377b10">B</a>&gt;Generic %<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> argument documentation:&lt;/<a class="code" href="ugen___standard_header_8h.html#a111da81ae5883147168bbb8366377b10">B</a>&gt;          \
+       Arguments which are <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these    \
+       may generally be multichannel (although there are some exceptions).     \
+       Arguments which are constant/literal values (e.g., <span class="keywordtype">float</span> or <span class="keywordtype">int</span>) are clearly  \
+       not continuously controllable and not multichannel (therefore will     \
+       generallly be applied identically to each channel should the <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> being    \
+       created is made multichannel via other arguments.         \
+       Arguments which are <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keywordflow">for</span> some specific    \
+       purpose (e.g, <a class="code" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer <span class="keywordflow">for</span> its wavetable) but single channel   \
+       <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="code" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) \
+       \n\
+       \n\
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___u_gen_8h_source.html#l00051">51</a> of file <a class="el" href="ugen___u_gen_8h_source.html">ugen_UGen.h</a>.</p>
 
@@ -169,15 +169,15 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">class </span>UGEN_NAME : <span class="keyword">public</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>                                                                                               \
-        {                                                                                                                           \
-        <span class="keyword">public</span>:                                                                                                                     \                                                                                                       \
-            UGEN_NAME () throw() : <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>() { }                                                                                       \                                                                                                               \
-            UGEN_NAME CONSTRUCTOR_ARGS_DECLARE <span class="keywordflow">throw</span>() : <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> CONSTRUCTOR_ARGS_CALL { }                                             \
-                                                                                                                                    \                                                                               \
-            <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> AR CONSTRUCTOR_ARGS_DECLARE <span class="keywordflow">throw</span>()      { <span class="keywordflow">return</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> CONSTRUCTOR_ARGS_CALL ;           }           \                                                                               \
-            <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> KR CONSTRUCTOR_ARGS_DECLARE <span class="keywordflow">throw</span>()      { <span class="keywordflow">return</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> CONSTRUCTOR_ARGS_CALL .kr();      }           \
-        }
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">class </span>UGEN_NAME : <span class="keyword">public</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>                        \
+  {                               \
+  <span class="keyword">public</span>:                              \                          \
+   UGEN_NAME () throw() : <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>() { }                      \                            \
+   UGEN_NAME CONSTRUCTOR_ARGS_DECLARE <span class="keywordflow">throw</span>() : <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> CONSTRUCTOR_ARGS_CALL { }            \
+                                 \                    \
+   <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> AR CONSTRUCTOR_ARGS_DECLARE <span class="keywordflow">throw</span>()  { <span class="keywordflow">return</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> CONSTRUCTOR_ARGS_CALL ;   }   \                    \
+   <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> KR CONSTRUCTOR_ARGS_DECLARE <span class="keywordflow">throw</span>()  { <span class="keywordflow">return</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> CONSTRUCTOR_ARGS_CALL .kr();  }   \
+  }
 </pre></div>
 <p>Macro for declaring a custom <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> by combining other UGens. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
@@ -213,17 +213,17 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment">&lt;<a class="code" href="ugen___standard_header_8h.html#a111da81ae5883147168bbb8366377b10">B</a>&gt;Generic Event-based %<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> argument documentation:&lt;/<a class="code" href="ugen___standard_header_8h.html#a111da81ae5883147168bbb8366377b10">B</a>&gt;                                        \
-                                Event-based <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> instances are created <span class="keyword">using</span> a <span class="keyword">template</span> where the first <span class="keyword">template</span> parameter      \
-                                is an <span class="stringliteral">&quot;event&quot;</span> <span class="keyword">class</span> (i.e., a sublclass of <a class="code" href="class_event_base.html" title="The base for all event classes.">EventBase&lt;OwnerType&gt;</a>) and the second <span class="keyword">template</span>         \
-                                parameter is an <span class="stringliteral">&quot;owner&quot;</span> type. This must be the same owner type as the event.                    \
-                                Generally a event <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> will be constructed in one of two ways: <span class="keyword">using</span> a pointer to the           \
-                                owner which will be used to construct an event of the appropriate type (in turn passing         \
-                                the owner pointer); or the event <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> may be constructed by passing in an existing              \
-                                event. This is useful <span class="keywordflow">if</span> the event is complex and/or has a custom constructor and               \
-                                the <span class="keywordflow">default</span> constructor(s) are therfore insufficient.                                           \
-                                \n\n\
-                                <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>
+<b>Value:</b><div class="fragment"><pre class="fragment">&lt;<a class="code" href="ugen___standard_header_8h.html#a111da81ae5883147168bbb8366377b10">B</a>&gt;Generic Event-based %<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> argument documentation:&lt;/<a class="code" href="ugen___standard_header_8h.html#a111da81ae5883147168bbb8366377b10">B</a>&gt;          \
+        Event-based <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> instances are created <span class="keyword">using</span> a <span class="keyword">template</span> where the first <span class="keyword">template</span> parameter  \
+        is an <span class="stringliteral">&quot;event&quot;</span> <span class="keyword">class</span> (i.e., a sublclass of <a class="code" href="class_event_base.html" title="The base for all event classes.">EventBase&lt;OwnerType&gt;</a>) and the second <span class="keyword">template</span>   \
+        parameter is an <span class="stringliteral">&quot;owner&quot;</span> type. This must be the same owner type as the event.     \
+        Generally a event <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> will be constructed in one of two ways: <span class="keyword">using</span> a pointer to the   \
+        owner which will be used to construct an event of the appropriate type (in turn passing   \
+        the owner pointer); or the event <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> may be constructed by passing in an existing    \
+        event. This is useful <span class="keywordflow">if</span> the event is complex and/or has a custom constructor and    \
+        the <span class="keywordflow">default</span> constructor(s) are therfore insufficient.           \
+        \n\n\
+        <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___u_gen_8h_source.html#l01430">1430</a> of file <a class="el" href="ugen___u_gen_8h_source.html">ugen_UGen.h</a>.</p>
 
@@ -361,14 +361,14 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment">You must implement <span class="keyword">this</span> <span class="keyword">virtual</span> function in your subclass.                      \
-                                                    The parent <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> calls <span class="keyword">this</span> function each time it needs a <span class="keyword">new</span>                    \
-                                                    <span class="keyword">event</span> instance.                                                                 \
-                                                    @param spawn        Allows acces to the <span class="keyword">internal</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> so that its               \
-                                                                        behaviour can be modified (see <a class="code" href="class_spawn.html" title="Spawn creates new events at timed intervals in a sample-accurate fashion.">Spawn</a> <span class="keywordflow">for</span> an example)        \
-                                                    @param eventCount   The index of the <span class="keyword">event</span> instance starting at 0 <span class="keywordflow">for</span>           \
-                                                                        the first <span class="keyword">event</span>.                                            \
-                                                    @<span class="keywordflow">return</span>             The <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> graph <span class="keywordflow">for</span> <span class="keyword">this</span> <span class="keyword">event</span> instance.
+<b>Value:</b><div class="fragment"><pre class="fragment">You must implement <span class="keyword">this</span> <span class="keyword">virtual</span> function in your subclass.      \
+             The parent <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> calls <span class="keyword">this</span> function each time it needs a <span class="keyword">new</span>     \
+             <span class="keyword">event</span> instance.                 \
+             @param spawn  Allows acces to the <span class="keyword">internal</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> so that its    \
+                  behaviour can be modified (see <a class="code" href="class_spawn.html" title="Spawn creates new events at timed intervals in a sample-accurate fashion.">Spawn</a> <span class="keywordflow">for</span> an example)  \
+             @param eventCount The index of the <span class="keyword">event</span> instance starting at 0 <span class="keywordflow">for</span>   \
+                  the first <span class="keyword">event</span>.           \
+             @<span class="keywordflow">return</span>    The <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> graph <span class="keywordflow">for</span> <span class="keyword">this</span> <span class="keyword">event</span> instance.
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___u_gen_8h_source.html#l01420">1420</a> of file <a class="el" href="ugen___u_gen_8h_source.html">ugen_UGen.h</a>.</p>
 
@@ -424,10 +424,10 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment">@tparam EVENT_NAME              The name of the EVENT_BASE to use <span class="keywordflow">for</span> <span class="keyword">this</span> UGEN_NAME <span class="keywordtype">object</span>.                \
-                                    The OwnerType of the EVENT_NAME must be the same as the the                 \
-                                    OwnerType <span class="keywordflow">for</span> <span class="keyword">this</span> UGEN_NAME.                                               \
-                                    <a class="code" href="ugen___u_gen_8h.html#ae5cfd942ded74ebe8c62e1e7e075db51">EVENT_OWNER_DOC</a>
+<b>Value:</b><div class="fragment"><pre class="fragment">@tparam EVENT_NAME    The name of the EVENT_BASE to use <span class="keywordflow">for</span> <span class="keyword">this</span> UGEN_NAME <span class="keywordtype">object</span>.    \
+         The OwnerType of the EVENT_NAME must be the same as the the     \
+         OwnerType <span class="keywordflow">for</span> <span class="keyword">this</span> UGEN_NAME.            \
+         <a class="code" href="ugen___u_gen_8h.html#ae5cfd942ded74ebe8c62e1e7e075db51">EVENT_OWNER_DOC</a>
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___u_gen_8h_source.html#l01455">1455</a> of file <a class="el" href="ugen___u_gen_8h_source.html">ugen_UGen.h</a>.</p>
 
@@ -483,9 +483,9 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment">@param  e/o     The <span class="keyword">event</span> object (e) to use to generate event instances or a pointer    \
-                                                    to its owner (o). The owner (o) may be 0 if there`s no owner (and       \
-                                                    OwnerType is <span class="keywordtype">void</span>).                                                     \
+<b>Value:</b><div class="fragment"><pre class="fragment">@param e/o  The <span class="keyword">event</span> object (e) to use to generate event instances or a pointer \
+             to its owner (o). The owner (o) may be 0 if there`s no owner (and  \
+             OwnerType is <span class="keywordtype">void</span>).              \
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___u_gen_8h_source.html#l01445">1445</a> of file <a class="el" href="ugen___u_gen_8h_source.html">ugen_UGen.h</a>.</p>
 
@@ -551,9 +551,9 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment">                                                                                    \
-    <a class="code" href="ugen___u_gen_8h.html#ac422b7b6061d419b09fd0d6335cdc5ac" title="Base UGEN_NAME Constuctor, use the AR() versions in user code.">EventUGenStaticMethodDeclare</a>(UGEN_NAME, AR,         EVENT_TYPE, OWNER_TYPE, OWNER_ARGS_CALL, OWNER_ARGS_DECLARE)            \                                                                                   \
-    <a class="code" href="ugen___u_gen_8h.html#ac422b7b6061d419b09fd0d6335cdc5ac" title="Base UGEN_NAME Constuctor, use the AR() versions in user code.">EventUGenStaticMethodDeclare</a>(UGEN_NAME, AR,         EVENT_TYPE, OWNER_TYPE, EVENT_ARGS_CALL, EVENT_ARGS_DECLARE)            \
+<b>Value:</b><div class="fragment"><pre class="fragment">                     \
+ <a class="code" href="ugen___u_gen_8h.html#ac422b7b6061d419b09fd0d6335cdc5ac" title="Base UGEN_NAME Constuctor, use the AR() versions in user code.">EventUGenStaticMethodDeclare</a>(UGEN_NAME, AR,         EVENT_TYPE, OWNER_TYPE, OWNER_ARGS_CALL, OWNER_ARGS_DECLARE)   \                     \
+ <a class="code" href="ugen___u_gen_8h.html#ac422b7b6061d419b09fd0d6335cdc5ac" title="Base UGEN_NAME Constuctor, use the AR() versions in user code.">EventUGenStaticMethodDeclare</a>(UGEN_NAME, AR,         EVENT_TYPE, OWNER_TYPE, EVENT_ARGS_CALL, EVENT_ARGS_DECLARE)   \
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___u_gen_8h_source.html#l01471">1471</a> of file <a class="el" href="ugen___u_gen_8h_source.html">ugen_UGen.h</a>.</p>
 
@@ -712,20 +712,20 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">class </span>UGENINTERNAL_NAME##K : <span class="keyword">public</span> UGENINTERNAL_NAME                                                               \
-        {                                                                                                                   \
-        <span class="keyword">public</span>:                                                                                                             \
-            UGENINTERNAL_NAME##K CONSTRUCTOR_ARGS_DECLARE <span class="keywordflow">throw</span>()                                                           \
-            :   UGENINTERNAL_NAME CONSTRUCTOR_ARGS_CALL,                                                                    \
-                value(0.f)                                                                                                  \
-            { rate = ControlRate; }                                                                                         \
-                                                                                                                            \
-            <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* getKr() throw()                   { incrementRefCount(); <span class="keywordflow">return</span> <span class="keyword">this</span>; }                           \
-            <span class="keywordtype">float</span> getValue(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keyword">const</span> <span class="keywordflow">throw</span>() { <span class="keywordflow">return</span> value;                     }                           \
-            <span class="keywordtype">void</span> processBlock(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();                   \
-        <span class="keyword">private</span>:                                                                                                            \
-            <span class="keywordtype">float</span> value;                                                                                                    \
-        }
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">class </span>UGENINTERNAL_NAME##K : <span class="keyword">public</span> UGENINTERNAL_NAME                \
+  {                             \
+  <span class="keyword">public</span>:                            \
+   UGENINTERNAL_NAME##K CONSTRUCTOR_ARGS_DECLARE <span class="keywordflow">throw</span>()               \
+   : UGENINTERNAL_NAME CONSTRUCTOR_ARGS_CALL,                 \
+    value(0.f)                         \
+   { rate = ControlRate; }                       \
+                               \
+   <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* getKr() throw()     { incrementRefCount(); <span class="keywordflow">return</span> <span class="keyword">this</span>; }       \
+   <span class="keywordtype">float</span> getValue(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keyword">const</span> <span class="keywordflow">throw</span>() { <span class="keywordflow">return</span> value;      }       \
+   <span class="keywordtype">void</span> processBlock(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();     \
+  <span class="keyword">private</span>:                           \
+   <span class="keywordtype">float</span> value;                         \
+  }
 </pre></div>
 <p>Macro for declaring a control rate version of a <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>. </p>
 <p>Given the class name of a sublcass of <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>, this declares (and defines) most of the functionality of a control rate version of the subclass appending a 'K' to the end of the class name. You need then only define MyInternalUGenK::processBlock() in your cpp file. Note you should use the 'value' member to store the current value of the control rate output. </p>
@@ -770,14 +770,14 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">class </span>UGEN_NAME : <span class="keyword">public</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>                                                                                                   \
-        {                                                                                                                               \
-        <span class="keyword">public</span>:                                                                                                                         \                                                                                                           \
-            UGEN_NAME () throw() : <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>() { }                                                                                           \                                           \
-            UGEN_NAME CONSTRUCTOR_ARGS_DECLARE <span class="keywordflow">throw</span>();                                                                                 \                                                                                   \
-            <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> AR CONSTRUCTOR_ARGS_DECLARE <span class="keywordflow">throw</span>()      { <span class="keywordflow">return</span> UGEN_NAME CONSTRUCTOR_ARGS_CALL;               }       \                                                                                   \
-            <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> KR CONSTRUCTOR_ARGS_DECLARE <span class="keywordflow">throw</span>()      { <span class="keywordflow">return</span> <a class="code" href="class_u_gen.html#a7a8f0faa0b080b5d4be969b259a7075d" title="Default constructor.">UGen</a>(UGEN_NAME CONSTRUCTOR_ARGS_CALL).kr();    }       \
-        }
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">class </span>UGEN_NAME : <span class="keyword">public</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>                         \
+  {                                \
+  <span class="keyword">public</span>:                               \                           \
+   UGEN_NAME () throw() : <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>() { }                       \           \
+   UGEN_NAME CONSTRUCTOR_ARGS_DECLARE <span class="keywordflow">throw</span>();                     \                     \
+   <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> AR CONSTRUCTOR_ARGS_DECLARE <span class="keywordflow">throw</span>()  { <span class="keywordflow">return</span> UGEN_NAME CONSTRUCTOR_ARGS_CALL;    }  \                     \
+   <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> KR CONSTRUCTOR_ARGS_DECLARE <span class="keywordflow">throw</span>()  { <span class="keywordflow">return</span> <a class="code" href="class_u_gen.html#a7a8f0faa0b080b5d4be969b259a7075d" title="Default constructor.">UGen</a>(UGEN_NAME CONSTRUCTOR_ARGS_CALL).kr(); }  \
+  }
 </pre></div>
 <p>Macro for declaring a simple <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a>. </p>
 <p>Use this version if at least one argument does NOT have a default value so that a default constructor is declared.</p>
@@ -840,13 +840,13 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">class </span>UGEN_NAME : <span class="keyword">public</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>                                                                                               \
-        {                                                                                                                           \
-        <span class="keyword">public</span>:                                                                                                                     \                                       \
-            UGEN_NAME CONSTRUCTOR_ARGS_DECLARE <span class="keywordflow">throw</span>();                                                                             \                                                                               \
-            <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> AR CONSTRUCTOR_ARGS_DECLARE <span class="keywordflow">throw</span>()  { <span class="keywordflow">return</span> UGEN_NAME CONSTRUCTOR_ARGS_CALL;               }       \                                                                               \
-            <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> KR CONSTRUCTOR_ARGS_DECLARE <span class="keywordflow">throw</span>()  { <span class="keywordflow">return</span> <a class="code" href="class_u_gen.html#a7a8f0faa0b080b5d4be969b259a7075d" title="Default constructor.">UGen</a>(UGEN_NAME CONSTRUCTOR_ARGS_CALL).kr();    }       \
-        }
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">class </span>UGEN_NAME : <span class="keyword">public</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>                        \
+  {                               \
+  <span class="keyword">public</span>:                              \          \
+   UGEN_NAME CONSTRUCTOR_ARGS_DECLARE <span class="keywordflow">throw</span>();                    \                    \
+   <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> AR CONSTRUCTOR_ARGS_DECLARE <span class="keywordflow">throw</span>() { <span class="keywordflow">return</span> UGEN_NAME CONSTRUCTOR_ARGS_CALL;    }  \                    \
+   <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> KR CONSTRUCTOR_ARGS_DECLARE <span class="keywordflow">throw</span>() { <span class="keywordflow">return</span> <a class="code" href="class_u_gen.html#a7a8f0faa0b080b5d4be969b259a7075d" title="Default constructor.">UGen</a>(UGEN_NAME CONSTRUCTOR_ARGS_CALL).kr(); }  \
+  }
 </pre></div>
 <p>Macro for declaring a simple <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a>. </p>
 <p>Use this version if all the arguments have defaults so that no default constructor is declared. It declares a constructor and static AR() and KR() functions. (And the SC compatabilty methods <a class="el" href="namespaceugen.html#a03fc298ec8d868a64dbc5d353777801d">ar()</a>, <a class="el" href="namespaceugen.html#af17dc36462ee9d9f533a4ac4cb3e5c0d">kr()</a> and operator().) This macro should be used in a header file, only the constructor itself will need defining in the .cpp file.</p>
@@ -935,7 +935,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:31 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:59 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

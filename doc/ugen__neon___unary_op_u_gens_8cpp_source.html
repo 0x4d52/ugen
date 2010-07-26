@@ -78,50 +78,50 @@
 <a name="l00046"></a>00046 
 <a name="l00047"></a>00047 <span class="keywordtype">void</span> <a class="code" href="class_unary_neg_u_gen_internal.html#a2828100ec3cc1aafe82fdca987c1632a" title="Process a block of samples for this blockID and channel.">UnaryNegUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>() 
 <a name="l00048"></a>00048 { 
-<a name="l00049"></a>00049     <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize(); 
-<a name="l00050"></a>00050     <span class="keywordtype">float</span>* <span class="keyword">const</span> outputSamples = uGenOutput.getSampleData(); 
-<a name="l00051"></a>00051     <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inputSamples = inputs[Operand].processBlock(shouldDelete, blockID, channel);
-<a name="l00052"></a>00052     <a class="code" href="class_neon.html#a2d20ab88364f36cad296d3679eb944f5">Neon::neg</a>(inputSamples, outputSamples, numSamplesToProcess);
+<a name="l00049"></a>00049  <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize(); 
+<a name="l00050"></a>00050  <span class="keywordtype">float</span>* <span class="keyword">const</span> outputSamples = uGenOutput.getSampleData(); 
+<a name="l00051"></a>00051  <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inputSamples = inputs[Operand].processBlock(shouldDelete, blockID, channel);
+<a name="l00052"></a>00052  <a class="code" href="class_neon.html#a2d20ab88364f36cad296d3679eb944f5">Neon::neg</a>(inputSamples, outputSamples, numSamplesToProcess);
 <a name="l00053"></a>00053 }
 <a name="l00054"></a>00054 
 <a name="l00055"></a>00055 <span class="keywordtype">void</span> <a class="code" href="class_unary_abs_u_gen_internal.html#a17d82471222fb97d732c533dc2f11983" title="Process a block of samples for this blockID and channel.">UnaryAbsUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>() 
 <a name="l00056"></a>00056 { 
-<a name="l00057"></a>00057     <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize(); 
-<a name="l00058"></a>00058     <span class="keywordtype">float</span>* <span class="keyword">const</span> outputSamples = uGenOutput.getSampleData(); 
-<a name="l00059"></a>00059     <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inputSamples = inputs[Operand].processBlock(shouldDelete, blockID, channel); 
-<a name="l00060"></a>00060     <a class="code" href="class_neon.html#aa08696e732c86cdd37c744525e757934">Neon::abs</a>(inputSamples, outputSamples, numSamplesToProcess); 
+<a name="l00057"></a>00057  <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize(); 
+<a name="l00058"></a>00058  <span class="keywordtype">float</span>* <span class="keyword">const</span> outputSamples = uGenOutput.getSampleData(); 
+<a name="l00059"></a>00059  <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inputSamples = inputs[Operand].processBlock(shouldDelete, blockID, channel); 
+<a name="l00060"></a>00060  <a class="code" href="class_neon.html#aa08696e732c86cdd37c744525e757934">Neon::abs</a>(inputSamples, outputSamples, numSamplesToProcess); 
 <a name="l00061"></a>00061 }
 <a name="l00062"></a>00062 
 <a name="l00063"></a>00063 <span class="keywordtype">void</span> <a class="code" href="class_unary_reciprocal_u_gen_internal.html#a9f9cf04537f0aa06b576b027876fec9d" title="Process a block of samples for this blockID and channel.">UnaryReciprocalUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>() 
 <a name="l00064"></a>00064 { 
-<a name="l00065"></a>00065     <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize(); 
-<a name="l00066"></a>00066     <span class="keywordtype">float</span>* <span class="keyword">const</span> outputSamples = uGenOutput.getSampleData(); 
-<a name="l00067"></a>00067     <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inputSamples = inputs[Operand].processBlock(shouldDelete, blockID, channel); 
-<a name="l00068"></a>00068     <a class="code" href="class_neon.html#af6c24251038e7045697e42d41bb360f5">Neon::reciprocal</a>(inputSamples, outputSamples, numSamplesToProcess);
+<a name="l00065"></a>00065  <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize(); 
+<a name="l00066"></a>00066  <span class="keywordtype">float</span>* <span class="keyword">const</span> outputSamples = uGenOutput.getSampleData(); 
+<a name="l00067"></a>00067  <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inputSamples = inputs[Operand].processBlock(shouldDelete, blockID, channel); 
+<a name="l00068"></a>00068  <a class="code" href="class_neon.html#af6c24251038e7045697e42d41bb360f5">Neon::reciprocal</a>(inputSamples, outputSamples, numSamplesToProcess);
 <a name="l00069"></a>00069 }
 <a name="l00070"></a>00070 
 <a name="l00071"></a>00071 <span class="keywordtype">void</span> <a class="code" href="class_unary_squared_u_gen_internal.html#ac8931c04055f899608d6481fb9be955d" title="Process a block of samples for this blockID and channel.">UnarySquaredUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>() 
 <a name="l00072"></a>00072 { 
-<a name="l00073"></a>00073     <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize(); 
-<a name="l00074"></a>00074     <span class="keywordtype">float</span>* <span class="keyword">const</span> outputSamples = uGenOutput.getSampleData(); 
-<a name="l00075"></a>00075     <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inputSamples = inputs[Operand].processBlock(shouldDelete, blockID, channel); 
-<a name="l00076"></a>00076     <a class="code" href="class_neon.html#aa08ca9612b46ea0ea91d6ec85b6f2000">Neon::squared</a>(inputSamples, outputSamples, numSamplesToProcess); 
+<a name="l00073"></a>00073  <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize(); 
+<a name="l00074"></a>00074  <span class="keywordtype">float</span>* <span class="keyword">const</span> outputSamples = uGenOutput.getSampleData(); 
+<a name="l00075"></a>00075  <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inputSamples = inputs[Operand].processBlock(shouldDelete, blockID, channel); 
+<a name="l00076"></a>00076  <a class="code" href="class_neon.html#aa08ca9612b46ea0ea91d6ec85b6f2000">Neon::squared</a>(inputSamples, outputSamples, numSamplesToProcess); 
 <a name="l00077"></a>00077 }
 <a name="l00078"></a>00078 
 <a name="l00079"></a>00079 <span class="keywordtype">void</span> <a class="code" href="class_unary_cubed_u_gen_internal.html#a7a14729afbfba81318b799c92c42528f" title="Process a block of samples for this blockID and channel.">UnaryCubedUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>() 
 <a name="l00080"></a>00080 { 
-<a name="l00081"></a>00081     <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize(); 
-<a name="l00082"></a>00082     <span class="keywordtype">float</span>* <span class="keyword">const</span> outputSamples = uGenOutput.getSampleData(); 
-<a name="l00083"></a>00083     <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inputSamples = inputs[Operand].processBlock(shouldDelete, blockID, channel); 
-<a name="l00084"></a>00084     <a class="code" href="class_neon.html#ad527b2aaf475093a34dd48dad23ab1b5">Neon::cubed</a>(inputSamples, outputSamples, numSamplesToProcess); 
+<a name="l00081"></a>00081  <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize(); 
+<a name="l00082"></a>00082  <span class="keywordtype">float</span>* <span class="keyword">const</span> outputSamples = uGenOutput.getSampleData(); 
+<a name="l00083"></a>00083  <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inputSamples = inputs[Operand].processBlock(shouldDelete, blockID, channel); 
+<a name="l00084"></a>00084  <a class="code" href="class_neon.html#ad527b2aaf475093a34dd48dad23ab1b5">Neon::cubed</a>(inputSamples, outputSamples, numSamplesToProcess); 
 <a name="l00085"></a>00085 }
 <a name="l00086"></a>00086 
 <a name="l00087"></a>00087 <span class="keywordtype">void</span> <a class="code" href="class_unary_sqrt_u_gen_internal.html#abae243ea1d9dc3e23a690a5ca6a96f86" title="Process a block of samples for this blockID and channel.">UnarySqrtUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>() 
 <a name="l00088"></a>00088 { 
-<a name="l00089"></a>00089     <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize(); 
-<a name="l00090"></a>00090     <span class="keywordtype">float</span>* <span class="keyword">const</span> outputSamples = uGenOutput.getSampleData(); 
-<a name="l00091"></a>00091     <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inputSamples = inputs[Operand].processBlock(shouldDelete, blockID, channel); 
-<a name="l00092"></a>00092     <a class="code" href="class_neon.html#a3645f35fd3b82566c49c7cd525af82f9">Neon::sqrt</a>(inputSamples, outputSamples, numSamplesToProcess); 
+<a name="l00089"></a>00089  <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize(); 
+<a name="l00090"></a>00090  <span class="keywordtype">float</span>* <span class="keyword">const</span> outputSamples = uGenOutput.getSampleData(); 
+<a name="l00091"></a>00091  <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inputSamples = inputs[Operand].processBlock(shouldDelete, blockID, channel); 
+<a name="l00092"></a>00092  <a class="code" href="class_neon.html#a3645f35fd3b82566c49c7cd525af82f9">Neon::sqrt</a>(inputSamples, outputSamples, numSamplesToProcess); 
 <a name="l00093"></a>00093 }
 <a name="l00094"></a>00094 
 <a name="l00095"></a>00095 
@@ -135,7 +135,7 @@
 <a name="l00103"></a>00103 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:29 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:57 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

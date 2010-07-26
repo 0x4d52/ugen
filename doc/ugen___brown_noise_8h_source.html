@@ -76,24 +76,24 @@
 <a name="l00045"></a><a class="code" href="class_brown_noise_u_gen_internal.html">00045</a> <span class="keyword">class </span><a class="code" href="class_brown_noise_u_gen_internal.html">BrownNoiseUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>
 <a name="l00046"></a>00046 {
 <a name="l00047"></a>00047 <span class="keyword">public</span>:
-<a name="l00048"></a>00048     <a class="code" href="class_brown_noise_u_gen_internal.html#a5b9fd9f8973842ec0d03c0dbdc8dff46">BrownNoiseUGenInternal</a>() <span class="keywordflow">throw</span>();
-<a name="l00049"></a>00049     <span class="keywordtype">void</span> <a class="code" href="class_brown_noise_u_gen_internal.html#a49b2a3038c98039dde862d3720791048" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
-<a name="l00050"></a>00050     
-<a name="l00051"></a><a class="code" href="class_brown_noise_u_gen_internal.html#a5207ff5958e5f0c86076ec014e954ac9a5a7f9f8229f7ae29c6e19610dfc1fb71">00051</a>     <span class="keyword">enum</span> <a class="code" href="class_brown_noise_u_gen_internal.html#a5207ff5958e5f0c86076ec014e954ac9">Inputs</a> { <a class="code" href="class_brown_noise_u_gen_internal.html#a5207ff5958e5f0c86076ec014e954ac9a5a7f9f8229f7ae29c6e19610dfc1fb71">NoInputs</a> };
-<a name="l00052"></a>00052     
+<a name="l00048"></a>00048  <a class="code" href="class_brown_noise_u_gen_internal.html#a5b9fd9f8973842ec0d03c0dbdc8dff46">BrownNoiseUGenInternal</a>() <span class="keywordflow">throw</span>();
+<a name="l00049"></a>00049  <span class="keywordtype">void</span> <a class="code" href="class_brown_noise_u_gen_internal.html#a49b2a3038c98039dde862d3720791048" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00050"></a>00050  
+<a name="l00051"></a><a class="code" href="class_brown_noise_u_gen_internal.html#a5207ff5958e5f0c86076ec014e954ac9a5a7f9f8229f7ae29c6e19610dfc1fb71">00051</a>  <span class="keyword">enum</span> <a class="code" href="class_brown_noise_u_gen_internal.html#a5207ff5958e5f0c86076ec014e954ac9">Inputs</a> { <a class="code" href="class_brown_noise_u_gen_internal.html#a5207ff5958e5f0c86076ec014e954ac9a5a7f9f8229f7ae29c6e19610dfc1fb71">NoInputs</a> };
+<a name="l00052"></a>00052  
 <a name="l00053"></a>00053 <span class="keyword">protected</span>:
-<a name="l00054"></a><a class="code" href="class_brown_noise_u_gen_internal.html#a49774add6399d6c949d709e3c53b86e2">00054</a>     <a class="code" href="class_ran088.html">Ran088</a> <a class="code" href="class_brown_noise_u_gen_internal.html#a49774add6399d6c949d709e3c53b86e2">random</a>;
-<a name="l00055"></a><a class="code" href="class_brown_noise_u_gen_internal.html#a6209eb05e7273a2bec013f736df15cf9">00055</a>     <span class="keywordtype">float</span> <a class="code" href="class_brown_noise_u_gen_internal.html#a6209eb05e7273a2bec013f736df15cf9">currentValue</a>;
+<a name="l00054"></a><a class="code" href="class_brown_noise_u_gen_internal.html#a49774add6399d6c949d709e3c53b86e2">00054</a>  <a class="code" href="class_ran088.html">Ran088</a> <a class="code" href="class_brown_noise_u_gen_internal.html#a49774add6399d6c949d709e3c53b86e2">random</a>;
+<a name="l00055"></a><a class="code" href="class_brown_noise_u_gen_internal.html#a6209eb05e7273a2bec013f736df15cf9">00055</a>  <span class="keywordtype">float</span> <a class="code" href="class_brown_noise_u_gen_internal.html#a6209eb05e7273a2bec013f736df15cf9">currentValue</a>;
 <a name="l00056"></a>00056 };
 <a name="l00057"></a>00057 
-<a name="l00062"></a><a class="code" href="class_brown_noise.html#a6645eaaf976744bd009e2d10a4bf630e">00062</a> <a class="code" href="ugen___mul_add_8h.html#ac731e636f4aa5cd0991452268098e7b3" title="Declare a UGen with multiply and add inputs.">ExpandingMulAddUGenDeclaration</a>(<a class="code" href="class_brown_noise.html" title="Brown noise generator.">BrownNoise</a>, (), (<a class="code" href="ugen___mul_add_8h.html#a0948ded88972de1849c249f13e99c70c">MulAdd_ArgsCall</a>), (), (<a class="code" href="ugen___mul_add_8h.html#a26f64cd22a6e4e0933b39d2031396f26">MulAdd_ArgsDeclare</a>), <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___mul_add_8h.html#a9fbd19ed1cc830caeacbe23a214bbb5e">MulAddArgs_Docs</a>);
+<a name="l00062"></a><a class="code" href="class_brown_noise.html#ac72f7d6491fd4a25358ec3a920356a80">00062</a> <a class="code" href="ugen___mul_add_8h.html#ac731e636f4aa5cd0991452268098e7b3" title="Declare a UGen with multiply and add inputs.">ExpandingMulAddUGenDeclaration</a>(<a class="code" href="class_brown_noise.html" title="Brown noise generator.">BrownNoise</a>, (), (<a class="code" href="ugen___mul_add_8h.html#a0948ded88972de1849c249f13e99c70c">MulAdd_ArgsCall</a>), (), (<a class="code" href="ugen___mul_add_8h.html#a26f64cd22a6e4e0933b39d2031396f26">MulAdd_ArgsDeclare</a>), <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___mul_add_8h.html#a9fbd19ed1cc830caeacbe23a214bbb5e">MulAddArgs_Docs</a>);
 <a name="l00063"></a>00063 
 <a name="l00064"></a>00064 
 <a name="l00065"></a>00065 
 <a name="l00066"></a>00066 <span class="preprocessor">#endif // _UGEN_ugen_BrownNoise_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:29 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:58 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

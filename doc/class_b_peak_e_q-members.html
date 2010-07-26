@@ -39,7 +39,7 @@ This is the complete list of members for <a class="el" href="class_b_peak_e_q.ht
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#a50bddd700765b99a8faaa1b465c1635e">acos</a>() const </td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#a58b20861cdb227b96f6e923a1b6b2291">addBufferReceiver</a>(BufferReceiver *const receiver)</td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#a01b5ddc630ff333f88bb61a83de32aff">addBufferReceiver</a>(UGen const &amp;receiver)</td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_b_peak_e_q.html#a22871768a0fca15eca576223e34f8eca">AR</a>(UGen const &amp;input, UGen const &amp;freq=1200.f, UGen const &amp;rq=1.f, UGen const &amp;gain=0.f, MulAdd_ArgsDeclare)</td><td><a class="el" href="class_b_peak_e_q.html">BPeakEQ</a></td><td><code> [inline, static]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_b_peak_e_q.html#ab5ef8ca234f2e0e80e67682845952dcc">AR</a>(UGen const &amp;input, UGen const &amp;freq=1200.f, UGen const &amp;rq=1.f, UGen const &amp;gain=0.f, UGen const &amp;mul=1.f, UGen const &amp;add=0.f)</td><td><a class="el" href="class_b_peak_e_q.html">BPeakEQ</a></td><td><code> [inline, static]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#a2484a6f368026bbfa0c1f96d639e5559">ar</a>() const </td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#a15bae3754a0221d1a454fb29f45b6558">ar</a>(UGen const &amp;arg1) const </td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#a325d22ed75548661c24b327791653b84">ar</a>(UGen const &amp;arg1, UGen const &amp;arg2) const </td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
@@ -137,7 +137,7 @@ This is the complete list of members for <a class="el" href="class_b_peak_e_q.ht
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#ad11c4ccef92b48325e04ccedeeb75160">isNull</a>(const int index=-1) const </td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#acd7c7242ab329fe45d336c57cf8b6da0">isNullKr</a>() const </td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#ad11f697f7afdfe3f9127246e1d7dae72">isScalar</a>(const int index=-1) const </td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_b_peak_e_q.html#ae22ff393270b14b79bc318db08dd9caa">KR</a>(UGen const &amp;input, UGen const &amp;freq=1200.f, UGen const &amp;rq=1.f, UGen const &amp;gain=0.f, MulAdd_ArgsDeclare)</td><td><a class="el" href="class_b_peak_e_q.html">BPeakEQ</a></td><td><code> [inline, static]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_b_peak_e_q.html#a03e3bf308ab7a07525a8be67d7705eea">KR</a>(UGen const &amp;input, UGen const &amp;freq=1200.f, UGen const &amp;rq=1.f, UGen const &amp;gain=0.f, UGen const &amp;mul=1.f, UGen const &amp;add=0.f)</td><td><a class="el" href="class_b_peak_e_q.html">BPeakEQ</a></td><td><code> [inline, static]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#a05778e35ac2ee92c1311a691fd43c57e">kr</a>() const </td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#af817d3b119e4d9328d86bb6aa22d56cb">kr</a>(UGen const &amp;arg1) const </td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#a6f788a585c02d54f840d02349ab6e9fb">kr</a>(UGen const &amp;arg1, UGen const &amp;arg2) const </td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
@@ -292,7 +292,7 @@ This is the complete list of members for <a class="el" href="class_b_peak_e_q.ht
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#af2f4e6a8bbc0f72476dc311db7c6684b">zap</a>() const </td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#a3b5e2c8adf5420014aa15da1f47d54a2">~UGen</a>()</td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
 </table></div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:34 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:21:02 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

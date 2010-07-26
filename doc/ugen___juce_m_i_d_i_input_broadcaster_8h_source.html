@@ -63,103 +63,103 @@
 <a name="l00031"></a>00031 <span class="preprocessor"></span>
 <a name="l00032"></a>00032 <span class="preprocessor">#include &quot;../../filters/control/ugen_Lag.h&quot;</span>
 <a name="l00033"></a>00033 
-<a name="l00034"></a>00034 <span class="preprocessor">#define DeclareJuceMIDIDataSourceCommonFunctions(CLASSNAME,                         \</span>
-<a name="l00035"></a>00035 <span class="preprocessor">                                                 CONSTRUCTOR_ARGS_CALL,             \</span>
-<a name="l00036"></a>00036 <span class="preprocessor">                                                 CONSTRUCTOR_ARGS_DECLARE,          \</span>
-<a name="l00037"></a>00037 <span class="preprocessor">                                                 LAGTIME_ARG_CALL,                  \</span>
-<a name="l00038"></a><a class="code" href="ugen___juce_m_i_d_i_input_broadcaster_8h.html#a4b5e9e053d590413697df6170e744716">00038</a> <span class="preprocessor">                                                 CONSTRUCTOR_ARGS_DECLARE_UGEN)     \</span>
-<a name="l00039"></a>00039 <span class="preprocessor">        CLASSNAME CONSTRUCTOR_ARGS_DECLARE throw();                                                                 \</span>
-<a name="l00040"></a>00040 <span class="preprocessor">        CLASSNAME init CONSTRUCTOR_ARGS_DECLARE throw()         { return CLASSNAME CONSTRUCTOR_ARGS_CALL; }         \</span>
-<a name="l00041"></a>00041 <span class="preprocessor">        CLASSNAME operator () CONSTRUCTOR_ARGS_DECLARE throw()  { return CLASSNAME CONSTRUCTOR_ARGS_CALL; }         \</span>
-<a name="l00042"></a>00042 <span class="preprocessor">                                                                                                                    \</span>
-<a name="l00043"></a>00043 <span class="preprocessor">        UGen kr CONSTRUCTOR_ARGS_DECLARE_UGEN throw()                                                               \</span>
-<a name="l00044"></a>00044 <span class="preprocessor">        {                                                                                                           \</span>
-<a name="l00045"></a>00045 <span class="preprocessor">            return CLASSNAME CONSTRUCTOR_ARGS_CALL.krInternal(LAGTIME_ARG_CALL);                                    \</span>
-<a name="l00046"></a>00046 <span class="preprocessor">        }                                                                                                           \</span>
-<a name="l00047"></a>00047 <span class="preprocessor">                                                                                                                    \</span>
-<a name="l00048"></a>00048 <span class="preprocessor">        UGen ar CONSTRUCTOR_ARGS_DECLARE_UGEN throw()                                                               \</span>
-<a name="l00049"></a>00049 <span class="preprocessor">        {                                                                                                           \</span>
-<a name="l00050"></a>00050 <span class="preprocessor">            return Lag(CLASSNAME CONSTRUCTOR_ARGS_CALL, LAGTIME_ARG_CALL);                                          \</span>
-<a name="l00051"></a>00051 <span class="preprocessor">        }                                                                                                           \</span>
-<a name="l00052"></a>00052 <span class="preprocessor">                                                                                                                    \</span>
-<a name="l00053"></a>00053 <span class="preprocessor">        static UGen KR CONSTRUCTOR_ARGS_DECLARE_UGEN throw()                                                        \</span>
-<a name="l00054"></a>00054 <span class="preprocessor">        {                                                                                                           \</span>
-<a name="l00055"></a>00055 <span class="preprocessor">            return CLASSNAME CONSTRUCTOR_ARGS_CALL.krInternal(LAGTIME_ARG_CALL);                                    \</span>
-<a name="l00056"></a>00056 <span class="preprocessor">        }                                                                                                           \</span>
-<a name="l00057"></a>00057 <span class="preprocessor">                                                                                                                    \</span>
-<a name="l00058"></a>00058 <span class="preprocessor">        static UGen AR CONSTRUCTOR_ARGS_DECLARE_UGEN throw()                                                        \</span>
-<a name="l00059"></a>00059 <span class="preprocessor">        {                                                                                                           \</span>
-<a name="l00060"></a>00060 <span class="preprocessor">            return Lag(CLASSNAME CONSTRUCTOR_ARGS_CALL, LAGTIME_ARG_CALL);                                          \</span>
-<a name="l00061"></a>00061 <span class="preprocessor">        }                                                                                                           \</span>
-<a name="l00062"></a>00062 <span class="preprocessor">                                                                                                                    \</span>
-<a name="l00063"></a>00063 <span class="preprocessor">        void handleIncomingMidiMessage (MidiInput* source, const MidiMessage&amp; message) throw()</span>
+<a name="l00034"></a>00034 <span class="preprocessor">#define DeclareJuceMIDIDataSourceCommonFunctions(CLASSNAME,       \</span>
+<a name="l00035"></a>00035 <span class="preprocessor">             CONSTRUCTOR_ARGS_CALL,    \</span>
+<a name="l00036"></a>00036 <span class="preprocessor">             CONSTRUCTOR_ARGS_DECLARE,   \</span>
+<a name="l00037"></a>00037 <span class="preprocessor">             LAGTIME_ARG_CALL,     \</span>
+<a name="l00038"></a><a class="code" href="ugen___juce_m_i_d_i_input_broadcaster_8h.html#a4b5e9e053d590413697df6170e744716">00038</a> <span class="preprocessor">             CONSTRUCTOR_ARGS_DECLARE_UGEN)  \</span>
+<a name="l00039"></a>00039 <span class="preprocessor">  CLASSNAME CONSTRUCTOR_ARGS_DECLARE throw();                 \</span>
+<a name="l00040"></a>00040 <span class="preprocessor">  CLASSNAME init CONSTRUCTOR_ARGS_DECLARE throw()   { return CLASSNAME CONSTRUCTOR_ARGS_CALL; }   \</span>
+<a name="l00041"></a>00041 <span class="preprocessor">  CLASSNAME operator () CONSTRUCTOR_ARGS_DECLARE throw() { return CLASSNAME CONSTRUCTOR_ARGS_CALL; }   \</span>
+<a name="l00042"></a>00042 <span class="preprocessor">                             \</span>
+<a name="l00043"></a>00043 <span class="preprocessor">  UGen kr CONSTRUCTOR_ARGS_DECLARE_UGEN throw()                \</span>
+<a name="l00044"></a>00044 <span class="preprocessor">  {                           \</span>
+<a name="l00045"></a>00045 <span class="preprocessor">   return CLASSNAME CONSTRUCTOR_ARGS_CALL.krInternal(LAGTIME_ARG_CALL);         \</span>
+<a name="l00046"></a>00046 <span class="preprocessor">  }                           \</span>
+<a name="l00047"></a>00047 <span class="preprocessor">                             \</span>
+<a name="l00048"></a>00048 <span class="preprocessor">  UGen ar CONSTRUCTOR_ARGS_DECLARE_UGEN throw()                \</span>
+<a name="l00049"></a>00049 <span class="preprocessor">  {                           \</span>
+<a name="l00050"></a>00050 <span class="preprocessor">   return Lag(CLASSNAME CONSTRUCTOR_ARGS_CALL, LAGTIME_ARG_CALL);           \</span>
+<a name="l00051"></a>00051 <span class="preprocessor">  }                           \</span>
+<a name="l00052"></a>00052 <span class="preprocessor">                             \</span>
+<a name="l00053"></a>00053 <span class="preprocessor">  static UGen KR CONSTRUCTOR_ARGS_DECLARE_UGEN throw()              \</span>
+<a name="l00054"></a>00054 <span class="preprocessor">  {                           \</span>
+<a name="l00055"></a>00055 <span class="preprocessor">   return CLASSNAME CONSTRUCTOR_ARGS_CALL.krInternal(LAGTIME_ARG_CALL);         \</span>
+<a name="l00056"></a>00056 <span class="preprocessor">  }                           \</span>
+<a name="l00057"></a>00057 <span class="preprocessor">                             \</span>
+<a name="l00058"></a>00058 <span class="preprocessor">  static UGen AR CONSTRUCTOR_ARGS_DECLARE_UGEN throw()              \</span>
+<a name="l00059"></a>00059 <span class="preprocessor">  {                           \</span>
+<a name="l00060"></a>00060 <span class="preprocessor">   return Lag(CLASSNAME CONSTRUCTOR_ARGS_CALL, LAGTIME_ARG_CALL);           \</span>
+<a name="l00061"></a>00061 <span class="preprocessor">  }                           \</span>
+<a name="l00062"></a>00062 <span class="preprocessor">                             \</span>
+<a name="l00063"></a>00063 <span class="preprocessor">  void handleIncomingMidiMessage (MidiInput* source, const MidiMessage&amp; message) throw()</span>
 <a name="l00064"></a>00064 <span class="preprocessor"></span>
 <a name="l00065"></a>00065 
-<a name="l00066"></a>00066 <span class="preprocessor">#define DeclareJuceMIDIDataSourceNoDefault(CLASSNAME,                               \</span>
-<a name="l00067"></a>00067 <span class="preprocessor">                                           CONSTRUCTOR_ARGS_CALL,                   \</span>
-<a name="l00068"></a>00068 <span class="preprocessor">                                           CONSTRUCTOR_ARGS_DECLARE,                \</span>
-<a name="l00069"></a>00069 <span class="preprocessor">                                           LAGTIME_ARG_CALL,                        \</span>
-<a name="l00070"></a><a class="code" href="ugen___juce_m_i_d_i_input_broadcaster_8h.html#a035533409cee045b36b5d125a8ea852f">00070</a> <span class="preprocessor">                                           CONSTRUCTOR_ARGS_DECLARE_UGEN)           \</span>
-<a name="l00071"></a>00071 <span class="preprocessor">    class CLASSNAME : public ExternalControlSource                                                                  \</span>
-<a name="l00072"></a>00072 <span class="preprocessor">    {                                                                                                               \</span>
-<a name="l00073"></a>00073 <span class="preprocessor">    public:                                                                                                         \</span>
-<a name="l00074"></a>00074 <span class="preprocessor">        DeclareJuceMIDIDataSourceCommonFunctions(CLASSNAME,                                                         \</span>
-<a name="l00075"></a>00075 <span class="preprocessor">                                                 CONSTRUCTOR_ARGS_CALL,                                             \</span>
-<a name="l00076"></a>00076 <span class="preprocessor">                                                 CONSTRUCTOR_ARGS_DECLARE,                                          \</span>
-<a name="l00077"></a>00077 <span class="preprocessor">                                                 LAGTIME_ARG_CALL,                                                  \</span>
-<a name="l00078"></a>00078 <span class="preprocessor">                                                 CONSTRUCTOR_ARGS_DECLARE_UGEN);                                    \</span>
-<a name="l00079"></a>00079 <span class="preprocessor">    }</span>
+<a name="l00066"></a>00066 <span class="preprocessor">#define DeclareJuceMIDIDataSourceNoDefault(CLASSNAME,        \</span>
+<a name="l00067"></a>00067 <span class="preprocessor">             CONSTRUCTOR_ARGS_CALL,     \</span>
+<a name="l00068"></a>00068 <span class="preprocessor">             CONSTRUCTOR_ARGS_DECLARE,    \</span>
+<a name="l00069"></a>00069 <span class="preprocessor">             LAGTIME_ARG_CALL,      \</span>
+<a name="l00070"></a><a class="code" href="ugen___juce_m_i_d_i_input_broadcaster_8h.html#a035533409cee045b36b5d125a8ea852f">00070</a> <span class="preprocessor">             CONSTRUCTOR_ARGS_DECLARE_UGEN)   \</span>
+<a name="l00071"></a>00071 <span class="preprocessor"> class CLASSNAME : public ExternalControlSource                 \</span>
+<a name="l00072"></a>00072 <span class="preprocessor"> {                            \</span>
+<a name="l00073"></a>00073 <span class="preprocessor"> public:                           \</span>
+<a name="l00074"></a>00074 <span class="preprocessor">  DeclareJuceMIDIDataSourceCommonFunctions(CLASSNAME,               \</span>
+<a name="l00075"></a>00075 <span class="preprocessor">             CONSTRUCTOR_ARGS_CALL,            \</span>
+<a name="l00076"></a>00076 <span class="preprocessor">             CONSTRUCTOR_ARGS_DECLARE,           \</span>
+<a name="l00077"></a>00077 <span class="preprocessor">             LAGTIME_ARG_CALL,             \</span>
+<a name="l00078"></a>00078 <span class="preprocessor">             CONSTRUCTOR_ARGS_DECLARE_UGEN);         \</span>
+<a name="l00079"></a>00079 <span class="preprocessor"> }</span>
 <a name="l00080"></a>00080 <span class="preprocessor"></span>
 <a name="l00081"></a>00081 
-<a name="l00082"></a>00082 <span class="preprocessor">#define DeclareJuceMIDIDataSource(CLASSNAME,                                        \</span>
-<a name="l00083"></a>00083 <span class="preprocessor">                                  CONSTRUCTOR_ARGS_CALL,                            \</span>
-<a name="l00084"></a>00084 <span class="preprocessor">                                  CONSTRUCTOR_ARGS_DECLARE,                         \</span>
-<a name="l00085"></a>00085 <span class="preprocessor">                                  LAGTIME_ARG_CALL,                                 \</span>
-<a name="l00086"></a><a class="code" href="ugen___juce_m_i_d_i_input_broadcaster_8h.html#a2c58d6cc1d5c33226ef2c65f86969a77">00086</a> <span class="preprocessor">                                  CONSTRUCTOR_ARGS_DECLARE_UGEN)                    \</span>
-<a name="l00087"></a>00087 <span class="preprocessor">    class CLASSNAME : public ExternalControlSource                                                                  \</span>
-<a name="l00088"></a>00088 <span class="preprocessor">    {                                                                                                               \</span>
-<a name="l00089"></a>00089 <span class="preprocessor">    public:                                                                                                         \</span>
-<a name="l00090"></a>00090 <span class="preprocessor">        CLASSNAME () throw() : ExternalControlSource() { }                                                          \</span>
-<a name="l00091"></a>00091 <span class="preprocessor">        DeclareJuceMIDIDataSourceCommonFunctions(CLASSNAME,                                                         \</span>
-<a name="l00092"></a>00092 <span class="preprocessor">                                                 CONSTRUCTOR_ARGS_CALL,                                             \</span>
-<a name="l00093"></a>00093 <span class="preprocessor">                                                 CONSTRUCTOR_ARGS_DECLARE,                                          \</span>
-<a name="l00094"></a>00094 <span class="preprocessor">                                                 LAGTIME_ARG_CALL,                                                  \</span>
-<a name="l00095"></a>00095 <span class="preprocessor">                                                 CONSTRUCTOR_ARGS_DECLARE_UGEN);                                    \</span>
-<a name="l00096"></a>00096 <span class="preprocessor">    }</span>
+<a name="l00082"></a>00082 <span class="preprocessor">#define DeclareJuceMIDIDataSource(CLASSNAME,          \</span>
+<a name="l00083"></a>00083 <span class="preprocessor">          CONSTRUCTOR_ARGS_CALL,       \</span>
+<a name="l00084"></a>00084 <span class="preprocessor">          CONSTRUCTOR_ARGS_DECLARE,       \</span>
+<a name="l00085"></a>00085 <span class="preprocessor">          LAGTIME_ARG_CALL,         \</span>
+<a name="l00086"></a><a class="code" href="ugen___juce_m_i_d_i_input_broadcaster_8h.html#a2c58d6cc1d5c33226ef2c65f86969a77">00086</a> <span class="preprocessor">          CONSTRUCTOR_ARGS_DECLARE_UGEN)     \</span>
+<a name="l00087"></a>00087 <span class="preprocessor"> class CLASSNAME : public ExternalControlSource                 \</span>
+<a name="l00088"></a>00088 <span class="preprocessor"> {                            \</span>
+<a name="l00089"></a>00089 <span class="preprocessor"> public:                           \</span>
+<a name="l00090"></a>00090 <span class="preprocessor">  CLASSNAME () throw() : ExternalControlSource() { }               \</span>
+<a name="l00091"></a>00091 <span class="preprocessor">  DeclareJuceMIDIDataSourceCommonFunctions(CLASSNAME,               \</span>
+<a name="l00092"></a>00092 <span class="preprocessor">             CONSTRUCTOR_ARGS_CALL,            \</span>
+<a name="l00093"></a>00093 <span class="preprocessor">             CONSTRUCTOR_ARGS_DECLARE,           \</span>
+<a name="l00094"></a>00094 <span class="preprocessor">             LAGTIME_ARG_CALL,             \</span>
+<a name="l00095"></a>00095 <span class="preprocessor">             CONSTRUCTOR_ARGS_DECLARE_UGEN);         \</span>
+<a name="l00096"></a>00096 <span class="preprocessor"> }</span>
 <a name="l00097"></a>00097 <span class="preprocessor"></span>
 <a name="l00101"></a><a class="code" href="class_juce_m_i_d_i_input_listener.html">00101</a> <span class="keyword">class </span><a class="code" href="class_juce_m_i_d_i_input_listener.html" title="Listens for MIDI data broadcasted by the JuceMIDIInputBroadcaster.">JuceMIDIInputListener</a>
 <a name="l00102"></a>00102 {
 <a name="l00103"></a>00103 <span class="keyword">public</span>:
-<a name="l00104"></a>00104     <a class="code" href="class_juce_m_i_d_i_input_listener.html#adeea3e382fca8eb7d9948f23cb1c6306">JuceMIDIInputListener</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> activate = <span class="keyword">true</span>) <span class="keywordflow">throw</span>();
-<a name="l00105"></a>00105     <span class="keyword">virtual</span> <a class="code" href="class_juce_m_i_d_i_input_listener.html#a778b3b54df96d717b3be5da4edcb1d9f">~JuceMIDIInputListener</a>();<span class="comment">// throw();</span>
-<a name="l00106"></a>00106     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_juce_m_i_d_i_input_listener.html#ad71d84a4dab11402699e4ac4fa268967">handleIncomingMidiMessage</a> (MidiInput* source, <span class="keyword">const</span> MidiMessage&amp; message) = 0;
+<a name="l00104"></a>00104  <a class="code" href="class_juce_m_i_d_i_input_listener.html#adeea3e382fca8eb7d9948f23cb1c6306">JuceMIDIInputListener</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> activate = <span class="keyword">true</span>) <span class="keywordflow">throw</span>();
+<a name="l00105"></a>00105  <span class="keyword">virtual</span> <a class="code" href="class_juce_m_i_d_i_input_listener.html#a778b3b54df96d717b3be5da4edcb1d9f">~JuceMIDIInputListener</a>();<span class="comment">// throw();</span>
+<a name="l00106"></a>00106  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_juce_m_i_d_i_input_listener.html#ad71d84a4dab11402699e4ac4fa268967">handleIncomingMidiMessage</a> (MidiInput* source, <span class="keyword">const</span> MidiMessage&amp; message) = 0;
 <a name="l00107"></a>00107 };
 <a name="l00108"></a>00108 
 <a name="l00122"></a><a class="code" href="class_juce_m_i_d_i_input_broadcaster.html">00122</a> <span class="keyword">class </span><a class="code" href="class_juce_m_i_d_i_input_broadcaster.html" title="Broadcasts received MIDI data to its listeners.">JuceMIDIInputBroadcaster</a> : <span class="keyword">public</span> MidiInputCallback
 <a name="l00123"></a>00123 {
 <a name="l00124"></a>00124 <span class="keyword">public</span>:
-<a name="l00125"></a>00125     <a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a6875231e57aadb4a135440771c1ce428">JuceMIDIInputBroadcaster</a>() <span class="keywordflow">throw</span>();
-<a name="l00126"></a>00126     <a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a8b033869a7d33b25935e827ed983df2d">~JuceMIDIInputBroadcaster</a>() <span class="keywordflow">throw</span>();
-<a name="l00127"></a>00127     
-<a name="l00128"></a>00128     <a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a7dcd0752b40decf4e3c62e25ccd11814">juce_DeclareSingleton</a>(<a class="code" href="class_juce_m_i_d_i_input_broadcaster.html" title="Broadcasts received MIDI data to its listeners.">JuceMIDIInputBroadcaster</a>, <span class="keyword">false</span>);
-<a name="l00129"></a>00129     
-<a name="l00130"></a>00130     <span class="keywordtype">void</span> <a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a32f9656d37bd17b27d8fb60914092141">handleIncomingMidiMessage</a> (MidiInput* source, <span class="keyword">const</span> MidiMessage&amp; message) <span class="keywordflow">throw</span>();
-<a name="l00131"></a>00131     <span class="keywordtype">void</span> <a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a81e59aaf9e6518e8f23751226c4291ab">addListener</a> (<a class="code" href="class_juce_m_i_d_i_input_listener.html" title="Listens for MIDI data broadcasted by the JuceMIDIInputBroadcaster.">JuceMIDIInputListener</a>* <span class="keyword">const</span> newListener) <span class="keywordflow">throw</span>();
-<a name="l00132"></a>00132     <span class="keywordtype">void</span> <a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#acf3b62f91b8d5eb06cbf36c5f7b76716">removeListener</a> (<a class="code" href="class_juce_m_i_d_i_input_listener.html" title="Listens for MIDI data broadcasted by the JuceMIDIInputBroadcaster.">JuceMIDIInputListener</a>* <span class="keyword">const</span> listener) <span class="keywordflow">throw</span>();
-<a name="l00133"></a>00133     <span class="keywordtype">void</span> <a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a2d16c6c9c3232ab4a4921da42b582b13">sendIncomingMidiMessage</a>(MidiInput* source, <span class="keyword">const</span> MidiMessage&amp; message) <span class="keywordflow">throw</span>();
-<a name="l00134"></a>00134     
-<a name="l00135"></a><a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a3be60423d58c89985b9ac022b4852f57">00135</a>     <span class="keyword">const</span> Array&lt;MidiInput*&gt;&amp; <a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a3be60423d58c89985b9ac022b4852f57">getMidiInputs</a>() throw()    { <span class="keywordflow">return</span> <a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a517d53c6053ac42f6900108a594a5ba8">midiInputs</a>;        }
-<a name="l00136"></a><a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a0b2a9ff0153821d9a256dfd38edb3f20">00136</a>     MidiInput* <a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a0b2a9ff0153821d9a256dfd38edb3f20">getMidiInput</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> index) <span class="keywordflow">throw</span>()    { <span class="keywordflow">return</span> <a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a517d53c6053ac42f6900108a594a5ba8">midiInputs</a>[index]; }
-<a name="l00137"></a>00137     
+<a name="l00125"></a>00125  <a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a6875231e57aadb4a135440771c1ce428">JuceMIDIInputBroadcaster</a>() <span class="keywordflow">throw</span>();
+<a name="l00126"></a>00126  <a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a8b033869a7d33b25935e827ed983df2d">~JuceMIDIInputBroadcaster</a>() <span class="keywordflow">throw</span>();
+<a name="l00127"></a>00127  
+<a name="l00128"></a>00128  <a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a7dcd0752b40decf4e3c62e25ccd11814">juce_DeclareSingleton</a>(<a class="code" href="class_juce_m_i_d_i_input_broadcaster.html" title="Broadcasts received MIDI data to its listeners.">JuceMIDIInputBroadcaster</a>, <span class="keyword">false</span>);
+<a name="l00129"></a>00129  
+<a name="l00130"></a>00130  <span class="keywordtype">void</span> <a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a32f9656d37bd17b27d8fb60914092141">handleIncomingMidiMessage</a> (MidiInput* source, <span class="keyword">const</span> MidiMessage&amp; message) <span class="keywordflow">throw</span>();
+<a name="l00131"></a>00131  <span class="keywordtype">void</span> <a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a81e59aaf9e6518e8f23751226c4291ab">addListener</a> (<a class="code" href="class_juce_m_i_d_i_input_listener.html" title="Listens for MIDI data broadcasted by the JuceMIDIInputBroadcaster.">JuceMIDIInputListener</a>* <span class="keyword">const</span> newListener) <span class="keywordflow">throw</span>();
+<a name="l00132"></a>00132  <span class="keywordtype">void</span> <a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#acf3b62f91b8d5eb06cbf36c5f7b76716">removeListener</a> (<a class="code" href="class_juce_m_i_d_i_input_listener.html" title="Listens for MIDI data broadcasted by the JuceMIDIInputBroadcaster.">JuceMIDIInputListener</a>* <span class="keyword">const</span> listener) <span class="keywordflow">throw</span>();
+<a name="l00133"></a>00133  <span class="keywordtype">void</span> <a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a2d16c6c9c3232ab4a4921da42b582b13">sendIncomingMidiMessage</a>(MidiInput* source, <span class="keyword">const</span> MidiMessage&amp; message) <span class="keywordflow">throw</span>();
+<a name="l00134"></a>00134  
+<a name="l00135"></a><a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a3be60423d58c89985b9ac022b4852f57">00135</a>  <span class="keyword">const</span> Array&lt;MidiInput*&gt;&amp; <a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a3be60423d58c89985b9ac022b4852f57">getMidiInputs</a>() throw() { <span class="keywordflow">return</span> <a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a517d53c6053ac42f6900108a594a5ba8">midiInputs</a>;  }
+<a name="l00136"></a><a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a0b2a9ff0153821d9a256dfd38edb3f20">00136</a>  MidiInput* <a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a0b2a9ff0153821d9a256dfd38edb3f20">getMidiInput</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> index) <span class="keywordflow">throw</span>() { <span class="keywordflow">return</span> <a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a517d53c6053ac42f6900108a594a5ba8">midiInputs</a>[index]; }
+<a name="l00137"></a>00137  
 <a name="l00138"></a>00138 <span class="keyword">private</span>:
-<a name="l00139"></a><a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a517d53c6053ac42f6900108a594a5ba8">00139</a>     Array&lt;MidiInput*&gt; <a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a517d53c6053ac42f6900108a594a5ba8">midiInputs</a>;
-<a name="l00140"></a><a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a9a789eb640fbc4ccee37ba0bd95069d2">00140</a>     SortedSet &lt;void*&gt; <a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a9a789eb640fbc4ccee37ba0bd95069d2">midiInputListeners</a>;
+<a name="l00139"></a><a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a517d53c6053ac42f6900108a594a5ba8">00139</a>  Array&lt;MidiInput*&gt; <a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a517d53c6053ac42f6900108a594a5ba8">midiInputs</a>;
+<a name="l00140"></a><a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a9a789eb640fbc4ccee37ba0bd95069d2">00140</a>  SortedSet &lt;void*&gt; <a class="code" href="class_juce_m_i_d_i_input_broadcaster.html#a9a789eb640fbc4ccee37ba0bd95069d2">midiInputListeners</a>;
 <a name="l00141"></a>00141 };
 <a name="l00142"></a>00142 
 <a name="l00143"></a>00143 <span class="preprocessor">#endif // _UGEN_ugen_JuceMIDIInputBroadcaster_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:29 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:58 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -52,13 +52,13 @@
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dust.html#a483bf75803908069415143f3b627639f">Dust</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;density=0.f)  throw ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Base <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> <a class="el" href="class_dust.html" title="Generates random impulses from 0 to +1.">Dust</a> Constuctor (without "mul" or "add"), use the <a class="el" href="class_dust.html#a23c01afc2f3f53d0c091a9f3719e9ab6" title="Construct and return an audio rate Dust adding &quot;mul&quot; and/or &quot;add&quot; operations as n...">AR()</a> and <a class="el" href="class_dust.html#ab4e7defac4f43c7b36f9af707239d888" title="Construct and return a control rate Dust (if available, otherise returns an audio version by default)...">KR()</a> versions in user code.  <a href="#a483bf75803908069415143f3b627639f"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Base <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> <a class="el" href="class_dust.html" title="Generates random impulses from 0 to +1.">Dust</a> Constuctor (without "mul" or "add"), use the <a class="el" href="class_dust.html#ac4151ac39668bddb9be574f1bd6e4377" title="Construct and return an audio rate Dust adding &quot;mul&quot; and/or &quot;add&quot; operations as n...">AR()</a> and <a class="el" href="class_dust.html#a1b634b217b4f5cf417ffe7a3545a9938" title="Construct and return a control rate Dust (if available, otherise returns an audio version by default)...">KR()</a> versions in user code.  <a href="#a483bf75803908069415143f3b627639f"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dust.html#a23c01afc2f3f53d0c091a9f3719e9ab6">AR</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;density=0.f, MulAdd_ArgsDeclare)  throw ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return an audio rate <a class="el" href="class_dust.html" title="Generates random impulses from 0 to +1.">Dust</a> adding "mul" and/or "add" operations as necessary.  <a href="#a23c01afc2f3f53d0c091a9f3719e9ab6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dust.html#ab4e7defac4f43c7b36f9af707239d888">KR</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;density=0.f, MulAdd_ArgsDeclare)  throw ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return a control rate <a class="el" href="class_dust.html" title="Generates random impulses from 0 to +1.">Dust</a> (if available, otherise returns an audio version by default).  <a href="#ab4e7defac4f43c7b36f9af707239d888"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dust.html#ac4151ac39668bddb9be574f1bd6e4377">AR</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;density=0.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;mul=1.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;add=0.f)  throw ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return an audio rate <a class="el" href="class_dust.html" title="Generates random impulses from 0 to +1.">Dust</a> adding "mul" and/or "add" operations as necessary.  <a href="#ac4151ac39668bddb9be574f1bd6e4377"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dust.html#a1b634b217b4f5cf417ffe7a3545a9938">KR</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;density=0.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;mul=1.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;add=0.f)  throw ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return a control rate <a class="el" href="class_dust.html" title="Generates random impulses from 0 to +1.">Dust</a> (if available, otherise returns an audio version by default).  <a href="#a1b634b217b4f5cf417ffe7a3545a9938"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Generates random impulses from 0 to +1. </p>
@@ -82,7 +82,7 @@ Static Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Base <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> <a class="el" href="class_dust.html" title="Generates random impulses from 0 to +1.">Dust</a> Constuctor (without "mul" or "add"), use the <a class="el" href="class_dust.html#a23c01afc2f3f53d0c091a9f3719e9ab6" title="Construct and return an audio rate Dust adding &quot;mul&quot; and/or &quot;add&quot; operations as n...">AR()</a> and <a class="el" href="class_dust.html#ab4e7defac4f43c7b36f9af707239d888" title="Construct and return a control rate Dust (if available, otherise returns an audio version by default)...">KR()</a> versions in user code. </p>
+<p>Base <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> <a class="el" href="class_dust.html" title="Generates random impulses from 0 to +1.">Dust</a> Constuctor (without "mul" or "add"), use the <a class="el" href="class_dust.html#ac4151ac39668bddb9be574f1bd6e4377" title="Construct and return an audio rate Dust adding &quot;mul&quot; and/or &quot;add&quot; operations as n...">AR()</a> and <a class="el" href="class_dust.html#a1b634b217b4f5cf417ffe7a3545a9938" title="Construct and return a control rate Dust (if available, otherise returns an audio version by default)...">KR()</a> versions in user code. </p>
 <p>This uses the "expanding" version of <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> which is generally used for random-based <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> classes (e.g., <a class="el" href="class_white_noise.html" title="White noise generator.">WhiteNoise</a>). This is "expanding" in the sense that multiple channels of the Base <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> are generated depending on the number of channels in the "mul" and/or "add" inputs. </p>
 
 <p>Definition at line <a class="el" href="ugen___dust_8cpp_source.html#l00125">125</a> of file <a class="el" href="ugen___dust_8cpp_source.html">ugen_Dust.cpp</a>.</p>
@@ -92,7 +92,7 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a23c01afc2f3f53d0c091a9f3719e9ab6"></a><!-- doxytag: member="Dust::AR" ref="a23c01afc2f3f53d0c091a9f3719e9ab6" args="(UGen const &amp;density=0.f, MulAdd_ArgsDeclare)" -->
+<a class="anchor" id="ac4151ac39668bddb9be574f1bd6e4377"></a><!-- doxytag: member="Dust::AR" ref="ac4151ac39668bddb9be574f1bd6e4377" args="(UGen const &amp;density=0.f, UGen const &amp;mul=1.f, UGen const &amp;add=0.f)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -105,8 +105,14 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">MulAdd_ArgsDeclare&nbsp;</td>
-          <td class="paramname"></td><td>&nbsp;</td>
+          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
+          <td class="paramname"> <em>mul</em> = <code>1.f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
+          <td class="paramname"> <em>add</em> = <code>0.f</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -137,7 +143,7 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab4e7defac4f43c7b36f9af707239d888"></a><!-- doxytag: member="Dust::KR" ref="ab4e7defac4f43c7b36f9af707239d888" args="(UGen const &amp;density=0.f, MulAdd_ArgsDeclare)" -->
+<a class="anchor" id="a1b634b217b4f5cf417ffe7a3545a9938"></a><!-- doxytag: member="Dust::KR" ref="a1b634b217b4f5cf417ffe7a3545a9938" args="(UGen const &amp;density=0.f, UGen const &amp;mul=1.f, UGen const &amp;add=0.f)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -150,8 +156,14 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">MulAdd_ArgsDeclare&nbsp;</td>
-          <td class="paramname"></td><td>&nbsp;</td>
+          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
+          <td class="paramname"> <em>mul</em> = <code>1.f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
+          <td class="paramname"> <em>add</em> = <code>0.f</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -187,7 +199,7 @@ Static Public Member Functions</h2></td></tr>
 <li>noise/<a class="el" href="ugen___dust_8cpp_source.html">ugen_Dust.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:34 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:21:02 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -76,23 +76,23 @@
 <a name="l00045"></a><a class="code" href="class_white_noise_u_gen_internal.html">00045</a> <span class="keyword">class </span><a class="code" href="class_white_noise_u_gen_internal.html">WhiteNoiseUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>
 <a name="l00046"></a>00046 {
 <a name="l00047"></a>00047 <span class="keyword">public</span>:
-<a name="l00048"></a>00048     <a class="code" href="class_white_noise_u_gen_internal.html#a736a0cf4b5d37258ce814699a1a30024">WhiteNoiseUGenInternal</a>() <span class="keywordflow">throw</span>();
-<a name="l00049"></a>00049     <span class="keywordtype">void</span> <a class="code" href="class_white_noise_u_gen_internal.html#ad3ef562ea549d915c839106a62faf284" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
-<a name="l00050"></a>00050     
-<a name="l00051"></a><a class="code" href="class_white_noise_u_gen_internal.html#a9b4dbaef5877f4adbe41db71dbcc2a69a9f7ef3b24ab0ae053d3167aede366e89">00051</a>     <span class="keyword">enum</span> <a class="code" href="class_white_noise_u_gen_internal.html#a9b4dbaef5877f4adbe41db71dbcc2a69">Inputs</a> { <a class="code" href="class_white_noise_u_gen_internal.html#a9b4dbaef5877f4adbe41db71dbcc2a69a9f7ef3b24ab0ae053d3167aede366e89">NoInputs</a> };
-<a name="l00052"></a>00052     
+<a name="l00048"></a>00048  <a class="code" href="class_white_noise_u_gen_internal.html#a736a0cf4b5d37258ce814699a1a30024">WhiteNoiseUGenInternal</a>() <span class="keywordflow">throw</span>();
+<a name="l00049"></a>00049  <span class="keywordtype">void</span> <a class="code" href="class_white_noise_u_gen_internal.html#ad3ef562ea549d915c839106a62faf284" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00050"></a>00050  
+<a name="l00051"></a><a class="code" href="class_white_noise_u_gen_internal.html#a9b4dbaef5877f4adbe41db71dbcc2a69a9f7ef3b24ab0ae053d3167aede366e89">00051</a>  <span class="keyword">enum</span> <a class="code" href="class_white_noise_u_gen_internal.html#a9b4dbaef5877f4adbe41db71dbcc2a69">Inputs</a> { <a class="code" href="class_white_noise_u_gen_internal.html#a9b4dbaef5877f4adbe41db71dbcc2a69a9f7ef3b24ab0ae053d3167aede366e89">NoInputs</a> };
+<a name="l00052"></a>00052  
 <a name="l00053"></a>00053 <span class="keyword">protected</span>:
-<a name="l00054"></a><a class="code" href="class_white_noise_u_gen_internal.html#aa56c4419aaf432a2f6f2aa3881656dd7">00054</a>     <a class="code" href="class_ran088.html">Ran088</a> <a class="code" href="class_white_noise_u_gen_internal.html#aa56c4419aaf432a2f6f2aa3881656dd7">random</a>;
+<a name="l00054"></a><a class="code" href="class_white_noise_u_gen_internal.html#aa56c4419aaf432a2f6f2aa3881656dd7">00054</a>  <a class="code" href="class_ran088.html">Ran088</a> <a class="code" href="class_white_noise_u_gen_internal.html#aa56c4419aaf432a2f6f2aa3881656dd7">random</a>;
 <a name="l00055"></a>00055 };
 <a name="l00056"></a>00056 
-<a name="l00061"></a><a class="code" href="class_white_noise.html#a42476219c66ca1a76fbe2c600e9b1bed">00061</a> <a class="code" href="ugen___mul_add_8h.html#ac731e636f4aa5cd0991452268098e7b3" title="Declare a UGen with multiply and add inputs.">ExpandingMulAddUGenDeclaration</a>(<a class="code" href="class_white_noise.html" title="White noise generator.">WhiteNoise</a>, (), (<a class="code" href="ugen___mul_add_8h.html#a0948ded88972de1849c249f13e99c70c">MulAdd_ArgsCall</a>), (), (<a class="code" href="ugen___mul_add_8h.html#a26f64cd22a6e4e0933b39d2031396f26">MulAdd_ArgsDeclare</a>), <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___mul_add_8h.html#a9fbd19ed1cc830caeacbe23a214bbb5e">MulAddArgs_Docs</a>);
+<a name="l00061"></a><a class="code" href="class_white_noise.html#a9eee2cdb425a2fa386effe275fb4cce5">00061</a> <a class="code" href="ugen___mul_add_8h.html#ac731e636f4aa5cd0991452268098e7b3" title="Declare a UGen with multiply and add inputs.">ExpandingMulAddUGenDeclaration</a>(<a class="code" href="class_white_noise.html" title="White noise generator.">WhiteNoise</a>, (), (<a class="code" href="ugen___mul_add_8h.html#a0948ded88972de1849c249f13e99c70c">MulAdd_ArgsCall</a>), (), (<a class="code" href="ugen___mul_add_8h.html#a26f64cd22a6e4e0933b39d2031396f26">MulAdd_ArgsDeclare</a>), <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___mul_add_8h.html#a9fbd19ed1cc830caeacbe23a214bbb5e">MulAddArgs_Docs</a>);
 <a name="l00062"></a>00062 
 <a name="l00063"></a>00063 
 <a name="l00064"></a>00064 
 <a name="l00065"></a>00065 <span class="preprocessor">#endif // _UGEN_ugen_WhiteNoise_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:29 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:58 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

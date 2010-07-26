@@ -49,13 +49,13 @@
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_impulse.html#a43e55f7eb99ce6a406368b5f02e76b51">Impulse</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;freq=440.f)  throw ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Base <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> <a class="el" href="class_impulse.html" title="Impulse oscillator.">Impulse</a> Constuctor (without "mul" or "add"), use the <a class="el" href="class_impulse.html#abf7379a5f97008863cfef6e84155be5e" title="Construct and return an audio rate Impulse adding &quot;mul&quot; and/or &quot;add&quot; operations a...">AR()</a> and <a class="el" href="class_impulse.html#a8856e06f05250e7831074d4cde911623" title="Construct and return a control rate Impulse (if available, otherise returns an audio version by defau...">KR()</a> versions in user code.  <a href="#a43e55f7eb99ce6a406368b5f02e76b51"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Base <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> <a class="el" href="class_impulse.html" title="Impulse oscillator.">Impulse</a> Constuctor (without "mul" or "add"), use the <a class="el" href="class_impulse.html#a54cfdf383adc21182e4725f6272df7f2" title="Construct and return an audio rate Impulse adding &quot;mul&quot; and/or &quot;add&quot; operations a...">AR()</a> and <a class="el" href="class_impulse.html#a1b2b714183149597029588347df867e7" title="Construct and return a control rate Impulse (if available, otherise returns an audio version by defau...">KR()</a> versions in user code.  <a href="#a43e55f7eb99ce6a406368b5f02e76b51"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_impulse.html#abf7379a5f97008863cfef6e84155be5e">AR</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;freq=440.f, MulAdd_ArgsDeclare)  throw ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return an audio rate <a class="el" href="class_impulse.html" title="Impulse oscillator.">Impulse</a> adding "mul" and/or "add" operations as necessary.  <a href="#abf7379a5f97008863cfef6e84155be5e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_impulse.html#a8856e06f05250e7831074d4cde911623">KR</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;freq=440.f, MulAdd_ArgsDeclare)  throw ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return a control rate <a class="el" href="class_impulse.html" title="Impulse oscillator.">Impulse</a> (if available, otherise returns an audio version by default).  <a href="#a8856e06f05250e7831074d4cde911623"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_impulse.html#a54cfdf383adc21182e4725f6272df7f2">AR</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;freq=440.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;mul=1.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;add=0.f)  throw ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return an audio rate <a class="el" href="class_impulse.html" title="Impulse oscillator.">Impulse</a> adding "mul" and/or "add" operations as necessary.  <a href="#a54cfdf383adc21182e4725f6272df7f2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_impulse.html#a1b2b714183149597029588347df867e7">KR</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;freq=440.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;mul=1.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;add=0.f)  throw ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return a control rate <a class="el" href="class_impulse.html" title="Impulse oscillator.">Impulse</a> (if available, otherise returns an audio version by default).  <a href="#a1b2b714183149597029588347df867e7"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p><a class="el" href="class_impulse.html" title="Impulse oscillator.">Impulse</a> oscillator. </p>
@@ -79,7 +79,7 @@ Static Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Base <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> <a class="el" href="class_impulse.html" title="Impulse oscillator.">Impulse</a> Constuctor (without "mul" or "add"), use the <a class="el" href="class_impulse.html#abf7379a5f97008863cfef6e84155be5e" title="Construct and return an audio rate Impulse adding &quot;mul&quot; and/or &quot;add&quot; operations a...">AR()</a> and <a class="el" href="class_impulse.html#a8856e06f05250e7831074d4cde911623" title="Construct and return a control rate Impulse (if available, otherise returns an audio version by defau...">KR()</a> versions in user code. </p>
+<p>Base <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> <a class="el" href="class_impulse.html" title="Impulse oscillator.">Impulse</a> Constuctor (without "mul" or "add"), use the <a class="el" href="class_impulse.html#a54cfdf383adc21182e4725f6272df7f2" title="Construct and return an audio rate Impulse adding &quot;mul&quot; and/or &quot;add&quot; operations a...">AR()</a> and <a class="el" href="class_impulse.html#a1b2b714183149597029588347df867e7" title="Construct and return a control rate Impulse (if available, otherise returns an audio version by defau...">KR()</a> versions in user code. </p>
 <p>This uses the "direct" version of <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> which is generally used for non randomly-based <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> classes. It assumes that multiple channels generated by multiple channels of "mul" and/or "add" would differ only by these scale and offset values (i.e., the channels are otherwise the same "shape" which is unintuitive in the case of noise since one would expect each channel of noise to be fundamentally different). </p>
 
 <p>Definition at line <a class="el" href="ugen___impulse_8cpp_source.html#l00137">137</a> of file <a class="el" href="ugen___impulse_8cpp_source.html">ugen_Impulse.cpp</a>.</p>
@@ -89,7 +89,7 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="abf7379a5f97008863cfef6e84155be5e"></a><!-- doxytag: member="Impulse::AR" ref="abf7379a5f97008863cfef6e84155be5e" args="(UGen const &amp;freq=440.f, MulAdd_ArgsDeclare)" -->
+<a class="anchor" id="a54cfdf383adc21182e4725f6272df7f2"></a><!-- doxytag: member="Impulse::AR" ref="a54cfdf383adc21182e4725f6272df7f2" args="(UGen const &amp;freq=440.f, UGen const &amp;mul=1.f, UGen const &amp;add=0.f)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -102,8 +102,14 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">MulAdd_ArgsDeclare&nbsp;</td>
-          <td class="paramname"></td><td>&nbsp;</td>
+          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
+          <td class="paramname"> <em>mul</em> = <code>1.f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
+          <td class="paramname"> <em>add</em> = <code>0.f</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -136,7 +142,7 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a8856e06f05250e7831074d4cde911623"></a><!-- doxytag: member="Impulse::KR" ref="a8856e06f05250e7831074d4cde911623" args="(UGen const &amp;freq=440.f, MulAdd_ArgsDeclare)" -->
+<a class="anchor" id="a1b2b714183149597029588347df867e7"></a><!-- doxytag: member="Impulse::KR" ref="a1b2b714183149597029588347df867e7" args="(UGen const &amp;freq=440.f, UGen const &amp;mul=1.f, UGen const &amp;add=0.f)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -149,8 +155,14 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">MulAdd_ArgsDeclare&nbsp;</td>
-          <td class="paramname"></td><td>&nbsp;</td>
+          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
+          <td class="paramname"> <em>mul</em> = <code>1.f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
+          <td class="paramname"> <em>add</em> = <code>0.f</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -186,7 +198,7 @@ Static Public Member Functions</h2></td></tr>
 <li>oscillators/simple/<a class="el" href="ugen___impulse_8cpp_source.html">ugen_Impulse.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:35 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:21:03 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

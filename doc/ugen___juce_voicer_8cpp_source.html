@@ -76,357 +76,357 @@
 <a name="l00044"></a>00044 <span class="preprocessor">#include &quot;../basics/ugen_MixUGen.h&quot;</span>
 <a name="l00045"></a>00045 
 <a name="l00046"></a>00046 <a class="code" href="class_voicer_u_gen_internal.html#ab6e1e066cb0fdd9abf9feb8be3e177ee">VoicerUGenInternal::VoicerUGenInternal</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> numChannels, 
-<a name="l00047"></a>00047                                        <span class="keyword">const</span> <span class="keywordtype">int</span> midiChannel, 
-<a name="l00048"></a>00048                                        <span class="keyword">const</span> <span class="keywordtype">int</span> numVoices, 
-<a name="l00049"></a>00049                                        <span class="keyword">const</span> <span class="keywordtype">bool</span> forcedSteal,
-<a name="l00050"></a>00050                                        <span class="keyword">const</span> <span class="keywordtype">bool</span> direct) <span class="keywordflow">throw</span>()
-<a name="l00051"></a>00051 :   <a class="code" href="class_voicer_base_u_gen_internal.html">VoicerBaseUGenInternal</a>(numChannels, numVoices, forcedSteal),
-<a name="l00052"></a>00052     <a class="code" href="class_juce_m_i_d_i_input_listener.html" title="Listens for MIDI data broadcasted by the JuceMIDIInputBroadcaster.">JuceMIDIInputListener</a>(direct),
-<a name="l00053"></a>00053     midiChannel_(midiChannel),
-<a name="l00054"></a>00054     controllers(<a class="code" href="class_numerical_array.html#a35333c3e01ef69f3a2915165c2d3ab83">FloatArray::newClear</a>(128)),
-<a name="l00055"></a>00055     keyPressure(<a class="code" href="class_numerical_array.html#a35333c3e01ef69f3a2915165c2d3ab83">FloatArray::newClear</a>(128)),
-<a name="l00056"></a>00056     pitchWheel(0.f),
-<a name="l00057"></a>00057     channelPressure(0.f),
-<a name="l00058"></a>00058     program(0)
+<a name="l00047"></a>00047             <span class="keyword">const</span> <span class="keywordtype">int</span> midiChannel, 
+<a name="l00048"></a>00048             <span class="keyword">const</span> <span class="keywordtype">int</span> numVoices, 
+<a name="l00049"></a>00049             <span class="keyword">const</span> <span class="keywordtype">bool</span> forcedSteal,
+<a name="l00050"></a>00050             <span class="keyword">const</span> <span class="keywordtype">bool</span> direct) <span class="keywordflow">throw</span>()
+<a name="l00051"></a>00051 : <a class="code" href="class_voicer_base_u_gen_internal.html">VoicerBaseUGenInternal</a>(numChannels, numVoices, forcedSteal),
+<a name="l00052"></a>00052  <a class="code" href="class_juce_m_i_d_i_input_listener.html" title="Listens for MIDI data broadcasted by the JuceMIDIInputBroadcaster.">JuceMIDIInputListener</a>(direct),
+<a name="l00053"></a>00053  midiChannel_(midiChannel),
+<a name="l00054"></a>00054  controllers(<a class="code" href="class_numerical_array.html#a35333c3e01ef69f3a2915165c2d3ab83">FloatArray::newClear</a>(128)),
+<a name="l00055"></a>00055  keyPressure(<a class="code" href="class_numerical_array.html#a35333c3e01ef69f3a2915165c2d3ab83">FloatArray::newClear</a>(128)),
+<a name="l00056"></a>00056  pitchWheel(0.f),
+<a name="l00057"></a>00057  channelPressure(0.f),
+<a name="l00058"></a>00058  program(0)
 <a name="l00059"></a>00059 {
-<a name="l00060"></a>00060     controllers[7] = 1.f;
-<a name="l00061"></a>00061     controllers[10] = 0.5f;
-<a name="l00062"></a>00062     controllers[11] = 1.f;
+<a name="l00060"></a>00060  controllers[7] = 1.f;
+<a name="l00061"></a>00061  controllers[10] = 0.5f;
+<a name="l00062"></a>00062  controllers[11] = 1.f;
 <a name="l00063"></a>00063 }
 <a name="l00064"></a>00064 
 <a name="l00065"></a>00065 <span class="comment">//void VoicerUGenInternal::processBlock(bool&amp; shouldDelete, const unsigned int blockID, const int /*channel*/) throw()</span>
 <a name="l00066"></a>00066 <span class="comment">//{</span>
-<a name="l00067"></a>00067 <span class="comment">//  const ScopedLock sl(lock);</span>
-<a name="l00068"></a>00068 <span class="comment">//  </span>
-<a name="l00069"></a>00069 <span class="comment">//  // render the current events</span>
-<a name="l00070"></a>00070 <span class="comment">//  SpawnBaseUGenInternal::processBlock(shouldDelete, blockID, -1);</span>
-<a name="l00071"></a>00071 <span class="comment">//  </span>
-<a name="l00072"></a>00072 <span class="comment">//  if(midiMessages.isEmpty() == false)</span>
-<a name="l00073"></a>00073 <span class="comment">//  {</span>
-<a name="l00074"></a>00074 <span class="comment">//      const int blockSize = uGenOutput.getBlockSize();</span>
-<a name="l00075"></a>00075 <span class="comment">//      bool addedEvent = false;</span>
-<a name="l00076"></a>00076 <span class="comment">//      MidiBuffer::Iterator iter(midiMessages);</span>
-<a name="l00077"></a>00077 <span class="comment">//      MidiMessage message(0xf4, 0.0);</span>
-<a name="l00078"></a>00078 <span class="comment">//      </span>
-<a name="l00079"></a>00079 <span class="comment">//      int samplePos = 0;</span>
-<a name="l00080"></a>00080 <span class="comment">//      while(iter.getNextEvent(message, samplePos) &amp;&amp; (samplePos &lt; blockSize))</span>
-<a name="l00081"></a>00081 <span class="comment">//      {</span>
-<a name="l00082"></a>00082 <span class="comment">//          if(samplePos &lt; 0) samplePos = 0;</span>
-<a name="l00083"></a>00083 <span class="comment">//              </span>
-<a name="l00084"></a>00084 <span class="comment">//          const int midiChannel = midiChannel_;</span>
-<a name="l00085"></a>00085 <span class="comment">//          </span>
-<a name="l00086"></a>00086 <span class="comment">//          if(message.isNoteOnOrOff() &amp;&amp; message.isForChannel(midiChannel))</span>
-<a name="l00087"></a>00087 <span class="comment">//          {</span>
-<a name="l00088"></a>00088 <span class="comment">//              const int midiNote = message.getNoteNumber();</span>
-<a name="l00089"></a>00089 <span class="comment">//              const int velocity = message.getVelocity();</span>
-<a name="l00090"></a>00090 <span class="comment">//              </span>
-<a name="l00091"></a>00091 <span class="comment">//              const int userData = createUserData(midiChannel, midiNote);</span>
-<a name="l00092"></a>00092 <span class="comment">//              </span>
-<a name="l00093"></a>00093 <span class="comment">//              if(velocity &gt; 0)</span>
-<a name="l00094"></a>00094 <span class="comment">//              {</span>
-<a name="l00095"></a>00095 <span class="comment">//                  if(numVoices_ &gt; 0)</span>
-<a name="l00096"></a>00096 <span class="comment">//                  {</span>
-<a name="l00097"></a>00097 <span class="comment">//                      const int voicesUsed = countNonstealingVoices();</span>
-<a name="l00098"></a>00098 <span class="comment">//                      if(voicesUsed &gt;= numVoices_)</span>
-<a name="l00099"></a>00099 <span class="comment">//                      {</span>
-<a name="l00100"></a>00100 <span class="comment">//                          UGen&amp; stealee = chooseStealee();</span>
-<a name="l00101"></a>00101 <span class="comment">//                          </span>
-<a name="l00102"></a>00102 <span class="comment">//                          if(stealee.isNotNull())</span>
-<a name="l00103"></a>00103 <span class="comment">//                          {</span>
-<a name="l00104"></a>00104 <span class="comment">//                              stealee.userData = stealingUserData;</span>
-<a name="l00105"></a>00105 <span class="comment">//                              stealee.steal(forcedSteal_);</span>
-<a name="l00106"></a>00106 <span class="comment">//                          }</span>
-<a name="l00107"></a>00107 <span class="comment">//                      }</span>
-<a name="l00108"></a>00108 <span class="comment">//                  }</span>
-<a name="l00109"></a>00109 <span class="comment">//                  </span>
-<a name="l00110"></a>00110 <span class="comment">//                  // stop double notes, AU lab was sending two ons but one off </span>
-<a name="l00111"></a>00111 <span class="comment">//                  stealNote(midiChannel, midiNote, false, true); </span>
-<a name="l00112"></a>00112 <span class="comment">//                  </span>
-<a name="l00113"></a>00113 <span class="comment">//                  addedEvent = true;</span>
-<a name="l00114"></a>00114 <span class="comment">//                  UGen newEvent = spawnEvent(*this, currentEventIndex++, midiChannel, midiNote, velocity);</span>
-<a name="l00115"></a>00115 <span class="comment">//                  newEvent.userData = userData;</span>
-<a name="l00116"></a>00116 <span class="comment">//                  </span>
-<a name="l00117"></a>00117 <span class="comment">//                  newEvent.prepareForBlock(blockSize, blockID); // prepare for full size (allocates the output buffers)</span>
-<a name="l00118"></a>00118 <span class="comment">//                  </span>
-<a name="l00119"></a>00119 <span class="comment">//                  const int currentBlockSampleID = blockID + samplePos;</span>
-<a name="l00120"></a>00120 <span class="comment">//                  const int numSamplesToProcess = blockSize - samplePos;</span>
-<a name="l00121"></a>00121 <span class="comment">//                      </span>
-<a name="l00122"></a>00122 <span class="comment">//                  UGen::setBlockSize(numSamplesToProcess);</span>
+<a name="l00067"></a>00067 <span class="comment">// const ScopedLock sl(lock);</span>
+<a name="l00068"></a>00068 <span class="comment">// </span>
+<a name="l00069"></a>00069 <span class="comment">// // render the current events</span>
+<a name="l00070"></a>00070 <span class="comment">// SpawnBaseUGenInternal::processBlock(shouldDelete, blockID, -1);</span>
+<a name="l00071"></a>00071 <span class="comment">// </span>
+<a name="l00072"></a>00072 <span class="comment">// if(midiMessages.isEmpty() == false)</span>
+<a name="l00073"></a>00073 <span class="comment">// {</span>
+<a name="l00074"></a>00074 <span class="comment">//  const int blockSize = uGenOutput.getBlockSize();</span>
+<a name="l00075"></a>00075 <span class="comment">//  bool addedEvent = false;</span>
+<a name="l00076"></a>00076 <span class="comment">//  MidiBuffer::Iterator iter(midiMessages);</span>
+<a name="l00077"></a>00077 <span class="comment">//  MidiMessage message(0xf4, 0.0);</span>
+<a name="l00078"></a>00078 <span class="comment">//  </span>
+<a name="l00079"></a>00079 <span class="comment">//  int samplePos = 0;</span>
+<a name="l00080"></a>00080 <span class="comment">//  while(iter.getNextEvent(message, samplePos) &amp;&amp; (samplePos &lt; blockSize))</span>
+<a name="l00081"></a>00081 <span class="comment">//  {</span>
+<a name="l00082"></a>00082 <span class="comment">//   if(samplePos &lt; 0) samplePos = 0;</span>
+<a name="l00083"></a>00083 <span class="comment">//    </span>
+<a name="l00084"></a>00084 <span class="comment">//   const int midiChannel = midiChannel_;</span>
+<a name="l00085"></a>00085 <span class="comment">//   </span>
+<a name="l00086"></a>00086 <span class="comment">//   if(message.isNoteOnOrOff() &amp;&amp; message.isForChannel(midiChannel))</span>
+<a name="l00087"></a>00087 <span class="comment">//   {</span>
+<a name="l00088"></a>00088 <span class="comment">//    const int midiNote = message.getNoteNumber();</span>
+<a name="l00089"></a>00089 <span class="comment">//    const int velocity = message.getVelocity();</span>
+<a name="l00090"></a>00090 <span class="comment">//    </span>
+<a name="l00091"></a>00091 <span class="comment">//    const int userData = createUserData(midiChannel, midiNote);</span>
+<a name="l00092"></a>00092 <span class="comment">//    </span>
+<a name="l00093"></a>00093 <span class="comment">//    if(velocity &gt; 0)</span>
+<a name="l00094"></a>00094 <span class="comment">//    {</span>
+<a name="l00095"></a>00095 <span class="comment">//     if(numVoices_ &gt; 0)</span>
+<a name="l00096"></a>00096 <span class="comment">//     {</span>
+<a name="l00097"></a>00097 <span class="comment">//      const int voicesUsed = countNonstealingVoices();</span>
+<a name="l00098"></a>00098 <span class="comment">//      if(voicesUsed &gt;= numVoices_)</span>
+<a name="l00099"></a>00099 <span class="comment">//      {</span>
+<a name="l00100"></a>00100 <span class="comment">//       UGen&amp; stealee = chooseStealee();</span>
+<a name="l00101"></a>00101 <span class="comment">//       </span>
+<a name="l00102"></a>00102 <span class="comment">//       if(stealee.isNotNull())</span>
+<a name="l00103"></a>00103 <span class="comment">//       {</span>
+<a name="l00104"></a>00104 <span class="comment">//        stealee.userData = stealingUserData;</span>
+<a name="l00105"></a>00105 <span class="comment">//        stealee.steal(forcedSteal_);</span>
+<a name="l00106"></a>00106 <span class="comment">//       }</span>
+<a name="l00107"></a>00107 <span class="comment">//      }</span>
+<a name="l00108"></a>00108 <span class="comment">//     }</span>
+<a name="l00109"></a>00109 <span class="comment">//     </span>
+<a name="l00110"></a>00110 <span class="comment">//     // stop double notes, AU lab was sending two ons but one off </span>
+<a name="l00111"></a>00111 <span class="comment">//     stealNote(midiChannel, midiNote, false, true); </span>
+<a name="l00112"></a>00112 <span class="comment">//     </span>
+<a name="l00113"></a>00113 <span class="comment">//     addedEvent = true;</span>
+<a name="l00114"></a>00114 <span class="comment">//     UGen newEvent = spawnEvent(*this, currentEventIndex++, midiChannel, midiNote, velocity);</span>
+<a name="l00115"></a>00115 <span class="comment">//     newEvent.userData = userData;</span>
+<a name="l00116"></a>00116 <span class="comment">//     </span>
+<a name="l00117"></a>00117 <span class="comment">//     newEvent.prepareForBlock(blockSize, blockID); // prepare for full size (allocates the output buffers)</span>
+<a name="l00118"></a>00118 <span class="comment">//     </span>
+<a name="l00119"></a>00119 <span class="comment">//     const int currentBlockSampleID = blockID + samplePos;</span>
+<a name="l00120"></a>00120 <span class="comment">//     const int numSamplesToProcess = blockSize - samplePos;</span>
+<a name="l00121"></a>00121 <span class="comment">//      </span>
+<a name="l00122"></a>00122 <span class="comment">//     UGen::setBlockSize(numSamplesToProcess);</span>
 <a name="l00123"></a>00123 <span class="comment">//</span>
-<a name="l00124"></a>00124 <span class="comment">//                  if(samplePos &gt; 0)</span>
-<a name="l00125"></a>00125 <span class="comment">//                      newEvent.prepareForBlock(numSamplesToProcess, currentBlockSampleID); // prepare for sub block</span>
-<a name="l00126"></a>00126 <span class="comment">//                  </span>
-<a name="l00127"></a>00127 <span class="comment">//                  for(int channel = 0; channel &lt; numChannels; channel++)</span>
-<a name="l00128"></a>00128 <span class="comment">//                  {</span>
-<a name="l00129"></a>00129 <span class="comment">//                      bool shouleDeleteLocal = false;</span>
-<a name="l00130"></a>00130 <span class="comment">//                      const float *eventSamples = newEvent.processBlock(shouleDeleteLocal, currentBlockSampleID, channel);</span>
-<a name="l00131"></a>00131 <span class="comment">//                      accumulateSamples(bufferData[channel] + samplePos, eventSamples, numSamplesToProcess);</span>
-<a name="l00132"></a>00132 <span class="comment">//                  }</span>
-<a name="l00133"></a>00133 <span class="comment">//                  </span>
-<a name="l00134"></a>00134 <span class="comment">//                  events &lt;&lt;= newEvent;</span>
-<a name="l00135"></a>00135 <span class="comment">//              }</span>
-<a name="l00136"></a>00136 <span class="comment">//              else</span>
-<a name="l00137"></a>00137 <span class="comment">//              {</span>
-<a name="l00138"></a>00138 <span class="comment">//                  UGen&amp; releasee = chooseReleasee(midiChannel, midiNote);</span>
-<a name="l00139"></a>00139 <span class="comment">//          </span>
-<a name="l00140"></a>00140 <span class="comment">//                  if(releasee.isNotNull()) releasee.release();</span>
-<a name="l00141"></a>00141 <span class="comment">//              }</span>
-<a name="l00142"></a>00142 <span class="comment">//          }</span>
-<a name="l00143"></a>00143 <span class="comment">//      }</span>
-<a name="l00144"></a>00144 <span class="comment">//      </span>
-<a name="l00145"></a>00145 <span class="comment">//      if(addedEvent) </span>
-<a name="l00146"></a>00146 <span class="comment">//      {</span>
-<a name="l00147"></a>00147 <span class="comment">//          UGen::setBlockSize(blockSize);</span>
-<a name="l00148"></a>00148 <span class="comment">//          mixer = Mix(&amp;events, false);</span>
-<a name="l00149"></a>00149 <span class="comment">//      }</span>
-<a name="l00150"></a>00150 <span class="comment">//      </span>
-<a name="l00151"></a>00151 <span class="comment">//      midiMessages.clear();</span>
-<a name="l00152"></a>00152 <span class="comment">//  }   </span>
+<a name="l00124"></a>00124 <span class="comment">//     if(samplePos &gt; 0)</span>
+<a name="l00125"></a>00125 <span class="comment">//      newEvent.prepareForBlock(numSamplesToProcess, currentBlockSampleID); // prepare for sub block</span>
+<a name="l00126"></a>00126 <span class="comment">//     </span>
+<a name="l00127"></a>00127 <span class="comment">//     for(int channel = 0; channel &lt; numChannels; channel++)</span>
+<a name="l00128"></a>00128 <span class="comment">//     {</span>
+<a name="l00129"></a>00129 <span class="comment">//      bool shouleDeleteLocal = false;</span>
+<a name="l00130"></a>00130 <span class="comment">//      const float *eventSamples = newEvent.processBlock(shouleDeleteLocal, currentBlockSampleID, channel);</span>
+<a name="l00131"></a>00131 <span class="comment">//      accumulateSamples(bufferData[channel] + samplePos, eventSamples, numSamplesToProcess);</span>
+<a name="l00132"></a>00132 <span class="comment">//     }</span>
+<a name="l00133"></a>00133 <span class="comment">//     </span>
+<a name="l00134"></a>00134 <span class="comment">//     events &lt;&lt;= newEvent;</span>
+<a name="l00135"></a>00135 <span class="comment">//    }</span>
+<a name="l00136"></a>00136 <span class="comment">//    else</span>
+<a name="l00137"></a>00137 <span class="comment">//    {</span>
+<a name="l00138"></a>00138 <span class="comment">//     UGen&amp; releasee = chooseReleasee(midiChannel, midiNote);</span>
+<a name="l00139"></a>00139 <span class="comment">//   </span>
+<a name="l00140"></a>00140 <span class="comment">//     if(releasee.isNotNull()) releasee.release();</span>
+<a name="l00141"></a>00141 <span class="comment">//    }</span>
+<a name="l00142"></a>00142 <span class="comment">//   }</span>
+<a name="l00143"></a>00143 <span class="comment">//  }</span>
+<a name="l00144"></a>00144 <span class="comment">//  </span>
+<a name="l00145"></a>00145 <span class="comment">//  if(addedEvent) </span>
+<a name="l00146"></a>00146 <span class="comment">//  {</span>
+<a name="l00147"></a>00147 <span class="comment">//   UGen::setBlockSize(blockSize);</span>
+<a name="l00148"></a>00148 <span class="comment">//   mixer = Mix(&amp;events, false);</span>
+<a name="l00149"></a>00149 <span class="comment">//  }</span>
+<a name="l00150"></a>00150 <span class="comment">//  </span>
+<a name="l00151"></a>00151 <span class="comment">//  midiMessages.clear();</span>
+<a name="l00152"></a>00152 <span class="comment">// } </span>
 <a name="l00153"></a>00153 <span class="comment">//}</span>
 <a name="l00154"></a>00154 
 <a name="l00155"></a>00155 <span class="keywordtype">void</span> <a class="code" href="class_voicer_u_gen_internal.html#aa7b3897fd31efa63fd887fea3cc695e0">VoicerUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*channel*/</span>) throw()
-<a name="l00156"></a>00156 {   
-<a name="l00157"></a>00157     <span class="keywordflow">if</span>(<a class="code" href="class_spawn_base_u_gen_internal.html#a3c359d64ef4be28f353c5c149efaf410">shouldStopAllEvents</a>() == <span class="keyword">true</span>) <a class="code" href="class_spawn_base_u_gen_internal.html#a79a47414daaa706977c017600deb333d">initEvents</a>();
-<a name="l00158"></a>00158     
-<a name="l00159"></a>00159     <span class="keywordflow">if</span>(<a class="code" href="class_voicer_u_gen_internal.html#ad0652e015e50d0c4b3cdc807866fbd53">midiMessages</a>.isEmpty() == <span class="keyword">true</span>)
-<a name="l00160"></a>00160     {
-<a name="l00161"></a>00161         <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_voicer_u_gen_internal.html#a0887f61376b7facd8ad6938aeb760672">lock</a>);
-<a name="l00162"></a>00162         <a class="code" href="class_voicer_u_gen_internal.html#aa7b3897fd31efa63fd887fea3cc695e0">SpawnBaseUGenInternal::processBlock</a>(shouldDelete, blockID, -1);
-<a name="l00163"></a>00163     }
-<a name="l00164"></a>00164     <span class="keywordflow">else</span>
-<a name="l00165"></a>00165     {
-<a name="l00166"></a>00166         <span class="keyword">const</span> <span class="keywordtype">int</span> blockSize = <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a118a3566a4758eb4719c57843c25bd57">getBlockSize</a>();
-<a name="l00167"></a>00167         MidiBuffer::Iterator iter(<a class="code" href="class_voicer_u_gen_internal.html#ad0652e015e50d0c4b3cdc807866fbd53">midiMessages</a>);
-<a name="l00168"></a>00168         MidiMessage message(0xf4, 0.0);
-<a name="l00169"></a>00169         
-<a name="l00170"></a>00170         <span class="keywordtype">int</span> samplePos = 0;
-<a name="l00171"></a>00171         <span class="keywordtype">int</span> startSample = 0;
-<a name="l00172"></a>00172         
-<a name="l00173"></a>00173         <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_spawn_base_u_gen_internal.html#ae0b3f29046ad4bb78aedd20e1cfda471">numChannels</a> = <a class="code" href="class_proxy_owner_u_gen_internal.html#a43e6fd05ba69f1ef135463c028e656cd">getNumChannels</a>();
-<a name="l00174"></a>00174         <span class="keyword">const</span> <span class="keywordtype">int</span> midiChannel = <a class="code" href="class_voicer_u_gen_internal.html#a3d285f4bab8fbd5ded25aca9849753de">midiChannel_</a>;
-<a name="l00175"></a>00175         
-<a name="l00176"></a>00176         <span class="keywordflow">while</span>(iter.getNextEvent(message, samplePos) &amp;&amp; (samplePos &lt; blockSize))
-<a name="l00177"></a>00177         {
-<a name="l00178"></a>00178             <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_voicer_u_gen_internal.html#a0887f61376b7facd8ad6938aeb760672">lock</a>);
-<a name="l00179"></a>00179                 
-<a name="l00180"></a>00180             <span class="keywordflow">if</span>(samplePos &lt; 0) samplePos = 0;
-<a name="l00181"></a>00181             
-<a name="l00182"></a>00182             <span class="keyword">const</span> <span class="keywordtype">int</span> numSamples = samplePos - startSample;
-<a name="l00183"></a>00183         
-<a name="l00184"></a>00184             <span class="keywordflow">if</span>(numSamples &gt; 0)
-<a name="l00185"></a>00185             {
-<a name="l00186"></a>00186                 <a class="code" href="class_u_gen.html#a8acc7dd5f218816ac8759fdaa770900e">UGen::setBlockSize</a>(numSamples);
-<a name="l00187"></a>00187                 
-<a name="l00188"></a>00188                 <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numChannels; channel++)
-<a name="l00189"></a>00189                 {
-<a name="l00190"></a>00190                     <a class="code" href="class_spawn_base_u_gen_internal.html#a0c9bb36182f19036764f20be0db1972a">bufferData</a>[channel] = <a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">getSampleData</a>() + startSample;
-<a name="l00191"></a>00191                 }
-<a name="l00192"></a>00192                 
-<a name="l00193"></a>00193                 <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a>.<a class="code" href="class_u_gen.html#aa1930046f6d3ff1656ad244fedb53f13" title="Prepares a UGen for processing.">prepareForBlock</a>(numSamples, blockID + startSample);
-<a name="l00194"></a>00194                 <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a>.<a class="code" href="class_u_gen.html#ab63673f3a08b506605eff7abd481072d" title="Set the outputs for the UGenInternal instances.">setOutputs</a>(<a class="code" href="class_spawn_base_u_gen_internal.html#a0c9bb36182f19036764f20be0db1972a">bufferData</a>, numSamples, numChannels);
-<a name="l00195"></a>00195                 <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a>.<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID + startSample, -1);                
-<a name="l00196"></a>00196             }
-<a name="l00197"></a>00197             
-<a name="l00198"></a>00198             startSample = samplePos;
-<a name="l00199"></a>00199             
-<a name="l00200"></a>00200             <span class="keywordflow">if</span>(message.isForChannel(midiChannel))
-<a name="l00201"></a>00201             {
-<a name="l00202"></a>00202                 <span class="keywordflow">if</span>(message.isNoteOnOrOff())
-<a name="l00203"></a>00203                 {
-<a name="l00204"></a>00204                     <span class="keyword">const</span> <span class="keywordtype">int</span> midiNote = message.getNoteNumber();
-<a name="l00205"></a>00205                     <span class="keyword">const</span> <span class="keywordtype">int</span> velocity = message.getVelocity();
-<a name="l00206"></a>00206                                         
-<a name="l00207"></a>00207                     <span class="keywordflow">if</span>(velocity &gt; 0)
-<a name="l00208"></a>00208                     {
-<a name="l00209"></a>00209                         <span class="keywordflow">if</span>(<a class="code" href="class_voicer_base_u_gen_internal.html#ab6291fb040d258c418d1156591c49f44">numVoices_</a> &gt; 0)
-<a name="l00210"></a>00210                         {
-<a name="l00211"></a>00211                             <span class="keyword">const</span> <span class="keywordtype">int</span> voicesUsed = <a class="code" href="class_voicer_base_u_gen_internal.html#aa3cf951e9c9fa2ae2ae84895b9ddb1ec">countNonstealingVoices</a>();
-<a name="l00212"></a>00212                             <span class="keywordflow">if</span>(voicesUsed &gt;= <a class="code" href="class_voicer_base_u_gen_internal.html#ab6291fb040d258c418d1156591c49f44">numVoices_</a>)
-<a name="l00213"></a>00213                             {
-<a name="l00214"></a>00214                                 <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> stealee = <a class="code" href="class_voicer_base_u_gen_internal.html#ab0c54462f2e244c9440509a987274873">chooseStealee</a>();
-<a name="l00215"></a>00215                                 
-<a name="l00216"></a>00216                                 <span class="keywordflow">if</span>(stealee.<a class="code" href="class_u_gen.html#aaa7297439e564b7777d92fbd8a987277" title="Tests whether a UGen is a null UGen.">isNotNull</a>())
-<a name="l00217"></a>00217                                 {
-<a name="l00218"></a>00218                                     stealee.<a class="code" href="class_u_gen.html#a76fc25ef5972d3d729881ff1eedd2856" title="May be used to store custom user data, the Voicer class uses it to store MIDI note numbers for exampl...">userData</a> = <a class="code" href="class_voicer_base_u_gen_internal.html#a29cf340543dea7bd55579317fd21f637">stealingUserData</a>;
-<a name="l00219"></a>00219                                     stealee.<a class="code" href="class_u_gen.html#a0336e416ffc8bb2cc6572f02dc02da3d" title="Attempts to steal any releasable UGen instances in the UGen graph.">steal</a>(<a class="code" href="class_voicer_base_u_gen_internal.html#ad019d90b93b3d2d0080df0fbe7703d99">forcedSteal_</a>);
-<a name="l00220"></a>00220                                 }
-<a name="l00221"></a>00221                             }
-<a name="l00222"></a>00222                         }
-<a name="l00223"></a>00223                         
-<a name="l00224"></a>00224                         <span class="comment">// stop double notes, AU lab was sending two ons but one off </span>
-<a name="l00225"></a>00225                         <a class="code" href="class_voicer_base_u_gen_internal.html#a5017f07e41c82533d91dfe024b88a4e3" title="Steal one or more notes with a particular MIDI note and/or MIDI channel.">stealNote</a>(midiChannel, midiNote, <span class="keyword">false</span>, <span class="keyword">true</span>); 
-<a name="l00226"></a>00226                         
-<a name="l00227"></a>00227                         <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> newEvent = <a class="code" href="class_voicer_base_u_gen_internal.html#aa4f2c512d50c353ef1d86f8f5005719a">spawnEvent</a>(*<span class="keyword">this</span>, <a class="code" href="class_spawn_base_u_gen_internal.html#a8f63dbb26339ccba8c724523f38dcb9f">currentEventIndex</a>++, midiChannel, midiNote, velocity);
-<a name="l00228"></a>00228                         newEvent.<a class="code" href="class_u_gen.html#a76fc25ef5972d3d729881ff1eedd2856" title="May be used to store custom user data, the Voicer class uses it to store MIDI note numbers for exampl...">userData</a> = <a class="code" href="class_voicer_base_u_gen_internal.html#a5d77b1ecccd6d10d53e760d2ec6c82cd">createUserData</a>(midiChannel, midiNote);
-<a name="l00229"></a>00229                         <a class="code" href="class_spawn_base_u_gen_internal.html#ac4f3ccd84782a6498d3d06d673ab1719">events</a> &lt;&lt;= newEvent;
-<a name="l00230"></a>00230                         <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a> = <a class="code" href="class_mix.html" title="Mix channels.">Mix</a>(&amp;<a class="code" href="class_spawn_base_u_gen_internal.html#ac4f3ccd84782a6498d3d06d673ab1719">events</a>, <span class="keyword">false</span>);
-<a name="l00231"></a>00231                     }
-<a name="l00232"></a>00232                     <span class="keywordflow">else</span>
-<a name="l00233"></a>00233                     {
-<a name="l00234"></a>00234                         <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> releasee = <a class="code" href="class_voicer_base_u_gen_internal.html#a5d248eb5e68fcfc261015a8bd5bc37d1">chooseReleasee</a>(midiChannel, midiNote);
-<a name="l00235"></a>00235                         <span class="keywordflow">if</span>(releasee.<a class="code" href="class_u_gen.html#aaa7297439e564b7777d92fbd8a987277" title="Tests whether a UGen is a null UGen.">isNotNull</a>()) releasee.<a class="code" href="class_u_gen.html#aa18ce6433b3b6f03fab9fbe841a65657" title="Attempts to release any releasable UGen instances in the UGen graph.">release</a>();
-<a name="l00236"></a>00236                     }
-<a name="l00237"></a>00237                 }
-<a name="l00238"></a>00238                 <span class="keywordflow">else</span> <span class="keywordflow">if</span>(message.isController())
-<a name="l00239"></a>00239                 {
-<a name="l00240"></a>00240                     <a class="code" href="class_voicer_u_gen_internal.html#acc0402112621d11a59a3c2bbc85de7b9">setController</a>(message.getControllerNumber(), 
-<a name="l00241"></a>00241                                   message.getControllerValue() / 127.f);
-<a name="l00242"></a>00242                 }
-<a name="l00243"></a>00243                 <span class="keywordflow">else</span> <span class="keywordflow">if</span>(message.isPitchWheel())
-<a name="l00244"></a>00244                 {
-<a name="l00245"></a>00245                     <a class="code" href="class_voicer_u_gen_internal.html#a65af0770a83ac7bea366b28e7d4748f0">setPitchWheel</a>(jlimit(-8191, 8191, message.getPitchWheelValue() - 8192) / 8191.f);
-<a name="l00246"></a>00246                 }
-<a name="l00247"></a>00247                 <span class="keywordflow">else</span> <span class="keywordflow">if</span>(message.isChannelPressure())
-<a name="l00248"></a>00248                 {
-<a name="l00249"></a>00249                     <a class="code" href="class_voicer_u_gen_internal.html#a6d3942cca3bf6a7f78049241ce9d7bee">setChannelPressure</a>(message.getChannelPressureValue() / 127.f);
-<a name="l00250"></a>00250                 }
-<a name="l00251"></a>00251                 <span class="keywordflow">else</span> <span class="keywordflow">if</span>(message.isAftertouch())
-<a name="l00252"></a>00252                 {
-<a name="l00253"></a>00253                     <a class="code" href="class_voicer_u_gen_internal.html#af533388a4760f73500b620f3f2001ece">setKeyPressure</a>(message.getNoteNumber(), 
-<a name="l00254"></a>00254                                    message.getAfterTouchValue() / 127.f);
-<a name="l00255"></a>00255                 }
-<a name="l00256"></a>00256                 <span class="keywordflow">else</span> <span class="keywordflow">if</span>(message.isProgramChange())
-<a name="l00257"></a>00257                 {
-<a name="l00258"></a>00258                     <a class="code" href="class_voicer_u_gen_internal.html#a4415194050d864e5829e5eb443f0ade9">setProgram</a>(message.getProgramChangeNumber());
-<a name="l00259"></a>00259                 }
-<a name="l00260"></a>00260                 <span class="keywordflow">else</span> <span class="keywordflow">if</span>(message.isAllNotesOff())
-<a name="l00261"></a>00261                 {
-<a name="l00262"></a>00262                     <a class="code" href="class_spawn_base_u_gen_internal.html#a79a47414daaa706977c017600deb333d">initEvents</a>();
-<a name="l00263"></a>00263                 }
-<a name="l00264"></a>00264             }
-<a name="l00265"></a>00265         }
-<a name="l00266"></a>00266         
-<a name="l00267"></a>00267         <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_voicer_u_gen_internal.html#a0887f61376b7facd8ad6938aeb760672">lock</a>);
-<a name="l00268"></a>00268         
-<a name="l00269"></a>00269         <span class="keyword">const</span> <span class="keywordtype">int</span> numSamples = blockSize - startSample;
-<a name="l00270"></a>00270         
-<a name="l00271"></a>00271         <span class="keywordflow">if</span>(numSamples &gt; 0)
-<a name="l00272"></a>00272         {
-<a name="l00273"></a>00273             <a class="code" href="class_u_gen.html#a8acc7dd5f218816ac8759fdaa770900e">UGen::setBlockSize</a>(numSamples);
-<a name="l00274"></a>00274             
-<a name="l00275"></a>00275             <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numChannels; channel++)
-<a name="l00276"></a>00276             {
-<a name="l00277"></a>00277                 <a class="code" href="class_spawn_base_u_gen_internal.html#a0c9bb36182f19036764f20be0db1972a">bufferData</a>[channel] = <a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">getSampleData</a>() + startSample;
-<a name="l00278"></a>00278             }
-<a name="l00279"></a>00279             
-<a name="l00280"></a>00280             <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a>.<a class="code" href="class_u_gen.html#aa1930046f6d3ff1656ad244fedb53f13" title="Prepares a UGen for processing.">prepareForBlock</a>(numSamples, blockID + startSample);
-<a name="l00281"></a>00281             <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a>.<a class="code" href="class_u_gen.html#ab63673f3a08b506605eff7abd481072d" title="Set the outputs for the UGenInternal instances.">setOutputs</a>(<a class="code" href="class_spawn_base_u_gen_internal.html#a0c9bb36182f19036764f20be0db1972a">bufferData</a>, numSamples, numChannels);
-<a name="l00282"></a>00282             <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a>.<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID + startSample, -1);
-<a name="l00283"></a>00283         }
-<a name="l00284"></a>00284         
-<a name="l00285"></a>00285         <a class="code" href="class_u_gen.html#a8acc7dd5f218816ac8759fdaa770900e">UGen::setBlockSize</a>(blockSize);
-<a name="l00286"></a>00286         
-<a name="l00287"></a>00287         <a class="code" href="class_voicer_u_gen_internal.html#ad0652e015e50d0c4b3cdc807866fbd53">midiMessages</a>.clear();
-<a name="l00288"></a>00288     }   
+<a name="l00156"></a>00156 { 
+<a name="l00157"></a>00157  <span class="keywordflow">if</span>(<a class="code" href="class_spawn_base_u_gen_internal.html#a3c359d64ef4be28f353c5c149efaf410">shouldStopAllEvents</a>() == <span class="keyword">true</span>) <a class="code" href="class_spawn_base_u_gen_internal.html#a79a47414daaa706977c017600deb333d">initEvents</a>();
+<a name="l00158"></a>00158  
+<a name="l00159"></a>00159  <span class="keywordflow">if</span>(<a class="code" href="class_voicer_u_gen_internal.html#ad0652e015e50d0c4b3cdc807866fbd53">midiMessages</a>.isEmpty() == <span class="keyword">true</span>)
+<a name="l00160"></a>00160  {
+<a name="l00161"></a>00161   <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_voicer_u_gen_internal.html#a0887f61376b7facd8ad6938aeb760672">lock</a>);
+<a name="l00162"></a>00162   <a class="code" href="class_voicer_u_gen_internal.html#aa7b3897fd31efa63fd887fea3cc695e0">SpawnBaseUGenInternal::processBlock</a>(shouldDelete, blockID, -1);
+<a name="l00163"></a>00163  }
+<a name="l00164"></a>00164  <span class="keywordflow">else</span>
+<a name="l00165"></a>00165  {
+<a name="l00166"></a>00166   <span class="keyword">const</span> <span class="keywordtype">int</span> blockSize = <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a118a3566a4758eb4719c57843c25bd57">getBlockSize</a>();
+<a name="l00167"></a>00167   MidiBuffer::Iterator iter(<a class="code" href="class_voicer_u_gen_internal.html#ad0652e015e50d0c4b3cdc807866fbd53">midiMessages</a>);
+<a name="l00168"></a>00168   MidiMessage message(0xf4, 0.0);
+<a name="l00169"></a>00169   
+<a name="l00170"></a>00170   <span class="keywordtype">int</span> samplePos = 0;
+<a name="l00171"></a>00171   <span class="keywordtype">int</span> startSample = 0;
+<a name="l00172"></a>00172   
+<a name="l00173"></a>00173   <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_spawn_base_u_gen_internal.html#ae0b3f29046ad4bb78aedd20e1cfda471">numChannels</a> = <a class="code" href="class_proxy_owner_u_gen_internal.html#a43e6fd05ba69f1ef135463c028e656cd">getNumChannels</a>();
+<a name="l00174"></a>00174   <span class="keyword">const</span> <span class="keywordtype">int</span> midiChannel = <a class="code" href="class_voicer_u_gen_internal.html#a3d285f4bab8fbd5ded25aca9849753de">midiChannel_</a>;
+<a name="l00175"></a>00175   
+<a name="l00176"></a>00176   <span class="keywordflow">while</span>(iter.getNextEvent(message, samplePos) &amp;&amp; (samplePos &lt; blockSize))
+<a name="l00177"></a>00177   {
+<a name="l00178"></a>00178    <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_voicer_u_gen_internal.html#a0887f61376b7facd8ad6938aeb760672">lock</a>);
+<a name="l00179"></a>00179     
+<a name="l00180"></a>00180    <span class="keywordflow">if</span>(samplePos &lt; 0) samplePos = 0;
+<a name="l00181"></a>00181    
+<a name="l00182"></a>00182    <span class="keyword">const</span> <span class="keywordtype">int</span> numSamples = samplePos - startSample;
+<a name="l00183"></a>00183   
+<a name="l00184"></a>00184    <span class="keywordflow">if</span>(numSamples &gt; 0)
+<a name="l00185"></a>00185    {
+<a name="l00186"></a>00186     <a class="code" href="class_u_gen.html#a8acc7dd5f218816ac8759fdaa770900e">UGen::setBlockSize</a>(numSamples);
+<a name="l00187"></a>00187     
+<a name="l00188"></a>00188     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numChannels; channel++)
+<a name="l00189"></a>00189     {
+<a name="l00190"></a>00190      <a class="code" href="class_spawn_base_u_gen_internal.html#a0c9bb36182f19036764f20be0db1972a">bufferData</a>[channel] = <a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">getSampleData</a>() + startSample;
+<a name="l00191"></a>00191     }
+<a name="l00192"></a>00192     
+<a name="l00193"></a>00193     <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a>.<a class="code" href="class_u_gen.html#aa1930046f6d3ff1656ad244fedb53f13" title="Prepares a UGen for processing.">prepareForBlock</a>(numSamples, blockID + startSample);
+<a name="l00194"></a>00194     <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a>.<a class="code" href="class_u_gen.html#ab63673f3a08b506605eff7abd481072d" title="Set the outputs for the UGenInternal instances.">setOutputs</a>(<a class="code" href="class_spawn_base_u_gen_internal.html#a0c9bb36182f19036764f20be0db1972a">bufferData</a>, numSamples, numChannels);
+<a name="l00195"></a>00195     <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a>.<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID + startSample, -1);    
+<a name="l00196"></a>00196    }
+<a name="l00197"></a>00197    
+<a name="l00198"></a>00198    startSample = samplePos;
+<a name="l00199"></a>00199    
+<a name="l00200"></a>00200    <span class="keywordflow">if</span>(message.isForChannel(midiChannel))
+<a name="l00201"></a>00201    {
+<a name="l00202"></a>00202     <span class="keywordflow">if</span>(message.isNoteOnOrOff())
+<a name="l00203"></a>00203     {
+<a name="l00204"></a>00204      <span class="keyword">const</span> <span class="keywordtype">int</span> midiNote = message.getNoteNumber();
+<a name="l00205"></a>00205      <span class="keyword">const</span> <span class="keywordtype">int</span> velocity = message.getVelocity();
+<a name="l00206"></a>00206           
+<a name="l00207"></a>00207      <span class="keywordflow">if</span>(velocity &gt; 0)
+<a name="l00208"></a>00208      {
+<a name="l00209"></a>00209       <span class="keywordflow">if</span>(<a class="code" href="class_voicer_base_u_gen_internal.html#ab6291fb040d258c418d1156591c49f44">numVoices_</a> &gt; 0)
+<a name="l00210"></a>00210       {
+<a name="l00211"></a>00211        <span class="keyword">const</span> <span class="keywordtype">int</span> voicesUsed = <a class="code" href="class_voicer_base_u_gen_internal.html#aa3cf951e9c9fa2ae2ae84895b9ddb1ec">countNonstealingVoices</a>();
+<a name="l00212"></a>00212        <span class="keywordflow">if</span>(voicesUsed &gt;= <a class="code" href="class_voicer_base_u_gen_internal.html#ab6291fb040d258c418d1156591c49f44">numVoices_</a>)
+<a name="l00213"></a>00213        {
+<a name="l00214"></a>00214         <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> stealee = <a class="code" href="class_voicer_base_u_gen_internal.html#ab0c54462f2e244c9440509a987274873">chooseStealee</a>();
+<a name="l00215"></a>00215         
+<a name="l00216"></a>00216         <span class="keywordflow">if</span>(stealee.<a class="code" href="class_u_gen.html#aaa7297439e564b7777d92fbd8a987277" title="Tests whether a UGen is a null UGen.">isNotNull</a>())
+<a name="l00217"></a>00217         {
+<a name="l00218"></a>00218          stealee.<a class="code" href="class_u_gen.html#a76fc25ef5972d3d729881ff1eedd2856" title="May be used to store custom user data, the Voicer class uses it to store MIDI note numbers for exampl...">userData</a> = <a class="code" href="class_voicer_base_u_gen_internal.html#a29cf340543dea7bd55579317fd21f637">stealingUserData</a>;
+<a name="l00219"></a>00219          stealee.<a class="code" href="class_u_gen.html#a0336e416ffc8bb2cc6572f02dc02da3d" title="Attempts to steal any releasable UGen instances in the UGen graph.">steal</a>(<a class="code" href="class_voicer_base_u_gen_internal.html#ad019d90b93b3d2d0080df0fbe7703d99">forcedSteal_</a>);
+<a name="l00220"></a>00220         }
+<a name="l00221"></a>00221        }
+<a name="l00222"></a>00222       }
+<a name="l00223"></a>00223       
+<a name="l00224"></a>00224       <span class="comment">// stop double notes, AU lab was sending two ons but one off </span>
+<a name="l00225"></a>00225       <a class="code" href="class_voicer_base_u_gen_internal.html#a5017f07e41c82533d91dfe024b88a4e3" title="Steal one or more notes with a particular MIDI note and/or MIDI channel.">stealNote</a>(midiChannel, midiNote, <span class="keyword">false</span>, <span class="keyword">true</span>); 
+<a name="l00226"></a>00226       
+<a name="l00227"></a>00227       <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> newEvent = <a class="code" href="class_voicer_base_u_gen_internal.html#aa4f2c512d50c353ef1d86f8f5005719a">spawnEvent</a>(*<span class="keyword">this</span>, <a class="code" href="class_spawn_base_u_gen_internal.html#a8f63dbb26339ccba8c724523f38dcb9f">currentEventIndex</a>++, midiChannel, midiNote, velocity);
+<a name="l00228"></a>00228       newEvent.<a class="code" href="class_u_gen.html#a76fc25ef5972d3d729881ff1eedd2856" title="May be used to store custom user data, the Voicer class uses it to store MIDI note numbers for exampl...">userData</a> = <a class="code" href="class_voicer_base_u_gen_internal.html#a5d77b1ecccd6d10d53e760d2ec6c82cd">createUserData</a>(midiChannel, midiNote);
+<a name="l00229"></a>00229       <a class="code" href="class_spawn_base_u_gen_internal.html#ac4f3ccd84782a6498d3d06d673ab1719">events</a> &lt;&lt;= newEvent;
+<a name="l00230"></a>00230       <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a> = <a class="code" href="class_mix.html" title="Mix channels.">Mix</a>(&amp;<a class="code" href="class_spawn_base_u_gen_internal.html#ac4f3ccd84782a6498d3d06d673ab1719">events</a>, <span class="keyword">false</span>);
+<a name="l00231"></a>00231      }
+<a name="l00232"></a>00232      <span class="keywordflow">else</span>
+<a name="l00233"></a>00233      {
+<a name="l00234"></a>00234       <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> releasee = <a class="code" href="class_voicer_base_u_gen_internal.html#a5d248eb5e68fcfc261015a8bd5bc37d1">chooseReleasee</a>(midiChannel, midiNote);
+<a name="l00235"></a>00235       <span class="keywordflow">if</span>(releasee.<a class="code" href="class_u_gen.html#aaa7297439e564b7777d92fbd8a987277" title="Tests whether a UGen is a null UGen.">isNotNull</a>()) releasee.<a class="code" href="class_u_gen.html#aa18ce6433b3b6f03fab9fbe841a65657" title="Attempts to release any releasable UGen instances in the UGen graph.">release</a>();
+<a name="l00236"></a>00236      }
+<a name="l00237"></a>00237     }
+<a name="l00238"></a>00238     <span class="keywordflow">else</span> <span class="keywordflow">if</span>(message.isController())
+<a name="l00239"></a>00239     {
+<a name="l00240"></a>00240      <a class="code" href="class_voicer_u_gen_internal.html#acc0402112621d11a59a3c2bbc85de7b9">setController</a>(message.getControllerNumber(), 
+<a name="l00241"></a>00241           message.getControllerValue() / 127.f);
+<a name="l00242"></a>00242     }
+<a name="l00243"></a>00243     <span class="keywordflow">else</span> <span class="keywordflow">if</span>(message.isPitchWheel())
+<a name="l00244"></a>00244     {
+<a name="l00245"></a>00245      <a class="code" href="class_voicer_u_gen_internal.html#a65af0770a83ac7bea366b28e7d4748f0">setPitchWheel</a>(jlimit(-8191, 8191, message.getPitchWheelValue() - 8192) / 8191.f);
+<a name="l00246"></a>00246     }
+<a name="l00247"></a>00247     <span class="keywordflow">else</span> <span class="keywordflow">if</span>(message.isChannelPressure())
+<a name="l00248"></a>00248     {
+<a name="l00249"></a>00249      <a class="code" href="class_voicer_u_gen_internal.html#a6d3942cca3bf6a7f78049241ce9d7bee">setChannelPressure</a>(message.getChannelPressureValue() / 127.f);
+<a name="l00250"></a>00250     }
+<a name="l00251"></a>00251     <span class="keywordflow">else</span> <span class="keywordflow">if</span>(message.isAftertouch())
+<a name="l00252"></a>00252     {
+<a name="l00253"></a>00253      <a class="code" href="class_voicer_u_gen_internal.html#af533388a4760f73500b620f3f2001ece">setKeyPressure</a>(message.getNoteNumber(), 
+<a name="l00254"></a>00254            message.getAfterTouchValue() / 127.f);
+<a name="l00255"></a>00255     }
+<a name="l00256"></a>00256     <span class="keywordflow">else</span> <span class="keywordflow">if</span>(message.isProgramChange())
+<a name="l00257"></a>00257     {
+<a name="l00258"></a>00258      <a class="code" href="class_voicer_u_gen_internal.html#a4415194050d864e5829e5eb443f0ade9">setProgram</a>(message.getProgramChangeNumber());
+<a name="l00259"></a>00259     }
+<a name="l00260"></a>00260     <span class="keywordflow">else</span> <span class="keywordflow">if</span>(message.isAllNotesOff())
+<a name="l00261"></a>00261     {
+<a name="l00262"></a>00262      <a class="code" href="class_spawn_base_u_gen_internal.html#a79a47414daaa706977c017600deb333d">initEvents</a>();
+<a name="l00263"></a>00263     }
+<a name="l00264"></a>00264    }
+<a name="l00265"></a>00265   }
+<a name="l00266"></a>00266   
+<a name="l00267"></a>00267   <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_voicer_u_gen_internal.html#a0887f61376b7facd8ad6938aeb760672">lock</a>);
+<a name="l00268"></a>00268   
+<a name="l00269"></a>00269   <span class="keyword">const</span> <span class="keywordtype">int</span> numSamples = blockSize - startSample;
+<a name="l00270"></a>00270   
+<a name="l00271"></a>00271   <span class="keywordflow">if</span>(numSamples &gt; 0)
+<a name="l00272"></a>00272   {
+<a name="l00273"></a>00273    <a class="code" href="class_u_gen.html#a8acc7dd5f218816ac8759fdaa770900e">UGen::setBlockSize</a>(numSamples);
+<a name="l00274"></a>00274    
+<a name="l00275"></a>00275    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numChannels; channel++)
+<a name="l00276"></a>00276    {
+<a name="l00277"></a>00277     <a class="code" href="class_spawn_base_u_gen_internal.html#a0c9bb36182f19036764f20be0db1972a">bufferData</a>[channel] = <a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">getSampleData</a>() + startSample;
+<a name="l00278"></a>00278    }
+<a name="l00279"></a>00279    
+<a name="l00280"></a>00280    <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a>.<a class="code" href="class_u_gen.html#aa1930046f6d3ff1656ad244fedb53f13" title="Prepares a UGen for processing.">prepareForBlock</a>(numSamples, blockID + startSample);
+<a name="l00281"></a>00281    <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a>.<a class="code" href="class_u_gen.html#ab63673f3a08b506605eff7abd481072d" title="Set the outputs for the UGenInternal instances.">setOutputs</a>(<a class="code" href="class_spawn_base_u_gen_internal.html#a0c9bb36182f19036764f20be0db1972a">bufferData</a>, numSamples, numChannels);
+<a name="l00282"></a>00282    <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a>.<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID + startSample, -1);
+<a name="l00283"></a>00283   }
+<a name="l00284"></a>00284   
+<a name="l00285"></a>00285   <a class="code" href="class_u_gen.html#a8acc7dd5f218816ac8759fdaa770900e">UGen::setBlockSize</a>(blockSize);
+<a name="l00286"></a>00286   
+<a name="l00287"></a>00287   <a class="code" href="class_voicer_u_gen_internal.html#ad0652e015e50d0c4b3cdc807866fbd53">midiMessages</a>.clear();
+<a name="l00288"></a>00288  } 
 <a name="l00289"></a>00289 }
 <a name="l00290"></a>00290 
 <a name="l00291"></a>00291 <span class="keywordtype">void</span> <a class="code" href="class_voicer_u_gen_internal.html#acff1cd16061f7ee6ea522d4c9f3388ec">VoicerUGenInternal::handleIncomingMidiMessage</a> (MidiInput* source, <span class="keyword">const</span> MidiMessage&amp; message) <span class="keywordflow">throw</span>()
 <a name="l00292"></a>00292 {
-<a name="l00293"></a>00293     <span class="keywordflow">if</span>(message.isForChannel(midiChannel_) == <span class="keyword">false</span>) <span class="keywordflow">return</span>;
-<a name="l00294"></a>00294     <span class="keywordflow">if</span>(message.isNoteOnOrOff() == <span class="keyword">false</span>)            <span class="keywordflow">return</span>;
-<a name="l00295"></a>00295         
-<a name="l00296"></a>00296     <span class="keyword">const</span> ScopedLock sl(lock);
-<a name="l00297"></a>00297     sendMidiNote(message.getChannel(), message.getNoteNumber(), message.getVelocity());
+<a name="l00293"></a>00293  <span class="keywordflow">if</span>(message.isForChannel(midiChannel_) == <span class="keyword">false</span>) <span class="keywordflow">return</span>;
+<a name="l00294"></a>00294  <span class="keywordflow">if</span>(message.isNoteOnOrOff() == <span class="keyword">false</span>)   <span class="keywordflow">return</span>;
+<a name="l00295"></a>00295   
+<a name="l00296"></a>00296  <span class="keyword">const</span> ScopedLock sl(lock);
+<a name="l00297"></a>00297  sendMidiNote(message.getChannel(), message.getNoteNumber(), message.getVelocity());
 <a name="l00298"></a>00298 }
 <a name="l00299"></a>00299 
 <a name="l00300"></a>00300 <span class="keywordtype">void</span> <a class="code" href="class_voicer_u_gen_internal.html#ae8d52b1012d8a4a120ac91fd23b7431d">VoicerUGenInternal::sendMidiBuffer</a>(MidiBuffer <span class="keyword">const</span>&amp; midiMessagesToAdd) <span class="keywordflow">throw</span>()
 <a name="l00301"></a>00301 {
-<a name="l00302"></a>00302     <span class="keyword">const</span> ScopedLock sl(lock);
-<a name="l00303"></a>00303     
-<a name="l00304"></a>00304     <span class="keywordflow">if</span>(midiMessagesToAdd.isEmpty() == <span class="keyword">false</span>)
-<a name="l00305"></a>00305     {               
-<a name="l00306"></a>00306         midiMessages.addEvents(midiMessagesToAdd, 0, -1, 0);
-<a name="l00307"></a>00307     }
+<a name="l00302"></a>00302  <span class="keyword">const</span> ScopedLock sl(lock);
+<a name="l00303"></a>00303  
+<a name="l00304"></a>00304  <span class="keywordflow">if</span>(midiMessagesToAdd.isEmpty() == <span class="keyword">false</span>)
+<a name="l00305"></a>00305  {    
+<a name="l00306"></a>00306   midiMessages.addEvents(midiMessagesToAdd, 0, -1, 0);
+<a name="l00307"></a>00307  }
 <a name="l00308"></a>00308 }
 <a name="l00309"></a>00309 
 <a name="l00310"></a>00310 <span class="keywordtype">void</span> <a class="code" href="class_voicer_u_gen_internal.html#acc0402112621d11a59a3c2bbc85de7b9">VoicerUGenInternal::setController</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> index, <span class="keyword">const</span> <span class="keywordtype">float</span> value) <span class="keywordflow">throw</span>()
 <a name="l00311"></a>00311 {
-<a name="l00312"></a>00312     <span class="keyword">const</span> ScopedLock sl(lock);
-<a name="l00313"></a>00313     controllers.put(index, value);
+<a name="l00312"></a>00312  <span class="keyword">const</span> ScopedLock sl(lock);
+<a name="l00313"></a>00313  controllers.put(index, value);
 <a name="l00314"></a>00314 }
 <a name="l00315"></a>00315 
 <a name="l00316"></a>00316 <span class="keywordtype">float</span> <a class="code" href="class_voicer_u_gen_internal.html#abc90067e9291be88d474f1bc3b9908d4">VoicerUGenInternal::getController</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> index) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00317"></a>00317 {
-<a name="l00318"></a>00318     <span class="keyword">const</span> ScopedLock sl(lock);
-<a name="l00319"></a>00319     <span class="keywordflow">return</span> controllers[index];
+<a name="l00318"></a>00318  <span class="keyword">const</span> ScopedLock sl(lock);
+<a name="l00319"></a>00319  <span class="keywordflow">return</span> controllers[index];
 <a name="l00320"></a>00320 }
 <a name="l00321"></a>00321 
 <a name="l00322"></a>00322 <span class="keyword">const</span> <span class="keywordtype">float</span>* <a class="code" href="class_voicer_u_gen_internal.html#a16ae3bb453b63714e59b35507eeb44d2">VoicerUGenInternal::getControllerPtr</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> index) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00323"></a>00323 {
-<a name="l00324"></a>00324     <span class="keyword">const</span> ScopedLock sl(lock);
-<a name="l00325"></a>00325     <span class="keywordflow">return</span> controllers.getArray() + index;
+<a name="l00324"></a>00324  <span class="keyword">const</span> ScopedLock sl(lock);
+<a name="l00325"></a>00325  <span class="keywordflow">return</span> controllers.getArray() + index;
 <a name="l00326"></a>00326 }
 <a name="l00327"></a>00327 
 <a name="l00328"></a>00328 <span class="keywordtype">void</span> <a class="code" href="class_voicer_u_gen_internal.html#af533388a4760f73500b620f3f2001ece">VoicerUGenInternal::setKeyPressure</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> index, <span class="keyword">const</span> <span class="keywordtype">float</span> value) <span class="keywordflow">throw</span>()
 <a name="l00329"></a>00329 {
-<a name="l00330"></a>00330     <span class="keyword">const</span> ScopedLock sl(lock);
-<a name="l00331"></a>00331     keyPressure.put(index, value);
+<a name="l00330"></a>00330  <span class="keyword">const</span> ScopedLock sl(lock);
+<a name="l00331"></a>00331  keyPressure.put(index, value);
 <a name="l00332"></a>00332 }
 <a name="l00333"></a>00333 
 <a name="l00334"></a>00334 <span class="keywordtype">float</span> <a class="code" href="class_voicer_u_gen_internal.html#a9ec0e7a05b973f48465679e1d61727ac">VoicerUGenInternal::getKeyPressure</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> index) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00335"></a>00335 {
-<a name="l00336"></a>00336     <span class="keyword">const</span> ScopedLock sl(lock);
-<a name="l00337"></a>00337     <span class="keywordflow">return</span> keyPressure[index];
+<a name="l00336"></a>00336  <span class="keyword">const</span> ScopedLock sl(lock);
+<a name="l00337"></a>00337  <span class="keywordflow">return</span> keyPressure[index];
 <a name="l00338"></a>00338 }
 <a name="l00339"></a>00339 
 <a name="l00340"></a>00340 <span class="keyword">const</span> <span class="keywordtype">float</span>* <a class="code" href="class_voicer_u_gen_internal.html#ad007e20a20f46bb085fc2d75b3a42391">VoicerUGenInternal::getKeyPressurePtr</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> index) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00341"></a>00341 {
-<a name="l00342"></a>00342     <span class="keyword">const</span> ScopedLock sl(lock);
-<a name="l00343"></a>00343     <span class="keywordflow">return</span> keyPressure.getArray() + index;
+<a name="l00342"></a>00342  <span class="keyword">const</span> ScopedLock sl(lock);
+<a name="l00343"></a>00343  <span class="keywordflow">return</span> keyPressure.getArray() + index;
 <a name="l00344"></a>00344 }
 <a name="l00345"></a>00345 
 <a name="l00346"></a>00346 <span class="keywordtype">void</span> <a class="code" href="class_voicer_u_gen_internal.html#a65af0770a83ac7bea366b28e7d4748f0">VoicerUGenInternal::setPitchWheel</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> value) <span class="keywordflow">throw</span>()
 <a name="l00347"></a>00347 {
-<a name="l00348"></a>00348     <span class="keyword">const</span> ScopedLock sl(lock);
-<a name="l00349"></a>00349     pitchWheel = value;
+<a name="l00348"></a>00348  <span class="keyword">const</span> ScopedLock sl(lock);
+<a name="l00349"></a>00349  pitchWheel = value;
 <a name="l00350"></a>00350 }
 <a name="l00351"></a>00351 
 <a name="l00352"></a>00352 <span class="keywordtype">float</span> <a class="code" href="class_voicer_u_gen_internal.html#abc9df113f98990c1eace57ba03ccb3ac">VoicerUGenInternal::getPitchWheel</a>() <span class="keyword">const</span> throw()
 <a name="l00353"></a>00353 {
-<a name="l00354"></a>00354     <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_voicer_u_gen_internal.html#a0887f61376b7facd8ad6938aeb760672">lock</a>);
-<a name="l00355"></a>00355     <span class="keywordflow">return</span> <a class="code" href="class_voicer_u_gen_internal.html#aebed9c38ee6720fd8dd4ba7d06f21f09">pitchWheel</a>;
+<a name="l00354"></a>00354  <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_voicer_u_gen_internal.html#a0887f61376b7facd8ad6938aeb760672">lock</a>);
+<a name="l00355"></a>00355  <span class="keywordflow">return</span> <a class="code" href="class_voicer_u_gen_internal.html#aebed9c38ee6720fd8dd4ba7d06f21f09">pitchWheel</a>;
 <a name="l00356"></a>00356 }
 <a name="l00357"></a>00357 
 <a name="l00358"></a>00358 <span class="keyword">const</span> <span class="keywordtype">float</span>* <a class="code" href="class_voicer_u_gen_internal.html#abe1fb958a826ca8baa603ff92f94a3f5">VoicerUGenInternal::getPitchWheelPtr</a>() <span class="keyword">const</span> throw()
 <a name="l00359"></a>00359 {
-<a name="l00360"></a>00360     <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_voicer_u_gen_internal.html#a0887f61376b7facd8ad6938aeb760672">lock</a>);
-<a name="l00361"></a>00361     <span class="keywordflow">return</span> &amp;<a class="code" href="class_voicer_u_gen_internal.html#aebed9c38ee6720fd8dd4ba7d06f21f09">pitchWheel</a>;
+<a name="l00360"></a>00360  <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_voicer_u_gen_internal.html#a0887f61376b7facd8ad6938aeb760672">lock</a>);
+<a name="l00361"></a>00361  <span class="keywordflow">return</span> &amp;<a class="code" href="class_voicer_u_gen_internal.html#aebed9c38ee6720fd8dd4ba7d06f21f09">pitchWheel</a>;
 <a name="l00362"></a>00362 }
 <a name="l00363"></a>00363 
 <a name="l00364"></a>00364 <span class="keywordtype">void</span> <a class="code" href="class_voicer_u_gen_internal.html#a6d3942cca3bf6a7f78049241ce9d7bee">VoicerUGenInternal::setChannelPressure</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> value) <span class="keywordflow">throw</span>()
 <a name="l00365"></a>00365 {
-<a name="l00366"></a>00366     <span class="keyword">const</span> ScopedLock sl(lock);
-<a name="l00367"></a>00367     channelPressure = value;
+<a name="l00366"></a>00366  <span class="keyword">const</span> ScopedLock sl(lock);
+<a name="l00367"></a>00367  channelPressure = value;
 <a name="l00368"></a>00368 }
 <a name="l00369"></a>00369 
 <a name="l00370"></a>00370 <span class="keywordtype">float</span> <a class="code" href="class_voicer_u_gen_internal.html#aa80a3f93267115effd5b3c6666f4e942">VoicerUGenInternal::getChannelPressure</a>() <span class="keyword">const</span> throw()
 <a name="l00371"></a>00371 {
-<a name="l00372"></a>00372     <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_voicer_u_gen_internal.html#a0887f61376b7facd8ad6938aeb760672">lock</a>);
-<a name="l00373"></a>00373     <span class="keywordflow">return</span> <a class="code" href="class_voicer_u_gen_internal.html#a8f028280575d9c9e62f92b66ec5cc16f">channelPressure</a>;
+<a name="l00372"></a>00372  <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_voicer_u_gen_internal.html#a0887f61376b7facd8ad6938aeb760672">lock</a>);
+<a name="l00373"></a>00373  <span class="keywordflow">return</span> <a class="code" href="class_voicer_u_gen_internal.html#a8f028280575d9c9e62f92b66ec5cc16f">channelPressure</a>;
 <a name="l00374"></a>00374 }
 <a name="l00375"></a>00375 
 <a name="l00376"></a>00376 <span class="keyword">const</span> <span class="keywordtype">float</span>* <a class="code" href="class_voicer_u_gen_internal.html#ac1ad43f5b69a77e06d57228c951f5ad6">VoicerUGenInternal::getChannelPressurePtr</a>() <span class="keyword">const</span> throw()
 <a name="l00377"></a>00377 {
-<a name="l00378"></a>00378     <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_voicer_u_gen_internal.html#a0887f61376b7facd8ad6938aeb760672">lock</a>);
-<a name="l00379"></a>00379     <span class="keywordflow">return</span> &amp;<a class="code" href="class_voicer_u_gen_internal.html#a8f028280575d9c9e62f92b66ec5cc16f">channelPressure</a>;
+<a name="l00378"></a>00378  <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_voicer_u_gen_internal.html#a0887f61376b7facd8ad6938aeb760672">lock</a>);
+<a name="l00379"></a>00379  <span class="keywordflow">return</span> &amp;<a class="code" href="class_voicer_u_gen_internal.html#a8f028280575d9c9e62f92b66ec5cc16f">channelPressure</a>;
 <a name="l00380"></a>00380 }
 <a name="l00381"></a>00381 
 <a name="l00382"></a>00382 <span class="keywordtype">void</span> <a class="code" href="class_voicer_u_gen_internal.html#a4415194050d864e5829e5eb443f0ade9">VoicerUGenInternal::setProgram</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> value) <span class="keywordflow">throw</span>()
 <a name="l00383"></a>00383 {
-<a name="l00384"></a>00384     <span class="keyword">const</span> ScopedLock sl(lock);
-<a name="l00385"></a>00385     program = value;
+<a name="l00384"></a>00384  <span class="keyword">const</span> ScopedLock sl(lock);
+<a name="l00385"></a>00385  program = value;
 <a name="l00386"></a>00386 }
 <a name="l00387"></a>00387 
 <a name="l00388"></a>00388 <span class="keywordtype">int</span> <a class="code" href="class_voicer_u_gen_internal.html#ab206976a53d388ec19590368ea7fa88c">VoicerUGenInternal::getProgram</a>() <span class="keyword">const</span> throw()
 <a name="l00389"></a>00389 {
-<a name="l00390"></a>00390     <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_voicer_u_gen_internal.html#a0887f61376b7facd8ad6938aeb760672">lock</a>);
-<a name="l00391"></a>00391     <span class="keywordflow">return</span> <a class="code" href="class_voicer_u_gen_internal.html#a013e86aa3080e692072b81b611184462">program</a>;
+<a name="l00390"></a>00390  <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_voicer_u_gen_internal.html#a0887f61376b7facd8ad6938aeb760672">lock</a>);
+<a name="l00391"></a>00391  <span class="keywordflow">return</span> <a class="code" href="class_voicer_u_gen_internal.html#a013e86aa3080e692072b81b611184462">program</a>;
 <a name="l00392"></a>00392 }
 <a name="l00393"></a>00393 
 <a name="l00394"></a>00394 <span class="keyword">const</span> <span class="keywordtype">int</span>* <a class="code" href="class_voicer_u_gen_internal.html#ab560996c65031e620882d7f115f4a2e7">VoicerUGenInternal::getProgramPtr</a>() <span class="keyword">const</span> throw()
 <a name="l00395"></a>00395 {
-<a name="l00396"></a>00396     <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_voicer_u_gen_internal.html#a0887f61376b7facd8ad6938aeb760672">lock</a>);
-<a name="l00397"></a>00397     <span class="keywordflow">return</span> &amp;<a class="code" href="class_voicer_u_gen_internal.html#a013e86aa3080e692072b81b611184462">program</a>;
+<a name="l00396"></a>00396  <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_voicer_u_gen_internal.html#a0887f61376b7facd8ad6938aeb760672">lock</a>);
+<a name="l00397"></a>00397  <span class="keywordflow">return</span> &amp;<a class="code" href="class_voicer_u_gen_internal.html#a013e86aa3080e692072b81b611184462">program</a>;
 <a name="l00398"></a>00398 }
 <a name="l00399"></a>00399 
 <a name="l00400"></a>00400 
@@ -435,7 +435,7 @@
 <a name="l00403"></a>00403 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:29 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:58 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

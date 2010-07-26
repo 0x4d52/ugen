@@ -127,30 +127,30 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;fldmias  %1!, {s8-s15}      \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fldmias  %1!, {s16-s23}     \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s8, s8             \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s9, s9             \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s10, s10           \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s11, s11           \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s12, s12           \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s13, s13           \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s14, s14           \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s15, s15           \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s16, s16           \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s17, s17           \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s18, s18           \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s19, s19           \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s20, s20           \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s21, s21           \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s22, s22           \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s23, s23           \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}      \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fstmias  %0!, {s16-s23}     \n\t&quot;</span> \
-                    : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1) \
-                    : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;fldmias  %1!, {s8-s15}      \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fldmias  %1!, {s16-s23}     \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s8, s8    \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s9, s9    \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s10, s10    \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s11, s11    \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s12, s12    \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s13, s13    \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s14, s14    \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s15, s15    \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s16, s16    \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s17, s17    \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s18, s18    \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s19, s19    \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s20, s20    \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s21, s21    \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s22, s22    \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s23, s23    \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}      \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0!, {s16-s23}     \n\t&quot;</span> \
+     : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1) \
+     : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00426">426</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -186,16 +186,16 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;fldmias  %1!, {s8-s15}   \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s8, s8          \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fldmias  %1!, {s16-s23}  \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}   \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s16, s16        \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fstmias  %0!, {s16-s23}  \n\t&quot;</span> \
-                    : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1) \
-                    : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;fldmias  %1!, {s8-s15}   \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s8, s8    \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fldmias  %1!, {s16-s23}  \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}   \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s16, s16    \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0!, {s16-s23}  \n\t&quot;</span> \
+     : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1) \
+     : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00398">398</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -227,14 +227,14 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;fldmias  %1!, {s8-s15}     \n\t&quot;</span>   \
-                    <span class="stringliteral">&quot;fldmias  %1!, {s16-s23}    \n\t&quot;</span>   \
-                    <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}     \n\t&quot;</span>   \
-                    <span class="stringliteral">&quot;fstmias  %0!, {s16-s23}    \n\t&quot;</span>   \
-                    : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1) \
-                    : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;fldmias  %1!, {s8-s15}  \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fldmias  %1!, {s16-s23} \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}  \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0!, {s16-s23} \n\t&quot;</span> \
+     : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1) \
+     : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00332">332</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -278,33 +278,33 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;flds s0, [%1]              \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fldmias  %2, {s8-s15}      \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fldmias  %3, {s16-s23}     \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s8, s8              \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s9, s9              \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s10, s10            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s11, s11            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s12, s12            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s13, s13            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s14, s14            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s15, s15            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s16, s16            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s17, s17            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s18, s18            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s19, s19            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s20, s20            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s21, s21            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s22, s22            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s23, s23            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fmuls s8, s8, s0           \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fmuls s16, s16, s0         \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}     \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fstmias  %0!, {s16-s23}    \n\t&quot;</span> \
-                : \
-                : <span class="stringliteral">&quot;r&quot;</span> (P_DST), <span class="stringliteral">&quot;r&quot;</span> (P_VAL), <span class="stringliteral">&quot;r&quot;</span> (P_SRCa),  <span class="stringliteral">&quot;r&quot;</span> (P_SRCb)  \
-                : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <span class="stringliteral">&quot;s0&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
-                );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;flds s0, [%1]    \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fldmias  %2, {s8-s15}  \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fldmias  %3, {s16-s23}  \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s8, s8    \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s9, s9    \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s10, s10   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s11, s11   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s12, s12   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s13, s13   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s14, s14   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s15, s15   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s16, s16   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s17, s17   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s18, s18   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s19, s19   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s20, s20   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s21, s21   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s22, s22   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s23, s23   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fmuls s8, s8, s0   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fmuls s16, s16, s0   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}  \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fstmias  %0!, {s16-s23} \n\t&quot;</span> \
+    : \
+    : <span class="stringliteral">&quot;r&quot;</span> (P_DST), <span class="stringliteral">&quot;r&quot;</span> (P_VAL), <span class="stringliteral">&quot;r&quot;</span> (P_SRCa),  <span class="stringliteral">&quot;r&quot;</span> (P_SRCb)  \
+    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <span class="stringliteral">&quot;s0&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
+    );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00557">557</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -325,11 +325,11 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;flds s0, [%0]              \n\t&quot;</span> \
-                    : \
-                    : <span class="stringliteral">&quot;r&quot;</span> (P_VAL) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;s0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;flds s0, [%0]    \n\t&quot;</span> \
+     : \
+     : <span class="stringliteral">&quot;r&quot;</span> (P_VAL) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;s0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00587">587</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -365,32 +365,32 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;fldmias  %1, {s8-s15}      \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fldmias  %2, {s16-s23}     \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s8, s8              \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s9, s9              \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s10, s10            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s11, s11            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s12, s12            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s13, s13            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s14, s14            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s15, s15            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s16, s16            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s17, s17            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s18, s18            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s19, s19            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s20, s20            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s21, s21            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s22, s22            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fsitos s23, s23            \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fmuls s8, s8, s0           \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fmuls s16, s16, s0         \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}     \n\t&quot;</span> \
-                <span class="stringliteral">&quot;fstmias  %0!, {s16-s23}    \n\t&quot;</span> \
-                : \
-                : <span class="stringliteral">&quot;r&quot;</span> (P_DST), <span class="stringliteral">&quot;r&quot;</span> (P_SRCa),  <span class="stringliteral">&quot;r&quot;</span> (P_SRCb)  \
-                : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;s0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
-                );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;fldmias  %1, {s8-s15}  \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fldmias  %2, {s16-s23}  \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s8, s8    \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s9, s9    \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s10, s10   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s11, s11   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s12, s12   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s13, s13   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s14, s14   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s15, s15   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s16, s16   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s17, s17   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s18, s18   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s19, s19   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s20, s20   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s21, s21   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s22, s22   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fsitos s23, s23   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fmuls s8, s8, s0   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fmuls s16, s16, s0   \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}  \n\t&quot;</span> \
+    <span class="stringliteral">&quot;fstmias  %0!, {s16-s23} \n\t&quot;</span> \
+    : \
+    : <span class="stringliteral">&quot;r&quot;</span> (P_DST), <span class="stringliteral">&quot;r&quot;</span> (P_SRCa),  <span class="stringliteral">&quot;r&quot;</span> (P_SRCb)  \
+    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;s0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
+    );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00594">594</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -432,33 +432,33 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;flds  s0, [%2]         \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fldmias  %3!, {s8-s15}     \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fldmias  %3!, {s16-s23}    \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fmuls s8, s8, s0           \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fmuls s16, s16, s0         \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s8, s8              \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s9, s9              \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s10, s10            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s11, s11            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s12, s12            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s13, s13            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s14, s14            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s15, s15            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s16, s16            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s17, s17            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s18, s18            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s19, s19            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s20, s20            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s21, s21            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s22, s22            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s23, s23            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fstmias  %0, {s8-s15}      \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fstmias  %1, {s16-s23} \n\t&quot;</span> \
-                    : \
-                    : <span class="stringliteral">&quot;r&quot;</span> (P_DSTa), <span class="stringliteral">&quot;r&quot;</span> (P_DSTb), <span class="stringliteral">&quot;r&quot;</span> (P_VAL), <span class="stringliteral">&quot;r&quot;</span> (P_SRC) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;flds  s0, [%2]   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fldmias  %3!, {s8-s15}  \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fldmias  %3!, {s16-s23} \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fmuls s8, s8, s0   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fmuls s16, s16, s0   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s8, s8    \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s9, s9    \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s10, s10   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s11, s11   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s12, s12   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s13, s13   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s14, s14   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s15, s15   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s16, s16   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s17, s17   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s18, s18   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s19, s19   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s20, s20   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s21, s21   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s22, s22   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s23, s23   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0, {s8-s15}  \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %1, {s16-s23} \n\t&quot;</span> \
+     : \
+     : <span class="stringliteral">&quot;r&quot;</span> (P_DSTa), <span class="stringliteral">&quot;r&quot;</span> (P_DSTb), <span class="stringliteral">&quot;r&quot;</span> (P_VAL), <span class="stringliteral">&quot;r&quot;</span> (P_SRC) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00472">472</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -479,11 +479,11 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;flds  s0, [%0]         \n\t&quot;</span> \
-                    : \
-                    : <span class="stringliteral">&quot;r&quot;</span> (P_VAL) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;s0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;flds  s0, [%0]   \n\t&quot;</span> \
+     : \
+     : <span class="stringliteral">&quot;r&quot;</span> (P_VAL) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;s0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00501">501</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -519,32 +519,32 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;fldmias  %2!, {s8-s15}     \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fldmias  %2!, {s16-s23}    \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fmuls s8, s8, s0           \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fmuls s16, s16, s0         \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s8, s8              \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s9, s9              \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s10, s10            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s11, s11            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s12, s12            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s13, s13            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s14, s14            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s15, s15            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s16, s16            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s17, s17            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s18, s18            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s19, s19            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s20, s20            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s21, s21            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s22, s22            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s23, s23            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fstmias  %0, {s8-s15}      \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fstmias  %1, {s16-s23} \n\t&quot;</span> \
-                    : \
-                    : <span class="stringliteral">&quot;r&quot;</span> (P_DSTa), <span class="stringliteral">&quot;r&quot;</span> (P_DSTb), <span class="stringliteral">&quot;r&quot;</span> (P_SRC) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;s0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;fldmias  %2!, {s8-s15}  \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fldmias  %2!, {s16-s23} \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fmuls s8, s8, s0   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fmuls s16, s16, s0   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s8, s8    \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s9, s9    \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s10, s10   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s11, s11   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s12, s12   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s13, s13   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s14, s14   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s15, s15   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s16, s16   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s17, s17   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s18, s18   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s19, s19   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s20, s20   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s21, s21   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s22, s22   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s23, s23   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0, {s8-s15}  \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %1, {s16-s23} \n\t&quot;</span> \
+     : \
+     : <span class="stringliteral">&quot;r&quot;</span> (P_DSTa), <span class="stringliteral">&quot;r&quot;</span> (P_DSTb), <span class="stringliteral">&quot;r&quot;</span> (P_SRC) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;s0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00508">508</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -586,16 +586,16 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;fldmias  %1!, {s8-s23}  \n\t&quot;</span>  \
-                    <span class="stringliteral">&quot;fldmias  %2!, {s24-s31} \n\t&quot;</span>  \
-                    VFP_OP  <span class="stringliteral">&quot; s8, s8, s24   \n\t&quot;</span>   \
-                    <span class="stringliteral">&quot;fldmias  %2!, {s24-s31} \n\t&quot;</span>  \
-                    VFP_OP  <span class="stringliteral">&quot; s8, s8, s24   \n\t&quot;</span>   \
-                    <span class="stringliteral">&quot;fstmias  %0!, {s8-s23}   \n\t&quot;</span> \
-                    : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_2) \
-                    : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1), <span class="stringliteral">&quot;2&quot;</span> (P_SRC_2) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#af47444f30683bf73d37d668fac46796e">VFP_CLOBBER_S8_S31</a> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;fldmias  %1!, {s8-s23}  \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fldmias  %2!, {s24-s31} \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s8, s8, s24   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fldmias  %2!, {s24-s31} \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s8, s8, s24   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0!, {s8-s23}   \n\t&quot;</span> \
+     : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_2) \
+     : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1), <span class="stringliteral">&quot;2&quot;</span> (P_SRC_2) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#af47444f30683bf73d37d668fac46796e">VFP_CLOBBER_S8_S31</a> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00262">262</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -627,15 +627,15 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;flds  s0, [%1]             \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fcpys s8, s0               \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fcpys s16, s0              \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}     \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fstmias  %0!, {s16-s23}    \n\t&quot;</span> \
-                    : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), \
-                    : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;r&quot;</span> (P_VAL) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <span class="stringliteral">&quot;s0&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;flds  s0, [%1]    \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fcpys s8, s0    \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fcpys s16, s0    \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}  \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0!, {s16-s23} \n\t&quot;</span> \
+     : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), \
+     : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;r&quot;</span> (P_VAL) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <span class="stringliteral">&quot;s0&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00375">375</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -656,12 +656,12 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}   \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}   \n\t&quot;</span> \
-                    : <span class="stringliteral">&quot;=r&quot;</span> (P_DST) \
-                    : <span class="stringliteral">&quot;0&quot;</span> (P_DST) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ab329ed503f9c3bb270d7adaccd174e62">VFP_CLOBBER_S8_S15</a> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}   \n\t&quot;</span> \
+     : <span class="stringliteral">&quot;=r&quot;</span> (P_DST) \
+     : <span class="stringliteral">&quot;0&quot;</span> (P_DST) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ab329ed503f9c3bb270d7adaccd174e62">VFP_CLOBBER_S8_S15</a> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00358">358</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -699,13 +699,13 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;fldmias  %1, {s8}        \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s8, s8          \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fstmias  %0, {s8}        \n\t&quot;</span> \
-                    : \
-                    : <span class="stringliteral">&quot;r&quot;</span> (P_DST), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_1) \
-                    : <span class="stringliteral">&quot;memory&quot;</span>, <span class="stringliteral">&quot;s8&quot;</span> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;fldmias  %1, {s8}        \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s8, s8    \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0, {s8}        \n\t&quot;</span> \
+     : \
+     : <span class="stringliteral">&quot;r&quot;</span> (P_DST), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_1) \
+     : <span class="stringliteral">&quot;memory&quot;</span>, <span class="stringliteral">&quot;s8&quot;</span> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00122">122</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -741,13 +741,13 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;fldmias  %1!, {s8}        \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s8, s8          \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fstmias  %0!, {s8}        \n\t&quot;</span> \
-                    : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1) \
-                    : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1) \
-                    : <span class="stringliteral">&quot;memory&quot;</span>, <span class="stringliteral">&quot;s8&quot;</span> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;fldmias  %1!, {s8}        \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s8, s8    \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0!, {s8}        \n\t&quot;</span> \
+     : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1) \
+     : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1) \
+     : <span class="stringliteral">&quot;memory&quot;</span>, <span class="stringliteral">&quot;s8&quot;</span> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00131">131</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -777,12 +777,12 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;fldmias  %1!, {s8}     \n\t&quot;</span>   \
-                    <span class="stringliteral">&quot;fstmias  %0!, {s8}     \n\t&quot;</span>   \
-                    : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1) \
-                    : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <span class="stringliteral">&quot;s8&quot;</span> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;fldmias  %1!, {s8}  \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0!, {s8}  \n\t&quot;</span> \
+     : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1) \
+     : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <span class="stringliteral">&quot;s8&quot;</span> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00315">315</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -824,16 +824,16 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <a class="code" href="ugen__vfp__macros_8h.html#a4e00bf07ce43ec3b286e60a59ac0088e">VFP_SWITCH_TO_ARM</a> \
-                    <span class="stringliteral">&quot;fldmias  %1, {s8}        \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fldmias  %2, {s16}       \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s8, s8, s16   \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fstmias  %0, {s8}        \n\t&quot;</span> \
-                    <a class="code" href="ugen__vfp__macros_8h.html#a83d97f83cdf00f8dee4241626ca74d40">VFP_SWITCH_TO_THUMB</a> \
-                    : \
-                    : <span class="stringliteral">&quot;r&quot;</span> (P_DST), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_1), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_2) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;pc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <span class="stringliteral">&quot;s8&quot;</span>, <span class="stringliteral">&quot;s16&quot;</span> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <a class="code" href="ugen__vfp__macros_8h.html#a4e00bf07ce43ec3b286e60a59ac0088e">VFP_SWITCH_TO_ARM</a> \
+     <span class="stringliteral">&quot;fldmias  %1, {s8}        \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fldmias  %2, {s16}       \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s8, s8, s16   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0, {s8}        \n\t&quot;</span> \
+     <a class="code" href="ugen__vfp__macros_8h.html#a83d97f83cdf00f8dee4241626ca74d40">VFP_SWITCH_TO_THUMB</a> \
+     : \
+     : <span class="stringliteral">&quot;r&quot;</span> (P_DST), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_1), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_2) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;pc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <span class="stringliteral">&quot;s8&quot;</span>, <span class="stringliteral">&quot;s16&quot;</span> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00110">110</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -1034,16 +1034,16 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <a class="code" href="ugen__vfp__macros_8h.html#a4e00bf07ce43ec3b286e60a59ac0088e">VFP_SWITCH_TO_ARM</a>               \
-                    <span class="stringliteral">&quot;fldmias  %1, {s8-s11}  \n\t&quot;</span>   \
-                    <span class="stringliteral">&quot;fldmias  %2, {s16-s19} \n\t&quot;</span>   \
-                    VFP_OP  <span class="stringliteral">&quot; s8, s8, s16   \n\t&quot;</span>   \
-                    <span class="stringliteral">&quot;fstmias  %0, {s8-s11}   \n\t&quot;</span>  \
-                    <a class="code" href="ugen__vfp__macros_8h.html#a83d97f83cdf00f8dee4241626ca74d40">VFP_SWITCH_TO_THUMB</a>             \
-                    : \
-                    : <span class="stringliteral">&quot;r&quot;</span> (P_DST), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_1), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_2) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;pc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#a12eedecefa4664f0ef4b834ed5e79936">VFP_CLOBBER_S8_S11</a>, <a class="code" href="ugen__vfp__clobbers_8h.html#ae1747c3308970dae678013c33efa2084">VFP_CLOBBER_S16_S19</a> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <a class="code" href="ugen__vfp__macros_8h.html#a4e00bf07ce43ec3b286e60a59ac0088e">VFP_SWITCH_TO_ARM</a>    \
+     <span class="stringliteral">&quot;fldmias  %1, {s8-s11}  \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fldmias  %2, {s16-s19} \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s8, s8, s16   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0, {s8-s11}   \n\t&quot;</span> \
+     <a class="code" href="ugen__vfp__macros_8h.html#a83d97f83cdf00f8dee4241626ca74d40">VFP_SWITCH_TO_THUMB</a>    \
+     : \
+     : <span class="stringliteral">&quot;r&quot;</span> (P_DST), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_1), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_2) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;pc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#a12eedecefa4664f0ef4b834ed5e79936">VFP_CLOBBER_S8_S11</a>, <a class="code" href="ugen__vfp__clobbers_8h.html#ae1747c3308970dae678013c33efa2084">VFP_CLOBBER_S16_S19</a> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00199">199</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -1085,14 +1085,14 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;fldmias  %1, {s8-s11}  \n\t&quot;</span>   \
-                    <span class="stringliteral">&quot;fldmias  %2, {s16-s19} \n\t&quot;</span>   \
-                    VFP_OP  <span class="stringliteral">&quot; s8, s8, s16   \n\t&quot;</span>   \
-                    <span class="stringliteral">&quot;fstmias  %0, {s8-s11}   \n\t&quot;</span>  \
-                    : \
-                    : <span class="stringliteral">&quot;r&quot;</span> (P_DST), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_1), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_2) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#a12eedecefa4664f0ef4b834ed5e79936">VFP_CLOBBER_S8_S11</a>, <a class="code" href="ugen__vfp__clobbers_8h.html#ae1747c3308970dae678013c33efa2084">VFP_CLOBBER_S16_S19</a> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;fldmias  %1, {s8-s11}  \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fldmias  %2, {s16-s19} \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s8, s8, s16   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0, {s8-s11}   \n\t&quot;</span> \
+     : \
+     : <span class="stringliteral">&quot;r&quot;</span> (P_DST), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_1), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_2) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#a12eedecefa4664f0ef4b834ed5e79936">VFP_CLOBBER_S8_S11</a>, <a class="code" href="ugen__vfp__clobbers_8h.html#ae1747c3308970dae678013c33efa2084">VFP_CLOBBER_S16_S19</a> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00211">211</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -1136,14 +1136,14 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;fldmias  %1!, {s8-s11}  \n\t&quot;</span>  \
-                    <span class="stringliteral">&quot;fldmias  %2!, {s16-s19} \n\t&quot;</span>  \
-                    VFP_OP  <span class="stringliteral">&quot; s8, s8, s16   \n\t&quot;</span>   \
-                    <span class="stringliteral">&quot;fstmias  %0!, {s8-s11}   \n\t&quot;</span> \
-                    : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_2) \
-                    : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1), <span class="stringliteral">&quot;2&quot;</span> (P_SRC_2) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, VFP_CLOBBER_S8_S11, <a class="code" href="ugen__vfp__clobbers_8h.html#ae1747c3308970dae678013c33efa2084">VFP_CLOBBER_S16_S19</a> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;fldmias  %1!, {s8-s11}  \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fldmias  %2!, {s16-s19} \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s8, s8, s16   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0!, {s8-s11}   \n\t&quot;</span> \
+     : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_2) \
+     : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1), <span class="stringliteral">&quot;2&quot;</span> (P_SRC_2) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, VFP_CLOBBER_S8_S11, <a class="code" href="ugen__vfp__clobbers_8h.html#ae1747c3308970dae678013c33efa2084">VFP_CLOBBER_S16_S19</a> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00221">221</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -1179,20 +1179,20 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;fldmias  %1!, {s8-s15}      \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s8, s8             \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s9, s9             \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s10, s10           \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s11, s11           \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s12, s12           \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s13, s13           \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s14, s14           \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s15, s15           \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}      \n\t&quot;</span> \
-                    : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1) \
-                    : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ab329ed503f9c3bb270d7adaccd174e62">VFP_CLOBBER_S8_S15</a> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;fldmias  %1!, {s8-s15}      \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s8, s8    \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s9, s9    \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s10, s10    \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s11, s11    \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s12, s12    \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s13, s13    \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s14, s14    \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s15, s15    \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}      \n\t&quot;</span> \
+     : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1) \
+     : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ab329ed503f9c3bb270d7adaccd174e62">VFP_CLOBBER_S8_S15</a> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00410">410</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -1222,14 +1222,14 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;fldmias  %1!, {s8-s15}   \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fmuls s16, s8, s8        \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fmuls s8, s8, s16        \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}   \n\t&quot;</span> \
-                    : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1) \
-                    : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;fldmias  %1!, {s8-s15}   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fmuls s16, s8, s8        \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fmuls s8, s8, s16        \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}   \n\t&quot;</span> \
+     : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1) \
+     : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00305">305</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -1267,13 +1267,13 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;fldmias  %1!, {s8-s15}   \n\t&quot;</span> \
-                    VFP_OP  <span class="stringliteral">&quot; s8, s8          \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}   \n\t&quot;</span> \
-                    : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1) \
-                    : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ab329ed503f9c3bb270d7adaccd174e62">VFP_CLOBBER_S8_S15</a> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;fldmias  %1!, {s8-s15}   \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s8, s8          \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}   \n\t&quot;</span> \
+     : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1) \
+     : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ab329ed503f9c3bb270d7adaccd174e62">VFP_CLOBBER_S8_S15</a> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00287">287</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -1305,13 +1305,13 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;fldmias  %1!, {s8-s15}   \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fmuls s8, s8, s8          \n\t&quot;</span>    \
-                    <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}   \n\t&quot;</span> \
-                    : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1) \
-                    : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ab329ed503f9c3bb270d7adaccd174e62">VFP_CLOBBER_S8_S15</a> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;fldmias  %1!, {s8-s15}   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fmuls s8, s8, s8          \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}   \n\t&quot;</span> \
+     : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1) \
+     : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ab329ed503f9c3bb270d7adaccd174e62">VFP_CLOBBER_S8_S15</a> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00296">296</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -1343,12 +1343,12 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;fldmias  %1!, {s8-s15}     \n\t&quot;</span>   \
-                    <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}     \n\t&quot;</span>   \
-                    : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1) \
-                    : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ab329ed503f9c3bb270d7adaccd174e62">VFP_CLOBBER_S8_S15</a> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;fldmias  %1!, {s8-s15}  \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}  \n\t&quot;</span> \
+     : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1) \
+     : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ab329ed503f9c3bb270d7adaccd174e62">VFP_CLOBBER_S8_S15</a> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00324">324</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -1386,22 +1386,22 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;fldmias  %1, {s8-s15}      \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fldmias  %2, {s16-s23}     \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fsitos s8, s8              \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fsitos s9, s9              \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fsitos s10, s10            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fsitos s11, s11            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fsitos s12, s12            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fsitos s13, s13            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fsitos s14, s14            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fsitos s15, s15            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fmuls s8, s8, s16          \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fstmias  %0, {s8-s15}      \n\t&quot;</span> \
-                    : \
-                    : <span class="stringliteral">&quot;r&quot;</span> (P_DST), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_1), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_2) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;fldmias  %1, {s8-s15}  \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fldmias  %2, {s16-s23}  \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fsitos s8, s8    \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fsitos s9, s9    \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fsitos s10, s10   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fsitos s11, s11   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fsitos s12, s12   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fsitos s13, s13   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fsitos s14, s14   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fsitos s15, s15   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fmuls s8, s8, s16   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0, {s8-s15}  \n\t&quot;</span> \
+     : \
+     : <span class="stringliteral">&quot;r&quot;</span> (P_DST), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_1), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_2) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00539">539</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -1437,22 +1437,22 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;fldmias  %1, {s8-s15}      \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fldmias  %2, {s16-s23}     \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fmuls s8, s8, s16          \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s8, s8              \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s9, s9              \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s10, s10            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s11, s11            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s12, s12            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s13, s13            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s14, s14            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;ftosis s15, s15            \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fstmias  %0, {s8-s15}      \n\t&quot;</span> \
-                    : \
-                    : <span class="stringliteral">&quot;r&quot;</span> (P_DST), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_1), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_2) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;fldmias  %1, {s8-s15}  \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fldmias  %2, {s16-s23}  \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fmuls s8, s8, s16   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s8, s8    \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s9, s9    \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s10, s10   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s11, s11   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s12, s12   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s13, s13   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s14, s14   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;ftosis s15, s15   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0, {s8-s15}  \n\t&quot;</span> \
+     : \
+     : <span class="stringliteral">&quot;r&quot;</span> (P_DST), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_1), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_2) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00454">454</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -1494,15 +1494,15 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;fldmias  %1!, {s8-s15}     \n\t&quot;</span>   \
-                    <span class="stringliteral">&quot;fldmias  %2!, {s16-s23}    \n\t&quot;</span>   \
-                    <span class="stringliteral">&quot;fldmias  %3!, {s24-s31}    \n\t&quot;</span>   \
-                    <span class="stringliteral">&quot;fmacs s8, s16, s24         \n\t&quot;</span>   \
-                    <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}     \n\t&quot;</span>   \
-                    : <span class="stringliteral">&quot;=r&quot;</span> (P_OUT), <span class="stringliteral">&quot;=r&quot;</span> (P_ADD), <span class="stringliteral">&quot;=r&quot;</span> (P_MUL), <span class="stringliteral">&quot;=r&quot;</span> (P_IN) \
-                    : <span class="stringliteral">&quot;0&quot;</span> (P_OUT), <span class="stringliteral">&quot;1&quot;</span> (P_ADD), <span class="stringliteral">&quot;2&quot;</span> (P_MUL), <span class="stringliteral">&quot;3&quot;</span> (P_IN) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#af47444f30683bf73d37d668fac46796e">VFP_CLOBBER_S8_S31</a> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;fldmias  %1!, {s8-s15}  \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fldmias  %2!, {s16-s23} \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fldmias  %3!, {s24-s31} \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fmacs s8, s16, s24   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}  \n\t&quot;</span> \
+     : <span class="stringliteral">&quot;=r&quot;</span> (P_OUT), <span class="stringliteral">&quot;=r&quot;</span> (P_ADD), <span class="stringliteral">&quot;=r&quot;</span> (P_MUL), <span class="stringliteral">&quot;=r&quot;</span> (P_IN) \
+     : <span class="stringliteral">&quot;0&quot;</span> (P_OUT), <span class="stringliteral">&quot;1&quot;</span> (P_ADD), <span class="stringliteral">&quot;2&quot;</span> (P_MUL), <span class="stringliteral">&quot;3&quot;</span> (P_IN) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#af47444f30683bf73d37d668fac46796e">VFP_CLOBBER_S8_S31</a> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00275">275</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -1546,14 +1546,14 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;fldmias  %1, {s8-s15}  \n\t&quot;</span>   \
-                    <span class="stringliteral">&quot;fldmias  %2, {s16-s23} \n\t&quot;</span>   \
-                    VFP_OP  <span class="stringliteral">&quot; s8, s8, s16   \n\t&quot;</span>   \
-                    <span class="stringliteral">&quot;fstmias  %0, {s8-s15}   \n\t&quot;</span>  \
-                    : \
-                    : <span class="stringliteral">&quot;r&quot;</span> (P_DST), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_1), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_2) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;fldmias  %1, {s8-s15}  \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fldmias  %2, {s16-s23} \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s8, s8, s16   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0, {s8-s15}   \n\t&quot;</span> \
+     : \
+     : <span class="stringliteral">&quot;r&quot;</span> (P_DST), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_1), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_2) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00231">231</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -1597,14 +1597,14 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span>          (  <span class="stringliteral">&quot;fldmias  %1, {s8-s15}  \n\t&quot;</span>   \
-                    <span class="stringliteral">&quot;fldmias  %2, {s16-s23} \n\t&quot;</span>   \
-                    VFP_OP  <span class="stringliteral">&quot; s8, s8, s16   \n\t&quot;</span>   \
-                    <span class="stringliteral">&quot;fstmias  %0, {s8-s15}   \n\t&quot;</span>  \
-                    : \
-                    : <span class="stringliteral">&quot;r&quot;</span> (P_DST), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_1), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_2) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span>          ( <span class="stringliteral">&quot;fldmias  %1, {s8-s15}  \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fldmias  %2, {s16-s23} \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s8, s8, s16   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0, {s8-s15}   \n\t&quot;</span> \
+     : \
+     : <span class="stringliteral">&quot;r&quot;</span> (P_DST), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_1), <span class="stringliteral">&quot;r&quot;</span> (P_SRC_2) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00241">241</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -1646,14 +1646,14 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;fldmias  %1!, {s8-s15}  \n\t&quot;</span>  \
-                    <span class="stringliteral">&quot;fldmias  %2!, {s16-s23} \n\t&quot;</span>  \
-                    VFP_OP  <span class="stringliteral">&quot; s8, s8, s16   \n\t&quot;</span>   \
-                    <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}   \n\t&quot;</span> \
-                    : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_2) \
-                    : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1), <span class="stringliteral">&quot;2&quot;</span> (P_SRC_2) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;fldmias  %1!, {s8-s15}  \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fldmias  %2!, {s16-s23} \n\t&quot;</span> \
+     VFP_OP  <span class="stringliteral">&quot; s8, s8, s16   \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}   \n\t&quot;</span> \
+     : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_2) \
+     : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1), <span class="stringliteral">&quot;2&quot;</span> (P_SRC_2) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00252">252</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -1685,13 +1685,13 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;flds s0, [%1]              \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fcpys s8, s0               \n\t&quot;</span> \
-                    <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}     \n\t&quot;</span> \
-                    : <span class="stringliteral">&quot;=r&quot;</span> (P_DST) \
-                    : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;r&quot;</span> (P_VAL) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <span class="stringliteral">&quot;s0&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ab329ed503f9c3bb270d7adaccd174e62">VFP_CLOBBER_S8_S15</a> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;flds s0, [%1]    \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fcpys s8, s0    \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}  \n\t&quot;</span> \
+     : <span class="stringliteral">&quot;=r&quot;</span> (P_DST) \
+     : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;r&quot;</span> (P_VAL) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <span class="stringliteral">&quot;s0&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ab329ed503f9c3bb270d7adaccd174e62">VFP_CLOBBER_S8_S15</a> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00366">366</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -1712,11 +1712,11 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;fldmias  %0, {s8-s15}   \n\t&quot;</span>  \
-                    : \
-                    : <span class="stringliteral">&quot;r&quot;</span> (P_VAL) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ab329ed503f9c3bb270d7adaccd174e62">VFP_CLOBBER_S8_S15</a> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;fldmias  %0, {s8-s15}   \n\t&quot;</span> \
+     : \
+     : <span class="stringliteral">&quot;r&quot;</span> (P_VAL) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ab329ed503f9c3bb270d7adaccd174e62">VFP_CLOBBER_S8_S15</a> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00343">343</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -1754,13 +1754,13 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;fldmias  %1!, {s16-s23}    \n\t&quot;</span>   \
-                    VFP_OP <span class="stringliteral">&quot; s16, s8, s16       \n\t&quot;</span>   \
-                    <span class="stringliteral">&quot;fstmias  %0!, {s16-s23}    \n\t&quot;</span>   \
-                    : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1) \
-                    : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;fldmias  %1!, {s16-s23} \n\t&quot;</span> \
+     VFP_OP <span class="stringliteral">&quot; s16, s8, s16  \n\t&quot;</span> \
+     <span class="stringliteral">&quot;fstmias  %0!, {s16-s23} \n\t&quot;</span> \
+     : <span class="stringliteral">&quot;=r&quot;</span> (P_DST), <span class="stringliteral">&quot;=r&quot;</span> (P_SRC_1) \
+     : <span class="stringliteral">&quot;0&quot;</span> (P_DST), <span class="stringliteral">&quot;1&quot;</span> (P_SRC_1) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ac5928bcb83905a50bf61840e8383b417">VFP_CLOBBER_S8_S23</a> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00387">387</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -1783,11 +1783,11 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> (  <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}   \n\t&quot;</span> \
-                    : <span class="stringliteral">&quot;=r&quot;</span> (P_DST)\
-                    : <span class="stringliteral">&quot;0&quot;</span> (P_DST) \
-                    : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ab329ed503f9c3bb270d7adaccd174e62">VFP_CLOBBER_S8_S15</a> \
-                    );
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;fstmias  %0!, {s8-s15}   \n\t&quot;</span> \
+     : <span class="stringliteral">&quot;=r&quot;</span> (P_DST)\
+     : <span class="stringliteral">&quot;0&quot;</span> (P_DST) \
+     : <span class="stringliteral">&quot;r0&quot;</span>, <span class="stringliteral">&quot;cc&quot;</span>, <span class="stringliteral">&quot;memory&quot;</span>, <a class="code" href="ugen__vfp__clobbers_8h.html#ab329ed503f9c3bb270d7adaccd174e62">VFP_CLOBBER_S8_S15</a> \
+     );
 </pre></div>
 <p>Definition at line <a class="el" href="ugen__vfp__macros_8h_source.html#l00351">351</a> of file <a class="el" href="ugen__vfp__macros_8h_source.html">ugen_vfp_macros.h</a>.</p>
 
@@ -2114,7 +2114,7 @@ Defines</h2></td></tr>
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:31 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:21:00 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

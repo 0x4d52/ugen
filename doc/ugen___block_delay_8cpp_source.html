@@ -73,65 +73,65 @@
 <a name="l00041"></a>00041 <span class="preprocessor">#include &quot;<a class="code" href="ugen___block_delay_8h.html">ugen_BlockDelay.h</a>&quot;</span>
 <a name="l00042"></a>00042 
 <a name="l00043"></a><a class="code" href="class_block_delay_u_gen_internal.html#a7e60d05cdd41bea600d7357fe41047f3">00043</a> <a class="code" href="class_block_delay_u_gen_internal.html#a7e60d05cdd41bea600d7357fe41047f3">BlockDelayUGenInternal::BlockDelayUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input) <span class="keywordflow">throw</span>()
-<a name="l00044"></a>00044 :   <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(NumInputs),
-<a name="l00045"></a>00045     delayBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(<a class="code" href="class_u_gen.html#ae0de18a1d9478d0bb5b46a2d87ba7f53" title="Get the current actual block size.">UGen::getBlockSize</a>(), 1, <span class="keyword">true</span>)),
-<a name="l00046"></a>00046     delayBufferSamples(delayBuffer.getData())
+<a name="l00044"></a>00044 : <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(NumInputs),
+<a name="l00045"></a>00045  delayBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(<a class="code" href="class_u_gen.html#ae0de18a1d9478d0bb5b46a2d87ba7f53" title="Get the current actual block size.">UGen::getBlockSize</a>(), 1, <span class="keyword">true</span>)),
+<a name="l00046"></a>00046  delayBufferSamples(delayBuffer.getData())
 <a name="l00047"></a>00047 {
-<a name="l00048"></a>00048     inputs[Input] = input;
+<a name="l00048"></a>00048  inputs[Input] = input;
 <a name="l00049"></a>00049 }
 <a name="l00050"></a>00050 
 <a name="l00051"></a><a class="code" href="class_block_delay_u_gen_internal.html#aa85db996ca9cd3a9be361bbfb6e7c66b">00051</a> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_block_delay_u_gen_internal.html#aa85db996ca9cd3a9be361bbfb6e7c66b">BlockDelayUGenInternal::getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
 <a name="l00052"></a>00052 {
-<a name="l00053"></a>00053     <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_block_delay_u_gen_internal.html">BlockDelayUGenInternal</a>(inputs[Input].getChannel(channel));
+<a name="l00053"></a>00053  <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_block_delay_u_gen_internal.html">BlockDelayUGenInternal</a>(inputs[Input].getChannel(channel));
 <a name="l00054"></a>00054 }
 <a name="l00055"></a>00055 
 <a name="l00056"></a><a class="code" href="class_block_delay_u_gen_internal.html#aca1441b3f8c09b25966feeb2ab29af8e">00056</a> <span class="keywordtype">void</span> <a class="code" href="class_block_delay_u_gen_internal.html#aca1441b3f8c09b25966feeb2ab29af8e">BlockDelayUGenInternal::prepareForBlockInternal</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> actualBlockSize, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID) <span class="keywordflow">throw</span>()
 <a name="l00057"></a>00057 {
-<a name="l00058"></a>00058     <span class="keywordtype">int</span> previousBlockSize = uGenOutput.getBlockSize();
-<a name="l00059"></a>00059     
-<a name="l00060"></a>00060     <span class="keywordflow">if</span>(actualBlockSize &gt; delayBuffer.size())
-<a name="l00061"></a>00061     {
-<a name="l00062"></a>00062         delayBuffer = <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(actualBlockSize, 1, <span class="keyword">true</span>));
-<a name="l00063"></a>00063         delayBufferSamples = delayBuffer.getData();
-<a name="l00064"></a>00064     }
-<a name="l00065"></a>00065     <span class="keywordflow">else</span> <span class="keywordflow">if</span>(previousBlockSize != actualBlockSize)
-<a name="l00066"></a>00066     {
-<a name="l00067"></a>00067         delayBuffer.clear();
-<a name="l00068"></a>00068     }
-<a name="l00069"></a>00069     
-<a name="l00070"></a>00070     uGenOutput.prepareForBlock(actualBlockSize); <span class="comment">// only prepare the output block</span>
+<a name="l00058"></a>00058  <span class="keywordtype">int</span> previousBlockSize = uGenOutput.getBlockSize();
+<a name="l00059"></a>00059  
+<a name="l00060"></a>00060  <span class="keywordflow">if</span>(actualBlockSize &gt; delayBuffer.size())
+<a name="l00061"></a>00061  {
+<a name="l00062"></a>00062   delayBuffer = <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(actualBlockSize, 1, <span class="keyword">true</span>));
+<a name="l00063"></a>00063   delayBufferSamples = delayBuffer.getData();
+<a name="l00064"></a>00064  }
+<a name="l00065"></a>00065  <span class="keywordflow">else</span> <span class="keywordflow">if</span>(previousBlockSize != actualBlockSize)
+<a name="l00066"></a>00066  {
+<a name="l00067"></a>00067   delayBuffer.clear();
+<a name="l00068"></a>00068  }
+<a name="l00069"></a>00069  
+<a name="l00070"></a>00070  uGenOutput.prepareForBlock(actualBlockSize); <span class="comment">// only prepare the output block</span>
 <a name="l00071"></a>00071 }
 <a name="l00072"></a>00072 
 <a name="l00073"></a><a class="code" href="class_block_delay_u_gen_internal.html#a832409481bc0acc9f6d7ed193df84030">00073</a> <span class="keywordtype">void</span> <a class="code" href="class_block_delay_u_gen_internal.html#a832409481bc0acc9f6d7ed193df84030" title="Process a block of samples for this blockID and channel.">BlockDelayUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
 <a name="l00074"></a>00074 {
-<a name="l00075"></a>00075     <span class="comment">// this assumes that blocks will all be the same size, which they may not be!!</span>
-<a name="l00076"></a>00076     <span class="comment">// this will only work if block sizes are consistent</span>
-<a name="l00077"></a>00077     
-<a name="l00078"></a>00078     <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
-<a name="l00079"></a>00079     <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
-<a name="l00080"></a>00080     
-<a name="l00081"></a>00081     memcpy(outputSamples, delayBufferSamples, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
-<a name="l00082"></a>00082     
-<a name="l00083"></a>00083     <span class="keywordtype">float</span>* inputSamples = inputs[Input].processBlock(shouldDelete, lastBlockID, channel);
-<a name="l00084"></a>00084     
-<a name="l00085"></a>00085     <span class="keywordflow">if</span>(inputSamples)
-<a name="l00086"></a>00086         memcpy(delayBufferSamples, inputSamples, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00075"></a>00075  <span class="comment">// this assumes that blocks will all be the same size, which they may not be!!</span>
+<a name="l00076"></a>00076  <span class="comment">// this will only work if block sizes are consistent</span>
+<a name="l00077"></a>00077  
+<a name="l00078"></a>00078  <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
+<a name="l00079"></a>00079  <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
+<a name="l00080"></a>00080  
+<a name="l00081"></a>00081  memcpy(outputSamples, delayBufferSamples, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00082"></a>00082  
+<a name="l00083"></a>00083  <span class="keywordtype">float</span>* inputSamples = inputs[Input].processBlock(shouldDelete, lastBlockID, channel);
+<a name="l00084"></a>00084  
+<a name="l00085"></a>00085  <span class="keywordflow">if</span>(inputSamples)
+<a name="l00086"></a>00086   memcpy(delayBufferSamples, inputSamples, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l00087"></a>00087 }
 <a name="l00088"></a>00088 
 <a name="l00089"></a><a class="code" href="class_block_delay.html#a6023943fb44b44a7cc1a1d2b7f3c2abb">00089</a> <a class="code" href="class_block_delay.html#a6023943fb44b44a7cc1a1d2b7f3c2abb" title="Base BlockDelay Constuctor, use the AR() and KR() versions in user code.">BlockDelay::BlockDelay</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input) <span class="keywordflow">throw</span>()
 <a name="l00090"></a>00090 {
-<a name="l00091"></a>00091     <span class="keywordtype">int</span> numChannels = input.getNumChannels();
-<a name="l00092"></a>00092     initInternal(numChannels);
-<a name="l00093"></a>00093     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++)
-<a name="l00094"></a>00094     {
-<a name="l00095"></a>00095         internalUGens[i] = <span class="keyword">new</span> <a class="code" href="class_block_delay_u_gen_internal.html">BlockDelayUGenInternal</a>(input);
-<a name="l00096"></a>00096     }
+<a name="l00091"></a>00091  <span class="keywordtype">int</span> numChannels = input.getNumChannels();
+<a name="l00092"></a>00092  initInternal(numChannels);
+<a name="l00093"></a>00093  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++)
+<a name="l00094"></a>00094  {
+<a name="l00095"></a>00095   internalUGens[i] = <span class="keyword">new</span> <a class="code" href="class_block_delay_u_gen_internal.html">BlockDelayUGenInternal</a>(input);
+<a name="l00096"></a>00096  }
 <a name="l00097"></a>00097 }
 <a name="l00098"></a>00098 
 <a name="l00099"></a>00099 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:28 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:57 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

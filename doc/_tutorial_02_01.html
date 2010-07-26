@@ -44,93 +44,93 @@
 <a name="l00008"></a>00008 <span class="keyword">class </span>Factory : <span class="keyword">public</span> <a class="code" href="class_generic_event_base.html" title="A generic event class with an owner.">GenericEventDefault</a>
 <a name="l00009"></a>00009 {
 <a name="l00010"></a>00010 <span class="keyword">public</span>:
-<a name="l00011"></a>00011     <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> createEvent(<span class="keyword">const</span> <span class="keywordtype">int</span> count)
-<a name="l00012"></a>00012     {
-<a name="l00013"></a>00013         <span class="comment">// random frequency</span>
-<a name="l00014"></a>00014         <span class="keywordflow">return</span> <a class="code" href="class_sin_osc.html#af4474190a7c02fd89d61ef93e1bdf904" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(<a class="code" href="ugen___random_8h.html#aafa7937ba4a245e09e5a2e98ca22f58f">exprand</a>(100, 1000), 0, 0.2);
-<a name="l00015"></a>00015     }
-<a name="l00016"></a>00016     
-<a name="l00017"></a>00017     <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> constructGraph(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input)
-<a name="l00018"></a>00018     {
-<a name="l00019"></a>00019         <span class="keywordtype">int</span> n = 8;
-<a name="l00020"></a>00020         <span class="keywordflow">return</span> <a class="code" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill&lt;Factory&gt;::AR</a>(n) / n;
-<a name="l00021"></a>00021     }
+<a name="l00011"></a>00011  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> createEvent(<span class="keyword">const</span> <span class="keywordtype">int</span> count)
+<a name="l00012"></a>00012  {
+<a name="l00013"></a>00013   <span class="comment">// random frequency</span>
+<a name="l00014"></a>00014   <span class="keywordflow">return</span> <a class="code" href="class_sin_osc.html#a76c3d2fcbcfad830654e0a1ee5c296fd" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(<a class="code" href="ugen___random_8h.html#aafa7937ba4a245e09e5a2e98ca22f58f">exprand</a>(100, 1000), 0, 0.2);
+<a name="l00015"></a>00015  }
+<a name="l00016"></a>00016  
+<a name="l00017"></a>00017  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> constructGraph(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input)
+<a name="l00018"></a>00018  {
+<a name="l00019"></a>00019   <span class="keywordtype">int</span> n = 8;
+<a name="l00020"></a>00020   <span class="keywordflow">return</span> <a class="code" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill&lt;Factory&gt;::AR</a>(n) / n;
+<a name="l00021"></a>00021  }
 <a name="l00022"></a>00022 };
 <a name="l00023"></a>00023 
 <a name="l00024"></a>00024 
 <a name="l00025"></a>00025 <span class="keyword">class </span>MainComponent : <span class="keyword">public</span> Component,
 <a name="l00026"></a>00026                       <span class="keyword">public</span> <a class="code" href="class_juce_i_o_host.html" title="An audio IO host for Juce projects.">JuceIOHost</a>
-<a name="l00027"></a>00027 {   
+<a name="l00027"></a>00027 { 
 <a name="l00028"></a>00028 <span class="keyword">public</span>:
-<a name="l00029"></a>00029     MainComponent () : <a class="code" href="class_juce_i_o_host.html" title="An audio IO host for Juce projects.">JuceIOHost</a>(2, 2) { } 
-<a name="l00030"></a>00030         
-<a name="l00031"></a>00031     <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> constructGraph(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input)
-<a name="l00032"></a>00032     {
-<a name="l00033"></a>00033         Factory factory;
-<a name="l00034"></a>00034         <span class="keywordflow">return</span> factory.constructGraph(input);
-<a name="l00035"></a>00035     }
+<a name="l00029"></a>00029  MainComponent () : <a class="code" href="class_juce_i_o_host.html" title="An audio IO host for Juce projects.">JuceIOHost</a>(2, 2) { } 
+<a name="l00030"></a>00030   
+<a name="l00031"></a>00031  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> constructGraph(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input)
+<a name="l00032"></a>00032  {
+<a name="l00033"></a>00033   Factory factory;
+<a name="l00034"></a>00034   <span class="keywordflow">return</span> factory.constructGraph(input);
+<a name="l00035"></a>00035  }
 <a name="l00036"></a>00036 };
 <a name="l00037"></a>00037 
 <a name="l00038"></a>00038 <span class="preprocessor">#endif //_MAINCOMPONENT_H_ </span>
 </pre></div><p>This example extracts the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> generation classes into a separate class, <code>Factory</code> (it could have any name this is not a built-in UGen++ class). The <code>Factory</code> class has a <code>constructGraph()</code> function which is called by the main <code>MainComponent</code> / <a class="el" href="class_juce_i_o_host.html" title="An audio IO host for Juce projects.">JuceIOHost</a> class. The <code>Factory</code> also has a <code>createEvent()</code> function which is a pure virtual function of the <a class="el" href="class_generic_event_base.html" title="A generic event class with an owner.">GenericEventBase</a> class. (GenericEventDefault is the default version of <a class="el" href="class_generic_event_base.html" title="A generic event class with an owner.">GenericEventBase</a>, again using a templated version of <a class="el" href="class_generic_event_base.html" title="A generic event class with an owner.">GenericEventBase</a> will be shown in later tutorials.)</p>
 <p>In this first example <a class="el" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill</a> is used. This is one of the simplest event-based <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> classes since it only makes use of the event class when it is created (rather than spawning new events while it is running).</p>
-<div class="fragment"><pre class="fragment">    <span class="keyword">class </span>Factory : <span class="keyword">public</span> <a class="code" href="class_generic_event_base.html" title="A generic event class with an owner.">GenericEventDefault</a>
-    {
-    <span class="keyword">public</span>:
-        <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> createEvent(<span class="keyword">const</span> <span class="keywordtype">int</span> count)
-        {
-            <span class="comment">// random frequency</span>
-            <span class="keywordflow">return</span> <a class="code" href="class_sin_osc.html#af4474190a7c02fd89d61ef93e1bdf904" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(<a class="code" href="ugen___random_8h.html#aafa7937ba4a245e09e5a2e98ca22f58f">exprand</a>(100, 1000), 0, 0.2);
-        }
-        
-        <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> constructGraph(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input)
-        {
-            <span class="keywordtype">int</span> n = 8;
-            <span class="keywordflow">return</span> <a class="code" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill&lt;Factory&gt;::AR</a>(n) / n;
-        }
-    };
+<div class="fragment"><pre class="fragment"> <span class="keyword">class </span>Factory : <span class="keyword">public</span> <a class="code" href="class_generic_event_base.html" title="A generic event class with an owner.">GenericEventDefault</a>
+ {
+ <span class="keyword">public</span>:
+  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> createEvent(<span class="keyword">const</span> <span class="keywordtype">int</span> count)
+  {
+   <span class="comment">// random frequency</span>
+   <span class="keywordflow">return</span> <a class="code" href="class_sin_osc.html#a76c3d2fcbcfad830654e0a1ee5c296fd" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(<a class="code" href="ugen___random_8h.html#aafa7937ba4a245e09e5a2e98ca22f58f">exprand</a>(100, 1000), 0, 0.2);
+  }
+  
+  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> constructGraph(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input)
+  {
+   <span class="keywordtype">int</span> n = 8;
+   <span class="keywordflow">return</span> <a class="code" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill&lt;Factory&gt;::AR</a>(n) / n;
+  }
+ };
 </pre></div><p>Here the <code>createEvent()</code> function is called eight times when the <a class="el" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill</a> <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> is created. This creates eight sine waves with random frequencies (exponentially distrubuted between 100Hz and 1kHz using the UGen++ random function <a class="el" href="ugen___random_8h.html#aafa7937ba4a245e09e5a2e98ca22f58f">exprand()</a> ). Notice that the <a class="el" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill</a> class requires the event class to be be provided as a template argument (i.e, between the angle brackets <code>&lt;</code> <code>&gt;</code>). In this case the event class is <code>Factory</code>, which happens to be the same class in which we are calling our <code>constructGraph()</code> function. (In more complex examples this might not be the case, it is done this way in this tutorial to keep everything in one place to aid copying/pasting examples from this tutorial document.)</p>
 <p><a class="el" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill</a> takes a single integer argument to specify how many events to mix together. In this example the value is also used to scale down the amplitude by the same factor (this uses division in the code but in fact UGen++ converts this to a more efficient multiplication operation internally).</p>
 <hr/>
 <p><a class="el" href="class_x_fade_texture.html" title="Crossfade events at timed intevals.">XFadeTexture</a>: this applies a fade-in and fade-out amplitude envelope to the generated event, crossfading from one instance of the event to another. Here the crossfade time is 0.5s and the sustain time is 1.0s (making the total time between events 1.5s).</p>
 <p>It is important to reiterate that <a class="el" href="class_x_fade_texture.html" title="Crossfade events at timed intevals.">XFadeTexture</a> is applying the amplitude envelope. The most important part of this is that once the envelope reaches its endpoint (i.e., when it has faded out) <b>the event is destroyed</b>. This is critical since the computer's memory would eventually fill up if exhasuted events were kept in memory after they are no longer needed. Some event-based <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> classes <b>do not</b> apply this envelope and it is the user's responsibility to do this to avoid memory problems (e.g, <a class="el" href="class_spawn.html" title="Spawn creates new events at timed intervals in a sample-accurate fashion.">Spawn</a>, <a class="el" href="class_t_spawn.html" title="Create events using a trigger.">TSpawn</a>).</p>
-<div class="fragment"><pre class="fragment">    <span class="keyword">class </span>Factory : <span class="keyword">public</span> <a class="code" href="class_generic_event_base.html" title="A generic event class with an owner.">GenericEventDefault</a>
-    {
-    <span class="keyword">public</span>:
-        <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> createEvent(<span class="keyword">const</span> <span class="keywordtype">int</span> count)
-        {
-            <span class="keywordflow">return</span> <a class="code" href="class_sin_osc.html#af4474190a7c02fd89d61ef93e1bdf904" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(<a class="code" href="ugen___random_8h.html#aafa7937ba4a245e09e5a2e98ca22f58f">exprand</a>(100, 1000), 0, 0.2);
-        }
-        
-        <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> constructGraph(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input)
-        {
-            <span class="keywordtype">float</span> sustainTime = 1.0;
-            <span class="keywordtype">float</span> transitionTime = 0.5;
-            <span class="keywordflow">return</span> <a class="code" href="class_x_fade_texture.html" title="Crossfade events at timed intevals.">XFadeTexture&lt;Factory&gt;::AR</a>(sustainTime, transitionTime);
-        }
-    };
+<div class="fragment"><pre class="fragment"> <span class="keyword">class </span>Factory : <span class="keyword">public</span> <a class="code" href="class_generic_event_base.html" title="A generic event class with an owner.">GenericEventDefault</a>
+ {
+ <span class="keyword">public</span>:
+  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> createEvent(<span class="keyword">const</span> <span class="keywordtype">int</span> count)
+  {
+   <span class="keywordflow">return</span> <a class="code" href="class_sin_osc.html#a76c3d2fcbcfad830654e0a1ee5c296fd" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(<a class="code" href="ugen___random_8h.html#aafa7937ba4a245e09e5a2e98ca22f58f">exprand</a>(100, 1000), 0, 0.2);
+  }
+  
+  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> constructGraph(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input)
+  {
+   <span class="keywordtype">float</span> sustainTime = 1.0;
+   <span class="keywordtype">float</span> transitionTime = 0.5;
+   <span class="keywordflow">return</span> <a class="code" href="class_x_fade_texture.html" title="Crossfade events at timed intevals.">XFadeTexture&lt;Factory&gt;::AR</a>(sustainTime, transitionTime);
+  }
+ };
 </pre></div><hr/>
 <p><a class="el" href="class_overlap_texture.html" title="Overlap and fade in/out multiple events.">OverlapTexture</a>: this is similar to <a class="el" href="class_x_fade_texture.html" title="Crossfade events at timed intevals.">XFadeTexture</a> since events are provided a fade-in and fade out. There is an additional parameter to control the <b>density</b> of the events (i.e., how many events will sound at any one time. In fact a density of 2 makes <a class="el" href="class_overlap_texture.html" title="Overlap and fade in/out multiple events.">OverlapTexture</a> behave identically to <a class="el" href="class_x_fade_texture.html" title="Crossfade events at timed intevals.">XFadeTexture</a>.</p>
 <p>Similar the the <a class="el" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill</a> example the density is used to scale down the overall amplitude to avoid overloading when there a many events sounding simultaneously.</p>
-<div class="fragment"><pre class="fragment">    <span class="keyword">class </span>Factory : <span class="keyword">public</span> <a class="code" href="class_generic_event_base.html" title="A generic event class with an owner.">GenericEventDefault</a>
-    {
-    <span class="keyword">public</span>:
-        <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> createEvent(<span class="keyword">const</span> <span class="keywordtype">int</span> count)
-        {
-            <span class="keywordflow">return</span> <a class="code" href="class_sin_osc.html#af4474190a7c02fd89d61ef93e1bdf904" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(<a class="code" href="ugen___random_8h.html#aafa7937ba4a245e09e5a2e98ca22f58f">exprand</a>(100, 1000), 0, 0.2);
-        }
-        
-        <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> constructGraph(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input)
-        {
-            <span class="keywordtype">float</span> sustainTime = 1.0;
-            <span class="keywordtype">float</span> transitionTime = 0.5;
-            <span class="keywordtype">int</span> density = 8;
-            <span class="keywordflow">return</span> <a class="code" href="class_overlap_texture.html" title="Overlap and fade in/out multiple events.">OverlapTexture&lt;Factory&gt;::AR</a>(sustainTime, transitionTime, density) / density;
-        }
-    };
+<div class="fragment"><pre class="fragment"> <span class="keyword">class </span>Factory : <span class="keyword">public</span> <a class="code" href="class_generic_event_base.html" title="A generic event class with an owner.">GenericEventDefault</a>
+ {
+ <span class="keyword">public</span>:
+  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> createEvent(<span class="keyword">const</span> <span class="keywordtype">int</span> count)
+  {
+   <span class="keywordflow">return</span> <a class="code" href="class_sin_osc.html#a76c3d2fcbcfad830654e0a1ee5c296fd" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(<a class="code" href="ugen___random_8h.html#aafa7937ba4a245e09e5a2e98ca22f58f">exprand</a>(100, 1000), 0, 0.2);
+  }
+  
+  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> constructGraph(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input)
+  {
+   <span class="keywordtype">float</span> sustainTime = 1.0;
+   <span class="keywordtype">float</span> transitionTime = 0.5;
+   <span class="keywordtype">int</span> density = 8;
+   <span class="keywordflow">return</span> <a class="code" href="class_overlap_texture.html" title="Overlap and fade in/out multiple events.">OverlapTexture&lt;Factory&gt;::AR</a>(sustainTime, transitionTime, density) / density;
+  }
+ };
 </pre></div><p>prev: <a class="el" href="_tutorials_01.html">Tutorials 01: Fundamentals</a> </p>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:31 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:21:00 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

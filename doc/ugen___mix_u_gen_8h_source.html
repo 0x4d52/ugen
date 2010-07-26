@@ -77,113 +77,113 @@
 <a name="l00048"></a><a class="code" href="class_mix_u_gen_internal.html">00048</a> <span class="keyword">class </span><a class="code" href="class_mix_u_gen_internal.html" title="A UGenInternal which mixes input UGen channels down to a single channel.">MixUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>
 <a name="l00049"></a>00049 {
 <a name="l00050"></a>00050 <span class="keyword">public</span>:
-<a name="l00057"></a>00057     <a class="code" href="class_mix_u_gen_internal.html#a70656cafe99ccd7d293b2edf9af9cb2b" title="Constructor using a reference to a UGen.">MixUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>) <span class="keywordflow">throw</span>();
-<a name="l00058"></a>00058     
-<a name="l00066"></a>00066     <a class="code" href="class_mix_u_gen_internal.html#a70656cafe99ccd7d293b2edf9af9cb2b" title="Constructor using a reference to a UGen.">MixUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>* array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>) <span class="keywordflow">throw</span>();
-<a name="l00067"></a>00067     
-<a name="l00069"></a>00069     <span class="keywordtype">void</span> <a class="code" href="class_mix_u_gen_internal.html#a1c9ff40b79174cbff3316fe627bbb016" title="Render a block of audio.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
-<a name="l00070"></a>00070     
-<a name="l00071"></a>00071     
+<a name="l00057"></a>00057  <a class="code" href="class_mix_u_gen_internal.html#a70656cafe99ccd7d293b2edf9af9cb2b" title="Constructor using a reference to a UGen.">MixUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>) <span class="keywordflow">throw</span>();
+<a name="l00058"></a>00058  
+<a name="l00066"></a>00066  <a class="code" href="class_mix_u_gen_internal.html#a70656cafe99ccd7d293b2edf9af9cb2b" title="Constructor using a reference to a UGen.">MixUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>* array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>) <span class="keywordflow">throw</span>();
+<a name="l00067"></a>00067  
+<a name="l00069"></a>00069  <span class="keywordtype">void</span> <a class="code" href="class_mix_u_gen_internal.html#a1c9ff40b79174cbff3316fe627bbb016" title="Render a block of audio.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00070"></a>00070  
+<a name="l00071"></a>00071  
 <a name="l00072"></a>00072 <span class="keyword">private</span>:
-<a name="l00073"></a><a class="code" href="class_mix_u_gen_internal.html#ac44b80804914f2ca56a3001415d1505e">00073</a>     <span class="keywordtype">bool</span> <a class="code" href="class_mix_u_gen_internal.html#ac44b80804914f2ca56a3001415d1505e">shouldAllowAutoDelete_</a>;
+<a name="l00073"></a><a class="code" href="class_mix_u_gen_internal.html#ac44b80804914f2ca56a3001415d1505e">00073</a>  <span class="keywordtype">bool</span> <a class="code" href="class_mix_u_gen_internal.html#ac44b80804914f2ca56a3001415d1505e">shouldAllowAutoDelete_</a>;
 <a name="l00074"></a>00074 };
 <a name="l00075"></a>00075 
 <a name="l00093"></a><a class="code" href="class_mix_array_u_gen_internal.html">00093</a> <span class="keyword">class </span><a class="code" href="class_mix_array_u_gen_internal.html" title="A UGenInternal which mixes a UGenArray down to a multichannel UGen.">MixArrayUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a>
 <a name="l00094"></a>00094 {
 <a name="l00095"></a>00095 <span class="keyword">public</span>:
-<a name="l00102"></a>00102     <a class="code" href="class_mix_array_u_gen_internal.html#a1d3f6a304146b8fa1edf441ad78deddb" title="Constructor using a reference to a UGenArray.">MixArrayUGenInternal</a>(<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <span class="keyword">const</span>&amp; array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>) <span class="keywordflow">throw</span>();
-<a name="l00103"></a>00103     
-<a name="l00111"></a>00111     <a class="code" href="class_mix_array_u_gen_internal.html#a1d3f6a304146b8fa1edf441ad78deddb" title="Constructor using a reference to a UGenArray.">MixArrayUGenInternal</a>(<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>* array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>) <span class="keywordflow">throw</span>();
-<a name="l00112"></a>00112     
-<a name="l00113"></a>00113     <span class="keywordtype">void</span> <a class="code" href="class_mix_array_u_gen_internal.html#affb682d80161620335ba95b716f40427">prepareForBlock</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> actualBlockSize, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID) <span class="keywordflow">throw</span>();
-<a name="l00114"></a>00114     <span class="keywordtype">void</span> <a class="code" href="class_mix_array_u_gen_internal.html#a9daadccd7c9358f91b835c5abaf62352" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
-<a name="l00115"></a>00115     <span class="keywordtype">void</span> <a class="code" href="class_mix_array_u_gen_internal.html#a42ae7286326794285f5e6d12fe63f19c">releaseInternal</a>() <span class="keywordflow">throw</span>(); <span class="comment">// has non-standard inputs </span>
-<a name="l00116"></a>00116     <span class="keywordtype">void</span> <a class="code" href="class_mix_array_u_gen_internal.html#ab1b30e7a098ef6d91bd1880062401ae3">stealInternal</a>() <span class="keywordflow">throw</span>(); <span class="comment">// has non-standard inputs </span>
-<a name="l00117"></a>00117     <span class="keywordtype">float</span> <a class="code" href="class_mix_array_u_gen_internal.html#a17b9c1cf3c44f9d2c94f8ee564404bf9">getValue</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keyword">const</span> <span class="keywordflow">throw</span>();
-<a name="l00118"></a>00118     
+<a name="l00102"></a>00102  <a class="code" href="class_mix_array_u_gen_internal.html#a1d3f6a304146b8fa1edf441ad78deddb" title="Constructor using a reference to a UGenArray.">MixArrayUGenInternal</a>(<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <span class="keyword">const</span>&amp; array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>) <span class="keywordflow">throw</span>();
+<a name="l00103"></a>00103  
+<a name="l00111"></a>00111  <a class="code" href="class_mix_array_u_gen_internal.html#a1d3f6a304146b8fa1edf441ad78deddb" title="Constructor using a reference to a UGenArray.">MixArrayUGenInternal</a>(<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>* array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>) <span class="keywordflow">throw</span>();
+<a name="l00112"></a>00112  
+<a name="l00113"></a>00113  <span class="keywordtype">void</span> <a class="code" href="class_mix_array_u_gen_internal.html#affb682d80161620335ba95b716f40427">prepareForBlock</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> actualBlockSize, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID) <span class="keywordflow">throw</span>();
+<a name="l00114"></a>00114  <span class="keywordtype">void</span> <a class="code" href="class_mix_array_u_gen_internal.html#a9daadccd7c9358f91b835c5abaf62352" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00115"></a>00115  <span class="keywordtype">void</span> <a class="code" href="class_mix_array_u_gen_internal.html#a42ae7286326794285f5e6d12fe63f19c">releaseInternal</a>() <span class="keywordflow">throw</span>(); <span class="comment">// has non-standard inputs </span>
+<a name="l00116"></a>00116  <span class="keywordtype">void</span> <a class="code" href="class_mix_array_u_gen_internal.html#ab1b30e7a098ef6d91bd1880062401ae3">stealInternal</a>() <span class="keywordflow">throw</span>(); <span class="comment">// has non-standard inputs </span>
+<a name="l00117"></a>00117  <span class="keywordtype">float</span> <a class="code" href="class_mix_array_u_gen_internal.html#a17b9c1cf3c44f9d2c94f8ee564404bf9">getValue</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keyword">const</span> <span class="keywordflow">throw</span>();
+<a name="l00118"></a>00118  
 <a name="l00119"></a>00119 <span class="keyword">private</span>:
-<a name="l00120"></a><a class="code" href="class_mix_array_u_gen_internal.html#ad8def8bd8d0ee7486a11ca342e5953d1">00120</a>     <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <a class="code" href="class_mix_array_u_gen_internal.html#ad8def8bd8d0ee7486a11ca342e5953d1">array_</a>;
-<a name="l00121"></a><a class="code" href="class_mix_array_u_gen_internal.html#aed9527ee5dc36be58df4604139dce902">00121</a>     <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>* <a class="code" href="class_mix_array_u_gen_internal.html#aed9527ee5dc36be58df4604139dce902">arrayPtr</a>;
-<a name="l00122"></a><a class="code" href="class_mix_array_u_gen_internal.html#af22a183c92abb7871b44f2f003dbae50">00122</a>     <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>&amp; <a class="code" href="class_mix_array_u_gen_internal.html#af22a183c92abb7871b44f2f003dbae50">arrayRef</a>;
-<a name="l00123"></a><a class="code" href="class_mix_array_u_gen_internal.html#a7bbb2e784c67ccdfec6b560304a0824d">00123</a>     <span class="keywordtype">bool</span> <a class="code" href="class_mix_array_u_gen_internal.html#a7bbb2e784c67ccdfec6b560304a0824d">shouldAllowAutoDelete_</a>;
+<a name="l00120"></a><a class="code" href="class_mix_array_u_gen_internal.html#ad8def8bd8d0ee7486a11ca342e5953d1">00120</a>  <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <a class="code" href="class_mix_array_u_gen_internal.html#ad8def8bd8d0ee7486a11ca342e5953d1">array_</a>;
+<a name="l00121"></a><a class="code" href="class_mix_array_u_gen_internal.html#aed9527ee5dc36be58df4604139dce902">00121</a>  <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>* <a class="code" href="class_mix_array_u_gen_internal.html#aed9527ee5dc36be58df4604139dce902">arrayPtr</a>;
+<a name="l00122"></a><a class="code" href="class_mix_array_u_gen_internal.html#af22a183c92abb7871b44f2f003dbae50">00122</a>  <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>&amp; <a class="code" href="class_mix_array_u_gen_internal.html#af22a183c92abb7871b44f2f003dbae50">arrayRef</a>;
+<a name="l00123"></a><a class="code" href="class_mix_array_u_gen_internal.html#a7bbb2e784c67ccdfec6b560304a0824d">00123</a>  <span class="keywordtype">bool</span> <a class="code" href="class_mix_array_u_gen_internal.html#a7bbb2e784c67ccdfec6b560304a0824d">shouldAllowAutoDelete_</a>;
 <a name="l00124"></a>00124 };
 <a name="l00125"></a>00125 
 <a name="l00126"></a>00126 
 <a name="l00148"></a><a class="code" href="class_mix.html">00148</a> <span class="keyword">class </span><a class="code" href="class_mix.html" title="Mix channels.">Mix</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> 
 <a name="l00149"></a>00149 { 
 <a name="l00150"></a>00150 <span class="keyword">public</span>: 
-<a name="l00152"></a><a class="code" href="class_mix.html#a12c5a99b773e2afd9fa3d62fbaf0bf96">00152</a>     <a class="code" href="class_mix.html#a12c5a99b773e2afd9fa3d62fbaf0bf96">Mix</a> () throw() : <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>() { }
-<a name="l00153"></a>00153     
-<a name="l00161"></a>00161     <a class="code" href="class_mix.html#a12c5a99b773e2afd9fa3d62fbaf0bf96">Mix</a> (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>) throw(); 
-<a name="l00162"></a>00162     
-<a name="l00163"></a>00163     
-<a name="l00165"></a><a class="code" href="class_mix.html#abd9983f53e8c07e574ef0c266869c8f0">00165</a>     static inline <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_mix.html#abd9983f53e8c07e574ef0c266869c8f0" title="Audio rate.">AR</a> (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> const&amp; array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = true) throw()        { <span class="keywordflow">return</span> <a class="code" href="class_mix.html#a12c5a99b773e2afd9fa3d62fbaf0bf96">Mix</a> (array, shouldAllowAutoDelete);            } 
-<a name="l00166"></a>00166     
-<a name="l00168"></a><a class="code" href="class_mix.html#ad5addafee4d64ba1e4dc2b552b07ebec">00168</a>     <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_mix.html#ad5addafee4d64ba1e4dc2b552b07ebec" title="Control rate.">KR</a> (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>) throw()        { <span class="keywordflow">return</span> <a class="code" href="class_u_gen.html#a7a8f0faa0b080b5d4be969b259a7075d" title="Default constructor.">UGen</a>(<a class="code" href="class_mix.html" title="Mix channels.">Mix</a> (array, shouldAllowAutoDelete)).kr(); } 
-<a name="l00169"></a>00169         
-<a name="l00177"></a>00177     <a class="code" href="class_mix.html#a12c5a99b773e2afd9fa3d62fbaf0bf96">Mix</a> (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>* array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>) throw(); 
-<a name="l00178"></a>00178     
-<a name="l00180"></a><a class="code" href="class_mix.html#a284fe0958e0265250df90335a71827a0">00180</a>     static inline <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_mix.html#abd9983f53e8c07e574ef0c266869c8f0" title="Audio rate.">AR</a> (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>* array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = true) throw()              { <span class="keywordflow">return</span> <a class="code" href="class_mix.html#a12c5a99b773e2afd9fa3d62fbaf0bf96">Mix</a> (array, shouldAllowAutoDelete);            } 
-<a name="l00181"></a>00181     
-<a name="l00183"></a><a class="code" href="class_mix.html#a521c5afb201de51d12edcac2ee810eea">00183</a>     <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_mix.html#a521c5afb201de51d12edcac2ee810eea" title="Control rate.">KR</a> (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>* array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>) throw()              { <span class="keywordflow">return</span> <a class="code" href="class_u_gen.html#a7a8f0faa0b080b5d4be969b259a7075d" title="Default constructor.">UGen</a>(<a class="code" href="class_mix.html" title="Mix channels.">Mix</a> (array, shouldAllowAutoDelete)).kr(); } 
-<a name="l00184"></a>00184         
-<a name="l00191"></a>00191     <a class="code" href="class_mix.html#a12c5a99b773e2afd9fa3d62fbaf0bf96">Mix</a> (<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <span class="keyword">const</span>&amp; array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>) throw(); 
-<a name="l00192"></a>00192     
-<a name="l00194"></a><a class="code" href="class_mix.html#a3e7cad542c1f054933505692aa5522ef">00194</a>     static inline <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_mix.html#abd9983f53e8c07e574ef0c266869c8f0" title="Audio rate.">AR</a> (<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> const&amp; array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = true) throw()   { <span class="keywordflow">return</span> <a class="code" href="class_mix.html#a12c5a99b773e2afd9fa3d62fbaf0bf96">Mix</a> (array, shouldAllowAutoDelete);            } 
-<a name="l00195"></a>00195     
-<a name="l00197"></a><a class="code" href="class_mix.html#a37492034e2b62491502b15c745e03e61">00197</a>     <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_mix.html#a37492034e2b62491502b15c745e03e61" title="Control rate.">KR</a> (<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <span class="keyword">const</span>&amp; array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>) throw()   { <span class="keywordflow">return</span> <a class="code" href="class_u_gen.html#a7a8f0faa0b080b5d4be969b259a7075d" title="Default constructor.">UGen</a>(<a class="code" href="class_mix.html" title="Mix channels.">Mix</a> (array, shouldAllowAutoDelete)).kr(); } 
-<a name="l00198"></a>00198         
-<a name="l00206"></a>00206     <a class="code" href="class_mix.html#a12c5a99b773e2afd9fa3d62fbaf0bf96">Mix</a> (<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>* array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>) throw(); 
-<a name="l00207"></a>00207     
-<a name="l00209"></a><a class="code" href="class_mix.html#af31ad433316e31b958a27257d4956a25">00209</a>     static inline <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_mix.html#abd9983f53e8c07e574ef0c266869c8f0" title="Audio rate.">AR</a> (<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>* array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = true) throw()         { <span class="keywordflow">return</span> <a class="code" href="class_mix.html#a12c5a99b773e2afd9fa3d62fbaf0bf96">Mix</a> (array, shouldAllowAutoDelete);            } 
-<a name="l00210"></a>00210     
-<a name="l00212"></a><a class="code" href="class_mix.html#a62f2f53a5fee45e72431d28fd74931a9">00212</a>     <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_mix.html#a62f2f53a5fee45e72431d28fd74931a9" title="Control rate.">KR</a> (<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>* array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>) throw()         { <span class="keywordflow">return</span> <a class="code" href="class_u_gen.html#a7a8f0faa0b080b5d4be969b259a7075d" title="Default constructor.">UGen</a>(<a class="code" href="class_mix.html" title="Mix channels.">Mix</a> (array, shouldAllowAutoDelete)).kr(); } 
-<a name="l00213"></a>00213     
+<a name="l00152"></a><a class="code" href="class_mix.html#a12c5a99b773e2afd9fa3d62fbaf0bf96">00152</a>  <a class="code" href="class_mix.html#a12c5a99b773e2afd9fa3d62fbaf0bf96">Mix</a> () throw() : <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>() { }
+<a name="l00153"></a>00153  
+<a name="l00161"></a>00161  <a class="code" href="class_mix.html#a12c5a99b773e2afd9fa3d62fbaf0bf96">Mix</a> (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>) throw(); 
+<a name="l00162"></a>00162  
+<a name="l00163"></a>00163  
+<a name="l00165"></a><a class="code" href="class_mix.html#abd9983f53e8c07e574ef0c266869c8f0">00165</a>  static inline <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_mix.html#abd9983f53e8c07e574ef0c266869c8f0" title="Audio rate.">AR</a> (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> const&amp; array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = true) throw()  { <span class="keywordflow">return</span> <a class="code" href="class_mix.html#a12c5a99b773e2afd9fa3d62fbaf0bf96">Mix</a> (array, shouldAllowAutoDelete);   } 
+<a name="l00166"></a>00166  
+<a name="l00168"></a><a class="code" href="class_mix.html#ad5addafee4d64ba1e4dc2b552b07ebec">00168</a>  <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_mix.html#ad5addafee4d64ba1e4dc2b552b07ebec" title="Control rate.">KR</a> (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>) throw()  { <span class="keywordflow">return</span> <a class="code" href="class_u_gen.html#a7a8f0faa0b080b5d4be969b259a7075d" title="Default constructor.">UGen</a>(<a class="code" href="class_mix.html" title="Mix channels.">Mix</a> (array, shouldAllowAutoDelete)).kr(); } 
+<a name="l00169"></a>00169   
+<a name="l00177"></a>00177  <a class="code" href="class_mix.html#a12c5a99b773e2afd9fa3d62fbaf0bf96">Mix</a> (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>* array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>) throw(); 
+<a name="l00178"></a>00178  
+<a name="l00180"></a><a class="code" href="class_mix.html#a284fe0958e0265250df90335a71827a0">00180</a>  static inline <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_mix.html#abd9983f53e8c07e574ef0c266869c8f0" title="Audio rate.">AR</a> (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>* array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = true) throw()    { <span class="keywordflow">return</span> <a class="code" href="class_mix.html#a12c5a99b773e2afd9fa3d62fbaf0bf96">Mix</a> (array, shouldAllowAutoDelete);   } 
+<a name="l00181"></a>00181  
+<a name="l00183"></a><a class="code" href="class_mix.html#a521c5afb201de51d12edcac2ee810eea">00183</a>  <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_mix.html#a521c5afb201de51d12edcac2ee810eea" title="Control rate.">KR</a> (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>* array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>) throw()    { <span class="keywordflow">return</span> <a class="code" href="class_u_gen.html#a7a8f0faa0b080b5d4be969b259a7075d" title="Default constructor.">UGen</a>(<a class="code" href="class_mix.html" title="Mix channels.">Mix</a> (array, shouldAllowAutoDelete)).kr(); } 
+<a name="l00184"></a>00184   
+<a name="l00191"></a>00191  <a class="code" href="class_mix.html#a12c5a99b773e2afd9fa3d62fbaf0bf96">Mix</a> (<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <span class="keyword">const</span>&amp; array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>) throw(); 
+<a name="l00192"></a>00192  
+<a name="l00194"></a><a class="code" href="class_mix.html#a3e7cad542c1f054933505692aa5522ef">00194</a>  static inline <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_mix.html#abd9983f53e8c07e574ef0c266869c8f0" title="Audio rate.">AR</a> (<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> const&amp; array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = true) throw() { <span class="keywordflow">return</span> <a class="code" href="class_mix.html#a12c5a99b773e2afd9fa3d62fbaf0bf96">Mix</a> (array, shouldAllowAutoDelete);   } 
+<a name="l00195"></a>00195  
+<a name="l00197"></a><a class="code" href="class_mix.html#a37492034e2b62491502b15c745e03e61">00197</a>  <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_mix.html#a37492034e2b62491502b15c745e03e61" title="Control rate.">KR</a> (<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <span class="keyword">const</span>&amp; array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>) throw() { <span class="keywordflow">return</span> <a class="code" href="class_u_gen.html#a7a8f0faa0b080b5d4be969b259a7075d" title="Default constructor.">UGen</a>(<a class="code" href="class_mix.html" title="Mix channels.">Mix</a> (array, shouldAllowAutoDelete)).kr(); } 
+<a name="l00198"></a>00198   
+<a name="l00206"></a>00206  <a class="code" href="class_mix.html#a12c5a99b773e2afd9fa3d62fbaf0bf96">Mix</a> (<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>* array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>) throw(); 
+<a name="l00207"></a>00207  
+<a name="l00209"></a><a class="code" href="class_mix.html#af31ad433316e31b958a27257d4956a25">00209</a>  static inline <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_mix.html#abd9983f53e8c07e574ef0c266869c8f0" title="Audio rate.">AR</a> (<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>* array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = true) throw()   { <span class="keywordflow">return</span> <a class="code" href="class_mix.html#a12c5a99b773e2afd9fa3d62fbaf0bf96">Mix</a> (array, shouldAllowAutoDelete);   } 
+<a name="l00210"></a>00210  
+<a name="l00212"></a><a class="code" href="class_mix.html#a62f2f53a5fee45e72431d28fd74931a9">00212</a>  <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_mix.html#a62f2f53a5fee45e72431d28fd74931a9" title="Control rate.">KR</a> (<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>* array, <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>) throw()   { <span class="keywordflow">return</span> <a class="code" href="class_u_gen.html#a7a8f0faa0b080b5d4be969b259a7075d" title="Default constructor.">UGen</a>(<a class="code" href="class_mix.html" title="Mix channels.">Mix</a> (array, shouldAllowAutoDelete)).kr(); } 
+<a name="l00213"></a>00213  
 <a name="l00214"></a>00214 <span class="keyword">private</span>:
-<a name="l00215"></a>00215     <span class="keywordtype">void</span> <a class="code" href="class_mix.html#a9946137bc20d8667461d767d7aed53a8">constructMixArrayWithProxies</a>(<a class="code" href="class_mix_array_u_gen_internal.html" title="A UGenInternal which mixes a UGenArray down to a multichannel UGen.">MixArrayUGenInternal</a>* <span class="keyword">internal</span>);
+<a name="l00215"></a>00215  <span class="keywordtype">void</span> <a class="code" href="class_mix.html#a9946137bc20d8667461d767d7aed53a8">constructMixArrayWithProxies</a>(<a class="code" href="class_mix_array_u_gen_internal.html" title="A UGenInternal which mixes a UGenArray down to a multichannel UGen.">MixArrayUGenInternal</a>* <span class="keyword">internal</span>);
 <a name="l00216"></a>00216 };
 <a name="l00217"></a>00217 
-<a name="l00218"></a><a class="code" href="ugen___mix_u_gen_8h.html#a9088a30893a334696c82050cfc36089d">00218</a> <span class="preprocessor">#define EVENT_MIXFILLFUNCTION_DOCS                  You must implement this virtual function in your subclass.                      \</span>
-<a name="l00219"></a>00219 <span class="preprocessor">                                                    The parent MixFill UGen calls this function multiple times to                   \</span>
-<a name="l00220"></a>00220 <span class="preprocessor">                                                    create an array of UGen instances to mix.                                       \</span>
-<a name="l00221"></a>00221 <span class="preprocessor">                                                    @param eventCount   The index of the event instance starting at 0 for           \</span>
-<a name="l00222"></a>00222 <span class="preprocessor">                                                                        the first event.                                            \</span>
-<a name="l00223"></a>00223 <span class="preprocessor">                                                    @return             The UGen graph for this event instance.</span>
+<a name="l00218"></a><a class="code" href="ugen___mix_u_gen_8h.html#a9088a30893a334696c82050cfc36089d">00218</a> <span class="preprocessor">#define EVENT_MIXFILLFUNCTION_DOCS     You must implement this virtual function in your subclass.      \</span>
+<a name="l00219"></a>00219 <span class="preprocessor">             The parent MixFill UGen calls this function multiple times to     \</span>
+<a name="l00220"></a>00220 <span class="preprocessor">             create an array of UGen instances to mix.          \</span>
+<a name="l00221"></a>00221 <span class="preprocessor">             @param eventCount The index of the event instance starting at 0 for   \</span>
+<a name="l00222"></a>00222 <span class="preprocessor">                  the first event.           \</span>
+<a name="l00223"></a>00223 <span class="preprocessor">             @return    The UGen graph for this event instance.</span>
 <a name="l00224"></a>00224 <span class="preprocessor"></span>
 <a name="l00229"></a><a class="code" href="class_mix_fill_base_event_base.html">00229</a> <span class="keyword">class </span><a class="code" href="class_mix_fill_base_event_base.html" title="This base class provides the mechanism for generating the array of events.">MixFillBaseEventBase</a>
 <a name="l00230"></a>00230 {
 <a name="l00231"></a>00231 <span class="keyword">public</span>:
-<a name="l00232"></a><a class="code" href="class_mix_fill_base_event_base.html#a05ccb1298e868fc97c8afbdc56dae906">00232</a>     <a class="code" href="class_mix_fill_base_event_base.html#a05ccb1298e868fc97c8afbdc56dae906">MixFillBaseEventBase</a>() { }
-<a name="l00233"></a><a class="code" href="class_mix_fill_base_event_base.html#a78a872e3935faebab4b784362776d56c">00233</a>     <span class="keyword">virtual</span> <a class="code" href="class_mix_fill_base_event_base.html#a78a872e3935faebab4b784362776d56c">~MixFillBaseEventBase</a>() { }
-<a name="l00234"></a>00234     
-<a name="l00235"></a>00235     <a class="code" href="ugen___u_gen_8h.html#a5aff373d1ededbeca2cd49274a2f6e96" title="Wrap some text in a normal &amp;quot;pre&amp;quot; Doxygen comment, before the item to be documented...">PREDOC</a>(<a class="code" href="ugen___mix_u_gen_8h.html#a9088a30893a334696c82050cfc36089d">EVENT_MIXFILLFUNCTION_DOCS</a>)
-<a name="l00236"></a>00236     virtual <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_mix_fill_base_event_base.html#a37ff77ca321976512bbf49be128b0047" title="You must implement this virtual function in your subclass.">createEvent</a>(const <span class="keywordtype">int</span> eventCount) = 0;
-<a name="l00237"></a>00237     
-<a name="l00242"></a><a class="code" href="class_mix_fill_base_event_base.html#ab6e27e2a0295e500602f0ccf8a8b2605">00242</a>     <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <a class="code" href="class_mix_fill_base_event_base.html#ab6e27e2a0295e500602f0ccf8a8b2605" title="This returns a UGen array using the createEvent() function to create each element.">createArray</a>(const <span class="keywordtype">int</span> size)
-<a name="l00243"></a>00243     {
-<a name="l00244"></a>00244         <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(size &gt; 0);
-<a name="l00245"></a>00245         
-<a name="l00246"></a>00246         <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> array;
-<a name="l00247"></a>00247         <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++)
-<a name="l00248"></a>00248             array &lt;&lt;= <a class="code" href="class_mix_fill_base_event_base.html#a37ff77ca321976512bbf49be128b0047" title="You must implement this virtual function in your subclass.">createEvent</a>(i);
-<a name="l00249"></a>00249         <span class="keywordflow">return</span> array;
-<a name="l00250"></a>00250     }
+<a name="l00232"></a><a class="code" href="class_mix_fill_base_event_base.html#a05ccb1298e868fc97c8afbdc56dae906">00232</a>  <a class="code" href="class_mix_fill_base_event_base.html#a05ccb1298e868fc97c8afbdc56dae906">MixFillBaseEventBase</a>() { }
+<a name="l00233"></a><a class="code" href="class_mix_fill_base_event_base.html#a78a872e3935faebab4b784362776d56c">00233</a>  <span class="keyword">virtual</span> <a class="code" href="class_mix_fill_base_event_base.html#a78a872e3935faebab4b784362776d56c">~MixFillBaseEventBase</a>() { }
+<a name="l00234"></a>00234  
+<a name="l00235"></a>00235  <a class="code" href="ugen___u_gen_8h.html#a5aff373d1ededbeca2cd49274a2f6e96" title="Wrap some text in a normal &amp;quot;pre&amp;quot; Doxygen comment, before the item to be documented...">PREDOC</a>(<a class="code" href="ugen___mix_u_gen_8h.html#a9088a30893a334696c82050cfc36089d">EVENT_MIXFILLFUNCTION_DOCS</a>)
+<a name="l00236"></a>00236  virtual <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_mix_fill_base_event_base.html#a37ff77ca321976512bbf49be128b0047" title="You must implement this virtual function in your subclass.">createEvent</a>(const <span class="keywordtype">int</span> eventCount) = 0;
+<a name="l00237"></a>00237  
+<a name="l00242"></a><a class="code" href="class_mix_fill_base_event_base.html#ab6e27e2a0295e500602f0ccf8a8b2605">00242</a>  <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <a class="code" href="class_mix_fill_base_event_base.html#ab6e27e2a0295e500602f0ccf8a8b2605" title="This returns a UGen array using the createEvent() function to create each element.">createArray</a>(const <span class="keywordtype">int</span> size)
+<a name="l00243"></a>00243  {
+<a name="l00244"></a>00244   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(size &gt; 0);
+<a name="l00245"></a>00245   
+<a name="l00246"></a>00246   <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> array;
+<a name="l00247"></a>00247   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++)
+<a name="l00248"></a>00248    array &lt;&lt;= <a class="code" href="class_mix_fill_base_event_base.html#a37ff77ca321976512bbf49be128b0047" title="You must implement this virtual function in your subclass.">createEvent</a>(i);
+<a name="l00249"></a>00249   <span class="keywordflow">return</span> array;
+<a name="l00250"></a>00250  }
 <a name="l00251"></a>00251 };
 <a name="l00252"></a>00252 
 <a name="l00253"></a>00253 <a class="code" href="ugen___u_gen_8h.html#abae45eadbcedd44ebf5a1846445a5832">EVENT_DOCS_OWNED</a>(<a class="code" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill</a>, <a class="code" href="class_mix_fill_event_base.html" title="An event class for use with a MixFill UGen.">MixFillEventBase</a>)
 <a name="l00254"></a>00254 template&lt;class OwnerType = <span class="keywordtype">void</span>&gt; <a class="code" href="ugen___u_gen_8h.html#a0f82a0c6f4ce97d4e1b96fad619d0b58" title="Wrap some text in a &amp;quot;post&amp;quot; Doxygen comment, after the item to be documented.">POSTDOC</a>(<a class="code" href="ugen___u_gen_8h.html#ae5cfd942ded74ebe8c62e1e7e075db51">EVENT_OWNER_DOC</a>)
-<a name="l00255"></a><a class="code" href="class_mix_fill_event_base.html">00255</a> class <a class="code" href="class_mix_fill_event_base.html" title="An event class for use with a MixFill UGen.">MixFillEventBase</a> :    public <a class="code" href="class_event_base.html" title="The base for all event classes.">EventBase</a>&lt;OwnerType&gt;, 
-<a name="l00256"></a>00256                             public <a class="code" href="class_mix_fill_base_event_base.html" title="This base class provides the mechanism for generating the array of events.">MixFillBaseEventBase</a>
+<a name="l00255"></a><a class="code" href="class_mix_fill_event_base.html">00255</a> class <a class="code" href="class_mix_fill_event_base.html" title="An event class for use with a MixFill UGen.">MixFillEventBase</a> : public <a class="code" href="class_event_base.html" title="The base for all event classes.">EventBase</a>&lt;OwnerType&gt;, 
+<a name="l00256"></a>00256        public <a class="code" href="class_mix_fill_base_event_base.html" title="This base class provides the mechanism for generating the array of events.">MixFillBaseEventBase</a>
 <a name="l00257"></a>00257 {
 <a name="l00258"></a>00258 <span class="keyword">public</span>:
-<a name="l00259"></a>00259     <a class="code" href="ugen___u_gen_8h.html#a296d40ab36b87b3e46010f59874432dc">EVENT_OWNEDCONSTRUCTOR</a>(<a class="code" href="class_mix_fill_event_base.html" title="An event class for use with a MixFill UGen.">MixFillEventBase</a>)
-<a name="l00260"></a><a class="code" href="class_mix_fill_event_base.html#a0a91a1dcc68ec5b0c487ff5cb613ed14">00260</a>     <a class="code" href="class_mix_fill_event_base.html" title="An event class for use with a MixFill UGen.">MixFillEventBase</a>(OwnerType* o) : <a class="code" href="class_event_base.html" title="The base for all event classes.">EventBase</a>&lt;OwnerType&gt; (o) { }
+<a name="l00259"></a>00259  <a class="code" href="ugen___u_gen_8h.html#a296d40ab36b87b3e46010f59874432dc">EVENT_OWNEDCONSTRUCTOR</a>(<a class="code" href="class_mix_fill_event_base.html" title="An event class for use with a MixFill UGen.">MixFillEventBase</a>)
+<a name="l00260"></a><a class="code" href="class_mix_fill_event_base.html#a0a91a1dcc68ec5b0c487ff5cb613ed14">00260</a>  <a class="code" href="class_mix_fill_event_base.html" title="An event class for use with a MixFill UGen.">MixFillEventBase</a>(OwnerType* o) : <a class="code" href="class_event_base.html" title="The base for all event classes.">EventBase</a>&lt;OwnerType&gt; (o) { }
 <a name="l00261"></a>00261 };
 <a name="l00262"></a>00262 
 <a name="l00263"></a>00263 <a class="code" href="ugen___u_gen_8h.html#ab2c9560e0494130acbb0ed6ee01c8676">EVENT_DOCS_VOID</a>(<a class="code" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill</a>, <a class="code" href="class_mix_fill_event_base.html" title="An event class for use with a MixFill UGen.">MixFillEventBase</a>)
 <a name="l00264"></a>00264 template&lt;&gt;
-<a name="l00265"></a><a class="code" href="class_mix_fill_event_base_3_01void_01_4.html">00265</a> class <a class="code" href="class_mix_fill_event_base.html" title="An event class for use with a MixFill UGen.">MixFillEventBase</a>&lt;<span class="keywordtype">void</span>&gt; :  public <a class="code" href="class_event_base.html" title="The base for all event classes.">EventBase</a>&lt;<span class="keywordtype">void</span>&gt;, 
-<a name="l00266"></a>00266                                 public <a class="code" href="class_mix_fill_base_event_base.html" title="This base class provides the mechanism for generating the array of events.">MixFillBaseEventBase</a>
+<a name="l00265"></a><a class="code" href="class_mix_fill_event_base_3_01void_01_4.html">00265</a> class <a class="code" href="class_mix_fill_event_base.html" title="An event class for use with a MixFill UGen.">MixFillEventBase</a>&lt;<span class="keywordtype">void</span>&gt; : public <a class="code" href="class_event_base.html" title="The base for all event classes.">EventBase</a>&lt;<span class="keywordtype">void</span>&gt;, 
+<a name="l00266"></a>00266         public <a class="code" href="class_mix_fill_base_event_base.html" title="This base class provides the mechanism for generating the array of events.">MixFillBaseEventBase</a>
 <a name="l00267"></a>00267 { 
 <a name="l00268"></a>00268 };
 <a name="l00269"></a>00269 
@@ -193,20 +193,20 @@
 <a name="l00274"></a><a class="code" href="class_mix_fill_event_u_gen_internal.html">00274</a> <span class="keyword">class </span><a class="code" href="class_mix_fill_event_u_gen_internal.html">MixFillEventUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_mix_array_u_gen_internal.html" title="A UGenInternal which mixes a UGenArray down to a multichannel UGen.">MixArrayUGenInternal</a>
 <a name="l00275"></a>00275 {
 <a name="l00276"></a>00276 <span class="keyword">public</span>:
-<a name="l00277"></a><a class="code" href="class_mix_fill_event_u_gen_internal.html#af7807fd21d275732aed9702b014accf4">00277</a>     <a class="code" href="class_mix_fill_event_u_gen_internal.html#af7807fd21d275732aed9702b014accf4">MixFillEventUGenInternal</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, 
-<a name="l00278"></a>00278                              <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels, 
-<a name="l00279"></a>00279                              <span class="keywordtype">bool</span> shouldAllowAutoDelete, 
-<a name="l00280"></a>00280                              OwnerType* o) <span class="keywordflow">throw</span>()
-<a name="l00281"></a>00281     :   <a class="code" href="class_mix_array_u_gen_internal.html#a1d3f6a304146b8fa1edf441ad78deddb" title="Constructor using a reference to a UGenArray.">MixArrayUGenInternal</a>(MixFillEventType(o).createArray(size), 
-<a name="l00282"></a>00282                              shouldAllowAutoDelete) { }
-<a name="l00283"></a>00283     
-<a name="l00284"></a><a class="code" href="class_mix_fill_event_u_gen_internal.html#ac51398df3991bec3b048a21684e731a1">00284</a>     <a class="code" href="class_mix_fill_event_u_gen_internal.html#af7807fd21d275732aed9702b014accf4">MixFillEventUGenInternal</a>(MixFillEventType <span class="keyword">const</span>&amp; e,
-<a name="l00285"></a>00285                              <span class="keyword">const</span> <span class="keywordtype">int</span> size, 
-<a name="l00286"></a>00286                              <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels, 
-<a name="l00287"></a>00287                              <span class="keywordtype">bool</span> shouldAllowAutoDelete) <span class="keywordflow">throw</span>()
-<a name="l00288"></a>00288     :   <a class="code" href="class_mix_array_u_gen_internal.html#a1d3f6a304146b8fa1edf441ad78deddb" title="Constructor using a reference to a UGenArray.">MixArrayUGenInternal</a>((static_cast&lt;MixFillEventType&gt;(e)).createArray(size),  <span class="comment">// not sure about this casting away but need to keep const&amp; in the arg!</span>
-<a name="l00289"></a>00289                              shouldAllowAutoDelete) { }
-<a name="l00290"></a>00290     
+<a name="l00277"></a><a class="code" href="class_mix_fill_event_u_gen_internal.html#af7807fd21d275732aed9702b014accf4">00277</a>  <a class="code" href="class_mix_fill_event_u_gen_internal.html#af7807fd21d275732aed9702b014accf4">MixFillEventUGenInternal</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, 
+<a name="l00278"></a>00278         <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels, 
+<a name="l00279"></a>00279         <span class="keywordtype">bool</span> shouldAllowAutoDelete, 
+<a name="l00280"></a>00280         OwnerType* o) <span class="keywordflow">throw</span>()
+<a name="l00281"></a>00281  : <a class="code" href="class_mix_array_u_gen_internal.html#a1d3f6a304146b8fa1edf441ad78deddb" title="Constructor using a reference to a UGenArray.">MixArrayUGenInternal</a>(MixFillEventType(o).createArray(size), 
+<a name="l00282"></a>00282         shouldAllowAutoDelete) { }
+<a name="l00283"></a>00283  
+<a name="l00284"></a><a class="code" href="class_mix_fill_event_u_gen_internal.html#ac51398df3991bec3b048a21684e731a1">00284</a>  <a class="code" href="class_mix_fill_event_u_gen_internal.html#af7807fd21d275732aed9702b014accf4">MixFillEventUGenInternal</a>(MixFillEventType <span class="keyword">const</span>&amp; e,
+<a name="l00285"></a>00285         <span class="keyword">const</span> <span class="keywordtype">int</span> size, 
+<a name="l00286"></a>00286         <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels, 
+<a name="l00287"></a>00287         <span class="keywordtype">bool</span> shouldAllowAutoDelete) <span class="keywordflow">throw</span>()
+<a name="l00288"></a>00288  : <a class="code" href="class_mix_array_u_gen_internal.html#a1d3f6a304146b8fa1edf441ad78deddb" title="Constructor using a reference to a UGenArray.">MixArrayUGenInternal</a>((static_cast&lt;MixFillEventType&gt;(e)).createArray(size),  <span class="comment">// not sure about this casting away but need to keep const&amp; in the arg!</span>
+<a name="l00289"></a>00289         shouldAllowAutoDelete) { }
+<a name="l00290"></a>00290  
 <a name="l00291"></a>00291 <span class="keyword">protected</span>:
 <a name="l00292"></a>00292 };
 <a name="l00293"></a>00293 
@@ -214,84 +214,84 @@
 <a name="l00296"></a><a class="code" href="class_mix_fill_event_u_gen_internal_3_01_mix_fill_event_type_00_01void_01_4.html">00296</a> <span class="keyword">class </span><a class="code" href="class_mix_fill_event_u_gen_internal.html">MixFillEventUGenInternal</a>&lt;MixFillEventType, void&gt; : <span class="keyword">public</span> <a class="code" href="class_mix_array_u_gen_internal.html" title="A UGenInternal which mixes a UGenArray down to a multichannel UGen.">MixArrayUGenInternal</a>
 <a name="l00297"></a>00297 {
 <a name="l00298"></a>00298 <span class="keyword">public</span>:
-<a name="l00299"></a><a class="code" href="class_mix_fill_event_u_gen_internal_3_01_mix_fill_event_type_00_01void_01_4.html#ae560e0bf81ae0143677c2047cc6c0aeb">00299</a>     <a class="code" href="class_mix_fill_event_u_gen_internal.html#af7807fd21d275732aed9702b014accf4">MixFillEventUGenInternal</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, 
-<a name="l00300"></a>00300                              <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels, 
-<a name="l00301"></a>00301                              <span class="keywordtype">bool</span> shouldAllowAutoDelete, 
-<a name="l00302"></a>00302                              <span class="keywordtype">void</span>* o) <span class="keywordflow">throw</span>()
-<a name="l00303"></a>00303     :   <a class="code" href="class_mix_array_u_gen_internal.html#a1d3f6a304146b8fa1edf441ad78deddb" title="Constructor using a reference to a UGenArray.">MixArrayUGenInternal</a>(MixFillEventType().createArray(size), 
-<a name="l00304"></a>00304                              shouldAllowAutoDelete) { }
-<a name="l00305"></a>00305     
-<a name="l00306"></a><a class="code" href="class_mix_fill_event_u_gen_internal_3_01_mix_fill_event_type_00_01void_01_4.html#a29ce0bef1381b22acfe5fba3be242154">00306</a>     <a class="code" href="class_mix_fill_event_u_gen_internal.html#af7807fd21d275732aed9702b014accf4">MixFillEventUGenInternal</a>(MixFillEventType <span class="keyword">const</span>&amp; e,
-<a name="l00307"></a>00307                              <span class="keyword">const</span> <span class="keywordtype">int</span> size, 
-<a name="l00308"></a>00308                              <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels, 
-<a name="l00309"></a>00309                              <span class="keywordtype">bool</span> shouldAllowAutoDelete) <span class="keywordflow">throw</span>()
-<a name="l00310"></a>00310     :   <a class="code" href="class_mix_array_u_gen_internal.html#a1d3f6a304146b8fa1edf441ad78deddb" title="Constructor using a reference to a UGenArray.">MixArrayUGenInternal</a>((static_cast&lt;MixFillEventType&gt;(e)).createArray(size),  <span class="comment">// not sure about this casting away but need to keep const&amp; in the arg!</span>
-<a name="l00311"></a>00311                              shouldAllowAutoDelete) { } 
-<a name="l00312"></a>00312     
+<a name="l00299"></a><a class="code" href="class_mix_fill_event_u_gen_internal_3_01_mix_fill_event_type_00_01void_01_4.html#ae560e0bf81ae0143677c2047cc6c0aeb">00299</a>  <a class="code" href="class_mix_fill_event_u_gen_internal.html#af7807fd21d275732aed9702b014accf4">MixFillEventUGenInternal</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, 
+<a name="l00300"></a>00300         <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels, 
+<a name="l00301"></a>00301         <span class="keywordtype">bool</span> shouldAllowAutoDelete, 
+<a name="l00302"></a>00302         <span class="keywordtype">void</span>* o) <span class="keywordflow">throw</span>()
+<a name="l00303"></a>00303  : <a class="code" href="class_mix_array_u_gen_internal.html#a1d3f6a304146b8fa1edf441ad78deddb" title="Constructor using a reference to a UGenArray.">MixArrayUGenInternal</a>(MixFillEventType().createArray(size), 
+<a name="l00304"></a>00304         shouldAllowAutoDelete) { }
+<a name="l00305"></a>00305  
+<a name="l00306"></a><a class="code" href="class_mix_fill_event_u_gen_internal_3_01_mix_fill_event_type_00_01void_01_4.html#a29ce0bef1381b22acfe5fba3be242154">00306</a>  <a class="code" href="class_mix_fill_event_u_gen_internal.html#af7807fd21d275732aed9702b014accf4">MixFillEventUGenInternal</a>(MixFillEventType <span class="keyword">const</span>&amp; e,
+<a name="l00307"></a>00307         <span class="keyword">const</span> <span class="keywordtype">int</span> size, 
+<a name="l00308"></a>00308         <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels, 
+<a name="l00309"></a>00309         <span class="keywordtype">bool</span> shouldAllowAutoDelete) <span class="keywordflow">throw</span>()
+<a name="l00310"></a>00310  : <a class="code" href="class_mix_array_u_gen_internal.html#a1d3f6a304146b8fa1edf441ad78deddb" title="Constructor using a reference to a UGenArray.">MixArrayUGenInternal</a>((static_cast&lt;MixFillEventType&gt;(e)).createArray(size),  <span class="comment">// not sure about this casting away but need to keep const&amp; in the arg!</span>
+<a name="l00311"></a>00311         shouldAllowAutoDelete) { } 
+<a name="l00312"></a>00312  
 <a name="l00313"></a>00313 <span class="keyword">protected</span>:
 <a name="l00314"></a>00314 };
 <a name="l00315"></a>00315 
-<a name="l00316"></a><a class="code" href="ugen___mix_u_gen_8h.html#a07b29a618a83ee8568ab6e3028c507c1">00316</a> <span class="preprocessor">#define MixFill_OwnerInputsWithTypesAndDefaults const int size = 4,                 \</span>
-<a name="l00317"></a>00317 <span class="preprocessor">                                                const int numChannels = 1,          \</span>
-<a name="l00318"></a>00318 <span class="preprocessor">                                                bool shouldAllowAutoDelete = true,  \</span>
-<a name="l00319"></a>00319 <span class="preprocessor">                                                OwnerType* o = 0</span>
-<a name="l00320"></a><a class="code" href="ugen___mix_u_gen_8h.html#a863a503b50e46d7e1d09d5ef91035513">00320</a> <span class="preprocessor"></span><span class="preprocessor">#define MixFill_OwnerInputsNoTypes              size, numChannels, shouldAllowAutoDelete, o</span>
-<a name="l00321"></a><a class="code" href="ugen___mix_u_gen_8h.html#a44f0351da029f6da9a55a24e491f60ae">00321</a> <span class="preprocessor"></span><span class="preprocessor">#define MixFill_EventInputsWithTypesAndDefaults MixFillEventType const&amp; e,          \</span>
-<a name="l00322"></a>00322 <span class="preprocessor">                                                const int size = 4,                 \</span>
-<a name="l00323"></a>00323 <span class="preprocessor">                                                const int numChannels = 1,          \</span>
-<a name="l00324"></a>00324 <span class="preprocessor">                                                bool shouldAllowAutoDelete = true</span>
-<a name="l00325"></a><a class="code" href="ugen___mix_u_gen_8h.html#abd41d53bf0137024c828b9000fa35b51">00325</a> <span class="preprocessor"></span><span class="preprocessor">#define MixFill_EventInputsNoTypes              e, size, numChannels, shouldAllowAutoDelete</span>
+<a name="l00316"></a><a class="code" href="ugen___mix_u_gen_8h.html#a07b29a618a83ee8568ab6e3028c507c1">00316</a> <span class="preprocessor">#define MixFill_OwnerInputsWithTypesAndDefaults const int size = 4,     \</span>
+<a name="l00317"></a>00317 <span class="preprocessor">            const int numChannels = 1,   \</span>
+<a name="l00318"></a>00318 <span class="preprocessor">            bool shouldAllowAutoDelete = true, \</span>
+<a name="l00319"></a>00319 <span class="preprocessor">            OwnerType* o = 0</span>
+<a name="l00320"></a><a class="code" href="ugen___mix_u_gen_8h.html#a863a503b50e46d7e1d09d5ef91035513">00320</a> <span class="preprocessor"></span><span class="preprocessor">#define MixFill_OwnerInputsNoTypes    size, numChannels, shouldAllowAutoDelete, o</span>
+<a name="l00321"></a><a class="code" href="ugen___mix_u_gen_8h.html#a44f0351da029f6da9a55a24e491f60ae">00321</a> <span class="preprocessor"></span><span class="preprocessor">#define MixFill_EventInputsWithTypesAndDefaults MixFillEventType const&amp; e,   \</span>
+<a name="l00322"></a>00322 <span class="preprocessor">            const int size = 4,     \</span>
+<a name="l00323"></a>00323 <span class="preprocessor">            const int numChannels = 1,   \</span>
+<a name="l00324"></a>00324 <span class="preprocessor">            bool shouldAllowAutoDelete = true</span>
+<a name="l00325"></a><a class="code" href="ugen___mix_u_gen_8h.html#abd41d53bf0137024c828b9000fa35b51">00325</a> <span class="preprocessor"></span><span class="preprocessor">#define MixFill_EventInputsNoTypes    e, size, numChannels, shouldAllowAutoDelete</span>
 <a name="l00326"></a>00326 <span class="preprocessor"></span>
-<a name="l00327"></a><a class="code" href="ugen___mix_u_gen_8h.html#a71d6ba60cdccd8acbc074149f7f9cc3b">00327</a> <span class="preprocessor">#define MixFill_Docs            EVENT_TEMPLATE_DOC(MixFill)                                                                     \</span>
-<a name="l00328"></a>00328 <span class="preprocessor">                                EVENT_UGEN_OWNEREVENT_DOC                                                                       \</span>
-<a name="l00329"></a>00329 <span class="preprocessor">                                @param  size            The number of events to generate and mix.                               \</span>
-<a name="l00330"></a>00330 <span class="preprocessor">                                EVENT_UGEN_NUMCHANNELS_DOC(MixFill)                                                             \</span>
-<a name="l00331"></a>00331 <span class="preprocessor">                                @param  shouldAllowAutoDelete   If true this behaves like most other UGen classes               \</span>
-<a name="l00332"></a>00332 <span class="preprocessor">                                                                i.e., it may be deleted by a DoneAction (e.g., an envelope      \</span>
-<a name="l00333"></a>00333 <span class="preprocessor">                                                                ending). If false this protects UGen instances further up       \</span>
-<a name="l00334"></a>00334 <span class="preprocessor">                                                                the chain (and itself) from being deleted by DoneActions.</span>
+<a name="l00327"></a><a class="code" href="ugen___mix_u_gen_8h.html#a71d6ba60cdccd8acbc074149f7f9cc3b">00327</a> <span class="preprocessor">#define MixFill_Docs   EVENT_TEMPLATE_DOC(MixFill)                  \</span>
+<a name="l00328"></a>00328 <span class="preprocessor">        EVENT_UGEN_OWNEREVENT_DOC                  \</span>
+<a name="l00329"></a>00329 <span class="preprocessor">        @param size   The number of events to generate and mix.        \</span>
+<a name="l00330"></a>00330 <span class="preprocessor">        EVENT_UGEN_NUMCHANNELS_DOC(MixFill)                \</span>
+<a name="l00331"></a>00331 <span class="preprocessor">        @param shouldAllowAutoDelete If true this behaves like most other UGen classes    \</span>
+<a name="l00332"></a>00332 <span class="preprocessor">                i.e., it may be deleted by a DoneAction (e.g., an envelope  \</span>
+<a name="l00333"></a>00333 <span class="preprocessor">                ending). If false this protects UGen instances further up  \</span>
+<a name="l00334"></a>00334 <span class="preprocessor">                the chain (and itself) from being deleted by DoneActions.</span>
 <a name="l00335"></a>00335 <span class="preprocessor"></span>
 <a name="l00340"></a>00340 <span class="keyword">template</span> &lt;<span class="keyword">class</span> MixFillEventType, <span class="keyword">class</span> OwnerType = <span class="keywordtype">void</span>&gt; <a class="code" href="ugen___u_gen_8h.html#a0f82a0c6f4ce97d4e1b96fad619d0b58" title="Wrap some text in a &amp;quot;post&amp;quot; Doxygen comment, after the item to be documented.">POSTDOC</a>(<a class="code" href="ugen___u_gen_8h.html#ad0686f0d95658a345c8232f724d49de3">EVENT_TEMPLATE_DOC</a>(<a class="code" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill</a>))
-<a name="l00341"></a><a class="code" href="class_mix_fill.html">00341</a> class <a class="code" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill</a> : public <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>                                                                                                                 
-<a name="l00342"></a>00342 {                                                                                                                                               
+<a name="l00341"></a><a class="code" href="class_mix_fill.html">00341</a> class <a class="code" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill</a> : public <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>                             
+<a name="l00342"></a>00342 {                                    
 <a name="l00343"></a>00343 <span class="keyword">public</span>:
-<a name="l00344"></a>00344     <a class="code" href="ugen___u_gen_8h.html#af079e488ea09ec16bc95ab5b88bb62f5">EVENT_CONSTRUCTOR_DOC</a>(<a class="code" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill</a>, <a class="code" href="ugen___mix_u_gen_8h.html#a71d6ba60cdccd8acbc074149f7f9cc3b">MixFill_Docs</a>)
-<a name="l00345"></a><a class="code" href="class_mix_fill.html#a655639eaa91b30a693e4340113a6c75b">00345</a>     <a class="code" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill</a> (const <span class="keywordtype">int</span> size = 4, 
-<a name="l00346"></a>00346              const <span class="keywordtype">int</span> numChannels = 1, 
-<a name="l00347"></a>00347              <span class="keywordtype">bool</span> shouldAllowAutoDelete = true, 
-<a name="l00348"></a>00348              OwnerType* o = 0) throw()
-<a name="l00349"></a>00349     {               
-<a name="l00350"></a>00350         <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(size &gt; 0);
-<a name="l00351"></a>00351         <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(numChannels &gt; 0);
+<a name="l00344"></a>00344  <a class="code" href="ugen___u_gen_8h.html#af079e488ea09ec16bc95ab5b88bb62f5">EVENT_CONSTRUCTOR_DOC</a>(<a class="code" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill</a>, <a class="code" href="ugen___mix_u_gen_8h.html#a71d6ba60cdccd8acbc074149f7f9cc3b">MixFill_Docs</a>)
+<a name="l00345"></a><a class="code" href="class_mix_fill.html#a655639eaa91b30a693e4340113a6c75b">00345</a>  <a class="code" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill</a> (const <span class="keywordtype">int</span> size = 4, 
+<a name="l00346"></a>00346     const <span class="keywordtype">int</span> numChannels = 1, 
+<a name="l00347"></a>00347     <span class="keywordtype">bool</span> shouldAllowAutoDelete = true, 
+<a name="l00348"></a>00348     OwnerType* o = 0) throw()
+<a name="l00349"></a>00349  {    
+<a name="l00350"></a>00350   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(size &gt; 0);
+<a name="l00351"></a>00351   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(numChannels &gt; 0);
 <a name="l00352"></a>00352 
-<a name="l00353"></a>00353         initInternal(numChannels);  
-<a name="l00354"></a>00354         generateFromProxyOwner(<span class="keyword">new</span> <a class="code" href="class_mix_fill_event_u_gen_internal.html">MixFillEventUGenInternal&lt;MixFillEventType, OwnerType&gt;</a> 
-<a name="l00355"></a>00355                                     (size, numChannels, shouldAllowAutoDelete, o));                                     
-<a name="l00356"></a>00356     }                                                                                                                                           
+<a name="l00353"></a>00353   initInternal(numChannels); 
+<a name="l00354"></a>00354   generateFromProxyOwner(<span class="keyword">new</span> <a class="code" href="class_mix_fill_event_u_gen_internal.html">MixFillEventUGenInternal&lt;MixFillEventType, OwnerType&gt;</a> 
+<a name="l00355"></a>00355          (size, numChannels, shouldAllowAutoDelete, o));          
+<a name="l00356"></a>00356  }                                   
 <a name="l00357"></a>00357 
-<a name="l00358"></a>00358     <a class="code" href="ugen___u_gen_8h.html#af079e488ea09ec16bc95ab5b88bb62f5">EVENT_CONSTRUCTOR_DOC</a>(<a class="code" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill</a>, <a class="code" href="ugen___mix_u_gen_8h.html#a71d6ba60cdccd8acbc074149f7f9cc3b">MixFill_Docs</a>)
-<a name="l00359"></a><a class="code" href="class_mix_fill.html#a0b35db3ec4dcc3d2606698622c07a5e8">00359</a>     <a class="code" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill</a> (MixFillEventType const&amp; e,
-<a name="l00360"></a>00360              const <span class="keywordtype">int</span> size = 4, 
-<a name="l00361"></a>00361              const <span class="keywordtype">int</span> numChannels = 1, 
-<a name="l00362"></a>00362              <span class="keywordtype">bool</span> shouldAllowAutoDelete = true) throw()
-<a name="l00363"></a>00363     {           
-<a name="l00364"></a>00364         <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(size &gt; 0);
-<a name="l00365"></a>00365         <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(numChannels &gt; 0);
-<a name="l00366"></a>00366         
-<a name="l00367"></a>00367         initInternal(numChannels);  
-<a name="l00368"></a>00368         generateFromProxyOwner(<span class="keyword">new</span> <a class="code" href="class_mix_fill_event_u_gen_internal.html">MixFillEventUGenInternal&lt;MixFillEventType, OwnerType&gt;</a> 
-<a name="l00369"></a>00369                                     (e, size, numChannels, shouldAllowAutoDelete));                                     
-<a name="l00370"></a>00370     }
-<a name="l00371"></a>00371         
+<a name="l00358"></a>00358  <a class="code" href="ugen___u_gen_8h.html#af079e488ea09ec16bc95ab5b88bb62f5">EVENT_CONSTRUCTOR_DOC</a>(<a class="code" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill</a>, <a class="code" href="ugen___mix_u_gen_8h.html#a71d6ba60cdccd8acbc074149f7f9cc3b">MixFill_Docs</a>)
+<a name="l00359"></a><a class="code" href="class_mix_fill.html#a0b35db3ec4dcc3d2606698622c07a5e8">00359</a>  <a class="code" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill</a> (MixFillEventType const&amp; e,
+<a name="l00360"></a>00360     const <span class="keywordtype">int</span> size = 4, 
+<a name="l00361"></a>00361     const <span class="keywordtype">int</span> numChannels = 1, 
+<a name="l00362"></a>00362     <span class="keywordtype">bool</span> shouldAllowAutoDelete = true) throw()
+<a name="l00363"></a>00363  {   
+<a name="l00364"></a>00364   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(size &gt; 0);
+<a name="l00365"></a>00365   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(numChannels &gt; 0);
+<a name="l00366"></a>00366   
+<a name="l00367"></a>00367   initInternal(numChannels); 
+<a name="l00368"></a>00368   generateFromProxyOwner(<span class="keyword">new</span> <a class="code" href="class_mix_fill_event_u_gen_internal.html">MixFillEventUGenInternal&lt;MixFillEventType, OwnerType&gt;</a> 
+<a name="l00369"></a>00369          (e, size, numChannels, shouldAllowAutoDelete));          
+<a name="l00370"></a>00370  }
+<a name="l00371"></a>00371   
 <a name="l00372"></a>00372 
-<a name="l00373"></a>00373     <a class="code" href="ugen___u_gen_8h.html#a290751892712cdecc792617eea3401ec">EventUGenMethodsDeclare</a>(<a class="code" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill</a>, 
-<a name="l00374"></a>00374                             MixFillEventType, 
-<a name="l00375"></a>00375                             OwnerType, 
-<a name="l00376"></a>00376                             (<a class="code" href="ugen___mix_u_gen_8h.html#a863a503b50e46d7e1d09d5ef91035513">MixFill_OwnerInputsNoTypes</a>), 
-<a name="l00377"></a>00377                             (<a class="code" href="ugen___mix_u_gen_8h.html#a07b29a618a83ee8568ab6e3028c507c1">MixFill_OwnerInputsWithTypesAndDefaults</a>), 
-<a name="l00378"></a>00378                             (<a class="code" href="ugen___mix_u_gen_8h.html#abd41d53bf0137024c828b9000fa35b51">MixFill_EventInputsNoTypes</a>), 
-<a name="l00379"></a>00379                             (<a class="code" href="ugen___mix_u_gen_8h.html#a44f0351da029f6da9a55a24e491f60ae">MixFill_EventInputsWithTypesAndDefaults</a>), 
-<a name="l00380"></a><a class="code" href="class_mix_fill.html#ac730cb9bc5ea8ad1cb346eea505bf2af">00380</a>                             <a class="code" href="ugen___u_gen_8h.html#adc001cebe88543a980c263f074f2dec3">EVENT_COMMON_UGEN_DOCS</a> <a class="code" href="ugen___mix_u_gen_8h.html#a71d6ba60cdccd8acbc074149f7f9cc3b">MixFill_Docs</a>);                                                                       
+<a name="l00373"></a>00373  <a class="code" href="ugen___u_gen_8h.html#a290751892712cdecc792617eea3401ec">EventUGenMethodsDeclare</a>(<a class="code" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill</a>, 
+<a name="l00374"></a>00374        MixFillEventType, 
+<a name="l00375"></a>00375        OwnerType, 
+<a name="l00376"></a>00376        (<a class="code" href="ugen___mix_u_gen_8h.html#a863a503b50e46d7e1d09d5ef91035513">MixFill_OwnerInputsNoTypes</a>), 
+<a name="l00377"></a>00377        (<a class="code" href="ugen___mix_u_gen_8h.html#a07b29a618a83ee8568ab6e3028c507c1">MixFill_OwnerInputsWithTypesAndDefaults</a>), 
+<a name="l00378"></a>00378        (<a class="code" href="ugen___mix_u_gen_8h.html#abd41d53bf0137024c828b9000fa35b51">MixFill_EventInputsNoTypes</a>), 
+<a name="l00379"></a>00379        (<a class="code" href="ugen___mix_u_gen_8h.html#a44f0351da029f6da9a55a24e491f60ae">MixFill_EventInputsWithTypesAndDefaults</a>), 
+<a name="l00380"></a><a class="code" href="class_mix_fill.html#ac730cb9bc5ea8ad1cb346eea505bf2af">00380</a>        <a class="code" href="ugen___u_gen_8h.html#adc001cebe88543a980c263f074f2dec3">EVENT_COMMON_UGEN_DOCS</a> <a class="code" href="ugen___mix_u_gen_8h.html#a71d6ba60cdccd8acbc074149f7f9cc3b">MixFill_Docs</a>);                  
 <a name="l00381"></a>00381 };
 <a name="l00382"></a>00382 
 <a name="l00383"></a>00383 
@@ -299,7 +299,7 @@
 <a name="l00385"></a>00385 <span class="preprocessor">#endif // UGEN_MIXUGEN_H</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:27 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:56 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

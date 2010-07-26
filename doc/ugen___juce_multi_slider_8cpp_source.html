@@ -77,71 +77,71 @@
 <a name="l00045"></a>00045 
 <a name="l00046"></a>00046 
 <a name="l00047"></a>00047 <a class="code" href="class_multi_slider_u_gen_internal.html#a75a88ee73406afaca4aff02f8aabc25d">MultiSliderUGenInternal::MultiSliderUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_multi_slider.html">MultiSlider</a> *_sliders) <span class="keywordflow">throw</span>()
-<a name="l00048"></a>00048 :   <a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a>(NumInputs, input.getNumChannels()-1),
-<a name="l00049"></a>00049     sliders(_sliders-&gt;attachToMultiSliderUGenInternal() ? _sliders : 0),
-<a name="l00050"></a>00050     values(sliders &amp;&amp; input.getNumChannels() ? <span class="keyword">new</span> <span class="keywordtype">double</span>[input.getNumChannels()] : 0)
+<a name="l00048"></a>00048 : <a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a>(NumInputs, input.getNumChannels()-1),
+<a name="l00049"></a>00049  sliders(_sliders-&gt;attachToMultiSliderUGenInternal() ? _sliders : 0),
+<a name="l00050"></a>00050  values(sliders &amp;&amp; input.getNumChannels() ? <span class="keyword">new</span> <span class="keywordtype">double</span>[input.getNumChannels()] : 0)
 <a name="l00051"></a>00051 {
-<a name="l00052"></a>00052     inputs[Input] = input;
-<a name="l00053"></a>00053         
-<a name="l00054"></a>00054     <span class="keywordflow">if</span>(values)
-<a name="l00055"></a>00055         memset(values, 0, input.getNumChannels() * <span class="keyword">sizeof</span>(double));
-<a name="l00056"></a>00056     
-<a name="l00057"></a>00057     <span class="keywordflow">if</span>(sliders &amp;&amp; sliders-&gt;isValidComponent())
-<a name="l00058"></a>00058     {
-<a name="l00059"></a>00059         sliders-&gt;getInterceptsMouseClicks(oldClick, oldChildClick);
-<a name="l00060"></a>00060         sliders-&gt;setInterceptsMouseClicks(<span class="keyword">false</span>, <span class="keyword">false</span>);
-<a name="l00061"></a>00061         
-<a name="l00062"></a>00062         sliders-&gt;setNumSliders(input.getNumChannels());
-<a name="l00063"></a>00063         <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; input.getNumChannels(); i++)
-<a name="l00064"></a>00064         {
-<a name="l00065"></a>00065             values[i] = sliders-&gt;getSlider(i)-&gt;getValue();
-<a name="l00066"></a>00066         }
-<a name="l00067"></a>00067         
-<a name="l00068"></a>00068         startTimer(40);
-<a name="l00069"></a>00069     }
+<a name="l00052"></a>00052  inputs[Input] = input;
+<a name="l00053"></a>00053   
+<a name="l00054"></a>00054  <span class="keywordflow">if</span>(values)
+<a name="l00055"></a>00055   memset(values, 0, input.getNumChannels() * <span class="keyword">sizeof</span>(double));
+<a name="l00056"></a>00056  
+<a name="l00057"></a>00057  <span class="keywordflow">if</span>(sliders &amp;&amp; sliders-&gt;isValidComponent())
+<a name="l00058"></a>00058  {
+<a name="l00059"></a>00059   sliders-&gt;getInterceptsMouseClicks(oldClick, oldChildClick);
+<a name="l00060"></a>00060   sliders-&gt;setInterceptsMouseClicks(<span class="keyword">false</span>, <span class="keyword">false</span>);
+<a name="l00061"></a>00061   
+<a name="l00062"></a>00062   sliders-&gt;setNumSliders(input.getNumChannels());
+<a name="l00063"></a>00063   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; input.getNumChannels(); i++)
+<a name="l00064"></a>00064   {
+<a name="l00065"></a>00065    values[i] = sliders-&gt;getSlider(i)-&gt;getValue();
+<a name="l00066"></a>00066   }
+<a name="l00067"></a>00067   
+<a name="l00068"></a>00068   startTimer(40);
+<a name="l00069"></a>00069  }
 <a name="l00070"></a>00070 }
 <a name="l00071"></a>00071 
 <a name="l00072"></a>00072 <a class="code" href="class_multi_slider_u_gen_internal.html#a0d323efdaca83f8997575ef4e292cfce">MultiSliderUGenInternal::~MultiSliderUGenInternal</a>()
 <a name="l00073"></a>00073 {
-<a name="l00074"></a>00074     stopTimer();
-<a name="l00075"></a>00075     
-<a name="l00076"></a>00076     <span class="keywordflow">if</span>(<a class="code" href="class_multi_slider_u_gen_internal.html#a80d580296246c3f0008a4afcd09b2048">sliders</a> &amp;&amp; <a class="code" href="class_multi_slider_u_gen_internal.html#a80d580296246c3f0008a4afcd09b2048">sliders</a>-&gt;isValidComponent())
-<a name="l00077"></a>00077     {
-<a name="l00078"></a>00078         <a class="code" href="class_multi_slider_u_gen_internal.html#a80d580296246c3f0008a4afcd09b2048">sliders</a>-&gt;<a class="code" href="class_multi_slider.html#a064a90e610835403cadc563d35f1049a">detachFromMultiSliderUGenInternal</a>();
-<a name="l00079"></a>00079         <a class="code" href="class_multi_slider_u_gen_internal.html#a80d580296246c3f0008a4afcd09b2048">sliders</a>-&gt;setInterceptsMouseClicks(<a class="code" href="class_multi_slider_u_gen_internal.html#a69bd34cacbeeb6826cd5c371785e96a1">oldClick</a>, <a class="code" href="class_multi_slider_u_gen_internal.html#a6a911513e11104a0252fc41a4a032ef9">oldChildClick</a>);
-<a name="l00080"></a>00080     }
-<a name="l00081"></a>00081     
-<a name="l00082"></a>00082     <span class="keyword">delete</span> [] <a class="code" href="class_multi_slider_u_gen_internal.html#aee9a396f3700f9c27b435a3a15858748">values</a>;
+<a name="l00074"></a>00074  stopTimer();
+<a name="l00075"></a>00075  
+<a name="l00076"></a>00076  <span class="keywordflow">if</span>(<a class="code" href="class_multi_slider_u_gen_internal.html#a80d580296246c3f0008a4afcd09b2048">sliders</a> &amp;&amp; <a class="code" href="class_multi_slider_u_gen_internal.html#a80d580296246c3f0008a4afcd09b2048">sliders</a>-&gt;isValidComponent())
+<a name="l00077"></a>00077  {
+<a name="l00078"></a>00078   <a class="code" href="class_multi_slider_u_gen_internal.html#a80d580296246c3f0008a4afcd09b2048">sliders</a>-&gt;<a class="code" href="class_multi_slider.html#a064a90e610835403cadc563d35f1049a">detachFromMultiSliderUGenInternal</a>();
+<a name="l00079"></a>00079   <a class="code" href="class_multi_slider_u_gen_internal.html#a80d580296246c3f0008a4afcd09b2048">sliders</a>-&gt;setInterceptsMouseClicks(<a class="code" href="class_multi_slider_u_gen_internal.html#a69bd34cacbeeb6826cd5c371785e96a1">oldClick</a>, <a class="code" href="class_multi_slider_u_gen_internal.html#a6a911513e11104a0252fc41a4a032ef9">oldChildClick</a>);
+<a name="l00080"></a>00080  }
+<a name="l00081"></a>00081  
+<a name="l00082"></a>00082  <span class="keyword">delete</span> [] <a class="code" href="class_multi_slider_u_gen_internal.html#aee9a396f3700f9c27b435a3a15858748">values</a>;
 <a name="l00083"></a>00083 }
 <a name="l00084"></a>00084 
 <a name="l00085"></a>00085 <span class="keywordtype">void</span> <a class="code" href="class_multi_slider_u_gen_internal.html#aa132c62362239c062caf8e841c0f6488" title="Process a block of samples for this blockID and channel.">MultiSliderUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*channel*/</span>) throw()
 <a name="l00086"></a>00086 {
-<a name="l00087"></a>00087     <span class="keyword">const</span> <span class="keywordtype">int</span> blockSize = <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a118a3566a4758eb4719c57843c25bd57">getBlockSize</a>();
-<a name="l00088"></a>00088             
-<a name="l00089"></a>00089     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_proxy_owner_u_gen_internal.html#a43e6fd05ba69f1ef135463c028e656cd">getNumChannels</a>(); channel++)
-<a name="l00090"></a>00090     {
-<a name="l00091"></a>00091         <span class="keywordtype">float</span> *outputSamples = <a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">getSampleData</a>();
-<a name="l00092"></a>00092         <span class="keyword">const</span> <span class="keywordtype">float</span> *inputSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Input].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, channel);
-<a name="l00093"></a>00093         
-<a name="l00094"></a>00094         <span class="keywordflow">if</span>(<a class="code" href="class_multi_slider_u_gen_internal.html#aee9a396f3700f9c27b435a3a15858748">values</a>) <a class="code" href="class_multi_slider_u_gen_internal.html#aee9a396f3700f9c27b435a3a15858748">values</a>[channel] = *inputSamples;
-<a name="l00095"></a>00095         
-<a name="l00096"></a>00096         memcpy(outputSamples, inputSamples, blockSize * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
-<a name="l00097"></a>00097     }
+<a name="l00087"></a>00087  <span class="keyword">const</span> <span class="keywordtype">int</span> blockSize = <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a118a3566a4758eb4719c57843c25bd57">getBlockSize</a>();
+<a name="l00088"></a>00088    
+<a name="l00089"></a>00089  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_proxy_owner_u_gen_internal.html#a43e6fd05ba69f1ef135463c028e656cd">getNumChannels</a>(); channel++)
+<a name="l00090"></a>00090  {
+<a name="l00091"></a>00091   <span class="keywordtype">float</span> *outputSamples = <a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">getSampleData</a>();
+<a name="l00092"></a>00092   <span class="keyword">const</span> <span class="keywordtype">float</span> *inputSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Input].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, channel);
+<a name="l00093"></a>00093   
+<a name="l00094"></a>00094   <span class="keywordflow">if</span>(<a class="code" href="class_multi_slider_u_gen_internal.html#aee9a396f3700f9c27b435a3a15858748">values</a>) <a class="code" href="class_multi_slider_u_gen_internal.html#aee9a396f3700f9c27b435a3a15858748">values</a>[channel] = *inputSamples;
+<a name="l00095"></a>00095   
+<a name="l00096"></a>00096   memcpy(outputSamples, inputSamples, blockSize * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00097"></a>00097  }
 <a name="l00098"></a>00098 }
 <a name="l00099"></a>00099 
 <a name="l00100"></a>00100 <span class="keywordtype">void</span> <a class="code" href="class_multi_slider_u_gen_internal.html#ae419b080d4343d56f64ac49d25f88531">MultiSliderUGenInternal::timerCallback</a>()
 <a name="l00101"></a>00101 {
-<a name="l00102"></a>00102     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_proxy_owner_u_gen_internal.html#a43e6fd05ba69f1ef135463c028e656cd">getNumChannels</a>(); i++)
-<a name="l00103"></a>00103     {
-<a name="l00104"></a>00104         <a class="code" href="class_multi_slider_u_gen_internal.html#a80d580296246c3f0008a4afcd09b2048">sliders</a>-&gt;<a class="code" href="class_multi_slider_base.html#a6f7efde47c7195724d1383b8e287a388">getSlider</a>(i)-&gt;setValue(<a class="code" href="class_multi_slider_u_gen_internal.html#aee9a396f3700f9c27b435a3a15858748">values</a>[i], <span class="keyword">true</span>, <span class="keyword">false</span>);
-<a name="l00105"></a>00105     }
+<a name="l00102"></a>00102  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_proxy_owner_u_gen_internal.html#a43e6fd05ba69f1ef135463c028e656cd">getNumChannels</a>(); i++)
+<a name="l00103"></a>00103  {
+<a name="l00104"></a>00104   <a class="code" href="class_multi_slider_u_gen_internal.html#a80d580296246c3f0008a4afcd09b2048">sliders</a>-&gt;<a class="code" href="class_multi_slider_base.html#a6f7efde47c7195724d1383b8e287a388">getSlider</a>(i)-&gt;setValue(<a class="code" href="class_multi_slider_u_gen_internal.html#aee9a396f3700f9c27b435a3a15858748">values</a>[i], <span class="keyword">true</span>, <span class="keyword">false</span>);
+<a name="l00105"></a>00105  }
 <a name="l00106"></a>00106 }
 <a name="l00107"></a>00107 
 <a name="l00108"></a>00108 <a class="code" href="class_multi_slider_u_gen.html#a17d915ab373aa058292e2969170f6ad2" title="Base MultiSliderUGen Constuctor, use the AR() and KR() versions in user code.">MultiSliderUGen::MultiSliderUGen</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_multi_slider.html">MultiSlider</a> *sliders) <span class="keywordflow">throw</span>()
 <a name="l00109"></a>00109 {
-<a name="l00110"></a>00110     <a class="code" href="class_multi_slider_u_gen_internal.html">MultiSliderUGenInternal</a> *<span class="keyword">internal</span> = <span class="keyword">new</span> <a class="code" href="class_multi_slider_u_gen_internal.html">MultiSliderUGenInternal</a>(input, sliders);
-<a name="l00111"></a>00111     initInternal(input.getNumChannels());
-<a name="l00112"></a>00112     generateFromProxyOwner(<span class="keyword">internal</span>);
+<a name="l00110"></a>00110  <a class="code" href="class_multi_slider_u_gen_internal.html">MultiSliderUGenInternal</a> *<span class="keyword">internal</span> = <span class="keyword">new</span> <a class="code" href="class_multi_slider_u_gen_internal.html">MultiSliderUGenInternal</a>(input, sliders);
+<a name="l00111"></a>00111  initInternal(input.getNumChannels());
+<a name="l00112"></a>00112  generateFromProxyOwner(<span class="keyword">internal</span>);
 <a name="l00113"></a>00113 }
 <a name="l00114"></a>00114 
 <a name="l00115"></a>00115 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
@@ -150,7 +150,7 @@
 <a name="l00118"></a>00118 <span class="preprocessor"></span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:29 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:58 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -73,17 +73,17 @@
 <a name="l00041"></a>00041 
 <a name="l00042"></a>00042 
 <a name="l00043"></a>00043 
-<a name="l00044"></a><a class="code" href="class_poll_u_gen_internal.html">00044</a> <span class="keyword">class </span><a class="code" href="class_poll_u_gen_internal.html">PollUGenInternal</a> :    <span class="keyword">public</span> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>, 
-<a name="l00045"></a>00045                             <span class="keyword">public</span> <a class="code" href="class_buffer_sender.html" title="Subclasses of this collect samples into a Buffer and transmit it to BufferReceiver objects...">BufferSender</a>
+<a name="l00044"></a><a class="code" href="class_poll_u_gen_internal.html">00044</a> <span class="keyword">class </span><a class="code" href="class_poll_u_gen_internal.html">PollUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>, 
+<a name="l00045"></a>00045        <span class="keyword">public</span> <a class="code" href="class_buffer_sender.html" title="Subclasses of this collect samples into a Buffer and transmit it to BufferReceiver objects...">BufferSender</a>
 <a name="l00046"></a>00046 {
 <a name="l00047"></a>00047 <span class="keyword">public</span>:
-<a name="l00048"></a>00048     <a class="code" href="class_poll_u_gen_internal.html#a7d74ce10316acbf0656eb88c6ad0daae">PollUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; trig) <span class="keywordflow">throw</span>();
-<a name="l00049"></a>00049     <span class="keywordtype">void</span> <a class="code" href="class_poll_u_gen_internal.html#a701946931112a5d59aa8520aa2f0e748">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
-<a name="l00050"></a>00050     
-<a name="l00051"></a><a class="code" href="class_poll_u_gen_internal.html#a835d45015d339e41bb2b87b4dab5c97fa8499425a4c83bc3339b3d15a94550276">00051</a>     <span class="keyword">enum</span> <a class="code" href="class_poll_u_gen_internal.html#a835d45015d339e41bb2b87b4dab5c97f">Inputs</a> { Input, <a class="code" href="class_trig.html">Trig</a>, <a class="code" href="class_poll_u_gen_internal.html#a835d45015d339e41bb2b87b4dab5c97fa715b2624d71e3cc234df788b0b7aaf4c">NumInputs</a> };
-<a name="l00052"></a>00052     
+<a name="l00048"></a>00048  <a class="code" href="class_poll_u_gen_internal.html#a7d74ce10316acbf0656eb88c6ad0daae">PollUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; trig) <span class="keywordflow">throw</span>();
+<a name="l00049"></a>00049  <span class="keywordtype">void</span> <a class="code" href="class_poll_u_gen_internal.html#a701946931112a5d59aa8520aa2f0e748">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00050"></a>00050  
+<a name="l00051"></a><a class="code" href="class_poll_u_gen_internal.html#a835d45015d339e41bb2b87b4dab5c97fa8499425a4c83bc3339b3d15a94550276">00051</a>  <span class="keyword">enum</span> <a class="code" href="class_poll_u_gen_internal.html#a835d45015d339e41bb2b87b4dab5c97f">Inputs</a> { Input, <a class="code" href="class_trig.html">Trig</a>, <a class="code" href="class_poll_u_gen_internal.html#a835d45015d339e41bb2b87b4dab5c97fa715b2624d71e3cc234df788b0b7aaf4c">NumInputs</a> };
+<a name="l00052"></a>00052  
 <a name="l00053"></a>00053 <span class="keyword">protected</span>:
-<a name="l00054"></a><a class="code" href="class_poll_u_gen_internal.html#a834673558214afeee5638c952bee3c70">00054</a>     <span class="keywordtype">float</span> <a class="code" href="class_poll_u_gen_internal.html#a834673558214afeee5638c952bee3c70">lastTrig</a>;
+<a name="l00054"></a><a class="code" href="class_poll_u_gen_internal.html#a834673558214afeee5638c952bee3c70">00054</a>  <span class="keywordtype">float</span> <a class="code" href="class_poll_u_gen_internal.html#a834673558214afeee5638c952bee3c70">lastTrig</a>;
 <a name="l00055"></a>00055 };
 <a name="l00056"></a>00056 
 <a name="l00057"></a>00057 <a class="code" href="ugen___u_gen_8h.html#a0f0716514ac2b6232e40f134d1f1049c" title="Macro for declaring a simple UGen.">UGenSublcassDeclarationNoDefault</a>
@@ -98,7 +98,7 @@
 <a name="l00066"></a>00066 <span class="preprocessor">#endif // _UGEN_Poll_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:27 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:56 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -83,11 +83,11 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">const</span> <span class="keywordtype">float</span> attackTime,                             \
-                                <span class="keyword">const</span> <span class="keywordtype">float</span> sustainTime,                            \
-                                <span class="keyword">const</span> <span class="keywordtype">float</span> releaseTime,                            \
-                                <span class="keyword">const</span> <span class="keywordtype">float</span> sustainLevel,                           \
-                                <span class="keyword">const</span> <a class="code" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1ca" title="Defines actions to be done at the end of an event e.g., a line or envelope.">UGen::DoneAction</a> doneAction
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">const</span> <span class="keywordtype">float</span> attackTime,        \
+        <span class="keyword">const</span> <span class="keywordtype">float</span> sustainTime,       \
+        <span class="keyword">const</span> <span class="keywordtype">float</span> releaseTime,       \
+        <span class="keyword">const</span> <span class="keywordtype">float</span> sustainLevel,       \
+        <span class="keyword">const</span> <a class="code" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1ca" title="Defines actions to be done at the end of an event e.g., a line or envelope.">UGen::DoneAction</a> doneAction
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___lines_8h_source.html#l00161">161</a> of file <a class="el" href="ugen___lines_8h_source.html">ugen_Lines.h</a>.</p>
 
@@ -103,11 +103,11 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">const</span> <span class="keywordtype">float</span> attackTime,                             \
-                                <span class="keyword">const</span> <span class="keywordtype">float</span> sustainTime,                            \
-                                <span class="keyword">const</span> <span class="keywordtype">float</span> releaseTime,                            \
-                                <span class="keyword">const</span> <span class="keywordtype">float</span> sustainLevel,                           \
-                                <span class="keyword">const</span> <a class="code" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1ca" title="Defines actions to be done at the end of an event e.g., a line or envelope.">UGen::DoneAction</a> doneAction = <a class="code" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1caac22b753e98426be9e38d6d6517d3cacf" title="When the event ends it holds its final value.">UGen::DoNothing</a>
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">const</span> <span class="keywordtype">float</span> attackTime,        \
+        <span class="keyword">const</span> <span class="keywordtype">float</span> sustainTime,       \
+        <span class="keyword">const</span> <span class="keywordtype">float</span> releaseTime,       \
+        <span class="keyword">const</span> <span class="keywordtype">float</span> sustainLevel,       \
+        <span class="keyword">const</span> <a class="code" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1ca" title="Defines actions to be done at the end of an event e.g., a line or envelope.">UGen::DoneAction</a> doneAction = <a class="code" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1caac22b753e98426be9e38d6d6517d3cacf" title="When the event ends it holds its final value.">UGen::DoNothing</a>
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___lines_8h_source.html#l00161">161</a> of file <a class="el" href="ugen___lines_8h_source.html">ugen_Lines.h</a>.</p>
 
@@ -123,23 +123,23 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment">@param  start       The starting value, <span class="keyword">this</span> may be multichannel by             \
-                                        storing the starting values in a single channel <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>.     \
-                    @param  end         The ending value, <span class="keyword">this</span> may be multichannel by               \
-                                        storing the ending values in a single channel <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>.       \
-                    @param  duration    The duration the line should take to ramp from the          \
-                                        starting values to the ending value, <span class="keyword">this</span> may be            \
-                                        multichannel by storing the durations in a single           \
-                                        channel <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>.                                             \
-                    @param  doneAction  The DoneAction to perform after the line has finished, the  \
-                                        <span class="keywordflow">default</span> is to <span class="keyword">delete</span> the <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> graph.
+<b>Value:</b><div class="fragment"><pre class="fragment">@param start  The starting value, <span class="keyword">this</span> may be multichannel by    \
+          storing the starting values in a single channel <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>.  \
+     @param end   The ending value, <span class="keyword">this</span> may be multichannel by    \
+          storing the ending values in a single channel <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>.  \
+     @param duration The duration the line should take to ramp from the   \
+          starting values to the ending value, <span class="keyword">this</span> may be   \
+          multichannel by storing the durations in a single   \
+          channel <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>.            \
+     @param doneAction The DoneAction to perform after the line has finished, the \
+          <span class="keywordflow">default</span> is to <span class="keyword">delete</span> the <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> graph.
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___lines_8h_source.html#l00075">75</a> of file <a class="el" href="ugen___lines_8h_source.html">ugen_Lines.h</a>.</p>
 
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:31 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:59 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

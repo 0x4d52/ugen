@@ -71,27 +71,27 @@
 <a name="l00039"></a>00039 <span class="preprocessor"></span>
 <a name="l00040"></a>00040 <span class="preprocessor">#include &quot;../core/ugen_Deleter.h&quot;</span>
 <a name="l00041"></a>00041 
-<a name="l00051"></a><a class="code" href="class_juce_timer_deleter.html">00051</a> <span class="keyword">class </span><a class="code" href="class_juce_timer_deleter.html" title="Stores and deletes SmartPointer objects using a timer.">JuceTimerDeleter</a> :    <span class="keyword">public</span> <a class="code" href="class_deleter.html" title="A SmartPointer deleter.">Deleter</a>,
-<a name="l00052"></a>00052                             <span class="keyword">public</span> Timer
+<a name="l00051"></a><a class="code" href="class_juce_timer_deleter.html">00051</a> <span class="keyword">class </span><a class="code" href="class_juce_timer_deleter.html" title="Stores and deletes SmartPointer objects using a timer.">JuceTimerDeleter</a> : <span class="keyword">public</span> <a class="code" href="class_deleter.html" title="A SmartPointer deleter.">Deleter</a>,
+<a name="l00052"></a>00052        <span class="keyword">public</span> Timer
 <a name="l00053"></a>00053 {
 <a name="l00054"></a>00054 <span class="keyword">public</span>:
-<a name="l00055"></a>00055     <a class="code" href="class_juce_timer_deleter.html#a9518bf8ac8db4f8b318a16f3481c1364">JuceTimerDeleter</a>() <span class="keywordflow">throw</span>();
-<a name="l00056"></a>00056     <a class="code" href="class_juce_timer_deleter.html#a1fb6f401546d43882834d11bc5599601">~JuceTimerDeleter</a>() <span class="keywordflow">throw</span>();
-<a name="l00057"></a>00057     
-<a name="l00060"></a>00060     <span class="keywordtype">void</span> <a class="code" href="class_juce_timer_deleter.html#afdb1fe07c60c6514d0e74d88836d87fd" title="Adds an item to the Array.">deleteInternal</a>(<a class="code" href="class_smart_pointer.html">SmartPointer</a>* internalToDelete) <span class="keywordflow">throw</span>();
-<a name="l00061"></a>00061     
-<a name="l00064"></a>00064     <span class="keywordtype">void</span> <a class="code" href="class_juce_timer_deleter.html#a9448e729fe371da4b1f9dab51be8a483" title="Clears the Array and deletes all of the items now.">flush</a>() <span class="keywordflow">throw</span>();
+<a name="l00055"></a>00055  <a class="code" href="class_juce_timer_deleter.html#a9518bf8ac8db4f8b318a16f3481c1364">JuceTimerDeleter</a>() <span class="keywordflow">throw</span>();
+<a name="l00056"></a>00056  <a class="code" href="class_juce_timer_deleter.html#a1fb6f401546d43882834d11bc5599601">~JuceTimerDeleter</a>() <span class="keywordflow">throw</span>();
+<a name="l00057"></a>00057  
+<a name="l00060"></a>00060  <span class="keywordtype">void</span> <a class="code" href="class_juce_timer_deleter.html#afdb1fe07c60c6514d0e74d88836d87fd" title="Adds an item to the Array.">deleteInternal</a>(<a class="code" href="class_smart_pointer.html">SmartPointer</a>* internalToDelete) <span class="keywordflow">throw</span>();
+<a name="l00061"></a>00061  
+<a name="l00064"></a>00064  <span class="keywordtype">void</span> <a class="code" href="class_juce_timer_deleter.html#a9448e729fe371da4b1f9dab51be8a483" title="Clears the Array and deletes all of the items now.">flush</a>() <span class="keywordflow">throw</span>();
 <a name="l00065"></a>00065 
 <a name="l00066"></a>00066 <span class="keyword">private</span>:
-<a name="l00067"></a>00067     <span class="keywordtype">void</span> <a class="code" href="class_juce_timer_deleter.html#a1716f817682f172bf20a7450cf939e55">timerCallback</a>();
-<a name="l00068"></a><a class="code" href="class_juce_timer_deleter.html#a35a57861d91c31166c8baf710c5e7cb0">00068</a>     Array&lt;SmartPointer*, CriticalSection&gt; <a class="code" href="class_juce_timer_deleter.html#a35a57861d91c31166c8baf710c5e7cb0">toDelete</a>;
+<a name="l00067"></a>00067  <span class="keywordtype">void</span> <a class="code" href="class_juce_timer_deleter.html#a1716f817682f172bf20a7450cf939e55">timerCallback</a>();
+<a name="l00068"></a><a class="code" href="class_juce_timer_deleter.html#a35a57861d91c31166c8baf710c5e7cb0">00068</a>  Array&lt;SmartPointer*, CriticalSection&gt; <a class="code" href="class_juce_timer_deleter.html#a35a57861d91c31166c8baf710c5e7cb0">toDelete</a>;
 <a name="l00069"></a>00069 };
 <a name="l00070"></a>00070 
 <a name="l00071"></a>00071 
 <a name="l00072"></a>00072 <span class="preprocessor">#endif // UGEN_JUCETIMERDELETER_H</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:29 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:58 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

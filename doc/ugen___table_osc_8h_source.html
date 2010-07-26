@@ -75,116 +75,116 @@
 <a name="l00044"></a><a class="code" href="class_table_osc_u_gen_internal.html">00044</a> <span class="keyword">class </span><a class="code" href="class_table_osc_u_gen_internal.html">TableOscUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>
 <a name="l00045"></a>00045 {
 <a name="l00046"></a>00046 <span class="keyword">public</span>:
-<a name="l00047"></a>00047     <a class="code" href="class_table_osc_u_gen_internal.html#ab353ca083ead8f3b58720f44cec2ed18">TableOscUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq, <span class="keyword">const</span> <span class="keywordtype">float</span> initialPhase, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; table) <span class="keywordflow">throw</span>();
-<a name="l00048"></a>00048     <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_table_osc_u_gen_internal.html#a7c555c1233f0100cfebf76848d47bcd7">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();                                    
-<a name="l00049"></a>00049     <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_table_osc_u_gen_internal.html#a361806f78c766ce5e89493563ad71100">getKr</a>() <span class="keywordflow">throw</span>();                                                          
-<a name="l00050"></a>00050     <span class="keywordtype">void</span> <a class="code" href="class_table_osc_u_gen_internal.html#aa68b8536bb5df1ed2f6f555333b277a4" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
-<a name="l00051"></a>00051     
-<a name="l00052"></a><a class="code" href="class_table_osc_u_gen_internal.html#a1f8b633e694dcd8db98f438daa106ae6af3a2a459242364af76b5a4cf6bc862fd">00052</a>     <span class="keyword">enum</span> <a class="code" href="class_table_osc_u_gen_internal.html#a1f8b633e694dcd8db98f438daa106ae6">Inputs</a> { Freq, <a class="code" href="class_table_osc_u_gen_internal.html#a1f8b633e694dcd8db98f438daa106ae6af3a2a459242364af76b5a4cf6bc862fd">NumInputs</a> };
+<a name="l00047"></a>00047  <a class="code" href="class_table_osc_u_gen_internal.html#ab353ca083ead8f3b58720f44cec2ed18">TableOscUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq, <span class="keyword">const</span> <span class="keywordtype">float</span> initialPhase, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; table) <span class="keywordflow">throw</span>();
+<a name="l00048"></a>00048  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_table_osc_u_gen_internal.html#a7c555c1233f0100cfebf76848d47bcd7">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();         
+<a name="l00049"></a>00049  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_table_osc_u_gen_internal.html#a361806f78c766ce5e89493563ad71100">getKr</a>() <span class="keywordflow">throw</span>();               
+<a name="l00050"></a>00050  <span class="keywordtype">void</span> <a class="code" href="class_table_osc_u_gen_internal.html#aa68b8536bb5df1ed2f6f555333b277a4" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00051"></a>00051  
+<a name="l00052"></a><a class="code" href="class_table_osc_u_gen_internal.html#a1f8b633e694dcd8db98f438daa106ae6af3a2a459242364af76b5a4cf6bc862fd">00052</a>  <span class="keyword">enum</span> <a class="code" href="class_table_osc_u_gen_internal.html#a1f8b633e694dcd8db98f438daa106ae6">Inputs</a> { Freq, <a class="code" href="class_table_osc_u_gen_internal.html#a1f8b633e694dcd8db98f438daa106ae6af3a2a459242364af76b5a4cf6bc862fd">NumInputs</a> };
 <a name="l00053"></a>00053 
-<a name="l00054"></a>00054 <span class="keyword">protected</span>:  
-<a name="l00055"></a>00055 <span class="comment">//  inline float lookupIndex(const float fIndex) throw()</span>
-<a name="l00056"></a>00056 <span class="comment">//  {</span>
-<a name="l00057"></a>00057 <span class="comment">//      const float* const wavetable = this-&gt;wavetable;</span>
-<a name="l00058"></a>00058 <span class="comment">//      const int iIndex0 = (int)fIndex;</span>
-<a name="l00059"></a>00059 <span class="comment">//      const float frac = fIndex - iIndex0;</span>
-<a name="l00060"></a>00060 <span class="comment">//      const float* pValue0 = wavetable + iIndex0;</span>
-<a name="l00061"></a>00061 <span class="comment">//      const float value0 = *pValue0;</span>
-<a name="l00062"></a>00062 <span class="comment">//      const float value1 = *(pValue0+1);</span>
-<a name="l00063"></a>00063 <span class="comment">//      return value0 + frac * (value1 - value0);</span>
-<a name="l00064"></a>00064 <span class="comment">//  }</span>
-<a name="l00065"></a>00065     
-<a name="l00066"></a>00066 <span class="comment">//  inline float lookupIndex(float fIndex) throw()</span>
-<a name="l00067"></a>00067 <span class="comment">//  {</span>
-<a name="l00068"></a>00068 <span class="comment">//      float* wavetable = this-&gt;wavetable;</span>
-<a name="l00069"></a>00069 <span class="comment">//      int iIndex0 = (int)fIndex;</span>
-<a name="l00070"></a>00070 <span class="comment">//      float frac = fIndex - iIndex0;</span>
-<a name="l00071"></a>00071 <span class="comment">//      float* pValue0 = wavetable + iIndex0;</span>
-<a name="l00072"></a>00072 <span class="comment">//      float value0 = *pValue0;</span>
-<a name="l00073"></a>00073 <span class="comment">//      float value1 = *(pValue0+1);</span>
-<a name="l00074"></a>00074 <span class="comment">//      return value0 + frac * (value1 - value0);</span>
-<a name="l00075"></a>00075 <span class="comment">//  }</span>
-<a name="l00076"></a>00076     
-<a name="l00077"></a>00077     <span class="keyword">inline</span> 
-<a name="l00078"></a><a class="code" href="class_table_osc_u_gen_internal.html#a40dcc067264b4a7c383696102bb23dac">00078</a>     <span class="keywordtype">float</span> <a class="code" href="class_table_osc_u_gen_internal.html#a40dcc067264b4a7c383696102bb23dac">lookupIndex</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> fIndex) <span class="keywordflow">throw</span>()
-<a name="l00079"></a>00079     {
-<a name="l00080"></a>00080         <span class="keyword">const</span> <span class="keywordtype">int</span> iIndex0 = (int)fIndex;
-<a name="l00081"></a>00081         <span class="keyword">const</span> <span class="keywordtype">float</span>* pValue0 = <a class="code" href="class_table_osc_u_gen_internal.html#afa72983f8060835d8bddbf62d9d8d0ef">wavetable</a> + iIndex0;
-<a name="l00082"></a>00082         <span class="keyword">const</span> <span class="keywordtype">float</span> value0 = *pValue0;
-<a name="l00083"></a>00083         <span class="keywordflow">return</span> value0 + (fIndex - iIndex0) * (*(pValue0+1) - value0);
-<a name="l00084"></a>00084     }
-<a name="l00085"></a>00085     
-<a name="l00086"></a>00086     
-<a name="l00087"></a>00087     
+<a name="l00054"></a>00054 <span class="keyword">protected</span>: 
+<a name="l00055"></a>00055 <span class="comment">// inline float lookupIndex(const float fIndex) throw()</span>
+<a name="l00056"></a>00056 <span class="comment">// {</span>
+<a name="l00057"></a>00057 <span class="comment">//  const float* const wavetable = this-&gt;wavetable;</span>
+<a name="l00058"></a>00058 <span class="comment">//  const int iIndex0 = (int)fIndex;</span>
+<a name="l00059"></a>00059 <span class="comment">//  const float frac = fIndex - iIndex0;</span>
+<a name="l00060"></a>00060 <span class="comment">//  const float* pValue0 = wavetable + iIndex0;</span>
+<a name="l00061"></a>00061 <span class="comment">//  const float value0 = *pValue0;</span>
+<a name="l00062"></a>00062 <span class="comment">//  const float value1 = *(pValue0+1);</span>
+<a name="l00063"></a>00063 <span class="comment">//  return value0 + frac * (value1 - value0);</span>
+<a name="l00064"></a>00064 <span class="comment">// }</span>
+<a name="l00065"></a>00065  
+<a name="l00066"></a>00066 <span class="comment">// inline float lookupIndex(float fIndex) throw()</span>
+<a name="l00067"></a>00067 <span class="comment">// {</span>
+<a name="l00068"></a>00068 <span class="comment">//  float* wavetable = this-&gt;wavetable;</span>
+<a name="l00069"></a>00069 <span class="comment">//  int iIndex0 = (int)fIndex;</span>
+<a name="l00070"></a>00070 <span class="comment">//  float frac = fIndex - iIndex0;</span>
+<a name="l00071"></a>00071 <span class="comment">//  float* pValue0 = wavetable + iIndex0;</span>
+<a name="l00072"></a>00072 <span class="comment">//  float value0 = *pValue0;</span>
+<a name="l00073"></a>00073 <span class="comment">//  float value1 = *(pValue0+1);</span>
+<a name="l00074"></a>00074 <span class="comment">//  return value0 + frac * (value1 - value0);</span>
+<a name="l00075"></a>00075 <span class="comment">// }</span>
+<a name="l00076"></a>00076  
+<a name="l00077"></a>00077  <span class="keyword">inline</span> 
+<a name="l00078"></a><a class="code" href="class_table_osc_u_gen_internal.html#a40dcc067264b4a7c383696102bb23dac">00078</a>  <span class="keywordtype">float</span> <a class="code" href="class_table_osc_u_gen_internal.html#a40dcc067264b4a7c383696102bb23dac">lookupIndex</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> fIndex) <span class="keywordflow">throw</span>()
+<a name="l00079"></a>00079  {
+<a name="l00080"></a>00080   <span class="keyword">const</span> <span class="keywordtype">int</span> iIndex0 = (int)fIndex;
+<a name="l00081"></a>00081   <span class="keyword">const</span> <span class="keywordtype">float</span>* pValue0 = <a class="code" href="class_table_osc_u_gen_internal.html#afa72983f8060835d8bddbf62d9d8d0ef">wavetable</a> + iIndex0;
+<a name="l00082"></a>00082   <span class="keyword">const</span> <span class="keywordtype">float</span> value0 = *pValue0;
+<a name="l00083"></a>00083   <span class="keywordflow">return</span> value0 + (fIndex - iIndex0) * (*(pValue0+1) - value0);
+<a name="l00084"></a>00084  }
+<a name="l00085"></a>00085  
+<a name="l00086"></a>00086  
+<a name="l00087"></a>00087  
 <a name="l00088"></a>00088 
-<a name="l00089"></a><a class="code" href="class_table_osc_u_gen_internal.html#ab878c55b992b698debb734fc25acc3e6">00089</a>     <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_table_osc_u_gen_internal.html#ab878c55b992b698debb734fc25acc3e6">table_</a>;
-<a name="l00090"></a><a class="code" href="class_table_osc_u_gen_internal.html#a94917d688a097ca9db2a8a15aa2040e0">00090</a>     <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_table_osc_u_gen_internal.html#a94917d688a097ca9db2a8a15aa2040e0">wavetableSize</a>;
-<a name="l00091"></a><a class="code" href="class_table_osc_u_gen_internal.html#afa72983f8060835d8bddbf62d9d8d0ef">00091</a>     <span class="keywordtype">float</span> *<a class="code" href="class_table_osc_u_gen_internal.html#afa72983f8060835d8bddbf62d9d8d0ef">wavetable</a>;
-<a name="l00092"></a><a class="code" href="class_table_osc_u_gen_internal.html#a84f11af8afbf83a3713ba88e0e7f71df">00092</a>     <span class="keywordtype">float</span> <a class="code" href="class_table_osc_u_gen_internal.html#a84f11af8afbf83a3713ba88e0e7f71df">currentPhase</a>;
+<a name="l00089"></a><a class="code" href="class_table_osc_u_gen_internal.html#ab878c55b992b698debb734fc25acc3e6">00089</a>  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_table_osc_u_gen_internal.html#ab878c55b992b698debb734fc25acc3e6">table_</a>;
+<a name="l00090"></a><a class="code" href="class_table_osc_u_gen_internal.html#a94917d688a097ca9db2a8a15aa2040e0">00090</a>  <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_table_osc_u_gen_internal.html#a94917d688a097ca9db2a8a15aa2040e0">wavetableSize</a>;
+<a name="l00091"></a><a class="code" href="class_table_osc_u_gen_internal.html#afa72983f8060835d8bddbf62d9d8d0ef">00091</a>  <span class="keywordtype">float</span> *<a class="code" href="class_table_osc_u_gen_internal.html#afa72983f8060835d8bddbf62d9d8d0ef">wavetable</a>;
+<a name="l00092"></a><a class="code" href="class_table_osc_u_gen_internal.html#a84f11af8afbf83a3713ba88e0e7f71df">00092</a>  <span class="keywordtype">float</span> <a class="code" href="class_table_osc_u_gen_internal.html#a84f11af8afbf83a3713ba88e0e7f71df">currentPhase</a>;
 <a name="l00093"></a>00093 
 <a name="l00094"></a>00094 };
 <a name="l00095"></a>00095 
 <a name="l00097"></a><a class="code" href="class_table_osc_u_gen_internal_k.html">00097</a> <span class="keyword">class </span><a class="code" href="class_table_osc_u_gen_internal_k.html">TableOscUGenInternalK</a> : <span class="keyword">public</span> <a class="code" href="class_table_osc_u_gen_internal.html">TableOscUGenInternal</a> 
 <a name="l00098"></a>00098 { 
 <a name="l00099"></a>00099 <span class="keyword">public</span>: 
-<a name="l00100"></a>00100     <a class="code" href="class_table_osc_u_gen_internal_k.html#a3e667e196df3cb0bbdf947cadf922ebe">TableOscUGenInternalK</a> (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq, <span class="keyword">const</span> <span class="keywordtype">float</span> initialPhase, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; table) <span class="keywordflow">throw</span>();    
-<a name="l00101"></a><a class="code" href="class_table_osc_u_gen_internal_k.html#a997ee9f094300e6a7a85c5fde6062510">00101</a>     <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_table_osc_u_gen_internal_k.html#a997ee9f094300e6a7a85c5fde6062510">getKr</a>() throw() { <a class="code" href="class_smart_pointer.html#ad9196fe14d4e4d9b1c28982738436544">incrementRefCount</a>(); <span class="keywordflow">return</span> <span class="keyword">this</span>; } 
-<a name="l00102"></a><a class="code" href="class_table_osc_u_gen_internal_k.html#a5413772ca4a3eff2cebe1403fd209f53">00102</a>     <span class="keywordtype">float</span> <a class="code" href="class_table_osc_u_gen_internal_k.html#a5413772ca4a3eff2cebe1403fd209f53">getValue</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*channel*/</span>) <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> <a class="code" href="class_table_osc_u_gen_internal_k.html#ae7041bbf4bdc18975d80629705fe52b3">value</a>; } 
-<a name="l00103"></a>00103     <span class="keywordtype">void</span> <a class="code" href="class_table_osc_u_gen_internal_k.html#a71eaa18516166a841f49abd6c5ca464c" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>(); 
+<a name="l00100"></a>00100  <a class="code" href="class_table_osc_u_gen_internal_k.html#a3e667e196df3cb0bbdf947cadf922ebe">TableOscUGenInternalK</a> (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq, <span class="keyword">const</span> <span class="keywordtype">float</span> initialPhase, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; table) <span class="keywordflow">throw</span>(); 
+<a name="l00101"></a><a class="code" href="class_table_osc_u_gen_internal_k.html#a997ee9f094300e6a7a85c5fde6062510">00101</a>  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_table_osc_u_gen_internal_k.html#a997ee9f094300e6a7a85c5fde6062510">getKr</a>() throw() { <a class="code" href="class_smart_pointer.html#ad9196fe14d4e4d9b1c28982738436544">incrementRefCount</a>(); <span class="keywordflow">return</span> <span class="keyword">this</span>; } 
+<a name="l00102"></a><a class="code" href="class_table_osc_u_gen_internal_k.html#a5413772ca4a3eff2cebe1403fd209f53">00102</a>  <span class="keywordtype">float</span> <a class="code" href="class_table_osc_u_gen_internal_k.html#a5413772ca4a3eff2cebe1403fd209f53">getValue</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*channel*/</span>) <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> <a class="code" href="class_table_osc_u_gen_internal_k.html#ae7041bbf4bdc18975d80629705fe52b3">value</a>; } 
+<a name="l00103"></a>00103  <span class="keywordtype">void</span> <a class="code" href="class_table_osc_u_gen_internal_k.html#a71eaa18516166a841f49abd6c5ca464c" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>(); 
 <a name="l00104"></a>00104 <span class="keyword">private</span>: 
-<a name="l00105"></a><a class="code" href="class_table_osc_u_gen_internal_k.html#ae7041bbf4bdc18975d80629705fe52b3">00105</a>     <span class="keywordtype">float</span> <a class="code" href="class_table_osc_u_gen_internal_k.html#ae7041bbf4bdc18975d80629705fe52b3">value</a>; 
+<a name="l00105"></a><a class="code" href="class_table_osc_u_gen_internal_k.html#ae7041bbf4bdc18975d80629705fe52b3">00105</a>  <span class="keywordtype">float</span> <a class="code" href="class_table_osc_u_gen_internal_k.html#ae7041bbf4bdc18975d80629705fe52b3">value</a>; 
 <a name="l00106"></a>00106 };
 <a name="l00107"></a>00107 
 <a name="l00108"></a>00108 
-<a name="l00109"></a><a class="code" href="ugen___table_osc_8h.html#a4c92fb1300b22daba651733bfcc6da1f">00109</a> <span class="preprocessor">#define Osc_Docs    @param  freq            The fundamental frequency of the wave.                          \</span>
-<a name="l00110"></a>00110 <span class="preprocessor">                    @param  initialPhase    The phase (0-1) at which the wave should start on creation.     \</span>
-<a name="l00111"></a>00111 <span class="preprocessor">                                            This may be specified with multiple values using a single       \</span>
-<a name="l00112"></a>00112 <span class="preprocessor">                                            channel Buffer as an array.</span>
+<a name="l00109"></a><a class="code" href="ugen___table_osc_8h.html#a4c92fb1300b22daba651733bfcc6da1f">00109</a> <span class="preprocessor">#define Osc_Docs @param freq   The fundamental frequency of the wave.       \</span>
+<a name="l00110"></a>00110 <span class="preprocessor">     @param initialPhase The phase (0-1) at which the wave should start on creation.  \</span>
+<a name="l00111"></a>00111 <span class="preprocessor">           This may be specified with multiple values using a single  \</span>
+<a name="l00112"></a>00112 <span class="preprocessor">           channel Buffer as an array.</span>
 <a name="l00113"></a>00113 <span class="preprocessor"></span>
-<a name="l00114"></a><a class="code" href="ugen___table_osc_8h.html#a102cd67bd2c71da46c3a7881d106d6f5">00114</a> <span class="preprocessor">#define TableOsc_Docs       @param  table               The wavetable to use. This should be a single channel Buffer            \</span>
-<a name="l00115"></a>00115 <span class="preprocessor">                                                        containing a single cycle of the desired waveform. The size of          \</span>
-<a name="l00116"></a>00116 <span class="preprocessor">                                                        Buffer is not important (athough larger sizes will generallly           \</span>
-<a name="l00117"></a>00117 <span class="preprocessor">                                                        result in higher quality) but the Buffer should have an                 \</span>
-<a name="l00118"></a>00118 <span class="preprocessor">                                                        interpolation sample after the last value. For example, an 8192         \</span>
-<a name="l00119"></a>00119 <span class="preprocessor">                                                        point Buffer (as used with SinOsc) actually has 8193 values but         \</span>
-<a name="l00120"></a>00120 <span class="preprocessor">                                                        this is shrunk (using Buffer::shrinkSize()) to a size of 8192 and       \</span>
-<a name="l00121"></a>00121 <span class="preprocessor">                                                        the value at sample [8192] and sample [0] should be the same.</span>
+<a name="l00114"></a><a class="code" href="ugen___table_osc_8h.html#a102cd67bd2c71da46c3a7881d106d6f5">00114</a> <span class="preprocessor">#define TableOsc_Docs  @param table    The wavetable to use. This should be a single channel Buffer   \</span>
+<a name="l00115"></a>00115 <span class="preprocessor">              containing a single cycle of the desired waveform. The size of   \</span>
+<a name="l00116"></a>00116 <span class="preprocessor">              Buffer is not important (athough larger sizes will generallly   \</span>
+<a name="l00117"></a>00117 <span class="preprocessor">              result in higher quality) but the Buffer should have an     \</span>
+<a name="l00118"></a>00118 <span class="preprocessor">              interpolation sample after the last value. For example, an 8192   \</span>
+<a name="l00119"></a>00119 <span class="preprocessor">              point Buffer (as used with SinOsc) actually has 8193 values but   \</span>
+<a name="l00120"></a>00120 <span class="preprocessor">              this is shrunk (using Buffer::shrinkSize()) to a size of 8192 and  \</span>
+<a name="l00121"></a>00121 <span class="preprocessor">              the value at sample [8192] and sample [0] should be the same.</span>
 <a name="l00122"></a>00122 <span class="preprocessor"></span>
-<a name="l00123"></a><a class="code" href="ugen___table_osc_8h.html#a1ab52b237598e128c66c94fe69200737">00123</a> <span class="preprocessor">#define HarminicOsc_Docs    @param  harmonicWeights     This creates an internal wavetable using a series of sine wave          \</span>
-<a name="l00124"></a>00124 <span class="preprocessor">                                                        harmonics. The amplitude of these sines is govened by this single       \</span>
-<a name="l00125"></a>00125 <span class="preprocessor">                                                        channel Buffer. e.g.,                                                   \</span>
-<a name="l00126"></a>00126 <span class="preprocessor">                                                        @code Buffer(1.0, 0.5, 0.333, 0.25, 0.2, 0.167, 0.143, 0.125) @endcode  \</span>
-<a name="l00127"></a>00127 <span class="preprocessor">                                                        .. would make a pseudo-sawtooth wave.</span>
+<a name="l00123"></a><a class="code" href="ugen___table_osc_8h.html#a1ab52b237598e128c66c94fe69200737">00123</a> <span class="preprocessor">#define HarminicOsc_Docs @param harmonicWeights  This creates an internal wavetable using a series of sine wave   \</span>
+<a name="l00124"></a>00124 <span class="preprocessor">              harmonics. The amplitude of these sines is govened by this single  \</span>
+<a name="l00125"></a>00125 <span class="preprocessor">              channel Buffer. e.g.,             \</span>
+<a name="l00126"></a>00126 <span class="preprocessor">              @code Buffer(1.0, 0.5, 0.333, 0.25, 0.2, 0.167, 0.143, 0.125) @endcode \</span>
+<a name="l00127"></a>00127 <span class="preprocessor">              .. would make a pseudo-sawtooth wave.</span>
 <a name="l00128"></a>00128 <span class="preprocessor"></span>
 <a name="l00134"></a>00134 <a class="code" href="ugen___mul_add_8h.html#a3c1d2336ae0f1e00bd9ee86f556e4909" title="Declare a UGen with multiply and add inputs.">DirectMulAddUGenDeclaration</a>(<a class="code" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a>, 
-<a name="l00135"></a>00135                             (table, freq, initialPhase), 
-<a name="l00136"></a>00136                             (table, freq, initialPhase, <a class="code" href="ugen___mul_add_8h.html#a0948ded88972de1849c249f13e99c70c">MulAdd_ArgsCall</a>), 
-<a name="l00137"></a>00137                             (<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; table, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq = 440.f, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; initialPhase = 0.f), 
-<a name="l00138"></a>00138                             (<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; table, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq = 440.f, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; initialPhase = 0.f, <a class="code" href="ugen___mul_add_8h.html#a26f64cd22a6e4e0933b39d2031396f26">MulAdd_ArgsDeclare</a>), 
-<a name="l00139"></a><a class="code" href="class_table_osc.html#a5eea421e2ec545177421d920008f7e56">00139</a>                             <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___table_osc_8h.html#a102cd67bd2c71da46c3a7881d106d6f5">TableOsc_Docs</a> <a class="code" href="ugen___table_osc_8h.html#a4c92fb1300b22daba651733bfcc6da1f">Osc_Docs</a> <a class="code" href="ugen___mul_add_8h.html#a9fbd19ed1cc830caeacbe23a214bbb5e">MulAddArgs_Docs</a>);
+<a name="l00135"></a>00135        (table, freq, initialPhase), 
+<a name="l00136"></a>00136        (table, freq, initialPhase, <a class="code" href="ugen___mul_add_8h.html#a0948ded88972de1849c249f13e99c70c">MulAdd_ArgsCall</a>), 
+<a name="l00137"></a>00137        (<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; table, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq = 440.f, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; initialPhase = 0.f), 
+<a name="l00138"></a>00138        (<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; table, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq = 440.f, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; initialPhase = 0.f, <a class="code" href="ugen___mul_add_8h.html#a26f64cd22a6e4e0933b39d2031396f26">MulAdd_ArgsDeclare</a>), 
+<a name="l00139"></a><a class="code" href="class_table_osc.html#a1e5202f0b25cadfffb50d69c637b8384">00139</a>        <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___table_osc_8h.html#a102cd67bd2c71da46c3a7881d106d6f5">TableOsc_Docs</a> <a class="code" href="ugen___table_osc_8h.html#a4c92fb1300b22daba651733bfcc6da1f">Osc_Docs</a> <a class="code" href="ugen___mul_add_8h.html#a9fbd19ed1cc830caeacbe23a214bbb5e">MulAddArgs_Docs</a>);
 <a name="l00140"></a>00140 
 <a name="l00141"></a>00141 
 <a name="l00147"></a>00147 <a class="code" href="ugen___mul_add_8h.html#a3c1d2336ae0f1e00bd9ee86f556e4909" title="Declare a UGen with multiply and add inputs.">DirectMulAddUGenDeclaration</a>(<a class="code" href="class_harmonic_osc.html" title="A wavetable-based oscillator initialised with an array of the harmonic amplitudes.">HarmonicOsc</a>, 
-<a name="l00148"></a>00148                             (harmonicWeights, freq, initialPhase), 
-<a name="l00149"></a>00149                             (harmonicWeights, freq, initialPhase, <a class="code" href="ugen___mul_add_8h.html#a0948ded88972de1849c249f13e99c70c">MulAdd_ArgsCall</a>), 
-<a name="l00150"></a>00150                             (<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; harmonicWeights, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq = 440.f, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; initialPhase = 0.f), 
-<a name="l00151"></a>00151                             (<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; harmonicWeights, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq = 440.f, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; initialPhase = 0.f, <a class="code" href="ugen___mul_add_8h.html#a26f64cd22a6e4e0933b39d2031396f26">MulAdd_ArgsDeclare</a>), 
-<a name="l00152"></a><a class="code" href="class_harmonic_osc.html#a96f43ff81c1a2b57b53340aabf111af1">00152</a>                             <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___table_osc_8h.html#a1ab52b237598e128c66c94fe69200737">HarminicOsc_Docs</a> <a class="code" href="ugen___table_osc_8h.html#a4c92fb1300b22daba651733bfcc6da1f">Osc_Docs</a> <a class="code" href="ugen___mul_add_8h.html#a9fbd19ed1cc830caeacbe23a214bbb5e">MulAddArgs_Docs</a>);
+<a name="l00148"></a>00148        (harmonicWeights, freq, initialPhase), 
+<a name="l00149"></a>00149        (harmonicWeights, freq, initialPhase, <a class="code" href="ugen___mul_add_8h.html#a0948ded88972de1849c249f13e99c70c">MulAdd_ArgsCall</a>), 
+<a name="l00150"></a>00150        (<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; harmonicWeights, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq = 440.f, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; initialPhase = 0.f), 
+<a name="l00151"></a>00151        (<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; harmonicWeights, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq = 440.f, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; initialPhase = 0.f, <a class="code" href="ugen___mul_add_8h.html#a26f64cd22a6e4e0933b39d2031396f26">MulAdd_ArgsDeclare</a>), 
+<a name="l00152"></a><a class="code" href="class_harmonic_osc.html#a8c95b8167dfd6c25844d9895842de020">00152</a>        <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___table_osc_8h.html#a1ab52b237598e128c66c94fe69200737">HarminicOsc_Docs</a> <a class="code" href="ugen___table_osc_8h.html#a4c92fb1300b22daba651733bfcc6da1f">Osc_Docs</a> <a class="code" href="ugen___mul_add_8h.html#a9fbd19ed1cc830caeacbe23a214bbb5e">MulAddArgs_Docs</a>);
 <a name="l00153"></a>00153 
 <a name="l00154"></a>00154 
 <a name="l00160"></a>00160 <a class="code" href="ugen___mul_add_8h.html#a3c1d2336ae0f1e00bd9ee86f556e4909" title="Declare a UGen with multiply and add inputs.">DirectMulAddUGenDeclaration</a>(<a class="code" href="class_sin_osc.html" title="A wavetable-based oscillator using an internal 8192-point sine table.">SinOsc</a>, 
-<a name="l00161"></a>00161                             (freq, initialPhase), 
-<a name="l00162"></a>00162                             (freq, initialPhase, <a class="code" href="ugen___mul_add_8h.html#a0948ded88972de1849c249f13e99c70c">MulAdd_ArgsCall</a>), 
-<a name="l00163"></a>00163                             (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq = 440.f, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; initialPhase = 0.f), 
-<a name="l00164"></a>00164                             (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq = 440.f, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; initialPhase = 0.f, <a class="code" href="ugen___mul_add_8h.html#a26f64cd22a6e4e0933b39d2031396f26">MulAdd_ArgsDeclare</a>), 
-<a name="l00165"></a><a class="code" href="class_sin_osc.html#ad778bd24f6322a3f718f32a2e843fdc3">00165</a>                             <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___table_osc_8h.html#a4c92fb1300b22daba651733bfcc6da1f">Osc_Docs</a> <a class="code" href="ugen___mul_add_8h.html#a9fbd19ed1cc830caeacbe23a214bbb5e">MulAddArgs_Docs</a>);
+<a name="l00161"></a>00161        (freq, initialPhase), 
+<a name="l00162"></a>00162        (freq, initialPhase, <a class="code" href="ugen___mul_add_8h.html#a0948ded88972de1849c249f13e99c70c">MulAdd_ArgsCall</a>), 
+<a name="l00163"></a>00163        (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq = 440.f, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; initialPhase = 0.f), 
+<a name="l00164"></a>00164        (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq = 440.f, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; initialPhase = 0.f, <a class="code" href="ugen___mul_add_8h.html#a26f64cd22a6e4e0933b39d2031396f26">MulAdd_ArgsDeclare</a>), 
+<a name="l00165"></a><a class="code" href="class_sin_osc.html#a0d202bcc96c22fa69d54f3c04e24792c">00165</a>        <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___table_osc_8h.html#a4c92fb1300b22daba651733bfcc6da1f">Osc_Docs</a> <a class="code" href="ugen___mul_add_8h.html#a9fbd19ed1cc830caeacbe23a214bbb5e">MulAddArgs_Docs</a>);
 <a name="l00166"></a>00166 
 <a name="l00167"></a>00167 
 <a name="l00168"></a>00168 
 <a name="l00169"></a>00169 <span class="preprocessor">#endif // _UGEN_ugen_TableOsc_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:30 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:58 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

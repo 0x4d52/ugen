@@ -72,26 +72,26 @@
 <a name="l00040"></a>00040 <span class="preprocessor">#include &quot;../../gui/ugen_Scope.h&quot;</span>
 <a name="l00041"></a>00041 
 <a name="l00042"></a>00042 
-<a name="l00043"></a><a class="code" href="class_scope_component_base.html">00043</a> <span class="keyword">class </span><a class="code" href="class_scope_component_base.html">ScopeComponentBase</a> :  <span class="keyword">public</span> <a class="code" href="class_scope_g_u_i.html" title="This is a wrapper/controller for a platform dependent GUI object.">ScopeGUI</a>, <span class="comment">// swapped these round (ScopeGUI first) as a hack for the scope&lt;-&gt;gui connection</span>
-<a name="l00044"></a>00044                             <span class="keyword">public</span> Component
-<a name="l00045"></a>00045                             
+<a name="l00043"></a><a class="code" href="class_scope_component_base.html">00043</a> <span class="keyword">class </span><a class="code" href="class_scope_component_base.html">ScopeComponentBase</a> : <span class="keyword">public</span> <a class="code" href="class_scope_g_u_i.html" title="This is a wrapper/controller for a platform dependent GUI object.">ScopeGUI</a>, <span class="comment">// swapped these round (ScopeGUI first) as a hack for the scope&lt;-&gt;gui connection</span>
+<a name="l00044"></a>00044        <span class="keyword">public</span> Component
+<a name="l00045"></a>00045        
 <a name="l00046"></a>00046 {
 <a name="l00047"></a>00047 <span class="keyword">public</span>:
-<a name="l00048"></a>00048     <a class="code" href="class_scope_component_base.html#a0d354431ef0b338800c27a5142f51c6c">ScopeComponentBase</a>(<a class="code" href="class_scope_g_u_i.html#ac04556dd21c6fe7219d61f721fa95225" title="An enum to control the display style of the scope trace.">ScopeStyles</a> style = <a class="code" href="class_scope_g_u_i.html#ac04556dd21c6fe7219d61f721fa95225ad27d51caa370a3bf7d17badcd6acaad1" title="The trace is drawn as a line when zoomed in far enough.">Lines</a>);
-<a name="l00049"></a>00049     
-<a name="l00050"></a>00050     <span class="keywordtype">void</span> <a class="code" href="class_scope_component_base.html#af6590db99fb3a986de93c3ae66bb0b3c">resized</a>();
-<a name="l00051"></a>00051     
-<a name="l00052"></a>00052     <span class="keywordtype">void</span> <a class="code" href="class_scope_component_base.html#a063b16f68a4c3cd05d11869a38ee219d">updateGUI</a>() <span class="keywordflow">throw</span>();
-<a name="l00053"></a>00053     <span class="keywordtype">bool</span> <a class="code" href="class_scope_component_base.html#a205af616f5a04e6dafc4767397766f0d">isValid</a>() <span class="keywordflow">throw</span>();
-<a name="l00054"></a>00054     <span class="keywordtype">void</span> <a class="code" href="class_scope_component_base.html#a9c96ef0c92fd2c759bfc67be35ab789b">lock</a>() <span class="keywordflow">throw</span>();
-<a name="l00055"></a>00055     <span class="keywordtype">void</span> <a class="code" href="class_scope_component_base.html#ad54babea4b13ab6cb8b599ad0f82ccc2">unlock</a>() <span class="keywordflow">throw</span>();
-<a name="l00056"></a>00056     <span class="keywordtype">bool</span> <a class="code" href="class_scope_component_base.html#a798434cf811ccf1dba18fdb00d3ffc0c">tryLock</a>() <span class="keywordflow">throw</span>();
-<a name="l00057"></a>00057     
+<a name="l00048"></a>00048  <a class="code" href="class_scope_component_base.html#a0d354431ef0b338800c27a5142f51c6c">ScopeComponentBase</a>(<a class="code" href="class_scope_g_u_i.html#ac04556dd21c6fe7219d61f721fa95225" title="An enum to control the display style of the scope trace.">ScopeStyles</a> style = <a class="code" href="class_scope_g_u_i.html#ac04556dd21c6fe7219d61f721fa95225ad27d51caa370a3bf7d17badcd6acaad1" title="The trace is drawn as a line when zoomed in far enough.">Lines</a>);
+<a name="l00049"></a>00049  
+<a name="l00050"></a>00050  <span class="keywordtype">void</span> <a class="code" href="class_scope_component_base.html#af6590db99fb3a986de93c3ae66bb0b3c">resized</a>();
+<a name="l00051"></a>00051  
+<a name="l00052"></a>00052  <span class="keywordtype">void</span> <a class="code" href="class_scope_component_base.html#a063b16f68a4c3cd05d11869a38ee219d">updateGUI</a>() <span class="keywordflow">throw</span>();
+<a name="l00053"></a>00053  <span class="keywordtype">bool</span> <a class="code" href="class_scope_component_base.html#a205af616f5a04e6dafc4767397766f0d">isValid</a>() <span class="keywordflow">throw</span>();
+<a name="l00054"></a>00054  <span class="keywordtype">void</span> <a class="code" href="class_scope_component_base.html#a9c96ef0c92fd2c759bfc67be35ab789b">lock</a>() <span class="keywordflow">throw</span>();
+<a name="l00055"></a>00055  <span class="keywordtype">void</span> <a class="code" href="class_scope_component_base.html#ad54babea4b13ab6cb8b599ad0f82ccc2">unlock</a>() <span class="keywordflow">throw</span>();
+<a name="l00056"></a>00056  <span class="keywordtype">bool</span> <a class="code" href="class_scope_component_base.html#a798434cf811ccf1dba18fdb00d3ffc0c">tryLock</a>() <span class="keywordflow">throw</span>();
+<a name="l00057"></a>00057  
 <a name="l00058"></a>00058 <span class="keyword">private</span>:
-<a name="l00059"></a><a class="code" href="class_scope_component_base.html#af554ac394704c93ccf593fc99a22ad33">00059</a>     CriticalSection <a class="code" href="class_scope_component_base.html#af554ac394704c93ccf593fc99a22ad33">juceLock</a>;
-<a name="l00060"></a>00060     
-<a name="l00061"></a><a class="code" href="class_scope_component_base.html#a93cad0ed4c9deed3e733eda0a7cd8407acd03fe5cd8a39e331fe52b9fd7f837ca">00061</a>     <span class="keyword">enum</span> <a class="code" href="class_scope_component_base.html#a93cad0ed4c9deed3e733eda0a7cd8407">CommandIDs</a> { Repaint, <a class="code" href="class_scope_component_base.html#a93cad0ed4c9deed3e733eda0a7cd8407a7b4ff7cf85e726701d289213538ee65c">NumCommandIDs</a> };
-<a name="l00062"></a>00062     <span class="keywordtype">void</span> <a class="code" href="class_scope_component_base.html#a3ab7b402accf65eb673e1a1306834466">handleCommandMessage</a> (<span class="keywordtype">int</span> commandId);
+<a name="l00059"></a><a class="code" href="class_scope_component_base.html#af554ac394704c93ccf593fc99a22ad33">00059</a>  CriticalSection <a class="code" href="class_scope_component_base.html#af554ac394704c93ccf593fc99a22ad33">juceLock</a>;
+<a name="l00060"></a>00060  
+<a name="l00061"></a><a class="code" href="class_scope_component_base.html#a93cad0ed4c9deed3e733eda0a7cd8407acd03fe5cd8a39e331fe52b9fd7f837ca">00061</a>  <span class="keyword">enum</span> <a class="code" href="class_scope_component_base.html#a93cad0ed4c9deed3e733eda0a7cd8407">CommandIDs</a> { Repaint, <a class="code" href="class_scope_component_base.html#a93cad0ed4c9deed3e733eda0a7cd8407a7b4ff7cf85e726701d289213538ee65c">NumCommandIDs</a> };
+<a name="l00062"></a>00062  <span class="keywordtype">void</span> <a class="code" href="class_scope_component_base.html#a3ab7b402accf65eb673e1a1306834466">handleCommandMessage</a> (<span class="keywordtype">int</span> commandId);
 <a name="l00063"></a>00063 };
 <a name="l00064"></a>00064 
 <a name="l00065"></a>00065 
@@ -99,19 +99,19 @@
 <a name="l00068"></a><a class="code" href="class_scope_component.html">00068</a> <span class="keyword">class </span><a class="code" href="class_scope_component.html">ScopeComponent</a> : <span class="keyword">public</span> <a class="code" href="class_scope_component_base.html">ScopeComponentBase</a>
 <a name="l00069"></a>00069 {
 <a name="l00070"></a>00070 <span class="keyword">public</span>:
-<a name="l00071"></a>00071     <a class="code" href="class_scope_component.html#a8944eeefadd1c6e7f80907542a49e700">ScopeComponent</a>(<a class="code" href="class_scope_g_u_i.html#ac04556dd21c6fe7219d61f721fa95225" title="An enum to control the display style of the scope trace.">ScopeStyles</a> style = <a class="code" href="class_scope_g_u_i.html#ac04556dd21c6fe7219d61f721fa95225ad27d51caa370a3bf7d17badcd6acaad1" title="The trace is drawn as a line when zoomed in far enough.">Lines</a>);
-<a name="l00072"></a>00072     
-<a name="l00073"></a>00073     <span class="keywordtype">void</span> <a class="code" href="class_scope_component.html#a565e4f84bb1bcc72e25b94179a0480c3">paint</a>(Graphics&amp; g);
-<a name="l00074"></a>00074     <span class="keywordtype">void</span> <a class="code" href="class_scope_component.html#a334c7730cac30e7a36813b9295d3fd9d">paintBipolar</a>(Graphics&amp; g);
-<a name="l00075"></a>00075     <span class="keywordtype">void</span> <a class="code" href="class_scope_component.html#a4fa661becfed796dc2f1e72658bfd7fa">paintUnipolar</a>(Graphics&amp; g);
-<a name="l00076"></a>00076     <span class="keywordtype">void</span> <a class="code" href="class_scope_component.html#a437bafd757ed3eaf84af9c306e69ec66">paintXScale</a>(Graphics&amp; g, <span class="keyword">const</span> <span class="keywordtype">int</span> y);
-<a name="l00077"></a>00077     <span class="keywordtype">void</span> <a class="code" href="class_scope_component.html#a99b37a30f0edceaf9c5363065024cc25">paintYScale</a>(Graphics&amp; g, <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___constants_8h.html#a554f7b66b1ba49443447eb746978c268">zero</a>, <span class="keyword">const</span> <span class="keywordtype">int</span> maximum);
-<a name="l00078"></a>00078     <span class="keywordtype">void</span> <a class="code" href="class_scope_component.html#ade3277949dac2565ffca3916d344aa96">paintChannelLabel</a>(Graphics&amp; g, <a class="code" href="class_text.html">Text</a> <span class="keyword">const</span>&amp; label, <span class="keyword">const</span> <span class="keywordtype">int</span> index, <span class="keyword">const</span> <span class="keywordtype">int</span> top);
-<a name="l00079"></a>00079     
-<a name="l00080"></a>00080     
-<a name="l00081"></a><a class="code" href="class_scope_component.html#a52d53e7bdd6187f2f70d38e546cce61f">00081</a>     <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="class_scope_component.html#a52d53e7bdd6187f2f70d38e546cce61f">getDisplayBufferSize</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> Component::getWidth(); }
-<a name="l00082"></a>00082     <span class="comment">//inline int getHeight() const throw() { return Component::getHeight(); }</span>
-<a name="l00083"></a>00083         
+<a name="l00071"></a>00071  <a class="code" href="class_scope_component.html#a8944eeefadd1c6e7f80907542a49e700">ScopeComponent</a>(<a class="code" href="class_scope_g_u_i.html#ac04556dd21c6fe7219d61f721fa95225" title="An enum to control the display style of the scope trace.">ScopeStyles</a> style = <a class="code" href="class_scope_g_u_i.html#ac04556dd21c6fe7219d61f721fa95225ad27d51caa370a3bf7d17badcd6acaad1" title="The trace is drawn as a line when zoomed in far enough.">Lines</a>);
+<a name="l00072"></a>00072  
+<a name="l00073"></a>00073  <span class="keywordtype">void</span> <a class="code" href="class_scope_component.html#a565e4f84bb1bcc72e25b94179a0480c3">paint</a>(Graphics&amp; g);
+<a name="l00074"></a>00074  <span class="keywordtype">void</span> <a class="code" href="class_scope_component.html#a334c7730cac30e7a36813b9295d3fd9d">paintBipolar</a>(Graphics&amp; g);
+<a name="l00075"></a>00075  <span class="keywordtype">void</span> <a class="code" href="class_scope_component.html#a4fa661becfed796dc2f1e72658bfd7fa">paintUnipolar</a>(Graphics&amp; g);
+<a name="l00076"></a>00076  <span class="keywordtype">void</span> <a class="code" href="class_scope_component.html#a437bafd757ed3eaf84af9c306e69ec66">paintXScale</a>(Graphics&amp; g, <span class="keyword">const</span> <span class="keywordtype">int</span> y);
+<a name="l00077"></a>00077  <span class="keywordtype">void</span> <a class="code" href="class_scope_component.html#a99b37a30f0edceaf9c5363065024cc25">paintYScale</a>(Graphics&amp; g, <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___constants_8h.html#a554f7b66b1ba49443447eb746978c268">zero</a>, <span class="keyword">const</span> <span class="keywordtype">int</span> maximum);
+<a name="l00078"></a>00078  <span class="keywordtype">void</span> <a class="code" href="class_scope_component.html#ade3277949dac2565ffca3916d344aa96">paintChannelLabel</a>(Graphics&amp; g, <a class="code" href="class_text.html">Text</a> <span class="keyword">const</span>&amp; label, <span class="keyword">const</span> <span class="keywordtype">int</span> index, <span class="keyword">const</span> <span class="keywordtype">int</span> top);
+<a name="l00079"></a>00079  
+<a name="l00080"></a>00080  
+<a name="l00081"></a><a class="code" href="class_scope_component.html#a52d53e7bdd6187f2f70d38e546cce61f">00081</a>  <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="class_scope_component.html#a52d53e7bdd6187f2f70d38e546cce61f">getDisplayBufferSize</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> Component::getWidth(); }
+<a name="l00082"></a>00082  <span class="comment">//inline int getHeight() const throw() { return Component::getHeight(); }</span>
+<a name="l00083"></a>00083   
 <a name="l00084"></a>00084 <span class="keyword">private</span>:
 <a name="l00085"></a>00085 };
 <a name="l00086"></a>00086 
@@ -120,26 +120,26 @@
 <a name="l00089"></a><a class="code" href="class_radial_scope_component.html">00089</a> <span class="keyword">class </span><a class="code" href="class_radial_scope_component.html">RadialScopeComponent</a> : <span class="keyword">public</span> <a class="code" href="class_scope_component_base.html">ScopeComponentBase</a>
 <a name="l00090"></a>00090 {
 <a name="l00091"></a>00091 <span class="keyword">public</span>:
-<a name="l00092"></a>00092     <a class="code" href="class_radial_scope_component.html#acdbaec9354ba6d418039c60236118b7d">RadialScopeComponent</a>(<a class="code" href="class_scope_g_u_i.html#ac04556dd21c6fe7219d61f721fa95225" title="An enum to control the display style of the scope trace.">ScopeStyles</a> style = <a class="code" href="class_scope_g_u_i.html#ac04556dd21c6fe7219d61f721fa95225ad27d51caa370a3bf7d17badcd6acaad1" title="The trace is drawn as a line when zoomed in far enough.">Lines</a>);
-<a name="l00093"></a>00093         
-<a name="l00094"></a>00094     <span class="keywordtype">void</span> <a class="code" href="class_radial_scope_component.html#ae3f20f944de98166c23d5d5dca5e702a">paint</a>(Graphics&amp; g);
-<a name="l00095"></a>00095     <span class="keywordtype">void</span> <a class="code" href="class_radial_scope_component.html#a64fbecf1a03e31458fdfff0bdb62374f">paintBipolar</a>(Graphics&amp; g);
-<a name="l00096"></a>00096     <span class="comment">//void paintUnipolar(Graphics&amp; g);</span>
-<a name="l00097"></a>00097     <span class="keywordtype">void</span> <a class="code" href="class_radial_scope_component.html#a40bb50fefc9305ed673a651a2793aa5a">paintXScale</a>(Graphics&amp; g, <span class="keyword">const</span> <span class="keywordtype">int</span> y);
-<a name="l00098"></a>00098     <span class="keywordtype">void</span> <a class="code" href="class_radial_scope_component.html#a7d24c4573db7cd638f8df55bf9a245a1">paintYScale</a>(Graphics&amp; g, <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___constants_8h.html#a554f7b66b1ba49443447eb746978c268">zero</a>, <span class="keyword">const</span> <span class="keywordtype">int</span> maximum);
-<a name="l00099"></a>00099     <span class="keywordtype">void</span> <a class="code" href="class_radial_scope_component.html#ac8f39f575cb9f85d4155c3cbb5caa5c3">paintChannelLabel</a>(Graphics&amp; g, <a class="code" href="class_text.html">Text</a> <span class="keyword">const</span>&amp; label, <span class="keyword">const</span> <span class="keywordtype">int</span> index, <span class="keyword">const</span> <span class="keywordtype">int</span> top);
-<a name="l00100"></a>00100     
-<a name="l00101"></a>00101     <span class="keywordtype">double</span> <a class="code" href="class_radial_scope_component.html#a653b7f488adbe2b37b873f2907afeed1">getDelta</a>() <span class="keyword">const</span> <span class="keywordflow">throw</span>();
-<a name="l00102"></a>00102     <span class="keywordtype">double</span> <a class="code" href="class_radial_scope_component.html#aecacb26dc923ee18d66d89f8344e1318">getDeltaAngle</a>() <span class="keyword">const</span> <span class="keywordflow">throw</span>();
-<a name="l00103"></a>00103     
-<a name="l00104"></a>00104     <span class="keywordtype">int</span> <a class="code" href="class_radial_scope_component.html#a5e4b799f85169c29a737a0d2b99aa1bc">getDisplayBufferSize</a>() <span class="keyword">const</span> <span class="keywordflow">throw</span>();
-<a name="l00105"></a>00105     <span class="keywordtype">int</span> <a class="code" href="class_radial_scope_component.html#a7650aa91350c89eb81847e66aba1f25f">getRadius</a>() <span class="keyword">const</span> <span class="keywordflow">throw</span>();
-<a name="l00106"></a>00106     <span class="keywordtype">int</span> <a class="code" href="class_radial_scope_component.html#abdbf4b89252195a05ab90267ea21abba">getCentreX</a>() <span class="keyword">const</span> <span class="keywordflow">throw</span>();
-<a name="l00107"></a>00107     <span class="keywordtype">int</span> <a class="code" href="class_radial_scope_component.html#ab36b19246fb0e3145b75ed469c29857a">getCentreY</a>() <span class="keyword">const</span> <span class="keywordflow">throw</span>();
-<a name="l00108"></a><a class="code" href="class_radial_scope_component.html#aa4bc8b0683d6613604c4388212d1b5ee">00108</a>     <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="class_radial_scope_component.html#aa4bc8b0683d6613604c4388212d1b5ee">getDiameter</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> <a class="code" href="class_radial_scope_component.html#a7650aa91350c89eb81847e66aba1f25f">getRadius</a>() * 2; }
-<a name="l00109"></a>00109     
+<a name="l00092"></a>00092  <a class="code" href="class_radial_scope_component.html#acdbaec9354ba6d418039c60236118b7d">RadialScopeComponent</a>(<a class="code" href="class_scope_g_u_i.html#ac04556dd21c6fe7219d61f721fa95225" title="An enum to control the display style of the scope trace.">ScopeStyles</a> style = <a class="code" href="class_scope_g_u_i.html#ac04556dd21c6fe7219d61f721fa95225ad27d51caa370a3bf7d17badcd6acaad1" title="The trace is drawn as a line when zoomed in far enough.">Lines</a>);
+<a name="l00093"></a>00093   
+<a name="l00094"></a>00094  <span class="keywordtype">void</span> <a class="code" href="class_radial_scope_component.html#ae3f20f944de98166c23d5d5dca5e702a">paint</a>(Graphics&amp; g);
+<a name="l00095"></a>00095  <span class="keywordtype">void</span> <a class="code" href="class_radial_scope_component.html#a64fbecf1a03e31458fdfff0bdb62374f">paintBipolar</a>(Graphics&amp; g);
+<a name="l00096"></a>00096  <span class="comment">//void paintUnipolar(Graphics&amp; g);</span>
+<a name="l00097"></a>00097  <span class="keywordtype">void</span> <a class="code" href="class_radial_scope_component.html#a40bb50fefc9305ed673a651a2793aa5a">paintXScale</a>(Graphics&amp; g, <span class="keyword">const</span> <span class="keywordtype">int</span> y);
+<a name="l00098"></a>00098  <span class="keywordtype">void</span> <a class="code" href="class_radial_scope_component.html#a7d24c4573db7cd638f8df55bf9a245a1">paintYScale</a>(Graphics&amp; g, <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___constants_8h.html#a554f7b66b1ba49443447eb746978c268">zero</a>, <span class="keyword">const</span> <span class="keywordtype">int</span> maximum);
+<a name="l00099"></a>00099  <span class="keywordtype">void</span> <a class="code" href="class_radial_scope_component.html#ac8f39f575cb9f85d4155c3cbb5caa5c3">paintChannelLabel</a>(Graphics&amp; g, <a class="code" href="class_text.html">Text</a> <span class="keyword">const</span>&amp; label, <span class="keyword">const</span> <span class="keywordtype">int</span> index, <span class="keyword">const</span> <span class="keywordtype">int</span> top);
+<a name="l00100"></a>00100  
+<a name="l00101"></a>00101  <span class="keywordtype">double</span> <a class="code" href="class_radial_scope_component.html#a653b7f488adbe2b37b873f2907afeed1">getDelta</a>() <span class="keyword">const</span> <span class="keywordflow">throw</span>();
+<a name="l00102"></a>00102  <span class="keywordtype">double</span> <a class="code" href="class_radial_scope_component.html#aecacb26dc923ee18d66d89f8344e1318">getDeltaAngle</a>() <span class="keyword">const</span> <span class="keywordflow">throw</span>();
+<a name="l00103"></a>00103  
+<a name="l00104"></a>00104  <span class="keywordtype">int</span> <a class="code" href="class_radial_scope_component.html#a5e4b799f85169c29a737a0d2b99aa1bc">getDisplayBufferSize</a>() <span class="keyword">const</span> <span class="keywordflow">throw</span>();
+<a name="l00105"></a>00105  <span class="keywordtype">int</span> <a class="code" href="class_radial_scope_component.html#a7650aa91350c89eb81847e66aba1f25f">getRadius</a>() <span class="keyword">const</span> <span class="keywordflow">throw</span>();
+<a name="l00106"></a>00106  <span class="keywordtype">int</span> <a class="code" href="class_radial_scope_component.html#abdbf4b89252195a05ab90267ea21abba">getCentreX</a>() <span class="keyword">const</span> <span class="keywordflow">throw</span>();
+<a name="l00107"></a>00107  <span class="keywordtype">int</span> <a class="code" href="class_radial_scope_component.html#ab36b19246fb0e3145b75ed469c29857a">getCentreY</a>() <span class="keyword">const</span> <span class="keywordflow">throw</span>();
+<a name="l00108"></a><a class="code" href="class_radial_scope_component.html#aa4bc8b0683d6613604c4388212d1b5ee">00108</a>  <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="class_radial_scope_component.html#aa4bc8b0683d6613604c4388212d1b5ee">getDiameter</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> <a class="code" href="class_radial_scope_component.html#a7650aa91350c89eb81847e66aba1f25f">getRadius</a>() * 2; }
+<a name="l00109"></a>00109  
 <a name="l00110"></a>00110 <span class="keyword">private</span>:
-<a name="l00111"></a><a class="code" href="class_radial_scope_component.html#a1fa040d5dd522a23294b2e73c78c17f0">00111</a>     <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_radial_scope_component.html#a1fa040d5dd522a23294b2e73c78c17f0">sine</a>, <a class="code" href="class_radial_scope_component.html#a4a91218ed65c4ae3ccfd91c14efc4b5d">cosine</a>;
+<a name="l00111"></a><a class="code" href="class_radial_scope_component.html#a1fa040d5dd522a23294b2e73c78c17f0">00111</a>  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_radial_scope_component.html#a1fa040d5dd522a23294b2e73c78c17f0">sine</a>, <a class="code" href="class_radial_scope_component.html#a4a91218ed65c4ae3ccfd91c14efc4b5d">cosine</a>;
 <a name="l00112"></a>00112 };
 <a name="l00113"></a>00113 
 <a name="l00114"></a>00114 
@@ -147,7 +147,7 @@
 <a name="l00116"></a>00116 <span class="preprocessor">#endif // _UGEN_ugen_JuceScope_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:29 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:58 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

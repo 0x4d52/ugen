@@ -215,11 +215,11 @@ Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Unary Ops.</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p><a class="anchor" id="amgrp76669acb1b7d3a46b0f85f336e33e7b8"></a>The definition of most these is done by macros in <a class="el" href="ugen___unary_op_u_gens_8cpp.html">ugen_UnaryOpUGens.cpp</a> except <a class="el" href="class_u_gen.html#a07e019d9243c9fdebeb225fd9c2182ff" title="Wraps the UGen in a Mix UGen.">mix()</a> and unary operator- The result of these unary operations is calculated on a sample-by-sample basis (or control period basis depending on the rate).</p>
 <p>A global function is defined for each of these so: </p>
-<div class="fragment"><pre class="fragment">        <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> a = <a class="code" href="class_sin_osc.html#af4474190a7c02fd89d61ef93e1bdf904" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(100, 0, 0.4);
-        <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> b = a.<a class="code" href="class_u_gen.html#a74088af4efb9249aec527a73238774c9" title="Unary negation.">neg</a>();
+<div class="fragment"><pre class="fragment">  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> a = <a class="code" href="class_sin_osc.html#a76c3d2fcbcfad830654e0a1ee5c296fd" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(100, 0, 0.4);
+  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> b = a.<a class="code" href="class_u_gen.html#a74088af4efb9249aec527a73238774c9" title="Unary negation.">neg</a>();
 </pre></div><p> ..is equivalent to: </p>
-<div class="fragment"><pre class="fragment">        <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> a = <a class="code" href="class_sin_osc.html#af4474190a7c02fd89d61ef93e1bdf904" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(100, 0, 0.4);
-        <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> b = <a class="code" href="class_u_gen.html#a74088af4efb9249aec527a73238774c9" title="Unary negation.">neg</a>(a);
+<div class="fragment"><pre class="fragment">  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> a = <a class="code" href="class_sin_osc.html#a76c3d2fcbcfad830654e0a1ee5c296fd" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(100, 0, 0.4);
+  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> b = <a class="code" href="class_u_gen.html#a74088af4efb9249aec527a73238774c9" title="Unary negation.">neg</a>(a);
 </pre></div> </div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_gen.html#a07e019d9243c9fdebeb225fd9c2182ff">mix</a> (bool shouldAllowAutoDelete=true) const   throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Wraps the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> in a <a class="el" href="class_mix.html" title="Mix channels.">Mix</a> <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a>.  <a href="#a07e019d9243c9fdebeb225fd9c2182ff"></a><br/></td></tr>
@@ -278,13 +278,13 @@ Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupText"><p><a class="anchor" id="amgrpeffde8b3df27d4d050ae4d3e094599d1"></a>The definition of these (except the assignment versions) is done by macros in <a class="el" href="ugen___binary_op_u_gens_8cpp.html">ugen_BinaryOpUGens.cpp</a>.</p>
 <p>The result of these binary operations is calculated on a sample-by-sample basis (or control period basis depending on the rate). In the case of the comparison operators the resulting signal from the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> will be 1.0 at times the comparison is true and 0.0 at times the comparison is false. The resulting <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> should have the same number of channels as the largest of the two <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> instances. If the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> do not have the same number of channels, the channel index accessing the smaller <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> is wrapped to acces the channels cyclically.</p>
 <p>A global function is defined for each of these so: </p>
-<div class="fragment"><pre class="fragment">        <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> a = <a class="code" href="class_sin_osc.html#af4474190a7c02fd89d61ef93e1bdf904" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(100, 0, 0.4);
-        <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> b = <a class="code" href="class_sin_osc.html#af4474190a7c02fd89d61ef93e1bdf904" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(400, 0, 0.3);
-        <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> c = a.<a class="code" href="class_u_gen.html#a8f4983902cf29a2a301288a825d9a738" title="Binary maximum.">max</a>(b);
+<div class="fragment"><pre class="fragment">  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> a = <a class="code" href="class_sin_osc.html#a76c3d2fcbcfad830654e0a1ee5c296fd" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(100, 0, 0.4);
+  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> b = <a class="code" href="class_sin_osc.html#a76c3d2fcbcfad830654e0a1ee5c296fd" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(400, 0, 0.3);
+  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> c = a.<a class="code" href="class_u_gen.html#a8f4983902cf29a2a301288a825d9a738" title="Binary maximum.">max</a>(b);
 </pre></div><p> ..is equivalent to: </p>
-<div class="fragment"><pre class="fragment">        <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> a = <a class="code" href="class_sin_osc.html#af4474190a7c02fd89d61ef93e1bdf904" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(100, 0, 0.4);
-        <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> b = <a class="code" href="class_sin_osc.html#af4474190a7c02fd89d61ef93e1bdf904" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(400, 0, 0.3);
-        <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> c = <a class="code" href="class_u_gen.html#a8f4983902cf29a2a301288a825d9a738" title="Binary maximum.">max</a>(a, b);
+<div class="fragment"><pre class="fragment">  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> a = <a class="code" href="class_sin_osc.html#a76c3d2fcbcfad830654e0a1ee5c296fd" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(100, 0, 0.4);
+  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> b = <a class="code" href="class_sin_osc.html#a76c3d2fcbcfad830654e0a1ee5c296fd" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(400, 0, 0.3);
+  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> c = <a class="code" href="class_u_gen.html#a8f4983902cf29a2a301288a825d9a738" title="Binary maximum.">max</a>(a, b);
 </pre></div> </div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_gen.html#ab728c319cc06f6dbaaf65657baef3af0">operator+</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;rightOperand) const   throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Binary addition.  <a href="#ab728c319cc06f6dbaaf65657baef3af0"></a><br/></td></tr>
@@ -1864,7 +1864,7 @@ template&lt;class NumericalType &gt; </div>
 <div class="memdoc">
 
 <p>Unary arccosine. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which is the arccosine of this one i.e., <img class="formulaInl" alt="$ acos(x) $" src="form_6.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which is the arccosine of this one i.e., <img class="formulaInl" alt="$ acos(x) $" src="form_9.png"/>. </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00089">89</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
 
@@ -2318,7 +2318,7 @@ template&lt;class NumericalType &gt; </div>
 <div class="memdoc">
 
 <p>Unary arcsine. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which is the arcsine of this one i.e., <img class="formulaInl" alt="$ asin(x) $" src="form_5.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which is the arcsine of this one i.e., <img class="formulaInl" alt="$ asin(x) $" src="form_8.png"/>. </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00088">88</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
 
@@ -2400,7 +2400,7 @@ template&lt;class NumericalType &gt; </div>
 <div class="memdoc">
 
 <p>Unary arctangent. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which is the arctangent of this one i.e., <img class="formulaInl" alt="$ atan(x) $" src="form_7.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which is the arctangent of this one i.e., <img class="formulaInl" alt="$ atan(x) $" src="form_10.png"/>. </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00090">90</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
 
@@ -2430,7 +2430,7 @@ template&lt;class NumericalType &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which the result of <img class="formulaInl" alt="$ atan2(x,y) $" src="form_19.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which the result of <img class="formulaInl" alt="$ atan2(x,y) $" src="form_23.png"/>. </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd>ugen::atan2 </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00095">95</a> of file <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html">ugen_BinaryOpUGens.cpp</a>.</p>
@@ -2587,8 +2587,8 @@ template&lt;class UGenInternalType &gt; </div>
 
 <p>Tests whether this <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> contains a particular <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> derived class. </p>
 <p>Use this with care as many of the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> constructors wrap <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> instances in other <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> classes. For example, the <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> (which is used for many of the oscillators and filters) may wrap the base <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> in a BinaryMulUGen, a <a class="el" href="class_binary_add_u_gen.html" title="A BinaryOpUGen usually created using the operator + when applied to other UGen instances.">BinaryAddUGen</a> or a <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> depending on the state and/or presence of the "mul" and "add" arguments.</p>
-<div class="fragment"><pre class="fragment">     <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> env = <a class="code" href="class_l_line.html#afe6cd955d630543ea95bae10eadfc5df" title="Construct and return an audio rate LLine .">LLine::AR</a>(1.0, 0.0, 10); <span class="comment">// line from 1-0 in 10s</span>
-     <span class="keywordtype">bool</span> test = env.<a class="code" href="class_u_gen.html#ace8043c6f89447d16d1e7df39df4823e" title="Tests whether this UGen contains a particular UGenInternal derived class.">containsInternalType</a>&lt;<a class="code" href="class_l_line_u_gen_internal.html">LLineUGenInternal</a>&gt;();
+<div class="fragment"><pre class="fragment">  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> env = <a class="code" href="class_l_line.html#afe6cd955d630543ea95bae10eadfc5df" title="Construct and return an audio rate LLine .">LLine::AR</a>(1.0, 0.0, 10); <span class="comment">// line from 1-0 in 10s</span>
+  <span class="keywordtype">bool</span> test = env.<a class="code" href="class_u_gen.html#ace8043c6f89447d16d1e7df39df4823e" title="Tests whether this UGen contains a particular UGenInternal derived class.">containsInternalType</a>&lt;<a class="code" href="class_l_line_u_gen_internal.html">LLineUGenInternal</a>&gt;();
 </pre></div><p>..here 'test' would be <code>true</code>.</p>
 <dl><dt><b>Template Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
@@ -2646,7 +2646,7 @@ template&lt;class UGenInternalType &gt; </div>
 <div class="memdoc">
 
 <p>Unary hyperbolic cosine. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which is: <img class="formulaInl" alt="$ cosh(x) $" src="form_35.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which is: <img class="formulaInl" alt="$ cosh(x) $" src="form_6.png"/>. </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00086">86</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
 
@@ -2669,8 +2669,8 @@ template&lt;class UGenInternalType &gt; </div>
 
 <p>Unary frequency to MIDI note number. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which is the conversion of cycles per second in Hertz to MIDI note number. MIDI note 69 is equal to 440.0Hz. This uses the equation: <br/>
- <img class="formulaInl" alt="$ m = 12 \cdot \log_2 \left( \frac{f}{440} \right) + 69 $" src="form_15.png"/> <br/>
- where <img class="formulaInl" alt="$ f $" src="form_13.png"/> is freqeuncy and <img class="formulaInl" alt="$ m $" src="form_14.png"/> is MIDI note number. </dd></dl>
+ <img class="formulaInl" alt="$ m = 12 \cdot \log_2 \left( \frac{f}{440} \right) + 69 $" src="form_19.png"/> <br/>
+ where <img class="formulaInl" alt="$ f $" src="form_17.png"/> is freqeuncy and <img class="formulaInl" alt="$ m $" src="form_18.png"/> is MIDI note number. </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_u_gen.html#a1a618c1b7a3aea4c9b30d02d6e8fa84b" title="Unary MIDI note number to frequency.">midicps</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00102">102</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
@@ -2784,7 +2784,7 @@ template&lt;class UGenInternalType &gt; </div>
 <div class="memdoc">
 
 <p>Unary distort. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which applies <img class="formulaInl" alt="$ \frac{x}{1+|x|} $" src="form_16.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which applies <img class="formulaInl" alt="$ \frac{x}{1+|x|} $" src="form_20.png"/>. </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00103">103</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
 
@@ -2837,7 +2837,7 @@ template&lt;class UGenInternalType &gt; </div>
 <div class="memdoc">
 
 <p>Unary exponential. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which is the exponential of this one i.e. <img class="formulaInl" alt="$ \exp \left( x \right) $" src="form_25.png"/> </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which is the exponential of this one i.e. <img class="formulaInl" alt="$ \exp \left( x \right) $" src="form_15.png"/> </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00094">94</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
 
@@ -3346,9 +3346,9 @@ template&lt;class UGenInternalType &gt; </div>
 <p>Get the current <a class="el" href="class_deleter.html" title="A SmartPointer deleter.">Deleter</a>. </p>
 <p>A <a class="el" href="class_deleter.html" title="A SmartPointer deleter.">Deleter</a> is used to delete <a class="el" href="class_smart_pointer.html">SmartPointer</a> objects (e.g., <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>) rather than calling delete directly. The default <a class="el" href="class_deleter.html" title="A SmartPointer deleter.">Deleter</a> does simply call delete but other hosts could use another thread to delete objects so this is not done in an audio callback thread (for example).</p>
 <p>So instead of this: </p>
-<div class="fragment"><pre class="fragment">     <span class="keyword">delete</span> mySmartPointerObj;
+<div class="fragment"><pre class="fragment">  <span class="keyword">delete</span> mySmartPointerObj;
 </pre></div><p>..do this: </p>
-<div class="fragment"><pre class="fragment">     <a class="code" href="class_u_gen.html#a0de12fb6484fbf6e566464d389ae042f" title="Get the current Deleter.">UGen::getDeleter</a>()-&gt;<a class="code" href="class_deleter.html#a22b60fe46e592be3d694cc0135251d23">deleteInternal</a>(mySmartPointerObj);
+<div class="fragment"><pre class="fragment">  <a class="code" href="class_u_gen.html#a0de12fb6484fbf6e566464d389ae042f" title="Get the current Deleter.">UGen::getDeleter</a>()-&gt;<a class="code" href="class_deleter.html#a22b60fe46e592be3d694cc0135251d23">deleteInternal</a>(mySmartPointerObj);
 </pre></div><dl class="return"><dt><b>Returns:</b></dt><dd>The current <a class="el" href="class_deleter.html" title="A SmartPointer deleter.">Deleter</a>.</dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_deleter.html" title="A SmartPointer deleter.">Deleter</a>, <a class="el" href="class_juce_timer_deleter.html" title="Stores and deletes SmartPointer objects using a timer.">JuceTimerDeleter</a> </dd></dl>
 
@@ -3933,7 +3933,7 @@ template&lt;class UGenInternalType &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which is the result of <img class="formulaInl" alt="$ \sqrt{L^{2}+R^{2}} $" src="form_18.png"/> </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which is the result of <img class="formulaInl" alt="$ \sqrt{L^{2}+R^{2}} $" src="form_22.png"/> </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd>ugen::hypot() </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00094">94</a> of file <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html">ugen_BinaryOpUGens.cpp</a>.</p>
@@ -4831,7 +4831,7 @@ template&lt;class UGenInternalType &gt; </div>
 <div class="memdoc">
 
 <p>Unary natural logarithm. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which is the natural logarithm i.e., <img class="formulaInl" alt="$ ln x $" src="form_9.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which is the natural logarithm i.e., <img class="formulaInl" alt="$ ln x $" src="form_12.png"/>. </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00091">91</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
 
@@ -4853,7 +4853,7 @@ template&lt;class UGenInternalType &gt; </div>
 <div class="memdoc">
 
 <p>Unary base-10 logarithm. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which is the base-10 logarithm i.e., <img class="formulaInl" alt="$ \log_{10} x $" src="form_11.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which is the base-10 logarithm i.e., <img class="formulaInl" alt="$ \log_{10} x $" src="form_14.png"/>. </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00093">93</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
 
@@ -4875,7 +4875,7 @@ template&lt;class UGenInternalType &gt; </div>
 <div class="memdoc">
 
 <p>Unary base-2 logarithm. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which is the base-2 logarithm i.e., <img class="formulaInl" alt="$ \log_2 x $" src="form_10.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which is the base-2 logarithm i.e., <img class="formulaInl" alt="$ \log_2 x $" src="form_13.png"/>. </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00092">92</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
 
@@ -4905,7 +4905,7 @@ template&lt;class UGenInternalType &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which the result of <img class="formulaInl" alt="$ max(L,R) $" src="form_21.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which the result of <img class="formulaInl" alt="$ max(L,R) $" src="form_25.png"/>. </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd>ugen::max() </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00097">97</a> of file <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html">ugen_BinaryOpUGens.cpp</a>.</p>
@@ -4929,8 +4929,8 @@ template&lt;class UGenInternalType &gt; </div>
 
 <p>Unary MIDI note number to frequency. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which is the conversion of MIDI note number to cycles per second in Hertz. MIDI note 69 is equal to 440.0Hz. This uses the equation: <br/>
- <img class="formulaInl" alt="$ f = 440 \times 2^{ \left( \frac{m-69}{12} \right) } $" src="form_12.png"/> <br/>
- where <img class="formulaInl" alt="$ f $" src="form_13.png"/> is freqeuncy and <img class="formulaInl" alt="$ m $" src="form_14.png"/> is MIDI note number. </dd></dl>
+ <img class="formulaInl" alt="$ f = 440 \times 2^{ \left( \frac{m-69}{12} \right) } $" src="form_16.png"/> <br/>
+ where <img class="formulaInl" alt="$ f $" src="form_17.png"/> is freqeuncy and <img class="formulaInl" alt="$ m $" src="form_18.png"/> is MIDI note number. </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_u_gen.html#a452a7f2025c833eaf7990cd461fbb653" title="Unary frequency to MIDI note number.">cpsmidi</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00101">101</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
@@ -4961,7 +4961,7 @@ template&lt;class UGenInternalType &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which the result of <img class="formulaInl" alt="$ min(L,R) $" src="form_20.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which the result of <img class="formulaInl" alt="$ min(L,R) $" src="form_24.png"/>. </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd>ugen::min() </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00096">96</a> of file <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html">ugen_BinaryOpUGens.cpp</a>.</p>
@@ -5599,11 +5599,11 @@ template&lt;class UGenInternalType &gt; </div>
 
 <p>Assignment and addition. </p>
 <p>Creates a <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which the sum of this <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> and another <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a>. This: </p>
-<div class="fragment"><pre class="fragment">     <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> x = 1.0;
-     <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> y += 2.0;
+<div class="fragment"><pre class="fragment">  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> x = 1.0;
+  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> y += 2.0;
 </pre></div><p> is equivalent to: </p>
-<div class="fragment"><pre class="fragment">     <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> x = 1.0;
-     <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> y = y + 2.0;
+<div class="fragment"><pre class="fragment">  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> x = 1.0;
+  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> y = y + 2.0;
 </pre></div> 
 <p>Definition at line <a class="el" href="ugen___u_gen_8cpp_source.html#l00518">518</a> of file <a class="el" href="ugen___u_gen_8cpp_source.html">ugen_UGen.cpp</a>.</p>
 
@@ -5628,9 +5628,9 @@ template&lt;class UGenInternalType &gt; </div>
 <p>Create a new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> by appending channels to this one. </p>
 <p>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> is created which has a total number of channels equal to the sum of the number of channels in this <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> and the rightOperand parameter. Channels are appended to create the new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a>. NB this is not in place.</p>
 <p>For example: </p>
-<div class="fragment"><pre class="fragment">     <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> x = 1.0;
-     <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> y = 2.0;
-     <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> z = (x, y); <span class="comment">// equivalent to z = UGen(1.0, 2.0);</span>
+<div class="fragment"><pre class="fragment">  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> x = 1.0;
+  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> y = 2.0;
+  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> z = (x, y); <span class="comment">// equivalent to z = UGen(1.0, 2.0);</span>
 </pre></div> 
 <p>Definition at line <a class="el" href="ugen___u_gen_8cpp_source.html#l00495">495</a> of file <a class="el" href="ugen___u_gen_8cpp_source.html">ugen_UGen.cpp</a>.</p>
 
@@ -6140,7 +6140,7 @@ template&lt;class UGenInternalType &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which the result of <img class="formulaInl" alt="$ L^{R} $" src="form_17.png"/> </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which the result of <img class="formulaInl" alt="$ L^{R} $" src="form_21.png"/> </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd>ugen::pow() </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00093">93</a> of file <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html">ugen_BinaryOpUGens.cpp</a>.</p>
@@ -7083,7 +7083,7 @@ template&lt;class UGenInternalType &gt; </div>
 <div class="memdoc">
 
 <p>Unary hyperbolic sine. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which is: <img class="formulaInl" alt="$ sinh(x) $" src="form_34.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which is: <img class="formulaInl" alt="$ sinh(x) $" src="form_5.png"/>. </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00085">85</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
 
@@ -7145,7 +7145,7 @@ template&lt;class UGenInternalType &gt; </div>
 <div class="memdoc">
 
 <p>Unary square root. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which is the square root of this one i.e., <img class="formulaInl" alt="$ \sqrt{x} $" src="form_8.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which is the square root of this one i.e., <img class="formulaInl" alt="$ \sqrt{x} $" src="form_11.png"/>. </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00079">79</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
 
@@ -7284,7 +7284,7 @@ template&lt;class UGenInternalType &gt; </div>
 <div class="memdoc">
 
 <p>Unary hyperbolic tangent. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which is: <img class="formulaInl" alt="$ tanh(x) $" src="form_36.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which is: <img class="formulaInl" alt="$ tanh(x) $" src="form_7.png"/>. </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00087">87</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
 
@@ -7910,7 +7910,7 @@ template&lt;class UGenInternalType &gt; </div>
 <li>core/<a class="el" href="ugen___u_gen_8cpp_source.html">ugen_UGen.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:21:05 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

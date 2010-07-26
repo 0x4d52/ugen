@@ -82,24 +82,24 @@
 <a name="l00073"></a>00073 <span class="comment">//@interface UIKitAUIOHost : UIViewController</span>
 <a name="l00074"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html">00074</a> <span class="keyword">@interface </span><a class="code" href="interface_u_i_kit_a_u_i_o_host.html" title="AudioUnit / iPhone audio support.">UIKitAUIOHost</a> : NSObject <span class="comment">//NSObject &lt;UIApplicationDelegate&gt; // not any more!</span>
 <a name="l00075"></a>00075 {
-<a name="l00076"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a88b285c33122b966dc2d38d9612140c0">00076</a>     AudioStreamBasicDescription format;
-<a name="l00077"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#ac84e17d50ddb9ed0f3415c730a624947">00077</a>     AURenderCallbackStruct      inputProc;
-<a name="l00078"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a6dee2bd894a75a319121b7b07457b1eb">00078</a>     Float64                     hwSampleRate;
-<a name="l00079"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a0d08cf999ed5cf5b3fbbe9a0431fce22">00079</a>     AudioUnit                   rioUnit;
-<a name="l00080"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a9e2c86e49baf974175a7bd957f7ecc29">00080</a>     <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>                        rawInput;
-<a name="l00081"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a8b56c88ac3a93ca377bfbfad4cd67457">00081</a>     <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>                        postFadeOutput;
-<a name="l00082"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#af441bb1eed898c95b478ab3c37ec277d">00082</a>     <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>                        preFadeOutput;
-<a name="l00083"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a1c0537643dbf254bd8d1eb6212d9c5e6">00083</a>     <span class="keywordtype">int</span>                         bufferSize;
-<a name="l00084"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a6e52acf61e62b524b9e49a8a41e9888b">00084</a>     <span class="keywordtype">float</span>                       *floatBuffer;
-<a name="l00085"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a5694c56d09ff8e934c4cc59beec7e51a">00085</a>     UInt32                      audioInputIsAvailable;
-<a name="l00086"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#aff2eddf091f61dd8cf46686324ecdaaf">00086</a>     UInt32                      numInputChannels;
-<a name="l00087"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a466cf95f3f8d3bd506eef5f5fa6ee9fd">00087</a>     UInt32                      numOutputChannels;
-<a name="l00088"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a832186d988eee3825295363625145aa6">00088</a>     <span class="keywordtype">bool</span>                        isRunning;
-<a name="l00089"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a03267b3c0cafe461baa274af9a03b09e">00089</a>     <span class="keywordtype">float</span>                       fadeInTime;
-<a name="l00090"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#ae4be0eeb018749e335e196176ef3cd03">00090</a>     <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>                   others;
-<a name="l00091"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a8b9a551066d9be2fbb6fcfca7653b7ea">00091</a>     NSLock*                     nsLock;
-<a name="l00092"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#ae900d510905de30f33c272d79b7ecfe8">00092</a>     <a class="code" href="class_n_s_deleter.html">NSDeleter</a>*                  deleter;
-<a name="l00093"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#ad17be42d50c079d0e45dc0a9b0c2f2ba">00093</a>     <span class="keywordtype">int</span>                         preferredBufferSize;
+<a name="l00076"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a88b285c33122b966dc2d38d9612140c0">00076</a>  AudioStreamBasicDescription format;
+<a name="l00077"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#ac84e17d50ddb9ed0f3415c730a624947">00077</a>  AURenderCallbackStruct  inputProc;
+<a name="l00078"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a6dee2bd894a75a319121b7b07457b1eb">00078</a>  Float64      hwSampleRate;
+<a name="l00079"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a0d08cf999ed5cf5b3fbbe9a0431fce22">00079</a>  AudioUnit     rioUnit;
+<a name="l00080"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a9e2c86e49baf974175a7bd957f7ecc29">00080</a>  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>      rawInput;
+<a name="l00081"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a8b56c88ac3a93ca377bfbfad4cd67457">00081</a>  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>      postFadeOutput;
+<a name="l00082"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#af441bb1eed898c95b478ab3c37ec277d">00082</a>  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>      preFadeOutput;
+<a name="l00083"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a1c0537643dbf254bd8d1eb6212d9c5e6">00083</a>  <span class="keywordtype">int</span>       bufferSize;
+<a name="l00084"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a6e52acf61e62b524b9e49a8a41e9888b">00084</a>  <span class="keywordtype">float</span>      *floatBuffer;
+<a name="l00085"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a5694c56d09ff8e934c4cc59beec7e51a">00085</a>  UInt32      audioInputIsAvailable;
+<a name="l00086"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#aff2eddf091f61dd8cf46686324ecdaaf">00086</a>  UInt32      numInputChannels;
+<a name="l00087"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a466cf95f3f8d3bd506eef5f5fa6ee9fd">00087</a>  UInt32      numOutputChannels;
+<a name="l00088"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a832186d988eee3825295363625145aa6">00088</a>  <span class="keywordtype">bool</span>      isRunning;
+<a name="l00089"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a03267b3c0cafe461baa274af9a03b09e">00089</a>  <span class="keywordtype">float</span>      fadeInTime;
+<a name="l00090"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#ae4be0eeb018749e335e196176ef3cd03">00090</a>  <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>     others;
+<a name="l00091"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a8b9a551066d9be2fbb6fcfca7653b7ea">00091</a>  NSLock*      nsLock;
+<a name="l00092"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#ae900d510905de30f33c272d79b7ecfe8">00092</a>  <a class="code" href="class_n_s_deleter.html">NSDeleter</a>*     deleter;
+<a name="l00093"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#ad17be42d50c079d0e45dc0a9b0c2f2ba">00093</a>  <span class="keywordtype">int</span>       preferredBufferSize;
 <a name="l00094"></a>00094 }
 <a name="l00095"></a>00095 
 <a name="l00101"></a>00101 - (id)initAudio;
@@ -107,12 +107,12 @@
 <a name="l00103"></a>00103 - (void)setFormat;
 <a name="l00104"></a>00104 - (int)setupRemoteIO;
 <a name="l00105"></a>00105 - (OSStatus)renderCallback:(UInt32)inNumberFrames 
-<a name="l00106"></a>00106            withActionFlags:(AudioUnitRenderActionFlags*)ioActionFlags
-<a name="l00107"></a>00107                atTimeStamp:(const AudioTimeStamp*)inTimeStamp 
-<a name="l00108"></a>00108                withBuffers:(AudioBufferList*)ioData;
+<a name="l00106"></a>00106      withActionFlags:(AudioUnitRenderActionFlags*)ioActionFlags
+<a name="l00107"></a>00107       atTimeStamp:(const AudioTimeStamp*)inTimeStamp 
+<a name="l00108"></a>00108       withBuffers:(AudioBufferList*)ioData;
 <a name="l00109"></a>00109 - (void)propertyCallback:(AudioSessionPropertyID)inID
-<a name="l00110"></a>00110                 withSize:(UInt32)inDataSize 
-<a name="l00111"></a>00111             withProperty:(const <span class="keywordtype">void</span> *)inPropertyValue;
+<a name="l00110"></a>00110     withSize:(UInt32)inDataSize 
+<a name="l00111"></a>00111    withProperty:(const <span class="keywordtype">void</span> *)inPropertyValue;
 <a name="l00112"></a>00112 - (void)fixAudioRouteIfSetToReceiver;
 <a name="l00113"></a>00113 - (void)interruptionCallback:(UInt32)inInterruption;
 <a name="l00114"></a>00114 
@@ -141,7 +141,7 @@
 <a name="l00144"></a>00144 <span class="preprocessor">#endif // _UGEN_ugen_iPhoneAUIOHost_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:29 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:58 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

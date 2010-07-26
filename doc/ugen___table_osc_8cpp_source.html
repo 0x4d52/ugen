@@ -75,171 +75,171 @@
 <a name="l00043"></a>00043 
 <a name="l00044"></a>00044 
 <a name="l00045"></a><a class="code" href="class_table_osc_u_gen_internal.html#ab353ca083ead8f3b58720f44cec2ed18">00045</a> <a class="code" href="class_table_osc_u_gen_internal.html#ab353ca083ead8f3b58720f44cec2ed18">TableOscUGenInternal::TableOscUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq, 
-<a name="l00046"></a>00046                                            <span class="keyword">const</span> <span class="keywordtype">float</span> initialPhase, 
-<a name="l00047"></a>00047                                            <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; table) <span class="keywordflow">throw</span>()
-<a name="l00048"></a>00048 :   <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(NumInputs),
-<a name="l00049"></a>00049     table_(table),
-<a name="l00050"></a>00050     wavetableSize(table_.size()),
-<a name="l00051"></a>00051     wavetable(table_.getData(0)),
-<a name="l00052"></a>00052     currentPhase((initialPhase &lt; 0.f) || (initialPhase &gt;= 1.f) ? 0.f : initialPhase * wavetableSize)
+<a name="l00046"></a>00046              <span class="keyword">const</span> <span class="keywordtype">float</span> initialPhase, 
+<a name="l00047"></a>00047              <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; table) <span class="keywordflow">throw</span>()
+<a name="l00048"></a>00048 : <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(NumInputs),
+<a name="l00049"></a>00049  table_(table),
+<a name="l00050"></a>00050  wavetableSize(table_.size()),
+<a name="l00051"></a>00051  wavetable(table_.getData(0)),
+<a name="l00052"></a>00052  currentPhase((initialPhase &lt; 0.f) || (initialPhase &gt;= 1.f) ? 0.f : initialPhase * wavetableSize)
 <a name="l00053"></a>00053 {
-<a name="l00054"></a>00054     <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(initialPhase &gt;= 0.f &amp;&amp; initialPhase &lt;= 1.f);
-<a name="l00055"></a>00055     
-<a name="l00056"></a>00056     inputs[Freq] = freq;
-<a name="l00057"></a>00057     initValue(lookupIndex(currentPhase));
+<a name="l00054"></a>00054  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(initialPhase &gt;= 0.f &amp;&amp; initialPhase &lt;= 1.f);
+<a name="l00055"></a>00055  
+<a name="l00056"></a>00056  inputs[Freq] = freq;
+<a name="l00057"></a>00057  initValue(lookupIndex(currentPhase));
 <a name="l00058"></a>00058 }
 <a name="l00059"></a>00059 
 <a name="l00060"></a><a class="code" href="class_table_osc_u_gen_internal.html#a7c555c1233f0100cfebf76848d47bcd7">00060</a> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_table_osc_u_gen_internal.html#a7c555c1233f0100cfebf76848d47bcd7">TableOscUGenInternal::getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
 <a name="l00061"></a>00061 {
-<a name="l00062"></a>00062     <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_table_osc_u_gen_internal.html">TableOscUGenInternal</a>(inputs[Freq].getChannel(channel),
-<a name="l00063"></a>00063                                     currentPhase,
-<a name="l00064"></a>00064                                     table_);
-<a name="l00065"></a>00065 }   
+<a name="l00062"></a>00062  <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_table_osc_u_gen_internal.html">TableOscUGenInternal</a>(inputs[Freq].getChannel(channel),
+<a name="l00063"></a>00063          currentPhase,
+<a name="l00064"></a>00064          table_);
+<a name="l00065"></a>00065 } 
 <a name="l00066"></a>00066 
 <a name="l00067"></a><a class="code" href="class_table_osc_u_gen_internal.html#a361806f78c766ce5e89493563ad71100">00067</a> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_table_osc_u_gen_internal.html#a361806f78c766ce5e89493563ad71100">TableOscUGenInternal::getKr</a>() throw() 
 <a name="l00068"></a>00068 { 
-<a name="l00069"></a>00069     <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_table_osc_u_gen_internal_k.html">TableOscUGenInternalK</a>(<a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_table_osc_u_gen_internal.html#a1f8b633e694dcd8db98f438daa106ae6ac068687b5f4ae6706ff981a4ff8dbd31">Freq</a>].<a class="code" href="namespaceugen.html#af17dc36462ee9d9f533a4ac4cb3e5c0d">kr</a>(), <a class="code" href="class_table_osc_u_gen_internal.html#a84f11af8afbf83a3713ba88e0e7f71df">currentPhase</a>, <a class="code" href="class_table_osc_u_gen_internal.html#ab878c55b992b698debb734fc25acc3e6">table_</a>); 
+<a name="l00069"></a>00069  <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_table_osc_u_gen_internal_k.html">TableOscUGenInternalK</a>(<a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_table_osc_u_gen_internal.html#a1f8b633e694dcd8db98f438daa106ae6ac068687b5f4ae6706ff981a4ff8dbd31">Freq</a>].<a class="code" href="namespaceugen.html#af17dc36462ee9d9f533a4ac4cb3e5c0d">kr</a>(), <a class="code" href="class_table_osc_u_gen_internal.html#a84f11af8afbf83a3713ba88e0e7f71df">currentPhase</a>, <a class="code" href="class_table_osc_u_gen_internal.html#ab878c55b992b698debb734fc25acc3e6">table_</a>); 
 <a name="l00070"></a>00070 }
 <a name="l00071"></a>00071 
 <a name="l00072"></a><a class="code" href="class_table_osc_u_gen_internal.html#aa68b8536bb5df1ed2f6f555333b277a4">00072</a> <span class="keywordtype">void</span> <a class="code" href="class_table_osc_u_gen_internal.html#aa68b8536bb5df1ed2f6f555333b277a4" title="Process a block of samples for this blockID and channel.">TableOscUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
-<a name="l00073"></a>00073 {   
-<a name="l00074"></a>00074     <span class="keywordtype">float</span> tableSizeOverSampleRate = <a class="code" href="class_u_gen.html#a2e6ab64a2e5ea263113ab4993603537e" title="Get the recirprocal of the current sample rate.">UGen::getReciprocalSampleRate</a>() * wavetableSize;
-<a name="l00075"></a>00075     <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
-<a name="l00076"></a>00076     <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
-<a name="l00077"></a>00077     <span class="keywordtype">float</span>* freqSamples = inputs[Freq].processBlock(shouldDelete, blockID, channel);
-<a name="l00078"></a>00078     <a class="code" href="ugen___standard_header_8h.html#a9a37472ac55b2fcd8760b2a0db82f035" title="Declares a local variable which is a copy of a member variable.">LOCAL_DECLARE</a>(<span class="keywordtype">float</span>, currentPhase);
-<a name="l00079"></a>00079     <a class="code" href="ugen___standard_header_8h.html#a9a37472ac55b2fcd8760b2a0db82f035" title="Declares a local variable which is a copy of a member variable.">LOCAL_DECLARE</a>(<span class="keywordtype">float</span>, wavetableSize);
-<a name="l00080"></a>00080     
-<a name="l00081"></a>00081     <span class="keywordflow">while</span>(numSamplesToProcess--)
-<a name="l00082"></a>00082     {
-<a name="l00083"></a>00083         *outputSamples++ = lookupIndex(currentPhase);
-<a name="l00084"></a>00084         currentPhase += *freqSamples++ * tableSizeOverSampleRate;
-<a name="l00085"></a>00085         
-<a name="l00086"></a>00086         <span class="keywordflow">if</span>(currentPhase &gt;= wavetableSize)   currentPhase -= wavetableSize;
-<a name="l00087"></a>00087         <span class="keywordflow">else</span> <span class="keywordflow">if</span>(currentPhase &lt; 0.f)         currentPhase += wavetableSize;
-<a name="l00088"></a>00088     }
-<a name="l00089"></a>00089     
-<a name="l00090"></a>00090     <a class="code" href="ugen___standard_header_8h.html#ac1a39f55409398450d8e54bf8200a332" title="Copys the value from a local variable back to its member variable.">LOCAL_COPY</a>(currentPhase);
+<a name="l00073"></a>00073 { 
+<a name="l00074"></a>00074  <span class="keywordtype">float</span> tableSizeOverSampleRate = <a class="code" href="class_u_gen.html#a2e6ab64a2e5ea263113ab4993603537e" title="Get the recirprocal of the current sample rate.">UGen::getReciprocalSampleRate</a>() * wavetableSize;
+<a name="l00075"></a>00075  <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
+<a name="l00076"></a>00076  <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
+<a name="l00077"></a>00077  <span class="keywordtype">float</span>* freqSamples = inputs[Freq].processBlock(shouldDelete, blockID, channel);
+<a name="l00078"></a>00078  <a class="code" href="ugen___standard_header_8h.html#a9a37472ac55b2fcd8760b2a0db82f035" title="Declares a local variable which is a copy of a member variable.">LOCAL_DECLARE</a>(<span class="keywordtype">float</span>, currentPhase);
+<a name="l00079"></a>00079  <a class="code" href="ugen___standard_header_8h.html#a9a37472ac55b2fcd8760b2a0db82f035" title="Declares a local variable which is a copy of a member variable.">LOCAL_DECLARE</a>(<span class="keywordtype">float</span>, wavetableSize);
+<a name="l00080"></a>00080  
+<a name="l00081"></a>00081  <span class="keywordflow">while</span>(numSamplesToProcess--)
+<a name="l00082"></a>00082  {
+<a name="l00083"></a>00083   *outputSamples++ = lookupIndex(currentPhase);
+<a name="l00084"></a>00084   currentPhase += *freqSamples++ * tableSizeOverSampleRate;
+<a name="l00085"></a>00085   
+<a name="l00086"></a>00086   <span class="keywordflow">if</span>(currentPhase &gt;= wavetableSize) currentPhase -= wavetableSize;
+<a name="l00087"></a>00087   <span class="keywordflow">else</span> <span class="keywordflow">if</span>(currentPhase &lt; 0.f)   currentPhase += wavetableSize;
+<a name="l00088"></a>00088  }
+<a name="l00089"></a>00089  
+<a name="l00090"></a>00090  <a class="code" href="ugen___standard_header_8h.html#ac1a39f55409398450d8e54bf8200a332" title="Copys the value from a local variable back to its member variable.">LOCAL_COPY</a>(currentPhase);
 <a name="l00091"></a>00091 }
 <a name="l00092"></a>00092 
 <a name="l00093"></a><a class="code" href="class_table_osc_u_gen_internal_k.html#a3e667e196df3cb0bbdf947cadf922ebe">00093</a> <a class="code" href="class_table_osc_u_gen_internal_k.html#a3e667e196df3cb0bbdf947cadf922ebe">TableOscUGenInternalK::TableOscUGenInternalK</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq, 
-<a name="l00094"></a>00094                                              <span class="keyword">const</span> <span class="keywordtype">float</span> initialPhase, 
-<a name="l00095"></a>00095                                              <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; table) <span class="keywordflow">throw</span>()
-<a name="l00096"></a>00096 :   <a class="code" href="class_table_osc_u_gen_internal.html">TableOscUGenInternal</a>(freq, initialPhase, table),
-<a name="l00097"></a>00097     value(lookupIndex(initialPhase))
+<a name="l00094"></a>00094             <span class="keyword">const</span> <span class="keywordtype">float</span> initialPhase, 
+<a name="l00095"></a>00095             <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; table) <span class="keywordflow">throw</span>()
+<a name="l00096"></a>00096 : <a class="code" href="class_table_osc_u_gen_internal.html">TableOscUGenInternal</a>(freq, initialPhase, table),
+<a name="l00097"></a>00097  value(lookupIndex(initialPhase))
 <a name="l00098"></a>00098 {
-<a name="l00099"></a>00099     rate = ControlRate;
+<a name="l00099"></a>00099  rate = ControlRate;
 <a name="l00100"></a>00100 }
 <a name="l00101"></a>00101 
 <a name="l00102"></a><a class="code" href="class_table_osc_u_gen_internal_k.html#a71eaa18516166a841f49abd6c5ca464c">00102</a> <span class="keywordtype">void</span> <a class="code" href="class_table_osc_u_gen_internal_k.html#a71eaa18516166a841f49abd6c5ca464c" title="Process a block of samples for this blockID and channel.">TableOscUGenInternalK::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
-<a name="l00103"></a>00103 {   
-<a name="l00104"></a>00104     <span class="keyword">const</span> <span class="keywordtype">int</span> krBlockSize = <a class="code" href="class_u_gen.html#a2c362eee1cdf755de0eed14727494235" title="Get the current control rate block size.">UGen::getControlRateBlockSize</a>();
-<a name="l00105"></a>00105     <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockPosition = blockID % krBlockSize;
-<a name="l00106"></a>00106     <span class="keywordtype">double</span> krBlockSizeOverSampleRate = <a class="code" href="class_u_gen.html#a2e6ab64a2e5ea263113ab4993603537e" title="Get the recirprocal of the current sample rate.">UGen::getReciprocalSampleRate</a>() * krBlockSize;
-<a name="l00107"></a>00107     <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
-<a name="l00108"></a>00108     <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
-<a name="l00109"></a>00109     <span class="keywordtype">float</span>* freqSamples = inputs[Freq].processBlock(shouldDelete, blockID, channel);
-<a name="l00110"></a>00110     
-<a name="l00111"></a>00111     <span class="keywordtype">int</span> numKrSamples = blockPosition % krBlockSize;
-<a name="l00112"></a>00112     
-<a name="l00113"></a>00113     <span class="keywordflow">while</span>(numSamplesToProcess &gt; 0)
-<a name="l00114"></a>00114     {
-<a name="l00115"></a>00115         <span class="keywordtype">float</span> nextValue = value;
-<a name="l00116"></a>00116         
-<a name="l00117"></a>00117         <span class="keywordflow">if</span>(numKrSamples == 0)           
-<a name="l00118"></a>00118         {
-<a name="l00119"></a>00119             nextValue = lookupIndex(currentPhase);
-<a name="l00120"></a>00120             
-<a name="l00121"></a>00121             currentPhase += *freqSamples * krBlockSizeOverSampleRate * wavetableSize;
-<a name="l00122"></a>00122             
-<a name="l00123"></a>00123             <span class="keywordflow">while</span>(currentPhase &gt;= wavetableSize)    currentPhase -= wavetableSize;
-<a name="l00124"></a>00124             <span class="keywordflow">while</span>(currentPhase &lt; 0.f)               currentPhase += wavetableSize;
-<a name="l00125"></a>00125         }
-<a name="l00126"></a>00126         
-<a name="l00127"></a>00127         numKrSamples = krBlockSize - numKrSamples;
-<a name="l00128"></a>00128         
-<a name="l00129"></a>00129         blockPosition       += numKrSamples;
-<a name="l00130"></a>00130         freqSamples         += numKrSamples;
-<a name="l00131"></a>00131         
-<a name="l00132"></a>00132         <span class="keywordflow">if</span>(nextValue == value)
-<a name="l00133"></a>00133         {
-<a name="l00134"></a>00134             <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
-<a name="l00135"></a>00135             {
-<a name="l00136"></a>00136                 *outputSamples++ = nextValue;
-<a name="l00137"></a>00137                 --numSamplesToProcess;
-<a name="l00138"></a>00138                 --numKrSamples;
-<a name="l00139"></a>00139             }
-<a name="l00140"></a>00140         }
-<a name="l00141"></a>00141         <span class="keywordflow">else</span>
-<a name="l00142"></a>00142         {
-<a name="l00143"></a>00143             <span class="keywordtype">float</span> valueSlope = (nextValue - value) * <a class="code" href="class_u_gen.html#aa74b2f078838a887bcb29c95ea76b82c" title="Get the current control rate slope factor i.e., 1.0 / (control rate block size).">UGen::getControlSlopeFactor</a>();
-<a name="l00144"></a>00144             
-<a name="l00145"></a>00145             <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
-<a name="l00146"></a>00146             {
-<a name="l00147"></a>00147                 *outputSamples++ = value;
-<a name="l00148"></a>00148                 value += valueSlope;
-<a name="l00149"></a>00149                 --numSamplesToProcess;
-<a name="l00150"></a>00150                 --numKrSamples;
-<a name="l00151"></a>00151             }
-<a name="l00152"></a>00152             
-<a name="l00153"></a>00153             value = nextValue;
-<a name="l00154"></a>00154         }
-<a name="l00155"></a>00155     }
+<a name="l00103"></a>00103 { 
+<a name="l00104"></a>00104  <span class="keyword">const</span> <span class="keywordtype">int</span> krBlockSize = <a class="code" href="class_u_gen.html#a2c362eee1cdf755de0eed14727494235" title="Get the current control rate block size.">UGen::getControlRateBlockSize</a>();
+<a name="l00105"></a>00105  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockPosition = blockID % krBlockSize;
+<a name="l00106"></a>00106  <span class="keywordtype">double</span> krBlockSizeOverSampleRate = <a class="code" href="class_u_gen.html#a2e6ab64a2e5ea263113ab4993603537e" title="Get the recirprocal of the current sample rate.">UGen::getReciprocalSampleRate</a>() * krBlockSize;
+<a name="l00107"></a>00107  <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
+<a name="l00108"></a>00108  <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
+<a name="l00109"></a>00109  <span class="keywordtype">float</span>* freqSamples = inputs[Freq].processBlock(shouldDelete, blockID, channel);
+<a name="l00110"></a>00110  
+<a name="l00111"></a>00111  <span class="keywordtype">int</span> numKrSamples = blockPosition % krBlockSize;
+<a name="l00112"></a>00112  
+<a name="l00113"></a>00113  <span class="keywordflow">while</span>(numSamplesToProcess &gt; 0)
+<a name="l00114"></a>00114  {
+<a name="l00115"></a>00115   <span class="keywordtype">float</span> nextValue = value;
+<a name="l00116"></a>00116   
+<a name="l00117"></a>00117   <span class="keywordflow">if</span>(numKrSamples == 0)   
+<a name="l00118"></a>00118   {
+<a name="l00119"></a>00119    nextValue = lookupIndex(currentPhase);
+<a name="l00120"></a>00120    
+<a name="l00121"></a>00121    currentPhase += *freqSamples * krBlockSizeOverSampleRate * wavetableSize;
+<a name="l00122"></a>00122    
+<a name="l00123"></a>00123    <span class="keywordflow">while</span>(currentPhase &gt;= wavetableSize) currentPhase -= wavetableSize;
+<a name="l00124"></a>00124    <span class="keywordflow">while</span>(currentPhase &lt; 0.f)    currentPhase += wavetableSize;
+<a name="l00125"></a>00125   }
+<a name="l00126"></a>00126   
+<a name="l00127"></a>00127   numKrSamples = krBlockSize - numKrSamples;
+<a name="l00128"></a>00128   
+<a name="l00129"></a>00129   blockPosition  += numKrSamples;
+<a name="l00130"></a>00130   freqSamples   += numKrSamples;
+<a name="l00131"></a>00131   
+<a name="l00132"></a>00132   <span class="keywordflow">if</span>(nextValue == value)
+<a name="l00133"></a>00133   {
+<a name="l00134"></a>00134    <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
+<a name="l00135"></a>00135    {
+<a name="l00136"></a>00136     *outputSamples++ = nextValue;
+<a name="l00137"></a>00137     --numSamplesToProcess;
+<a name="l00138"></a>00138     --numKrSamples;
+<a name="l00139"></a>00139    }
+<a name="l00140"></a>00140   }
+<a name="l00141"></a>00141   <span class="keywordflow">else</span>
+<a name="l00142"></a>00142   {
+<a name="l00143"></a>00143    <span class="keywordtype">float</span> valueSlope = (nextValue - value) * <a class="code" href="class_u_gen.html#aa74b2f078838a887bcb29c95ea76b82c" title="Get the current control rate slope factor i.e., 1.0 / (control rate block size).">UGen::getControlSlopeFactor</a>();
+<a name="l00144"></a>00144    
+<a name="l00145"></a>00145    <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
+<a name="l00146"></a>00146    {
+<a name="l00147"></a>00147     *outputSamples++ = value;
+<a name="l00148"></a>00148     value += valueSlope;
+<a name="l00149"></a>00149     --numSamplesToProcess;
+<a name="l00150"></a>00150     --numKrSamples;
+<a name="l00151"></a>00151    }
+<a name="l00152"></a>00152    
+<a name="l00153"></a>00153    value = nextValue;
+<a name="l00154"></a>00154   }
+<a name="l00155"></a>00155  }
 <a name="l00156"></a>00156 }
 <a name="l00157"></a>00157 
 <a name="l00158"></a>00158 
 <a name="l00159"></a><a class="code" href="class_table_osc.html#ab11951477934c1bf376332b167b04b8b">00159</a> <a class="code" href="class_table_osc.html#ab11951477934c1bf376332b167b04b8b" title="Base MulAdd TableOsc Constuctor (without &amp;quot;mul&amp;quot; or &amp;quot;add&amp;quot;), use the AR() and KR() v...">TableOsc::TableOsc</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; table, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; initialPhase) <span class="keywordflow">throw</span>()
-<a name="l00160"></a>00160 {   
-<a name="l00161"></a>00161     <span class="comment">// could check here that the table is padded appropriately and use a less efficient version if not</span>
-<a name="l00162"></a>00162     
-<a name="l00163"></a>00163     <span class="keywordtype">int</span> numChannels = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(freq.getNumChannels(), initialPhase.size());
-<a name="l00164"></a>00164     
-<a name="l00165"></a>00165     initInternal(numChannels);
-<a name="l00166"></a>00166     
-<a name="l00167"></a>00167     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++)
-<a name="l00168"></a>00168     {
-<a name="l00169"></a>00169         internalUGens[i] = <span class="keyword">new</span> <a class="code" href="class_table_osc_u_gen_internal.html">TableOscUGenInternal</a>(freq, initialPhase.wrapAt(i), table);
-<a name="l00170"></a>00170     }
+<a name="l00160"></a>00160 { 
+<a name="l00161"></a>00161  <span class="comment">// could check here that the table is padded appropriately and use a less efficient version if not</span>
+<a name="l00162"></a>00162  
+<a name="l00163"></a>00163  <span class="keywordtype">int</span> numChannels = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(freq.getNumChannels(), initialPhase.size());
+<a name="l00164"></a>00164  
+<a name="l00165"></a>00165  initInternal(numChannels);
+<a name="l00166"></a>00166  
+<a name="l00167"></a>00167  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++)
+<a name="l00168"></a>00168  {
+<a name="l00169"></a>00169   internalUGens[i] = <span class="keyword">new</span> <a class="code" href="class_table_osc_u_gen_internal.html">TableOscUGenInternal</a>(freq, initialPhase.wrapAt(i), table);
+<a name="l00170"></a>00170  }
 <a name="l00171"></a>00171 }
 <a name="l00172"></a>00172 
 <a name="l00173"></a><a class="code" href="class_harmonic_osc.html#a6db75cf88c47f1aee8ef317bf26d523f">00173</a> <a class="code" href="class_harmonic_osc.html#a6db75cf88c47f1aee8ef317bf26d523f" title="Base MulAdd HarmonicOsc Constuctor (without &amp;quot;mul&amp;quot; or &amp;quot;add&amp;quot;), use the AR() and KR(...">HarmonicOsc::HarmonicOsc</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; harmonicWeights, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; initialPhase) <span class="keywordflow">throw</span>()
-<a name="l00174"></a>00174 {   
-<a name="l00175"></a>00175     <span class="keywordtype">int</span> numChannels = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(freq.getNumChannels(), initialPhase.size());
-<a name="l00176"></a>00176     
-<a name="l00177"></a>00177     initInternal(numChannels);
-<a name="l00178"></a>00178     
-<a name="l00179"></a>00179     <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> table(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(8193, 1, <span class="keyword">true</span>));
-<a name="l00180"></a>00180     
-<a name="l00181"></a>00181     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> harmonic = 1; harmonic &lt;= harmonicWeights.size(); harmonic++)
-<a name="l00182"></a>00182     {
-<a name="l00183"></a>00183         <span class="keywordtype">float</span> amp = harmonicWeights.getSampleUnchecked(0, harmonic-1);
-<a name="l00184"></a>00184         table += <a class="code" href="class_buffer.html#a571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(8193, 0.0, harmonic * <a class="code" href="ugen___constants_8h.html#a41456563667051ed589712c38e7427e6">twoPi</a>).<a class="code" href="class_buffer.html#a7e5f6fb28836e76ee6bb4605ac2cc63d" title="Unary sine.">sin</a>() * amp;
-<a name="l00185"></a>00185     }
-<a name="l00186"></a>00186     
-<a name="l00187"></a>00187     table = table.<a class="code" href="class_buffer.html#aec8ce25f140ed02d4fd9c4a87b34193a" title="Reduce the apparent size of the Buffer without deallocating the extra memory.">shrinkSize</a>();
-<a name="l00188"></a>00188     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++)
-<a name="l00189"></a>00189     {
-<a name="l00190"></a>00190         internalUGens[i] = <span class="keyword">new</span> <a class="code" href="class_table_osc_u_gen_internal.html">TableOscUGenInternal</a>(freq, initialPhase.wrapAt(i), table);
-<a name="l00191"></a>00191     }
+<a name="l00174"></a>00174 { 
+<a name="l00175"></a>00175  <span class="keywordtype">int</span> numChannels = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(freq.getNumChannels(), initialPhase.size());
+<a name="l00176"></a>00176  
+<a name="l00177"></a>00177  initInternal(numChannels);
+<a name="l00178"></a>00178  
+<a name="l00179"></a>00179  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> table(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(8193, 1, <span class="keyword">true</span>));
+<a name="l00180"></a>00180  
+<a name="l00181"></a>00181  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> harmonic = 1; harmonic &lt;= harmonicWeights.size(); harmonic++)
+<a name="l00182"></a>00182  {
+<a name="l00183"></a>00183   <span class="keywordtype">float</span> amp = harmonicWeights.getSampleUnchecked(0, harmonic-1);
+<a name="l00184"></a>00184   table += <a class="code" href="class_buffer.html#a571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(8193, 0.0, harmonic * <a class="code" href="ugen___constants_8h.html#a41456563667051ed589712c38e7427e6">twoPi</a>).<a class="code" href="class_buffer.html#a7e5f6fb28836e76ee6bb4605ac2cc63d" title="Unary sine.">sin</a>() * amp;
+<a name="l00185"></a>00185  }
+<a name="l00186"></a>00186  
+<a name="l00187"></a>00187  table = table.<a class="code" href="class_buffer.html#aec8ce25f140ed02d4fd9c4a87b34193a" title="Reduce the apparent size of the Buffer without deallocating the extra memory.">shrinkSize</a>();
+<a name="l00188"></a>00188  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++)
+<a name="l00189"></a>00189  {
+<a name="l00190"></a>00190   internalUGens[i] = <span class="keyword">new</span> <a class="code" href="class_table_osc_u_gen_internal.html">TableOscUGenInternal</a>(freq, initialPhase.wrapAt(i), table);
+<a name="l00191"></a>00191  }
 <a name="l00192"></a>00192 }
 <a name="l00193"></a>00193 
 <a name="l00194"></a><a class="code" href="class_sin_osc.html#a411d027a483193a2aa8cdbb1fed8f13b">00194</a> <a class="code" href="class_sin_osc.html#a411d027a483193a2aa8cdbb1fed8f13b" title="Base MulAdd SinOsc Constuctor (without &amp;quot;mul&amp;quot; or &amp;quot;add&amp;quot;), use the AR() and KR() ver...">SinOsc::SinOsc</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; initialPhase) <span class="keywordflow">throw</span>()
-<a name="l00195"></a>00195 {   
-<a name="l00196"></a>00196     <span class="keywordtype">int</span> numChannels = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(freq.getNumChannels(), initialPhase.size());
-<a name="l00197"></a>00197     
-<a name="l00198"></a>00198     initInternal(numChannels);
-<a name="l00199"></a>00199         
-<a name="l00200"></a>00200     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++)
-<a name="l00201"></a>00201     {
-<a name="l00202"></a>00202         internalUGens[i] = <span class="keyword">new</span> <a class="code" href="class_table_osc_u_gen_internal.html">TableOscUGenInternal</a>(freq, initialPhase.wrapAt(i), <a class="code" href="class_buffer.html#a2b97468cb8247dfef12757501dd5cd67">Buffer::getTableSine8192</a>());
-<a name="l00203"></a>00203     }
+<a name="l00195"></a>00195 { 
+<a name="l00196"></a>00196  <span class="keywordtype">int</span> numChannels = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(freq.getNumChannels(), initialPhase.size());
+<a name="l00197"></a>00197  
+<a name="l00198"></a>00198  initInternal(numChannels);
+<a name="l00199"></a>00199   
+<a name="l00200"></a>00200  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++)
+<a name="l00201"></a>00201  {
+<a name="l00202"></a>00202   internalUGens[i] = <span class="keyword">new</span> <a class="code" href="class_table_osc_u_gen_internal.html">TableOscUGenInternal</a>(freq, initialPhase.wrapAt(i), <a class="code" href="class_buffer.html#a2b97468cb8247dfef12757501dd5cd67">Buffer::getTableSine8192</a>());
+<a name="l00203"></a>00203  }
 <a name="l00204"></a>00204 }
 <a name="l00205"></a>00205 
 <a name="l00206"></a>00206 
 <a name="l00207"></a>00207 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:30 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:58 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

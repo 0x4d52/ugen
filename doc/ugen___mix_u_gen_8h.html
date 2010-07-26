@@ -81,12 +81,12 @@ Typedefs</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment">You must implement <span class="keyword">this</span> <span class="keyword">virtual</span> function in your subclass.                      \
-                                                    The parent <a class="code" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill</a> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> calls <span class="keyword">this</span> function multiple times to                   \
-                                                    create an array of <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> instances to mix.                                       \
-                                                    @param eventCount   The index of the <span class="keyword">event</span> instance starting at 0 <span class="keywordflow">for</span>           \
-                                                                        the first <span class="keyword">event</span>.                                            \
-                                                    @<span class="keywordflow">return</span>             The <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> graph <span class="keywordflow">for</span> <span class="keyword">this</span> <span class="keyword">event</span> instance.
+<b>Value:</b><div class="fragment"><pre class="fragment">You must implement <span class="keyword">this</span> <span class="keyword">virtual</span> function in your subclass.      \
+             The parent <a class="code" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill</a> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> calls <span class="keyword">this</span> function multiple times to     \
+             create an array of <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> instances to mix.          \
+             @param eventCount The index of the <span class="keyword">event</span> instance starting at 0 <span class="keywordflow">for</span>   \
+                  the first <span class="keyword">event</span>.           \
+             @<span class="keywordflow">return</span>    The <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> graph <span class="keywordflow">for</span> <span class="keyword">this</span> <span class="keyword">event</span> instance.
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___mix_u_gen_8h_source.html#l00218">218</a> of file <a class="el" href="ugen___mix_u_gen_8h_source.html">ugen_MixUGen.h</a>.</p>
 
@@ -102,14 +102,14 @@ Typedefs</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><a class="code" href="ugen___u_gen_8h.html#ad0686f0d95658a345c8232f724d49de3">EVENT_TEMPLATE_DOC</a>(<a class="code" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill</a>)                                                                     \
-                                <a class="code" href="ugen___u_gen_8h.html#a79a263dffd070caca24c4474361eca4c">EVENT_UGEN_OWNEREVENT_DOC</a>                                                                       \
-                                @param  size            The number of events to generate and mix.                               \
-                                <a class="code" href="ugen___u_gen_8h.html#a99ca8a58c5e07bb2ae1405ac26c08742">EVENT_UGEN_NUMCHANNELS_DOC</a>(<a class="code" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill</a>)                                                             \
-                                @param  shouldAllowAutoDelete   If <span class="keyword">true</span> <span class="keyword">this</span> behaves like most other <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> classes               \
-                                                                i.e., it may be deleted by a DoneAction (e.g., an envelope      \
-                                                                ending). If <span class="keyword">false</span> <span class="keyword">this</span> protects <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> instances further up       \
-                                                                the chain (and itself) from being deleted by DoneActions.
+<b>Value:</b><div class="fragment"><pre class="fragment"><a class="code" href="ugen___u_gen_8h.html#ad0686f0d95658a345c8232f724d49de3">EVENT_TEMPLATE_DOC</a>(<a class="code" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill</a>)                  \
+        <a class="code" href="ugen___u_gen_8h.html#a79a263dffd070caca24c4474361eca4c">EVENT_UGEN_OWNEREVENT_DOC</a>                  \
+        @param size   The number of events to generate and mix.        \
+        <a class="code" href="ugen___u_gen_8h.html#a99ca8a58c5e07bb2ae1405ac26c08742">EVENT_UGEN_NUMCHANNELS_DOC</a>(<a class="code" href="class_mix_fill.html" title="Fill a UGen array using an event and mix it down.">MixFill</a>)                \
+        @param shouldAllowAutoDelete If <span class="keyword">true</span> <span class="keyword">this</span> behaves like most other <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> classes    \
+                i.e., it may be deleted by a DoneAction (e.g., an envelope  \
+                ending). If <span class="keyword">false</span> <span class="keyword">this</span> protects <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> instances further up  \
+                the chain (and itself) from being deleted by DoneActions.
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___mix_u_gen_8h_source.html#l00327">327</a> of file <a class="el" href="ugen___mix_u_gen_8h_source.html">ugen_MixUGen.h</a>.</p>
 
@@ -140,10 +140,10 @@ Typedefs</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment">MixFillEventType <span class="keyword">const</span>&amp; e,          \
-                                                <span class="keyword">const</span> <span class="keywordtype">int</span> size = 4,                 \
-                                                <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels = 1,          \
-                                                <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>
+<b>Value:</b><div class="fragment"><pre class="fragment">MixFillEventType <span class="keyword">const</span>&amp; e,   \
+            <span class="keyword">const</span> <span class="keywordtype">int</span> size = 4,     \
+            <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels = 1,   \
+            <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___mix_u_gen_8h_source.html#l00321">321</a> of file <a class="el" href="ugen___mix_u_gen_8h_source.html">ugen_MixUGen.h</a>.</p>
 
@@ -174,10 +174,10 @@ Typedefs</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">const</span> <span class="keywordtype">int</span> size = 4,                 \
-                                                <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels = 1,          \
-                                                <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>,  \
-                                                OwnerType* o = 0
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">const</span> <span class="keywordtype">int</span> size = 4,     \
+            <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels = 1,   \
+            <span class="keywordtype">bool</span> shouldAllowAutoDelete = <span class="keyword">true</span>, \
+            OwnerType* o = 0
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___mix_u_gen_8h_source.html#l00316">316</a> of file <a class="el" href="ugen___mix_u_gen_8h_source.html">ugen_MixUGen.h</a>.</p>
 
@@ -200,7 +200,7 @@ Typedefs</h2></td></tr>
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:30 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:59 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

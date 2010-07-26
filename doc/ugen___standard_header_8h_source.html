@@ -103,12 +103,12 @@
 <a name="l00072"></a>00072 <span class="preprocessor"></span>
 <a name="l00073"></a>00073 <span class="preprocessor">#if UGEN_LOCAL_COPIES</span>
 <a name="l00074"></a>00074 <span class="preprocessor"></span>
-<a name="l00075"></a><a class="code" href="ugen___standard_header_8h.html#a9a37472ac55b2fcd8760b2a0db82f035">00075</a> <span class="preprocessor">    #define LOCAL_DECLARE(Type, Name)       Type Name = this-&gt;Name  </span>
+<a name="l00075"></a><a class="code" href="ugen___standard_header_8h.html#a9a37472ac55b2fcd8760b2a0db82f035">00075</a> <span class="preprocessor"> #define LOCAL_DECLARE(Type, Name)  Type Name = this-&gt;Name </span>
 <a name="l00076"></a>00076 <span class="preprocessor"></span>
-<a name="l00077"></a><a class="code" href="ugen___standard_header_8h.html#ac1a39f55409398450d8e54bf8200a332">00077</a> <span class="preprocessor">    #define LOCAL_COPY(Name)                this-&gt;Name = Name</span>
+<a name="l00077"></a><a class="code" href="ugen___standard_header_8h.html#ac1a39f55409398450d8e54bf8200a332">00077</a> <span class="preprocessor"> #define LOCAL_COPY(Name)    this-&gt;Name = Name</span>
 <a name="l00078"></a>00078 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00079"></a>00079 <span class="preprocessor"></span><span class="preprocessor">    #define LOCAL_DECLARE(Type, Name)</span>
-<a name="l00080"></a>00080 <span class="preprocessor"></span><span class="preprocessor">    #define LOCAL_COPY(Name)</span>
+<a name="l00079"></a>00079 <span class="preprocessor"></span><span class="preprocessor"> #define LOCAL_DECLARE(Type, Name)</span>
+<a name="l00080"></a>00080 <span class="preprocessor"></span><span class="preprocessor"> #define LOCAL_COPY(Name)</span>
 <a name="l00081"></a>00081 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
 <a name="l00082"></a>00082 <span class="preprocessor"></span>
 <a name="l00083"></a>00083 <span class="preprocessor">#ifdef UGEN_IO_CLIP</span>
@@ -130,8 +130,8 @@
 <a name="l00099"></a>00099 <span class="comment">//#endif</span>
 <a name="l00100"></a>00100 
 <a name="l00101"></a>00101 <span class="comment">//#if !defined(WIN32) &amp;&amp; !defined(UGEN_IPHONE)</span>
-<a name="l00102"></a>00102 <span class="comment">//  #include &lt;Accelerate/Accelerate.h&gt;</span>
-<a name="l00103"></a>00103 <span class="comment">//  #include &lt;CoreServices/CoreServices.h&gt;</span>
+<a name="l00102"></a>00102 <span class="comment">// #include &lt;Accelerate/Accelerate.h&gt;</span>
+<a name="l00103"></a>00103 <span class="comment">// #include &lt;CoreServices/CoreServices.h&gt;</span>
 <a name="l00104"></a>00104 <span class="comment">//#endif</span>
 <a name="l00105"></a>00105 
 <a name="l00106"></a>00106 
@@ -139,7 +139,7 @@
 <a name="l00108"></a>00108 <span class="comment">// debug: define _DEBUG=1 DEBUG=1</span>
 <a name="l00109"></a>00109 
 <a name="l00110"></a>00110 <span class="preprocessor">#if !defined(NDEBUG) || defined(_DEBUG)</span>
-<a name="l00111"></a><a class="code" href="ugen___standard_header_8h.html#a079dd7061cedc74b658c52673ec7fff3">00111</a> <span class="preprocessor"></span><span class="preprocessor">    #define UGEN_DEBUG 1</span>
+<a name="l00111"></a><a class="code" href="ugen___standard_header_8h.html#a079dd7061cedc74b658c52673ec7fff3">00111</a> <span class="preprocessor"></span><span class="preprocessor"> #define UGEN_DEBUG 1</span>
 <a name="l00112"></a>00112 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
 <a name="l00113"></a>00113 <span class="preprocessor"></span>
 <a name="l00114"></a>00114 
@@ -151,80 +151,80 @@
 <a name="l00120"></a>00120 <span class="comment">// UGEN_JUCE should be defined in the target/project&#39;s preprocessor macros or</span>
 <a name="l00121"></a>00121 <span class="comment">// replace &quot;#ifdef UGEN_JUCE&quot; with &quot;#if 1&quot; to force dependency on Juce</span>
 <a name="l00122"></a>00122 <span class="preprocessor">#ifdef UGEN_JUCE</span>
-<a name="l00123"></a>00123 <span class="preprocessor"></span>    <span class="comment">/* </span>
-<a name="l00124"></a>00124 <span class="comment">     If you get an error here make sure the directory which contains &#39;juce&#39; is</span>
-<a name="l00125"></a>00125 <span class="comment">     in the search path. In the Mac project this directory should be assigned</span>
-<a name="l00126"></a>00126 <span class="comment">     to JUCE_SOURCE in the Xcode -&gt; Preferences.. -&gt; Source Trees (just make</span>
-<a name="l00127"></a>00127 <span class="comment">     &quot;JUCE_SOURCE&quot; the setting name and display name).</span>
-<a name="l00128"></a>00128 <span class="comment">     */</span>
-<a name="l00129"></a>00129 <span class="preprocessor">    #include &lt;juce/juce.h&gt;</span>
+<a name="l00123"></a>00123 <span class="preprocessor"></span> <span class="comment">/* </span>
+<a name="l00124"></a>00124 <span class="comment">  If you get an error here make sure the directory which contains &#39;juce&#39; is</span>
+<a name="l00125"></a>00125 <span class="comment">  in the search path. In the Mac project this directory should be assigned</span>
+<a name="l00126"></a>00126 <span class="comment">  to JUCE_SOURCE in the Xcode -&gt; Preferences.. -&gt; Source Trees (just make</span>
+<a name="l00127"></a>00127 <span class="comment">  &quot;JUCE_SOURCE&quot; the setting name and display name).</span>
+<a name="l00128"></a>00128 <span class="comment">  */</span>
+<a name="l00129"></a>00129 <span class="preprocessor"> #include &lt;juce/juce.h&gt;</span>
 <a name="l00130"></a>00130 <span class="preprocessor">#else</span>
-<a name="l00131"></a>00131 <span class="preprocessor"></span><span class="preprocessor">    #include &lt;cstdlib&gt;</span>
-<a name="l00132"></a>00132 <span class="preprocessor">    #include &lt;cstdarg&gt;</span>
-<a name="l00133"></a>00133 <span class="preprocessor">    #include &lt;climits&gt;</span>
-<a name="l00134"></a>00134 <span class="preprocessor">    #include &lt;cmath&gt;</span>
-<a name="l00135"></a>00135 <span class="preprocessor">    #include &lt;cwchar&gt;</span>
-<a name="l00136"></a>00136 <span class="preprocessor">    #include &lt;stdexcept&gt;</span>
-<a name="l00137"></a>00137 <span class="preprocessor">    #include &lt;typeinfo&gt;</span>
-<a name="l00138"></a>00138 <span class="preprocessor">    #include &lt;cstring&gt;</span>
-<a name="l00139"></a>00139 <span class="preprocessor">    #include &lt;cstdio&gt;</span>
+<a name="l00131"></a>00131 <span class="preprocessor"></span><span class="preprocessor"> #include &lt;cstdlib&gt;</span>
+<a name="l00132"></a>00132 <span class="preprocessor"> #include &lt;cstdarg&gt;</span>
+<a name="l00133"></a>00133 <span class="preprocessor"> #include &lt;climits&gt;</span>
+<a name="l00134"></a>00134 <span class="preprocessor"> #include &lt;cmath&gt;</span>
+<a name="l00135"></a>00135 <span class="preprocessor"> #include &lt;cwchar&gt;</span>
+<a name="l00136"></a>00136 <span class="preprocessor"> #include &lt;stdexcept&gt;</span>
+<a name="l00137"></a>00137 <span class="preprocessor"> #include &lt;typeinfo&gt;</span>
+<a name="l00138"></a>00138 <span class="preprocessor"> #include &lt;cstring&gt;</span>
+<a name="l00139"></a>00139 <span class="preprocessor"> #include &lt;cstdio&gt;</span>
 <a name="l00140"></a>00140 
-<a name="l00141"></a>00141     
-<a name="l00142"></a>00142     <span class="comment">// in case some of these macros are left in the code..</span>
-<a name="l00143"></a>00143 <span class="preprocessor">    #ifndef T</span>
-<a name="l00144"></a><a class="code" href="ugen___standard_header_8h.html#a5ef253115820acf7d27f3c5c3b02a0f0">00144</a> <span class="preprocessor"></span><span class="preprocessor">        #define T(a)</span>
-<a name="l00145"></a>00145 <span class="preprocessor"></span><span class="preprocessor">    #endif</span>
-<a name="l00146"></a>00146 <span class="preprocessor"></span><span class="preprocessor">    #ifndef DBG_PRINTF</span>
-<a name="l00147"></a><a class="code" href="ugen___standard_header_8h.html#a54b22caff31d857d69548825cabec184">00147</a> <span class="preprocessor"></span><span class="preprocessor">        #define DBG_PRINTF(a)</span>
-<a name="l00148"></a>00148 <span class="preprocessor"></span><span class="preprocessor">    #endif</span>
+<a name="l00141"></a>00141  
+<a name="l00142"></a>00142  <span class="comment">// in case some of these macros are left in the code..</span>
+<a name="l00143"></a>00143 <span class="preprocessor"> #ifndef T</span>
+<a name="l00144"></a><a class="code" href="ugen___standard_header_8h.html#a5ef253115820acf7d27f3c5c3b02a0f0">00144</a> <span class="preprocessor"></span><span class="preprocessor">  #define T(a)</span>
+<a name="l00145"></a>00145 <span class="preprocessor"></span><span class="preprocessor"> #endif</span>
+<a name="l00146"></a>00146 <span class="preprocessor"></span><span class="preprocessor"> #ifndef DBG_PRINTF</span>
+<a name="l00147"></a><a class="code" href="ugen___standard_header_8h.html#a54b22caff31d857d69548825cabec184">00147</a> <span class="preprocessor"></span><span class="preprocessor">  #define DBG_PRINTF(a)</span>
+<a name="l00148"></a>00148 <span class="preprocessor"></span><span class="preprocessor"> #endif</span>
 <a name="l00149"></a>00149 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
 <a name="l00150"></a>00150 <span class="preprocessor"></span>
 <a name="l00151"></a>00151 <span class="preprocessor">#include &lt;iostream&gt;</span>
 <a name="l00152"></a>00152 
 <a name="l00153"></a>00153 <span class="preprocessor">#if (defined (_WIN32) || defined (_WIN64))</span>
-<a name="l00154"></a>00154 <span class="preprocessor"></span><span class="preprocessor">    #define snprintf _snprintf</span>
-<a name="l00155"></a>00155 <span class="preprocessor"></span><span class="preprocessor">    #pragma warning(disable : 4244) // loss of precision</span>
+<a name="l00154"></a>00154 <span class="preprocessor"></span><span class="preprocessor"> #define snprintf _snprintf</span>
+<a name="l00155"></a>00155 <span class="preprocessor"></span><span class="preprocessor"> #pragma warning(disable : 4244) // loss of precision</span>
 <a name="l00156"></a>00156 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
 <a name="l00157"></a>00157 <span class="preprocessor"></span>
 <a name="l00158"></a>00158 
 <a name="l00159"></a>00159 <span class="preprocessor">#ifdef UGEN_IPHONE</span>
-<a name="l00160"></a>00160 <span class="preprocessor"></span><span class="preprocessor">    #ifdef __OBJC__</span>
-<a name="l00161"></a>00161 <span class="preprocessor"></span><span class="preprocessor">        #import &lt;Foundation/Foundation.h&gt;</span>
-<a name="l00162"></a>00162 <span class="preprocessor">        #import &lt;UIKit/UIKit.h&gt;</span>
-<a name="l00163"></a>00163 <span class="preprocessor">    #endif</span>
+<a name="l00160"></a>00160 <span class="preprocessor"></span><span class="preprocessor"> #ifdef __OBJC__</span>
+<a name="l00161"></a>00161 <span class="preprocessor"></span><span class="preprocessor">  #import &lt;Foundation/Foundation.h&gt;</span>
+<a name="l00162"></a>00162 <span class="preprocessor">  #import &lt;UIKit/UIKit.h&gt;</span>
+<a name="l00163"></a>00163 <span class="preprocessor"> #endif</span>
 <a name="l00164"></a>00164 <span class="preprocessor"></span>
-<a name="l00165"></a>00165 <span class="preprocessor">    #ifndef UISlider</span>
-<a name="l00166"></a>00166 <span class="preprocessor"></span>        <span class="keyword">class </span>UISlider;
-<a name="l00167"></a>00167 <span class="preprocessor">    #endif</span>
+<a name="l00165"></a>00165 <span class="preprocessor"> #ifndef UISlider</span>
+<a name="l00166"></a>00166 <span class="preprocessor"></span>  <span class="keyword">class </span>UISlider;
+<a name="l00167"></a>00167 <span class="preprocessor"> #endif</span>
 <a name="l00168"></a>00168 <span class="preprocessor"></span>
-<a name="l00169"></a>00169 <span class="preprocessor">    #ifndef UIButton</span>
-<a name="l00170"></a>00170 <span class="preprocessor"></span>        <span class="keyword">class </span>UIButton;
-<a name="l00171"></a>00171 <span class="preprocessor">    #endif</span>
+<a name="l00169"></a>00169 <span class="preprocessor"> #ifndef UIButton</span>
+<a name="l00170"></a>00170 <span class="preprocessor"></span>  <span class="keyword">class </span>UIButton;
+<a name="l00171"></a>00171 <span class="preprocessor"> #endif</span>
 <a name="l00172"></a>00172 <span class="preprocessor"></span>
-<a name="l00173"></a>00173     <span class="comment">//class UIScopeView;</span>
-<a name="l00174"></a>00174     
-<a name="l00175"></a>00175 <span class="preprocessor">    #include &lt;sys/sysctl.h&gt;</span>
-<a name="l00176"></a>00176 <span class="preprocessor">    #include &lt;AudioToolbox/AudioQueue.h&gt;</span>
-<a name="l00177"></a>00177 <span class="preprocessor">    #include &lt;AudioToolbox/AudioServices.h&gt;</span>
-<a name="l00178"></a>00178 <span class="preprocessor">    #include &lt;AudioToolbox/AudioToolbox.h&gt;</span>
-<a name="l00179"></a>00179 <span class="preprocessor">    #include &lt;AudioUnit/AudioUnit.h&gt;</span>
-<a name="l00180"></a>00180     
-<a name="l00181"></a>00181 <span class="preprocessor">    #include &lt;CoreGraphics/CGColor.h&gt;</span>
+<a name="l00173"></a>00173  <span class="comment">//class UIScopeView;</span>
+<a name="l00174"></a>00174  
+<a name="l00175"></a>00175 <span class="preprocessor"> #include &lt;sys/sysctl.h&gt;</span>
+<a name="l00176"></a>00176 <span class="preprocessor"> #include &lt;AudioToolbox/AudioQueue.h&gt;</span>
+<a name="l00177"></a>00177 <span class="preprocessor"> #include &lt;AudioToolbox/AudioServices.h&gt;</span>
+<a name="l00178"></a>00178 <span class="preprocessor"> #include &lt;AudioToolbox/AudioToolbox.h&gt;</span>
+<a name="l00179"></a>00179 <span class="preprocessor"> #include &lt;AudioUnit/AudioUnit.h&gt;</span>
+<a name="l00180"></a>00180  
+<a name="l00181"></a>00181 <span class="preprocessor"> #include &lt;CoreGraphics/CGColor.h&gt;</span>
 <a name="l00182"></a>00182 
-<a name="l00183"></a>00183 <span class="preprocessor">    #include &lt;TargetConditionals.h&gt;</span> 
-<a name="l00184"></a>00184 <span class="preprocessor">    #if defined(UGEN_VFP) &amp;&amp; (TARGET_IPHONE_SIMULATOR == 1)</span>
-<a name="l00185"></a>00185 <span class="preprocessor"></span><span class="preprocessor">        #undef UGEN_VFP</span>
-<a name="l00186"></a>00186 <span class="preprocessor"></span><span class="preprocessor">    #endif</span>
-<a name="l00187"></a>00187 <span class="preprocessor"></span><span class="preprocessor">    #if defined(UGEN_NEON) &amp;&amp; (TARGET_IPHONE_SIMULATOR == 1)</span>
-<a name="l00188"></a>00188 <span class="preprocessor"></span><span class="preprocessor">        #undef UGEN_NEON</span>
-<a name="l00189"></a>00189 <span class="preprocessor"></span><span class="preprocessor">    #endif</span>
+<a name="l00183"></a>00183 <span class="preprocessor"> #include &lt;TargetConditionals.h&gt;</span> 
+<a name="l00184"></a>00184 <span class="preprocessor"> #if defined(UGEN_VFP) &amp;&amp; (TARGET_IPHONE_SIMULATOR == 1)</span>
+<a name="l00185"></a>00185 <span class="preprocessor"></span><span class="preprocessor">  #undef UGEN_VFP</span>
+<a name="l00186"></a>00186 <span class="preprocessor"></span><span class="preprocessor"> #endif</span>
+<a name="l00187"></a>00187 <span class="preprocessor"></span><span class="preprocessor"> #if defined(UGEN_NEON) &amp;&amp; (TARGET_IPHONE_SIMULATOR == 1)</span>
+<a name="l00188"></a>00188 <span class="preprocessor"></span><span class="preprocessor">  #undef UGEN_NEON</span>
+<a name="l00189"></a>00189 <span class="preprocessor"></span><span class="preprocessor"> #endif</span>
 <a name="l00190"></a>00190 <span class="preprocessor"></span>
-<a name="l00191"></a>00191 <span class="preprocessor">    #define UGEN_ALIGN __attribute__ ((aligned))</span>
+<a name="l00191"></a>00191 <span class="preprocessor"> #define UGEN_ALIGN __attribute__ ((aligned))</span>
 <a name="l00192"></a>00192 <span class="preprocessor"></span>
 <a name="l00193"></a>00193 <span class="preprocessor">#else</span>
-<a name="l00194"></a>00194 <span class="preprocessor"></span>    <span class="comment">// vfp only valid on iPhone / iPod touch - consider using iOS4 and UGEN_VDSP</span>
-<a name="l00195"></a>00195 <span class="preprocessor">    #undef UGEN_VFP</span>
-<a name="l00196"></a>00196 <span class="preprocessor"></span><span class="preprocessor">    #undef UGEN_NEON</span>
+<a name="l00194"></a>00194 <span class="preprocessor"></span> <span class="comment">// vfp only valid on iPhone / iPod touch - consider using iOS4 and UGEN_VDSP</span>
+<a name="l00195"></a>00195 <span class="preprocessor"> #undef UGEN_VFP</span>
+<a name="l00196"></a>00196 <span class="preprocessor"></span><span class="preprocessor"> #undef UGEN_NEON</span>
 <a name="l00197"></a>00197 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
 <a name="l00198"></a>00198 <span class="preprocessor"></span>
 <a name="l00199"></a>00199 <span class="preprocessor">#ifdef UGEN_VDSP // mac/iphone(4) only and must not be used in conjunction with UGEN_VFP or UGEN_NEON</span>
@@ -237,52 +237,52 @@
 <a name="l00206"></a>00206 <span class="preprocessor"></span>
 <a name="l00207"></a>00207 
 <a name="l00208"></a>00208 <span class="preprocessor">#if defined (UGEN_DEBUG) &amp;&amp; UGEN_DEBUG</span>
-<a name="l00209"></a>00209 <span class="preprocessor"></span><span class="preprocessor">    #if defined(UGEN_JUCE) &amp;&amp; UGEN_JUCE &amp;&amp; defined(juce_breakDebugger)</span>
-<a name="l00210"></a>00210 <span class="preprocessor"></span><span class="preprocessor">        #define ugen_breakDebugger              juce_breakDebugger</span>
-<a name="l00211"></a>00211 <span class="preprocessor"></span><span class="preprocessor">        #define ugen_isRunningUnderDebugger     juce_isRunningUnderDebugger</span>
-<a name="l00212"></a>00212 <span class="preprocessor"></span><span class="preprocessor">        #define ugen_breakRunningUnderDebugger  { if (JUCE_NAMESPACE::juce_isRunningUnderDebugger()) juce_breakDebugger; }</span>
+<a name="l00209"></a>00209 <span class="preprocessor"></span><span class="preprocessor"> #if defined(UGEN_JUCE) &amp;&amp; UGEN_JUCE &amp;&amp; defined(juce_breakDebugger)</span>
+<a name="l00210"></a>00210 <span class="preprocessor"></span><span class="preprocessor">  #define ugen_breakDebugger    juce_breakDebugger</span>
+<a name="l00211"></a>00211 <span class="preprocessor"></span><span class="preprocessor">  #define ugen_isRunningUnderDebugger  juce_isRunningUnderDebugger</span>
+<a name="l00212"></a>00212 <span class="preprocessor"></span><span class="preprocessor">  #define ugen_breakRunningUnderDebugger { if (JUCE_NAMESPACE::juce_isRunningUnderDebugger()) juce_breakDebugger; }</span>
 <a name="l00213"></a>00213 <span class="preprocessor"></span>
-<a name="l00214"></a>00214 <span class="preprocessor">    #elif defined(UGEN_IPHONE) &amp;&amp; UGEN_IPHONE</span>
-<a name="l00215"></a>00215 <span class="preprocessor"></span><span class="preprocessor">        #define ugen_breakDebugger              kill (0, SIGTRAP);</span>
+<a name="l00214"></a>00214 <span class="preprocessor"> #elif defined(UGEN_IPHONE) &amp;&amp; UGEN_IPHONE</span>
+<a name="l00215"></a>00215 <span class="preprocessor"></span><span class="preprocessor">  #define ugen_breakDebugger    kill (0, SIGTRAP);</span>
 <a name="l00216"></a>00216 <span class="preprocessor"></span>
-<a name="l00217"></a>00217         <span class="keyword">static</span> <span class="keywordtype">bool</span> ugen_isRunningUnderDebugger() throw()
-<a name="l00218"></a>00218         {
-<a name="l00219"></a>00219             <span class="keyword">static</span> <span class="keywordtype">char</span> testResult = 0;
-<a name="l00220"></a>00220             
-<a name="l00221"></a>00221             <span class="keywordflow">if</span> (testResult == 0)
-<a name="l00222"></a>00222             {
-<a name="l00223"></a>00223                 <span class="keyword">struct </span>kinfo_proc info;
-<a name="l00224"></a>00224                 <span class="keywordtype">int</span> m[] = { CTL_KERN, KERN_PROC, KERN_PROC_PID, getpid() };
-<a name="l00225"></a>00225                 <span class="keywordtype">size_t</span> sz = <span class="keyword">sizeof</span> (info);
-<a name="l00226"></a>00226                 sysctl (m, 4, &amp;info, &amp;sz, 0, 0);
-<a name="l00227"></a>00227                 testResult = ((info.kp_proc.p_flag &amp; P_TRACED) != 0) ? 1 : -1;
-<a name="l00228"></a>00228             }
-<a name="l00229"></a>00229             
-<a name="l00230"></a>00230             <span class="keywordflow">return</span> testResult &gt; 0;
-<a name="l00231"></a>00231         }
+<a name="l00217"></a>00217   <span class="keyword">static</span> <span class="keywordtype">bool</span> ugen_isRunningUnderDebugger() throw()
+<a name="l00218"></a>00218   {
+<a name="l00219"></a>00219    <span class="keyword">static</span> <span class="keywordtype">char</span> testResult = 0;
+<a name="l00220"></a>00220    
+<a name="l00221"></a>00221    <span class="keywordflow">if</span> (testResult == 0)
+<a name="l00222"></a>00222    {
+<a name="l00223"></a>00223     <span class="keyword">struct </span>kinfo_proc info;
+<a name="l00224"></a>00224     <span class="keywordtype">int</span> m[] = { CTL_KERN, KERN_PROC, KERN_PROC_PID, getpid() };
+<a name="l00225"></a>00225     <span class="keywordtype">size_t</span> sz = <span class="keyword">sizeof</span> (info);
+<a name="l00226"></a>00226     sysctl (m, 4, &amp;info, &amp;sz, 0, 0);
+<a name="l00227"></a>00227     testResult = ((info.kp_proc.p_flag &amp; P_TRACED) != 0) ? 1 : -1;
+<a name="l00228"></a>00228    }
+<a name="l00229"></a>00229    
+<a name="l00230"></a>00230    <span class="keywordflow">return</span> testResult &gt; 0;
+<a name="l00231"></a>00231   }
 <a name="l00232"></a>00232 
-<a name="l00233"></a>00233 <span class="preprocessor">        #define ugen_breakRunningUnderDebugger { if (ugen_isRunningUnderDebugger()) ugen_breakDebugger; }</span>
+<a name="l00233"></a>00233 <span class="preprocessor">  #define ugen_breakRunningUnderDebugger { if (ugen_isRunningUnderDebugger()) ugen_breakDebugger; }</span>
 <a name="l00234"></a>00234 <span class="preprocessor"></span>
-<a name="l00235"></a>00235 <span class="preprocessor">    #else</span>
-<a name="l00236"></a><a class="code" href="ugen___standard_header_8h.html#af98a1c9c8570e663e9ef36ba6dbfebb1">00236</a> <span class="preprocessor"></span><span class="preprocessor">        #define ugen_breakDebugger</span>
-<a name="l00237"></a><a class="code" href="ugen___standard_header_8h.html#a764b44af81c04a7a27dfef66b358289a">00237</a> <span class="preprocessor"></span><span class="preprocessor">        #define ugen_breakRunningUnderDebugger</span>
-<a name="l00238"></a>00238 <span class="preprocessor"></span><span class="preprocessor">    #endif</span>
+<a name="l00235"></a>00235 <span class="preprocessor"> #else</span>
+<a name="l00236"></a><a class="code" href="ugen___standard_header_8h.html#af98a1c9c8570e663e9ef36ba6dbfebb1">00236</a> <span class="preprocessor"></span><span class="preprocessor">  #define ugen_breakDebugger</span>
+<a name="l00237"></a><a class="code" href="ugen___standard_header_8h.html#a764b44af81c04a7a27dfef66b358289a">00237</a> <span class="preprocessor"></span><span class="preprocessor">  #define ugen_breakRunningUnderDebugger</span>
+<a name="l00238"></a>00238 <span class="preprocessor"></span><span class="preprocessor"> #endif</span>
 <a name="l00239"></a>00239 <span class="preprocessor"></span>
-<a name="l00240"></a><a class="code" href="ugen___standard_header_8h.html#a45e513feae0e4100e40ac3917d4b7e7c">00240</a> <span class="preprocessor">    #define ugen_assertfalse                                                                            \</span>
-<a name="l00241"></a>00241 <span class="preprocessor">        {                                                                                               \</span>
-<a name="l00242"></a>00242 <span class="preprocessor">            printf (&quot;UGen++ Assertion failure in %s, line %d\n&quot;, __FILE__, __LINE__);                   \</span>
-<a name="l00243"></a>00243 <span class="preprocessor">            ugen_breakRunningUnderDebugger;                                                             \</span>
-<a name="l00244"></a>00244 <span class="preprocessor">        }</span>
+<a name="l00240"></a><a class="code" href="ugen___standard_header_8h.html#a45e513feae0e4100e40ac3917d4b7e7c">00240</a> <span class="preprocessor"> #define ugen_assertfalse                   \</span>
+<a name="l00241"></a>00241 <span class="preprocessor">  {                        \</span>
+<a name="l00242"></a>00242 <span class="preprocessor">   printf (&quot;UGen++ Assertion failure in %s, line %d\n&quot;, __FILE__, __LINE__);     \</span>
+<a name="l00243"></a>00243 <span class="preprocessor">   ugen_breakRunningUnderDebugger;                \</span>
+<a name="l00244"></a>00244 <span class="preprocessor">  }</span>
 <a name="l00245"></a>00245 <span class="preprocessor"></span>
-<a name="l00246"></a><a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">00246</a> <span class="preprocessor">    #define ugen_assert(expression)     { if (! (expression)) ugen_assertfalse }</span>
-<a name="l00247"></a><a class="code" href="ugen___standard_header_8h.html#ab5ff245103da9b5a1545d7621833cbe6">00247</a> <span class="preprocessor"></span><span class="preprocessor">    #define ugen_debugprintf(args)      printf args</span>
+<a name="l00246"></a><a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">00246</a> <span class="preprocessor"> #define ugen_assert(expression)  { if (! (expression)) ugen_assertfalse }</span>
+<a name="l00247"></a><a class="code" href="ugen___standard_header_8h.html#ab5ff245103da9b5a1545d7621833cbe6">00247</a> <span class="preprocessor"></span><span class="preprocessor"> #define ugen_debugprintf(args)  printf args</span>
 <a name="l00248"></a>00248 <span class="preprocessor"></span>
 <a name="l00249"></a>00249 <span class="preprocessor">#else</span>
-<a name="l00250"></a>00250 <span class="preprocessor"></span><span class="preprocessor">    #define ugen_breakDebugger</span>
+<a name="l00250"></a>00250 <span class="preprocessor"></span><span class="preprocessor"> #define ugen_breakDebugger</span>
 <a name="l00251"></a>00251 <span class="preprocessor"></span>
-<a name="l00252"></a>00252 <span class="preprocessor">    #define ugen_assertfalse            { }</span>
-<a name="l00253"></a>00253 <span class="preprocessor"></span><span class="preprocessor">    #define ugen_assert(expression)     { }</span>
-<a name="l00254"></a>00254 <span class="preprocessor"></span><span class="preprocessor">    #define ugen_debugprintf(args)</span>
+<a name="l00252"></a>00252 <span class="preprocessor"> #define ugen_assertfalse   { }</span>
+<a name="l00253"></a>00253 <span class="preprocessor"></span><span class="preprocessor"> #define ugen_assert(expression)  { }</span>
+<a name="l00254"></a>00254 <span class="preprocessor"></span><span class="preprocessor"> #define ugen_debugprintf(args)</span>
 <a name="l00255"></a>00255 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
 <a name="l00256"></a>00256 <span class="preprocessor"></span>
 <a name="l00257"></a>00257 
@@ -306,33 +306,33 @@
 <a name="l00275"></a>00275 <span class="preprocessor">#define UGEN_ALIGN __attribute__ ((aligned))</span>
 <a name="l00276"></a>00276 <span class="preprocessor"></span><span class="keyword">typedef</span> <span class="keyword">union </span>
 <a name="l00277"></a>00277 {
-<a name="l00278"></a>00278     <span class="keywordtype">float</span>   flt[4];
-<a name="l00279"></a>00279     <a class="code" href="ugen__neon___utilities_8h.html#a3ea49531bb5615ccb701b79ab7a900d1">vFloat</a>  vec;
+<a name="l00278"></a>00278  <span class="keywordtype">float</span> flt[4];
+<a name="l00279"></a>00279  <a class="code" href="ugen__neon___utilities_8h.html#a3ea49531bb5615ccb701b79ab7a900d1">vFloat</a> vec;
 <a name="l00280"></a>00280 } VecSplat;
 <a name="l00281"></a>00281 <span class="preprocessor">#endif // __VEC__</span>
 <a name="l00282"></a>00282 <span class="preprocessor"></span>
 <a name="l00283"></a>00283 
 <a name="l00284"></a><a class="code" href="ugen___standard_header_8h.html#afc240db36316d29d9ba75d7a64bda591">00284</a> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="ugen___standard_header_8h.html#afc240db36316d29d9ba75d7a64bda591">quantiseUp</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> a, <span class="keyword">const</span> <span class="keywordtype">int</span> q) 
 <a name="l00285"></a>00285 { 
-<a name="l00286"></a>00286     <span class="keywordflow">if</span>(a % q)
-<a name="l00287"></a>00287         <span class="keywordflow">return</span> a / q * q + q;
-<a name="l00288"></a>00288     <span class="keywordflow">else</span>
-<a name="l00289"></a>00289         <span class="keywordflow">return</span> a / q * q;
+<a name="l00286"></a>00286  <span class="keywordflow">if</span>(a % q)
+<a name="l00287"></a>00287   <span class="keywordflow">return</span> a / q * q + q;
+<a name="l00288"></a>00288  <span class="keywordflow">else</span>
+<a name="l00289"></a>00289   <span class="keywordflow">return</span> a / q * q;
 <a name="l00290"></a>00290 }
 <a name="l00291"></a>00291 
 <a name="l00292"></a><a class="code" href="ugen___standard_header_8h.html#a651544c2b72553473b087ab5b5b5e822">00292</a> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="ugen___standard_header_8h.html#a651544c2b72553473b087ab5b5b5e822">quantiseDown</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> a, <span class="keyword">const</span> <span class="keywordtype">int</span> q) 
 <a name="l00293"></a>00293 { 
-<a name="l00294"></a>00294     <span class="keywordflow">return</span> a / q * q; 
+<a name="l00294"></a>00294  <span class="keywordflow">return</span> a / q * q; 
 <a name="l00295"></a>00295 }
 <a name="l00296"></a>00296 
 <a name="l00297"></a>00297 <span class="preprocessor">#ifndef numElementsInArray</span>
-<a name="l00298"></a><a class="code" href="ugen___standard_header_8h.html#a3b96e342c541e61ffe6104777007f4b5">00298</a> <span class="preprocessor"></span><span class="preprocessor">    #define numElementsInArray(a)   ((int) (sizeof (a) / sizeof ((a)[0])))</span>
+<a name="l00298"></a><a class="code" href="ugen___standard_header_8h.html#a3b96e342c541e61ffe6104777007f4b5">00298</a> <span class="preprocessor"></span><span class="preprocessor"> #define numElementsInArray(a)   ((int) (sizeof (a) / sizeof ((a)[0])))</span>
 <a name="l00299"></a>00299 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
 <a name="l00300"></a>00300 <span class="preprocessor"></span>
 <a name="l00301"></a>00301 <span class="preprocessor">#ifdef WIN32</span>
-<a name="l00302"></a>00302 <span class="preprocessor"></span><span class="preprocessor">    #define LITTLE_ENDIAN 1234</span>
-<a name="l00303"></a>00303 <span class="preprocessor"></span><span class="preprocessor">    #define BIG_ENDIAN 4321</span>
-<a name="l00304"></a>00304 <span class="preprocessor"></span><span class="preprocessor">    #define BYTE_ORDER LITTLE_ENDIAN</span>
+<a name="l00302"></a>00302 <span class="preprocessor"></span><span class="preprocessor"> #define LITTLE_ENDIAN 1234</span>
+<a name="l00303"></a>00303 <span class="preprocessor"></span><span class="preprocessor"> #define BIG_ENDIAN 4321</span>
+<a name="l00304"></a>00304 <span class="preprocessor"></span><span class="preprocessor"> #define BYTE_ORDER LITTLE_ENDIAN</span>
 <a name="l00305"></a>00305 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
 <a name="l00306"></a>00306 <span class="preprocessor"></span>
 <a name="l00307"></a>00307 <span class="comment">// define ALIGN to do nothing if it&#39;s not defined...</span>
@@ -343,7 +343,7 @@
 <a name="l00312"></a>00312 <span class="preprocessor">#endif // UGEN_STANDARDHEADER_H</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:28 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:57 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

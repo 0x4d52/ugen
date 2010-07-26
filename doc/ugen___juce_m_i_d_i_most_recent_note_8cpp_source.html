@@ -78,29 +78,29 @@
 <a name="l00046"></a>00046 
 <a name="l00047"></a>00047 
 <a name="l00048"></a>00048 <a class="code" href="class_m_i_d_i_most_recent_note_internal.html#ac05e1bb6e87c94e79033c099bfacb3a8">MIDIMostRecentNoteInternal::MIDIMostRecentNoteInternal</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> midiChannel,
-<a name="l00049"></a>00049                                                        <span class="keyword">const</span> <span class="keywordtype">float</span> minVal, <span class="keyword">const</span> <span class="keywordtype">float</span> maxVal,
-<a name="l00050"></a>00050                                                        <span class="keyword">const</span> <a class="code" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810">ExternalControlSource::Warp</a> warp, <span class="keywordtype">void</span>* port) <span class="keywordflow">throw</span>()
-<a name="l00051"></a>00051 :   <a class="code" href="class_external_control_source_internal.html">ExternalControlSourceInternal</a>(minVal, maxVal, warp),
-<a name="l00052"></a>00052     midiChannel_(midiChannel),
-<a name="l00053"></a>00053     port_(port)
+<a name="l00049"></a>00049                 <span class="keyword">const</span> <span class="keywordtype">float</span> minVal, <span class="keyword">const</span> <span class="keywordtype">float</span> maxVal,
+<a name="l00050"></a>00050                 <span class="keyword">const</span> <a class="code" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810">ExternalControlSource::Warp</a> warp, <span class="keywordtype">void</span>* port) <span class="keywordflow">throw</span>()
+<a name="l00051"></a>00051 : <a class="code" href="class_external_control_source_internal.html">ExternalControlSourceInternal</a>(minVal, maxVal, warp),
+<a name="l00052"></a>00052  midiChannel_(midiChannel),
+<a name="l00053"></a>00053  port_(port)
 <a name="l00054"></a>00054 {
 <a name="l00055"></a>00055 }
 <a name="l00056"></a>00056 
 <a name="l00057"></a>00057 <span class="keywordtype">void</span> <a class="code" href="class_m_i_d_i_most_recent_note_internal.html#a0d04195aa3278f07f361074caafb14cc">MIDIMostRecentNoteInternal::handleIncomingMidiMessage</a> (MidiInput* source, <span class="keyword">const</span> MidiMessage&amp; message) <span class="keywordflow">throw</span>()
-<a name="l00058"></a>00058 {   
-<a name="l00059"></a>00059     <span class="keywordflow">if</span>(port_ != 0 &amp;&amp; port_ != source)                       <span class="keywordflow">return</span>;
-<a name="l00060"></a>00060     <span class="keywordflow">if</span>(message.isForChannel(midiChannel_) == <span class="keyword">false</span>)         <span class="keywordflow">return</span>;
-<a name="l00061"></a>00061     <span class="keywordflow">if</span>(message.isNoteOn() == <span class="keyword">false</span>)                         <span class="keywordflow">return</span>;
-<a name="l00062"></a>00062     
-<a name="l00063"></a>00063     setNormalisedValue(message.getNoteNumber() / 127.f);
+<a name="l00058"></a>00058 { 
+<a name="l00059"></a>00059  <span class="keywordflow">if</span>(port_ != 0 &amp;&amp; port_ != source)      <span class="keywordflow">return</span>;
+<a name="l00060"></a>00060  <span class="keywordflow">if</span>(message.isForChannel(midiChannel_) == <span class="keyword">false</span>)   <span class="keywordflow">return</span>;
+<a name="l00061"></a>00061  <span class="keywordflow">if</span>(message.isNoteOn() == <span class="keyword">false</span>)       <span class="keywordflow">return</span>;
+<a name="l00062"></a>00062  
+<a name="l00063"></a>00063  setNormalisedValue(message.getNoteNumber() / 127.f);
 <a name="l00064"></a>00064 }
 <a name="l00065"></a>00065 
 <a name="l00066"></a>00066 <a class="code" href="class_m_i_d_i_most_recent_note.html#a023f8d0f0fc9222c04be9a867b310487">MIDIMostRecentNote::MIDIMostRecentNote</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> midiChannel,
-<a name="l00067"></a>00067                                        <span class="keyword">const</span> <span class="keywordtype">float</span> minVal, <span class="keyword">const</span> <span class="keywordtype">float</span> maxVal, 
-<a name="l00068"></a>00068                                        <span class="keyword">const</span> <a class="code" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810">ExternalControlSource::Warp</a> warp, 
-<a name="l00069"></a>00069                                        <span class="keywordtype">void</span>* port) <span class="keywordflow">throw</span>()
+<a name="l00067"></a>00067             <span class="keyword">const</span> <span class="keywordtype">float</span> minVal, <span class="keyword">const</span> <span class="keywordtype">float</span> maxVal, 
+<a name="l00068"></a>00068             <span class="keyword">const</span> <a class="code" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810">ExternalControlSource::Warp</a> warp, 
+<a name="l00069"></a>00069             <span class="keywordtype">void</span>* port) <span class="keywordflow">throw</span>()
 <a name="l00070"></a>00070 {
-<a name="l00071"></a>00071     <span class="keyword">internal</span> = <span class="keyword">new</span> <a class="code" href="class_m_i_d_i_most_recent_note_internal.html">MIDIMostRecentNoteInternal</a>(midiChannel, minVal, maxVal, warp, port);
+<a name="l00071"></a>00071  <span class="keyword">internal</span> = <span class="keyword">new</span> <a class="code" href="class_m_i_d_i_most_recent_note_internal.html">MIDIMostRecentNoteInternal</a>(midiChannel, minVal, maxVal, warp, port);
 <a name="l00072"></a>00072 }
 <a name="l00073"></a>00073 
 <a name="l00074"></a>00074 
@@ -111,7 +111,7 @@
 <a name="l00079"></a>00079 <span class="preprocessor">#endif // gpl</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:29 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:58 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

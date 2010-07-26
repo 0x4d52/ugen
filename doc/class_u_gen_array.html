@@ -485,7 +485,7 @@ Construction and destruction</h2></td></tr>
 <div class="memdoc">
 
 <p>Unary arccosine. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which is the arccosine of this one i.e., <img class="formulaInl" alt="$ acos(x) $" src="form_6.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which is the arccosine of this one i.e., <img class="formulaInl" alt="$ acos(x) $" src="form_9.png"/>. </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00089">89</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
 
@@ -507,7 +507,7 @@ Construction and destruction</h2></td></tr>
 <div class="memdoc">
 
 <p>Unary arcsine. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which is the arcsine of this one i.e., <img class="formulaInl" alt="$ asin(x) $" src="form_5.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which is the arcsine of this one i.e., <img class="formulaInl" alt="$ asin(x) $" src="form_8.png"/>. </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00088">88</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
 
@@ -609,7 +609,7 @@ Construction and destruction</h2></td></tr>
 <div class="memdoc">
 
 <p>Unary arctangent. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which is the arctangent of this one i.e., <img class="formulaInl" alt="$ atan(x) $" src="form_7.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which is the arctangent of this one i.e., <img class="formulaInl" alt="$ atan(x) $" src="form_10.png"/>. </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00090">90</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
 
@@ -639,7 +639,7 @@ Construction and destruction</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which the result of <img class="formulaInl" alt="$ atan2(x,y) $" src="form_19.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which the result of <img class="formulaInl" alt="$ atan2(x,y) $" src="form_23.png"/>. </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd>ugen::atan2 </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00095">95</a> of file <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html">ugen_BinaryOpUGens.cpp</a>.</p>
@@ -775,7 +775,7 @@ Construction and destruction</h2></td></tr>
 <div class="memdoc">
 
 <p>Unary hyperbolic cosine. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which is: <img class="formulaInl" alt="$ cosh(x) $" src="form_35.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which is: <img class="formulaInl" alt="$ cosh(x) $" src="form_6.png"/>. </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00086">86</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
 
@@ -798,8 +798,8 @@ Construction and destruction</h2></td></tr>
 
 <p>Unary frequency to MIDI note number. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which is the conversion of cycles per second in Hertz to MIDI note number. MIDI note 69 is equal to 440.0Hz. This uses the equation: <br/>
- <img class="formulaInl" alt="$ m = 12 \cdot \log_2 \left( \frac{f}{440} \right) + 69 $" src="form_15.png"/> <br/>
- where <img class="formulaInl" alt="$ f $" src="form_13.png"/> is freqeuncy and <img class="formulaInl" alt="$ m $" src="form_14.png"/> is MIDI note number. </dd></dl>
+ <img class="formulaInl" alt="$ m = 12 \cdot \log_2 \left( \frac{f}{440} \right) + 69 $" src="form_19.png"/> <br/>
+ where <img class="formulaInl" alt="$ f $" src="form_17.png"/> is freqeuncy and <img class="formulaInl" alt="$ m $" src="form_18.png"/> is MIDI note number. </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_u_gen_array.html#a278877ecf40a628acf96e2c445919350" title="Unary MIDI note number to frequency.">midicps</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00102">102</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
@@ -861,7 +861,7 @@ Construction and destruction</h2></td></tr>
 <div class="memdoc">
 
 <p>Unary distort. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which applies <img class="formulaInl" alt="$ \frac{x}{1+|x|} $" src="form_16.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which applies <img class="formulaInl" alt="$ \frac{x}{1+|x|} $" src="form_20.png"/>. </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00103">103</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
 
@@ -883,7 +883,7 @@ Construction and destruction</h2></td></tr>
 <div class="memdoc">
 
 <p>Unary exponential. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which is the exponential of this one i.e. <img class="formulaInl" alt="$ \exp \left( x \right) $" src="form_25.png"/> </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which is the exponential of this one i.e. <img class="formulaInl" alt="$ \exp \left( x \right) $" src="form_15.png"/> </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00094">94</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
 
@@ -1163,7 +1163,7 @@ Construction and destruction</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which is the result of <img class="formulaInl" alt="$ \sqrt{L^{2}+R^{2}} $" src="form_18.png"/> </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which is the result of <img class="formulaInl" alt="$ \sqrt{L^{2}+R^{2}} $" src="form_22.png"/> </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd>ugen::hypot() </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00094">94</a> of file <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html">ugen_BinaryOpUGens.cpp</a>.</p>
@@ -1296,7 +1296,7 @@ Construction and destruction</h2></td></tr>
 <div class="memdoc">
 
 <p>Unary natural logarithm. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which is the natural logarithm i.e., <img class="formulaInl" alt="$ ln x $" src="form_9.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which is the natural logarithm i.e., <img class="formulaInl" alt="$ ln x $" src="form_12.png"/>. </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00091">91</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
 
@@ -1318,7 +1318,7 @@ Construction and destruction</h2></td></tr>
 <div class="memdoc">
 
 <p>Unary base-10 logarithm. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which is the base-10 logarithm i.e., <img class="formulaInl" alt="$ \log_{10} x $" src="form_11.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which is the base-10 logarithm i.e., <img class="formulaInl" alt="$ \log_{10} x $" src="form_14.png"/>. </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00093">93</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
 
@@ -1340,7 +1340,7 @@ Construction and destruction</h2></td></tr>
 <div class="memdoc">
 
 <p>Unary base-2 logarithm. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which is the base-2 logarithm i.e., <img class="formulaInl" alt="$ \log_2 x $" src="form_10.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which is the base-2 logarithm i.e., <img class="formulaInl" alt="$ \log_2 x $" src="form_13.png"/>. </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00092">92</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
 
@@ -1370,7 +1370,7 @@ Construction and destruction</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which the result of <img class="formulaInl" alt="$ max(L,R) $" src="form_21.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which the result of <img class="formulaInl" alt="$ max(L,R) $" src="form_25.png"/>. </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd>ugen::max() </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00097">97</a> of file <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html">ugen_BinaryOpUGens.cpp</a>.</p>
@@ -1394,8 +1394,8 @@ Construction and destruction</h2></td></tr>
 
 <p>Unary MIDI note number to frequency. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which is the conversion of MIDI note number to cycles per second in Hertz. MIDI note 69 is equal to 440.0Hz. This uses the equation: <br/>
- <img class="formulaInl" alt="$ f = 440 \times 2^{ \left( \frac{m-69}{12} \right) } $" src="form_12.png"/> <br/>
- where <img class="formulaInl" alt="$ f $" src="form_13.png"/> is freqeuncy and <img class="formulaInl" alt="$ m $" src="form_14.png"/> is MIDI note number. </dd></dl>
+ <img class="formulaInl" alt="$ f = 440 \times 2^{ \left( \frac{m-69}{12} \right) } $" src="form_16.png"/> <br/>
+ where <img class="formulaInl" alt="$ f $" src="form_17.png"/> is freqeuncy and <img class="formulaInl" alt="$ m $" src="form_18.png"/> is MIDI note number. </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_u_gen_array.html#a17eea01c7b789262ed5da28d8b16fd33" title="Unary frequency to MIDI note number.">cpsmidi</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00101">101</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
@@ -1426,7 +1426,7 @@ Construction and destruction</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which the result of <img class="formulaInl" alt="$ min(L,R) $" src="form_20.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which the result of <img class="formulaInl" alt="$ min(L,R) $" src="form_24.png"/>. </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd>ugen::min() </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00096">96</a> of file <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html">ugen_BinaryOpUGens.cpp</a>.</p>
@@ -2228,7 +2228,7 @@ Construction and destruction</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which the result of <img class="formulaInl" alt="$ L^{R} $" src="form_17.png"/> </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which the result of <img class="formulaInl" alt="$ L^{R} $" src="form_21.png"/> </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd>ugen::pow() </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00093">93</a> of file <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html">ugen_BinaryOpUGens.cpp</a>.</p>
@@ -2531,7 +2531,7 @@ Construction and destruction</h2></td></tr>
 <div class="memdoc">
 
 <p>Unary hyperbolic sine. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which is: <img class="formulaInl" alt="$ sinh(x) $" src="form_34.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which is: <img class="formulaInl" alt="$ sinh(x) $" src="form_5.png"/>. </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00085">85</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
 
@@ -2643,7 +2643,7 @@ Construction and destruction</h2></td></tr>
 <div class="memdoc">
 
 <p>Unary square root. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which is the square root of this one i.e., <img class="formulaInl" alt="$ \sqrt{x} $" src="form_8.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which is the square root of this one i.e., <img class="formulaInl" alt="$ \sqrt{x} $" src="form_11.png"/>. </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00079">79</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
 
@@ -2726,7 +2726,7 @@ Construction and destruction</h2></td></tr>
 <div class="memdoc">
 
 <p>Unary hyperbolic tangent. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which is: <img class="formulaInl" alt="$ tanh(x) $" src="form_36.png"/>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> which is: <img class="formulaInl" alt="$ tanh(x) $" src="form_7.png"/>. </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00087">87</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
 
@@ -2992,7 +2992,7 @@ Construction and destruction</h2></td></tr>
 <li>core/<a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:21:05 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -75,28 +75,28 @@
 <a name="l00043"></a>00043 
 <a name="l00044"></a>00044 <span class="comment">// temporary UGen classes written using other UGen classes these could be rewritten in C++ for efficiency</span>
 <a name="l00045"></a>00045 
-<a name="l00046"></a><a class="code" href="ugen___temporary_8h.html#ae01ed71d3634f32f5dcc4ce72f080a4c">00046</a> <span class="preprocessor">#define Clip_Docs   @param input    The input to limit                  \</span>
-<a name="l00047"></a>00047 <span class="preprocessor">                    @param min      The minimum (i.e., lower) limit     \</span>
-<a name="l00048"></a>00048 <span class="preprocessor">                    @param max      The maximum (i.e., upper) limit </span>
+<a name="l00046"></a><a class="code" href="ugen___temporary_8h.html#ae01ed71d3634f32f5dcc4ce72f080a4c">00046</a> <span class="preprocessor">#define Clip_Docs @param input The input to limit     \</span>
+<a name="l00047"></a>00047 <span class="preprocessor">     @param min  The minimum (i.e., lower) limit  \</span>
+<a name="l00048"></a>00048 <span class="preprocessor">     @param max  The maximum (i.e., upper) limit </span>
 <a name="l00049"></a>00049 <span class="preprocessor"></span>
 <a name="l00054"></a>00054 <a class="code" href="ugen___u_gen_8h.html#a254ceb88c7d6c3c576dd70991c53b332" title="Macro for declaring a custom UGen by combining other UGens.">DefineCustomUGen</a>(<a class="code" href="class_clip.html" title="Clip (i.e., limit) between min and max.">Clip</a>,
-<a name="l00055"></a>00055                 (input.min(<a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">max</a>).max(<a class="code" href="ugen___binary_op_u_gens_8cpp.html#afc2720859a4075c66da741d8ad063ba1" title="Global function for the UGen::min() binary operator.">min</a>)),
-<a name="l00056"></a>00056                 (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___binary_op_u_gens_8cpp.html#afc2720859a4075c66da741d8ad063ba1" title="Global function for the UGen::min() binary operator.">min</a>, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">max</a>),
-<a name="l00057"></a><a class="code" href="class_clip.html#a618bbd65a5f9486a0b5bbcf68df50c17">00057</a>                  <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> Clip_Docs);
+<a name="l00055"></a>00055     (input.min(<a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">max</a>).max(<a class="code" href="ugen___binary_op_u_gens_8cpp.html#afc2720859a4075c66da741d8ad063ba1" title="Global function for the UGen::min() binary operator.">min</a>)),
+<a name="l00056"></a>00056     (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___binary_op_u_gens_8cpp.html#afc2720859a4075c66da741d8ad063ba1" title="Global function for the UGen::min() binary operator.">min</a>, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">max</a>),
+<a name="l00057"></a><a class="code" href="class_clip.html#a618bbd65a5f9486a0b5bbcf68df50c17">00057</a>      <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> Clip_Docs);
 <a name="l00058"></a>00058 
 <a name="l00060"></a>00060 <span class="comment">// Clip between -clip and clip.</span>
 <a name="l00061"></a>00061 <span class="comment">// */</span>
 <a name="l00062"></a>00062 <span class="comment">//DefineCustomUGen(Clip2,</span>
-<a name="l00063"></a>00063 <span class="comment">//              (input.min(clip).max(-clip)),</span>
-<a name="l00064"></a>00064 <span class="comment">//              (UGen const&amp; input, UGen const&amp; clip));</span>
+<a name="l00063"></a>00063 <span class="comment">//    (input.min(clip).max(-clip)),</span>
+<a name="l00064"></a>00064 <span class="comment">//    (UGen const&amp; input, UGen const&amp; clip));</span>
 <a name="l00065"></a>00065 
-<a name="l00066"></a><a class="code" href="ugen___temporary_8h.html#a4ce5a12cca201e993048c92b43fbecea">00066</a> <span class="preprocessor">#define Invert_Docs @param input    The value to invert around max.     \</span>
-<a name="l00067"></a>00067 <span class="preprocessor">                    @param max      The value around which to invert.</span>
+<a name="l00066"></a><a class="code" href="ugen___temporary_8h.html#a4ce5a12cca201e993048c92b43fbecea">00066</a> <span class="preprocessor">#define Invert_Docs @param input The value to invert around max.  \</span>
+<a name="l00067"></a>00067 <span class="preprocessor">     @param max  The value around which to invert.</span>
 <a name="l00068"></a>00068 <span class="preprocessor"></span>
 <a name="l00075"></a>00075 <a class="code" href="ugen___u_gen_8h.html#a254ceb88c7d6c3c576dd70991c53b332" title="Macro for declaring a custom UGen by combining other UGens.">DefineCustomUGen</a>(<a class="code" href="class_invert.html" title="Invert about a particular value.">Invert</a>,
-<a name="l00076"></a>00076                  (<a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">max</a>-input),
-<a name="l00077"></a>00077                  (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">max</a> = 1.f),
-<a name="l00078"></a><a class="code" href="class_invert.html#a0b641ddd6dbaee9e658c527c7809b257">00078</a>                  <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___temporary_8h.html#a4ce5a12cca201e993048c92b43fbecea" title="Clip between -clip and clip.">Invert_Docs</a>);
+<a name="l00076"></a>00076      (<a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">max</a>-input),
+<a name="l00077"></a>00077      (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">max</a> = 1.f),
+<a name="l00078"></a><a class="code" href="class_invert.html#a0b641ddd6dbaee9e658c527c7809b257">00078</a>      <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___temporary_8h.html#a4ce5a12cca201e993048c92b43fbecea" title="Clip between -clip and clip.">Invert_Docs</a>);
 <a name="l00079"></a>00079 
 <a name="l00080"></a>00080 
 <a name="l00081"></a>00081 
@@ -106,7 +106,7 @@
 <a name="l00085"></a>00085 <span class="preprocessor">#endif // _UGEN_ugen_Temporary_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:27 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:56 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

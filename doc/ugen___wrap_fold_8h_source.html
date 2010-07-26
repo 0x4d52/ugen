@@ -72,32 +72,32 @@
 <a name="l00040"></a>00040 <span class="preprocessor">#include &quot;../core/ugen_UGen.h&quot;</span>
 <a name="l00041"></a>00041 
 <a name="l00042"></a><a class="code" href="ugen___wrap_fold_8h.html#a8c048822be5185bc0ed847a14306213a">00042</a> <span class="preprocessor">#define WrapFold_InputsWithTypesAndDefaults UGen const&amp; input, UGen const&amp; lower, UGen const&amp; upper = 0.f</span>
-<a name="l00043"></a><a class="code" href="ugen___wrap_fold_8h.html#af8cdf1ea7c382bd6778dfe32b95b6f8c">00043</a> <span class="preprocessor"></span><span class="preprocessor">#define WrapFold_InputsWithTypesOnly        UGen const&amp; input, UGen const&amp; lower, UGen const&amp; upper</span>
-<a name="l00044"></a><a class="code" href="ugen___wrap_fold_8h.html#a68b025b50fb1c64dead7f58e84d3828f">00044</a> <span class="preprocessor"></span><span class="preprocessor">#define WrapFold_InputsNoTypes              input, lower, upper</span>
-<a name="l00045"></a><a class="code" href="ugen___wrap_fold_8h.html#a11e36beabfaf66a8d478466439e79305">00045</a> <span class="preprocessor"></span><span class="preprocessor">#define WrapFold_InputsEnum                 Input, Lower, Upper</span>
+<a name="l00043"></a><a class="code" href="ugen___wrap_fold_8h.html#af8cdf1ea7c382bd6778dfe32b95b6f8c">00043</a> <span class="preprocessor"></span><span class="preprocessor">#define WrapFold_InputsWithTypesOnly  UGen const&amp; input, UGen const&amp; lower, UGen const&amp; upper</span>
+<a name="l00044"></a><a class="code" href="ugen___wrap_fold_8h.html#a68b025b50fb1c64dead7f58e84d3828f">00044</a> <span class="preprocessor"></span><span class="preprocessor">#define WrapFold_InputsNoTypes    input, lower, upper</span>
+<a name="l00045"></a><a class="code" href="ugen___wrap_fold_8h.html#a11e36beabfaf66a8d478466439e79305">00045</a> <span class="preprocessor"></span><span class="preprocessor">#define WrapFold_InputsEnum     Input, Lower, Upper</span>
 <a name="l00046"></a>00046 <span class="preprocessor"></span>
 <a name="l00047"></a><a class="code" href="class_wrap_fold_base_u_gen_internal.html">00047</a> <span class="keyword">class </span><a class="code" href="class_wrap_fold_base_u_gen_internal.html">WrapFoldBaseUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>
 <a name="l00048"></a>00048 {
 <a name="l00049"></a>00049 <span class="keyword">public</span>:
-<a name="l00050"></a>00050     <a class="code" href="class_wrap_fold_base_u_gen_internal.html#a163f20096a0fa884fee22804468351ed">WrapFoldBaseUGenInternal</a>(<a class="code" href="ugen___wrap_fold_8h.html#af8cdf1ea7c382bd6778dfe32b95b6f8c">WrapFold_InputsWithTypesOnly</a>) <span class="keywordflow">throw</span>();
-<a name="l00051"></a>00051     
-<a name="l00052"></a><a class="code" href="class_wrap_fold_base_u_gen_internal.html#a01b6c25afaf0825feed03e34008aeeabab721f9377d1c47eeafe79f3ad60db902">00052</a>     <span class="keyword">enum</span> <a class="code" href="class_wrap_fold_base_u_gen_internal.html#a01b6c25afaf0825feed03e34008aeeab">Inputs</a> { WrapFold_InputsEnum, <a class="code" href="class_wrap_fold_base_u_gen_internal.html#a01b6c25afaf0825feed03e34008aeeaba9d4b164c7a28d802220f762024953462">NumInputs</a> };
+<a name="l00050"></a>00050  <a class="code" href="class_wrap_fold_base_u_gen_internal.html#a163f20096a0fa884fee22804468351ed">WrapFoldBaseUGenInternal</a>(<a class="code" href="ugen___wrap_fold_8h.html#af8cdf1ea7c382bd6778dfe32b95b6f8c">WrapFold_InputsWithTypesOnly</a>) <span class="keywordflow">throw</span>();
+<a name="l00051"></a>00051  
+<a name="l00052"></a><a class="code" href="class_wrap_fold_base_u_gen_internal.html#a01b6c25afaf0825feed03e34008aeeabab721f9377d1c47eeafe79f3ad60db902">00052</a>  <span class="keyword">enum</span> <a class="code" href="class_wrap_fold_base_u_gen_internal.html#a01b6c25afaf0825feed03e34008aeeab">Inputs</a> { WrapFold_InputsEnum, <a class="code" href="class_wrap_fold_base_u_gen_internal.html#a01b6c25afaf0825feed03e34008aeeaba9d4b164c7a28d802220f762024953462">NumInputs</a> };
 <a name="l00053"></a>00053 };
 <a name="l00054"></a>00054 
 <a name="l00055"></a><a class="code" href="class_wrap_u_gen_internal.html">00055</a> <span class="keyword">class </span><a class="code" href="class_wrap_u_gen_internal.html">WrapUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_wrap_fold_base_u_gen_internal.html">WrapFoldBaseUGenInternal</a>
 <a name="l00056"></a>00056 {
 <a name="l00057"></a>00057 <span class="keyword">public</span>:
-<a name="l00058"></a>00058     <a class="code" href="class_wrap_u_gen_internal.html#ad90934a4a098317f5b5262a8f5324e35">WrapUGenInternal</a>(<a class="code" href="ugen___wrap_fold_8h.html#af8cdf1ea7c382bd6778dfe32b95b6f8c">WrapFold_InputsWithTypesOnly</a>) <span class="keywordflow">throw</span>();
-<a name="l00059"></a>00059     <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_wrap_u_gen_internal.html#a3f59d1d590f552148b95f5ba991e9d4e">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
-<a name="l00060"></a>00060     <span class="keywordtype">void</span> <a class="code" href="class_wrap_u_gen_internal.html#a2e74e4bfe762c4e88800baa5fba45e34" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00058"></a>00058  <a class="code" href="class_wrap_u_gen_internal.html#ad90934a4a098317f5b5262a8f5324e35">WrapUGenInternal</a>(<a class="code" href="ugen___wrap_fold_8h.html#af8cdf1ea7c382bd6778dfe32b95b6f8c">WrapFold_InputsWithTypesOnly</a>) <span class="keywordflow">throw</span>();
+<a name="l00059"></a>00059  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_wrap_u_gen_internal.html#a3f59d1d590f552148b95f5ba991e9d4e">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00060"></a>00060  <span class="keywordtype">void</span> <a class="code" href="class_wrap_u_gen_internal.html#a2e74e4bfe762c4e88800baa5fba45e34" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
 <a name="l00061"></a>00061 };
 <a name="l00062"></a>00062 
 <a name="l00063"></a><a class="code" href="class_fold_u_gen_internal.html">00063</a> <span class="keyword">class </span><a class="code" href="class_fold_u_gen_internal.html">FoldUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_wrap_fold_base_u_gen_internal.html">WrapFoldBaseUGenInternal</a>
 <a name="l00064"></a>00064 {
 <a name="l00065"></a>00065 <span class="keyword">public</span>:
-<a name="l00066"></a>00066     <a class="code" href="class_fold_u_gen_internal.html#a5de58f931707fde042fd31a4ef6a294c">FoldUGenInternal</a>(<a class="code" href="ugen___wrap_fold_8h.html#af8cdf1ea7c382bd6778dfe32b95b6f8c">WrapFold_InputsWithTypesOnly</a>) <span class="keywordflow">throw</span>();
-<a name="l00067"></a>00067     <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_fold_u_gen_internal.html#ad8c3b679e01ad3763aac76d0d5eb10e6">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
-<a name="l00068"></a>00068     <span class="keywordtype">void</span> <a class="code" href="class_fold_u_gen_internal.html#ad48ef13d938b7f9668866b81a5700678" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00066"></a>00066  <a class="code" href="class_fold_u_gen_internal.html#a5de58f931707fde042fd31a4ef6a294c">FoldUGenInternal</a>(<a class="code" href="ugen___wrap_fold_8h.html#af8cdf1ea7c382bd6778dfe32b95b6f8c">WrapFold_InputsWithTypesOnly</a>) <span class="keywordflow">throw</span>();
+<a name="l00067"></a>00067  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_fold_u_gen_internal.html#ad8c3b679e01ad3763aac76d0d5eb10e6">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00068"></a>00068  <span class="keywordtype">void</span> <a class="code" href="class_fold_u_gen_internal.html#ad48ef13d938b7f9668866b81a5700678" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
 <a name="l00069"></a>00069 };
 <a name="l00070"></a>00070 
 <a name="l00071"></a>00071 
@@ -109,7 +109,7 @@
 <a name="l00077"></a>00077 <span class="preprocessor">#endif // _UGEN_ugen_WrapFold_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:27 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:56 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

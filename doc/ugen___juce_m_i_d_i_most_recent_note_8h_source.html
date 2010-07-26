@@ -77,40 +77,40 @@
 <a name="l00045"></a>00045 
 <a name="l00046"></a>00046 
 <a name="l00047"></a><a class="code" href="class_m_i_d_i_most_recent_note_internal.html">00047</a> <span class="keyword">class </span><a class="code" href="class_m_i_d_i_most_recent_note_internal.html">MIDIMostRecentNoteInternal</a> :  <span class="keyword">public</span> <a class="code" href="class_juce_m_i_d_i_input_listener.html" title="Listens for MIDI data broadcasted by the JuceMIDIInputBroadcaster.">JuceMIDIInputListener</a>,
-<a name="l00048"></a>00048                                     <span class="keyword">public</span> <a class="code" href="class_external_control_source_internal.html">ExternalControlSourceInternal</a>
+<a name="l00048"></a>00048          <span class="keyword">public</span> <a class="code" href="class_external_control_source_internal.html">ExternalControlSourceInternal</a>
 <a name="l00049"></a>00049 {
 <a name="l00050"></a>00050 <span class="keyword">public</span>:
-<a name="l00051"></a>00051     <a class="code" href="class_m_i_d_i_most_recent_note_internal.html#ac05e1bb6e87c94e79033c099bfacb3a8">MIDIMostRecentNoteInternal</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> midiChannel,
-<a name="l00052"></a>00052                                <span class="keyword">const</span> <span class="keywordtype">float</span> minVal, <span class="keyword">const</span> <span class="keywordtype">float</span> maxVal, 
-<a name="l00053"></a>00053                                <span class="keyword">const</span> <a class="code" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810">ExternalControlSource::Warp</a> warp, 
-<a name="l00054"></a>00054                                <span class="keywordtype">void</span>* port) <span class="keywordflow">throw</span>();
-<a name="l00055"></a>00055     
-<a name="l00056"></a>00056     <span class="keywordtype">void</span> <a class="code" href="class_m_i_d_i_most_recent_note_internal.html#a0d04195aa3278f07f361074caafb14cc">handleIncomingMidiMessage</a> (MidiInput* source, <span class="keyword">const</span> MidiMessage&amp; message) <span class="keywordflow">throw</span>();
-<a name="l00057"></a>00057     
+<a name="l00051"></a>00051  <a class="code" href="class_m_i_d_i_most_recent_note_internal.html#ac05e1bb6e87c94e79033c099bfacb3a8">MIDIMostRecentNoteInternal</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> midiChannel,
+<a name="l00052"></a>00052           <span class="keyword">const</span> <span class="keywordtype">float</span> minVal, <span class="keyword">const</span> <span class="keywordtype">float</span> maxVal, 
+<a name="l00053"></a>00053           <span class="keyword">const</span> <a class="code" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810">ExternalControlSource::Warp</a> warp, 
+<a name="l00054"></a>00054           <span class="keywordtype">void</span>* port) <span class="keywordflow">throw</span>();
+<a name="l00055"></a>00055  
+<a name="l00056"></a>00056  <span class="keywordtype">void</span> <a class="code" href="class_m_i_d_i_most_recent_note_internal.html#a0d04195aa3278f07f361074caafb14cc">handleIncomingMidiMessage</a> (MidiInput* source, <span class="keyword">const</span> MidiMessage&amp; message) <span class="keywordflow">throw</span>();
+<a name="l00057"></a>00057  
 <a name="l00058"></a>00058 <span class="keyword">private</span>:
-<a name="l00059"></a><a class="code" href="class_m_i_d_i_most_recent_note_internal.html#a93086a1cf62361e1b028359829ffb46a">00059</a>     <span class="keywordtype">int</span> <a class="code" href="class_m_i_d_i_most_recent_note_internal.html#a93086a1cf62361e1b028359829ffb46a">midiChannel_</a>;
-<a name="l00060"></a><a class="code" href="class_m_i_d_i_most_recent_note_internal.html#a989d1246d06b5d0a04c5d622cd318ba1">00060</a>     <span class="keywordtype">void</span>* <a class="code" href="class_m_i_d_i_most_recent_note_internal.html#a989d1246d06b5d0a04c5d622cd318ba1">port_</a>;
+<a name="l00059"></a><a class="code" href="class_m_i_d_i_most_recent_note_internal.html#a93086a1cf62361e1b028359829ffb46a">00059</a>  <span class="keywordtype">int</span> <a class="code" href="class_m_i_d_i_most_recent_note_internal.html#a93086a1cf62361e1b028359829ffb46a">midiChannel_</a>;
+<a name="l00060"></a><a class="code" href="class_m_i_d_i_most_recent_note_internal.html#a989d1246d06b5d0a04c5d622cd318ba1">00060</a>  <span class="keywordtype">void</span>* <a class="code" href="class_m_i_d_i_most_recent_note_internal.html#a989d1246d06b5d0a04c5d622cd318ba1">port_</a>;
 <a name="l00061"></a>00061 };
 <a name="l00062"></a>00062 
 <a name="l00063"></a>00063 <a class="code" href="ugen___juce_m_i_d_i_input_broadcaster_8h.html#a035533409cee045b36b5d125a8ea852f">DeclareJuceMIDIDataSourceNoDefault</a>(<a class="code" href="class_m_i_d_i_most_recent_note.html">MIDIMostRecentNote</a>, 
-<a name="l00064"></a>00064                                    (midiChannel, minVal, maxVal, warp, port), 
-<a name="l00065"></a>00065                                    (<span class="keyword">const</span> <span class="keywordtype">int</span> midiChannel = 1,
-<a name="l00066"></a>00066                                     <span class="keyword">const</span> <span class="keywordtype">float</span> minVal = 0.f, <span class="keyword">const</span> <span class="keywordtype">float</span> maxVal = 127.f, 
-<a name="l00067"></a>00067                                     <span class="keyword">const</span> <a class="code" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810">ExternalControlSource::Warp</a> warp = <a class="code" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810acb94ecf0a2f55e6cb3051f00d5ca7926">ExternalControlSource::Linear</a>, 
-<a name="l00068"></a>00068                                     <span class="keywordtype">void</span>* port = 0),
-<a name="l00069"></a>00069                                     lagTime,
-<a name="l00070"></a>00070                                    (<span class="keyword">const</span> <span class="keywordtype">int</span> midiChannel = 1,
-<a name="l00071"></a>00071                                     <span class="keyword">const</span> <span class="keywordtype">float</span> minVal = 0.f, <span class="keyword">const</span> <span class="keywordtype">float</span> maxVal = 127.f, 
-<a name="l00072"></a>00072                                     <span class="keyword">const</span> <a class="code" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810">ExternalControlSource::Warp</a> warp = <a class="code" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810acb94ecf0a2f55e6cb3051f00d5ca7926">ExternalControlSource::Linear</a>, 
-<a name="l00073"></a>00073                                     <span class="keyword">const</span> <span class="keywordtype">double</span> lagTime = 0.1,
-<a name="l00074"></a><a class="code" href="class_m_i_d_i_most_recent_note.html#a2e4d3f067e3801a1f753382446cad7ef">00074</a>                                     <span class="keywordtype">void</span>* port = 0));
+<a name="l00064"></a>00064            (midiChannel, minVal, maxVal, warp, port), 
+<a name="l00065"></a>00065            (<span class="keyword">const</span> <span class="keywordtype">int</span> midiChannel = 1,
+<a name="l00066"></a>00066          <span class="keyword">const</span> <span class="keywordtype">float</span> minVal = 0.f, <span class="keyword">const</span> <span class="keywordtype">float</span> maxVal = 127.f, 
+<a name="l00067"></a>00067          <span class="keyword">const</span> <a class="code" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810">ExternalControlSource::Warp</a> warp = <a class="code" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810acb94ecf0a2f55e6cb3051f00d5ca7926">ExternalControlSource::Linear</a>, 
+<a name="l00068"></a>00068          <span class="keywordtype">void</span>* port = 0),
+<a name="l00069"></a>00069          lagTime,
+<a name="l00070"></a>00070            (<span class="keyword">const</span> <span class="keywordtype">int</span> midiChannel = 1,
+<a name="l00071"></a>00071          <span class="keyword">const</span> <span class="keywordtype">float</span> minVal = 0.f, <span class="keyword">const</span> <span class="keywordtype">float</span> maxVal = 127.f, 
+<a name="l00072"></a>00072          <span class="keyword">const</span> <a class="code" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810">ExternalControlSource::Warp</a> warp = <a class="code" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810acb94ecf0a2f55e6cb3051f00d5ca7926">ExternalControlSource::Linear</a>, 
+<a name="l00073"></a>00073          <span class="keyword">const</span> <span class="keywordtype">double</span> lagTime = 0.1,
+<a name="l00074"></a><a class="code" href="class_m_i_d_i_most_recent_note.html#a2e4d3f067e3801a1f753382446cad7ef">00074</a>          <span class="keywordtype">void</span>* port = 0));
 <a name="l00075"></a>00075 
 <a name="l00076"></a>00076 <span class="preprocessor">#endif // gpl</span>
 <a name="l00077"></a>00077 <span class="preprocessor"></span>
 <a name="l00078"></a>00078 <span class="preprocessor">#endif // _UGEN_ugen_JuceMIDIMostRecentNote_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:29 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:58 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

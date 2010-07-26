@@ -75,54 +75,54 @@
 <a name="l00043"></a>00043 <span class="preprocessor">#include &quot;<a class="code" href="ugen___trig_8h.html">ugen_Trig.h</a>&quot;</span>
 <a name="l00044"></a>00044 
 <a name="l00045"></a><a class="code" href="class_trig_u_gen_internal.html#aa5ae23910c5770dce1079bf9fa5dacfa">00045</a> <a class="code" href="class_trig_u_gen_internal.html#aa5ae23910c5770dce1079bf9fa5dacfa">TrigUGenInternal::TrigUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input) <span class="keywordflow">throw</span>()
-<a name="l00046"></a>00046 :   <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(NumInputs)
+<a name="l00046"></a>00046 : <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(NumInputs)
 <a name="l00047"></a>00047 {
-<a name="l00048"></a>00048     inputs[Input] = input;
-<a name="l00049"></a>00049     lastTrig = 0.f;
+<a name="l00048"></a>00048  inputs[Input] = input;
+<a name="l00049"></a>00049  lastTrig = 0.f;
 <a name="l00050"></a>00050 }
 <a name="l00051"></a>00051 
 <a name="l00052"></a><a class="code" href="class_trig_u_gen_internal.html#a66805ec7ea7ae28f0484a7ef1e12cb75">00052</a> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_trig_u_gen_internal.html#a66805ec7ea7ae28f0484a7ef1e12cb75">TrigUGenInternal::getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
 <a name="l00053"></a>00053 {
-<a name="l00054"></a>00054     <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_trig_u_gen_internal.html">TrigUGenInternal</a>(inputs[Input].getChannel(channel));
+<a name="l00054"></a>00054  <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_trig_u_gen_internal.html">TrigUGenInternal</a>(inputs[Input].getChannel(channel));
 <a name="l00055"></a>00055 }
 <a name="l00056"></a>00056 
 <a name="l00057"></a><a class="code" href="class_trig_u_gen_internal.html#a171a8c8cec749cbdb1350f8ade5c0c6c">00057</a> <span class="keywordtype">void</span> <a class="code" href="class_trig_u_gen_internal.html#a171a8c8cec749cbdb1350f8ade5c0c6c" title="Process a block of samples for this blockID and channel.">TrigUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
 <a name="l00058"></a>00058 {
-<a name="l00059"></a>00059     <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
-<a name="l00060"></a>00060     <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
-<a name="l00061"></a>00061     <span class="keywordtype">float</span>* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
-<a name="l00062"></a>00062     
-<a name="l00063"></a>00063     <a class="code" href="ugen___standard_header_8h.html#a9a37472ac55b2fcd8760b2a0db82f035" title="Declares a local variable which is a copy of a member variable.">LOCAL_DECLARE</a>(<span class="keywordtype">float</span>, lastTrig);
-<a name="l00064"></a>00064     
-<a name="l00065"></a>00065     <span class="keywordflow">while</span>(numSamplesToProcess--)
-<a name="l00066"></a>00066     {
-<a name="l00067"></a>00067         <span class="keywordtype">float</span> thisTrig = *inputSamples++;
-<a name="l00068"></a>00068         
-<a name="l00069"></a>00069         <span class="keywordflow">if</span>(thisTrig &gt; 0.f &amp;&amp; lastTrig &lt;= 0.f)
-<a name="l00070"></a>00070             *outputSamples++ = 1.f;
-<a name="l00071"></a>00071         <span class="keywordflow">else</span>
-<a name="l00072"></a>00072             *outputSamples++ = 0.f;
-<a name="l00073"></a>00073         
-<a name="l00074"></a>00074         lastTrig = thisTrig;
-<a name="l00075"></a>00075     }
-<a name="l00076"></a>00076     
-<a name="l00077"></a>00077     <a class="code" href="ugen___standard_header_8h.html#ac1a39f55409398450d8e54bf8200a332" title="Copys the value from a local variable back to its member variable.">LOCAL_COPY</a>(lastTrig);
+<a name="l00059"></a>00059  <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
+<a name="l00060"></a>00060  <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
+<a name="l00061"></a>00061  <span class="keywordtype">float</span>* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
+<a name="l00062"></a>00062  
+<a name="l00063"></a>00063  <a class="code" href="ugen___standard_header_8h.html#a9a37472ac55b2fcd8760b2a0db82f035" title="Declares a local variable which is a copy of a member variable.">LOCAL_DECLARE</a>(<span class="keywordtype">float</span>, lastTrig);
+<a name="l00064"></a>00064  
+<a name="l00065"></a>00065  <span class="keywordflow">while</span>(numSamplesToProcess--)
+<a name="l00066"></a>00066  {
+<a name="l00067"></a>00067   <span class="keywordtype">float</span> thisTrig = *inputSamples++;
+<a name="l00068"></a>00068   
+<a name="l00069"></a>00069   <span class="keywordflow">if</span>(thisTrig &gt; 0.f &amp;&amp; lastTrig &lt;= 0.f)
+<a name="l00070"></a>00070    *outputSamples++ = 1.f;
+<a name="l00071"></a>00071   <span class="keywordflow">else</span>
+<a name="l00072"></a>00072    *outputSamples++ = 0.f;
+<a name="l00073"></a>00073   
+<a name="l00074"></a>00074   lastTrig = thisTrig;
+<a name="l00075"></a>00075  }
+<a name="l00076"></a>00076  
+<a name="l00077"></a>00077  <a class="code" href="ugen___standard_header_8h.html#ac1a39f55409398450d8e54bf8200a332" title="Copys the value from a local variable back to its member variable.">LOCAL_COPY</a>(lastTrig);
 <a name="l00078"></a>00078 }
 <a name="l00079"></a>00079 
 <a name="l00080"></a><a class="code" href="class_trig.html#adae4859e0ab7bff6a24d2f2a78d53e12">00080</a> <a class="code" href="class_trig.html#adae4859e0ab7bff6a24d2f2a78d53e12" title="Base Trig Constuctor, use the AR() and KR() versions in user code.">Trig::Trig</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input) <span class="keywordflow">throw</span>()
 <a name="l00081"></a>00081 {
-<a name="l00082"></a>00082     initInternal(input.getNumChannels());
-<a name="l00083"></a>00083     
-<a name="l00084"></a>00084     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++)
-<a name="l00085"></a>00085     {
-<a name="l00086"></a>00086         internalUGens[i] = <span class="keyword">new</span> <a class="code" href="class_trig_u_gen_internal.html">TrigUGenInternal</a>(input);
-<a name="l00087"></a>00087     }
+<a name="l00082"></a>00082  initInternal(input.getNumChannels());
+<a name="l00083"></a>00083  
+<a name="l00084"></a>00084  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++)
+<a name="l00085"></a>00085  {
+<a name="l00086"></a>00086   internalUGens[i] = <span class="keyword">new</span> <a class="code" href="class_trig_u_gen_internal.html">TrigUGenInternal</a>(input);
+<a name="l00087"></a>00087  }
 <a name="l00088"></a>00088 }
 <a name="l00089"></a>00089 
 <a name="l00090"></a>00090 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:27 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:56 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

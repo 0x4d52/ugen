@@ -67,8 +67,8 @@
 <a name="l00035"></a>00035 <span class="comment"> */</span>
 <a name="l00036"></a>00036 
 <a name="l00037"></a>00037 <span class="preprocessor">#if !defined(WIN32) &amp;&amp; !defined(UGEN_IPHONE)</span>
-<a name="l00038"></a>00038 <span class="preprocessor"></span><span class="preprocessor">    #include &lt;Accelerate/Accelerate.h&gt;</span>
-<a name="l00039"></a>00039 <span class="preprocessor">    #include &lt;CoreServices/CoreServices.h&gt;</span>
+<a name="l00038"></a>00038 <span class="preprocessor"></span><span class="preprocessor"> #include &lt;Accelerate/Accelerate.h&gt;</span>
+<a name="l00039"></a>00039 <span class="preprocessor"> #include &lt;CoreServices/CoreServices.h&gt;</span>
 <a name="l00040"></a>00040 <span class="preprocessor">#endif</span>
 <a name="l00041"></a>00041 <span class="preprocessor"></span><span class="preprocessor">#include &quot;../core/ugen_StandardHeader.h&quot;</span>
 <a name="l00042"></a>00042 
@@ -79,134 +79,134 @@
 <a name="l00047"></a>00047 <span class="preprocessor">#include &quot;../core/ugen_Bits.h&quot;</span>
 <a name="l00048"></a>00048 
 <a name="l00049"></a><a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#afbd459ddf7fb6e36f545b8520be67526">00049</a> <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#afbd459ddf7fb6e36f545b8520be67526">FFTMagnitudeSelectionUGenInternal::FFTMagnitudeSelectionUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, 
-<a name="l00050"></a>00050                                                                      <a class="code" href="class_f_f_t_engine.html">FFTEngine</a> <span class="keyword">const</span>&amp; fft, 
-<a name="l00051"></a>00051                                                                      <span class="keyword">const</span> <span class="keywordtype">int</span> overlap, 
-<a name="l00052"></a>00052                                                                      <a class="code" href="class_numerical_array.html">IntArray</a> <span class="keyword">const</span>&amp; _bins) <span class="keywordflow">throw</span>()
-<a name="l00053"></a>00053 :   <a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a>(NumInputs, _bins.length()-1),
-<a name="l00054"></a>00054     fftEngine(fft),
-<a name="l00055"></a>00055     fftSize(fftEngine.size()),
-<a name="l00056"></a>00056     fftSizeHalved(fftSize / 2), 
-<a name="l00057"></a>00057     overlap_(overlap &lt; 1 ? 1 : overlap),
-<a name="l00058"></a>00058     hopSize(fftSize / overlap),
-<a name="l00059"></a>00059     overlapSize(fftSize - hopSize),
-<a name="l00060"></a>00060     maxNumBins(fftSizeHalved + 1),
-<a name="l00061"></a>00061     bins(_bins),
-<a name="l00062"></a>00062     inputBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(fftSize, 1, <span class="keyword">true</span>)),
-<a name="l00063"></a>00063     outputBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(fftSize, 1, <span class="keyword">true</span>)),
-<a name="l00064"></a>00064     bufferIndex(fftSize - hopSize),
-<a name="l00065"></a>00065     magnitudes(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(bins.length(), 1, <span class="keyword">true</span>)),
-<a name="l00066"></a>00066     outputSampleData(<span class="keyword">new</span> <span class="keywordtype">float</span>*[bins.length()])
+<a name="l00050"></a>00050                   <a class="code" href="class_f_f_t_engine.html">FFTEngine</a> <span class="keyword">const</span>&amp; fft, 
+<a name="l00051"></a>00051                   <span class="keyword">const</span> <span class="keywordtype">int</span> overlap, 
+<a name="l00052"></a>00052                   <a class="code" href="class_numerical_array.html">IntArray</a> <span class="keyword">const</span>&amp; _bins) <span class="keywordflow">throw</span>()
+<a name="l00053"></a>00053 : <a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a>(NumInputs, _bins.length()-1),
+<a name="l00054"></a>00054  fftEngine(fft),
+<a name="l00055"></a>00055  fftSize(fftEngine.size()),
+<a name="l00056"></a>00056  fftSizeHalved(fftSize / 2), 
+<a name="l00057"></a>00057  overlap_(overlap &lt; 1 ? 1 : overlap),
+<a name="l00058"></a>00058  hopSize(fftSize / overlap),
+<a name="l00059"></a>00059  overlapSize(fftSize - hopSize),
+<a name="l00060"></a>00060  maxNumBins(fftSizeHalved + 1),
+<a name="l00061"></a>00061  bins(_bins),
+<a name="l00062"></a>00062  inputBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(fftSize, 1, <span class="keyword">true</span>)),
+<a name="l00063"></a>00063  outputBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(fftSize, 1, <span class="keyword">true</span>)),
+<a name="l00064"></a>00064  bufferIndex(fftSize - hopSize),
+<a name="l00065"></a>00065  magnitudes(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(bins.length(), 1, <span class="keyword">true</span>)),
+<a name="l00066"></a>00066  outputSampleData(<span class="keyword">new</span> <span class="keywordtype">float</span>*[bins.length()])
 <a name="l00067"></a>00067 {
-<a name="l00068"></a>00068     <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(overlap == overlap_);   <span class="comment">// should be &gt; 0</span>
-<a name="l00069"></a>00069     <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(bins.length() &gt; 0);
-<a name="l00070"></a>00070     
-<a name="l00071"></a>00071     inputs[Input] = input;
+<a name="l00068"></a>00068  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(overlap == overlap_); <span class="comment">// should be &gt; 0</span>
+<a name="l00069"></a>00069  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(bins.length() &gt; 0);
+<a name="l00070"></a>00070  
+<a name="l00071"></a>00071  inputs[Input] = input;
 <a name="l00072"></a>00072 }
 <a name="l00073"></a>00073 
 <a name="l00074"></a><a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#aaf7cbcd732efb2242860d0f00d597cd3">00074</a> <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#aaf7cbcd732efb2242860d0f00d597cd3">FFTMagnitudeSelectionUGenInternal::~FFTMagnitudeSelectionUGenInternal</a>()
 <a name="l00075"></a>00075 {
-<a name="l00076"></a>00076     <span class="keyword">delete</span> [] <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a2bf0e73e81a151d46b5e0a26764e272f">outputSampleData</a>;
+<a name="l00076"></a>00076  <span class="keyword">delete</span> [] <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a2bf0e73e81a151d46b5e0a26764e272f">outputSampleData</a>;
 <a name="l00077"></a>00077 }
 <a name="l00078"></a>00078 
 <a name="l00079"></a><a class="code" href="ugen___f_f_t_magnitude_selection_8cpp.html#a99b79205bff60d56ab2ebcbec2d42ce5">00079</a> <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="ugen___f_f_t_magnitude_selection_8cpp.html#a99b79205bff60d56ab2ebcbec2d42ce5">splat</a>(<span class="keywordtype">float</span> *buffer, <span class="keywordtype">float</span> value, <span class="keywordtype">int</span> n)
 <a name="l00080"></a>00080 {
-<a name="l00081"></a>00081     <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(buffer != 0);
-<a name="l00082"></a>00082     <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(n &gt; 0);
+<a name="l00081"></a>00081  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(buffer != 0);
+<a name="l00082"></a>00082  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(n &gt; 0);
 <a name="l00083"></a>00083 
-<a name="l00084"></a>00084     <span class="keywordflow">while</span>(n--)
-<a name="l00085"></a>00085         *buffer++ = value;
+<a name="l00084"></a>00084  <span class="keywordflow">while</span>(n--)
+<a name="l00085"></a>00085   *buffer++ = value;
 <a name="l00086"></a>00086 }
 <a name="l00087"></a>00087 
 <a name="l00088"></a><a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a05e55dfac1190a2f25b462484413a8d6">00088</a> <span class="keywordtype">void</span> <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a05e55dfac1190a2f25b462484413a8d6" title="Process a block of samples for this blockID and channel.">FFTMagnitudeSelectionUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*channel*/</span>) throw()
 <a name="l00089"></a>00089 {
-<a name="l00090"></a>00090     <span class="keyword">const</span> <span class="keywordtype">int</span> blockSize = <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a118a3566a4758eb4719c57843c25bd57">getBlockSize</a>();
-<a name="l00091"></a>00091     <span class="keywordtype">int</span> numSamplesToProcess = blockSize;
-<a name="l00092"></a>00092     <span class="keywordtype">float</span>* inputSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Input].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
-<a name="l00093"></a>00093     <span class="keywordtype">float</span>* bufferSamples = <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#aab8493b00457f498484cf8ae81b78014">inputBuffer</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>();
-<a name="l00094"></a>00094     
-<a name="l00095"></a>00095     <span class="comment">// get output pointers</span>
-<a name="l00096"></a>00096     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a6d796b73a9b9f854c41646d9fbb96970">bins</a>.<a class="code" href="class_object_array.html#a6eb3d6ad48798a021d3dc9f23e9c5260" title="Length is the number of real elements of storage available.">length</a>(); channel++)
-<a name="l00097"></a>00097     {
-<a name="l00098"></a>00098         <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a2bf0e73e81a151d46b5e0a26764e272f">outputSampleData</a>[channel] = <a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">getSampleData</a>();
-<a name="l00099"></a>00099     }   
-<a name="l00100"></a>00100     
-<a name="l00101"></a>00101     
-<a name="l00102"></a>00102     <span class="keywordflow">while</span>(numSamplesToProcess &gt; 0)
-<a name="l00103"></a>00103     {
-<a name="l00104"></a>00104         <span class="keywordtype">int</span> bufferSamplesToProcess = <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a34d882c6f660d111cbe77352be3bd095">fftSize</a> - <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a4f14f67d09edf82f4234c9d1cd28d5fa">bufferIndex</a>;
-<a name="l00105"></a>00105         
-<a name="l00106"></a>00106         <span class="keywordflow">if</span>(bufferSamplesToProcess &gt; numSamplesToProcess)
-<a name="l00107"></a>00107         {                           
-<a name="l00108"></a>00108             memcpy(bufferSamples + bufferIndex, inputSamples, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
-<a name="l00109"></a>00109             
-<a name="l00110"></a>00110             bufferIndex += numSamplesToProcess;
-<a name="l00111"></a>00111             inputSamples += numSamplesToProcess;
-<a name="l00112"></a>00112             numSamplesToProcess = 0;
-<a name="l00113"></a>00113         }
-<a name="l00114"></a>00114         <span class="keywordflow">else</span>
-<a name="l00115"></a>00115         {
-<a name="l00116"></a>00116             numSamplesToProcess -= bufferSamplesToProcess;
-<a name="l00117"></a>00117                                     
-<a name="l00118"></a>00118             memcpy(bufferSamples + bufferIndex, inputSamples, bufferSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
-<a name="l00119"></a>00119             
-<a name="l00120"></a>00120             bufferIndex += bufferSamplesToProcess;
-<a name="l00121"></a>00121             inputSamples += bufferSamplesToProcess;
-<a name="l00122"></a>00122             bufferSamplesToProcess = 0;
-<a name="l00123"></a>00123             
-<a name="l00124"></a>00124             <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a5498334869592c0ed75c3d694f03ea9a">fftEngine</a>.<a class="code" href="class_f_f_t_engine.html#a50262393bb12ca78779652557bc12eda">fft</a>(<a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a91364f775b343f7bb479ac38743dc141">outputBuffer</a>, <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#aab8493b00457f498484cf8ae81b78014">inputBuffer</a>, <span class="keyword">true</span>);
-<a name="l00125"></a>00125             
-<a name="l00126"></a>00126             <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a5365f7371631484100c24dc126a8cb77">magnitudes</a> = <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a5498334869592c0ed75c3d694f03ea9a">fftEngine</a>.<a class="code" href="class_f_f_t_engine.html#a67c0e2486a5e84bb65f5951e80546773">rawToMagnitude</a>(<a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a91364f775b343f7bb479ac38743dc141">outputBuffer</a>, 0, <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#afa5c895e8e25c84bb79a99e7698ff28d">maxNumBins</a>);
-<a name="l00127"></a>00127             <a class="code" href="class_numerical_array.html">FloatArray</a> floatMag = <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a5365f7371631484100c24dc126a8cb77">magnitudes</a>.<a class="code" href="class_buffer.html#a02346a8be8129455c7512f0e76810966" title="Convert a buffer to a 2D array of a specified type.">toArray</a>&lt;<span class="keywordtype">float</span>&gt;(0).at(<a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a6d796b73a9b9f854c41646d9fbb96970">bins</a>);
-<a name="l00128"></a>00128             <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a5365f7371631484100c24dc126a8cb77">magnitudes</a> = <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(floatMag);
-<a name="l00129"></a>00129             
-<a name="l00130"></a>00130             <span class="keywordflow">if</span>(<a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#aa636c23a75966165f5a88e7ab38b4113">overlap_</a> &gt; 1)
-<a name="l00131"></a>00131             {
-<a name="l00132"></a>00132                 memcpy(<a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#aab8493b00457f498484cf8ae81b78014">inputBuffer</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(), <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#aab8493b00457f498484cf8ae81b78014">inputBuffer</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>() + <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a995d2cb629f211408b6b14ac0b1b32e8">hopSize</a>, <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a04270bdb379e6ce8596dcbe1a2ac6181">overlapSize</a> * <span class="keyword">sizeof</span>(float));
-<a name="l00133"></a>00133                 bufferIndex = <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a34d882c6f660d111cbe77352be3bd095">fftSize</a> - <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a995d2cb629f211408b6b14ac0b1b32e8">hopSize</a>;
-<a name="l00134"></a>00134             }
-<a name="l00135"></a>00135             <span class="keywordflow">else</span>
-<a name="l00136"></a>00136             {
-<a name="l00137"></a>00137                 bufferIndex = 0;
-<a name="l00138"></a>00138             }
-<a name="l00139"></a>00139         }
-<a name="l00140"></a>00140         
-<a name="l00141"></a>00141         <span class="keyword">const</span> <span class="keywordtype">int</span> outputSamplesToProcess = <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a995d2cb629f211408b6b14ac0b1b32e8">hopSize</a> &lt; blockSize ? <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a995d2cb629f211408b6b14ac0b1b32e8">hopSize</a> : blockSize;
-<a name="l00142"></a>00142         
-<a name="l00143"></a>00143         <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a6d796b73a9b9f854c41646d9fbb96970">bins</a>.<a class="code" href="class_object_array.html#a6eb3d6ad48798a021d3dc9f23e9c5260" title="Length is the number of real elements of storage available.">length</a>(); channel++)
-<a name="l00144"></a>00144         {
-<a name="l00145"></a>00145             <span class="keywordtype">float</span> magnitude = <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a5365f7371631484100c24dc126a8cb77">magnitudes</a>.<a class="code" href="class_buffer.html#a54e55fffada89fdd7ea22569c83aa337">getSampleUnchecked</a>(channel);
-<a name="l00146"></a>00146             
-<a name="l00147"></a>00147             <a class="code" href="ugen___f_f_t_magnitude_selection_8cpp.html#a99b79205bff60d56ab2ebcbec2d42ce5">splat</a>(<a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a2bf0e73e81a151d46b5e0a26764e272f">outputSampleData</a>[channel], magnitude, outputSamplesToProcess);
-<a name="l00148"></a>00148             
-<a name="l00149"></a>00149             <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a2bf0e73e81a151d46b5e0a26764e272f">outputSampleData</a>[channel] += outputSamplesToProcess;
-<a name="l00150"></a>00150         }   
-<a name="l00151"></a>00151         
-<a name="l00152"></a>00152     }
-<a name="l00153"></a>00153     
+<a name="l00090"></a>00090  <span class="keyword">const</span> <span class="keywordtype">int</span> blockSize = <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a118a3566a4758eb4719c57843c25bd57">getBlockSize</a>();
+<a name="l00091"></a>00091  <span class="keywordtype">int</span> numSamplesToProcess = blockSize;
+<a name="l00092"></a>00092  <span class="keywordtype">float</span>* inputSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Input].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
+<a name="l00093"></a>00093  <span class="keywordtype">float</span>* bufferSamples = <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#aab8493b00457f498484cf8ae81b78014">inputBuffer</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>();
+<a name="l00094"></a>00094  
+<a name="l00095"></a>00095  <span class="comment">// get output pointers</span>
+<a name="l00096"></a>00096  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a6d796b73a9b9f854c41646d9fbb96970">bins</a>.<a class="code" href="class_object_array.html#a6eb3d6ad48798a021d3dc9f23e9c5260" title="Length is the number of real elements of storage available.">length</a>(); channel++)
+<a name="l00097"></a>00097  {
+<a name="l00098"></a>00098   <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a2bf0e73e81a151d46b5e0a26764e272f">outputSampleData</a>[channel] = <a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">getSampleData</a>();
+<a name="l00099"></a>00099  } 
+<a name="l00100"></a>00100  
+<a name="l00101"></a>00101  
+<a name="l00102"></a>00102  <span class="keywordflow">while</span>(numSamplesToProcess &gt; 0)
+<a name="l00103"></a>00103  {
+<a name="l00104"></a>00104   <span class="keywordtype">int</span> bufferSamplesToProcess = <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a34d882c6f660d111cbe77352be3bd095">fftSize</a> - <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a4f14f67d09edf82f4234c9d1cd28d5fa">bufferIndex</a>;
+<a name="l00105"></a>00105   
+<a name="l00106"></a>00106   <span class="keywordflow">if</span>(bufferSamplesToProcess &gt; numSamplesToProcess)
+<a name="l00107"></a>00107   {       
+<a name="l00108"></a>00108    memcpy(bufferSamples + bufferIndex, inputSamples, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00109"></a>00109    
+<a name="l00110"></a>00110    bufferIndex += numSamplesToProcess;
+<a name="l00111"></a>00111    inputSamples += numSamplesToProcess;
+<a name="l00112"></a>00112    numSamplesToProcess = 0;
+<a name="l00113"></a>00113   }
+<a name="l00114"></a>00114   <span class="keywordflow">else</span>
+<a name="l00115"></a>00115   {
+<a name="l00116"></a>00116    numSamplesToProcess -= bufferSamplesToProcess;
+<a name="l00117"></a>00117          
+<a name="l00118"></a>00118    memcpy(bufferSamples + bufferIndex, inputSamples, bufferSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00119"></a>00119    
+<a name="l00120"></a>00120    bufferIndex += bufferSamplesToProcess;
+<a name="l00121"></a>00121    inputSamples += bufferSamplesToProcess;
+<a name="l00122"></a>00122    bufferSamplesToProcess = 0;
+<a name="l00123"></a>00123    
+<a name="l00124"></a>00124    <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a5498334869592c0ed75c3d694f03ea9a">fftEngine</a>.<a class="code" href="class_f_f_t_engine.html#a50262393bb12ca78779652557bc12eda">fft</a>(<a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a91364f775b343f7bb479ac38743dc141">outputBuffer</a>, <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#aab8493b00457f498484cf8ae81b78014">inputBuffer</a>, <span class="keyword">true</span>);
+<a name="l00125"></a>00125    
+<a name="l00126"></a>00126    <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a5365f7371631484100c24dc126a8cb77">magnitudes</a> = <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a5498334869592c0ed75c3d694f03ea9a">fftEngine</a>.<a class="code" href="class_f_f_t_engine.html#a67c0e2486a5e84bb65f5951e80546773">rawToMagnitude</a>(<a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a91364f775b343f7bb479ac38743dc141">outputBuffer</a>, 0, <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#afa5c895e8e25c84bb79a99e7698ff28d">maxNumBins</a>);
+<a name="l00127"></a>00127    <a class="code" href="class_numerical_array.html">FloatArray</a> floatMag = <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a5365f7371631484100c24dc126a8cb77">magnitudes</a>.<a class="code" href="class_buffer.html#a02346a8be8129455c7512f0e76810966" title="Convert a buffer to a 2D array of a specified type.">toArray</a>&lt;<span class="keywordtype">float</span>&gt;(0).at(<a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a6d796b73a9b9f854c41646d9fbb96970">bins</a>);
+<a name="l00128"></a>00128    <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a5365f7371631484100c24dc126a8cb77">magnitudes</a> = <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(floatMag);
+<a name="l00129"></a>00129    
+<a name="l00130"></a>00130    <span class="keywordflow">if</span>(<a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#aa636c23a75966165f5a88e7ab38b4113">overlap_</a> &gt; 1)
+<a name="l00131"></a>00131    {
+<a name="l00132"></a>00132     memcpy(<a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#aab8493b00457f498484cf8ae81b78014">inputBuffer</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(), <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#aab8493b00457f498484cf8ae81b78014">inputBuffer</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>() + <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a995d2cb629f211408b6b14ac0b1b32e8">hopSize</a>, <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a04270bdb379e6ce8596dcbe1a2ac6181">overlapSize</a> * <span class="keyword">sizeof</span>(float));
+<a name="l00133"></a>00133     bufferIndex = <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a34d882c6f660d111cbe77352be3bd095">fftSize</a> - <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a995d2cb629f211408b6b14ac0b1b32e8">hopSize</a>;
+<a name="l00134"></a>00134    }
+<a name="l00135"></a>00135    <span class="keywordflow">else</span>
+<a name="l00136"></a>00136    {
+<a name="l00137"></a>00137     bufferIndex = 0;
+<a name="l00138"></a>00138    }
+<a name="l00139"></a>00139   }
+<a name="l00140"></a>00140   
+<a name="l00141"></a>00141   <span class="keyword">const</span> <span class="keywordtype">int</span> outputSamplesToProcess = <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a995d2cb629f211408b6b14ac0b1b32e8">hopSize</a> &lt; blockSize ? <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a995d2cb629f211408b6b14ac0b1b32e8">hopSize</a> : blockSize;
+<a name="l00142"></a>00142   
+<a name="l00143"></a>00143   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a6d796b73a9b9f854c41646d9fbb96970">bins</a>.<a class="code" href="class_object_array.html#a6eb3d6ad48798a021d3dc9f23e9c5260" title="Length is the number of real elements of storage available.">length</a>(); channel++)
+<a name="l00144"></a>00144   {
+<a name="l00145"></a>00145    <span class="keywordtype">float</span> magnitude = <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a5365f7371631484100c24dc126a8cb77">magnitudes</a>.<a class="code" href="class_buffer.html#a54e55fffada89fdd7ea22569c83aa337">getSampleUnchecked</a>(channel);
+<a name="l00146"></a>00146    
+<a name="l00147"></a>00147    <a class="code" href="ugen___f_f_t_magnitude_selection_8cpp.html#a99b79205bff60d56ab2ebcbec2d42ce5">splat</a>(<a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a2bf0e73e81a151d46b5e0a26764e272f">outputSampleData</a>[channel], magnitude, outputSamplesToProcess);
+<a name="l00148"></a>00148    
+<a name="l00149"></a>00149    <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a2bf0e73e81a151d46b5e0a26764e272f">outputSampleData</a>[channel] += outputSamplesToProcess;
+<a name="l00150"></a>00150   } 
+<a name="l00151"></a>00151   
+<a name="l00152"></a>00152  }
+<a name="l00153"></a>00153  
 <a name="l00154"></a>00154 }
 <a name="l00155"></a>00155 
 <a name="l00156"></a><a class="code" href="class_f_f_t_magnitude_selection.html#a5d605dd34ff70e2900043672c9a678bf">00156</a> <a class="code" href="class_f_f_t_magnitude_selection.html#a5d605dd34ff70e2900043672c9a678bf" title="Base FFTMagnitudeSelection Constuctor, use the AR() and KR() versions in user code.">FFTMagnitudeSelection::FFTMagnitudeSelection</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, 
-<a name="l00157"></a>00157                                              <a class="code" href="class_f_f_t_engine.html">FFTEngine</a> <span class="keyword">const</span>&amp; fft, 
-<a name="l00158"></a>00158                                              <span class="keyword">const</span> <span class="keywordtype">int</span> overlap, 
-<a name="l00159"></a>00159                                              <a class="code" href="class_numerical_array.html">IntArray</a> <span class="keyword">const</span>&amp; bins) <span class="keywordflow">throw</span>()
+<a name="l00157"></a>00157             <a class="code" href="class_f_f_t_engine.html">FFTEngine</a> <span class="keyword">const</span>&amp; fft, 
+<a name="l00158"></a>00158             <span class="keyword">const</span> <span class="keywordtype">int</span> overlap, 
+<a name="l00159"></a>00159             <a class="code" href="class_numerical_array.html">IntArray</a> <span class="keyword">const</span>&amp; bins) <span class="keywordflow">throw</span>()
 <a name="l00160"></a>00160 {
-<a name="l00161"></a>00161     <span class="keywordtype">int</span> overlapChecked = <a class="code" href="class_bits.html#ae0b61f4f2add97227eca8f5d9aaec56a">Bits::isPowerOf2</a>(overlap) ? overlap : <a class="code" href="class_bits.html#a5b721a90f111bcfb0e103f1cb002dfa1">Bits::nextPowerOf2</a>(overlap);
-<a name="l00162"></a>00162     
-<a name="l00163"></a>00163     <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(overlap != overlapChecked); <span class="comment">// should be power of 2</span>
+<a name="l00161"></a>00161  <span class="keywordtype">int</span> overlapChecked = <a class="code" href="class_bits.html#ae0b61f4f2add97227eca8f5d9aaec56a">Bits::isPowerOf2</a>(overlap) ? overlap : <a class="code" href="class_bits.html#a5b721a90f111bcfb0e103f1cb002dfa1">Bits::nextPowerOf2</a>(overlap);
+<a name="l00162"></a>00162  
+<a name="l00163"></a>00163  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(overlap != overlapChecked); <span class="comment">// should be power of 2</span>
 <a name="l00164"></a>00164 
-<a name="l00165"></a>00165     <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html">FFTMagnitudeSelectionUGenInternal</a> *fftMag = <span class="keyword">new</span> <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html">FFTMagnitudeSelectionUGenInternal</a>(input.mix(), 
-<a name="l00166"></a>00166                                                                                       fft, 
-<a name="l00167"></a>00167                                                                                       overlapChecked, 
-<a name="l00168"></a>00168                                                                                       bins);
-<a name="l00169"></a>00169         
-<a name="l00170"></a>00170     initInternal(fftMag-&gt;<a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#aa8424f6d4f046710ea6dbd38a76a9c7e">getNumBins</a>());
-<a name="l00171"></a>00171     generateFromProxyOwner(fftMag);
+<a name="l00165"></a>00165  <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html">FFTMagnitudeSelectionUGenInternal</a> *fftMag = <span class="keyword">new</span> <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html">FFTMagnitudeSelectionUGenInternal</a>(input.mix(), 
+<a name="l00166"></a>00166                        fft, 
+<a name="l00167"></a>00167                        overlapChecked, 
+<a name="l00168"></a>00168                        bins);
+<a name="l00169"></a>00169   
+<a name="l00170"></a>00170  initInternal(fftMag-&gt;<a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#aa8424f6d4f046710ea6dbd38a76a9c7e">getNumBins</a>());
+<a name="l00171"></a>00171  generateFromProxyOwner(fftMag);
 <a name="l00172"></a>00172 }
 <a name="l00173"></a>00173 
 <a name="l00174"></a>00174 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:28 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:57 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

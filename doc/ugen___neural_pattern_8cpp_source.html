@@ -74,171 +74,171 @@
 <a name="l00042"></a>00042 
 <a name="l00043"></a>00043 
 <a name="l00044"></a><a class="code" href="class_neural_pattern_simple_internal.html#a3f371bbd112b59d375e52c6d928a5336">00044</a> <a class="code" href="class_neural_pattern_simple_internal.html#a3f371bbd112b59d375e52c6d928a5336">NeuralPatternSimpleInternal::NeuralPatternSimpleInternal</a>(<a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a> <span class="keyword">const</span>&amp; _inputVector,
-<a name="l00045"></a>00045                                                          <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a> <span class="keyword">const</span>&amp; _outputVector) <span class="keywordflow">throw</span>()
-<a name="l00046"></a>00046 :   inputVector(_inputVector.copy()), 
-<a name="l00047"></a>00047     outputVector(_outputVector.copy())
+<a name="l00045"></a>00045                <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a> <span class="keyword">const</span>&amp; _outputVector) <span class="keywordflow">throw</span>()
+<a name="l00046"></a>00046 : inputVector(_inputVector.copy()), 
+<a name="l00047"></a>00047  outputVector(_outputVector.copy())
 <a name="l00048"></a>00048 {
 <a name="l00049"></a>00049 }
 <a name="l00050"></a>00050 
 <a name="l00051"></a><a class="code" href="class_neural_pattern_simple_internal.html#a9e22bb133ca7c42d1854a0b62fc0e592">00051</a> <span class="keywordtype">void</span> <a class="code" href="class_neural_pattern_simple_internal.html#a9e22bb133ca7c42d1854a0b62fc0e592">NeuralPatternSimpleInternal::write</a>(<a class="code" href="class_text_file_writer.html">TextFileWriter</a> <span class="keyword">const</span>&amp; _file) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00052"></a>00052 {
-<a name="l00053"></a>00053     <span class="keyword">const</span> <span class="keywordtype">int</span> size = 128;
-<a name="l00054"></a>00054     <span class="keywordtype">char</span> buf[size];
-<a name="l00055"></a>00055     
-<a name="l00056"></a>00056     <a class="code" href="class_text_file_writer.html">TextFileWriter</a> file = _file;
-<a name="l00057"></a>00057     
-<a name="l00058"></a>00058     file.<a class="code" href="class_text_file_writer.html#ae7977b5433f3cfc897343131d3edaea4">write</a>(<span class="stringliteral">&quot;\nNeuralPatternSimple:v1\n&quot;</span>);
-<a name="l00059"></a>00059     
-<a name="l00060"></a>00060     <span class="keyword">const</span> <span class="keywordtype">int</span> numInputs = inputVector.size();
-<a name="l00061"></a>00061     snprintf(buf, size, <span class="stringliteral">&quot;Inputs:%3d\n&quot;</span>, numInputs);
-<a name="l00062"></a>00062     file.<a class="code" href="class_text_file_writer.html#ae7977b5433f3cfc897343131d3edaea4">write</a>(buf);
-<a name="l00063"></a>00063     
-<a name="l00064"></a>00064     <span class="keyword">const</span> <span class="keywordtype">float</span> *inputVectorArray = inputVector.getArray();
-<a name="l00065"></a>00065     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInputs; i++)
-<a name="l00066"></a>00066     {
-<a name="l00067"></a>00067         snprintf(buf, size, <span class="stringliteral">&quot;%3d %.16f\n&quot;</span>, i, inputVectorArray[i]);
-<a name="l00068"></a>00068         file.<a class="code" href="class_text_file_writer.html#ae7977b5433f3cfc897343131d3edaea4">write</a>(buf);
-<a name="l00069"></a>00069     }
-<a name="l00070"></a>00070     
-<a name="l00071"></a>00071     <span class="keyword">const</span> <span class="keywordtype">int</span> numOutputs = outputVector.size();
-<a name="l00072"></a>00072     snprintf(buf, size, <span class="stringliteral">&quot;Outputs:%3d&quot;</span>, numOutputs);
-<a name="l00073"></a>00073     file.<a class="code" href="class_text_file_writer.html#ae7977b5433f3cfc897343131d3edaea4">write</a>(buf);
-<a name="l00074"></a>00074     
-<a name="l00075"></a>00075     <span class="keyword">const</span> <span class="keywordtype">float</span> *outputVectorArray = outputVector.getArray();
-<a name="l00076"></a>00076     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numOutputs; i++)
-<a name="l00077"></a>00077     {
-<a name="l00078"></a>00078         file.<a class="code" href="class_text_file_writer.html#ae7977b5433f3cfc897343131d3edaea4">write</a>(<span class="stringliteral">&quot;\n&quot;</span>);
-<a name="l00079"></a>00079         snprintf(buf, size, <span class="stringliteral">&quot;%3d %.16f&quot;</span>, i, outputVectorArray[i]);
-<a name="l00080"></a>00080         file.<a class="code" href="class_text_file_writer.html#ae7977b5433f3cfc897343131d3edaea4">write</a>(buf);
-<a name="l00081"></a>00081     }
+<a name="l00053"></a>00053  <span class="keyword">const</span> <span class="keywordtype">int</span> size = 128;
+<a name="l00054"></a>00054  <span class="keywordtype">char</span> buf[size];
+<a name="l00055"></a>00055  
+<a name="l00056"></a>00056  <a class="code" href="class_text_file_writer.html">TextFileWriter</a> file = _file;
+<a name="l00057"></a>00057  
+<a name="l00058"></a>00058  file.<a class="code" href="class_text_file_writer.html#ae7977b5433f3cfc897343131d3edaea4">write</a>(<span class="stringliteral">&quot;\nNeuralPatternSimple:v1\n&quot;</span>);
+<a name="l00059"></a>00059  
+<a name="l00060"></a>00060  <span class="keyword">const</span> <span class="keywordtype">int</span> numInputs = inputVector.size();
+<a name="l00061"></a>00061  snprintf(buf, size, <span class="stringliteral">&quot;Inputs:%3d\n&quot;</span>, numInputs);
+<a name="l00062"></a>00062  file.<a class="code" href="class_text_file_writer.html#ae7977b5433f3cfc897343131d3edaea4">write</a>(buf);
+<a name="l00063"></a>00063  
+<a name="l00064"></a>00064  <span class="keyword">const</span> <span class="keywordtype">float</span> *inputVectorArray = inputVector.getArray();
+<a name="l00065"></a>00065  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInputs; i++)
+<a name="l00066"></a>00066  {
+<a name="l00067"></a>00067   snprintf(buf, size, <span class="stringliteral">&quot;%3d %.16f\n&quot;</span>, i, inputVectorArray[i]);
+<a name="l00068"></a>00068   file.<a class="code" href="class_text_file_writer.html#ae7977b5433f3cfc897343131d3edaea4">write</a>(buf);
+<a name="l00069"></a>00069  }
+<a name="l00070"></a>00070  
+<a name="l00071"></a>00071  <span class="keyword">const</span> <span class="keywordtype">int</span> numOutputs = outputVector.size();
+<a name="l00072"></a>00072  snprintf(buf, size, <span class="stringliteral">&quot;Outputs:%3d&quot;</span>, numOutputs);
+<a name="l00073"></a>00073  file.<a class="code" href="class_text_file_writer.html#ae7977b5433f3cfc897343131d3edaea4">write</a>(buf);
+<a name="l00074"></a>00074  
+<a name="l00075"></a>00075  <span class="keyword">const</span> <span class="keywordtype">float</span> *outputVectorArray = outputVector.getArray();
+<a name="l00076"></a>00076  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numOutputs; i++)
+<a name="l00077"></a>00077  {
+<a name="l00078"></a>00078   file.<a class="code" href="class_text_file_writer.html#ae7977b5433f3cfc897343131d3edaea4">write</a>(<span class="stringliteral">&quot;\n&quot;</span>);
+<a name="l00079"></a>00079   snprintf(buf, size, <span class="stringliteral">&quot;%3d %.16f&quot;</span>, i, outputVectorArray[i]);
+<a name="l00080"></a>00080   file.<a class="code" href="class_text_file_writer.html#ae7977b5433f3cfc897343131d3edaea4">write</a>(buf);
+<a name="l00081"></a>00081  }
 <a name="l00082"></a>00082 }
 <a name="l00083"></a>00083 
 <a name="l00084"></a><a class="code" href="class_neural_pattern.html#a581dfb891ddbfd87c45e01d5d758f00b">00084</a> <span class="keywordtype">void</span> <a class="code" href="class_neural_pattern.html#a581dfb891ddbfd87c45e01d5d758f00b">NeuralPattern::read</a>(<a class="code" href="class_text_file_reader.html">TextFileReader</a> <span class="keyword">const</span>&amp; _file) <span class="keywordflow">throw</span>()
 <a name="l00085"></a>00085 {
-<a name="l00086"></a>00086     <a class="code" href="class_text_file_reader.html">TextFileReader</a> file = _file;
-<a name="l00087"></a>00087     
-<a name="l00088"></a>00088     <a class="code" href="class_text.html">Text</a> text;
-<a name="l00089"></a>00089     <span class="keywordtype">int</span> line = 0;
-<a name="l00090"></a>00090     <span class="keywordtype">int</span> numInputs = -1, numOutputs = -1;
-<a name="l00091"></a>00091         
-<a name="l00092"></a>00092     <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a> inputVector;
-<a name="l00093"></a>00093     <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a> outputVector;
-<a name="l00094"></a>00094     
-<a name="l00095"></a>00095     <span class="keywordflow">while</span>((text = file.<a class="code" href="class_text_file_reader.html#aa88fc9d591cc58a5918140798d6d0564">readLine</a>()).size() != 0)
-<a name="l00096"></a>00096     {
-<a name="l00097"></a>00097         <span class="keywordflow">if</span>(line == 0)
-<a name="l00098"></a>00098         {
-<a name="l00099"></a>00099             <span class="comment">// should be the format/version string</span>
-<a name="l00100"></a>00100             <span class="keywordflow">if</span>(text.<a class="code" href="class_numerical_array.html#a9246716a1489ad9ed6eb3f746cf5f090">contains</a>(<span class="stringliteral">&quot;NeuralPatternSimple:v1&quot;</span>) == <span class="keyword">false</span>)
-<a name="l00101"></a>00101             {
-<a name="l00102"></a>00102                 printf(<span class="stringliteral">&quot;NeuralPattern::read wrong version type\n&quot;</span>);
-<a name="l00103"></a>00103                 <span class="keywordflow">return</span>;
-<a name="l00104"></a>00104             }
-<a name="l00105"></a>00105         }
-<a name="l00106"></a>00106         <span class="keywordflow">else</span> <span class="keywordflow">if</span>(numInputs &lt; 0)
-<a name="l00107"></a>00107         {
-<a name="l00108"></a>00108             <span class="comment">// should be the number of inputs           </span>
-<a name="l00109"></a>00109             sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>(), <span class="stringliteral">&quot;Inputs:%d&quot;</span>, &amp;numInputs);
-<a name="l00110"></a>00110             
-<a name="l00111"></a>00111             <span class="keywordflow">if</span>(numInputs &lt; 1) 
-<a name="l00112"></a>00112             {
-<a name="l00113"></a>00113                 printf(<span class="stringliteral">&quot;NeuralPattern::read invalid number of inputs\n&quot;</span>);
-<a name="l00114"></a>00114                 <span class="keywordflow">return</span>;
-<a name="l00115"></a>00115             }
-<a name="l00116"></a>00116             
-<a name="l00117"></a>00117             <span class="comment">//printf(&quot;ins: %d\n&quot;, numInputs);</span>
-<a name="l00118"></a>00118             
-<a name="l00119"></a>00119             inputVector = <a class="code" href="class_numerical_array.html#ada7cd40ff1de921243a1ba6d0a73fe5d">NumericalArray&lt;float&gt;::withSize</a>(numInputs);
-<a name="l00120"></a>00120         }
-<a name="l00121"></a>00121         <span class="keywordflow">else</span> <span class="keywordflow">if</span>(numInputs &gt; 0)
-<a name="l00122"></a>00122         {
-<a name="l00123"></a>00123             <span class="keywordtype">int</span> index;
-<a name="l00124"></a>00124             <span class="keywordtype">float</span> value;
-<a name="l00125"></a>00125             sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>(), <span class="stringliteral">&quot;%d %f&quot;</span>, &amp;index, &amp;value);
-<a name="l00126"></a>00126             numInputs--;
-<a name="l00127"></a>00127             
-<a name="l00128"></a>00128             <span class="comment">//printf(&quot;in[%3d] = %f\n&quot;, index, value);</span>
-<a name="l00129"></a>00129             
-<a name="l00130"></a>00130             inputVector[index] = value;
-<a name="l00131"></a>00131         }
-<a name="l00132"></a>00132         <span class="keywordflow">else</span> <span class="keywordflow">if</span>(numOutputs &lt; 0)
-<a name="l00133"></a>00133         {
-<a name="l00134"></a>00134             <span class="comment">// should be the number of outputs          </span>
-<a name="l00135"></a>00135             sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>(), <span class="stringliteral">&quot;Outputs:%d&quot;</span>, &amp;numOutputs);
-<a name="l00136"></a>00136             
-<a name="l00137"></a>00137             <span class="keywordflow">if</span>(numOutputs &lt; 1) 
-<a name="l00138"></a>00138             {
-<a name="l00139"></a>00139                 printf(<span class="stringliteral">&quot;NeuralPattern::read invalid number of numOutputs\n&quot;</span>);
-<a name="l00140"></a>00140                 <span class="keywordflow">return</span>;
-<a name="l00141"></a>00141             }
-<a name="l00142"></a>00142             
-<a name="l00143"></a>00143             <span class="comment">//printf(&quot;outs: %d\n&quot;, numOutputs);</span>
-<a name="l00144"></a>00144             
-<a name="l00145"></a>00145             outputVector = <a class="code" href="class_numerical_array.html#ada7cd40ff1de921243a1ba6d0a73fe5d">NumericalArray&lt;float&gt;::withSize</a>(numOutputs);
-<a name="l00146"></a>00146         }
-<a name="l00147"></a>00147         <span class="keywordflow">else</span> <span class="keywordflow">if</span>(numOutputs &gt; 0)
-<a name="l00148"></a>00148         {
-<a name="l00149"></a>00149             <span class="keywordtype">int</span> index;
-<a name="l00150"></a>00150             <span class="keywordtype">float</span> value;
-<a name="l00151"></a>00151             sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>(), <span class="stringliteral">&quot;%d %f&quot;</span>, &amp;index, &amp;value);
-<a name="l00152"></a>00152             numOutputs--;
-<a name="l00153"></a>00153             
-<a name="l00154"></a>00154             <span class="comment">//printf(&quot;out[%3d] = %f\n&quot;, index, value);</span>
-<a name="l00155"></a>00155             
-<a name="l00156"></a>00156             outputVector[index] = value;
-<a name="l00157"></a>00157         }
-<a name="l00158"></a>00158         
-<a name="l00159"></a>00159         <span class="keywordflow">if</span>((numInputs == 0) &amp;&amp; (numOutputs == 0))
-<a name="l00160"></a>00160         {
-<a name="l00161"></a>00161             <span class="comment">//printf(&quot;CREATING PATTERN\n&quot;);</span>
-<a name="l00162"></a>00162             setInternal(<span class="keyword">new</span> <a class="code" href="class_neural_pattern_simple_internal.html">NeuralPatternSimpleInternal</a>(inputVector, outputVector));
-<a name="l00163"></a>00163             <span class="keywordflow">return</span>;
-<a name="l00164"></a>00164         }
-<a name="l00165"></a>00165         
-<a name="l00166"></a>00166         line++;
-<a name="l00167"></a>00167     }       
+<a name="l00086"></a>00086  <a class="code" href="class_text_file_reader.html">TextFileReader</a> file = _file;
+<a name="l00087"></a>00087  
+<a name="l00088"></a>00088  <a class="code" href="class_text.html">Text</a> text;
+<a name="l00089"></a>00089  <span class="keywordtype">int</span> line = 0;
+<a name="l00090"></a>00090  <span class="keywordtype">int</span> numInputs = -1, numOutputs = -1;
+<a name="l00091"></a>00091   
+<a name="l00092"></a>00092  <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a> inputVector;
+<a name="l00093"></a>00093  <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a> outputVector;
+<a name="l00094"></a>00094  
+<a name="l00095"></a>00095  <span class="keywordflow">while</span>((text = file.<a class="code" href="class_text_file_reader.html#aa88fc9d591cc58a5918140798d6d0564">readLine</a>()).size() != 0)
+<a name="l00096"></a>00096  {
+<a name="l00097"></a>00097   <span class="keywordflow">if</span>(line == 0)
+<a name="l00098"></a>00098   {
+<a name="l00099"></a>00099    <span class="comment">// should be the format/version string</span>
+<a name="l00100"></a>00100    <span class="keywordflow">if</span>(text.<a class="code" href="class_numerical_array.html#a9246716a1489ad9ed6eb3f746cf5f090">contains</a>(<span class="stringliteral">&quot;NeuralPatternSimple:v1&quot;</span>) == <span class="keyword">false</span>)
+<a name="l00101"></a>00101    {
+<a name="l00102"></a>00102     printf(<span class="stringliteral">&quot;NeuralPattern::read wrong version type\n&quot;</span>);
+<a name="l00103"></a>00103     <span class="keywordflow">return</span>;
+<a name="l00104"></a>00104    }
+<a name="l00105"></a>00105   }
+<a name="l00106"></a>00106   <span class="keywordflow">else</span> <span class="keywordflow">if</span>(numInputs &lt; 0)
+<a name="l00107"></a>00107   {
+<a name="l00108"></a>00108    <span class="comment">// should be the number of inputs   </span>
+<a name="l00109"></a>00109    sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>(), <span class="stringliteral">&quot;Inputs:%d&quot;</span>, &amp;numInputs);
+<a name="l00110"></a>00110    
+<a name="l00111"></a>00111    <span class="keywordflow">if</span>(numInputs &lt; 1) 
+<a name="l00112"></a>00112    {
+<a name="l00113"></a>00113     printf(<span class="stringliteral">&quot;NeuralPattern::read invalid number of inputs\n&quot;</span>);
+<a name="l00114"></a>00114     <span class="keywordflow">return</span>;
+<a name="l00115"></a>00115    }
+<a name="l00116"></a>00116    
+<a name="l00117"></a>00117    <span class="comment">//printf(&quot;ins: %d\n&quot;, numInputs);</span>
+<a name="l00118"></a>00118    
+<a name="l00119"></a>00119    inputVector = <a class="code" href="class_numerical_array.html#ada7cd40ff1de921243a1ba6d0a73fe5d">NumericalArray&lt;float&gt;::withSize</a>(numInputs);
+<a name="l00120"></a>00120   }
+<a name="l00121"></a>00121   <span class="keywordflow">else</span> <span class="keywordflow">if</span>(numInputs &gt; 0)
+<a name="l00122"></a>00122   {
+<a name="l00123"></a>00123    <span class="keywordtype">int</span> index;
+<a name="l00124"></a>00124    <span class="keywordtype">float</span> value;
+<a name="l00125"></a>00125    sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>(), <span class="stringliteral">&quot;%d %f&quot;</span>, &amp;index, &amp;value);
+<a name="l00126"></a>00126    numInputs--;
+<a name="l00127"></a>00127    
+<a name="l00128"></a>00128    <span class="comment">//printf(&quot;in[%3d] = %f\n&quot;, index, value);</span>
+<a name="l00129"></a>00129    
+<a name="l00130"></a>00130    inputVector[index] = value;
+<a name="l00131"></a>00131   }
+<a name="l00132"></a>00132   <span class="keywordflow">else</span> <span class="keywordflow">if</span>(numOutputs &lt; 0)
+<a name="l00133"></a>00133   {
+<a name="l00134"></a>00134    <span class="comment">// should be the number of outputs   </span>
+<a name="l00135"></a>00135    sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>(), <span class="stringliteral">&quot;Outputs:%d&quot;</span>, &amp;numOutputs);
+<a name="l00136"></a>00136    
+<a name="l00137"></a>00137    <span class="keywordflow">if</span>(numOutputs &lt; 1) 
+<a name="l00138"></a>00138    {
+<a name="l00139"></a>00139     printf(<span class="stringliteral">&quot;NeuralPattern::read invalid number of numOutputs\n&quot;</span>);
+<a name="l00140"></a>00140     <span class="keywordflow">return</span>;
+<a name="l00141"></a>00141    }
+<a name="l00142"></a>00142    
+<a name="l00143"></a>00143    <span class="comment">//printf(&quot;outs: %d\n&quot;, numOutputs);</span>
+<a name="l00144"></a>00144    
+<a name="l00145"></a>00145    outputVector = <a class="code" href="class_numerical_array.html#ada7cd40ff1de921243a1ba6d0a73fe5d">NumericalArray&lt;float&gt;::withSize</a>(numOutputs);
+<a name="l00146"></a>00146   }
+<a name="l00147"></a>00147   <span class="keywordflow">else</span> <span class="keywordflow">if</span>(numOutputs &gt; 0)
+<a name="l00148"></a>00148   {
+<a name="l00149"></a>00149    <span class="keywordtype">int</span> index;
+<a name="l00150"></a>00150    <span class="keywordtype">float</span> value;
+<a name="l00151"></a>00151    sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>(), <span class="stringliteral">&quot;%d %f&quot;</span>, &amp;index, &amp;value);
+<a name="l00152"></a>00152    numOutputs--;
+<a name="l00153"></a>00153    
+<a name="l00154"></a>00154    <span class="comment">//printf(&quot;out[%3d] = %f\n&quot;, index, value);</span>
+<a name="l00155"></a>00155    
+<a name="l00156"></a>00156    outputVector[index] = value;
+<a name="l00157"></a>00157   }
+<a name="l00158"></a>00158   
+<a name="l00159"></a>00159   <span class="keywordflow">if</span>((numInputs == 0) &amp;&amp; (numOutputs == 0))
+<a name="l00160"></a>00160   {
+<a name="l00161"></a>00161    <span class="comment">//printf(&quot;CREATING PATTERN\n&quot;);</span>
+<a name="l00162"></a>00162    setInternal(<span class="keyword">new</span> <a class="code" href="class_neural_pattern_simple_internal.html">NeuralPatternSimpleInternal</a>(inputVector, outputVector));
+<a name="l00163"></a>00163    <span class="keywordflow">return</span>;
+<a name="l00164"></a>00164   }
+<a name="l00165"></a>00165   
+<a name="l00166"></a>00166   line++;
+<a name="l00167"></a>00167  }  
 <a name="l00168"></a>00168 }
 <a name="l00169"></a>00169 
 <a name="l00170"></a><a class="code" href="class_neural_pattern_array.html#a3df3f5d0bba00d9cffb8460fa1776d39">00170</a> <span class="keywordtype">void</span> <a class="code" href="class_neural_pattern_array.html#a3df3f5d0bba00d9cffb8460fa1776d39">NeuralPatternArray::write</a>(<a class="code" href="class_text_file_writer.html">TextFileWriter</a> <span class="keyword">const</span>&amp; _file) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
-<a name="l00171"></a>00171 {   
-<a name="l00172"></a>00172     <a class="code" href="class_text_file_writer.html">TextFileWriter</a> file = _file;
-<a name="l00173"></a>00173     
-<a name="l00174"></a>00174     <span class="keyword">const</span> <a class="code" href="class_neural_pattern.html">NeuralPattern</a>* array = getArray();
-<a name="l00175"></a>00175     
-<a name="l00176"></a>00176     <span class="keywordflow">if</span>(array != 0)
-<a name="l00177"></a>00177     {
-<a name="l00178"></a>00178         file.<a class="code" href="class_text_file_writer.html#ae7977b5433f3cfc897343131d3edaea4">write</a>(<span class="stringliteral">&quot;NeuralPatternArray:v1&quot;</span>);
-<a name="l00179"></a>00179         
-<a name="l00180"></a>00180         <span class="keyword">const</span> <span class="keywordtype">int</span> numPatterns = size();
-<a name="l00181"></a>00181         <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numPatterns; i++)
-<a name="l00182"></a>00182         {
-<a name="l00183"></a>00183             array[i].<a class="code" href="class_neural_pattern.html#afb29bd49bf8f030507d319018451a411">write</a>(file);
-<a name="l00184"></a>00184         }
-<a name="l00185"></a>00185     }
+<a name="l00171"></a>00171 { 
+<a name="l00172"></a>00172  <a class="code" href="class_text_file_writer.html">TextFileWriter</a> file = _file;
+<a name="l00173"></a>00173  
+<a name="l00174"></a>00174  <span class="keyword">const</span> <a class="code" href="class_neural_pattern.html">NeuralPattern</a>* array = getArray();
+<a name="l00175"></a>00175  
+<a name="l00176"></a>00176  <span class="keywordflow">if</span>(array != 0)
+<a name="l00177"></a>00177  {
+<a name="l00178"></a>00178   file.<a class="code" href="class_text_file_writer.html#ae7977b5433f3cfc897343131d3edaea4">write</a>(<span class="stringliteral">&quot;NeuralPatternArray:v1&quot;</span>);
+<a name="l00179"></a>00179   
+<a name="l00180"></a>00180   <span class="keyword">const</span> <span class="keywordtype">int</span> numPatterns = size();
+<a name="l00181"></a>00181   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numPatterns; i++)
+<a name="l00182"></a>00182   {
+<a name="l00183"></a>00183    array[i].<a class="code" href="class_neural_pattern.html#afb29bd49bf8f030507d319018451a411">write</a>(file);
+<a name="l00184"></a>00184   }
+<a name="l00185"></a>00185  }
 <a name="l00186"></a>00186 }
 <a name="l00187"></a><a class="code" href="class_neural_pattern_array.html#a6e45004f7be70c9c154ecd34f4b6117c">00187</a> <span class="keywordtype">void</span> <a class="code" href="class_neural_pattern_array.html#a6e45004f7be70c9c154ecd34f4b6117c">NeuralPatternArray::read</a>(<a class="code" href="class_text_file_reader.html">TextFileReader</a> <span class="keyword">const</span>&amp; _file) <span class="keywordflow">throw</span>()
 <a name="l00188"></a>00188 {
-<a name="l00189"></a>00189     <a class="code" href="class_text_file_reader.html">TextFileReader</a> file = _file;
-<a name="l00190"></a>00190     
-<a name="l00191"></a>00191     <a class="code" href="class_text.html">Text</a> text = file.<a class="code" href="class_text_file_reader.html#aa88fc9d591cc58a5918140798d6d0564">readLine</a>();
-<a name="l00192"></a>00192     
-<a name="l00193"></a>00193     <span class="keywordflow">if</span>(text.<a class="code" href="class_numerical_array.html#a9246716a1489ad9ed6eb3f746cf5f090">contains</a>(<span class="stringliteral">&quot;NeuralPatternArray:v1&quot;</span>))
-<a name="l00194"></a>00194     {
-<a name="l00195"></a>00195         <span class="comment">//printf(&quot;is valid NeuralPatternArray file\n&quot;);</span>
-<a name="l00196"></a>00196         
-<a name="l00197"></a>00197         <span class="keywordflow">while</span>(file.<a class="code" href="class_text_file_reader.html#a0f60976dcc5e432867e281d61c3b5aae">isEof</a>() == <span class="keyword">false</span>)
-<a name="l00198"></a>00198         {
-<a name="l00199"></a>00199             <a class="code" href="class_neural_pattern.html">NeuralPattern</a> pat;
-<a name="l00200"></a>00200             pat.<a class="code" href="class_neural_pattern.html#a581dfb891ddbfd87c45e01d5d758f00b">read</a>(file);
-<a name="l00201"></a>00201             
-<a name="l00202"></a>00202             <span class="keywordflow">if</span>((pat.<a class="code" href="class_neural_pattern.html#a5ffc895e734beac1cc75aa39834fbd23">getNumInputs</a>() &gt; 0) &amp;&amp; (pat.<a class="code" href="class_neural_pattern.html#a3dcf4df721354ccb6bafcbe2d350636b">getNumOutputs</a>() &gt; 0))
-<a name="l00203"></a>00203             {
-<a name="l00204"></a>00204                 <span class="comment">//printf(&quot;..adding a pattern..\n&quot;);</span>
-<a name="l00205"></a>00205                 
-<a name="l00206"></a>00206                 this-&gt;add(pat);
-<a name="l00207"></a>00207             }
-<a name="l00208"></a>00208         }
-<a name="l00209"></a>00209     }
+<a name="l00189"></a>00189  <a class="code" href="class_text_file_reader.html">TextFileReader</a> file = _file;
+<a name="l00190"></a>00190  
+<a name="l00191"></a>00191  <a class="code" href="class_text.html">Text</a> text = file.<a class="code" href="class_text_file_reader.html#aa88fc9d591cc58a5918140798d6d0564">readLine</a>();
+<a name="l00192"></a>00192  
+<a name="l00193"></a>00193  <span class="keywordflow">if</span>(text.<a class="code" href="class_numerical_array.html#a9246716a1489ad9ed6eb3f746cf5f090">contains</a>(<span class="stringliteral">&quot;NeuralPatternArray:v1&quot;</span>))
+<a name="l00194"></a>00194  {
+<a name="l00195"></a>00195   <span class="comment">//printf(&quot;is valid NeuralPatternArray file\n&quot;);</span>
+<a name="l00196"></a>00196   
+<a name="l00197"></a>00197   <span class="keywordflow">while</span>(file.<a class="code" href="class_text_file_reader.html#a0f60976dcc5e432867e281d61c3b5aae">isEof</a>() == <span class="keyword">false</span>)
+<a name="l00198"></a>00198   {
+<a name="l00199"></a>00199    <a class="code" href="class_neural_pattern.html">NeuralPattern</a> pat;
+<a name="l00200"></a>00200    pat.<a class="code" href="class_neural_pattern.html#a581dfb891ddbfd87c45e01d5d758f00b">read</a>(file);
+<a name="l00201"></a>00201    
+<a name="l00202"></a>00202    <span class="keywordflow">if</span>((pat.<a class="code" href="class_neural_pattern.html#a5ffc895e734beac1cc75aa39834fbd23">getNumInputs</a>() &gt; 0) &amp;&amp; (pat.<a class="code" href="class_neural_pattern.html#a3dcf4df721354ccb6bafcbe2d350636b">getNumOutputs</a>() &gt; 0))
+<a name="l00203"></a>00203    {
+<a name="l00204"></a>00204     <span class="comment">//printf(&quot;..adding a pattern..\n&quot;);</span>
+<a name="l00205"></a>00205     
+<a name="l00206"></a>00206     this-&gt;add(pat);
+<a name="l00207"></a>00207    }
+<a name="l00208"></a>00208   }
+<a name="l00209"></a>00209  }
 <a name="l00210"></a>00210 
 <a name="l00211"></a>00211 }
 <a name="l00212"></a>00212 
@@ -246,7 +246,7 @@
 <a name="l00214"></a>00214 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:29 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:58 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -66,174 +66,174 @@
 <a name="l00034"></a>00034 <span class="preprocessor">#ifndef _UGEN_ugen_JuceIOHost_H_</span>
 <a name="l00035"></a>00035 <span class="preprocessor"></span><span class="preprocessor">#define _UGEN_ugen_JuceIOHost_H_</span>
 <a name="l00036"></a>00036 <span class="preprocessor"></span>
-<a name="l00040"></a><a class="code" href="class_juce_i_o_host.html">00040</a> <span class="keyword">class </span><a class="code" href="class_juce_i_o_host.html" title="An audio IO host for Juce projects.">JuceIOHost</a> :  <span class="keyword">public</span> AudioIODeviceCallback,
-<a name="l00041"></a>00041                     <span class="keyword">private</span> Timer
+<a name="l00040"></a><a class="code" href="class_juce_i_o_host.html">00040</a> <span class="keyword">class </span><a class="code" href="class_juce_i_o_host.html" title="An audio IO host for Juce projects.">JuceIOHost</a> : <span class="keyword">public</span> AudioIODeviceCallback,
+<a name="l00041"></a>00041      <span class="keyword">private</span> Timer
 <a name="l00042"></a>00042 {
 <a name="l00043"></a>00043 <span class="keyword">public</span>:
-<a name="l00055"></a><a class="code" href="class_juce_i_o_host.html#a9726ec919d1699bdea1ced4ac1dc93d9">00055</a>     <a class="code" href="class_juce_i_o_host.html#a9726ec919d1699bdea1ced4ac1dc93d9" title="Constructor.">JuceIOHost</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> numInputs = 2, <span class="keyword">const</span> <span class="keywordtype">int</span> numOutputs = 2, <span class="keyword">const</span> <span class="keywordtype">int</span> preferredBufferSize = 0, <span class="keyword">const</span> <span class="keywordtype">bool</span> useTimerDeleter = <span class="keyword">false</span>) throw()
-<a name="l00056"></a>00056     :   <a class="code" href="class_juce_i_o_host.html#a46938a5d4533f1013a2a8902b4a033a0">numInputs_</a>(numInputs &lt; 0 ? 0 : numInputs),
-<a name="l00057"></a>00057         <a class="code" href="class_juce_i_o_host.html#a54ecec7639f92b286cc51f502c7d729d">numOutputs_</a>(numOutputs &lt; 0 ? 0 : numOutputs),
-<a name="l00058"></a>00058         <a class="code" href="class_juce_i_o_host.html#aaf68156f76f859a1f8a4c93ce757e82e">bufferSize</a>(preferredBufferSize),
-<a name="l00059"></a>00059         <a class="code" href="class_juce_i_o_host.html#a1595d03c9c1b4c9fbdfb84492aa6c266">juceDeleter</a>(0)
-<a name="l00060"></a>00060     {
-<a name="l00061"></a>00061         <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(numInputs == <a class="code" href="class_juce_i_o_host.html#a46938a5d4533f1013a2a8902b4a033a0">numInputs_</a>);
-<a name="l00062"></a>00062         <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(numOutputs == <a class="code" href="class_juce_i_o_host.html#a54ecec7639f92b286cc51f502c7d729d">numOutputs_</a>);
-<a name="l00063"></a>00063         <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(<a class="code" href="class_juce_i_o_host.html#aaf68156f76f859a1f8a4c93ce757e82e">bufferSize</a> == preferredBufferSize);
-<a name="l00064"></a>00064         
-<a name="l00065"></a>00065         <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_juce_i_o_host.html#aae1bf073b416a82b8d0169de465e6aa5">lock</a>);
-<a name="l00066"></a>00066         <a class="code" href="class_u_gen.html#af6936b37fa6d0ffd11555938e69c0646" title="Initialise UGen++.">UGen::initialise</a>();
-<a name="l00067"></a>00067         <span class="keywordflow">if</span>(useTimerDeleter) 
-<a name="l00068"></a>00068         {
-<a name="l00069"></a>00069             juceDeleter = <span class="keyword">new</span> <a class="code" href="class_juce_timer_deleter.html" title="Stores and deletes SmartPointer objects using a timer.">JuceTimerDeleter</a>();
-<a name="l00070"></a>00070             <a class="code" href="class_u_gen.html#a21e50c75c8fe866dc17c82ebdf58209d" title="Set the current Deleter.">UGen::setDeleter</a>(juceDeleter);
-<a name="l00071"></a>00071         }
-<a name="l00072"></a>00072         
+<a name="l00055"></a><a class="code" href="class_juce_i_o_host.html#a9726ec919d1699bdea1ced4ac1dc93d9">00055</a>  <a class="code" href="class_juce_i_o_host.html#a9726ec919d1699bdea1ced4ac1dc93d9" title="Constructor.">JuceIOHost</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> numInputs = 2, <span class="keyword">const</span> <span class="keywordtype">int</span> numOutputs = 2, <span class="keyword">const</span> <span class="keywordtype">int</span> preferredBufferSize = 0, <span class="keyword">const</span> <span class="keywordtype">bool</span> useTimerDeleter = <span class="keyword">false</span>) throw()
+<a name="l00056"></a>00056  : <a class="code" href="class_juce_i_o_host.html#a46938a5d4533f1013a2a8902b4a033a0">numInputs_</a>(numInputs &lt; 0 ? 0 : numInputs),
+<a name="l00057"></a>00057   <a class="code" href="class_juce_i_o_host.html#a54ecec7639f92b286cc51f502c7d729d">numOutputs_</a>(numOutputs &lt; 0 ? 0 : numOutputs),
+<a name="l00058"></a>00058   <a class="code" href="class_juce_i_o_host.html#aaf68156f76f859a1f8a4c93ce757e82e">bufferSize</a>(preferredBufferSize),
+<a name="l00059"></a>00059   <a class="code" href="class_juce_i_o_host.html#a1595d03c9c1b4c9fbdfb84492aa6c266">juceDeleter</a>(0)
+<a name="l00060"></a>00060  {
+<a name="l00061"></a>00061   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(numInputs == <a class="code" href="class_juce_i_o_host.html#a46938a5d4533f1013a2a8902b4a033a0">numInputs_</a>);
+<a name="l00062"></a>00062   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(numOutputs == <a class="code" href="class_juce_i_o_host.html#a54ecec7639f92b286cc51f502c7d729d">numOutputs_</a>);
+<a name="l00063"></a>00063   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(<a class="code" href="class_juce_i_o_host.html#aaf68156f76f859a1f8a4c93ce757e82e">bufferSize</a> == preferredBufferSize);
+<a name="l00064"></a>00064   
+<a name="l00065"></a>00065   <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_juce_i_o_host.html#aae1bf073b416a82b8d0169de465e6aa5">lock</a>);
+<a name="l00066"></a>00066   <a class="code" href="class_u_gen.html#af6936b37fa6d0ffd11555938e69c0646" title="Initialise UGen++.">UGen::initialise</a>();
+<a name="l00067"></a>00067   <span class="keywordflow">if</span>(useTimerDeleter) 
+<a name="l00068"></a>00068   {
+<a name="l00069"></a>00069    juceDeleter = <span class="keyword">new</span> <a class="code" href="class_juce_timer_deleter.html" title="Stores and deletes SmartPointer objects using a timer.">JuceTimerDeleter</a>();
+<a name="l00070"></a>00070    <a class="code" href="class_u_gen.html#a21e50c75c8fe866dc17c82ebdf58209d" title="Set the current Deleter.">UGen::setDeleter</a>(juceDeleter);
+<a name="l00071"></a>00071   }
+<a name="l00072"></a>00072   
 <a name="l00073"></a>00073 <span class="preprocessor">#ifndef UGEN_NOEXTGPL</span>
-<a name="l00074"></a>00074 <span class="preprocessor"></span>        <a class="code" href="class_ran088.html#af8a35e490656edc4b3260a1ef4989da0">Ran088::defaultGenerator</a>().<a class="code" href="class_ran088.html#a2877cea7e2bedcfb66af483842766a53">setSeed</a>(Time::currentTimeMillis());
+<a name="l00074"></a>00074 <span class="preprocessor"></span>  <a class="code" href="class_ran088.html#af8a35e490656edc4b3260a1ef4989da0">Ran088::defaultGenerator</a>().<a class="code" href="class_ran088.html#a2877cea7e2bedcfb66af483842766a53">setSeed</a>(Time::currentTimeMillis());
 <a name="l00075"></a>00075 <span class="preprocessor">#endif</span>
-<a name="l00076"></a>00076 <span class="preprocessor"></span>        startTimer(50);
-<a name="l00077"></a>00077         
-<a name="l00078"></a>00078         <a class="code" href="class_juce_i_o_host.html#a03e72380e8c2b2ff2313305bc9889336">output_</a> = <a class="code" href="class_plug.html#a3af4b01a76a7264a9837b002995cf7a4" title="Construct and return an audio rate Plug .">Plug::AR</a>(<a class="code" href="class_u_gen.html#a0e889a35de22c1c46293425788eebe15" title="Create a UGen with a number of empty (null) channels.">UGen::emptyChannels</a>(<a class="code" href="class_juce_i_o_host.html#a54ecec7639f92b286cc51f502c7d729d">numOutputs_</a>));
-<a name="l00079"></a>00079     }
-<a name="l00080"></a>00080     
-<a name="l00086"></a><a class="code" href="class_juce_i_o_host.html#a82b92294e5244f8c9d45bb3e393d74f3">00086</a>     <a class="code" href="class_juce_i_o_host.html#a82b92294e5244f8c9d45bb3e393d74f3" title="Destructor.">~JuceIOHost</a>()
-<a name="l00087"></a>00087     {
-<a name="l00088"></a>00088         <a class="code" href="class_juce_i_o_host.html#a8b0e65471f892f62767ba599160555fb">audioDeviceManager</a>.removeAudioCallback(<span class="keyword">this</span>); <span class="comment">// try this first to prevent deadlock? nope - now crashes here</span>
-<a name="l00089"></a>00089         
-<a name="l00090"></a>00090         <span class="keyword">delete</span> <a class="code" href="class_juce_i_o_host.html#a1595d03c9c1b4c9fbdfb84492aa6c266">juceDeleter</a>;
-<a name="l00091"></a>00091     }
-<a name="l00092"></a>00092     
-<a name="l00096"></a><a class="code" href="class_juce_i_o_host.html#a200b4877d3dcde87b191ffd7f175d404">00096</a>     <span class="keywordtype">void</span> <a class="code" href="class_juce_i_o_host.html#a200b4877d3dcde87b191ffd7f175d404" title="Sets up the AudioDeviceManager shortly after the constructor exits.">timerCallback</a>()
-<a name="l00097"></a>00097     {
-<a name="l00098"></a>00098         stopTimer();
-<a name="l00099"></a>00099         
-<a name="l00100"></a>00100         String error = <a class="code" href="class_juce_i_o_host.html#a8b0e65471f892f62767ba599160555fb">audioDeviceManager</a>.initialise (<a class="code" href="class_juce_i_o_host.html#a46938a5d4533f1013a2a8902b4a033a0">numInputs_</a>, <a class="code" href="class_juce_i_o_host.html#a54ecec7639f92b286cc51f502c7d729d">numOutputs_</a>, 0, <span class="keyword">true</span>);
-<a name="l00101"></a>00101         
-<a name="l00102"></a>00102         <span class="keywordflow">if</span> (error.isNotEmpty())
-<a name="l00103"></a>00103         {
-<a name="l00104"></a>00104             AlertWindow::showMessageBox (AlertWindow::WarningIcon, 
-<a name="l00105"></a>00105                                          <a class="code" href="ugen___standard_header_8h.html#a5ef253115820acf7d27f3c5c3b02a0f0">T</a>(<span class="stringliteral">&quot;JuceIOHost&quot;</span>), 
-<a name="l00106"></a>00106                                          <a class="code" href="ugen___standard_header_8h.html#a5ef253115820acf7d27f3c5c3b02a0f0">T</a>(<span class="stringliteral">&quot;AudioDeviceManager init failed \n\n&quot;</span>) + error);
-<a name="l00107"></a>00107             
-<a name="l00108"></a>00108             <span class="keywordflow">return</span>;
-<a name="l00109"></a>00109         }
+<a name="l00076"></a>00076 <span class="preprocessor"></span>  startTimer(50);
+<a name="l00077"></a>00077   
+<a name="l00078"></a>00078   <a class="code" href="class_juce_i_o_host.html#a03e72380e8c2b2ff2313305bc9889336">output_</a> = <a class="code" href="class_plug.html#a3af4b01a76a7264a9837b002995cf7a4" title="Construct and return an audio rate Plug .">Plug::AR</a>(<a class="code" href="class_u_gen.html#a0e889a35de22c1c46293425788eebe15" title="Create a UGen with a number of empty (null) channels.">UGen::emptyChannels</a>(<a class="code" href="class_juce_i_o_host.html#a54ecec7639f92b286cc51f502c7d729d">numOutputs_</a>));
+<a name="l00079"></a>00079  }
+<a name="l00080"></a>00080  
+<a name="l00086"></a><a class="code" href="class_juce_i_o_host.html#a82b92294e5244f8c9d45bb3e393d74f3">00086</a>  <a class="code" href="class_juce_i_o_host.html#a82b92294e5244f8c9d45bb3e393d74f3" title="Destructor.">~JuceIOHost</a>()
+<a name="l00087"></a>00087  {
+<a name="l00088"></a>00088   <a class="code" href="class_juce_i_o_host.html#a8b0e65471f892f62767ba599160555fb">audioDeviceManager</a>.removeAudioCallback(<span class="keyword">this</span>); <span class="comment">// try this first to prevent deadlock? nope - now crashes here</span>
+<a name="l00089"></a>00089   
+<a name="l00090"></a>00090   <span class="keyword">delete</span> <a class="code" href="class_juce_i_o_host.html#a1595d03c9c1b4c9fbdfb84492aa6c266">juceDeleter</a>;
+<a name="l00091"></a>00091  }
+<a name="l00092"></a>00092  
+<a name="l00096"></a><a class="code" href="class_juce_i_o_host.html#a200b4877d3dcde87b191ffd7f175d404">00096</a>  <span class="keywordtype">void</span> <a class="code" href="class_juce_i_o_host.html#a200b4877d3dcde87b191ffd7f175d404" title="Sets up the AudioDeviceManager shortly after the constructor exits.">timerCallback</a>()
+<a name="l00097"></a>00097  {
+<a name="l00098"></a>00098   stopTimer();
+<a name="l00099"></a>00099   
+<a name="l00100"></a>00100   String error = <a class="code" href="class_juce_i_o_host.html#a8b0e65471f892f62767ba599160555fb">audioDeviceManager</a>.initialise (<a class="code" href="class_juce_i_o_host.html#a46938a5d4533f1013a2a8902b4a033a0">numInputs_</a>, <a class="code" href="class_juce_i_o_host.html#a54ecec7639f92b286cc51f502c7d729d">numOutputs_</a>, 0, <span class="keyword">true</span>);
+<a name="l00101"></a>00101   
+<a name="l00102"></a>00102   <span class="keywordflow">if</span> (error.isNotEmpty())
+<a name="l00103"></a>00103   {
+<a name="l00104"></a>00104    AlertWindow::showMessageBox (AlertWindow::WarningIcon, 
+<a name="l00105"></a>00105            <a class="code" href="ugen___standard_header_8h.html#a5ef253115820acf7d27f3c5c3b02a0f0">T</a>(<span class="stringliteral">&quot;JuceIOHost&quot;</span>), 
+<a name="l00106"></a>00106            <a class="code" href="ugen___standard_header_8h.html#a5ef253115820acf7d27f3c5c3b02a0f0">T</a>(<span class="stringliteral">&quot;AudioDeviceManager init failed \n\n&quot;</span>) + error);
+<a name="l00107"></a>00107    
+<a name="l00108"></a>00108    <span class="keywordflow">return</span>;
+<a name="l00109"></a>00109   }
 <a name="l00110"></a>00110 
-<a name="l00111"></a>00111         AudioDeviceManager::AudioDeviceSetup setup;
-<a name="l00112"></a>00112         <a class="code" href="class_juce_i_o_host.html#a8b0e65471f892f62767ba599160555fb">audioDeviceManager</a>.getAudioDeviceSetup(setup);
+<a name="l00111"></a>00111   AudioDeviceManager::AudioDeviceSetup setup;
+<a name="l00112"></a>00112   <a class="code" href="class_juce_i_o_host.html#a8b0e65471f892f62767ba599160555fb">audioDeviceManager</a>.getAudioDeviceSetup(setup);
 <a name="l00113"></a>00113 
-<a name="l00114"></a>00114         <span class="keywordflow">if</span>(<a class="code" href="class_juce_i_o_host.html#aaf68156f76f859a1f8a4c93ce757e82e">bufferSize</a> &lt; 1)
-<a name="l00115"></a>00115         {
-<a name="l00116"></a>00116             <a class="code" href="class_juce_i_o_host.html#aaf68156f76f859a1f8a4c93ce757e82e">bufferSize</a> = setup.bufferSize;
-<a name="l00117"></a>00117         }
-<a name="l00118"></a>00118         <span class="keywordflow">else</span>
-<a name="l00119"></a>00119         {
-<a name="l00120"></a>00120             setup.bufferSize = <a class="code" href="class_juce_i_o_host.html#aaf68156f76f859a1f8a4c93ce757e82e">bufferSize</a>;
-<a name="l00121"></a>00121             <a class="code" href="class_juce_i_o_host.html#a8b0e65471f892f62767ba599160555fb">audioDeviceManager</a>.setAudioDeviceSetup(setup, <span class="keyword">false</span>);
-<a name="l00122"></a>00122         }
-<a name="l00123"></a>00123         
-<a name="l00124"></a>00124         <span class="keywordflow">if</span> (error.isNotEmpty())
-<a name="l00125"></a>00125         {
-<a name="l00126"></a>00126             AlertWindow::showMessageBox (AlertWindow::WarningIcon, 
-<a name="l00127"></a>00127                                          <a class="code" href="ugen___standard_header_8h.html#a5ef253115820acf7d27f3c5c3b02a0f0">T</a>(<span class="stringliteral">&quot;JuceIOHost&quot;</span>), 
-<a name="l00128"></a>00128                                          <a class="code" href="ugen___standard_header_8h.html#a5ef253115820acf7d27f3c5c3b02a0f0">T</a>(<span class="stringliteral">&quot;AudioDeviceManager setup failed \n\n&quot;</span>) + error);
-<a name="l00129"></a>00129             
-<a name="l00130"></a>00130             <span class="keywordflow">return</span>;
-<a name="l00131"></a>00131         }
-<a name="l00132"></a>00132         
-<a name="l00133"></a>00133         <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_juce_i_o_host.html#aae1bf073b416a82b8d0169de465e6aa5">lock</a>);
-<a name="l00134"></a>00134         
-<a name="l00135"></a>00135         <span class="keywordflow">if</span>(<a class="code" href="class_juce_i_o_host.html#a46938a5d4533f1013a2a8902b4a033a0">numInputs_</a> &gt; 0)
-<a name="l00136"></a>00136             <a class="code" href="class_juce_i_o_host.html#a72a23d789cee5ccd33d8e5170d87859e">input_</a> = <a class="code" href="class_audio_in.html#a38d828464a46955cf83c91f090eb1b4e" title="Construct and return an audio rate AudioIn .">AudioIn::AR</a>(<a class="code" href="class_juce_i_o_host.html#a46938a5d4533f1013a2a8902b4a033a0">numInputs_</a>);
-<a name="l00137"></a>00137         <a class="code" href="class_juce_i_o_host.html#a8b0e65471f892f62767ba599160555fb">audioDeviceManager</a>.addAudioCallback (<span class="keyword">this</span>);
-<a name="l00138"></a>00138         
-<a name="l00139"></a>00139     }
-<a name="l00140"></a>00140     
-<a name="l00147"></a><a class="code" href="class_juce_i_o_host.html#a75d674080ebf55e511928ddeb8f22c32">00147</a>     <span class="keywordtype">void</span> <a class="code" href="class_juce_i_o_host.html#a75d674080ebf55e511928ddeb8f22c32" title="Renders a block of audio through the UGen graph.">audioDeviceIOCallback</a> (<span class="keyword">const</span> <span class="keywordtype">float</span>** inputChannelData,
-<a name="l00148"></a>00148                                 <span class="keywordtype">int</span> numInputChannels, 
-<a name="l00149"></a>00149                                 <span class="keywordtype">float</span>** outputChannelData, 
-<a name="l00150"></a>00150                                 <span class="keywordtype">int</span> numOutputChannels, 
-<a name="l00151"></a>00151                                 <span class="keywordtype">int</span> numSamples)
-<a name="l00152"></a>00152     {
-<a name="l00153"></a>00153         <span class="comment">// may need to be a bit cleverer with the channels in here..</span>
-<a name="l00154"></a>00154         <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_juce_i_o_host.html#aae1bf073b416a82b8d0169de465e6aa5">lock</a>);
-<a name="l00155"></a>00155         <span class="keywordtype">int</span> blockID = <a class="code" href="class_u_gen.html#af3c69e3949b26008a710656b85e48620" title="Get the next sample blockID based on the required block size.">UGen::getNextBlockID</a>(numSamples);
-<a name="l00156"></a>00156         
-<a name="l00157"></a>00157         <span class="keywordflow">if</span>(<a class="code" href="class_juce_i_o_host.html#a46938a5d4533f1013a2a8902b4a033a0">numInputs_</a> &gt; 0)
-<a name="l00158"></a>00158             <a class="code" href="class_juce_i_o_host.html#a72a23d789cee5ccd33d8e5170d87859e">input_</a>.<a class="code" href="class_u_gen.html#a06055abb615fdb83862f0063f7de65e2" title="Attempts to set the input data sources for the UGen.">setInputs</a>(inputChannelData, numSamples, numInputChannels);
-<a name="l00159"></a>00159         
-<a name="l00160"></a>00160         <span class="keywordflow">if</span>(<a class="code" href="class_juce_i_o_host.html#a54ecec7639f92b286cc51f502c7d729d">numOutputs_</a> &gt; 0)
-<a name="l00161"></a>00161         {
-<a name="l00162"></a>00162             <a class="code" href="class_juce_i_o_host.html#a03e72380e8c2b2ff2313305bc9889336">output_</a>.<a class="code" href="class_u_gen.html#ab63673f3a08b506605eff7abd481072d" title="Set the outputs for the UGenInternal instances.">setOutputs</a>(outputChannelData, numSamples, numOutputChannels);
+<a name="l00114"></a>00114   <span class="keywordflow">if</span>(<a class="code" href="class_juce_i_o_host.html#aaf68156f76f859a1f8a4c93ce757e82e">bufferSize</a> &lt; 1)
+<a name="l00115"></a>00115   {
+<a name="l00116"></a>00116    <a class="code" href="class_juce_i_o_host.html#aaf68156f76f859a1f8a4c93ce757e82e">bufferSize</a> = setup.bufferSize;
+<a name="l00117"></a>00117   }
+<a name="l00118"></a>00118   <span class="keywordflow">else</span>
+<a name="l00119"></a>00119   {
+<a name="l00120"></a>00120    setup.bufferSize = <a class="code" href="class_juce_i_o_host.html#aaf68156f76f859a1f8a4c93ce757e82e">bufferSize</a>;
+<a name="l00121"></a>00121    <a class="code" href="class_juce_i_o_host.html#a8b0e65471f892f62767ba599160555fb">audioDeviceManager</a>.setAudioDeviceSetup(setup, <span class="keyword">false</span>);
+<a name="l00122"></a>00122   }
+<a name="l00123"></a>00123   
+<a name="l00124"></a>00124   <span class="keywordflow">if</span> (error.isNotEmpty())
+<a name="l00125"></a>00125   {
+<a name="l00126"></a>00126    AlertWindow::showMessageBox (AlertWindow::WarningIcon, 
+<a name="l00127"></a>00127            <a class="code" href="ugen___standard_header_8h.html#a5ef253115820acf7d27f3c5c3b02a0f0">T</a>(<span class="stringliteral">&quot;JuceIOHost&quot;</span>), 
+<a name="l00128"></a>00128            <a class="code" href="ugen___standard_header_8h.html#a5ef253115820acf7d27f3c5c3b02a0f0">T</a>(<span class="stringliteral">&quot;AudioDeviceManager setup failed \n\n&quot;</span>) + error);
+<a name="l00129"></a>00129    
+<a name="l00130"></a>00130    <span class="keywordflow">return</span>;
+<a name="l00131"></a>00131   }
+<a name="l00132"></a>00132   
+<a name="l00133"></a>00133   <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_juce_i_o_host.html#aae1bf073b416a82b8d0169de465e6aa5">lock</a>);
+<a name="l00134"></a>00134   
+<a name="l00135"></a>00135   <span class="keywordflow">if</span>(<a class="code" href="class_juce_i_o_host.html#a46938a5d4533f1013a2a8902b4a033a0">numInputs_</a> &gt; 0)
+<a name="l00136"></a>00136    <a class="code" href="class_juce_i_o_host.html#a72a23d789cee5ccd33d8e5170d87859e">input_</a> = <a class="code" href="class_audio_in.html#a38d828464a46955cf83c91f090eb1b4e" title="Construct and return an audio rate AudioIn .">AudioIn::AR</a>(<a class="code" href="class_juce_i_o_host.html#a46938a5d4533f1013a2a8902b4a033a0">numInputs_</a>);
+<a name="l00137"></a>00137   <a class="code" href="class_juce_i_o_host.html#a8b0e65471f892f62767ba599160555fb">audioDeviceManager</a>.addAudioCallback (<span class="keyword">this</span>);
+<a name="l00138"></a>00138   
+<a name="l00139"></a>00139  }
+<a name="l00140"></a>00140  
+<a name="l00147"></a><a class="code" href="class_juce_i_o_host.html#a75d674080ebf55e511928ddeb8f22c32">00147</a>  <span class="keywordtype">void</span> <a class="code" href="class_juce_i_o_host.html#a75d674080ebf55e511928ddeb8f22c32" title="Renders a block of audio through the UGen graph.">audioDeviceIOCallback</a> (<span class="keyword">const</span> <span class="keywordtype">float</span>** inputChannelData,
+<a name="l00148"></a>00148         <span class="keywordtype">int</span> numInputChannels, 
+<a name="l00149"></a>00149         <span class="keywordtype">float</span>** outputChannelData, 
+<a name="l00150"></a>00150         <span class="keywordtype">int</span> numOutputChannels, 
+<a name="l00151"></a>00151         <span class="keywordtype">int</span> numSamples)
+<a name="l00152"></a>00152  {
+<a name="l00153"></a>00153   <span class="comment">// may need to be a bit cleverer with the channels in here..</span>
+<a name="l00154"></a>00154   <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_juce_i_o_host.html#aae1bf073b416a82b8d0169de465e6aa5">lock</a>);
+<a name="l00155"></a>00155   <span class="keywordtype">int</span> blockID = <a class="code" href="class_u_gen.html#af3c69e3949b26008a710656b85e48620" title="Get the next sample blockID based on the required block size.">UGen::getNextBlockID</a>(numSamples);
+<a name="l00156"></a>00156   
+<a name="l00157"></a>00157   <span class="keywordflow">if</span>(<a class="code" href="class_juce_i_o_host.html#a46938a5d4533f1013a2a8902b4a033a0">numInputs_</a> &gt; 0)
+<a name="l00158"></a>00158    <a class="code" href="class_juce_i_o_host.html#a72a23d789cee5ccd33d8e5170d87859e">input_</a>.<a class="code" href="class_u_gen.html#a06055abb615fdb83862f0063f7de65e2" title="Attempts to set the input data sources for the UGen.">setInputs</a>(inputChannelData, numSamples, numInputChannels);
+<a name="l00159"></a>00159   
+<a name="l00160"></a>00160   <span class="keywordflow">if</span>(<a class="code" href="class_juce_i_o_host.html#a54ecec7639f92b286cc51f502c7d729d">numOutputs_</a> &gt; 0)
+<a name="l00161"></a>00161   {
+<a name="l00162"></a>00162    <a class="code" href="class_juce_i_o_host.html#a03e72380e8c2b2ff2313305bc9889336">output_</a>.<a class="code" href="class_u_gen.html#ab63673f3a08b506605eff7abd481072d" title="Set the outputs for the UGenInternal instances.">setOutputs</a>(outputChannelData, numSamples, numOutputChannels);
 <a name="l00163"></a>00163 
-<a name="l00164"></a>00164             <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_juce_i_o_host.html#a6ff47f7de6d916fd9944cf77cb9203bc">others</a>.<a class="code" href="class_u_gen_array.html#adbc33ce837a273d3c5b198e7e2ea7c42" title="Get the available size of the UGenArray.">size</a>(); i++)
-<a name="l00165"></a>00165             {
-<a name="l00166"></a>00166                 <a class="code" href="class_juce_i_o_host.html#a6ff47f7de6d916fd9944cf77cb9203bc">others</a>[i].prepareAndProcessBlock(numSamples, blockID);
-<a name="l00167"></a>00167             }
-<a name="l00168"></a>00168             
-<a name="l00169"></a>00169             <a class="code" href="class_juce_i_o_host.html#a03e72380e8c2b2ff2313305bc9889336">output_</a>.<a class="code" href="class_u_gen.html#aa590fbb03f1c7abae104b5b6c7410b55" title="Prepares for a block then processes it.">prepareAndProcessBlock</a>(numSamples, blockID);
-<a name="l00170"></a>00170         }
-<a name="l00171"></a>00171         <span class="keywordflow">else</span>
-<a name="l00172"></a>00172         {
-<a name="l00173"></a>00173             <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_juce_i_o_host.html#a6ff47f7de6d916fd9944cf77cb9203bc">others</a>.<a class="code" href="class_u_gen_array.html#adbc33ce837a273d3c5b198e7e2ea7c42" title="Get the available size of the UGenArray.">size</a>(); i++)
-<a name="l00174"></a>00174             {
-<a name="l00175"></a>00175                 <a class="code" href="class_juce_i_o_host.html#a6ff47f7de6d916fd9944cf77cb9203bc">others</a>[i].prepareAndProcessBlock(numSamples, blockID);
-<a name="l00176"></a>00176             }
-<a name="l00177"></a>00177         }
-<a name="l00178"></a>00178         
-<a name="l00179"></a>00179     }
-<a name="l00180"></a>00180     
-<a name="l00187"></a><a class="code" href="class_juce_i_o_host.html#a271f92fe18d3de6c31dfa6eaf8317787">00187</a>     <span class="keywordtype">void</span> <a class="code" href="class_juce_i_o_host.html#a271f92fe18d3de6c31dfa6eaf8317787" title="Get ready to play.">audioDeviceAboutToStart</a> (AudioIODevice* device)
-<a name="l00188"></a>00188     {
-<a name="l00189"></a>00189         <span class="comment">//const ScopedLock sl(lock);    </span>
-<a name="l00190"></a>00190         <a class="code" href="class_u_gen.html#a498640a31a6aa85d3c7f83d77ce27c98" title="Prepares UGen++ for a rendering session.">UGen::prepareToPlay</a>(device-&gt;getCurrentSampleRate(), device-&gt;getCurrentBufferSizeSamples());
-<a name="l00191"></a>00191         <a class="code" href="class_juce_i_o_host.html#a03e72380e8c2b2ff2313305bc9889336">output_</a>.<a class="code" href="class_u_gen.html#aa1e58bb948abdbd77988db37711d5982" title="Attempts to set the source of a Plug.">setSource</a>(<a class="code" href="class_juce_i_o_host.html#a5471097c36fb563fb1429b852ab4a2a1" title="Construct a UGen graph.">constructGraph</a>(<a class="code" href="class_juce_i_o_host.html#a72a23d789cee5ccd33d8e5170d87859e">input_</a>), <span class="keyword">true</span>, 0.0);
-<a name="l00192"></a>00192     }
-<a name="l00193"></a>00193     
-<a name="l00195"></a><a class="code" href="class_juce_i_o_host.html#a23d23e73782e5cd8f618413b2809b327">00195</a>     <span class="keywordtype">void</span> <a class="code" href="class_juce_i_o_host.html#a23d23e73782e5cd8f618413b2809b327">audioDeviceStopped</a>() 
-<a name="l00196"></a>00196     { 
-<a name="l00197"></a>00197         <a class="code" href="class_u_gen.html#aa2ca461c18133169d2ccf7744d126446" title="Shutdown UGen++.">UGen::shutdown</a>();
-<a name="l00198"></a>00198     }
-<a name="l00199"></a>00199     
-<a name="l00201"></a><a class="code" href="class_juce_i_o_host.html#a6fe44fa5a132017392a1e95586f087bc">00201</a>     AudioDeviceManager&amp; <a class="code" href="class_juce_i_o_host.html#a6fe44fa5a132017392a1e95586f087bc" title="Get a reference to the AudioDeviceManager().">getAudioDeviceManager</a>() throw() { <span class="keywordflow">return</span> <a class="code" href="class_juce_i_o_host.html#a8b0e65471f892f62767ba599160555fb">audioDeviceManager</a>;    }
-<a name="l00202"></a>00202     
-<a name="l00203"></a><a class="code" href="class_juce_i_o_host.html#ab848e7e2769e68e7910bc1eac1f7b563">00203</a>     <span class="keywordtype">int</span> <a class="code" href="class_juce_i_o_host.html#ab848e7e2769e68e7910bc1eac1f7b563">getNumInputs</a>() <span class="keyword">const</span> throw()                    { <span class="keywordflow">return</span> <a class="code" href="class_juce_i_o_host.html#a46938a5d4533f1013a2a8902b4a033a0">numInputs_</a>;            }
-<a name="l00204"></a><a class="code" href="class_juce_i_o_host.html#a8c93876479a5ef4a2345de4ee7a0cf16">00204</a>     <span class="keywordtype">int</span> <a class="code" href="class_juce_i_o_host.html#a8c93876479a5ef4a2345de4ee7a0cf16">getNumOutputs</a>() <span class="keyword">const</span> throw()                   { <span class="keywordflow">return</span> <a class="code" href="class_juce_i_o_host.html#a54ecec7639f92b286cc51f502c7d729d">numOutputs_</a>;           }
-<a name="l00205"></a>00205     
-<a name="l00213"></a><a class="code" href="class_juce_i_o_host.html#a7f85861e1930474f4f8718d53818c276">00213</a>     <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>&amp; <a class="code" href="class_juce_i_o_host.html#a7f85861e1930474f4f8718d53818c276" title="Get a reference to the input UGen.">getInput</a>() throw()                            { <span class="keywordflow">return</span> <a class="code" href="class_juce_i_o_host.html#a72a23d789cee5ccd33d8e5170d87859e">input_</a>;                }
-<a name="l00214"></a>00214     
-<a name="l00223"></a><a class="code" href="class_juce_i_o_host.html#ade53495166fbfba0a84c68c87ab59757">00223</a>     <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>&amp; <a class="code" href="class_juce_i_o_host.html#ade53495166fbfba0a84c68c87ab59757" title="Get a reference to the output UGen.">getOutput</a>() throw()                           { <span class="keywordflow">return</span> <a class="code" href="class_juce_i_o_host.html#a03e72380e8c2b2ff2313305bc9889336">output_</a>;               }
-<a name="l00224"></a>00224     
-<a name="l00234"></a><a class="code" href="class_juce_i_o_host.html#a65a8a135b951fec0139926d7916d900a">00234</a>     <span class="keywordtype">void</span> <a class="code" href="class_juce_i_o_host.html#a65a8a135b951fec0139926d7916d900a" title="Set the input UGen.">setInput</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; ugen) <span class="keywordflow">throw</span>() 
-<a name="l00235"></a>00235     { 
-<a name="l00236"></a>00236         <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_juce_i_o_host.html#aae1bf073b416a82b8d0169de465e6aa5">lock</a>);
-<a name="l00237"></a>00237         <a class="code" href="class_juce_i_o_host.html#a72a23d789cee5ccd33d8e5170d87859e">input_</a> = ugen;
-<a name="l00238"></a>00238     }
-<a name="l00239"></a>00239     
-<a name="l00249"></a><a class="code" href="class_juce_i_o_host.html#a84ebbd01a7fd33f7fc8190f71348bc20">00249</a>     <span class="keywordtype">void</span> <a class="code" href="class_juce_i_o_host.html#a84ebbd01a7fd33f7fc8190f71348bc20" title="Set the output UGen.">setOutput</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; ugen) <span class="keywordflow">throw</span>() 
-<a name="l00250"></a>00250     { 
-<a name="l00251"></a>00251         <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_juce_i_o_host.html#aae1bf073b416a82b8d0169de465e6aa5">lock</a>);
-<a name="l00252"></a>00252         <a class="code" href="class_juce_i_o_host.html#a03e72380e8c2b2ff2313305bc9889336">output_</a> = ugen;
-<a name="l00253"></a>00253     }
-<a name="l00254"></a>00254     
-<a name="l00260"></a><a class="code" href="class_juce_i_o_host.html#a88b8483a909d81b62dac3232ceff5407">00260</a>     <span class="keywordtype">void</span> <a class="code" href="class_juce_i_o_host.html#a88b8483a909d81b62dac3232ceff5407" title="Add a UGen to the dependency of this host.">addOther</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; ugen) <span class="keywordflow">throw</span>()
-<a name="l00261"></a>00261     {
-<a name="l00262"></a>00262         <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_juce_i_o_host.html#aae1bf073b416a82b8d0169de465e6aa5">lock</a>);
-<a name="l00263"></a>00263         <a class="code" href="class_juce_i_o_host.html#a6ff47f7de6d916fd9944cf77cb9203bc">others</a> &lt;&lt;= ugen;
-<a name="l00264"></a>00264     }
-<a name="l00265"></a>00265     
-<a name="l00276"></a>00276     <span class="keyword">virtual</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_juce_i_o_host.html#a5471097c36fb563fb1429b852ab4a2a1" title="Construct a UGen graph.">constructGraph</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input) = 0;
-<a name="l00277"></a>00277     
+<a name="l00164"></a>00164    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_juce_i_o_host.html#a6ff47f7de6d916fd9944cf77cb9203bc">others</a>.<a class="code" href="class_u_gen_array.html#adbc33ce837a273d3c5b198e7e2ea7c42" title="Get the available size of the UGenArray.">size</a>(); i++)
+<a name="l00165"></a>00165    {
+<a name="l00166"></a>00166     <a class="code" href="class_juce_i_o_host.html#a6ff47f7de6d916fd9944cf77cb9203bc">others</a>[i].prepareAndProcessBlock(numSamples, blockID);
+<a name="l00167"></a>00167    }
+<a name="l00168"></a>00168    
+<a name="l00169"></a>00169    <a class="code" href="class_juce_i_o_host.html#a03e72380e8c2b2ff2313305bc9889336">output_</a>.<a class="code" href="class_u_gen.html#aa590fbb03f1c7abae104b5b6c7410b55" title="Prepares for a block then processes it.">prepareAndProcessBlock</a>(numSamples, blockID);
+<a name="l00170"></a>00170   }
+<a name="l00171"></a>00171   <span class="keywordflow">else</span>
+<a name="l00172"></a>00172   {
+<a name="l00173"></a>00173    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_juce_i_o_host.html#a6ff47f7de6d916fd9944cf77cb9203bc">others</a>.<a class="code" href="class_u_gen_array.html#adbc33ce837a273d3c5b198e7e2ea7c42" title="Get the available size of the UGenArray.">size</a>(); i++)
+<a name="l00174"></a>00174    {
+<a name="l00175"></a>00175     <a class="code" href="class_juce_i_o_host.html#a6ff47f7de6d916fd9944cf77cb9203bc">others</a>[i].prepareAndProcessBlock(numSamples, blockID);
+<a name="l00176"></a>00176    }
+<a name="l00177"></a>00177   }
+<a name="l00178"></a>00178   
+<a name="l00179"></a>00179  }
+<a name="l00180"></a>00180  
+<a name="l00187"></a><a class="code" href="class_juce_i_o_host.html#a271f92fe18d3de6c31dfa6eaf8317787">00187</a>  <span class="keywordtype">void</span> <a class="code" href="class_juce_i_o_host.html#a271f92fe18d3de6c31dfa6eaf8317787" title="Get ready to play.">audioDeviceAboutToStart</a> (AudioIODevice* device)
+<a name="l00188"></a>00188  {
+<a name="l00189"></a>00189   <span class="comment">//const ScopedLock sl(lock); </span>
+<a name="l00190"></a>00190   <a class="code" href="class_u_gen.html#a498640a31a6aa85d3c7f83d77ce27c98" title="Prepares UGen++ for a rendering session.">UGen::prepareToPlay</a>(device-&gt;getCurrentSampleRate(), device-&gt;getCurrentBufferSizeSamples());
+<a name="l00191"></a>00191   <a class="code" href="class_juce_i_o_host.html#a03e72380e8c2b2ff2313305bc9889336">output_</a>.<a class="code" href="class_u_gen.html#aa1e58bb948abdbd77988db37711d5982" title="Attempts to set the source of a Plug.">setSource</a>(<a class="code" href="class_juce_i_o_host.html#a5471097c36fb563fb1429b852ab4a2a1" title="Construct a UGen graph.">constructGraph</a>(<a class="code" href="class_juce_i_o_host.html#a72a23d789cee5ccd33d8e5170d87859e">input_</a>), <span class="keyword">true</span>, 0.0);
+<a name="l00192"></a>00192  }
+<a name="l00193"></a>00193  
+<a name="l00195"></a><a class="code" href="class_juce_i_o_host.html#a23d23e73782e5cd8f618413b2809b327">00195</a>  <span class="keywordtype">void</span> <a class="code" href="class_juce_i_o_host.html#a23d23e73782e5cd8f618413b2809b327">audioDeviceStopped</a>() 
+<a name="l00196"></a>00196  { 
+<a name="l00197"></a>00197   <a class="code" href="class_u_gen.html#aa2ca461c18133169d2ccf7744d126446" title="Shutdown UGen++.">UGen::shutdown</a>();
+<a name="l00198"></a>00198  }
+<a name="l00199"></a>00199  
+<a name="l00201"></a><a class="code" href="class_juce_i_o_host.html#a6fe44fa5a132017392a1e95586f087bc">00201</a>  AudioDeviceManager&amp; <a class="code" href="class_juce_i_o_host.html#a6fe44fa5a132017392a1e95586f087bc" title="Get a reference to the AudioDeviceManager().">getAudioDeviceManager</a>() throw() { <span class="keywordflow">return</span> <a class="code" href="class_juce_i_o_host.html#a8b0e65471f892f62767ba599160555fb">audioDeviceManager</a>; }
+<a name="l00202"></a>00202  
+<a name="l00203"></a><a class="code" href="class_juce_i_o_host.html#ab848e7e2769e68e7910bc1eac1f7b563">00203</a>  <span class="keywordtype">int</span> <a class="code" href="class_juce_i_o_host.html#ab848e7e2769e68e7910bc1eac1f7b563">getNumInputs</a>() <span class="keyword">const</span> throw()     { <span class="keywordflow">return</span> <a class="code" href="class_juce_i_o_host.html#a46938a5d4533f1013a2a8902b4a033a0">numInputs_</a>;   }
+<a name="l00204"></a><a class="code" href="class_juce_i_o_host.html#a8c93876479a5ef4a2345de4ee7a0cf16">00204</a>  <span class="keywordtype">int</span> <a class="code" href="class_juce_i_o_host.html#a8c93876479a5ef4a2345de4ee7a0cf16">getNumOutputs</a>() <span class="keyword">const</span> throw()     { <span class="keywordflow">return</span> <a class="code" href="class_juce_i_o_host.html#a54ecec7639f92b286cc51f502c7d729d">numOutputs_</a>;   }
+<a name="l00205"></a>00205  
+<a name="l00213"></a><a class="code" href="class_juce_i_o_host.html#a7f85861e1930474f4f8718d53818c276">00213</a>  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>&amp; <a class="code" href="class_juce_i_o_host.html#a7f85861e1930474f4f8718d53818c276" title="Get a reference to the input UGen.">getInput</a>() throw()       { <span class="keywordflow">return</span> <a class="code" href="class_juce_i_o_host.html#a72a23d789cee5ccd33d8e5170d87859e">input_</a>;    }
+<a name="l00214"></a>00214  
+<a name="l00223"></a><a class="code" href="class_juce_i_o_host.html#ade53495166fbfba0a84c68c87ab59757">00223</a>  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>&amp; <a class="code" href="class_juce_i_o_host.html#ade53495166fbfba0a84c68c87ab59757" title="Get a reference to the output UGen.">getOutput</a>() throw()       { <span class="keywordflow">return</span> <a class="code" href="class_juce_i_o_host.html#a03e72380e8c2b2ff2313305bc9889336">output_</a>;    }
+<a name="l00224"></a>00224  
+<a name="l00234"></a><a class="code" href="class_juce_i_o_host.html#a65a8a135b951fec0139926d7916d900a">00234</a>  <span class="keywordtype">void</span> <a class="code" href="class_juce_i_o_host.html#a65a8a135b951fec0139926d7916d900a" title="Set the input UGen.">setInput</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; ugen) <span class="keywordflow">throw</span>() 
+<a name="l00235"></a>00235  { 
+<a name="l00236"></a>00236   <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_juce_i_o_host.html#aae1bf073b416a82b8d0169de465e6aa5">lock</a>);
+<a name="l00237"></a>00237   <a class="code" href="class_juce_i_o_host.html#a72a23d789cee5ccd33d8e5170d87859e">input_</a> = ugen;
+<a name="l00238"></a>00238  }
+<a name="l00239"></a>00239  
+<a name="l00249"></a><a class="code" href="class_juce_i_o_host.html#a84ebbd01a7fd33f7fc8190f71348bc20">00249</a>  <span class="keywordtype">void</span> <a class="code" href="class_juce_i_o_host.html#a84ebbd01a7fd33f7fc8190f71348bc20" title="Set the output UGen.">setOutput</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; ugen) <span class="keywordflow">throw</span>() 
+<a name="l00250"></a>00250  { 
+<a name="l00251"></a>00251   <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_juce_i_o_host.html#aae1bf073b416a82b8d0169de465e6aa5">lock</a>);
+<a name="l00252"></a>00252   <a class="code" href="class_juce_i_o_host.html#a03e72380e8c2b2ff2313305bc9889336">output_</a> = ugen;
+<a name="l00253"></a>00253  }
+<a name="l00254"></a>00254  
+<a name="l00260"></a><a class="code" href="class_juce_i_o_host.html#a88b8483a909d81b62dac3232ceff5407">00260</a>  <span class="keywordtype">void</span> <a class="code" href="class_juce_i_o_host.html#a88b8483a909d81b62dac3232ceff5407" title="Add a UGen to the dependency of this host.">addOther</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; ugen) <span class="keywordflow">throw</span>()
+<a name="l00261"></a>00261  {
+<a name="l00262"></a>00262   <span class="keyword">const</span> ScopedLock sl(<a class="code" href="class_juce_i_o_host.html#aae1bf073b416a82b8d0169de465e6aa5">lock</a>);
+<a name="l00263"></a>00263   <a class="code" href="class_juce_i_o_host.html#a6ff47f7de6d916fd9944cf77cb9203bc">others</a> &lt;&lt;= ugen;
+<a name="l00264"></a>00264  }
+<a name="l00265"></a>00265  
+<a name="l00276"></a>00276  <span class="keyword">virtual</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_juce_i_o_host.html#a5471097c36fb563fb1429b852ab4a2a1" title="Construct a UGen graph.">constructGraph</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input) = 0;
+<a name="l00277"></a>00277  
 <a name="l00278"></a>00278 <span class="keyword">protected</span>:
-<a name="l00279"></a><a class="code" href="class_juce_i_o_host.html#aae1bf073b416a82b8d0169de465e6aa5">00279</a>     CriticalSection <a class="code" href="class_juce_i_o_host.html#aae1bf073b416a82b8d0169de465e6aa5">lock</a>;
-<a name="l00280"></a><a class="code" href="class_juce_i_o_host.html#a8b0e65471f892f62767ba599160555fb">00280</a>     AudioDeviceManager <a class="code" href="class_juce_i_o_host.html#a8b0e65471f892f62767ba599160555fb">audioDeviceManager</a>;
-<a name="l00281"></a>00281     
+<a name="l00279"></a><a class="code" href="class_juce_i_o_host.html#aae1bf073b416a82b8d0169de465e6aa5">00279</a>  CriticalSection <a class="code" href="class_juce_i_o_host.html#aae1bf073b416a82b8d0169de465e6aa5">lock</a>;
+<a name="l00280"></a><a class="code" href="class_juce_i_o_host.html#a8b0e65471f892f62767ba599160555fb">00280</a>  AudioDeviceManager <a class="code" href="class_juce_i_o_host.html#a8b0e65471f892f62767ba599160555fb">audioDeviceManager</a>;
+<a name="l00281"></a>00281  
 <a name="l00282"></a>00282 <span class="keyword">private</span>:
-<a name="l00283"></a><a class="code" href="class_juce_i_o_host.html#a54ecec7639f92b286cc51f502c7d729d">00283</a>     <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_juce_i_o_host.html#a46938a5d4533f1013a2a8902b4a033a0">numInputs_</a>, <a class="code" href="class_juce_i_o_host.html#a54ecec7639f92b286cc51f502c7d729d">numOutputs_</a>;
-<a name="l00284"></a><a class="code" href="class_juce_i_o_host.html#aaf68156f76f859a1f8a4c93ce757e82e">00284</a>     <span class="keywordtype">int</span> <a class="code" href="class_juce_i_o_host.html#aaf68156f76f859a1f8a4c93ce757e82e">bufferSize</a>;
-<a name="l00285"></a><a class="code" href="class_juce_i_o_host.html#a72a23d789cee5ccd33d8e5170d87859e">00285</a>     <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_juce_i_o_host.html#a72a23d789cee5ccd33d8e5170d87859e">input_</a>;
-<a name="l00286"></a><a class="code" href="class_juce_i_o_host.html#a03e72380e8c2b2ff2313305bc9889336">00286</a>     <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_juce_i_o_host.html#a03e72380e8c2b2ff2313305bc9889336">output_</a>;
-<a name="l00287"></a><a class="code" href="class_juce_i_o_host.html#a6ff47f7de6d916fd9944cf77cb9203bc">00287</a>     <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <a class="code" href="class_juce_i_o_host.html#a6ff47f7de6d916fd9944cf77cb9203bc">others</a>;
-<a name="l00288"></a><a class="code" href="class_juce_i_o_host.html#a1595d03c9c1b4c9fbdfb84492aa6c266">00288</a>     <a class="code" href="class_juce_timer_deleter.html" title="Stores and deletes SmartPointer objects using a timer.">JuceTimerDeleter</a>* <a class="code" href="class_juce_i_o_host.html#a1595d03c9c1b4c9fbdfb84492aa6c266">juceDeleter</a>;
+<a name="l00283"></a><a class="code" href="class_juce_i_o_host.html#a54ecec7639f92b286cc51f502c7d729d">00283</a>  <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_juce_i_o_host.html#a46938a5d4533f1013a2a8902b4a033a0">numInputs_</a>, <a class="code" href="class_juce_i_o_host.html#a54ecec7639f92b286cc51f502c7d729d">numOutputs_</a>;
+<a name="l00284"></a><a class="code" href="class_juce_i_o_host.html#aaf68156f76f859a1f8a4c93ce757e82e">00284</a>  <span class="keywordtype">int</span> <a class="code" href="class_juce_i_o_host.html#aaf68156f76f859a1f8a4c93ce757e82e">bufferSize</a>;
+<a name="l00285"></a><a class="code" href="class_juce_i_o_host.html#a72a23d789cee5ccd33d8e5170d87859e">00285</a>  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_juce_i_o_host.html#a72a23d789cee5ccd33d8e5170d87859e">input_</a>;
+<a name="l00286"></a><a class="code" href="class_juce_i_o_host.html#a03e72380e8c2b2ff2313305bc9889336">00286</a>  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_juce_i_o_host.html#a03e72380e8c2b2ff2313305bc9889336">output_</a>;
+<a name="l00287"></a><a class="code" href="class_juce_i_o_host.html#a6ff47f7de6d916fd9944cf77cb9203bc">00287</a>  <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <a class="code" href="class_juce_i_o_host.html#a6ff47f7de6d916fd9944cf77cb9203bc">others</a>;
+<a name="l00288"></a><a class="code" href="class_juce_i_o_host.html#a1595d03c9c1b4c9fbdfb84492aa6c266">00288</a>  <a class="code" href="class_juce_timer_deleter.html" title="Stores and deletes SmartPointer objects using a timer.">JuceTimerDeleter</a>* <a class="code" href="class_juce_i_o_host.html#a1595d03c9c1b4c9fbdfb84492aa6c266">juceDeleter</a>;
 <a name="l00289"></a>00289 };
 <a name="l00290"></a>00290 
 <a name="l00291"></a>00291 
@@ -241,7 +241,7 @@
 <a name="l00293"></a>00293 <span class="preprocessor">#endif // _UGEN_ugen_JuceIOHost_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:29 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:58 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

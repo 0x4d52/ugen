@@ -76,15 +76,15 @@
 <a name="l00044"></a><a class="code" href="class_amplitude_u_gen_internal.html">00044</a> <span class="keyword">class </span><a class="code" href="class_amplitude_u_gen_internal.html">AmplitudeUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>
 <a name="l00045"></a>00045 {
 <a name="l00046"></a>00046 <span class="keyword">public</span>:
-<a name="l00047"></a>00047     <a class="code" href="class_amplitude_u_gen_internal.html#a0bb627de6f124867ab2ede44626d2cf7">AmplitudeUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input) <span class="keywordflow">throw</span>();
-<a name="l00048"></a>00048     <span class="keywordtype">void</span> <a class="code" href="class_amplitude_u_gen_internal.html#a52748b0cd1922fb1fc091d9fa5bfe882" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
-<a name="l00049"></a>00049     
-<a name="l00050"></a><a class="code" href="class_amplitude_u_gen_internal.html#a585c3611678606029682f3b5f89bf615a08a61eb7811d4ad7d611de63d7a062c7">00050</a>     <span class="keyword">enum</span> <a class="code" href="class_amplitude_u_gen_internal.html#a585c3611678606029682f3b5f89bf615">Inputs</a> { Input, <a class="code" href="class_amplitude_u_gen_internal.html#a585c3611678606029682f3b5f89bf615a08a61eb7811d4ad7d611de63d7a062c7">NumInputs</a> };
-<a name="l00051"></a>00051     
+<a name="l00047"></a>00047  <a class="code" href="class_amplitude_u_gen_internal.html#a0bb627de6f124867ab2ede44626d2cf7">AmplitudeUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input) <span class="keywordflow">throw</span>();
+<a name="l00048"></a>00048  <span class="keywordtype">void</span> <a class="code" href="class_amplitude_u_gen_internal.html#a52748b0cd1922fb1fc091d9fa5bfe882" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00049"></a>00049  
+<a name="l00050"></a><a class="code" href="class_amplitude_u_gen_internal.html#a585c3611678606029682f3b5f89bf615a08a61eb7811d4ad7d611de63d7a062c7">00050</a>  <span class="keyword">enum</span> <a class="code" href="class_amplitude_u_gen_internal.html#a585c3611678606029682f3b5f89bf615">Inputs</a> { Input, <a class="code" href="class_amplitude_u_gen_internal.html#a585c3611678606029682f3b5f89bf615a08a61eb7811d4ad7d611de63d7a062c7">NumInputs</a> };
+<a name="l00051"></a>00051  
 <a name="l00052"></a>00052 <span class="keyword">protected</span>:
-<a name="l00053"></a><a class="code" href="class_amplitude_u_gen_internal.html#a1a8c99c29e148a1d52af5803c54ea48c">00053</a>     <span class="keywordtype">int</span> <a class="code" href="class_amplitude_u_gen_internal.html#a1a8c99c29e148a1d52af5803c54ea48c">measureLength</a>, <a class="code" href="class_amplitude_u_gen_internal.html#ac7dddc08005fe4dd77aacce6cdb56194">measuredItems</a>;
-<a name="l00054"></a><a class="code" href="class_amplitude_u_gen_internal.html#afcc0d18824925fa5714b4d954894564e">00054</a>     <span class="keywordtype">float</span> <a class="code" href="class_amplitude_u_gen_internal.html#a00f17c6c6f4c5e03b0892d8980e74429">maximum</a>, <a class="code" href="class_amplitude_u_gen_internal.html#afcc0d18824925fa5714b4d954894564e">oldMaximum</a>;
-<a name="l00055"></a><a class="code" href="class_amplitude_u_gen_internal.html#ab5b422bdfa49829c59c2844a70e4d160">00055</a>     <span class="keywordtype">float</span> <a class="code" href="class_amplitude_u_gen_internal.html#ab5b422bdfa49829c59c2844a70e4d160">currentAmplitude</a>;
+<a name="l00053"></a><a class="code" href="class_amplitude_u_gen_internal.html#a1a8c99c29e148a1d52af5803c54ea48c">00053</a>  <span class="keywordtype">int</span> <a class="code" href="class_amplitude_u_gen_internal.html#a1a8c99c29e148a1d52af5803c54ea48c">measureLength</a>, <a class="code" href="class_amplitude_u_gen_internal.html#ac7dddc08005fe4dd77aacce6cdb56194">measuredItems</a>;
+<a name="l00054"></a><a class="code" href="class_amplitude_u_gen_internal.html#afcc0d18824925fa5714b4d954894564e">00054</a>  <span class="keywordtype">float</span> <a class="code" href="class_amplitude_u_gen_internal.html#a00f17c6c6f4c5e03b0892d8980e74429">maximum</a>, <a class="code" href="class_amplitude_u_gen_internal.html#afcc0d18824925fa5714b4d954894564e">oldMaximum</a>;
+<a name="l00055"></a><a class="code" href="class_amplitude_u_gen_internal.html#ab5b422bdfa49829c59c2844a70e4d160">00055</a>  <span class="keywordtype">float</span> <a class="code" href="class_amplitude_u_gen_internal.html#ab5b422bdfa49829c59c2844a70e4d160">currentAmplitude</a>;
 <a name="l00056"></a>00056 };
 <a name="l00057"></a>00057 
 <a name="l00058"></a>00058 
@@ -98,7 +98,7 @@
 <a name="l00066"></a>00066 <span class="preprocessor">#endif // _UGEN_ugen_Amplitude_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:27 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:56 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

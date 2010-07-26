@@ -79,88 +79,88 @@
 <a name="l00047"></a>00047 
 <a name="l00048"></a>00048 
 <a name="l00049"></a><a class="code" href="class_l_p_f_u_gen_internal.html#aa33448acdf84b4052b88d249b995255b">00049</a> <a class="code" href="class_l_p_f_u_gen_internal.html#aa33448acdf84b4052b88d249b995255b">LPFUGenInternal::LPFUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq) <span class="keywordflow">throw</span>()
-<a name="l00050"></a>00050 :   <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(NumInputs),
-<a name="l00051"></a>00051     y1(0.f), y2(0.f), a0(0.f), b1(0.f), b2(0.f),
-<a name="l00052"></a>00052     currentFreq(0.f)
+<a name="l00050"></a>00050 : <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(NumInputs),
+<a name="l00051"></a>00051  y1(0.f), y2(0.f), a0(0.f), b1(0.f), b2(0.f),
+<a name="l00052"></a>00052  currentFreq(0.f)
 <a name="l00053"></a>00053 {
-<a name="l00054"></a>00054     inputs[Input] = input;
-<a name="l00055"></a>00055     inputs[Freq] = freq;
+<a name="l00054"></a>00054  inputs[Input] = input;
+<a name="l00055"></a>00055  inputs[Freq] = freq;
 <a name="l00056"></a>00056 }
 <a name="l00057"></a>00057 
 <a name="l00058"></a><a class="code" href="class_l_p_f_u_gen_internal.html#a5fa0bba4d900a57f60d1dafcd2e222c8">00058</a> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_l_p_f_u_gen_internal.html#a5fa0bba4d900a57f60d1dafcd2e222c8">LPFUGenInternal::getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
 <a name="l00059"></a>00059 {
-<a name="l00060"></a>00060     <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_l_p_f_u_gen_internal.html">LPFUGenInternal</a>(inputs[Input].getChannel(channel), 
-<a name="l00061"></a>00061                                inputs[Freq].getChannel(channel));
+<a name="l00060"></a>00060  <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_l_p_f_u_gen_internal.html">LPFUGenInternal</a>(inputs[Input].getChannel(channel), 
+<a name="l00061"></a>00061           inputs[Freq].getChannel(channel));
 <a name="l00062"></a>00062 }
 <a name="l00063"></a>00063 
 <a name="l00064"></a><a class="code" href="class_l_p_f_u_gen_internal.html#a0d72f33b1391bea5c03ac6c29c107511">00064</a> <span class="keywordtype">void</span> <a class="code" href="class_l_p_f_u_gen_internal.html#a0d72f33b1391bea5c03ac6c29c107511" title="Process a block of samples for this blockID and channel.">LPFUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
 <a name="l00065"></a>00065 {
-<a name="l00066"></a>00066     <span class="keywordtype">double</span> piOverSampleRate = <a class="code" href="class_u_gen.html#a2e6ab64a2e5ea263113ab4993603537e" title="Get the recirprocal of the current sample rate.">UGen::getReciprocalSampleRate</a>() * <a class="code" href="ugen___constants_8h.html#a43016d873124d39034edb8cd164794db">pi</a>;
-<a name="l00067"></a>00067     <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
-<a name="l00068"></a>00068     <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
-<a name="l00069"></a>00069     <span class="keywordtype">float</span>* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
-<a name="l00070"></a>00070     <span class="keywordtype">float</span>* freqSamples = inputs[Freq].processBlock(shouldDelete, blockID, channel);
-<a name="l00071"></a>00071     <span class="keywordtype">float</span> y0;
-<a name="l00072"></a>00072     <span class="keywordtype">float</span> newFreq = *freqSamples;
-<a name="l00073"></a>00073         
-<a name="l00074"></a>00074     <span class="keywordflow">if</span>(newFreq != currentFreq)
-<a name="l00075"></a>00075     {
-<a name="l00076"></a>00076         <span class="keywordtype">float</span> slope = 1.f / numSamplesToProcess;
-<a name="l00077"></a>00077         <span class="keywordtype">float</span> pfreq = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">max</a>(0.01f, newFreq) * piOverSampleRate;
-<a name="l00078"></a>00078         
-<a name="l00079"></a>00079         <span class="keywordtype">float</span> <a class="code" href="ugen___standard_header_8h.html#ac4cf4b2ab929bd23951a8676eeac086b">C</a> = 1.f / <a class="code" href="ugen___inline_unary_ops_8h.html#af557ec1a0b91559b12ad7896d3bf51ae">tan</a>(pfreq);
-<a name="l00080"></a>00080         <span class="keywordtype">float</span> C2 = C * C;
-<a name="l00081"></a>00081         <span class="keywordtype">float</span> sqrt2C = C * <a class="code" href="ugen___constants_8h.html#a3e5855ac613bbea79256e42f7ba59a98">sqrt2</a>;
-<a name="l00082"></a>00082         
-<a name="l00083"></a>00083         <span class="keywordtype">float</span> next_a0 =   1.f / (1.f + sqrt2C + C2);
-<a name="l00084"></a>00084         <span class="keywordtype">float</span> next_b1 =  -2.f * (1.f - C2) * next_a0 ;
-<a name="l00085"></a>00085         <span class="keywordtype">float</span> next_b2 = -(1.f - sqrt2C + C2) * next_a0;
-<a name="l00086"></a>00086             
-<a name="l00087"></a>00087         <span class="keywordtype">float</span> a0_slope = (next_a0 - a0) * slope;
-<a name="l00088"></a>00088         <span class="keywordtype">float</span> b1_slope = (next_b1 - b1) * slope;
-<a name="l00089"></a>00089         <span class="keywordtype">float</span> b2_slope = (next_b2 - b2) * slope;
-<a name="l00090"></a>00090         
-<a name="l00091"></a>00091         <span class="keywordflow">while</span>(numSamplesToProcess--)
-<a name="l00092"></a>00092         {
-<a name="l00093"></a>00093             y0 = *inputSamples++ + b1 * y1 + b2 * y2; 
-<a name="l00094"></a>00094             *outputSamples++ = a0 * (y0 + 2.f * y1 + y2);
-<a name="l00095"></a>00095             y2 = y1; 
-<a name="l00096"></a>00096             y1 = y0;            
-<a name="l00097"></a>00097         
-<a name="l00098"></a>00098             a0 += a0_slope;
-<a name="l00099"></a>00099             b1 += b1_slope;
-<a name="l00100"></a>00100             b2 += b2_slope;
-<a name="l00101"></a>00101         }       
-<a name="l00102"></a>00102     }
-<a name="l00103"></a>00103     <span class="keywordflow">else</span>
-<a name="l00104"></a>00104     {
-<a name="l00105"></a>00105         <span class="keywordflow">while</span>(numSamplesToProcess--)
-<a name="l00106"></a>00106         {
-<a name="l00107"></a>00107             y0 = *inputSamples++ + b1 * y1 + b2 * y2; 
-<a name="l00108"></a>00108             *outputSamples++ = a0 * (y0 + 2.f * y1 + y2);
-<a name="l00109"></a>00109             y2 = y1; 
-<a name="l00110"></a>00110             y1 = y0;            
-<a name="l00111"></a>00111         }
-<a name="l00112"></a>00112     }
-<a name="l00113"></a>00113     
-<a name="l00114"></a>00114     y1 = <a class="code" href="ugen___inline_unary_ops_8h.html#a6ed2bbde65e0032256bd4e8832b99b91">zap</a>(y1);
-<a name="l00115"></a>00115     y2 = <a class="code" href="ugen___inline_unary_ops_8h.html#a6ed2bbde65e0032256bd4e8832b99b91">zap</a>(y2);
-<a name="l00116"></a>00116     currentFreq = newFreq;
+<a name="l00066"></a>00066  <span class="keywordtype">double</span> piOverSampleRate = <a class="code" href="class_u_gen.html#a2e6ab64a2e5ea263113ab4993603537e" title="Get the recirprocal of the current sample rate.">UGen::getReciprocalSampleRate</a>() * <a class="code" href="ugen___constants_8h.html#a43016d873124d39034edb8cd164794db">pi</a>;
+<a name="l00067"></a>00067  <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
+<a name="l00068"></a>00068  <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
+<a name="l00069"></a>00069  <span class="keywordtype">float</span>* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
+<a name="l00070"></a>00070  <span class="keywordtype">float</span>* freqSamples = inputs[Freq].processBlock(shouldDelete, blockID, channel);
+<a name="l00071"></a>00071  <span class="keywordtype">float</span> y0;
+<a name="l00072"></a>00072  <span class="keywordtype">float</span> newFreq = *freqSamples;
+<a name="l00073"></a>00073   
+<a name="l00074"></a>00074  <span class="keywordflow">if</span>(newFreq != currentFreq)
+<a name="l00075"></a>00075  {
+<a name="l00076"></a>00076   <span class="keywordtype">float</span> slope = 1.f / numSamplesToProcess;
+<a name="l00077"></a>00077   <span class="keywordtype">float</span> pfreq = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">max</a>(0.01f, newFreq) * piOverSampleRate;
+<a name="l00078"></a>00078   
+<a name="l00079"></a>00079   <span class="keywordtype">float</span> <a class="code" href="ugen___standard_header_8h.html#ac4cf4b2ab929bd23951a8676eeac086b">C</a> = 1.f / <a class="code" href="ugen___inline_unary_ops_8h.html#af557ec1a0b91559b12ad7896d3bf51ae">tan</a>(pfreq);
+<a name="l00080"></a>00080   <span class="keywordtype">float</span> C2 = C * C;
+<a name="l00081"></a>00081   <span class="keywordtype">float</span> sqrt2C = C * <a class="code" href="ugen___constants_8h.html#a3e5855ac613bbea79256e42f7ba59a98">sqrt2</a>;
+<a name="l00082"></a>00082   
+<a name="l00083"></a>00083   <span class="keywordtype">float</span> next_a0 =   1.f / (1.f + sqrt2C + C2);
+<a name="l00084"></a>00084   <span class="keywordtype">float</span> next_b1 =  -2.f * (1.f - C2) * next_a0 ;
+<a name="l00085"></a>00085   <span class="keywordtype">float</span> next_b2 = -(1.f - sqrt2C + C2) * next_a0;
+<a name="l00086"></a>00086    
+<a name="l00087"></a>00087   <span class="keywordtype">float</span> a0_slope = (next_a0 - a0) * slope;
+<a name="l00088"></a>00088   <span class="keywordtype">float</span> b1_slope = (next_b1 - b1) * slope;
+<a name="l00089"></a>00089   <span class="keywordtype">float</span> b2_slope = (next_b2 - b2) * slope;
+<a name="l00090"></a>00090   
+<a name="l00091"></a>00091   <span class="keywordflow">while</span>(numSamplesToProcess--)
+<a name="l00092"></a>00092   {
+<a name="l00093"></a>00093    y0 = *inputSamples++ + b1 * y1 + b2 * y2; 
+<a name="l00094"></a>00094    *outputSamples++ = a0 * (y0 + 2.f * y1 + y2);
+<a name="l00095"></a>00095    y2 = y1; 
+<a name="l00096"></a>00096    y1 = y0;   
+<a name="l00097"></a>00097   
+<a name="l00098"></a>00098    a0 += a0_slope;
+<a name="l00099"></a>00099    b1 += b1_slope;
+<a name="l00100"></a>00100    b2 += b2_slope;
+<a name="l00101"></a>00101   }  
+<a name="l00102"></a>00102  }
+<a name="l00103"></a>00103  <span class="keywordflow">else</span>
+<a name="l00104"></a>00104  {
+<a name="l00105"></a>00105   <span class="keywordflow">while</span>(numSamplesToProcess--)
+<a name="l00106"></a>00106   {
+<a name="l00107"></a>00107    y0 = *inputSamples++ + b1 * y1 + b2 * y2; 
+<a name="l00108"></a>00108    *outputSamples++ = a0 * (y0 + 2.f * y1 + y2);
+<a name="l00109"></a>00109    y2 = y1; 
+<a name="l00110"></a>00110    y1 = y0;   
+<a name="l00111"></a>00111   }
+<a name="l00112"></a>00112  }
+<a name="l00113"></a>00113  
+<a name="l00114"></a>00114  y1 = <a class="code" href="ugen___inline_unary_ops_8h.html#a6ed2bbde65e0032256bd4e8832b99b91">zap</a>(y1);
+<a name="l00115"></a>00115  y2 = <a class="code" href="ugen___inline_unary_ops_8h.html#a6ed2bbde65e0032256bd4e8832b99b91">zap</a>(y2);
+<a name="l00116"></a>00116  currentFreq = newFreq;
 <a name="l00117"></a>00117 }
 <a name="l00118"></a>00118 
 <a name="l00119"></a>00119 
 <a name="l00120"></a><a class="code" href="class_l_p_f.html#aeb8b3cfafb8df6b9ba1086158c2366f8">00120</a> <a class="code" href="class_l_p_f.html#aeb8b3cfafb8df6b9ba1086158c2366f8" title="Base MulAdd LPF Constuctor (without &amp;quot;mul&amp;quot; or &amp;quot;add&amp;quot;), use the AR() and KR() versio...">LPF::LPF</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq) <span class="keywordflow">throw</span>()
 <a name="l00121"></a>00121 {
-<a name="l00122"></a>00122     <span class="keywordtype">int</span> numChannels = 1;
-<a name="l00123"></a>00123     numChannels = input.getNumChannels() &gt; numChannels ? input.getNumChannels() : numChannels;
-<a name="l00124"></a>00124     numChannels = freq.getNumChannels()  &gt; numChannels ? freq.getNumChannels()  : numChannels;
-<a name="l00125"></a>00125     
-<a name="l00126"></a>00126     initInternal(numChannels);
-<a name="l00127"></a>00127     
-<a name="l00128"></a>00128     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++)
-<a name="l00129"></a>00129     {
-<a name="l00130"></a>00130         internalUGens[i] = <span class="keyword">new</span> <a class="code" href="class_l_p_f_u_gen_internal.html">LPFUGenInternal</a>(input, freq);
-<a name="l00131"></a>00131     }
+<a name="l00122"></a>00122  <span class="keywordtype">int</span> numChannels = 1;
+<a name="l00123"></a>00123  numChannels = input.getNumChannels() &gt; numChannels ? input.getNumChannels() : numChannels;
+<a name="l00124"></a>00124  numChannels = freq.getNumChannels()  &gt; numChannels ? freq.getNumChannels() : numChannels;
+<a name="l00125"></a>00125  
+<a name="l00126"></a>00126  initInternal(numChannels);
+<a name="l00127"></a>00127  
+<a name="l00128"></a>00128  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++)
+<a name="l00129"></a>00129  {
+<a name="l00130"></a>00130   internalUGens[i] = <span class="keyword">new</span> <a class="code" href="class_l_p_f_u_gen_internal.html">LPFUGenInternal</a>(input, freq);
+<a name="l00131"></a>00131  }
 <a name="l00132"></a>00132 }
 <a name="l00133"></a>00133 
 <a name="l00134"></a>00134 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
@@ -168,7 +168,7 @@
 <a name="l00136"></a>00136 <span class="preprocessor">#endif // gpl</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:28 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:57 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

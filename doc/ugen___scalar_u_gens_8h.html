@@ -68,14 +68,14 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();                            \
-    <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();                              \
-    <span class="keywordtype">float</span> nextValue = (float)*ptr;                                                  \
-    value_ = nextValue;                                                             \
-    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numSamplesToProcess; ++i)                                    \
-    {                                                                               \
-        outputSamples[i] = nextValue;                                               \
-    }
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();       \
+ <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();        \
+ <span class="keywordtype">float</span> nextValue = (float)*ptr;             \
+ value_ = nextValue;                \
+ <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numSamplesToProcess; ++i)         \
+ {                    \
+  outputSamples[i] = nextValue;            \
+ }
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___scalar_u_gens_8h_source.html#l00044">44</a> of file <a class="el" href="ugen___scalar_u_gens_8h_source.html">ugen_ScalarUGens.h</a>.</p>
 
@@ -84,7 +84,7 @@ Defines</h2></td></tr>
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:30 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:59 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

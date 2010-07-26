@@ -74,14 +74,14 @@
 <a name="l00042"></a><a class="code" href="class_debounce_u_gen_internal.html">00042</a> <span class="keyword">class </span><a class="code" href="class_debounce_u_gen_internal.html">DebounceUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>
 <a name="l00043"></a>00043 {
 <a name="l00044"></a>00044 <span class="keyword">public</span>:
-<a name="l00045"></a>00045     <a class="code" href="class_debounce_u_gen_internal.html#a58525a7753adb6ee02948e73ab0eb033">DebounceUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; time) <span class="keywordflow">throw</span>();
-<a name="l00046"></a>00046     <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_debounce_u_gen_internal.html#a4f94880c4ff6871577d057ecda90fc7a">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
-<a name="l00047"></a>00047     <span class="keywordtype">void</span> <a class="code" href="class_debounce_u_gen_internal.html#a054ffceca3c0786ce435b90ed33a477e" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
-<a name="l00048"></a>00048     
-<a name="l00049"></a><a class="code" href="class_debounce_u_gen_internal.html#a23316fe2962ef0fc450c58c2af754158a2ac4f532656f35b7205fc93d5fba5bcc">00049</a>     <span class="keyword">enum</span> <a class="code" href="class_debounce_u_gen_internal.html#a23316fe2962ef0fc450c58c2af754158">Inputs</a> { Input, Time, <a class="code" href="class_debounce_u_gen_internal.html#a23316fe2962ef0fc450c58c2af754158a5ccfc3d73f74bfd5661b88ed62c4008f">NumInputs</a> };
-<a name="l00050"></a>00050     
+<a name="l00045"></a>00045  <a class="code" href="class_debounce_u_gen_internal.html#a58525a7753adb6ee02948e73ab0eb033">DebounceUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; time) <span class="keywordflow">throw</span>();
+<a name="l00046"></a>00046  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_debounce_u_gen_internal.html#a4f94880c4ff6871577d057ecda90fc7a">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00047"></a>00047  <span class="keywordtype">void</span> <a class="code" href="class_debounce_u_gen_internal.html#a054ffceca3c0786ce435b90ed33a477e" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00048"></a>00048  
+<a name="l00049"></a><a class="code" href="class_debounce_u_gen_internal.html#a23316fe2962ef0fc450c58c2af754158a2ac4f532656f35b7205fc93d5fba5bcc">00049</a>  <span class="keyword">enum</span> <a class="code" href="class_debounce_u_gen_internal.html#a23316fe2962ef0fc450c58c2af754158">Inputs</a> { Input, Time, <a class="code" href="class_debounce_u_gen_internal.html#a23316fe2962ef0fc450c58c2af754158a5ccfc3d73f74bfd5661b88ed62c4008f">NumInputs</a> };
+<a name="l00050"></a>00050  
 <a name="l00051"></a>00051 <span class="keyword">protected</span>:
-<a name="l00052"></a><a class="code" href="class_debounce_u_gen_internal.html#a389af0f3f287dbeae68251d248bd9f9e">00052</a>     <span class="keywordtype">int</span> <a class="code" href="class_debounce_u_gen_internal.html#a389af0f3f287dbeae68251d248bd9f9e">count</a>;
+<a name="l00052"></a><a class="code" href="class_debounce_u_gen_internal.html#a389af0f3f287dbeae68251d248bd9f9e">00052</a>  <span class="keywordtype">int</span> <a class="code" href="class_debounce_u_gen_internal.html#a389af0f3f287dbeae68251d248bd9f9e">count</a>;
 <a name="l00053"></a>00053 };
 <a name="l00054"></a>00054 
 <a name="l00055"></a>00055 <a class="code" href="ugen___u_gen_8h.html#a0f0716514ac2b6232e40f134d1f1049c" title="Macro for declaring a simple UGen.">UGenSublcassDeclarationNoDefault</a>
@@ -96,7 +96,7 @@
 <a name="l00064"></a>00064 <span class="preprocessor">#endif // _UGEN_TrigProcess_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:27 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:56 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

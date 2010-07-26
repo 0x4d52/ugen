@@ -128,14 +128,14 @@ Typedefs</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment">NumericalArrayBinaryOperatorBodyCommon;                                                         \
-            <a class="code" href="class_numerical_array.html">NumericalArray&lt;bool&gt;</a> result(<a class="code" href="class_numerical_array_spec.html">NumericalArraySpec</a>(newSize, <span class="keyword">false</span>), <span class="keyword">false</span>);                         \
-            <span class="keywordtype">bool</span> *resultArray = result.getArray();                                                          \
-                                                                                                            \
-            <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; newLength; i++) {                                                   \
-                resultArray[i] = leftArray[i % leftLength] OPERATOR rightArray[i % rightLength];            \
-            }                                                                                               \
-            <span class="keywordflow">return</span> result
+<b>Value:</b><div class="fragment"><pre class="fragment">NumericalArrayBinaryOperatorBodyCommon;               \
+   <a class="code" href="class_numerical_array.html">NumericalArray&lt;bool&gt;</a> result(<a class="code" href="class_numerical_array_spec.html">NumericalArraySpec</a>(newSize, <span class="keyword">false</span>), <span class="keyword">false</span>);       \
+   <span class="keywordtype">bool</span> *resultArray = result.getArray();               \
+                           \
+   <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; newLength; i++) {             \
+    resultArray[i] = leftArray[i % leftLength] OPERATOR rightArray[i % rightLength];   \
+   }                        \
+   <span class="keywordflow">return</span> result
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l01082">1082</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
@@ -158,16 +158,16 @@ Typedefs</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment">NumericalArrayBinaryOperatorBodyCommon;                                                         \
-            <a class="code" href="class_numerical_array.html">NumericalArray&lt;NumericalType&gt;</a> result(<a class="code" href="class_numerical_array_spec.html">NumericalArraySpec</a>(newSize, <span class="keyword">false</span>), eitherNullTerminated); \
-            NumericalType *resultArray = result.getArray();                                                 \
-            <span class="keywordflow">if</span>(eitherNullTerminated) resultArray[newLength] = 0;                                            \
-                                                                                                            \
-            <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; newLength; i++) {                                                   \
-                resultArray[i] = FUNCTION((<span class="keywordtype">double</span>)(leftArray[i % leftLength]),                              \
-                                          (<span class="keywordtype">double</span>)(rightArray[i % rightLength]));                           \
-            }                                                                                               \
-            <span class="keywordflow">return</span> result
+<b>Value:</b><div class="fragment"><pre class="fragment">NumericalArrayBinaryOperatorBodyCommon;               \
+   <a class="code" href="class_numerical_array.html">NumericalArray&lt;NumericalType&gt;</a> result(<a class="code" href="class_numerical_array_spec.html">NumericalArraySpec</a>(newSize, <span class="keyword">false</span>), eitherNullTerminated); \
+   NumericalType *resultArray = result.getArray();             \
+   <span class="keywordflow">if</span>(eitherNullTerminated) resultArray[newLength] = 0;           \
+                           \
+   <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; newLength; i++) {             \
+    resultArray[i] = FUNCTION((<span class="keywordtype">double</span>)(leftArray[i % leftLength]),        \
+            (<span class="keywordtype">double</span>)(rightArray[i % rightLength]));       \
+   }                        \
+   <span class="keywordflow">return</span> result
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l01092">1092</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
@@ -188,10 +188,10 @@ Typedefs</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><a class="code" href="class_numerical_array.html">NumericalArray&lt;NumericalType&gt;</a> FUNCTION (<a class="code" href="class_numerical_array.html">NumericalArray&lt;NumericalType&gt;</a> <span class="keyword">const</span>&amp; rightOperand) <span class="keyword">const</span> <span class="keywordflow">throw</span>()        \
-            {                                                                                                               \
-                <a class="code" href="ugen___arrays_8h.html#a8c103c182fc439f93a862fae8240e7c1">NumericalArrayBinaryFunctionBody</a>(ugen::FUNCTION);                                                           \
-            }
+<b>Value:</b><div class="fragment"><pre class="fragment"><a class="code" href="class_numerical_array.html">NumericalArray&lt;NumericalType&gt;</a> FUNCTION (<a class="code" href="class_numerical_array.html">NumericalArray&lt;NumericalType&gt;</a> <span class="keyword">const</span>&amp; rightOperand) <span class="keyword">const</span> <span class="keywordflow">throw</span>()  \
+   {                            \
+    <a class="code" href="ugen___arrays_8h.html#a8c103c182fc439f93a862fae8240e7c1">NumericalArrayBinaryFunctionBody</a>(ugen::FUNCTION);               \
+   }
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l01104">1104</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
@@ -212,15 +212,15 @@ Typedefs</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment">NumericalArrayBinaryOperatorBodyCommon;                                                         \
-            <a class="code" href="class_numerical_array.html">NumericalArray&lt;NumericalType&gt;</a> result(<a class="code" href="class_numerical_array_spec.html">NumericalArraySpec</a>(newSize, <span class="keyword">false</span>), eitherNullTerminated); \
-            NumericalType *resultArray = result.getArray();                                                 \
-            <span class="keywordflow">if</span>(eitherNullTerminated) resultArray[newLength] = 0;                                            \
-                                                                                                            \
-            <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; newLength; i++) {                                                   \
-                resultArray[i] = leftArray[i % leftLength] OPERATOR rightArray[i % rightLength];            \
-            }                                                                                               \
-            <span class="keywordflow">return</span> result
+<b>Value:</b><div class="fragment"><pre class="fragment">NumericalArrayBinaryOperatorBodyCommon;               \
+   <a class="code" href="class_numerical_array.html">NumericalArray&lt;NumericalType&gt;</a> result(<a class="code" href="class_numerical_array_spec.html">NumericalArraySpec</a>(newSize, <span class="keyword">false</span>), eitherNullTerminated); \
+   NumericalType *resultArray = result.getArray();             \
+   <span class="keywordflow">if</span>(eitherNullTerminated) resultArray[newLength] = 0;           \
+                           \
+   <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; newLength; i++) {             \
+    resultArray[i] = leftArray[i % leftLength] OPERATOR rightArray[i % rightLength];   \
+   }                        \
+   <span class="keywordflow">return</span> result
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l01071">1071</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
@@ -238,17 +238,17 @@ Typedefs</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> leftSize = this-&gt;size();                                                     \
-            <span class="keywordflow">if</span>(leftSize == 0) <span class="keywordflow">return</span> rightOperand;                                                          \
-            <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> rightSize = rightOperand.size();                                             \
-            <span class="keywordflow">if</span>(rightSize == 0) <span class="keywordflow">return</span> *<span class="keyword">this</span>;                                                                \
-            <span class="keyword">const</span> <span class="keywordtype">bool</span> eitherNullTerminated = this-&gt;isNullTerminated() || rightOperand.isNullTerminated();  \
-            <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> leftLength = this-&gt;length();                                                 \
-            <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> rightLength = rightOperand.length();                                         \
-            <span class="keyword">const</span> <span class="keywordtype">int</span> newLength = leftLength &gt; rightLength ? leftLength : rightLength;                      \
-            <span class="keyword">const</span> <span class="keywordtype">int</span> newSize = leftSize &gt; rightSize ? leftSize : rightSize;                                \
-            <span class="keyword">const</span> NumericalType *leftArray = this-&gt;getArray();                                      \
-            <span class="keyword">const</span> NumericalType *rightArray = rightOperand.getArray()
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> leftSize = this-&gt;size();              \
+   <span class="keywordflow">if</span>(leftSize == 0) <span class="keywordflow">return</span> rightOperand;               \
+   <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> rightSize = rightOperand.size();            \
+   <span class="keywordflow">if</span>(rightSize == 0) <span class="keywordflow">return</span> *<span class="keyword">this</span>;                \
+   <span class="keyword">const</span> <span class="keywordtype">bool</span> eitherNullTerminated = this-&gt;isNullTerminated() || rightOperand.isNullTerminated(); \
+   <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> leftLength = this-&gt;length();             \
+   <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> rightLength = rightOperand.length();           \
+   <span class="keyword">const</span> <span class="keywordtype">int</span> newLength = leftLength &gt; rightLength ? leftLength : rightLength;      \
+   <span class="keyword">const</span> <span class="keywordtype">int</span> newSize = leftSize &gt; rightSize ? leftSize : rightSize;        \
+   <span class="keyword">const</span> NumericalType *leftArray = this-&gt;getArray();          \
+   <span class="keyword">const</span> NumericalType *rightArray = rightOperand.getArray()
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l01057">1057</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
@@ -269,19 +269,19 @@ Typedefs</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">const</span> <span class="keywordtype">int</span> newSize = this-&gt;size();                                                               \
-            <span class="keyword">const</span> <span class="keywordtype">int</span> newLength = this-&gt;length();                                                           \
-            <span class="keywordflow">if</span>(newSize == 0) <span class="keywordflow">return</span> *<span class="keyword">this</span>;                                                                  \
-            <span class="keyword">const</span> <span class="keywordtype">bool</span> needsNull = this-&gt;isNullTerminated();                                                \
-            <a class="code" href="class_numerical_array.html">NumericalArray&lt;NumericalType&gt;</a> result(<a class="code" href="class_numerical_array_spec.html">NumericalArraySpec</a>(newSize, <span class="keyword">false</span>), needsNull);            \
-            <span class="keyword">const</span> NumericalType *thisArray = this-&gt;getArray();                                      \
-            NumericalType *resultArray = result.getArray();                                                 \
-                                                                                                            \
-            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; newSize; i++)                                                                \
-                resultArray[i] = FUNCTION((<span class="keywordtype">double</span>)thisArray[i]);                                            \
-                                                                                                            \
-            <span class="keywordflow">if</span>(needsNull) resultArray[newLength] = 0;                                                       \
-            <span class="keywordflow">return</span> result
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">const</span> <span class="keywordtype">int</span> newSize = this-&gt;size();                \
+   <span class="keyword">const</span> <span class="keywordtype">int</span> newLength = this-&gt;length();               \
+   <span class="keywordflow">if</span>(newSize == 0) <span class="keywordflow">return</span> *<span class="keyword">this</span>;                 \
+   <span class="keyword">const</span> <span class="keywordtype">bool</span> needsNull = this-&gt;isNullTerminated();            \
+   <a class="code" href="class_numerical_array.html">NumericalArray&lt;NumericalType&gt;</a> result(<a class="code" href="class_numerical_array_spec.html">NumericalArraySpec</a>(newSize, <span class="keyword">false</span>), needsNull);   \
+   <span class="keyword">const</span> NumericalType *thisArray = this-&gt;getArray();          \
+   NumericalType *resultArray = result.getArray();             \
+                           \
+   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; newSize; i++)                \
+    resultArray[i] = FUNCTION((<span class="keywordtype">double</span>)thisArray[i]);           \
+                           \
+   <span class="keywordflow">if</span>(needsNull) resultArray[newLength] = 0;              \
+   <span class="keywordflow">return</span> result
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l01110">1110</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
@@ -304,10 +304,10 @@ Typedefs</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><a class="code" href="class_numerical_array.html">NumericalArray&lt;NumericalType&gt;</a> FUNCTION () <span class="keyword">const</span> throw()                                         \
-            {                                                                                               \
-                <a class="code" href="ugen___arrays_8h.html#ab40bb830e96dcc160a24eabb21ca4999">NumericalArrayUnaryFunctionBody</a>(ugen::FUNCTION);                                            \
-            }
+<b>Value:</b><div class="fragment"><pre class="fragment"><a class="code" href="class_numerical_array.html">NumericalArray&lt;NumericalType&gt;</a> FUNCTION () <span class="keyword">const</span> throw()           \
+   {                        \
+    <a class="code" href="ugen___arrays_8h.html#ab40bb830e96dcc160a24eabb21ca4999">NumericalArrayUnaryFunctionBody</a>(ugen::FUNCTION);           \
+   }
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l01125">1125</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
@@ -337,10 +337,10 @@ Typedefs</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment">DerivedArrayType&amp; operator= (<a class="code" href="class_object_array.html">ObjectArray&lt;ElementType&gt;</a> <span class="keyword">const</span>&amp; other) <span class="keywordflow">throw</span>()                     \
-            {                                                                                               \
-                <span class="keywordflow">return</span> operator= (static_cast&lt;DerivedArrayType const&amp;&gt; (other) );                           \
-            }
+<b>Value:</b><div class="fragment"><pre class="fragment">DerivedArrayType&amp; operator= (<a class="code" href="class_object_array.html">ObjectArray&lt;ElementType&gt;</a> <span class="keyword">const</span>&amp; other) <span class="keywordflow">throw</span>()      \
+   {                        \
+    <span class="keywordflow">return</span> operator= (static_cast&lt;DerivedArrayType const&amp;&gt; (other) );       \
+   }
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l01049">1049</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
@@ -370,35 +370,35 @@ Typedefs</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment">Base&lt;Type&gt; operator&lt;&lt; (Base&lt;Type&gt; <span class="keyword">const</span>&amp; other) <span class="keyword">const</span> <span class="keywordflow">throw</span>()       \
-    {                                                                   \
-        <span class="keywordflow">return</span> Base&lt;Type&gt;(*<span class="keyword">this</span>, other);                                \
-    }                                                                   \
-                                                                        \
-    Base&lt;Type&gt; <a class="code" href="ugen___u_gen_8h.html#a7aeb9e53429bf4276ef76590f6bf790e">operator&lt;&lt; </a>(Type <span class="keyword">const</span>&amp; other) <span class="keyword">const</span> <span class="keywordflow">throw</span>()             \
-    {                                                                   \
-        <span class="keywordflow">return</span> Base&lt;Type&gt;(*<span class="keyword">this</span>, other);                                \
-    }                                                                   \
-                                                                        \
-    Base&lt;Type&gt; <a class="code" href="ugen___u_gen_8h.html#ac3324040736612bc418fb2ec05105549">operator, </a>(Base&lt;Type&gt; <span class="keyword">const</span>&amp; other) <span class="keyword">const</span> <span class="keywordflow">throw</span>()        \
-    {                                                                   \
-        <span class="keywordflow">return</span> Base&lt;Type&gt;(*<span class="keyword">this</span>, other);                                \
-    }                                                                   \
-                                                                        \
-    Base&lt;Type&gt; <a class="code" href="ugen___u_gen_8h.html#ac3324040736612bc418fb2ec05105549">operator, </a>(Type <span class="keyword">const</span>&amp; other) <span class="keyword">const</span> <span class="keywordflow">throw</span>()              \
-    {                                                                   \
-        <span class="keywordflow">return</span> Base&lt;Type&gt;(*<span class="keyword">this</span>, other);                                \
-    }                                                                   \
-                                                                        \
-    Base&lt;Type&gt;&amp; operator&lt;&lt;= (Base&lt;Type&gt; <span class="keyword">const</span>&amp; other) <span class="keywordflow">throw</span>()           \
-    {                                                                   \
-        <span class="keywordflow">return</span> operator= (Base&lt;Type&gt;(*<span class="keyword">this</span>, other));                    \
-    }                                                                   \
-                                                                        \
-    Base&lt;Type&gt;&amp; operator&lt;&lt;= (Type <span class="keyword">const</span>&amp; other) <span class="keywordflow">throw</span>()                 \
-    {                                                                   \
-        <span class="keywordflow">return</span> operator= (Base&lt;Type&gt;(*<span class="keyword">this</span>, other));                    \
-    }
+<b>Value:</b><div class="fragment"><pre class="fragment">Base&lt;Type&gt; operator&lt;&lt; (Base&lt;Type&gt; <span class="keyword">const</span>&amp; other) <span class="keyword">const</span> <span class="keywordflow">throw</span>()  \
+ {                 \
+  <span class="keywordflow">return</span> Base&lt;Type&gt;(*<span class="keyword">this</span>, other);        \
+ }                 \
+                  \
+ Base&lt;Type&gt; <a class="code" href="ugen___u_gen_8h.html#a7aeb9e53429bf4276ef76590f6bf790e">operator&lt;&lt; </a>(Type <span class="keyword">const</span>&amp; other) <span class="keyword">const</span> <span class="keywordflow">throw</span>()    \
+ {                 \
+  <span class="keywordflow">return</span> Base&lt;Type&gt;(*<span class="keyword">this</span>, other);        \
+ }                 \
+                  \
+ Base&lt;Type&gt; <a class="code" href="ugen___u_gen_8h.html#ac3324040736612bc418fb2ec05105549">operator, </a>(Base&lt;Type&gt; <span class="keyword">const</span>&amp; other) <span class="keyword">const</span> <span class="keywordflow">throw</span>()  \
+ {                 \
+  <span class="keywordflow">return</span> Base&lt;Type&gt;(*<span class="keyword">this</span>, other);        \
+ }                 \
+                  \
+ Base&lt;Type&gt; <a class="code" href="ugen___u_gen_8h.html#ac3324040736612bc418fb2ec05105549">operator, </a>(Type <span class="keyword">const</span>&amp; other) <span class="keyword">const</span> <span class="keywordflow">throw</span>()    \
+ {                 \
+  <span class="keywordflow">return</span> Base&lt;Type&gt;(*<span class="keyword">this</span>, other);        \
+ }                 \
+                  \
+ Base&lt;Type&gt;&amp; operator&lt;&lt;= (Base&lt;Type&gt; <span class="keyword">const</span>&amp; other) <span class="keywordflow">throw</span>()   \
+ {                 \
+  <span class="keywordflow">return</span> operator= (Base&lt;Type&gt;(*<span class="keyword">this</span>, other));     \
+ }                 \
+                  \
+ Base&lt;Type&gt;&amp; operator&lt;&lt;= (Type <span class="keyword">const</span>&amp; other) <span class="keywordflow">throw</span>()     \
+ {                 \
+  <span class="keywordflow">return</span> operator= (Base&lt;Type&gt;(*<span class="keyword">this</span>, other));     \
+ }
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l00135">135</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
@@ -721,7 +721,7 @@ Typedefs</h2></td></tr>
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:31 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:59 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

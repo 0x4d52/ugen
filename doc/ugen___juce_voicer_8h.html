@@ -76,14 +76,14 @@ Typedefs</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><a class="code" href="ugen___u_gen_8h.html#ad0686f0d95658a345c8232f724d49de3">EVENT_TEMPLATE_DOC</a>(<a class="code" href="class_voicer.html" title="Voice events from MIDI events.">Voicer</a>)                                                                      \
-                                        <a class="code" href="ugen___u_gen_8h.html#a79a263dffd070caca24c4474361eca4c">EVENT_UGEN_OWNEREVENT_DOC</a>                                                                       \
-                                        <a class="code" href="ugen___u_gen_8h.html#a99ca8a58c5e07bb2ae1405ac26c08742">EVENT_UGEN_NUMCHANNELS_DOC</a>(<a class="code" href="class_voicer.html" title="Voice events from MIDI events.">Voicer</a>)                                                              \
-                                        @param  midiChannel     The MIDI channel to listen to (currently listens on all ports).         \
-                                        <a class="code" href="ugen___voicer_base_8h.html#af394dd4ed67f397bcf87cb160c3a9c11">VOICERBASE_VOICE_DOCS</a>                                                                           \
-                                        @param direct   Whether to listen directly to MIDI input or to rely soley on being sent         \
-                                                        timestamped juce::MidiBuffer objects conatining MIDI data <span class="keyword">using</span>                 \
-                                                        <a class="code" href="class_u_gen.html#a9be3591e068174aea175c7e72c1a31c0">UGen::sendMidiBuffer</a>()
+<b>Value:</b><div class="fragment"><pre class="fragment"><a class="code" href="ugen___u_gen_8h.html#ad0686f0d95658a345c8232f724d49de3">EVENT_TEMPLATE_DOC</a>(<a class="code" href="class_voicer.html" title="Voice events from MIDI events.">Voicer</a>)                  \
+          <a class="code" href="ugen___u_gen_8h.html#a79a263dffd070caca24c4474361eca4c">EVENT_UGEN_OWNEREVENT_DOC</a>                  \
+          <a class="code" href="ugen___u_gen_8h.html#a99ca8a58c5e07bb2ae1405ac26c08742">EVENT_UGEN_NUMCHANNELS_DOC</a>(<a class="code" href="class_voicer.html" title="Voice events from MIDI events.">Voicer</a>)                \
+          @param midiChannel  The MIDI channel to listen to (currently listens on all ports).   \
+          <a class="code" href="ugen___voicer_base_8h.html#af394dd4ed67f397bcf87cb160c3a9c11">VOICERBASE_VOICE_DOCS</a>                   \
+          @param direct Whether to listen directly to MIDI input or to rely soley on being sent   \
+              timestamped juce::MidiBuffer objects conatining MIDI data <span class="keyword">using</span>     \
+              <a class="code" href="class_u_gen.html#a9be3591e068174aea175c7e72c1a31c0">UGen::sendMidiBuffer</a>()
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___juce_voicer_8h_source.html#l00228">228</a> of file <a class="el" href="ugen___juce_voicer_8h_source.html">ugen_JuceVoicer.h</a>.</p>
 
@@ -114,12 +114,12 @@ Typedefs</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment">VoicerEventType <span class="keyword">const</span>&amp; e,               \
-                                                <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels = 1,              \
-                                                <span class="keyword">const</span> <span class="keywordtype">int</span> midiChannel = 1,              \
-                                                <span class="keyword">const</span> <span class="keywordtype">int</span> numVoices = 0,                \
-                                                <span class="keyword">const</span> <span class="keywordtype">bool</span> forcedSteal = <span class="keyword">false</span>,         \
-                                                <span class="keyword">const</span> <span class="keywordtype">bool</span> direct = <span class="keyword">true</span>
+<b>Value:</b><div class="fragment"><pre class="fragment">VoicerEventType <span class="keyword">const</span>&amp; e,    \
+            <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels = 1,    \
+            <span class="keyword">const</span> <span class="keywordtype">int</span> midiChannel = 1,    \
+            <span class="keyword">const</span> <span class="keywordtype">int</span> numVoices = 0,    \
+            <span class="keyword">const</span> <span class="keywordtype">bool</span> forcedSteal = <span class="keyword">false</span>,   \
+            <span class="keyword">const</span> <span class="keywordtype">bool</span> direct = <span class="keyword">true</span>
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___juce_voicer_8h_source.html#l00220">220</a> of file <a class="el" href="ugen___juce_voicer_8h_source.html">ugen_JuceVoicer.h</a>.</p>
 
@@ -150,12 +150,12 @@ Typedefs</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">const</span> <span class="keywordtype">int</span> numChannels = 1,              \
-                                                <span class="keyword">const</span> <span class="keywordtype">int</span> midiChannel = 1,              \
-                                                OwnerType* o = 0,                       \
-                                                <span class="keyword">const</span> <span class="keywordtype">int</span> numVoices = 0,                \
-                                                <span class="keyword">const</span> <span class="keywordtype">bool</span> forcedSteal = <span class="keyword">false</span>,         \
-                                                <span class="keyword">const</span> <span class="keywordtype">bool</span> direct = <span class="keyword">true</span>
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">const</span> <span class="keywordtype">int</span> numChannels = 1,    \
+            <span class="keyword">const</span> <span class="keywordtype">int</span> midiChannel = 1,    \
+            OwnerType* o = 0,      \
+            <span class="keyword">const</span> <span class="keywordtype">int</span> numVoices = 0,    \
+            <span class="keyword">const</span> <span class="keywordtype">bool</span> forcedSteal = <span class="keyword">false</span>,   \
+            <span class="keyword">const</span> <span class="keywordtype">bool</span> direct = <span class="keyword">true</span>
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___juce_voicer_8h_source.html#l00213">213</a> of file <a class="el" href="ugen___juce_voicer_8h_source.html">ugen_JuceVoicer.h</a>.</p>
 
@@ -171,14 +171,14 @@ Typedefs</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><a class="code" href="ugen___u_gen_8h.html#ab1da35067e9f0a5724a414a7265a3b68">EVENT_SPAWNFUNCTION_DOCS</a>                                                            \
-                                            @param midiChannel  The MIDI channel of the calling MIDI note on <span class="keyword">event</span>.             \
-                                            @param midiNote     The MIDI note number of the calling MIDI note on <span class="keyword">event</span>.         \
-                                            @param velocity     The velocity of the calling MIDI note <span class="keyword">event</span>. This should        \
-                                                                in the range 1-127 since velocity values of 0 should have       \
-                                                                been filtered out to turn already sounding notes off (<span class="keywordflow">if</span>        \
-                                                                the note number matched the note number of an already           \
-                                                                sounding note).
+<b>Value:</b><div class="fragment"><pre class="fragment"><a class="code" href="ugen___u_gen_8h.html#ab1da35067e9f0a5724a414a7265a3b68">EVENT_SPAWNFUNCTION_DOCS</a>               \
+           @param midiChannel The MIDI channel of the calling MIDI note on <span class="keyword">event</span>.    \
+           @param midiNote  The MIDI note number of the calling MIDI note on <span class="keyword">event</span>.   \
+           @param velocity  The velocity of the calling MIDI note <span class="keyword">event</span>. This should  \
+                in the range 1-127 since velocity values of 0 should have  \
+                been filtered out to turn already sounding notes off (<span class="keywordflow">if</span>  \
+                the note number matched the note number of an already   \
+                sounding note).
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___juce_voicer_8h_source.html#l00093">93</a> of file <a class="el" href="ugen___juce_voicer_8h_source.html">ugen_JuceVoicer.h</a>.</p>
 
@@ -201,7 +201,7 @@ Typedefs</h2></td></tr>
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:31 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:21:00 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

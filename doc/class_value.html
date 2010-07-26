@@ -327,8 +327,8 @@ template&lt;class ValueInternalType &gt; </div>
 <div class="memdoc">
 
 <p>Tests whether this <a class="el" href="class_value.html" title="This provides a means for providing a &quot;specification&quot; for a value which will be evaluated l...">Value</a> contains a particular <a class="el" href="class_value_internal.html" title="An internal value class with a constant value.">ValueInternal</a> derived class. </p>
-<div class="fragment"><pre class="fragment">     <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> v = <a class="code" href="class_series_value.html" title="This provides a specification for generating a linear series of values.">SeriesValue</a>(0, 1, 10);
-     <span class="keywordtype">bool</span> test = v.<a class="code" href="class_value.html#a4661540e3011217c341a089491b043ad" title="Tests whether this Value contains a particular ValueInternal derived class.">containsInternalType</a>&lt;<a class="code" href="class_series_value_internal.html">SeriesValueInternal</a>&gt;();
+<div class="fragment"><pre class="fragment">  <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> v = <a class="code" href="class_series_value.html" title="This provides a specification for generating a linear series of values.">SeriesValue</a>(0, 1, 10);
+  <span class="keywordtype">bool</span> test = v.<a class="code" href="class_value.html#a4661540e3011217c341a089491b043ad" title="Tests whether this Value contains a particular ValueInternal derived class.">containsInternalType</a>&lt;<a class="code" href="class_series_value_internal.html">SeriesValueInternal</a>&gt;();
 </pre></div><p>..here 'test' would be true. </p>
 
 <p>Definition at line <a class="el" href="ugen___value_8h_source.html#l00167">167</a> of file <a class="el" href="ugen___value_8h_source.html">ugen_Value.h</a>.</p>
@@ -429,11 +429,11 @@ template&lt;class ValueInternalType &gt; </div>
 
 <p>Assignment and addition. </p>
 <p>Creates a <a class="el" href="class_value.html" title="This provides a means for providing a &quot;specification&quot; for a value which will be evaluated l...">Value</a> which the sum of this <a class="el" href="class_value.html" title="This provides a means for providing a &quot;specification&quot; for a value which will be evaluated l...">Value</a> and another <a class="el" href="class_value.html" title="This provides a means for providing a &quot;specification&quot; for a value which will be evaluated l...">Value</a> on evaluation. This: </p>
-<div class="fragment"><pre class="fragment">     <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> x = 1.0;
-     <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> y += 2.0;
+<div class="fragment"><pre class="fragment">  <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> x = 1.0;
+  <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> y += 2.0;
 </pre></div><p> is equivalent to: </p>
-<div class="fragment"><pre class="fragment">     <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> x = 1.0;
-     <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> y = y + 2.0;
+<div class="fragment"><pre class="fragment">  <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> x = 1.0;
+  <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> y = y + 2.0;
 </pre></div> 
 <p>Definition at line <a class="el" href="ugen___value_8cpp_source.html#l00139">139</a> of file <a class="el" href="ugen___value_8cpp_source.html">ugen_Value.cpp</a>.</p>
 
@@ -496,9 +496,9 @@ template&lt;class ValueInternalType &gt; </div>
 
 <p>Unary negation. </p>
 <p>If the <a class="el" href="class_value.html" title="This provides a means for providing a &quot;specification&quot; for a value which will be evaluated l...">Value</a> is already a <a class="el" href="class_value.html" title="This provides a means for providing a &quot;specification&quot; for a value which will be evaluated l...">Value</a> with this operator applied its source will be returned rather than applying the operator again. This save excessively long call chains if the operator is applied to alternately flip a value over and over again. e.g., </p>
-<div class="fragment"><pre class="fragment">     <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> a = 1;
-     <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> b = -a; <span class="comment">// b has the value 1 with the operator - applied i.e. -1</span>
-     <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> c = -b; <span class="comment">// c is idential to a, it is not a with opertor - applied twice</span>
+<div class="fragment"><pre class="fragment">  <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> a = 1;
+  <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> b = -a; <span class="comment">// b has the value 1 with the operator - applied i.e. -1</span>
+  <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> c = -b; <span class="comment">// c is idential to a, it is not a with opertor - applied twice</span>
 </pre></div> 
 <p>Definition at line <a class="el" href="ugen___value_8cpp_source.html#l00129">129</a> of file <a class="el" href="ugen___value_8cpp_source.html">ugen_Value.cpp</a>.</p>
 
@@ -672,7 +672,7 @@ template&lt;class ValueInternalType &gt; </div>
 <li>core/<a class="el" href="ugen___value_8cpp_source.html">ugen_Value.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:39 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:21:06 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

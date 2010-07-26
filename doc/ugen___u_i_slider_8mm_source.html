@@ -81,7 +81,7 @@
 <a name="l00049"></a>00049 <span class="keyword">@interface </span>UISliderUGenInternalPeer : NSObject
 <a name="l00050"></a>00050 {
 <a name="l00051"></a>00051 <span class="keyword">@public</span>
-<a name="l00052"></a>00052     <a class="code" href="class_u_i_slider_u_gen_internal.html">UISliderUGenInternal</a>* owner_;
+<a name="l00052"></a>00052  <a class="code" href="class_u_i_slider_u_gen_internal.html">UISliderUGenInternal</a>* owner_;
 <a name="l00053"></a>00053 }
 <a name="l00054"></a>00054 
 <a name="l00055"></a>00055 - (void) setOwner: (<a class="code" href="class_u_i_slider_u_gen_internal.html">UISliderUGenInternal</a>*) owner;
@@ -92,53 +92,53 @@
 <a name="l00060"></a>00060 <span class="keyword">@implementation </span>UISliderUGenInternalPeer
 <a name="l00061"></a>00061 - (void) setOwner: (<a class="code" href="class_u_i_slider_u_gen_internal.html">UISliderUGenInternal</a>*) owner
 <a name="l00062"></a>00062 {
-<a name="l00063"></a>00063     <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(owner != 0);
-<a name="l00064"></a>00064     owner_ = owner;
+<a name="l00063"></a>00063  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(owner != 0);
+<a name="l00064"></a>00064  owner_ = owner;
 <a name="l00065"></a>00065 }
 <a name="l00066"></a>00066 
 <a name="l00067"></a>00067 - (void) updateValue: (UISlider *) slider
 <a name="l00068"></a>00068 {
-<a name="l00069"></a>00069     owner_-&gt;<a class="code" href="class_u_i_slider_u_gen_internal.html#a1ffdb17cfdc6434963247db5b1e34567">setValue</a>([slider value]);
+<a name="l00069"></a>00069  owner_-&gt;<a class="code" href="class_u_i_slider_u_gen_internal.html#a1ffdb17cfdc6434963247db5b1e34567">setValue</a>([slider value]);
 <a name="l00070"></a>00070 }
 <a name="l00071"></a>00071 <span class="keyword">@end</span>
 <a name="l00072"></a>00072 
 <a name="l00073"></a>00073 
-<a name="l00074"></a>00074     
+<a name="l00074"></a>00074  
 <a name="l00075"></a>00075 <a class="code" href="ugen___standard_header_8h.html#ae236e43a85c6905c3285f031bf456685">BEGIN_UGEN_NAMESPACE</a>
 <a name="l00076"></a>00076 
 <a name="l00077"></a>00077 <a class="code" href="class_u_i_slider_u_gen_internal.html#a558d18989d54883e6656c430a814527f">UISliderUGenInternal::UISliderUGenInternal</a>(UISlider* slider) <span class="keywordflow">throw</span>()
-<a name="l00078"></a>00078 :   <a class="code" href="class_float_ptr_u_gen_internal.html">FloatPtrUGenInternal</a>(&amp;value),
-<a name="l00079"></a>00079     slider_(slider)
+<a name="l00078"></a>00078 : <a class="code" href="class_float_ptr_u_gen_internal.html">FloatPtrUGenInternal</a>(&amp;value),
+<a name="l00079"></a>00079  slider_(slider)
 <a name="l00080"></a>00080 {
-<a name="l00081"></a>00081     UISliderUGenInternalPeer* peer = [UISliderUGenInternalPeer alloc];
-<a name="l00082"></a>00082     [peer setOwner: this];
-<a name="l00083"></a>00083     
-<a name="l00084"></a>00084     [slider_ retain];
-<a name="l00085"></a>00085     [slider_ addTarget:peer action:@selector(updateValue:) forControlEvents:UIControlEventValueChanged];
-<a name="l00086"></a>00086     
-<a name="l00087"></a>00087     value = [slider_ value];
-<a name="l00088"></a>00088     
-<a name="l00089"></a>00089     voidPeer = (<span class="keywordtype">void</span>*)peer;
+<a name="l00081"></a>00081  UISliderUGenInternalPeer* peer = [UISliderUGenInternalPeer alloc];
+<a name="l00082"></a>00082  [peer setOwner: this];
+<a name="l00083"></a>00083  
+<a name="l00084"></a>00084  [slider_ retain];
+<a name="l00085"></a>00085  [slider_ addTarget:peer action:@selector(updateValue:) forControlEvents:UIControlEventValueChanged];
+<a name="l00086"></a>00086  
+<a name="l00087"></a>00087  value = [slider_ value];
+<a name="l00088"></a>00088  
+<a name="l00089"></a>00089  voidPeer = (<span class="keywordtype">void</span>*)peer;
 <a name="l00090"></a>00090 }
 <a name="l00091"></a>00091 
 <a name="l00092"></a>00092 <a class="code" href="class_u_i_slider_u_gen_internal.html#a76feeaec24e4dfd34977c43ad0564f71">UISliderUGenInternal::~UISliderUGenInternal</a>() throw()
 <a name="l00093"></a>00093 {
-<a name="l00094"></a>00094     UISliderUGenInternalPeer* peer = (UISliderUGenInternalPeer*)voidPeer;
-<a name="l00095"></a>00095     
-<a name="l00096"></a>00096     [slider_ removeTarget:peer action:@selector(updateValue:) forControlEvents:UIControlEventValueChanged];
-<a name="l00097"></a>00097     [slider_ release];
-<a name="l00098"></a>00098     [peer dealloc];
+<a name="l00094"></a>00094  UISliderUGenInternalPeer* peer = (UISliderUGenInternalPeer*)voidPeer;
+<a name="l00095"></a>00095  
+<a name="l00096"></a>00096  [slider_ removeTarget:peer action:@selector(updateValue:) forControlEvents:UIControlEventValueChanged];
+<a name="l00097"></a>00097  [slider_ release];
+<a name="l00098"></a>00098  [peer dealloc];
 <a name="l00099"></a>00099 }
 <a name="l00100"></a>00100 
 <a name="l00101"></a>00101 <span class="keywordtype">void</span> <a class="code" href="class_u_i_slider_u_gen_internal.html#a1ffdb17cfdc6434963247db5b1e34567">UISliderUGenInternal::setValue</a>(<span class="keywordtype">float</span> newValue) 
 <a name="l00102"></a>00102 { 
-<a name="l00103"></a>00103     <a class="code" href="class_u_i_slider_u_gen_internal.html#a2aa19f85c9f4da94206ccbddb946ba48">value</a> = newValue; 
+<a name="l00103"></a>00103  <a class="code" href="class_u_i_slider_u_gen_internal.html#a2aa19f85c9f4da94206ccbddb946ba48">value</a> = newValue; 
 <a name="l00104"></a>00104 }
 <a name="l00105"></a>00105 
 <a name="l00106"></a>00106 <a class="code" href="class_u_i_slider_u_gen.html#a0ad0773596e1886effe9313b8a2eadca">UISliderUGen::UISliderUGen</a>(UISlider* slider) <span class="keywordflow">throw</span>()
 <a name="l00107"></a>00107 {
-<a name="l00108"></a>00108     initInternal(1);    
-<a name="l00109"></a>00109     internalUGens[0] = <span class="keyword">new</span> <a class="code" href="class_u_i_slider_u_gen_internal.html">UISliderUGenInternal</a>(slider);
+<a name="l00108"></a>00108  initInternal(1); 
+<a name="l00109"></a>00109  internalUGens[0] = <span class="keyword">new</span> <a class="code" href="class_u_i_slider_u_gen_internal.html">UISliderUGenInternal</a>(slider);
 <a name="l00110"></a>00110 }
 <a name="l00111"></a>00111 
 <a name="l00112"></a>00112 
@@ -148,7 +148,7 @@
 <a name="l00116"></a>00116 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:29 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:58 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -79,52 +79,52 @@
 <a name="l00047"></a>00047 <span class="comment">//static int allocationCount = 0;</span>
 <a name="l00048"></a>00048 
 <a name="l00049"></a><a class="code" href="class_smart_pointer.html#ad3f17c115c1fee1cce53700e180076b3">00049</a> <a class="code" href="class_smart_pointer.html#ad3f17c115c1fee1cce53700e180076b3">SmartPointer::SmartPointer</a>() throw()
-<a name="l00050"></a>00050 :   refCount(1),
-<a name="l00051"></a>00051     active(true)
-<a name="l00052"></a>00052 {       
-<a name="l00053"></a>00053     <span class="comment">//printf(&quot;+++++++, %p, %d\n&quot;, this, ++allocationCount);</span>
+<a name="l00050"></a>00050 : refCount(1),
+<a name="l00051"></a>00051  active(true)
+<a name="l00052"></a>00052 {  
+<a name="l00053"></a>00053  <span class="comment">//printf(&quot;+++++++, %p, %d\n&quot;, this, ++allocationCount);</span>
 <a name="l00054"></a>00054 }
 <a name="l00055"></a>00055 
 <a name="l00056"></a><a class="code" href="class_smart_pointer.html#a961ec2a7684ba32d0aaff86969c28099">00056</a> <a class="code" href="class_smart_pointer.html#a961ec2a7684ba32d0aaff86969c28099">SmartPointer::~SmartPointer</a>()
 <a name="l00057"></a>00057 {
-<a name="l00058"></a>00058     <span class="comment">//printf(&quot;-------, %p, %d\n&quot;, this, --allocationCount);</span>
-<a name="l00059"></a>00059     <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(<a class="code" href="class_smart_pointer.html#a82489d8f6b46b2911c862acf7b6fcbe9">refCount</a> &gt;= 0);
+<a name="l00058"></a>00058  <span class="comment">//printf(&quot;-------, %p, %d\n&quot;, this, --allocationCount);</span>
+<a name="l00059"></a>00059  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(<a class="code" href="class_smart_pointer.html#a82489d8f6b46b2911c862acf7b6fcbe9">refCount</a> &gt;= 0);
 <a name="l00060"></a>00060 }
 <a name="l00061"></a>00061 
 <a name="l00062"></a>00062 <span class="comment">//#if defined(JUCE_VERSION) || defined(DOXYGEN)</span>
 <a name="l00063"></a>00063 <span class="comment">//void SmartPointer::incrementRefCount()  throw()</span>
 <a name="l00064"></a>00064 <span class="comment">//{ </span>
-<a name="l00065"></a>00065 <span class="comment">//  if(active) atomicIncrement (refCount);</span>
+<a name="l00065"></a>00065 <span class="comment">// if(active) atomicIncrement (refCount);</span>
 <a name="l00066"></a>00066 <span class="comment">//}</span>
 <a name="l00067"></a>00067 <span class="comment">//</span>
 <a name="l00068"></a>00068 <span class="comment">//void SmartPointer::decrementRefCount()  throw()</span>
 <a name="l00069"></a>00069 <span class="comment">//{ </span>
-<a name="l00070"></a>00070 <span class="comment">//  if(active)</span>
-<a name="l00071"></a>00071 <span class="comment">//  {</span>
-<a name="l00072"></a>00072 <span class="comment">//      if ((atomicDecrementAndReturn (refCount) == 0))</span>
-<a name="l00073"></a>00073 <span class="comment">//      {</span>
-<a name="l00074"></a>00074 <span class="comment">//          active = false;</span>
-<a name="l00075"></a>00075 <span class="comment">//          UGen::getDeleter()-&gt;deleteInternal(this);</span>
-<a name="l00076"></a>00076 <span class="comment">//      }</span>
-<a name="l00077"></a>00077 <span class="comment">//  }</span>
+<a name="l00070"></a>00070 <span class="comment">// if(active)</span>
+<a name="l00071"></a>00071 <span class="comment">// {</span>
+<a name="l00072"></a>00072 <span class="comment">//  if ((atomicDecrementAndReturn (refCount) == 0))</span>
+<a name="l00073"></a>00073 <span class="comment">//  {</span>
+<a name="l00074"></a>00074 <span class="comment">//   active = false;</span>
+<a name="l00075"></a>00075 <span class="comment">//   UGen::getDeleter()-&gt;deleteInternal(this);</span>
+<a name="l00076"></a>00076 <span class="comment">//  }</span>
+<a name="l00077"></a>00077 <span class="comment">// }</span>
 <a name="l00078"></a>00078 <span class="comment">//}</span>
 <a name="l00079"></a>00079 <span class="comment">//#else</span>
 <a name="l00080"></a><a class="code" href="class_smart_pointer.html#ad9196fe14d4e4d9b1c28982738436544">00080</a> <span class="keywordtype">void</span> <a class="code" href="class_smart_pointer.html#ad9196fe14d4e4d9b1c28982738436544">SmartPointer::incrementRefCount</a>()  throw()
-<a name="l00081"></a>00081 {   
-<a name="l00082"></a>00082     <span class="keywordflow">if</span>(<a class="code" href="class_smart_pointer.html#a55ceb9bd07ea98c49f2bf9c7adc2d7ff">active</a>) ++<a class="code" href="class_smart_pointer.html#a82489d8f6b46b2911c862acf7b6fcbe9">refCount</a>; 
+<a name="l00081"></a>00081 { 
+<a name="l00082"></a>00082  <span class="keywordflow">if</span>(<a class="code" href="class_smart_pointer.html#a55ceb9bd07ea98c49f2bf9c7adc2d7ff">active</a>) ++<a class="code" href="class_smart_pointer.html#a82489d8f6b46b2911c862acf7b6fcbe9">refCount</a>; 
 <a name="l00083"></a>00083 }
 <a name="l00084"></a>00084 
 <a name="l00085"></a><a class="code" href="class_smart_pointer.html#acea9f749c0ab920d2833d4bb81f6eb9f">00085</a> <span class="keywordtype">void</span> <a class="code" href="class_smart_pointer.html#acea9f749c0ab920d2833d4bb81f6eb9f">SmartPointer::decrementRefCount</a>()  throw()
 <a name="l00086"></a>00086 { 
-<a name="l00087"></a>00087     <span class="keywordflow">if</span>(<a class="code" href="class_smart_pointer.html#a55ceb9bd07ea98c49f2bf9c7adc2d7ff">active</a>)
-<a name="l00088"></a>00088     {
-<a name="l00089"></a>00089         --<a class="code" href="class_smart_pointer.html#a82489d8f6b46b2911c862acf7b6fcbe9">refCount</a>; 
-<a name="l00090"></a>00090         <span class="keywordflow">if</span>(<a class="code" href="class_smart_pointer.html#a82489d8f6b46b2911c862acf7b6fcbe9">refCount</a> == 0) 
-<a name="l00091"></a>00091         {
-<a name="l00092"></a>00092             <a class="code" href="class_smart_pointer.html#a55ceb9bd07ea98c49f2bf9c7adc2d7ff">active</a> = <span class="keyword">false</span>;
-<a name="l00093"></a>00093             <a class="code" href="class_u_gen.html#a0de12fb6484fbf6e566464d389ae042f" title="Get the current Deleter.">UGen::getDeleter</a>()-&gt;<a class="code" href="class_deleter.html#a22b60fe46e592be3d694cc0135251d23">deleteInternal</a>(<span class="keyword">this</span>);
-<a name="l00094"></a>00094         }
-<a name="l00095"></a>00095     }
+<a name="l00087"></a>00087  <span class="keywordflow">if</span>(<a class="code" href="class_smart_pointer.html#a55ceb9bd07ea98c49f2bf9c7adc2d7ff">active</a>)
+<a name="l00088"></a>00088  {
+<a name="l00089"></a>00089   --<a class="code" href="class_smart_pointer.html#a82489d8f6b46b2911c862acf7b6fcbe9">refCount</a>; 
+<a name="l00090"></a>00090   <span class="keywordflow">if</span>(<a class="code" href="class_smart_pointer.html#a82489d8f6b46b2911c862acf7b6fcbe9">refCount</a> == 0) 
+<a name="l00091"></a>00091   {
+<a name="l00092"></a>00092    <a class="code" href="class_smart_pointer.html#a55ceb9bd07ea98c49f2bf9c7adc2d7ff">active</a> = <span class="keyword">false</span>;
+<a name="l00093"></a>00093    <a class="code" href="class_u_gen.html#a0de12fb6484fbf6e566464d389ae042f" title="Get the current Deleter.">UGen::getDeleter</a>()-&gt;<a class="code" href="class_deleter.html#a22b60fe46e592be3d694cc0135251d23">deleteInternal</a>(<span class="keyword">this</span>);
+<a name="l00094"></a>00094   }
+<a name="l00095"></a>00095  }
 <a name="l00096"></a>00096 }
 <a name="l00097"></a>00097 <span class="comment">//#endif</span>
 <a name="l00098"></a>00098 
@@ -132,7 +132,7 @@
 <a name="l00100"></a>00100 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:28 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:57 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

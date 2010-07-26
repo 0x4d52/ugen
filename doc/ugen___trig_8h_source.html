@@ -74,14 +74,14 @@
 <a name="l00042"></a><a class="code" href="class_trig_u_gen_internal.html">00042</a> <span class="keyword">class </span><a class="code" href="class_trig_u_gen_internal.html">TrigUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>
 <a name="l00043"></a>00043 {
 <a name="l00044"></a>00044 <span class="keyword">public</span>:
-<a name="l00045"></a>00045     <a class="code" href="class_trig_u_gen_internal.html#aa5ae23910c5770dce1079bf9fa5dacfa">TrigUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input) <span class="keywordflow">throw</span>();
-<a name="l00046"></a>00046     <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_trig_u_gen_internal.html#a66805ec7ea7ae28f0484a7ef1e12cb75">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
-<a name="l00047"></a>00047     <span class="keywordtype">void</span> <a class="code" href="class_trig_u_gen_internal.html#a171a8c8cec749cbdb1350f8ade5c0c6c" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
-<a name="l00048"></a>00048     
-<a name="l00049"></a><a class="code" href="class_trig_u_gen_internal.html#ac397f15b45112127d5033e9e85669612a0320077ef9fee5aa66b28ae994e295bf">00049</a>     <span class="keyword">enum</span> <a class="code" href="class_trig_u_gen_internal.html#ac397f15b45112127d5033e9e85669612">Inputs</a> { Input, <a class="code" href="class_trig_u_gen_internal.html#ac397f15b45112127d5033e9e85669612a0320077ef9fee5aa66b28ae994e295bf">NumInputs</a> };
-<a name="l00050"></a>00050     
+<a name="l00045"></a>00045  <a class="code" href="class_trig_u_gen_internal.html#aa5ae23910c5770dce1079bf9fa5dacfa">TrigUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input) <span class="keywordflow">throw</span>();
+<a name="l00046"></a>00046  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_trig_u_gen_internal.html#a66805ec7ea7ae28f0484a7ef1e12cb75">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00047"></a>00047  <span class="keywordtype">void</span> <a class="code" href="class_trig_u_gen_internal.html#a171a8c8cec749cbdb1350f8ade5c0c6c" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00048"></a>00048  
+<a name="l00049"></a><a class="code" href="class_trig_u_gen_internal.html#ac397f15b45112127d5033e9e85669612a0320077ef9fee5aa66b28ae994e295bf">00049</a>  <span class="keyword">enum</span> <a class="code" href="class_trig_u_gen_internal.html#ac397f15b45112127d5033e9e85669612">Inputs</a> { Input, <a class="code" href="class_trig_u_gen_internal.html#ac397f15b45112127d5033e9e85669612a0320077ef9fee5aa66b28ae994e295bf">NumInputs</a> };
+<a name="l00050"></a>00050  
 <a name="l00051"></a>00051 <span class="keyword">protected</span>:
-<a name="l00052"></a><a class="code" href="class_trig_u_gen_internal.html#a8d307bfd37fce600ab927a10db030683">00052</a>     <span class="keywordtype">float</span> <a class="code" href="class_trig_u_gen_internal.html#a8d307bfd37fce600ab927a10db030683">lastTrig</a>;
+<a name="l00052"></a><a class="code" href="class_trig_u_gen_internal.html#a8d307bfd37fce600ab927a10db030683">00052</a>  <span class="keywordtype">float</span> <a class="code" href="class_trig_u_gen_internal.html#a8d307bfd37fce600ab927a10db030683">lastTrig</a>;
 <a name="l00053"></a>00053 };
 <a name="l00054"></a>00054 
 <a name="l00055"></a>00055 <a class="code" href="ugen___u_gen_8h.html#a0f0716514ac2b6232e40f134d1f1049c" title="Macro for declaring a simple UGen.">UGenSublcassDeclarationNoDefault</a>
@@ -96,7 +96,7 @@
 <a name="l00064"></a>00064 <span class="preprocessor">#endif // _UGEN_Trig_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:27 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:56 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

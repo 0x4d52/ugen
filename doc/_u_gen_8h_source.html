@@ -87,14 +87,14 @@
 <a name="l00055"></a>00055 <span class="preprocessor"></span>
 <a name="l00056"></a>00056 
 <a name="l00057"></a>00057 <span class="preprocessor">#ifdef UGEN_SCSTYLE</span>
-<a name="l00058"></a>00058 <span class="preprocessor"></span><span class="preprocessor">    #warning UGEN_SCSTYLE: SC style was too complex to maintain and support has been removed</span>
+<a name="l00058"></a>00058 <span class="preprocessor"></span><span class="preprocessor"> #warning UGEN_SCSTYLE: SC style was too complex to maintain and support has been removed</span>
 <a name="l00059"></a>00059 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
 <a name="l00060"></a>00060 <span class="preprocessor"></span>
 <a name="l00061"></a>00061 <span class="preprocessor">#ifdef UGEN_NOEXTGPL</span>
-<a name="l00062"></a>00062 <span class="preprocessor"></span><span class="preprocessor">    #warning UGEN_NOEXTGPL: any linker errors might be due to your use of externally GPL&#39;d code</span>
-<a name="l00063"></a>00063 <span class="preprocessor"></span><span class="preprocessor">    #ifdef UGEN_JUCE</span>
-<a name="l00064"></a>00064 <span class="preprocessor"></span><span class="preprocessor">        #warning UGEN_NOEXTGPL: NB that Juce is GPL unless you have a closed source license!</span>
-<a name="l00065"></a>00065 <span class="preprocessor"></span><span class="preprocessor">    #endif</span>
+<a name="l00062"></a>00062 <span class="preprocessor"></span><span class="preprocessor"> #warning UGEN_NOEXTGPL: any linker errors might be due to your use of externally GPL&#39;d code</span>
+<a name="l00063"></a>00063 <span class="preprocessor"></span><span class="preprocessor"> #ifdef UGEN_JUCE</span>
+<a name="l00064"></a>00064 <span class="preprocessor"></span><span class="preprocessor">  #warning UGEN_NOEXTGPL: NB that Juce is GPL unless you have a closed source license!</span>
+<a name="l00065"></a>00065 <span class="preprocessor"></span><span class="preprocessor"> #endif</span>
 <a name="l00066"></a>00066 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
 <a name="l00067"></a>00067 <span class="preprocessor"></span>
 <a name="l00068"></a>00068 <span class="preprocessor">#include &quot;<a class="code" href="ugen___u_gen_8h.html">core/ugen_UGen.h</a>&quot;</span>
@@ -168,66 +168,66 @@
 <a name="l00136"></a>00136 <span class="preprocessor">#include &quot;<a class="code" href="ugen___neural_network_u_gen_8h.html">neuralnet/ugen_NeuralNetworkUGen.h</a>&quot;</span>
 <a name="l00137"></a>00137 
 <a name="l00138"></a>00138 <span class="preprocessor">#ifdef UGEN_JUCE</span>
-<a name="l00139"></a>00139 <span class="preprocessor"></span><span class="preprocessor">    #include &quot;<a class="code" href="ugen___juce_utility_8h.html">juce/ugen_JuceUtility.h</a>&quot;</span>
-<a name="l00140"></a>00140 <span class="preprocessor">    #include &quot;<a class="code" href="ugen___juce_slider_8h.html">juce/ugen_JuceSlider.h</a>&quot;</span>
-<a name="l00141"></a>00141 <span class="preprocessor">    #include &quot;<a class="code" href="ugen___juce_timer_deleter_8h.html">juce/ugen_JuceTimerDeleter.h</a>&quot;</span>
-<a name="l00142"></a>00142 <span class="preprocessor">    #include &quot;<a class="code" href="ugen___juce_voicer_8h.html">juce/ugen_JuceVoicer.h</a>&quot;</span>
-<a name="l00143"></a>00143 <span class="preprocessor">    #include &quot;<a class="code" href="ugen___juce_scope_8h.html">juce/gui/ugen_JuceScope.h</a>&quot;</span>
-<a name="l00144"></a>00144 <span class="preprocessor">    #include &quot;<a class="code" href="ugen___juce_multi_slider_8h.html">juce/gui/ugen_JuceMultiSlider.h</a>&quot;</span>
-<a name="l00145"></a>00145 <span class="preprocessor">    #include &quot;<a class="code" href="ugen___juce_envelope_component_8h.html">juce/gui/ugen_JuceEnvelopeComponent.h</a>&quot;</span>
-<a name="l00146"></a>00146 <span class="preprocessor">    #include &quot;<a class="code" href="ugen___disk_in_8h.html">juce/io/ugen_DiskIn.h</a>&quot;</span>
-<a name="l00147"></a>00147 <span class="preprocessor">    #include &quot;<a class="code" href="ugen___disk_out_8h.html">juce/io/ugen_DiskOut.h</a>&quot;</span>
-<a name="l00148"></a>00148 <span class="preprocessor">    #include &quot;<a class="code" href="ugen___juce_m_i_d_i_controller_8h.html">juce/io/ugen_JuceMIDIController.h</a>&quot;</span>
-<a name="l00149"></a>00149 <span class="preprocessor">    #include &quot;<a class="code" href="ugen___juce_m_i_d_i_most_recent_note_8h.html">juce/io/ugen_JuceMIDIMostRecentNote.h</a>&quot;</span>
-<a name="l00150"></a>00150 <span class="preprocessor">    #include &quot;<a class="code" href="ugen___juce_m_i_d_i_input_broadcaster_8h.html">juce/io/ugen_JuceMIDIInputBroadcaster.h</a>&quot;</span>
-<a name="l00151"></a>00151 <span class="preprocessor">    #include &quot;<a class="code" href="ugen___juce_i_o_host_8h.html">juce/io/ugen_JuceIOHost.h</a>&quot;</span>
-<a name="l00152"></a>00152 <span class="preprocessor">    #ifdef UGEN_CONVOLUTION</span>
-<a name="l00153"></a>00153 <span class="preprocessor"></span><span class="preprocessor">        #ifndef WIN32</span>
-<a name="l00154"></a>00154 <span class="preprocessor"></span>        <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
-<a name="l00155"></a>00155 <span class="preprocessor">            #include &lt;Accelerate/Accelerate.h&gt;</span>
-<a name="l00156"></a>00156         <a class="code" href="ugen___standard_header_8h.html#ae236e43a85c6905c3285f031bf456685">BEGIN_UGEN_NAMESPACE</a>
-<a name="l00157"></a>00157 <span class="preprocessor">        #endif</span>
-<a name="l00158"></a>00158 <span class="preprocessor"></span><span class="preprocessor">        #include &quot;<a class="code" href="ugen___convolution_8h.html">convolution/ugen_Convolution.h</a>&quot;</span>
-<a name="l00159"></a>00159 <span class="preprocessor">        #include &quot;<a class="code" href="ugen___simple_convolution_8h.html">convolution/ugen_SimpleConvolution.h</a>&quot;</span>
-<a name="l00160"></a>00160 <span class="preprocessor">    #endif // UGEN_CONVOLUTION</span>
+<a name="l00139"></a>00139 <span class="preprocessor"></span><span class="preprocessor"> #include &quot;<a class="code" href="ugen___juce_utility_8h.html">juce/ugen_JuceUtility.h</a>&quot;</span>
+<a name="l00140"></a>00140 <span class="preprocessor"> #include &quot;<a class="code" href="ugen___juce_slider_8h.html">juce/ugen_JuceSlider.h</a>&quot;</span>
+<a name="l00141"></a>00141 <span class="preprocessor"> #include &quot;<a class="code" href="ugen___juce_timer_deleter_8h.html">juce/ugen_JuceTimerDeleter.h</a>&quot;</span>
+<a name="l00142"></a>00142 <span class="preprocessor"> #include &quot;<a class="code" href="ugen___juce_voicer_8h.html">juce/ugen_JuceVoicer.h</a>&quot;</span>
+<a name="l00143"></a>00143 <span class="preprocessor"> #include &quot;<a class="code" href="ugen___juce_scope_8h.html">juce/gui/ugen_JuceScope.h</a>&quot;</span>
+<a name="l00144"></a>00144 <span class="preprocessor"> #include &quot;<a class="code" href="ugen___juce_multi_slider_8h.html">juce/gui/ugen_JuceMultiSlider.h</a>&quot;</span>
+<a name="l00145"></a>00145 <span class="preprocessor"> #include &quot;<a class="code" href="ugen___juce_envelope_component_8h.html">juce/gui/ugen_JuceEnvelopeComponent.h</a>&quot;</span>
+<a name="l00146"></a>00146 <span class="preprocessor"> #include &quot;<a class="code" href="ugen___disk_in_8h.html">juce/io/ugen_DiskIn.h</a>&quot;</span>
+<a name="l00147"></a>00147 <span class="preprocessor"> #include &quot;<a class="code" href="ugen___disk_out_8h.html">juce/io/ugen_DiskOut.h</a>&quot;</span>
+<a name="l00148"></a>00148 <span class="preprocessor"> #include &quot;<a class="code" href="ugen___juce_m_i_d_i_controller_8h.html">juce/io/ugen_JuceMIDIController.h</a>&quot;</span>
+<a name="l00149"></a>00149 <span class="preprocessor"> #include &quot;<a class="code" href="ugen___juce_m_i_d_i_most_recent_note_8h.html">juce/io/ugen_JuceMIDIMostRecentNote.h</a>&quot;</span>
+<a name="l00150"></a>00150 <span class="preprocessor"> #include &quot;<a class="code" href="ugen___juce_m_i_d_i_input_broadcaster_8h.html">juce/io/ugen_JuceMIDIInputBroadcaster.h</a>&quot;</span>
+<a name="l00151"></a>00151 <span class="preprocessor"> #include &quot;<a class="code" href="ugen___juce_i_o_host_8h.html">juce/io/ugen_JuceIOHost.h</a>&quot;</span>
+<a name="l00152"></a>00152 <span class="preprocessor"> #ifdef UGEN_CONVOLUTION</span>
+<a name="l00153"></a>00153 <span class="preprocessor"></span><span class="preprocessor">  #ifndef WIN32</span>
+<a name="l00154"></a>00154 <span class="preprocessor"></span>  <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
+<a name="l00155"></a>00155 <span class="preprocessor">   #include &lt;Accelerate/Accelerate.h&gt;</span>
+<a name="l00156"></a>00156   <a class="code" href="ugen___standard_header_8h.html#ae236e43a85c6905c3285f031bf456685">BEGIN_UGEN_NAMESPACE</a>
+<a name="l00157"></a>00157 <span class="preprocessor">  #endif</span>
+<a name="l00158"></a>00158 <span class="preprocessor"></span><span class="preprocessor">  #include &quot;<a class="code" href="ugen___convolution_8h.html">convolution/ugen_Convolution.h</a>&quot;</span>
+<a name="l00159"></a>00159 <span class="preprocessor">  #include &quot;<a class="code" href="ugen___simple_convolution_8h.html">convolution/ugen_SimpleConvolution.h</a>&quot;</span>
+<a name="l00160"></a>00160 <span class="preprocessor"> #endif // UGEN_CONVOLUTION</span>
 <a name="l00161"></a>00161 <span class="preprocessor"></span>
 <a name="l00162"></a>00162 <span class="preprocessor">#elif defined(UGEN_IPHONE)</span>
-<a name="l00163"></a>00163 <span class="preprocessor"></span>    <span class="comment">// don&#39;t include these if we&#39;re using Juce on the iPhone</span>
-<a name="l00164"></a>00164 <span class="preprocessor">    #include &quot;<a class="code" href="ugen__i_phone_audio_file_disk_in_8h.html">iphone/ugen_iPhoneAudioFileDiskIn.h</a>&quot;</span>
-<a name="l00165"></a>00165 <span class="preprocessor">    #include &quot;<a class="code" href="ugen__i_phone_audio_file_disk_out_8h.html">iphone/ugen_iPhoneAudioFileDiskOut.h</a>&quot;</span>
-<a name="l00166"></a>00166 <span class="preprocessor">    #include &quot;<a class="code" href="ugen___u_i_slider_8h.html">iphone/ugen_UISlider.h</a>&quot;</span>
-<a name="l00167"></a>00167 <span class="preprocessor">    #include &quot;<a class="code" href="ugen___u_i_button_8h.html">iphone/ugen_UIBUtton.h</a>&quot;</span>
-<a name="l00168"></a>00168 <span class="preprocessor">    #include &quot;<a class="code" href="ugen___audio_queue_i_o_host_8h.html">iphone/ugen_AudioQueueIOHost.h</a>&quot;</span>
-<a name="l00169"></a>00169 <span class="preprocessor">    #include &quot;<a class="code" href="ugen___u_i_kit_a_u_i_o_host_8h.html">iphone/ugen_UIKitAUIOHost.h</a>&quot;</span>
-<a name="l00170"></a>00170 <span class="preprocessor">    #include &quot;<a class="code" href="ugen___n_s_deleter_8h.html">iphone/ugen_NSDeleter.h</a>&quot;</span>
-<a name="l00171"></a>00171 <span class="preprocessor">    #include &quot;<a class="code" href="ugen___scope_view_8h.html">iphone/ugen_ScopeView.h</a>&quot;</span>
-<a name="l00172"></a>00172     
-<a name="l00173"></a>00173 <span class="preprocessor">    #ifdef UGEN_VDSP</span>
-<a name="l00174"></a>00174 <span class="preprocessor"></span><span class="preprocessor">        #include &lt;Accelerate/Accelerate.h&gt;</span>
-<a name="l00175"></a>00175 <span class="preprocessor">    #endif</span>
+<a name="l00163"></a>00163 <span class="preprocessor"></span> <span class="comment">// don&#39;t include these if we&#39;re using Juce on the iPhone</span>
+<a name="l00164"></a>00164 <span class="preprocessor"> #include &quot;<a class="code" href="ugen__i_phone_audio_file_disk_in_8h.html">iphone/ugen_iPhoneAudioFileDiskIn.h</a>&quot;</span>
+<a name="l00165"></a>00165 <span class="preprocessor"> #include &quot;<a class="code" href="ugen__i_phone_audio_file_disk_out_8h.html">iphone/ugen_iPhoneAudioFileDiskOut.h</a>&quot;</span>
+<a name="l00166"></a>00166 <span class="preprocessor"> #include &quot;<a class="code" href="ugen___u_i_slider_8h.html">iphone/ugen_UISlider.h</a>&quot;</span>
+<a name="l00167"></a>00167 <span class="preprocessor"> #include &quot;<a class="code" href="ugen___u_i_button_8h.html">iphone/ugen_UIBUtton.h</a>&quot;</span>
+<a name="l00168"></a>00168 <span class="preprocessor"> #include &quot;<a class="code" href="ugen___audio_queue_i_o_host_8h.html">iphone/ugen_AudioQueueIOHost.h</a>&quot;</span>
+<a name="l00169"></a>00169 <span class="preprocessor"> #include &quot;<a class="code" href="ugen___u_i_kit_a_u_i_o_host_8h.html">iphone/ugen_UIKitAUIOHost.h</a>&quot;</span>
+<a name="l00170"></a>00170 <span class="preprocessor"> #include &quot;<a class="code" href="ugen___n_s_deleter_8h.html">iphone/ugen_NSDeleter.h</a>&quot;</span>
+<a name="l00171"></a>00171 <span class="preprocessor"> #include &quot;<a class="code" href="ugen___scope_view_8h.html">iphone/ugen_ScopeView.h</a>&quot;</span>
+<a name="l00172"></a>00172  
+<a name="l00173"></a>00173 <span class="preprocessor"> #ifdef UGEN_VDSP</span>
+<a name="l00174"></a>00174 <span class="preprocessor"></span><span class="preprocessor">  #include &lt;Accelerate/Accelerate.h&gt;</span>
+<a name="l00175"></a>00175 <span class="preprocessor"> #endif</span>
 <a name="l00176"></a>00176 <span class="preprocessor"></span>
-<a name="l00177"></a>00177 <span class="preprocessor">    #ifdef UGEN_CONVOLUTION</span>
-<a name="l00178"></a>00178 <span class="preprocessor"></span><span class="preprocessor">        #include &quot;<a class="code" href="ugen___convolution_8h.html">convolution/ugen_Convolution.h</a>&quot;</span>
-<a name="l00179"></a>00179 <span class="preprocessor">        #include &quot;<a class="code" href="ugen___simple_convolution_8h.html">convolution/ugen_SimpleConvolution.h</a>&quot;</span>
-<a name="l00180"></a>00180 <span class="preprocessor">    #endif</span>
+<a name="l00177"></a>00177 <span class="preprocessor"> #ifdef UGEN_CONVOLUTION</span>
+<a name="l00178"></a>00178 <span class="preprocessor"></span><span class="preprocessor">  #include &quot;<a class="code" href="ugen___convolution_8h.html">convolution/ugen_Convolution.h</a>&quot;</span>
+<a name="l00179"></a>00179 <span class="preprocessor">  #include &quot;<a class="code" href="ugen___simple_convolution_8h.html">convolution/ugen_SimpleConvolution.h</a>&quot;</span>
+<a name="l00180"></a>00180 <span class="preprocessor"> #endif</span>
 <a name="l00181"></a>00181 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
 <a name="l00182"></a>00182 <span class="preprocessor"></span>
 <a name="l00183"></a>00183 <span class="preprocessor">#ifdef UGEN_IPHONE</span>
-<a name="l00184"></a>00184 <span class="preprocessor"></span>    <span class="comment">// include these on the iPhone even if we&#39;re using Juce</span>
-<a name="l00185"></a>00185 <span class="preprocessor">    #include &quot;<a class="code" href="ugen___n_s_utilities_8h.html">iphone/ugen_NSUtilities.h</a>&quot;</span>
-<a name="l00186"></a>00186 <span class="preprocessor">    #include &quot;<a class="code" href="ugen___u_i_acceleration_8h.html">iphone/ugen_UIAcceleration.h</a>&quot;</span>
+<a name="l00184"></a>00184 <span class="preprocessor"></span> <span class="comment">// include these on the iPhone even if we&#39;re using Juce</span>
+<a name="l00185"></a>00185 <span class="preprocessor"> #include &quot;<a class="code" href="ugen___n_s_utilities_8h.html">iphone/ugen_NSUtilities.h</a>&quot;</span>
+<a name="l00186"></a>00186 <span class="preprocessor"> #include &quot;<a class="code" href="ugen___u_i_acceleration_8h.html">iphone/ugen_UIAcceleration.h</a>&quot;</span>
 <a name="l00187"></a>00187 <span class="preprocessor">#endif</span>
 <a name="l00188"></a>00188 <span class="preprocessor"></span>
 <a name="l00190"></a><a class="code" href="namespaceugen.html#aec2a65301e621c86f311426201d5313b">00190</a> <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="namespaceugen.html#aec2a65301e621c86f311426201d5313b" title="A debugging function for reporting the sizes of various objects.">ugen_reportObjectSizes</a>() throw()
 <a name="l00191"></a>00191 {
-<a name="l00192"></a>00192     <a class="code" href="ugen___u_gen_8h.html#a7df25e89451d0a24879cf8d1977d0cdf">ReportSize</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>);
-<a name="l00193"></a>00193     <a class="code" href="ugen___u_gen_8h.html#a7df25e89451d0a24879cf8d1977d0cdf">ReportSize</a>(<a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>);
-<a name="l00194"></a>00194     <a class="code" href="ugen___u_gen_8h.html#a7df25e89451d0a24879cf8d1977d0cdf">ReportSize</a>(<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>);
-<a name="l00195"></a>00195     <a class="code" href="ugen___u_gen_8h.html#a7df25e89451d0a24879cf8d1977d0cdf">ReportSize</a>(<a class="code" href="class_u_gen_array_1_1_u_gen_array_internal.html">UGenArray::UGenArrayInternal</a>);
-<a name="l00196"></a>00196     <a class="code" href="ugen___u_gen_8h.html#a7df25e89451d0a24879cf8d1977d0cdf">ReportSize</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>);
-<a name="l00197"></a>00197     <a class="code" href="ugen___u_gen_8h.html#a7df25e89451d0a24879cf8d1977d0cdf">ReportSize</a>(<a class="code" href="class_buffer_channel_internal.html">BufferChannelInternal</a>);
-<a name="l00198"></a>00198     <a class="code" href="ugen___u_gen_8h.html#a7df25e89451d0a24879cf8d1977d0cdf">ReportSize</a>(<a class="code" href="class_scalar_u_gen_internal.html">ScalarUGenInternal</a>);
-<a name="l00199"></a>00199     <a class="code" href="ugen___u_gen_8h.html#a7df25e89451d0a24879cf8d1977d0cdf">ReportSize</a>(<a class="code" href="class_smart_pointer.html">SmartPointer</a>);
+<a name="l00192"></a>00192  <a class="code" href="ugen___u_gen_8h.html#a7df25e89451d0a24879cf8d1977d0cdf">ReportSize</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>);
+<a name="l00193"></a>00193  <a class="code" href="ugen___u_gen_8h.html#a7df25e89451d0a24879cf8d1977d0cdf">ReportSize</a>(<a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>);
+<a name="l00194"></a>00194  <a class="code" href="ugen___u_gen_8h.html#a7df25e89451d0a24879cf8d1977d0cdf">ReportSize</a>(<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>);
+<a name="l00195"></a>00195  <a class="code" href="ugen___u_gen_8h.html#a7df25e89451d0a24879cf8d1977d0cdf">ReportSize</a>(<a class="code" href="class_u_gen_array_1_1_u_gen_array_internal.html">UGenArray::UGenArrayInternal</a>);
+<a name="l00196"></a>00196  <a class="code" href="ugen___u_gen_8h.html#a7df25e89451d0a24879cf8d1977d0cdf">ReportSize</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>);
+<a name="l00197"></a>00197  <a class="code" href="ugen___u_gen_8h.html#a7df25e89451d0a24879cf8d1977d0cdf">ReportSize</a>(<a class="code" href="class_buffer_channel_internal.html">BufferChannelInternal</a>);
+<a name="l00198"></a>00198  <a class="code" href="ugen___u_gen_8h.html#a7df25e89451d0a24879cf8d1977d0cdf">ReportSize</a>(<a class="code" href="class_scalar_u_gen_internal.html">ScalarUGenInternal</a>);
+<a name="l00199"></a>00199  <a class="code" href="ugen___u_gen_8h.html#a7df25e89451d0a24879cf8d1977d0cdf">ReportSize</a>(<a class="code" href="class_smart_pointer.html">SmartPointer</a>);
 <a name="l00200"></a>00200 }
 <a name="l00201"></a>00201 
 <a name="l00202"></a>00202 
@@ -249,7 +249,7 @@
 <a name="l00354"></a>00354 <span class="preprocessor"></span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:30 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:58 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -52,13 +52,13 @@
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pink_noise.html#aaac894a16925eb95bc06434d5f37fff2">PinkNoise</a> ()  throw ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Base <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> <a class="el" href="class_pink_noise.html" title="Pink noise generator.">PinkNoise</a> Constuctor (without "mul" or "add"), use the <a class="el" href="class_pink_noise.html#aab56d3df2882dd78fce9c37cf08a76ef" title="Construct and return an audio rate PinkNoise adding &quot;mul&quot; and/or &quot;add&quot; operations...">AR()</a> and <a class="el" href="class_pink_noise.html#a6e676b7058fd48c0019b81daf6bf4192" title="Construct and return a control rate PinkNoise (if available, otherise returns an audio version by def...">KR()</a> versions in user code.  <a href="#aaac894a16925eb95bc06434d5f37fff2"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Base <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> <a class="el" href="class_pink_noise.html" title="Pink noise generator.">PinkNoise</a> Constuctor (without "mul" or "add"), use the <a class="el" href="class_pink_noise.html#a7fa926a6f101fe9b421569b7d93a064b" title="Construct and return an audio rate PinkNoise adding &quot;mul&quot; and/or &quot;add&quot; operations...">AR()</a> and <a class="el" href="class_pink_noise.html#ae2baf3df3aa4a0b72a7b75ef6c93ca9b" title="Construct and return a control rate PinkNoise (if available, otherise returns an audio version by def...">KR()</a> versions in user code.  <a href="#aaac894a16925eb95bc06434d5f37fff2"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pink_noise.html#aab56d3df2882dd78fce9c37cf08a76ef">AR</a> (MulAdd_ArgsDeclare)  throw ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return an audio rate <a class="el" href="class_pink_noise.html" title="Pink noise generator.">PinkNoise</a> adding "mul" and/or "add" operations as necessary.  <a href="#aab56d3df2882dd78fce9c37cf08a76ef"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pink_noise.html#a6e676b7058fd48c0019b81daf6bf4192">KR</a> (MulAdd_ArgsDeclare)  throw ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return a control rate <a class="el" href="class_pink_noise.html" title="Pink noise generator.">PinkNoise</a> (if available, otherise returns an audio version by default).  <a href="#a6e676b7058fd48c0019b81daf6bf4192"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pink_noise.html#a7fa926a6f101fe9b421569b7d93a064b">AR</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;mul=1.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;add=0.f)  throw ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return an audio rate <a class="el" href="class_pink_noise.html" title="Pink noise generator.">PinkNoise</a> adding "mul" and/or "add" operations as necessary.  <a href="#a7fa926a6f101fe9b421569b7d93a064b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pink_noise.html#ae2baf3df3aa4a0b72a7b75ef6c93ca9b">KR</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;mul=1.f, <a class="el" href="class_u_gen.html">UGen</a> const &amp;add=0.f)  throw ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct and return a control rate <a class="el" href="class_pink_noise.html" title="Pink noise generator.">PinkNoise</a> (if available, otherise returns an audio version by default).  <a href="#ae2baf3df3aa4a0b72a7b75ef6c93ca9b"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Pink noise generator. </p>
@@ -82,7 +82,7 @@ Static Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Base <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> <a class="el" href="class_pink_noise.html" title="Pink noise generator.">PinkNoise</a> Constuctor (without "mul" or "add"), use the <a class="el" href="class_pink_noise.html#aab56d3df2882dd78fce9c37cf08a76ef" title="Construct and return an audio rate PinkNoise adding &quot;mul&quot; and/or &quot;add&quot; operations...">AR()</a> and <a class="el" href="class_pink_noise.html#a6e676b7058fd48c0019b81daf6bf4192" title="Construct and return a control rate PinkNoise (if available, otherise returns an audio version by def...">KR()</a> versions in user code. </p>
+<p>Base <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> <a class="el" href="class_pink_noise.html" title="Pink noise generator.">PinkNoise</a> Constuctor (without "mul" or "add"), use the <a class="el" href="class_pink_noise.html#a7fa926a6f101fe9b421569b7d93a064b" title="Construct and return an audio rate PinkNoise adding &quot;mul&quot; and/or &quot;add&quot; operations...">AR()</a> and <a class="el" href="class_pink_noise.html#ae2baf3df3aa4a0b72a7b75ef6c93ca9b" title="Construct and return a control rate PinkNoise (if available, otherise returns an audio version by def...">KR()</a> versions in user code. </p>
 <p>This uses the "expanding" version of <a class="el" href="class_mul_add.html" title="Wrap a UGen with multiply and add inputs.">MulAdd</a> which is generally used for random-based <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> classes (e.g., <a class="el" href="class_white_noise.html" title="White noise generator.">WhiteNoise</a>). This is "expanding" in the sense that multiple channels of the Base <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> are generated depending on the number of channels in the "mul" and/or "add" inputs. </p>
 
 <p>Definition at line <a class="el" href="ugen___pink_noise_8cpp_source.html#l00091">91</a> of file <a class="el" href="ugen___pink_noise_8cpp_source.html">ugen_PinkNoise.cpp</a>.</p>
@@ -92,17 +92,26 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="aab56d3df2882dd78fce9c37cf08a76ef"></a><!-- doxytag: member="PinkNoise::AR" ref="aab56d3df2882dd78fce9c37cf08a76ef" args="(MulAdd_ArgsDeclare)" -->
+<a class="anchor" id="a7fa926a6f101fe9b421569b7d93a064b"></a><!-- doxytag: member="PinkNoise::AR" ref="a7fa926a6f101fe9b421569b7d93a064b" args="(UGen const &amp;mul=1.f, UGen const &amp;add=0.f)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">static <a class="el" href="class_u_gen.html">UGen</a> PinkNoise::AR </td>
           <td>(</td>
-          <td class="paramtype">MulAdd_ArgsDeclare&nbsp;</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td>  throw ()<code> [inline, static]</code></td>
+          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
+          <td class="paramname"> <em>mul</em> = <code>1.f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
+          <td class="paramname"> <em>add</em> = <code>0.f</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td>  throw ()<code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
@@ -127,17 +136,26 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a6e676b7058fd48c0019b81daf6bf4192"></a><!-- doxytag: member="PinkNoise::KR" ref="a6e676b7058fd48c0019b81daf6bf4192" args="(MulAdd_ArgsDeclare)" -->
+<a class="anchor" id="ae2baf3df3aa4a0b72a7b75ef6c93ca9b"></a><!-- doxytag: member="PinkNoise::KR" ref="ae2baf3df3aa4a0b72a7b75ef6c93ca9b" args="(UGen const &amp;mul=1.f, UGen const &amp;add=0.f)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">static <a class="el" href="class_u_gen.html">UGen</a> PinkNoise::KR </td>
           <td>(</td>
-          <td class="paramtype">MulAdd_ArgsDeclare&nbsp;</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td>  throw ()<code> [inline, static]</code></td>
+          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
+          <td class="paramname"> <em>mul</em> = <code>1.f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
+          <td class="paramname"> <em>add</em> = <code>0.f</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td>  throw ()<code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
@@ -167,7 +185,7 @@ Static Public Member Functions</h2></td></tr>
 <li>noise/<a class="el" href="ugen___pink_noise_8cpp_source.html">ugen_PinkNoise.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 23 2010 09:40:36 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:21:04 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
