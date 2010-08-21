@@ -79,7 +79,7 @@ DirectMulAddUGenDeclaration(Lag,	(input, lagTime),
 									(input, lagTime, MulAdd_ArgsCall),
 									(UGen const& input, UGen const& lagTime = 0.2), 
 									(UGen const& input, UGen const& lagTime = 0.2, MulAdd_ArgsDeclare), 
-							Lag_Docs COMMON_UGEN_DOCS MulAddArgs_Docs);
+							COMMON_UGEN_DOCS Lag_Docs MulAddArgs_Docs);
 
 
 /** @ingroup UGenInternals */
@@ -98,6 +98,10 @@ protected:
 	float b1u, b1d, y1, currentLagTimeUp, currentLagTimeDown;
 };
 
+#define LagUD_Docs	@param input		The input signal.											\
+					@param lagTimeUp	The 60 dB lag time in seconds for an increasing signal.		\
+					@param lagTimeDown	The 60 dB lag time in seconds for a decreasing signal.
+
 /** @ingroup UGenInternals */
 UGenInternalControlRateDeclaration(LagUDUGenInternal, 
 								   (input, lagTimeUp, lagTimeDown),
@@ -108,10 +112,10 @@ UGenInternalControlRateDeclaration(LagUDUGenInternal,
  This is quite useful for the manipulation of control signal ballistics.
  @ingroup AllUGens FilterUGens */
 DirectMulAddUGenDeclaration(LagUD,	(input, lagTimeUp, lagTimeDown),
-							(input, lagTimeUp, lagTimeDown, MulAdd_ArgsCall),
-							(UGen const& input, UGen const& lagTimeUp = 0.2, UGen const& lagTimeDown = 0.2), 
-							(UGen const& input, UGen const& lagTimeUp = 0.2, UGen const& lagTimeDown = 0.2, MulAdd_ArgsDeclare), 
-							COMMON_UGEN_DOCS MulAddArgs_Docs);
+									(input, lagTimeUp, lagTimeDown, MulAdd_ArgsCall),
+									(UGen const& input, UGen const& lagTimeUp = 0.2, UGen const& lagTimeDown = 0.2), 
+									(UGen const& input, UGen const& lagTimeUp = 0.2, UGen const& lagTimeDown = 0.2, MulAdd_ArgsDeclare), 
+							COMMON_UGEN_DOCS LagUD_Docs MulAddArgs_Docs);
 
 
 

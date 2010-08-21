@@ -44,7 +44,7 @@
 #include "ugen_Arrays.h"
 
 class UGenInternal;
-
+template<class ObjectType> class ObjectArray;
 
 
 /** Store and manipulate arrays of UGen instances.
@@ -72,6 +72,10 @@ public:
 		This allows the use of a UGen where a UGenArray is required and it will be converted implicitly.
 		@param ugen The UGen to use as the single element. */
 	UGenArray(UGen const& ugen) throw();
+	
+	/** Construct a UGenArray from an ObjectArray<UGen>.
+		This allows you to use the special features of the UGenArray class that is UGen-aware. */
+	UGenArray(ObjectArray<UGen> array) throw();
 	
 	/** Copy constructor. */
 	UGenArray(UGenArray const& copy) throw();
@@ -118,6 +122,9 @@ public:
 	/** Get the array for read-only operations.
 	 @return The array or 0 if this is a null UGenArray */
 	const UGen* getArray() const throw()			{ ugen_assert(internal != 0); return internal == 0 ? 0 : internal->array; }
+	
+	/** Convert the UGenArray to an ObjectArray<UGen>. */
+	operator const ObjectArray<UGen>() const throw();
 	
 	/** Get the available size of the UGenArray.
 	 @return The number of available slots in the array */

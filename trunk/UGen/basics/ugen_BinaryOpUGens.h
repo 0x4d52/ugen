@@ -683,8 +683,11 @@ BinaryOpSymbolUGenDeclaration(LessThan,				<);
 BinaryOpSymbolUGenDeclaration(GreaterThan,			>);
 BinaryOpSymbolUGenDeclaration(LessThanOrEquals,		<=);
 BinaryOpSymbolUGenDeclaration(GreaterThanOrEquals,	>=);
-BinaryOpSymbolUGenDeclaration(Equal,				==);
-BinaryOpSymbolUGenDeclaration(NotEqual,				!=);
+//BinaryOpSymbolUGenDeclaration(Equal,				==);
+//BinaryOpSymbolUGenDeclaration(NotEqual,				!=);
+
+BinaryOpFunctionUGenDeclaration(Equal,				equal);
+BinaryOpFunctionUGenDeclaration(NotEqual,			notEqual);
 
 BinaryOpFunctionUGenDeclaration(Pow,				pow);
 BinaryOpFunctionUGenDeclaration(Hypot,				hypot);

@@ -119,6 +119,40 @@ public:
 		array = newArray;
 	}
 	
+	inline void remove(const int index) throw()
+	{		
+		if(index < 0 || index >= size_) return;
+		
+		if(size_ == 1)
+		{
+			if(ownsTheData)
+				delete [] array;
+			
+			size_ = 0;
+		}
+		else
+		{
+			const int newSize = size_ - 1;
+			ObjectType *newArray = new ObjectType[newSize];
+			
+			for(int i = 0; i < index; i++)
+			{
+				newArray[i] = array[i];
+			}
+			
+			for(int i = index; i < newSize; i++)
+			{
+				newArray[i] = array[i+1];
+			}
+			
+			if(ownsTheData)
+				delete [] array;
+			
+			size_ = newSize;
+			array = newArray;
+		}
+	}
+	
 private:
 	int size_;
 	ObjectType *array;
@@ -368,6 +402,14 @@ public:
 		for(int i = 0; i < length; i++)
 		{
 			add(other[i]);
+		}
+	}
+	
+	void remove(const int index) throw()
+	{ 
+		if(this->getInternal() != 0)
+		{
+			this->getInternal()->remove(index); 
 		}
 	}
 	
@@ -625,12 +667,18 @@ public:
 		}
 	}
 	
+//	static ObjectType& getNull() throw()
+//	{
+//		static ObjectType null;
+//		memset(&null, 0, sizeof(ObjectType)); // not sure about this!
+//		return null;
+//	}
+	
 	static ObjectType& getNull() throw()
 	{
-		static ObjectType null;
-		memset(&null, 0, sizeof(ObjectType)); // not sure about this!
+		static ObjectType null = ObjectType();
 		return null;
-	}
+	}	
 	
 	bool operator== (ObjectArray<ObjectType> const& other) const throw()
 	{
