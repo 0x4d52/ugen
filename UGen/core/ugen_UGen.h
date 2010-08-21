@@ -617,7 +617,10 @@ public:
 										in both UGen instances, if false the order is ignored.
 	 @return @c true if the UGens contain identical internals.
 	 */
-	bool containsIdenticalInternalsAs(UGen const& other, const bool mustBeInTheSameSequence = true);
+	bool containsIdenticalInternalsAs(UGen const& other, const bool mustBeInTheSameSequence = true) const throw();
+	
+	inline bool operator== (UGen const& other) const throw() { return containsIdenticalInternalsAs(other); }
+	inline bool operator!= (UGen const& other) const throw() { return !containsIdenticalInternalsAs(other); }
 	
 	/** Tests whether this UGen contains a particular UGenInternal derived class.
 	 

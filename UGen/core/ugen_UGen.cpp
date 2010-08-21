@@ -737,14 +737,16 @@ void UGen::initInternal(const int numInternalUGensToInit) throw()
 {
 	ugen_assert(numInternalUGensToInit > 0);
 	
-	if(numInternalUGens > 0 && internalUGens != 0)
+	if((numInternalUGens > 0) && (internalUGens != 0))
 	{
 		decrementInternals();
 		delete [] internalUGens;
 	}
 	
 	numInternalUGens = numInternalUGensToInit;
-	internalUGens = new UGenInternal*[numInternalUGens];
+	internalUGens = (numInternalUGens > 0)
+					? new UGenInternal*[numInternalUGens]
+					: 0;
 }
 
 void UGen::incrementInternals() const throw()
@@ -876,7 +878,7 @@ bool UGen::isConst(const int index) const throw()
 }
 
 
-bool UGen::containsIdenticalInternalsAs(UGen const& other, const bool mustBeInTheSameSequence)
+bool UGen::containsIdenticalInternalsAs(UGen const& other, const bool mustBeInTheSameSequence) const throw()
 {
 	if(numInternalUGens != other.numInternalUGens) 
 		return false;

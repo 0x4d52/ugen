@@ -73,6 +73,7 @@ BEGIN_UGEN_NAMESPACE
 #include "core/ugen_Bits.h"
 #include "core/ugen_Value.h"
 #include "core/ugen_Arrays.h"
+#include "core/ugen_Collections.h"
 #include "core/ugen_TextFile.h"
 #include "basics/ugen_ScalarUGens.h"
 #include "basics/ugen_UnaryOpUGens.h"
@@ -264,10 +265,10 @@ using namespace UGEN_NAMESPACE;
 	- @subpage	Tutorial_01_04	"Tutorial 01.04: More examples"
 	- @subpage	Tutorial_01_05	"Tutorial 01.05: Maths examples"
 	- TBA 01.06 Oscillators
- 	- TBA 01.07 Noise and random
+	- TBA 01.07 Noise and random
 	- TBA 01.08 Buffers
 	- @subpage	Tutorial_01_09	"Tutorial 01.09: Delay examples"
- 	- TBA 01.10 Filters and convolution
+	- TBA 01.10 Filters and convolution
 	- TBA 01.11 Array examples
 	- TBA 01.12 Value examples
 	- TBA 01.13 Text and text files
@@ -286,10 +287,10 @@ using namespace UGEN_NAMESPACE;
 	- TBA 02.02 Chain and Bank
 	- TBA 02.03 Envelope examples
 	- TBA 02.04 Spawn
- 	- TBA 02.05 XFadeTexture
- 	- TBA 02.06 OverlapTexture
+	- TBA 02.05 XFadeTexture
+	- TBA 02.06 OverlapTexture
 	- TBA 02.07 TSpawn
- 	- TBA 02.08 TrigXFade
+	- TBA 02.08 TrigXFade
 	- TBA 02.09 Plug
 	- TBA 02.10 FFT intro
 	- TBA 02.11 FFT examples

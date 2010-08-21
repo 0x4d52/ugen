@@ -1469,6 +1469,16 @@ Buffer Buffer::copy() const throw()
 	return newBuffer;
 }
 
+bool Buffer::operator== (Buffer const& other) const throw()
+{
+	return channels == other.channels;
+}
+
+bool Buffer::operator!= (Buffer const& other) const throw()
+{
+	return channels != other.channels;
+}
+
 Buffer& Buffer::operator= (Buffer const& _other) throw()
 {
 	if (this != &_other)

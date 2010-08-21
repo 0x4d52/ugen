@@ -70,6 +70,30 @@
 	CLASSNAME operator/ (CLASSNAME const& rightOperand) const throw();						\
 	/** Ignore right operator.  Useful to forced execution without using its value. */		\
 	CLASSNAME operator^ (CLASSNAME const& rightOperand) const throw();						\
+	/** Binary equal to. 
+		This CLASSNAME is the left-hand-side of the operation.
+		@param	rightOperand	The right-hand-side of the operation.
+		@return					A new CLASSNAME which the result of left == right. 
+								Usually this means the result is 1 for true and 0 for 
+								false.  Note that many uses of this operator are applied
+								to float or double values and care should be taken when
+								dealing with equality due to the precision of these data
+								types. The == operator should be used only for checking 
+								equality of objects.
+		@see ugen::equal(const float leftOperand, UGen const& rightOperand)*/													\
+	CLASSNAME equal (CLASSNAME const& rightOperand) const throw();						\
+	/** Binary not equal to. 
+		This CLASSNAME is the left-hand-side of the operation.
+		@param	rightOperand	The right-hand-side of the operation.
+		@return					A new CLASSNAME which the result of left != right. 
+								Usually this means the result is 1 for true and 0 for 
+								false.  Note that many uses of this operator are applied
+								to float or double values and care should be taken when
+								dealing with equality due to the precision of these data
+								types. The != operator should be used only for checking 
+								equality of objects.
+		@see ugen::notEqual(const float leftOperand, UGen const& rightOperand)*/													\
+	CLASSNAME notEqual (CLASSNAME const& rightOperand) const throw();						\
 	/** Binary less-than. 
 		This CLASSNAME is the left-hand-side of the operation.
 		@param	rightOperand	The right-hand-side of the operation.
@@ -108,28 +132,6 @@
 								types. 
 		@see ugen::operator>=(const float leftOperand, UGen const& rightOperand)*/													\
 	CLASSNAME operator>= (CLASSNAME const& rightOperand) const throw();						\
-	/** Binary equal to. 
-		This CLASSNAME is the left-hand-side of the operation.
-		@param	rightOperand	The right-hand-side of the operation.
-		@return					A new CLASSNAME which the result of left == right. 
-								Usually this means the result is 1 for true and 0 for 
-								false.  Note that many uses of this operator are applied
-								to float or double values and care should be taken when
-								dealing with equality due to the precision of these data
-								types.
-		@see ugen::operator==(const float leftOperand, UGen const& rightOperand)*/													\
-	CLASSNAME operator== (CLASSNAME const& rightOperand) const throw();						\
-	/** Binary not equal to. 
-		This CLASSNAME is the left-hand-side of the operation.
-		@param	rightOperand	The right-hand-side of the operation.
-		@return					A new CLASSNAME which the result of left != right. 
-								Usually this means the result is 1 for true and 0 for 
-								false.  Note that many uses of this operator are applied
-								to float or double values and care should be taken when
-								dealing with equality due to the precision of these data
-								types.
-		@see ugen::operator!=(const float leftOperand, UGen const& rightOperand)*/													\
-	CLASSNAME operator!= (CLASSNAME const& rightOperand) const throw();						\
 	/** Binary power. 
 		This CLASSNAME is the left-hand-side (L) of the operation.
 		@param	rightOperand	The right-hand-side (R) of the operation.
@@ -187,6 +189,12 @@
 
 
 
+
+
+inline float equal(float a, float b) throw()				{ return (a==b) ? 1.f : 0.f; }
+inline float notEqual(float a, float b) throw()				{ return (a!=b) ? 1.f : 0.f; }
+inline double equal(double a, double b) throw()				{ return (a==b) ? 1.0 : 0.0; }
+inline double notEqual(double a, double b) throw()			{ return (a!=b) ? 1.0 : 0.0; }
 
 #ifdef _WIN32
 inline double hypot (float a, float b) throw()				{ return (float) ::_hypot ((double)a, (double)b);	}

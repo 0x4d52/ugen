@@ -41,6 +41,7 @@ BEGIN_UGEN_NAMESPACE
 #include "ugen_UGenArray.h"
 #include "ugen_UGenInternal.h"
 #include "../basics/ugen_MixUGen.h"
+#include "ugen_Arrays.h"
 
 
 UGenArray::UGenArrayInternal::UGenArrayInternal(const int size) throw()
@@ -72,6 +73,32 @@ UGenArray::UGenArray(UGen const& ugen) throw()
 :	internal(new UGenArrayInternal(1))
 {
 	internal->array[0] = ugen;
+}
+
+UGenArray::UGenArray(ObjectArray<UGen> array) throw()
+:	internal((array.length() <= 0) ? 0 : new UGenArrayInternal(array.length()))
+{
+	if(internal != 0)
+	{
+		for(int i = 0; i < internal->size_; i++)
+		{
+			internal->array[i] = array[i];
+		}
+	}
+}
+
+UGenArray::operator const ObjectArray<UGen>() const throw()
+{
+	if(internal == 0) return ObjectArray<UGen>();
+	
+	ObjectArray<UGen> newArray = ObjectArray<UGen>::withSize(internal->size_);
+	
+	for(int i = 0; i < internal->size_; i++)
+	{
+		newArray[i] = internal->array[i];
+	}
+	
+	return newArray;
 }
 
 UGenArray::UGenArray(UGenArray const& copy) throw()

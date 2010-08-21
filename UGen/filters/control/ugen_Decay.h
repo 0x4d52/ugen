@@ -79,7 +79,7 @@ DirectMulAddUGenDeclaration(Decay,	(input, decayTime),
 									(input, decayTime, MulAdd_ArgsCall),
 									(UGen const& input, UGen const& decayTime = 0.2), 
 									(UGen const& input, UGen const& decayTime = 0.2, MulAdd_ArgsDeclare), 
-							Decay_Docs COMMON_UGEN_DOCS MulAddArgs_Docs);
+							COMMON_UGEN_DOCS Decay_Docs MulAddArgs_Docs);
 
 
 

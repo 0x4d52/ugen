@@ -266,6 +266,9 @@ public:
 	Buffer copy() const throw();
 	Buffer& operator= (Buffer const& other) throw();
 
+	bool operator== (Buffer const& other) const throw();
+	bool operator!= (Buffer const& other) const throw();
+	
 	void incrementInternals() throw();	
 	void decrementInternals() throw();	
 	
