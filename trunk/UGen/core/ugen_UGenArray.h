@@ -75,7 +75,7 @@ public:
 	
 	/** Construct a UGenArray from an ObjectArray<UGen>.
 		This allows you to use the special features of the UGenArray class that is UGen-aware. */
-	UGenArray(ObjectArray<UGen> array) throw();
+	UGenArray(ObjectArray<UGen> const& array) throw();
 	
 	/** Copy constructor. */
 	UGenArray(UGenArray const& copy) throw();

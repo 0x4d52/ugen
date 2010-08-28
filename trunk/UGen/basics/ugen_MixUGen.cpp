@@ -107,20 +107,26 @@ void MixUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockI
 }
 #endif
 
-MixArrayUGenInternal::MixArrayUGenInternal(UGenArray const& array, bool shouldAllowAutoDelete) throw()
+MixArrayUGenInternal::MixArrayUGenInternal(UGenArray const& array, 
+										   bool shouldAllowAutoDelete, 
+										   bool shouldWrapChannels) throw()
 :	ProxyOwnerUGenInternal(0, array.findMaxNumChannels() - 1),
 	array_(array),
 	arrayPtr(&array_),
 	arrayRef(*arrayPtr),
-	shouldAllowAutoDelete_(shouldAllowAutoDelete)
+	shouldAllowAutoDelete_(shouldAllowAutoDelete),
+	shouldWrapChannels_(shouldWrapChannels)
 {	
 }
 
-MixArrayUGenInternal::MixArrayUGenInternal(UGenArray* array, bool shouldAllowAutoDelete) throw()
+MixArrayUGenInternal::MixArrayUGenInternal(UGenArray* array, 
+										   bool shouldAllowAutoDelete, 
+										   bool shouldWrapChannels) throw()
 :	ProxyOwnerUGenInternal(0, array->findMaxNumChannels() - 1),
 	arrayPtr(array),
 	arrayRef(*arrayPtr),
-	shouldAllowAutoDelete_(shouldAllowAutoDelete)
+	shouldAllowAutoDelete_(shouldAllowAutoDelete),
+	shouldWrapChannels_(shouldWrapChannels)
 {	
 }
 
@@ -159,7 +165,12 @@ float MixArrayUGenInternal::getValue(const int channel) const throw()
 	
 	for(int i = 0; i < arrayRef.size(); i++)
 	{
-		value += arrayRef[i].getValue(channel);
+		UGen& ugen = arrayRef[i];
+		
+		if(shouldWrapChannels_ || (channel < ugen.getNumChannels()))
+		{
+			value += ugen.getValue(channel);
+		}
 	}
 	
 	return value;
@@ -170,9 +181,10 @@ void MixArrayUGenInternal::processBlock(bool& shouldDelete, const unsigned int b
 {	
 	bool shouldDeleteLocal;
 	bool& shouldDeleteToPass = shouldAllowAutoDelete_ ? shouldDelete : shouldDeleteLocal;	
-	int numOutputChannels = getNumChannels();
-	int blockSizeBytes = uGenOutput.getBlockSize() * sizeof(float);
+	const int numOutputChannels = getNumChannels();
+	const int blockSizeBytes = uGenOutput.getBlockSize() * sizeof(float);
 	const int arraySize = arrayRef.size();
+	const int numSamplesToProcess = uGenOutput.getBlockSize();
 	
 	for(int channel = 0; channel < numOutputChannels; channel++)
 	{
@@ -181,14 +193,18 @@ void MixArrayUGenInternal::processBlock(bool& shouldDelete, const unsigned int b
 
 		for(int arrayIndex = 0; arrayIndex < arraySize; arrayIndex++)
 		{
-			shouldDeleteLocal = false;
-			int numSamplesToProcess = uGenOutput.getBlockSize();
-			float* outputSamples = outputSamplesBase;//proxies[channel]->getSampleData();
-			const float* channelSamples = arrayRef[arrayIndex].processBlock(shouldDeleteToPass, blockID, channel);
-									
-			for(int i = 0; i < numSamplesToProcess; ++i)
+			UGen& ugen = arrayRef[arrayIndex];
+			
+			if(shouldWrapChannels_ || (channel < ugen.getNumChannels()))
 			{
-				outputSamples[i] += channelSamples[i];
+				shouldDeleteLocal = false;
+				float* outputSamples = outputSamplesBase;
+				const float* channelSamples = ugen.processBlock(shouldDeleteToPass, blockID, channel);
+										
+				for(int i = 0; i < numSamplesToProcess; ++i)
+				{
+					outputSamples[i] += channelSamples[i];
+				}
 			}
 		}
 	}
@@ -226,14 +242,14 @@ Mix::Mix(UGen* array, bool shouldAllowAutoDelete) throw()
 	internalUGens[0]->initValue(value);
 }
 
-Mix::Mix(UGenArray const& array, bool shouldAllowAutoDelete) throw()
+Mix::Mix(UGenArray const& array, bool shouldAllowAutoDelete, bool shouldWrapChannels) throw()
 {
-	constructMixArrayWithProxies(new MixArrayUGenInternal(array, shouldAllowAutoDelete));
+	constructMixArrayWithProxies(new MixArrayUGenInternal(array, shouldAllowAutoDelete, shouldWrapChannels));
 }
 
-Mix::Mix(UGenArray* array, bool shouldAllowAutoDelete) throw()
+Mix::Mix(UGenArray* array, bool shouldAllowAutoDelete, bool shouldWrapChannels) throw()
 {
-	constructMixArrayWithProxies(new MixArrayUGenInternal(array, shouldAllowAutoDelete));
+	constructMixArrayWithProxies(new MixArrayUGenInternal(array, shouldAllowAutoDelete, shouldWrapChannels));
 }
 
 void Mix::constructMixArrayWithProxies(MixArrayUGenInternal* internal)

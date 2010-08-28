@@ -62,7 +62,8 @@ public:
 		ugen_assert(numOutputs == numOutputs_);
 		ugen_assert(bufferSize == preferredBufferSize);
 		
-		const ScopedLock sl(lock);
+		//const ScopedLock sl(lock);
+		lock.enter();
 		UGen::initialise();
 		if(useTimerDeleter) 
 		{
@@ -76,6 +77,7 @@ public:
 		startTimer(50);
 		
 		output_ = Plug::AR(UGen::emptyChannels(numOutputs_));
+		lock.exit();
 	}
 	
 	/**
@@ -130,12 +132,14 @@ public:
 			return;
 		}
 		
-		const ScopedLock sl(lock);
+		//const ScopedLock sl(lock);
+		lock.enter();
 		
 		if(numInputs_ > 0)
 			input_ = AudioIn::AR(numInputs_);
 		audioDeviceManager.addAudioCallback (this);
 		
+		lock.exit();
 	}
 	
 	/**
@@ -151,7 +155,9 @@ public:
 								int numSamples)
 	{
 		// may need to be a bit cleverer with the channels in here..
-		const ScopedLock sl(lock);
+		//const ScopedLock sl(lock);
+		lock.enter();
+		
 		int blockID = UGen::getNextBlockID(numSamples);
 		
 		if(numInputs_ > 0)
@@ -176,6 +182,7 @@ public:
 			}
 		}
 		
+		lock.exit();
 	}
 	
 	/**
@@ -233,8 +240,10 @@ public:
 	 */
 	void setInput(UGen const& ugen) throw() 
 	{ 
-		const ScopedLock sl(lock);
+		//const ScopedLock sl(lock);
+		lock.enter();
 		input_ = ugen;
+		lock.exit();
 	}
 	
 	/**
@@ -248,8 +257,10 @@ public:
 	 */
 	void setOutput(UGen const& ugen) throw() 
 	{ 
-		const ScopedLock sl(lock);
+		//const ScopedLock sl(lock);
+		lock.enter();
 		output_ = ugen;
+		lock.exit();
 	}
 	
 	/**
@@ -259,8 +270,10 @@ public:
 	 */
 	void addOther(UGen const& ugen) throw()
 	{
-		const ScopedLock sl(lock);
+		//const ScopedLock sl(lock);
+		lock.enter();
 		others <<= ugen;
+		lock.exit();
 	}
 	
 	/**

@@ -225,7 +225,8 @@ void MixArrayUGenInternal::processBlock(bool& shouldDelete, const unsigned int b
 {	
 	bool shouldDeleteLocal;
 	bool& shouldDeleteToPass = shouldAllowAutoDelete_ ? shouldDelete : shouldDeleteLocal;	
-	int numOutputChannels = getNumChannels();
+	const int numOutputChannels = getNumChannels();
+	const int blockSizeBytes = uGenOutput.getBlockSize() * sizeof(float);
 	const int arraySize = arrayRef.size();
 	const int numSamplesToProcess = uGenOutput.getBlockSize();
 	
@@ -236,10 +237,14 @@ void MixArrayUGenInternal::processBlock(bool& shouldDelete, const unsigned int b
 		
 		for(int arrayIndex = 0; arrayIndex < arraySize; arrayIndex++)
 		{
-			shouldDeleteLocal = false;
-			float* const channelSamples = arrayRef[arrayIndex].processBlock(shouldDeleteToPass, blockID, channel);
+			UGen& ugen = arrayRef[arrayIndex];
 			
-			VFP::add(outputSamples, channelSamples, outputSamples, numSamplesToProcess);			
+			if(shouldWrapChannels_ || (channel < ugen.getNumChannels()))
+			{
+				shouldDeleteLocal = false;
+				float* const channelSamples = ugen.processBlock(shouldDeleteToPass, blockID, channel);
+				VFP::add(outputSamples, channelSamples, outputSamples, numSamplesToProcess);			
+			}
 		}
 	}
 }

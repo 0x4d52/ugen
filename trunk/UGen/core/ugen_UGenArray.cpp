@@ -75,7 +75,7 @@ UGenArray::UGenArray(UGen const& ugen) throw()
 	internal->array[0] = ugen;
 }
 
-UGenArray::UGenArray(ObjectArray<UGen> array) throw()
+UGenArray::UGenArray(ObjectArray<UGen> const& array) throw()
 :	internal((array.length() <= 0) ? 0 : new UGenArrayInternal(array.length()))
 {
 	if(internal != 0)
