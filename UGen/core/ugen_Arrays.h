@@ -254,6 +254,18 @@ public:
 	{
 	}
 	
+	template<class CopyType>
+	ObjectArray(ObjectArray<CopyType> const& copy) throw()
+	:	SmartPointerContainer< ObjectArrayInternal<ObjectType> >
+		(new ObjectArrayInternal<ObjectType>(copy.size(), copy.isNullTerminated()))
+	{
+		const int size = this->size();
+		for(int i = 0; i < size; i++)
+		{
+			this->put(i, (ObjectType)copy[i]);
+		}
+	}
+	
 	ObjectArray<ObjectType> copy() const throw()
 	{
 		const int size = this->size();

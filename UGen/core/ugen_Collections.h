@@ -49,6 +49,10 @@ public:
 	{
 	}
 	
+	~DictionaryInternal() throw()
+	{
+	}
+	
 	ObjectArray<ValueType>& getValues() throw()
 	{
 		return values;
@@ -106,26 +110,45 @@ public:
 		return this->getInternal()->getKeys(); 
 	}
 	
-	ValueType put(KeyType const& key, ValueType const& value) throw()
+//	ValueType put(KeyType const& key, ValueType const& value) throw()
+//	{
+//		ObjectArray<ValueType>& values = getValues();
+//		ObjectArray<KeyType>& keys = getKeys();
+//
+//		int index = keys.indexOf(key);
+//		
+//		if(index >= 0)
+//		{
+//			ValueType& oldValue = values[index];
+//			values.put(index, value);
+//			return oldValue;
+//		}
+//		else
+//		{
+//			keys.add(key);
+//			values.add(value);
+//			return ObjectArray<ValueType>::getNull();
+//		}
+//	}
+	
+	void put(KeyType const& key, ValueType const& value) throw()
 	{
 		ObjectArray<ValueType>& values = getValues();
 		ObjectArray<KeyType>& keys = getKeys();
-
-		int index = values.indexOf(value);
+		
+		int index = keys.indexOf(key);
 		
 		if(index >= 0)
 		{
-			ValueType& oldValue = values[index];
 			values.put(index, value);
-			return oldValue;
 		}
 		else
 		{
 			keys.add(key);
 			values.add(value);
-			return ObjectArray<ValueType>::getNull();
 		}
 	}
+	
 	
 	ValueType& at(KeyType const& key) throw()
 	{

@@ -318,8 +318,10 @@ public:
 //		
 //		//return BLowPass::AR(LFSaw::AR(exprand(100.0, 1000.0)), SinOsc::AR(exprand(0.25, 4.0)).linexp(-1, 1, 200, 5000), exprand(0.3, 3.0)) * 0.3;
 		
-		return BHiShelf::AR(WhiteNoise::AR(0.3), 2000, 0.5, 12);
+		//return BHiShelf::AR(WhiteNoise::AR(0.3), 2000, 0.5, 12);
 		//return WhiteNoise::AR(0.3);
+		
+		return SinOsc::AR(U(950, 1050), 0, 0.1);
 	}
 	
 	

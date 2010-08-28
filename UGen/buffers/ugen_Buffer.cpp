@@ -1471,12 +1471,20 @@ Buffer Buffer::copy() const throw()
 
 bool Buffer::operator== (Buffer const& other) const throw()
 {
-	return channels == other.channels;
+	if(size_ != other.size_) return false;
+	if(numChannels_ != other.numChannels_) return false;
+	
+	for(int i = 0; i < numChannels_; i++)
+	{
+		if(channels[i] != other.channels[i]) return false;
+	}
+	
+	return true;
 }
 
 bool Buffer::operator!= (Buffer const& other) const throw()
 {
-	return channels != other.channels;
+	return !operator== (other);
 }
 
 Buffer& Buffer::operator= (Buffer const& _other) throw()

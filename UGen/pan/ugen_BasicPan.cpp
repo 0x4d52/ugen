@@ -117,34 +117,78 @@ void Pan2UGenInternal::processBlock(bool& shouldDelete, const unsigned int block
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples0 = proxies[0]->getSampleData();
 	float* outputSamples1 = proxies[1]->getSampleData();
-	float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
-	float pos = *(inputs[Position].processBlock(shouldDelete, blockID, channel)) * 0.5f + 0.5f;
-	float* levelSamples = inputs[Level].processBlock(shouldDelete, blockID, channel);
+	float pos = *(inputs[Position].processBlock(shouldDelete, blockID, 0)) * 0.5f + 0.5f;
+	float* levelSamples = inputs[Level].processBlock(shouldDelete, blockID, 0);
 		
 	if(pos == lastPos)
 	{
-		while(numSamplesToProcess--)
+		if(inputs[Input].getNumChannels() <= 1)
 		{
-			float inputValue = *inputSamples++ * *levelSamples++;
+			float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, 0);
 			
-			*outputSamples0++ = inputValue * last0;
-			*outputSamples1++ = inputValue * last1;
+			while(numSamplesToProcess--)
+			{
+				float inputValue = *inputSamples++ * *levelSamples++;
+				
+				*outputSamples0++ = inputValue * last0;
+				*outputSamples1++ = inputValue * last1;
+			}
 		}
+		else 
+		{
+			float* inputSamples0 = inputs[Input].processBlock(shouldDelete, blockID, 0);
+			float* inputSamples1 = inputs[Input].processBlock(shouldDelete, blockID, 1);
+			
+			while(numSamplesToProcess--)
+			{
+				float level = *levelSamples++;
+				float inputValue0 = *inputSamples0++ * level;
+				float inputValue1 = *inputSamples1++ * level;
+				
+				*outputSamples0++ = inputValue0 * last0;
+				*outputSamples1++ = inputValue1 * last1;
+			}
+		}
+
 	}
 	else
 	{
 		float posInc = (pos - lastPos) / (float)numSamplesToProcess;
 		
-		while(numSamplesToProcess--)
+		if(inputs[Input].getNumChannels() <= 1)
 		{
-			lastPos += posInc;
-			float inputValue = *inputSamples++ * *levelSamples++;
+			float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, 0);
+
+			while(numSamplesToProcess--)
+			{
+				lastPos += posInc;
+				float inputValue = *inputSamples++ * *levelSamples++;
+				
+				last0 = panTable.lookup(0, lastPos);
+				last1 = panTable.lookup(1, lastPos);
+				
+				*outputSamples0++ = inputValue * last0;
+				*outputSamples1++ = inputValue * last1;
+			}
+		}
+		else
+		{
+			float* inputSamples0 = inputs[Input].processBlock(shouldDelete, blockID, 0);
+			float* inputSamples1 = inputs[Input].processBlock(shouldDelete, blockID, 1);
 			
-			last0 = panTable.lookup(0, lastPos);
-			last1 = panTable.lookup(1, lastPos);
-			
-			*outputSamples0++ = inputValue * last0;
-			*outputSamples1++ = inputValue * last1;
+			while(numSamplesToProcess--)
+			{
+				lastPos += posInc;
+				float level = *levelSamples++;
+				float inputValue0 = *inputSamples0++ * level;
+				float inputValue1 = *inputSamples1++ * level;
+				
+				last0 = panTable.lookup(0, lastPos);
+				last1 = panTable.lookup(1, lastPos);
+				
+				*outputSamples0++ = inputValue0 * last0;
+				*outputSamples1++ = inputValue1 * last1;
+			}
 		}
 		
 		lastPos = pos;
@@ -156,11 +200,10 @@ Pan2::Pan2(UGen const& input, UGen const& position, UGen const& level) throw()
 {		
 	initInternal(2);
 	
-	UGen inputChecked = input.mix();
 	UGen positionChecked = position.mix();
 	UGen levelChecked = level.mix();
 	
-	Pan2UGenInternal*  internal = new Pan2UGenInternal(inputChecked, positionChecked, levelChecked);
+	Pan2UGenInternal*  internal = new Pan2UGenInternal(input, positionChecked, levelChecked);
 	internalUGens[0] = internal;
 	internalUGens[1] = internal->getProxy(1);
 	
@@ -168,10 +211,19 @@ Pan2::Pan2(UGen const& input, UGen const& position, UGen const& level) throw()
 	float pos0 = internal->getTable().lookup(0, posValue);
 	float pos1 = internal->getTable().lookup(1, posValue);
 	
-	float inputValue = inputChecked.getValue(0) * level.getValue(0);
-	
-	internalUGens[0]->initValue(inputValue * pos0);
-	internalUGens[1]->initValue(inputValue * pos1);	
+	if(input.getNumChannels() <= 1)
+	{
+		float inputValue = input.getValue(0) * levelChecked.getValue(0);
+		internalUGens[0]->initValue(inputValue * pos0);
+		internalUGens[1]->initValue(inputValue * pos1);	
+	}
+	else
+	{
+		float inputValue0 = input.getValue(0) * levelChecked.getValue(0);
+		float inputValue1 = input.getValue(1) * levelChecked.getValue(0);
+		internalUGens[0]->initValue(inputValue0 * pos0);
+		internalUGens[1]->initValue(inputValue1 * pos1);	
+	}
 }
 
 
