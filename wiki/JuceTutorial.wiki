@@ -35,7 +35,7 @@ settings, or your environment does not have all the include/lib paths set proper
 
 When you get the program compiled, you’ll be massively disappointed with the result. The application should look like this:
 
-http://www.anticore.org/juced/tutorial_app_01.png
+http://ugen.googlecode.com/svn/wiki/images/tutorial_app_01.png
 
 Now I shall begin to use some Juce terminology. This app is a basic launch pad for your Juce programming, and it gives you a single DialogWindow, which holds a single Component. What the DialogWindow is should be quite obvious – that’s the ‘window’ bit
 the application presents itself as. The Component is probably less clear. Don’t worry though, we shall get on to that in the next section – suffice to say that it’s probably the most important type you’ll encounter!
@@ -179,7 +179,7 @@ button3->setBounds (20, 130, 260, 20);
 
 Now we’ve positioned the Components, we are in a position to compile our program again! Build it, and you should see the app look like this:
 
-http://www.anticore.org/juced/tutorial_app_02.png
+http://ugen.googlecode.com/svn/wiki/images/tutorial_app_02.png
 
 Now we have ‘things’ on our window! You should hopefully be extraordinarily excited by this. However, as you’ll no doubt have noticed, these ‘things’ don’t really do anything. This is what we shall address in the next chapter, when we examine the message handling aspect of Juce.
 
@@ -412,7 +412,7 @@ The Component has had its bounds set (just like we did with the widgets in chapt
 ==How do I actually draw something?==
 We'll start with a very simple drawing operation. Our task is to draw two filled rectangles, covering opposite quarters of the Component's face. Like this:
 
-http://www.anticore.org/juced/tutorial_app_03.png
+http://ugen.googlecode.com/svn/wiki/images/tutorial_app_03.png
 
 When we were laying out the widgets earlier, we gave exact numbers, based on the size of the Component. Here, we're going to imagine we don't know the size yet (and that's true - remember that this Component is actually a little bit smaller than the DialogWindow).
 
@@ -443,7 +443,7 @@ Here are some tips:
 Remember, we're not using exact numbers, just proportions of the context's size. That means we'll have formulae using the context dimensions. Feel free to use a pen and paper to work them out, even though they are really simple! It's a good habit to have! Once
 you've got them worked out, put them in and compile the program. Run it, and take a look at the result (The solution is in  the answers appendix).
 
-http://www.anticore.org/juced/tutorial_app_04.png
+http://ugen.googlecode.com/svn/wiki/images/tutorial_app_04.png
 
 There are several important things to notice about the result. One is that the rectangles are both black. The other is that our widgets appear on top of them!
 
@@ -480,7 +480,7 @@ g.fillAll (Colours::hotpink);
 
 Try compiling and running both versions. You'll notice that they both look the same, like the image below:
 
-http://www.anticore.org/juced/tutorial_app_05.png
+http://ugen.googlecode.com/svn/wiki/images/tutorial_app_05.png
 
 Very pretty indeed! You notice of course that the black rectangles have gone; this illustrates that everything is drawn in order. If you draw something you'll draw on top of the previous operation. If you used a transparent Colour, you'd still see them.
 
@@ -494,7 +494,7 @@ Colours::hotpink.withAlpha (0.9f);
 
 The 'f', in case you didn't know, goes after a decimal value to indicate that it is a float constant. Build it, and look at the new panel.
 
-http://www.anticore.org/juced/tutorial_app_06.png
+http://ugen.googlecode.com/svn/wiki/images/tutorial_app_06.png
 
 We can see how the Colour functions can be used to modify a Colour, and we can also see proof that the stuff 'behind' is still being drawn.
 
@@ -508,7 +508,7 @@ g.drawRoundedRectangle (10, 160, getWidth()-20, getHeight()/3, 20, 2);
 
 You should have the following:
 
-http://www.anticore.org/juced/tutorial_app_07.png
+http://ugen.googlecode.com/svn/wiki/images/tutorial_app_07.png
 
 ==How can I draw text?==
 
@@ -525,7 +525,7 @@ g.drawFittedText (
 
 Notice that it's given the same rectangle bounds as the rounded rectangle we just drew. Compiling and running this gives us:
 
-http://www.anticore.org/juced/tutorial_app_08.png
+http://ugen.googlecode.com/svn/wiki/images/tutorial_app_08.png
 
 So now we can draw text! But it's really small, compared to the space it's in. How can we make the text bigger? Well, when you're using a word processor, to change the size of your text you edit the font properties. There is a whole Juce class dedicated to fonts (called 'Font', interestingly enough!) but we're not going to look at it in detail here. The Graphics class has a shortcut function, which allows us to simply specify a new font height. Add the following line before the drawFittedText call:
 {{{
@@ -534,7 +534,7 @@ g.setFont (40);
 
 Again, compile it and see how it looks!
 
-http://www.anticore.org/juced/tutorial_app_09.png
+http://ugen.googlecode.com/svn/wiki/images/tutorial_app_09.png
 
 There are a lot of drawing operations available from the Graphics class, but they're irrelevant at this point. Feel free to play around, of course; try drawing some ellipses or lines.
 
@@ -917,7 +917,7 @@ In the public section:
 }}}
 Note that we're giving it a 10 pixel margin, making use of the size of MainComponent. Compile and run this.
 
-http://www.anticore.org/juced/tutorial_app_10.png
+http://ugen.googlecode.com/svn/wiki/images/tutorial_app_10.png
 
 You should notice a couple of odd features of this text entry window we've created. Firsly, the flashing caret is halfway down the box. Secondly, it only types one line, and you can't press 'enter' to create a new one. As far as notepads go, this is poor!
 But don't worry, this is just the default TextEditor behaviour. By default, it expects to be used as a single strip of text (as we saw when we used the Label). We can change that though, with a few simple function calls just after we've created it:
@@ -929,7 +929,7 @@ In the constructor:
 
 These two lines of code are entirely self-explanatory! Compile again, and try entering some text.
 
-http://www.anticore.org/juced/tutorial_app_11.png
+http://ugen.googlecode.com/svn/wiki/images/tutorial_app_11.png
 
 Notice also that this editor has a right-click menu built in! Without even doing anything, we've got copy/paste, and even undo/redo features.
 
@@ -1052,7 +1052,7 @@ See if you can do this simple task. Example answers are in the appendix section.
 If you've done it properly, you should hopefully end up with something a bit like this:
 
 
-http://www.anticore.org/juced/tutorial_app_12.png
+http://ugen.googlecode.com/svn/wiki/images/tutorial_app_12.png
 
 The actual layout of the Components isn't particularly important at the moment, so don't worry if yours looks different. 
 
