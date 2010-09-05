@@ -407,17 +407,14 @@ public:
 	
 	inline float lookup(const int channel, const double phase) const throw()
 	{ 
-		ugen_assert(channel >= 0 && channel < numChannels_);
-		ugen_assert(phase >= 0.0 && phase <= 1.0);
-
-		return channels[channel]->getSampleUnchecked(phase * (size_-1));	
+		if(channel < 0 || channel >= numChannels_) return 0.f;
+	
+		return channels[channel]->getSampleUnchecked(ugen::clip(phase, 0.0, 1.0) * (size_-1));	
 	}
 	
 	inline float lookup(const double phase) const throw()
 	{ 
-		ugen_assert(phase >= 0.0 && phase <= 1.0);
-
-		return channels[0]->getSampleUnchecked(phase * (size_-1));	
+		return channels[0]->getSampleUnchecked(ugen::clip(phase, 0.0, 1.0) * (size_-1));	
 	}
 	
 	float operator[] (const int sampleIndex) const throw()
