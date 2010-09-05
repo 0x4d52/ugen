@@ -322,28 +322,28 @@ Consult the documentation for Slider and TextButton for clues about which functi
 ==What about the other message types?==
 
 We’ve now covered the basics of message handling, using the ButtonListener base class in our Component (and handling ‘Button’ messages). Now, we’ll quickly examine another type of message – the ‘Change’ message.
-While we were working with the buttonClicked () callback function, we stumbled upon evidence that a Label is a ChangeBroadcaster. If you took the time to experiment in the previous section, you’ll have hopefully discovered for yourself that Slider::setValue ()
-gives away a similar trait; a Slider is a ChangeBroadcaster too! The Slider is the most obvious example of a ChangeBroadcaster. Whenever you adjust the control, it sends out a change message to any registered ChangeListeners. That means, if we want to be notified of any changes made on the Slider, we need our MainComponent to be a ChangeListener. Hopefully, that should have been fairly obvious to you!
+While we were working with the buttonClicked () callback function, we stumbled upon evidence that a Label is an AsyncUpdater. If you took the time to experiment in the previous section, you’ll have hopefully discovered for yourself that Slider::setValue ()
+gives away a similar trait; a Slider is an AsyncUpdater too! The Slider is the most obvious example of an AsyncUpdater. Whenever you adjust the control, it sends out a change message to any registered SliderListeners. That means, if we want to be notified of any changes made on the Slider, we need our MainComponent to be a SliderListener. Hopefully, that should have been fairly obvious to you!
 
 In order to give our MainComponent this power, we do this:
 {{{
 class MainComponent           : public Component,
                                 public ButtonListener,
-                                public ChangeListener
+                                public SliderListener
 }}}
 
-We also have another pure virtual function to define, courtesy of the ChangeListener base class. This has a slightly different name, but works in a similar way to before. Add this to MainComponent: 
+We also have another pure virtual function to define, courtesy of the SliderListener base class. This has a slightly different name, but works in a similar way to before. Add this to MainComponent: 
 {{{
-void changeListenerCallback (void* changeSource)
+void sliderValueChanged (Slider* changedSlider)
 {
 }
 }}}
 
-This is called whenever a change message is sent from a ChangeBroadcaster we’re registered with. Instead of a ‘Button*’ parameter, we have a ‘void*’, but in principle it works in exactly the same way; when this is called, a pointer to the source of the change is received. Thus, our callback will be given the pointer to the Slider. Well, it will, once we’ve registered with it! 
+This is called whenever a change message is sent from a Slider we’re registered with. Instead of a ‘Button*’ parameter, we have a ‘Slider*’, but in principle it works in exactly the same way; when this is called, a pointer to the source of the change is received. Thus, our callback will be given the pointer to the Slider. Well, it will, once we’ve registered with it! 
 
 *In the constructor...*
 {{{
-slider->addChangeListener (this);
+slider->addListener (this);
 }}}
 
 This is nearly identical to the line required to register with a ButtonListener. Again, this gives us the ability to hear about changes made to the Slider, but we’ve still to put in any response code.
@@ -352,9 +352,9 @@ The first thing we’ll need to do is check that it is indeed the Slider that ha
 
 Remember, though, that the setText (...) function takes a String parameter for the text, whereas we wish to use a double. We shall therefore make our first genuine use of the String class, but only in passing for now. The String has a variety of different constructors, which can conveniently turn various different types into a String for us, behaving almost like a cast. Thus, in order for us to use a double as a String, we simply need to wrap it in a String constructor call.
 {{{
-void changeListenerCallback (void* changeSource)
+void sliderValueChanged (Slider* changedSlider)
 {
-    if (changeSource == slider)
+    if (changedSlider == slider)
     {
          double value = slider->getValue ();
          label->setText (String (value), false);
@@ -362,7 +362,7 @@ void changeListenerCallback (void* changeSource)
 }
 }}}
 
-With this function now added, a compile should show this program to work as expected. Now we are able to respond to both Button messages and Change messages without difficulty.
+With this function now added, a compile should show this program to work as expected. Now we are able to respond to both Button messages and change messages without difficulty.
 To briefly summarise what we’ve covered in this chapter:
 
  * Broadcasters send messages, Listeners receive them via callbacks.
