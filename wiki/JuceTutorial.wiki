@@ -753,11 +753,11 @@ The String takes care of converting the number into text, so that it can be mani
 An integer value is straightforward – the number '9' in text form is just the character '9'. The two characters '4' and '2' (in the correct order) are all that is ever needed to represent the number '42'. With floating point (fractional decimal) numbers, there is not
 always one way of displaying the numbers – think of pi as an example! How does the String class know how many decimal places to use when we try to use a float (or a double) as a String? Well, you just tell it!
 
-We've already turned a double into a String, in the changeListenerCallback() function. This constructor actually allows us to supply a second parameter (check the documentation), so make the following alteration.
+We've already turned a double into a String, in the sliderValueChanged() function. This constructor actually allows us to supply a second parameter (check the documentation), so make the following alteration.
 {{{
- void changeListenerCallback (void* changeSource)
+ void sliderValueChanged (Slider* changedSlider)
  {
-     if (changeSource == slider)
+     if (changedSlider == slider)
      {
         double value = slider->getValue ();
         label->setText (String (value, 2), false);
