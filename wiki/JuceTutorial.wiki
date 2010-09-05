@@ -768,7 +768,7 @@ Now, when you adjust the Slider, the label is updated with a rounded version of 
 
 So we can use any number as a String. What if we want to use this String as a number?
 
-==How can i use a String as a number?==
+==How can I use a String as a number?==
 
 If the user has typed something in, it is going to be stored initially as a String  (because the user entered a string of characters). If we wanted to use the number they've entered in any sums, we'll need to convert the String first. There are a few simple functions for this purpose, and they can all be used in the following manner:
 {{{
@@ -789,31 +789,33 @@ Here are some clues:
 
  * You must add two Label function calls to the constructor.
  * We want to edit the Label by clicking on it once.
- * We saw earlier that the Label is a ChangeBroadcaster.
+ * We saw earlier that the Label is an AysncUpdater, you can use a LabelListener in a similar way to ButtonListeners and SliderListeners to received change messages. (See the Juce API documentation on Labels and LabelListeners.)
  * We'll want to know when the user has entered text.
 
 The two lines you'll need are in the answers appendix. Have a look through the Label class documentation and see if you can figure them out for yourself.
 
 Once you've converted the Label, try building the app. If you click on the Label, you'll now be able to type something in! Who'd have thought we'd have such features built in to our quiet, unassuming test app!
 We shall demonstrate how the String can be used as a number. Hopefully in an earlier chapter, you tried to set the value of the slider using the setValue() function. Don't worry if you didn't, you're about to!
-The Label is a ChangeBroadcaster. You should already have reached the conclusion that a change message will be sent if the user types something in (if you haven't – that's what happens!). Our reactionary code then will live in the changeListenerCallback() function:
+The Label is an AsyncUpdater. You should already have reached the conclusion that a change message will be sent if the user types something in (if you haven't – that's what happens!). Our reactionary code then will live in a labelTextChanged() function:
 {{{
- void changeListenerCallback (void* changeSource)
+ void labelTextChanged (Label* changedLabel)
  {
-     if (changeSource == slider)
-     {
-        // the slider has been adjusted...
-        double value = slider->getValue ();
-        label->setText (String (value), false);
-     }
-     else if (changeSource == label)
+     if (changedLabel == label)
      {
         // text has been entered...
      }
  }
 }}}
 
-This gives us somewhere to respond to the change. What do we want to do when text has been entered? Well, we're going to try to take a numerical value from the String, and then use that to set the value of the slider. First of all, we need to get the actual text
+But of course our MainComponent will need to be a LabelListener, i.e.:
+{{{
+class MainComponent           : public Component,
+                                public ButtonListener,
+                                public SliderListener,
+                                public LabelListener
+}}}
+
+The labelTextChanged() function gives us somewhere to respond to the text entered. What do we want to do when text has been entered? Well, we're going to try to take a numerical value from the String, and then use that to set the value of the slider. First of all, we need to get the actual text
 from the Label:
 {{{
  label->getText ();
@@ -827,24 +829,18 @@ text, we can say:
 
 Notice again how we can 'stack up' these function calls. We're getting the double value of the String retrieved from getText(), and we're assigning it to a variable named 'value'. We'll also want to set the value of the slider, using the setValue() function. Here are the amendments you need to make:
 {{{
- void changeListenerCallback (void* changeSource)
+ void labelTextChanged (Label* changedLabel)
  {
-     if (changeSource == slider)
+     if (changedLabel == label)
      {
-         // the slider has been adjusted...
-         double value = slider->getValue ();
-         label->setText (String (value), false);
-     }
-     else if (changeSource == label)
-     {
-         // text has been entered...
+        // text has been entered...
          double value = label->getText().getDoubleValue();
          slider->setValue (value, false);
      }
  }
 }}}
 
-Note at this point the importance of the 'false' parameter in setValue(). As pointed out earlier, this determines whether or not this assignment will trigger a new message being called. If it were true, then we'd cause the Slider to call this function again, whereby its value would be pasted into the Label! This kind of circular behaviour is rarely what you want, so you'll want to keep an eye on those types of parameter.
+Note at this point the importance of the 'false' parameter in setValue(). As pointed out earlier, this determines whether or not this assignment will trigger a new message being called. If it were true, then we'd cause the Slider to call the sliderValueChanged() function again, whereby its value would be pasted into the Label, and so on! This kind of circular behaviour is rarely what you want, so you'll want to keep an eye on those types of parameter.
 
 Now if you compile and run this application, try entering a value. It will happily accept decimal values. If you enter a value outside the range of the slider, it will be clipped. If you enter text that is not a number, then you get zero. That's handy – built-in error checking!
 
@@ -893,7 +889,7 @@ This chapter also has a basic 'project' application. By the end of this chapter,
 The Juce File class allows you to hold references to files on your computer. When you create a File object, you create a link to a single item on a drive. The item may exist, or it may not, and it may be either a file or a folder.
 That's the basic principle behind them. We're going to begin our study of the class by learning to open a file that already exists. 
 
-First, load up notepad (or something similar) and create a plain text document. Type in some arbitrary nonsense, and save it in a simple location with a memorable filename (for instance, "C:\filetest.txt").
+First, load up notepad (or something similar) and create a plain text document. Type in some arbitrary nonsense, and save it in a simple location with a memorable filename (for instance, "C:\filetest.txt" on Windows or "~/Desktop/filetest.txt" on a Mac).
 
 Before we actually try to use this file, we'll do some quick spring cleaning. The MainComponent we've been working on is full of things we don't need, so we'll empty it out and start fresh. For this chapter, we'll build upon our first "Starting Point" code (which has no child Components yet on the interface). The last chapter introduced a text entry widget, via the Label. The Label is not the only text entry Component though. In fact, it's actually not really one all by itself. The reason you can use it like that is because it can turn itself into a TextEditor – another Juce Component type. The TextEditor has all the text entry features you could need! Let's add one to our MainComponent.
 In the private declaration:
@@ -931,27 +927,41 @@ These two lines of code are entirely self-explanatory! Compile again, and try en
 
 http://ugen.googlecode.com/svn/wiki/images/tutorial_app_11.png
 
-Notice also that this editor has a right-click menu built in! Without even doing anything, we've got copy/paste, and even undo/redo features.
+Notice also that this editor has a right-click menu built in! Without even doing anything, we've got copy/paste, and even undo/redo features. (N.B. right-click is ctrl-click on Mac OS.)
 
 ==How do I open a File?==
 
 We now have a big pad to display and edit text on. What we're going to do next is learn how to read the file you created earlier, and display it on our editor. We need to create a File object to 'be' our file. We can create a File object anywhere, just like we can with a String. Just like a String is created empty automatically, a plain File object doesn't actually refer to anything (its file target is non-existent).
 We need to assign it to our file, which we shall achieve using a String of the file's full path. For example, either of the following methods work:
-Creating the object then assigning it:
+Creating the object then assigning it...
+On Windows:
 {{{
  File myFile;
  myFile = T("C:\\filetest.txt");
 }}}
 
-Assigning via the constructor:
+On MacOS:
+{{{
+ File myFile;
+ myFile = T("~/Desktop/filetest.txt");
+}}}
+
+Assigning via the constructor...
+On Windows:
 {{{
  // or...
  File myFile (T("C:\\filetest.txt"));
 }}}
 
-Notice that the '\\' is not a typo! In C, null terminated strings use 'backslash constants' to indicate characters that you can't type on the keyboard. For instance, a 'newline' is '\n'. The '\' means "the next character is a special code", which also means that you can't type a '\' normally! To actually use a '\', you put two together (to show that it's not a code after all, and you actually want a slash, as it were).
+On MacOS:
+{{{
+ // or...
+ File myFile (T("~/Desktop/filetest.txt"));
+}}}
 
-We're going to go for the former of the above two examples (assigning after creation), because we're going to keep our File as a member of MainComponent. Thus, we'll always have a place to remember a particular file. Add the member object in the private section, and assign it in the constructor: 
+Notice in the Windows example that the '\\' is not a typo! In C, null terminated strings use 'backslash constants' to indicate characters that you can't type on the keyboard. For instance, a 'newline' is '\n'. The '\' means "the next character is a special code", which also means that you can't type a '\' normally! To actually use a '\', you put two together (to show that it's not a code after all, and you actually want a slash, as it were). This is not an issue on Mac since we use "/" not "\".
+
+We're going to go for the former of the above two styles - assigning after creation. This is because we're going to keep our File as a member of MainComponent. Thus, we'll always have a place to remember a particular file. Add the member object in the private section, and assign it in the constructor: 
 In the private declaration:
 {{{
  File currentFile;
@@ -959,7 +969,7 @@ In the private declaration:
 
 In the constructor:
 {{{
- currentFile = T("C:\\filetest.txt");
+ currentFile = T("C:\\filetest.txt"); // or "~/Desktop/filetest.txt" on the Mac
 }}}
 
 Our program, when it runs, will now have a link to this file. It's not actually tried to open the file or anything yet though, it just knows where it is. To open it for our needs is incredibly simple. Laughably so. Before I get onto that though, I shall point out that it's important to check your files! As I mentioned earlier, a File object may be linked to a file that doesn't even exist. This may be the case here (for example, if you typed in the filename incorrectly), so we'll get into the habit of checking it first.
@@ -1078,7 +1088,7 @@ exist, so that we can create a fresh one in its place; this is done with the 'de
  }
 }}}
 
-That's our 'save' function. We now need a chooser function, just like the one for the open button. In fact, it's so much like it that we can get away with copying and pasting the original, and making a few slight edits. Below is the new one, with bold type highlighting the bits that have changed:
+That's our 'save' function. We now need a chooser function, just like the one for the open button. In fact, it's so much like it that we can get away with copying and pasting the original, and making a few slight edits. Below is the new one:
 {{{
  void chooseFileToSave ()
  {
@@ -1090,6 +1100,11 @@ That's our 'save' function. We now need a chooser function, just like the one fo
     }
  }
 }}}
+
+ * chooseFileToOpen becomes chooseFileToSave
+ * browseForFileToOpen becomes browseForFileToSave
+ * openFileInEditor becomes saveFileFromEditor
+
 
 Now we just need to put a call to this function in buttonClicked():
 {{{
@@ -1124,7 +1139,7 @@ In the first few chapters, we played around with a bunch of Components on our Ma
 
 The last chapter saw us building a basic application that actually had a purpose. In doing so, we saw practical uses for certain class functions (such as File::loadFileAsText()). Ideally, we'd be able to make a 'real' program to demonstrate all things, but that would take too long. There are a great number of functions that you can only appreciate the use of through practical examples, and you'll most likely need to use them at some point.
 
-In 'the old days', we'd test out the workings of various functions and classes by using the console. Yes, that relic i mentioned in the introduction chapter. This provides an ever-present dumping ground for any old data you felt like generating. You don't need to add a Component to the screen just to have somewhere to try out a few processes. All you need to do if you have a console is perform some test, check the results and output some meaningful text so you can see for yourself what happened.
+In 'the old days', we'd test out the workings of various functions and classes by using the console. Yes, that relic I mentioned in the introduction chapter. This provides an ever-present dumping ground for any old data you felt like generating. You don't need to add a Component to the screen just to have somewhere to try out a few processes. All you need to do if you have a console is perform some test, check the results and output some meaningful text so you can see for yourself what happened.
 
 That was 'the old days'. In our modern age, we're using Juce, and it's making us very happy. How can we have the luxury of the console, without having to actually worry about any other libraries?
 
@@ -1203,7 +1218,7 @@ between the two blocks gets ignored if it's already been parsed. Put those lines
 
 Now we have a file ready for our new class. We are going to be using Juce code here, so we must #include it:
 {{{
- #include <juce.h>
+ #include <juce.h> // or <juce/juce.h>
 }}}
 
 Now we can use the TextEditor class in our declaration. We want TextConsole to be a TextEditor, so:
@@ -1237,7 +1252,7 @@ additional constructor call with a comma. So we have our constructor, which curr
 
 The constructor is just a place where we tell it how it needs to start life. We could very easily put those functions from before into our constructor here; that would mean that it would exhibit that behaviour (multi-line, return creates new line) automatically! We don't want quite that behaviour though. What do we need from it? A quick think and a browse through the TextEditor class shows the following functions to be of use.
 {{{
- SetMultiLine (true);
+ setMultiLine (true);
  setReadOnly (true);
 }}}
 
