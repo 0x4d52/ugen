@@ -256,7 +256,7 @@ UGen::UGen(ValueArray const& array) throw()
 	initInternal(array.size());
 	for(int i = 0; i < numInternalUGens; i++)
 	{
-		internalUGens[i] = new ScalarUGenInternal(array[i].getValue());	
+		internalUGens[i] = new ValueUGenInternal(array[i]);	
 	}
 }
 
@@ -266,8 +266,7 @@ UGen::UGen(Value const& value) throw()
 	internalUGens(0)
 {
 	initInternal(1);
-	Value valueCopy = value;
-	internalUGens[0] = new ScalarUGenInternal(valueCopy.getValue());	
+	internalUGens[0] = new ValueUGenInternal(value);	
 }
 
 UGenInternal* UGen::newScalarInternal(const float value) throw()
@@ -581,40 +580,12 @@ UGen UGen::expand() const throw()
 
 UGen UGen::operator[] (const int index) const throw()
 {	
-	if(index < 0 || index >= numInternalUGens) 
-	{
-		ugen_assertfalse;
-		return getNull();
-	}
-	else
-		return UGen(getInternalUGen(index), index);
+	return wrapAt(index);
 }
 
 UGen UGen::operator[] (IntArray const& indices) const throw()
 {	
-	const int numChannels = indices.length();
-	
-	if(numChannels == 0)
-	{
-		ugen_assertfalse;
-		return getNull();	
-	}
-	else
-	{
-		UGenInternal** newInternals = new UGenInternal*[numChannels];
-		
-		for(int channel = 0; channel < numChannels; channel++)
-		{
-			const int index = indices[channel];
-			
-			if(index < 0 || index >= numInternalUGens) 
-				newInternals[channel] = getNullInternal();
-			else
-				newInternals[channel] = getInternalUGen(index);
-		}
-		
-		return UGen(numChannels, newInternals);
-	}
+	return wrapAt(indices);
 }
 
 UGen UGen::at(const int index) const throw()
@@ -661,7 +632,7 @@ UGen UGen::wrapAt(const int index) const throw()
 	int indexToUse = index;
 	while(indexToUse < 0) indexToUse += numInternalUGens;
 	
-	return operator[] (indexToUse % numInternalUGens);
+	return at(indexToUse % numInternalUGens);
 }
 
 UGen UGen::wrapAt(IntArray const& indices) const throw()

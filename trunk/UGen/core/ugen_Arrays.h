@@ -266,6 +266,88 @@ public:
 		}
 	}
 	
+	template<class CollectionType>
+	static ObjectArray<ObjectType> collect(ObjectArray<CollectionType> const& collection) throw()
+	{
+		const int length = collection.length();
+		
+		ObjectArray<ObjectType> result(length, false);
+		
+		for(int i = 0; i < length; i++)
+		{
+			result.put(i, ObjectType(collection[i]));
+		}
+		
+		return result;
+	}
+	
+	template<class CollectionType1, class CollectionType2>
+	static ObjectArray<ObjectType> collect(ObjectArray<CollectionType1> const& collection1,
+										   ObjectArray<CollectionType2> const& collection2) throw()
+	{
+		const int length = ugen::max(collection1.length(), collection2.length());
+		
+		ObjectArray<ObjectType> result(length, false);
+		
+		for(int i = 0; i < length; i++)
+		{
+			result.put(i, ObjectType(collection1.wrapAt(i), 
+									 collection2.wrapAt(i)));
+		}
+		
+		return result;
+	}
+	
+	template<class CollectionType1, 
+			 class CollectionType2, 
+			 class CollectionType3>
+	static ObjectArray<ObjectType> collect(ObjectArray<CollectionType1> const& collection1,
+										   ObjectArray<CollectionType2> const& collection2,
+										   ObjectArray<CollectionType3> const& collection3) throw()
+	{
+		const int length = ugen::max(ugen::max(collection1.length(), 
+											   collection2.length()), 
+											   collection3.length());
+		
+		ObjectArray<ObjectType> result(length, false);
+		
+		for(int i = 0; i < length; i++)
+		{
+			result.put(i, ObjectType(collection1.wrapAt(i), 
+									 collection2.wrapAt(i),
+									 collection3.wrapAt(i)));
+		}
+		
+		return result;
+	}
+	
+	template<class CollectionType1, 
+			 class CollectionType2, 
+			 class CollectionType3, 
+			 class CollectionType4>
+	static ObjectArray<ObjectType> collect(ObjectArray<CollectionType1> const& collection1,
+										   ObjectArray<CollectionType2> const& collection2,
+										   ObjectArray<CollectionType3> const& collection3,
+										   ObjectArray<CollectionType4> const& collection4) throw()
+	{
+		const int length = ugen::max(ugen::max(ugen::max(collection1.length(), 
+														 collection2.length()), 
+														 collection3.length()),
+														 collection4.length());
+		
+		ObjectArray<ObjectType> result(length, false);
+		
+		for(int i = 0; i < length; i++)
+		{
+			result.put(i, ObjectType(collection1.wrapAt(i), 
+									 collection2.wrapAt(i),
+									 collection3.wrapAt(i),
+									 collection4.wrapAt(i)));
+		}
+		
+		return result;
+	}
+	
 	ObjectArray<ObjectType> copy() const throw()
 	{
 		const int size = this->size();
@@ -679,16 +761,10 @@ public:
 		}
 	}
 	
-//	static ObjectType& getNull() throw()
-//	{
-//		static ObjectType null;
-//		memset(&null, 0, sizeof(ObjectType)); // not sure about this!
-//		return null;
-//	}
-	
 	static ObjectType& getNull() throw()
 	{
-		static ObjectType null = ObjectType();
+		static ObjectType null;
+		null = ObjectType();
 		return null;
 	}	
 	

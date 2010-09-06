@@ -440,21 +440,21 @@ public:
 	UGen& operator<<= (UGen const& other) throw();
 	
 	/** Create a UGen which contains a particular channel.
-	 @param index The channel number to access, if this is out of range a UGen::null will be returned.
+	 @param index The channel number to access, this is wrapped to ensure it is always in range.
 	 @return the single channel UGen at the index requested.
 	 @see at(), wrapAt(), getChannel()
 	 */
 	UGen operator[] (const int index) const throw();
 	
 	/** Create a UGen which contains particular channels.
-	 @param indices		The channel numbers to access as an IntArray, if an index is out of range a null 
-						UGen will be used instead.
+	 @param indices		The channel numbers to access as an IntArray, these indices are wrapped
+						so that they are always in range.
 	 @return the new UGen at the indices requested.
 	 @see at(), wrapAt(), getChannel(), range() */
 	UGen operator[] (IntArray const& indices) const throw();
 	
 	/** Create a UGen which contains a particular channel.
-	 @param index The channel number to access, if this is out of range a UGen::null will be returned.
+	 @param index The channel number to access, if this is out of range a null UGen will be returned.
 	 @return the single channel UGen at the index requested.
 	 @see UGen::operator[], wrapAt(), getChannel() */
 	UGen at(const int index) const throw();
@@ -835,7 +835,7 @@ public:
 	 
 	 This only works if the UGen contains PlugUGenInternal classes.
 	 
-	 @return The Plug source, or UGen::null if this is not a Plug.
+	 @return The Plug source, or a null UGen if this is not a Plug.
 	 @see Plug */
 	UGen getSource() throw();
 	
@@ -1195,6 +1195,14 @@ public:
 	 @return The number of channels. */
 	inline int getNumChannels()	const throw()								{ return numInternalUGens;															}
 	
+	/** Get the number of channels (i.e., number of internals). 
+	 @return The number of channels. */
+	inline int size()	const throw()										{ return numInternalUGens;															}
+	
+	/** Get the number of channels (i.e., number of internals). 
+	 @return The number of channels. */
+	inline int length()	const throw()										{ return numInternalUGens;															}
+	
 	/** Get one of the internals.
 	 @param		index	The index of the UGenInternal to return.
 	 @return			One of the UGenInternal classes, this will increment the 
@@ -1238,13 +1246,11 @@ public:
 	/// @{
 	
 	/** A null UGen.
-	 Equivalent but more convenient than using the default constructor UGen(). */
-	//static UGen null;
+	 Equivalent but more convenient and efficient than using the default constructor UGen(). */
 	inline static const UGen& getNull() throw() { static UGen null; return null; }
 	
 	/** A control rate null UGen.
-	 Equivalent but more convenient than using the default constructor and a kr() call: UGen().kr() */
-	//static UGen nullKr;
+	 Equivalent but more convenient and efficient than using the default constructor and a kr() call: UGen().kr() */
 	inline static const UGen& getNullKr() throw() { static UGen null = UGen().kr(); return null; }
 	
 	static const int defaultUserData; ///< the default state of the userData member in all UGen instances.
