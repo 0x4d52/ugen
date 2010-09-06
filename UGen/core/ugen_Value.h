@@ -54,7 +54,9 @@ class ValueBaseInternal : public SmartPointer
 public:	
 	/** Evaluate the value. @return The value as a double. */
 	virtual double getValue() throw() = 0;
-		
+	
+	/** Set the current value. */
+	virtual void setValue(const double newValue) throw() = 0;
 };
 
 /** An internal value class with a constant value.
@@ -67,9 +69,10 @@ public:
 	ValueInternal(double value = 0.0) throw();
 	/** Return the value. @return The value. */
 	double getValue() throw(); 
+	void setValue(const double newValue) throw();
 
 private:	
-	const double value_;
+	double value_;
 	
 	ValueInternal (const ValueInternal&);
     const ValueInternal& operator= (const ValueInternal&);
@@ -149,8 +152,12 @@ public:
 	/** Evaluate the value. @return The value as a double. */
 	inline double getValue() throw() { return internal ? internal->getValue() : 0.0; } 
 	
+	/** Set the current value. */
+	inline void setValue(const double newValue) throw() { if(internal) internal->setValue(newValue); } 
+	
 	/** A null value (equal to 0.0) */
-	static Value null;
+	inline static Value& getNull() { static Value null; null = 0.0; return null; }
+	//static Value null;
 	
 	/// @} <!-- end Values -------------------------------------------------------- -->
 	
@@ -243,6 +250,7 @@ class RandomValueBaseInternal : public ValueBaseInternal
 {
 public:
 	RandomValueBaseInternal();
+	void setValue(const double newValue) throw();
 	
 protected:
 	Ran088 random;
@@ -370,6 +378,8 @@ public:
 	bool checkLoop() throw();
 	
 	/// @} <!-- end Tests ------------------------- -->
+	
+	void setValue(const double newValue) throw();
 	
 protected:
 	Value start_;

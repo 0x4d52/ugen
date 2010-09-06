@@ -53,6 +53,11 @@ double ValueInternal::getValue() throw()
 	return value_; 
 }
 
+void ValueInternal::setValue(const double newValue) throw()
+{
+	value_ = newValue;
+}
+
 Value::Value() throw()
 :	internal(new ValueInternal(0.0))  
 {
@@ -160,13 +165,18 @@ Value& Value::operator/= (Value const& other) throw()
 	return *this;
 }
 
-Value Value::null = 0.0;
+//Value Value::null = 0.0;
 
 #ifndef UGEN_NOEXTGPL
 
 RandomValueBaseInternal::RandomValueBaseInternal()
 : random(Ran088::defaultGenerator().next()) 
 { 
+}
+
+void RandomValueBaseInternal::setValue(const double newValue) throw()
+{
+	random.setSeed(newValue);
 }
 
 RandomDoubleRangeValueInternal::RandomDoubleRangeValueInternal(Value const& lo, Value const& hi) throw()
@@ -346,6 +356,11 @@ bool SequenceValueInternal::checkLoop() throw()
 	}
 	
 	return loopedThisTime;
+}
+
+void SequenceValueInternal::setValue(const double newValue) throw()
+{
+	currentValue = newValue;
 }
 
 SeriesValueInternal::SeriesValueInternal(Value const& start, Value const& grow) throw()
@@ -633,21 +648,21 @@ void ValueArray::put(const int index, Value const& item) throw()
 
 Value& ValueArray::operator[] (const int index) const throw()
 {
-	if(internal == 0 || index < 0 || index >= internal->size_) return Value::null;
+	if(internal == 0 || index < 0 || index >= internal->size_) return Value::getNull();
 	
 	return internal->array[index];
 }
 
 Value& ValueArray::at(const int index) const throw()
 {
-	if(internal == 0 || index < 0 || index >= internal->size_) return Value::null;
+	if(internal == 0 || index < 0 || index >= internal->size_) return Value::getNull();
 	
 	return internal->array[index];
 }
 
 Value& ValueArray::wrapAt(const int index) const throw()
 {
-	if(internal == 0) return Value::null;
+	if(internal == 0) return Value::getNull();
 	
 	int indexToUse = index;
 	while(indexToUse < 0)
@@ -658,14 +673,14 @@ Value& ValueArray::wrapAt(const int index) const throw()
 
 Value& ValueArray::first() const throw()
 {
-	if(internal == 0) return Value::null;
+	if(internal == 0) return Value::getNull();
 	
 	return internal->array[0];
 }
 
 Value& ValueArray::last() const throw()
 {
-	if(internal == 0) return Value::null;
+	if(internal == 0) return Value::getNull();
 	
 	return internal->array[internal->size_ - 1];
 }
