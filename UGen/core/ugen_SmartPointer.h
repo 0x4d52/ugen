@@ -91,7 +91,17 @@ public:
 		return internal;
 	}
 	
+	inline SmartPointerType* operator-> () throw() 
+	{
+		return internal;
+	}
+	
 	inline const SmartPointerType* getInternal() const throw() 
+	{
+		return internal;
+	}
+	
+	inline const SmartPointerType* operator-> () const throw() 
 	{
 		return internal;
 	}
