@@ -41,22 +41,30 @@
 
 //typedef CharArray Text;
 
+/** A class for storing and manipulating text strings.
+ Similar to std:string and juce::String this is UGen++'s default text format. 
+ Internally Text is just a null terminated C string (array of chars) and is just
+ a specialised versio of CharArray or NumericalArra<char>. */
 class Text : public CharArray
 {
 public:
 	static const char space;
 	static const Text empty;
 	
+	/** Creates an emply text string. */
 	Text() throw();
 	
+	/** Creates a text string containing a single character. */
 	Text(const char c) throw();
 		
+	/** Copy numerical values from another numerical array type to a new Text string. */
 	template<class CopyType>
 	Text(NumericalArray<CopyType> const& copy) throw()
 	:	CharArray(copy)
 	{
 	}
 	
+	/** Copy values from another array type to a new Text string. */
 	template<class CopyType>
 	Text(ObjectArray<CopyType> const& copy) throw()
 	:	CharArray(copy)
@@ -64,14 +72,19 @@ public:
 	}
 	
 #if defined(JUCE_VERSION) || defined(DOXYGEN)
+	/** Copy a Juce string to a Text string. */
 	Text(String const& string) throw();
+	
+	/* Cast a Text stirng to a Juce String. */
 	operator String () const throw();
 #endif
 		
+	/** Create a Text string from a wide char string. */
 	Text(const wchar_t* string) throw();
 	
 	ObjectArrayAssignmentDefinition(Text, char);
 	
+	/** Concatentate two Text strings into one. */
 	Text(Text const& array0, Text const& array1) throw();
 		
 	Text(NumericalArraySpec const& spec) throw();
@@ -81,6 +94,10 @@ public:
 	static Text fromValue(const int num) throw();
 
 	Text& operator= (CharArray const& other) throw();
+	
+	Text operator+ (Text const& rightOperand) const throw();
+	Text offset(Text const& rightOperand) const throw();
+	Text& add(Text const& other) throw();
 	
 	Text(const char* nullTerminatedSourceArray);
 	Text(const int size, const char* sourceArray, const bool needsNullTermination = false);

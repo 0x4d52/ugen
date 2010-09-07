@@ -2605,7 +2605,7 @@ void BufferSender::removeBufferReceiver(BufferReceiver* const receiver) throw()
 {
 	if(receiver == 0) { ugen_assertfalse; return; }
 	
-	receivers = receivers.remove(receiver);
+	receivers = receivers.removeItem(receiver);
 }
 
 void BufferSender::sendBuffer(Buffer const& buffer, const double value1, const int value2) throw()

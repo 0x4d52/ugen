@@ -118,7 +118,7 @@ public:
 		size_ = newSize;
 		array = newArray;
 	}
-	
+		
 	inline void remove(const int index) throw()
 	{		
 		if(index < 0 || index >= size_) return;
@@ -197,7 +197,18 @@ private:
 		return operator= (Base<Type>(*this, other));					\
 	}
 
+/** This is the base class for arrays in UGen++.
+ You can pass ObjectArray instances around relatively efficiently since copies
+ simply refer to the same (reference counted) internal data.
 
+ This is particulary useful for storing arrays of other reference counted objects
+ e.g., Buffer or even UGen. It should work on all types. For numerical types it 
+ may be more convenient to use NumericalArray (which is a subclass of ObjectArray)
+ since it includes numerical operations on the arrays. Use Text for text strings.
+ 
+ Some earlier implementations of built-in array types don't yet use this (e.g., UGenArray) but
+ it is reasonably trivial to convert to/from ObjectArray versions if needed.  The neural network
+ code makes significant use of them. */
 template<class ObjectType>
 class ObjectArray :	public SmartPointerContainer< ObjectArrayInternal<ObjectType> >
 {
@@ -219,24 +230,33 @@ public:
 		const bool valid;
 	};
 	
-	
+	/** Creates an empty array. */
 	ObjectArray() throw()
 	:	SmartPointerContainer< ObjectArrayInternal<ObjectType> > //(0)
 		(new ObjectArrayInternal<ObjectType>(0, false))
 	{
 	}
-		
+	
+	/** Creates an array with a particular size/length.
+	 @param size The total number of elements in the array.
+	 @param needsNullTermination If true the last element will be used as a null terminator 
+								 (e.g., for C strings but can be used for other purposes. */
 	ObjectArray(const int size, const bool needsNullTermination) throw()
 	:	SmartPointerContainer< ObjectArrayInternal<ObjectType> >
 			(new ObjectArrayInternal<ObjectType>(size, needsNullTermination))
 	{
 	}
 	
+	/** Returns an empty array with a given size.
+	 The array will NOT be a null terminated type. */
 	static ObjectArray<ObjectType> withSize(const int size) throw()
 	{
 		return ObjectArray<ObjectType>(size, false);
 	}	
 	
+	/** Wraps an existing array in an ObjectArray.
+	 @warning This does NOT copy the data so take care that the array passed in
+			  does not get deallocated before the ObjectArray that uses it. */
 	ObjectArray(const int size, ObjectType *dataToUse, const bool needsNullTermination = false) throw()
 	:	SmartPointerContainer< ObjectArrayInternal<ObjectType> >
 			(new ObjectArrayInternal<ObjectType>(size, dataToUse, needsNullTermination))
@@ -249,11 +269,15 @@ public:
 //	{
 //	}
 	
+	/** Copy constructor.
+	 Note that a deep copy is not made, the copy will refer to exactly the same data. */
 	ObjectArray(ObjectArray<ObjectType> const& copy) throw()
 	:	SmartPointerContainer< ObjectArrayInternal<ObjectType> >(copy)
 	{
 	}
 	
+	/** Create a copy of another array.
+	 You need to be sure that the other array type can be casted to the type of this array. */
 	template<class CopyType>
 	ObjectArray(ObjectArray<CopyType> const& copy) throw()
 	:	SmartPointerContainer< ObjectArrayInternal<ObjectType> >
@@ -266,6 +290,8 @@ public:
 		}
 	}
 	
+	/** Collect a new array based on the contents of another array.
+	 Each element in turn is passed to the new object's constructor. */
 	template<class CollectionType>
 	static ObjectArray<ObjectType> collect(ObjectArray<CollectionType> const& collection) throw()
 	{
@@ -348,6 +374,9 @@ public:
 		return result;
 	}
 	
+	/** Creates a deep copy of the array.
+	 Note that items themselves are not deep-copied so reference counted
+	 objects will still refer to the same objects. */
 	ObjectArray<ObjectType> copy() const throw()
 	{
 		const int size = this->size();
@@ -362,6 +391,7 @@ public:
 		return newArray;
 	}
 	
+	/** Create an array with a single item. */
 	ObjectArray(ObjectType const& single) throw()
 	:	SmartPointerContainer< ObjectArrayInternal<ObjectType> >
 		(new ObjectArrayInternal<ObjectType>(1, false))
@@ -392,7 +422,8 @@ public:
 		if(i02.valid) thisArray[ 2] = i02.object; else return;
 		if(i03.valid) thisArray[ 3] = i03.object; else return;
 	}
-		
+	
+	/** Concatenate two arrays into one. */
 	ObjectArray(ObjectArray<ObjectType> const& array0, 
 				ObjectArray<ObjectType> const& array1) throw()
 	{
@@ -444,39 +475,31 @@ public:
 	inline int memorySize() const throw() 
 	{ return this->getInternal() == 0 ? 0 : this->getInternal()->size() * sizeof(ObjectType); }
 	
+	/** Returns a pointer to the raw array. */
 	inline ObjectType* getArray() throw() 
 	{ ugen_assert(this->getInternal()); return this->getInternal() == 0 ? 0 : this->getInternal()->getArray(); }
 	
+	/** Returns a pointer to the raw array for read-only ops. */
 	inline const ObjectType* getArray() const throw() 
 	{ ugen_assert(this->getInternal()); return this->getInternal() == 0 ? 0 : this->getInternal()->getArray(); }
 	
+	/** Returns a pointer to the raw array for read-only ops. */
 	inline operator const ObjectType*() const throw() { return this->getArray(); }
+	/** Returns a pointer to the raw array. */
 	inline operator ObjectType*() throw() { return this->getArray(); }
 	
-//	template<class ReturnType>
-//	inline operator const ReturnType*() const throw() 
-//	{ 
-//		printf("const cast\n");
-//		return (const ReturnType*)this->getArray(); 
-//	}
-//	
-//	template<class ReturnType>
-//	inline operator ReturnType*() throw() 
-//	{ 
-//		printf("non const cast\n");
-//		return (ReturnType*)this->getArray(); 
-//	}
-	
+	/** Returns whether this is a null terminated array or not. */
 	inline bool isNullTerminated() const throw()
 	{ ugen_assert(this->getInternal()); return this->getInternal() == 0 ? false : this->getInternal()->isNullTerminated(); }
 	
+	/** Changes this array's null terminator flag. */
 	inline void setNullTerminated(const bool state) throw()
 	{ ugen_assert(this->getInternal()); if(this->getInternal() != 0) this->getInternal()->setNullTerminated(state); }
 	
 	ObjectArrayConcatOperatorsDefine(ObjectArray, ObjectType);
 	
 	/** Adds an item in place. */
-	void add(ObjectType const& item) throw()
+	ObjectArray<ObjectType>& add(ObjectType const& item) throw()
 	{ 
 		if(this->getInternal() != 0)
 		{
@@ -487,18 +510,24 @@ public:
 			this->setInternal(new ObjectArrayInternal<ObjectType>(1, false));
 			this->put(0, item);
 		}
+		
+		return *this;
 	}
 	
 	/** Adds several items in place. */
-	void add(ObjectArray<ObjectType> const& other) throw()
+	ObjectArray<ObjectType>& add(ObjectArray<ObjectType> const& other) throw()
 	{
 		const int length = other.length();
 		for(int i = 0; i < length; i++)
 		{
 			add(other[i]);
 		}
+		
+		return *this;
 	}
 	
+	/** Removes an item at the given index. 
+	 Indices out of range will be ignored.*/
 	void remove(const int index) throw()
 	{ 
 		if(this->getInternal() != 0)
@@ -507,6 +536,8 @@ public:
 		}
 	}
 	
+	/** Places an item at the given index. 
+	 Indices out of range will be ignored. */
 	void put(const int index, ObjectType const& item) throw()
 	{
 		if(this->getInternal() == 0 || index < 0 || index >= this->size()) 
@@ -517,6 +548,9 @@ public:
 		this->getArray()[index] = item;
 	}
 	
+	/** Returns a reference to an item at the specified index. 
+	 If you are not sure about the index being in range check for the object being "null" as a
+	 separate internal null value may have been returned instead. */
 	ObjectType& operator[] (const int index) throw()
 	{
 		if(this->getInternal() == 0 || index < 0 || index >= this->size()) 
@@ -527,6 +561,9 @@ public:
 			return this->getArray()[index];
 	}
 	
+	/** Returns a reference to an item at the specified index. 
+	 If you are not sure about the index being in range check for the object being "null" as a
+	 separate internal null value may have been returned instead. */	
 	const ObjectType& operator[] (const int index) const throw()
 	{
 		if(this->getInternal() == 0 || index < 0 || index >= this->size()) 
@@ -537,6 +574,9 @@ public:
 			return this->getArray()[index];
 	}
 	
+	/** Returns a reference to an item at the specified index. 
+	 If you are not sure about the index being in range check for the object being "null" as a
+	 separate internal null value may have been returned instead. */	
 	ObjectType& at (const int index) throw()
 	{
 		if(this->getInternal() == 0 || index < 0 || index >= this->size()) 
@@ -547,6 +587,9 @@ public:
 			return this->getArray()[index];
 	}
 	
+	/** Returns a reference to an item at the specified index. 
+	 If you are not sure about the index being in range check for the object being "null" as a
+	 separate internal null value may have been returned instead. */	
 	const ObjectType& at (const int index) const throw()
 	{
 		if(this->getInternal() == 0 || index < 0 || index >= this->size()) 
@@ -557,6 +600,7 @@ public:
 			return this->getArray()[index];
 	}
 	
+	/** Returns a new array by iterating through an array of indices provided.  */
 	ObjectArray<ObjectType> at (ObjectArray<int> const& indices) const throw()
 	{
 		if(this->getInternal() == 0) { return *this; }
@@ -582,6 +626,7 @@ public:
 		return result;
 	}
 
+	/** Returns a new array by iterating through an array of indices provided.  */
 	ObjectArray<ObjectType> atUnchecked (ObjectArray<int> const& indices) const throw()
 	{		
 		ugen_assert(this->getInternal() != 0);
@@ -607,18 +652,26 @@ public:
 	}
 	
 	
+	/** Returns a reference to an itemn at the specified index. 
+	 You must make sure that the array index is in range when using this version. */		
 	ObjectType& atUnchecked (const int index) throw()
 	{
 		ugen_assert(this->getInternal() != 0);
 		return this->getInternal()->getArray()[index];
 	}
 
+	/** Returns a refernce to an itemn at the specified index. 
+	 You must make sure that the array index is in range when using this version. */		
 	const ObjectType& atUnchecked (const int index) const throw()
 	{
 		ugen_assert(this->getInternal() != 0);
 		return this->getInternal()->getArray()[index];
 	}	
 	
+	/** Returns a reference to an item at the specified index. 
+	 If the index is out of range it will be wrapped in-range. For example, if
+	 the array size is 10 and the index requested is 12, wrapAt() will return
+	 the item at index 2, if the index is -1 the item returned will be at index 9 and so on. */		
 	ObjectType& wrapAt (const int index) throw()
 	{
 		if(this->getInternal() == 0 || this->size() == 0) { return getNull(); }
@@ -630,6 +683,10 @@ public:
 		return this->getArray()[(unsigned int)indexToUse % (unsigned int)this->size()];
 	}
 	
+	/** Returns a reference to an item at the specified index. 
+	 If the index is out of range it will be wrapped in-range. For example, if
+	 the array size is 10 and the index requested is 12, wrapAt() will return
+	 the item at index 2, if the index is -1 the item returned will be at index 9 and so on. */			
 	const ObjectType& wrapAt (const int index) const throw()
 	{
 		if(this->getInternal() == 0 || this->size() == 0) { return getNull(); }
@@ -641,6 +698,8 @@ public:
 		return this->getArray()[(unsigned int)indexToUse % (unsigned int)this->size()];
 	}
 		
+	/** Returns the first item in the array.
+	 If the array is empty it returns a "null" ersion of the object. */
 	ObjectType& first () throw()
 	{
 		if(this->getInternal() == 0 || this->size() == 0) 
@@ -651,6 +710,8 @@ public:
 			return this->getArray()[0];
 	}
 	
+	/** Returns the first item in the array.
+	 If the array is empty it returns a "null" ersion of the object. */
 	const ObjectType& first () const throw()
 	{
 		if(this->getInternal() == 0 || this->size() == 0) 
@@ -661,6 +722,8 @@ public:
 			return this->getArray()[0];
 	}
 	
+	/** Returns the last item in the array.
+	 If the array is empty it returns a "null" ersion of the object. */
 	ObjectType& last () throw()
 	{
 		if(this->getInternal() == 0 || this->size() == 0) 
@@ -671,6 +734,8 @@ public:
 			return this->getArray()[this->size() - 1];
 	}
 	
+	/** Returns the last item in the array.
+	 If the array is empty it returns a "null" ersion of the object. */
 	const ObjectType& last () const throw()
 	{
 		if(this->getInternal() == 0 || this->size() == 0) 
@@ -679,6 +744,9 @@ public:
 			return this->getArray()[this->size() - 1];
 	}
 	
+	/** Returns an item from the array chosen at random.
+	 The weighting for the random choice should be roughtly equally distributed.
+	 If the array is empty it returns a "null" ersion of the object. */
 	ObjectType& choose () throw()
 	{
 		if(this->getInternal() == 0 || this->size() == 0) 
@@ -689,6 +757,9 @@ public:
 			return this->getArray()[rand(this->length())];
 	}
 	
+	/** Returns an item from the array chosen at random.
+	 The weighting for the random choice should be roughtly equally distributed.
+	 If the array is empty it returns a "null" ersion of the object. */	
 	const ObjectType& choose () const throw()
 	{
 		if(this->getInternal() == 0 || this->size() == 0) 
@@ -699,6 +770,14 @@ public:
 			return this->getArray()[rand(this->length())];
 	}
 	
+	/** Returns an item from the array using a weighted random choice.
+	 This chooses an item in the array at random using another array as weights.
+	 For example, if an array has 4 items and the weight array is @c IntArray(40, 30, 20, 10)
+	 The item at index 0 has a 40% chance, index 1 a 30% chance and so on. The scale of the weights is
+	 arbitrary (i.e., they do not need to sum to any particular value, 100 was chosen in the example
+	 above to make explanation easier).
+	 @param weights The weights array which can be any numerical type of array.
+	 If the array is empty it returns a "null" ersion of the object. */
 	template<class WeightType>
 	ObjectType& wchoose (ObjectArray<WeightType> const& weights) throw()
 	{
@@ -730,6 +809,14 @@ public:
 		}
 	}
 	
+	/** Returns an item from the array using a weighted random choice.
+	 This chooses an item in the array at random using another array as weights.
+	 For example, if an array has 4 items and the weight array is @c IntArray(40, 30, 20, 10)
+	 The item at index 0 has a 40% chance, index 1 a 30% chance and so on. The scale of the weights is
+	 arbitrary (i.e., they do not need to sum to any particular value, 100 was chosen in the example
+	 above to make explanation easier).
+	 @param weights The weights array which can be any numerical type of array.
+	 If the array is empty it returns a "null" ersion of the object. */	
 	template<class WeightType>
 	const ObjectType& wchoose (ObjectArray<WeightType> const& weights) const throw()
 	{
@@ -768,6 +855,7 @@ public:
 		return null;
 	}	
 	
+	/** Compares whether the contents of two arrays are the same. */
 	bool operator== (ObjectArray<ObjectType> const& other) const throw()
 	{
 		const int size = this->size();
@@ -787,6 +875,7 @@ public:
 		return true;
 	}
 	
+	/** Compares whether the contents of two arrays are the same. */
 	bool operator== (const ObjectType* otherArray) const throw()
 	{		
 		ugen_assert(otherArray != 0);
@@ -803,16 +892,19 @@ public:
 		return true;
 	}
 	
+	/** Compares whether the contents of two arrays are the different. */
 	bool operator!= (ObjectArray<ObjectType> const& other) const throw()
 	{
 		return !operator== (other);
 	}
 	
+	/** Compares whether the contents of two arrays are the different. */
 	bool operator!= (const ObjectType* otherArray) const throw()
 	{
 		return !operator== (otherArray);
 	}
 	
+	/** Returns whether the array contains a particular item. */
 	bool contains (ObjectType const& itemToSearchFor) const throw()
 	{
 		const ObjectType *array = this->getArray();
@@ -830,6 +922,8 @@ public:
 		return false;
 	}
 		
+	/** Returns whether the array contains one or more other items. 
+	 @param itemsToSearchFor The array of other items. */
 	bool contains (ObjectArray<ObjectType> const& itemsToSearchFor) const throw()
 	{
 		const ObjectType *array = this->getArray();
@@ -869,7 +963,11 @@ public:
 		
 		return false;
 	}
-		
+	
+	/** Gets the index of a particular item.
+	 @param itemToSearchFor The item to search for.
+	 @param startIndex The start index for the search (useful if iterating over the array to find several items).
+	 @return The index of the item or -1 if it is not found. */
 	int indexOf (ObjectType const& itemToSearchFor, const int startIndex = 0) const throw()
 	{
 		const ObjectType *array = this->getArray();
@@ -953,21 +1051,29 @@ public:
 		return -1;
 	}
 	
+	/** Return an array which is a subarray of this one. 
+	 @return An array from startIndex to the end of the array. */
 	ObjectArray<ObjectType> from(const int startIndex) const throw()
 	{
 		return range(startIndex);
 	}
 	
+	/** Return an array which is a subarray of this one. 
+	 @return An array from startIndex (inclusive) to the end of the array. */
 	ObjectArray<ObjectType> range(const int startIndex) const throw()
 	{
 		return this->range(startIndex, 0x7fffffff);
 	}
 	
+	/** Return an array which is a subarray of this one. 
+	 @return An array from startIndex (inclusive) to the end of the array. */
 	ObjectArray<ObjectType> to(const int endIndex) const throw()
 	{
 		return range(0, endIndex);
 	}
 	
+	/** Return an array which is a subarray of this one. 
+	 @return An array from startIndex (inclusive) to endIndex (exclusive). */
 	ObjectArray<ObjectType> range(const int startIndex, const int endIndex) const throw()
 	{
 		const int size = this->size();
@@ -1001,6 +1107,8 @@ public:
 		return result;
 	}
 	
+	/** Perform a find and replace on the array and return the result.
+	 All occurrences of @c find are replaced with @c substitute. */
 	ObjectArray<ObjectType> replace(ObjectArray<ObjectType> const& find, ObjectArray<ObjectType> const& substitute) const throw()
 	{
 		const int size = this->size();
@@ -1022,7 +1130,8 @@ public:
 		return result;
 	}
 	
-	ObjectArray<ObjectType> remove(const ObjectType item) const throw()
+	/** Return an array with a particular item removed. */
+	ObjectArray<ObjectType> removeItem(const ObjectType item) const throw()
 	{
 		const ObjectType *array = this->getArray();
 		
@@ -1041,7 +1150,8 @@ public:
 		return result;
 	}
 	
-	ObjectArray<ObjectType> remove(ObjectArray<ObjectType> const& items) const throw()
+	/** Return an array with particular items removed. */
+	ObjectArray<ObjectType> removeItems(ObjectArray<ObjectType> const& items) const throw()
 	{
 		const ObjectType *array = this->getArray();
 		
@@ -1060,7 +1170,7 @@ public:
 		return result;
 	}
 	
-	
+	/** Group this array into a 2D array with a particular group size. */
 	ObjectArray<ObjectArray<ObjectType> > group(const int groupSize) const throw()
 	{
 		const int length = this->length();
@@ -1304,6 +1414,7 @@ public:
 	{
 	}	
 	
+private:
 	static void roundCopy(const double inValue, char& outValue) throw()
 	{
 		outValue = char(inValue+0.5);
@@ -1329,6 +1440,7 @@ public:
 		outValue = inValue;
 	}	
 	
+public:
 	template<class CopyType>
 	NumericalArray(NumericalArray<CopyType> const& copy) throw()
 	:	ObjectArray<NumericalType>(copy.size(), copy.isNullTerminated())
@@ -1679,6 +1791,7 @@ public:
 	{
 	}
 
+private:
 	static int countValidInitialisers(InitialNumber const& i03) throw()
 	{
 		int size = 3;
@@ -1687,7 +1800,8 @@ public:
 
 		return size;
 	}	
-	
+
+public:
 	NumericalArray(InitialNumber const &i00,
 				   InitialNumber const &i01,
 				   InitialNumber const &i02,
@@ -1702,6 +1816,7 @@ public:
 		if(i03.valid) thisArray[ 3] = i03.value; else return;
 	}
 	
+private:
 	static int countValidInitialisers(InitialNumber const &i05,
 									  InitialNumber const &i06,
 									  InitialNumber const &i07) throw()
@@ -1715,6 +1830,7 @@ public:
 		return size;
 	}
 	
+public:
 	NumericalArray(InitialNumber const &i00,
 				   InitialNumber const &i01,
 				   InitialNumber const &i02,
@@ -1738,6 +1854,7 @@ public:
 		if(i07.valid) thisArray[ 7] = i07.value; else return;
 	}
 	
+private:
 	static int countValidInitialisers(InitialNumber const &i09,
 									  InitialNumber const &i10,
 									  InitialNumber const &i11,
@@ -1759,6 +1876,7 @@ public:
 		return size;
 	}
 
+public:
 	NumericalArray(InitialNumber const &i00,
 				   InitialNumber const &i01,
 				   InitialNumber const &i02,
@@ -1798,6 +1916,7 @@ public:
 		if(i15.valid) thisArray[15] = i15.value; else return;
 	}
 	
+private:
 	static int countValidInitialisers(InitialNumber const &i17,
 									  InitialNumber const &i18,
 									  InitialNumber const &i19,
@@ -1835,6 +1954,7 @@ public:
 		return size;
 	}
 
+public:
 	NumericalArray(InitialNumber const &i00,
 				   InitialNumber const &i01,
 				   InitialNumber const &i02,
@@ -2057,7 +2177,7 @@ public:
 			const int size = this->size();
 			for(int i = 0; i < size; i++)
 			{
-				array[i] = 0;
+				array[i] = (NumericalType)0;
 			}
 		}		
 	}

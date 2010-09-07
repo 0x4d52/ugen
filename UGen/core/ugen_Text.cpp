@@ -116,6 +116,29 @@ Text& Text::operator= (CharArray const& other) throw()
 	return operator= (static_cast<Text const&> (other) );
 }	
 
+Text Text::operator+ (Text const& rightOperand) const throw()
+{
+	return operator<< (rightOperand);
+}
+
+Text Text::offset(Text const& rightOperand) const throw()
+{
+	CharArray left = *this;
+	CharArray right = rightOperand;
+	return left + right;
+}
+
+Text& Text::add(Text const& other) throw()
+{
+	const int length = other.length();
+	for(int i = 0; i < length; i++)
+	{
+		CharArray::add(other[i]);
+	}
+	
+	return *this;
+}
+
 Text::Text(const char* nullTerminatedSourceArray)
 :	CharArray(nullTerminatedSourceArray)
 {
@@ -261,7 +284,7 @@ const Text& Text::getAlphabetAndDigits() throw()
 
 const Text& Text::getPunctuation() throw()
 {
-	static const Text t = Text::getPrintable().remove(Text::getAlphabetAndDigits()).remove(Text(Text::space));
+	static const Text t = Text::getPrintable().removeItems(Text::getAlphabetAndDigits()).removeItem(Text::space);
 	return t;
 }
 
