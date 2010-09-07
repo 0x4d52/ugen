@@ -896,7 +896,7 @@
 <a name="l00864"></a>00864     }
 <a name="l00865"></a>00865 }
 <a name="l00866"></a>00866 
-<a name="l00867"></a>00867 <span class="keywordtype">void</span> <a class="code" href="class_envelope_component.html#ad8398a24cb107f94536278315d7cf669">EnvelopeComponent::setLegendText</a>(<a class="code" href="class_text.html">Text</a> <span class="keyword">const</span>&amp; legendText)
+<a name="l00867"></a>00867 <span class="keywordtype">void</span> <a class="code" href="class_envelope_component.html#ad8398a24cb107f94536278315d7cf669">EnvelopeComponent::setLegendText</a>(<a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <span class="keyword">const</span>&amp; legendText)
 <a name="l00868"></a>00868 {
 <a name="l00869"></a>00869  <a class="code" href="class_envelope_container_component.html">EnvelopeContainerComponent</a>* container = 
 <a name="l00870"></a>00870   dynamic_cast &lt;<a class="code" href="class_envelope_container_component.html">EnvelopeContainerComponent</a>*&gt; (getParentComponent());
@@ -1307,7 +1307,7 @@
 <a name="l01275"></a>01275   <span class="keywordflow">return</span> colours[which]; 
 <a name="l01276"></a>01276 }
 <a name="l01277"></a>01277 
-<a name="l01278"></a>01278 <a class="code" href="class_envelope_legend_component.html#a971b8aeaa2ecac05275d3ad7c9ca3596">EnvelopeLegendComponent::EnvelopeLegendComponent</a>(<a class="code" href="class_text.html">Text</a> <span class="keyword">const</span>&amp; _defaultText)
+<a name="l01278"></a>01278 <a class="code" href="class_envelope_legend_component.html#a971b8aeaa2ecac05275d3ad7c9ca3596">EnvelopeLegendComponent::EnvelopeLegendComponent</a>(<a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <span class="keyword">const</span>&amp; _defaultText)
 <a name="l01279"></a>01279 : defaultText(_defaultText)
 <a name="l01280"></a>01280 {
 <a name="l01281"></a>01281  addAndMakeVisible(text = <span class="keyword">new</span> Label(<a class="code" href="ugen___standard_header_8h.html#a5ef253115820acf7d27f3c5c3b02a0f0">T</a>(<span class="stringliteral">&quot;legend&quot;</span>), defaultText));
@@ -1345,7 +1345,7 @@
 <a name="l01313"></a>01313  text-&gt;setColour(Label::textColourId, textColour);
 <a name="l01314"></a>01314 }
 <a name="l01315"></a>01315 
-<a name="l01316"></a>01316 <span class="keywordtype">void</span> <a class="code" href="class_envelope_legend_component.html#a96927fe1d56303b9e407e3fcf9957401">EnvelopeLegendComponent::setText</a>(<a class="code" href="class_text.html">Text</a> <span class="keyword">const</span>&amp; legendText)
+<a name="l01316"></a>01316 <span class="keywordtype">void</span> <a class="code" href="class_envelope_legend_component.html#a96927fe1d56303b9e407e3fcf9957401">EnvelopeLegendComponent::setText</a>(<a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <span class="keyword">const</span>&amp; legendText)
 <a name="l01317"></a>01317 {
 <a name="l01318"></a>01318  text-&gt;setText(legendText, <span class="keyword">false</span>);
 <a name="l01319"></a>01319  repaint();
@@ -1357,7 +1357,7 @@
 <a name="l01325"></a>01325  repaint();
 <a name="l01326"></a>01326 }
 <a name="l01327"></a>01327 
-<a name="l01328"></a>01328 <a class="code" href="class_envelope_container_component.html#a15994cc96e389e6f56dd7c2b6228dc9a">EnvelopeContainerComponent::EnvelopeContainerComponent</a>(<a class="code" href="class_text.html">Text</a> <span class="keyword">const</span>&amp; defaultText)
+<a name="l01328"></a>01328 <a class="code" href="class_envelope_container_component.html#a15994cc96e389e6f56dd7c2b6228dc9a">EnvelopeContainerComponent::EnvelopeContainerComponent</a>(<a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <span class="keyword">const</span>&amp; defaultText)
 <a name="l01329"></a>01329 {
 <a name="l01330"></a>01330  addAndMakeVisible(legend = <span class="keyword">new</span> <a class="code" href="class_envelope_legend_component.html">EnvelopeLegendComponent</a>(defaultText));
 <a name="l01331"></a>01331  addAndMakeVisible(<a class="code" href="class_envelope_container_component.html#a0f7fb7ce360823f72c3849d776e73113">envelope</a> = <span class="keyword">new</span> <a class="code" href="class_envelope_component.html">EnvelopeComponent</a>());
@@ -1703,7 +1703,7 @@
 <a name="l01671"></a>01671 
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:58 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:51 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

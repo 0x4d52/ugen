@@ -900,7 +900,7 @@
 <a name="l00868"></a>00868  }
 <a name="l00869"></a>00869 }
 <a name="l00870"></a>00870 
-<a name="l00871"></a>00871 <span class="keywordtype">void</span> <a class="code" href="class_scope_view.html#a4f39340cf22c2b522087df1a3a46c776">ScopeView::paintChannelLabel</a>(CGRect <span class="keyword">const</span>&amp; rect, <a class="code" href="class_text.html">Text</a> <span class="keyword">const</span>&amp; label, <span class="keyword">const</span> <span class="keywordtype">int</span> index, <span class="keyword">const</span> <span class="keywordtype">int</span> top) <span class="keywordflow">throw</span>()
+<a name="l00871"></a>00871 <span class="keywordtype">void</span> <a class="code" href="class_scope_view.html#a4f39340cf22c2b522087df1a3a46c776">ScopeView::paintChannelLabel</a>(CGRect <span class="keyword">const</span>&amp; rect, <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <span class="keyword">const</span>&amp; label, <span class="keyword">const</span> <span class="keywordtype">int</span> index, <span class="keyword">const</span> <span class="keywordtype">int</span> top) <span class="keywordflow">throw</span>()
 <a name="l00872"></a>00872 {
 <a name="l00873"></a>00873  <span class="keywordflow">if</span>(labelChannels)
 <a name="l00874"></a>00874  {
@@ -1022,7 +1022,7 @@
 <a name="l00990"></a>00990    <span class="keywordtype">float</span> oldMaximum = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#acb0d2d9159eff0b1d0fe99ae10257de0" title="Global function for the UGen::clip2() binary operator.">clip2</a>(maxDrawBuffer.wrapAt(channel, 0 + wrapOffset), yMaximum) * halfChannelHeightOverYMaximum + 0.5f;
 <a name="l00991"></a>00991 
 <a name="l00992"></a>00992    
-<a name="l00993"></a>00993    <span class="keyword">const</span> <span class="keywordtype">double</span> delta = getDelta() * sine.size();
+<a name="l00993"></a>00993    <span class="keyword">const</span> <span class="keywordtype">double</span> delta = getDelta() * sine.<a class="code" href="class_u_gen.html#ac5c9c85267c0ad69f78063d9ace1b96c" title="Get the number of channels (i.e., number of internals).">size</a>();
 <a name="l00994"></a>00994    <span class="keywordtype">double</span> position = delta;
 <a name="l00995"></a>00995    
 <a name="l00996"></a>00996    <span class="comment">// first scope line</span>
@@ -1243,7 +1243,7 @@
 <a name="l01211"></a>01211 <span class="comment"> */</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:58 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:51 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

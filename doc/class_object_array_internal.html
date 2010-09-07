@@ -56,6 +56,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_array_internal.html#a68bf2883a78d7f3213a2f2e3423a4081">isNullTerminated</a> () const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_array_internal.html#a63334bc9dfea6f6853350985d6209e1f">setNullTerminated</a> (const bool state)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_array_internal.html#aa694b99534b0fecbbce5d312ecf23f55">add</a> (ObjectType const &amp;item)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_array_internal.html#afd27288cf49deab4de14924e2cae69cd">remove</a> (const int index)  throw ()</td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_array_internal.html#ab692f7b70adf64e8cd1ead9d06f4baae">ObjectArrayInternal</a> ()</td></tr>
@@ -332,6 +333,28 @@ template&lt;class ObjectType&gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="afd27288cf49deab4de14924e2cae69cd"></a><!-- doxytag: member="ObjectArrayInternal::remove" ref="afd27288cf49deab4de14924e2cae69cd" args="(const int index)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class ObjectType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_object_array_internal.html">ObjectArrayInternal</a>&lt; ObjectType &gt;::remove </td>
+          <td>(</td>
+          <td class="paramtype">const int&nbsp;</td>
+          <td class="paramname"> <em>index</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>  throw ()<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l00122">122</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a63334bc9dfea6f6853350985d6209e1f"></a><!-- doxytag: member="ObjectArrayInternal::setNullTerminated" ref="a63334bc9dfea6f6853350985d6209e1f" args="(const bool state)" -->
 <div class="memitem">
 <div class="memproto">
@@ -389,9 +412,9 @@ template&lt;class ObjectType&gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l00124">124</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l00158">158</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l00087">ObjectArrayInternal&lt; Text &gt;::add()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00082">ObjectArrayInternal&lt; Text &gt;::getArray()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l00067">ObjectArrayInternal&lt; Text &gt;::~ObjectArrayInternal()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l00087">ObjectArrayInternal&lt; Text &gt;::add()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00082">ObjectArrayInternal&lt; Text &gt;::getArray()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00122">ObjectArrayInternal&lt; Text &gt;::remove()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l00067">ObjectArrayInternal&lt; Text &gt;::~ObjectArrayInternal()</a>.</p>
 
 </div>
 </div>
@@ -408,7 +431,7 @@ template&lt;class ObjectType&gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l00125">125</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l00159">159</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
 <p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l00087">ObjectArrayInternal&lt; Text &gt;::add()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00084">ObjectArrayInternal&lt; Text &gt;::isNullTerminated()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00074">ObjectArrayInternal&lt; Text &gt;::length()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l00085">ObjectArrayInternal&lt; Text &gt;::setNullTerminated()</a>.</p>
 
@@ -427,9 +450,9 @@ template&lt;class ObjectType&gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l00126">126</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l00160">160</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l00087">ObjectArrayInternal&lt; Text &gt;::add()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l00067">ObjectArrayInternal&lt; Text &gt;::~ObjectArrayInternal()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l00087">ObjectArrayInternal&lt; Text &gt;::add()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00122">ObjectArrayInternal&lt; Text &gt;::remove()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l00067">ObjectArrayInternal&lt; Text &gt;::~ObjectArrayInternal()</a>.</p>
 
 </div>
 </div>
@@ -446,9 +469,9 @@ template&lt;class ObjectType&gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l00123">123</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l00157">157</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l00087">ObjectArrayInternal&lt; Text &gt;::add()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00074">ObjectArrayInternal&lt; Text &gt;::length()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l00073">ObjectArrayInternal&lt; Text &gt;::size()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l00087">ObjectArrayInternal&lt; Text &gt;::add()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00074">ObjectArrayInternal&lt; Text &gt;::length()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00122">ObjectArrayInternal&lt; Text &gt;::remove()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l00073">ObjectArrayInternal&lt; Text &gt;::size()</a>.</p>
 
 </div>
 </div>
@@ -456,7 +479,7 @@ template&lt;class ObjectType&gt; </div>
 <li>core/<a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:21:04 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:57 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

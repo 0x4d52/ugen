@@ -32,6 +32,7 @@
       <li><a href="functions.html"><span>All</span></a></li>
       <li class="current"><a href="functions_func.html"><span>Functions</span></a></li>
       <li><a href="functions_vars.html"><span>Variables</span></a></li>
+      <li><a href="functions_type.html"><span>Typedefs</span></a></li>
       <li><a href="functions_enum.html"><span>Enumerations</span></a></li>
       <li><a href="functions_eval.html"><span>Enumerator</span></a></li>
       <li><a href="functions_prop.html"><span>Properties</span></a></li>
@@ -120,6 +121,8 @@
 <li>length()
 : <a class="el" href="class_object_array_internal.html#a6816a2a49fba8db753892320b4a92775">ObjectArrayInternal&lt; ObjectType &gt;</a>
 , <a class="el" href="class_object_array.html#a6eb3d6ad48798a021d3dc9f23e9c5260">ObjectArray&lt; ObjectType &gt;</a>
+, <a class="el" href="class_dictionary.html#a4af4232a588a2777343008309a2d1faf">Dictionary&lt; ValueType, KeyType &gt;</a>
+, <a class="el" href="class_u_gen.html#a477dde36e69390706faced0c06f57a98">UGen</a>
 </li>
 <li>levelBias()
 : <a class="el" href="class_env.html#a5fca1499f3553677652f385e2847b7f7">Env</a>
@@ -174,10 +177,10 @@
 : <a class="el" href="class_linen.html#a2a00ddd82ab4b07e2f269a82c8fcb73e">Linen</a>
 </li>
 <li>LinenUGenInternal()
-: <a class="el" href="class_linen_u_gen_internal.html#ae891f2e41b6df37a1304d6466eac2a04">LinenUGenInternal</a>
+: <a class="el" href="class_linen_u_gen_internal.html#a1b3508e7f7d971a27b2cf0fb9c827898">LinenUGenInternal</a>
 </li>
 <li>LinenUGenInternalK()
-: <a class="el" href="class_linen_u_gen_internal_k.html#a30315158a9365dc95f5b1f24b5bad2b6">LinenUGenInternalK</a>
+: <a class="el" href="class_linen_u_gen_internal_k.html#ad120428f9b66ef51bfafa7c9ada4ea7a">LinenUGenInternalK</a>
 </li>
 <li>linexp()
 : <a class="el" href="class_u_gen.html#a0b23a239d7cf9f6524fc94935465ec5d">UGen</a>
@@ -218,20 +221,20 @@
 : <a class="el" href="class_lin_lin_signal_u_gen_internal_k.html#ae7fdd9aab7793751d1b20b99a98ebfb3">LinLinSignalUGenInternalK</a>
 </li>
 <li>LinPan2()
-: <a class="el" href="class_lin_pan2.html#a12a0e20fff579a0502e09036bdbb8d2a">LinPan2</a>
+: <a class="el" href="class_lin_pan2.html#ae073bbb66c4de8d50c7ea0800d16ea3a">LinPan2</a>
 </li>
 <li>LinPan2UGenInternal()
 : <a class="el" href="class_lin_pan2_u_gen_internal.html#af68e03fe1fa52c66f334a3027ae7417a">LinPan2UGenInternal</a>
 </li>
 <li>linrand()
-: <a class="el" href="class_buffer.html#a093533bef8e0ffe9a694780322ebd25a">Buffer</a>
-, <a class="el" href="class_numerical_array.html#aa12ab6dee4f3473e15c2998b098c5573">NumericalArray&lt; NumericalType &gt;</a>
-</li>
-<li>LinSin()
-: <a class="el" href="class_lin_sin.html#a8942b939f9da9463a05712c443a8ec7f">LinSin</a>
+: <a class="el" href="class_numerical_array.html#aa12ab6dee4f3473e15c2998b098c5573">NumericalArray&lt; NumericalType &gt;</a>
+, <a class="el" href="class_buffer.html#a093533bef8e0ffe9a694780322ebd25a">Buffer</a>
 </li>
 <li>linsin()
 : <a class="el" href="class_u_gen.html#a3f2dff70e2963a469a78880308475832">UGen</a>
+</li>
+<li>LinSin()
+: <a class="el" href="class_lin_sin.html#a8942b939f9da9463a05712c443a8ec7f">LinSin</a>
 </li>
 <li>LinSinScalarUGenInternal()
 : <a class="el" href="class_lin_sin_scalar_u_gen_internal.html#a75bead6a5fb9c07c76e728b97e38e086">LinSinScalarUGenInternal</a>
@@ -246,7 +249,7 @@
 : <a class="el" href="class_lin_sin_signal_u_gen_internal_k.html#a9945206f8d38313ac73c44fe5e30e02e">LinSinSignalUGenInternalK</a>
 </li>
 <li>LLine()
-: <a class="el" href="class_l_line.html#ae5df93a17edbcb467d284180d2e4a07a">LLine</a>
+: <a class="el" href="class_l_line.html#a4954143df3531b9d7c84960921027c12">LLine</a>
 </li>
 <li>LLineUGenInternal()
 : <a class="el" href="class_l_line_u_gen_internal.html#affd25105ec553cb66afe30e3927cd3cf">LLineUGenInternal</a>
@@ -256,36 +259,37 @@
 </li>
 <li>lock()
 : <a class="el" href="class_lock.html#a9d17ce0ad1923ed9a27ea31533273fd8">Lock</a>
+, <a class="el" href="class_scope_component_base.html#a9c96ef0c92fd2c759bfc67be35ab789b">ScopeComponentBase</a>
 , <a class="el" href="class_scope_view_base.html#a525a75ace0a4e99661c48c509c467deb">ScopeViewBase</a>
 , <a class="el" href="interface_u_i_kit_a_u_i_o_host.html#a06ed8cabe18fcfc22d611a3cacc67279">UIKitAUIOHost</a>
-, <a class="el" href="class_scope_component_base.html#a9c96ef0c92fd2c759bfc67be35ab789b">ScopeComponentBase</a>
 , <a class="el" href="interface_u_i_scope_view_base.html#a081ff17f8fbe26a006c25cd0a7fb1676">UIScopeViewBase</a>
 </li>
 <li>log()
 : <a class="el" href="class_numerical_array.html#a0fee5895a11f82a2c8865edf81c3e1ba">NumericalArray&lt; NumericalType &gt;</a>
-, <a class="el" href="class_u_gen.html#a9ac3c53c900cab5bfa3c011c74ec713d">UGen</a>
-, <a class="el" href="class_u_gen_array.html#aafbdfa6398834916fbc8087c9a892f98">UGenArray</a>
 , <a class="el" href="class_buffer.html#ac157f2f00dd0cb42ac9445f57fa24801">Buffer</a>
+, <a class="el" href="class_u_gen_array.html#aafbdfa6398834916fbc8087c9a892f98">UGenArray</a>
+, <a class="el" href="class_u_gen.html#a9ac3c53c900cab5bfa3c011c74ec713d">UGen</a>
 </li>
 <li>log10()
 : <a class="el" href="class_u_gen_array.html#a1053ddd55ae7dff14f678c09548f975b">UGenArray</a>
+, <a class="el" href="class_buffer.html#af5fffb01fd6433898f69def8e13febb3">Buffer</a>
 , <a class="el" href="class_numerical_array.html#afaad043460f8b39e7fb26a0382918db3">NumericalArray&lt; NumericalType &gt;</a>
 , <a class="el" href="class_u_gen.html#aa1d6c36683985073b859436f91bb6ed4">UGen</a>
-, <a class="el" href="class_buffer.html#af5fffb01fd6433898f69def8e13febb3">Buffer</a>
 </li>
 <li>log2()
-: <a class="el" href="class_buffer.html#a44f7360196a1874b606352701676f8bc">Buffer</a>
+: <a class="el" href="class_numerical_array.html#aeec07d4d8ca9175bee386c750a80bda3">NumericalArray&lt; NumericalType &gt;</a>
+, <a class="el" href="class_buffer.html#a44f7360196a1874b606352701676f8bc">Buffer</a>
 , <a class="el" href="class_u_gen.html#a43384c8148e5ad7cf4853e4248107405">UGen</a>
-, <a class="el" href="class_numerical_array.html#aeec07d4d8ca9175bee386c750a80bda3">NumericalArray&lt; NumericalType &gt;</a>
 , <a class="el" href="class_u_gen_array.html#abff35d7de7fa1762a8afce3b25232d84">UGenArray</a>
 </li>
 <li>log2Ceil()
 : <a class="el" href="class_bits.html#a7e7555faea98ce23eb3b3d0d6924330d">Bits</a>
 </li>
 <li>lookup()
-: <a class="el" href="class_envelope_container_component.html#a35f116ebea7bb778bb840c1919242372">EnvelopeContainerComponent</a>
+: <a class="el" href="class_envelope_component.html#a098e103ef37606bf97a366c71361d3c9">EnvelopeComponent</a>
+, <a class="el" href="class_buffer.html#a44b9d05f1b14e96ee188744a5d1f5f38">Buffer</a>
 , <a class="el" href="class_env.html#a28e59c389804b40d062b130ce3ff0c69">Env</a>
-, <a class="el" href="class_envelope_component.html#a098e103ef37606bf97a366c71361d3c9">EnvelopeComponent</a>
+, <a class="el" href="class_envelope_container_component.html#a35f116ebea7bb778bb840c1919242372">EnvelopeContainerComponent</a>
 , <a class="el" href="class_buffer.html#a7d344cd04d131665fe7f745590b417b0">Buffer</a>
 </li>
 <li>lookupIndex()
@@ -311,7 +315,7 @@
 </li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:21:00 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:54 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

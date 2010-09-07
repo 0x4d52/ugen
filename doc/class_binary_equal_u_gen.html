@@ -39,7 +39,7 @@
 </div>
 <div class="contents">
 <!-- doxytag: class="BinaryEqualUGen" --><!-- doxytag: inherits="UGen" -->
-<p>A BinaryOpUGen usually created using the operator == when applied to other <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> instances.  
+<p>A BinaryOpUGen usually created using the function <a class="el" href="class_u_gen.html#ac37310066ce8dcb9a80ecb4eb9fbd32e" title="Binary equal to.">equal()</a> when applied to other <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> instances.  
 <a href="#_details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="ugen___binary_op_u_gens_8h_source.html">ugen_BinaryOpUGens.h</a>&gt;</code></p>
@@ -51,17 +51,21 @@
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_binary_equal_u_gen.html#a53841b57a695e63007a30c883c3307e6">BinaryEqualUGen</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;leftOperand, <a class="el" href="class_u_gen.html">UGen</a> const &amp;rightOperand)  throw ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct a <a class="el" href="class_binary_equal_u_gen.html" title="A BinaryOpUGen usually created using the operator == when applied to other UGen instances.">BinaryEqualUGen</a>.  <a href="#a53841b57a695e63007a30c883c3307e6"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct a <a class="el" href="class_binary_equal_u_gen.html" title="A BinaryOpUGen usually created using the function equal() when applied to other UGen instances...">BinaryEqualUGen</a>.  <a href="#a53841b57a695e63007a30c883c3307e6"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p>A BinaryOpUGen usually created using the operator == when applied to other <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> instances. </p>
+<p>A BinaryOpUGen usually created using the function <a class="el" href="class_u_gen.html#ac37310066ce8dcb9a80ecb4eb9fbd32e" title="Binary equal to.">equal()</a> when applied to other <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> instances. </p>
 <p>It is not normally required to use this <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> explicitly. </p>
-<div class="fragment"><pre class="fragment"> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> resultEqual  = <a class="code" href="class_sin_osc.html#a76c3d2fcbcfad830654e0a1ee5c296fd" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(100, 0, 0.4)  ==  <a class="code" href="class_sin_osc.html#a76c3d2fcbcfad830654e0a1ee5c296fd" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(400, 0, 0.3); <span class="comment">// creates a BinaryEqualUGen    </span>
-</pre></div> <dl class="see"><dt><b>See also:</b></dt><dd>ugen::operator==(const float leftOperand, UGen const&amp; rightOperand) </dd>
+<div class="fragment"><pre class="fragment"> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> resultEqual  = <a class="code" href="class_sin_osc.html#a76c3d2fcbcfad830654e0a1ee5c296fd" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(100, 0, 0.4).<a class="code" href="class_u_gen.html#ac37310066ce8dcb9a80ecb4eb9fbd32e" title="Binary equal to.">equal</a>(<a class="code" href="class_sin_osc.html#a76c3d2fcbcfad830654e0a1ee5c296fd" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(400, 0, 0.3)); <span class="comment">// creates a BinaryEqualUGen    </span>
+</pre></div><p> You can also use a global version of this function, the above code would be equivalent as: </p>
+<div class="fragment"><pre class="fragment"> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> resultEqual  =  <a class="code" href="class_u_gen.html#ac37310066ce8dcb9a80ecb4eb9fbd32e" title="Binary equal to.">equal</a>(<a class="code" href="class_sin_osc.html#a76c3d2fcbcfad830654e0a1ee5c296fd" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(100, 0, 0.4), <a class="code" href="class_sin_osc.html#a76c3d2fcbcfad830654e0a1ee5c296fd" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(400, 0, 0.3)); <span class="comment">// creates a BinaryEqualUGen    </span>
+</pre></div> <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="ugen___binary_op_u_gens_8h.html#a1f4579015540700510f65203d62b8901" title="Global function for the UGen::equal() binary operator.">equal(UGen const&amp; leftOperand, UGen const&amp; rightOperand)</a> </dd>
 <dd>
-<a class="el" href="class_u_gen.html#a54b288b3998ff90eaa479a195d0e0c28" title="Binary equal to.">UGen::operator==()</a> </dd></dl>
+<a class="el" href="ugen___binary_op_u_gens_8h.html#aafc0ea8e43f7a4a4dc0e430b36592114" title="Global function for the UGen::equal() binary operator.">equal(const float leftOperand, UGen const&amp; rightOperand)</a> </dd>
+<dd>
+<a class="el" href="class_u_gen.html#ac37310066ce8dcb9a80ecb4eb9fbd32e" title="Binary equal to.">UGen::equal()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8h_source.html#l00624">624</a> of file <a class="el" href="ugen___binary_op_u_gens_8h_source.html">ugen_BinaryOpUGens.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8h_source.html#l00627">627</a> of file <a class="el" href="ugen___binary_op_u_gens_8h_source.html">ugen_BinaryOpUGens.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a53841b57a695e63007a30c883c3307e6"></a><!-- doxytag: member="BinaryEqualUGen::BinaryEqualUGen" ref="a53841b57a695e63007a30c883c3307e6" args="(UGen const &amp;leftOperand, UGen const &amp;rightOperand)" -->
 <div class="memitem">
@@ -88,18 +92,18 @@ Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Construct a <a class="el" href="class_binary_equal_u_gen.html" title="A BinaryOpUGen usually created using the operator == when applied to other UGen instances.">BinaryEqualUGen</a>. </p>
-<p>For symbol-based binary operations these will be from expressions such as: </p>
-<div class="fragment"><pre class="fragment"> left  ==  right; 
+<p>Construct a <a class="el" href="class_binary_equal_u_gen.html" title="A BinaryOpUGen usually created using the function equal() when applied to other UGen instances...">BinaryEqualUGen</a>. </p>
+<p>For function-based binary operations these will be from expressions such as: </p>
+<div class="fragment"><pre class="fragment"> <a class="code" href="class_u_gen.html#ac37310066ce8dcb9a80ecb4eb9fbd32e" title="Binary equal to.">equal</a>(left, right); 
 </pre></div> <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>leftOperand</em>&nbsp;</td><td>The left-hand-side of the operation. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>rightOperand</em>&nbsp;</td><td>The right-hand-side of the operation. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>leftOperand</em>&nbsp;</td><td>The left-hand-side of the oprtation. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>rightOperand</em>&nbsp;</td><td>The right-hand-side of the oprtation. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00089">89</a> of file <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html">ugen_BinaryOpUGens.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00092">92</a> of file <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html">ugen_BinaryOpUGens.cpp</a>.</p>
 
 </div>
 </div>
@@ -108,7 +112,7 @@ Public Member Functions</h2></td></tr>
 <li>basics/<a class="el" href="ugen___binary_op_u_gens_8cpp_source.html">ugen_BinaryOpUGens.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:21:01 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:54 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

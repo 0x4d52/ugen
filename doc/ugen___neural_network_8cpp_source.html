@@ -246,7 +246,7 @@
 <a name="l00214"></a>00214 {
 <a name="l00215"></a>00215  <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a> vector = inputVector;
 <a name="l00216"></a>00216  
-<a name="l00217"></a>00217  <a class="code" href="class_neural_layer.html">NeuralLayer</a> *layersPtr = layers.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>();
+<a name="l00217"></a>00217  <a class="code" href="class_neural_layer.html">NeuralLayer</a> *layersPtr = layers.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>();
 <a name="l00218"></a>00218  <span class="keyword">const</span> <span class="keywordtype">int</span> size = getNumLayersExcludingInput();
 <a name="l00219"></a>00219  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++)
 <a name="l00220"></a>00220  {
@@ -262,7 +262,7 @@
 <a name="l00230"></a>00230 
 <a name="l00231"></a>00231  <span class="keywordtype">float</span>* errorVectorPtr = errorVector.getArray();
 <a name="l00232"></a>00232  <span class="keyword">const</span> <span class="keywordtype">float</span>* targetVectorPtr = targetVector.getArray();
-<a name="l00233"></a>00233  <span class="keyword">const</span> <span class="keywordtype">float</span>* outputVectorPtr = outputVector.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>();
+<a name="l00233"></a>00233  <span class="keyword">const</span> <span class="keywordtype">float</span>* outputVectorPtr = outputVector.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>();
 <a name="l00234"></a>00234  
 <a name="l00235"></a>00235  <span class="keyword">const</span> <span class="keywordtype">int</span> size = errorVector.size();
 <a name="l00236"></a>00236  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++)
@@ -303,7 +303,7 @@
 <a name="l00271"></a>00271 {
 <a name="l00272"></a>00272  <a class="code" href="class_text_file_reader.html">TextFileReader</a> file = _file;
 <a name="l00273"></a>00273  
-<a name="l00274"></a>00274  <a class="code" href="class_text.html">Text</a> text;
+<a name="l00274"></a>00274  <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> text;
 <a name="l00275"></a>00275  <span class="keywordtype">int</span> line = 0;
 <a name="l00276"></a>00276  <span class="keywordtype">int</span> numLayers = -1;
 <a name="l00277"></a>00277  <span class="keywordtype">float</span> learnRate, actFuncOffset;
@@ -326,12 +326,12 @@
 <a name="l00294"></a>00294   <span class="keywordflow">else</span> <span class="keywordflow">if</span>(line == 1)
 <a name="l00295"></a>00295   {
 <a name="l00296"></a>00296    <span class="comment">// should be learn rate and act func offset   </span>
-<a name="l00297"></a>00297    sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>(), <span class="stringliteral">&quot;learnRate: %f actFuncOffset: %f&quot;</span>, &amp;learnRate, &amp;actFuncOffset);
+<a name="l00297"></a>00297    sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;learnRate: %f actFuncOffset: %f&quot;</span>, &amp;learnRate, &amp;actFuncOffset);
 <a name="l00298"></a>00298   }
 <a name="l00299"></a>00299   <span class="keywordflow">else</span> <span class="keywordflow">if</span>(line == 2)
 <a name="l00300"></a>00300   {
 <a name="l00301"></a>00301    <span class="comment">// should be the number of layers   </span>
-<a name="l00302"></a>00302    sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>(), <span class="stringliteral">&quot;Layers:%d&quot;</span>, &amp;numLayers);
+<a name="l00302"></a>00302    sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;Layers:%d&quot;</span>, &amp;numLayers);
 <a name="l00303"></a>00303    
 <a name="l00304"></a>00304    <span class="keywordflow">if</span>(numLayers &lt; 2) 
 <a name="l00305"></a>00305    {
@@ -344,7 +344,7 @@
 <a name="l00312"></a>00312   <span class="keywordflow">else</span> <span class="keywordflow">if</span>(numLayers &gt; 0)
 <a name="l00313"></a>00313   {
 <a name="l00314"></a>00314    <span class="keywordtype">int</span> layer, numNodes;
-<a name="l00315"></a>00315    sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>(), <span class="stringliteral">&quot;Layer %d:%d&quot;</span>, &amp;layer, &amp;numNodes);
+<a name="l00315"></a>00315    sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;Layer %d:%d&quot;</span>, &amp;layer, &amp;numNodes);
 <a name="l00316"></a>00316    numLayers--;
 <a name="l00317"></a>00317    
 <a name="l00318"></a>00318    nodes[layer] = numNodes;
@@ -367,7 +367,7 @@
 <a name="l00335"></a>00335    <span class="comment">// it&#39;s a weight or a threshold</span>
 <a name="l00336"></a>00336    <span class="keywordtype">int</span> layer, node, index;
 <a name="l00337"></a>00337    <span class="keywordtype">float</span> value;
-<a name="l00338"></a>00338    sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>(), <span class="stringliteral">&quot;%d %d %d %f&quot;</span>, &amp;layer, &amp;node, &amp;index, &amp;value);
+<a name="l00338"></a>00338    sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;%d %d %d %f&quot;</span>, &amp;layer, &amp;node, &amp;index, &amp;value);
 <a name="l00339"></a>00339    
 <a name="l00340"></a>00340    <span class="keywordflow">if</span>(index &lt; 0)
 <a name="l00341"></a>00341     setThreshold(layer, node, value);
@@ -384,7 +384,7 @@
 <a name="l00352"></a>00352 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:58 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:51 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

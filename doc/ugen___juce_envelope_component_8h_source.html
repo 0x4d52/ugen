@@ -203,7 +203,7 @@
 <a name="l00171"></a>00171     <span class="keywordtype">void</span> <a class="code" href="class_envelope_component.html#af0802900e9071ebe4298c63102ca4a27">removeListener</a> (<a class="code" href="class_envelope_component_listener.html">EnvelopeComponentListener</a>* <span class="keyword">const</span> listener);
 <a name="l00172"></a>00172  <span class="keywordtype">void</span> <a class="code" href="class_envelope_component.html#a94ee3f132453bdac89fa51ae0f74de9d">sendChangeMessage</a>();
 <a name="l00173"></a>00173  
-<a name="l00174"></a>00174  <span class="keywordtype">void</span> <a class="code" href="class_envelope_component.html#ad8398a24cb107f94536278315d7cf669">setLegendText</a>(<a class="code" href="class_text.html">Text</a> <span class="keyword">const</span>&amp; legendText);
+<a name="l00174"></a>00174  <span class="keywordtype">void</span> <a class="code" href="class_envelope_component.html#ad8398a24cb107f94536278315d7cf669">setLegendText</a>(<a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <span class="keyword">const</span>&amp; legendText);
 <a name="l00175"></a>00175  <span class="keywordtype">void</span> <a class="code" href="class_envelope_component.html#a8d7fe71b35d6e239985310375bd59af6">setLegendTextToDefault</a>();
 <a name="l00176"></a>00176  <span class="keywordtype">int</span> <a class="code" href="class_envelope_component.html#ac0d421669b3fb8e806cb8c6dc36d0987">getHandleIndex</a>(<a class="code" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a>* handle);
 <a name="l00177"></a>00177  <a class="code" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a>* <a class="code" href="class_envelope_component.html#aff52975a5dc2ceeb267e4b808668fcd1">getHandle</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> index);
@@ -266,25 +266,25 @@
 <a name="l00234"></a><a class="code" href="class_envelope_legend_component.html">00234</a> <span class="keyword">class </span><a class="code" href="class_envelope_legend_component.html">EnvelopeLegendComponent</a> : <span class="keyword">public</span> Component
 <a name="l00235"></a>00235 {
 <a name="l00236"></a>00236 <span class="keyword">public</span>:
-<a name="l00237"></a>00237  <a class="code" href="class_envelope_legend_component.html#a971b8aeaa2ecac05275d3ad7c9ca3596">EnvelopeLegendComponent</a>(<a class="code" href="class_text.html">Text</a> <span class="keyword">const</span>&amp; <a class="code" href="class_envelope_legend_component.html#add036896ab4d2f984b42ebde05e4f26d">defaultText</a> = <a class="code" href="class_text.html#a14ad9708569f2fa41a39403a210fc89a">Text::empty</a>);
+<a name="l00237"></a>00237  <a class="code" href="class_envelope_legend_component.html#a971b8aeaa2ecac05275d3ad7c9ca3596">EnvelopeLegendComponent</a>(<a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <span class="keyword">const</span>&amp; <a class="code" href="class_envelope_legend_component.html#add036896ab4d2f984b42ebde05e4f26d">defaultText</a> = <a class="code" href="class_text.html#a14ad9708569f2fa41a39403a210fc89a">Text::empty</a>);
 <a name="l00238"></a>00238  <a class="code" href="class_envelope_legend_component.html#a65abf5a25287a8f034bec7e4bf15de4a">~EnvelopeLegendComponent</a>();
 <a name="l00239"></a>00239  
 <a name="l00240"></a>00240  <a class="code" href="class_envelope_component.html">EnvelopeComponent</a>* <a class="code" href="class_envelope_legend_component.html#ab827522596cfd8a413fb4772721ba51c">getEnvelopeComponent</a>();
 <a name="l00241"></a>00241  
 <a name="l00242"></a>00242  <span class="keywordtype">void</span> <a class="code" href="class_envelope_legend_component.html#a66c787f383cb69f4457a9a986f2c10e8">paint</a>(Graphics&amp; g);
 <a name="l00243"></a>00243  <span class="keywordtype">void</span> <a class="code" href="class_envelope_legend_component.html#a6a2cffcffd6e9e19421f3e526fc862e5">resized</a>();
-<a name="l00244"></a>00244  <span class="keywordtype">void</span> <a class="code" href="class_envelope_legend_component.html#a96927fe1d56303b9e407e3fcf9957401">setText</a>(<a class="code" href="class_text.html">Text</a> <span class="keyword">const</span>&amp; legendText);
+<a name="l00244"></a>00244  <span class="keywordtype">void</span> <a class="code" href="class_envelope_legend_component.html#a96927fe1d56303b9e407e3fcf9957401">setText</a>(<a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <span class="keyword">const</span>&amp; legendText);
 <a name="l00245"></a>00245  <span class="keywordtype">void</span> <a class="code" href="class_envelope_legend_component.html#a96927fe1d56303b9e407e3fcf9957401">setText</a>();
 <a name="l00246"></a>00246  
 <a name="l00247"></a>00247 <span class="keyword">private</span>:
 <a name="l00248"></a><a class="code" href="class_envelope_legend_component.html#ae217e355bffbc93ebbe05bb6a01259ef">00248</a>  Label* <a class="code" href="class_envelope_legend_component.html#ae217e355bffbc93ebbe05bb6a01259ef">text</a>;
-<a name="l00249"></a><a class="code" href="class_envelope_legend_component.html#add036896ab4d2f984b42ebde05e4f26d">00249</a>  <a class="code" href="class_text.html">Text</a> <a class="code" href="class_envelope_legend_component.html#add036896ab4d2f984b42ebde05e4f26d">defaultText</a>;
+<a name="l00249"></a><a class="code" href="class_envelope_legend_component.html#add036896ab4d2f984b42ebde05e4f26d">00249</a>  <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <a class="code" href="class_envelope_legend_component.html#add036896ab4d2f984b42ebde05e4f26d">defaultText</a>;
 <a name="l00250"></a>00250 };
 <a name="l00251"></a>00251 
 <a name="l00252"></a><a class="code" href="class_envelope_container_component.html">00252</a> <span class="keyword">class </span><a class="code" href="class_envelope_container_component.html">EnvelopeContainerComponent</a> : <span class="keyword">public</span> Component
 <a name="l00253"></a>00253 {
 <a name="l00254"></a>00254 <span class="keyword">public</span>:
-<a name="l00255"></a>00255  <a class="code" href="class_envelope_container_component.html#a15994cc96e389e6f56dd7c2b6228dc9a">EnvelopeContainerComponent</a>(<a class="code" href="class_text.html">Text</a> <span class="keyword">const</span>&amp; defaultText = <a class="code" href="class_text.html#a14ad9708569f2fa41a39403a210fc89a">Text::empty</a>);
+<a name="l00255"></a>00255  <a class="code" href="class_envelope_container_component.html#a15994cc96e389e6f56dd7c2b6228dc9a">EnvelopeContainerComponent</a>(<a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <span class="keyword">const</span>&amp; defaultText = <a class="code" href="class_text.html#a14ad9708569f2fa41a39403a210fc89a">Text::empty</a>);
 <a name="l00256"></a>00256  <a class="code" href="class_envelope_container_component.html#a9183c913aedae8d68ead28b34c388174">~EnvelopeContainerComponent</a>();
 <a name="l00257"></a>00257  <span class="keywordtype">void</span> <a class="code" href="class_envelope_container_component.html#aa4c386221b196fbf341aa8167420d75a">resized</a>();
 <a name="l00258"></a>00258  
@@ -408,7 +408,7 @@
 <a name="l00376"></a>00376 <span class="preprocessor">#endif //UGEN_JUCEENVELOPECOMPONENT_H</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:58 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:51 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

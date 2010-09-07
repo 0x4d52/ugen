@@ -32,6 +32,7 @@
       <li><a href="functions.html"><span>All</span></a></li>
       <li><a href="functions_func.html"><span>Functions</span></a></li>
       <li class="current"><a href="functions_vars.html"><span>Variables</span></a></li>
+      <li><a href="functions_type.html"><span>Typedefs</span></a></li>
       <li><a href="functions_enum.html"><span>Enumerations</span></a></li>
       <li><a href="functions_eval.html"><span>Enumerator</span></a></li>
       <li><a href="functions_prop.html"><span>Properties</span></a></li>
@@ -134,6 +135,9 @@
 <li>shouldSteal_
 : <a class="el" href="class_releasable_u_gen_internal.html#a0a41eb292b9b33354270b9b83e3a6b5f">ReleasableUGenInternal</a>
 </li>
+<li>shouldWrapChannels_
+: <a class="el" href="class_mix_array_u_gen_internal.html#aab554fcf7547f0aaf353cd6070f27f42">MixArrayUGenInternal</a>
+</li>
 <li>sine
 : <a class="el" href="class_radial_scope_view.html#ad8986ab7ca5ffb5e6e5df02adf260bee">RadialScopeView</a>
 , <a class="el" href="class_radial_scope_component.html#a1fa040d5dd522a23294b2e73c78c17f0">RadialScopeComponent</a>
@@ -142,7 +146,8 @@
 : <a class="el" href="class_env_curve_list_1_1_env_curve_list_internal.html#aab9cc9d12d2b4208c3283d3dfd447336">EnvCurveList::EnvCurveListInternal</a>
 </li>
 <li>size_
-: <a class="el" href="class_buffer_channel_internal.html#a904fcf9d069f7e4a051035bab88676d5">BufferChannelInternal</a>
+: <a class="el" href="class_bank_base_u_gen_internal.html#a2c356ccd91db0d2d363aac5c083b431e">BankBaseUGenInternal</a>
+, <a class="el" href="class_buffer_channel_internal.html#a904fcf9d069f7e4a051035bab88676d5">BufferChannelInternal</a>
 , <a class="el" href="class_buffer_spec.html#ab943fa09277cf57e67a417b0e6794314">BufferSpec</a>
 , <a class="el" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">Buffer</a>
 , <a class="el" href="class_int_buffer.html#a81c2202640a8b40d7648676ddd932e3f">IntBuffer</a>
@@ -152,22 +157,21 @@
 , <a class="el" href="class_u_gen_array_1_1_u_gen_array_internal.html#a715f5da240d6220ab764ba7a1bf45533">UGenArray::UGenArrayInternal</a>
 , <a class="el" href="class_value_array_1_1_value_array_internal.html#a48a3a31d4e7641391f0748b35b9efcca">ValueArray::ValueArrayInternal</a>
 , <a class="el" href="class_chain_base_u_gen_internal.html#a2a1acf655e12e32cc5acba48ec8e1a53">ChainBaseUGenInternal</a>
-, <a class="el" href="class_bank_base_u_gen_internal.html#a2c356ccd91db0d2d363aac5c083b431e">BankBaseUGenInternal</a>
 </li>
 <li>slider
 : <a class="el" href="class_envelope_curve_popup.html#ac2b1d107888251e49fa4421e9ba8c618">EnvelopeCurvePopup</a>
 </li>
 <li>slider_
-: <a class="el" href="class_slider_u_gen_internal.html#af1254fd1db164b60993606ff96a72468">SliderUGenInternal</a>
-, <a class="el" href="class_u_i_slider_u_gen_internal.html#ad1a4c835138d9922b0a4a935138e2056">UISliderUGenInternal</a>
+: <a class="el" href="class_u_i_slider_u_gen_internal.html#ad1a4c835138d9922b0a4a935138e2056">UISliderUGenInternal</a>
+, <a class="el" href="class_slider_u_gen_internal.html#af1254fd1db164b60993606ff96a72468">SliderUGenInternal</a>
 </li>
 <li>sliders
 : <a class="el" href="class_multi_slider_base.html#adb2282642b13d544b3d5cb6d1e7d1609">MultiSliderBase</a>
 , <a class="el" href="class_multi_slider_u_gen_internal.html#a80d580296246c3f0008a4afcd09b2048">MultiSliderUGenInternal</a>
 </li>
 <li>slope
-: <a class="el" href="class_l_f_noise1_u_gen_internal.html#a181eecdb9777ef86649c5129ce594f0b">LFNoise1UGenInternal</a>
-, <a class="el" href="class_normaliser_u_gen_internal.html#a8ba7dd243835df1c180aed85ceb07310">NormaliserUGenInternal</a>
+: <a class="el" href="class_normaliser_u_gen_internal.html#a8ba7dd243835df1c180aed85ceb07310">NormaliserUGenInternal</a>
+, <a class="el" href="class_l_f_noise1_u_gen_internal.html#a181eecdb9777ef86649c5129ce594f0b">LFNoise1UGenInternal</a>
 , <a class="el" href="class_l_f_noise2_u_gen_internal.html#a8ce4c27a2f04258e243b6bccca7c0165">LFNoise2UGenInternal</a>
 </li>
 <li>slopeFactor
@@ -178,12 +182,12 @@
 : <a class="el" href="class_scope_g_u_i.html#a2df4c83a6984e45ea923aa576c2fe9c7">ScopeGUI</a>
 </li>
 <li>soundLoop
-: <a class="el" href="class_x_fade_loop_play_buf_u_gen_internal.html#a46596d70506614876a9735495f724ca8">XFadeLoopPlayBufUGenInternal</a>
-, <a class="el" href="class_x_fade_loop_spec_internal.html#a1aa8c6db2367851c8c796b4abfd0d0f8">XFadeLoopSpecInternal</a>
+: <a class="el" href="class_x_fade_loop_spec_internal.html#a1aa8c6db2367851c8c796b4abfd0d0f8">XFadeLoopSpecInternal</a>
+, <a class="el" href="class_x_fade_loop_play_buf_u_gen_internal.html#a46596d70506614876a9735495f724ca8">XFadeLoopPlayBufUGenInternal</a>
 </li>
 <li>soundOnset
-: <a class="el" href="class_x_fade_loop_play_buf_u_gen_internal.html#abe5963fa3ab72f0fe820afdd51212c77">XFadeLoopPlayBufUGenInternal</a>
-, <a class="el" href="class_x_fade_loop_spec_internal.html#ac7b7b9472bdb40d9c92d9cdc8998d711">XFadeLoopSpecInternal</a>
+: <a class="el" href="class_x_fade_loop_spec_internal.html#ac7b7b9472bdb40d9c92d9cdc8998d711">XFadeLoopSpecInternal</a>
+, <a class="el" href="class_x_fade_loop_play_buf_u_gen_internal.html#abe5963fa3ab72f0fe820afdd51212c77">XFadeLoopPlayBufUGenInternal</a>
 </li>
 <li>sources
 : <a class="el" href="class_plug_u_gen_internal.html#a860763df1a4698d66f60bf46e845734f">PlugUGenInternal</a>
@@ -192,8 +196,8 @@
 : <a class="el" href="class_text.html#adccc0430a2134a9846b8f4925f9ac45b">Text</a>
 </li>
 <li>start_
-: <a class="el" href="class_l_line_u_gen_internal.html#a6d1e29ab2748df65048ce9a3439476ff">LLineUGenInternal</a>
-, <a class="el" href="class_sequence_value_internal.html#a8886ba5daced09d028212e310700b7d3">SequenceValueInternal</a>
+: <a class="el" href="class_sequence_value_internal.html#a8886ba5daced09d028212e310700b7d3">SequenceValueInternal</a>
+, <a class="el" href="class_l_line_u_gen_internal.html#a6d1e29ab2748df65048ce9a3439476ff">LLineUGenInternal</a>
 </li>
 <li>startLoop
 : <a class="el" href="class_x_fade_loop_play_buf_u_gen_internal.html#a3a8b994f712a7937af3c3a12d938eb19">XFadeLoopPlayBufUGenInternal</a>
@@ -202,8 +206,8 @@
 : <a class="el" href="class_x_fade_loop_spec_internal.html#ab1c228f5763b50988643039f3fd05d40">XFadeLoopSpecInternal</a>
 </li>
 <li>startPoint
-: <a class="el" href="class_part_buffer.html#a9872ebcdd63f2fc2114edfd13ccf68a4">PartBuffer</a>
-, <a class="el" href="class_part_convolve_u_gen_internal.html#a303f877197fe60993ed4c6ce90c40375">PartConvolveUGenInternal</a>
+: <a class="el" href="class_part_convolve_u_gen_internal.html#a303f877197fe60993ed4c6ce90c40375">PartConvolveUGenInternal</a>
+, <a class="el" href="class_part_buffer.html#a9872ebcdd63f2fc2114edfd13ccf68a4">PartBuffer</a>
 </li>
 <li>startTime_
 : <a class="el" href="class_disk_in_u_gen_internal.html#a18f20b4754297d63a9567e78f332ed68">DiskInUGenInternal</a>
@@ -227,8 +231,8 @@
 : <a class="el" href="class_scope_g_u_i.html#a2f1ca7125db13eac93739adc541abd78">ScopeGUI</a>
 </li>
 <li>sustainLevel_
-: <a class="el" href="class_linen_u_gen_internal.html#a0f1beb1614fa07da5327450847cfb494">LinenUGenInternal</a>
-, <a class="el" href="class_a_s_r_u_gen_internal.html#a9b1aed5e1034dbe1f35f9e99151462d0">ASRUGenInternal</a>
+: <a class="el" href="class_a_s_r_u_gen_internal.html#a9b1aed5e1034dbe1f35f9e99151462d0">ASRUGenInternal</a>
+, <a class="el" href="class_linen_u_gen_internal.html#a0f1beb1614fa07da5327450847cfb494">LinenUGenInternal</a>
 </li>
 <li>sustainTime
 : <a class="el" href="class_x_fade_texture_u_gen_internal.html#a592c4c012178f6a382bff976feb6dcda">XFadeTextureUGenInternal</a>
@@ -239,7 +243,7 @@
 </li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:21:00 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:54 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

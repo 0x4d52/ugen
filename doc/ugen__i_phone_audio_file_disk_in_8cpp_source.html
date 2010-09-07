@@ -437,19 +437,19 @@
 <a name="l00405"></a>00405 
 <a name="l00406"></a>00406 
 <a name="l00407"></a>00407 
-<a name="l00408"></a>00408 <a class="code" href="class_disk_in.html#aaf5715c6c3054a78ed5d61993de27844">DiskIn::DiskIn</a>(<a class="code" href="class_text.html">Text</a> <span class="keyword">const</span>&amp; path, <span class="keyword">const</span> <span class="keywordtype">bool</span> loopFlag, <span class="keyword">const</span> <span class="keywordtype">double</span> startTime) <span class="keywordflow">throw</span>()
+<a name="l00408"></a>00408 <a class="code" href="class_disk_in.html#aaf5715c6c3054a78ed5d61993de27844">DiskIn::DiskIn</a>(<a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <span class="keyword">const</span>&amp; path, <span class="keyword">const</span> <span class="keywordtype">bool</span> loopFlag, <span class="keyword">const</span> <span class="keywordtype">double</span> startTime) <span class="keywordflow">throw</span>()
 <a name="l00409"></a>00409 { 
 <a name="l00410"></a>00410  initWithAudioFile(path.getArray(), loopFlag, startTime);
 <a name="l00411"></a>00411 }
 <a name="l00412"></a>00412 
 <a name="l00413"></a>00413 <span class="keywordtype">void</span> <a class="code" href="class_disk_in.html#adeb194b74840cbd2414f9ec5cfc6ea1d">DiskIn::initWithAudioFile</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* audioFilePath, <span class="keyword">const</span> <span class="keywordtype">bool</span> loopFlag, <span class="keyword">const</span> <span class="keywordtype">double</span> startTime) <span class="keywordflow">throw</span>()
 <a name="l00414"></a>00414 {
-<a name="l00415"></a>00415  <a class="code" href="class_text.html">Text</a> path; <span class="comment">// this needs to be here so it doesn&#39;t get garbage collected too early</span>
+<a name="l00415"></a>00415  <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> path; <span class="comment">// this needs to be here so it doesn&#39;t get garbage collected too early</span>
 <a name="l00416"></a>00416  
 <a name="l00417"></a>00417  <span class="keywordflow">if</span>(audioFilePath[0] != <span class="charliteral">&#39;/&#39;</span>)
 <a name="l00418"></a>00418  { 
 <a name="l00419"></a>00419   path = <a class="code" href="class_n_s_utilities.html#ab2a645d0b45b0d8da2d42ed9d6f90b43" title="Returns the absolute path of a file on the iPhone.">NSUtilities::pathInDirectory</a>(<a class="code" href="class_n_s_utilities.html#ab71c4bc753917a39670f1d3739643de0a7eef31ee41550454cad1a778dfc4e22c" title="In the &amp;lt;MyApp&amp;gt;.app/ bundle, files can be placed here during compilation in Xcode.">NSUtilities::Bundle</a>, audioFilePath);
-<a name="l00420"></a>00420   audioFilePath = path.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>();
+<a name="l00420"></a>00420   audioFilePath = path.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>();
 <a name="l00421"></a>00421  }
 <a name="l00422"></a>00422  
 <a name="l00423"></a>00423  OSStatus result;
@@ -604,7 +604,7 @@
 <a name="l00572"></a>00572 <span class="preprocessor">#endif // UGEN_IPHONE</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:58 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:51 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

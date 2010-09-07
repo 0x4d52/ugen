@@ -140,7 +140,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00055">55</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
-<p>References <a class="el" href="ugen___plug_8h_source.html#l00108">Plug::AR()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00284">bufferSize</a>, <a class="el" href="ugen___random_8h_source.html#l00053">Ran088::defaultGenerator()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00911">UGen::emptyChannels()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l01020">UGen::initialise()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00279">lock</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00283">numInputs_</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00283">numOutputs_</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00286">output_</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00998">UGen::setDeleter()</a>, <a class="el" href="ugen___random_8h_source.html#l00205">Ran088::setSeed()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00246">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___plug_8h_source.html#l00108">Plug::AR()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00297">bufferSize</a>, <a class="el" href="ugen___random_8h_source.html#l00053">Ran088::defaultGenerator()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00914">UGen::emptyChannels()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l01023">UGen::initialise()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00292">lock</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00296">numInputs_</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00296">numOutputs_</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00299">output_</a>, <a class="el" href="ugen___u_gen_8h_source.html#l01001">UGen::setDeleter()</a>, <a class="el" href="ugen___random_8h_source.html#l00205">Ran088::setSeed()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00246">ugen_assert</a>.</p>
 
 </div>
 </div>
@@ -162,9 +162,9 @@ Private Attributes</h2></td></tr>
 <p>Destructor. </p>
 <p>Cleans up the internal AudioDeviceManager and calls <a class="el" href="class_u_gen.html#aa2ca461c18133169d2ccf7744d126446" title="Shutdown UGen++.">UGen::shutdown()</a> to clean up UGen++ </p>
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00086">86</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00088">88</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
-<p>References <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00280">audioDeviceManager</a>, and <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00288">juceDeleter</a>.</p>
+<p>References <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00293">audioDeviceManager</a>, and <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00301">juceDeleter</a>.</p>
 
 </div>
 </div>
@@ -188,9 +188,9 @@ Private Attributes</h2></td></tr>
 <p>Add a <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> to the dependency of this host. </p>
 <p>This is mainly used for <a class="el" href="class_scope.html" title="Scope UGen for use with a ScopeGUI.">Scope</a> and/or <a class="el" href="class_disk_out.html" title="Streams data from a UGen out to a disk file.">DiskOut</a>. </p>
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00260">260</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00271">271</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
-<p>References <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00279">lock</a>, and <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00287">others</a>.</p>
+<p>References <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00292">lock</a>, and <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00300">others</a>.</p>
 
 </div>
 </div>
@@ -213,9 +213,9 @@ Private Attributes</h2></td></tr>
 <p>Get ready to play. </p>
 <p>The UGen++ system is provided with a sample rate and buffer size at this point and the <a class="el" href="class_juce_i_o_host.html#a5471097c36fb563fb1429b852ab4a2a1" title="Construct a UGen graph.">constructGraph()</a> pure virtual function is called. </p>
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00187">187</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00194">194</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
-<p>References <a class="el" href="class_juce_i_o_host.html#a5471097c36fb563fb1429b852ab4a2a1">constructGraph()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00285">input_</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00286">output_</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l01315">UGen::prepareToPlay()</a>, and <a class="el" href="ugen___u_gen_8cpp_source.html#l01142">UGen::setSource()</a>.</p>
+<p>References <a class="el" href="class_juce_i_o_host.html#a5471097c36fb563fb1429b852ab4a2a1">constructGraph()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00298">input_</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00299">output_</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l01288">UGen::prepareToPlay()</a>, and <a class="el" href="ugen___u_gen_8cpp_source.html#l01115">UGen::setSource()</a>.</p>
 
 </div>
 </div>
@@ -265,9 +265,9 @@ Private Attributes</h2></td></tr>
 <p>Renders a block of audio through the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> graph. </p>
 <p>The input <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> is provided with the sample data from the host environment and the the output <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> is provided with a place to write its sample data output. The output is then rendered. </p>
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00147">147</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00151">151</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l00658">UGen::getNextBlockID()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00285">input_</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00279">lock</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00283">numInputs_</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00283">numOutputs_</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00287">others</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00286">output_</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l00941">UGen::prepareAndProcessBlock()</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l01130">UGen::setInputs()</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l01094">UGen::setOutputs()</a>, and <a class="el" href="ugen___u_gen_array_8h_source.html#l00124">UGenArray::size()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l00661">UGen::getNextBlockID()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00298">input_</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00292">lock</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00296">numInputs_</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00296">numOutputs_</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00300">others</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00299">output_</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l00914">UGen::prepareAndProcessBlock()</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l01103">UGen::setInputs()</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l01067">UGen::setOutputs()</a>, and <a class="el" href="ugen___u_gen_array_8h_source.html#l00131">UGenArray::size()</a>.</p>
 
 </div>
 </div>
@@ -286,9 +286,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00195">195</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00202">202</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01004">UGen::shutdown()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01007">UGen::shutdown()</a>.</p>
 
 </div>
 </div>
@@ -318,7 +318,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> graph which will be performed </dd></dl>
 
-<p>Referenced by <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00187">audioDeviceAboutToStart()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00194">audioDeviceAboutToStart()</a>.</p>
 
 </div>
 </div>
@@ -339,9 +339,9 @@ Private Attributes</h2></td></tr>
 
 <p>Get a reference to the AudioDeviceManager(). </p>
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00201">201</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00208">208</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
-<p>References <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00280">audioDeviceManager</a>.</p>
+<p>References <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00293">audioDeviceManager</a>.</p>
 
 </div>
 </div>
@@ -364,9 +364,9 @@ Private Attributes</h2></td></tr>
 <p>Be careful not to store this reference.</p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>a reference to the input <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00213">213</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00220">220</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
-<p>References <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00285">input_</a>.</p>
+<p>References <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00298">input_</a>.</p>
 
 </div>
 </div>
@@ -385,9 +385,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00203">203</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00210">210</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
-<p>References <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00283">numInputs_</a>.</p>
+<p>References <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00296">numInputs_</a>.</p>
 
 </div>
 </div>
@@ -406,9 +406,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00204">204</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00211">211</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
-<p>References <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00283">numOutputs_</a>.</p>
+<p>References <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00296">numOutputs_</a>.</p>
 
 </div>
 </div>
@@ -431,9 +431,9 @@ Private Attributes</h2></td></tr>
 <p>Be careful not to store this reference. This could be useful if the output <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> is a <a class="el" href="class_plug.html" title="A UGen which allows repatching.">Plug</a>, in which case its source could be changed.</p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>a reference to the output <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00223">223</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00230">230</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
-<p>References <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00286">output_</a>.</p>
+<p>References <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00299">output_</a>.</p>
 
 </div>
 </div>
@@ -462,9 +462,9 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00234">234</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00241">241</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
-<p>References <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00285">input_</a>, and <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00279">lock</a>.</p>
+<p>References <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00298">input_</a>, and <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00292">lock</a>.</p>
 
 </div>
 </div>
@@ -493,9 +493,9 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00249">249</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00258">258</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
-<p>References <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00279">lock</a>, and <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00286">output_</a>.</p>
+<p>References <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00292">lock</a>, and <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00299">output_</a>.</p>
 
 </div>
 </div>
@@ -516,9 +516,9 @@ Private Attributes</h2></td></tr>
 
 <p>Sets up the AudioDeviceManager shortly after the constructor exits. </p>
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00096">96</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00098">98</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
-<p>References <a class="el" href="ugen___raw_input_u_gens_8h_source.html#l00066">AudioIn::AR()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00280">audioDeviceManager</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00284">bufferSize</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00285">input_</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00279">lock</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00283">numInputs_</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00283">numOutputs_</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00144">T</a>.</p>
+<p>References <a class="el" href="ugen___raw_input_u_gens_8h_source.html#l00066">AudioIn::AR()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00293">audioDeviceManager</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00297">bufferSize</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00298">input_</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00292">lock</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00296">numInputs_</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00296">numOutputs_</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00144">T</a>.</p>
 
 </div>
 </div>
@@ -534,9 +534,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00280">280</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00293">293</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00201">getAudioDeviceManager()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00096">timerCallback()</a>, and <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00086">~JuceIOHost()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00208">getAudioDeviceManager()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00098">timerCallback()</a>, and <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00088">~JuceIOHost()</a>.</p>
 
 </div>
 </div>
@@ -551,9 +551,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00284">284</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00297">297</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00055">JuceIOHost()</a>, and <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00096">timerCallback()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00055">JuceIOHost()</a>, and <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00098">timerCallback()</a>.</p>
 
 </div>
 </div>
@@ -568,9 +568,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00285">285</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00298">298</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00187">audioDeviceAboutToStart()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00147">audioDeviceIOCallback()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00213">getInput()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00234">setInput()</a>, and <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00096">timerCallback()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00194">audioDeviceAboutToStart()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00151">audioDeviceIOCallback()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00220">getInput()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00241">setInput()</a>, and <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00098">timerCallback()</a>.</p>
 
 </div>
 </div>
@@ -585,9 +585,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00288">288</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00301">301</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00086">~JuceIOHost()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00088">~JuceIOHost()</a>.</p>
 
 </div>
 </div>
@@ -602,9 +602,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00279">279</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00292">292</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00260">addOther()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00147">audioDeviceIOCallback()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00055">JuceIOHost()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00234">setInput()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00249">setOutput()</a>, and <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00096">timerCallback()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00271">addOther()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00151">audioDeviceIOCallback()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00055">JuceIOHost()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00241">setInput()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00258">setOutput()</a>, and <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00098">timerCallback()</a>.</p>
 
 </div>
 </div>
@@ -619,9 +619,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00283">283</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00296">296</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00147">audioDeviceIOCallback()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00203">getNumInputs()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00055">JuceIOHost()</a>, and <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00096">timerCallback()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00151">audioDeviceIOCallback()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00210">getNumInputs()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00055">JuceIOHost()</a>, and <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00098">timerCallback()</a>.</p>
 
 </div>
 </div>
@@ -636,9 +636,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00283">283</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00296">296</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00147">audioDeviceIOCallback()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00204">getNumOutputs()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00055">JuceIOHost()</a>, and <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00096">timerCallback()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00151">audioDeviceIOCallback()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00211">getNumOutputs()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00055">JuceIOHost()</a>, and <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00098">timerCallback()</a>.</p>
 
 </div>
 </div>
@@ -653,9 +653,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00287">287</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00300">300</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00260">addOther()</a>, and <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00147">audioDeviceIOCallback()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00271">addOther()</a>, and <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00151">audioDeviceIOCallback()</a>.</p>
 
 </div>
 </div>
@@ -670,9 +670,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00286">286</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00299">299</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00187">audioDeviceAboutToStart()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00147">audioDeviceIOCallback()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00223">getOutput()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00055">JuceIOHost()</a>, and <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00249">setOutput()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00194">audioDeviceAboutToStart()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00151">audioDeviceIOCallback()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00230">getOutput()</a>, <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00055">JuceIOHost()</a>, and <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00258">setOutput()</a>.</p>
 
 </div>
 </div>
@@ -680,7 +680,7 @@ Private Attributes</h2></td></tr>
 <li>juce/io/<a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:21:03 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:56 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

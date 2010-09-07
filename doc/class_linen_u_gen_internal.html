@@ -58,7 +58,7 @@ Public Types</h2></td></tr>
  }</td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_linen_u_gen_internal.html#ae891f2e41b6df37a1304d6466eac2a04">LinenUGenInternal</a> (Linen_InputsWithTypes)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_linen_u_gen_internal.html#a1b3508e7f7d971a27b2cf0fb9c827898">LinenUGenInternal</a> (const float attackTime, const float sustainTime, const float releaseTime, const float sustainLevel, const <a class="el" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1ca">UGen::DoneAction</a> doneAction)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_linen_u_gen_internal.html#a0fb99c55a899f89ba3a062795b24153d">getKr</a> ()  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_linen_u_gen_internal.html#a4bb9891cb133b880ad07fde96fb63f67">processBlock</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Process a block of samples for this blockID and channel.  <a href="#a4bb9891cb133b880ad07fde96fb63f67"></a><br/></td></tr>
@@ -107,21 +107,50 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ae891f2e41b6df37a1304d6466eac2a04"></a><!-- doxytag: member="LinenUGenInternal::LinenUGenInternal" ref="ae891f2e41b6df37a1304d6466eac2a04" args="(Linen_InputsWithTypes)" -->
+<a class="anchor" id="a1b3508e7f7d971a27b2cf0fb9c827898"></a><!-- doxytag: member="LinenUGenInternal::LinenUGenInternal" ref="a1b3508e7f7d971a27b2cf0fb9c827898" args="(const float attackTime, const float sustainTime, const float releaseTime, const float sustainLevel, const UGen::DoneAction doneAction)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">LinenUGenInternal::LinenUGenInternal </td>
           <td>(</td>
-          <td class="paramtype">Linen_InputsWithTypes&nbsp;</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td>  throw ()</td>
+          <td class="paramtype">const float&nbsp;</td>
+          <td class="paramname"> <em>attackTime</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&nbsp;</td>
+          <td class="paramname"> <em>sustainTime</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&nbsp;</td>
+          <td class="paramname"> <em>releaseTime</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&nbsp;</td>
+          <td class="paramname"> <em>sustainLevel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1ca">UGen::DoneAction</a>&nbsp;</td>
+          <td class="paramname"> <em>doneAction</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td>  throw ()</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___lines_8cpp_source.html#l00271">271</a> of file <a class="el" href="ugen___lines_8cpp_source.html">ugen_Lines.cpp</a>.</p>
 
 </div>
 </div>
@@ -199,7 +228,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___lines_8cpp_source.html#l00297">297</a> of file <a class="el" href="ugen___lines_8cpp_source.html">ugen_Lines.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l00923">UGen::getReciprocalSampleRate()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l00926">UGen::getReciprocalSampleRate()</a>.</p>
 
 </div>
 </div>
@@ -369,7 +398,7 @@ Protected Attributes</h2></td></tr>
 <li>envelopes/<a class="el" href="ugen___lines_8cpp_source.html">ugen_Lines.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:21:03 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:56 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

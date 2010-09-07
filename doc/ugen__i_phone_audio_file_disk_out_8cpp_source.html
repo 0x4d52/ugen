@@ -367,7 +367,7 @@
 <a name="l00335"></a>00335 }
 <a name="l00336"></a>00336 
 <a name="l00337"></a>00337 
-<a name="l00338"></a>00338 <a class="code" href="class_disk_out.html#ad95c4afb8964dc69294eadd02b63facf">DiskOut::DiskOut</a>(<a class="code" href="class_text.html">Text</a> <span class="keyword">const</span>&amp; audioFilePath, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <span class="keywordtype">bool</span> overwriteExisitingFile, <span class="keywordtype">int</span> bitDepth) <span class="keywordflow">throw</span>()
+<a name="l00338"></a>00338 <a class="code" href="class_disk_out.html#ad95c4afb8964dc69294eadd02b63facf">DiskOut::DiskOut</a>(<a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <span class="keyword">const</span>&amp; audioFilePath, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <span class="keywordtype">bool</span> overwriteExisitingFile, <span class="keywordtype">int</span> bitDepth) <span class="keywordflow">throw</span>()
 <a name="l00339"></a>00339 { 
 <a name="l00340"></a>00340  <span class="keyword">enum</span> AudioFileType { WAV, AIFF };
 <a name="l00341"></a>00341  AudioFileType type;
@@ -375,7 +375,7 @@
 <a name="l00343"></a>00343  <a class="code" href="class_text_array.html">TextArray</a> split = audioFilePath.split(<span class="stringliteral">&quot;.&quot;</span>);
 <a name="l00344"></a>00344  <span class="keywordtype">int</span> splitLength = split.<a class="code" href="class_object_array.html#a6eb3d6ad48798a021d3dc9f23e9c5260" title="Length is the number of real elements of storage available.">length</a>();
 <a name="l00345"></a>00345  
-<a name="l00346"></a>00346  <a class="code" href="class_text.html">Text</a> pathChecked; 
+<a name="l00346"></a>00346  <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> pathChecked; 
 <a name="l00347"></a>00347  <span class="keywordflow">if</span>(splitLength &lt;= 1)
 <a name="l00348"></a>00348  {
 <a name="l00349"></a>00349   pathChecked = audioFilePath &lt;&lt; <span class="stringliteral">&quot;.wav&quot;</span>;
@@ -384,8 +384,8 @@
 <a name="l00352"></a>00352  <span class="keywordflow">else</span>
 <a name="l00353"></a>00353  {
 <a name="l00354"></a>00354   pathChecked = audioFilePath;
-<a name="l00355"></a>00355   <span class="keywordflow">if</span>(split.<a class="code" href="class_object_array.html#a29533c8074caba9a86dc7a2482b759f6">last</a>().<a class="code" href="class_text.html#a6b6de5ee32db3277502246fdd80a0f2a">equalsIgnoreCase</a>(<span class="stringliteral">&quot;aif&quot;</span>) || 
-<a name="l00356"></a>00356      split.<a class="code" href="class_object_array.html#a29533c8074caba9a86dc7a2482b759f6">last</a>().<a class="code" href="class_text.html#a6b6de5ee32db3277502246fdd80a0f2a">equalsIgnoreCase</a>(<span class="stringliteral">&quot;aiff&quot;</span>))
+<a name="l00355"></a>00355   <span class="keywordflow">if</span>(split.<a class="code" href="class_object_array.html#a29533c8074caba9a86dc7a2482b759f6" title="Returns the last item in the array.">last</a>().<a class="code" href="class_text.html#a6b6de5ee32db3277502246fdd80a0f2a">equalsIgnoreCase</a>(<span class="stringliteral">&quot;aif&quot;</span>) || 
+<a name="l00356"></a>00356      split.<a class="code" href="class_object_array.html#a29533c8074caba9a86dc7a2482b759f6" title="Returns the last item in the array.">last</a>().<a class="code" href="class_text.html#a6b6de5ee32db3277502246fdd80a0f2a">equalsIgnoreCase</a>(<span class="stringliteral">&quot;aiff&quot;</span>))
 <a name="l00357"></a>00357   {
 <a name="l00358"></a>00358    type = AIFF;
 <a name="l00359"></a>00359   }
@@ -400,27 +400,27 @@
 <a name="l00368"></a>00368  <span class="keywordflow">if</span>(type == AIFF)
 <a name="l00369"></a>00369  {
 <a name="l00370"></a>00370   <span class="keywordflow">if</span>(bitDepth == 24)
-<a name="l00371"></a>00371    success = initWithAudioFileAiff24(pathChecked.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>(), input, overwriteExisitingFile);
+<a name="l00371"></a>00371    success = initWithAudioFileAiff24(pathChecked.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), input, overwriteExisitingFile);
 <a name="l00372"></a>00372   <span class="keywordflow">else</span> <span class="keywordflow">if</span>(bitDepth == 32)
-<a name="l00373"></a>00373    success = initWithAudioFileAiff32(pathChecked.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>(), input, overwriteExisitingFile);
+<a name="l00373"></a>00373    success = initWithAudioFileAiff32(pathChecked.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), input, overwriteExisitingFile);
 <a name="l00374"></a>00374   <span class="keywordflow">else</span>
 <a name="l00375"></a>00375   {
 <a name="l00376"></a>00376    <span class="keywordflow">if</span>(bitDepth != 16)
 <a name="l00377"></a>00377     printf(<span class="stringliteral">&quot;DiskOut: warning: bit depth of %d not supported, using 16\n&quot;</span>, bitDepth);
-<a name="l00378"></a>00378    success = initWithAudioFileAiff16(pathChecked.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>(), input, overwriteExisitingFile);
+<a name="l00378"></a>00378    success = initWithAudioFileAiff16(pathChecked.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), input, overwriteExisitingFile);
 <a name="l00379"></a>00379   }
 <a name="l00380"></a>00380  }
 <a name="l00381"></a>00381  <span class="keywordflow">else</span> <span class="keywordflow">if</span>(type == WAV)
 <a name="l00382"></a>00382  {
 <a name="l00383"></a>00383   <span class="keywordflow">if</span>(bitDepth == 24)
-<a name="l00384"></a>00384    success = initWithAudioFileWav24(pathChecked.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>(), input, overwriteExisitingFile);
+<a name="l00384"></a>00384    success = initWithAudioFileWav24(pathChecked.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), input, overwriteExisitingFile);
 <a name="l00385"></a>00385   <span class="keywordflow">else</span> <span class="keywordflow">if</span>(bitDepth == 32)
-<a name="l00386"></a>00386    success = initWithAudioFileWav32(pathChecked.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>(), input, overwriteExisitingFile);
+<a name="l00386"></a>00386    success = initWithAudioFileWav32(pathChecked.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), input, overwriteExisitingFile);
 <a name="l00387"></a>00387   <span class="keywordflow">else</span>
 <a name="l00388"></a>00388   {
 <a name="l00389"></a>00389    <span class="keywordflow">if</span>(bitDepth != 16)
 <a name="l00390"></a>00390     printf(<span class="stringliteral">&quot;DiskOut: warning: bit depth of %d not supported, using 16\n&quot;</span>, bitDepth);
-<a name="l00391"></a>00391    success = initWithAudioFileWav16(pathChecked.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>(), input, overwriteExisitingFile);
+<a name="l00391"></a>00391    success = initWithAudioFileWav16(pathChecked.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), input, overwriteExisitingFile);
 <a name="l00392"></a>00392   }
 <a name="l00393"></a>00393  }
 <a name="l00394"></a>00394  
@@ -438,12 +438,12 @@
 <a name="l00406"></a>00406           <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, 
 <a name="l00407"></a>00407           <span class="keywordtype">bool</span> overwriteExisitingFile) <span class="keywordflow">throw</span>()
 <a name="l00408"></a>00408 {
-<a name="l00409"></a>00409  <a class="code" href="class_text.html">Text</a> path; <span class="comment">// this needs to be here so it doesn&#39;t get garbage collected too early</span>
+<a name="l00409"></a>00409  <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> path; <span class="comment">// this needs to be here so it doesn&#39;t get garbage collected too early</span>
 <a name="l00410"></a>00410  
 <a name="l00411"></a>00411  <span class="keywordflow">if</span>(audioFilePath[0] != <span class="charliteral">&#39;/&#39;</span>)
 <a name="l00412"></a>00412  { 
 <a name="l00413"></a>00413   path = <a class="code" href="class_n_s_utilities.html#ab2a645d0b45b0d8da2d42ed9d6f90b43" title="Returns the absolute path of a file on the iPhone.">NSUtilities::pathInDirectory</a>(<a class="code" href="class_n_s_utilities.html#ab71c4bc753917a39670f1d3739643de0abac6b456f00397132f2aa394bcacb23d" title="The application&amp;#39;s Documents directory, files here will be backed up during iTunes sync...">NSUtilities::Documents</a>, audioFilePath);
-<a name="l00414"></a>00414   audioFilePath = path.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>();
+<a name="l00414"></a>00414   audioFilePath = path.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>();
 <a name="l00415"></a>00415  }
 <a name="l00416"></a>00416  
 <a name="l00417"></a>00417  CFURLRef fileURL = CFURLCreateFromFileSystemRepresentation(NULL, 
@@ -483,12 +483,12 @@
 <a name="l00451"></a>00451            <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, 
 <a name="l00452"></a>00452            <span class="keywordtype">bool</span> overwriteExisitingFile) <span class="keywordflow">throw</span>()
 <a name="l00453"></a>00453 {
-<a name="l00454"></a>00454  <a class="code" href="class_text.html">Text</a> path; <span class="comment">// this needs to be here so it doesn&#39;t get garbage collected too early</span>
+<a name="l00454"></a>00454  <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> path; <span class="comment">// this needs to be here so it doesn&#39;t get garbage collected too early</span>
 <a name="l00455"></a>00455  
 <a name="l00456"></a>00456  <span class="keywordflow">if</span>(audioFilePath[0] != <span class="charliteral">&#39;/&#39;</span>)
 <a name="l00457"></a>00457  { 
 <a name="l00458"></a>00458   path = <a class="code" href="class_n_s_utilities.html#ab2a645d0b45b0d8da2d42ed9d6f90b43" title="Returns the absolute path of a file on the iPhone.">NSUtilities::pathInDirectory</a>(<a class="code" href="class_n_s_utilities.html#ab71c4bc753917a39670f1d3739643de0abac6b456f00397132f2aa394bcacb23d" title="The application&amp;#39;s Documents directory, files here will be backed up during iTunes sync...">NSUtilities::Documents</a>, audioFilePath);
-<a name="l00459"></a>00459   audioFilePath = path.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>();
+<a name="l00459"></a>00459   audioFilePath = path.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>();
 <a name="l00460"></a>00460  }
 <a name="l00461"></a>00461  
 <a name="l00462"></a>00462  CFURLRef fileURL = CFURLCreateFromFileSystemRepresentation(NULL, 
@@ -528,12 +528,12 @@
 <a name="l00496"></a>00496           <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, 
 <a name="l00497"></a>00497           <span class="keywordtype">bool</span> overwriteExisitingFile) <span class="keywordflow">throw</span>()
 <a name="l00498"></a>00498 {
-<a name="l00499"></a>00499  <a class="code" href="class_text.html">Text</a> path; <span class="comment">// this needs to be here so it doesn&#39;t get garbage collected too early</span>
+<a name="l00499"></a>00499  <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> path; <span class="comment">// this needs to be here so it doesn&#39;t get garbage collected too early</span>
 <a name="l00500"></a>00500  
 <a name="l00501"></a>00501  <span class="keywordflow">if</span>(audioFilePath[0] != <span class="charliteral">&#39;/&#39;</span>)
 <a name="l00502"></a>00502  { 
 <a name="l00503"></a>00503   path = <a class="code" href="class_n_s_utilities.html#ab2a645d0b45b0d8da2d42ed9d6f90b43" title="Returns the absolute path of a file on the iPhone.">NSUtilities::pathInDirectory</a>(<a class="code" href="class_n_s_utilities.html#ab71c4bc753917a39670f1d3739643de0abac6b456f00397132f2aa394bcacb23d" title="The application&amp;#39;s Documents directory, files here will be backed up during iTunes sync...">NSUtilities::Documents</a>, audioFilePath);
-<a name="l00504"></a>00504   audioFilePath = path.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>();
+<a name="l00504"></a>00504   audioFilePath = path.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>();
 <a name="l00505"></a>00505  }
 <a name="l00506"></a>00506  
 <a name="l00507"></a>00507  CFURLRef fileURL = CFURLCreateFromFileSystemRepresentation(NULL, 
@@ -573,12 +573,12 @@
 <a name="l00541"></a>00541            <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, 
 <a name="l00542"></a>00542            <span class="keywordtype">bool</span> overwriteExisitingFile) <span class="keywordflow">throw</span>()
 <a name="l00543"></a>00543 {
-<a name="l00544"></a>00544  <a class="code" href="class_text.html">Text</a> path; <span class="comment">// this needs to be here so it doesn&#39;t get garbage collected too early</span>
+<a name="l00544"></a>00544  <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> path; <span class="comment">// this needs to be here so it doesn&#39;t get garbage collected too early</span>
 <a name="l00545"></a>00545  
 <a name="l00546"></a>00546  <span class="keywordflow">if</span>(audioFilePath[0] != <span class="charliteral">&#39;/&#39;</span>)
 <a name="l00547"></a>00547  { 
 <a name="l00548"></a>00548   path = <a class="code" href="class_n_s_utilities.html#ab2a645d0b45b0d8da2d42ed9d6f90b43" title="Returns the absolute path of a file on the iPhone.">NSUtilities::pathInDirectory</a>(<a class="code" href="class_n_s_utilities.html#ab71c4bc753917a39670f1d3739643de0abac6b456f00397132f2aa394bcacb23d" title="The application&amp;#39;s Documents directory, files here will be backed up during iTunes sync...">NSUtilities::Documents</a>, audioFilePath);
-<a name="l00549"></a>00549   audioFilePath = path.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>();
+<a name="l00549"></a>00549   audioFilePath = path.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>();
 <a name="l00550"></a>00550  }
 <a name="l00551"></a>00551  
 <a name="l00552"></a>00552  CFURLRef fileURL = CFURLCreateFromFileSystemRepresentation(NULL, 
@@ -618,12 +618,12 @@
 <a name="l00586"></a>00586           <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, 
 <a name="l00587"></a>00587           <span class="keywordtype">bool</span> overwriteExisitingFile) <span class="keywordflow">throw</span>()
 <a name="l00588"></a>00588 {
-<a name="l00589"></a>00589  <a class="code" href="class_text.html">Text</a> path; <span class="comment">// this needs to be here so it doesn&#39;t get garbage collected too early</span>
+<a name="l00589"></a>00589  <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> path; <span class="comment">// this needs to be here so it doesn&#39;t get garbage collected too early</span>
 <a name="l00590"></a>00590  
 <a name="l00591"></a>00591  <span class="keywordflow">if</span>(audioFilePath[0] != <span class="charliteral">&#39;/&#39;</span>)
 <a name="l00592"></a>00592  { 
 <a name="l00593"></a>00593   path = <a class="code" href="class_n_s_utilities.html#ab2a645d0b45b0d8da2d42ed9d6f90b43" title="Returns the absolute path of a file on the iPhone.">NSUtilities::pathInDirectory</a>(<a class="code" href="class_n_s_utilities.html#ab71c4bc753917a39670f1d3739643de0abac6b456f00397132f2aa394bcacb23d" title="The application&amp;#39;s Documents directory, files here will be backed up during iTunes sync...">NSUtilities::Documents</a>, audioFilePath);
-<a name="l00594"></a>00594   audioFilePath = path.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>();
+<a name="l00594"></a>00594   audioFilePath = path.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>();
 <a name="l00595"></a>00595  }
 <a name="l00596"></a>00596  
 <a name="l00597"></a>00597  CFURLRef fileURL = CFURLCreateFromFileSystemRepresentation(NULL, 
@@ -663,12 +663,12 @@
 <a name="l00631"></a>00631            <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, 
 <a name="l00632"></a>00632            <span class="keywordtype">bool</span> overwriteExisitingFile) <span class="keywordflow">throw</span>()
 <a name="l00633"></a>00633 {
-<a name="l00634"></a>00634  <a class="code" href="class_text.html">Text</a> path; <span class="comment">// this needs to be here so it doesn&#39;t get garbage collected too early</span>
+<a name="l00634"></a>00634  <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> path; <span class="comment">// this needs to be here so it doesn&#39;t get garbage collected too early</span>
 <a name="l00635"></a>00635  
 <a name="l00636"></a>00636  <span class="keywordflow">if</span>(audioFilePath[0] != <span class="charliteral">&#39;/&#39;</span>)
 <a name="l00637"></a>00637  { 
 <a name="l00638"></a>00638   path = <a class="code" href="class_n_s_utilities.html#ab2a645d0b45b0d8da2d42ed9d6f90b43" title="Returns the absolute path of a file on the iPhone.">NSUtilities::pathInDirectory</a>(<a class="code" href="class_n_s_utilities.html#ab71c4bc753917a39670f1d3739643de0abac6b456f00397132f2aa394bcacb23d" title="The application&amp;#39;s Documents directory, files here will be backed up during iTunes sync...">NSUtilities::Documents</a>, audioFilePath);
-<a name="l00639"></a>00639   audioFilePath = path.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d">getArray</a>();
+<a name="l00639"></a>00639   audioFilePath = path.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>();
 <a name="l00640"></a>00640  }
 <a name="l00641"></a>00641  
 <a name="l00642"></a>00642  CFURLRef fileURL = CFURLCreateFromFileSystemRepresentation(NULL, 
@@ -710,7 +710,7 @@
 <a name="l00678"></a>00678 <span class="preprocessor">#endif // UGEN_IPHONE</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:58 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:51 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

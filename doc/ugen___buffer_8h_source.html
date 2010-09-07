@@ -30,7 +30,7 @@
 <h1>buffers/ugen_Buffer.h</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___buffer_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Buffer.h 77 2010-05-24 10:34:11Z 0x4d52 $</span>
+<a href="ugen___buffer_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Buffer.h 122 2010-09-05 23:08:54Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/buffers/ugen_Buffer.h $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -238,9 +238,9 @@
 <a name="l00229"></a>00229  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(const <span class="keywordtype">int</span> size, const <span class="keywordtype">int</span> numChannels, const <span class="keywordtype">float</span>** sourceDataArray) throw();
 <a name="l00230"></a>00230  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(<a class="code" href="class_buffer_channel_internal.html">BufferChannelInternal</a> *internalToUse) throw();
 <a name="l00231"></a>00231  
-<a name="l00232"></a>00232  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(<a class="code" href="class_text.html">Text</a> const&amp; audioFilePath) throw();
-<a name="l00233"></a>00233  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(<a class="code" href="class_text.html">Text</a> const&amp; audioFilePath, <span class="keywordtype">double</span>&amp; sampleRate) throw();
-<a name="l00234"></a>00234  <span class="keywordtype">bool</span> <a class="code" href="class_buffer.html#a7e458377b133f7645e3b8fdcfe698ddc">write</a>(<a class="code" href="class_text.html">Text</a> const&amp; audioFilePath, <span class="keywordtype">bool</span> overwriteExisitingFile = false, <span class="keywordtype">int</span> bitDepth = 24) throw();
+<a name="l00232"></a>00232  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(<a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> const&amp; audioFilePath) throw();
+<a name="l00233"></a>00233  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(<a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> const&amp; audioFilePath, <span class="keywordtype">double</span>&amp; sampleRate) throw();
+<a name="l00234"></a>00234  <span class="keywordtype">bool</span> <a class="code" href="class_buffer.html#a7e458377b133f7645e3b8fdcfe698ddc">write</a>(<a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> const&amp; audioFilePath, <span class="keywordtype">bool</span> overwriteExisitingFile = false, <span class="keywordtype">int</span> bitDepth = 24) throw();
 <a name="l00235"></a>00235  
 <a name="l00236"></a>00236 <span class="preprocessor">#if defined(JUCE_VERSION) || defined(DOXYGEN)</span>
 <a name="l00237"></a>00237 <span class="preprocessor"></span> <a class="code" href="class_buffer.html#ae7ef2cd201190fde551dcb902627112b">Buffer</a>(AudioSampleBuffer&amp; audioSampleBuffer) <span class="keywordflow">throw</span>();
@@ -275,150 +275,150 @@
 <a name="l00266"></a>00266  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#a8908664132a5ffd8e30f591f281c57e9">copy</a>() const throw();
 <a name="l00267"></a>00267  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp; operator= (<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> const&amp; other) throw();
 <a name="l00268"></a>00268 
-<a name="l00269"></a>00269  <span class="keywordtype">void</span> <a class="code" href="class_buffer.html#a6f2a753c57fa7f2128e62a160bb3acd8">incrementInternals</a>() throw(); 
-<a name="l00270"></a>00270  <span class="keywordtype">void</span> <a class="code" href="class_buffer.html#acdd8e8562bb9705c766ad5e3d8ec0a78">decrementInternals</a>() throw(); 
+<a name="l00269"></a>00269  <span class="keywordtype">bool</span> operator== (<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> const&amp; other) const throw();
+<a name="l00270"></a>00270  <span class="keywordtype">bool</span> operator!= (<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> const&amp; other) const throw();
 <a name="l00271"></a>00271  
-<a name="l00273"></a>00273 
+<a name="l00272"></a>00272  <span class="keywordtype">void</span> <a class="code" href="class_buffer.html#a6f2a753c57fa7f2128e62a160bb3acd8">incrementInternals</a>() throw(); 
+<a name="l00273"></a>00273  <span class="keywordtype">void</span> <a class="code" href="class_buffer.html#acdd8e8562bb9705c766ad5e3d8ec0a78">decrementInternals</a>() throw(); 
 <a name="l00274"></a>00274  
+<a name="l00276"></a>00276 
 <a name="l00277"></a>00277  
-<a name="l00278"></a>00278  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#ac8488a055c66b2776bd0e1b487e6cfbe">interleave</a>() throw();
-<a name="l00279"></a>00279  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#a81091cd64a7d5fb8a38e1ff4196016b4">deinterleave</a>(const <span class="keywordtype">int</span> numChannels) throw();
 <a name="l00280"></a>00280  
-<a name="l00282"></a>00282  template&lt;class NumericalType&gt;
-<a name="l00283"></a><a class="code" href="class_buffer.html#a02346a8be8129455c7512f0e76810966">00283</a>  inline <a class="code" href="class_numerical_array2_d.html">NumericalArray2D</a>&lt;NumericalType&gt; <a class="code" href="class_buffer.html#a02346a8be8129455c7512f0e76810966" title="Convert a buffer to a 2D array of a specified type.">toArray</a>() const throw()
-<a name="l00284"></a>00284  {
-<a name="l00285"></a>00285   <a class="code" href="class_numerical_array2_d.html">NumericalArray2D&lt;NumericalType&gt;</a> array2d;
-<a name="l00286"></a>00286   
-<a name="l00287"></a>00287   <span class="keywordflow">if</span>(<a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a> != 0)
-<a name="l00288"></a>00288   {
-<a name="l00289"></a>00289    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>; i++)
-<a name="l00290"></a>00290    {
-<a name="l00291"></a>00291     <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a> array = <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;::withArray</a>(<a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>, <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[i]-&gt;data, <span class="keyword">false</span>);
-<a name="l00292"></a>00292     array2d &lt;&lt; NumericalArray&lt;NumericalType&gt;(array);
-<a name="l00293"></a>00293    }
-<a name="l00294"></a>00294   }
-<a name="l00295"></a>00295   
-<a name="l00296"></a>00296   <span class="keywordflow">return</span> array2d;
-<a name="l00297"></a>00297  }
-<a name="l00298"></a>00298  
-<a name="l00299"></a>00299  <span class="keyword">template</span>&lt;<span class="keyword">class</span> NumericalType&gt;
-<a name="l00300"></a><a class="code" href="class_buffer.html#a1623415b299829caec73dd5219bdf682">00300</a>  <span class="keyword">inline</span> <a class="code" href="class_buffer.html#a1623415b299829caec73dd5219bdf682">operator NumericalArray&lt;NumericalType&gt; </a>() <span class="keyword">const</span> throw()
-<a name="l00301"></a>00301  {
-<a name="l00302"></a>00302   <span class="keywordflow">return</span> toArray&lt;NumericalType&gt;(0);
-<a name="l00303"></a>00303  }
-<a name="l00304"></a>00304  
-<a name="l00306"></a>00306  <span class="keyword">template</span>&lt;<span class="keyword">class</span> NumericalType&gt;
-<a name="l00307"></a><a class="code" href="class_buffer.html#a312126a6a3b5d4753c6cc523d4580a1b">00307</a>  <span class="keyword">inline</span> <a class="code" href="class_numerical_array.html">NumericalArray&lt;NumericalType&gt;</a> <a class="code" href="class_buffer.html#a02346a8be8129455c7512f0e76810966" title="Convert a buffer to a 2D array of a specified type.">toArray</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
-<a name="l00308"></a>00308  {
-<a name="l00309"></a>00309   <a class="code" href="class_numerical_array.html">NumericalArray&lt;NumericalType&gt;</a> array;
-<a name="l00310"></a>00310   
-<a name="l00311"></a>00311   <span class="keywordflow">if</span>(<a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a> != 0)
-<a name="l00312"></a>00312   {
-<a name="l00313"></a>00313    <span class="keywordtype">int</span> channelToUse = channel;
-<a name="l00314"></a>00314    <span class="keywordflow">while</span>(channelToUse &lt; 0)
-<a name="l00315"></a>00315     channelToUse += <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>;
-<a name="l00316"></a>00316    
-<a name="l00317"></a>00317    <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a> floatArray = <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;::withArray</a>(<a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>, 
-<a name="l00318"></a>00318                     <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel % <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>]-&gt;data, 
-<a name="l00319"></a>00319                     <span class="keyword">false</span>);
-<a name="l00320"></a>00320    array = floatArray;
-<a name="l00321"></a>00321   }
-<a name="l00322"></a>00322   
-<a name="l00323"></a>00323   <span class="keywordflow">return</span> array;
-<a name="l00324"></a>00324  }
-<a name="l00325"></a>00325  
-<a name="l00326"></a><a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">00326</a>  <span class="keyword">inline</span> <span class="keywordtype">float</span>* <a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel = 0) throw()        { <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(channel &gt;= 0); <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel % <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>]-&gt;<a class="code" href="class_buffer_channel_internal.html#a5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>; }
-<a name="l00327"></a><a class="code" href="class_buffer.html#a819ca883530a936fc62e2395d0237048">00327</a>  <span class="keyword">inline</span> <span class="keyword">const</span> <span class="keywordtype">float</span>* <a class="code" href="class_buffer.html#a819ca883530a936fc62e2395d0237048">getData</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel = 0) <span class="keyword">const</span> throw()     { <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(channel &gt;= 0); <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel % <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>]-&gt;<a class="code" href="class_buffer_channel_internal.html#a5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>; }
-<a name="l00328"></a><a class="code" href="class_buffer.html#a2c5dd8a68145de878219ff0ea16e19a4">00328</a>  <span class="keyword">inline</span> <span class="keywordtype">float</span>* <a class="code" href="class_buffer.html#a2c5dd8a68145de878219ff0ea16e19a4">getDataUnchecked</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel = 0) throw()      { <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(channel &gt;= 0); <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel]-&gt;<a class="code" href="class_buffer_channel_internal.html#a5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>; }
-<a name="l00329"></a><a class="code" href="class_buffer.html#ab91f54201941f49e6f29fd5116179ebe">00329</a>  <span class="keyword">inline</span> <span class="keyword">const</span> <span class="keywordtype">float</span>* <a class="code" href="class_buffer.html#ab91f54201941f49e6f29fd5116179ebe">getDataUnchecked</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel = 0) <span class="keyword">const</span> throw()   { <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(channel &gt;= 0); <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel]-&gt;<a class="code" href="class_buffer_channel_internal.html#a5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>; }
-<a name="l00330"></a><a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba">00330</a>  <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba">getNumChannels</a>() <span class="keyword">const</span> throw()           { <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>; }
-<a name="l00331"></a><a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">00331</a>  <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>() <span class="keyword">const</span> throw()              { <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>; }
-<a name="l00332"></a>00332  <span class="keywordtype">double</span> <a class="code" href="class_buffer.html#a0db2e98450da72f708c98136560c4e56">duration</a>() <span class="keyword">const</span> throw();
-<a name="l00333"></a><a class="code" href="class_buffer.html#a10beb19633135335af51f096896f4f41">00333</a>  inline <span class="keywordtype">int</span> <a class="code" href="class_buffer.html#a10beb19633135335af51f096896f4f41">allocatedSize</a>() const throw()           { <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[0]-&gt;<a class="code" href="class_buffer_channel_internal.html#a6d6ef819e16c2a6a9fa7bbc3f0850760">allocatedSize</a>; }
-<a name="l00334"></a><a class="code" href="class_buffer.html#af8ec6ec556d0227cbcb57d40e2d2fb06">00334</a>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_buffer.html#af8ec6ec556d0227cbcb57d40e2d2fb06">clear</a>() throw()
-<a name="l00335"></a>00335  {
-<a name="l00336"></a>00336   <span class="keywordflow">if</span>(<a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a> != 0)
-<a name="l00337"></a>00337   {
-<a name="l00338"></a>00338    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>; i++)
-<a name="l00339"></a>00339    {
-<a name="l00340"></a>00340     memset(<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(i), 0, <a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a> * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
-<a name="l00341"></a>00341    }
-<a name="l00342"></a>00342   } 
-<a name="l00343"></a>00343  } 
-<a name="l00344"></a>00344  
-<a name="l00345"></a><a class="code" href="class_buffer.html#a92cec09e2a5c7b1e5b7109f8e0ce21c4">00345</a>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_buffer.html#a92cec09e2a5c7b1e5b7109f8e0ce21c4">setSample</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel, <span class="keyword">const</span> <span class="keywordtype">int</span> sampleIndex, <span class="keyword">const</span> <span class="keywordtype">float</span> value) <span class="keyword">const</span> <span class="keywordflow">throw</span>() 
-<a name="l00346"></a>00346  { 
-<a name="l00347"></a>00347   <span class="keywordflow">if</span>(sampleIndex &gt;= 0 &amp;&amp; sampleIndex &lt; <a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>) 
-<a name="l00348"></a>00348    <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel]-&gt;<a class="code" href="class_buffer_channel_internal.html#a5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>[sampleIndex] = value;
-<a name="l00349"></a>00349  }
-<a name="l00350"></a>00350  
-<a name="l00351"></a><a class="code" href="class_buffer.html#a545f21706829cc21413632921adf232b">00351</a>  <span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="class_buffer.html#a545f21706829cc21413632921adf232b">getSample</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel, <span class="keyword">const</span> <span class="keywordtype">int</span> sampleIndex) <span class="keyword">const</span> <span class="keywordflow">throw</span>() 
-<a name="l00352"></a>00352  { 
-<a name="l00353"></a>00353   <span class="keywordflow">if</span>(sampleIndex &lt; 0 || sampleIndex &gt;= <a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>) 
-<a name="l00354"></a>00354    <span class="keywordflow">return</span> 0.f;
-<a name="l00355"></a>00355   <span class="keywordflow">else</span>
-<a name="l00356"></a>00356    <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel]-&gt;<a class="code" href="class_buffer_channel_internal.html#a5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>[sampleIndex];
-<a name="l00357"></a>00357  }
-<a name="l00358"></a>00358  
-<a name="l00359"></a><a class="code" href="class_buffer.html#a54b5f49507909eda47d59b7f7061a0b6">00359</a>  <span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="class_buffer.html#a545f21706829cc21413632921adf232b">getSample</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel, <span class="keyword">const</span> <span class="keywordtype">double</span> sampleIndex) <span class="keyword">const</span> <span class="keywordflow">throw</span>() 
-<a name="l00360"></a>00360  { 
-<a name="l00361"></a>00361   <span class="keywordflow">if</span>(sampleIndex &lt; 0.0 || (<span class="keywordtype">int</span>)sampleIndex &gt;= <a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>) 
-<a name="l00362"></a>00362    <span class="keywordflow">return</span> 0.f;
-<a name="l00363"></a>00363   <span class="keywordflow">else</span>
-<a name="l00364"></a>00364    <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel]-&gt;<a class="code" href="class_buffer_channel_internal.html#aaca60fcfdb92df772ded792b4f6f6877">getSampleUnchecked</a>(sampleIndex);
-<a name="l00365"></a>00365  }
-<a name="l00366"></a>00366  
-<a name="l00367"></a><a class="code" href="class_buffer.html#a21f77aa00b5362bd1efa0ff1bc7765fb">00367</a>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_buffer.html#a21f77aa00b5362bd1efa0ff1bc7765fb">setSampleUnchecked</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> sampleIndex, <span class="keyword">const</span> <span class="keywordtype">float</span> value) <span class="keyword">const</span> <span class="keywordflow">throw</span>() 
-<a name="l00368"></a>00368  { 
-<a name="l00369"></a>00369   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(sampleIndex &gt;= 0 &amp;&amp; sampleIndex &lt; <a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>);
-<a name="l00370"></a>00370   
-<a name="l00371"></a>00371   <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[0]-&gt;<a class="code" href="class_buffer_channel_internal.html#a5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>[sampleIndex] = value;
-<a name="l00372"></a>00372  }
-<a name="l00373"></a>00373  
-<a name="l00374"></a><a class="code" href="class_buffer.html#a585df95ba451978ddd2efa4c81490328">00374</a>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_buffer.html#a21f77aa00b5362bd1efa0ff1bc7765fb">setSampleUnchecked</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel, <span class="keyword">const</span> <span class="keywordtype">int</span> sampleIndex, <span class="keyword">const</span> <span class="keywordtype">float</span> value) <span class="keyword">const</span> <span class="keywordflow">throw</span>() 
-<a name="l00375"></a>00375  { 
-<a name="l00376"></a>00376   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(channel &gt;= 0 &amp;&amp; channel &lt; <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>);
-<a name="l00377"></a>00377   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(sampleIndex &gt;= 0 &amp;&amp; sampleIndex &lt; <a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>);
-<a name="l00378"></a>00378   
-<a name="l00379"></a>00379   <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel]-&gt;<a class="code" href="class_buffer_channel_internal.html#a5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>[sampleIndex] = value;
-<a name="l00380"></a>00380  }
-<a name="l00381"></a>00381  
-<a name="l00382"></a><a class="code" href="class_buffer.html#a54e55fffada89fdd7ea22569c83aa337">00382</a>  <span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="class_buffer.html#a54e55fffada89fdd7ea22569c83aa337">getSampleUnchecked</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel, <span class="keyword">const</span> <span class="keywordtype">int</span> sampleIndex) <span class="keyword">const</span> <span class="keywordflow">throw</span>() 
-<a name="l00383"></a>00383  { 
-<a name="l00384"></a>00384   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(channel &gt;= 0 &amp;&amp; channel &lt; <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>);
-<a name="l00385"></a>00385   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(sampleIndex &gt;= 0 &amp;&amp; sampleIndex &lt; <a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>);
-<a name="l00386"></a>00386 
-<a name="l00387"></a>00387   <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel]-&gt;<a class="code" href="class_buffer_channel_internal.html#a5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>[sampleIndex];
-<a name="l00388"></a>00388  }
-<a name="l00389"></a>00389  
-<a name="l00390"></a><a class="code" href="class_buffer.html#abffec869fbfd36d7a7928005ce8f32a5">00390</a>  <span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="class_buffer.html#a54e55fffada89fdd7ea22569c83aa337">getSampleUnchecked</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> sampleIndex) <span class="keyword">const</span> <span class="keywordflow">throw</span>() 
-<a name="l00391"></a>00391  { 
-<a name="l00392"></a>00392   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(sampleIndex &gt;= 0 &amp;&amp; sampleIndex &lt; <a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>);
-<a name="l00393"></a>00393 
-<a name="l00394"></a>00394   <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[0]-&gt;<a class="code" href="class_buffer_channel_internal.html#a5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>[sampleIndex];
-<a name="l00395"></a>00395  }
-<a name="l00396"></a>00396  
-<a name="l00397"></a><a class="code" href="class_buffer.html#affe557dedc3eeac1d48f4d47f67bbd5d">00397</a>  <span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="class_buffer.html#a54e55fffada89fdd7ea22569c83aa337">getSampleUnchecked</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel, <span class="keyword">const</span> <span class="keywordtype">double</span> index) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
-<a name="l00398"></a>00398  { 
-<a name="l00399"></a>00399   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(channel &gt;= 0 &amp;&amp; channel &lt; <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>);
-<a name="l00400"></a>00400   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(index &gt;= 0 &amp;&amp; index &lt; <a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>);
-<a name="l00401"></a>00401 
-<a name="l00402"></a>00402   <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel]-&gt;<a class="code" href="class_buffer_channel_internal.html#aaca60fcfdb92df772ded792b4f6f6877">getSampleUnchecked</a>(index); 
-<a name="l00403"></a>00403  }
-<a name="l00404"></a>00404  
-<a name="l00405"></a><a class="code" href="class_buffer.html#a44b9d05f1b14e96ee188744a5d1f5f38">00405</a>  <span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="class_buffer.html#a44b9d05f1b14e96ee188744a5d1f5f38">lookup</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel, <span class="keyword">const</span> <span class="keywordtype">double</span> phase) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
-<a name="l00406"></a>00406  { 
-<a name="l00407"></a>00407   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(channel &gt;= 0 &amp;&amp; channel &lt; <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>);
-<a name="l00408"></a>00408   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(phase &gt;= 0.0 &amp;&amp; phase &lt;= 1.0);
-<a name="l00409"></a>00409 
-<a name="l00410"></a>00410   <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel]-&gt;<a class="code" href="class_buffer_channel_internal.html#aaca60fcfdb92df772ded792b4f6f6877">getSampleUnchecked</a>(phase * (<a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>-1)); 
-<a name="l00411"></a>00411  }
-<a name="l00412"></a>00412  
-<a name="l00413"></a><a class="code" href="class_buffer.html#a7d344cd04d131665fe7f745590b417b0">00413</a>  <span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="class_buffer.html#a44b9d05f1b14e96ee188744a5d1f5f38">lookup</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> phase) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
-<a name="l00414"></a>00414  { 
-<a name="l00415"></a>00415   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(phase &gt;= 0.0 &amp;&amp; phase &lt;= 1.0);
-<a name="l00416"></a>00416 
-<a name="l00417"></a>00417   <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[0]-&gt;<a class="code" href="class_buffer_channel_internal.html#aaca60fcfdb92df772ded792b4f6f6877">getSampleUnchecked</a>(phase * (<a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>-1)); 
+<a name="l00281"></a>00281  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#ac8488a055c66b2776bd0e1b487e6cfbe">interleave</a>() throw();
+<a name="l00282"></a>00282  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#a81091cd64a7d5fb8a38e1ff4196016b4">deinterleave</a>(const <span class="keywordtype">int</span> numChannels) throw();
+<a name="l00283"></a>00283  
+<a name="l00285"></a>00285  template&lt;class NumericalType&gt;
+<a name="l00286"></a><a class="code" href="class_buffer.html#a02346a8be8129455c7512f0e76810966">00286</a>  inline <a class="code" href="class_numerical_array2_d.html">NumericalArray2D</a>&lt;NumericalType&gt; <a class="code" href="class_buffer.html#a02346a8be8129455c7512f0e76810966" title="Convert a buffer to a 2D array of a specified type.">toArray</a>() const throw()
+<a name="l00287"></a>00287  {
+<a name="l00288"></a>00288   <a class="code" href="class_numerical_array2_d.html">NumericalArray2D&lt;NumericalType&gt;</a> array2d;
+<a name="l00289"></a>00289   
+<a name="l00290"></a>00290   <span class="keywordflow">if</span>(<a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a> != 0)
+<a name="l00291"></a>00291   {
+<a name="l00292"></a>00292    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>; i++)
+<a name="l00293"></a>00293    {
+<a name="l00294"></a>00294     <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a> array = <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;::withArray</a>(<a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>, <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[i]-&gt;data, <span class="keyword">false</span>);
+<a name="l00295"></a>00295     array2d &lt;&lt; NumericalArray&lt;NumericalType&gt;(array);
+<a name="l00296"></a>00296    }
+<a name="l00297"></a>00297   }
+<a name="l00298"></a>00298   
+<a name="l00299"></a>00299   <span class="keywordflow">return</span> array2d;
+<a name="l00300"></a>00300  }
+<a name="l00301"></a>00301  
+<a name="l00302"></a>00302  <span class="keyword">template</span>&lt;<span class="keyword">class</span> NumericalType&gt;
+<a name="l00303"></a><a class="code" href="class_buffer.html#a1623415b299829caec73dd5219bdf682">00303</a>  <span class="keyword">inline</span> <a class="code" href="class_buffer.html#a1623415b299829caec73dd5219bdf682">operator NumericalArray&lt;NumericalType&gt; </a>() <span class="keyword">const</span> throw()
+<a name="l00304"></a>00304  {
+<a name="l00305"></a>00305   <span class="keywordflow">return</span> toArray&lt;NumericalType&gt;(0);
+<a name="l00306"></a>00306  }
+<a name="l00307"></a>00307  
+<a name="l00309"></a>00309  <span class="keyword">template</span>&lt;<span class="keyword">class</span> NumericalType&gt;
+<a name="l00310"></a><a class="code" href="class_buffer.html#a312126a6a3b5d4753c6cc523d4580a1b">00310</a>  <span class="keyword">inline</span> <a class="code" href="class_numerical_array.html">NumericalArray&lt;NumericalType&gt;</a> <a class="code" href="class_buffer.html#a02346a8be8129455c7512f0e76810966" title="Convert a buffer to a 2D array of a specified type.">toArray</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l00311"></a>00311  {
+<a name="l00312"></a>00312   <a class="code" href="class_numerical_array.html">NumericalArray&lt;NumericalType&gt;</a> array;
+<a name="l00313"></a>00313   
+<a name="l00314"></a>00314   <span class="keywordflow">if</span>(<a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a> != 0)
+<a name="l00315"></a>00315   {
+<a name="l00316"></a>00316    <span class="keywordtype">int</span> channelToUse = channel;
+<a name="l00317"></a>00317    <span class="keywordflow">while</span>(channelToUse &lt; 0)
+<a name="l00318"></a>00318     channelToUse += <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>;
+<a name="l00319"></a>00319    
+<a name="l00320"></a>00320    <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a> floatArray = <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;::withArray</a>(<a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>, 
+<a name="l00321"></a>00321                     <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel % <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>]-&gt;data, 
+<a name="l00322"></a>00322                     <span class="keyword">false</span>);
+<a name="l00323"></a>00323    array = floatArray;
+<a name="l00324"></a>00324   }
+<a name="l00325"></a>00325   
+<a name="l00326"></a>00326   <span class="keywordflow">return</span> array;
+<a name="l00327"></a>00327  }
+<a name="l00328"></a>00328  
+<a name="l00329"></a><a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">00329</a>  <span class="keyword">inline</span> <span class="keywordtype">float</span>* <a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel = 0) throw()        { <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(channel &gt;= 0); <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel % <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>]-&gt;<a class="code" href="class_buffer_channel_internal.html#a5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>; }
+<a name="l00330"></a><a class="code" href="class_buffer.html#a819ca883530a936fc62e2395d0237048">00330</a>  <span class="keyword">inline</span> <span class="keyword">const</span> <span class="keywordtype">float</span>* <a class="code" href="class_buffer.html#a819ca883530a936fc62e2395d0237048">getData</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel = 0) <span class="keyword">const</span> throw()     { <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(channel &gt;= 0); <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel % <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>]-&gt;<a class="code" href="class_buffer_channel_internal.html#a5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>; }
+<a name="l00331"></a><a class="code" href="class_buffer.html#a2c5dd8a68145de878219ff0ea16e19a4">00331</a>  <span class="keyword">inline</span> <span class="keywordtype">float</span>* <a class="code" href="class_buffer.html#a2c5dd8a68145de878219ff0ea16e19a4">getDataUnchecked</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel = 0) throw()      { <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(channel &gt;= 0); <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel]-&gt;<a class="code" href="class_buffer_channel_internal.html#a5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>; }
+<a name="l00332"></a><a class="code" href="class_buffer.html#ab91f54201941f49e6f29fd5116179ebe">00332</a>  <span class="keyword">inline</span> <span class="keyword">const</span> <span class="keywordtype">float</span>* <a class="code" href="class_buffer.html#ab91f54201941f49e6f29fd5116179ebe">getDataUnchecked</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel = 0) <span class="keyword">const</span> throw()   { <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(channel &gt;= 0); <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel]-&gt;<a class="code" href="class_buffer_channel_internal.html#a5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>; }
+<a name="l00333"></a><a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba">00333</a>  <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba">getNumChannels</a>() <span class="keyword">const</span> throw()           { <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>; }
+<a name="l00334"></a><a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">00334</a>  <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>() <span class="keyword">const</span> throw()              { <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>; }
+<a name="l00335"></a>00335  <span class="keywordtype">double</span> <a class="code" href="class_buffer.html#a0db2e98450da72f708c98136560c4e56">duration</a>() <span class="keyword">const</span> throw();
+<a name="l00336"></a><a class="code" href="class_buffer.html#a10beb19633135335af51f096896f4f41">00336</a>  inline <span class="keywordtype">int</span> <a class="code" href="class_buffer.html#a10beb19633135335af51f096896f4f41">allocatedSize</a>() const throw()           { <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[0]-&gt;<a class="code" href="class_buffer_channel_internal.html#a6d6ef819e16c2a6a9fa7bbc3f0850760">allocatedSize</a>; }
+<a name="l00337"></a><a class="code" href="class_buffer.html#af8ec6ec556d0227cbcb57d40e2d2fb06">00337</a>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_buffer.html#af8ec6ec556d0227cbcb57d40e2d2fb06">clear</a>() throw()
+<a name="l00338"></a>00338  {
+<a name="l00339"></a>00339   <span class="keywordflow">if</span>(<a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a> != 0)
+<a name="l00340"></a>00340   {
+<a name="l00341"></a>00341    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>; i++)
+<a name="l00342"></a>00342    {
+<a name="l00343"></a>00343     memset(<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(i), 0, <a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a> * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00344"></a>00344    }
+<a name="l00345"></a>00345   } 
+<a name="l00346"></a>00346  } 
+<a name="l00347"></a>00347  
+<a name="l00348"></a><a class="code" href="class_buffer.html#a92cec09e2a5c7b1e5b7109f8e0ce21c4">00348</a>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_buffer.html#a92cec09e2a5c7b1e5b7109f8e0ce21c4">setSample</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel, <span class="keyword">const</span> <span class="keywordtype">int</span> sampleIndex, <span class="keyword">const</span> <span class="keywordtype">float</span> value) <span class="keyword">const</span> <span class="keywordflow">throw</span>() 
+<a name="l00349"></a>00349  { 
+<a name="l00350"></a>00350   <span class="keywordflow">if</span>(sampleIndex &gt;= 0 &amp;&amp; sampleIndex &lt; <a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>) 
+<a name="l00351"></a>00351    <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel]-&gt;<a class="code" href="class_buffer_channel_internal.html#a5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>[sampleIndex] = value;
+<a name="l00352"></a>00352  }
+<a name="l00353"></a>00353  
+<a name="l00354"></a><a class="code" href="class_buffer.html#a545f21706829cc21413632921adf232b">00354</a>  <span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="class_buffer.html#a545f21706829cc21413632921adf232b">getSample</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel, <span class="keyword">const</span> <span class="keywordtype">int</span> sampleIndex) <span class="keyword">const</span> <span class="keywordflow">throw</span>() 
+<a name="l00355"></a>00355  { 
+<a name="l00356"></a>00356   <span class="keywordflow">if</span>(sampleIndex &lt; 0 || sampleIndex &gt;= <a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>) 
+<a name="l00357"></a>00357    <span class="keywordflow">return</span> 0.f;
+<a name="l00358"></a>00358   <span class="keywordflow">else</span>
+<a name="l00359"></a>00359    <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel]-&gt;<a class="code" href="class_buffer_channel_internal.html#a5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>[sampleIndex];
+<a name="l00360"></a>00360  }
+<a name="l00361"></a>00361  
+<a name="l00362"></a><a class="code" href="class_buffer.html#a54b5f49507909eda47d59b7f7061a0b6">00362</a>  <span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="class_buffer.html#a545f21706829cc21413632921adf232b">getSample</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel, <span class="keyword">const</span> <span class="keywordtype">double</span> sampleIndex) <span class="keyword">const</span> <span class="keywordflow">throw</span>() 
+<a name="l00363"></a>00363  { 
+<a name="l00364"></a>00364   <span class="keywordflow">if</span>(sampleIndex &lt; 0.0 || (<span class="keywordtype">int</span>)sampleIndex &gt;= <a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>) 
+<a name="l00365"></a>00365    <span class="keywordflow">return</span> 0.f;
+<a name="l00366"></a>00366   <span class="keywordflow">else</span>
+<a name="l00367"></a>00367    <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel]-&gt;<a class="code" href="class_buffer_channel_internal.html#aaca60fcfdb92df772ded792b4f6f6877">getSampleUnchecked</a>(sampleIndex);
+<a name="l00368"></a>00368  }
+<a name="l00369"></a>00369  
+<a name="l00370"></a><a class="code" href="class_buffer.html#a21f77aa00b5362bd1efa0ff1bc7765fb">00370</a>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_buffer.html#a21f77aa00b5362bd1efa0ff1bc7765fb">setSampleUnchecked</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> sampleIndex, <span class="keyword">const</span> <span class="keywordtype">float</span> value) <span class="keyword">const</span> <span class="keywordflow">throw</span>() 
+<a name="l00371"></a>00371  { 
+<a name="l00372"></a>00372   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(sampleIndex &gt;= 0 &amp;&amp; sampleIndex &lt; <a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>);
+<a name="l00373"></a>00373   
+<a name="l00374"></a>00374   <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[0]-&gt;<a class="code" href="class_buffer_channel_internal.html#a5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>[sampleIndex] = value;
+<a name="l00375"></a>00375  }
+<a name="l00376"></a>00376  
+<a name="l00377"></a><a class="code" href="class_buffer.html#a585df95ba451978ddd2efa4c81490328">00377</a>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_buffer.html#a21f77aa00b5362bd1efa0ff1bc7765fb">setSampleUnchecked</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel, <span class="keyword">const</span> <span class="keywordtype">int</span> sampleIndex, <span class="keyword">const</span> <span class="keywordtype">float</span> value) <span class="keyword">const</span> <span class="keywordflow">throw</span>() 
+<a name="l00378"></a>00378  { 
+<a name="l00379"></a>00379   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(channel &gt;= 0 &amp;&amp; channel &lt; <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>);
+<a name="l00380"></a>00380   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(sampleIndex &gt;= 0 &amp;&amp; sampleIndex &lt; <a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>);
+<a name="l00381"></a>00381   
+<a name="l00382"></a>00382   <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel]-&gt;<a class="code" href="class_buffer_channel_internal.html#a5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>[sampleIndex] = value;
+<a name="l00383"></a>00383  }
+<a name="l00384"></a>00384  
+<a name="l00385"></a><a class="code" href="class_buffer.html#a54e55fffada89fdd7ea22569c83aa337">00385</a>  <span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="class_buffer.html#a54e55fffada89fdd7ea22569c83aa337">getSampleUnchecked</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel, <span class="keyword">const</span> <span class="keywordtype">int</span> sampleIndex) <span class="keyword">const</span> <span class="keywordflow">throw</span>() 
+<a name="l00386"></a>00386  { 
+<a name="l00387"></a>00387   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(channel &gt;= 0 &amp;&amp; channel &lt; <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>);
+<a name="l00388"></a>00388   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(sampleIndex &gt;= 0 &amp;&amp; sampleIndex &lt; <a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>);
+<a name="l00389"></a>00389 
+<a name="l00390"></a>00390   <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel]-&gt;<a class="code" href="class_buffer_channel_internal.html#a5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>[sampleIndex];
+<a name="l00391"></a>00391  }
+<a name="l00392"></a>00392  
+<a name="l00393"></a><a class="code" href="class_buffer.html#abffec869fbfd36d7a7928005ce8f32a5">00393</a>  <span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="class_buffer.html#a54e55fffada89fdd7ea22569c83aa337">getSampleUnchecked</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> sampleIndex) <span class="keyword">const</span> <span class="keywordflow">throw</span>() 
+<a name="l00394"></a>00394  { 
+<a name="l00395"></a>00395   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(sampleIndex &gt;= 0 &amp;&amp; sampleIndex &lt; <a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>);
+<a name="l00396"></a>00396 
+<a name="l00397"></a>00397   <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[0]-&gt;<a class="code" href="class_buffer_channel_internal.html#a5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>[sampleIndex];
+<a name="l00398"></a>00398  }
+<a name="l00399"></a>00399  
+<a name="l00400"></a><a class="code" href="class_buffer.html#affe557dedc3eeac1d48f4d47f67bbd5d">00400</a>  <span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="class_buffer.html#a54e55fffada89fdd7ea22569c83aa337">getSampleUnchecked</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel, <span class="keyword">const</span> <span class="keywordtype">double</span> index) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l00401"></a>00401  { 
+<a name="l00402"></a>00402   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(channel &gt;= 0 &amp;&amp; channel &lt; <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>);
+<a name="l00403"></a>00403   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(index &gt;= 0 &amp;&amp; index &lt; <a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>);
+<a name="l00404"></a>00404 
+<a name="l00405"></a>00405   <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel]-&gt;<a class="code" href="class_buffer_channel_internal.html#aaca60fcfdb92df772ded792b4f6f6877">getSampleUnchecked</a>(index); 
+<a name="l00406"></a>00406  }
+<a name="l00407"></a>00407  
+<a name="l00408"></a><a class="code" href="class_buffer.html#a44b9d05f1b14e96ee188744a5d1f5f38">00408</a>  <span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="class_buffer.html#a44b9d05f1b14e96ee188744a5d1f5f38">lookup</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel, <span class="keyword">const</span> <span class="keywordtype">double</span> phase) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l00409"></a>00409  { 
+<a name="l00410"></a>00410   <span class="keywordflow">if</span>(channel &lt; 0 || channel &gt;= <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>) <span class="keywordflow">return</span> 0.f;
+<a name="l00411"></a>00411  
+<a name="l00412"></a>00412   <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel]-&gt;<a class="code" href="class_buffer_channel_internal.html#aaca60fcfdb92df772ded792b4f6f6877">getSampleUnchecked</a>(<a class="code" href="ugen___inline_binary_ops_8h.html#a0ccb8f97ec261cc0cb8e5d4b0ca112c9">ugen::clip</a>(phase, 0.0, 1.0) * (<a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>-1)); 
+<a name="l00413"></a>00413  }
+<a name="l00414"></a>00414  
+<a name="l00415"></a><a class="code" href="class_buffer.html#a7d344cd04d131665fe7f745590b417b0">00415</a>  <span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="class_buffer.html#a44b9d05f1b14e96ee188744a5d1f5f38">lookup</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> phase) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l00416"></a>00416  { 
+<a name="l00417"></a>00417   <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[0]-&gt;<a class="code" href="class_buffer_channel_internal.html#aaca60fcfdb92df772ded792b4f6f6877">getSampleUnchecked</a>(<a class="code" href="ugen___inline_binary_ops_8h.html#a0ccb8f97ec261cc0cb8e5d4b0ca112c9">ugen::clip</a>(phase, 0.0, 1.0) * (<a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>-1)); 
 <a name="l00418"></a>00418  }
 <a name="l00419"></a>00419  
 <a name="l00420"></a><a class="code" href="class_buffer.html#a64465b2fe51e899db01353ea3987d394">00420</a>  <span class="keywordtype">float</span> <a class="code" href="class_buffer.html#a64465b2fe51e899db01353ea3987d394">operator[] </a>(<span class="keyword">const</span> <span class="keywordtype">int</span> sampleIndex) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
@@ -631,7 +631,7 @@
 <a name="l00702"></a>00702 <span class="preprocessor">#endif // _UGEN_ugen_Buffer_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:20:56 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:49 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

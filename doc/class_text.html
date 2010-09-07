@@ -38,6 +38,9 @@
 </div>
 <div class="contents">
 <!-- doxytag: class="Text" --><!-- doxytag: inherits="NumericalArray" -->
+<p>A class for storing and manipulating text strings.  
+<a href="#_details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="ugen___text_8h_source.html">ugen_Text.h</a>&gt;</code></p>
 
 <p>Inherits <a class="el" href="class_numerical_array.html">NumericalArray&lt; char &gt;</a>.</p>
@@ -47,19 +50,29 @@
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#ab3e26143fccc52699bcc5149cae852bc">Text</a> ()  throw ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates an emply text string.  <a href="#ab3e26143fccc52699bcc5149cae852bc"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#a6a37381f3b9631eceb5623d577b0cc0c">Text</a> (const char c)  throw ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a text string containing a single character.  <a href="#a6a37381f3b9631eceb5623d577b0cc0c"></a><br/></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;class CopyType &gt; </td></tr>
 <tr><td class="memTemplItemLeft" align="right" valign="top">&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_text.html#a0d1528af9b765d9528a22ea88d4b9d9c">Text</a> (<a class="el" href="class_numerical_array.html">NumericalArray</a>&lt; CopyType &gt; const &amp;copy)  throw ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copy numerical values from another numerical array type to a new <a class="el" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> string.  <a href="#a0d1528af9b765d9528a22ea88d4b9d9c"></a><br/></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;class CopyType &gt; </td></tr>
 <tr><td class="memTemplItemLeft" align="right" valign="top">&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_text.html#ab46c6c76bb1b99dfe309161360e1f05a">Text</a> (<a class="el" href="class_object_array.html">ObjectArray</a>&lt; CopyType &gt; const &amp;copy)  throw ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copy values from another array type to a new <a class="el" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> string.  <a href="#ab46c6c76bb1b99dfe309161360e1f05a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#a571009e17eb8002acaeb61ee9734792a">Text</a> (String const &amp;string)  throw ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copy a Juce string to a <a class="el" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> string.  <a href="#a571009e17eb8002acaeb61ee9734792a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#ae2a8b9c3fbb678148b3ba4e259f9f1b9">operator String</a> () const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#a01cf231250017a4ebe2ebaa353c220b5">Text</a> (const wchar_t *string)  throw ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Create a <a class="el" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> string from a wide char string.  <a href="#a01cf231250017a4ebe2ebaa353c220b5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_text.html">Text</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#a5d69a4c8c14f6f03088e017e876152fc">operator=</a> (<a class="el" href="class_object_array.html">ObjectArray</a>&lt; char &gt; const &amp;other)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#aecda7c41ea1a41bcf09136bdb9ba321e">Text</a> (<a class="el" href="class_text.html">Text</a> const &amp;array0, <a class="el" href="class_text.html">Text</a> const &amp;array1)  throw ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Concatentate two <a class="el" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> strings into one.  <a href="#aecda7c41ea1a41bcf09136bdb9ba321e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#ab606e00e69e274b095765cf46d06c70a">Text</a> (<a class="el" href="class_numerical_array_spec.html">NumericalArraySpec</a> const &amp;spec)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#a6bcbe3c81d4925f8074c8bcede3b7705">Text</a> (<a class="el" href="class_numerical_array_spec.html">NumericalArraySpec</a> const &amp;spec, const bool needsNullTermination)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_text.html">Text</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#a80ee4ad50d7d0cd6258f939c242e54f5">operator=</a> (<a class="el" href="class_numerical_array.html">CharArray</a> const &amp;other)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_text.html">Text</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#ac74cf133d432ce01d60ba43e61bedaf9">operator+</a> (<a class="el" href="class_text.html">Text</a> const &amp;rightOperand) const   throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_text.html">Text</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#a3a08732edc5ff110af7364704811d785">offset</a> (<a class="el" href="class_text.html">Text</a> const &amp;rightOperand) const   throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_text.html">Text</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#a6a1108b69293b6aa70f9724337d4b067">add</a> (<a class="el" href="class_text.html">Text</a> const &amp;other)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#a86cfbbe5b1f3a107b1cf08a34fde59e8">Text</a> (const char *nullTerminatedSourceArray)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#a2cd183ddb2a1d15a1a82d322d9c9b36e">Text</a> (const int size, const char *sourceArray, const bool needsNullTermination=false)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_text.html">Text</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#ae0ec7ba26cc4e1f3c26ed8389f63f266">toUpper</a> () const   throw ()</td></tr>
@@ -89,8 +102,10 @@ Static Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="class_text.html">Text</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#a14ad9708569f2fa41a39403a210fc89a">empty</a> = &quot;&quot;</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>A class for storing and manipulating text strings. </p>
+<p>Similar to std:string and juce::String this is UGen++'s default text format. Internally <a class="el" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> is just a null terminated C string (array of chars) and is just a specialised versio of CharArray or NumericalArra&lt;char&gt;. </p>
 
-<p>Definition at line <a class="el" href="ugen___text_8h_source.html#l00044">44</a> of file <a class="el" href="ugen___text_8h_source.html">ugen_Text.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___text_8h_source.html#l00048">48</a> of file <a class="el" href="ugen___text_8h_source.html">ugen_Text.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ab3e26143fccc52699bcc5149cae852bc"></a><!-- doxytag: member="Text::Text" ref="ab3e26143fccc52699bcc5149cae852bc" args="()" -->
 <div class="memitem">
@@ -107,9 +122,11 @@ Static Public Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Creates an emply text string. </p>
+
 <p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00046">46</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___text_8h_source.html#l00130">TextArray::TextArray()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___text_8h_source.html#l00147">TextArray::TextArray()</a>.</p>
 
 </div>
 </div>
@@ -128,6 +145,8 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Creates a text string containing a single character. </p>
 
 <p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00051">51</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
 
@@ -151,7 +170,9 @@ template&lt;class CopyType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___text_8h_source.html#l00055">55</a> of file <a class="el" href="ugen___text_8h_source.html">ugen_Text.h</a>.</p>
+<p>Copy numerical values from another numerical array type to a new <a class="el" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> string. </p>
+
+<p>Definition at line <a class="el" href="ugen___text_8h_source.html#l00062">62</a> of file <a class="el" href="ugen___text_8h_source.html">ugen_Text.h</a>.</p>
 
 </div>
 </div>
@@ -173,7 +194,9 @@ template&lt;class CopyType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___text_8h_source.html#l00061">61</a> of file <a class="el" href="ugen___text_8h_source.html">ugen_Text.h</a>.</p>
+<p>Copy values from another array type to a new <a class="el" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> string. </p>
+
+<p>Definition at line <a class="el" href="ugen___text_8h_source.html#l00069">69</a> of file <a class="el" href="ugen___text_8h_source.html">ugen_Text.h</a>.</p>
 
 </div>
 </div>
@@ -192,6 +215,8 @@ template&lt;class CopyType &gt; </div>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Copy a Juce string to a <a class="el" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> string. </p>
 
 <p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00058">58</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
 
@@ -212,6 +237,8 @@ template&lt;class CopyType &gt; </div>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Create a <a class="el" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> string from a wide char string. </p>
 
 <p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00069">69</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
 
@@ -241,6 +268,8 @@ template&lt;class CopyType &gt; </div>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Concatentate two <a class="el" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> strings into one. </p>
 
 <p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00075">75</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
 
@@ -311,7 +340,7 @@ template&lt;class CopyType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00119">119</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00142">142</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
 
 </div>
 </div>
@@ -346,11 +375,33 @@ template&lt;class CopyType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00124">124</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00147">147</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a6a1108b69293b6aa70f9724337d4b067"></a><!-- doxytag: member="Text::add" ref="a6a1108b69293b6aa70f9724337d4b067" args="(Text const &amp;other)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_text.html">Text</a> &amp; Text::add </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_text.html">Text</a> const &amp;&nbsp;</td>
+          <td class="paramname"> <em>other</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>  throw ()</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00131">131</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
+
+<p>References <a class="el" href="ugen___arrays_8h_source.html#l00502">ObjectArray&lt; NumericalType &gt;::add()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l00470">ObjectArray&lt; ObjectType &gt;::length()</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="aae2b3eb7e8a5a28f176e6899d356207a"></a><!-- doxytag: member="Text::containsIgnoreCase" ref="aae2b3eb7e8a5a28f176e6899d356207a" args="(Text const &amp;toFind) const " -->
 <div class="memitem">
 <div class="memproto">
@@ -367,7 +418,7 @@ template&lt;class CopyType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00180">180</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00203">203</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
 
 </div>
 </div>
@@ -387,7 +438,7 @@ template&lt;class CopyType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00175">175</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00198">198</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
 
 </div>
 </div>
@@ -426,11 +477,11 @@ template&lt;class CopyType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00244">244</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00267">267</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___text_8cpp_source.html#l00232">getAlphabetLower()</a>, and <a class="el" href="ugen___text_8cpp_source.html#l00238">getAlphabetUpper()</a>.</p>
+<p>References <a class="el" href="ugen___text_8cpp_source.html#l00255">getAlphabetLower()</a>, and <a class="el" href="ugen___text_8cpp_source.html#l00261">getAlphabetUpper()</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___text_8cpp_source.html#l00256">getAlphabetAndDigits()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___text_8cpp_source.html#l00279">getAlphabetAndDigits()</a>.</p>
 
 </div>
 </div>
@@ -449,11 +500,11 @@ template&lt;class CopyType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00256">256</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00279">279</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___text_8cpp_source.html#l00244">getAlphabetAll()</a>, and <a class="el" href="ugen___text_8cpp_source.html#l00250">getDigits()</a>.</p>
+<p>References <a class="el" href="ugen___text_8cpp_source.html#l00267">getAlphabetAll()</a>, and <a class="el" href="ugen___text_8cpp_source.html#l00273">getDigits()</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___text_8cpp_source.html#l00262">getPunctuation()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___text_8cpp_source.html#l00285">getPunctuation()</a>.</p>
 
 </div>
 </div>
@@ -472,9 +523,9 @@ template&lt;class CopyType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00232">232</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00255">255</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___text_8cpp_source.html#l00244">getAlphabetAll()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___text_8cpp_source.html#l00267">getAlphabetAll()</a>.</p>
 
 </div>
 </div>
@@ -493,9 +544,9 @@ template&lt;class CopyType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00238">238</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00261">261</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___text_8cpp_source.html#l00244">getAlphabetAll()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___text_8cpp_source.html#l00267">getAlphabetAll()</a>.</p>
 
 </div>
 </div>
@@ -514,9 +565,9 @@ template&lt;class CopyType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00250">250</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00273">273</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___text_8cpp_source.html#l00256">getAlphabetAndDigits()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___text_8cpp_source.html#l00279">getAlphabetAndDigits()</a>.</p>
 
 </div>
 </div>
@@ -535,11 +586,11 @@ template&lt;class CopyType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00226">226</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00249">249</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___arrays_8h_source.html#l01289">NumericalArray&lt; NumericalType &gt;::series()</a>.</p>
+<p>References <a class="el" href="ugen___arrays_8h_source.html#l01537">NumericalArray&lt; NumericalType &gt;::series()</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___text_8cpp_source.html#l00262">getPunctuation()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___text_8cpp_source.html#l00285">getPunctuation()</a>.</p>
 
 </div>
 </div>
@@ -558,9 +609,9 @@ template&lt;class CopyType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00262">262</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00285">285</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___text_8cpp_source.html#l00256">getAlphabetAndDigits()</a>, <a class="el" href="ugen___text_8cpp_source.html#l00226">getPrintable()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00889">ObjectArray&lt; ObjectType &gt;::remove()</a>, and <a class="el" href="ugen___text_8h_source.html#l00047">space</a>.</p>
+<p>References <a class="el" href="ugen___text_8cpp_source.html#l00279">getAlphabetAndDigits()</a>, <a class="el" href="ugen___text_8cpp_source.html#l00249">getPrintable()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01134">ObjectArray&lt; ObjectType &gt;::removeItem()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01154">ObjectArray&lt; ObjectType &gt;::removeItems()</a>, and <a class="el" href="ugen___text_8h_source.html#l00051">space</a>.</p>
 
 </div>
 </div>
@@ -579,7 +630,7 @@ template&lt;class CopyType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00268">268</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00291">291</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
 
 </div>
 </div>
@@ -608,7 +659,7 @@ template&lt;class CopyType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00190">190</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00213">213</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
 
 </div>
 </div>
@@ -637,7 +688,7 @@ template&lt;class CopyType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00185">185</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00208">208</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
 
 </div>
 </div>
@@ -663,6 +714,26 @@ template&lt;class CopyType &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="a3a08732edc5ff110af7364704811d785"></a><!-- doxytag: member="Text::offset" ref="a3a08732edc5ff110af7364704811d785" args="(Text const &amp;rightOperand) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_text.html">Text</a> Text::offset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_text.html">Text</a> const &amp;&nbsp;</td>
+          <td class="paramname"> <em>rightOperand</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const  throw ()</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00124">124</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ae2a8b9c3fbb678148b3ba4e259f9f1b9"></a><!-- doxytag: member="Text::operator String" ref="ae2a8b9c3fbb678148b3ba4e259f9f1b9" args="() const " -->
 <div class="memitem">
 <div class="memproto">
@@ -680,7 +751,29 @@ template&lt;class CopyType &gt; </div>
 
 <p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00063">63</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___arrays_8h_source.html#l00319">ObjectArray&lt; NumericalType &gt;::getArray()</a>.</p>
+<p>References <a class="el" href="ugen___arrays_8h_source.html#l00479">ObjectArray&lt; NumericalType &gt;::getArray()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac74cf133d432ce01d60ba43e61bedaf9"></a><!-- doxytag: member="Text::operator+" ref="ac74cf133d432ce01d60ba43e61bedaf9" args="(Text const &amp;rightOperand) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_text.html">Text</a> Text::operator+ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_text.html">Text</a> const &amp;&nbsp;</td>
+          <td class="paramname"> <em>rightOperand</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const  throw ()</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00119">119</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
+
+<p>References <a class="el" href="ugen___u_gen_8cpp_source.html#l00502">operator&lt;&lt;()</a>.</p>
 
 </div>
 </div>
@@ -700,7 +793,7 @@ template&lt;class CopyType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___text_8h_source.html#l00073">73</a> of file <a class="el" href="ugen___text_8h_source.html">ugen_Text.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___text_8h_source.html#l00085">85</a> of file <a class="el" href="ugen___text_8h_source.html">ugen_Text.h</a>.</p>
 
 </div>
 </div>
@@ -740,7 +833,7 @@ template&lt;class CopyType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00218">218</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00241">241</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
 
 </div>
 </div>
@@ -769,9 +862,9 @@ template&lt;class CopyType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00195">195</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00218">218</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___arrays_8h_source.html#l01936">NumericalArray&lt; NumericalType &gt;::indexOf()</a>.</p>
+<p>References <a class="el" href="ugen___arrays_8h_source.html#l02192">NumericalArray&lt; NumericalType &gt;::indexOf()</a>.</p>
 
 </div>
 </div>
@@ -790,9 +883,9 @@ template&lt;class CopyType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00152">152</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00175">175</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___arrays_8h_source.html#l00319">ObjectArray&lt; ObjectType &gt;::getArray()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00319">ObjectArray&lt; NumericalType &gt;::getArray()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00305">ObjectArray&lt; NumericalType &gt;::size()</a>, and <a class="el" href="ugen___text_8cpp_source.html#l00094">withSize()</a>.</p>
+<p>References <a class="el" href="ugen___arrays_8h_source.html#l00479">ObjectArray&lt; ObjectType &gt;::getArray()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00479">ObjectArray&lt; NumericalType &gt;::getArray()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00464">ObjectArray&lt; NumericalType &gt;::size()</a>, and <a class="el" href="ugen___text_8cpp_source.html#l00094">withSize()</a>.</p>
 
 </div>
 </div>
@@ -811,9 +904,9 @@ template&lt;class CopyType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00129">129</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00152">152</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___arrays_8h_source.html#l00319">ObjectArray&lt; ObjectType &gt;::getArray()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00319">ObjectArray&lt; NumericalType &gt;::getArray()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00305">ObjectArray&lt; NumericalType &gt;::size()</a>, and <a class="el" href="ugen___text_8cpp_source.html#l00094">withSize()</a>.</p>
+<p>References <a class="el" href="ugen___arrays_8h_source.html#l00479">ObjectArray&lt; ObjectType &gt;::getArray()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00479">ObjectArray&lt; NumericalType &gt;::getArray()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00464">ObjectArray&lt; NumericalType &gt;::size()</a>, and <a class="el" href="ugen___text_8cpp_source.html#l00094">withSize()</a>.</p>
 
 </div>
 </div>
@@ -846,7 +939,7 @@ template&lt;class CopyType &gt; </div>
 
 <p>Definition at line <a class="el" href="ugen___text_8cpp_source.html#l00094">94</a> of file <a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___text_8cpp_source.html#l00152">toLower()</a>, and <a class="el" href="ugen___text_8cpp_source.html#l00129">toUpper()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___text_8cpp_source.html#l00175">toLower()</a>, and <a class="el" href="ugen___text_8cpp_source.html#l00152">toUpper()</a>.</p>
 
 </div>
 </div>
@@ -862,7 +955,7 @@ template&lt;class CopyType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___text_8h_source.html#l00048">48</a> of file <a class="el" href="ugen___text_8h_source.html">ugen_Text.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___text_8h_source.html#l00052">52</a> of file <a class="el" href="ugen___text_8h_source.html">ugen_Text.h</a>.</p>
 
 </div>
 </div>
@@ -877,9 +970,9 @@ template&lt;class CopyType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___text_8h_source.html#l00047">47</a> of file <a class="el" href="ugen___text_8h_source.html">ugen_Text.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___text_8h_source.html#l00051">51</a> of file <a class="el" href="ugen___text_8h_source.html">ugen_Text.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___text_8cpp_source.html#l00262">getPunctuation()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___text_8cpp_source.html#l00285">getPunctuation()</a>.</p>
 
 </div>
 </div>
@@ -888,7 +981,7 @@ template&lt;class CopyType &gt; </div>
 <li>core/<a class="el" href="ugen___text_8cpp_source.html">ugen_Text.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:21:05 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:58 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

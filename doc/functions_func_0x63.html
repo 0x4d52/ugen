@@ -32,6 +32,7 @@
       <li><a href="functions.html"><span>All</span></a></li>
       <li class="current"><a href="functions_func.html"><span>Functions</span></a></li>
       <li><a href="functions_vars.html"><span>Variables</span></a></li>
+      <li><a href="functions_type.html"><span>Typedefs</span></a></li>
       <li><a href="functions_enum.html"><span>Enumerations</span></a></li>
       <li><a href="functions_eval.html"><span>Enumerator</span></a></li>
       <li><a href="functions_prop.html"><span>Properties</span></a></li>
@@ -165,6 +166,9 @@
 <li>coin()
 : <a class="el" href="class_ran088.html#a326cd66485e6e261dd9176e148d9df6f">Ran088</a>
 </li>
+<li>collect()
+: <a class="el" href="class_object_array.html#abd760cd8df87fe7470d4ac9c34a39cdf">ObjectArray&lt; ObjectType &gt;</a>
+</li>
 <li>CombL()
 : <a class="el" href="class_comb_l.html#abc118770455273d71ed5efdc14b66e4b">CombL</a>
 </li>
@@ -188,7 +192,7 @@
 : <a class="el" href="class_numerical_array.html#aefd33d47cec4a1582966f0c584457de9">NumericalArray&lt; NumericalType &gt;</a>
 </li>
 <li>ComplexBuffer()
-: <a class="el" href="class_complex_buffer.html#a83f16268073d8ca176117df81ae378d4">ComplexBuffer</a>
+: <a class="el" href="class_complex_buffer.html#acd9dfa8dc3b9523b46ac10ef572eacfc">ComplexBuffer</a>
 </li>
 <li>constrainDomain()
 : <a class="el" href="class_envelope_handle_component.html#a4244e1e1860f85d5ebf843777ea431ec">EnvelopeHandleComponent</a>
@@ -212,13 +216,14 @@
 : <a class="el" href="class_u_gen.html#a2143dc166390b10c03ac7bc5577d6e5e">UGen</a>
 </li>
 <li>contains()
-: <a class="el" href="class_object_array.html#ad87075a49fe1cea5bcdaf54f15873c4e">ObjectArray&lt; ObjectType &gt;</a>
+: <a class="el" href="class_object_array.html#a4f36d45789d499b691b59fb59294e1b3">ObjectArray&lt; ObjectType &gt;</a>
 , <a class="el" href="class_numerical_array.html#a9246716a1489ad9ed6eb3f746cf5f090">NumericalArray&lt; NumericalType &gt;</a>
 , <a class="el" href="class_object_array2_d_base.html#a5f92c4180cdc093b9d2efe80c53f1769">ObjectArray2DBase&lt; ArrayType, RowType &gt;</a>
+, <a class="el" href="class_object_array.html#ad87075a49fe1cea5bcdaf54f15873c4e">ObjectArray&lt; ObjectType &gt;</a>
 , <a class="el" href="class_u_gen_array.html#acd565bf8826e0feb08b94f5ee4e498e6">UGenArray</a>
 </li>
 <li>containsIdenticalInternalsAs()
-: <a class="el" href="class_u_gen.html#ace676c6ef2fe968cabf145afcbe649fc">UGen</a>
+: <a class="el" href="class_u_gen.html#a04e114d13c20221cdf019f764d456291">UGen</a>
 </li>
 <li>containsIgnoreCase()
 : <a class="el" href="class_text.html#aae2b3eb7e8a5a28f176e6899d356207a">Text</a>
@@ -252,19 +257,19 @@
 : <a class="el" href="class_v_f_p.html#a19f5b32bd415c49b82a02226a5b7bf21">VFP</a>
 </li>
 <li>cos()
-: <a class="el" href="class_u_gen_array.html#a4c26b7807da0bba9e38b2ff010031655">UGenArray</a>
-, <a class="el" href="class_numerical_array.html#aab0747b0d519807290ca594505d48ea3">NumericalArray&lt; NumericalType &gt;</a>
+: <a class="el" href="class_numerical_array.html#aab0747b0d519807290ca594505d48ea3">NumericalArray&lt; NumericalType &gt;</a>
 , <a class="el" href="class_buffer.html#aa1b947accbf151eabfd345b1784f9348">Buffer</a>
 , <a class="el" href="class_u_gen.html#a9f5a4c676d39612a24821474a9a900f8">UGen</a>
+, <a class="el" href="class_u_gen_array.html#a4c26b7807da0bba9e38b2ff010031655">UGenArray</a>
 </li>
 <li>cosh()
-: <a class="el" href="class_buffer.html#af7075b3d927428d9765793662020ec96">Buffer</a>
-, <a class="el" href="class_u_gen.html#a46915899b0af0804a13d499b7392f5ff">UGen</a>
+: <a class="el" href="class_u_gen.html#a46915899b0af0804a13d499b7392f5ff">UGen</a>
+, <a class="el" href="class_buffer.html#af7075b3d927428d9765793662020ec96">Buffer</a>
 , <a class="el" href="class_u_gen_array.html#a593e8d8dd7aee88f1bc87086495ea01a">UGenArray</a>
 </li>
 <li>cosineTable()
-: <a class="el" href="class_buffer.html#acd62d9fddf2056e649cac46c6176660c">Buffer</a>
-, <a class="el" href="class_numerical_array.html#adb0da415ffbc75140c7b538eb64ed54a">NumericalArray&lt; NumericalType &gt;</a>
+: <a class="el" href="class_numerical_array.html#adb0da415ffbc75140c7b538eb64ed54a">NumericalArray&lt; NumericalType &gt;</a>
+, <a class="el" href="class_buffer.html#acd62d9fddf2056e649cac46c6176660c">Buffer</a>
 </li>
 <li>cosineWindow()
 : <a class="el" href="class_buffer.html#ad2efad8c3a4a5635d7bc2b99e0d32fed">Buffer</a>
@@ -289,18 +294,20 @@
 : <a class="el" href="class_bits.html#ab66becc1ebaf89f635f575f885dfb6e6">Bits</a>
 </li>
 <li>countValidInitialisers()
-: <a class="el" href="class_object_array2_d_base.html#ade493c6ad2ce7f5c549dea3816b66c8a">ObjectArray2DBase&lt; ArrayType, RowType &gt;</a>
+: <a class="el" href="class_object_array2_d_base.html#a0014bd8bea7f90754b297e54927cced5">ObjectArray2DBase&lt; ArrayType, RowType &gt;</a>
+, <a class="el" href="class_numerical_array.html#a7034df4b2a0580c2eb347d4b92d41289">NumericalArray&lt; NumericalType &gt;</a>
+, <a class="el" href="class_object_array2_d_base.html#ade493c6ad2ce7f5c549dea3816b66c8a">ObjectArray2DBase&lt; ArrayType, RowType &gt;</a>
+, <a class="el" href="class_numerical_array.html#af91ad8ac96da69379f7827ba2dfea0fe">NumericalArray&lt; NumericalType &gt;</a>
+, <a class="el" href="class_object_array2_d_base.html#aa266a52b8b03b8f7b51d0d86de935874">ObjectArray2DBase&lt; ArrayType, RowType &gt;</a>
 , <a class="el" href="class_numerical_array.html#a20f1a7032d4ac350b5673dd0287efbe0">NumericalArray&lt; NumericalType &gt;</a>
 , <a class="el" href="class_object_array2_d_base.html#a3abc2e63ee3302b2f3078ca53d079040">ObjectArray2DBase&lt; ArrayType, RowType &gt;</a>
-, <a class="el" href="class_numerical_array.html#ae1099b34494e6756484a14ce4adb503d">NumericalArray&lt; NumericalType &gt;</a>
-, <a class="el" href="class_object_array2_d_base.html#a0014bd8bea7f90754b297e54927cced5">ObjectArray2DBase&lt; ArrayType, RowType &gt;</a>
 , <a class="el" href="class_object_array.html#abd9e168e254e7fc3f9da0cf319d86d4f">ObjectArray&lt; ObjectType &gt;</a>
 </li>
 <li>cpsmidi()
 : <a class="el" href="class_u_gen.html#a452a7f2025c833eaf7990cd461fbb653">UGen</a>
-, <a class="el" href="class_buffer.html#a2e82c08c24f5fef15e0c08b756816b5d">Buffer</a>
-, <a class="el" href="class_numerical_array.html#a4b6f61a6817eaaf0de3e4db778299d89">NumericalArray&lt; NumericalType &gt;</a>
 , <a class="el" href="class_u_gen_array.html#a17eea01c7b789262ed5da28d8b16fd33">UGenArray</a>
+, <a class="el" href="class_numerical_array.html#a4b6f61a6817eaaf0de3e4db778299d89">NumericalArray&lt; NumericalType &gt;</a>
+, <a class="el" href="class_buffer.html#a2e82c08c24f5fef15e0c08b756816b5d">Buffer</a>
 </li>
 <li>create()
 : <a class="el" href="class_envelope_curve_popup.html#a0054d354d22944dd641bf06ae6836d7c">EnvelopeCurvePopup</a>
@@ -311,27 +318,27 @@
 </li>
 <li>createEvent()
 : <a class="el" href="class_mix_fill_base_event_base.html#a37ff77ca321976512bbf49be128b0047">MixFillBaseEventBase</a>
-, <a class="el" href="class_chain_bank_event.html#ad920bc5b42ad1a030b6c512203551827">ChainBankEvent&lt; OwnerType &gt;</a>
-, <a class="el" href="class_recirc_base_chain_1_1_recirc_base_chain_link.html#a73a259db18f039e02a92d178b41e0197">RecircBaseChain&lt; RecircBaseType &gt;::RecircBaseChainLink</a>
 , <a class="el" href="class_chain_bank_event_3_01void_01_4.html#a0b9bcf0cbcf42b46fd4f31a0f565ed64">ChainBankEvent&lt; void &gt;</a>
+, <a class="el" href="class_recirc_base_chain_1_1_recirc_base_chain_link.html#a73a259db18f039e02a92d178b41e0197">RecircBaseChain&lt; RecircBaseType &gt;::RecircBaseChainLink</a>
+, <a class="el" href="class_chain_bank_event.html#ad920bc5b42ad1a030b6c512203551827">ChainBankEvent&lt; OwnerType &gt;</a>
 </li>
 <li>createUserData()
 : <a class="el" href="class_voicer_base_u_gen_internal.html#a5d77b1ecccd6d10d53e760d2ec6c82cd">VoicerBaseUGenInternal</a>
 </li>
 <li>cubed()
-: <a class="el" href="class_u_gen_array.html#a648fcff75c771fc3433afaef08af8ba5">UGenArray</a>
+: <a class="el" href="class_buffer.html#adf8245ac6e2475695bd80ed651750541">Buffer</a>
 , <a class="el" href="class_v_f_p.html#ad7c6a51d20be377261baeec1407a3ec2">VFP</a>
-, <a class="el" href="class_numerical_array.html#a82438a0d563c2fd6e82ab23ab34f84b8">NumericalArray&lt; NumericalType &gt;</a>
-, <a class="el" href="class_buffer.html#adf8245ac6e2475695bd80ed651750541">Buffer</a>
-, <a class="el" href="class_neon.html#ad527b2aaf475093a34dd48dad23ab1b5">Neon</a>
+, <a class="el" href="class_u_gen_array.html#a648fcff75c771fc3433afaef08af8ba5">UGenArray</a>
 , <a class="el" href="class_u_gen.html#a2c2ff5f49f041f819a36dcc5c9b8434c">UGen</a>
+, <a class="el" href="class_numerical_array.html#a82438a0d563c2fd6e82ab23ab34f84b8">NumericalArray&lt; NumericalType &gt;</a>
+, <a class="el" href="class_neon.html#ad527b2aaf475093a34dd48dad23ab1b5">Neon</a>
 </li>
 <li>CurveSlider()
 : <a class="el" href="class_envelope_curve_popup_1_1_curve_slider.html#ab16b062239b3bd612bfa505b9b0e9824">EnvelopeCurvePopup::CurveSlider</a>
 </li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:21:00 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:54 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

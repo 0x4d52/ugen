@@ -86,6 +86,7 @@ This is the complete list of members for <a class="el" href="class_buffer.html">
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a3c49d8de367bd86c5396d17c1772d9c0">difsqr</a>(Buffer const &amp;rightOperand) const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a726f79030ada5d8a6999e062fb86b0e5">distort</a>() const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a0db2e98450da72f708c98136560c4e56">duration</a>() const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_buffer.html#a2102e190cd15a521a27bad294209fb06">equal</a>(Buffer const &amp;rightOperand) const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a3026504f3397ab596a2dfdcb356c0668">exp</a>() const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a1b0ee3b56bdf9f82fac719176d4b3850">exprand</a>(const int size, const double lower, const double upper, const int numChannels=1)</td><td><a class="el" href="class_buffer.html">Buffer</a></td><td><code> [static]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#ad09a9fa1d505a7681777237b7096275f">findMaximum</a>(const int channel=-1) const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
@@ -144,9 +145,10 @@ This is the complete list of members for <a class="el" href="class_buffer.html">
   <tr class="memlist"><td><a class="el" href="class_buffer.html#ac1b908f99da6afe5392292ec809a119e">newClear</a>(const int size=1, const int numChannels=1, bool zeroData=false)</td><td><a class="el" href="class_buffer.html">Buffer</a></td><td><code> [static]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a3062f87c831d35846581e6882acd928c">normalise</a>() const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a6156165994ad3a37b4d591de33aede2e">normaliseEach</a>() const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_buffer.html#a801463cd854bfc3e2399b4b40ae3e9ad">notEqual</a>(Buffer const &amp;rightOperand) const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a></td><td><a class="el" href="class_buffer.html">Buffer</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a1623415b299829caec73dd5219bdf682">operator NumericalArray&lt; NumericalType &gt;</a>() const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td><code> [inline]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_buffer.html#ad2b2e2379f6a4a7b528bd8d9719a9c3c">operator!=</a>(Buffer const &amp;rightOperand) const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_buffer.html#aa408e0002ddf617cd39ec277dd2e97f1">operator!=</a>(Buffer const &amp;other) const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#acba8eeb43daf3f5ec5ba4dc6781aae33">operator*</a>(Buffer const &amp;rightOperand) const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a8e07a2eb1bb72e2dbd0d2eb3a9724fdd">operator*=</a>(Buffer const &amp;other)</td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a9c237dedc6a3c0ece4d9c62805b87c80">operator+</a>(Buffer const &amp;rightOperand) const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
@@ -162,7 +164,7 @@ This is the complete list of members for <a class="el" href="class_buffer.html">
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a6a816df49ad1c1b7c302f973d139da71">operator&lt;&lt;=</a>(Buffer const &amp;other)</td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#ab32bf04a228a02c1c7fc121d59fa48e1">operator&lt;=</a>(Buffer const &amp;rightOperand) const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#af5236195cd5cb175c7c6e265ef8f264a">operator=</a>(Buffer const &amp;other)</td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_buffer.html#a77c27d6e8c2b2e9d5a445889b45b4247">operator==</a>(Buffer const &amp;rightOperand) const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_buffer.html#a53ef4dbac3035c74b1f89384b1cf05c5">operator==</a>(Buffer const &amp;other) const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a8efd1d11fbb773843a2f49d049cd3dfb">operator&gt;</a>(Buffer const &amp;rightOperand) const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a931cbcf65dfebd172383a6111c8d7e24">operator&gt;=</a>(Buffer const &amp;rightOperand) const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a64465b2fe51e899db01353ea3987d394">operator[]</a>(const int sampleIndex) const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td><code> [inline]</code></td></tr>
@@ -215,7 +217,7 @@ This is the complete list of members for <a class="el" href="class_buffer.html">
   <tr class="memlist"><td><a class="el" href="class_buffer.html#af6b0783728dfe55c29f39dd6e7dd34bf">zap</a>() const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a59b8743e4a5f731bdd0c4185c9ef263b">~Buffer</a>()</td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
 </table></div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Jul 26 2010 14:21:02 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:55 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
