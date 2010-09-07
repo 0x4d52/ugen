@@ -138,6 +138,7 @@ public:
 		return this->getInternal()->getKeys(); 
 	}
 	
+	/** Returns an array of the key/value pairs. */
 	KeyValuePairArrayType getPairs() const throw()
 	{
 		KeyValuePairArrayType pairs = KeyValuePairArrayType::withSize(length());
