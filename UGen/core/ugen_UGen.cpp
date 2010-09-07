@@ -1112,6 +1112,20 @@ void UGen::setInputs(const float** block, const int blockSize, const int numChan
 	}
 }
 
+void UGen::setValue(Value const& other) throw()
+{
+	for(int i = 0; i < numInternalUGens; i++)
+	{
+		ValueUGenInternal* valueUGen = dynamic_cast<ValueUGenInternal*> (internalUGens[i]);
+		
+		if(valueUGen != 0)
+		{
+			valueUGen->setValue(other);
+			return;
+		}
+	}
+}
+
 void UGen::setSource(UGen const& source, const bool releasePreviousSources, const float fadeTime) throw()
 {
 	ugen_assert(fadeTime >= 0.f);
