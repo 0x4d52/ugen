@@ -118,6 +118,7 @@ public:
 	{
 	}
 	
+	/** Creates a dictionary initialise with an array of key/value pairs. */
 	Dictionary(KeyValuePairArrayType pairs) throw()
 	:	SmartPointerContainer< DictionaryInternal<ValueType,KeyType> >
 		(new DictionaryInternal<ValueType,KeyType>())
