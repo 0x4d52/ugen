@@ -672,7 +672,11 @@ EXCLUDE_PATTERNS       = */MainComponent.h \
                          */MainAppWindow.cpp \
                          */ApplicationStartup.cpp \
                          */.app/* \
-                         */fftreal/*
+                         */fftreal/* \
+                         */_4_06_TabBarDemoAppDelegate.h \
+                         */FirstViewController.h \
+                         */_4_06_TabBarDemoAppDelegate.mm \
+                         */FirstViewController.mm
 
 # The EXCLUDE_SYMBOLS tag can be used to specify one or more symbol names 
 # (namespaces, classes, functions, etc.) that should be excluded from the 
@@ -1442,7 +1446,9 @@ EXPAND_AS_DEFINED      = UGenSublcassDeclarationNoDefault \
                          MulAdd_ArgsDeclare \
                          Mul_Arg \
                          Add_Arg \
-                         Linen_InputsWithTypes
+                         Linen_InputsWithTypes \
+                         UnaryOpMethodsDeclare \
+                         BinaryOpMethodsDeclare
 
 # If the SKIP_FUNCTION_MACROS tag is set to YES (the default) then 
 # doxygen's preprocessor will remove all function-like macros that are alone 
