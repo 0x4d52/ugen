@@ -87,7 +87,7 @@ private:
  This enables powerful chaining of Value instances to produce complex behaviour.
  
  Value instances can be used a way of speficying a UGen using the ValueUGen, here the Value is evaluated each
- sample or control block. (A value passed to a UGen directly is evaluated only once on instantiation.)
+ sample or control block. (A value passed to a UGen directly is creates a ValueUGen.)
  
  To implement a new Value-type class you need you need to make two classes, one which inherits from 
  ValueBaseInternal which actually generates the value. And a factory class which inherits from Value and
@@ -154,6 +154,9 @@ public:
 	
 	/** Set the current value. */
 	inline void setValue(const double newValue) throw() { if(internal) internal->setValue(newValue); } 
+	
+	/** Sets the value. */
+	inline void setValue(Value const& other) throw() { *this = other; } 
 	
 	/** A null value (equal to 0.0) */
 	inline static Value& getNull() { static Value null; null = 0.0; return null; }
@@ -622,9 +625,11 @@ public:
 	ValueUGenInternal(Value const& value);
 	UGenInternal* getKr() throw();	
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
+	void setValue(Value const& other) throw();
 	
 protected:
 	Value valueObject;
+	bool isConst;
 };
 
 /** A UGenInternal which uses a Value as its source. 

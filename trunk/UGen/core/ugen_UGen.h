@@ -796,6 +796,9 @@ public:
 	/// @name UGen-specific control messages
 	/// @{
 	
+	/** Attempts to set the Value object of a ValueUGen */
+	void setValue(Value const& other) throw();
+	
 	/** Attempts to set the source of a Plug.
 	 
 	 This only works if the UGen contains PlugUGenInternal classes.

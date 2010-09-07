@@ -699,7 +699,8 @@ ValueArray ValueArray::operator- () const throw()
 
 ValueUGenInternal::ValueUGenInternal(Value const& value) 
 :	UGenInternal(0), 
-	valueObject(value)
+	valueObject(value),
+	isConst(valueObject.containsInternalType<ValueInternal>())
 {				 
 }
 
@@ -713,10 +714,27 @@ void ValueUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
 	
-	while(numSamplesToProcess--)
+	if(!isConst)
 	{
-		*outputSamples++ = (float)valueObject.getValue();
+		while(numSamplesToProcess--)
+		{
+			*outputSamples++ = (float)valueObject.getValue();
+		}
 	}
+	else
+	{	
+		float value = (float)valueObject.getValue();
+		while(numSamplesToProcess--)
+		{
+			*outputSamples++ = value;
+		}
+	}
+}
+
+void ValueUGenInternal::setValue(Value const& other) throw()
+{
+	valueObject = other;
+	isConst = valueObject.containsInternalType<ValueInternal>();
 }
 
 void ValueUGenInternalK::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
@@ -766,6 +784,8 @@ void ValueUGenInternalK::processBlock(bool& shouldDelete, const unsigned int blo
 	}
 	
 }
+
+
 
 ValueUGen::ValueUGen(ValueArray const& values) throw()
 {
