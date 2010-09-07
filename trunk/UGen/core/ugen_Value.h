@@ -239,7 +239,7 @@ protected:
 	Value(ValueBaseInternal *internalToUse) throw();
 	ValueBaseInternal *internal;
 };
-#define V(v) Value(v)
+#define V ugen::Value
 
 #ifndef UGEN_NOEXTGPL
 
@@ -332,7 +332,7 @@ public:
 	 @param hi				The upper limit of the range (exclusive). */
 	RandomValue(const int lo, const int hi) throw();
 	
-	/// @{ <!-- end Construction and destruction ------------------------------------ -->
+	/// @} <!-- end Construction and destruction ------------------------------------ -->
 	
 private:
 	RandomValue(); // no default constructor!
@@ -608,7 +608,7 @@ public:
 private:
 	ValueArrayInternal* internal;
 };
-#define A(a) ValueArray(a)
+#define A(a) ugen::ValueArray(a)
 
 
 /** A UGenInternal which uses a Value as its source. 
