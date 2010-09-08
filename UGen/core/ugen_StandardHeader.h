@@ -48,7 +48,10 @@
 #define END_UGEN_NAMESPACE   
 #endif
 
-
+/* if you're getting your first compile error here on iOS
+ it's probably because the file your compiling which includes
+ UGen++ headers is not a C++ file. To make an Obj-C file (.m) 
+ an Obj-C++ file use .mm as the file extension. */
 BEGIN_UGEN_NAMESPACE
 
 //#define USEMEMSETCPY // bug in the floatptr stuff

@@ -125,6 +125,9 @@ public:
 	Value(Button *button) throw();
 	Value(Label *label) throw();
 #endif
+#if defined(UGEN_IPHONE) || defined(DOXYGEN)
+	Value(UISlider *slider) throw();
+#endif
 	
 	~Value();
 	

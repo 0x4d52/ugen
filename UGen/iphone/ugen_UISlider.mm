@@ -33,7 +33,7 @@
 
 #include "../core/ugen_StandardHeader.h"
 
-#if defined(UGEN_IPHONE) // && !defined(UGEN_JUCE)
+#if defined(UGEN_IPHONE)
 
 BEGIN_UGEN_NAMESPACE
 
@@ -46,19 +46,19 @@ using namespace UGEN_NAMESPACE;
 #endif
 
 
-@interface UISliderUGenInternalPeer : NSObject
+@interface UISliderValueInternalPeer : NSObject
 {
 @public
-	UISliderUGenInternal* owner_;
+	UISliderValueInternal* owner_;
 }
 
-- (void) setOwner: (UISliderUGenInternal*) owner;
+- (void) setOwner: (UISliderValueInternal*) owner;
 - (void) updateValue: (UISlider *) slider;
 @end
 
 
-@implementation UISliderUGenInternalPeer
-- (void) setOwner: (UISliderUGenInternal*) owner
+@implementation UISliderValueInternalPeer
+- (void) setOwner: (UISliderValueInternal*) owner
 {
 	ugen_assert(owner != 0);
 	owner_ = owner;
@@ -74,41 +74,32 @@ using namespace UGEN_NAMESPACE;
 	
 BEGIN_UGEN_NAMESPACE
 
-UISliderUGenInternal::UISliderUGenInternal(UISlider* slider) throw()
-:	FloatPtrUGenInternal(&value),
+UISliderValueInternal::UISliderValueInternal(UISlider* slider) throw()
+:	ValueInternal([slider value]),
 	slider_(slider)
 {
-	UISliderUGenInternalPeer* peer = [UISliderUGenInternalPeer alloc];
+	UISliderValueInternalPeer* peer = [UISliderValueInternalPeer alloc];
 	[peer setOwner: this];
 	
 	[slider_ retain];
 	[slider_ addTarget:peer action:@selector(updateValue:) forControlEvents:UIControlEventValueChanged];
-	
-	value = [slider_ value];
-	
+		
 	voidPeer = (void*)peer;
 }
 
-UISliderUGenInternal::~UISliderUGenInternal() throw()
+UISliderValueInternal::~UISliderValueInternal() throw()
 {
-	UISliderUGenInternalPeer* peer = (UISliderUGenInternalPeer*)voidPeer;
+	UISliderValueInternalPeer* peer = (UISliderValueInternalPeer*)voidPeer;
 	
 	[slider_ removeTarget:peer action:@selector(updateValue:) forControlEvents:UIControlEventValueChanged];
 	[slider_ release];
-	[peer dealloc];
+	[peer release];
 }
 
-void UISliderUGenInternal::setValue(float newValue) 
-{ 
-	value = newValue; 
-}
-
-UISliderUGen::UISliderUGen(UISlider* slider) throw()
+UISliderValue::UISliderValue(UISlider* slider) throw()
+:	Value(new UISliderValueInternal(slider))
 {
-	initInternal(1);	
-	internalUGens[0] = new UISliderUGenInternal(slider);
 }
-
 
 
 END_UGEN_NAMESPACE

@@ -96,6 +96,14 @@ Value::Value(Label *label) throw()
 }
 #endif
 
+#if defined(UGEN_IPHONE)
+#include "../iphone/ugen_UISlider.h"
+Value::Value(UISlider *slider) throw()
+:	internal(new UISliderValueInternal(slider))
+{
+}
+#endif
+
 Value::Value(ValueBaseInternal *internalToUse) throw()
 :	internal(internalToUse) 
 {
