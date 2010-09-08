@@ -34,33 +34,24 @@
 #ifndef _UGEN_ugen_UISlider_H_
 #define _UGEN_ugen_UISlider_H_
 
+#include "../core/ugen_Value.h"
 
-#include "../basics/ugen_ScalarUGens.h"
-
-/** @ingroup UGenInternals */
-class UISliderUGenInternal : public FloatPtrUGenInternal
+class UISliderValueInternal : public ValueInternal
 {
 public:
-	UISliderUGenInternal(UISlider* slider) throw();
-	~UISliderUGenInternal() throw();
-	
-	void setValue(float newValue);
-	
+	UISliderValueInternal(UISlider* slider) throw();
+	~UISliderValueInternal() throw();
+		
 private:
-	float value;
 	UISlider* slider_;
 	void* voidPeer;
 };
 
-/** A UGen which takes its value source from a UISlider (iPhone).
- @ingroup GUITools ControlUGens */
-class UISliderUGen : public UGen 
+class UISliderValue : public Value 
 {
 public:
-	UISliderUGen(UISlider* slider) throw();
+	UISliderValue(UISlider* slider) throw();
 };
-
-
 
 
 #endif // _UGEN_ugen_UISlider_H_
