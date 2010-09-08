@@ -42,37 +42,34 @@ BEGIN_UGEN_NAMESPACE
 
 #include "ugen_JuceSlider.h"
 
-SliderUGenInternal::SliderUGenInternal(Slider* slider) throw()
-:	FloatPtrUGenInternal(&value),
-	slider_(slider)
+SliderValueInternal::SliderValueInternal(Slider *slider) throw()
+:	ValueInternal(slider->getValue()),
+slider_(slider)
 {
 	slider_->addListener(this);
-	value = (float)slider_->getValue();
-	value_ = value;
 }
 
-SliderUGenInternal::~SliderUGenInternal() throw()
+SliderValueInternal::~SliderValueInternal() throw()
 {
 	if(slider_->isValidComponent())
 		slider_->removeListener(this);
 }
 
-void SliderUGenInternal::sliderValueChanged(Slider* slider) throw()
+void SliderValueInternal::sliderValueChanged(Slider* slider) throw()
 {
 	if(slider != slider_) return;
-		
-	value = (float)slider_->getValue();
-	value_ = value;
+	
+	setValue(slider->getValue()); 
 }
 
-SliderUGen::SliderUGen(Slider* slider) throw()
+SliderValue::SliderValue(Slider* slider) throw()
+:	Value(new SliderValueInternal(slider))
 {
-	initInternal(1);	
-	internalUGens[0] = new SliderUGenInternal(slider);
 }
 
-ButtonUGenInternal::ButtonUGenInternal(Button* button) throw()
-:	FloatPtrUGenInternal(&value),
+
+ButtonValueInternal::ButtonValueInternal(Button* button) throw()
+:	ValueInternal(0.0),
 	button_(button)
 {		
 	button_->addButtonListener(this);
@@ -82,71 +79,66 @@ ButtonUGenInternal::ButtonUGenInternal(Button* button) throw()
 	buttonClicked(button);	
 }
 
-ButtonUGenInternal::~ButtonUGenInternal() throw()
+ButtonValueInternal::~ButtonValueInternal() throw()
 {
 	if(button_->isValidComponent())
 		button_->removeButtonListener(this);
 }
 
-void ButtonUGenInternal::buttonClicked(Button* button) throw()
+void ButtonValueInternal::buttonClicked(Button* button) throw()
 {
 	if(button != button_) return;
 		
 	if(isToggle)
 	{
-		value = button_->getToggleState() ? 1.f : 0.f;
+		setValue(button_->getToggleState() ? 1.0 : 0.0);
 	}
 	else
 	{
 		if(button->isDown()) 
 		{
-			value = 1.f;
+			setValue(1.0);
 			button->setTriggeredOnMouseDown(false);
 		}
 		else
 		{
-			value = 0.f;
+			setValue(0.0);
 			button->setTriggeredOnMouseDown(true);
 		}
 	}
-	
-	value_ = value;
 }
 
-ButtonUGen::ButtonUGen(Button* button) throw()
+ButtonValue::ButtonValue(Button* button) throw()
+:	Value(new ButtonValueInternal(button))
 {
-	initInternal(1);	
-	internalUGens[0] = new ButtonUGenInternal(button);
 }
 
-LabelUGenInternal::LabelUGenInternal(Label* label) throw()
-:	FloatPtrUGenInternal(&value),
+
+LabelValueInternal::LabelValueInternal(Label* label) throw()
+:	ValueInternal(label->getText(false).getDoubleValue()),
 	label_(label)
 {
-	label->addListener(this);
-	value = label_->getText(false).getFloatValue();
-	value_ = value;
+	label_->addListener(this);
 }
 
-LabelUGenInternal::~LabelUGenInternal() throw()
+LabelValueInternal::~LabelValueInternal() throw()
 {
 	if(label_->isValidComponent())
 		label_->removeListener(this);
 }
 
-void LabelUGenInternal::labelTextChanged(Label* label) throw()
+void LabelValueInternal::labelTextChanged(Label* label) throw()
 {
 	if(label != label_) return;
 	
-	value = label_->getText(false).getFloatValue();
-	value_ = value;
+	setValue(label_->getText(false).getDoubleValue());
 }
 
-LabelUGen::LabelUGen(Label* label) throw()
+LabelValue::LabelValue(Label* label) throw()
+:	Value(new LabelValueInternal(label))
 {
-	initInternal(1);	
-	internalUGens[0] = new LabelUGenInternal(label);
 }
+
 
 END_UGEN_NAMESPACE
 

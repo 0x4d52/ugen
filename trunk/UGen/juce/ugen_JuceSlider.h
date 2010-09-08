@@ -39,72 +39,70 @@
 #define UGEN_JUCESLIDER_H
 
 
-#include "../basics/ugen_ScalarUGens.h"
+#include "../core/ugen_Value.h"
 
-/** @ingroup UGenInternals GUITools */
-class SliderUGenInternal :	public FloatPtrUGenInternal,
+
+class SliderValueInternal :	public ValueInternal,
 							public SliderListener
 {
 public:
-	SliderUGenInternal(Slider* slider) throw();
-	~SliderUGenInternal() throw();
+	SliderValueInternal(Slider *slider) throw();
+	~SliderValueInternal() throw();
 	void sliderValueChanged(Slider* slider) throw();
 	
-private:
-	float value;
-	Slider* slider_;
+protected:
+	Slider *slider_;
 };
 
-/** A UGen which takes its value source from a Juce Slider.
- @ingroup GUITools ControlUGens */
-class SliderUGen : public UGen 
+class SliderValue : public Value
 {
 public:
-	SliderUGen(Slider* slider) throw();
+	SliderValue(Slider* slider) throw();
+private:
+	SliderValue();
 };
 
-/** @ingroup UGenInternals GUITools */
-class ButtonUGenInternal :	public FloatPtrUGenInternal,
+
+class ButtonValueInternal :	public ValueInternal,
 							public ButtonListener
 {
 public:
-	ButtonUGenInternal(Button* button) throw();
-	~ButtonUGenInternal() throw();
+	ButtonValueInternal(Button* button) throw();
+	~ButtonValueInternal() throw();
 	void buttonClicked(Button* button) throw();
 	
 private:
-	float value;
 	Button* button_;
 	bool isToggle;
 };
 
-/** @ingroup GUITools ControlUGens */
-class ButtonUGen : public UGen 
+class ButtonValue : public Value 
 {
 public:
-	ButtonUGen(Button* button) throw();
+	ButtonValue(Button* button) throw();
 };
 
-/** @ingroup UGenInternals GUITools */
-class LabelUGenInternal :	public FloatPtrUGenInternal,
+
+class LabelValueInternal :	public ValueInternal,
 							public LabelListener
 {
 public:
-	LabelUGenInternal(Label* label) throw();
-	~LabelUGenInternal() throw();
+	LabelValueInternal(Label* label) throw();
+	~LabelValueInternal() throw();
 	void labelTextChanged(Label* label) throw();
 	
 private:
-	float value;
 	Label* label_;
 };
 
-/** @ingroup GUITools ControlUGens */
-class LabelUGen : public UGen 
+class LabelValue : public Value 
 {
 public:
-	LabelUGen(Label* label) throw();
+	LabelValue(Label* label) throw();
 };
+
+
+
 
 
 #endif // UGEN_JUCESLIDER_H

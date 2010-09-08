@@ -321,7 +321,9 @@ public:
 		//return BHiShelf::AR(WhiteNoise::AR(0.3), 2000, 0.5, 12);
 		//return WhiteNoise::AR(0.3);
 		
-		return SinOsc::AR(U(950, 1050), 0, 0.1);
+		Value s = freqSlider1;
+		
+		return SinOsc::AR(s.kr(), 0, UGen(0.1, 0.1));
 	}
 	
 	

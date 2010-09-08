@@ -87,7 +87,7 @@ private:
  This enables powerful chaining of Value instances to produce complex behaviour.
  
  Value instances can be used a way of speficying a UGen using the ValueUGen, here the Value is evaluated each
- sample or control block. (A value passed to a UGen directly is creates a ValueUGen.)
+ sample or control block. (A value passed to a UGen directly creates a ValueUGen.)
  
  To implement a new Value-type class you need you need to make two classes, one which inherits from 
  ValueBaseInternal which actually generates the value. And a factory class which inherits from Value and
@@ -104,7 +104,6 @@ public:
 	/// @{
 	
 	/** Default constructor. 
-	 
 	 Creates an empty value, this would be evaulated as 0.0.*/
 	Value() throw();
 	
@@ -119,6 +118,14 @@ public:
 	/** A construct a Value from an int.
 	 @param value The int value to use (although it is stored as a double). */
 	Value(const int value) throw();
+	
+	
+#if defined(JUCE_VERSION) || defined(DOXYGEN)
+	Value(Slider *slider) throw();
+	Value(Button *button) throw();
+	Value(Label *label) throw();
+#endif
+	
 	~Value();
 	
 	/** Copy constructor. */
@@ -161,6 +168,10 @@ public:
 	/** A null value (equal to 0.0) */
 	inline static Value& getNull() { static Value null; null = 0.0; return null; }
 	//static Value null;
+	
+	/** Return this value as a control rate UGen.
+	 NB Value objects are converted to audio rate UGens by default. */
+	inline UGen kr() { return UGen(*this).kr(); }
 	
 	/// @} <!-- end Values -------------------------------------------------------- -->
 	
@@ -242,7 +253,7 @@ protected:
 	Value(ValueBaseInternal *internalToUse) throw();
 	ValueBaseInternal *internal;
 };
-#define V ugen::Value
+#define V Value
 
 #ifndef UGEN_NOEXTGPL
 
@@ -252,7 +263,7 @@ protected:
 class RandomValueBaseInternal : public ValueBaseInternal
 {
 public:
-	RandomValueBaseInternal();
+	RandomValueBaseInternal() throw();
 	void setValue(const double newValue) throw();
 	
 protected:
