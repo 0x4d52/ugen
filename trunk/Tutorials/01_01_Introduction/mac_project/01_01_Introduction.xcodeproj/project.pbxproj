@@ -13,7 +13,7 @@
 		84F30CED08FEAD7A0087E26C /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84F30CEC08FEAD7A0087E26C /* CoreAudio.framework */; };
 		84FAD61A0C7C3CCB00AF3028 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84FAD6190C7C3CCB00AF3028 /* IOKit.framework */; };
 		8D0C4E920486CD37000505A6 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20286C33FDCF999611CA2CEA /* Carbon.framework */; };
-		A80AFA110E8E157B006B49BD /* libjucedebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A80AFA100E8E14EF006B49BD /* libjucedebug.a */; };
+		A80AFA110E8E157B006B49BD /* libjuce.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A80AFA100E8E14EF006B49BD /* libjuce.a */; };
 		A81994480FC457AE008F1D98 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A81994470FC457AE008F1D98 /* Accelerate.framework */; };
 		A85724E40EC3115E007D5B17 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9504C8FFE6A3BC11CA0CBA /* ApplicationServices.framework */; };
 		A85724E50EC3115F007D5B17 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9504CAFFE6A41611CA0CBA /* CoreServices.framework */; };
@@ -164,7 +164,7 @@
 		84F30CEC08FEAD7A0087E26C /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		84FAD6190C7C3CCB00AF3028 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		8D0C4E960486CD37000505A6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8D0C4E970486CD37000505A6 /* 01_01_Introduction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 01_01_Introduction.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D0C4E970486CD37000505A6 /* 01_03_UGenGraphs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 01_03_UGenGraphs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A80AFA080E8E14EF006B49BD /* Juce.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Juce.xcodeproj; path = juce/builds/macosx/Juce.xcodeproj; sourceTree = JUCE_SOURCE; };
 		A81994470FC457AE008F1D98 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = /System/Library/Frameworks/Accelerate.framework; sourceTree = "<absolute>"; };
 		A85DB1C60DCB0D99005D552A /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
@@ -439,7 +439,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A80AFA110E8E157B006B49BD /* libjucedebug.a in Frameworks */,
+				A80AFA110E8E157B006B49BD /* libjuce.a in Frameworks */,
 				8D0C4E920486CD37000505A6 /* Carbon.framework in Frameworks */,
 				84F30CED08FEAD7A0087E26C /* CoreAudio.framework in Frameworks */,
 				84078F3E09E6B42E004E7BCD /* AGL.framework in Frameworks */,
@@ -466,7 +466,7 @@
 		195DF8CFFE9D517E11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D0C4E970486CD37000505A6 /* 01_01_Introduction.app */,
+				8D0C4E970486CD37000505A6 /* 01_03_UGenGraphs.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -532,7 +532,7 @@
 		A80AFA090E8E14EF006B49BD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A80AFA100E8E14EF006B49BD /* libjucedebug.a */,
+				A80AFA100E8E14EF006B49BD /* libjuce.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1039,7 +1039,7 @@
 			name = "Target App";
 			productInstallPath = "$(HOME)/Applications";
 			productName = juce_application;
-			productReference = 8D0C4E970486CD37000505A6 /* 01_01_Introduction.app */;
+			productReference = 8D0C4E970486CD37000505A6 /* 01_03_UGenGraphs.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1047,7 +1047,7 @@
 /* Begin PBXProject section */
 		20286C28FDCF999611CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 84F30CC308FEAA620087E26C /* Build configuration list for PBXProject "01_01_Introduction" */;
+			buildConfigurationList = 84F30CC308FEAA620087E26C /* Build configuration list for PBXProject "01_03_UGenGraphs" */;
 			compatibilityVersion = "Xcode 2.4";
 			hasScannedForEncodings = 1;
 			mainGroup = 20286C29FDCF999611CA2CEA /* juce_application */;
@@ -1066,10 +1066,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		A80AFA100E8E14EF006B49BD /* libjucedebug.a */ = {
+		A80AFA100E8E14EF006B49BD /* libjuce.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libjucedebug.a;
+			path = libjuce.a;
 			remoteRef = A80AFA0F0E8E14EF006B49BD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1216,6 +1216,7 @@
 		84F30CC008FEAA620087E26C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ONLY_ACTIVE_ARCH_PRE_XCODE_3_1)";
 				COPY_PHASE_STRIP = NO;
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1229,6 +1230,8 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				ONLY_ACTIVE_ARCH_PRE_XCODE_3_1 = "$(NATIVE_ARCH)";
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1238,6 +1241,8 @@
 		84F30CC108FEAA620087E26C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
 				COPY_PHASE_STRIP = YES;
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -1249,6 +1254,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1266,15 +1272,12 @@
 				);
 				GCC_PREPROCESSOR_DEFINITIONS_QUOTED_FOR_PROJECT_1 = "\"PROJECT_NAME=\\\"$(PROJECT_NAME)\\\"\"";
 				HEADER_SEARCH_PATHS = "$(JUCE_SOURCE)";
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 			};
 			name = Debug;
 		};
 		84F30CC508FEAA620087E26C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"UGEN_JUCE=1",
 					"UGEN_VDSP=1",
@@ -1282,7 +1285,6 @@
 				);
 				GCC_PREPROCESSOR_DEFINITIONS_QUOTED_FOR_PROJECT_1 = "\"PROJECT_NAME=\\\"$(PROJECT_NAME)\\\"\"";
 				HEADER_SEARCH_PATHS = "$(JUCE_SOURCE)";
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 			};
 			name = Release;
 		};
@@ -1298,7 +1300,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		84F30CC308FEAA620087E26C /* Build configuration list for PBXProject "01_01_Introduction" */ = {
+		84F30CC308FEAA620087E26C /* Build configuration list for PBXProject "01_03_UGenGraphs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84F30CC408FEAA620087E26C /* Debug */,
