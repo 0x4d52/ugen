@@ -366,10 +366,13 @@ public:
 	 @see UGen::operator<< and UGen::operator, */
 	UGen(UGen const& arg1, UGen const& arg2) throw();
 	
+	template<class Type1, class Type2>
+	UGen(Type1 arg1, Type2 arg2) throw() : userData(UGen::defaultUserData), numInternalUGens(0), internalUGens(0)  { *this = UGen(UGen(arg1), UGen(arg2)); }
+
 	
-	UGen(int arg1, int arg2) throw() : userData(UGen::defaultUserData), numInternalUGens(0), internalUGens(0)  { *this = UGen(UGen(arg1), UGen(arg2)); }
-	UGen(int arg1, float arg2) throw() : userData(UGen::defaultUserData), numInternalUGens(0), internalUGens(0)  { *this = UGen(UGen(arg1), UGen(arg2)); }
-	UGen(int arg1, double arg2) throw() : userData(UGen::defaultUserData), numInternalUGens(0), internalUGens(0)  { *this = UGen(UGen(arg1), UGen(arg2)); }
+//	UGen(int arg1, int arg2) throw() : userData(UGen::defaultUserData), numInternalUGens(0), internalUGens(0)  { *this = UGen(UGen(arg1), UGen(arg2)); }
+//	UGen(int arg1, float arg2) throw() : userData(UGen::defaultUserData), numInternalUGens(0), internalUGens(0)  { *this = UGen(UGen(arg1), UGen(arg2)); }
+//	UGen(int arg1, double arg2) throw() : userData(UGen::defaultUserData), numInternalUGens(0), internalUGens(0)  { *this = UGen(UGen(arg1), UGen(arg2)); }
 	
 	/** Constuct a multichannel UGen from three other UGen instances. 
 	 The result has all the channels from the source UGen instances appended. 

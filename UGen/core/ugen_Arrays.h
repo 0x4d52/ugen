@@ -1390,7 +1390,7 @@ public:
 
 #define END InitialNumber()
 
-
+/** Stores arrays of simple numerical values. */
 template<class NumericalType>
 class NumericalArray : public ObjectArray<NumericalType>
 {
@@ -2078,7 +2078,7 @@ public:
 	
 	/** Compare two arrays.
 	 Returns a bool array (will be only 0 or 1) with the result of the comparison. 
-	 This always returns a bool array with is NOT null terminated, regardless of whether the source
+	 This always returns a bool array which is NOT null terminated, regardless of whether the source
 	 arrays are null terminated. */
 	NumericalArray<bool> operator< (NumericalArray<NumericalType> const& rightOperand) const throw()
 	{
@@ -2087,7 +2087,7 @@ public:
 	
 	/** Compare two arrays.
 	 Returns a bool array (will be only 0 or 1) with the result of the comparison. 
-	 This always returns a bool array with is NOT null terminated, regardless of whether the source
+	 This always returns a bool array which is NOT null terminated, regardless of whether the source
 	 arrays are null terminated. */	
 	NumericalArray<bool> operator<= (NumericalArray<NumericalType> const& rightOperand) const throw()
 	{
@@ -2096,7 +2096,7 @@ public:
 	
 	/** Compare two arrays.
 	 Returns a bool array (will be only 0 or 1) with the result of the comparison. 
-	 This always returns a bool array with is NOT null terminated, regardless of whether the source
+	 This always returns a bool array which is NOT null terminated, regardless of whether the source
 	 arrays are null terminated. */	
 	NumericalArray<bool> operator> (NumericalArray<NumericalType> const& rightOperand) const throw()
 	{
@@ -2105,7 +2105,7 @@ public:
 	
 	/** Compare two arrays.
 	 Returns a bool array (will be only 0 or 1) with the result of the comparison. 
-	 This always returns a bool array with is NOT null terminated, regardless of whether the source
+	 This always returns a bool array which is NOT null terminated, regardless of whether the source
 	 arrays are null terminated. */	
 	NumericalArray<bool> operator>= (NumericalArray<NumericalType> const& rightOperand) const throw()
 	{
@@ -2115,7 +2115,7 @@ public:
 	/** Compare the two arrays for equality.
 	 We can't use == here since this is needed to check object identity. 
 	 Returns a bool array (will be only 0 or 1) with the result of the comparison. 
-	 This always returns a bool array with is NOT null terminated, regardless of whether the source
+	 This always returns a bool array which is NOT null terminated, regardless of whether the source
 	 arrays are null terminated. */
 	NumericalArray<bool> compareEqual (NumericalArray<NumericalType> const& rightOperand) const throw()
 	{
@@ -2125,7 +2125,7 @@ public:
 	/** Compare the two arrays for inequality.
 	 We can't use != here since this is needed to check object identity.
 	 Returns a bool array (will be only 0 or 1) with the result of the comparison. 
-	 This always returns a bool array with is NOT null terminated, regardless of whether the source
+	 This always returns a bool array which is NOT null terminated, regardless of whether the source
 	 arrays are null terminated. */
 	NumericalArray<bool> compareNotEqual (NumericalArray<NumericalType> const& rightOperand) const throw()
 	{

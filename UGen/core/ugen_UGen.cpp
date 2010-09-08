@@ -293,7 +293,7 @@ UGen::UGen(ExternalControlSource const& externalControlSource) throw()
 }
 #endif
 
-#if defined(JUCE_VERSION) || defined(DOXYGEN)
+#if defined(JUCE_VERSION)
 #include "../juce/ugen_JuceSlider.h"
 #include "../juce/gui/ugen_JuceMultiSlider.h"
 UGen::UGen(Slider* slider) throw()
@@ -303,7 +303,7 @@ UGen::UGen(Slider* slider) throw()
 { 	
 	ugen_assert(slider != 0);
 	initInternal(1);
-	internalUGens[0] = new SliderUGenInternal(slider);
+	internalUGens[0] = new ValueUGenInternal(SliderValue(slider));
 }
 
 UGen::UGen(MultiSlider* sliders) throw()
@@ -316,16 +316,12 @@ UGen::UGen(MultiSlider* sliders) throw()
 		initInternal(sliders->getNumSliders());
 		for(int i = 0; i < sliders->getNumSliders(); i++)
 		{
-			internalUGens[i] = new SliderUGenInternal(sliders->getSlider(i));
+			internalUGens[i] = new ValueUGenInternal(SliderValue(sliders->getSlider(i)));
 		}
 	}
 	else
 	{
 		ugen_assertfalse;
-		
-		// unnecessary...
-//		initInternal(1);
-//		internalUGens[0] = new NullUGenInternal();
 	}
 }
 
@@ -336,7 +332,7 @@ UGen::UGen(Button* button) throw()
 { 	
 	ugen_assert(button != 0);
 	initInternal(1);
-	internalUGens[0] = new ButtonUGenInternal(button);
+	internalUGens[0] = new ValueUGenInternal(ButtonValue(button));
 }
 
 UGen::UGen(Label* label) throw()
@@ -346,7 +342,7 @@ UGen::UGen(Label* label) throw()
 { 	
 	ugen_assert(label != 0);
 	initInternal(1);
-	internalUGens[0] = new LabelUGenInternal(label);
+	internalUGens[0] = new ValueUGenInternal(LabelValue(label));
 }
 #endif
 

@@ -78,6 +78,24 @@ Value::Value(const int value) throw()
 { 
 }
 
+#if defined(JUCE_VERSION)
+#include "../juce/ugen_JuceSlider.h"
+Value::Value(Slider *slider) throw()
+:	internal(new SliderValueInternal(slider))
+{
+}
+
+Value::Value(Button *button) throw()
+:	internal(new ButtonValueInternal(button))
+{
+}
+
+Value::Value(Label *label) throw()
+:	internal(new LabelValueInternal(label))
+{
+}
+#endif
+
 Value::Value(ValueBaseInternal *internalToUse) throw()
 :	internal(internalToUse) 
 {
@@ -169,7 +187,7 @@ Value& Value::operator/= (Value const& other) throw()
 
 #ifndef UGEN_NOEXTGPL
 
-RandomValueBaseInternal::RandomValueBaseInternal()
+RandomValueBaseInternal::RandomValueBaseInternal() throw()
 : random(Ran088::defaultGenerator().next()) 
 { 
 }

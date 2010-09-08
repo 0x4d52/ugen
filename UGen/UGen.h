@@ -160,6 +160,8 @@ BEGIN_UGEN_NAMESPACE
 		#include "convolution/ugen_SimpleConvolution.h"
 	#endif // UGEN_CONVOLUTION
 
+	#define Value ugen::Value
+
 #elif defined(UGEN_IPHONE)
 	// don't include these if we're using Juce on the iPhone
 	#include "iphone/ugen_iPhoneAudioFileDiskIn.h"
