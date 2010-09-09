@@ -87,7 +87,7 @@ FFTEngineInternal::FFTEngineInternal(const int fftSizeToUse) throw()
 	fftvDSP = vDSP_create_fftsetup (fftSizeLog2, 0);
 #endif
 	
-	printf("fftsize=%d\n", fftSize);
+	//printf("fftsize=%d\n", fftSize);
 }
 
 FFTEngineInternal::~FFTEngineInternal()

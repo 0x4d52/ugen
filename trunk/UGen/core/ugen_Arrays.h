@@ -1308,9 +1308,9 @@ public:
 			const bool eitherNullTerminated = this->isNullTerminated() || rightOperand.isNullTerminated();	\
 			const unsigned int leftLength = this->length();													\
 			const unsigned int rightLength = rightOperand.length();											\
-			const int newLength = leftLength > rightLength ? leftLength : rightLength;						\
-			const int newSize = leftSize > rightSize ? leftSize : rightSize;								\
-			const NumericalType *leftArray = this->getArray();										\
+			const unsigned int newLength = leftLength > rightLength ? leftLength : rightLength;				\
+			const unsigned int newSize = leftSize > rightSize ? leftSize : rightSize;						\
+			const NumericalType *leftArray = this->getArray();												\
 			const NumericalType *rightArray = rightOperand.getArray()
 
 
