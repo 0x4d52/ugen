@@ -230,6 +230,7 @@ This is the complete list of members for <a class="el" href="class_overlap_convo
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#a047718b5323768ba56f2cab5bc429d89">setOutput</a>(float *block, const int blockSize, const int channel=0)</td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#ab63673f3a08b506605eff7abd481072d">setOutputs</a>(float **block, const int blockSize, const int numChannels)</td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#aa1e58bb948abdbd77988db37711d5982">setSource</a>(UGen const &amp;source, const bool releasePreviousSources=false, const float fadeTime=0.f)</td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_u_gen.html#a6b8a60b3f5d89418e22917ca5c1d3105">setValue</a>(Value const &amp;other)</td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#aa2ca461c18133169d2ccf7744d126446">shutdown</a>()</td><td><a class="el" href="class_u_gen.html">UGen</a></td><td><code> [inline, static]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#ac7d32edc341f5f1b8ad98290b4abc0da">sign</a>() const </td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#a1cb3aa9674e163daa5fa1999b0df7472">sin</a>() const </td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
@@ -277,9 +278,7 @@ This is the complete list of members for <a class="el" href="class_overlap_convo
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#a6b470f34d89862bca21881bbbfbc1628">UGen</a>(signed char *valuePtr)</td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#a771884ea1844e95991c32b22aa246b7f">UGen</a>(Env const &amp;env)</td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#a6e3507715753185195ba2cb6495eecb3">UGen</a>(UGen const &amp;arg1, UGen const &amp;arg2)</td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_u_gen.html#ac5eee2a41177fd1e06f09b60e1bfc829">UGen</a>(int arg1, int arg2)</td><td><a class="el" href="class_u_gen.html">UGen</a></td><td><code> [inline]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_u_gen.html#a44be355435ad69923aebd7cfae678f40">UGen</a>(int arg1, float arg2)</td><td><a class="el" href="class_u_gen.html">UGen</a></td><td><code> [inline]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_u_gen.html#a96e965d38ba1b52b64df0ffd14ddec8c">UGen</a>(int arg1, double arg2)</td><td><a class="el" href="class_u_gen.html">UGen</a></td><td><code> [inline]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_u_gen.html#a5f7ae8c97623a291aa5fc5fcdc54f089">UGen</a>(Type1 arg1, Type2 arg2)</td><td><a class="el" href="class_u_gen.html">UGen</a></td><td><code> [inline]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#a060cdb9e7736bc6a939b865585567eef">UGen</a>(UGen const &amp;arg1, UGen const &amp;arg2, UGen const &amp;arg3)</td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#a8db82eeaf2dbbd9c5aebb232c67ef904">UGen</a>(UGen const &amp;arg1, UGen const &amp;arg2, UGen const &amp;arg3, UGen const &amp;arg4)</td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#a7cc344db8bca81c97dc92532386d7b9d">UGen</a>(UGen const &amp;arg1, UGen const &amp;arg2, UGen const &amp;arg3, UGen const &amp;arg4, UGen const &amp;arg5)</td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
@@ -297,7 +296,7 @@ This is the complete list of members for <a class="el" href="class_overlap_convo
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#af2f4e6a8bbc0f72476dc311db7c6684b">zap</a>() const </td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen.html#a3b5e2c8adf5420014aa15da1f47d54a2">~UGen</a>()</td><td><a class="el" href="class_u_gen.html">UGen</a></td><td></td></tr>
 </table></div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:57 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Sep 9 2010 09:39:28 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

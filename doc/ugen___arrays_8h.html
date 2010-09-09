@@ -50,6 +50,7 @@ Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_array_1_1_initial_object.html">ObjectArray&lt; ObjectType &gt;::InitialObject</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_numerical_array_spec.html">NumericalArraySpec</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_numerical_array.html">NumericalArray&lt; NumericalType &gt;</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Stores arrays of simple numerical values.  <a href="class_numerical_array.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_numerical_array_1_1_initial_number.html">NumericalArray&lt; NumericalType &gt;::InitialNumber</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_array2_d_base.html">ObjectArray2DBase&lt; ArrayType, RowType &gt;</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_array2_d.html">ObjectArray2D&lt; ArrayType, RowType &gt;</a></td></tr>
@@ -130,7 +131,7 @@ Typedefs</h2></td></tr>
 </div>
 <div class="memdoc">
 <b>Value:</b><div class="fragment"><pre class="fragment">NumericalArrayBinaryOperatorBodyCommon;               \
-   <a class="code" href="class_numerical_array.html">NumericalArray&lt;bool&gt;</a> result(<a class="code" href="class_numerical_array_spec.html">NumericalArraySpec</a>(newSize, <span class="keyword">false</span>), <span class="keyword">false</span>);       \
+   <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;bool&gt;</a> result(<a class="code" href="class_numerical_array_spec.html">NumericalArraySpec</a>(newSize, <span class="keyword">false</span>), <span class="keyword">false</span>);       \
    <span class="keywordtype">bool</span> *resultArray = result.getArray();               \
                            \
    <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; newLength; i++) {             \
@@ -160,7 +161,7 @@ Typedefs</h2></td></tr>
 </div>
 <div class="memdoc">
 <b>Value:</b><div class="fragment"><pre class="fragment">NumericalArrayBinaryOperatorBodyCommon;               \
-   <a class="code" href="class_numerical_array.html">NumericalArray&lt;NumericalType&gt;</a> result(<a class="code" href="class_numerical_array_spec.html">NumericalArraySpec</a>(newSize, <span class="keyword">false</span>), eitherNullTerminated); \
+   <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a> result(<a class="code" href="class_numerical_array_spec.html">NumericalArraySpec</a>(newSize, <span class="keyword">false</span>), eitherNullTerminated); \
    NumericalType *resultArray = result.getArray();             \
    <span class="keywordflow">if</span>(eitherNullTerminated) resultArray[newLength] = 0;           \
                            \
@@ -189,7 +190,7 @@ Typedefs</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><a class="code" href="class_numerical_array.html">NumericalArray&lt;NumericalType&gt;</a> FUNCTION (<a class="code" href="class_numerical_array.html">NumericalArray&lt;NumericalType&gt;</a> <span class="keyword">const</span>&amp; rightOperand) <span class="keyword">const</span> <span class="keywordflow">throw</span>()  \
+<b>Value:</b><div class="fragment"><pre class="fragment"><a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a> FUNCTION (<a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a> <span class="keyword">const</span>&amp; rightOperand) <span class="keyword">const</span> <span class="keywordflow">throw</span>()  \
    {                            \
     <a class="code" href="ugen___arrays_8h.html#a8c103c182fc439f93a862fae8240e7c1">NumericalArrayBinaryFunctionBody</a>(ugen::FUNCTION);               \
    }
@@ -214,7 +215,7 @@ Typedefs</h2></td></tr>
 </div>
 <div class="memdoc">
 <b>Value:</b><div class="fragment"><pre class="fragment">NumericalArrayBinaryOperatorBodyCommon;               \
-   <a class="code" href="class_numerical_array.html">NumericalArray&lt;NumericalType&gt;</a> result(<a class="code" href="class_numerical_array_spec.html">NumericalArraySpec</a>(newSize, <span class="keyword">false</span>), eitherNullTerminated); \
+   <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a> result(<a class="code" href="class_numerical_array_spec.html">NumericalArraySpec</a>(newSize, <span class="keyword">false</span>), eitherNullTerminated); \
    NumericalType *resultArray = result.getArray();             \
    <span class="keywordflow">if</span>(eitherNullTerminated) resultArray[newLength] = 0;           \
                            \
@@ -246,9 +247,9 @@ Typedefs</h2></td></tr>
    <span class="keyword">const</span> <span class="keywordtype">bool</span> eitherNullTerminated = this-&gt;isNullTerminated() || rightOperand.isNullTerminated(); \
    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> leftLength = this-&gt;length();             \
    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> rightLength = rightOperand.length();           \
-   <span class="keyword">const</span> <span class="keywordtype">int</span> newLength = leftLength &gt; rightLength ? leftLength : rightLength;      \
-   <span class="keyword">const</span> <span class="keywordtype">int</span> newSize = leftSize &gt; rightSize ? leftSize : rightSize;        \
-   <span class="keyword">const</span> NumericalType *leftArray = this-&gt;getArray();          \
+   <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> newLength = leftLength &gt; rightLength ? leftLength : rightLength;    \
+   <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> newSize = leftSize &gt; rightSize ? leftSize : rightSize;      \
+   <span class="keyword">const</span> NumericalType *leftArray = this-&gt;getArray();            \
    <span class="keyword">const</span> NumericalType *rightArray = rightOperand.getArray()
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l01303">1303</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
@@ -274,7 +275,7 @@ Typedefs</h2></td></tr>
    <span class="keyword">const</span> <span class="keywordtype">int</span> newLength = this-&gt;length();               \
    <span class="keywordflow">if</span>(newSize == 0) <span class="keywordflow">return</span> *<span class="keyword">this</span>;                 \
    <span class="keyword">const</span> <span class="keywordtype">bool</span> needsNull = this-&gt;isNullTerminated();            \
-   <a class="code" href="class_numerical_array.html">NumericalArray&lt;NumericalType&gt;</a> result(<a class="code" href="class_numerical_array_spec.html">NumericalArraySpec</a>(newSize, <span class="keyword">false</span>), needsNull);   \
+   <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a> result(<a class="code" href="class_numerical_array_spec.html">NumericalArraySpec</a>(newSize, <span class="keyword">false</span>), needsNull);   \
    <span class="keyword">const</span> NumericalType *thisArray = this-&gt;getArray();          \
    NumericalType *resultArray = result.getArray();             \
                            \
@@ -305,7 +306,7 @@ Typedefs</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><a class="code" href="class_numerical_array.html">NumericalArray&lt;NumericalType&gt;</a> FUNCTION () <span class="keyword">const</span> throw()           \
+<b>Value:</b><div class="fragment"><pre class="fragment"><a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a> FUNCTION () <span class="keyword">const</span> throw()           \
    {                        \
     <a class="code" href="ugen___arrays_8h.html#ab40bb830e96dcc160a24eabb21ca4999">NumericalArrayUnaryFunctionBody</a>(ugen::FUNCTION);           \
    }
@@ -722,7 +723,7 @@ Typedefs</h2></td></tr>
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:53 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Sep 9 2010 09:39:23 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -83,7 +83,7 @@
 <a name="l00051"></a>00051  <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="class_neural_network_base_internal.html#a09b0ad91fa5403d2dcb74f3b3c91b056">getNumLayersExcludingInput</a>() <span class="keyword">const</span> = 0;
 <a name="l00052"></a>00052  <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="class_neural_network_base_internal.html#ab0d40ff73481c085bbaf15745515dceb">getNumInputs</a>() <span class="keyword">const</span> = 0;
 <a name="l00053"></a>00053  <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="class_neural_network_base_internal.html#a9818452b013b3a2ce4c889721037d6b6">getNumOutputs</a>() <span class="keyword">const</span> = 0;
-<a name="l00054"></a>00054  <span class="keyword">virtual</span> <a class="code" href="class_numerical_array.html">IntArray</a> <a class="code" href="class_neural_network_base_internal.html#a77029bb642ae06a195f61e5e0f80229f">getStructure</a>() <span class="keyword">const</span> = 0;
+<a name="l00054"></a>00054  <span class="keyword">virtual</span> <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">IntArray</a> <a class="code" href="class_neural_network_base_internal.html#a77029bb642ae06a195f61e5e0f80229f">getStructure</a>() <span class="keyword">const</span> = 0;
 <a name="l00055"></a>00055  <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="class_neural_network_base_internal.html#af59af4b69c0115384669211a885ca1b3">hasInputsAndOutputs</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> numInputs, <span class="keyword">const</span> <span class="keywordtype">int</span> numOutputs) <span class="keyword">const</span> = 0;
 <a name="l00056"></a>00056  <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="class_neural_network_base_internal.html#aa1ac4e9102516445ec8800eea145fde8">getNumNodesOnLayer</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> layer) <span class="keyword">const</span> = 0;
 <a name="l00057"></a>00057  <span class="keyword">virtual</span> <span class="keywordtype">float</span> <a class="code" href="class_neural_network_base_internal.html#a420b5de5be9cefe1f5e88b431fa2c087">getLearnRate</a>() <span class="keyword">const</span> = 0;
@@ -114,7 +114,7 @@
 <a name="l00082"></a><a class="code" href="class_neural_network_simple_internal.html#a9ad03a4bf832a28818847acecee31a04">00082</a>  <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_neural_network_simple_internal.html#a9ad03a4bf832a28818847acecee31a04">defaultLearnRate</a>;
 <a name="l00083"></a><a class="code" href="class_neural_network_simple_internal.html#a90248a8a6f2c15fef8240dcc5d852f59">00083</a>  <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_neural_network_simple_internal.html#a90248a8a6f2c15fef8240dcc5d852f59">defaultActFuncOffset</a>;
 <a name="l00084"></a>00084 
-<a name="l00085"></a>00085  <a class="code" href="class_neural_network_simple_internal.html#acbfe65b4bd84cdc84294fcccab86ace4">NeuralNetworkSimpleInternal</a>(<a class="code" href="class_numerical_array.html">IntArray</a> <span class="keyword">const</span>&amp; numNodes, 
+<a name="l00085"></a>00085  <a class="code" href="class_neural_network_simple_internal.html#acbfe65b4bd84cdc84294fcccab86ace4">NeuralNetworkSimpleInternal</a>(<a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">IntArray</a> <span class="keyword">const</span>&amp; numNodes, 
 <a name="l00086"></a>00086         <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_neural_network_simple_internal.html#a6edd5d4e440cb0e0c9720949df8e17f0">learnRate</a>, 
 <a name="l00087"></a>00087         <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_neural_network_simple_internal.html#a37f2de01e58ec0c0d7d407b75f417ecd">actFuncOffset</a>) <span class="keywordflow">throw</span>();
 <a name="l00088"></a>00088  
@@ -122,7 +122,7 @@
 <a name="l00090"></a><a class="code" href="class_neural_network_simple_internal.html#a1b1c4da52c0d71538f895d7a949ef99b">00090</a>  <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="class_neural_network_simple_internal.html#a1b1c4da52c0d71538f895d7a949ef99b">getNumLayersExcludingInput</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> <a class="code" href="class_neural_network_simple_internal.html#a6b7aa5107ff72ff339203ccf647f9e95">layers</a>.<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>(); }
 <a name="l00091"></a><a class="code" href="class_neural_network_simple_internal.html#a1f1b79091d2d115b0aebd8470c124443">00091</a>  <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="class_neural_network_simple_internal.html#a1f1b79091d2d115b0aebd8470c124443">getNumInputs</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> <a class="code" href="class_neural_network_simple_internal.html#abc4cdc02215fdb8310847e9739fb8fc5">numInputs</a>; }
 <a name="l00092"></a><a class="code" href="class_neural_network_simple_internal.html#ad7b36292690062cc4c35361339f0ff31">00092</a>  <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="class_neural_network_simple_internal.html#ad7b36292690062cc4c35361339f0ff31">getNumOutputs</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> <a class="code" href="class_neural_network_simple_internal.html#a195286804b689e19218f300bbc5fa3ec">numOutputs</a>; }
-<a name="l00093"></a>00093  <a class="code" href="class_numerical_array.html">IntArray</a> <a class="code" href="class_neural_network_simple_internal.html#a71c809c0179ccdb12dc9acec6a55c94f">getStructure</a>() <span class="keyword">const</span> throw();
+<a name="l00093"></a>00093  <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">IntArray</a> <a class="code" href="class_neural_network_simple_internal.html#a71c809c0179ccdb12dc9acec6a55c94f">getStructure</a>() <span class="keyword">const</span> throw();
 <a name="l00094"></a><a class="code" href="class_neural_network_simple_internal.html#aa03cb7d9f1fed554d1452c9bf4df9f3b">00094</a>  inline <span class="keywordtype">bool</span> <a class="code" href="class_neural_network_simple_internal.html#aa03cb7d9f1fed554d1452c9bf4df9f3b">hasInputsAndOutputs</a>(const <span class="keywordtype">int</span> numInputsCheck, const <span class="keywordtype">int</span> numOutputsCheck) const throw() 
 <a name="l00095"></a>00095  { 
 <a name="l00096"></a>00096   <span class="keywordflow">return</span> (<a class="code" href="class_neural_network_simple_internal.html#abc4cdc02215fdb8310847e9739fb8fc5">numInputs</a> == numInputsCheck) &amp;&amp; (<a class="code" href="class_neural_network_simple_internal.html#a195286804b689e19218f300bbc5fa3ec">numOutputs</a> == numOutputsCheck);  
@@ -174,7 +174,7 @@
 <a name="l00142"></a>00142  {
 <a name="l00143"></a>00143  }
 <a name="l00144"></a>00144  
-<a name="l00145"></a><a class="code" href="class_neural_network.html#ae23e942df59fe39ae878126efbf47c06">00145</a>  <a class="code" href="class_neural_network.html#afa59618aef3dbdc9d7b2b16a5110a4d8">NeuralNetwork</a>(<a class="code" href="class_numerical_array.html">IntArray</a> <span class="keyword">const</span>&amp; numNodes, 
+<a name="l00145"></a><a class="code" href="class_neural_network.html#ae23e942df59fe39ae878126efbf47c06">00145</a>  <a class="code" href="class_neural_network.html#afa59618aef3dbdc9d7b2b16a5110a4d8">NeuralNetwork</a>(<a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">IntArray</a> <span class="keyword">const</span>&amp; numNodes, 
 <a name="l00146"></a>00146       <span class="keyword">const</span> <span class="keywordtype">float</span> learnRate, 
 <a name="l00147"></a>00147       <span class="keyword">const</span> <span class="keywordtype">float</span> actFuncOffset) <span class="keywordflow">throw</span>()
 <a name="l00148"></a>00148  : <a class="code" href="class_smart_pointer_container.html">SmartPointerContainer&lt;NeuralNetworkBaseInternal&gt;</a>
@@ -228,7 +228,7 @@
 <a name="l00196"></a>00196   <span class="keywordflow">else</span> <span class="keywordflow">return</span> 0;
 <a name="l00197"></a>00197  }
 <a name="l00198"></a>00198  
-<a name="l00199"></a><a class="code" href="class_neural_network.html#a565bbdda352b8e3474053dc4a49db89c">00199</a>  <span class="keyword">inline</span> <a class="code" href="class_numerical_array.html">IntArray</a> <a class="code" href="class_neural_network.html#a565bbdda352b8e3474053dc4a49db89c">getStructure</a>() <span class="keyword">const</span> throw()
+<a name="l00199"></a><a class="code" href="class_neural_network.html#a565bbdda352b8e3474053dc4a49db89c">00199</a>  <span class="keyword">inline</span> <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">IntArray</a> <a class="code" href="class_neural_network.html#a565bbdda352b8e3474053dc4a49db89c">getStructure</a>() <span class="keyword">const</span> throw()
 <a name="l00200"></a>00200  {
 <a name="l00201"></a>00201   <span class="keywordflow">if</span>(<a class="code" href="class_smart_pointer_container.html#a34208db0dbe736f85828225175a412c2">getInternal</a>() != 0)
 <a name="l00202"></a>00202   {
@@ -387,7 +387,7 @@
 <a name="l00355"></a>00355 <span class="preprocessor">#endif // _UGEN_ugen_NeuralNetwork_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:51 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Sep 9 2010 09:39:21 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

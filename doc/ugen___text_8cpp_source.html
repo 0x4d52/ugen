@@ -30,7 +30,7 @@
 <h1>core/ugen_Text.cpp</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___text_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Text.cpp 112 2010-08-21 19:01:40Z 0x4d52 $</span>
+<a href="ugen___text_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Text.cpp 124 2010-09-07 11:03:58Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/core/ugen_Text.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -76,7 +76,7 @@
 <a name="l00044"></a>00044 <span class="keyword">const</span> <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <a class="code" href="class_text.html#a14ad9708569f2fa41a39403a210fc89a">Text::empty</a> = <span class="stringliteral">&quot;&quot;</span>;
 <a name="l00045"></a>00045 
 <a name="l00046"></a><a class="code" href="class_text.html#ab3e26143fccc52699bcc5149cae852bc">00046</a> <a class="code" href="class_text.html#ab3e26143fccc52699bcc5149cae852bc" title="Creates an emply text string.">Text::Text</a>() throw()
-<a name="l00047"></a>00047 : <a class="code" href="class_numerical_array.html">CharArray</a>(<a class="code" href="class_numerical_array_spec.html">NumericalArraySpec</a>(1, true), true)
+<a name="l00047"></a>00047 : <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">CharArray</a>(<a class="code" href="class_numerical_array_spec.html">NumericalArraySpec</a>(1, true), true)
 <a name="l00048"></a>00048 {
 <a name="l00049"></a>00049 }
 <a name="l00050"></a>00050 
@@ -99,7 +99,7 @@
 <a name="l00067"></a>00067 <span class="preprocessor">#endif</span>
 <a name="l00068"></a>00068 <span class="preprocessor"></span>
 <a name="l00069"></a><a class="code" href="class_text.html#a01cf231250017a4ebe2ebaa353c220b5">00069</a> <a class="code" href="class_text.html#ab3e26143fccc52699bcc5149cae852bc" title="Creates an emply text string.">Text::Text</a>(<span class="keyword">const</span> <span class="keywordtype">wchar_t</span>* <span class="keywordtype">string</span>) <span class="keywordflow">throw</span>()
-<a name="l00070"></a>00070 : <a class="code" href="ugen___arrays_8h.html#a59dacd9c9b7e5d21600704d028ee11ac">CharArray</a>(<a class="code" href="class_numerical_array.html">NumericalArray&lt;wchar_t&gt;</a>(<span class="keywordtype">string</span>))
+<a name="l00070"></a>00070 : <a class="code" href="ugen___arrays_8h.html#a59dacd9c9b7e5d21600704d028ee11ac">CharArray</a>(<a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;wchar_t&gt;</a>(<span class="keywordtype">string</span>))
 <a name="l00071"></a>00071 {
 <a name="l00072"></a>00072 }
 <a name="l00073"></a>00073 
@@ -143,7 +143,7 @@
 <a name="l00111"></a>00111  <span class="keywordflow">return</span> buf;
 <a name="l00112"></a>00112 }
 <a name="l00113"></a>00113 
-<a name="l00114"></a><a class="code" href="class_text.html#a80ee4ad50d7d0cd6258f939c242e54f5">00114</a> <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a>&amp; <a class="code" href="class_text.html#a5d69a4c8c14f6f03088e017e876152fc">Text::operator= </a>(<a class="code" href="class_numerical_array.html">CharArray</a> <span class="keyword">const</span>&amp; other) <span class="keywordflow">throw</span>()
+<a name="l00114"></a><a class="code" href="class_text.html#a80ee4ad50d7d0cd6258f939c242e54f5">00114</a> <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a>&amp; <a class="code" href="class_text.html#a5d69a4c8c14f6f03088e017e876152fc">Text::operator= </a>(<a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">CharArray</a> <span class="keyword">const</span>&amp; other) <span class="keywordflow">throw</span>()
 <a name="l00115"></a>00115 {
 <a name="l00116"></a>00116  <span class="keywordflow">return</span> operator= (static_cast&lt;Text const&amp;&gt; (other) );
 <a name="l00117"></a>00117 } 
@@ -155,8 +155,8 @@
 <a name="l00123"></a>00123 
 <a name="l00124"></a><a class="code" href="class_text.html#a3a08732edc5ff110af7364704811d785">00124</a> <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <a class="code" href="class_text.html#a3a08732edc5ff110af7364704811d785">Text::offset</a>(<a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <span class="keyword">const</span>&amp; rightOperand) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00125"></a>00125 {
-<a name="l00126"></a>00126  <a class="code" href="class_numerical_array.html">CharArray</a> left = *<span class="keyword">this</span>;
-<a name="l00127"></a>00127  <a class="code" href="class_numerical_array.html">CharArray</a> right = rightOperand;
+<a name="l00126"></a>00126  <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">CharArray</a> left = *<span class="keyword">this</span>;
+<a name="l00127"></a>00127  <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">CharArray</a> right = rightOperand;
 <a name="l00128"></a>00128  <span class="keywordflow">return</span> left + right;
 <a name="l00129"></a>00129 }
 <a name="l00130"></a>00130 
@@ -172,12 +172,12 @@
 <a name="l00140"></a>00140 }
 <a name="l00141"></a>00141 
 <a name="l00142"></a><a class="code" href="class_text.html#a86cfbbe5b1f3a107b1cf08a34fde59e8">00142</a> <a class="code" href="class_text.html#ab3e26143fccc52699bcc5149cae852bc" title="Creates an emply text string.">Text::Text</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* nullTerminatedSourceArray)
-<a name="l00143"></a>00143 : <a class="code" href="class_numerical_array.html">CharArray</a>(nullTerminatedSourceArray)
+<a name="l00143"></a>00143 : <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">CharArray</a>(nullTerminatedSourceArray)
 <a name="l00144"></a>00144 {
 <a name="l00145"></a>00145 }
 <a name="l00146"></a>00146 
 <a name="l00147"></a><a class="code" href="class_text.html#a2cd183ddb2a1d15a1a82d322d9c9b36e">00147</a> <a class="code" href="class_text.html#ab3e26143fccc52699bcc5149cae852bc" title="Creates an emply text string.">Text::Text</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, <span class="keyword">const</span> <span class="keywordtype">char</span>* sourceArray, <span class="keyword">const</span> <span class="keywordtype">bool</span> needsNullTermination)
-<a name="l00148"></a>00148 : <a class="code" href="class_numerical_array.html">CharArray</a>(<a class="code" href="class_numerical_array.html">CharArray</a>::withArray(size, sourceArray, needsNullTermination))
+<a name="l00148"></a>00148 : <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">CharArray</a>(<a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">CharArray</a>::withArray(size, sourceArray, needsNullTermination))
 <a name="l00149"></a>00149 {
 <a name="l00150"></a>00150 }                        
 <a name="l00151"></a>00151 
@@ -382,7 +382,7 @@
 <a name="l00350"></a>00350 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:50 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Sep 9 2010 09:39:20 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

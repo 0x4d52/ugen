@@ -30,7 +30,7 @@
 <h1>juce/ugen_JuceSlider.h</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___juce_slider_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_JuceSlider.h 77 2010-05-24 10:34:11Z 0x4d52 $</span>
+<a href="ugen___juce_slider_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_JuceSlider.h 131 2010-09-08 16:18:57Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/juce/ugen_JuceSlider.h $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -71,71 +71,76 @@
 <a name="l00039"></a>00039 <span class="preprocessor"></span><span class="preprocessor">#define UGEN_JUCESLIDER_H</span>
 <a name="l00040"></a>00040 <span class="preprocessor"></span>
 <a name="l00041"></a>00041 
-<a name="l00042"></a>00042 <span class="preprocessor">#include &quot;../basics/ugen_ScalarUGens.h&quot;</span>
+<a name="l00042"></a>00042 <span class="preprocessor">#include &quot;../core/ugen_Value.h&quot;</span>
 <a name="l00043"></a>00043 
-<a name="l00045"></a><a class="code" href="class_slider_u_gen_internal.html">00045</a> <span class="keyword">class </span><a class="code" href="class_slider_u_gen_internal.html">SliderUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_float_ptr_u_gen_internal.html">FloatPtrUGenInternal</a>,
+<a name="l00044"></a>00044 
+<a name="l00045"></a><a class="code" href="class_slider_value_internal.html">00045</a> <span class="keyword">class </span><a class="code" href="class_slider_value_internal.html">SliderValueInternal</a> : <span class="keyword">public</span> <a class="code" href="class_value_internal.html" title="An internal value class with a constant value.">ValueInternal</a>,
 <a name="l00046"></a>00046        <span class="keyword">public</span> SliderListener
 <a name="l00047"></a>00047 {
 <a name="l00048"></a>00048 <span class="keyword">public</span>:
-<a name="l00049"></a>00049  <a class="code" href="class_slider_u_gen_internal.html#a5d15b61be089450ecbd76d4b4ceee2e4">SliderUGenInternal</a>(Slider* slider) <span class="keywordflow">throw</span>();
-<a name="l00050"></a>00050  <a class="code" href="class_slider_u_gen_internal.html#a9f354cbe86fa72b9e345c41a94d40833">~SliderUGenInternal</a>() <span class="keywordflow">throw</span>();
-<a name="l00051"></a>00051  <span class="keywordtype">void</span> <a class="code" href="class_slider_u_gen_internal.html#aa46dceae7a9c489bc017aff971e5eecf">sliderValueChanged</a>(Slider* slider) <span class="keywordflow">throw</span>();
+<a name="l00049"></a>00049  <a class="code" href="class_slider_value_internal.html#ae7a3685a601d0cd0196a6142dc41ed0e">SliderValueInternal</a>(Slider *slider) <span class="keywordflow">throw</span>();
+<a name="l00050"></a>00050  <a class="code" href="class_slider_value_internal.html#a2e2eb2a8fd10d698fe6b9d222ce582de">~SliderValueInternal</a>() <span class="keywordflow">throw</span>();
+<a name="l00051"></a>00051  <span class="keywordtype">void</span> <a class="code" href="class_slider_value_internal.html#a93a66ccecc3dcc5260f6d50ffbc91c0d">sliderValueChanged</a>(Slider* slider) <span class="keywordflow">throw</span>();
 <a name="l00052"></a>00052  
-<a name="l00053"></a>00053 <span class="keyword">private</span>:
-<a name="l00054"></a><a class="code" href="class_slider_u_gen_internal.html#ac1aed22a71023e96a489096ec5e12eeb">00054</a>  <span class="keywordtype">float</span> <a class="code" href="class_slider_u_gen_internal.html#ac1aed22a71023e96a489096ec5e12eeb">value</a>;
-<a name="l00055"></a><a class="code" href="class_slider_u_gen_internal.html#af1254fd1db164b60993606ff96a72468">00055</a>  Slider* <a class="code" href="class_slider_u_gen_internal.html#af1254fd1db164b60993606ff96a72468">slider_</a>;
-<a name="l00056"></a>00056 };
-<a name="l00057"></a>00057 
-<a name="l00060"></a><a class="code" href="class_slider_u_gen.html">00060</a> <span class="keyword">class </span><a class="code" href="class_slider_u_gen.html" title="A UGen which takes its value source from a Juce Slider.">SliderUGen</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> 
-<a name="l00061"></a>00061 {
-<a name="l00062"></a>00062 <span class="keyword">public</span>:
-<a name="l00063"></a>00063  <a class="code" href="class_slider_u_gen.html#ae0ae64f701e915042f09526b340d9ed4">SliderUGen</a>(Slider* slider) <span class="keywordflow">throw</span>();
-<a name="l00064"></a>00064 };
+<a name="l00053"></a>00053 <span class="keyword">protected</span>:
+<a name="l00054"></a><a class="code" href="class_slider_value_internal.html#aca57c7dedc632e4fadaa99e7f99b9e92">00054</a>  Slider *<a class="code" href="class_slider_value_internal.html#aca57c7dedc632e4fadaa99e7f99b9e92">slider_</a>;
+<a name="l00055"></a>00055 };
+<a name="l00056"></a>00056 
+<a name="l00057"></a><a class="code" href="class_slider_value.html">00057</a> <span class="keyword">class </span><a class="code" href="class_slider_value.html">SliderValue</a> : <span class="keyword">public</span> <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a>
+<a name="l00058"></a>00058 {
+<a name="l00059"></a>00059 <span class="keyword">public</span>:
+<a name="l00060"></a>00060  <a class="code" href="class_slider_value.html#a9d6f19e63d41698f1e8ee86d9382045c">SliderValue</a>(Slider* slider) <span class="keywordflow">throw</span>();
+<a name="l00061"></a>00061 <span class="keyword">private</span>:
+<a name="l00062"></a>00062  <a class="code" href="class_slider_value.html#a9d6f19e63d41698f1e8ee86d9382045c">SliderValue</a>();
+<a name="l00063"></a>00063 };
+<a name="l00064"></a>00064 
 <a name="l00065"></a>00065 
-<a name="l00067"></a><a class="code" href="class_button_u_gen_internal.html">00067</a> <span class="keyword">class </span><a class="code" href="class_button_u_gen_internal.html">ButtonUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_float_ptr_u_gen_internal.html">FloatPtrUGenInternal</a>,
-<a name="l00068"></a>00068        <span class="keyword">public</span> ButtonListener
-<a name="l00069"></a>00069 {
-<a name="l00070"></a>00070 <span class="keyword">public</span>:
-<a name="l00071"></a>00071  <a class="code" href="class_button_u_gen_internal.html#a6b3e1d2667cb3dd7b85e9dfc7d53afea">ButtonUGenInternal</a>(Button* button) <span class="keywordflow">throw</span>();
-<a name="l00072"></a>00072  <a class="code" href="class_button_u_gen_internal.html#abbc19a562fcc6a38ebb91e5b11282258">~ButtonUGenInternal</a>() <span class="keywordflow">throw</span>();
-<a name="l00073"></a>00073  <span class="keywordtype">void</span> <a class="code" href="class_button_u_gen_internal.html#ad74c7b2f1913d7265e2f5d03a811c6eb">buttonClicked</a>(Button* button) <span class="keywordflow">throw</span>();
-<a name="l00074"></a>00074  
-<a name="l00075"></a>00075 <span class="keyword">private</span>:
-<a name="l00076"></a><a class="code" href="class_button_u_gen_internal.html#a79678c1fb3e0fc7594820bdbd8ba507f">00076</a>  <span class="keywordtype">float</span> <a class="code" href="class_button_u_gen_internal.html#a79678c1fb3e0fc7594820bdbd8ba507f">value</a>;
-<a name="l00077"></a><a class="code" href="class_button_u_gen_internal.html#a18931f5bff3f5f06d7569fe363ea4b1d">00077</a>  Button* <a class="code" href="class_button_u_gen_internal.html#a18931f5bff3f5f06d7569fe363ea4b1d">button_</a>;
-<a name="l00078"></a><a class="code" href="class_button_u_gen_internal.html#a0ba17ec38f3d90a57b8377f8d3dacaa8">00078</a>  <span class="keywordtype">bool</span> <a class="code" href="class_button_u_gen_internal.html#a0ba17ec38f3d90a57b8377f8d3dacaa8">isToggle</a>;
-<a name="l00079"></a>00079 };
-<a name="l00080"></a>00080 
-<a name="l00082"></a><a class="code" href="class_button_u_gen.html">00082</a> <span class="keyword">class </span><a class="code" href="class_button_u_gen.html">ButtonUGen</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> 
-<a name="l00083"></a>00083 {
-<a name="l00084"></a>00084 <span class="keyword">public</span>:
-<a name="l00085"></a>00085  <a class="code" href="class_button_u_gen.html#aef1aa8f76dfc9cf7415dd2caeb12d3e3">ButtonUGen</a>(Button* button) <span class="keywordflow">throw</span>();
-<a name="l00086"></a>00086 };
-<a name="l00087"></a>00087 
-<a name="l00089"></a><a class="code" href="class_label_u_gen_internal.html">00089</a> <span class="keyword">class </span><a class="code" href="class_label_u_gen_internal.html">LabelUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_float_ptr_u_gen_internal.html">FloatPtrUGenInternal</a>,
-<a name="l00090"></a>00090        <span class="keyword">public</span> LabelListener
-<a name="l00091"></a>00091 {
-<a name="l00092"></a>00092 <span class="keyword">public</span>:
-<a name="l00093"></a>00093  <a class="code" href="class_label_u_gen_internal.html#ac4f8fb8a744147868ede2e7fc2fffafb">LabelUGenInternal</a>(Label* label) <span class="keywordflow">throw</span>();
-<a name="l00094"></a>00094  <a class="code" href="class_label_u_gen_internal.html#ae1fde9461f447e112d29ede5bd988ccf">~LabelUGenInternal</a>() <span class="keywordflow">throw</span>();
-<a name="l00095"></a>00095  <span class="keywordtype">void</span> <a class="code" href="class_label_u_gen_internal.html#a0ff84d2d507605db95f5a9f06eef2367">labelTextChanged</a>(Label* label) <span class="keywordflow">throw</span>();
-<a name="l00096"></a>00096  
-<a name="l00097"></a>00097 <span class="keyword">private</span>:
-<a name="l00098"></a><a class="code" href="class_label_u_gen_internal.html#addb23d8d8afd41c2849766e67e072749">00098</a>  <span class="keywordtype">float</span> <a class="code" href="class_label_u_gen_internal.html#addb23d8d8afd41c2849766e67e072749">value</a>;
-<a name="l00099"></a><a class="code" href="class_label_u_gen_internal.html#a91dfafea135de3e6e7a6019e0c346214">00099</a>  Label* <a class="code" href="class_label_u_gen_internal.html#a91dfafea135de3e6e7a6019e0c346214">label_</a>;
-<a name="l00100"></a>00100 };
-<a name="l00101"></a>00101 
-<a name="l00103"></a><a class="code" href="class_label_u_gen.html">00103</a> <span class="keyword">class </span><a class="code" href="class_label_u_gen.html">LabelUGen</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> 
-<a name="l00104"></a>00104 {
-<a name="l00105"></a>00105 <span class="keyword">public</span>:
-<a name="l00106"></a>00106  <a class="code" href="class_label_u_gen.html#a7289ff607337ed7d27f7cb1a8d3f34e0">LabelUGen</a>(Label* label) <span class="keywordflow">throw</span>();
-<a name="l00107"></a>00107 };
-<a name="l00108"></a>00108 
-<a name="l00109"></a>00109 
-<a name="l00110"></a>00110 <span class="preprocessor">#endif // UGEN_JUCESLIDER_H</span>
+<a name="l00066"></a><a class="code" href="class_button_value_internal.html">00066</a> <span class="keyword">class </span><a class="code" href="class_button_value_internal.html">ButtonValueInternal</a> : <span class="keyword">public</span> <a class="code" href="class_value_internal.html" title="An internal value class with a constant value.">ValueInternal</a>,
+<a name="l00067"></a>00067        <span class="keyword">public</span> ButtonListener
+<a name="l00068"></a>00068 {
+<a name="l00069"></a>00069 <span class="keyword">public</span>:
+<a name="l00070"></a>00070  <a class="code" href="class_button_value_internal.html#a1e436d33fd25ad3840eeba3378f6a646">ButtonValueInternal</a>(Button* button) <span class="keywordflow">throw</span>();
+<a name="l00071"></a>00071  <a class="code" href="class_button_value_internal.html#a73bb1d12b0c6e62e6d402323e564a6d6">~ButtonValueInternal</a>() <span class="keywordflow">throw</span>();
+<a name="l00072"></a>00072  <span class="keywordtype">void</span> <a class="code" href="class_button_value_internal.html#a411f6f7de3016d67b5a1e48d8adffa27">buttonClicked</a>(Button* button) <span class="keywordflow">throw</span>();
+<a name="l00073"></a>00073  
+<a name="l00074"></a>00074 <span class="keyword">private</span>:
+<a name="l00075"></a><a class="code" href="class_button_value_internal.html#a0ecb95c98ce35bd4c08d727454e01757">00075</a>  Button* <a class="code" href="class_button_value_internal.html#a0ecb95c98ce35bd4c08d727454e01757">button_</a>;
+<a name="l00076"></a><a class="code" href="class_button_value_internal.html#a4546ff9f840ff9adc9b5e4221e470cd4">00076</a>  <span class="keywordtype">bool</span> <a class="code" href="class_button_value_internal.html#a4546ff9f840ff9adc9b5e4221e470cd4">isToggle</a>;
+<a name="l00077"></a>00077 };
+<a name="l00078"></a>00078 
+<a name="l00079"></a><a class="code" href="class_button_value.html">00079</a> <span class="keyword">class </span><a class="code" href="class_button_value.html">ButtonValue</a> : <span class="keyword">public</span> <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> 
+<a name="l00080"></a>00080 {
+<a name="l00081"></a>00081 <span class="keyword">public</span>:
+<a name="l00082"></a>00082  <a class="code" href="class_button_value.html#a03f042501e0aedb27f39242d1db4b850">ButtonValue</a>(Button* button) <span class="keywordflow">throw</span>();
+<a name="l00083"></a>00083 };
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085 
+<a name="l00086"></a><a class="code" href="class_label_value_internal.html">00086</a> <span class="keyword">class </span><a class="code" href="class_label_value_internal.html">LabelValueInternal</a> : <span class="keyword">public</span> <a class="code" href="class_value_internal.html" title="An internal value class with a constant value.">ValueInternal</a>,
+<a name="l00087"></a>00087        <span class="keyword">public</span> LabelListener
+<a name="l00088"></a>00088 {
+<a name="l00089"></a>00089 <span class="keyword">public</span>:
+<a name="l00090"></a>00090  <a class="code" href="class_label_value_internal.html#a962e0dfd4b13c1164f40ef69d043fecf">LabelValueInternal</a>(Label* label) <span class="keywordflow">throw</span>();
+<a name="l00091"></a>00091  <a class="code" href="class_label_value_internal.html#aa1205606a57d64659fb6d7aba3b6ab62">~LabelValueInternal</a>() <span class="keywordflow">throw</span>();
+<a name="l00092"></a>00092  <span class="keywordtype">void</span> <a class="code" href="class_label_value_internal.html#ad5732626d123a638be75f6973c232c01">labelTextChanged</a>(Label* label) <span class="keywordflow">throw</span>();
+<a name="l00093"></a>00093  
+<a name="l00094"></a>00094 <span class="keyword">private</span>:
+<a name="l00095"></a><a class="code" href="class_label_value_internal.html#a183b797ad06abad4581ac3b00e8cf780">00095</a>  Label* <a class="code" href="class_label_value_internal.html#a183b797ad06abad4581ac3b00e8cf780">label_</a>;
+<a name="l00096"></a>00096 };
+<a name="l00097"></a>00097 
+<a name="l00098"></a><a class="code" href="class_label_value.html">00098</a> <span class="keyword">class </span><a class="code" href="class_label_value.html">LabelValue</a> : <span class="keyword">public</span> <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> 
+<a name="l00099"></a>00099 {
+<a name="l00100"></a>00100 <span class="keyword">public</span>:
+<a name="l00101"></a>00101  <a class="code" href="class_label_value.html#a2f3dd613a83ae860aced15010084b551">LabelValue</a>(Label* label) <span class="keywordflow">throw</span>();
+<a name="l00102"></a>00102 };
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104 
+<a name="l00105"></a>00105 
+<a name="l00106"></a>00106 
+<a name="l00107"></a>00107 
+<a name="l00108"></a>00108 <span class="preprocessor">#endif // UGEN_JUCESLIDER_H</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:51 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Sep 9 2010 09:39:21 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

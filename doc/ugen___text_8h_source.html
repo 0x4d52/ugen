@@ -73,7 +73,7 @@
 <a name="l00041"></a>00041 
 <a name="l00042"></a>00042 <span class="comment">//typedef CharArray Text;</span>
 <a name="l00043"></a>00043 
-<a name="l00048"></a><a class="code" href="class_text.html">00048</a> <span class="keyword">class </span><a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> : <span class="keyword">public</span> <a class="code" href="class_numerical_array.html">CharArray</a>
+<a name="l00048"></a><a class="code" href="class_text.html">00048</a> <span class="keyword">class </span><a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> : <span class="keyword">public</span> <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">CharArray</a>
 <a name="l00049"></a>00049 {
 <a name="l00050"></a>00050 <span class="keyword">public</span>:
 <a name="l00051"></a><a class="code" href="class_text.html#adccc0430a2134a9846b8f4925f9ac45b">00051</a>  <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> <a class="code" href="class_text.html#adccc0430a2134a9846b8f4925f9ac45b">space</a>;
@@ -84,8 +84,8 @@
 <a name="l00058"></a>00058  <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a>(const <span class="keywordtype">char</span> c) throw();
 <a name="l00059"></a>00059   
 <a name="l00061"></a>00061  template&lt;class CopyType&gt;
-<a name="l00062"></a><a class="code" href="class_text.html#a0d1528af9b765d9528a22ea88d4b9d9c">00062</a>  <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a>(<a class="code" href="class_numerical_array.html">NumericalArray</a>&lt;CopyType&gt; const&amp; <a class="code" href="class_object_array.html#a03baa6c06a77a576a05e1898b9ccd19f" title="Creates a deep copy of the array.">copy</a>) throw()
-<a name="l00063"></a>00063  : <a class="code" href="class_numerical_array.html">CharArray</a>(<a class="code" href="class_object_array.html#a03baa6c06a77a576a05e1898b9ccd19f" title="Creates a deep copy of the array.">copy</a>)
+<a name="l00062"></a><a class="code" href="class_text.html#a0d1528af9b765d9528a22ea88d4b9d9c">00062</a>  <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a>(<a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray</a>&lt;CopyType&gt; const&amp; <a class="code" href="class_object_array.html#a03baa6c06a77a576a05e1898b9ccd19f" title="Creates a deep copy of the array.">copy</a>) throw()
+<a name="l00063"></a>00063  : <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">CharArray</a>(<a class="code" href="class_object_array.html#a03baa6c06a77a576a05e1898b9ccd19f" title="Creates a deep copy of the array.">copy</a>)
 <a name="l00064"></a>00064  {
 <a name="l00065"></a>00065  }
 <a name="l00066"></a>00066  
@@ -115,7 +115,7 @@
 <a name="l00093"></a>00093  static <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <a class="code" href="class_text.html#afa3c84f9ac6aaa4c88a5fa2736849e53">newClear</a>(const <span class="keywordtype">int</span> size) throw();
 <a name="l00094"></a>00094  static <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <a class="code" href="class_text.html#aa50aa3cc0754e70e6deae153872efe15">fromValue</a>(const <span class="keywordtype">int</span> num) throw();
 <a name="l00095"></a>00095 
-<a name="l00096"></a>00096  <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a>&amp; operator= (<a class="code" href="class_numerical_array.html">CharArray</a> const&amp; other) throw();
+<a name="l00096"></a>00096  <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a>&amp; operator= (<a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">CharArray</a> const&amp; other) throw();
 <a name="l00097"></a>00097  
 <a name="l00098"></a>00098  <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> operator+ (<a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> const&amp; rightOperand) const throw();
 <a name="l00099"></a>00099  <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <a class="code" href="class_text.html#a3a08732edc5ff110af7364704811d785">offset</a>(<a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> const&amp; rightOperand) const throw();
@@ -294,7 +294,7 @@
 <a name="l00272"></a>00272 <span class="preprocessor">#endif // _UGEN_ugen_Text_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 12:42:00 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Sep 9 2010 09:39:20 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

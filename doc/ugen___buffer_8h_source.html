@@ -181,7 +181,7 @@
 <a name="l00169"></a>00169  <a class="code" href="class_buffer.html#ae7ef2cd201190fde551dcb902627112b">Buffer</a>(<a class="code" href="class_value_array.html" title="Store and manipulate an array of Value objects.">ValueArray</a> <span class="keyword">const</span>&amp; array) <span class="keywordflow">throw</span>();
 <a name="l00170"></a>00170  
 <a name="l00171"></a>00171  <span class="keyword">template</span>&lt;<span class="keyword">class</span> NumericalType&gt;
-<a name="l00172"></a><a class="code" href="class_buffer.html#aa47760551d369bacfad9ad6cdef9e61a">00172</a>  <a class="code" href="class_buffer.html#ae7ef2cd201190fde551dcb902627112b">Buffer</a>(<a class="code" href="class_numerical_array.html">NumericalArray&lt;NumericalType&gt;</a> <span class="keyword">const</span>&amp; array) <span class="keywordflow">throw</span>()
+<a name="l00172"></a><a class="code" href="class_buffer.html#aa47760551d369bacfad9ad6cdef9e61a">00172</a>  <a class="code" href="class_buffer.html#ae7ef2cd201190fde551dcb902627112b">Buffer</a>(<a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a> <span class="keyword">const</span>&amp; array) <span class="keywordflow">throw</span>()
 <a name="l00173"></a>00173  : <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>(1),
 <a name="l00174"></a>00174   <a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>(array.<a class="code" href="class_value_array.html#a6453591e799747b8921b8cf783f90d42" title="Get the number of values in the array.">size</a>())
 <a name="l00175"></a>00175  {
@@ -203,7 +203,7 @@
 <a name="l00191"></a>00191   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>; channel++)
 <a name="l00192"></a>00192   {
 <a name="l00193"></a>00193    <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel] = <span class="keyword">new</span> <a class="code" href="class_buffer_channel_internal.html">BufferChannelInternal</a>(<a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>, <span class="keyword">false</span>);
-<a name="l00194"></a>00194    <span class="keyword">const</span> <a class="code" href="class_numerical_array.html">NumericalArray&lt;NumericalType&gt;</a>&amp; singleArray = array[channel];
+<a name="l00194"></a>00194    <span class="keyword">const</span> <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a>&amp; singleArray = array[channel];
 <a name="l00195"></a>00195    <span class="keywordtype">float</span>* channelData = <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel]-&gt;<a class="code" href="class_buffer_channel_internal.html#a5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>;
 <a name="l00196"></a>00196    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> sample = 0; sample &lt; <a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>; sample++)
 <a name="l00197"></a>00197    {
@@ -296,7 +296,7 @@
 <a name="l00291"></a>00291   {
 <a name="l00292"></a>00292    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>; i++)
 <a name="l00293"></a>00293    {
-<a name="l00294"></a>00294     <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a> array = <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;::withArray</a>(<a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>, <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[i]-&gt;data, <span class="keyword">false</span>);
+<a name="l00294"></a>00294     <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a> array = <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;float&gt;::withArray</a>(<a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>, <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[i]-&gt;data, <span class="keyword">false</span>);
 <a name="l00295"></a>00295     array2d &lt;&lt; NumericalArray&lt;NumericalType&gt;(array);
 <a name="l00296"></a>00296    }
 <a name="l00297"></a>00297   }
@@ -311,9 +311,9 @@
 <a name="l00306"></a>00306  }
 <a name="l00307"></a>00307  
 <a name="l00309"></a>00309  <span class="keyword">template</span>&lt;<span class="keyword">class</span> NumericalType&gt;
-<a name="l00310"></a><a class="code" href="class_buffer.html#a312126a6a3b5d4753c6cc523d4580a1b">00310</a>  <span class="keyword">inline</span> <a class="code" href="class_numerical_array.html">NumericalArray&lt;NumericalType&gt;</a> <a class="code" href="class_buffer.html#a02346a8be8129455c7512f0e76810966" title="Convert a buffer to a 2D array of a specified type.">toArray</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l00310"></a><a class="code" href="class_buffer.html#a312126a6a3b5d4753c6cc523d4580a1b">00310</a>  <span class="keyword">inline</span> <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a> <a class="code" href="class_buffer.html#a02346a8be8129455c7512f0e76810966" title="Convert a buffer to a 2D array of a specified type.">toArray</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00311"></a>00311  {
-<a name="l00312"></a>00312   <a class="code" href="class_numerical_array.html">NumericalArray&lt;NumericalType&gt;</a> array;
+<a name="l00312"></a>00312   <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a> array;
 <a name="l00313"></a>00313   
 <a name="l00314"></a>00314   <span class="keywordflow">if</span>(<a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a> != 0)
 <a name="l00315"></a>00315   {
@@ -321,7 +321,7 @@
 <a name="l00317"></a>00317    <span class="keywordflow">while</span>(channelToUse &lt; 0)
 <a name="l00318"></a>00318     channelToUse += <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>;
 <a name="l00319"></a>00319    
-<a name="l00320"></a>00320    <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a> floatArray = <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;::withArray</a>(<a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>, 
+<a name="l00320"></a>00320    <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a> floatArray = <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;float&gt;::withArray</a>(<a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>, 
 <a name="l00321"></a>00321                     <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel % <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>]-&gt;data, 
 <a name="l00322"></a>00322                     <span class="keyword">false</span>);
 <a name="l00323"></a>00323    array = floatArray;
@@ -432,7 +432,7 @@
 <a name="l00428"></a>00428    <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[0]-&gt;<a class="code" href="class_buffer_channel_internal.html#a5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>[sampleIndex];
 <a name="l00429"></a>00429  }
 <a name="l00430"></a>00430  
-<a name="l00431"></a><a class="code" href="class_buffer.html#ae799cb24eca2ebf8539988c5b4aa6e07">00431</a>  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#a64465b2fe51e899db01353ea3987d394">operator[] </a>(<a class="code" href="class_numerical_array.html">IntArray</a> <span class="keyword">const</span>&amp; indices) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l00431"></a><a class="code" href="class_buffer.html#ae799cb24eca2ebf8539988c5b4aa6e07">00431</a>  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#a64465b2fe51e899db01353ea3987d394">operator[] </a>(<a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">IntArray</a> <span class="keyword">const</span>&amp; indices) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00432"></a>00432  {
 <a name="l00433"></a>00433   <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> newBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(indices.size(), <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>, <span class="keyword">false</span>));
 <a name="l00434"></a>00434   
@@ -467,7 +467,7 @@
 <a name="l00463"></a>00463    <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel]-&gt;<a class="code" href="class_buffer_channel_internal.html#a5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>[sampleIndex];  
 <a name="l00464"></a>00464  }
 <a name="l00465"></a>00465  
-<a name="l00466"></a><a class="code" href="class_buffer.html#abfcfad64b9214c73c2da2eca2642b76c">00466</a>  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#a3e0c43a8e7f06a823712f925659565c6">at</a>(<a class="code" href="class_numerical_array.html">IntArray</a> <span class="keyword">const</span>&amp; indices) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l00466"></a><a class="code" href="class_buffer.html#abfcfad64b9214c73c2da2eca2642b76c">00466</a>  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#a3e0c43a8e7f06a823712f925659565c6">at</a>(<a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">IntArray</a> <span class="keyword">const</span>&amp; indices) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00467"></a>00467  {
 <a name="l00468"></a>00468   <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> newBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(indices.size(), <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>, <span class="keyword">false</span>));
 <a name="l00469"></a>00469   
@@ -631,7 +631,7 @@
 <a name="l00702"></a>00702 <span class="preprocessor">#endif // _UGEN_ugen_Buffer_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:49 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Sep 9 2010 09:39:19 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
