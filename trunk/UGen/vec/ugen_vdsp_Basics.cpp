@@ -160,7 +160,7 @@ void MixArrayUGenInternal::processBlock(bool& shouldDelete, const unsigned int b
 	bool shouldDeleteLocal;
 	bool& shouldDeleteToPass = shouldAllowAutoDelete_ ? shouldDelete : shouldDeleteLocal;	
 	const int numOutputChannels = getNumChannels();
-	const int arraySize = arrayRef.size();
+	const int arraySize = array_.size();
 	const int numSamplesToProcess = uGenOutput.getBlockSize();
 	
 	for(int channel = 0; channel < numOutputChannels; channel++)
@@ -170,7 +170,7 @@ void MixArrayUGenInternal::processBlock(bool& shouldDelete, const unsigned int b
 		
 		for(int arrayIndex = 0; arrayIndex < arraySize; arrayIndex++)
 		{
-			UGen& ugen = arrayRef[arrayIndex];
+			UGen& ugen = array_[arrayIndex];
 			
 			if(shouldWrapChannels_ || (channel < ugen.getNumChannels()))
 			{

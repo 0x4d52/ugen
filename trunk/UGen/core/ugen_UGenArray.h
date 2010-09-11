@@ -110,9 +110,11 @@ public:
 		void removeNulls(const bool reallocate = false) throw();
 		void reallocate() throw();
 		void clear() throw();
+		void clearQuick() throw();
 				
 	private:
 		int size_;
+		int allocatedSize;
 		UGen* array;
 		
 		Internal (const Internal&);
@@ -162,7 +164,7 @@ public:
 	
 	/** Remove an item at the index (ignored if the index is out of range). 
 	 This doesn't reallocate memory, items at the end of the array are set to null. */
-	void remove(const int index, const bool reallocate = false) throw();
+	UGen remove(const int index, const bool reallocate = false) throw();
 	
 	/** Removes all UGen instances which are null. */
 	void removeNulls() throw();
@@ -279,19 +281,17 @@ public:
 	UGenArray to(const int endIndex) const throw();
 	UGenArray range(const int startIndex) const throw();
 	
-	/** Searches the UGenArray for a UGen with userData which matches the 
+	/** Searches the UGenArray for the first UGen it finds with userData which matches the 
 	 userDataToSearchFor arguments. This is used (for example) by the
 	 Voicer and VoicerBase classes which store MIDI note number information
 	 in the userData member. This function is used to find which voice should
-	 be released when a note off message is received.
+	 be released when a note off message is received. To release all voices with
+	 matching user data you could use @c release(userData) instead. 
 	 @param userDataToSearchFor The userData to search for.
 	 @return	The UGen with the userData which matches userDataToSearchFor
-				or a null UGen if this is not found in the UGenArray. */
+				or a null UGen if this is not found in the UGenArray. 
+	 @see release() */
 	const UGen& getUGenWithUserData(const int userDataToSearchFor) const throw();
-	
-	//	UGenArray remove(UGenArray const& itemsToRemove) const;
-	//	UGenArray removeAt(const int index) const;
-	//	UGenArray insert(const int index, UGenArray const& itemsToInsert) const;
 	
 	/** Find the index of a specific UGen in the UGen array. 
 	 @param itemsToSearchFor	The UGen to search for. This uses UGen::containsIdenticalInternalsAs() 
@@ -359,6 +359,8 @@ public:
 	/// @{
 	/** Attempts to release all UGen instances in the UGenArray using UGen::release(). */
 	void release() throw();	
+	/** Attempts to release all UGen instances with the specified user data in the UGenArray using UGen::release(). */
+	void release(const int userDataToSearchFor) throw();
 	/// @} <!-- end Miscellaneous -------------------------------- -->
 	
 private:

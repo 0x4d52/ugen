@@ -34,11 +34,59 @@
 #ifndef _UGEN_ugen_JuceIOHost_H_
 #define _UGEN_ugen_JuceIOHost_H_
 
+class JuceIOHost;
+
 /** An audio IO host for Juce projects.
  @see UIKitAUIOHost AudioQueueIOHostController 
  @ingroup Hosts */
-class JuceIOHost :	public AudioIODeviceCallback,
-					private Timer
+class JuceIOHostInternal :	public AudioIODeviceCallback,
+							private Timer
+{
+public:
+	JuceIOHostInternal(JuceIOHost *owner,
+					   const int numInputs = 2, 
+					   const int numOutputs = 2, 
+					   const int preferredBufferSize = 0, 
+					   const bool useTimerDeleter = false) throw();
+	~JuceIOHostInternal();
+	void timerCallback();
+	void audioDeviceIOCallback (const float** inputChannelData,
+								int numInputChannels, 
+								float** outputChannelData, 
+								int numOutputChannels, 
+								int numSamples);
+	void audioDeviceAboutToStart (AudioIODevice* device);
+	void audioDeviceStopped();
+	AudioDeviceManager& getAudioDeviceManager() throw();
+	
+	int getNumInputs() const throw();
+	int getNumOutputs() const throw();
+	
+	UGen& getInput() throw();	
+	UGen& getOutput() throw();
+	
+	void setInput(UGen const& ugen) throw();
+	void setOutput(UGen const& ugen) throw();
+	void addOther(UGen const& ugen) throw();	
+	
+	friend class JuceIOHost;
+	
+protected:
+	CriticalSection lock;
+	AudioDeviceManager audioDeviceManager;
+	
+private:
+	JuceIOHost *owner_;
+	const int numInputs_, numOutputs_;
+	int bufferSize;
+	UGen input_;
+	UGen output_;
+	UGenArray others;
+	JuceTimerDeleter* juceDeleter;
+};
+
+
+class JuceIOHost
 {
 public:
 	/**
@@ -50,34 +98,15 @@ public:
 	 crash when the constructGraph() function is called (since it's pure virtual).
 	 
 	 If @c preferredBufferSize is zero (or less) the default buffer size for the device will be used.
-
+	 
 	 */
-	JuceIOHost(const int numInputs = 2, const int numOutputs = 2, const int preferredBufferSize = 0, const bool useTimerDeleter = false) throw()
-	:	numInputs_(numInputs < 0 ? 0 : numInputs),
-		numOutputs_(numOutputs < 0 ? 0 : numOutputs),
-		bufferSize(preferredBufferSize),
-		juceDeleter(0)
+	JuceIOHost(const int numInputs = 2, 
+			   const int numOutputs = 2, 
+			   const int preferredBufferSize = 0, 
+			   const bool useTimerDeleter = false) throw()
+	:	internal(new JuceIOHostInternal(this, numInputs, numOutputs, preferredBufferSize, useTimerDeleter)),
+		lock(internal->lock)
 	{
-		ugen_assert(numInputs == numInputs_);
-		ugen_assert(numOutputs == numOutputs_);
-		ugen_assert(bufferSize == preferredBufferSize);
-		
-		//const ScopedLock sl(lock);
-		lock.enter();
-		UGen::initialise();
-		if(useTimerDeleter) 
-		{
-			juceDeleter = new JuceTimerDeleter();
-			UGen::setDeleter(juceDeleter);
-		}
-		
-#ifndef UGEN_NOEXTGPL
-		Ran088::defaultGenerator().setSeed(Time::currentTimeMillis());
-#endif
-		startTimer(50);
-		
-		output_ = Plug::AR(UGen::emptyChannels(numOutputs_));
-		lock.exit();
 	}
 	
 	/**
@@ -87,128 +116,24 @@ public:
 	 */
 	~JuceIOHost()
 	{
-		audioDeviceManager.removeAudioCallback(this); // try this first to prevent deadlock? nope - now crashes here
-		
-		delete juceDeleter;
+		delete internal;
 	}
-	
-	/**
-	 Sets up the AudioDeviceManager shortly after the constructor exits.
-	 */
-	void timerCallback()
-	{
-		stopTimer();
 		
-		String error = audioDeviceManager.initialise (numInputs_, numOutputs_, 0, true);
-		
-		if (error.isNotEmpty())
-		{
-			AlertWindow::showMessageBox (AlertWindow::WarningIcon, 
-										 T("JuceIOHost"), 
-										 T("AudioDeviceManager init failed \n\n") + error);
-			
-			return;
-		}
-
-		AudioDeviceManager::AudioDeviceSetup setup;
-		audioDeviceManager.getAudioDeviceSetup(setup);
-
-		if(bufferSize < 1)
-		{
-			bufferSize = setup.bufferSize;
-		}
-		else
-		{
-			setup.bufferSize = bufferSize;
-			audioDeviceManager.setAudioDeviceSetup(setup, false);
-		}
-		
-		if (error.isNotEmpty())
-		{
-			AlertWindow::showMessageBox (AlertWindow::WarningIcon, 
-										 T("JuceIOHost"), 
-										 T("AudioDeviceManager setup failed \n\n") + error);
-			
-			return;
-		}
-		
-		//const ScopedLock sl(lock);
-		lock.enter();
-		
-		if(numInputs_ > 0)
-			input_ = AudioIn::AR(numInputs_);
-		audioDeviceManager.addAudioCallback (this);
-		
-		lock.exit();
-	}
-	
-	/**
-	 Renders a block of audio through the UGen graph.
-	 
-	 The input UGen is provided with the sample data from the host environment and the the output UGen
-	 is provided with a place to write its sample data output. The output is then rendered.
-	 */
-	void audioDeviceIOCallback (const float** inputChannelData,
-								int numInputChannels, 
-								float** outputChannelData, 
-								int numOutputChannels, 
-								int numSamples)
-	{
-		// may need to be a bit cleverer with the channels in here..
-		//const ScopedLock sl(lock);
-		lock.enter();
-		
-		int blockID = UGen::getNextBlockID(numSamples);
-		
-		if(numInputs_ > 0)
-			input_.setInputs(inputChannelData, numSamples, numInputChannels);
-		
-		if(numOutputs_ > 0)
-		{
-			output_.setOutputs(outputChannelData, numSamples, numOutputChannels);
-
-			for(int i = 0; i < others.size(); i++)
-			{
-				others[i].prepareAndProcessBlock(numSamples, blockID);
-			}
-			
-			output_.prepareAndProcessBlock(numSamples, blockID);
-		}
-		else
-		{
-			for(int i = 0; i < others.size(); i++)
-			{
-				others[i].prepareAndProcessBlock(numSamples, blockID);
-			}
-		}
-		
-		lock.exit();
-	}
-	
-	/**
-	 Get ready to play.
-	 
-	 The UGen++ system is provided with a sample rate and buffer size at this point and the constructGraph() 
-	 pure virtual function is called.
-	 */
-	void audioDeviceAboutToStart (AudioIODevice* device)
-	{
-		//const ScopedLock sl(lock);	
-		UGen::prepareToPlay(device->getCurrentSampleRate(), device->getCurrentBufferSizeSamples());
-		output_.setSource(constructGraph(input_), true, 0.0);
-	}
-	
-	/**  */
-	void audioDeviceStopped() 
-	{ 
-		UGen::shutdown();
-	}
-	
 	/** Get a reference to the AudioDeviceManager() */
-	AudioDeviceManager& getAudioDeviceManager() throw() { return audioDeviceManager;	}
+	AudioDeviceManager& getAudioDeviceManager() throw()
+	{
+		return internal->getAudioDeviceManager();
+	}
 	
-	int getNumInputs() const throw()					{ return numInputs_;			}
-	int getNumOutputs() const throw()					{ return numOutputs_;			}
+	int getNumInputs() const throw()
+	{
+		return internal->getNumInputs();
+	}
+	
+	int getNumOutputs() const throw()
+	{
+		return internal->getNumOutputs();
+	}
 	
 	/** 
 	 Get a reference to the input UGen.
@@ -217,7 +142,10 @@ public:
 	 
 	 @return a reference to the input UGen
 	 */
-	UGen& getInput() throw()							{ return input_;				}
+	UGen& getInput() throw()
+	{
+		return internal->getInput();
+	}
 	
 	/** 
 	 Get a reference to the output UGen.
@@ -227,7 +155,10 @@ public:
 	 
 	 @return a reference to the output UGen
 	 */
-	UGen& getOutput() throw()							{ return output_;				}
+	UGen& getOutput() throw()
+	{
+		return internal->getOutput();
+	}
 	
 	/**
 	 Set the input UGen.
@@ -238,12 +169,9 @@ public:
 	 
 	 @param ugen	the new UGen to use as the host input.
 	 */
-	void setInput(UGen const& ugen) throw() 
-	{ 
-		//const ScopedLock sl(lock);
-		lock.enter();
-		input_ = ugen;
-		lock.exit();
+	void setInput(UGen const& ugen) throw()
+	{
+		internal->setInput(ugen);
 	}
 	
 	/**
@@ -255,12 +183,9 @@ public:
 	 
 	 @param ugen	the new UGen to use as the host output.
 	 */
-	void setOutput(UGen const& ugen) throw() 
-	{ 
-		//const ScopedLock sl(lock);
-		lock.enter();
-		output_ = ugen;
-		lock.exit();
+	void setOutput(UGen const& ugen) throw()
+	{
+		internal->setOutput(ugen);
 	}
 	
 	/**
@@ -270,10 +195,12 @@ public:
 	 */
 	void addOther(UGen const& ugen) throw()
 	{
-		//const ScopedLock sl(lock);
-		lock.enter();
-		others <<= ugen;
-		lock.exit();
+		internal->addOther(ugen);
+	}
+	
+	double getCpuUsage() const
+	{
+		return internal->audioDeviceManager.getCpuUsage();
 	}
 	
 	/**
@@ -288,18 +215,166 @@ public:
 	 */
 	virtual UGen constructGraph(UGen const& input) = 0;
 	
-protected:
-	CriticalSection lock;
-	AudioDeviceManager audioDeviceManager;
-	
 private:
-	const int numInputs_, numOutputs_;
-	int bufferSize;
-	UGen input_;
-	UGen output_;
-	UGenArray others;
-	JuceTimerDeleter* juceDeleter;
+	JuceIOHostInternal* internal;
+	
+protected:
+	CriticalSection& lock;
 };
+
+
+
+inline JuceIOHostInternal::JuceIOHostInternal(JuceIOHost *owner, 
+											  const int numInputs, 
+											  const int numOutputs, 
+											  const int preferredBufferSize, 
+											  const bool useTimerDeleter) throw()
+:	owner_(owner),
+	numInputs_(numInputs < 0 ? 0 : numInputs),
+	numOutputs_(numOutputs < 0 ? 0 : numOutputs),
+	bufferSize(preferredBufferSize),
+	juceDeleter(0)
+{
+	ugen_assert(numInputs == numInputs_);
+	ugen_assert(numOutputs == numOutputs_);
+	ugen_assert(bufferSize == preferredBufferSize);
+	
+	const ScopedLock sl(lock);
+	UGen::initialise();
+	if(useTimerDeleter) 
+	{
+		juceDeleter = new JuceTimerDeleter();
+		UGen::setDeleter(juceDeleter);
+	}
+	
+#ifndef UGEN_NOEXTGPL
+	Ran088::defaultGenerator().setSeed(Time::currentTimeMillis());
+#endif
+	startTimer(50);
+	
+	output_ = Plug::AR(UGen::emptyChannels(numOutputs_));
+}
+
+inline JuceIOHostInternal::~JuceIOHostInternal()
+{
+	audioDeviceManager.removeAudioCallback(this); // try this first to prevent deadlock? nope - now crashes here
+	
+	delete juceDeleter;
+}
+
+inline void JuceIOHostInternal::timerCallback()
+{
+	stopTimer();
+	
+	String error = audioDeviceManager.initialise (numInputs_, numOutputs_, 0, true);
+	
+	if (error.isNotEmpty())
+	{
+		AlertWindow::showMessageBox (AlertWindow::WarningIcon, 
+									 T("JuceIOHostInternal"), 
+									 T("AudioDeviceManager init failed \n\n") + error);
+		
+		return;
+	}
+	
+	AudioDeviceManager::AudioDeviceSetup setup;
+	audioDeviceManager.getAudioDeviceSetup(setup);
+	
+	if(bufferSize < 1)
+	{
+		bufferSize = setup.bufferSize;
+	}
+	else
+	{
+		setup.bufferSize = bufferSize;
+		audioDeviceManager.setAudioDeviceSetup(setup, false);
+	}
+	
+	if (error.isNotEmpty())
+	{
+		AlertWindow::showMessageBox (AlertWindow::WarningIcon, 
+									 T("JuceIOHostInternal"), 
+									 T("AudioDeviceManager setup failed \n\n") + error);
+		
+		return;
+	}
+	
+	const ScopedLock sl(lock);
+	
+	if(numInputs_ > 0)
+		input_ = AudioIn::AR(numInputs_);
+	audioDeviceManager.addAudioCallback (this);	
+}
+
+inline void JuceIOHostInternal::audioDeviceIOCallback (const float** inputChannelData,
+													   int numInputChannels, 
+													   float** outputChannelData, 
+													   int numOutputChannels, 
+													   int numSamples)
+{
+	// may need to be a bit cleverer with the channels in here..
+	const ScopedLock sl(lock);
+	
+	int blockID = UGen::getNextBlockID(numSamples);
+	
+	if(numInputs_ > 0)
+		input_.setInputs(inputChannelData, numSamples, numInputChannels);
+	
+	if(numOutputs_ > 0)
+	{
+		output_.setOutputs(outputChannelData, numSamples, numOutputChannels);
+		
+		for(int i = 0; i < others.size(); i++)
+		{
+			others[i].prepareAndProcessBlock(numSamples, blockID);
+		}
+		
+		output_.prepareAndProcessBlock(numSamples, blockID);
+	}
+	else
+	{
+		for(int i = 0; i < others.size(); i++)
+		{
+			others[i].prepareAndProcessBlock(numSamples, blockID);
+		}
+	}
+}
+
+inline void JuceIOHostInternal::audioDeviceAboutToStart (AudioIODevice* device)
+{
+	//const ScopedLock sl(lock);	
+	UGen::prepareToPlay(device->getCurrentSampleRate(), device->getCurrentBufferSizeSamples());
+	output_.setSource(owner_->constructGraph(input_), true, 0.0);
+}
+
+inline void JuceIOHostInternal::audioDeviceStopped() 
+{ 
+	UGen::shutdown();
+}
+
+inline AudioDeviceManager& JuceIOHostInternal::getAudioDeviceManager() throw()	{ return audioDeviceManager;	}
+inline int JuceIOHostInternal::getNumInputs() const throw()						{ return numInputs_;			}
+inline int JuceIOHostInternal::getNumOutputs() const throw()					{ return numOutputs_;			}
+inline UGen& JuceIOHostInternal::getInput() throw()								{ return input_;				}
+inline UGen& JuceIOHostInternal::getOutput() throw()							{ return output_;				}
+
+inline void JuceIOHostInternal::setInput(UGen const& ugen) throw() 
+{ 
+	const ScopedLock sl(lock);
+	input_ = ugen;
+}
+
+inline void JuceIOHostInternal::setOutput(UGen const& ugen) throw() 
+{ 
+	const ScopedLock sl(lock);
+	output_ = ugen;
+}
+
+inline void JuceIOHostInternal::addOther(UGen const& ugen) throw()
+{
+	const ScopedLock sl(lock);
+	others.add(ugen);
+}
 
 
 
