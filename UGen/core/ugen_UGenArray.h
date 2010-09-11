@@ -109,6 +109,7 @@ public:
 		void remove(const int index, const bool reallocate) throw();
 		void removeNulls(const bool reallocate = false) throw();
 		void reallocate() throw();
+		void clear() throw();
 				
 	private:
 		int size_;
@@ -165,6 +166,9 @@ public:
 	
 	/** Removes all UGen instances which are null. */
 	void removeNulls() throw();
+	
+	/** Removes all items and sets the size to zero. */
+	void clear() throw();
 	
 	/** Append two UGenArray objects.
 	 All null UGen instances are removed from the result.

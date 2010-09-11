@@ -507,6 +507,7 @@ public:
 		}
 		else
 		{
+			ugen_assertfalse; // this should never happen now!
 			this->setInternal(new ObjectArrayInternal<ObjectType>(1, false));
 			this->put(0, item);
 		}

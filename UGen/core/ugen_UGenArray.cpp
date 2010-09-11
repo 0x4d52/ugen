@@ -194,6 +194,13 @@ void UGenArray::Internal::reallocate() throw()
 	}
 }
 
+void UGenArray::Internal::clear() throw()
+{
+	delete [] array;
+	array = 0;
+	size_ = 0;
+}
+
 UGenArray::UGenArray(const int size) throw()
 :	internal(new Internal(size))
 {
@@ -412,7 +419,10 @@ void UGenArray::removeNulls() throw()
 	internal->removeNulls();
 }
 
-
+void UGenArray::clear() throw()
+{
+	internal->clear();
+}
 
 void UGenArray::put(const int index, UGen const& item) throw()
 {

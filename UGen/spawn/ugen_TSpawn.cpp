@@ -150,8 +150,9 @@ void TSpawnUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 				
 				// add the new voice and re init the mixer
 				UGen newVoice = spawnEvent(*this, currentEventIndex++);
-				events <<= newVoice;
-				mixer = Mix(&events, false);
+				//events <<= newVoice;
+				//mixer = Mix(&events, false);
+				events.add(newVoice);
 			}
 			else
 			{
@@ -174,6 +175,7 @@ void TSpawnUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 		mixer.processBlock(shouldDelete, blockID + startSample, -1);
 		
 		UGen::setBlockSize(blockSize);
+		events.removeNulls();
 	}
 }
 
