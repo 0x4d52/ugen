@@ -37,7 +37,7 @@
 #ifndef UGEN_UGENINTERNAL_H
 #define UGEN_UGENINTERNAL_H
 
-//#define DEBUGREFCOUNT
+#define DEBUGREFCOUNT
 
 #include "ugen_SmartPointer.h"
 
@@ -76,8 +76,6 @@ public:
 	}
 	//void optimiseBlockSize(); // reduce block sizes to minimum
 	
-	//inline float getOutputValue() const					{ if(usingExternalOutput) return externalOutput->getOutputValue(); else return output;		}
-	//inline void setOutputValue(const float newValue)	{ if(usingExternalOutput) externalOutput->setOutputValue(newValue); else output = newValue;	}
 	inline int getBlockSize() const						{ return blockSize;			}
 	inline float* getSampleData() const					{ return block;				}
 	inline void zeroAllData()							{ memset(block, 0, blockSize * sizeof(float)); }
@@ -87,7 +85,6 @@ public:
 	void useExternalOutput(float* externalOutputToUse, const int externalBlockSize);
 	
 private:
-	//float output;
 	int blockSize;
 	int allocatedBlockSize;
 	float *block;

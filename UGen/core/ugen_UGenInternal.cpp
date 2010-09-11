@@ -68,31 +68,6 @@ UGenOutput::~UGenOutput()
 	externalOutput = 0;
 }
 
-//void UGenOutput::prepareForBlock(const int actualBlockSize)
-//{
-//	if(externalOutput != 0)
-//	{
-//		externalOutput->prepareForBlock(actualBlockSize);
-//		blockSize = externalOutput->getBlockSize();
-//		block = externalOutput->getSampleData();
-//	}
-//	else if(usingExternalOutput)
-//	{
-//		// assert if actualBlockSize != blockSize
-//	}
-//	else
-//	{
-//		blockSize = actualBlockSize;
-//		
-//		if(actualBlockSize > allocatedBlockSize)
-//		{		
-//			delete [] block;
-//			allocatedBlockSize = blockSize;
-//			block = new float[allocatedBlockSize];
-//		}
-//	}
-//}
-
 void UGenOutput::initValue(const float value) throw()
 {
 	if(block)

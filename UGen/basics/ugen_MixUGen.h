@@ -48,23 +48,14 @@
 class MixUGenInternal : public UGenInternal
 {
 public:
-	/** Constructor using a reference to a UGen.
-	 @param array					A reference to the UGen to be mixed.
+	/** Constructor using a UGen.
+	 @param array					The UGen to be mixed.
 	 @param shouldAllowAutoDelete	If true this behaves like most other UGenInternal objects
 									i.e., it may be deleted by a DoneAction (e.g., an envelope
 									ending). If false this protects UGen instances further down the chain
 									(and itself) from being deleted by DoneActions. */
 	MixUGenInternal(UGen const& array, bool shouldAllowAutoDelete = true) throw();
-	
-//	/** Constructor using a pointer to a UGen.
-//	 @param array					A pointer to the UGen to be mixed.
-//									Make sure the object this points to is not deleted before this object.
-//	 @param shouldAllowAutoDelete	If true this behaves like most other UGenInternal objects
-//									i.e., it may be deleted by a DoneAction (e.g., an envelope
-//									ending). If false this protects UGen instances further down the chain
-//									(and itself) from being deleted by DoneActions. */
-//	MixUGenInternal(UGen* array, bool shouldAllowAutoDelete = true) throw();
-	
+		
 	/** Render a block of audio. */
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
@@ -93,23 +84,17 @@ private:
 class MixArrayUGenInternal : public ProxyOwnerUGenInternal
 {
 public:
-	/** Constructor using a reference to a UGenArray.
-	 @param array					A reference to the UGenArray to be mixed.
+	/** Constructor using a UGenArray.
+	 @param array					The UGenArray to be mixed.
 	 @param shouldAllowAutoDelete	If true this behaves like most other UGenInternal objects
 									i.e., it may be deleted by a DoneAction (e.g., an envelope
 									ending). If false this protects UGen instances further down the chain
 									(and itself) from being deleted by DoneActions. */
-	MixArrayUGenInternal(UGenArray const& array, bool shouldAllowAutoDelete = true, bool shouldWrapChannels = true) throw();
-	
-//	/** Constructor using a pointer to a UGenArray.
-//	 @param array					A pointer to the UGenArray to be mixed.
-//									Make sure the object this points to is not deleted before this object.
-//	 @param shouldAllowAutoDelete	If true this behaves like most other UGenInternal objects
-//									i.e., it may be deleted by a DoneAction (e.g., an envelope
-//									ending). If false this protects UGen instances further down the chain
-//									(and itself) from being deleted by DoneActions. */
-//	MixArrayUGenInternal(UGenArray* array, bool shouldAllowAutoDelete = true, bool shouldWrapChannels = true) throw();
-	
+	MixArrayUGenInternal(UGenArray const& array, 
+						 bool shouldAllowAutoDelete = true, 
+						 bool shouldWrapChannels = true,
+						 const int numChannels = 0) throw();
+		
 	void prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	void releaseInternal() throw(); // has non-standard inputs 
@@ -118,8 +103,8 @@ public:
 	
 private:
 	UGenArray array_;
-	UGenArray* arrayPtr;
-	UGenArray& arrayRef;
+	//UGenArray* arrayPtr;
+	//UGenArray& arrayRef;
 	bool shouldAllowAutoDelete_;
 	bool shouldWrapChannels_;
 };
@@ -154,7 +139,7 @@ public:
 	
 	/** %Mix UGen channels to a single channel using a reference to a UGen.
 	
-	 @param array					A reference to the UGen to be mixed.
+	 @param array					The UGen to be mixed.
 	 @param shouldAllowAutoDelete	If true this behaves like most other UGen classes
 									i.e., it may be deleted by a DoneAction (e.g., an envelope
 									ending). If false this protects UGen instances further down the chain
@@ -168,23 +153,9 @@ public:
 	/// Control rate @see Mix (UGen const& array, bool shouldAllowAutoDelete)
 	static inline UGen KR (UGen const& array, bool shouldAllowAutoDelete = true) throw()		{ return UGen(Mix (array, shouldAllowAutoDelete)).kr(); } 
 		
-//	/** %Mix UGen channels to a single channel using a pointer to a UGen.
-//	 @param array					A pointer to the UGen to be mixed.
-//									Make sure the object this points to is not deleted before this object.
-//	 @param shouldAllowAutoDelete	If true this behaves like most other UGen classes
-//									i.e., it may be deleted by a DoneAction (e.g., an envelope
-//									ending). If false this protects UGen instances further down the chain
-//									(and itself) from being deleted by DoneActions. */
-//	Mix (UGen* array, bool shouldAllowAutoDelete = true) throw(); 
-//	
-//	/// Audio rate @see Mix (UGen* array, bool shouldAllowAutoDelete)
-//	static inline UGen AR (UGen* array, bool shouldAllowAutoDelete = true) throw()				{ return Mix (array, shouldAllowAutoDelete);			} 
-//	
-//	/// Control rate @see Mix (UGen* array, bool shouldAllowAutoDelete)
-//	static inline UGen KR (UGen* array, bool shouldAllowAutoDelete = true) throw()				{ return UGen(Mix (array, shouldAllowAutoDelete)).kr(); } 
 		
 	/** %Mix a UGenArray to a multichannel UGen using a reference to a UGenArray.
-	 @param array					A reference to the UGenArray to be mixed.
+	 @param array					The UGenArray to be mixed.
 	 @param shouldAllowAutoDelete	If true this behaves like most other UGenInternal objects
 									i.e., it may be deleted by a DoneAction (e.g., an envelope
 									ending). If false this protects UGen instances further down the chain
@@ -194,36 +165,28 @@ public:
 									mixed with stereo channels will have the mono channel placed on both
 									left and right. If false channels are not expanded, e.g., mono channels
 									mixed with stereo channels will have the mono channel placed on the left
-									only.*/
-	Mix (UGenArray const& array, bool shouldAllowAutoDelete = true, bool shouldWrapChannels = true) throw(); 
+									only.
+	 @param numChannels				Overrides the number of channels generated if greater than 0.
+									The number of channels is normally based on the maximum
+									number of channels found in the UGenArray. This is useful if you want to start
+									with an empty UGenArray and dynamically add/remove UGens. */
+	Mix (UGenArray const& array, 
+		 bool shouldAllowAutoDelete = true, 
+		 bool shouldWrapChannels = true, 
+		 const int numChannels = 0) throw(); 
 	
-	/// Audio rate @see Mix (UGenArray const& array, bool shouldAllowAutoDelete, bool shouldWrapChannels)
-	static inline UGen AR (UGenArray const& array, bool shouldAllowAutoDelete = true, bool shouldWrapChannels = true) throw()	{ return Mix (array, shouldAllowAutoDelete, shouldWrapChannels);			} 
+	/// Audio rate @see Mix (UGenArray const& array, bool shouldAllowAutoDelete, bool shouldWrapChannels, const int numChannels)
+	static inline UGen AR (UGenArray const& array, 
+						   bool shouldAllowAutoDelete = true, 
+						   bool shouldWrapChannels = true,
+						   const int numChannels = 0) throw()	{ return Mix (array, shouldAllowAutoDelete, shouldWrapChannels, numChannels);			} 
 	
-	/// Control rate @see Mix (UGenArray const& array, bool shouldAllowAutoDelete, bool shouldWrapChannels)
-	static inline UGen KR (UGenArray const& array, bool shouldAllowAutoDelete = true, bool shouldWrapChannels = true) throw()	{ return UGen(Mix (array, shouldAllowAutoDelete, shouldWrapChannels)).kr(); } 
-		
-//	/** %Mix a UGenArray to a multichannel UGen using a pointer to a UGenArray.
-//	 @param array					A pointer to the UGenArray to be mixed.
-//									Make sure the object this points to is not deleted before this object.
-//	 @param shouldAllowAutoDelete	If true this behaves like most other UGenInternal objects
-//									i.e., it may be deleted by a DoneAction (e.g., an envelope
-//									ending). If false this protects UGen instances further down the chain
-//									(and itself) from being deleted by DoneActions. 
-//	 @param shouldWrapChannels		If true UGen with fewer channels than the maximum channels in the
-//									UGen will be expanded to that number of channels. E.g., mono channels
-//									mixed with stereo channels will have the mono channel placed on both
-//									left and right. If false channels are not expanded, e.g., mono channels
-//									mixed with stereo channels will have the mono channel placed on the left
-//									only.*/
-//	Mix (UGenArray* array, bool shouldAllowAutoDelete = true, bool shouldWrapChannels = true) throw(); 
-//	
-//	/// Audio rate @see Mix (UGenArray* array, bool shouldAllowAutoDelete, bool shouldWrapChannels)
-//	static inline UGen AR (UGenArray* array, bool shouldAllowAutoDelete = true, bool shouldWrapChannels = true) throw()			{ return Mix (array, shouldAllowAutoDelete, shouldWrapChannels);			} 
-//	
-//	/// Control rate @see Mix (UGenArray* array, bool shouldAllowAutoDelete, bool shouldWrapChannels)
-//	static inline UGen KR (UGenArray* array, bool shouldAllowAutoDelete = true, bool shouldWrapChannels = true) throw()			{ return UGen(Mix (array, shouldAllowAutoDelete, shouldWrapChannels)).kr(); } 
-	
+	/// Control rate @see Mix (UGenArray const& array, bool shouldAllowAutoDelete, bool shouldWrapChannels, const int numChannels)
+	static inline UGen KR (UGenArray const& array, 
+						   bool shouldAllowAutoDelete = true, 
+						   bool shouldWrapChannels = true,
+						   const int numChannels = 0) throw()	{ return UGen(Mix (array, shouldAllowAutoDelete, shouldWrapChannels, numChannels)).kr(); } 
+			
 private:
 	void constructMixArrayWithProxies(MixArrayUGenInternal* internal);
 };

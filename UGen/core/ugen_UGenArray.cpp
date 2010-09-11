@@ -46,6 +46,7 @@ BEGIN_UGEN_NAMESPACE
 
 UGenArray::Internal::Internal(const int size) throw()
 :	size_(size <= 0 ? 0 : size),
+	allocatedSize(size_),
 	array(size_ ? new UGen[size_] : 0)
 {
 }
@@ -55,52 +56,71 @@ UGenArray::Internal::~Internal() throw()
 	delete [] array;
 	array = 0;
 	size_ = 0;
+	allocatedSize = 0;
 }
 
 void UGenArray::Internal::add(UGen const& item) throw()
 {
-	UGen *newArray = new UGen[size_ +  1];
-	
-	for(int i = 0; i < size_; i++)
+	if(allocatedSize > size_)
 	{
-		newArray[i] = array[i];
+		array[size_] = item;
+		size_++;
 	}
-	
-	newArray[size_] = item;
-	
-	delete [] array;
-	size_++;
-	array = newArray;
+	else
+	{
+		UGen *newArray = new UGen[size_ +  1];
+		
+		for(int i = 0; i < size_; i++)
+		{
+			newArray[i] = array[i];
+		}
+		
+		newArray[size_] = item;
+		
+		delete [] array;
+		size_++;
+		array = newArray;
+		allocatedSize = size_;
+	}
 }
 
 void UGenArray::Internal::add(const int numItems, const UGen* items) throw()
-{
+{	
 	ugen_assert(numItems > 0);
 	ugen_assert(items != 0);
 	
 	const int newSize = size_ +  numItems;
 	
-	UGen *newArray = new UGen[size_ +  numItems];
-	
-	for(int i = 0; i < size_; i++)
+	if(allocatedSize >= newSize)
 	{
-		newArray[i] = array[i];
+		for(int i = size_; i < newSize; i++)
+		{
+			array[i] = *items++;
+		}		
 	}
-	
-	for(int i = size_; i < newSize; i++)
+	else 
 	{
-		newArray[i] = *items++;
+		UGen *newArray = new UGen[size_ +  numItems];
+		
+		for(int i = 0; i < size_; i++)
+		{
+			newArray[i] = array[i];
+		}
+		
+		for(int i = size_; i < newSize; i++)
+		{
+			newArray[i] = *items++;
+		}
+		
+		delete [] array;
+		size_ = newSize;
+		array = newArray;	
+		allocatedSize = size_;
 	}
-	
-	delete [] array;
-	size_ = newSize;
-	array = newArray;	
 }
 
 void UGenArray::Internal::remove(const int index, const bool reallocate) throw()
-{
-	// NB this "leaks" on purpose, assuming th array will grow again in the future
-	
+{	
 	if(index < 0 || index >= size_) return;
 	
 	size_--;
@@ -154,6 +174,7 @@ void UGenArray::Internal::removeNulls(const bool reallocate) throw()
 		delete [] array;
 		size_ = newSize;
 		array = newArray;
+		allocatedSize = size_;
 	}
 	else
 	{
@@ -191,6 +212,7 @@ void UGenArray::Internal::reallocate() throw()
 		
 		delete [] array;
 		array = newArray;
+		allocatedSize = size_;
 	}
 }
 
@@ -198,6 +220,12 @@ void UGenArray::Internal::clear() throw()
 {
 	delete [] array;
 	array = 0;
+	size_ = 0;
+	allocatedSize = 0;
+}
+
+void UGenArray::Internal::clearQuick() throw()
+{
 	size_ = 0;
 }
 
@@ -409,9 +437,11 @@ void UGenArray::add(UGenArray const& other) throw()
 	internal->add(other.size(), other.getArray());
 }
 
-void UGenArray::remove(const int index, const bool reallocate) throw()
+UGen UGenArray::remove(const int index, const bool reallocate) throw()
 {
+	UGen item = this->at(index);
 	internal->remove(index, reallocate);
+	return item;
 }
 
 void UGenArray::removeNulls() throw()
@@ -709,6 +739,16 @@ void UGenArray::release() throw()
 	for(int i = 0; i < internal->size(); i++)
 	{
 		internal->getArray()[i].release();
+	}
+}
+
+void UGenArray::release(const int userDataToSearchFor) throw()
+{	
+	for(int i = 0; i < internal->size(); i++)
+	{
+		const UGen& item = internal->getArray()[i];
+		if(item.userData == userDataToSearchFor)
+			internal->getArray()[i].release();
 	}
 }
 
