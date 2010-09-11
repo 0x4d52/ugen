@@ -195,7 +195,7 @@ inline static void ugen_reportObjectSizes() throw()
 	ReportSize(UGen);
 	ReportSize(UGenInternal);
 	ReportSize(UGenArray);
-	ReportSize(UGenArray::UGenArrayInternal);
+	ReportSize(UGenArray::Internal);
 	ReportSize(Buffer);
 	ReportSize(BufferChannelInternal);
 	ReportSize(ScalarUGenInternal);

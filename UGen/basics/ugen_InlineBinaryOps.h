@@ -80,8 +80,8 @@
 								dealing with equality due to the precision of these data
 								types. The == operator should be used only for checking 
 								equality of objects.
-		@see ugen::equal(const float leftOperand, UGen const& rightOperand)*/													\
-	CLASSNAME equal (CLASSNAME const& rightOperand) const throw();						\
+		@see ugen::isEqualTo(const float leftOperand, UGen const& rightOperand)*/													\
+	CLASSNAME isEqualTo (CLASSNAME const& rightOperand) const throw();						\
 	/** Binary not equal to. 
 		This CLASSNAME is the left-hand-side of the operation.
 		@param	rightOperand	The right-hand-side of the operation.
@@ -92,8 +92,8 @@
 								dealing with equality due to the precision of these data
 								types. The != operator should be used only for checking 
 								equality of objects.
-		@see ugen::notEqual(const float leftOperand, UGen const& rightOperand)*/													\
-	CLASSNAME notEqual (CLASSNAME const& rightOperand) const throw();						\
+		@see ugen::isNotEqualTo(const float leftOperand, UGen const& rightOperand)*/													\
+	CLASSNAME isNotEqualTo (CLASSNAME const& rightOperand) const throw();						\
 	/** Binary less-than. 
 		This CLASSNAME is the left-hand-side of the operation.
 		@param	rightOperand	The right-hand-side of the operation.
@@ -191,10 +191,10 @@
 
 
 
-inline float equal(float a, float b) throw()				{ return (a==b) ? 1.f : 0.f; }
-inline float notEqual(float a, float b) throw()				{ return (a!=b) ? 1.f : 0.f; }
-inline double equal(double a, double b) throw()				{ return (a==b) ? 1.0 : 0.0; }
-inline double notEqual(double a, double b) throw()			{ return (a!=b) ? 1.0 : 0.0; }
+inline float isEqualTo(float a, float b) throw()				{ return (a==b) ? 1.f : 0.f; }
+inline float isNotEqualTo(float a, float b) throw()				{ return (a!=b) ? 1.f : 0.f; }
+inline double isEqualTo(double a, double b) throw()				{ return (a==b) ? 1.0 : 0.0; }
+inline double isNotEqualTo(double a, double b) throw()			{ return (a!=b) ? 1.0 : 0.0; }
 
 #ifdef _WIN32
 inline double hypot (float a, float b) throw()				{ return (float) ::_hypot ((double)a, (double)b);	}

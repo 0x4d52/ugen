@@ -857,14 +857,15 @@ public:
 	
 	/** Compares whether the contents of two arrays are the same. */
 	bool operator== (ObjectArray<ObjectType> const& other) const throw()
-	{
+	{		
+		const ObjectType *thisArray = this->getArray();
+		const ObjectType *otherArray = other.getArray();
+
+		if(thisArray == otherArray) return true;
+		
 		const int size = this->size();
 		if(size != other.size()) return false;
 		if(size == 0) return true;
-		
-		const ObjectType *thisArray = this->getArray();
-		const ObjectType *otherArray = other.getArray();
-		
 		
 		for(int i = 0; i < size; i++)
 		{
@@ -881,6 +882,8 @@ public:
 		ugen_assert(otherArray != 0);
 		
 		const ObjectType *thisArray = this->getArray();
+		
+		if(thisArray == otherArray) return true;
 		
 		const int size = this->size();
 		for(int i = 0; i < size; i++)
@@ -2117,7 +2120,7 @@ public:
 	 Returns a bool array (will be only 0 or 1) with the result of the comparison. 
 	 This always returns a bool array which is NOT null terminated, regardless of whether the source
 	 arrays are null terminated. */
-	NumericalArray<bool> compareEqual (NumericalArray<NumericalType> const& rightOperand) const throw()
+	NumericalArray<bool> isEqualTo (NumericalArray<NumericalType> const& rightOperand) const throw()
 	{
 		NumericalArrayBinaryComparisonOperatorBody(==);
 	}
@@ -2127,7 +2130,7 @@ public:
 	 Returns a bool array (will be only 0 or 1) with the result of the comparison. 
 	 This always returns a bool array which is NOT null terminated, regardless of whether the source
 	 arrays are null terminated. */
-	NumericalArray<bool> compareNotEqual (NumericalArray<NumericalType> const& rightOperand) const throw()
+	NumericalArray<bool> isNotEqualTo (NumericalArray<NumericalType> const& rightOperand) const throw()
 	{
 		NumericalArrayBinaryComparisonOperatorBody(!=);
 	}

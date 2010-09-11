@@ -233,11 +233,11 @@
 		{																														\
 			if(internal == 0) return UGenArray();																				\
 																																\
-			UGenArray newArray(internal->size_);																				\
+			UGenArray newArray(internal->size());																				\
 																																\
-			for(int i = 0; i < internal->size_; i++)																			\
+			for(int i = 0; i < internal->size(); i++)																			\
 			{																													\
-				newArray.internal->array[i] = internal->array[i].OPFUNCTION();													\
+				newArray.internal->getArray()[i] = internal->getArray()[i].OPFUNCTION();										\
 			}																													\
 																																\
 			return newArray;																									\
