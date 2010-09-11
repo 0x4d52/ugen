@@ -44,45 +44,175 @@ BEGIN_UGEN_NAMESPACE
 #include "ugen_Arrays.h"
 
 
-UGenArray::UGenArrayInternal::UGenArrayInternal(const int size) throw()
-:	size_(size),
-	array(new UGen[size_])
+UGenArray::Internal::Internal(const int size) throw()
+:	size_(size <= 0 ? 0 : size),
+	array(size_ ? new UGen[size_] : 0)
 {
-	ugen_assert(size > 0);
 }
 
-UGenArray::UGenArrayInternal::~UGenArrayInternal() throw()
+UGenArray::Internal::~Internal() throw()
 {
 	delete [] array;
 	array = 0;
 	size_ = 0;
 }
 
-UGenArray::UGenArray() throw()
-:	internal(0)
+void UGenArray::Internal::add(UGen const& item) throw()
 {
+	UGen *newArray = new UGen[size_ +  1];
+	
+	for(int i = 0; i < size_; i++)
+	{
+		newArray[i] = array[i];
+	}
+	
+	newArray[size_] = item;
+	
+	delete [] array;
+	size_++;
+	array = newArray;
+}
+
+void UGenArray::Internal::add(const int numItems, const UGen* items) throw()
+{
+	ugen_assert(numItems > 0);
+	ugen_assert(items != 0);
+	
+	const int newSize = size_ +  numItems;
+	
+	UGen *newArray = new UGen[size_ +  numItems];
+	
+	for(int i = 0; i < size_; i++)
+	{
+		newArray[i] = array[i];
+	}
+	
+	for(int i = size_; i < newSize; i++)
+	{
+		newArray[i] = *items++;
+	}
+	
+	delete [] array;
+	size_ = newSize;
+	array = newArray;	
+}
+
+void UGenArray::Internal::remove(const int index, const bool reallocate) throw()
+{
+	// NB this "leaks" on purpose, assuming th array will grow again in the future
+	
+	if(index < 0 || index >= size_) return;
+	
+	size_--;
+	
+	for(int i = index; i < size_; i++)
+	{
+		array[i] = array[i+1];
+	}
+	
+	if(reallocate)
+	{
+		this->reallocate();
+	}
+	else
+	{
+		array[size_] = UGen::getNull();
+	}
+}
+
+void UGenArray::Internal::removeNulls(const bool reallocate) throw()
+{
+	int numNull = 0;
+	
+	for(int i = 0; i < size_; i++)
+	{
+		if(array[i].isNull())
+			numNull++;
+	}
+	
+	if(numNull == 0) return;
+	
+	const int newSize = size_ - numNull;
+	UGen *newArray;
+	
+	if(reallocate)
+	{
+		newArray = new UGen[newSize];
+		int newIndex = 0;
+		
+		for(int oldIndex = 0; oldIndex < size_; oldIndex++)
+		{
+			UGen& item = array[oldIndex];
+			
+			if(item.isNotNull())
+			{
+				newArray[newIndex] = item;
+				newIndex++;
+			}
+		}
+		
+		delete [] array;
+		size_ = newSize;
+		array = newArray;
+	}
+	else
+	{
+		newArray = array;
+		
+		for(int i = 0; i < size_; i++)
+		{
+			UGen& item = array[i];
+			
+			if(item.isNotNull())
+			{
+				*newArray++ = item;
+			}
+		}
+		
+		for(int i = newSize; i < size_; i++)
+		{
+			array[i] = UGen::getNull();
+		}
+		
+		size_ = newSize;
+	}
+}
+
+void UGenArray::Internal::reallocate() throw()
+{
+	if(size_ > 0)
+	{
+		UGen *newArray = new UGen[size_];
+		
+		for(int i = 0; i < size_; i++)
+		{
+			newArray[i] = array[i];
+		}
+		
+		delete [] array;
+		array = newArray;
+	}
 }
 
 UGenArray::UGenArray(const int size) throw()
-:	internal(new UGenArrayInternal(size))
+:	internal(new Internal(size))
 {
-	ugen_assert(size > 0);
 }
 
 UGenArray::UGenArray(UGen const& ugen) throw()
-:	internal(new UGenArrayInternal(1))
+:	internal(new Internal(1))
 {
-	internal->array[0] = ugen;
+	internal->getArray()[0] = ugen;
 }
 
 UGenArray::UGenArray(ObjectArray<UGen> const& array) throw()
-:	internal((array.length() <= 0) ? 0 : new UGenArrayInternal(array.length()))
+:	internal((array.length() <= 0) ? 0 : new Internal(array.length()))
 {
 	if(internal != 0)
 	{
-		for(int i = 0; i < internal->size_; i++)
+		for(int i = 0; i < internal->size(); i++)
 		{
-			internal->array[i] = array[i];
+			internal->getArray()[i] = array[i];
 		}
 	}
 }
@@ -91,11 +221,11 @@ UGenArray::operator const ObjectArray<UGen>() const throw()
 {
 	if(internal == 0) return ObjectArray<UGen>();
 	
-	ObjectArray<UGen> newArray = ObjectArray<UGen>::withSize(internal->size_);
+	ObjectArray<UGen> newArray = ObjectArray<UGen>::withSize(internal->size());
 	
-	for(int i = 0; i < internal->size_; i++)
+	for(int i = 0; i < internal->size(); i++)
 	{
-		newArray[i] = internal->array[i];
+		newArray[i] = internal->getArray()[i];
 	}
 	
 	return newArray;
@@ -116,16 +246,16 @@ UGenArray::UGenArray(UGenArray const& array0, UGenArray const& array1, const boo
 		int newSize = array0.size() + array1.size();
 		
 		if(newSize != 0) {
-			internal = new UGenArrayInternal(newSize);
+			internal = new Internal(newSize);
 			
 			int newIndex = 0;
 			
 			for(int i = 0; i < array0.size(); i++) {
-				internal->array[newIndex++] = array0.internal->array[i];
+				internal->getArray()[newIndex++] = array0.internal->getArray()[i];
 			}
 			
 			for(int i = 0; i < array1.size(); i++) {
-				internal->array[newIndex++] = array1.internal->array[i];
+				internal->getArray()[newIndex++] = array1.internal->getArray()[i];
 			}
 		}
 	}
@@ -134,18 +264,18 @@ UGenArray::UGenArray(UGenArray const& array0, UGenArray const& array1, const boo
 		int newSize = array0.sizeNotNull() + array1.sizeNotNull();
 		
 		if(newSize != 0) {
-			internal = new UGenArrayInternal(newSize);
+			internal = new Internal(newSize);
 			
 			int newIndex = 0;
 			
 			for(int i = 0; i < array0.size(); i++) {
-				if(array0.internal->array[i].isNotNull())
-					internal->array[newIndex++] = array0.internal->array[i];
+				if(array0.internal->getArray()[i].isNotNull())
+					internal->getArray()[newIndex++] = array0.internal->getArray()[i];
 			}
 			
 			for(int i = 0; i < array1.size(); i++) {
-				if(array1.internal->array[i].isNotNull())
-					internal->array[newIndex++] = array1.internal->array[i];
+				if(array1.internal->getArray()[i].isNotNull())
+					internal->getArray()[newIndex++] = array1.internal->getArray()[i];
 			}
 		}
 	}
@@ -248,84 +378,98 @@ UGenArray& UGenArray::operator/= (UGenArray const& other) throw()
 
 
 int UGenArray::findMaxNumChannels() const throw()
-{
-	//ugen_assert(internal != 0); OK not an assertion! just answer 0 is fine
-	
-	if(internal == 0) return 0;
+{	
+	if(internal->size() == 0) return 0;
 		
 	int maxNumChannels = 0;
 	
-	for(int i = 0; i < internal->size_; i++)
+	for(int i = 0; i < internal->size(); i++)
 	{
-		int numChannels = internal->array[i].getNumChannels();
+		int numChannels = internal->getArray()[i].getNumChannels();
 		maxNumChannels = numChannels > maxNumChannels ? numChannels : maxNumChannels;
 	}
 	
 	return maxNumChannels;
 }
 
+void UGenArray::add(UGen const& other) throw()
+{
+	internal->add(other);
+}
+
+void UGenArray::add(UGenArray const& other) throw()
+{
+	internal->add(other.size(), other.getArray());
+}
+
+void UGenArray::remove(const int index, const bool reallocate) throw()
+{
+	internal->remove(index, reallocate);
+}
+
+void UGenArray::removeNulls() throw()
+{
+	internal->removeNulls();
+}
+
+
+
 void UGenArray::put(const int index, UGen const& item) throw()
 {
-	if(internal == 0 || index < 0 || index >= internal->size_) 
+	if(index < 0 || index >= internal->size()) 
 	{ 
 		ugen_assertfalse;
 		return;
 	}
 	
-	internal->array[index] = item;
+	internal->getArray()[index] = item;
 }
 
 UGen& UGenArray::operator[] (const int index) throw()
 {	
-	if(internal == 0 || index < 0 || index >= internal->size_) 
+	if(index < 0 || index >= internal->size()) 
 	{
-		ugen_assertfalse;
 		static UGen null = UGen::getNull();
 		return null;
 	}
 	
-	return internal->array[index];
+	return internal->getArray()[index];
 }
 
 UGen& UGenArray::at(const int index) throw()
 {	
-	if(internal == 0 || index < 0 || index >= internal->size_) 
+	if(index < 0 || index >= internal->size()) 
 	{
-		ugen_assertfalse;
 		static UGen null = UGen::getNull();
 		return null;
 	}
 	
-	return internal->array[index];
+	return internal->getArray()[index];
 }
 
 const UGen& UGenArray::operator[] (const int index) const throw()
 {	
-	if(internal == 0 || index < 0 || index >= internal->size_) 
+	if(index < 0 || index >= internal->size()) 
 	{
-		ugen_assertfalse;
 		return UGen::getNull();
 	}
 	
-	return internal->array[index];
+	return internal->getArray()[index];
 }
 
 const UGen& UGenArray::at(const int index) const throw()
 {	
-	if(internal == 0 || index < 0 || index >= internal->size_) 
+	if(index < 0 || index >= internal->size()) 
 	{
-		ugen_assertfalse;
 		return UGen::getNull();
 	}
 	
-	return internal->array[index];
+	return internal->getArray()[index];
 }
 
 UGen& UGenArray::wrapAt(const int index) throw()
-{
-	ugen_assert(internal != 0);
-	
-	if(internal == 0) 
+{	
+	if(internal->size() == 0) 
 	{
 		static UGen null = UGen::getNull();
 		return null;
@@ -333,78 +477,80 @@ UGen& UGenArray::wrapAt(const int index) throw()
 
 	int indexToUse = index;
 	while(indexToUse < 0)
-		indexToUse += internal->size_;
+		indexToUse += internal->size();
 	
-	return internal->array[indexToUse % internal->size_];
+	return internal->getArray()[indexToUse % internal->size()];
 }
 
 const UGen& UGenArray::wrapAt(const int index) const throw()
-{
-	ugen_assert(internal != 0);
-	
-	if(internal == 0) return UGen::getNull();
+{	
+	if(internal->size() == 0) 
+	{
+		static UGen null = UGen::getNull();
+		return null;
+	}
 	
 	int indexToUse = index;
 	while(indexToUse < 0)
-		indexToUse += internal->size_;
+		indexToUse += internal->size();
 	
-	return internal->array[indexToUse % internal->size_];
+	return internal->getArray()[indexToUse % internal->size()];
 }
 
 UGen& UGenArray::first() throw()
-{
-	ugen_assert(internal != 0);
-	
-	if(internal == 0) 
+{	
+	if(internal->size() == 0) 
 	{
 		static UGen null = UGen::getNull();
 		return null;
 	}
 	
-	return internal->array[0];
+	return internal->getArray()[0];
 }
 
 UGen& UGenArray::last() throw()
-{
-	ugen_assert(internal != 0);
-	
-	if(internal == 0) 
+{	
+	if(internal->size() == 0) 
 	{
 		static UGen null = UGen::getNull();
 		return null;
 	}
 	
-	return internal->array[internal->size_ - 1];
+	return internal->getArray()[internal->size() - 1];
 }
 
 const UGen& UGenArray::first() const throw()
-{
-	ugen_assert(internal != 0);
+{	
+	if(internal->size() == 0) 
+	{
+		static UGen null = UGen::getNull();
+		return null;
+	}
 	
-	if(internal == 0) return UGen::getNull();
-	
-	return internal->array[0];
+	return internal->getArray()[0];
 }
 
 const UGen& UGenArray::last() const throw()
-{
-	ugen_assert(internal != 0);
+{	
+	if(internal->size() == 0) 
+	{
+		static UGen null = UGen::getNull();
+		return null;
+	}
 	
-	if(internal == 0) return UGen::getNull();
-	
-	return internal->array[internal->size_ - 1];
+	return internal->getArray()[internal->size() - 1];
 }
 
 UGenArray UGenArray::at(IntArray const& indices) const throw()
-{
-	ugen_assert(internal != 0);
-	
-	if(internal == 0) return UGenArray();
+{	
+	if(internal->size() == 0) return UGenArray();
 	
 	const int size = indices.length();
 	
 	if(size == 0)
+	{
 		return UGenArray();
+	}
 	else
 	{
 		UGenArray newArray(size);
@@ -420,15 +566,15 @@ UGenArray UGenArray::at(IntArray const& indices) const throw()
 }
 
 UGenArray UGenArray::operator[] (IntArray const& indices) const throw()
-{
-	ugen_assert(internal != 0);
-	
-	if(internal == 0) return UGenArray();
+{	
+	if(internal->size() == 0) return UGenArray();
 	
 	const int size = indices.length();
 	
 	if(size == 0)
+	{
 		return UGenArray();
+	}
 	else
 	{
 		UGenArray newArray(size);
@@ -444,15 +590,15 @@ UGenArray UGenArray::operator[] (IntArray const& indices) const throw()
 }
 
 UGenArray UGenArray::wrapAt(IntArray const& indices) const throw()
-{
-	ugen_assert(internal != 0);
-	
-	if(internal == 0) return UGenArray();
+{	
+	if(internal->size() == 0) return UGenArray();
 	
 	const int size = indices.length();
 	
 	if(size == 0)
+	{
 		return UGenArray();
+	}
 	else
 	{
 		UGenArray newArray(size);
@@ -471,15 +617,17 @@ UGenArray UGenArray::range(const int startIndex, const int endIndex) const throw
 {
 	ugen_assert(internal != 0);
 	
-	if(internal == 0) return UGenArray();
+	if(internal->size() == 0) return UGenArray();
 	
-	const int startIndexChecked = clip(startIndex, 0, internal->size_);
-	const int endIndexChecked = clip(endIndex, 0, internal->size_);
+	const int startIndexChecked = clip(startIndex, 0, internal->size());
+	const int endIndexChecked = clip(endIndex, 0, internal->size());
 	
 	const int size = endIndexChecked - startIndexChecked;
 	
 	if(size <= 0)
+	{
 		return UGenArray();
+	}
 	else
 	{
 		UGenArray newArray(size);
@@ -510,14 +658,12 @@ UGenArray UGenArray::range(const int startIndex) const throw()
 
 
 int UGenArray::indexOf(UGen const& itemsToSearchFor, const int startIndex) const throw()
-{
-	ugen_assert(internal != 0);
+{	
+	if(internal->size() == 0) return -1;
 	
-	if(internal == 0) return -1;
-	
-	for(int i = startIndex < 0 ? 0 : startIndex; i < internal->size_; i++)
+	for(int i = startIndex < 0 ? 0 : startIndex; i < internal->size(); i++)
 	{
-		if(internal->array[i].containsIdenticalInternalsAs(itemsToSearchFor))
+		if(internal->getArray()[i].containsIdenticalInternalsAs(itemsToSearchFor))
 			return i;
 	}
 	
@@ -525,14 +671,12 @@ int UGenArray::indexOf(UGen const& itemsToSearchFor, const int startIndex) const
 }
 
 bool UGenArray::contains(UGen const& itemsToSearchFor) const throw()
-{
-	ugen_assert(internal != 0);
+{	
+	if(internal->size() == 0) return false;
 	
-	if(internal == 0) return false;
-	
-	for(int i = 0; i < internal->size_; i++)
+	for(int i = 0; i < internal->size(); i++)
 	{
-		if(internal->array[i].containsIdenticalInternalsAs(itemsToSearchFor))
+		if(internal->getArray()[i].containsIdenticalInternalsAs(itemsToSearchFor))
 			return true;
 	}
 	
@@ -540,41 +684,29 @@ bool UGenArray::contains(UGen const& itemsToSearchFor) const throw()
 }
 
 const UGen& UGenArray::getUGenWithUserData(const int userDataToSearchFor) const throw()
-{
-	ugen_assert(internal != 0);
-	
-	if(internal != 0) 
+{	
+	for(int i = 0; i < internal->size(); i++)
 	{
-		for(int i = 0; i < internal->size_; i++)
-		{
-			if(internal->array[i].userData == userDataToSearchFor)
-				return internal->array[i];
-		}
+		if(internal->getArray()[i].userData == userDataToSearchFor)
+			return internal->getArray()[i];
 	}
 	
 	return UGen::getNull();
 }
 
 void UGenArray::release() throw()
-{
-	ugen_assert(internal != 0);
-	
-	if(internal != 0) 
+{	
+	for(int i = 0; i < internal->size(); i++)
 	{
-		for(int i = 0; i < internal->size_; i++)
-		{
-			internal->array[i].release();
-		}
+		internal->getArray()[i].release();
 	}
 }
 
 UGenArray UGenArray::interleave() const throw()
 {
 	// need to check this
-	
-	ugen_assert(internal != 0);
-	
-	if(internal == 0) return UGenArray();
+		
+	if(internal->size() == 0) return UGenArray();
 	
 	int maxNumChannels = findMaxNumChannels();
 	UGenArray interleavedArray(maxNumChannels);
@@ -583,7 +715,7 @@ UGenArray UGenArray::interleave() const throw()
 	{
 		UGen item;
 		
-		for(int arrayIndex = 0; arrayIndex < internal->size_; arrayIndex++)
+		for(int arrayIndex = 0; arrayIndex < internal->size(); arrayIndex++)
 		{
 			item <<= wrapAt(arrayIndex).wrapAt(channel);
 		}
@@ -595,59 +727,35 @@ UGenArray UGenArray::interleave() const throw()
 }
 
 UGen UGenArray::mixEach() const throw()
-{
-	ugen_assert(internal != 0);
-	
-	if(internal == 0) return UGen::getNull();
+{	
+	if(internal->size() == 0) return UGen::getNull();
 	
 	UGen mixedArray;
 	
-	for(int i = 0; i < internal->size_; i++)
+	for(int i = 0; i < internal->size(); i++)
 	{
-		mixedArray <<= internal->array[i].mix();
+		mixedArray <<= internal->getArray()[i].mix();
 	}
 	
 	return mixedArray;
 }
 
 UGen UGenArray::mix() const throw()
-{
-	ugen_assert(internal != 0);
-	
-	if(internal == 0) return UGen::getNull();
-	
-//	UGen mixedArray;
-//	
-//	int maxNumChannels = findMaxNumChannels();
-//	
-//	for(int outputIndex = 0; outputIndex < maxNumChannels; outputIndex++)
-//	{
-//		UGen item;
-//		
-//		for(int arrayIndex = 0 ; arrayIndex < internal->size_; arrayIndex++)
-//		{
-//			item <<= internal->array[arrayIndex].wrapAt(outputIndex);
-//		}
-//		
-//		mixedArray <<= item.mix();
-//	}
-//		
-//	return mixedArray;
-	
+{	
+	if(internal->size() == 0) return UGen::getNull();
+		
 	return Mix(*this);
 }
 
 UGenArray UGenArray::operator- () const throw()
-{
-	ugen_assert(internal != 0);
+{	
+	if(internal->size() == 0) return UGenArray();
 	
-	if(internal == 0) return UGenArray();
+	UGenArray newArray(internal->size());
 	
-	UGenArray newArray(internal->size_);
-	
-	for(int i = 0; i < internal->size_; i++)
+	for(int i = 0; i < internal->size(); i++)
 	{
-		newArray.internal->array[i] = internal->array[i].neg();
+		newArray.internal->getArray()[i] = internal->getArray()[i].neg();
 	}
 	
 	return newArray;

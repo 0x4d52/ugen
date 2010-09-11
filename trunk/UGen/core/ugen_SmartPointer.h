@@ -172,6 +172,15 @@ public:
 			memset(internals, 0, size_ * sizeof(SmartPointerType*));
 	}
 	
+//	SmartPointerArrayContainer(SmartPointerArrayContainer const& obj1, 
+//							   SmartPointerArrayContainer const& obj2) throw()
+//	:	size_(0),	
+//		internals(0)
+//	{
+//		SmartPointerArrayContainer others[] = { obj1, obj2 };
+//		constructMultiple(2, others);
+//	}
+	
 	~SmartPointerArrayContainer()
 	{
 		decrementInternals();
@@ -295,8 +304,36 @@ public:
 		return !operator==(other);
 	}
 	
-private:
+//	SmartPointerArrayContainer operator, (SmartPointerArrayContainer const& other) const throw()
+//	{
+//		return SmartPointerArrayContainer(*this, other);
+//	}
 	
+protected:
+//	void constructMultiple(const int numOther, const SmartPointerArrayContainer others[]) throw()
+//	{
+//		int totalChannels = 0;
+//		
+//		for(int i = 0; i < numOther; i++)
+//		{
+//			totalChannels += others[i].size_;
+//		}
+//		
+//		size_ = totalChannels;
+//		internals = new SmartPointerType*[size_];
+//		
+//		int channel = 0;
+//		
+//		for(int i = 0; i < numOther; i++)
+//		{
+//			for(int internalIndex = 0; internalIndex < uGenArray[i].numInternalUGens; internalIndex++)
+//			{			
+//				internals[channel++] = others[i].getInternalUGen(internalIndex);
+//			}
+//		}
+//	}
+	
+private:
 	void incrementInternals() throw()
 	{
 		if(internals != 0)

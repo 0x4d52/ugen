@@ -380,13 +380,13 @@
 	{																													\
 		int size;																										\
 																														\
-		if(internal->size_ > rightOperand.internal->size_)  size = internal->size_;										\
-		else												size = rightOperand.internal->size_;						\
+		if(internal->size() > rightOperand.internal->size())  size = internal->size();									\
+		else												  size = rightOperand.internal->size();						\
 																														\
 		UGenArray newArray(size);																						\
 																														\
 		for(int i = 0; i < size; i++) {																					\
-			newArray.internal->array[i] = wrapAt(i) OPSYMBOL rightOperand.wrapAt(i);									\
+			newArray.internal->getArray()[i] = wrapAt(i) OPSYMBOL rightOperand.wrapAt(i);								\
 		}																												\
 																														\
 		return newArray;																								\
@@ -532,13 +532,13 @@
 																														\
 		int size;																										\
 																														\
-		if(internal->size_ > rightOperand.internal->size_)  size = internal->size_;										\
-		else												size = rightOperand.internal->size_;						\
+		if(internal->size() > rightOperand.internal->size())  size = internal->size();									\
+		else												  size = rightOperand.internal->size();						\
 																														\
 		UGenArray newArray(size);																						\
 																														\
 		for(int i = 0; i < size; i++) {																					\
-			newArray.internal->array[i] = wrapAt(i).OPFUNCTION(rightOperand.wrapAt(i));									\
+			newArray.internal->getArray()[i] = wrapAt(i).OPFUNCTION(rightOperand.wrapAt(i));							\
 		}																												\
 																														\
 		return newArray;																								\
@@ -686,8 +686,8 @@ BinaryOpSymbolUGenDeclaration(GreaterThanOrEquals,	>=);
 //BinaryOpSymbolUGenDeclaration(Equal,				==);
 //BinaryOpSymbolUGenDeclaration(NotEqual,				!=);
 
-BinaryOpFunctionUGenDeclaration(Equal,				equal);
-BinaryOpFunctionUGenDeclaration(NotEqual,			notEqual);
+BinaryOpFunctionUGenDeclaration(IsEqualTo,				isEqualTo);
+BinaryOpFunctionUGenDeclaration(IsNotEqualTo,			isNotEqualTo);
 
 BinaryOpFunctionUGenDeclaration(Pow,				pow);
 BinaryOpFunctionUGenDeclaration(Hypot,				hypot);

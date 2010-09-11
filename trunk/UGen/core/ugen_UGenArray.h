@@ -58,12 +58,10 @@ class UGenArray
 public:
 	/// @name Construction and destruction
 	/// @{
-	
-	/** Construct an empty (null) UGenArray. */
-	UGenArray() throw();
-	
-	/** Construct a UGenArray with a certain number of slots. @param size The number of UGen slots. */
-	UGenArray(const int size) throw();
+		
+	/** Construct a UGenArray with a certain number of slots. 
+	 @param size The number of UGen slots (may be 0 - the default). */
+	UGenArray(const int size = 0) throw();
 	
 	/** Construct a UGenArray with a certain number of slots. @param size The number of UGen slots. */
 	static UGenArray withSize(const int size) { return UGenArray(size); }
@@ -96,20 +94,28 @@ public:
 	/// @} <!-- end Construction and destruction ------------------------------------------ -->
 	
 	/** @internal */
-	class UGenArrayInternal : public SmartPointer
+	class Internal : public SmartPointer
 	{
 	public:
-		UGenArrayInternal(const int size = 1) throw();
-		~UGenArrayInternal() throw();
+		Internal(const int size) throw();
+		~Internal() throw();
 		
-		friend class UGenArray;
+		inline int size() const throw() { return size_; }
+		inline const UGen* getArray() const throw() { return array; }
+		inline UGen* getArray() throw() { return array; }
 		
+		void add(UGen const& item) throw();
+		void add(const int numItems, const UGen* items) throw();
+		void remove(const int index, const bool reallocate) throw();
+		void removeNulls(const bool reallocate = false) throw();
+		void reallocate() throw();
+				
 	private:
 		int size_;
 		UGen* array;
 		
-		UGenArrayInternal (const UGenArrayInternal&);
-		const UGenArrayInternal& operator= (const UGenArrayInternal&);
+		Internal (const Internal&);
+		const Internal& operator= (const Internal&);
 	};
 	
 	/// @name Array manipulation
@@ -117,30 +123,28 @@ public:
 	
 	/** Get the array. 
 	 @return The array or 0 if this is a null UGenArray */
-	UGen* getArray() throw()						{ ugen_assert(internal != 0); return internal == 0 ? 0 : internal->array; }
+	UGen* getArray() throw()						{ return internal->getArray(); }
 	
 	/** Get the array for read-only operations.
 	 @return The array or 0 if this is a null UGenArray */
-	const UGen* getArray() const throw()			{ ugen_assert(internal != 0); return internal == 0 ? 0 : internal->array; }
+	const UGen* getArray() const throw()			{ return internal->getArray(); }
 	
 	/** Convert the UGenArray to an ObjectArray<UGen>. */
 	operator const ObjectArray<UGen>() const throw();
 	
 	/** Get the available size of the UGenArray.
 	 @return The number of available slots in the array */
-	inline int size() const throw()					{ return internal == 0 ? 0 : internal->size_; }
+	inline int size() const throw()					{ return internal->size(); }
 	
 	/** Find the number of non-null UGen instances in the arrary.
 	 @return The number of UGen instances in the array that are not null UGen instances.  */
 	int sizeNotNull() const throw()
-	{		
-		if(internal == 0) return 0;
-		
+	{				
 		int numNotNull = 0;
-		int actualSize = internal->size_;
+		int actualSize = internal->size();
 		for(int i = 0; i < actualSize; i++)
 		{
-			if(internal->array[i].isNotNull()) numNotNull++;
+			if(internal->getArray()[i].isNotNull()) numNotNull++;
 		}
 		return numNotNull;
 	}
@@ -148,6 +152,19 @@ public:
 	/** The largest number of channels the UGen instances in the UGenArray contains
 	 @return The maximum number of channels. */
 	int findMaxNumChannels() const throw();
+	
+	/** Adds an item in-place. */
+	void add(UGen const& other) throw();
+	
+	/** Add one or more items in-place. */
+	void add(UGenArray const& other) throw();
+	
+	/** Remove an item at the index (ignored if the index is out of range). 
+	 This doesn't reallocate memory, items at the end of the array are set to null. */
+	void remove(const int index, const bool reallocate = false) throw();
+	
+	/** Removes all UGen instances which are null. */
+	void removeNulls() throw();
 	
 	/** Append two UGenArray objects.
 	 All null UGen instances are removed from the result.
@@ -341,7 +358,7 @@ public:
 	/// @} <!-- end Miscellaneous -------------------------------- -->
 	
 private:
-	UGenArrayInternal* internal;
+	Internal* internal;
 };
 
 

@@ -89,8 +89,8 @@ BinaryOpSymbolUGenDefinition(GreaterThanOrEquals,	>=, >=);
 //BinaryOpSymbolUGenDefinition(Equal,					==, ==);
 //BinaryOpSymbolUGenDefinition(NotEqual,				!=, !=);
 
-BinaryOpFunctionUGenDefinition(Equal,		equal,		equal);
-BinaryOpFunctionUGenDefinition(NotEqual,	notEqual,	notEqual);
+BinaryOpFunctionUGenDefinition(IsEqualTo,		isEqualTo,		isEqualTo);
+BinaryOpFunctionUGenDefinition(IsNotEqualTo,	isNotEqualTo,	isNotEqualTo);
 
 BinaryOpFunctionUGenDefinition(Pow,			pow,		pow);
 BinaryOpFunctionUGenDefinition(Hypot,		hypot,		hypot);
@@ -240,16 +240,16 @@ UGen UGen::operator / (UGen const& rightOperand) const throw()
 UGenArray UGenArray::operator / (UGenArray const& rightOperand) const throw() 
 { 
 	int size; 
-	if(internal->size_ > rightOperand.internal->size_) 
-		size = internal->size_; 
+	if(internal->size() > rightOperand.internal->size()) 
+		size = internal->size(); 
 	else 
-		size = rightOperand.internal->size_; 
+		size = rightOperand.internal->size(); 
 
 	UGenArray newArray(size); 
 
 	for(int i = 0; i < size; i++) 
 	{ 
-		newArray.internal->array[i] = wrapAt(i) / rightOperand.wrapAt(i); 
+		newArray.internal->getArray()[i] = wrapAt(i) / rightOperand.wrapAt(i); 
 	} 
 
 	return newArray; 

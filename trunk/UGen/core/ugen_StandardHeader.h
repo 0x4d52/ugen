@@ -205,7 +205,7 @@ END_UGEN_NAMESPACE
 
 #define UGEN_MAJOR_VERSION      0
 #define UGEN_MINOR_VERSION      1
-#define UGEN_BUILDNUMBER        2
+#define UGEN_BUILDNUMBER        3
 
 
 #if defined (UGEN_DEBUG) && UGEN_DEBUG
