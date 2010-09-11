@@ -226,8 +226,9 @@ void VoicerUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 						
 						UGen newEvent = spawnEvent(*this, currentEventIndex++, midiChannel, midiNote, velocity);
 						newEvent.userData = createUserData(midiChannel, midiNote);
-						events <<= newEvent;
-						mixer = Mix(&events, false);
+						//events <<= newEvent;
+						//mixer = Mix(&events, false);
+						events.add(newEvent);
 					}
 					else
 					{
@@ -285,6 +286,7 @@ void VoicerUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 		UGen::setBlockSize(blockSize);
 		
 		midiMessages.clear();
+		events.removeNulls();
 	}	
 }
 

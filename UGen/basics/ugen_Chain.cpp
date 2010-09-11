@@ -83,7 +83,7 @@ BankBaseUGenInternal::BankBaseUGenInternal(UGen const& input, const int size, co
 	size_(size),
 	bufferData(new float*[numChannels]),
 	bank(UGenArray(size_)),
-	mixer(Mix(&bank))
+	mixer(Mix(bank))
 {
 	ugen_assert(size > 0);
 	ugen_assert(numChannels > 0);
