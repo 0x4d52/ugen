@@ -87,8 +87,10 @@ void VoicerBaseUGenInternal::sendMidiNote(const int midiChannel,
 		
 		UGen newEvent = spawnEvent(*this, currentEventIndex++, midiChannel, midiNote, velocity);
 		newEvent.userData = userData;
-		events <<= newEvent;
-		mixer = Mix(&events, false);
+//		events <<= newEvent;
+//		mixer = Mix(&events, false);
+		events.add(newEvent);
+		events.removeNulls();
 	}
 	else
 	{

@@ -65,8 +65,8 @@ Env::Env(Buffer const& levels,
 		 EnvCurveList const& curves, 
 		 const int releaseNode, 
 		 const int loopNode) throw()
+:	internal(new EnvInternal(levels, times, curves, releaseNode, loopNode))
 {
-	internal = new EnvInternal(levels, times, curves, releaseNode, loopNode);
 }
 
 //Env::Env(Buffer const& times, 

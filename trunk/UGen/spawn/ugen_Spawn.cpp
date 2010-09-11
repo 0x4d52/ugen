@@ -67,6 +67,8 @@ void SpawnBaseUGenInternal::processBlock(bool& shouldDelete, const unsigned int 
 	
 	if(shouldStopAllEvents() == true) initEvents();
 	
+	events.removeNulls(); //
+	
 	const int numSamplesToProcess = uGenOutput.getBlockSize();	
 	const int numChannels = getNumChannels();
 	for(int channel = 0; channel < numChannels; channel++)
@@ -93,8 +95,10 @@ void SpawnBaseUGenInternal::stealInternal() throw()
 
 void SpawnBaseUGenInternal::initEvents() throw()
 {
-	events = UGen::emptyChannels(numChannels);
-	mixer = Mix(&events, false);
+//	events = UGen::emptyChannels(numChannels);
+//	mixer = Mix(&events, false);
+	events.clear();
+	events.add(UGen::emptyChannels(numChannels));
 	stopEvents = false;
 }
 
@@ -156,8 +160,9 @@ void SpawnUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 				bufferData[channel] += nextTimeSamplesDelta;
 			}
 			
-			events <<= newVoice;
-			
+			//events <<= newVoice;
+			events.add(newVoice);
+
 			numSamplesToProcess -= nextTimeSamplesDelta;
 			nextTimeSamples += nextTimeSamplesDelta;
 		} 
@@ -165,7 +170,8 @@ void SpawnUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 		
 		UGen::setBlockSize(blockSize); // reset
 		
-		mixer = Mix(&events, false);		
+		//mixer = Mix(&events, false);		
+		events.removeNulls();
 	}
 }
 
