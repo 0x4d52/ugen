@@ -56,18 +56,18 @@ MixUGenInternal::MixUGenInternal(UGen const& array, bool shouldAllowAutoDelete) 
 	initValue(value);
 }
 
-MixUGenInternal::MixUGenInternal(UGen* array, bool shouldAllowAutoDelete) throw()
-:	UGenInternal(array), // numInputs is one using this special constructor
-	shouldAllowAutoDelete_(shouldAllowAutoDelete)
-{	
-	float value = 0.f;
-	for(int i = 0; i < array->getNumChannels(); i++)
-	{
-		value += array->getValue(i);
-	}
-	
-	initValue(value);
-}
+//MixUGenInternal::MixUGenInternal(UGen* array, bool shouldAllowAutoDelete) throw()
+//:	UGenInternal(array), // numInputs is one using this special constructor
+//	shouldAllowAutoDelete_(shouldAllowAutoDelete)
+//{	
+//	float value = 0.f;
+//	for(int i = 0; i < array->getNumChannels(); i++)
+//	{
+//		value += array->getValue(i);
+//	}
+//	
+//	initValue(value);
+//}
 
 
 #if !defined(UGEN_VFP) && !defined(UGEN_NEON) && !defined(UGEN_VDSP)
@@ -119,16 +119,16 @@ MixArrayUGenInternal::MixArrayUGenInternal(UGenArray const& array,
 {	
 }
 
-MixArrayUGenInternal::MixArrayUGenInternal(UGenArray* array, 
-										   bool shouldAllowAutoDelete, 
-										   bool shouldWrapChannels) throw()
-:	ProxyOwnerUGenInternal(0, array->findMaxNumChannels() - 1),
-	arrayPtr(array),
-	arrayRef(*arrayPtr),
-	shouldAllowAutoDelete_(shouldAllowAutoDelete),
-	shouldWrapChannels_(shouldWrapChannels)
-{	
-}
+//MixArrayUGenInternal::MixArrayUGenInternal(UGenArray* array, 
+//										   bool shouldAllowAutoDelete, 
+//										   bool shouldWrapChannels) throw()
+//:	ProxyOwnerUGenInternal(0, array->findMaxNumChannels() - 1),
+//	arrayPtr(array),
+//	arrayRef(*arrayPtr),
+//	shouldAllowAutoDelete_(shouldAllowAutoDelete),
+//	shouldWrapChannels_(shouldWrapChannels)
+//{	
+//}
 
 void MixArrayUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw()
 {
@@ -228,29 +228,29 @@ Mix::Mix(UGen const& array, bool shouldAllowAutoDelete) throw()
 	internalUGens[0]->initValue(value);
 }
 
-Mix::Mix(UGen* array, bool shouldAllowAutoDelete) throw()
-{
-	initInternal(1);
-	internalUGens[0] = new MixUGenInternal(array, shouldAllowAutoDelete);
-	
-	float value = 0.f;
-	for(int i = 0; i < array->getNumChannels(); i++)
-	{
-		value += array->getValue(i);
-	}
-	
-	internalUGens[0]->initValue(value);
-}
+//Mix::Mix(UGen* array, bool shouldAllowAutoDelete) throw()
+//{
+//	initInternal(1);
+//	internalUGens[0] = new MixUGenInternal(array, shouldAllowAutoDelete);
+//	
+//	float value = 0.f;
+//	for(int i = 0; i < array->getNumChannels(); i++)
+//	{
+//		value += array->getValue(i);
+//	}
+//	
+//	internalUGens[0]->initValue(value);
+//}
 
 Mix::Mix(UGenArray const& array, bool shouldAllowAutoDelete, bool shouldWrapChannels) throw()
 {
 	constructMixArrayWithProxies(new MixArrayUGenInternal(array, shouldAllowAutoDelete, shouldWrapChannels));
 }
 
-Mix::Mix(UGenArray* array, bool shouldAllowAutoDelete, bool shouldWrapChannels) throw()
-{
-	constructMixArrayWithProxies(new MixArrayUGenInternal(array, shouldAllowAutoDelete, shouldWrapChannels));
-}
+//Mix::Mix(UGenArray* array, bool shouldAllowAutoDelete, bool shouldWrapChannels) throw()
+//{
+//	constructMixArrayWithProxies(new MixArrayUGenInternal(array, shouldAllowAutoDelete, shouldWrapChannels));
+//}
 
 void Mix::constructMixArrayWithProxies(MixArrayUGenInternal* internal)
 {

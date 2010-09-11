@@ -54,6 +54,7 @@ SpawnBaseUGenInternal::SpawnBaseUGenInternal(const int numInputs, const int _num
 	ugen_assert(numChannels > 0);
 	ugen_assert(maxRepeats >= 0);
 	initEvents();
+	mixer = Mix(events, false);
 }
 
 SpawnBaseUGenInternal::~SpawnBaseUGenInternal()// throw()
