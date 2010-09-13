@@ -8,9 +8,9 @@
 
 
 class MainComponent  :  public Component,
+						public JuceIOHost,
 						public ButtonListener,
 						public SliderListener,
-						public JuceIOHost,
 						public Timer
 {
     //==============================================================================
@@ -102,6 +102,12 @@ public:
 		envComponent->setDomainRange(env.duration());
 		envComponent->setEnv(env);
 		
+		// add scope to the main out
+		UGen scope = Sender::AR(getOutput(), U(ampSlider2) / 10);
+		scope.addBufferReceiver(scopeComponent);
+		addOther(scope);
+		
+		// for CPU usage label
 		startTimer(40);
 	}
 	
@@ -208,9 +214,6 @@ public:
 		Value s = freqSlider1;
 		UGen output = SinOsc::AR(s.kr(), 0, UGen(0.1, 0.1));
 			
-		UGen scope = Sender::AR(output, U(ampSlider2) / 10);
-		scope.addBufferReceiver(scopeComponent);
-		addOther(scope);
 		
 		return output;
 	}
