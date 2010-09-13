@@ -126,7 +126,10 @@ public:
 		if(size_ == 1)
 		{
 			if(ownsTheData)
+			{
 				delete [] array;
+				array = 0;
+			}
 			
 			size_ = 0;
 		}
@@ -399,6 +402,7 @@ public:
 		this->put(0, single);
 	}		
 	
+private:
 	static int countValidInitialisers(InitialObject const& i03) throw()
 	{
 		int size = 3;
@@ -408,6 +412,7 @@ public:
 		return size;
 	}	
 	
+public:
 	ObjectArray(InitialObject const &i00,
 				InitialObject const &i01,
 				InitialObject const &i02,
@@ -423,9 +428,227 @@ public:
 		if(i03.valid) thisArray[ 3] = i03.object; else return;
 	}
 	
+private:
+	static int countValidInitialisers(InitialObject const& i05,
+									  InitialObject const& i06,
+									  InitialObject const& i07) throw()
+	{
+		int size = 5;
+		
+		if(i05.valid) size++; else return size;
+		if(i06.valid) size++; else return size;
+		if(i07.valid) size++; else return size;
+		
+		return size;
+	}	
+	
+public:
+	ObjectArray(InitialObject const &i00,
+				InitialObject const &i01,
+				InitialObject const &i02,
+				InitialObject const &i03,
+				InitialObject const &i04,
+				InitialObject const &i05 = InitialObject(),
+				InitialObject const &i06 = InitialObject(),
+				InitialObject const &i07 = InitialObject()) throw()
+	:	SmartPointerContainer< ObjectArrayInternal<ObjectType> >
+		(new ObjectArrayInternal<ObjectType>(countValidInitialisers(i05, i06, i07), false))
+	{
+		ObjectType *thisArray = this->getArray();
+		
+		if(i00.valid) thisArray[ 0] = i00.object; else return;
+		if(i01.valid) thisArray[ 1] = i01.object; else return;
+		if(i02.valid) thisArray[ 2] = i02.object; else return;
+		if(i03.valid) thisArray[ 3] = i03.object; else return;
+		if(i04.valid) thisArray[ 4] = i04.object; else return;
+		if(i05.valid) thisArray[ 5] = i05.object; else return;
+		if(i06.valid) thisArray[ 6] = i06.object; else return;
+		if(i07.valid) thisArray[ 7] = i07.object; else return;
+	}
+	
+	
+private:
+	static int countValidInitialisers(InitialObject const& i09,
+									  InitialObject const& i10,
+									  InitialObject const& i11,
+									  InitialObject const& i12,
+									  InitialObject const& i13,
+									  InitialObject const& i14,
+									  InitialObject const& i15) throw()
+	{
+		int size = 9;
+		
+		if(i09.valid) size++; else return size;
+		if(i10.valid) size++; else return size;
+		if(i11.valid) size++; else return size;
+		if(i12.valid) size++; else return size;
+		if(i13.valid) size++; else return size;
+		if(i14.valid) size++; else return size;
+		if(i15.valid) size++; else return size;
+		
+		return size;
+	}	
+	
+public:
+	ObjectArray(InitialObject const &i00,
+				InitialObject const &i01,
+				InitialObject const &i02,
+				InitialObject const &i03,
+				InitialObject const &i04,
+				InitialObject const &i05,
+				InitialObject const &i06,
+				InitialObject const &i07,
+				InitialObject const &i08,
+				InitialObject const &i09 = InitialObject(),
+				InitialObject const &i10 = InitialObject(),
+				InitialObject const &i11 = InitialObject(),
+				InitialObject const &i12 = InitialObject(),
+				InitialObject const &i13 = InitialObject(),
+				InitialObject const &i14 = InitialObject(),
+				InitialObject const &i15 = InitialObject()) throw()
+	:	SmartPointerContainer< ObjectArrayInternal<ObjectType> >
+		(new ObjectArrayInternal<ObjectType>(countValidInitialisers(i09, i10, i11, i12, i13, i14, i15), false))
+	{
+		ObjectType *thisArray = this->getArray();
+		
+		if(i00.valid) thisArray[ 0] = i00.object; else return;
+		if(i01.valid) thisArray[ 1] = i01.object; else return;
+		if(i02.valid) thisArray[ 2] = i02.object; else return;
+		if(i03.valid) thisArray[ 3] = i03.object; else return;
+		if(i04.valid) thisArray[ 4] = i04.object; else return;
+		if(i05.valid) thisArray[ 5] = i05.object; else return;
+		if(i06.valid) thisArray[ 6] = i06.object; else return;
+		if(i07.valid) thisArray[ 7] = i07.object; else return;
+		if(i08.valid) thisArray[ 8] = i08.object; else return;
+		if(i09.valid) thisArray[ 9] = i09.object; else return;
+		if(i10.valid) thisArray[10] = i10.object; else return;
+		if(i11.valid) thisArray[11] = i11.object; else return;
+		if(i12.valid) thisArray[12] = i12.object; else return;
+		if(i13.valid) thisArray[13] = i13.object; else return;
+		if(i14.valid) thisArray[14] = i14.object; else return;
+		if(i15.valid) thisArray[15] = i15.object; else return;
+	}	
+	
+private:
+	static int countValidInitialisers(InitialObject const& i17,
+									  InitialObject const& i18,
+									  InitialObject const& i19,
+									  InitialObject const& i20,
+									  InitialObject const& i21,
+									  InitialObject const& i22,
+									  InitialObject const& i23,
+									  InitialObject const& i24,
+									  InitialObject const& i25,
+									  InitialObject const& i26,
+									  InitialObject const& i27,
+									  InitialObject const& i28,
+									  InitialObject const& i29,
+									  InitialObject const& i30,
+									  InitialObject const& i31) throw()
+	{
+		int size = 17;
+		
+		if(i17.valid) size++; else return size;
+		if(i18.valid) size++; else return size;
+		if(i19.valid) size++; else return size;
+		if(i20.valid) size++; else return size;
+		if(i21.valid) size++; else return size;
+		if(i22.valid) size++; else return size;
+		if(i23.valid) size++; else return size;
+		if(i24.valid) size++; else return size;
+		if(i25.valid) size++; else return size;
+		if(i26.valid) size++; else return size;
+		if(i27.valid) size++; else return size;
+		if(i28.valid) size++; else return size;
+		if(i29.valid) size++; else return size;
+		if(i30.valid) size++; else return size;
+		if(i31.valid) size++; else return size;
+		
+		return size;
+	}	
+	
+public:
+	ObjectArray(InitialObject const &i00,
+				InitialObject const &i01,
+				InitialObject const &i02,
+				InitialObject const &i03,
+				InitialObject const &i04,
+				InitialObject const &i05,
+				InitialObject const &i06,
+				InitialObject const &i07,
+				InitialObject const &i08,
+				InitialObject const &i09,
+				InitialObject const &i10,
+				InitialObject const &i11,
+				InitialObject const &i12,
+				InitialObject const &i13,
+				InitialObject const &i14,
+				InitialObject const &i15,
+				InitialObject const &i16,
+				InitialObject const &i17 = InitialObject(),
+				InitialObject const &i18 = InitialObject(),
+				InitialObject const &i19 = InitialObject(),
+				InitialObject const &i20 = InitialObject(),
+				InitialObject const &i21 = InitialObject(),
+				InitialObject const &i22 = InitialObject(),
+				InitialObject const &i23 = InitialObject(),
+				InitialObject const &i24 = InitialObject(),
+				InitialObject const &i25 = InitialObject(),
+				InitialObject const &i26 = InitialObject(),
+				InitialObject const &i27 = InitialObject(),
+				InitialObject const &i28 = InitialObject(),
+				InitialObject const &i29 = InitialObject(),
+				InitialObject const &i30 = InitialObject(),
+				InitialObject const &i31 = InitialObject()) throw()
+	:	SmartPointerContainer< ObjectArrayInternal<ObjectType> >
+		(new ObjectArrayInternal<ObjectType>(countValidInitialisers(     i17, i18, i19,
+																	i20, i21, i22, i23,
+																	i24, i25, i26, i27,
+																	i28, i29, i30, i31), 
+											 false))
+	{
+		ObjectType *thisArray = this->getArray();
+		
+		if(i00.valid) thisArray[ 0] = i00.object; else return;
+		if(i01.valid) thisArray[ 1] = i01.object; else return;
+		if(i02.valid) thisArray[ 2] = i02.object; else return;
+		if(i03.valid) thisArray[ 3] = i03.object; else return;
+		if(i04.valid) thisArray[ 4] = i04.object; else return;
+		if(i05.valid) thisArray[ 5] = i05.object; else return;
+		if(i06.valid) thisArray[ 6] = i06.object; else return;
+		if(i07.valid) thisArray[ 7] = i07.object; else return;
+		if(i08.valid) thisArray[ 8] = i08.object; else return;
+		if(i09.valid) thisArray[ 9] = i09.object; else return;
+		if(i10.valid) thisArray[10] = i10.object; else return;
+		if(i11.valid) thisArray[11] = i11.object; else return;
+		if(i12.valid) thisArray[12] = i12.object; else return;
+		if(i13.valid) thisArray[13] = i13.object; else return;
+		if(i14.valid) thisArray[14] = i14.object; else return;
+		if(i15.valid) thisArray[15] = i15.object; else return;
+		if(i16.valid) thisArray[16] = i16.object; else return;
+		if(i17.valid) thisArray[17] = i17.object; else return;
+		if(i18.valid) thisArray[18] = i18.object; else return;
+		if(i19.valid) thisArray[19] = i19.object; else return;
+		if(i20.valid) thisArray[20] = i20.object; else return;
+		if(i21.valid) thisArray[21] = i21.object; else return;
+		if(i22.valid) thisArray[22] = i22.object; else return;
+		if(i23.valid) thisArray[23] = i23.object; else return;
+		if(i24.valid) thisArray[24] = i24.object; else return;
+		if(i25.valid) thisArray[25] = i25.object; else return;
+		if(i26.valid) thisArray[26] = i26.object; else return;
+		if(i27.valid) thisArray[27] = i27.object; else return;
+		if(i28.valid) thisArray[28] = i28.object; else return;
+		if(i29.valid) thisArray[29] = i29.object; else return;
+		if(i30.valid) thisArray[30] = i30.object; else return;
+		if(i31.valid) thisArray[31] = i31.object; else return;
+	}	
+	
+	
 	/** Concatenate two arrays into one. */
 	ObjectArray(ObjectArray<ObjectType> const& array0, 
 				ObjectArray<ObjectType> const& array1) throw()
+	:	SmartPointerContainer< ObjectArrayInternal<ObjectType> >
+		(new ObjectArrayInternal<ObjectType>(0, false))
 	{
 		const bool bothNullTerminated = array0.isNullTerminated() && array1.isNullTerminated();
 		const bool eitherNullTerminated = array0.isNullTerminated() || array1.isNullTerminated();
@@ -461,27 +684,22 @@ public:
 	
 	/** Size is the actual number of elements of storage needed for the array.
 	 If this is a null terminated array the null value is inlcuded in the size. */
-	inline int size() const throw() 
-	{ return this->getInternal() == 0 ? 0 : this->getInternal()->size(); }
+	inline int size() const throw() { return this->getInternal()->size(); }
 	
 	/** Length is the number of real elements of storage available.
 	 For arrays that are NOT null terminated this is synonymous with size().
 	 If this is a null terminated array the length is one less than the size. */
-	inline int length() const throw() 
-	{ return this->getInternal() == 0 ? 0 : this->getInternal()->length(); }
+	inline int length() const throw() { return this->getInternal()->length(); }
 	
 	/** Actual memory requirements of the array elements and the null terminator (if needed).
 	 Equivalent to size() * sizeof(ObjectType). */
-	inline int memorySize() const throw() 
-	{ return this->getInternal() == 0 ? 0 : this->getInternal()->size() * sizeof(ObjectType); }
+	inline int memorySize() const throw() { return this->getInternal()->size() * sizeof(ObjectType); }
 	
 	/** Returns a pointer to the raw array. */
-	inline ObjectType* getArray() throw() 
-	{ ugen_assert(this->getInternal()); return this->getInternal() == 0 ? 0 : this->getInternal()->getArray(); }
+	inline ObjectType* getArray() throw() { return this->getInternal()->getArray(); }
 	
 	/** Returns a pointer to the raw array for read-only ops. */
-	inline const ObjectType* getArray() const throw() 
-	{ ugen_assert(this->getInternal()); return this->getInternal() == 0 ? 0 : this->getInternal()->getArray(); }
+	inline const ObjectType* getArray() const throw() { return this->getInternal()->getArray(); }
 	
 	/** Returns a pointer to the raw array for read-only ops. */
 	inline operator const ObjectType*() const throw() { return this->getArray(); }
@@ -489,33 +707,21 @@ public:
 	inline operator ObjectType*() throw() { return this->getArray(); }
 	
 	/** Returns whether this is a null terminated array or not. */
-	inline bool isNullTerminated() const throw()
-	{ ugen_assert(this->getInternal()); return this->getInternal() == 0 ? false : this->getInternal()->isNullTerminated(); }
+	inline bool isNullTerminated() const throw() { return this->getInternal()->isNullTerminated(); }
 	
 	/** Changes this array's null terminator flag. */
-	inline void setNullTerminated(const bool state) throw()
-	{ ugen_assert(this->getInternal()); if(this->getInternal() != 0) this->getInternal()->setNullTerminated(state); }
+	inline void setNullTerminated(const bool state) throw() { this->getInternal()->setNullTerminated(state); }
 	
 	ObjectArrayConcatOperatorsDefine(ObjectArray, ObjectType);
 	
-	/** Adds an item in place. */
+	/** Adds an item in-place. */
 	ObjectArray<ObjectType>& add(ObjectType const& item) throw()
 	{ 
-		if(this->getInternal() != 0)
-		{
-			this->getInternal()->add(item); 
-		}
-		else
-		{
-			ugen_assertfalse; // this should never happen now!
-			this->setInternal(new ObjectArrayInternal<ObjectType>(1, false));
-			this->put(0, item);
-		}
-		
+		this->getInternal()->add(item); 
 		return *this;
 	}
 	
-	/** Adds several items in place. */
+	/** Adds several items in-place. */
 	ObjectArray<ObjectType>& add(ObjectArray<ObjectType> const& other) throw()
 	{
 		const int length = other.length();
@@ -527,26 +733,25 @@ public:
 		return *this;
 	}
 	
-	/** Removes an item at the given index. 
+	/** Removes an item at the given index in-place. 
 	 Indices out of range will be ignored.*/
-	void remove(const int index) throw()
+	ObjectArray<ObjectType>& remove(const int index) throw()
 	{ 
-		if(this->getInternal() != 0)
-		{
-			this->getInternal()->remove(index); 
-		}
+		this->getInternal()->remove(index); 
+		return *this;
 	}
 	
 	/** Places an item at the given index. 
 	 Indices out of range will be ignored. */
-	void put(const int index, ObjectType const& item) throw()
+	ObjectArray<ObjectType>& put(const int index, ObjectType const& item) throw()
 	{
-		if(this->getInternal() == 0 || index < 0 || index >= this->size()) 
+		if(index < 0 || index >= this->size()) 
 		{
-			return;
+			return *this;
 		}
 		
 		this->getArray()[index] = item;
+		return *this;
 	}
 	
 	/** Returns a reference to an item at the specified index. 
@@ -554,7 +759,7 @@ public:
 	 separate internal null value may have been returned instead. */
 	ObjectType& operator[] (const int index) throw()
 	{
-		if(this->getInternal() == 0 || index < 0 || index >= this->size()) 
+		if(index < 0 || index >= this->size()) 
 		{
 			return getNull();
 		}
@@ -567,7 +772,7 @@ public:
 	 separate internal null value may have been returned instead. */	
 	const ObjectType& operator[] (const int index) const throw()
 	{
-		if(this->getInternal() == 0 || index < 0 || index >= this->size()) 
+		if(index < 0 || index >= this->size()) 
 		{
 			return getNull();
 		}
@@ -580,7 +785,7 @@ public:
 	 separate internal null value may have been returned instead. */	
 	ObjectType& at (const int index) throw()
 	{
-		if(this->getInternal() == 0 || index < 0 || index >= this->size()) 
+		if(index < 0 || index >= this->size()) 
 		{
 			return getNull();
 		}
@@ -593,7 +798,7 @@ public:
 	 separate internal null value may have been returned instead. */	
 	const ObjectType& at (const int index) const throw()
 	{
-		if(this->getInternal() == 0 || index < 0 || index >= this->size()) 
+		if(index < 0 || index >= this->size()) 
 		{
 			return getNull();
 		}
@@ -604,7 +809,7 @@ public:
 	/** Returns a new array by iterating through an array of indices provided.  */
 	ObjectArray<ObjectType> at (ObjectArray<int> const& indices) const throw()
 	{
-		if(this->getInternal() == 0) { return *this; }
+		if(this->getInternal()->size() == 0) { return *this; }
 			
 		const bool needsNull = this->isNullTerminated();
 		const int length = indices.length();
@@ -629,9 +834,7 @@ public:
 
 	/** Returns a new array by iterating through an array of indices provided.  */
 	ObjectArray<ObjectType> atUnchecked (ObjectArray<int> const& indices) const throw()
-	{		
-		ugen_assert(this->getInternal() != 0);
-		
+	{				
 		const bool needsNull = this->isNullTerminated();
 		const int length = indices.length();
 		const int size = needsNull ? length + 1 : length;
@@ -657,7 +860,7 @@ public:
 	 You must make sure that the array index is in range when using this version. */		
 	ObjectType& atUnchecked (const int index) throw()
 	{
-		ugen_assert(this->getInternal() != 0);
+		ugen_assert((index >= 0) && (index < this->getInternal()->size()));
 		return this->getInternal()->getArray()[index];
 	}
 
@@ -665,7 +868,7 @@ public:
 	 You must make sure that the array index is in range when using this version. */		
 	const ObjectType& atUnchecked (const int index) const throw()
 	{
-		ugen_assert(this->getInternal() != 0);
+		ugen_assert((index >= 0) && (index < this->getInternal()->size()));
 		return this->getInternal()->getArray()[index];
 	}	
 	
@@ -675,7 +878,7 @@ public:
 	 the item at index 2, if the index is -1 the item returned will be at index 9 and so on. */		
 	ObjectType& wrapAt (const int index) throw()
 	{
-		if(this->getInternal() == 0 || this->size() == 0) { return getNull(); }
+		if(this->getInternal()->size() == 0) { return getNull(); }
 		
 		int indexToUse = index;
 		while(indexToUse < 0)
@@ -690,7 +893,7 @@ public:
 	 the item at index 2, if the index is -1 the item returned will be at index 9 and so on. */			
 	const ObjectType& wrapAt (const int index) const throw()
 	{
-		if(this->getInternal() == 0 || this->size() == 0) { return getNull(); }
+		if(this->getInternal()->size() == 0) { return getNull(); }
 		
 		int indexToUse = index;
 		while(indexToUse < 0)
@@ -703,7 +906,7 @@ public:
 	 If the array is empty it returns a "null" ersion of the object. */
 	ObjectType& first () throw()
 	{
-		if(this->getInternal() == 0 || this->size() == 0) 
+		if(this->getInternal()->size() == 0) 
 		{
 			return getNull();
 		}
@@ -715,7 +918,7 @@ public:
 	 If the array is empty it returns a "null" ersion of the object. */
 	const ObjectType& first () const throw()
 	{
-		if(this->getInternal() == 0 || this->size() == 0) 
+		if(this->getInternal()->size() == 0) 
 		{
 			return getNull();
 		}
@@ -727,7 +930,7 @@ public:
 	 If the array is empty it returns a "null" ersion of the object. */
 	ObjectType& last () throw()
 	{
-		if(this->getInternal() == 0 || this->size() == 0) 
+		if(this->getInternal()->size() == 0) 
 		{
 			return getNull();
 		}
@@ -739,7 +942,7 @@ public:
 	 If the array is empty it returns a "null" ersion of the object. */
 	const ObjectType& last () const throw()
 	{
-		if(this->getInternal() == 0 || this->size() == 0) 
+		if(this->getInternal()->size() == 0) 
 			return getNull();
 		else
 			return this->getArray()[this->size() - 1];
@@ -750,7 +953,7 @@ public:
 	 If the array is empty it returns a "null" ersion of the object. */
 	ObjectType& choose () throw()
 	{
-		if(this->getInternal() == 0 || this->size() == 0) 
+		if(this->getInternal()->size() == 0) 
 		{
 			return getNull();
 		}
@@ -763,7 +966,7 @@ public:
 	 If the array is empty it returns a "null" ersion of the object. */	
 	const ObjectType& choose () const throw()
 	{
-		if(this->getInternal() == 0 || this->size() == 0) 
+		if(this->getInternal()->size() == 0) 
 		{
 			return getNull();
 		}
@@ -782,7 +985,7 @@ public:
 	template<class WeightType>
 	ObjectType& wchoose (ObjectArray<WeightType> const& weights) throw()
 	{
-		if(this->getInternal() == 0 || this->size() == 0) 
+		if(this->getInternal()->size() == 0) 
 		{
 			return getNull();
 		}
@@ -821,7 +1024,7 @@ public:
 	template<class WeightType>
 	const ObjectType& wchoose (ObjectArray<WeightType> const& weights) const throw()
 	{
-		if(this->getInternal() == 0 || this->size() == 0) 
+		if(this->getInternal()->size() == 0) 
 		{
 			return getNull();
 		}
@@ -1055,28 +1258,28 @@ public:
 		return -1;
 	}
 	
-	/** Return an array which is a subarray of this one. 
+	/** Return a new array which is a subarray of this one. 
 	 @return An array from startIndex to the end of the array. */
 	ObjectArray<ObjectType> from(const int startIndex) const throw()
 	{
 		return range(startIndex);
 	}
 	
-	/** Return an array which is a subarray of this one. 
+	/** Return a new array which is a subarray of this one. 
 	 @return An array from startIndex (inclusive) to the end of the array. */
 	ObjectArray<ObjectType> range(const int startIndex) const throw()
 	{
 		return this->range(startIndex, 0x7fffffff);
 	}
 	
-	/** Return an array which is a subarray of this one. 
+	/** Return a new array which is a subarray of this one. 
 	 @return An array from startIndex (inclusive) to the end of the array. */
 	ObjectArray<ObjectType> to(const int endIndex) const throw()
 	{
 		return range(0, endIndex);
 	}
 	
-	/** Return an array which is a subarray of this one. 
+	/** Return a new array which is a subarray of this one. 
 	 @return An array from startIndex (inclusive) to endIndex (exclusive). */
 	ObjectArray<ObjectType> range(const int startIndex, const int endIndex) const throw()
 	{
@@ -1124,54 +1327,38 @@ public:
 		
 		while((findIndex = this->indexOf(find, startIndex)) >= 0)
 		{
-			result <<= this->range(startIndex, findIndex);
-			result <<= substitute;
+			result.add(this->range(startIndex, findIndex));
+			result.add(substitute);
 			startIndex = findIndex + findLength;
 		}
 		
-		result <<= this->range(startIndex, size);
+		result.add(this->range(startIndex, size));
 		
 		return result;
 	}
 	
-	/** Return an array with a particular item removed. */
-	ObjectArray<ObjectType> removeItem(const ObjectType item) const throw()
+	/** Remove an item in-place. */
+	ObjectArray<ObjectType>& removeItem(const ObjectType item) throw()
 	{
-		const ObjectType *array = this->getArray();
+		const int index = this->indexOf(item);
 		
-		ObjectArray<ObjectType> result;
-		
-		if(array != 0)
+		if(index >= 0)
 		{
-			const int length = this->length();
-			for(int i = 0; i < length; i++)
-			{
-				if(array[i] != item)
-					result <<= array[i];
-			}
+			this->getInternal()->remove(index);
 		}
 		
-		return result;
+		return *this;
 	}
 	
-	/** Return an array with particular items removed. */
-	ObjectArray<ObjectType> removeItems(ObjectArray<ObjectType> const& items) const throw()
+	/** Remove several items in-place. */
+	ObjectArray<ObjectType>& removeItems(ObjectArray<ObjectType> const& items) throw()
 	{
-		const ObjectType *array = this->getArray();
-		
-		ObjectArray<ObjectType> result;
-		
-		if(array != 0)
+		for(int i = 0; i < items.length(); i++)
 		{
-			const int length = this->length();
-			for(int i = 0; i < length; i++)
-			{
-				if(items.contains(array[i]) == false)
-					result <<= array[i];
-			}
+			this->removeItem(items[i]);
 		}
 		
-		return result;
+		return *this;
 	}
 	
 	/** Group this array into a 2D array with a particular group size. */
@@ -1196,12 +1383,12 @@ public:
 			{
 				if(needsNull) 
 				{
-					element <<= this->getNull();
+					element.add(this->getNull());
 					element.setNullTerminated(true);
 				}
 				
-				result <<= element;
-				element = ObjectArray<ObjectType>();
+				result.add(element);
+				element = ObjectArray<ObjectType>(); // reset
 			}
 		}
 		
@@ -1209,16 +1396,18 @@ public:
 		{
 			if(needsNull) 
 			{
-				element <<= this->getNull();
+				element.add(this->getNull());
 				element.setNullTerminated(true);
 			}
 			
-			result <<= element;
+			result.add(element);
 		}
 		
 		return result;
 	}
 	
+	/** Split the array into a 2D using delimiters. 
+	 The array will the split when ANY of the delimiters is found. */
 	ObjectArray<ObjectArray<ObjectType> > split(ObjectArray<ObjectType> delimiters) const throw()
 	{
 		const int length = this->length();
@@ -1242,17 +1431,17 @@ public:
 					{
 						if(needsNull) 
 						{
-							element <<= this->getNull();
+							element.add(this->getNull());
 							element.setNullTerminated(true);
 						}
 						
-						result <<= element;
-						element = ObjectArray<ObjectType>();	
+						result.add(element);
+						element = ObjectArray<ObjectType>();	// reset
 					}
 				}
 				else
 				{
-					element <<= item;
+					element.add(item);
 				}
 			}
 			
@@ -1260,11 +1449,11 @@ public:
 			{
 				if(needsNull) 
 				{
-					element <<= this->getNull();
+					element.add(this->getNull());
 					element.setNullTerminated(true);
 				}
 				
-				result <<= element;
+				result.add(element);
 			}
 		}
 		
@@ -1284,11 +1473,11 @@ public:
 			
 			while((findIndex = this->indexOf(delimitingSequence, startIndex)) >= 0)
 			{
-				result <<= this->range(startIndex, findIndex);
+				result.add(this->range(startIndex, findIndex));
 				startIndex = findIndex + findLength;
 			}
 			
-			result <<= this->range(startIndex, size);
+			result.add(this->range(startIndex, size));
 		}
 		
 		return result;		
@@ -1600,8 +1789,6 @@ public:
 		for(int i = 0; i < numValues; i++)
 		{
 			NumericalType randomValue = rand() * randFactor;
-			
-			//outputValues[i] = Ran088::defaultGenerator().next(lower, upper);
 			outputValues[i] = randomValue * diff + lower;
 		}
 		
@@ -2174,6 +2361,11 @@ public:
 	
 	inline void clear() throw()
 	{
+		ugen_assertfalse; // clear will in the future set the size to 0 so use zero() to set all items to 0
+	}
+	
+	inline void zero() throw()
+	{
 		NumericalType *array = this->getArray();
 		
 		if(array != 0)
@@ -2293,6 +2485,7 @@ public:
 	{
 	}
 	
+private:
 	static int countValidInitialisers(RowType const& i03) throw()
 	{
 		int size = 3;
@@ -2302,6 +2495,7 @@ public:
 		return size;
 	}	
 
+public:
 	ObjectArray2DBase(RowType const &i00,
 					  RowType const &i01,
 					  RowType const &i02,
@@ -2316,7 +2510,7 @@ public:
 		if(i03.size() > 0) thisArray[ 3] = i03; else return;
 	}
 
-
+private:
 	static int countValidInitialisers(RowType const &i05,
 									  RowType const &i06,
 									  RowType const &i07) throw()
@@ -2330,6 +2524,7 @@ public:
 		return size;
 	}
 
+public:
 	ObjectArray2DBase(RowType const &i00,
 					  RowType const &i01,
 					  RowType const &i02,
@@ -2352,6 +2547,7 @@ public:
 		if(i07.size() > 0) thisArray[ 7] = i07; else return;
 	}
 
+private:
 	static int countValidInitialisers(RowType const &i09,
 									  RowType const &i10,
 									  RowType const &i11,
@@ -2373,6 +2569,7 @@ public:
 		return size;
 	}
 
+public:
 	ObjectArray2DBase(RowType const &i00,
 					  RowType const &i01,
 					  RowType const &i02,
@@ -2413,6 +2610,7 @@ public:
 		if(i15.size() > 0) thisArray[15] = i15; else return;
 	}
 
+private:
 	static int countValidInitialisers(RowType const &i17,
 									  RowType const &i18,
 									  RowType const &i19,
@@ -2450,6 +2648,7 @@ public:
 		return size;
 	}
 
+public:
 	ObjectArray2DBase(RowType const &i00,
 					  RowType const &i01,
 					  RowType const &i02,

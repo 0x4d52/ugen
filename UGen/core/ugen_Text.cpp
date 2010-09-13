@@ -284,7 +284,7 @@ const Text& Text::getAlphabetAndDigits() throw()
 
 const Text& Text::getPunctuation() throw()
 {
-	static const Text t = Text::getPrintable().removeItems(Text::getAlphabetAndDigits()).removeItem(Text::space);
+	static const Text t = Text::getPrintable().copy().removeItems(Text::getAlphabetAndDigits()).removeItem(Text::space);
 	return t;
 }
 

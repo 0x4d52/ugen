@@ -131,30 +131,6 @@ void MixUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockI
 }
 
 
-//void MixArrayUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
-//{	
-//	bool shouldDeleteLocal;
-//	bool& shouldDeleteToPass = shouldAllowAutoDelete_ ? shouldDelete : shouldDeleteLocal;	
-//	int numOutputChannels = getNumChannels();
-//	const int arraySize = arrayRef.size();
-//	const int numSamplesToProcess = uGenOutput.getBlockSize();
-//	
-//	for(int channel = 0; channel < numOutputChannels; channel++)
-//	{
-//		float* const outputSamples = proxies[channel]->getSampleData();		
-//		vDSP_vclr(outputSamples, 1, numSamplesToProcess);
-//		
-//		for(int arrayIndex = 0; arrayIndex < arraySize; arrayIndex++)
-//		{
-//			shouldDeleteLocal = false;
-//			float* const channelSamples = arrayRef[arrayIndex].processBlock(shouldDeleteToPass, blockID, channel);
-//			
-//			// must check vDSP_vadd() can operate in place
-//			vDSP_vadd(outputSamples, 1, channelSamples, 1, outputSamples, 1, numSamplesToProcess);
-//		}
-//	}
-//}
-
 void MixArrayUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {	
 	bool shouldDeleteLocal;
@@ -171,6 +147,8 @@ void MixArrayUGenInternal::processBlock(bool& shouldDelete, const unsigned int b
 		for(int arrayIndex = 0; arrayIndex < arraySize; arrayIndex++)
 		{
 			UGen& ugen = array_[arrayIndex];
+			
+			if(ugen.isNull(channel)) continue;
 			
 			if(shouldWrapChannels_ || (channel < ugen.getNumChannels()))
 			{
