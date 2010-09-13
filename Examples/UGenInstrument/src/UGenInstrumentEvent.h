@@ -38,7 +38,7 @@
 #define _UGEN_UGenInstrumentEvent_H_
 
 
-#include "../../UGen/UGen.h"
+#include "../../../UGen/UGen.h"
 #include "UGenCommon.h"
 
 class UGenPlugin;

@@ -3,7 +3,7 @@
 
 
 #include <juce/juce.h>
-#include "../UGen/UGen.h"
+#include "../../UGen/UGen.h"
 #define _FILEID_ _MAINCOMPONENT_H_
 
 

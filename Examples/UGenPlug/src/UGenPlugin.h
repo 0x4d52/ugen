@@ -36,7 +36,7 @@
 #define UGENPLUGIN_H
 
 
-#include "../../UGen/UGen.h"
+#include "../../../UGen/UGen.h"
 #include "UGenCommon.h"
 
 //==============================================================================
