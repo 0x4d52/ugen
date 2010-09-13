@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <AudioToolbox/AudioQueue.h>
-#include "../UGen/UGen.h"
+#include "../../UGen/UGen.h"
 
 #define SAMPLE_RATE 44100
 #define NUM_CHANNELS 1

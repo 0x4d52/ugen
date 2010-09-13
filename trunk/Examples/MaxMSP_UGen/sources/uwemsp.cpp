@@ -1,5 +1,5 @@
 #include "uwemsp.h"
-#include "../../UGen/UGen.h"
+#include "../../../UGen/UGen.h"
 
 typedef struct _uwemsp
 {

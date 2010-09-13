@@ -47,7 +47,7 @@
  "JUCE_SOURCE" the setting name and display name).
  */
 #include <juce/juce.h>
-#include "../UGen/UGen.h"
+#include "../../UGen/UGen.h"
 #include "MainAppWindow.h"
 
 
