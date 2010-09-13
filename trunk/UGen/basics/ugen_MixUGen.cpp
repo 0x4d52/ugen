@@ -171,6 +171,8 @@ void MixArrayUGenInternal::processBlock(bool& shouldDelete, const unsigned int b
 		{
 			UGen& ugen = array_[arrayIndex];
 			
+			if(ugen.isNull(channel)) continue;
+			
 			if(shouldWrapChannels_ || (channel < ugen.getNumChannels()))
 			{
 				shouldDeleteLocal = false;

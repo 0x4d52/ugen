@@ -162,14 +162,17 @@ public:
 	/** Add one or more items in-place. */
 	void add(UGenArray const& other) throw();
 	
-	/** Remove an item at the index (ignored if the index is out of range). 
+	/** Remove an item at the index (ignored if the index is out of range) in-place. 
 	 This doesn't reallocate memory, items at the end of the array are set to null. */
 	UGen remove(const int index, const bool reallocate = false) throw();
 	
-	/** Removes all UGen instances which are null. */
+	/** Removes a particular UGen from the UGenArray - in-place. */
+	void removeItem(UGen const& item, const bool reallocate = false) throw();
+	
+	/** Removes all UGen instances which are null - in-place. */
 	void removeNulls() throw();
 	
-	/** Removes all items and sets the size to zero. */
+	/** Removes all items and sets the size to zero - in-place. */
 	void clear() throw();
 	
 	/** Append two UGenArray objects.

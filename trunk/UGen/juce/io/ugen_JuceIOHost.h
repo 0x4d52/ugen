@@ -36,9 +36,6 @@
 
 class JuceIOHost;
 
-/** An audio IO host for Juce projects.
- @see UIKitAUIOHost AudioQueueIOHostController 
- @ingroup Hosts */
 class JuceIOHostInternal :	public AudioIODeviceCallback,
 							private Timer
 {
@@ -67,7 +64,8 @@ public:
 	
 	void setInput(UGen const& ugen) throw();
 	void setOutput(UGen const& ugen) throw();
-	void addOther(UGen const& ugen) throw();	
+	void addOther(UGen const& ugen) throw();
+	void removeOther(UGen const& ugen) throw();
 	
 	friend class JuceIOHost;
 	
@@ -85,7 +83,9 @@ private:
 	JuceTimerDeleter* juceDeleter;
 };
 
-
+/** An audio IO host for Juce projects.
+ @see UIKitAUIOHost AudioQueueIOHostController 
+ @ingroup Hosts */
 class JuceIOHost
 {
 public:
@@ -109,11 +109,8 @@ public:
 	{
 	}
 	
-	/**
-	 Destructor.
-	 
-	 Cleans up the internal AudioDeviceManager and calls UGen::shutdown() to clean up UGen++
-	 */
+	/** Destructor.
+	 Cleans up the internal AudioDeviceManager and calls UGen::shutdown() to clean up UGen++ */
 	~JuceIOHost()
 	{
 		delete internal;
@@ -135,11 +132,8 @@ public:
 		return internal->getNumOutputs();
 	}
 	
-	/** 
-	 Get a reference to the input UGen.
-	 
+	/** Get a reference to the input UGen.
 	 Be careful not to store this reference.
-	 
 	 @return a reference to the input UGen
 	 */
 	UGen& getInput() throw()
@@ -147,12 +141,9 @@ public:
 		return internal->getInput();
 	}
 	
-	/** 
-	 Get a reference to the output UGen.
-	 
+	/** Get a reference to the output UGen.
 	 Be careful not to store this reference. This could be useful if the output UGen is
 	 a Plug, in which case its source could be changed.
-	 
 	 @return a reference to the output UGen
 	 */
 	UGen& getOutput() throw()
@@ -160,13 +151,10 @@ public:
 		return internal->getOutput();
 	}
 	
-	/**
-	 Set the input UGen.
-	 
+	/** Set the input UGen.
 	 Replace the input UGen with another, in practice this is unlikely to be needed as the 
 	 number input channels is fixed at construction time and the only UGen which makes sense
 	 is an AudioIn.
-	 
 	 @param ugen	the new UGen to use as the host input.
 	 */
 	void setInput(UGen const& ugen) throw()
@@ -174,13 +162,10 @@ public:
 		internal->setInput(ugen);
 	}
 	
-	/**
-	 Set the output UGen.
-	 
+	/** Set the output UGen.
 	 Replace the current output UGen with another. In practice it will usually be better to use a Plug 
 	 and change its source (which can optionally include a crossfade to the new souce) or some other method
 	 which will avoid discontinuitites in the signal.
-	 
 	 @param ugen	the new UGen to use as the host output.
 	 */
 	void setOutput(UGen const& ugen) throw()
@@ -188,9 +173,7 @@ public:
 		internal->setOutput(ugen);
 	}
 	
-	/**
-	 Add a UGen to the dependency of this host.
-	 
+	/** Add a UGen to the dependency of this host.
 	 This is mainly used for Scope and/or DiskOut.
 	 */
 	void addOther(UGen const& ugen) throw()
@@ -198,13 +181,20 @@ public:
 		internal->addOther(ugen);
 	}
 	
+	/** Remove a UGen from the "others" array. */
+	void removeOther(UGen const& ugen) throw()
+	{
+		internal->removeOther(ugen);
+	}
+	
+	/** Get the CPU usage.
+	 @return CPU usage as 0.0-1.0. */
 	double getCpuUsage() const
 	{
 		return internal->audioDeviceManager.getCpuUsage();
 	}
 	
-	/**
-	 Construct a UGen graph.
+	/** Construct a UGen graph.
 	 
 	 You must implement this in your subclass. You should return a UGen which will be the UGen graph which is 
 	 performed and rendered to the host. The input parameter may be ignored if only signal generation is required 
@@ -376,6 +366,11 @@ inline void JuceIOHostInternal::addOther(UGen const& ugen) throw()
 	others.add(ugen);
 }
 
+inline void JuceIOHostInternal::removeOther(UGen const& ugen) throw()
+{
+	const ScopedLock sl(lock);
+	others.removeItem(ugen);
+}
 
 
 #endif // _UGEN_ugen_JuceIOHost_H_

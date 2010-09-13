@@ -444,6 +444,16 @@ UGen UGenArray::remove(const int index, const bool reallocate) throw()
 	return item;
 }
 
+void UGenArray::removeItem(UGen const& item, const bool reallocate) throw()
+{
+	int index = indexOf(item);
+	
+	if(index >= 0)
+	{
+		internal->remove(index, reallocate);
+	}
+}
+
 void UGenArray::removeNulls() throw()
 {
 	internal->removeNulls();
