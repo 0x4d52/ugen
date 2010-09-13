@@ -602,9 +602,7 @@ BufferSenderUGenInternal::BufferSenderUGenInternal(UGen const& input, UGen const
 
 void BufferSenderUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {
-	float duration = *(inputs[Duration].processBlock(shouldDelete, blockID, 0));
-	ugen_assert(duration > 0.f);
-	
+	float duration = *(inputs[Duration].processBlock(shouldDelete, blockID, 0));	
 	int audioBufferSizeRequired = max(1, (int)(duration * UGen::getSampleRate() + 0.5));
 	int audioBufferAllocatedSize = audioBuffer.size();			  
 	

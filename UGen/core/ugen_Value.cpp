@@ -727,12 +727,16 @@ ValueUGenInternal::ValueUGenInternal(Value const& value)
 :	UGenInternal(0), 
 	valueObject(value),
 	isConst(valueObject.containsInternalType<ValueInternal>())
-{				 
+{			
+	float val = (float)valueObject.getValue();
+	initValue(val);
 }
 
 UGenInternal* ValueUGenInternal::getKr() throw()
 {
-	return new ValueUGenInternalK(valueObject);
+	ValueUGenInternalK *result = new ValueUGenInternalK(valueObject);
+	result->setValue(this->getValue(0));
+	return result;
 }
 
 void ValueUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
