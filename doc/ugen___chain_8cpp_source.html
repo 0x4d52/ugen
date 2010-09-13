@@ -30,7 +30,7 @@
 <h1>basics/ugen_Chain.cpp</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___chain_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Chain.cpp 77 2010-05-24 10:34:11Z 0x4d52 $</span>
+<a href="ugen___chain_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Chain.cpp 139 2010-09-11 08:13:36Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/basics/ugen_Chain.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -115,7 +115,7 @@
 <a name="l00083"></a>00083  size_(size),
 <a name="l00084"></a>00084  bufferData(<span class="keyword">new</span> <span class="keywordtype">float</span>*[numChannels]),
 <a name="l00085"></a>00085  bank(<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>(size_)),
-<a name="l00086"></a>00086  mixer(<a class="code" href="class_mix.html" title="Mix channels.">Mix</a>(&amp;bank))
+<a name="l00086"></a>00086  mixer(<a class="code" href="class_mix.html" title="Mix channels.">Mix</a>(bank))
 <a name="l00087"></a>00087 {
 <a name="l00088"></a>00088  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(size &gt; 0);
 <a name="l00089"></a>00089  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(numChannels &gt; 0);
@@ -145,7 +145,7 @@
 <a name="l00113"></a>00113 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:49 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:02 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

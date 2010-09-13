@@ -50,7 +50,6 @@ This is the complete list of members for <a class="el" href="class_unary_cubed_v
   <tr class="memlist"><td><a class="el" href="class_value.html#a6dafd47583a7af57a5d60834850ad453">cubed</a>() const </td><td><a class="el" href="class_value.html">Value</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_value.html#aaaf5e818d1aaaf89bcae9834aae54124">difsqr</a>(Value const &amp;rightOperand) const </td><td><a class="el" href="class_value.html">Value</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_value.html#a3a4e9dd8d6beb4d5cb65fee44942e072">distort</a>() const </td><td><a class="el" href="class_value.html">Value</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_value.html#ae147c054b6aed579d96df49005ae2fb9">equal</a>(Value const &amp;rightOperand) const </td><td><a class="el" href="class_value.html">Value</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_value.html#ac3ff60868ef909544c6e14cb08f3ce3d">exp</a>() const </td><td><a class="el" href="class_value.html">Value</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_value.html#ada74ac8e8bb8e0f5931b0e6ef406da8b">fill</a>(const int size)</td><td><a class="el" href="class_value.html">Value</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_value.html#ac041ef620a86b0fc89f8f27876c4f23c">floor</a>() const </td><td><a class="el" href="class_value.html">Value</a></td><td></td></tr>
@@ -61,6 +60,8 @@ This is the complete list of members for <a class="el" href="class_unary_cubed_v
   <tr class="memlist"><td><a class="el" href="class_value.html#a31f2abf24b1d5e189c437fe194b9d60e">getValue</a>()</td><td><a class="el" href="class_value.html">Value</a></td><td><code> [inline]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_value.html#a0bea8fde462940a0dd57ae0de79ae32b">hypot</a>(Value const &amp;rightOperand) const </td><td><a class="el" href="class_value.html">Value</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_value.html#ab4ae75a9eda5a5e2398db62d2ef31557">internal</a></td><td><a class="el" href="class_value.html">Value</a></td><td><code> [protected]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_value.html#ac74c43b99a2b55ba9ac55ca6c061b1ae">isEqualTo</a>(Value const &amp;rightOperand) const </td><td><a class="el" href="class_value.html">Value</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_value.html#abd727a07508454fda8bb7d5c141dfdec">isNotEqualTo</a>(Value const &amp;rightOperand) const </td><td><a class="el" href="class_value.html">Value</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_value.html#a096cb039bd4a40bf5117ca500cee97fc">kr</a>()</td><td><a class="el" href="class_value.html">Value</a></td><td><code> [inline]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_value.html#a1d575707884432f9aaae69d050b50a61">log</a>() const </td><td><a class="el" href="class_value.html">Value</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_value.html#a0ec2382ea9d810d4a177bda2e1acba80">log10</a>() const </td><td><a class="el" href="class_value.html">Value</a></td><td></td></tr>
@@ -69,7 +70,6 @@ This is the complete list of members for <a class="el" href="class_unary_cubed_v
   <tr class="memlist"><td><a class="el" href="class_value.html#a623c30357b490ba9c8030de1dfafd1aa">midicps</a>() const </td><td><a class="el" href="class_value.html">Value</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_value.html#a9b119f52bce66db27595d7e50e0262d9">min</a>(Value const &amp;rightOperand) const </td><td><a class="el" href="class_value.html">Value</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_value.html#a329ecba741d3e9db0fcf0e3ecf260822">neg</a>() const </td><td><a class="el" href="class_value.html">Value</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_value.html#ab8b58c38e54744e3f755201b63741341">notEqual</a>(Value const &amp;rightOperand) const </td><td><a class="el" href="class_value.html">Value</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_value.html#a0aab791ae4871cf41ba5e19bc329d730">operator*</a>(Value const &amp;rightOperand) const </td><td><a class="el" href="class_value.html">Value</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_value.html#a1a492856673019a4e3b8dbb97dd43d03">operator*=</a>(Value const &amp;other)</td><td><a class="el" href="class_value.html">Value</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_value.html#a3fbb6ce42ab1789447a177a0d973d19b">operator+</a>(Value const &amp;rightOperand) const </td><td><a class="el" href="class_value.html">Value</a></td><td></td></tr>
@@ -126,7 +126,7 @@ This is the complete list of members for <a class="el" href="class_unary_cubed_v
   <tr class="memlist"><td><a class="el" href="class_value.html#a8a6dac28d4fdb35b2c7bb1d3e83a0806">zap</a>() const </td><td><a class="el" href="class_value.html">Value</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_value.html#a3a578f458da8a4ab67052dba0f7bffdd">~Value</a>()</td><td><a class="el" href="class_value.html">Value</a></td><td></td></tr>
 </table></div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Sep 9 2010 09:39:29 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:11 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

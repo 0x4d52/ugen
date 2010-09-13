@@ -30,7 +30,7 @@
 <h1>spawn/ugen_TSpawn.cpp</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___t_spawn_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_TSpawn.cpp 89 2010-07-09 16:20:21Z 0x4d52 $</span>
+<a href="ugen___t_spawn_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_TSpawn.cpp 138 2010-09-11 08:00:33Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/spawn/ugen_TSpawn.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -182,47 +182,49 @@
 <a name="l00150"></a>00150     
 <a name="l00151"></a>00151     <span class="comment">// add the new voice and re init the mixer</span>
 <a name="l00152"></a>00152     <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> newVoice = <a class="code" href="class_t_spawn_u_gen_internal.html#a50ed07250c9b10dfe26d76b6d5add341">spawnEvent</a>(*<span class="keyword">this</span>, <a class="code" href="class_spawn_base_u_gen_internal.html#a8f63dbb26339ccba8c724523f38dcb9f">currentEventIndex</a>++);
-<a name="l00153"></a>00153     <a class="code" href="class_spawn_base_u_gen_internal.html#ac4f3ccd84782a6498d3d06d673ab1719">events</a> &lt;&lt;= newVoice;
-<a name="l00154"></a>00154     <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a> = <a class="code" href="class_mix.html" title="Mix channels.">Mix</a>(&amp;<a class="code" href="class_spawn_base_u_gen_internal.html#ac4f3ccd84782a6498d3d06d673ab1719">events</a>, <span class="keyword">false</span>);
-<a name="l00155"></a>00155    }
-<a name="l00156"></a>00156    <span class="keywordflow">else</span>
-<a name="l00157"></a>00157    {
-<a name="l00158"></a>00158     ++numSamples;
-<a name="l00159"></a>00159    }
-<a name="l00160"></a>00160    
-<a name="l00161"></a>00161    <a class="code" href="class_t_spawn_u_gen_internal.html#a8a6cc1f21ac62900455fc71fd7045a5f">lastTrig</a> = currentTrig; 
-<a name="l00162"></a>00162    --numSamplesToProcess;
-<a name="l00163"></a>00163   }
-<a name="l00164"></a>00164   
-<a name="l00165"></a>00165   <a class="code" href="class_u_gen.html#a8acc7dd5f218816ac8759fdaa770900e">UGen::setBlockSize</a>(numSamples);
-<a name="l00166"></a>00166   
-<a name="l00167"></a>00167   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numChannels; channel++)
-<a name="l00168"></a>00168   {
-<a name="l00169"></a>00169    <a class="code" href="class_spawn_base_u_gen_internal.html#a0c9bb36182f19036764f20be0db1972a">bufferData</a>[channel] = <a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">getSampleData</a>() + startSample;
-<a name="l00170"></a>00170   }
-<a name="l00171"></a>00171   
-<a name="l00172"></a>00172   <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a>.<a class="code" href="class_u_gen.html#aa1930046f6d3ff1656ad244fedb53f13" title="Prepares a UGen for processing.">prepareForBlock</a>(numSamples, blockID + startSample);
-<a name="l00173"></a>00173   <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a>.<a class="code" href="class_u_gen.html#ab63673f3a08b506605eff7abd481072d" title="Set the outputs for the UGenInternal instances.">setOutputs</a>(<a class="code" href="class_spawn_base_u_gen_internal.html#a0c9bb36182f19036764f20be0db1972a">bufferData</a>, numSamples, numChannels);
-<a name="l00174"></a>00174   <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a>.<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID + startSample, -1);
-<a name="l00175"></a>00175   
-<a name="l00176"></a>00176   <a class="code" href="class_u_gen.html#a8acc7dd5f218816ac8759fdaa770900e">UGen::setBlockSize</a>(blockSize);
-<a name="l00177"></a>00177  }
-<a name="l00178"></a>00178 }
-<a name="l00179"></a>00179 
-<a name="l00180"></a>00180 
-<a name="l00181"></a><a class="code" href="class_t_spawn_u_gen_internal.html#a3a808307576990e1ca5bc2937ee28661">00181</a> <span class="keywordtype">void</span> <a class="code" href="class_t_spawn_u_gen_internal.html#a3a808307576990e1ca5bc2937ee28661">TSpawnUGenInternal::trigger</a>(<span class="keywordtype">void</span>* extraArgs) <span class="keywordflow">throw</span>()
-<a name="l00182"></a>00182 {
-<a name="l00183"></a>00183  <span class="keywordflow">if</span>(reachedMaxRepeats() == <span class="keyword">false</span>)
-<a name="l00184"></a>00184  {
-<a name="l00185"></a>00185   <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> newVoice = spawnEvent(*<span class="keyword">this</span>, currentEventIndex++, extraArgs);
-<a name="l00186"></a>00186   events &lt;&lt;= newVoice;
-<a name="l00187"></a>00187  }
-<a name="l00188"></a>00188 }
-<a name="l00189"></a>00189 
-<a name="l00190"></a>00190 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
+<a name="l00153"></a>00153     <span class="comment">//events &lt;&lt;= newVoice;</span>
+<a name="l00154"></a>00154     <span class="comment">//mixer = Mix(&amp;events, false);</span>
+<a name="l00155"></a>00155     <a class="code" href="class_spawn_base_u_gen_internal.html#ac4f3ccd84782a6498d3d06d673ab1719">events</a>.<a class="code" href="class_u_gen_array.html#aba34db3cc01d26d9039ea7b96b585ea0" title="Adds an item in-place.">add</a>(newVoice);
+<a name="l00156"></a>00156    }
+<a name="l00157"></a>00157    <span class="keywordflow">else</span>
+<a name="l00158"></a>00158    {
+<a name="l00159"></a>00159     ++numSamples;
+<a name="l00160"></a>00160    }
+<a name="l00161"></a>00161    
+<a name="l00162"></a>00162    <a class="code" href="class_t_spawn_u_gen_internal.html#a8a6cc1f21ac62900455fc71fd7045a5f">lastTrig</a> = currentTrig; 
+<a name="l00163"></a>00163    --numSamplesToProcess;
+<a name="l00164"></a>00164   }
+<a name="l00165"></a>00165   
+<a name="l00166"></a>00166   <a class="code" href="class_u_gen.html#a8acc7dd5f218816ac8759fdaa770900e">UGen::setBlockSize</a>(numSamples);
+<a name="l00167"></a>00167   
+<a name="l00168"></a>00168   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numChannels; channel++)
+<a name="l00169"></a>00169   {
+<a name="l00170"></a>00170    <a class="code" href="class_spawn_base_u_gen_internal.html#a0c9bb36182f19036764f20be0db1972a">bufferData</a>[channel] = <a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">getSampleData</a>() + startSample;
+<a name="l00171"></a>00171   }
+<a name="l00172"></a>00172   
+<a name="l00173"></a>00173   <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a>.<a class="code" href="class_u_gen.html#aa1930046f6d3ff1656ad244fedb53f13" title="Prepares a UGen for processing.">prepareForBlock</a>(numSamples, blockID + startSample);
+<a name="l00174"></a>00174   <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a>.<a class="code" href="class_u_gen.html#ab63673f3a08b506605eff7abd481072d" title="Set the outputs for the UGenInternal instances.">setOutputs</a>(<a class="code" href="class_spawn_base_u_gen_internal.html#a0c9bb36182f19036764f20be0db1972a">bufferData</a>, numSamples, numChannels);
+<a name="l00175"></a>00175   <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a>.<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID + startSample, -1);
+<a name="l00176"></a>00176   
+<a name="l00177"></a>00177   <a class="code" href="class_u_gen.html#a8acc7dd5f218816ac8759fdaa770900e">UGen::setBlockSize</a>(blockSize);
+<a name="l00178"></a>00178   <a class="code" href="class_spawn_base_u_gen_internal.html#ac4f3ccd84782a6498d3d06d673ab1719">events</a>.<a class="code" href="class_u_gen_array.html#afb1218afbe92e5033cae489f91031ce5" title="Removes all UGen instances which are null - in-place.">removeNulls</a>();
+<a name="l00179"></a>00179  }
+<a name="l00180"></a>00180 }
+<a name="l00181"></a>00181 
+<a name="l00182"></a>00182 
+<a name="l00183"></a><a class="code" href="class_t_spawn_u_gen_internal.html#a3a808307576990e1ca5bc2937ee28661">00183</a> <span class="keywordtype">void</span> <a class="code" href="class_t_spawn_u_gen_internal.html#a3a808307576990e1ca5bc2937ee28661">TSpawnUGenInternal::trigger</a>(<span class="keywordtype">void</span>* extraArgs) <span class="keywordflow">throw</span>()
+<a name="l00184"></a>00184 {
+<a name="l00185"></a>00185  <span class="keywordflow">if</span>(reachedMaxRepeats() == <span class="keyword">false</span>)
+<a name="l00186"></a>00186  {
+<a name="l00187"></a>00187   <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> newVoice = spawnEvent(*<span class="keyword">this</span>, currentEventIndex++, extraArgs);
+<a name="l00188"></a>00188   events &lt;&lt;= newVoice;
+<a name="l00189"></a>00189  }
+<a name="l00190"></a>00190 }
+<a name="l00191"></a>00191 
+<a name="l00192"></a>00192 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:52 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:04 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

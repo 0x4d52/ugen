@@ -164,6 +164,8 @@ Here is a list of all class members with links to the classes they belong to:
 <li>clear()
 : <a class="el" href="class_buffer.html#af8ec6ec556d0227cbcb57d40e2d2fb06">Buffer</a>
 , <a class="el" href="class_numerical_array.html#a4643dbcfa7ba2d6d82affbc9853c2018">NumericalArray&lt; NumericalType &gt;</a>
+, <a class="el" href="class_u_gen_array_1_1_internal.html#a0b891635c16e34037ef39127ff5c0132">UGenArray::Internal</a>
+, <a class="el" href="class_u_gen_array.html#af9f7c395c23d20967d5e07139bf4dde9">UGenArray</a>
 , <a class="el" href="class_neon.html#a1bbfce90544ec0ce7197d60b356c38c9">Neon</a>
 , <a class="el" href="class_v_f_p.html#a51c54909bb5e50ab5fa4971cd46dbdb3">VFP</a>
 </li>
@@ -175,6 +177,9 @@ Here is a list of all class members with links to the classes they belong to:
 </li>
 <li>clearOutputsAndReadData()
 : <a class="el" href="class_disk_in_u_gen_internal.html#a721982062dd0d8dd10a3c1bb72b3e040">DiskInUGenInternal</a>
+</li>
+<li>clearQuick()
+: <a class="el" href="class_u_gen_array_1_1_internal.html#a0ffcfac55f8a5f97eaa5ad1263f60324">UGenArray::Internal</a>
 </li>
 <li>Clip()
 : <a class="el" href="class_clip.html#a313d69fd73a96253cb578d09d20dcbac">Clip</a>
@@ -194,7 +199,7 @@ Here is a list of all class members with links to the classes they belong to:
 : <a class="el" href="class_ran088.html#a326cd66485e6e261dd9176e148d9df6f">Ran088</a>
 </li>
 <li>collect()
-: <a class="el" href="class_object_array.html#aeebda54b0909bbf128c66a1a0f1c9b4c">ObjectArray&lt; ObjectType &gt;</a>
+: <a class="el" href="class_object_array.html#abd760cd8df87fe7470d4ac9c34a39cdf">ObjectArray&lt; ObjectType &gt;</a>
 </li>
 <li>colours
 : <a class="el" href="class_scope_g_u_i.html#a42b6db50103320027f8218f75d502054">ScopeGUI</a>
@@ -226,12 +231,6 @@ Here is a list of all class members with links to the classes they belong to:
 </li>
 <li>comp
 : <a class="el" href="class_scoped_ignore_mouse.html#a90878b351e6ff7c3a38fbfe8abd09105">ScopedIgnoreMouse</a>
-</li>
-<li>compareEqual()
-: <a class="el" href="class_numerical_array.html#a76aae7b867aabd09ccea62346d4d5d90">NumericalArray&lt; NumericalType &gt;</a>
-</li>
-<li>compareNotEqual()
-: <a class="el" href="class_numerical_array.html#aefd33d47cec4a1582966f0c584457de9">NumericalArray&lt; NumericalType &gt;</a>
 </li>
 <li>ComplexBuffer
 : <a class="el" href="class_buffer_channel_internal.html#aaca41a700759552f904a7051e3007132">BufferChannelInternal</a>
@@ -318,10 +317,10 @@ Here is a list of all class members with links to the classes they belong to:
 : <a class="el" href="class_envelope_component.html#a737b7037d2bd918f0621a99f6c0906c9">EnvelopeComponent</a>
 </li>
 <li>copy()
-: <a class="el" href="class_buffer.html#a8908664132a5ffd8e30f591f281c57e9">Buffer</a>
+: <a class="el" href="class_v_f_p.html#aec02b92195149e801107d5b7830ca66c">VFP</a>
+, <a class="el" href="class_buffer.html#a8908664132a5ffd8e30f591f281c57e9">Buffer</a>
 , <a class="el" href="class_object_array.html#a03baa6c06a77a576a05e1898b9ccd19f">ObjectArray&lt; ObjectType &gt;</a>
 , <a class="el" href="class_neon.html#adfc2a839e7424bf2e63e99927306612b">Neon</a>
-, <a class="el" href="class_v_f_p.html#aec02b92195149e801107d5b7830ca66c">VFP</a>
 </li>
 <li>copy16()
 : <a class="el" href="class_v_f_p.html#a73ce71a05eeada79615c2fc07a5bc6ff">VFP</a>
@@ -338,11 +337,11 @@ Here is a list of all class members with links to the classes they belong to:
 , <a class="el" href="class_value_array.html#a69619f1df61bc57c0b50058d42eff45a">ValueArray</a>
 </li>
 <li>cosh()
-: <a class="el" href="class_u_gen.html#a46915899b0af0804a13d499b7392f5ff">UGen</a>
+: <a class="el" href="class_buffer.html#af7075b3d927428d9765793662020ec96">Buffer</a>
+, <a class="el" href="class_u_gen.html#a46915899b0af0804a13d499b7392f5ff">UGen</a>
 , <a class="el" href="class_u_gen_array.html#a593e8d8dd7aee88f1bc87086495ea01a">UGenArray</a>
-, <a class="el" href="class_value.html#abc55a398ff808a7a13938ed80d52f437">Value</a>
 , <a class="el" href="class_value_array.html#ad4014b7129877c06576a33f946c83c2a">ValueArray</a>
-, <a class="el" href="class_buffer.html#af7075b3d927428d9765793662020ec96">Buffer</a>
+, <a class="el" href="class_value.html#abc55a398ff808a7a13938ed80d52f437">Value</a>
 </li>
 <li>cosine
 : <a class="el" href="class_radial_scope_view.html#a39cfd97c8547cf40af0d987aeb5b43dc">RadialScopeView</a>
@@ -384,44 +383,49 @@ Here is a list of all class members with links to the classes they belong to:
 : <a class="el" href="class_bits.html#ab66becc1ebaf89f635f575f885dfb6e6">Bits</a>
 </li>
 <li>countValidInitialisers()
-: <a class="el" href="class_object_array2_d_base.html#a0014bd8bea7f90754b297e54927cced5">ObjectArray2DBase&lt; ArrayType, RowType &gt;</a>
-, <a class="el" href="class_numerical_array.html#af91ad8ac96da69379f7827ba2dfea0fe">NumericalArray&lt; NumericalType &gt;</a>
+: <a class="el" href="class_numerical_array.html#a7034df4b2a0580c2eb347d4b92d41289">NumericalArray&lt; NumericalType &gt;</a>
 , <a class="el" href="class_object_array2_d_base.html#a3abc2e63ee3302b2f3078ca53d079040">ObjectArray2DBase&lt; ArrayType, RowType &gt;</a>
-, <a class="el" href="class_numerical_array.html#ae1099b34494e6756484a14ce4adb503d">NumericalArray&lt; NumericalType &gt;</a>
+, <a class="el" href="class_numerical_array.html#a20f1a7032d4ac350b5673dd0287efbe0">NumericalArray&lt; NumericalType &gt;</a>
+, <a class="el" href="class_object_array2_d_base.html#aa266a52b8b03b8f7b51d0d86de935874">ObjectArray2DBase&lt; ArrayType, RowType &gt;</a>
 , <a class="el" href="class_object_array.html#abd9e168e254e7fc3f9da0cf319d86d4f">ObjectArray&lt; ObjectType &gt;</a>
+, <a class="el" href="class_object_array2_d_base.html#ade493c6ad2ce7f5c549dea3816b66c8a">ObjectArray2DBase&lt; ArrayType, RowType &gt;</a>
+, <a class="el" href="class_object_array.html#a1cedde28c7f19595b1d63b54e1f1d7d7">ObjectArray&lt; ObjectType &gt;</a>
+, <a class="el" href="class_numerical_array.html#af91ad8ac96da69379f7827ba2dfea0fe">NumericalArray&lt; NumericalType &gt;</a>
+, <a class="el" href="class_object_array2_d_base.html#a0014bd8bea7f90754b297e54927cced5">ObjectArray2DBase&lt; ArrayType, RowType &gt;</a>
+, <a class="el" href="class_object_array.html#aa1f51b1ae827d2125d76ff312d07b7a3">ObjectArray&lt; ObjectType &gt;</a>
 </li>
 <li>cpsmidi()
-: <a class="el" href="class_u_gen_array.html#a17eea01c7b789262ed5da28d8b16fd33">UGenArray</a>
-, <a class="el" href="class_buffer.html#a2e82c08c24f5fef15e0c08b756816b5d">Buffer</a>
+: <a class="el" href="class_u_gen.html#a452a7f2025c833eaf7990cd461fbb653">UGen</a>
+, <a class="el" href="class_u_gen_array.html#a17eea01c7b789262ed5da28d8b16fd33">UGenArray</a>
 , <a class="el" href="class_value.html#ac521950f7032950938a2c42103278045">Value</a>
-, <a class="el" href="class_u_gen.html#a452a7f2025c833eaf7990cd461fbb653">UGen</a>
+, <a class="el" href="class_buffer.html#a2e82c08c24f5fef15e0c08b756816b5d">Buffer</a>
 , <a class="el" href="class_numerical_array.html#a4b6f61a6817eaaf0de3e4db778299d89">NumericalArray&lt; NumericalType &gt;</a>
 , <a class="el" href="class_value_array.html#a82030dd17d24c24dbf8aff3c6f3d242a">ValueArray</a>
 </li>
 <li>create()
-: <a class="el" href="class_envelope_node_popup.html#afb3e43523fe3f7f3ca92a2f329d70123">EnvelopeNodePopup</a>
-, <a class="el" href="class_envelope_curve_popup.html#a0054d354d22944dd641bf06ae6836d7c">EnvelopeCurvePopup</a>
+: <a class="el" href="class_envelope_curve_popup.html#a0054d354d22944dd641bf06ae6836d7c">EnvelopeCurvePopup</a>
+, <a class="el" href="class_envelope_node_popup.html#afb3e43523fe3f7f3ca92a2f329d70123">EnvelopeNodePopup</a>
 </li>
 <li>createArray()
 : <a class="el" href="class_mix_fill_base_event_base.html#ab6e27e2a0295e500602f0ccf8a8b2605">MixFillBaseEventBase</a>
 </li>
 <li>createEvent()
-: <a class="el" href="class_recirc_base_chain_1_1_recirc_base_chain_link.html#a73a259db18f039e02a92d178b41e0197">RecircBaseChain&lt; RecircBaseType &gt;::RecircBaseChainLink</a>
-, <a class="el" href="class_chain_bank_event_3_01void_01_4.html#a0b9bcf0cbcf42b46fd4f31a0f565ed64">ChainBankEvent&lt; void &gt;</a>
-, <a class="el" href="class_mix_fill_base_event_base.html#a37ff77ca321976512bbf49be128b0047">MixFillBaseEventBase</a>
+: <a class="el" href="class_chain_bank_event_3_01void_01_4.html#a0b9bcf0cbcf42b46fd4f31a0f565ed64">ChainBankEvent&lt; void &gt;</a>
 , <a class="el" href="class_chain_bank_event.html#ad920bc5b42ad1a030b6c512203551827">ChainBankEvent&lt; OwnerType &gt;</a>
+, <a class="el" href="class_recirc_base_chain_1_1_recirc_base_chain_link.html#a73a259db18f039e02a92d178b41e0197">RecircBaseChain&lt; RecircBaseType &gt;::RecircBaseChainLink</a>
+, <a class="el" href="class_mix_fill_base_event_base.html#a37ff77ca321976512bbf49be128b0047">MixFillBaseEventBase</a>
 </li>
 <li>createUserData()
 : <a class="el" href="class_voicer_base_u_gen_internal.html#a5d77b1ecccd6d10d53e760d2ec6c82cd">VoicerBaseUGenInternal</a>
 </li>
 <li>cubed()
-: <a class="el" href="class_buffer.html#adf8245ac6e2475695bd80ed651750541">Buffer</a>
+: <a class="el" href="class_u_gen.html#a2c2ff5f49f041f819a36dcc5c9b8434c">UGen</a>
+, <a class="el" href="class_buffer.html#adf8245ac6e2475695bd80ed651750541">Buffer</a>
 , <a class="el" href="class_value.html#a6dafd47583a7af57a5d60834850ad453">Value</a>
-, <a class="el" href="class_neon.html#ad527b2aaf475093a34dd48dad23ab1b5">Neon</a>
 , <a class="el" href="class_value_array.html#afac13849d6598f23da4d4d83c02f6992">ValueArray</a>
+, <a class="el" href="class_neon.html#ad527b2aaf475093a34dd48dad23ab1b5">Neon</a>
 , <a class="el" href="class_v_f_p.html#ad7c6a51d20be377261baeec1407a3ec2">VFP</a>
 , <a class="el" href="class_numerical_array.html#a82438a0d563c2fd6e82ab23ab34f84b8">NumericalArray&lt; NumericalType &gt;</a>
-, <a class="el" href="class_u_gen.html#a2c2ff5f49f041f819a36dcc5c9b8434c">UGen</a>
 , <a class="el" href="class_u_gen_array.html#a648fcff75c771fc3433afaef08af8ba5">UGenArray</a>
 </li>
 <li>currentAmplitude
@@ -473,20 +477,20 @@ Here is a list of all class members with links to the classes they belong to:
 : <a class="el" href="class_normaliser_u_gen_internal.html#a510d1dbf7ceb7ae3477cdec7edc2d4b1">NormaliserUGenInternal</a>
 </li>
 <li>currentPacket
-: <a class="el" href="class_disk_in_u_gen_internal.html#ad624f5b69c5c24f37f8c101c5dd80722">DiskInUGenInternal</a>
-, <a class="el" href="class_disk_out_u_gen_internal.html#a505a5f40a186031035044932d3456a3d">DiskOutUGenInternal</a>
+: <a class="el" href="class_disk_out_u_gen_internal.html#a505a5f40a186031035044932d3456a3d">DiskOutUGenInternal</a>
+, <a class="el" href="class_disk_in_u_gen_internal.html#ad624f5b69c5c24f37f8c101c5dd80722">DiskInUGenInternal</a>
 </li>
 <li>currentPhase
-: <a class="el" href="class_l_f_pulse_u_gen_internal.html#a5340819e7dfdd2bbb12e42464b64320b">LFPulseUGenInternal</a>
+: <a class="el" href="class_table_osc_u_gen_internal.html#a84f11af8afbf83a3713ba88e0e7f71df">TableOscUGenInternal</a>
 , <a class="el" href="class_impulse_u_gen_internal.html#aae2a606bebf4f72a58ee910c2f19da81">ImpulseUGenInternal</a>
-, <a class="el" href="class_table_osc_u_gen_internal.html#a84f11af8afbf83a3713ba88e0e7f71df">TableOscUGenInternal</a>
 , <a class="el" href="class_phasor_u_gen_internal.html#aa9b471b823c7b69e3ae811d2fb22a779">PhasorUGenInternal</a>
+, <a class="el" href="class_l_f_pulse_u_gen_internal.html#a5340819e7dfdd2bbb12e42464b64320b">LFPulseUGenInternal</a>
 , <a class="el" href="class_l_f_saw_u_gen_internal.html#a40fbd2b72a7c8d839a37da03ebf9d4de">LFSawUGenInternal</a>
 </li>
 <li>currentSegment
 : <a class="el" href="class_linen_u_gen_internal.html#aebbbdb70a69095cd2a75773ac8885587">LinenUGenInternal</a>
-, <a class="el" href="class_env_gen_u_gen_internal.html#ad375d54dec65b6a68bb2cb9dc9e36916">EnvGenUGenInternal</a>
 , <a class="el" href="class_a_s_r_u_gen_internal.html#a19b21e0a11837ddf54eded76030cd703">ASRUGenInternal</a>
+, <a class="el" href="class_env_gen_u_gen_internal.html#ad375d54dec65b6a68bb2cb9dc9e36916">EnvGenUGenInternal</a>
 </li>
 <li>currentSourceFadeLevel
 : <a class="el" href="class_plug_u_gen_internal.html#af0ea626a9f52b2c4f0fb541d757130d5">PlugUGenInternal</a>
@@ -498,21 +502,21 @@ Here is a list of all class members with links to the classes they belong to:
 : <a class="el" href="class_sequence_value_internal.html#adfc3cf3075c1e75d28a8c496ba9c0540">SequenceValueInternal</a>
 </li>
 <li>currentValue
-: <a class="el" href="class_toggle_f_f_u_gen_internal.html#a1c669fb85b83b495034daa601e3e1bc4">ToggleFFUGenInternal</a>
-, <a class="el" href="class_a_s_r_u_gen_internal.html#a28483c0df874f1a8d819b5381034e77f">ASRUGenInternal</a>
-, <a class="el" href="class_env_gen_u_gen_internal.html#a5595857c92225f60c14b7bdd17a9fb8e">EnvGenUGenInternal</a>
-, <a class="el" href="class_sequence_value_internal.html#a46c427d8783a13ba84ee726e27c48a63">SequenceValueInternal</a>
-, <a class="el" href="class_s_a_h_u_gen_internal.html#ac5ee42c6a66ea81daba8247779da9cb3">SAHUGenInternal</a>
-, <a class="el" href="class_l_f_noise0_u_gen_internal.html#ace8d787d9d070208553819c6987649e0">LFNoise0UGenInternal</a>
-, <a class="el" href="class_l_line_u_gen_internal.html#adaa6c372bf0a713710a75dcfae7c775d">LLineUGenInternal</a>
-, <a class="el" href="class_l_f_noise2_u_gen_internal.html#a4dd3176c53451483698ac6e1baa886ab">LFNoise2UGenInternal</a>
-, <a class="el" href="class_l_f_noise1_u_gen_internal.html#a9e6a657d12501b32460e9e63fe94322a">LFNoise1UGenInternal</a>
-, <a class="el" href="class_brown_noise_u_gen_internal.html#a6209eb05e7273a2bec013f736df15cf9">BrownNoiseUGenInternal</a>
+: <a class="el" href="class_brown_noise_u_gen_internal.html#a6209eb05e7273a2bec013f736df15cf9">BrownNoiseUGenInternal</a>
 , <a class="el" href="class_linen_u_gen_internal.html#a8d899f8c2e3eab199bb717e997b6447d">LinenUGenInternal</a>
+, <a class="el" href="class_env_gen_u_gen_internal.html#a5595857c92225f60c14b7bdd17a9fb8e">EnvGenUGenInternal</a>
+, <a class="el" href="class_s_a_h_u_gen_internal.html#ac5ee42c6a66ea81daba8247779da9cb3">SAHUGenInternal</a>
+, <a class="el" href="class_l_f_noise2_u_gen_internal.html#a4dd3176c53451483698ac6e1baa886ab">LFNoise2UGenInternal</a>
+, <a class="el" href="class_l_line_u_gen_internal.html#adaa6c372bf0a713710a75dcfae7c775d">LLineUGenInternal</a>
+, <a class="el" href="class_a_s_r_u_gen_internal.html#a28483c0df874f1a8d819b5381034e77f">ASRUGenInternal</a>
+, <a class="el" href="class_sequence_value_internal.html#a46c427d8783a13ba84ee726e27c48a63">SequenceValueInternal</a>
+, <a class="el" href="class_l_f_noise0_u_gen_internal.html#ace8d787d9d070208553819c6987649e0">LFNoise0UGenInternal</a>
+, <a class="el" href="class_l_f_noise1_u_gen_internal.html#a9e6a657d12501b32460e9e63fe94322a">LFNoise1UGenInternal</a>
+, <a class="el" href="class_toggle_f_f_u_gen_internal.html#a1c669fb85b83b495034daa601e3e1bc4">ToggleFFUGenInternal</a>
 </li>
 <li>curve
-: <a class="el" href="class_l_f_noise2_u_gen_internal.html#aafa9b430f52b3ad3ff6fae45bcccadbc">LFNoise2UGenInternal</a>
-, <a class="el" href="class_envelope_handle_component.html#a2a8967b3a946212a38e59c6a02b15673">EnvelopeHandleComponent</a>
+: <a class="el" href="class_envelope_handle_component.html#a2a8967b3a946212a38e59c6a02b15673">EnvelopeHandleComponent</a>
+, <a class="el" href="class_l_f_noise2_u_gen_internal.html#aafa9b430f52b3ad3ff6fae45bcccadbc">LFNoise2UGenInternal</a>
 </li>
 <li>curve_
 : <a class="el" href="class_env_curve.html#a47c0f55a7431b58d0c1748741400113a">EnvCurve</a>
@@ -531,7 +535,7 @@ Here is a list of all class members with links to the classes they belong to:
 </li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 12:57:25 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:06 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

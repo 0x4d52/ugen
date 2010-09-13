@@ -214,6 +214,9 @@ Here is a list of all class members with links to the classes they belong to:
 <li>RealImagUnpackedSplit
 : <a class="el" href="class_f_f_t_engine.html#a031641a7a727847346ada093094756f4ae909cead9947efdde587fb67acfb54db">FFTEngine</a>
 </li>
+<li>reallocate()
+: <a class="el" href="class_u_gen_array_1_1_internal.html#ad544a570d337ca391d283c1e5ca9c5f3">UGenArray::Internal</a>
+</li>
 <li>recalculateHandles()
 : <a class="el" href="class_envelope_component.html#a57fbc6691fd4be7b8a1ce4c8bb65130c">EnvelopeComponent</a>
 </li>
@@ -273,9 +276,6 @@ Here is a list of all class members with links to the classes they belong to:
 <li>ReleasableUGenInternal()
 : <a class="el" href="class_releasable_u_gen_internal.html#a198fd3ec9711d5111e06e19d777b37f8">ReleasableUGenInternal</a>
 </li>
-<li>Release
-: <a class="el" href="class_envelope_node_popup.html#ac10d27e983a80ff78672633dbd06fd2bacfe105aedca5b07f397f661bab74a78e">EnvelopeNodePopup</a>
-</li>
 <li>release()
 : <a class="el" href="class_u_gen.html#aa18ce6433b3b6f03fab9fbe841a65657">UGen</a>
 , <a class="el" href="class_u_gen_array.html#a4edafe81c688487e9226ce59179c0745">UGenArray</a>
@@ -283,21 +283,24 @@ Here is a list of all class members with links to the classes they belong to:
 , <a class="el" href="class_a_s_r_u_gen_internal.html#af8800ee3cb7f5539fe6f900f93c41d2b">ASRUGenInternal</a>
 , <a class="el" href="class_env_gen_u_gen_internal.html#a4f0aad71ac0c1c1d9ab4c2825e44581d">EnvGenUGenInternal</a>
 </li>
+<li>Release
+: <a class="el" href="class_envelope_node_popup.html#ac10d27e983a80ff78672633dbd06fd2bacfe105aedca5b07f397f661bab74a78e">EnvelopeNodePopup</a>
+</li>
 <li>ReleaseAndLoop
 : <a class="el" href="class_envelope_node_popup.html#ac10d27e983a80ff78672633dbd06fd2ba90813062bf8ad07fcd918946890c2d3f">EnvelopeNodePopup</a>
 </li>
 <li>releaseInternal()
-: <a class="el" href="class_plug_u_gen_internal.html#a08a3d3cf09c344bc2d8020045487f5c7">PlugUGenInternal</a>
+: <a class="el" href="class_releasable_u_gen_internal.html#ae522c781e6182d456f75365f68adc9e6">ReleasableUGenInternal</a>
 , <a class="el" href="class_mix_array_u_gen_internal.html#a42ae7286326794285f5e6d12fe63f19c">MixArrayUGenInternal</a>
+, <a class="el" href="class_plug_u_gen_internal.html#a08a3d3cf09c344bc2d8020045487f5c7">PlugUGenInternal</a>
 , <a class="el" href="class_u_gen_internal.html#abaf01396d3f7582c43032188e760636c">UGenInternal</a>
-, <a class="el" href="class_releasable_u_gen_internal.html#ae522c781e6182d456f75365f68adc9e6">ReleasableUGenInternal</a>
 , <a class="el" href="class_spawn_base_u_gen_internal.html#a935c4b47c2876fcf70a6a30a510e19e3">SpawnBaseUGenInternal</a>
-</li>
-<li>ReleaseNode
-: <a class="el" href="class_envelope_component.html#a9010bb05d3431c1e75a653ad1bad3bd2a0bfc5ae42187c8bcc889fae70d937e91">EnvelopeComponent</a>
 </li>
 <li>releaseNode
 : <a class="el" href="class_envelope_component.html#a333fb45b003ec027a57fcecad9084641">EnvelopeComponent</a>
+</li>
+<li>ReleaseNode
+: <a class="el" href="class_envelope_component.html#a9010bb05d3431c1e75a653ad1bad3bd2a0bfc5ae42187c8bcc889fae70d937e91">EnvelopeComponent</a>
 </li>
 <li>releaseNode_
 : <a class="el" href="class_env_1_1_env_internal.html#a2f1873664f23ecb47fe03cbfa49ea206">Env::EnvInternal</a>
@@ -306,8 +309,8 @@ Here is a list of all class members with links to the classes they belong to:
 : <a class="el" href="class_plug_u_gen_internal.html#aa91fd3e6ff5ee0e32352bfaf046fc082">PlugUGenInternal</a>
 </li>
 <li>ReleaseSegment
-: <a class="el" href="class_linen_u_gen_internal.html#a75848d2200412d8767c2a09f054cef48aab899b7090add410981f300c7efb7f49">LinenUGenInternal</a>
-, <a class="el" href="class_a_s_r_u_gen_internal.html#aa3d434129c4a5438fa3e25efa156e588a8257d30731a42a6658f9952aa492756b">ASRUGenInternal</a>
+: <a class="el" href="class_a_s_r_u_gen_internal.html#aa3d434129c4a5438fa3e25efa156e588a8257d30731a42a6658f9952aa492756b">ASRUGenInternal</a>
+, <a class="el" href="class_linen_u_gen_internal.html#a75848d2200412d8767c2a09f054cef48aab899b7090add410981f300c7efb7f49">LinenUGenInternal</a>
 </li>
 <li>releaseTime_
 : <a class="el" href="class_a_s_r_u_gen_internal.html#a6fad1bac1dedacf280c28b4d6761c654">ASRUGenInternal</a>
@@ -315,7 +318,9 @@ Here is a list of all class members with links to the classes they belong to:
 </li>
 <li>remove()
 : <a class="el" href="class_object_array_internal.html#afd27288cf49deab4de14924e2cae69cd">ObjectArrayInternal&lt; ObjectType &gt;</a>
-, <a class="el" href="class_object_array.html#a5c1da27763abc96e39be01e1a1a84a14">ObjectArray&lt; ObjectType &gt;</a>
+, <a class="el" href="class_object_array.html#a6b2d22402553fb5e22ed7c2966d74de7">ObjectArray&lt; ObjectType &gt;</a>
+, <a class="el" href="class_u_gen_array_1_1_internal.html#a0da899198b03f2ea14f4cdac217532f6">UGenArray::Internal</a>
+, <a class="el" href="class_u_gen_array.html#ab7e4bc9c579f7f77c9870b0134a01a8a">UGenArray</a>
 , <a class="el" href="class_dictionary.html#aee8b8fb99e32739a8c9f55a81c6ca01b">Dictionary&lt; ValueType, KeyType &gt;</a>
 </li>
 <li>removeBufferReceiver()
@@ -326,15 +331,24 @@ Here is a list of all class members with links to the classes they belong to:
 : <a class="el" href="class_envelope_component.html#a6ad32f0f8503a047890230c50dfc4a87">EnvelopeComponent</a>
 </li>
 <li>removeItem()
-: <a class="el" href="class_object_array.html#a1e7751857091fc966f7c9956dc41a92c">ObjectArray&lt; ObjectType &gt;</a>
+: <a class="el" href="class_object_array.html#a691f1805e81bbe042bcc07d84d7eb8e0">ObjectArray&lt; ObjectType &gt;</a>
+, <a class="el" href="class_u_gen_array.html#afe03887fc89541f462ab64a4c53c3e3a">UGenArray</a>
 </li>
 <li>removeItems()
-: <a class="el" href="class_object_array.html#acc3d0cda4b78d253e2112e35e1668d50">ObjectArray&lt; ObjectType &gt;</a>
+: <a class="el" href="class_object_array.html#a4c9d17a3269ab9904a4fb2219c367b6f">ObjectArray&lt; ObjectType &gt;</a>
 </li>
 <li>removeListener()
-: <a class="el" href="class_envelope_container_component.html#ab9f00c786299875b0d7071356af34fcd">EnvelopeContainerComponent</a>
+: <a class="el" href="class_juce_m_i_d_i_input_broadcaster.html#acf3b62f91b8d5eb06cbf36c5f7b76716">JuceMIDIInputBroadcaster</a>
 , <a class="el" href="class_envelope_component.html#af0802900e9071ebe4298c63102ca4a27">EnvelopeComponent</a>
-, <a class="el" href="class_juce_m_i_d_i_input_broadcaster.html#acf3b62f91b8d5eb06cbf36c5f7b76716">JuceMIDIInputBroadcaster</a>
+, <a class="el" href="class_envelope_container_component.html#ab9f00c786299875b0d7071356af34fcd">EnvelopeContainerComponent</a>
+</li>
+<li>removeNulls()
+: <a class="el" href="class_u_gen_array_1_1_internal.html#a595e13863136fe7a86fd53befc4b2f60">UGenArray::Internal</a>
+, <a class="el" href="class_u_gen_array.html#afb1218afbe92e5033cae489f91031ce5">UGenArray</a>
+</li>
+<li>removeOther()
+: <a class="el" href="class_juce_i_o_host_internal.html#a2cd0e3e498bbbe700e96f0267c248237">JuceIOHostInternal</a>
+, <a class="el" href="class_juce_i_o_host.html#ab6e822bab10234803fdd9d077af687ef">JuceIOHost</a>
 </li>
 <li>removeThisHandle()
 : <a class="el" href="class_envelope_handle_component.html#a16ff31c305838be8b589619849d8a0ef">EnvelopeHandleComponent</a>
@@ -346,8 +360,9 @@ Here is a list of all class members with links to the classes they belong to:
 : <a class="el" href="class_scope_component_base.html#a93cad0ed4c9deed3e733eda0a7cd8407acd03fe5cd8a39e331fe52b9fd7f837ca">ScopeComponentBase</a>
 </li>
 <li>replace()
-: <a class="el" href="class_object_array.html#a596d19434b80e819291091dd81a9c4b4">ObjectArray&lt; ObjectType &gt;</a>
-, <a class="el" href="class_numerical_array.html#a9475cf107d6573863c23b07d061b6a32">NumericalArray&lt; NumericalType &gt;</a>
+: <a class="el" href="class_numerical_array.html#ad3c31d1dc080c82547b49e23e8364bad">NumericalArray&lt; NumericalType &gt;</a>
+, <a class="el" href="class_object_array.html#a596d19434b80e819291091dd81a9c4b4">ObjectArray&lt; ObjectType &gt;</a>
+, <a class="el" href="class_numerical_array.html#a77022ce86443f0c118b2b1db008c90b7">NumericalArray&lt; NumericalType &gt;</a>
 </li>
 <li>replaceIgnoreCase()
 : <a class="el" href="class_text.html#a390ea2de1307909c181875096c98f343">Text</a>
@@ -365,13 +380,13 @@ Here is a list of all class members with links to the classes they belong to:
 : <a class="el" href="class_envelope_handle_component.html#a3f883d3c595fb55f3552a38074eff752">EnvelopeHandleComponent</a>
 </li>
 <li>resized()
-: <a class="el" href="class_envelope_node_popup.html#ae8e1fb107266ea669c9a890fd2caffe1">EnvelopeNodePopup</a>
-, <a class="el" href="class_envelope_legend_component.html#a6a2cffcffd6e9e19421f3e526fc862e5">EnvelopeLegendComponent</a>
-, <a class="el" href="class_multi_slider_base.html#a9665064d6d40ab4012144712b1d9766b">MultiSliderBase</a>
+: <a class="el" href="class_multi_slider_base.html#a9665064d6d40ab4012144712b1d9766b">MultiSliderBase</a>
+, <a class="el" href="class_envelope_component.html#a7cce2db9f9328dd84d47f4b47b5289c3">EnvelopeComponent</a>
+, <a class="el" href="class_envelope_node_popup.html#ae8e1fb107266ea669c9a890fd2caffe1">EnvelopeNodePopup</a>
 , <a class="el" href="class_scope_component_base.html#af6590db99fb3a986de93c3ae66bb0b3c">ScopeComponentBase</a>
 , <a class="el" href="class_envelope_container_component.html#aa4c386221b196fbf341aa8167420d75a">EnvelopeContainerComponent</a>
-, <a class="el" href="class_envelope_component.html#a7cce2db9f9328dd84d47f4b47b5289c3">EnvelopeComponent</a>
 , <a class="el" href="class_envelope_curve_popup.html#a623701cfa9172cc68552558999e0dd1e">EnvelopeCurvePopup</a>
+, <a class="el" href="class_envelope_legend_component.html#a6a2cffcffd6e9e19421f3e526fc862e5">EnvelopeLegendComponent</a>
 </li>
 <li>resizedGUI()
 : <a class="el" href="class_scope_g_u_i.html#ae6301e75feead756d5ac8c1ec176c237">ScopeGUI</a>
@@ -383,7 +398,7 @@ Here is a list of all class members with links to the classes they belong to:
 : <a class="el" href="class_buffer.html#aa171c51b63f14e494f18b89aa02a19a7">Buffer</a>
 </li>
 <li>RGBAColour()
-: <a class="el" href="class_r_g_b_a_colour.html#aa50ffc62e180b9276bcfac03fbb48cd6">RGBAColour</a>
+: <a class="el" href="class_r_g_b_a_colour.html#a228863962e9fec44f47be18dd5e97751">RGBAColour</a>
 </li>
 <li>rightLimit
 : <a class="el" href="class_envelope_handle_component_constrainer.html#ab18ed16b31ce1b07e5c1eef55eb96636">EnvelopeHandleComponentConstrainer</a>
@@ -395,45 +410,45 @@ Here is a list of all class members with links to the classes they belong to:
 : <a class="el" href="class_binary_op_value_internal.html#a0622e0295dc1f6bec7a1e7154943a5e1">BinaryOpValueInternal</a>
 </li>
 <li>ring1()
-: <a class="el" href="class_value.html#aad27bae089dfe8b7f9c03b9c6a08b559">Value</a>
-, <a class="el" href="class_u_gen.html#ac92e3bb86291dde31aac30ea879251ff">UGen</a>
-, <a class="el" href="class_buffer.html#a69c6ee062cc782658f11da46ffd56a78">Buffer</a>
-, <a class="el" href="class_value_array.html#a1ef1ebff98cd1371fa1948fa9263d663">ValueArray</a>
+: <a class="el" href="class_buffer.html#a69c6ee062cc782658f11da46ffd56a78">Buffer</a>
 , <a class="el" href="class_u_gen_array.html#ae277f31911bbb6cf0ce79153c71c7970">UGenArray</a>
+, <a class="el" href="class_value_array.html#a1ef1ebff98cd1371fa1948fa9263d663">ValueArray</a>
+, <a class="el" href="class_value.html#aad27bae089dfe8b7f9c03b9c6a08b559">Value</a>
+, <a class="el" href="class_u_gen.html#ac92e3bb86291dde31aac30ea879251ff">UGen</a>
 </li>
 <li>ring2()
-: <a class="el" href="class_value_array.html#a862bdf7994a6f0049520fc1f78b70cf6">ValueArray</a>
-, <a class="el" href="class_buffer.html#ae72bfd0b714f67e309e414c3716c3550">Buffer</a>
+: <a class="el" href="class_u_gen.html#a09c0c1e7fc211b97fce65f0985d291c0">UGen</a>
 , <a class="el" href="class_value.html#a128c4e0d3470901d962bd8bc69431f18">Value</a>
+, <a class="el" href="class_buffer.html#ae72bfd0b714f67e309e414c3716c3550">Buffer</a>
+, <a class="el" href="class_value_array.html#a862bdf7994a6f0049520fc1f78b70cf6">ValueArray</a>
 , <a class="el" href="class_u_gen_array.html#aa223e80ab11bb26fca4824619139211c">UGenArray</a>
-, <a class="el" href="class_u_gen.html#a09c0c1e7fc211b97fce65f0985d291c0">UGen</a>
 </li>
 <li>ring3()
-: <a class="el" href="class_u_gen.html#a16c06888960b975b4e9e0bd76364afac">UGen</a>
-, <a class="el" href="class_value_array.html#aea1cc694fa28929b5f6f549d13d2d225">ValueArray</a>
+: <a class="el" href="class_u_gen_array.html#ae4f10642da125ec15f5a895759a33e24">UGenArray</a>
 , <a class="el" href="class_value.html#a60e6813c38ea8e3aa300ceedeabf9a81">Value</a>
+, <a class="el" href="class_u_gen.html#a16c06888960b975b4e9e0bd76364afac">UGen</a>
 , <a class="el" href="class_buffer.html#a16887a209f84944868b401c6c0e8a488">Buffer</a>
-, <a class="el" href="class_u_gen_array.html#ae4f10642da125ec15f5a895759a33e24">UGenArray</a>
+, <a class="el" href="class_value_array.html#aea1cc694fa28929b5f6f549d13d2d225">ValueArray</a>
 </li>
 <li>ring4()
-: <a class="el" href="class_buffer.html#ab1bedf475cfcf458f00f305a0e304ed1">Buffer</a>
-, <a class="el" href="class_value.html#a5d8b05c2023e510000e0a65c41d45a16">Value</a>
+: <a class="el" href="class_u_gen_array.html#aaf8e305e6585b7863a1eb8b037f5caac">UGenArray</a>
 , <a class="el" href="class_u_gen.html#a2aa7f301eefdcdd6b7600753b6eefbb9">UGen</a>
-, <a class="el" href="class_u_gen_array.html#aaf8e305e6585b7863a1eb8b037f5caac">UGenArray</a>
+, <a class="el" href="class_buffer.html#ab1bedf475cfcf458f00f305a0e304ed1">Buffer</a>
 , <a class="el" href="class_value_array.html#ac21227af55d499b260bf0a0b0876ae9a">ValueArray</a>
+, <a class="el" href="class_value.html#a5d8b05c2023e510000e0a65c41d45a16">Value</a>
 </li>
 <li>rioUnit
 : <a class="el" href="interface_u_i_kit_a_u_i_o_host.html#a0d08cf999ed5cf5b3fbbe9a0431fce22">UIKitAUIOHost</a>
 </li>
 <li>round()
 : <a class="el" href="class_u_gen.html#a15c5320f4460f09378ea6ed15665cde5">UGen</a>
-, <a class="el" href="class_value.html#ae937476b22e66a9b702d67579e605c32">Value</a>
-, <a class="el" href="class_buffer.html#a407ccb157397da47962f86ff7d191b11">Buffer</a>
 , <a class="el" href="class_value_array.html#a61883e3a02df991b1926dec51f0c2aab">ValueArray</a>
 , <a class="el" href="class_u_gen_array.html#a45122b91d20d8ecd33d9f45693a9771c">UGenArray</a>
+, <a class="el" href="class_buffer.html#a407ccb157397da47962f86ff7d191b11">Buffer</a>
+, <a class="el" href="class_value.html#ae937476b22e66a9b702d67579e605c32">Value</a>
 </li>
 <li>roundCopy()
-: <a class="el" href="class_numerical_array.html#a12fc1dbe6c6ad687d1f89263b8a6d676">NumericalArray&lt; NumericalType &gt;</a>
+: <a class="el" href="class_numerical_array.html#ac7300fdd2d6f0d04e89832ef6ba9d493">NumericalArray&lt; NumericalType &gt;</a>
 </li>
 <li>rwPointer1
 : <a class="el" href="class_part_convolve_u_gen_internal.html#afa33f18ecb0d1ea71a2996868457e333">PartConvolveUGenInternal</a>
@@ -443,7 +458,7 @@ Here is a list of all class members with links to the classes they belong to:
 </li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 12:57:25 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:06 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

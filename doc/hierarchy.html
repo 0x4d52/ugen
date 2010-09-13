@@ -175,6 +175,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:<ul>
 <li><a class="el" href="class_int_buffer.html">IntBuffer</a></li>
 <li><a class="el" href="class_interceptor.html">Interceptor</a></li>
 <li><a class="el" href="class_juce_i_o_host.html">JuceIOHost</a></li>
+<li><a class="el" href="class_juce_i_o_host_internal.html">JuceIOHostInternal</a></li>
 <li><a class="el" href="class_juce_m_i_d_i_input_broadcaster.html">JuceMIDIInputBroadcaster</a></li>
 <li><a class="el" href="class_juce_m_i_d_i_input_listener.html">JuceMIDIInputListener</a><ul>
 <li><a class="el" href="class_m_i_d_i_controller_internal.html">MIDIControllerInternal</a></li>
@@ -248,7 +249,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:<ul>
 <li><a class="el" href="class_object_array_internal.html">ObjectArrayInternal&lt; Text &gt;</a></li>
 <li><a class="el" href="class_text_file_reader_internal.html">TextFileReaderInternal</a></li>
 <li><a class="el" href="class_text_file_writer_internal.html">TextFileWriterInternal</a></li>
-<li><a class="el" href="class_u_gen_array_1_1_u_gen_array_internal.html">UGenArray::UGenArrayInternal</a></li>
+<li><a class="el" href="class_u_gen_array_1_1_internal.html">UGenArray::Internal</a></li>
 <li><a class="el" href="class_u_gen_internal.html">UGenInternal</a><ul>
 <li><a class="el" href="class_amplitude_u_gen_internal.html">AmplitudeUGenInternal</a></li>
 <li><a class="el" href="class_b_e_q_base_u_gen_internal.html">BEQBaseUGenInternal</a><ul>
@@ -287,10 +288,6 @@ This inheritance list is sorted roughly, but not completely, alphabetically:<ul>
 <li><a class="el" href="class_binary_divide_u_gen_internal_k.html">BinaryDivideUGenInternalK</a></li>
 </ul>
 </li>
-<li><a class="el" href="class_binary_equal_u_gen_internal.html">BinaryEqualUGenInternal</a><ul>
-<li><a class="el" href="class_binary_equal_u_gen_internal_k.html">BinaryEqualUGenInternalK</a></li>
-</ul>
-</li>
 <li><a class="el" href="class_binary_fold2_u_gen_internal.html">BinaryFold2UGenInternal</a><ul>
 <li><a class="el" href="class_binary_fold2_u_gen_internal_k.html">BinaryFold2UGenInternalK</a></li>
 </ul>
@@ -311,6 +308,14 @@ This inheritance list is sorted roughly, but not completely, alphabetically:<ul>
 <li><a class="el" href="class_binary_hypot_u_gen_internal_k.html">BinaryHypotUGenInternalK</a></li>
 </ul>
 </li>
+<li><a class="el" href="class_binary_is_equal_to_u_gen_internal.html">BinaryIsEqualToUGenInternal</a><ul>
+<li><a class="el" href="class_binary_is_equal_to_u_gen_internal_k.html">BinaryIsEqualToUGenInternalK</a></li>
+</ul>
+</li>
+<li><a class="el" href="class_binary_is_not_equal_to_u_gen_internal.html">BinaryIsNotEqualToUGenInternal</a><ul>
+<li><a class="el" href="class_binary_is_not_equal_to_u_gen_internal_k.html">BinaryIsNotEqualToUGenInternalK</a></li>
+</ul>
+</li>
 <li><a class="el" href="class_binary_less_than_or_equals_u_gen_internal.html">BinaryLessThanOrEqualsUGenInternal</a><ul>
 <li><a class="el" href="class_binary_less_than_or_equals_u_gen_internal_k.html">BinaryLessThanOrEqualsUGenInternalK</a></li>
 </ul>
@@ -329,10 +334,6 @@ This inheritance list is sorted roughly, but not completely, alphabetically:<ul>
 </li>
 <li><a class="el" href="class_binary_multiply_u_gen_internal.html">BinaryMultiplyUGenInternal</a><ul>
 <li><a class="el" href="class_binary_multiply_u_gen_internal_k.html">BinaryMultiplyUGenInternalK</a></li>
-</ul>
-</li>
-<li><a class="el" href="class_binary_not_equal_u_gen_internal.html">BinaryNotEqualUGenInternal</a><ul>
-<li><a class="el" href="class_binary_not_equal_u_gen_internal_k.html">BinaryNotEqualUGenInternalK</a></li>
 </ul>
 </li>
 <li><a class="el" href="class_binary_pow_u_gen_internal.html">BinaryPowUGenInternal</a><ul>
@@ -786,18 +787,18 @@ This inheritance list is sorted roughly, but not completely, alphabetically:<ul>
 <li><a class="el" href="class_binary_clip2_value_internal.html">BinaryClip2ValueInternal</a></li>
 <li><a class="el" href="class_binary_dif_sqr_value_internal.html">BinaryDifSqrValueInternal</a></li>
 <li><a class="el" href="class_binary_divide_value_internal.html">BinaryDivideValueInternal</a></li>
-<li><a class="el" href="class_binary_equal_value_internal.html">BinaryEqualValueInternal</a></li>
 <li><a class="el" href="class_binary_fold2_value_internal.html">BinaryFold2ValueInternal</a></li>
 <li><a class="el" href="class_binary_fold_value_internal.html">BinaryFoldValueInternal</a></li>
 <li><a class="el" href="class_binary_greater_than_or_equals_value_internal.html">BinaryGreaterThanOrEqualsValueInternal</a></li>
 <li><a class="el" href="class_binary_greater_than_value_internal.html">BinaryGreaterThanValueInternal</a></li>
 <li><a class="el" href="class_binary_hypot_value_internal.html">BinaryHypotValueInternal</a></li>
+<li><a class="el" href="class_binary_is_equal_to_value_internal.html">BinaryIsEqualToValueInternal</a></li>
+<li><a class="el" href="class_binary_is_not_equal_to_value_internal.html">BinaryIsNotEqualToValueInternal</a></li>
 <li><a class="el" href="class_binary_less_than_or_equals_value_internal.html">BinaryLessThanOrEqualsValueInternal</a></li>
 <li><a class="el" href="class_binary_less_than_value_internal.html">BinaryLessThanValueInternal</a></li>
 <li><a class="el" href="class_binary_max_value_internal.html">BinaryMaxValueInternal</a></li>
 <li><a class="el" href="class_binary_min_value_internal.html">BinaryMinValueInternal</a></li>
 <li><a class="el" href="class_binary_multiply_value_internal.html">BinaryMultiplyValueInternal</a></li>
-<li><a class="el" href="class_binary_not_equal_value_internal.html">BinaryNotEqualValueInternal</a></li>
 <li><a class="el" href="class_binary_pow_value_internal.html">BinaryPowValueInternal</a></li>
 <li><a class="el" href="class_binary_ring1_value_internal.html">BinaryRing1ValueInternal</a></li>
 <li><a class="el" href="class_binary_ring2_value_internal.html">BinaryRing2ValueInternal</a></li>
@@ -982,18 +983,18 @@ This inheritance list is sorted roughly, but not completely, alphabetically:<ul>
 <li><a class="el" href="class_binary_clip2_u_gen.html">BinaryClip2UGen</a></li>
 <li><a class="el" href="class_binary_dif_sqr_u_gen.html">BinaryDifSqrUGen</a></li>
 <li><a class="el" href="class_binary_divide_u_gen.html">BinaryDivideUGen</a></li>
-<li><a class="el" href="class_binary_equal_u_gen.html">BinaryEqualUGen</a></li>
 <li><a class="el" href="class_binary_fold2_u_gen.html">BinaryFold2UGen</a></li>
 <li><a class="el" href="class_binary_fold_u_gen.html">BinaryFoldUGen</a></li>
 <li><a class="el" href="class_binary_greater_than_or_equals_u_gen.html">BinaryGreaterThanOrEqualsUGen</a></li>
 <li><a class="el" href="class_binary_greater_than_u_gen.html">BinaryGreaterThanUGen</a></li>
 <li><a class="el" href="class_binary_hypot_u_gen.html">BinaryHypotUGen</a></li>
+<li><a class="el" href="class_binary_is_equal_to_u_gen.html">BinaryIsEqualToUGen</a></li>
+<li><a class="el" href="class_binary_is_not_equal_to_u_gen.html">BinaryIsNotEqualToUGen</a></li>
 <li><a class="el" href="class_binary_less_than_or_equals_u_gen.html">BinaryLessThanOrEqualsUGen</a></li>
 <li><a class="el" href="class_binary_less_than_u_gen.html">BinaryLessThanUGen</a></li>
 <li><a class="el" href="class_binary_max_u_gen.html">BinaryMaxUGen</a></li>
 <li><a class="el" href="class_binary_min_u_gen.html">BinaryMinUGen</a></li>
 <li><a class="el" href="class_binary_multiply_u_gen.html">BinaryMultiplyUGen</a></li>
-<li><a class="el" href="class_binary_not_equal_u_gen.html">BinaryNotEqualUGen</a></li>
 <li><a class="el" href="class_binary_pow_u_gen.html">BinaryPowUGen</a></li>
 <li><a class="el" href="class_binary_ring1_u_gen.html">BinaryRing1UGen</a></li>
 <li><a class="el" href="class_binary_ring2_u_gen.html">BinaryRing2UGen</a></li>
@@ -1147,18 +1148,18 @@ This inheritance list is sorted roughly, but not completely, alphabetically:<ul>
 <li><a class="el" href="class_binary_clip2_value.html">BinaryClip2Value</a></li>
 <li><a class="el" href="class_binary_dif_sqr_value.html">BinaryDifSqrValue</a></li>
 <li><a class="el" href="class_binary_divide_value.html">BinaryDivideValue</a></li>
-<li><a class="el" href="class_binary_equal_value.html">BinaryEqualValue</a></li>
 <li><a class="el" href="class_binary_fold2_value.html">BinaryFold2Value</a></li>
 <li><a class="el" href="class_binary_fold_value.html">BinaryFoldValue</a></li>
 <li><a class="el" href="class_binary_greater_than_or_equals_value.html">BinaryGreaterThanOrEqualsValue</a></li>
 <li><a class="el" href="class_binary_greater_than_value.html">BinaryGreaterThanValue</a></li>
 <li><a class="el" href="class_binary_hypot_value.html">BinaryHypotValue</a></li>
+<li><a class="el" href="class_binary_is_equal_to_value.html">BinaryIsEqualToValue</a></li>
+<li><a class="el" href="class_binary_is_not_equal_to_value.html">BinaryIsNotEqualToValue</a></li>
 <li><a class="el" href="class_binary_less_than_or_equals_value.html">BinaryLessThanOrEqualsValue</a></li>
 <li><a class="el" href="class_binary_less_than_value.html">BinaryLessThanValue</a></li>
 <li><a class="el" href="class_binary_max_value.html">BinaryMaxValue</a></li>
 <li><a class="el" href="class_binary_min_value.html">BinaryMinValue</a></li>
 <li><a class="el" href="class_binary_multiply_value.html">BinaryMultiplyValue</a></li>
-<li><a class="el" href="class_binary_not_equal_value.html">BinaryNotEqualValue</a></li>
 <li><a class="el" href="class_binary_pow_value.html">BinaryPowValue</a></li>
 <li><a class="el" href="class_binary_ring1_value.html">BinaryRing1Value</a></li>
 <li><a class="el" href="class_binary_ring2_value.html">BinaryRing2Value</a></li>
@@ -1217,7 +1218,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:<ul>
 <li><a class="el" href="union_voicer_user_data_union.html">VoicerUserDataUnion</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Sep 9 2010 09:39:24 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:06 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

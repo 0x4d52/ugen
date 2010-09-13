@@ -30,7 +30,7 @@
 <h1>basics/ugen_InlineBinaryOps.h</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___inline_binary_ops_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_InlineBinaryOps.h 112 2010-08-21 19:01:40Z 0x4d52 $</span>
+<a href="ugen___inline_binary_ops_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_InlineBinaryOps.h 137 2010-09-11 07:23:14Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/basics/ugen_InlineBinaryOps.h $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -85,12 +85,12 @@
 <a name="l00071"></a>00071 <span class="preprocessor">  \</span>
 <a name="l00072"></a>00072 <span class="preprocessor"> CLASSNAME operator^ (CLASSNAME const&amp; rightOperand) const throw();      \</span>
 <a name="l00073"></a>00073 <span class="preprocessor">             \</span>
-<a name="l00084"></a>00084 <span class="preprocessor"> CLASSNAME equal (CLASSNAME const&amp; rightOperand) const throw();      \</span>
+<a name="l00084"></a>00084 <span class="preprocessor"> CLASSNAME isEqualTo (CLASSNAME const&amp; rightOperand) const throw();      \</span>
 <a name="l00085"></a>00085 <span class="preprocessor">             \</span>
-<a name="l00096"></a>00096 <span class="preprocessor"> CLASSNAME notEqual (CLASSNAME const&amp; rightOperand) const throw();      \</span>
+<a name="l00096"></a>00096 <span class="preprocessor"> CLASSNAME isNotEqualTo (CLASSNAME const&amp; rightOperand) const throw();      \</span>
 <a name="l00097"></a>00097 <span class="preprocessor">             \</span>
-<a name="l00104"></a><a class="code" href="ugen___inline_binary_ops_8h.html#a44e5d72ebdadc7109d7e9a9f07572b4a">00104</a> <span class="preprocessor"> CLASSNAME operator&lt; (CLASSNAME const&amp; rightOperand) const throw();      \</span>
-<a name="l00105"></a><a class="code" href="ugen___inline_binary_ops_8h.html#a33c0fdf91382984a0d467705c251ad8c">00105</a> <span class="preprocessor">             \</span>
+<a name="l00104"></a><a class="code" href="ugen___inline_binary_ops_8h.html#a348e3944ef84d662dd2374858e4ee8cf">00104</a> <span class="preprocessor"> CLASSNAME operator&lt; (CLASSNAME const&amp; rightOperand) const throw();      \</span>
+<a name="l00105"></a><a class="code" href="ugen___inline_binary_ops_8h.html#a42c5e86f801cbe4525beff0285f3ecfd">00105</a> <span class="preprocessor">             \</span>
 <a name="l00112"></a>00112 <span class="preprocessor"> CLASSNAME operator&gt; (CLASSNAME const&amp; rightOperand) const throw();      \</span>
 <a name="l00113"></a><a class="code" href="ugen___inline_binary_ops_8h.html#a2ce0ee3eadd8a1bc9a00efd3e7a5efdd">00113</a> <span class="preprocessor">             \</span>
 <a name="l00123"></a><a class="code" href="ugen___inline_binary_ops_8h.html#ad61931b1ae6b8e5bb714e2e6744f4470">00123</a> <span class="preprocessor"> CLASSNAME operator&lt;= (CLASSNAME const&amp; rightOperand) const throw();      \</span>
@@ -133,10 +133,10 @@
 <a name="l00191"></a>00191 
 <a name="l00192"></a>00192 
 <a name="l00193"></a>00193 
-<a name="l00194"></a>00194 <span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="ugen___binary_op_u_gens_8cpp.html#aafc0ea8e43f7a4a4dc0e430b36592114" title="Global function for the UGen::equal() binary operator.">equal</a>(<span class="keywordtype">float</span> a, <span class="keywordtype">float</span> b) <span class="keywordflow">throw</span>()    { <span class="keywordflow">return</span> (a==b) ? 1.f : 0.f; }
-<a name="l00195"></a>00195 <span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ab9d63e92240b3afdd48a774193a33265" title="Global function for the UGen::notEqual() binary operator.">notEqual</a>(<span class="keywordtype">float</span> a, <span class="keywordtype">float</span> b) <span class="keywordflow">throw</span>()    { <span class="keywordflow">return</span> (a!=b) ? 1.f : 0.f; }
-<a name="l00196"></a>00196 <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code" href="ugen___binary_op_u_gens_8cpp.html#aafc0ea8e43f7a4a4dc0e430b36592114" title="Global function for the UGen::equal() binary operator.">equal</a>(<span class="keywordtype">double</span> a, <span class="keywordtype">double</span> b) <span class="keywordflow">throw</span>()    { <span class="keywordflow">return</span> (a==b) ? 1.0 : 0.0; }
-<a name="l00197"></a>00197 <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ab9d63e92240b3afdd48a774193a33265" title="Global function for the UGen::notEqual() binary operator.">notEqual</a>(<span class="keywordtype">double</span> a, <span class="keywordtype">double</span> b) <span class="keywordflow">throw</span>()   { <span class="keywordflow">return</span> (a!=b) ? 1.0 : 0.0; }
+<a name="l00194"></a>00194 <span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a2507d9e53343fc2c0787b7758a8ac77f" title="Global function for the UGen::isEqualTo() binary operator.">isEqualTo</a>(<span class="keywordtype">float</span> a, <span class="keywordtype">float</span> b) <span class="keywordflow">throw</span>()    { <span class="keywordflow">return</span> (a==b) ? 1.f : 0.f; }
+<a name="l00195"></a>00195 <span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ace0f2e824f58811558677594af5d2de8" title="Global function for the UGen::isNotEqualTo() binary operator.">isNotEqualTo</a>(<span class="keywordtype">float</span> a, <span class="keywordtype">float</span> b) <span class="keywordflow">throw</span>()    { <span class="keywordflow">return</span> (a!=b) ? 1.f : 0.f; }
+<a name="l00196"></a>00196 <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a2507d9e53343fc2c0787b7758a8ac77f" title="Global function for the UGen::isEqualTo() binary operator.">isEqualTo</a>(<span class="keywordtype">double</span> a, <span class="keywordtype">double</span> b) <span class="keywordflow">throw</span>()    { <span class="keywordflow">return</span> (a==b) ? 1.0 : 0.0; }
+<a name="l00197"></a>00197 <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ace0f2e824f58811558677594af5d2de8" title="Global function for the UGen::isNotEqualTo() binary operator.">isNotEqualTo</a>(<span class="keywordtype">double</span> a, <span class="keywordtype">double</span> b) <span class="keywordflow">throw</span>()   { <span class="keywordflow">return</span> (a!=b) ? 1.0 : 0.0; }
 <a name="l00198"></a>00198 
 <a name="l00199"></a>00199 <span class="preprocessor">#ifdef _WIN32</span>
 <a name="l00200"></a>00200 <span class="preprocessor"></span><span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a8e40fd093fb24a8568f11c963627a3ec" title="Global function for the UGen::hypot() binary operator.">hypot</a> (<span class="keywordtype">float</span> a, <span class="keywordtype">float</span> b) <span class="keywordflow">throw</span>()    { <span class="keywordflow">return</span> (<span class="keywordtype">float</span>) ::_hypot ((double)a, (<span class="keywordtype">double</span>)b); }
@@ -468,7 +468,7 @@
 <a name="l00526"></a>00526 <span class="preprocessor"></span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:49 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:02 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

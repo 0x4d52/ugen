@@ -185,13 +185,13 @@
 <a name="l00165"></a>00165   <span class="keywordflow">if</span>(index &gt;= 0)
 <a name="l00166"></a>00166   {
 <a name="l00167"></a>00167    ValueType&amp; oldValue = values[index];
-<a name="l00168"></a>00168    values.<a class="code" href="class_object_array.html#a2bf222a3c589c941edac179f41dba863" title="Places an item at the given index.">put</a>(index, <a class="code" href="class_dictionary.html#ae92215cec3ad9533f2aa85d761504945" title="Get a value at a particular index.">value</a>);
+<a name="l00168"></a>00168    values.<a class="code" href="class_object_array.html#ad675f23eada53adcadda78f096b3642d" title="Places an item at the given index.">put</a>(index, <a class="code" href="class_dictionary.html#ae92215cec3ad9533f2aa85d761504945" title="Get a value at a particular index.">value</a>);
 <a name="l00169"></a>00169    <span class="keywordflow">return</span> oldValue;
 <a name="l00170"></a>00170   }
 <a name="l00171"></a>00171   <span class="keywordflow">else</span>
 <a name="l00172"></a>00172   {
-<a name="l00173"></a>00173    keys.<a class="code" href="class_object_array.html#aa15b17d07062a81fa7fbc0fb275d18af" title="Adds an item in place.">add</a>(<a class="code" href="class_dictionary.html#a17ce658ebb6fe914bb044e60a3c5ae6d" title="Get a key at a particular index.">key</a>);
-<a name="l00174"></a>00174    values.<a class="code" href="class_object_array.html#aa15b17d07062a81fa7fbc0fb275d18af" title="Adds an item in place.">add</a>(<a class="code" href="class_dictionary.html#ae92215cec3ad9533f2aa85d761504945" title="Get a value at a particular index.">value</a>);
+<a name="l00173"></a>00173    keys.<a class="code" href="class_object_array.html#aa15b17d07062a81fa7fbc0fb275d18af" title="Adds an item in-place.">add</a>(<a class="code" href="class_dictionary.html#a17ce658ebb6fe914bb044e60a3c5ae6d" title="Get a key at a particular index.">key</a>);
+<a name="l00174"></a>00174    values.<a class="code" href="class_object_array.html#aa15b17d07062a81fa7fbc0fb275d18af" title="Adds an item in-place.">add</a>(<a class="code" href="class_dictionary.html#ae92215cec3ad9533f2aa85d761504945" title="Get a value at a particular index.">value</a>);
 <a name="l00175"></a>00175    <span class="keywordflow">return</span> <a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt;ValueType&gt;::getNull</a>();
 <a name="l00176"></a>00176   }
 <a name="l00177"></a>00177  }
@@ -256,8 +256,8 @@
 <a name="l00246"></a>00246   <span class="keywordflow">if</span>(index &gt;= 0)
 <a name="l00247"></a>00247   {
 <a name="l00248"></a>00248    ValueType&amp; removed = values[index];
-<a name="l00249"></a>00249    keys.<a class="code" href="class_object_array.html#a5c1da27763abc96e39be01e1a1a84a14" title="Removes an item at the given index.">remove</a>(index);
-<a name="l00250"></a>00250    values.<a class="code" href="class_object_array.html#a5c1da27763abc96e39be01e1a1a84a14" title="Removes an item at the given index.">remove</a>(index);
+<a name="l00249"></a>00249    keys.<a class="code" href="class_object_array.html#a6b2d22402553fb5e22ed7c2966d74de7" title="Removes an item at the given index in-place.">remove</a>(index);
+<a name="l00250"></a>00250    values.<a class="code" href="class_object_array.html#a6b2d22402553fb5e22ed7c2966d74de7" title="Removes an item at the given index in-place.">remove</a>(index);
 <a name="l00251"></a>00251    <span class="keywordflow">return</span> removed;
 <a name="l00252"></a>00252   }
 <a name="l00253"></a>00253   <span class="keywordflow">else</span>
@@ -320,7 +320,7 @@
 <a name="l00317"></a>00317 <span class="preprocessor">#endif // _UGEN_ugen_Collections_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 13:05:02 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:03 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

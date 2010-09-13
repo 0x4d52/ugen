@@ -30,7 +30,7 @@
 <h1>basics/ugen_BinaryOpUGens.h</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___binary_op_u_gens_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_BinaryOpUGens.h 112 2010-08-21 19:01:40Z 0x4d52 $</span>
+<a href="ugen___binary_op_u_gens_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_BinaryOpUGens.h 137 2010-09-11 07:23:14Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/basics/ugen_BinaryOpUGens.h $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -350,13 +350,13 @@
 <a name="l00380"></a>00380 <span class="preprocessor"> {                             \</span>
 <a name="l00381"></a>00381 <span class="preprocessor">  int size;                          \</span>
 <a name="l00382"></a>00382 <span class="preprocessor">                              \</span>
-<a name="l00383"></a>00383 <span class="preprocessor">  if(internal-&gt;size_ &gt; rightOperand.internal-&gt;size_)  size = internal-&gt;size_;          \</span>
-<a name="l00384"></a>00384 <span class="preprocessor">  else            size = rightOperand.internal-&gt;size_;      \</span>
+<a name="l00383"></a>00383 <span class="preprocessor">  if(internal-&gt;size() &gt; rightOperand.internal-&gt;size())  size = internal-&gt;size();         \</span>
+<a name="l00384"></a>00384 <span class="preprocessor">  else              size = rightOperand.internal-&gt;size();      \</span>
 <a name="l00385"></a>00385 <span class="preprocessor">                              \</span>
 <a name="l00386"></a>00386 <span class="preprocessor">  UGenArray newArray(size);                      \</span>
 <a name="l00387"></a>00387 <span class="preprocessor">                              \</span>
 <a name="l00388"></a>00388 <span class="preprocessor">  for(int i = 0; i &lt; size; i++) {                     \</span>
-<a name="l00389"></a>00389 <span class="preprocessor">   newArray.internal-&gt;array[i] = wrapAt(i) OPSYMBOL rightOperand.wrapAt(i);         \</span>
+<a name="l00389"></a>00389 <span class="preprocessor">   newArray.internal-&gt;getArray()[i] = wrapAt(i) OPSYMBOL rightOperand.wrapAt(i);        \</span>
 <a name="l00390"></a>00390 <span class="preprocessor">  }                            \</span>
 <a name="l00391"></a>00391 <span class="preprocessor">                              \</span>
 <a name="l00392"></a>00392 <span class="preprocessor">  return newArray;                        \</span>
@@ -502,13 +502,13 @@
 <a name="l00532"></a>00532 <span class="preprocessor">                              \</span>
 <a name="l00533"></a>00533 <span class="preprocessor">  int size;                          \</span>
 <a name="l00534"></a>00534 <span class="preprocessor">                              \</span>
-<a name="l00535"></a>00535 <span class="preprocessor">  if(internal-&gt;size_ &gt; rightOperand.internal-&gt;size_)  size = internal-&gt;size_;          \</span>
-<a name="l00536"></a>00536 <span class="preprocessor">  else            size = rightOperand.internal-&gt;size_;      \</span>
+<a name="l00535"></a>00535 <span class="preprocessor">  if(internal-&gt;size() &gt; rightOperand.internal-&gt;size())  size = internal-&gt;size();         \</span>
+<a name="l00536"></a>00536 <span class="preprocessor">  else              size = rightOperand.internal-&gt;size();      \</span>
 <a name="l00537"></a>00537 <span class="preprocessor">                              \</span>
 <a name="l00538"></a>00538 <span class="preprocessor">  UGenArray newArray(size);                      \</span>
 <a name="l00539"></a>00539 <span class="preprocessor">                              \</span>
 <a name="l00540"></a>00540 <span class="preprocessor">  for(int i = 0; i &lt; size; i++) {                     \</span>
-<a name="l00541"></a>00541 <span class="preprocessor">   newArray.internal-&gt;array[i] = wrapAt(i).OPFUNCTION(rightOperand.wrapAt(i));         \</span>
+<a name="l00541"></a>00541 <span class="preprocessor">   newArray.internal-&gt;getArray()[i] = wrapAt(i).OPFUNCTION(rightOperand.wrapAt(i));       \</span>
 <a name="l00542"></a>00542 <span class="preprocessor">  }                            \</span>
 <a name="l00543"></a>00543 <span class="preprocessor">                              \</span>
 <a name="l00544"></a>00544 <span class="preprocessor">  return newArray;                        \</span>
@@ -594,8 +594,8 @@
 <a name="l00624"></a>00624 <span class="preprocessor"> }                             \</span>
 <a name="l00625"></a>00625 <span class="preprocessor">                              \</span>
 <a name="l00626"></a>00626 <span class="preprocessor"> Value Value::OPFUNCTION(Value const&amp; rightOperand) const throw()             \</span>
-<a name="l00627"></a><a class="code" href="class_binary_equal_u_gen_internal_k.html#acfd53d4efcd8f535885e77ca013f815e">00627</a> <span class="preprocessor"> {                             \</span>
-<a name="l00628"></a><a class="code" href="class_binary_not_equal_u_gen_internal_k.html#ae241a3e8801faf5383eb3e86bd55ef91">00628</a> <span class="preprocessor">  return Binary##OPNAME##Value(*this, rightOperand);                \</span>
+<a name="l00627"></a><a class="code" href="class_binary_is_equal_to_u_gen_internal_k.html#acf639acdd4450c83f876f433667c4e7a">00627</a> <span class="preprocessor"> {                             \</span>
+<a name="l00628"></a><a class="code" href="class_binary_is_not_equal_to_u_gen_internal_k.html#a397df32d904425701e2fa26a76bb1458">00628</a> <span class="preprocessor">  return Binary##OPNAME##Value(*this, rightOperand);                \</span>
 <a name="l00629"></a>00629 <span class="preprocessor"> }                             \</span>
 <a name="l00630"></a><a class="code" href="class_binary_pow_u_gen_internal_k.html#a026f631df8a2d66d7825b23aa3602a61">00630</a> <span class="preprocessor">                              \</span>
 <a name="l00631"></a><a class="code" href="class_binary_hypot_u_gen_internal_k.html#a392df6fbb60b4e944331bd7b49e32682">00631</a> <span class="preprocessor"> ValueArray OPFUNCTION(ValueArray const&amp; leftOperand, ValueArray const&amp; rightOperand) throw()      \</span>
@@ -656,8 +656,8 @@
 <a name="l00686"></a>00686 <span class="comment">//BinaryOpSymbolUGenDeclaration(Equal,    ==);</span>
 <a name="l00687"></a>00687 <span class="comment">//BinaryOpSymbolUGenDeclaration(NotEqual,    !=);</span>
 <a name="l00688"></a>00688 
-<a name="l00689"></a>00689 <a class="code" href="ugen___binary_op_u_gens_8h.html#a4d6fabbf61e5a75d99e2847f12dfe967">BinaryOpFunctionUGenDeclaration</a>(Equal,    <a class="code" href="ugen___binary_op_u_gens_8cpp.html#aafc0ea8e43f7a4a4dc0e430b36592114" title="Global function for the UGen::equal() binary operator.">equal</a>);
-<a name="l00690"></a>00690 <a class="code" href="ugen___binary_op_u_gens_8h.html#a4d6fabbf61e5a75d99e2847f12dfe967">BinaryOpFunctionUGenDeclaration</a>(NotEqual,   <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ab9d63e92240b3afdd48a774193a33265" title="Global function for the UGen::notEqual() binary operator.">notEqual</a>);
+<a name="l00689"></a>00689 <a class="code" href="ugen___binary_op_u_gens_8h.html#a4d6fabbf61e5a75d99e2847f12dfe967">BinaryOpFunctionUGenDeclaration</a>(IsEqualTo,    <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a2507d9e53343fc2c0787b7758a8ac77f" title="Global function for the UGen::isEqualTo() binary operator.">isEqualTo</a>);
+<a name="l00690"></a>00690 <a class="code" href="ugen___binary_op_u_gens_8h.html#a4d6fabbf61e5a75d99e2847f12dfe967">BinaryOpFunctionUGenDeclaration</a>(IsNotEqualTo,   <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ace0f2e824f58811558677594af5d2de8" title="Global function for the UGen::isNotEqualTo() binary operator.">isNotEqualTo</a>);
 <a name="l00691"></a>00691 
 <a name="l00692"></a>00692 <a class="code" href="ugen___binary_op_u_gens_8h.html#a4d6fabbf61e5a75d99e2847f12dfe967">BinaryOpFunctionUGenDeclaration</a>(Pow,    <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a6fa1308b8c07eb1bcac7853238deb6f3" title="Global function for the UGen::pow() binary operator.">pow</a>);
 <a name="l00693"></a>00693 <a class="code" href="ugen___binary_op_u_gens_8h.html#a4d6fabbf61e5a75d99e2847f12dfe967">BinaryOpFunctionUGenDeclaration</a>(Hypot,    <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a8e40fd093fb24a8568f11c963627a3ec" title="Global function for the UGen::hypot() binary operator.">hypot</a>);
@@ -758,7 +758,7 @@
 <a name="l00835"></a>00835 <span class="preprocessor">#endif // BINARYOPUGENS_H</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:49 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:02 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

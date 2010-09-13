@@ -52,9 +52,7 @@
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mix_u_gen_internal.html#a70656cafe99ccd7d293b2edf9af9cb2b">MixUGenInternal</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;array, bool shouldAllowAutoDelete=true)  throw ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor using a reference to a <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a>.  <a href="#a70656cafe99ccd7d293b2edf9af9cb2b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mix_u_gen_internal.html#a3594a415f692680594ad48eb0aff1aa5">MixUGenInternal</a> (<a class="el" href="class_u_gen.html">UGen</a> *array, bool shouldAllowAutoDelete=true)  throw ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor using a pointer to a <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a>.  <a href="#a3594a415f692680594ad48eb0aff1aa5"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor using a <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a>.  <a href="#a70656cafe99ccd7d293b2edf9af9cb2b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mix_u_gen_internal.html#a1c9ff40b79174cbff3316fe627bbb016">processBlock</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Render a block of audio.  <a href="#a1c9ff40b79174cbff3316fe627bbb016"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
@@ -92,54 +90,16 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Constructor using a reference to a <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a>. </p>
+<p>Constructor using a <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a>. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>array</em>&nbsp;</td><td>A reference to the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> to be mixed. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>array</em>&nbsp;</td><td>The <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> to be mixed. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>shouldAllowAutoDelete</em>&nbsp;</td><td>If true this behaves like most other <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> objects i.e., it may be deleted by a DoneAction (e.g., an envelope ending). If false this protects <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> instances further down the chain (and itself) from being deleted by DoneActions. </td></tr>
   </table>
   </dd>
 </dl>
 
 <p>Definition at line <a class="el" href="ugen___mix_u_gen_8cpp_source.html#l00044">44</a> of file <a class="el" href="ugen___mix_u_gen_8cpp_source.html">ugen_MixUGen.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3594a415f692680594ad48eb0aff1aa5"></a><!-- doxytag: member="MixUGenInternal::MixUGenInternal" ref="a3594a415f692680594ad48eb0aff1aa5" args="(UGen *array, bool shouldAllowAutoDelete=true)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">MixUGenInternal::MixUGenInternal </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> *&nbsp;</td>
-          <td class="paramname"> <em>array</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&nbsp;</td>
-          <td class="paramname"> <em>shouldAllowAutoDelete</em> = <code>true</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Constructor using a pointer to a <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a>. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>array</em>&nbsp;</td><td>A pointer to the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> to be mixed. Make sure the object this points to is not deleted before this object. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>shouldAllowAutoDelete</em>&nbsp;</td><td>If true this behaves like most other <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> objects i.e., it may be deleted by a DoneAction (e.g., an envelope ending). If false this protects <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> instances further down the chain (and itself) from being deleted by DoneActions. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="ugen___mix_u_gen_8cpp_source.html#l00059">59</a> of file <a class="el" href="ugen___mix_u_gen_8cpp_source.html">ugen_MixUGen.cpp</a>.</p>
 
 </div>
 </div>
@@ -179,9 +139,9 @@ Private Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="class_u_gen_internal.html#ae1c9c941ea6f372d8af8cc5f9ae32ace">UGenInternal</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___mix_u_gen_8cpp_source.html#l00074">74</a> of file <a class="el" href="ugen___mix_u_gen_8cpp_source.html">ugen_MixUGen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___mix_u_gen_8cpp_source.html#l00060">60</a> of file <a class="el" href="ugen___mix_u_gen_8cpp_source.html">ugen_MixUGen.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_internal_8h_source.html#l00081">UGenOutput::getBlockSize()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l01186">UGen::getNumChannels()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00082">UGenOutput::getSampleData()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00228">UGenInternal::inputs</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l00923">UGen::processBlock()</a>, <a class="el" href="ugen___mix_u_gen_8h_source.html#l00073">shouldAllowAutoDelete_</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00233">UGenInternal::uGenOutput</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_internal_8h_source.html#l00079">UGenOutput::getBlockSize()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l01192">UGen::getNumChannels()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00080">UGenOutput::getSampleData()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00225">UGenInternal::inputs</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l00919">UGen::processBlock()</a>, <a class="el" href="ugen___mix_u_gen_8h_source.html#l00064">shouldAllowAutoDelete_</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00230">UGenInternal::uGenOutput</a>.</p>
 
 </div>
 </div>
@@ -197,9 +157,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___mix_u_gen_8h_source.html#l00073">73</a> of file <a class="el" href="ugen___mix_u_gen_8h_source.html">ugen_MixUGen.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___mix_u_gen_8h_source.html#l00064">64</a> of file <a class="el" href="ugen___mix_u_gen_8h_source.html">ugen_MixUGen.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___mix_u_gen_8cpp_source.html#l00074">processBlock()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___mix_u_gen_8cpp_source.html#l00060">processBlock()</a>.</p>
 
 </div>
 </div>
@@ -208,7 +168,7 @@ Private Attributes</h2></td></tr>
 <li>basics/<a class="el" href="ugen___mix_u_gen_8cpp_source.html">ugen_MixUGen.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:56 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:09 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

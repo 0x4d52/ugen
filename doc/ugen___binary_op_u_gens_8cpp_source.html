@@ -30,7 +30,7 @@
 <h1>basics/ugen_BinaryOpUGens.cpp</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___binary_op_u_gens_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_BinaryOpUGens.cpp 112 2010-08-21 19:01:40Z 0x4d52 $</span>
+<a href="ugen___binary_op_u_gens_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_BinaryOpUGens.cpp 137 2010-09-11 07:23:14Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/basics/ugen_BinaryOpUGens.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -121,8 +121,8 @@
 <a name="l00089"></a>00089 <span class="comment">//BinaryOpSymbolUGenDefinition(Equal,     ==, ==);</span>
 <a name="l00090"></a>00090 <span class="comment">//BinaryOpSymbolUGenDefinition(NotEqual,    !=, !=);</span>
 <a name="l00091"></a>00091 
-<a name="l00092"></a><a class="code" href="ugen___binary_op_u_gens_8h.html#a22e70ee2007f1eb33ceeca8c34fb4dd2">00092</a> <a class="code" href="ugen___binary_op_u_gens_8h.html#ac42e8c42647d461dbe2c76f473fd80a3">BinaryOpFunctionUGenDefinition</a>(Equal,  <a class="code" href="ugen___binary_op_u_gens_8cpp.html#aafc0ea8e43f7a4a4dc0e430b36592114" title="Global function for the UGen::equal() binary operator.">equal</a>,  <a class="code" href="ugen___binary_op_u_gens_8cpp.html#aafc0ea8e43f7a4a4dc0e430b36592114" title="Global function for the UGen::equal() binary operator.">equal</a>);
-<a name="l00093"></a><a class="code" href="ugen___binary_op_u_gens_8h.html#ad31f8619758800b24362c762cbe504d6">00093</a> <a class="code" href="ugen___binary_op_u_gens_8h.html#ac42e8c42647d461dbe2c76f473fd80a3">BinaryOpFunctionUGenDefinition</a>(NotEqual, <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ab9d63e92240b3afdd48a774193a33265" title="Global function for the UGen::notEqual() binary operator.">notEqual</a>, <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ab9d63e92240b3afdd48a774193a33265" title="Global function for the UGen::notEqual() binary operator.">notEqual</a>);
+<a name="l00092"></a><a class="code" href="ugen___binary_op_u_gens_8h.html#aa41c63a6da0d0303bac4c90f4cbdb026">00092</a> <a class="code" href="ugen___binary_op_u_gens_8h.html#ac42e8c42647d461dbe2c76f473fd80a3">BinaryOpFunctionUGenDefinition</a>(IsEqualTo,  <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a2507d9e53343fc2c0787b7758a8ac77f" title="Global function for the UGen::isEqualTo() binary operator.">isEqualTo</a>,  <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a2507d9e53343fc2c0787b7758a8ac77f" title="Global function for the UGen::isEqualTo() binary operator.">isEqualTo</a>);
+<a name="l00093"></a><a class="code" href="ugen___binary_op_u_gens_8h.html#a4c55eb1ebce0887bcfaca702d4d9fded">00093</a> <a class="code" href="ugen___binary_op_u_gens_8h.html#ac42e8c42647d461dbe2c76f473fd80a3">BinaryOpFunctionUGenDefinition</a>(IsNotEqualTo, <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ace0f2e824f58811558677594af5d2de8" title="Global function for the UGen::isNotEqualTo() binary operator.">isNotEqualTo</a>, <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ace0f2e824f58811558677594af5d2de8" title="Global function for the UGen::isNotEqualTo() binary operator.">isNotEqualTo</a>);
 <a name="l00094"></a>00094 
 <a name="l00095"></a><a class="code" href="ugen___binary_op_u_gens_8h.html#af6296a0a50c469f234b635dac0984818">00095</a> <a class="code" href="ugen___binary_op_u_gens_8h.html#ac42e8c42647d461dbe2c76f473fd80a3">BinaryOpFunctionUGenDefinition</a>(Pow,   <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a6fa1308b8c07eb1bcac7853238deb6f3" title="Global function for the UGen::pow() binary operator.">pow</a>,  <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a6fa1308b8c07eb1bcac7853238deb6f3" title="Global function for the UGen::pow() binary operator.">pow</a>);
 <a name="l00096"></a><a class="code" href="ugen___binary_op_u_gens_8h.html#a0103e07f267e0675a48ac93d68e8f286">00096</a> <a class="code" href="ugen___binary_op_u_gens_8h.html#ac42e8c42647d461dbe2c76f473fd80a3">BinaryOpFunctionUGenDefinition</a>(Hypot,  <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a8e40fd093fb24a8568f11c963627a3ec" title="Global function for the UGen::hypot() binary operator.">hypot</a>,  <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a8e40fd093fb24a8568f11c963627a3ec" title="Global function for the UGen::hypot() binary operator.">hypot</a>);
@@ -272,16 +272,16 @@
 <a name="l00240"></a><a class="code" href="class_u_gen_array.html#a31b1d62756a2e33f46fd76776bc91c8b">00240</a> <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <a class="code" href="class_u_gen_array.html#a31b1d62756a2e33f46fd76776bc91c8b" title="Binary division.">UGenArray::operator / </a>(<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <span class="keyword">const</span>&amp; rightOperand) <span class="keyword">const</span> <span class="keywordflow">throw</span>() 
 <a name="l00241"></a>00241 { 
 <a name="l00242"></a>00242  <span class="keywordtype">int</span> size; 
-<a name="l00243"></a>00243  <span class="keywordflow">if</span>(internal-&gt;size_ &gt; rightOperand.internal-&gt;size_) 
-<a name="l00244"></a>00244   size = <span class="keyword">internal</span>-&gt;size_; 
+<a name="l00243"></a>00243  <span class="keywordflow">if</span>(internal-&gt;size() &gt; rightOperand.internal-&gt;size()) 
+<a name="l00244"></a>00244   size = internal-&gt;<a class="code" href="class_u_gen_array.html#adbc33ce837a273d3c5b198e7e2ea7c42" title="Get the available size of the UGenArray.">size</a>(); 
 <a name="l00245"></a>00245  <span class="keywordflow">else</span> 
-<a name="l00246"></a>00246   size = rightOperand.<a class="code" href="class_u_gen_array.html#a92cf70a21be74218404d96733811eb6f">internal</a>-&gt;<a class="code" href="class_u_gen_array_1_1_u_gen_array_internal.html#a715f5da240d6220ab764ba7a1bf45533">size_</a>; 
+<a name="l00246"></a>00246   size = rightOperand.internal-&gt;size(); 
 <a name="l00247"></a>00247 
 <a name="l00248"></a>00248  <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> newArray(size); 
 <a name="l00249"></a>00249 
 <a name="l00250"></a>00250  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++) 
 <a name="l00251"></a>00251  { 
-<a name="l00252"></a>00252   newArray.<a class="code" href="class_u_gen_array.html#a92cf70a21be74218404d96733811eb6f">internal</a>-&gt;<a class="code" href="class_u_gen_array_1_1_u_gen_array_internal.html#a6aa12999bed32355465f6776b1358257">array</a>[i] = wrapAt(i) / rightOperand.<a class="code" href="class_u_gen.html#ac2ae7b2a6d2b58d02eab81916782e6d4" title="Create a UGen which contains on a particular channel.">wrapAt</a>(i); 
+<a name="l00252"></a>00252   newArray.<a class="code" href="class_u_gen_array.html#ac2f181fc5e5be69a24b287e4fd44e0bc">internal</a>-&gt;<a class="code" href="class_u_gen_array_1_1_internal.html#a341b8732e5f979faca70a139136b7d95">getArray</a>()[i] = wrapAt(i) / rightOperand.<a class="code" href="class_u_gen.html#ac2ae7b2a6d2b58d02eab81916782e6d4" title="Create a UGen which contains on a particular channel.">wrapAt</a>(i); 
 <a name="l00253"></a>00253  } 
 <a name="l00254"></a>00254 
 <a name="l00255"></a>00255  <span class="keywordflow">return</span> newArray; 
@@ -460,7 +460,7 @@
 <a name="l00428"></a>00428 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 12:57:20 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:02 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

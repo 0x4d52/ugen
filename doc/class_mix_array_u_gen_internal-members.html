@@ -36,8 +36,6 @@
 This is the complete list of members for <a class="el" href="class_mix_array_u_gen_internal.html">MixArrayUGenInternal</a>, including all inherited members.<table>
   <tr class="memlist"><td><a class="el" href="class_smart_pointer.html#a55ceb9bd07ea98c49f2bf9c7adc2d7ff">active</a></td><td><a class="el" href="class_smart_pointer.html">SmartPointer</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_mix_array_u_gen_internal.html#ad8def8bd8d0ee7486a11ca342e5953d1">array_</a></td><td><a class="el" href="class_mix_array_u_gen_internal.html">MixArrayUGenInternal</a></td><td><code> [private]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_mix_array_u_gen_internal.html#aed9527ee5dc36be58df4604139dce902">arrayPtr</a></td><td><a class="el" href="class_mix_array_u_gen_internal.html">MixArrayUGenInternal</a></td><td><code> [private]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_mix_array_u_gen_internal.html#af22a183c92abb7871b44f2f003dbae50">arrayRef</a></td><td><a class="el" href="class_mix_array_u_gen_internal.html">MixArrayUGenInternal</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen_internal.html#a14aadb27c94011369e09976600778db7abed832a51d619382a5b0292049855dca">AudioAndControlRate</a> enum value</td><td><a class="el" href="class_u_gen_internal.html">UGenInternal</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen_internal.html#a14aadb27c94011369e09976600778db7a06a5c4114e69b5b21fd66358845610c1">AudioRate</a> enum value</td><td><a class="el" href="class_u_gen_internal.html">UGenInternal</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen_internal.html#a49cc38065e2335e9f5cbb5a44438e077">blockIDtoBeDeletedAfter</a></td><td><a class="el" href="class_u_gen_internal.html">UGenInternal</a></td><td><code> [protected]</code></td></tr>
@@ -75,8 +73,7 @@ This is the complete list of members for <a class="el" href="class_mix_array_u_g
   <tr class="memlist"><td><a class="el" href="class_u_gen_internal.html#acd1964ea95bafe0ecff0e16273d7c226">isScalar</a>() const </td><td><a class="el" href="class_u_gen_internal.html">UGenInternal</a></td><td><code> [inline, virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen_internal.html#a6e1dfb409dd4ceea2855b1bc05e0ab6a">isScheduledForDeletion</a></td><td><a class="el" href="class_u_gen_internal.html">UGenInternal</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen_internal.html#aa93acfc7e57471b278ac8cccca62d598">lastBlockID</a></td><td><a class="el" href="class_u_gen_internal.html">UGenInternal</a></td><td><code> [protected]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_mix_array_u_gen_internal.html#a243ca54ee9971b67546c1261d8346b6a">MixArrayUGenInternal</a>(UGenArray const &amp;array, bool shouldAllowAutoDelete=true, bool shouldWrapChannels=true)</td><td><a class="el" href="class_mix_array_u_gen_internal.html">MixArrayUGenInternal</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_mix_array_u_gen_internal.html#a15ece512bb8ef315ebb5d506a8d03bd4">MixArrayUGenInternal</a>(UGenArray *array, bool shouldAllowAutoDelete=true, bool shouldWrapChannels=true)</td><td><a class="el" href="class_mix_array_u_gen_internal.html">MixArrayUGenInternal</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_mix_array_u_gen_internal.html#abab74a398aed7a991d3d3a9b86a5d13a">MixArrayUGenInternal</a>(UGenArray const &amp;array, bool shouldAllowAutoDelete=true, bool shouldWrapChannels=true, const int numChannels=0)</td><td><a class="el" href="class_mix_array_u_gen_internal.html">MixArrayUGenInternal</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen_internal.html#a9208e597005363c3616b889d5b090908">numInputs_</a></td><td><a class="el" href="class_u_gen_internal.html">UGenInternal</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_proxy_owner_u_gen_internal.html#aac2e5ce464ed1926a901a6069f793d7c">numProxies_</a></td><td><a class="el" href="class_proxy_owner_u_gen_internal.html">ProxyOwnerUGenInternal</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen_internal.html#afd867ac0278151e74baffbfd62e03c8f">ownsInputsPointer</a></td><td><a class="el" href="class_u_gen_internal.html">UGenInternal</a></td><td><code> [protected]</code></td></tr>
@@ -103,7 +100,7 @@ This is the complete list of members for <a class="el" href="class_mix_array_u_g
   <tr class="memlist"><td><a class="el" href="class_smart_pointer.html#a961ec2a7684ba32d0aaff86969c28099">~SmartPointer</a>()</td><td><a class="el" href="class_smart_pointer.html">SmartPointer</a></td><td><code> [virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_gen_internal.html#a4cfe406d7b7d95346f855661bedc3a07">~UGenInternal</a>()</td><td><a class="el" href="class_u_gen_internal.html">UGenInternal</a></td><td></td></tr>
 </table></div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:56 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:09 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

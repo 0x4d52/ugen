@@ -44,10 +44,10 @@ Defines</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="ugen___inline_binary_ops_8h.html#ab0bb87c7f676af8657d41eeb1099a159">BinaryOpMethodsDeclare</a>(CLASSNAME)</td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="ugen___inline_binary_ops_8h.html#a44e5d72ebdadc7109d7e9a9f07572b4a">equal</a> (float a, float b)  throw ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="ugen___inline_binary_ops_8h.html#a33c0fdf91382984a0d467705c251ad8c">notEqual</a> (float a, float b)  throw ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="ugen___inline_binary_ops_8h.html#a11e94cb225fa98f6aba3b60614d87058">equal</a> (double a, double b)  throw ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="ugen___inline_binary_ops_8h.html#a6b1a1f92239202aa8f7849d0f4a7363b">notEqual</a> (double a, double b)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="ugen___inline_binary_ops_8h.html#a348e3944ef84d662dd2374858e4ee8cf">isEqualTo</a> (float a, float b)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="ugen___inline_binary_ops_8h.html#a42c5e86f801cbe4525beff0285f3ecfd">isNotEqualTo</a> (float a, float b)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="ugen___inline_binary_ops_8h.html#ae87750c56adaf4aad3628f6e707004a9">isEqualTo</a> (double a, double b)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="ugen___inline_binary_ops_8h.html#aad1ab2ae5c5aca46cdb9c47ef5e832ae">isNotEqualTo</a> (double a, double b)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="ugen___inline_binary_ops_8h.html#a2ce0ee3eadd8a1bc9a00efd3e7a5efdd">hypot</a> (float a, float b)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="ugen___inline_binary_ops_8h.html#ae792cee0d953ced1910beff96ffabb7d">hypot</a> (double a, double b)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="ugen___inline_binary_ops_8h.html#a0178eda0ae56e84df2c1929863a07837">pow</a> (const float a, const float b)  throw ()</td></tr>
@@ -289,7 +289,7 @@ Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00135">135</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l01905">Buffer::blend()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00408">Buffer::lookup()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00470">UGenArray::range()</a>, and <a class="el" href="ugen___u_gen_8cpp_source.html#l00663">UGen::range()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l01905">Buffer::blend()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00408">Buffer::lookup()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00666">UGenArray::range()</a>, and <a class="el" href="ugen___u_gen_8cpp_source.html#l00659">UGen::range()</a>.</p>
 
 </div>
 </div>
@@ -476,64 +476,6 @@ Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00316">316</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a44e5d72ebdadc7109d7e9a9f07572b4a"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::equal" ref="a44e5d72ebdadc7109d7e9a9f07572b4a" args="(float a, float b)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float equal </td>
-          <td>(</td>
-          <td class="paramtype">float&nbsp;</td>
-          <td class="paramname"> <em>a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&nbsp;</td>
-          <td class="paramname"> <em>b</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00104">104</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a11e94cb225fa98f6aba3b60614d87058"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::equal" ref="a11e94cb225fa98f6aba3b60614d87058" args="(double a, double b)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double equal </td>
-          <td>(</td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>b</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00106">106</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
 
 </div>
 </div>
@@ -780,6 +722,122 @@ Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00114">114</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a348e3944ef84d662dd2374858e4ee8cf"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::isEqualTo" ref="a348e3944ef84d662dd2374858e4ee8cf" args="(float a, float b)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float isEqualTo </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>b</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00104">104</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae87750c56adaf4aad3628f6e707004a9"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::isEqualTo" ref="ae87750c56adaf4aad3628f6e707004a9" args="(double a, double b)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double isEqualTo </td>
+          <td>(</td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>b</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00106">106</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aad1ab2ae5c5aca46cdb9c47ef5e832ae"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::isNotEqualTo" ref="aad1ab2ae5c5aca46cdb9c47ef5e832ae" args="(double a, double b)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double isNotEqualTo </td>
+          <td>(</td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>b</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00107">107</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a42c5e86f801cbe4525beff0285f3ecfd"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::isNotEqualTo" ref="a42c5e86f801cbe4525beff0285f3ecfd" args="(float a, float b)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float isNotEqualTo </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>b</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00105">105</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
 
 </div>
 </div>
@@ -1267,35 +1325,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a8973f99da0e0dae756e294add1a7c12c"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::max" ref="a8973f99da0e0dae756e294add1a7c12c" args="(const long a, const long b)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">long max </td>
-          <td>(</td>
-          <td class="paramtype">const long&nbsp;</td>
-          <td class="paramname"> <em>a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const long&nbsp;</td>
-          <td class="paramname"> <em>b</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00128">128</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a9941ed217da0309cd9453bdb776d5c51"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::max" ref="a9941ed217da0309cd9453bdb776d5c51" args="(const int a, const int b)" -->
 <div class="memitem">
 <div class="memproto">
@@ -1351,6 +1380,35 @@ Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00130">130</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8973f99da0e0dae756e294add1a7c12c"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::max" ref="a8973f99da0e0dae756e294add1a7c12c" args="(const long a, const long b)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">long max </td>
+          <td>(</td>
+          <td class="paramtype">const long&nbsp;</td>
+          <td class="paramname"> <em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const long&nbsp;</td>
+          <td class="paramname"> <em>b</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00128">128</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
 
 </div>
 </div>
@@ -1615,64 +1673,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a33c0fdf91382984a0d467705c251ad8c"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::notEqual" ref="a33c0fdf91382984a0d467705c251ad8c" args="(float a, float b)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float notEqual </td>
-          <td>(</td>
-          <td class="paramtype">float&nbsp;</td>
-          <td class="paramname"> <em>a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&nbsp;</td>
-          <td class="paramname"> <em>b</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00105">105</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a6b1a1f92239202aa8f7849d0f4a7363b"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::notEqual" ref="a6b1a1f92239202aa8f7849d0f4a7363b" args="(double a, double b)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double notEqual </td>
-          <td>(</td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>b</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00107">107</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a0178eda0ae56e84df2c1929863a07837"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::pow" ref="a0178eda0ae56e84df2c1929863a07837" args="(const float a, const float b)" -->
 <div class="memitem">
 <div class="memproto">
@@ -1789,35 +1789,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a2238962728180355fa9fdef7668669c7"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::ring2" ref="a2238962728180355fa9fdef7668669c7" args="(double a, double b)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double ring2 </td>
-          <td>(</td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>b</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00273">273</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="aa061806384c0514e1ab73ebb025a92cd"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::ring2" ref="aa061806384c0514e1ab73ebb025a92cd" args="(float a, float b)" -->
 <div class="memitem">
 <div class="memproto">
@@ -1847,12 +1818,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a61fac435c590893c80ce51c13aab4c44"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::ring3" ref="a61fac435c590893c80ce51c13aab4c44" args="(double a, double b)" -->
+<a class="anchor" id="a2238962728180355fa9fdef7668669c7"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::ring2" ref="a2238962728180355fa9fdef7668669c7" args="(double a, double b)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">double ring3 </td>
+          <td class="memname">double ring2 </td>
           <td>(</td>
           <td class="paramtype">double&nbsp;</td>
           <td class="paramname"> <em>a</em>, </td>
@@ -1872,7 +1843,7 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00274">274</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00273">273</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
 
 </div>
 </div>
@@ -1902,6 +1873,35 @@ Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00279">279</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a61fac435c590893c80ce51c13aab4c44"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::ring3" ref="a61fac435c590893c80ce51c13aab4c44" args="(double a, double b)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ring3 </td>
+          <td>(</td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>b</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00274">274</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
 
 </div>
 </div>
@@ -2023,35 +2023,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a850e19185af8c6134d5f0315d31c0fa1"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::sqrdif" ref="a850e19185af8c6134d5f0315d31c0fa1" args="(float a, float b)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float sqrdif </td>
-          <td>(</td>
-          <td class="paramtype">float&nbsp;</td>
-          <td class="paramname"> <em>a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&nbsp;</td>
-          <td class="paramname"> <em>b</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00318">318</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a7a6460a0c04c3d81c449a949066ad636"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::sqrdif" ref="a7a6460a0c04c3d81c449a949066ad636" args="(double a, double b)" -->
 <div class="memitem">
 <div class="memproto">
@@ -2081,20 +2052,20 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a8c1bddd34a1bf63d3e47ad036b8e8396"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::sqrsum" ref="a8c1bddd34a1bf63d3e47ad036b8e8396" args="(double a, double b)" -->
+<a class="anchor" id="a850e19185af8c6134d5f0315d31c0fa1"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::sqrdif" ref="a850e19185af8c6134d5f0315d31c0fa1" args="(float a, float b)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">double sqrsum </td>
+          <td class="memname">float sqrdif </td>
           <td>(</td>
-          <td class="paramtype">double&nbsp;</td>
+          <td class="paramtype">float&nbsp;</td>
           <td class="paramname"> <em>a</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&nbsp;</td>
+          <td class="paramtype">float&nbsp;</td>
           <td class="paramname"> <em>b</em></td><td>&nbsp;</td>
         </tr>
         <tr>
@@ -2106,7 +2077,7 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00310">310</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00318">318</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
 
 </div>
 </div>
@@ -2136,6 +2107,35 @@ Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00317">317</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8c1bddd34a1bf63d3e47ad036b8e8396"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::sqrsum" ref="a8c1bddd34a1bf63d3e47ad036b8e8396" args="(double a, double b)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double sqrsum </td>
+          <td>(</td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>b</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00310">310</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
 
 </div>
 </div>
@@ -2255,35 +2255,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a5748750cacfa5ffb5a53bf1e199073e6"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::trunc" ref="a5748750cacfa5ffb5a53bf1e199073e6" args="(double a, double b)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double trunc </td>
-          <td>(</td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>b</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00296">296</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a440f472ac6662b958b2474be28d131a8"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::trunc" ref="a440f472ac6662b958b2474be28d131a8" args="(float a, float b)" -->
 <div class="memitem">
 <div class="memproto">
@@ -2310,6 +2281,35 @@ Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00302">302</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5748750cacfa5ffb5a53bf1e199073e6"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::trunc" ref="a5748750cacfa5ffb5a53bf1e199073e6" args="(double a, double b)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double trunc </td>
+          <td>(</td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>b</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00296">296</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
 
 </div>
 </div>
@@ -2345,6 +2345,41 @@ Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00164">164</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abd275e1a36dcf66b26a191466e1e1c91"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::wrap" ref="abd275e1a36dcf66b26a191466e1e1c91" args="(double in, double lo, double hi)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double wrap </td>
+          <td>(</td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>lo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>hi</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00188">188</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
 
 </div>
 </div>
@@ -2408,21 +2443,15 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="abd275e1a36dcf66b26a191466e1e1c91"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::wrap" ref="abd275e1a36dcf66b26a191466e1e1c91" args="(double in, double lo, double hi)" -->
+<a class="anchor" id="a7df01d96fb0058ba5bb503fb52e26ec2"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::wrap2" ref="a7df01d96fb0058ba5bb503fb52e26ec2" args="(double in, double hi)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">double wrap </td>
+          <td class="memname">double wrap2 </td>
           <td>(</td>
           <td class="paramtype">double&nbsp;</td>
           <td class="paramname"> <em>in</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>lo</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -2439,7 +2468,9 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00188">188</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00210">210</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
+
+<p>References <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00097">atan2()</a>.</p>
 
 </div>
 </div>
@@ -2472,39 +2503,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a7df01d96fb0058ba5bb503fb52e26ec2"></a><!-- doxytag: member="ugen_InlineBinaryOps.h::wrap2" ref="a7df01d96fb0058ba5bb503fb52e26ec2" args="(double in, double hi)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double wrap2 </td>
-          <td>(</td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>in</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>hi</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
 </div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00210">210</a> of file <a class="el" href="ugen___inline_binary_ops_8h_source.html">ugen_InlineBinaryOps.h</a>.</p>
-
-<p>References <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00097">atan2()</a>.</p>
-
-</div>
-</div>
-</div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 7 2010 11:57:52 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:05 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
