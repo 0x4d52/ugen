@@ -1,0 +1,418 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>UWEPluginVST</ProjectName>
+    <ProjectGuid>{6F0F1E35-EAF8-431A-83D9-F0340921E560}</ProjectGuid>
+    <RootNamespace>JuceAudioPlugin Demo</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC70.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC70.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\build\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\build\intermediate\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\build\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\build\intermediate\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GenerateManifest>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionName)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/juce_vst.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>UGEN_JUCE=1;WIN32;_DEBUG;_WINDOWS;_USRDLL;JUCE_VST_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(SolutionFileName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(SolutionName).dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)$(SolutionName).pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(IntDir)$(SolutionName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <Profile>false</Profile>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(IntDir)$(SolutionName).bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/juce_vst.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../../src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>UGEN_JUCE=1;WIN32;NDEBUG;_WINDOWS;_USRDLL;JUCE_VST_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(SolutionFileName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(SolutionName).dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ProgramDatabaseFile>$(IntDir)$(SolutionName).pdb</ProgramDatabaseFile>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(IntDir)$(SolutionName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <Profile>false</Profile>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(IntDir)$(SolutionName).bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\UGen\analysis\ugen_Amplitude.h" />
+    <ClInclude Include="..\..\..\UGen\analysis\ugen_DataRecorder.h" />
+    <ClInclude Include="..\..\..\UGen\analysis\ugen_Maxima.h" />
+    <ClInclude Include="..\..\..\UGen\analysis\ugen_Poll.h" />
+    <ClInclude Include="..\..\..\UGen\analysis\ugen_Schmidt.h" />
+    <ClInclude Include="..\..\..\UGen\analysis\ugen_Trig.h" />
+    <ClInclude Include="..\..\..\UGen\analysis\ugen_TrigProcess.h" />
+    <ClInclude Include="..\..\..\UGen\basics\ugen_BinaryOpUGens.h" />
+    <ClInclude Include="..\..\..\UGen\basics\ugen_Chain.h" />
+    <ClInclude Include="..\..\..\UGen\basics\ugen_InlineBinaryOps.h" />
+    <ClInclude Include="..\..\..\UGen\basics\ugen_InlineUnaryOps.h" />
+    <ClInclude Include="..\..\..\UGen\basics\ugen_MappingUGens.h" />
+    <ClInclude Include="..\..\..\UGen\basics\ugen_MixUGen.h" />
+    <ClInclude Include="..\..\..\UGen\basics\ugen_MulAdd.h" />
+    <ClInclude Include="..\..\..\UGen\basics\ugen_Pause.h" />
+    <ClInclude Include="..\..\..\UGen\basics\ugen_Plug.h" />
+    <ClInclude Include="..\..\..\UGen\basics\ugen_RawInputUGens.h" />
+    <ClInclude Include="..\..\..\UGen\basics\ugen_ScalarUGens.h" />
+    <ClInclude Include="..\..\..\UGen\basics\ugen_Temporary.h" />
+    <ClInclude Include="..\..\..\UGen\basics\ugen_Thru.h" />
+    <ClInclude Include="..\..\..\UGen\basics\ugen_UnaryOpUGens.h" />
+    <ClInclude Include="..\..\..\UGen\basics\ugen_WrapFold.h" />
+    <ClInclude Include="..\..\..\UGen\buffers\ugen_Buffer.h" />
+    <ClInclude Include="..\..\..\UGen\buffers\ugen_IntBuffer.h" />
+    <ClInclude Include="..\..\..\UGen\buffers\ugen_PlayBuf.h" />
+    <ClInclude Include="..\..\..\UGen\buffers\ugen_XFadePlayBuf.h" />
+    <ClInclude Include="..\..\..\UGen\convolution\ugen_Convolution.h" />
+    <ClInclude Include="..\..\..\UGen\convolution\ugen_SimpleConvolution.h" />
+    <ClInclude Include="..\..\..\UGen\core\ugen_Arrays.h" />
+    <ClInclude Include="..\..\..\UGen\core\ugen_Bits.h" />
+    <ClInclude Include="..\..\..\UGen\core\ugen_Constants.h" />
+    <ClInclude Include="..\..\..\UGen\core\ugen_Deleter.h" />
+    <ClInclude Include="..\..\..\UGen\core\ugen_ExternalControlSource.h" />
+    <ClInclude Include="..\..\..\UGen\core\ugen_Random.h" />
+    <ClInclude Include="..\..\..\UGen\core\ugen_SmartPointer.h" />
+    <ClInclude Include="..\..\..\UGen\core\ugen_StandardHeader.h" />
+    <ClInclude Include="..\..\..\UGen\core\ugen_Text.h" />
+    <ClInclude Include="..\..\..\UGen\core\ugen_TextFile.h" />
+    <ClInclude Include="..\..\..\UGen\core\ugen_UGen.h" />
+    <ClInclude Include="..\..\..\UGen\core\ugen_UGenArray.h" />
+    <ClInclude Include="..\..\..\UGen\core\ugen_UGenInternal.h" />
+    <ClInclude Include="..\..\..\UGen\core\ugen_Value.h" />
+    <ClInclude Include="..\..\..\UGen\delays\ugen_BlockDelay.h" />
+    <ClInclude Include="..\..\..\UGen\delays\ugen_Delay.h" />
+    <ClInclude Include="..\..\..\UGen\envelopes\ugen_ASR.h" />
+    <ClInclude Include="..\..\..\UGen\envelopes\ugen_Env.h" />
+    <ClInclude Include="..\..\..\UGen\envelopes\ugen_EnvCurve.h" />
+    <ClInclude Include="..\..\..\UGen\envelopes\ugen_EnvGen.h" />
+    <ClInclude Include="..\..\..\UGen\envelopes\ugen_Lines.h" />
+    <ClInclude Include="..\..\..\UGen\fftreal\Array.h" />
+    <ClInclude Include="..\..\..\UGen\fftreal\Array.hpp" />
+    <ClInclude Include="..\..\..\UGen\fftreal\def.h" />
+    <ClInclude Include="..\..\..\UGen\fftreal\DynArray.h" />
+    <ClInclude Include="..\..\..\UGen\fftreal\DynArray.hpp" />
+    <ClInclude Include="..\..\..\UGen\fftreal\FFTReal.h" />
+    <ClInclude Include="..\..\..\UGen\fftreal\FFTReal.hpp" />
+    <ClInclude Include="..\..\..\UGen\fftreal\FFTRealFixLen.h" />
+    <ClInclude Include="..\..\..\UGen\fftreal\FFTRealFixLen.hpp" />
+    <ClInclude Include="..\..\..\UGen\fftreal\FFTRealFixLenParam.h" />
+    <ClInclude Include="..\..\..\UGen\fftreal\FFTRealPassDirect.h" />
+    <ClInclude Include="..\..\..\UGen\fftreal\FFTRealPassDirect.hpp" />
+    <ClInclude Include="..\..\..\UGen\fftreal\FFTRealPassInverse.h" />
+    <ClInclude Include="..\..\..\UGen\fftreal\FFTRealPassInverse.hpp" />
+    <ClInclude Include="..\..\..\UGen\fftreal\FFTRealSelect.h" />
+    <ClInclude Include="..\..\..\UGen\fftreal\FFTRealSelect.hpp" />
+    <ClInclude Include="..\..\..\UGen\fftreal\FFTRealUseTrigo.h" />
+    <ClInclude Include="..\..\..\UGen\fftreal\FFTRealUseTrigo.hpp" />
+    <ClInclude Include="..\..\..\UGen\fftreal\OscSinCos.h" />
+    <ClInclude Include="..\..\..\UGen\fftreal\OscSinCos.hpp" />
+    <ClInclude Include="..\..\..\UGen\fft\ugen_FFTEngine.h" />
+    <ClInclude Include="..\..\..\UGen\fft\ugen_FFTEngineInternal.h" />
+    <ClInclude Include="..\..\..\UGen\fft\ugen_FFTMagnitude.h" />
+    <ClInclude Include="..\..\..\UGen\fft\ugen_FFTMagnitudeSelection.h" />
+    <ClInclude Include="..\..\..\UGen\filters\control\ugen_Decay.h" />
+    <ClInclude Include="..\..\..\UGen\filters\control\ugen_Lag.h" />
+    <ClInclude Include="..\..\..\UGen\filters\dynamics\ugen_Normaliser.h" />
+    <ClInclude Include="..\..\..\UGen\filters\simple\ugen_HPF.h" />
+    <ClInclude Include="..\..\..\UGen\filters\simple\ugen_LPF.h" />
+    <ClInclude Include="..\..\..\UGen\filters\ugen_BEQ.h" />
+    <ClInclude Include="..\..\..\UGen\filters\ugen_LeakDC.h" />
+    <ClInclude Include="..\..\..\UGen\filters\ugen_SOS.h" />
+    <ClInclude Include="..\..\..\UGen\gui\ugen_GUI.h" />
+    <ClInclude Include="..\..\..\UGen\gui\ugen_Scope.h" />
+    <ClInclude Include="..\..\..\UGen\iphone\armasm\ugen_neon_FFTUtilities.h" />
+    <ClInclude Include="..\..\..\UGen\iphone\armasm\ugen_neon_Utilities.h" />
+    <ClInclude Include="..\..\..\UGen\iphone\armasm\ugen_vfp_clobbers.h" />
+    <ClInclude Include="..\..\..\UGen\iphone\armasm\ugen_vfp_FFTUtilities.h" />
+    <ClInclude Include="..\..\..\UGen\iphone\armasm\ugen_vfp_macros.h" />
+    <ClInclude Include="..\..\..\UGen\iphone\armasm\ugen_vfp_Utilities.h" />
+    <ClInclude Include="..\..\..\UGen\iphone\ugen_AudioQueueIOHost.h" />
+    <ClInclude Include="..\..\..\UGen\iphone\ugen_iPhoneAudioFileDiskIn.h" />
+    <ClInclude Include="..\..\..\UGen\iphone\ugen_iPhoneAudioFileDiskOut.h" />
+    <ClInclude Include="..\..\..\UGen\iphone\ugen_NSDeleter.h" />
+    <ClInclude Include="..\..\..\UGen\iphone\ugen_NSUtilities.h" />
+    <ClInclude Include="..\..\..\UGen\iphone\ugen_ScopeView.h" />
+    <ClInclude Include="..\..\..\UGen\iphone\ugen_UIAcceleration.h" />
+    <ClInclude Include="..\..\..\UGen\iphone\ugen_UIButton.h" />
+    <ClInclude Include="..\..\..\UGen\iphone\ugen_UIKitAUIOHost.h" />
+    <ClInclude Include="..\..\..\UGen\iphone\ugen_UISlider.h" />
+    <ClInclude Include="..\..\..\UGen\juce\gui\ugen_JuceEnvelopeComponent.h" />
+    <ClInclude Include="..\..\..\UGen\juce\gui\ugen_JuceMultiSlider.h" />
+    <ClInclude Include="..\..\..\UGen\juce\gui\ugen_JuceScope.h" />
+    <ClInclude Include="..\..\..\UGen\juce\io\ugen_AudioFilePlayer.h" />
+    <ClInclude Include="..\..\..\UGen\juce\io\ugen_DiskIn.h" />
+    <ClInclude Include="..\..\..\UGen\juce\io\ugen_DiskOut.h" />
+    <ClInclude Include="..\..\..\UGen\juce\io\ugen_JuceIOHost.h" />
+    <ClInclude Include="..\..\..\UGen\juce\io\ugen_JuceMIDIController.h" />
+    <ClInclude Include="..\..\..\UGen\juce\io\ugen_JuceMIDIInputBroadcaster.h" />
+    <ClInclude Include="..\..\..\UGen\juce\io\ugen_JuceMIDIMostRecentNote.h" />
+    <ClInclude Include="..\..\..\UGen\juce\ugen_JuceSlider.h" />
+    <ClInclude Include="..\..\..\UGen\juce\ugen_JuceTimerDeleter.h" />
+    <ClInclude Include="..\..\..\UGen\juce\ugen_JuceUtility.h" />
+    <ClInclude Include="..\..\..\UGen\juce\ugen_JuceVoicer.h" />
+    <ClInclude Include="..\..\..\UGen\neuralnet\ugen_NeuralLayer.h" />
+    <ClInclude Include="..\..\..\UGen\neuralnet\ugen_NeuralNetwork.h" />
+    <ClInclude Include="..\..\..\UGen\neuralnet\ugen_NeuralNetworkConfig.h" />
+    <ClInclude Include="..\..\..\UGen\neuralnet\ugen_NeuralNetworkUGen.h" />
+    <ClInclude Include="..\..\..\UGen\neuralnet\ugen_NeuralNode.h" />
+    <ClInclude Include="..\..\..\UGen\neuralnet\ugen_NeuralPattern.h" />
+    <ClInclude Include="..\..\..\UGen\noise\ugen_BrownNoise.h" />
+    <ClInclude Include="..\..\..\UGen\noise\ugen_Dust.h" />
+    <ClInclude Include="..\..\..\UGen\noise\ugen_LFNoise.h" />
+    <ClInclude Include="..\..\..\UGen\noise\ugen_PinkNoise.h" />
+    <ClInclude Include="..\..\..\UGen\noise\ugen_WhiteNoise.h" />
+    <ClInclude Include="..\..\..\UGen\oscillators\simple\ugen_FSinOsc.h" />
+    <ClInclude Include="..\..\..\UGen\oscillators\simple\ugen_Impulse.h" />
+    <ClInclude Include="..\..\..\UGen\oscillators\simple\ugen_LFPulse.h" />
+    <ClInclude Include="..\..\..\UGen\oscillators\simple\ugen_LFSaw.h" />
+    <ClInclude Include="..\..\..\UGen\oscillators\simple\ugen_Triggers.h" />
+    <ClInclude Include="..\..\..\UGen\oscillators\ugen_OscillatorUGens.h" />
+    <ClInclude Include="..\..\..\UGen\oscillators\wavetable\ugen_TableOsc.h" />
+    <ClInclude Include="..\..\..\UGen\pan\ugen_BasicPan.h" />
+    <ClInclude Include="..\..\..\UGen\spawn\ugen_Spawn.h" />
+    <ClInclude Include="..\..\..\UGen\spawn\ugen_Textures.h" />
+    <ClInclude Include="..\..\..\UGen\spawn\ugen_TSpawn.h" />
+    <ClInclude Include="..\..\..\UGen\spawn\ugen_VoicerBase.h" />
+    <ClInclude Include="..\..\..\UGen\UGen.h" />
+    <ClInclude Include="..\..\src\includes.h" />
+    <ClInclude Include="..\..\src\JucePluginCharacteristics.h" />
+    <ClInclude Include="..\..\src\UGenCommon.h" />
+    <ClInclude Include="..\..\src\UGenEditorComponent.h" />
+    <ClInclude Include="..\..\src\UGenInstrumentEvent.h" />
+    <ClInclude Include="..\..\src\UGenPlugin.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\UGen\analysis\ugen_Amplitude.cpp" />
+    <ClCompile Include="..\..\..\UGen\analysis\ugen_DataRecorder.cpp" />
+    <ClCompile Include="..\..\..\UGen\analysis\ugen_Maxima.cpp" />
+    <ClCompile Include="..\..\..\UGen\analysis\ugen_Poll.cpp" />
+    <ClCompile Include="..\..\..\UGen\analysis\ugen_Schmidt.cpp" />
+    <ClCompile Include="..\..\..\UGen\analysis\ugen_Trig.cpp" />
+    <ClCompile Include="..\..\..\UGen\analysis\ugen_TrigProcess.cpp" />
+    <ClCompile Include="..\..\..\UGen\basics\ugen_BinaryOpUGens.cpp" />
+    <ClCompile Include="..\..\..\UGen\basics\ugen_Chain.cpp" />
+    <ClCompile Include="..\..\..\UGen\basics\ugen_MappingUGens.cpp" />
+    <ClCompile Include="..\..\..\UGen\basics\ugen_MixUGen.cpp" />
+    <ClCompile Include="..\..\..\UGen\basics\ugen_MulAdd.cpp" />
+    <ClCompile Include="..\..\..\UGen\basics\ugen_Pause.cpp" />
+    <ClCompile Include="..\..\..\UGen\basics\ugen_Plug.cpp" />
+    <ClCompile Include="..\..\..\UGen\basics\ugen_RawInputUGens.cpp" />
+    <ClCompile Include="..\..\..\UGen\basics\ugen_ScalarUGens.cpp" />
+    <ClCompile Include="..\..\..\UGen\basics\ugen_Thru.cpp" />
+    <ClCompile Include="..\..\..\UGen\basics\ugen_UnaryOpUGens.cpp" />
+    <ClCompile Include="..\..\..\UGen\basics\ugen_WrapFold.cpp" />
+    <ClCompile Include="..\..\..\UGen\buffers\ugen_Buffer.cpp" />
+    <ClCompile Include="..\..\..\UGen\buffers\ugen_IntBuffer.cpp" />
+    <ClCompile Include="..\..\..\UGen\buffers\ugen_PlayBuf.cpp" />
+    <ClCompile Include="..\..\..\UGen\buffers\ugen_XFadePlayBuf.cpp" />
+    <ClCompile Include="..\..\..\UGen\convolution\ugen_Convolution.cpp" />
+    <ClCompile Include="..\..\..\UGen\convolution\ugen_SimpleConvolution.cpp" />
+    <ClCompile Include="..\..\..\UGen\core\ugen_Arrays.cpp" />
+    <ClCompile Include="..\..\..\UGen\core\ugen_Bits.cpp" />
+    <ClCompile Include="..\..\..\UGen\core\ugen_Deleter.cpp" />
+    <ClCompile Include="..\..\..\UGen\core\ugen_ExternalControlSource.cpp" />
+    <ClCompile Include="..\..\..\UGen\core\ugen_Random.cpp" />
+    <ClCompile Include="..\..\..\UGen\core\ugen_SmartPointer.cpp" />
+    <ClCompile Include="..\..\..\UGen\core\ugen_Text.cpp" />
+    <ClCompile Include="..\..\..\UGen\core\ugen_TextFile.cpp" />
+    <ClCompile Include="..\..\..\UGen\core\ugen_UGen.cpp" />
+    <ClCompile Include="..\..\..\UGen\core\ugen_UGenArray.cpp" />
+    <ClCompile Include="..\..\..\UGen\core\ugen_UGenInternal.cpp" />
+    <ClCompile Include="..\..\..\UGen\core\ugen_Value.cpp" />
+    <ClCompile Include="..\..\..\UGen\delays\ugen_BlockDelay.cpp" />
+    <ClCompile Include="..\..\..\UGen\delays\ugen_Delay.cpp" />
+    <ClCompile Include="..\..\..\UGen\envelopes\ugen_ASR.cpp" />
+    <ClCompile Include="..\..\..\UGen\envelopes\ugen_Env.cpp" />
+    <ClCompile Include="..\..\..\UGen\envelopes\ugen_EnvCurve.cpp" />
+    <ClCompile Include="..\..\..\UGen\envelopes\ugen_EnvGen.cpp" />
+    <ClCompile Include="..\..\..\UGen\envelopes\ugen_Lines.cpp" />
+    <ClCompile Include="..\..\..\UGen\fft\ugen_FFTEngine.cpp" />
+    <ClCompile Include="..\..\..\UGen\fft\ugen_FFTEngineInternal.cpp" />
+    <ClCompile Include="..\..\..\UGen\fft\ugen_FFTMagnitude.cpp" />
+    <ClCompile Include="..\..\..\UGen\fft\ugen_FFTMagnitudeSelection.cpp" />
+    <ClCompile Include="..\..\..\UGen\filters\control\ugen_Decay.cpp" />
+    <ClCompile Include="..\..\..\UGen\filters\control\ugen_Lag.cpp" />
+    <ClCompile Include="..\..\..\UGen\filters\dynamics\ugen_Normaliser.cpp" />
+    <ClCompile Include="..\..\..\UGen\filters\simple\ugen_HPF.cpp" />
+    <ClCompile Include="..\..\..\UGen\filters\simple\ugen_LPF.cpp" />
+    <ClCompile Include="..\..\..\UGen\filters\ugen_BEQ.cpp" />
+    <ClCompile Include="..\..\..\UGen\filters\ugen_LeakDC.cpp" />
+    <ClCompile Include="..\..\..\UGen\filters\ugen_SOS.cpp" />
+    <ClCompile Include="..\..\..\UGen\gui\ugen_Scope.cpp" />
+    <ClCompile Include="..\..\..\UGen\iphone\armasm\ugen_neon_Basics.cpp" />
+    <ClCompile Include="..\..\..\UGen\iphone\armasm\ugen_neon_BinaryOpUGens.cpp" />
+    <ClCompile Include="..\..\..\UGen\iphone\armasm\ugen_neon_Filters.cpp" />
+    <ClCompile Include="..\..\..\UGen\iphone\armasm\ugen_neon_UnaryOpUGens.cpp" />
+    <ClCompile Include="..\..\..\UGen\iphone\armasm\ugen_neon_Utilities.cpp" />
+    <ClCompile Include="..\..\..\UGen\iphone\armasm\ugen_vfp_Basics.cpp" />
+    <ClCompile Include="..\..\..\UGen\iphone\armasm\ugen_vfp_BinaryOpUGens.cpp" />
+    <ClCompile Include="..\..\..\UGen\iphone\armasm\ugen_vfp_Filters.cpp" />
+    <ClCompile Include="..\..\..\UGen\iphone\armasm\ugen_vfp_UnaryOpUGens.cpp" />
+    <ClCompile Include="..\..\..\UGen\iphone\armasm\ugen_vfp_Utilities.cpp" />
+    <ClCompile Include="..\..\..\UGen\iphone\ugen_iPhoneAudioFileDiskIn.cpp" />
+    <ClCompile Include="..\..\..\UGen\iphone\ugen_iPhoneAudioFileDiskOut.cpp" />
+    <ClCompile Include="..\..\..\UGen\juce\gui\ugen_JuceEnvelopeComponent.cpp" />
+    <ClCompile Include="..\..\..\UGen\juce\gui\ugen_JuceMultiSlider.cpp" />
+    <ClCompile Include="..\..\..\UGen\juce\gui\ugen_JuceScope.cpp" />
+    <ClCompile Include="..\..\..\UGen\juce\io\ugen_AudioFilePlayer.cpp" />
+    <ClCompile Include="..\..\..\UGen\juce\io\ugen_DiskIn.cpp" />
+    <ClCompile Include="..\..\..\UGen\juce\io\ugen_DiskOut.cpp" />
+    <ClCompile Include="..\..\..\UGen\juce\io\ugen_JuceMIDIController.cpp" />
+    <ClCompile Include="..\..\..\UGen\juce\io\ugen_JuceMIDIInputBroadcaster.cpp" />
+    <ClCompile Include="..\..\..\UGen\juce\io\ugen_JuceMIDIMostRecentNote.cpp" />
+    <ClCompile Include="..\..\..\UGen\juce\ugen_JuceSlider.cpp" />
+    <ClCompile Include="..\..\..\UGen\juce\ugen_JuceTimerDeleter.cpp" />
+    <ClCompile Include="..\..\..\UGen\juce\ugen_JuceUtility.cpp" />
+    <ClCompile Include="..\..\..\UGen\juce\ugen_JuceVoicer.cpp" />
+    <ClCompile Include="..\..\..\UGen\neuralnet\ugen_NeuralLayer.cpp" />
+    <ClCompile Include="..\..\..\UGen\neuralnet\ugen_NeuralNetwork.cpp" />
+    <ClCompile Include="..\..\..\UGen\neuralnet\ugen_NeuralNetworkUGen.cpp" />
+    <ClCompile Include="..\..\..\UGen\neuralnet\ugen_NeuralNode.cpp" />
+    <ClCompile Include="..\..\..\UGen\neuralnet\ugen_NeuralPattern.cpp" />
+    <ClCompile Include="..\..\..\UGen\noise\ugen_BrownNoise.cpp" />
+    <ClCompile Include="..\..\..\UGen\noise\ugen_Dust.cpp" />
+    <ClCompile Include="..\..\..\UGen\noise\ugen_LFNoise.cpp" />
+    <ClCompile Include="..\..\..\UGen\noise\ugen_PinkNoise.cpp" />
+    <ClCompile Include="..\..\..\UGen\noise\ugen_WhiteNoise.cpp" />
+    <ClCompile Include="..\..\..\UGen\oscillators\simple\ugen_FSinOsc.cpp" />
+    <ClCompile Include="..\..\..\UGen\oscillators\simple\ugen_Impulse.cpp" />
+    <ClCompile Include="..\..\..\UGen\oscillators\simple\ugen_LFPulse.cpp" />
+    <ClCompile Include="..\..\..\UGen\oscillators\simple\ugen_LFSaw.cpp" />
+    <ClCompile Include="..\..\..\UGen\oscillators\simple\ugen_Triggers.cpp" />
+    <ClCompile Include="..\..\..\UGen\oscillators\ugen_OscillatorUGens.cpp" />
+    <ClCompile Include="..\..\..\UGen\oscillators\wavetable\ugen_TableOsc.cpp" />
+    <ClCompile Include="..\..\..\UGen\pan\ugen_BasicPan.cpp" />
+    <ClCompile Include="..\..\..\UGen\spawn\ugen_Spawn.cpp" />
+    <ClCompile Include="..\..\..\UGen\spawn\ugen_Textures.cpp" />
+    <ClCompile Include="..\..\..\UGen\spawn\ugen_TSpawn.cpp" />
+    <ClCompile Include="..\..\..\UGen\spawn\ugen_VoicerBase.cpp" />
+    <ClCompile Include="..\..\..\UGen\vec\ugen_vdsp_Basics.cpp" />
+    <ClCompile Include="..\..\..\UGen\vec\ugen_vdsp_BinaryOpUGens.cpp" />
+    <ClCompile Include="..\..\..\UGen\vec\ugen_vdsp_UnaryOpUGens.cpp" />
+    <ClCompile Include="..\..\src\UGenCommon.cpp" />
+    <ClCompile Include="..\..\src\UGenEditorComponent.cpp" />
+    <ClCompile Include="..\..\src\UGenInstrumentEvent.cpp" />
+    <ClCompile Include="..\..\src\UGenPlugin.cpp" />
+    <ClCompile Include="VST_Win32_src\UGen_JuceLibrary.cpp" />
+    <ClCompile Include="VST_Win32_src\UGen_JuceVstWrapper.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
