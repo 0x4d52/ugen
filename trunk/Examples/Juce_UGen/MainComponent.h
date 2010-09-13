@@ -4,23 +4,17 @@
 
 #include <juce/juce.h>
 #include "../../UGen/UGen.h"
-#define _FILEID_ _MAINCOMPONENT_H_
 
 
 
 class MainComponent  :  public Component,
 						public ButtonListener,
 						public SliderListener,
-						public AudioIODeviceCallback,
+						public JuceIOHost,
 						public Timer
 {
     //==============================================================================
     TextButton* audioSettingsButton;
-	
-    //==============================================================================
-    // this wraps the actual audio device
-    AudioDeviceManager audioDeviceManager;
-	
 	Label* cpuUsageLabel;
 	
 	Slider* freqSlider1;
@@ -35,26 +29,14 @@ class MainComponent  :  public Component,
 	EnvelopeContainerComponent* envComponent;
 	MultiSlider* sliders1;
 	MultiSlider* sliders2;
-	File fileToPlay;
 	
 	float freqValue1, freqValue2, ampValue1, ampValue2;
-		
-	UGen synth;
-	UGen input;
-	UGen record;
-	UGen scope;
-	UGen lfo;
-	
-	Buffer penta;
-				
-	CriticalSection lock;
-	
-	
-	
+								
 	
 public:
 	//==============================================================================
 	MainComponent()
+	:	JuceIOHost(1, 2)
     {		
 		setName (T("UGen Test"));
 						
@@ -120,85 +102,14 @@ public:
 		envComponent->setDomainRange(env.duration());
 		envComponent->setEnv(env);
 		
-				
-		// and initialise the device manager with no settings so that it picks a
-		// default device to use.
-		const String error (audioDeviceManager.initialise (1, /* number of input channels */
-														   2, /* number of output channels */
-														   0, /* no XML settings.. */
-														   true  /* select default device on failure */));
-		
-		if (error.isNotEmpty())
-		{
-			AlertWindow::showMessageBox (AlertWindow::WarningIcon,
-										 T("JuceAudioTemplateApp"),
-										 T("Couldn't open an output device!\n\n") + error);
-		}
-		else
-		{
-			audioDeviceManager.addAudioCallback (this);
-		}
+		startTimer(40);
 	}
 	
 	~MainComponent()
 	{
-		audioDeviceManager.removeAudioCallback(this);
-		deleteAllChildren();
-		record = UGen::getNull();
-	}
-		
-	//==============================================================================
-	void audioDeviceIOCallback (const float** inputChannelData,
-								int totalNumInputChannels,
-								float** outputChannelData,
-								int totalNumOutputChannels,
-								int numSamples)
-	{				
-		const ScopedLock sl(lock);
-		
-		int blockID = UGen::getNextBlockID(numSamples);
-		
-		input.setInput(inputChannelData[0], numSamples, 0);
-		synth.setOutputs(outputChannelData, numSamples, 2);
-		
-		synth.prepareAndProcessBlock(numSamples, blockID);
-		record.prepareAndProcessBlock(numSamples, blockID);
-		
-		scope.prepareAndProcessBlock(numSamples, blockID);
-	}
-	
-	void audioDeviceAboutToStart (AudioIODevice* device)
-	{
-		const ScopedLock sl(lock);
-		
-		startTimer(50);
-		
-		UGen::prepareToPlay(device->getCurrentSampleRate(), device->getCurrentBufferSizeSamples(), 64);
-		
-		input = AudioIn::AR(1);
-				
-		synth = constructUGenGraph();
-		
-		// old way
-//		scope = Scope::AR(&scopeComponent, synth, U(ampSlider2) / 10); 
-		
-		// new way
-		//scope = Sender::AR(synth, U(ampSlider2) / 10);
-		scope = FFTSender::AR(synth, FFTEngine::Magnitude, 1024, 2);
-		scopeComponent->setSmoothing(-0.05);
-		scopeComponent->setYMaximum(0.25);
-		scope.addBufferReceiver(scopeComponent);
-	}
-
-	
-	void audioDeviceStopped()
-	{
 		stopTimer();
-		//record = UGen::null;
+		deleteAllChildren();
 	}
-	
-	//==============================================================================
-	
 	
 	void resized()
 	{		
@@ -231,7 +142,7 @@ public:
 		if (button == audioSettingsButton)
 		{			
 			// Create an AudioDeviceSelectorComponent which contains the audio choice widgets...
-			AudioDeviceSelectorComponent audioSettingsComp (audioDeviceManager,
+			AudioDeviceSelectorComponent audioSettingsComp (getAudioDeviceManager(),
 															0, 2,
 															2, 2,
 															true,
@@ -268,9 +179,7 @@ public:
 	}
 	
 	void sliderValueChanged (Slider* slider)
-	{
-		//const ScopedLock sl(lock);
-		
+	{		
 		if(slider == freqSlider1)
 		{
 			freqValue1 = (float)freqSlider1->getValue();
@@ -291,43 +200,22 @@ public:
 	
 	void timerCallback()
 	{
-		cpuUsageLabel->setText(String(audioDeviceManager.getCpuUsage()*100.0, 2), false);
+		cpuUsageLabel->setText(String(getCpuUsage()*100.0, 2), false);
 	}
 			
-	UGen constructUGenGraph()
-	{
-//		//return SinOsc::AR(U(freqSlider1, freqSlider2), 0, Lag::AR(ampSlider1));
-//
-//		int n = 50; // 1600 SinOscs uses 80% cpu!
-//		UGen signal;
-//		
-//		UGen src = LFSaw::AR(200);
-//		
-//		for(int i = 0; i < n; i++)
-//		{
-//			//signal = (signal, BLowPass::AR(LFSaw::AR(exprand(100.0, 1000.0)), SinOsc::AR(exprand(0.25, 4.0)).linexp(-1, 1, 200, 5000), exprand(0.3, 3.0)));
-//			signal = (signal, BLowPass::AR(src, exprand(100.0, 10000.0), exprand(0.3, 3.0)));
-//			//signal = (signal, LPF::AR(src, exprand(100.0, 10000.0)));
-//			//signal = (signal, SinOsc::AR(exprand(100.0, 10000.0)));
-//			
-//			UGen a = BHiShelf::AR(input, 2000, 1.0, 6);
-//		}
-//		
-//		float scale = 1.f / n * 0.2;
-//		return signal.mix() * scale;	
-//		
-//		//return BLowPass::AR(LFSaw::AR(exprand(100.0, 1000.0)), SinOsc::AR(exprand(0.25, 4.0)).linexp(-1, 1, 200, 5000), exprand(0.3, 3.0)) * 0.3;
-		
-		//return BHiShelf::AR(WhiteNoise::AR(0.3), 2000, 0.5, 12);
-		//return WhiteNoise::AR(0.3);
-		
+	UGen constructGraph(UGen const& input)
+	{				
 		Value s = freqSlider1;
+		UGen output = SinOsc::AR(s.kr(), 0, UGen(0.1, 0.1));
+			
+		UGen scope = Sender::AR(output, U(ampSlider2) / 10);
+		scope.addBufferReceiver(scopeComponent);
+		addOther(scope);
 		
-		return SinOsc::AR(s.kr(), 0, UGen(0.1, 0.1));
+		return output;
 	}
 	
 	
 };
 
-#undef _FILEID_
 #endif//_MAINCOMPONENT_H_ 

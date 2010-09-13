@@ -1681,13 +1681,13 @@ public:
 	NumericalArray(NumericalArraySpec const& spec) throw()
 	:	ObjectArray<NumericalType>(spec.size_, false)
 	{
-		if(spec.zeroData_) clear();
+		if(spec.zeroData_) zero();
 	}
 	
 	NumericalArray(NumericalArraySpec const& spec, const bool needsNullTermination) throw()
 	:	ObjectArray<NumericalType>(spec.size_, needsNullTermination)
 	{
-		if(spec.zeroData_) clear();
+		if(spec.zeroData_) zero();
 	}
 	
 	NumericalArray(const int size, NumericalType* dataToUse, const bool needsNullTermination) throw()

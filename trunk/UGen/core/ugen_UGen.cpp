@@ -303,7 +303,10 @@ UGen::UGen(Slider* slider) throw()
 { 	
 	ugen_assert(slider != 0);
 	initInternal(1);
-	internalUGens[0] = new ValueUGenInternalK(SliderValue(slider));
+	Value value = SliderValue(slider);
+	ValueUGenInternalK *internal = new ValueUGenInternalK(value);
+	internalUGens[0] = internal;
+	internal->setValue((float)value.getValue());
 }
 
 UGen::UGen(MultiSlider* sliders) throw()
@@ -316,7 +319,10 @@ UGen::UGen(MultiSlider* sliders) throw()
 		initInternal(sliders->getNumSliders());
 		for(int i = 0; i < sliders->getNumSliders(); i++)
 		{
-			internalUGens[i] = new ValueUGenInternalK(SliderValue(sliders->getSlider(i)));
+			Value value = SliderValue(sliders->getSlider(i));
+			ValueUGenInternalK *internal = new ValueUGenInternalK(value);
+			internalUGens[i] = internal;
+			internal->setValue((float)value.getValue());
 		}
 	}
 	else
@@ -332,7 +338,10 @@ UGen::UGen(Button* button) throw()
 { 	
 	ugen_assert(button != 0);
 	initInternal(1);
-	internalUGens[0] = new ValueUGenInternalK(ButtonValue(button));
+	Value value = ButtonValue(button);
+	ValueUGenInternalK *internal = new ValueUGenInternalK(value);
+	internalUGens[0] = internal;
+	internal->setValue((float)value.getValue());
 }
 
 UGen::UGen(Label* label) throw()
@@ -342,7 +351,10 @@ UGen::UGen(Label* label) throw()
 { 	
 	ugen_assert(label != 0);
 	initInternal(1);
-	internalUGens[0] = new ValueUGenInternalK(LabelValue(label));
+	Value value = LabelValue(label);
+	ValueUGenInternalK *internal = new ValueUGenInternalK(value);
+	internalUGens[0] = internal;
+	internal->setValue((float)value.getValue());
 }
 #endif
 
@@ -355,7 +367,10 @@ UGen::UGen(UISlider *slider) throw()
 { 	
 	ugen_assert(slider != 0);
 	initInternal(1);
-	internalUGens[0] = new ValueUGenInternalK(UISliderValue(slider));
+	Value value = UISliderValue(slider);
+	ValueUGenInternalK *internal = new ValueUGenInternalK(value);
+	internalUGens[0] = internal;
+	internal->setValue((float)value.getValue());
 }
 
 UGen::UGen(signed char *valuePtr) throw()
@@ -386,7 +401,6 @@ void UGen::constructMultichannel(const int numUGens, const UGen uGenArray[]) thr
 		initInternal(numUGens);
 		for(int i = 0; i < numUGens; i++)
 		{
-			//internalUGens[i] = new NullUGenInternal();
 			internalUGens[i] = getNullInternal();
 		}
 	}

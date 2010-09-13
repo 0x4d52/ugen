@@ -81,14 +81,14 @@ Text::Text(NumericalArraySpec const& spec) throw()
 :	CharArray(spec, true)
 {
 	if(spec.zeroData_)
-		clear();
+		zero();
 }
 
 Text::Text(NumericalArraySpec const& spec, const bool needsNullTermination) throw()
 :	CharArray(spec, needsNullTermination)
 {
 	if(spec.zeroData_)
-		clear();
+		zero();
 }
 
 Text Text::withSize(const int size, const bool zeroData) throw()
