@@ -213,8 +213,6 @@ public:
 	{				
 		Value s = freqSlider1;
 		UGen output = SinOsc::AR(s.kr(), 0, UGen(0.1, 0.1));
-			
-		
 		return output;
 	}
 	
