@@ -72,18 +72,7 @@ UGenInternal* PlayBufUGenInternal::getChannel(const int channel) throw()
 void PlayBufUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {	
 	const int blockSize = uGenOutput.getBlockSize();
-	
-//	if(buffer_.size() <= 0 || buffer_.size() <= 0)
-//	{
-//		for(int channel = 0; channel < getNumChannels(); channel++)
-//		{
-//			float* outputSamples = proxies[channel]->getSampleData();
-//			memset(outputSamples, 0, blockSize * sizeof(float));
-//		}
-//		
-//		return;
-//	}
-	
+		
 	double channelBufferPos;
 	
 	for(int channel = 0; channel < getNumChannels(); channel++)
@@ -97,11 +86,8 @@ void PlayBufUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 		float* offsetSamples = inputs[Offset].processBlock(shouldDelete, blockID, 0);
 		float* loopSamples = inputs[Loop].processBlock(shouldDelete, blockID, 0);
 				
-		while(numSamplesToProcess 
-//			  && 
-//			  (channelBufferPos < bufferSize) && 
-//			  (channelBufferPos >= 0)
-		) {				
+		while(numSamplesToProcess ) 
+		{				
 			float thisTrig = *trigSamples++;
 			
 			if(thisTrig > 0.f && lastTrig <= 0.f)
@@ -133,10 +119,7 @@ void PlayBufUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 			
 			--numSamplesToProcess;
 			lastTrig = thisTrig;
-		}
-		
-//		if(numSamplesToProcess > 0)
-//			memset(outputSamples, 0, numSamplesToProcess * sizeof(float));
+		}		
 	}
 	
 	bufferPos = channelBufferPos;
@@ -144,6 +127,7 @@ void PlayBufUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 	if(bufferPos >= buffer_.size())
 	{
 		shouldDelete = shouldDelete ? true : shouldDeleteValue;
+		sendDone();
 	}
 }
 
@@ -177,14 +161,7 @@ PlayBuf::PlayBuf(Buffer const& buffer,
 		{
 			internalUGens[i]->initValue(buffer.getSample(i, startPosChecked.getValue(0)));
 		}
-	}
-	
-	// unnessecary the default constructor should have this in place
-//	else
-//	{
-//		initInternal(1);
-//		internalUGens[0] = getNullInternal();
-//	}
+	}	
 }
 
 BufferValuesUGenInternal::BufferValuesUGenInternal(Buffer const& bufferToUse)

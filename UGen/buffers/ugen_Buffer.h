@@ -681,7 +681,7 @@ private:
 	BufferReceiverArray receivers;
 };
 
-/** Subclasses of this receiver Buffer objects from BufferSender objects. */
+/** Subclasses of this receive Buffer objects from BufferSender objects. */
 class BufferReceiver
 {
 public:

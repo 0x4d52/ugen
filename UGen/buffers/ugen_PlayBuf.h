@@ -53,7 +53,8 @@
  
  @see PlayBuf
  @ingroup UGenInternals */
-class PlayBufUGenInternal : public ProxyOwnerUGenInternal
+class PlayBufUGenInternal :	public ProxyOwnerUGenInternal,
+							public DoneActionSender	
 {
 public:
 	PlayBufUGenInternal(Buffer const& buffer, 

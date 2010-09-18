@@ -897,14 +897,21 @@ public:
 	 Useful for a panic e.g., "all notes off" type command. */
 	void stopAllEvents() throw();
 	
-	void addBufferReceiver(BufferReceiver* const receiver) throw();
+	UGen& addBufferReceiver(BufferReceiver* const receiver) throw();
 	void removeBufferReceiver(BufferReceiver* const receiver) throw();
-	void addBufferReceiver(UGen const& receiver) throw();
+	UGen& addBufferReceiver(UGen const& receiver) throw();
 	void removeBufferReceiver(UGen const& receiver) throw();
-//#if defined(UGEN_IPHONE) || defined(DOXYGEN)
-//	void addBufferReceiver(UIScopeView* receiver) throw();
-//	void removeBufferReceiver(UIScopeView* receiver) throw();
-//#endif
+	
+	//#if defined(UGEN_IPHONE) || defined(DOXYGEN)
+	//	void addBufferReceiver(UIScopeView* receiver) throw();
+	//	void removeBufferReceiver(UIScopeView* receiver) throw();
+	//#endif	
+	
+	UGen& addDoneActionReceiver(DoneActionReceiver* const receiver) throw();
+	void removeDoneActionReceiver(DoneActionReceiver* const receiver) throw();
+	UGen& addDoneActionReceiver(UGen const& receiver) throw();
+	void removeDoneActionReceiver(UGen const& receiver) throw();
+	
 	
 	/// @} <!-- end UGen-specific control messages ------------------------------------- -->
 	
@@ -1308,26 +1315,6 @@ private:
 UGenArray operator<< (float leftOperand, UGen const& rightOperand) throw();
 UGen operator, (float leftOperand, UGen const& rightOperand) throw();
 
-//UGen kr() throw(); /**< SC compatability. */
-//UGen kr(UGen const& operand) throw(); /**< SC compatability. */
-//UGen kr(UGen const& arg1, UGen const& arg2) throw(); /**< SC compatability. */
-//UGen kr(UGen const& arg1, UGen const& arg2, UGen const& arg3) throw(); /**< SC compatability. */
-//UGen kr(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4) throw(); /**< SC compatability. */
-//UGen kr(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5) throw(); /**< SC compatability. */
-//UGen kr(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5, UGen const& arg6) throw(); /**< SC compatability. */
-//UGen kr(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5, UGen const& arg6, UGen const& arg7) throw(); /**< SC compatability. */
-//UGen kr(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5, UGen const& arg6, UGen const& arg7, UGen const& arg8) throw(); /**< SC compatability. */
-//
-//
-//UGen ar() throw(); /**< SC compatability. */
-//UGen ar(UGen const& operand) throw(); /**< SC compatability. */
-//UGen ar(UGen const& arg1, UGen const& arg2) throw(); /**< SC compatability. */
-//UGen ar(UGen const& arg1, UGen const& arg2, UGen const& arg3) throw(); /**< SC compatability. */
-//UGen ar(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4) throw(); /**< SC compatability. */
-//UGen ar(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5) throw(); /**< SC compatability. */
-//UGen ar(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5, UGen const& arg6) throw(); /**< SC compatability. */
-//UGen ar(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5, UGen const& arg6, UGen const& arg7) throw(); /**< SC compatability. */
-//UGen ar(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5, UGen const& arg6, UGen const& arg7, UGen const& arg8) throw(); /**< SC compatability. */
 
 
 // UGen docs groups

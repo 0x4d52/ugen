@@ -94,13 +94,7 @@ void EnvGenUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 		if(isReleasing() == false && shouldRelease() == true)
 		{
 			int releaseNode = env_.getReleaseNode();
-//			if(releaseNode < 0)
-//			{
-//				releaseNode = env_.getTimes().size() - 1;
-//			}
-//			
-//			setSegment(releaseNode, UGen::getSampleRate());
-			
+
 			if(releaseNode >= 0) // try this, - don't release if releaseNode is -1
 			{
 				setSegment(releaseNode, UGen::getSampleRate());
@@ -182,18 +176,25 @@ void EnvGenUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 					const int numLevels = env_.getLevels().size();
 					currentValue = env_.getLevels().getSampleUnchecked(numLevels-1);
 					currentCurve = EnvCurve(EnvCurve::Empty);
-					setIsDone();
 					goto exit;
 				}
 			}
 		}
 	}
 		
+	while(numSamplesToProcess--)
+	{
+		*outputSamples++ = (float)currentValue;
+	}
+		
+	return;
+	
 exit:
 	while(numSamplesToProcess--)
 	{
 		*outputSamples++ = (float)currentValue;
 	}
+	setIsDone();
 }
 
 void EnvGenUGenInternal::release() throw()
@@ -215,7 +216,7 @@ bool EnvGenUGenInternal::setSegment(const int segment, const double stepsPerSeco
 		if(shouldRelease() == true)
 		{
 			currentSegment = segment;
-			setIsReleasing();
+			setIsReleasing(0.f);
 		} 
 		else
 		{

@@ -57,6 +57,7 @@ public:
 class RGBAColour
 {
 public:
+	/** Create colour using 0-1 floats. */
 	RGBAColour(float red, float green, float blue, float alpha = 1.f) throw() 
 	:	r(red), g(green), b(blue), a(alpha) 
 	{ 
@@ -66,6 +67,7 @@ public:
 		ugen_assert(a >= 0.f && a <= 1.f);
 	}
 	
+	/** Create colour using 0-1 doubles. */
 	RGBAColour(double red, double green, double blue, double alpha = 1.0) throw() 
 	:	r((float)red), g((float)green), b((float)blue), a((float)alpha) 
 	{ 
@@ -75,6 +77,7 @@ public:
 		ugen_assert(a >= 0.f && a <= 1.f);		
 	}
 	
+	/** Create colour using 0-255 ints. */
 	RGBAColour(int red, int green, int blue, int alpha = 255) throw() 
 	:	r(red / 255.f), g(green / 255.f), b(blue / 255.f), a(alpha / 255.f) 
 	{
@@ -84,6 +87,7 @@ public:
 		ugen_assert(a >= 0.f && a <= 1.f);		
 	}
 	
+	/** Create a colour using a 32-bit int, format:0xrrggbbaa. */
 	RGBAColour(unsigned int rgba = 0x000000FF) throw()
 	{
 		a = (rgba & 0xFF) / 255.f;	rgba = rgba >> 8;
@@ -98,6 +102,7 @@ public:
 	}
 	
 #ifdef UGEN_JUCE
+	/** Create a colout from a juce::Colour. */
 	RGBAColour(juce::Colour const& juceColour) throw()
 	:	r(0.f), g(0.f), b(0.f), a(0.f)
 	{
@@ -107,6 +112,7 @@ public:
 		a = juceColour.getFloatAlpha();
 	}
 	
+	/** Cast this colour to a juce::Colour. */
 	operator juce::Colour () throw()
 	{
 		return juce::Colour(get32bitColour());
@@ -114,6 +120,7 @@ public:
 #endif
 	
 #ifdef UGEN_IPHONE
+	/* Create a colour from an Apple CGColorRef. */
 	RGBAColour(CGColorRef colourRef)
 	:	r(0.f), g(0.f), b(0.f), a(0.f)
 	{

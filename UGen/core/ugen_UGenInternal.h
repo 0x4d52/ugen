@@ -39,7 +39,7 @@
 
 #define DEBUGREFCOUNT
 
-#include "ugen_SmartPointer.h"
+#include "ugen_Arrays.h"
 
 class UGen;
 
@@ -301,26 +301,56 @@ private:
 	int proxyChannel_;
 };
 
+class DoneActionReceiver;
+typedef ObjectArray<DoneActionReceiver*> DoneActionReceiverArray;
+
+/** This allows some UGens to send messages to indicate they are finsihed. */
+class DoneActionSender
+{
+public:
+	DoneActionSender() throw();
+	virtual ~DoneActionSender();
+	
+	void addDoneActionReceiver(DoneActionReceiver* const receiver) throw();
+	void removeDoneActionReceiver(DoneActionReceiver* const receiver) throw();
+	void sendDone() throw();
+	void sendReleasing(const float time) throw();
+	
+private:
+	DoneActionReceiverArray receivers;
+};
+
+/** Subclasses of this receive UGen done action message. */
+class DoneActionReceiver
+{
+public:
+	DoneActionReceiver() throw() {}
+	virtual ~DoneActionReceiver() {}
+	
+	/** This must be implmented. */
+	virtual void handleDone() = 0;
+	virtual void handleReleasing(const float time) { };
+	
+	/** This saves having to get the pointer to a DoneActionReceiver object, it will be casted automatically. */
+	operator DoneActionReceiver*() throw() { return this; }
+};
+
+
 /** A UGenInternal base that is "releasable" in the sense of a envelope which may be released.
  This means it should also be "stealable" i.e., told to stop immediately, or at least very quickly.
  This is normally for envelopes which may have a sustain section (e.g., ASR or EnvGen using a 
  sustaining Env).
  
  @ingroup UGenInternals */
-class ReleasableUGenInternal : public UGenInternal
+class ReleasableUGenInternal :	public UGenInternal,
+								public DoneActionSender
 {
 public:
 	
 	/// @name Construction and destruction
 	/// @{
 	
-	ReleasableUGenInternal(const int numInputs) throw() 
-	:	UGenInternal(numInputs), 
-		shouldRelease_(false), 
-		shouldSteal_(false),
-		isReleasing_(false),
-		isStealing_(false),
-		isDone_(false) { }
+	ReleasableUGenInternal(const int numInputs) throw();
 	
 	virtual void release() = 0;
 	virtual void steal() = 0;
@@ -339,28 +369,11 @@ public:
 	/// @} <!-- end Tests -->
 	
 protected:
-	inline void releaseInternal() throw()	
-	{ 
-		if(shouldRelease_ == false && shouldSteal_ != true)
-		{
-			UGenInternal::releaseInternal(); 
-			shouldRelease_ = true; 
-			release();
-		}
-	}
-	inline void stealInternal() throw()	
-	{
-		if(shouldSteal_ == false)
-		{
-			shouldRelease_ = true;
-			shouldSteal_ = true; 
-			UGenInternal::stealInternal(); 
-			steal();
-		}
-	}
-	inline void setIsReleasing() throw()		{ if(shouldRelease_) isReleasing_ = true;			}
-	inline void setIsStealing() throw()			{ if(shouldSteal_) isStealing_ = true;				}
-	void setIsDone() throw()					{ isDone_ =	true;									}
+	void releaseInternal() throw();
+	void stealInternal() throw();
+	void setIsReleasing(const float time) throw();
+	void setIsStealing() throw();
+	void setIsDone() throw();
 	
 	bool shouldRelease_;
 	bool shouldSteal_;

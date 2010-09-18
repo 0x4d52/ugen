@@ -524,5 +524,97 @@ void ProxyUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 	}
 }
 
+DoneActionSender::DoneActionSender() throw()
+{
+}
+
+DoneActionSender::~DoneActionSender()
+{
+}
+
+void DoneActionSender::addDoneActionReceiver(DoneActionReceiver* const receiver) throw()
+{
+	if(receiver == 0) { ugen_assertfalse; return; }
+	if(receivers.contains(receiver)) return;
+	
+	receivers <<= receiver;	
+}
+
+void DoneActionSender::removeDoneActionReceiver(DoneActionReceiver* const receiver) throw()
+{
+	if(receiver == 0) { ugen_assertfalse; return; }
+	
+	receivers = receivers.removeItem(receiver);	
+}
+
+void DoneActionSender::sendDone() throw()
+{
+	const int size = receivers.size();
+	for(int i = 0; i < size; i++)
+	{
+		receivers[i]->handleDone();
+	}	
+}
+
+void DoneActionSender::sendReleasing(const float time) throw()
+{
+	const int size = receivers.size();
+	for(int i = 0; i < size; i++)
+	{
+		receivers[i]->handleReleasing(time);
+	}		
+}
+
+ReleasableUGenInternal::ReleasableUGenInternal(const int numInputs) throw() 
+:	UGenInternal(numInputs), 
+	shouldRelease_(false), 
+	shouldSteal_(false),
+	isReleasing_(false),
+	isStealing_(false),
+	isDone_(false) 
+{ 
+}
+
+void ReleasableUGenInternal::releaseInternal() throw()	
+{ 
+	if(shouldRelease_ == false && shouldSteal_ != true)
+	{
+		UGenInternal::releaseInternal(); 
+		shouldRelease_ = true; 
+		release();
+	}
+}
+
+void ReleasableUGenInternal::stealInternal() throw()	
+{
+	if(shouldSteal_ == false)
+	{
+		shouldRelease_ = true;
+		shouldSteal_ = true; 
+		UGenInternal::stealInternal(); 
+		steal();
+	}
+}
+
+void ReleasableUGenInternal::setIsReleasing(const float time) throw()		
+{ 
+	if(shouldRelease_) 
+	{
+		isReleasing_ = true;	
+		sendReleasing(time);
+	}
+}
+
+void ReleasableUGenInternal::setIsStealing() throw()			
+{ 
+	if(shouldSteal_) isStealing_ = true;				
+}
+
+void ReleasableUGenInternal::setIsDone() throw()					
+{ 
+	isDone_ = true;
+	sendDone();
+}
+
 
 END_UGEN_NAMESPACE

@@ -11,7 +11,8 @@ class MainComponent  :  public Component,
 						public JuceIOHost,
 						public ButtonListener,
 						public SliderListener,
-						public Timer
+						public Timer,
+						public DoneActionReceiver
 {
     //==============================================================================
     TextButton* audioSettingsButton;
@@ -90,15 +91,7 @@ public:
 		scopeComponent->setScaleY(ScopeGUI::LabelYAmplitude);
 		
 		addAndMakeVisible(envComponent = new EnvelopeContainerComponent("My Envelope"));
-		Env env = Env::linen(1.0, 1.0, 1.0, 0.7, EnvCurve::Sine);
-		float time = 0.f;
-		float inc = 0.1f;
-		for(int i = 0; i < 31; i++)
-		{
-			printf("time (%f) = %f\n", time, env.lookup(time));
-			time += inc;
-		}
-		
+		Env env = Env::linen(1.0, 1.0, 1.0, 0.7, EnvCurve::Sine);		
 		envComponent->setDomainRange(env.duration());
 		envComponent->setEnv(env);
 		
@@ -167,8 +160,7 @@ public:
 		}
 		else if(button == testButton1)
 		{
-			Env env = envComponent->getEnv();
-			printf("test\n");
+
 		}
 		else if(button == testButton2)
 		{
@@ -206,16 +198,32 @@ public:
 	
 	void timerCallback()
 	{
-		cpuUsageLabel->setText(String(getCpuUsage()*100.0, 2), false);
+		cpuUsageLabel->setText(String(getCpuUsage()*100.0, 2) + " %", false);
 	}
 			
 	UGen constructGraph(UGen const& input)
 	{				
-		Value s = freqSlider1;
-		UGen output = SinOsc::AR(s.kr(), 0, UGen(0.1, 0.1));
+//		Value s = freqSlider1;
+//		UGen output = SinOsc::AR(s.kr(), 0, UGen(0.1, 0.1));
+//		return output;
+		
+		Env env = Env::linen(1.0, 1.0, 1.0, 1.0);
+		UGen envgen = env;
+		envgen.addDoneActionReceiver(this);
+		UGen output = SinOsc::AR(440, 0, envgen);
 		return output;
 	}
 	
+	void handleDone()
+	{
+		printf("done\n");
+		
+		Env env = Env::linen(1.0, 1.0, 1.0, 1.0);
+		UGen envgen = env;
+		UGen output = SinOsc::AR(880, 0, envgen);
+		
+		getOutput().setSource(output);
+	}
 	
 };
 

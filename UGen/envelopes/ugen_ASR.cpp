@@ -128,7 +128,7 @@ void ASRUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockI
 
 void ASRUGenInternal::release() throw()
 {
-	setIsReleasing();
+	setIsReleasing(0.f);
 	setReleaseSegment();
 }
 
