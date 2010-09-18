@@ -175,10 +175,12 @@ public:
 	
 	/** Add a UGen to the dependency of this host.
 	 This is mainly used for Scope and/or DiskOut.
+	 @return The UGen passed in so these calls can be chained.
 	 */
-	void addOther(UGen const& ugen) throw()
+	UGen addOther(UGen const& ugen) throw()
 	{
 		internal->addOther(ugen);
+		return ugen;
 	}
 	
 	/** Remove a UGen from the "others" array. */
@@ -242,7 +244,7 @@ inline JuceIOHostInternal::JuceIOHostInternal(JuceIOHost *owner,
 #endif
 	startTimer(50);
 	
-	output_ = Plug::AR(UGen::emptyChannels(numOutputs_));
+	output_ = Plug::AR(UGen::emptyChannels(numOutputs_), false);
 }
 
 inline JuceIOHostInternal::~JuceIOHostInternal()

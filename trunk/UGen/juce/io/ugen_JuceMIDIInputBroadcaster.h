@@ -38,17 +38,6 @@
 												 CONSTRUCTOR_ARGS_DECLARE_UGEN)		\
 		CLASSNAME CONSTRUCTOR_ARGS_DECLARE throw();																	\
 		CLASSNAME init CONSTRUCTOR_ARGS_DECLARE throw()			{ return CLASSNAME CONSTRUCTOR_ARGS_CALL; }			\
-		CLASSNAME operator () CONSTRUCTOR_ARGS_DECLARE throw()	{ return CLASSNAME CONSTRUCTOR_ARGS_CALL; }			\
-																													\
-		UGen kr CONSTRUCTOR_ARGS_DECLARE_UGEN throw()																\
-		{																											\
-			return CLASSNAME CONSTRUCTOR_ARGS_CALL.krInternal(LAGTIME_ARG_CALL);									\
-		}																											\
-																													\
-		UGen ar CONSTRUCTOR_ARGS_DECLARE_UGEN throw()																\
-		{																											\
-			return Lag(CLASSNAME CONSTRUCTOR_ARGS_CALL, LAGTIME_ARG_CALL);											\
-		}																											\
 																													\
 		static UGen KR CONSTRUCTOR_ARGS_DECLARE_UGEN throw()														\
 		{																											\

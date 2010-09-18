@@ -42,7 +42,7 @@
 #include "ugen_Env.h"
 
 /** @ingroup UGenInternals */
-class EnvGenUGenInternal : public ReleasableUGenInternal
+class EnvGenUGenInternal :  public ReleasableUGenInternal
 {
 public:
 	EnvGenUGenInternal(Env const& env, const UGen::DoneAction doneAction) throw();

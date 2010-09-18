@@ -63,21 +63,7 @@ public:
 	
 	/** Constructor. */
 	ScopeGUI(const ScopeStyles style = Lines);
-	
-//	/** An enum for modes when the scope is used for FFT data. */
-//	enum ScopeModes 
-//	{ 
-//		RealImagRaw,
-//		RealImagRawSplit,
-//		RealImagUnpacked,
-//		RealImagUnpackedSplit,
-//		MagnitudePhase,
-//		MagnitudePhaseSplit,
-//		Magnitude,
-//		Phase,
-//		NumScopeModes 
-//	};
-	
+		
 	/** An enum for x/y label scales in various formats. */
 	enum Scales
 	{
@@ -127,10 +113,23 @@ public:
 	void setScaleX(Scales scale, const double markSpacing = -1, const int labelHop = -1, const bool labelFirst = true) throw();
 	Scales getScaleX() const throw() { return scaleX; }
 	
+	/** Set the labelling of the scale on the x axis.
+	 @param scale			LabelYNone, LabelYMarks, LabelYAmplitude or LabelYDecibels
+	 @param markSpacing		In pixels, how often to draw a mark on the y axis.
+	 @param labelHop		How often to label a mark with a unit value. 
+							These marks are also drawn 1.5 times longer than the other marks. 
+	 @param labelFirst		If @c true the first marking will be labelled, if @c false it won't
+							(setting this to false can help prevent the crowding of text around the
+							origin where the two axes meet).*/	
 	void setScaleY(Scales scale, const double markSpacing = -1, const int labelHop = -1, const int decimalPlaces = -1) throw();
 	Scales getScaleY() const throw() { return scaleY; }
 	
 	void initBuffers() throw();
+	
+	/* Set the currently displayed buffer. 
+	 @param audioBufferToUse The buffer (any number of channels which may change on subsequent calls).
+	 @param offset For time domain buffers this is a sample offset, for FFT-based buffers this is the first bin index.
+	 @param fftSize The FFT size (for FFT-based buffers only). */
 	void setAudioBuffer(Buffer const& audioBufferToUse, const double offset = 0.0, const int fftSize = -1) throw();
 	const Buffer& getAudioBuffer() const throw() { return audioBuffer; }
 	

@@ -1239,7 +1239,7 @@ void UGen::stopAllEvents() throw()
 	}
 }
 
-void UGen::addBufferReceiver(BufferReceiver* const receiver) throw()
+UGen& UGen::addBufferReceiver(BufferReceiver* const receiver) throw()
 {
 	for(int i = 0; i < numInternalUGens; i++)
 	{
@@ -1247,6 +1247,8 @@ void UGen::addBufferReceiver(BufferReceiver* const receiver) throw()
 		
 		if(sender != 0) sender->addBufferReceiver(receiver);
 	}
+	
+	return *this;
 }
 
 void UGen::removeBufferReceiver(BufferReceiver* const receiver) throw()
@@ -1259,7 +1261,7 @@ void UGen::removeBufferReceiver(BufferReceiver* const receiver) throw()
 	}	
 }
 
-void UGen::addBufferReceiver(UGen const& receiverUGen) throw()
+UGen& UGen::addBufferReceiver(UGen const& receiverUGen) throw()
 {
 	for(int src = 0; src < numInternalUGens; src++)
 	{
@@ -1275,6 +1277,8 @@ void UGen::addBufferReceiver(UGen const& receiverUGen) throw()
 			}
 		}
 	}
+	
+	return *this;
 }
 
 void UGen::removeBufferReceiver(UGen const& receiverUGen) throw()
@@ -1294,6 +1298,67 @@ void UGen::removeBufferReceiver(UGen const& receiverUGen) throw()
 		}
 	}
 }
+
+UGen& UGen::addDoneActionReceiver(DoneActionReceiver* const receiver) throw()
+{
+	for(int i = 0; i < numInternalUGens; i++)
+	{
+		DoneActionSender* sender = dynamic_cast<DoneActionSender*> (internalUGens[i]);
+		
+		if(sender != 0) sender->addDoneActionReceiver(receiver);
+	}
+	
+	return *this;	
+}
+
+void UGen::removeDoneActionReceiver(DoneActionReceiver* const receiver) throw()
+{
+	for(int i = 0; i < numInternalUGens; i++)
+	{
+		DoneActionSender* sender = dynamic_cast<DoneActionSender*> (internalUGens[i]);
+		
+		if(sender != 0) sender->removeDoneActionReceiver(receiver);
+	}		
+}
+
+UGen& UGen::addDoneActionReceiver(UGen const& receiverUGen) throw()
+{
+	for(int src = 0; src < numInternalUGens; src++)
+	{
+		DoneActionSender* sender = dynamic_cast<DoneActionSender*> (internalUGens[src]);
+		
+		if(sender != 0) 
+		{
+			for(int dst = 0; dst < receiverUGen.numInternalUGens; dst++)
+			{
+				DoneActionReceiver* receiver = dynamic_cast<DoneActionReceiver*> (receiverUGen.internalUGens[dst]);
+				
+				if(receiver != 0) sender->addDoneActionReceiver(receiver);
+			}
+		}
+	}
+	
+	return *this;	
+}
+
+void UGen::removeDoneActionReceiver(UGen const& receiverUGen) throw()
+{
+	for(int src = 0; src < numInternalUGens; src++)
+	{
+		DoneActionSender* sender = dynamic_cast<DoneActionSender*> (internalUGens[src]);
+		
+		if(sender != 0) 
+		{
+			for(int dst = 0; dst < receiverUGen.numInternalUGens; dst++)
+			{
+				DoneActionReceiver* receiver = dynamic_cast<DoneActionReceiver*> (receiverUGen.internalUGens[dst]);
+				
+				if(receiver != 0) sender->removeDoneActionReceiver(receiver);
+			}
+		}
+	}	
+}
+
 
 //#if defined(UGEN_IPHONE)
 //#include "../iphone/ugen_ScopeView.h"
@@ -1734,97 +1799,6 @@ UGen UGen::linexp(UGen const& inLow, UGen const& inHigh, UGen const& outLow, UGe
 #endif gpl
 
 
-UGen kr() throw()
-{
-	return UGen::getNullKr();
-}
-
-UGen kr(UGen const& operand) throw()
-{
-	return operand.kr();
-}
-
-UGen kr(UGen const& arg1, UGen const& arg2) throw()
-{
-	return UGen(arg1.kr(), arg2.kr());
-}
-
-UGen kr(UGen const& arg1, UGen const& arg2, UGen const& arg3) throw()
-{
-	return UGen(arg1.kr(), arg2.kr(), arg2.kr());
-}
-
-UGen kr(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4) throw()
-{
-	return UGen(arg1.kr(), arg2.kr(), arg3.kr(), arg4.kr());
-}
-
-UGen kr(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5) throw()
-{
-	return UGen(arg1.kr(), arg2.kr(), arg3.kr(), arg4.kr(), arg5.kr());
-}
-
-UGen kr(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5, UGen const& arg6) throw()
-{
-	return UGen(arg1.kr(), arg2.kr(), arg3.kr(), arg4.kr(), arg5.kr(), arg6.kr());
-}
-
-UGen kr(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5, UGen const& arg6, UGen const& arg7) throw()
-{
-	return UGen(arg1.kr(), arg2.kr(), arg3.kr(), arg4.kr(), arg5.kr(), arg6.kr(), arg7.kr());
-}
-
-UGen kr(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5, UGen const& arg6, UGen const& arg7, UGen const& arg8)  throw()
-{
-	return UGen(arg1.kr(), arg2.kr(), arg3.kr(), arg4.kr(), arg5.kr(), arg6.kr(), arg7.kr(), arg8.kr());
-}
-
-UGen ar() throw()
-{
-	return UGen::getNull();
-}
-
-UGen ar(UGen const& operand) throw()
-{
-	return operand;
-}
-
-UGen ar(UGen const& arg1, UGen const& arg2) throw()
-{
-	return UGen(arg1, arg2);
-}
-
-UGen ar(UGen const& arg1, UGen const& arg2, UGen const& arg3) throw()
-{
-	return UGen(arg1, arg2, arg3);
-}
-
-UGen ar(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4) throw()
-{
-	return UGen(arg1, arg2, arg3, arg4);
-}
-
-UGen ar(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5) throw()
-{
-	return UGen(arg1, arg2, arg3, arg4, arg5);
-}
-
-UGen ar(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5, UGen const& arg6) throw()
-{
-	return UGen(arg1, arg2, arg3, arg4, arg5, arg6);
-}
-
-UGen ar(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5, UGen const& arg6, UGen const& arg7) throw()
-{
-	return UGen(arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-}
-
-UGen ar(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4, UGen const& arg5, UGen const& arg6, UGen const& arg7, UGen const& arg8)  throw()
-{
-	return UGen(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
-}
-
-
 unsigned long	UGen::nextBlockID					= 0;
 double			UGen::sampleRate_					= 44100.0;
 double			UGen::reciprocalSampleRate			= 1.0 / UGen::sampleRate_;
@@ -1844,6 +1818,9 @@ Deleter* UGen::internalUGenDeleter = &UGen::defaultDeleter;
 
 
 const int		UGen::defaultUserData				= 0x7FFFFFFF;
+
+
+
 
 
 END_UGEN_NAMESPACE
