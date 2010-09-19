@@ -240,7 +240,14 @@ bool EnvGenUGenInternal::setSegment(const int segment, const double stepsPerSeco
 	}
 	
 	const int numSegments = env_.getTimes().size();
-	if(currentSegment >= numSegments) return true; // env done
+	if(currentSegment >= numSegments) 
+	{ 
+		return true; // env done
+	}
+	else if(currentSegment == (numSegments-1))
+	{
+		sendReleasing(0.f);
+	}
 	
 	double targetTime = env_.getTimes().getSampleUnchecked(currentSegment);
 	double targetValue = env_.getLevels().getSampleUnchecked(currentSegment + 1);
