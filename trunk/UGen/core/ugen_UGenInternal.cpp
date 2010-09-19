@@ -156,7 +156,8 @@ void UGenOutput::useExternalOutput(float* externalOutputToUse, const int externa
 //=========================== UGenInternal ==================================
 
 UGenInternal::UGenInternal(const int numInputs) throw()
-:	numInputs_(numInputs),
+:	userData(0),
+	numInputs_(numInputs),
 	rate(AudioAndControlRate),
 	ownsInputsPointer(true),
 	isScheduledForDeletion(false),
@@ -168,7 +169,8 @@ UGenInternal::UGenInternal(const int numInputs) throw()
 }
 
 UGenInternal::UGenInternal(UGen *mixInputToUse) throw()
-:	numInputs_(1),
+:	userData(0),
+	numInputs_(1),
 	rate(AudioAndControlRate),
 	ownsInputsPointer(false),
 	isScheduledForDeletion(false),
@@ -525,12 +527,19 @@ void ProxyUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 }
 
 DoneActionSender::DoneActionSender() throw()
-:	doneSent(false)
+:	senderUserData(0),
+	isDone_(false),
+	doneSent(false)
 {
 }
 
 DoneActionSender::~DoneActionSender()
 {
+	// this is just in case the done message wasn't sent before this object was disposed
+	if(isDone_)
+	{
+		sendDoneInternal();
+	}
 }
 
 void DoneActionSender::addDoneActionReceiver(DoneActionReceiver* const receiver) throw()
@@ -548,6 +557,11 @@ void DoneActionSender::removeDoneActionReceiver(DoneActionReceiver* const receiv
 	receivers = receivers.removeItem(receiver);	
 }
 
+void DoneActionSender::setIsDone() throw()					
+{ 
+	isDone_ = true;
+}
+
 void DoneActionSender::sendDoneInternal() throw()
 {
 	if(!doneSent)
@@ -562,16 +576,16 @@ void DoneActionSender::sendDone() throw()
 	const int size = receivers.size();
 	for(int i = 0; i < size; i++)
 	{
-		receivers[i]->handleDone();
+		receivers[i]->handleDone(senderUserData);
 	}	
 }
 
-void DoneActionSender::sendReleasing(const float time) throw()
+void DoneActionSender::sendReleasing(const double time) throw()
 {
 	const int size = receivers.size();
 	for(int i = 0; i < size; i++)
 	{
-		receivers[i]->handleReleasing(time);
+		receivers[i]->handleReleasing(senderUserData, time);
 	}		
 }
 
@@ -580,14 +594,18 @@ ReleasableUGenInternal::ReleasableUGenInternal(const int numInputs) throw()
 	shouldRelease_(false), 
 	shouldSteal_(false),
 	isReleasing_(false),
-	isStealing_(false),
-	isDone_(false) 
+	isStealing_(false)
 { 
 }
 
 void ReleasableUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw()
 {
-	if(isDone_) sendDoneInternal();
+	senderUserData = userData;
+	
+	if(isDone()) 
+	{	
+		sendDoneInternal();
+	}
 }
 
 void ReleasableUGenInternal::releaseInternal() throw()	
@@ -611,23 +629,20 @@ void ReleasableUGenInternal::stealInternal() throw()
 	}
 }
 
-void ReleasableUGenInternal::setIsReleasing(const float time) throw()		
+void ReleasableUGenInternal::setIsReleasing() throw()		
 { 
 	if(shouldRelease_) 
 	{
 		isReleasing_ = true;	
-		sendReleasing(time);
 	}
 }
 
 void ReleasableUGenInternal::setIsStealing() throw()			
 { 
-	if(shouldSteal_) isStealing_ = true;				
-}
-
-void ReleasableUGenInternal::setIsDone() throw()					
-{ 
-	isDone_ = true;
+	if(shouldSteal_) 
+	{
+		isStealing_ = true;	
+	}
 }
 
 

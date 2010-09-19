@@ -55,8 +55,7 @@ PlayBufUGenInternal::PlayBufUGenInternal(Buffer const& buffer,
 	bufferPos(0.0),
 	lastTrig(0.f),
 	doneAction_(doneAction),
-	shouldDeleteValue(doneAction_ == UGen::DeleteWhenDone),
-	isDone(false)
+	shouldDeleteValue(doneAction_ == UGen::DeleteWhenDone)
 {
 	inputs[Rate] = rate;
 	inputs[Trig] = trig;
@@ -72,7 +71,8 @@ UGenInternal* PlayBufUGenInternal::getChannel(const int channel) throw()
 
 void PlayBufUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw()
 {
-	if(isDone) sendDoneInternal();
+	senderUserData = userData;
+	if(isDone()) sendDoneInternal();
 }
 
 void PlayBufUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
@@ -133,7 +133,7 @@ void PlayBufUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 	if(bufferPos >= buffer_.size())
 	{
 		shouldDelete = shouldDelete ? true : shouldDeleteValue;
-		isDone = true;
+		setIsDone();
 	}
 }
 

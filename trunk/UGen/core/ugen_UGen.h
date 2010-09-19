@@ -689,23 +689,6 @@ public:
 				is processing all channels. */
 	//inline 
 	float* processBlock(bool& shouldDelete, const unsigned int blockID, const int channel = -1) throw();
-//	{ 	
-//		ugen_assert(numInternalUGens > 0);
-//		ugen_assert(internalUGens != 0);
-//		
-//		if(channel < 0) {
-//			// process all channels
-//			for(int i = 0; i < numInternalUGens; i++)
-//				internalUGens[i]->processBlockInternal(shouldDelete, blockID, i);
-//			
-//			return 0;
-//		} else {
-//			// process one channel and return a pointer to its block
-//			int internalChannel = channel % numInternalUGens;
-//			float* block = internalUGens[internalChannel]->processBlockInternal(shouldDelete, blockID, channel);
-//			return block;
-//		}
-//	}
 	
 	/** Prepares for a block then processes it.
 	 
@@ -789,12 +772,7 @@ public:
 	 @param	numChannels	The number of pointers in block.
 	 @see AudioIn, RawInputUGenInternal */
 	void setInputs(const float** block, const int blockSize, const int numChannels) throw();
-	
-	//	float* getOutputData(int channel = 0);
-	//	void getOutputData(float** sampleData);
-	//	float getOutputSample(int channel = 0);
-	//	void getOutputSamples(float* outputSamples);	
-	
+		
 	/// @} <!-- end Input and output access -------------------------------------------- -->
 	
 	/// @name UGen-specific control messages

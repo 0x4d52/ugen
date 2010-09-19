@@ -218,19 +218,21 @@ public:
 		Env env = Env::linen(1.0, 1.0, 1.0, 0.1);
 		UGen envgen = env;
 		envgen.addDoneActionReceiver(this);
+		envgen.userData = rand(1000);
 		UGen output = SinOsc::AR(exprand(100.0, 1000.0), 0, envgen);
 		return output;
 	}
 	
-	void handleDone()
+	void handleDone(const int userData)
 	{		
 		events.removeNulls();
-		printf("size = %d\n", events.size());
+		printf("handleDone::size = %d user = %d\n", events.size(), userData);
 	}
 	
-	void handleReleasing(const float time)
+	void handleReleasing(const int userData, const double time)
 	{		
 		events.add(getEvent());
+		printf("handleReleasing::size = %d user = %d fade = %f\n", events.size(), userData, time);
 	}
 };
 

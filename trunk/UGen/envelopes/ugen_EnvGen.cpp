@@ -216,7 +216,7 @@ bool EnvGenUGenInternal::setSegment(const int segment, const double stepsPerSeco
 		if(shouldRelease() == true)
 		{
 			currentSegment = segment;
-			setIsReleasing(0.f);
+			setIsReleasing();
 		} 
 		else
 		{
@@ -244,13 +244,14 @@ bool EnvGenUGenInternal::setSegment(const int segment, const double stepsPerSeco
 	{ 
 		return true; // env done
 	}
-	else if(currentSegment == (numSegments-1))
-	{
-		sendReleasing(0.f);
-	}
 	
 	double targetTime = env_.getTimes().getSampleUnchecked(currentSegment);
 	double targetValue = env_.getLevels().getSampleUnchecked(currentSegment + 1);
+	
+	if(currentSegment == (numSegments-1))
+	{
+		sendReleasing(targetTime);
+	}	
 	
 	stepsUntilTarget = (int)(stepsPerSecond * targetTime);
 	if(stepsUntilTarget < 1) 

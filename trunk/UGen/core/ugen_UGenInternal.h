@@ -122,6 +122,10 @@ public:
 	UGenInternal(UGen *mixInputToUse) throw();
 	~UGenInternal();
 	
+	/** User data passed down from the enclosing UGen.
+	 Only valid after UGen::prepareForBlock() has been called for a particular block. */
+	int userData;
+	
 	UGenInternal* getChannelInternal(const int channel) throw();
 	virtual UGenInternal* getKr() throw();
 	
@@ -232,7 +236,7 @@ protected:
 private:
 	UGenInternal (const UGenInternal&);
     const UGenInternal& operator= (const UGenInternal&);
-		
+			
 #ifdef DEBUGREFCOUNT
 	static int allocationCount;
 #endif
@@ -314,13 +318,19 @@ public:
 	void addDoneActionReceiver(DoneActionReceiver* const receiver) throw();
 	void removeDoneActionReceiver(DoneActionReceiver* const receiver) throw();
 	void sendDoneInternal() throw();
-	void sendReleasing(const float time) throw();
+	void sendReleasing(const double time) throw();
+	void setIsDone() throw();
 	inline bool isDoneSent() const throw() { return doneSent; }
+	inline bool isDone() const throw() { return isDone_; }
+	
+	int senderUserData;
 	
 private:
-	void sendDone() throw();
+	void sendDone(
+	) throw();
 	
 	DoneActionReceiverArray receivers;
+	bool isDone_;
 	bool doneSent;
 };
 
@@ -331,9 +341,21 @@ public:
 	DoneActionReceiver() throw() {}
 	virtual ~DoneActionReceiver() {}
 	
-	/** This must be implmented. */
-	virtual void handleDone() = 0;
-	virtual void handleReleasing(const float time) { };
+	/** This must be implmented, sent when a UGen has finished. 
+	 It should be sent safely after all processing for a particualr block of
+	 audio is complete, in fact it is sent just before the processing of the NEXT block. 
+	 Generally this is called from the audio callback thread. */
+	virtual void handleDone(const int senderUserData) = 0;
+	
+	/** This is optional, sent when a UGen is releasing or fading out naturally.
+	 NB handleDone() must be implemented too since events which might normally
+	 send a "releasing" message will not if they are being stolen instead. You can then pick these
+	 up and clean up in handleDone(). This may be called on any thread. 
+	 @param time	This will be the estimated time for the release to complete. For example when
+					EnvGen sends this message it sends the duration of the last envelope segment.
+					If this value is 0 (or less) assume that it was not possible to provide
+					an estimated release time. */
+	virtual void handleReleasing(const int senderUserData, const double time) = 0;//{ };
 	
 	/** This saves having to get the pointer to a DoneActionReceiver object, it will be casted automatically. */
 	operator DoneActionReceiver*() throw() { return this; }
@@ -369,22 +391,19 @@ public:
 	inline bool shouldSteal() const throw()		{ return shouldSteal_;		}
 	inline bool isReleasing() const throw()		{ return isReleasing_;		}
 	inline bool isStealing() const throw()		{ return isStealing_;		}
-	inline bool isDone() const throw()			{ return isDone_;			}
 		
 	/// @} <!-- end Tests -->
 	
 protected:
 	void releaseInternal() throw();
 	void stealInternal() throw();
-	void setIsReleasing(const float time) throw();
+	void setIsReleasing() throw();
 	void setIsStealing() throw();
-	void setIsDone() throw();
 	
 	bool shouldRelease_;
 	bool shouldSteal_;
 	bool isReleasing_;
 	bool isStealing_;
-	bool isDone_;
 };
 
 
