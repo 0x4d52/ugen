@@ -525,6 +525,7 @@ void ProxyUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 }
 
 DoneActionSender::DoneActionSender() throw()
+:	doneSent(false)
 {
 }
 
@@ -545,6 +546,15 @@ void DoneActionSender::removeDoneActionReceiver(DoneActionReceiver* const receiv
 	if(receiver == 0) { ugen_assertfalse; return; }
 	
 	receivers = receivers.removeItem(receiver);	
+}
+
+void DoneActionSender::sendDoneInternal() throw()
+{
+	if(!doneSent)
+	{
+		sendDone();
+		doneSent = true;
+	}
 }
 
 void DoneActionSender::sendDone() throw()
@@ -573,6 +583,11 @@ ReleasableUGenInternal::ReleasableUGenInternal(const int numInputs) throw()
 	isStealing_(false),
 	isDone_(false) 
 { 
+}
+
+void ReleasableUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw()
+{
+	if(isDone_) sendDoneInternal();
 }
 
 void ReleasableUGenInternal::releaseInternal() throw()	
@@ -613,7 +628,6 @@ void ReleasableUGenInternal::setIsStealing() throw()
 void ReleasableUGenInternal::setIsDone() throw()					
 { 
 	isDone_ = true;
-	sendDone();
 }
 
 

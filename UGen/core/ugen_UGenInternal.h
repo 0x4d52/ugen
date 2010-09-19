@@ -313,11 +313,15 @@ public:
 	
 	void addDoneActionReceiver(DoneActionReceiver* const receiver) throw();
 	void removeDoneActionReceiver(DoneActionReceiver* const receiver) throw();
-	void sendDone() throw();
+	void sendDoneInternal() throw();
 	void sendReleasing(const float time) throw();
+	inline bool isDoneSent() const throw() { return doneSent; }
 	
 private:
+	void sendDone() throw();
+	
 	DoneActionReceiverArray receivers;
+	bool doneSent;
 };
 
 /** Subclasses of this receive UGen done action message. */
@@ -351,7 +355,8 @@ public:
 	/// @{
 	
 	ReleasableUGenInternal(const int numInputs) throw();
-	
+	void prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw();
+
 	virtual void release() = 0;
 	virtual void steal() = 0;
 	

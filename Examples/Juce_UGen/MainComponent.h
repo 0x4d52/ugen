@@ -33,6 +33,7 @@ class MainComponent  :  public Component,
 	
 	float freqValue1, freqValue2, ampValue1, ampValue2;
 								
+	UGenArray events;
 	
 public:
 	//==============================================================================
@@ -207,24 +208,30 @@ public:
 //		UGen output = SinOsc::AR(s.kr(), 0, UGen(0.1, 0.1));
 //		return output;
 		
-		Env env = Env::linen(1.0, 1.0, 1.0, 1.0);
+		events.add(getEvent());
+		
+		return Mix::AR(events, false);
+	}
+	
+	UGen getEvent()
+	{
+		Env env = Env::linen(1.0, 1.0, 1.0, 0.1);
 		UGen envgen = env;
 		envgen.addDoneActionReceiver(this);
-		UGen output = SinOsc::AR(440, 0, envgen);
+		UGen output = SinOsc::AR(exprand(100.0, 1000.0), 0, envgen);
 		return output;
 	}
 	
 	void handleDone()
-	{
-		printf("done\n");
-		
-		Env env = Env::linen(1.0, 1.0, 1.0, 1.0);
-		UGen envgen = env;
-		UGen output = SinOsc::AR(880, 0, envgen);
-		
-		getOutput().setSource(output);
+	{		
+		events.removeNulls();
+		printf("size = %d\n", events.size());
 	}
 	
+	void handleReleasing(const float time)
+	{		
+		events.add(getEvent());
+	}
 };
 
 #endif//_MAINCOMPONENT_H_ 

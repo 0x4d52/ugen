@@ -64,6 +64,7 @@ public:
 						UGen const& loop, 
 						const UGen::DoneAction doneAction) throw();
 	UGenInternal* getChannel(const int channel) throw();
+	void prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
 	enum Inputs { Rate, Trig, Offset, Loop, NumInputs };
@@ -74,6 +75,7 @@ protected:
 	float lastTrig;
 	const UGen::DoneAction doneAction_;
 	const bool shouldDeleteValue;	
+	bool isDone;
 };
 
 /** A UGen which can playback a Buffer.
