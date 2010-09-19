@@ -966,14 +966,20 @@ void UGen::prepareForBlock(const int actualBlockSize, const unsigned int blockID
 	
 	if(shouldDelete) {
 		for(int i = 0; i < numInternalUGens; i++)
+		{	
+			internalUGens[i]->userData = userData;
 			internalUGens[i]->decrementRefCount();
+		}
 		
 		numInternalUGens = 1;
 		internalUGens[0] = getNullInternal();
 		internalUGens[0]->prepareForBlockInternal(actualBlockSize, blockID);		
 	} else {
 		for(int i = 0; i < numInternalUGens; i++)
+		{
+			internalUGens[i]->userData = userData;
 			internalUGens[i]->prepareForBlockInternal(actualBlockSize, blockID);
+		}
 	}
 }
 

@@ -75,7 +75,6 @@ protected:
 	float lastTrig;
 	const UGen::DoneAction doneAction_;
 	const bool shouldDeleteValue;	
-	bool isDone;
 };
 
 /** A UGen which can playback a Buffer.
