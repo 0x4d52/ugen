@@ -11,8 +11,7 @@ class MainComponent  :  public Component,
 						public JuceIOHost,
 						public ButtonListener,
 						public SliderListener,
-						public Timer,
-						public DoneActionReceiver
+						public Timer
 {
     //==============================================================================
     TextButton* audioSettingsButton;
@@ -32,9 +31,7 @@ class MainComponent  :  public Component,
 	MultiSlider* sliders2;
 	
 	float freqValue1, freqValue2, ampValue1, ampValue2;
-								
-	UGenArray events;
-	
+									
 public:
 	//==============================================================================
 	MainComponent()
@@ -204,43 +201,12 @@ public:
 			
 	UGen constructGraph(UGen const& input)
 	{				
-//		Value s = freqSlider1;
-//		UGen output = SinOsc::AR(s.kr(), 0, UGen(0.1, 0.1));
-//		return output;
-		
-//		events.add(getEvent());
-//		
-//		return Mix::AR(events, false);
-		
-		
-		UGen event = DiskIn::AR("/Users/martinrobinson/Documents/Sounds/funky_/fbeat_A_002.aif", false);
-		event.addDoneActionReceiver(this);
-		return event;
+		Value s = freqSlider1;
+		UGen output = SinOsc::AR(s.kr(), 0, UGen(0.1, 0.1));
+		return output;
 	}
 	
-//	UGen getEvent()
-//	{
-//		Env env = Env::linen(1.0, 1.0, 1.0, 0.1);
-//		UGen envgen = env;
-//		envgen.addDoneActionReceiver(this);
-//		envgen.userData = rand(1000);
-//		UGen output = SinOsc::AR(exprand(100.0, 1000.0), 0, envgen);
-//		return output;
-//	}
 	
-	void handleDone(const int userData)
-	{		
-//		events.removeNulls();
-//		printf("handleDone::size = %d user = %d\n", events.size(), userData);
-		
-		printf("file done!\n");
-	}
-	
-	void handleReleasing(const int userData, const double time)
-	{		
-//		events.add(getEvent());
-//		printf("handleReleasing::size = %d user = %d fade = %f\n", events.size(), userData, time);
-	}
 };
 
 #endif//_MAINCOMPONENT_H_ 

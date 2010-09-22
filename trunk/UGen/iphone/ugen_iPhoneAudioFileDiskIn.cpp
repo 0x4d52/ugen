@@ -46,7 +46,8 @@ BEGIN_UGEN_NAMESPACE
 DiskInUGenInternal::DiskInUGenInternal(AudioFileID audioFile, 
 									   AudioStreamBasicDescription const& format, 
 									   const bool loopFlag, 
-									   const double startTime) throw()
+									   const double startTime,
+									   const UGen::DoneAction doneAction) throw()
 :	ProxyOwnerUGenInternal(0, format.mChannelsPerFrame - 1),
 	audioFile_(audioFile),
 	numChannels_(format.mChannelsPerFrame),
@@ -58,7 +59,9 @@ DiskInUGenInternal::DiskInUGenInternal(AudioFileID audioFile,
 	audioData(0),
 	numPackets(0),
 	bytesPerFrame(format.mBytesPerFrame),
-	fileSampleRate(format.mSampleRate)
+	fileSampleRate(format.mSampleRate),
+	doneAction_(doneAction),
+	shouldDeleteValue(doneAction_ == UGen::DeleteWhenDone)
 {
 	OSStatus result;
 	UInt32 dataSize;
@@ -93,7 +96,7 @@ DiskInUGenInternal::~DiskInUGenInternal() throw()
 	free(audioData);
 }
 
-OSStatus DiskInUGenInternal::clearOutputsAndReadData() throw()
+OSStatus DiskInUGenInternal::clearOutputsAndReadData(bool& shouldDelete) throw()
 {
 	const int outputBlockSize = uGenOutput.getBlockSize();
 	const double sampeRateRatio = 1.0;//fileSampleRate * UGen::getReciprocalSampleRate();
@@ -157,6 +160,11 @@ OSStatus DiskInUGenInternal::clearOutputsAndReadData() throw()
 						currentPacket = remainingPackets;
 					}
 				}
+				else
+				{
+					setIsDone();
+					shouldDelete = shouldDelete ? true : shouldDeleteValue;
+				}
 			}
 		}
 		
@@ -165,11 +173,18 @@ OSStatus DiskInUGenInternal::clearOutputsAndReadData() throw()
 	
 }
 
+void DiskInUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw()
+{
+	senderUserData = userData;
+	if(isDone()) sendDoneInternal();
+}
+
 DiskInUGenInternalWav16::DiskInUGenInternalWav16(AudioFileID audioFile, 
 												 AudioStreamBasicDescription const& format, 
 												 const bool loopFlag, 
-												 const double startTime) throw()
-:	DiskInUGenInternal(audioFile, format, loopFlag, startTime)
+												 const double startTime,
+												 const UGen::DoneAction doneAction) throw()
+:	DiskInUGenInternal(audioFile, format, loopFlag, startTime, doneAction)
 {
 }
 
@@ -177,7 +192,7 @@ void DiskInUGenInternalWav16::processBlock(bool& shouldDelete, const unsigned in
 {
 	static const float factor = 1.0 / 0x7FFF;
 	
-	if(clearOutputsAndReadData() == noErr)
+	if(clearOutputsAndReadData(shouldDelete) == noErr)
 	{		
 		for(int channel = 0; channel < numChannels_; channel++)
 		{
@@ -198,8 +213,9 @@ void DiskInUGenInternalWav16::processBlock(bool& shouldDelete, const unsigned in
 DiskInUGenInternalAiff16::DiskInUGenInternalAiff16(AudioFileID audioFile, 
 												   AudioStreamBasicDescription const& format, 
 												   const bool loopFlag, 
-												   const double startTime) throw()
-:	DiskInUGenInternal(audioFile, format, loopFlag, startTime)
+												   const double startTime,
+												   const UGen::DoneAction doneAction) throw()
+:	DiskInUGenInternal(audioFile, format, loopFlag, startTime, doneAction)
 {
 }
 
@@ -207,7 +223,7 @@ void DiskInUGenInternalAiff16::processBlock(bool& shouldDelete, const unsigned i
 {
 	static const float factor = 1.0 / 0x7FFF;
 	
-	if(clearOutputsAndReadData() == noErr)
+	if(clearOutputsAndReadData(shouldDelete) == noErr)
 	{		
 		for(int channel = 0; channel < numChannels_; channel++)
 		{
@@ -228,8 +244,9 @@ void DiskInUGenInternalAiff16::processBlock(bool& shouldDelete, const unsigned i
 DiskInUGenInternalWav24::DiskInUGenInternalWav24(AudioFileID audioFile, 
 												 AudioStreamBasicDescription const& format, 
 												 const bool loopFlag, 
-												 const double startTime) throw()
-:	DiskInUGenInternal(audioFile, format, loopFlag, startTime)
+												 const double startTime,
+												 const UGen::DoneAction doneAction) throw()
+:	DiskInUGenInternal(audioFile, format, loopFlag, startTime, doneAction)
 {
 }
 
@@ -238,7 +255,7 @@ void DiskInUGenInternalWav24::processBlock(bool& shouldDelete, const unsigned in
 	static const float factor = 1.0 / 0x7FFFFF;
 	const int intInc = numChannels_ * 3;
 	
-	if(clearOutputsAndReadData() == noErr)
+	if(clearOutputsAndReadData(shouldDelete) == noErr)
 	{		
 		for(int channel = 0; channel < numChannels_; channel++)
 		{
@@ -259,8 +276,9 @@ void DiskInUGenInternalWav24::processBlock(bool& shouldDelete, const unsigned in
 DiskInUGenInternalAiff24::DiskInUGenInternalAiff24(AudioFileID audioFile, 
 												   AudioStreamBasicDescription const& format, 
 												   const bool loopFlag, 
-												   const double startTime) throw()
-:	DiskInUGenInternal(audioFile, format, loopFlag, startTime)
+												   const double startTime,
+												   const UGen::DoneAction doneAction) throw()
+:	DiskInUGenInternal(audioFile, format, loopFlag, startTime, doneAction)
 {
 }
 
@@ -269,7 +287,7 @@ void DiskInUGenInternalAiff24::processBlock(bool& shouldDelete, const unsigned i
 	static const float factor = 1.0 / 0x7FFFFF;
 	const int intInc = numChannels_ * 3;
 	
-	if(clearOutputsAndReadData() == noErr)
+	if(clearOutputsAndReadData(shouldDelete) == noErr)
 	{		
 		for(int channel = 0; channel < numChannels_; channel++)
 		{
@@ -290,8 +308,9 @@ void DiskInUGenInternalAiff24::processBlock(bool& shouldDelete, const unsigned i
 DiskInUGenInternalWav32::DiskInUGenInternalWav32(AudioFileID audioFile, 
 												 AudioStreamBasicDescription const& format, 
 												 const bool loopFlag, 
-												 const double startTime) throw()
-:	DiskInUGenInternal(audioFile, format, loopFlag, startTime)
+												 const double startTime,
+												 const UGen::DoneAction doneAction) throw()
+:	DiskInUGenInternal(audioFile, format, loopFlag, startTime, doneAction)
 {
 }
 
@@ -299,7 +318,7 @@ void DiskInUGenInternalWav32::processBlock(bool& shouldDelete, const unsigned in
 {
 	static const float factor = 1.0 / 0x7FFFFFFF;
 	
-	if(clearOutputsAndReadData() == noErr)
+	if(clearOutputsAndReadData(shouldDelete) == noErr)
 	{		
 		for(int channel = 0; channel < numChannels_; channel++)
 		{
@@ -320,8 +339,9 @@ void DiskInUGenInternalWav32::processBlock(bool& shouldDelete, const unsigned in
 DiskInUGenInternalAiff32::DiskInUGenInternalAiff32(AudioFileID audioFile, 
 												   AudioStreamBasicDescription const& format, 
 												   const bool loopFlag, 
-												   const double startTime) throw()
-:	DiskInUGenInternal(audioFile, format, loopFlag, startTime)
+												   const double startTime,
+												   const UGen::DoneAction doneAction) throw()
+:	DiskInUGenInternal(audioFile, format, loopFlag, startTime, doneAction)
 {
 }
 
@@ -329,7 +349,7 @@ void DiskInUGenInternalAiff32::processBlock(bool& shouldDelete, const unsigned i
 {
 	static const float factor = 1.0 / 0x7FFFFFFF;
 	
-	if(clearOutputsAndReadData() == noErr)
+	if(clearOutputsAndReadData(shouldDelete) == noErr)
 	{		
 		for(int channel = 0; channel < numChannels_; channel++)
 		{
@@ -350,14 +370,15 @@ void DiskInUGenInternalAiff32::processBlock(bool& shouldDelete, const unsigned i
 DiskInUGenInternalFloatBigEndian::DiskInUGenInternalFloatBigEndian(AudioFileID audioFile, 
 																   AudioStreamBasicDescription const& format, 
 																   const bool loopFlag, 
-																   const double startTime) throw()
-:	DiskInUGenInternal(audioFile, format, loopFlag, startTime)
+																   const double startTime,
+																   const UGen::DoneAction doneAction) throw()
+:	DiskInUGenInternal(audioFile, format, loopFlag, startTime, doneAction)
 {
 }
 
 void DiskInUGenInternalFloatBigEndian::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {
-	if(clearOutputsAndReadData() == noErr)
+	if(clearOutputsAndReadData(shouldDelete) == noErr)
 	{		
 		for(int channel = 0; channel < numChannels_; channel++)
 		{
@@ -378,14 +399,15 @@ void DiskInUGenInternalFloatBigEndian::processBlock(bool& shouldDelete, const un
 DiskInUGenInternalFloatLittleEndian::DiskInUGenInternalFloatLittleEndian(AudioFileID audioFile, 
 																		 AudioStreamBasicDescription const& format, 
 																		 const bool loopFlag, 
-																		 const double startTime) throw()
-:	DiskInUGenInternal(audioFile, format, loopFlag, startTime)
+																		 const double startTime,
+																		 const UGen::DoneAction doneAction) throw()
+:	DiskInUGenInternal(audioFile, format, loopFlag, startTime, doneAction)
 {
 }
 
 void DiskInUGenInternalFloatLittleEndian::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {
-	if(clearOutputsAndReadData() == noErr)
+	if(clearOutputsAndReadData(shouldDelete) == noErr)
 	{		
 		for(int channel = 0; channel < numChannels_; channel++)
 		{
@@ -405,12 +427,18 @@ void DiskInUGenInternalFloatLittleEndian::processBlock(bool& shouldDelete, const
 
 
 
-DiskIn::DiskIn(Text const& path, const bool loopFlag, const double startTime) throw()
+DiskIn::DiskIn(Text const& path, 
+			   const bool loopFlag, 
+			   const double startTime,
+			   const UGen::DoneAction doneAction) throw()
 {	
-	initWithAudioFile(path.getArray(), loopFlag, startTime);
+	initWithAudioFile(path.getArray(), loopFlag, startTime, doneAction);
 }
 
-void DiskIn::initWithAudioFile(const char* audioFilePath, const bool loopFlag, const double startTime) throw()
+void DiskIn::initWithAudioFile(const char* audioFilePath, 
+							   const bool loopFlag, 
+							   const double startTime,
+							   const UGen::DoneAction doneAction) throw()
 {
 	Text path; // this needs to be here so it doesn't get garbage collected too early
 	
@@ -471,7 +499,8 @@ void DiskIn::initWithAudioFile(const char* audioFilePath, const bool loopFlag, c
 					generateFromProxyOwner(new DiskInUGenInternalFloatBigEndian(audioFile, 
 																				format, 
 																				loopFlag, 
-																				startTime));
+																				startTime, 
+																				doneAction));
 					return;
 				}
 				else
@@ -479,7 +508,8 @@ void DiskIn::initWithAudioFile(const char* audioFilePath, const bool loopFlag, c
 					generateFromProxyOwner(new DiskInUGenInternalFloatLittleEndian(audioFile, 
 																				   format, 
 																				   loopFlag, 
-																				   startTime));
+																				   startTime, 
+																				   doneAction));
 					return;
 				}
 			}
@@ -492,7 +522,8 @@ void DiskIn::initWithAudioFile(const char* audioFilePath, const bool loopFlag, c
 					generateFromProxyOwner(new DiskInUGenInternalAiff16(audioFile, 
 																		format, 
 																		loopFlag, 
-																		startTime));
+																		startTime, 
+																		doneAction));
 					return;
 				}
 				else if(format.mBitsPerChannel == 32)
@@ -501,7 +532,8 @@ void DiskIn::initWithAudioFile(const char* audioFilePath, const bool loopFlag, c
 					generateFromProxyOwner(new DiskInUGenInternalAiff32(audioFile, 
 																		format, 
 																		loopFlag, 
-																		startTime));			
+																		startTime, 
+																		doneAction));			
 					return;
 				}
 				else if(format.mBitsPerChannel == 24)
@@ -510,7 +542,8 @@ void DiskIn::initWithAudioFile(const char* audioFilePath, const bool loopFlag, c
 					generateFromProxyOwner(new DiskInUGenInternalAiff24(audioFile, 
 																		format, 
 																		loopFlag, 
-																		startTime));	
+																		startTime, 
+																		doneAction));	
 					return;
 				}
 				else
@@ -529,7 +562,8 @@ void DiskIn::initWithAudioFile(const char* audioFilePath, const bool loopFlag, c
 					generateFromProxyOwner(new DiskInUGenInternalWav16(audioFile, 
 																	   format, 
 																	   loopFlag, 
-																	   startTime));
+																	   startTime, 
+																	   doneAction));
 					return;					
 				}
 				else if(format.mBitsPerChannel == 32)
@@ -538,7 +572,8 @@ void DiskIn::initWithAudioFile(const char* audioFilePath, const bool loopFlag, c
 					generateFromProxyOwner(new DiskInUGenInternalWav32(audioFile, 
 																	   format, 
 																	   loopFlag, 
-																	   startTime));
+																	   startTime, 
+																	   doneAction));
 					return;					
 				}
 				else if(format.mBitsPerChannel == 24)
@@ -547,7 +582,8 @@ void DiskIn::initWithAudioFile(const char* audioFilePath, const bool loopFlag, c
 					generateFromProxyOwner(new DiskInUGenInternalWav24(audioFile, 
 																	   format, 
 																	   loopFlag, 
-																	   startTime));
+																	   startTime, 
+																	   doneAction));
 					return;					
 				}
 				else

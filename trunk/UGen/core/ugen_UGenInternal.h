@@ -326,8 +326,7 @@ public:
 	int senderUserData;
 	
 private:
-	void sendDone(
-	) throw();
+	void sendDone() throw();
 	
 	DoneActionReceiverArray receivers;
 	bool isDone_;
@@ -355,7 +354,7 @@ public:
 					EnvGen sends this message it sends the duration of the last envelope segment.
 					If this value is 0 (or less) assume that it was not possible to provide
 					an estimated release time. */
-	virtual void handleReleasing(const int senderUserData, const double time) = 0;//{ };
+	virtual void handleReleasing(const int senderUserData, const double time) { (void)senderUserData; (void)time; };
 	
 	/** This saves having to get the pointer to a DoneActionReceiver object, it will be casted automatically. */
 	operator DoneActionReceiver*() throw() { return this; }

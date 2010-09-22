@@ -122,9 +122,7 @@ void DiskInUGenInternal::changeListenerCallback (void*)
 		}
 		else
 		{
-			senderUserData = userData;
 			setIsDone();
-			sendDoneInternal();
 		}
 	}
 	

@@ -41,12 +41,18 @@
 #include "../core/ugen_UGen.h"
 
 /** @ingroup UGenInternals */
-class DiskInUGenInternal :	public ProxyOwnerUGenInternal
+class DiskInUGenInternal :	public ProxyOwnerUGenInternal,
+							public DoneActionSender
 {
 public:
-	DiskInUGenInternal(AudioFileID audioFile, AudioStreamBasicDescription const& format, const bool loopFlag = false, const double startTime = 0.0) throw();
+	DiskInUGenInternal(AudioFileID audioFile, 
+					   AudioStreamBasicDescription const& format, 
+					   const bool loopFlag = false, 
+					   const double startTime = 0.0,
+					   const UGen::DoneAction doneAction = UGen::DeleteWhenDone) throw();
 	~DiskInUGenInternal() throw();
-	OSStatus clearOutputsAndReadData() throw();
+	OSStatus clearOutputsAndReadData(bool& shouldDelete) throw();
+	void prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw();
 	
 protected:
 	AudioFileID	audioFile_;
@@ -60,61 +66,95 @@ protected:
 	UInt32 numPackets;
 	UInt32 bytesPerFrame;
 	double fileSampleRate;
+	const UGen::DoneAction doneAction_;
+	const bool shouldDeleteValue;	
 };
 
 class DiskInUGenInternalWav16 : public DiskInUGenInternal
 {
 public: 
-	DiskInUGenInternalWav16(AudioFileID audioFile, AudioStreamBasicDescription const& format, const bool loopFlag = false, const double startTime = 0.0) throw();
+	DiskInUGenInternalWav16(AudioFileID audioFile, 
+							AudioStreamBasicDescription const& format, 
+							const bool loopFlag = false, 
+							const double startTime = 0.0,
+							const UGen::DoneAction doneAction = UGen::DeleteWhenDone) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 };
 
 class DiskInUGenInternalAiff16 : public DiskInUGenInternal
 {
 public: 
-	DiskInUGenInternalAiff16(AudioFileID audioFile, AudioStreamBasicDescription const& format, const bool loopFlag = false, const double startTime = 0.0) throw();
+	DiskInUGenInternalAiff16(AudioFileID audioFile, 
+							 AudioStreamBasicDescription const& format, 
+							 const bool loopFlag = false, 
+							 const double startTime = 0.0,
+							 const UGen::DoneAction doneAction = UGen::DeleteWhenDone) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 };
 
 class DiskInUGenInternalWav24 : public DiskInUGenInternal
 {
 public: 
-	DiskInUGenInternalWav24(AudioFileID audioFile, AudioStreamBasicDescription const& format, const bool loopFlag = false, const double startTime = 0.0) throw();
+	DiskInUGenInternalWav24(AudioFileID audioFile, 
+							AudioStreamBasicDescription const& format, 
+							const bool loopFlag = false, 
+							const double startTime = 0.0,
+							const UGen::DoneAction doneAction = UGen::DeleteWhenDone) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 };
 
 class DiskInUGenInternalAiff24 : public DiskInUGenInternal
 {
 public: 
-	DiskInUGenInternalAiff24(AudioFileID audioFile, AudioStreamBasicDescription const& format, const bool loopFlag = false, const double startTime = 0.0) throw();
+	DiskInUGenInternalAiff24(AudioFileID audioFile, 
+							 AudioStreamBasicDescription const& format, 
+							 const bool loopFlag = false, 
+							 const double startTime = 0.0,
+							 const UGen::DoneAction doneAction = UGen::DeleteWhenDone) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 };
 
 class DiskInUGenInternalWav32 : public DiskInUGenInternal
 {
 public: 
-	DiskInUGenInternalWav32(AudioFileID audioFile, AudioStreamBasicDescription const& format, const bool loopFlag = false, const double startTime = 0.0) throw();
+	DiskInUGenInternalWav32(AudioFileID audioFile, 
+							AudioStreamBasicDescription const& format, 
+							const bool loopFlag = false, 
+							const double startTime = 0.0,
+							const UGen::DoneAction doneAction = UGen::DeleteWhenDone) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 };
 
 class DiskInUGenInternalAiff32 : public DiskInUGenInternal
 {
 public: 
-	DiskInUGenInternalAiff32(AudioFileID audioFile, AudioStreamBasicDescription const& format, const bool loopFlag = false, const double startTime = 0.0) throw();
+	DiskInUGenInternalAiff32(AudioFileID audioFile, 
+							 AudioStreamBasicDescription const& format, 
+							 const bool loopFlag = false, 
+							 const double startTime = 0.0,
+							 const UGen::DoneAction doneAction = UGen::DeleteWhenDone) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 };
 
 class DiskInUGenInternalFloatBigEndian : public DiskInUGenInternal
 {
 public: 
-	DiskInUGenInternalFloatBigEndian(AudioFileID audioFile, AudioStreamBasicDescription const& format, const bool loopFlag = false, const double startTime = 0.0) throw();
+	DiskInUGenInternalFloatBigEndian(AudioFileID audioFile, 
+									 AudioStreamBasicDescription const& format, 
+									 const bool loopFlag = false, 
+									 const double startTime = 0.0,
+									 const UGen::DoneAction doneAction = UGen::DeleteWhenDone) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 };
 
 class DiskInUGenInternalFloatLittleEndian : public DiskInUGenInternal
 {
 public: 
-	DiskInUGenInternalFloatLittleEndian(AudioFileID audioFile, AudioStreamBasicDescription const& format, const bool loopFlag = false, const double startTime = 0.0) throw();
+	DiskInUGenInternalFloatLittleEndian(AudioFileID audioFile, 
+										AudioStreamBasicDescription const& format, 
+										const bool loopFlag = false, 
+										const double startTime = 0.0,
+										const UGen::DoneAction doneAction = UGen::DeleteWhenDone) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 };
 
@@ -127,15 +167,24 @@ class DiskIn : public UGen
 { 
 public: 
 	DiskIn () throw() : UGen() { } 
-	DiskIn (Text const& path, const bool loopFlag = false, const double startTime = 0.0) throw(); 
+	DiskIn (Text const& path, 
+			const bool loopFlag = false, 
+			const double startTime = 0.0, 
+			const UGen::DoneAction doneAction = UGen::DeleteWhenDone) throw(); 
 		
-	static inline UGen AR (Text const& path, const bool loopFlag = false, const double startTime = 0.0) throw() 
+	static inline UGen AR (Text const& path, 
+						   const bool loopFlag = false, 
+						   const double startTime = 0.0,
+						   const UGen::DoneAction doneAction = UGen::DeleteWhenDone) throw() 
 	{ 
 		return DiskIn (path, loopFlag, startTime); 
 	} 	
 					
 private:
-	void initWithAudioFile(const char* audioFilePath, const bool loopFlag = false, const double startTime = 0.0) throw();
+	void initWithAudioFile(const char* audioFilePath, 
+						   const bool loopFlag = false, 
+						   const double startTime = 0.0,
+						   const UGen::DoneAction doneAction = UGen::DeleteWhenDone) throw();
 };
 
 
