@@ -112,27 +112,10 @@ void InterruptionListener(void *inClientData, UInt32 inInterruption)
 		nsLock = [[NSLock alloc] init];
 		fadeInTime = 0.5;
 		preferredBufferSize = 1024;
-		//[self performSelector:@selector(initAudio) withObject:nil afterDelay:0.25];	
 	}
 	return self;
 }
 
-
-// old way using view conroller
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//{
-//	if (self = [super initWithNibName: nibNameOrNil
-//							   bundle: nibBundleOrNil])
-//	{
-//		deleter = 0;
-//		nsLock = [[NSLock alloc] init];
-//		fadeInTime = 0.5;
-//		preferredBufferSize = 1024;
-//		[self performSelector:@selector(initAudio) withObject:nil afterDelay:0.25];	
-//	}
-//	return self;
-//}
-//
 - (void)setFormat
 {
 	memset(&format, 0, sizeof(AudioStreamBasicDescription));
@@ -491,6 +474,7 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 		others[i].prepareAndProcessBlock(inNumberFrames, blockID);
 	}		
 	
+	preFadeOutput.prepareAndProcessBlock(inNumberFrames, blockID);
 	postFadeOutput.prepareAndProcessBlock(inNumberFrames, blockID);
 	
 	[self unlock];
@@ -541,7 +525,7 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 	[self setupRemoteIO];
 	
 	rawInput.setSource(AudioIn::AR(numInputChannels), true);
-	postFadeOutput = Plug::AR(UGen::emptyChannels(numOutputChannels));
+	postFadeOutput = Plug::AR(UGen::emptyChannels(numOutputChannels), false);
 	postFadeOutput.fadeSourceAndRelease(preFadeOutput, fadeInTime);
 	
 	AudioSessionSetActive(true);

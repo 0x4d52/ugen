@@ -70,8 +70,7 @@ using namespace UGEN_NAMESPACE;
  @see JuceIOHost AudioQueueIOHostController
  @ingroup Hosts */
 
-//@interface UIKitAUIOHost : UIViewController
-@interface UIKitAUIOHost : NSObject //NSObject <UIApplicationDelegate> // not any more!
+@interface UIKitAUIOHost : NSObject 
 {
 	AudioStreamBasicDescription format;
 	AURenderCallbackStruct		inputProc;

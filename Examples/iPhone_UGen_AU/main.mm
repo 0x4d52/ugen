@@ -2,10 +2,10 @@
 #include "../../UGen/UGen.h"
 
 
-
 // host class - must implement constructGraph
 @interface UGenIPhoneDemoHost : UIKitAUIOHost
 { 
+	TestReceiver rec;
 } 
 @end
 

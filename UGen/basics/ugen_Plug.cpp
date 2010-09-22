@@ -127,8 +127,10 @@ void PlugUGenInternal::processBlock(bool& shouldDelete, const unsigned int block
 					fadeSourceIndex = -1;
 					if(releasePreviousSourcesAfterFade)
 					{
+						sources.clear();
 						sources = tempSource;
 						currentSourceIndex = 0;
+						tempSource = UGenArray();
 					}
 				}
 				else
@@ -188,7 +190,8 @@ void PlugUGenInternal::setSource(UGen const& source, const bool releasePreviousS
 		
 		if(indexOfExistingSource == -1)
 		{
-			sources = UGenArray(sources, source, false);
+			//sources = UGenArray(sources, source, false);
+			sources.add(source);
 			currentSourceIndex++;
 		}
 		else

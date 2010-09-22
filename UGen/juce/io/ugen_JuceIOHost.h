@@ -336,7 +336,7 @@ inline void JuceIOHostInternal::audioDeviceAboutToStart (AudioIODevice* device)
 {
 	//const ScopedLock sl(lock);	
 	UGen::prepareToPlay(device->getCurrentSampleRate(), device->getCurrentBufferSizeSamples());
-	output_.setSource(owner_->constructGraph(input_), true, 0.0);
+	output_.setSource(owner_->constructGraph(input_), true, 0.005f);
 }
 
 inline void JuceIOHostInternal::audioDeviceStopped() 
