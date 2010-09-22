@@ -43,11 +43,18 @@ BEGIN_UGEN_NAMESPACE
 #include "ugen_DiskIn.h"
 
 
-DiskInUGenInternal::DiskInUGenInternal(File const& file, const int numChannels, bool loopFlag, const double startTime, const int numFrames) throw()
+DiskInUGenInternal::DiskInUGenInternal(File const& file, 
+									   const int numChannels, 
+									   bool loopFlag, 
+									   const double startTime, 
+									   const int numFrames,
+									   const UGen::DoneAction doneAction) throw()
 :	ProxyOwnerUGenInternal(0, numChannels - 1),
 	file_(file),
 	loopFlag_(loopFlag),
-	startTime_(startTime < 0.0 ? 0.0 : startTime)
+	startTime_(startTime < 0.0 ? 0.0 : startTime),
+	doneAction_(doneAction),
+	shouldDeleteValue(doneAction_ == UGen::DeleteWhenDone)
 {	
 	ugen_assert(numChannels > 0);
 	ugen_assert(startTime == startTime_);
@@ -71,6 +78,11 @@ DiskInUGenInternal::~DiskInUGenInternal() throw()
 	delete [] bufferData;
 }
 
+void DiskInUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw()
+{
+	senderUserData = userData;
+	if(isDone()) sendDoneInternal();
+}
 
 void DiskInUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
@@ -92,32 +104,58 @@ void DiskInUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 		filePlayer.getNextAudioBlock(info);
 	else
 		info.clearActiveBufferRegion();
+	
+	if(isDone())
+	{
+		shouldDelete = shouldDelete ? true : shouldDeleteValue;
+	}
 }
 
 void DiskInUGenInternal::changeListenerCallback (void*)
 {
-	if(filePlayer.isPlaying() == false && loopFlag_ == true)
+	if(filePlayer.isPlaying() == false)
 	{
-		filePlayer.setPosition(startTime_);
-		filePlayer.start();
+		if(loopFlag_ == true)
+		{
+			filePlayer.setPosition(startTime_);
+			filePlayer.start();
+		}
+		else
+		{
+			senderUserData = userData;
+			setIsDone();
+			sendDoneInternal();
+		}
 	}
-		
+	
 }
 
 
 
-DiskIn::DiskIn(File const& file, bool loopFlag, const double startTime, const int numFrames) throw()
+DiskIn::DiskIn(File const& file, 
+			   bool loopFlag, 
+			   const double startTime, 
+			   const int numFrames,
+			   const UGen::DoneAction doneAction) throw()
 {	
-	initWithJuceFile(file, loopFlag, startTime, numFrames);
+	initWithJuceFile(file, loopFlag, startTime, numFrames, doneAction);
 }
 
-DiskIn::DiskIn(String const& path, bool loopFlag, const double startTime, const int numFrames) throw()
+DiskIn::DiskIn(String const& path, 
+			   bool loopFlag, 
+			   const double startTime, 
+			   const int numFrames,
+			   const UGen::DoneAction doneAction) throw()
 {
 	File file(path);
-	initWithJuceFile(file, loopFlag, startTime, numFrames);
+	initWithJuceFile(file, loopFlag, startTime, numFrames, doneAction);
 }
 
-void DiskIn::initWithJuceFile(File const& file, bool loopFlag, const double startTime, const int numFrames) throw()
+void DiskIn::initWithJuceFile(File const& file, 
+							  bool loopFlag, 
+							  const double startTime, 
+							  const int numFrames,
+							  const UGen::DoneAction doneAction) throw()
 {
 	AudioFormatManager formatManager;
 	formatManager.registerBasicFormats();
@@ -127,7 +165,12 @@ void DiskIn::initWithJuceFile(File const& file, bool loopFlag, const double star
 	delete reader;
 	
 	initInternal(numChannels);
-	generateFromProxyOwner(new DiskInUGenInternal(file, numChannels, loopFlag, startTime, numFrames));	
+	generateFromProxyOwner(new DiskInUGenInternal(file, 
+												  numChannels, 
+												  loopFlag, 
+												  startTime, 
+												  numFrames, 
+												  doneAction));	
 }
 
 

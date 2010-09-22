@@ -43,11 +43,18 @@
 
 /** @ingroup UGenInternals */
 class DiskInUGenInternal :	public ProxyOwnerUGenInternal,
-							public ChangeListener
+							public ChangeListener,
+							public DoneActionSender
 {
 public:
-	DiskInUGenInternal(File const& file, const int numChannels, bool loopFlag, const double startTime, const int numFrames) throw();
+	DiskInUGenInternal(File const& file, 
+					   const int numChannels, 
+					   bool loopFlag, 
+					   const double startTime, 
+					   const int numFrames,
+					   const UGen::DoneAction doneAction = UGen::DeleteWhenDone) throw();
 	~DiskInUGenInternal() throw();
+	void prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
 	void changeListenerCallback (void*);
@@ -59,6 +66,8 @@ protected:
 	double startTime_;
 	AudioFilePlayer filePlayer;
 	float** bufferData;
+	const UGen::DoneAction doneAction_;
+	const bool shouldDeleteValue;	
 };
 
 
@@ -69,21 +78,41 @@ class DiskIn : public UGen
 { 
 public: 
 	DiskIn () throw() : UGen() { } 
-	DiskIn (File const& file, bool loopFlag = false, const double startTime = 0.0, const int numFrames = 32768) throw(); 
-	DiskIn (String const& path, bool loopFlag = false, const double startTime = 0.0, const int numFrames = 32768) throw(); 
+	DiskIn (File const& file, 
+			bool loopFlag = false, 
+			const double startTime = 0.0, 
+			const int numFrames = 32768, 
+			const UGen::DoneAction doneAction = UGen::DeleteWhenDone) throw(); 
+	DiskIn (String const& path, 
+			bool loopFlag = false, 
+			const double startTime = 0.0, 
+			const int numFrames = 32768,
+			const UGen::DoneAction doneAction = UGen::DeleteWhenDone) throw(); 
 		
-	static inline UGen AR (File const& file, bool loopFlag = false, const double startTime = 0.0, const int numFrames = 32768) throw() 
+	static inline UGen AR (File const& file, 
+						   bool loopFlag = false, 
+						   const double startTime = 0.0, 
+						   const int numFrames = 32768,
+						   const UGen::DoneAction doneAction = UGen::DeleteWhenDone) throw() 
 	{ 
 		return DiskIn (file, loopFlag, startTime, numFrames); 
 	} 	
 		
-	static inline UGen AR (String const& file, bool loopFlag = false, const double startTime = 0.0, const int numFrames = 32768) throw() 
+	static inline UGen AR (String const& file, 
+						   bool loopFlag = false, 
+						   const double startTime = 0.0, 
+						   const int numFrames = 32768,
+						   const UGen::DoneAction doneAction = UGen::DeleteWhenDone) throw() 
 	{ 
 		return DiskIn (file, loopFlag, startTime, numFrames); 
 	} 		
 		
 private:
-	void initWithJuceFile(File const& file, bool loopFlag = false, const double startTime = 0.0, const int numFrames = 32768) throw();
+	void initWithJuceFile(File const& file, 
+						  bool loopFlag = false, 
+						  const double startTime = 0.0, 
+						  const int numFrames = 32768,
+						  const UGen::DoneAction doneAction = UGen::DeleteWhenDone) throw();
 };
 
 

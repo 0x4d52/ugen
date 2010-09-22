@@ -208,31 +208,38 @@ public:
 //		UGen output = SinOsc::AR(s.kr(), 0, UGen(0.1, 0.1));
 //		return output;
 		
-		events.add(getEvent());
+//		events.add(getEvent());
+//		
+//		return Mix::AR(events, false);
 		
-		return Mix::AR(events, false);
+		
+		UGen event = DiskIn::AR("/Users/martinrobinson/Documents/Sounds/funky_/fbeat_A_002.aif", false);
+		event.addDoneActionReceiver(this);
+		return event;
 	}
 	
-	UGen getEvent()
-	{
-		Env env = Env::linen(1.0, 1.0, 1.0, 0.1);
-		UGen envgen = env;
-		envgen.addDoneActionReceiver(this);
-		envgen.userData = rand(1000);
-		UGen output = SinOsc::AR(exprand(100.0, 1000.0), 0, envgen);
-		return output;
-	}
+//	UGen getEvent()
+//	{
+//		Env env = Env::linen(1.0, 1.0, 1.0, 0.1);
+//		UGen envgen = env;
+//		envgen.addDoneActionReceiver(this);
+//		envgen.userData = rand(1000);
+//		UGen output = SinOsc::AR(exprand(100.0, 1000.0), 0, envgen);
+//		return output;
+//	}
 	
 	void handleDone(const int userData)
 	{		
-		events.removeNulls();
-		printf("handleDone::size = %d user = %d\n", events.size(), userData);
+//		events.removeNulls();
+//		printf("handleDone::size = %d user = %d\n", events.size(), userData);
+		
+		printf("file done!\n");
 	}
 	
 	void handleReleasing(const int userData, const double time)
 	{		
-		events.add(getEvent());
-		printf("handleReleasing::size = %d user = %d fade = %f\n", events.size(), userData, time);
+//		events.add(getEvent());
+//		printf("handleReleasing::size = %d user = %d fade = %f\n", events.size(), userData, time);
 	}
 };
 

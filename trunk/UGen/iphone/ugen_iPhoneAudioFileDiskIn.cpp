@@ -559,11 +559,6 @@ void DiskIn::initWithAudioFile(const char* audioFilePath, const bool loopFlag, c
 			}
 		}
 	}
-	
-	// this is unnecessary....
-//	// should have returned by now if we had been successful!
-//	initInternal(1);
-//	internalUGens[0] = getNullInternal();
 }
 
 
