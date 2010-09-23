@@ -891,6 +891,15 @@ public:
 	void removeDoneActionReceiver(UGen const& receiver) throw();
 	
 	
+	double getDuration() throw();
+	double getPosition() throw();
+	void setPosition(const double newPosition) throw();
+	DoubleArray getDurations() throw();
+	DoubleArray getPositions() throw();
+	void setPositions(DoubleArray const& newPositions) throw();
+	
+	
+	
 	/// @} <!-- end UGen-specific control messages ------------------------------------- -->
 	
 	
@@ -962,10 +971,10 @@ public:
 	inline static double			getControlSlopeFactor() throw()				{ return controlSlopeFactor;											}
 	
 	/** Get a null internal. @return A null internal. */
-	inline static UGenInternal*		getNullInternal() throw()					{ return getNull().getInternalUGen(0);										}
+	inline static UGenInternal*		getNullInternal() throw()					{ return getNull().getInternalUGen(0);									}
 	
 	/** Get a control rate null internal. @return A control rate null internal. */
-	inline static UGenInternal*		getNullInternalKr() throw()					{ return getNullKr().getInternalUGen(0);										}
+	inline static UGenInternal*		getNullInternalKr() throw()					{ return getNullKr().getInternalUGen(0);								}
 	
 	/** Get the current Deleter. 
 	 
@@ -1239,7 +1248,7 @@ public:
 	
 	/** A null UGen.
 	 Equivalent but more convenient and efficient than using the default constructor UGen(). */
-	inline static const UGen& getNull() throw() { static UGen null; return null; }
+	inline static const UGen& getNull() throw() { static UGen null = UGen(); return null; }
 	
 	/** A control rate null UGen.
 	 Equivalent but more convenient and efficient than using the default constructor and a kr() call: UGen().kr() */

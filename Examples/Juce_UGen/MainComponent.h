@@ -31,11 +31,13 @@ class MainComponent  :  public Component,
 	MultiSlider* sliders2;
 	
 	float freqValue1, freqValue2, ampValue1, ampValue2;
-									
+								
+	UGen p;
+	
 public:
 	//==============================================================================
 	MainComponent()
-	:	JuceIOHost(1, 2)
+	:	JuceIOHost(1, 2, 0, true)
     {		
 		setName (T("UGen Test"));
 						
@@ -158,7 +160,7 @@ public:
 		}
 		else if(button == testButton1)
 		{
-
+			p.setPosition(0.0);
 		}
 		else if(button == testButton2)
 		{
@@ -201,12 +203,13 @@ public:
 			
 	UGen constructGraph(UGen const& input)
 	{				
-		Value s = freqSlider1;
-		UGen output = SinOsc::AR(s.kr(), 0, UGen(0.1, 0.1));
-		return output;
+//		Value s = freqSlider1;
+//		UGen output = SinOsc::AR(s.kr(), 0, UGen(0.1, 0.1));
+//		return output;
+		
+		p = DiskIn::AR("/Users/martinrobinson/Documents/Sounds/funky_/fbeat_A_002.aif", false, 0, 32768, UGen::DoNothing);
+		return p;
 	}
-	
-	
 };
 
 #endif//_MAINCOMPONENT_H_ 

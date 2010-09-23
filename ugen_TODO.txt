@@ -5,7 +5,6 @@ TODO
 - test the Delay Ugens after the change to the way inputs are handled (these may have got broken)
 - test the Plug shouldDelete stuff 
 - rethink the KR stuff again at some point - 
-- remove SC style ar/kr calls?
 - need to test the getChannel() stuff again (haven't checked it works properly for a while)
 - use templates and virtual functions to rewrite the Binary/Unary op stuff? (this might actually be one place where macros are better but it is difficult to debug using the macros)
 - add a (non-pure) virtual function to the VoicerEventBase which controls the voice stealing priority so this can be customised by the user?
@@ -13,6 +12,7 @@ TODO
 
 
 DONE
+- remove SC style ar/kr calls?
 - Amplitude UGen
 - sustaining/releasing envelopes via a ReleasableUGenInternal class, then UGens can be told to release which will iterate through its graph releasing any ReleasableUGenInternal subclasses
 - add thr AR and KR static UGen methods to: Mix, DiskIn, DiskOut, all the Spawns?

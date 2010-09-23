@@ -122,12 +122,30 @@ void DiskInUGenInternal::changeListenerCallback (void*)
 		}
 		else
 		{
-			setIsDone();
+			if(shouldDeleteValue)
+				setIsDone();
 		}
 	}
 	
 }
 
+double DiskInUGenInternal::getDuration() throw()
+{
+	return (double)filePlayer.getTotalLength() * filePlayer.getReciprocalSampleRate();
+}
+
+double DiskInUGenInternal::getPosition() throw()
+{
+	return filePlayer.getCurrentPosition();
+}
+
+void DiskInUGenInternal::setPosition(const double newPosition) throw()
+{	
+	filePlayer.setPosition(newPosition);
+	
+	if(filePlayer.isPlaying() == false)
+		filePlayer.start();
+}
 
 
 DiskIn::DiskIn(File const& file, 

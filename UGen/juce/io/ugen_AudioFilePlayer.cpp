@@ -43,19 +43,25 @@ BEGIN_UGEN_NAMESPACE
 #include "ugen_AudioFilePlayer.h"
 
 AudioFilePlayer::AudioFilePlayer()
-:	currentAudioFileSource(0)
+:	currentAudioFileSource(0),
+	sampleRate(0.0),
+	reciprocalSampleRate(0.0)
 {	
 }
 
 AudioFilePlayer::AudioFilePlayer(const String& path)
-:	currentAudioFileSource(0)
+:	currentAudioFileSource(0),
+	sampleRate(0.0),
+	reciprocalSampleRate(0.0)
 {
 	File audioFile(path);
 	setFile(audioFile);
 }
 
 AudioFilePlayer::AudioFilePlayer(const File& audioFile)
-:	currentAudioFileSource(0)
+:	currentAudioFileSource(0),
+	sampleRate(0.0),
+	reciprocalSampleRate(0.0)
 {
 	setFile(audioFile);
 }
@@ -85,8 +91,9 @@ bool AudioFilePlayer::setFile(const File& audioFile, const int readAheadBufferSi
 	if (reader != 0)
 	{										
 		currentAudioFileSource = new AudioFormatReaderSource (reader, true);
-		
-		setSource (currentAudioFileSource, readAheadBufferSize, reader->sampleRate);
+		sampleRate = reader->sampleRate;
+		reciprocalSampleRate = 1.0 / sampleRate;
+		setSource (currentAudioFileSource, readAheadBufferSize, sampleRate);
 		
 		return true;
 	}

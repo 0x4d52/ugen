@@ -99,9 +99,7 @@ class AppClass : public JUCEApplication
 		//==============================================================================
 		void initialise (const String& commandLine)
 		{
-			UGen::initialise();
-			UGen::setDeleter(new JuceTimerDeleter());
-			
+			UGen::initialise();			
 			ugen_reportObjectSizes();
 			
 			// This is called automatically when the application is ready to launch.

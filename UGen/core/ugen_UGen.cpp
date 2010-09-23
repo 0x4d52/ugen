@@ -79,7 +79,7 @@ UGen::UGen() throw()
 	internalUGens(0)
 {	
 	initInternal(1);
-	internalUGens[0] = new NullUGenInternal();
+	internalUGens[0] = NullUGenInternal::getInstance();
 }
 
 
@@ -716,6 +716,8 @@ UGen UGen::to(const int endIndex) const throw()
 
 void UGen::initInternal(const int numInternalUGensToInit) throw()
 {
+	// could optimise here if the new size is less than the current size and not realloc...?
+	
 	ugen_assert(numInternalUGensToInit > 0);
 	
 	if((numInternalUGens > 0) && (internalUGens != 0))
@@ -1363,6 +1365,101 @@ void UGen::removeDoneActionReceiver(UGen const& receiverUGen) throw()
 			}
 		}
 	}	
+}
+
+double UGen::getDuration() throw()
+{
+	for(int i = 0; i < numInternalUGens; i++)
+	{
+		Seekable* seekable = dynamic_cast<Seekable*> (internalUGens[i]);
+		
+		if(seekable != 0) 
+		{
+			return seekable->getDuration();
+		}
+	}
+		
+	return -1.0;
+}
+
+double UGen::getPosition() throw()
+{
+	for(int i = 0; i < numInternalUGens; i++)
+	{
+		Seekable* seekable = dynamic_cast<Seekable*> (internalUGens[i]);
+		
+		if(seekable != 0) 
+		{
+			return seekable->getPosition();
+		}
+	}
+	
+	return -1.0;
+}
+
+void UGen::setPosition(const double newPosition) throw()
+{
+	for(int i = 0; i < numInternalUGens; i++)
+	{
+		Seekable* seekable = dynamic_cast<Seekable*> (internalUGens[i]);
+		
+		if(seekable != 0) 
+		{
+			seekable->setPosition(newPosition);
+			return;
+		}
+	}
+}
+
+DoubleArray UGen::getDurations() throw()
+{
+	DoubleArray result;
+	
+	for(int i = 0; i < numInternalUGens; i++)
+	{
+		Seekable* seekable = dynamic_cast<Seekable*> (internalUGens[i]);
+		
+		if(seekable != 0) 
+		{
+			result.add(seekable->getDuration());
+		}
+	}	
+	
+	return result;
+}
+
+DoubleArray UGen::getPositions() throw()
+{
+	DoubleArray result;
+	
+	for(int i = 0; i < numInternalUGens; i++)
+	{
+		Seekable* seekable = dynamic_cast<Seekable*> (internalUGens[i]);
+		
+		if(seekable != 0) 
+		{
+			result.add(seekable->getPosition());
+		}
+	}	
+	
+	return result;
+}
+
+void UGen::setPositions(DoubleArray const& newPositions) throw()
+{
+	ugen_assert(newPositions.length() > 0);
+	
+	int posIndex = 0;
+	
+	for(int i = 0; i < numInternalUGens; i++)
+	{
+		Seekable* seekable = dynamic_cast<Seekable*> (internalUGens[i]);
+		
+		if(seekable != 0) 
+		{
+			seekable->setPosition(newPositions.wrapAt(posIndex++));
+		}
+	}
 }
 
 

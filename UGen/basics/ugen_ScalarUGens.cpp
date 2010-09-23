@@ -61,6 +61,29 @@ void NullUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blo
 	memset(outputSamples, 0, numSamplesToProcess * sizeof(float));
 }
 
+NullUGenInternal* NullUGenInternal::getInstance() throw()
+{
+	static NullUGenInternal* instance = new NullUGenInternal(); 
+	static bool firstTime = true;
+	
+	if(firstTime)
+	{
+		firstTime = false;
+	}
+	else
+	{
+		instance->incrementRefCount();
+	}
+	
+	return instance;
+}
+
+NullUGen::NullUGen() throw()
+{
+	initInternal(1);
+	internalUGens[0] = NullUGenInternal::getInstance();
+}
+
 ScalarUGenInternal::ScalarUGenInternal(const float value) throw()
 :	ScalarBaseUGenInternal(value)
 {

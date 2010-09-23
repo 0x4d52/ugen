@@ -172,8 +172,10 @@ public:
 	/** Removes all UGen instances which are null - in-place. */
 	void removeNulls() throw();
 	
-	/** Removes all items and sets the size to zero - in-place. */
-	void clear() throw();
+	/** Removes all items and sets the size to zero - in-place. 
+	 @param quick  If true then the array is actually deallocated but all the items
+				   are set to null. */
+	void clear(bool quick = true) throw();
 	
 	/** Append two UGenArray objects.
 	 All null UGen instances are removed from the result.
