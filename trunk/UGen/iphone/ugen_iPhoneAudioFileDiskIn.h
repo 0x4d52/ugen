@@ -177,7 +177,7 @@ public:
 						   const double startTime = 0.0,
 						   const UGen::DoneAction doneAction = UGen::DeleteWhenDone) throw() 
 	{ 
-		return DiskIn (path, loopFlag, startTime); 
+		return DiskIn (path, loopFlag, startTime, doneAction); 
 	} 	
 					
 private:

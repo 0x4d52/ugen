@@ -128,9 +128,10 @@ void PlugUGenInternal::processBlock(bool& shouldDelete, const unsigned int block
 					if(releasePreviousSourcesAfterFade)
 					{
 						sources.clear();
+						UGenArray localTemp = sources;
 						sources = tempSource;
 						currentSourceIndex = 0;
-						tempSource = UGenArray();
+						tempSource = localTemp;
 					}
 				}
 				else

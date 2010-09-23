@@ -67,14 +67,20 @@ protected:
 class NullUGenInternal : public ScalarBaseUGenInternal
 {
 public:
-	NullUGenInternal() throw();
 	UGenInternal* getKr() throw();
 	inline bool isNull() const throw()			{ return true;  }
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	inline float getValue(const int /*channel*/) const throw()					{ return 0.f;	}
 	inline bool isConst() const throw()											{ return true;	}
+	
+	static NullUGenInternal* getInstance() throw();
+	
 private:
+	NullUGenInternal() throw(); // private so you need to call getInstance()
 };
+
+UGenSublcassDeclarationNoDefault(NullUGen, (), (), COMMON_UGEN_DOCS Plug_Docs);
+
 
 /** @ingroup UGenInternals */
 class ScalarUGenInternal : public ScalarBaseUGenInternal

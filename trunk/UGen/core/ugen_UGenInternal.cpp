@@ -357,9 +357,6 @@ UGenInternal* UGenInternal::getInput(const int inputIndex, const int channel) th
 	return input.getInternalUGen(channel % input.getNumChannels());
 }
 
-#ifdef DEBUGREFCOUNT
-int UGenInternal::allocationCount = 0;
-#endif
 
 
 //=========================== ProxyOwnerUGenInternal ==================================

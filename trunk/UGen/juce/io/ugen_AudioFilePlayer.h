@@ -69,6 +69,9 @@ public:
 	 */
 	bool setFile(const File& audioFile, const int readAheadBufferSize = 32768);
 	const File& getFile();
+	
+	inline double getSampleRate() const throw() { return sampleRate; }
+	inline double getReciprocalSampleRate() const throw() { return reciprocalSampleRate; }
 
 	juce_UseDebuggingNewOperator
 	
@@ -79,7 +82,8 @@ private:
 	AudioFormatReaderSource* currentAudioFileSource;
 	
 	File currentFile;
-	
+	double sampleRate;
+	double reciprocalSampleRate;
 };
 
 #endif // UGEN_AUDIOFILEPLAYER_H

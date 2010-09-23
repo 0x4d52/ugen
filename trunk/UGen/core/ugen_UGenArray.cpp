@@ -226,6 +226,11 @@ void UGenArray::Internal::clear() throw()
 
 void UGenArray::Internal::clearQuick() throw()
 {
+	for(int i = 0; i < size_; i++)
+	{
+		array[i] = UGen::getNull();
+	}
+	
 	size_ = 0;
 }
 
@@ -459,9 +464,16 @@ void UGenArray::removeNulls() throw()
 	internal->removeNulls();
 }
 
-void UGenArray::clear() throw()
+void UGenArray::clear(bool quick) throw()
 {
-	internal->clear();
+	if(quick)
+	{
+		internal->clear();
+	}
+	else
+	{
+		internal->clearQuick();
+	}
 }
 
 void UGenArray::put(const int index, UGen const& item) throw()

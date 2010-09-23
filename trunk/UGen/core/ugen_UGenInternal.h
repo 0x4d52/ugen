@@ -37,7 +37,6 @@
 #ifndef UGEN_UGENINTERNAL_H
 #define UGEN_UGENINTERNAL_H
 
-#define DEBUGREFCOUNT
 
 #include "ugen_Arrays.h"
 
@@ -236,10 +235,6 @@ protected:
 private:
 	UGenInternal (const UGenInternal&);
     const UGenInternal& operator= (const UGenInternal&);
-			
-#ifdef DEBUGREFCOUNT
-	static int allocationCount;
-#endif
 	
 };
 
@@ -403,6 +398,16 @@ protected:
 	bool shouldSteal_;
 	bool isReleasing_;
 	bool isStealing_;
+};
+
+class Seekable
+{
+public:
+	Seekable() throw() {}
+	virtual ~Seekable() {}
+	virtual double getDuration() = 0;
+	virtual double getPosition() = 0;
+	virtual void setPosition(const double newPosition) = 0;
 };
 
 

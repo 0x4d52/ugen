@@ -43,6 +43,7 @@
 
 /** @ingroup UGenInternals */
 class DiskInUGenInternal :	public ProxyOwnerUGenInternal,
+							public Seekable,
 							public ChangeListener,
 							public DoneActionSender
 {
@@ -52,12 +53,17 @@ public:
 					   bool loopFlag, 
 					   const double startTime, 
 					   const int numFrames,
-					   const UGen::DoneAction doneAction = UGen::DeleteWhenDone) throw();
+					   const UGen::DoneAction doneAction) throw();
 	~DiskInUGenInternal() throw();
 	void prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
 	void changeListenerCallback (void*);
+	
+	double getDuration() throw();
+	double getPosition() throw();
+	void setPosition(const double newPosition) throw();
+	
 	
 protected:
 	
@@ -95,7 +101,7 @@ public:
 						   const int numFrames = 32768,
 						   const UGen::DoneAction doneAction = UGen::DeleteWhenDone) throw() 
 	{ 
-		return DiskIn (file, loopFlag, startTime, numFrames); 
+		return DiskIn (file, loopFlag, startTime, numFrames, doneAction); 
 	} 	
 		
 	static inline UGen AR (String const& file, 
@@ -104,7 +110,7 @@ public:
 						   const int numFrames = 32768,
 						   const UGen::DoneAction doneAction = UGen::DeleteWhenDone) throw() 
 	{ 
-		return DiskIn (file, loopFlag, startTime, numFrames); 
+		return DiskIn (file, loopFlag, startTime, numFrames, doneAction); 
 	} 		
 		
 private:
