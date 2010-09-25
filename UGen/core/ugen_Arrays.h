@@ -159,8 +159,8 @@ public:
 private:
 	int size_;
 	ObjectType *array;
-	bool arrayIsNullTerminated;
-	bool ownsTheData;
+	bool arrayIsNullTerminated : 1;
+	bool ownsTheData : 1;
 
 	
 	ObjectArrayInternal();

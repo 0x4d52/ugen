@@ -90,12 +90,12 @@ void TableOscUGenInternal::processBlock(bool& shouldDelete, const unsigned int b
 	LOCAL_COPY(currentPhase);
 }
 
-double TableOscUGenInternal::getDuration() throw()
+double TableOscUGenInternal::getDuration() const throw()
 {
 	return 1.0;
 }
 
-double TableOscUGenInternal::getPosition() throw()
+double TableOscUGenInternal::getPosition() const throw()
 {
 	return (double)currentPhase / (double)wavetableSize;
 }

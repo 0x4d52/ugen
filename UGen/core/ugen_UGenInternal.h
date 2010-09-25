@@ -87,7 +87,7 @@ private:
 	int blockSize;
 	int allocatedBlockSize;
 	float *block;
-	bool usingExternalOutput;
+	bool usingExternalOutput:1;
 	UGenOutput* externalOutput;
 };
 
@@ -324,8 +324,8 @@ private:
 	void sendDone() throw();
 	
 	DoneActionReceiverArray receivers;
-	bool isDone_;
-	bool doneSent;
+	bool isDone_ : 1;
+	bool doneSent : 1;
 };
 
 /** Subclasses of this receive UGen done action message. */
@@ -394,10 +394,10 @@ protected:
 	void setIsReleasing() throw();
 	void setIsStealing() throw();
 	
-	bool shouldRelease_;
-	bool shouldSteal_;
-	bool isReleasing_;
-	bool isStealing_;
+	bool shouldRelease_ : 1;
+	bool shouldSteal_ : 1;
+	bool isReleasing_ : 1;
+	bool isStealing_ : 1;
 };
 
 /** Added to UGenInternal classes that can seek a particular point in time.*/
@@ -410,12 +410,12 @@ public:
 	 The units will be dependent on the UGenInternal in question. 
 	 For longer sounds as sound files it is likely to be in seconds. 
 	 For wavetables it will always be 1.0 */
-	virtual double getDuration() = 0;
+	virtual double getDuration() const = 0;
 	/** Get the current position of the seekable.
 	 The units will be dependent on the UGenInternal in question. 
 	 For longer sounds as sound files it is likely to be in seconds. 
 	 For wavetables it will 0...1 */	
-	virtual double getPosition() = 0;
+	virtual double getPosition() const = 0;
 	/** Set the current position of the seekable.
 	 The units will be dependent on the UGenInternal in question. 
 	 For longer sounds as sound files it is likely to be in seconds. 

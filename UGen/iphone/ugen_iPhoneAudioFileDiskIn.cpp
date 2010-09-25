@@ -182,12 +182,12 @@ void DiskInUGenInternal::prepareForBlock(const int actualBlockSize, const unsign
 	if(isDone()) sendDoneInternal();
 }
 
-double DiskInUGenInternal::getDuration() throw()
+double DiskInUGenInternal::getDuration() const throw()
 {
 	return packetCount * reciprocalSampleRate;
 }
 
-double DiskInUGenInternal::getPosition() throw()
+double DiskInUGenInternal::getPosition() const throw()
 {
 	return currentPacket * reciprocalSampleRate;
 }

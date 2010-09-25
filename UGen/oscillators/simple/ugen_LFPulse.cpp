@@ -88,12 +88,12 @@ void LFPulseUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 	}
 }
 
-double LFPulseUGenInternal::getDuration() throw()
+double LFPulseUGenInternal::getDuration() const throw()
 { 
 	return 1.0;
 }
 
-double LFPulseUGenInternal::getPosition() throw()
+double LFPulseUGenInternal::getPosition() const throw()
 {
 	return (double)currentPhase;
 }

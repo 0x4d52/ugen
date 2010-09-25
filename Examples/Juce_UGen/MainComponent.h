@@ -32,8 +32,6 @@ class MainComponent  :  public Component,
 	
 	float freqValue1, freqValue2, ampValue1, ampValue2;
 								
-	UGen p;
-	
 public:
 	//==============================================================================
 	MainComponent()
@@ -203,13 +201,9 @@ public:
 			
 	UGen constructGraph(UGen const& input)
 	{				
-//		Value s = freqSlider1;
-//		UGen output = SinOsc::AR(s.kr(), 0, UGen(0.1, 0.1));
-//		return output;
-		
-		//p = DiskIn::AR("/Users/martinrobinson/Documents/Sounds/funky_/fbeat_A_002.aif", false, 0, 32768, UGen::DoNothing);
-		p = PlayBuf::AR("/Users/martinrobinson/Documents/Sounds/funky_/fbeat_A_002.aif", 1, 0, 0, 1);
-		return p;
+		Value s = freqSlider1;
+		UGen output = SinOsc::AR(s.kr(), 0, UGen(0.1, 0.1));
+		return output;
 	}
 };
 
