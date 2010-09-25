@@ -158,7 +158,7 @@ public:
 		}
 		else if(button == testButton1)
 		{
-			p.setPosition(0.0);
+
 		}
 		else if(button == testButton2)
 		{
