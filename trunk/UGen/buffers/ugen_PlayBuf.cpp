@@ -137,6 +137,20 @@ void PlayBufUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 	}
 }
 
+double PlayBufUGenInternal::getDuration() throw()
+{
+	return buffer_.duration();
+}
+
+double PlayBufUGenInternal::getPosition() throw()
+{
+	return bufferPos * UGen::getReciprocalSampleRate();
+}
+
+void PlayBufUGenInternal::setPosition(const double newPosition) throw()
+{
+	bufferPos = ugen::max(0.0, newPosition) * UGen::getSampleRate();
+}
 
 
 PlayBuf::PlayBuf(Buffer const& buffer, 

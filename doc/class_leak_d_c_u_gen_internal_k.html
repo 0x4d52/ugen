@@ -48,6 +48,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_leak_d_c_u_gen_internal_k.html#aa37c121e816f78fefe60e7de46b9aee3">LeakDCUGenInternalK</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_u_gen.html">UGen</a> const &amp;coeff)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_leak_d_c_u_gen_internal_k.html#a2165773db0bb0550aba3b0b21a89918b">getKr</a> ()  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_leak_d_c_u_gen_internal_k.html#ab1bbaec1e599f1b94fee659af2acbd84">getValue</a> (const int channel) const   throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_leak_d_c_u_gen_internal_k.html#a9aec678d56a05069781b506ab61d517e">setValue</a> (const float newValue)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_leak_d_c_u_gen_internal_k.html#a60c666906ca3de8657ed40bc2947d666">processBlock</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Process a block of samples for this blockID and channel.  <a href="#a60c666906ca3de8657ed40bc2947d666"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
@@ -177,7 +178,27 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___leak_d_c_8cpp_source.html#l00111">111</a> of file <a class="el" href="ugen___leak_d_c_8cpp_source.html">ugen_LeakDC.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l00935">UGen::getControlRateBlockSize()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00963">UGen::getSlopeFactor()</a>, and <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00142">zap()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l00930">UGen::getControlRateBlockSize()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00958">UGen::getSlopeFactor()</a>, and <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00142">zap()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9aec678d56a05069781b506ab61d517e"></a><!-- doxytag: member="LeakDCUGenInternalK::setValue" ref="a9aec678d56a05069781b506ab61d517e" args="(const float newValue)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LeakDCUGenInternalK::setValue </td>
+          <td>(</td>
+          <td class="paramtype">const float&nbsp;</td>
+          <td class="paramname"> <em>newValue</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>  throw ()<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___leak_d_c_8h_source.html#l00062">62</a> of file <a class="el" href="ugen___leak_d_c_8h_source.html">ugen_LeakDC.h</a>.</p>
 
 </div>
 </div>
@@ -202,7 +223,7 @@ Private Attributes</h2></td></tr>
 <li>filters/<a class="el" href="ugen___leak_d_c_8cpp_source.html">ugen_LeakDC.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:09 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:12 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

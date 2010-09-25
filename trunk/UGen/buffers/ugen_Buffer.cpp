@@ -411,6 +411,19 @@ Buffer::Buffer(AudioSampleBuffer& audioSampleBuffer) throw()
 	}
 }
 
+Buffer::Buffer(const char *audioFilePath) throw()
+:	numChannels_(0),
+	size_(0),
+	channels(0)
+{
+	File audioFile (audioFilePath);
+	double sampleRate = initFromJuceFile(audioFile);
+	double currentSampleRate = UGen::getSampleRate();
+	
+	if((sampleRate != 0.0) && (sampleRate != currentSampleRate))
+		operator= (changeSampleRate(sampleRate, currentSampleRate));		
+}
+
 Buffer::Buffer(Text const& audioFilePath) throw()
 :	numChannels_(0),
 	size_(0),
@@ -574,6 +587,18 @@ bool Buffer::initFromJuceFile(const File& audioFile,
 }
 
 #elif defined(UGEN_IPHONE) // else if so we don't use these if using Juce on the iPhone
+
+Buffer::Buffer(const char *audioFilePath) throw()
+:	numChannels_(0),
+	size_(0),
+	channels(0)
+{
+	double sampleRate = initFromAudioFile(audioFilePath);
+	double currentSampleRate = UGen::getSampleRate();
+	
+	if((sampleRate != 0.0) && (sampleRate != currentSampleRate))
+		operator= (changeSampleRate(sampleRate, currentSampleRate));	
+}
 
 Buffer::Buffer(Text const& audioFilePath) throw()
 :	numChannels_(0),

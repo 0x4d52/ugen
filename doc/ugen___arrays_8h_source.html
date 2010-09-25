@@ -30,7 +30,7 @@
 <h1>core/ugen_Arrays.h</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___arrays_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Arrays.h 141 2010-09-13 08:55:39Z 0x4d52 $</span>
+<a href="ugen___arrays_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Arrays.h 149 2010-09-13 18:44:30Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/core/ugen_Arrays.h $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -1576,13 +1576,13 @@
 <a name="l01681"></a><a class="code" href="class_numerical_array.html#a1ca3658317780ecc6d4eb6630e7246b6">01681</a>  <a class="code" href="class_numerical_array.html#aff07b60edb2ff143b8bc4342c958ee4a">NumericalArray</a>(<a class="code" href="class_numerical_array_spec.html">NumericalArraySpec</a> <span class="keyword">const</span>&amp; spec) <span class="keywordflow">throw</span>()
 <a name="l01682"></a>01682  : <a class="code" href="class_object_array.html">ObjectArray&lt;NumericalType&gt;</a>(spec.size_, <span class="keyword">false</span>)
 <a name="l01683"></a>01683  {
-<a name="l01684"></a>01684   <span class="keywordflow">if</span>(spec.zeroData_) <a class="code" href="class_numerical_array.html#a4643dbcfa7ba2d6d82affbc9853c2018">clear</a>();
+<a name="l01684"></a>01684   <span class="keywordflow">if</span>(spec.zeroData_) <a class="code" href="class_numerical_array.html#ae8af5d22fa2708c8fc5edfa14d03e12d">zero</a>();
 <a name="l01685"></a>01685  }
 <a name="l01686"></a>01686  
 <a name="l01687"></a><a class="code" href="class_numerical_array.html#a6526ef4710bf9cb3828653bd09a2323a">01687</a>  <a class="code" href="class_numerical_array.html#aff07b60edb2ff143b8bc4342c958ee4a">NumericalArray</a>(<a class="code" href="class_numerical_array_spec.html">NumericalArraySpec</a> <span class="keyword">const</span>&amp; spec, <span class="keyword">const</span> <span class="keywordtype">bool</span> needsNullTermination) <span class="keywordflow">throw</span>()
 <a name="l01688"></a>01688  : <a class="code" href="class_object_array.html">ObjectArray&lt;NumericalType&gt;</a>(spec.size_, needsNullTermination)
 <a name="l01689"></a>01689  {
-<a name="l01690"></a>01690   <span class="keywordflow">if</span>(spec.zeroData_) <a class="code" href="class_numerical_array.html#a4643dbcfa7ba2d6d82affbc9853c2018">clear</a>();
+<a name="l01690"></a>01690   <span class="keywordflow">if</span>(spec.zeroData_) <a class="code" href="class_numerical_array.html#ae8af5d22fa2708c8fc5edfa14d03e12d">zero</a>();
 <a name="l01691"></a>01691  }
 <a name="l01692"></a>01692  
 <a name="l01693"></a><a class="code" href="class_numerical_array.html#ab365d3169b875f9d1956521ba42ea7f3">01693</a>  <a class="code" href="class_numerical_array.html#aff07b60edb2ff143b8bc4342c958ee4a">NumericalArray</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>, NumericalType* dataToUse, <span class="keyword">const</span> <span class="keywordtype">bool</span> needsNullTermination) <span class="keywordflow">throw</span>()
@@ -2994,7 +2994,7 @@
 <a name="l03131"></a>03131 <span class="preprocessor">#endif // _UGEN_ugen_Arrays_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:03 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:04 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

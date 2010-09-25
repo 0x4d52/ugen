@@ -50,7 +50,6 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_env_gen_u_gen_internal_k.html#a1245730aeb98f1b641edac214967743b">EnvGenUGenInternalK</a> (<a class="el" href="class_env.html">Env</a> const &amp;env, const <a class="el" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1ca">UGen::DoneAction</a> doneAction)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_env_gen_u_gen_internal_k.html#a031d475930c07a18406b52a0a2b0e68a">getKr</a> ()  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_env_gen_u_gen_internal_k.html#ab6df15da887b1b77338c5e7228921d35">processBlock</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Process a block of samples for this blockID and channel.  <a href="#ab6df15da887b1b77338c5e7228921d35"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 
@@ -81,9 +80,9 @@ Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___env_gen_8cpp_source.html#l00320">320</a> of file <a class="el" href="ugen___env_gen_8cpp_source.html">ugen_EnvGen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_gen_8cpp_source.html#l00329">329</a> of file <a class="el" href="ugen___env_gen_8cpp_source.html">ugen_EnvGen.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l00935">UGen::getControlRateBlockSize()</a>, and <a class="el" href="ugen___u_gen_8h_source.html#l00929">UGen::getSampleRate()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l00930">UGen::getControlRateBlockSize()</a>, and <a class="el" href="ugen___u_gen_8h_source.html#l00924">UGen::getSampleRate()</a>.</p>
 
 </div>
 </div>
@@ -97,7 +96,7 @@ Public Member Functions</h2></td></tr>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td>  throw ()<code> [inline, virtual]</code></td>
+          <td>  throw ()<code> [inline]</code></td>
         </tr>
       </table>
 </div>
@@ -136,28 +135,17 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [virtual]</code></td>
+          <td></td><td></td><td>  throw ()</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Process a block of samples for this blockID and channel. </p>
-<p>This is the main rendering function and needs to be implement by all subclasses.</p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>shouldDelete</em>&nbsp;</td><td>A <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> graph can be scheduled for deletion by setting this to true on return. If it is already true it should NOT be set to false. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>blockID</em>&nbsp;</td><td>This is a sample counter, you can assume that calls to this function will have blockIDs which are higher that the last call (until the maximum integer is reached). </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>channel</em>&nbsp;</td><td>The channel index to process. </td></tr>
-  </table>
-  </dd>
-</dl>
-
 <p>Reimplemented from <a class="el" href="class_env_gen_u_gen_internal.html#a8a2e7ec6ee4febc7836690af04520dca">EnvGenUGenInternal</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___env_gen_8cpp_source.html#l00327">327</a> of file <a class="el" href="ugen___env_gen_8cpp_source.html">ugen_EnvGen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_gen_8cpp_source.html#l00336">336</a> of file <a class="el" href="ugen___env_gen_8cpp_source.html">ugen_EnvGen.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___env_curve_8h_source.html#l00055">EnvCurve::Empty</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00059">EnvCurve::Exponential</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00935">UGen::getControlRateBlockSize()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00966">UGen::getControlSlopeFactor()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00929">UGen::getSampleRate()</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00058">EnvCurve::Linear</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00056">EnvCurve::Numerical</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00060">EnvCurve::Sine</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00057">EnvCurve::Step</a>, and <a class="el" href="ugen___env_curve_8h_source.html#l00061">EnvCurve::Welch</a>.</p>
+<p>References <a class="el" href="ugen___env_curve_8h_source.html#l00055">EnvCurve::Empty</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00059">EnvCurve::Exponential</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00930">UGen::getControlRateBlockSize()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00961">UGen::getControlSlopeFactor()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00924">UGen::getSampleRate()</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00058">EnvCurve::Linear</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00056">EnvCurve::Numerical</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00060">EnvCurve::Sine</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00057">EnvCurve::Step</a>, and <a class="el" href="ugen___env_curve_8h_source.html#l00061">EnvCurve::Welch</a>.</p>
 
 </div>
 </div>
@@ -166,7 +154,7 @@ Public Member Functions</h2></td></tr>
 <li>envelopes/<a class="el" href="ugen___env_gen_8cpp_source.html">ugen_EnvGen.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:08 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:12 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

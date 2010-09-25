@@ -51,6 +51,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lag_u_d_u_gen_internal_k.html#a451574999b88dc2766ebf711813f3d24">LagUDUGenInternalK</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_u_gen.html">UGen</a> const &amp;lagTimeUp, <a class="el" href="class_u_gen.html">UGen</a> const &amp;lagTimeDown)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lag_u_d_u_gen_internal_k.html#afbec8f88ce36c78b0c5726625e6a6728">getKr</a> ()  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lag_u_d_u_gen_internal_k.html#af2f2a576ef75e3d3d1a3fd5c871cee3c">getValue</a> (const int channel) const   throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lag_u_d_u_gen_internal_k.html#af22f6d76ea5566e782ef8c65f9758433">setValue</a> (const float newValue)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lag_u_d_u_gen_internal_k.html#abc9d2318ed07363d103dddfc971e16e8">processBlock</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Process a block of samples for this blockID and channel.  <a href="#abc9d2318ed07363d103dddfc971e16e8"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
@@ -186,7 +187,27 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___lag_8cpp_source.html#l00324">324</a> of file <a class="el" href="ugen___lag_8cpp_source.html">ugen_Lag.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00133">exp()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00935">UGen::getControlRateBlockSize()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00966">UGen::getControlSlopeFactor()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00929">UGen::getSampleRate()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00963">UGen::getSlopeFactor()</a>, <a class="el" href="ugen___constants_8h_source.html#l00055">log001</a>, <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>, and <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00142">zap()</a>.</p>
+<p>References <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00133">exp()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00930">UGen::getControlRateBlockSize()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00961">UGen::getControlSlopeFactor()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00924">UGen::getSampleRate()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00958">UGen::getSlopeFactor()</a>, <a class="el" href="ugen___constants_8h_source.html#l00055">log001</a>, <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>, and <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00142">zap()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af22f6d76ea5566e782ef8c65f9758433"></a><!-- doxytag: member="LagUDUGenInternalK::setValue" ref="af22f6d76ea5566e782ef8c65f9758433" args="(const float newValue)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LagUDUGenInternalK::setValue </td>
+          <td>(</td>
+          <td class="paramtype">const float&nbsp;</td>
+          <td class="paramname"> <em>newValue</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>  throw ()<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___lag_8h_source.html#l00108">108</a> of file <a class="el" href="ugen___lag_8h_source.html">ugen_Lag.h</a>.</p>
 
 </div>
 </div>
@@ -211,7 +232,7 @@ Private Attributes</h2></td></tr>
 <li>filters/control/<a class="el" href="ugen___lag_8cpp_source.html">ugen_Lag.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:09 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:12 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

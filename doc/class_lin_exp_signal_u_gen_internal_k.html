@@ -51,6 +51,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lin_exp_signal_u_gen_internal_k.html#a1c1529cde169791487fee978f31538de">LinExpSignalUGenInternalK</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_u_gen.html">UGen</a> const &amp;inLow, <a class="el" href="class_u_gen.html">UGen</a> const &amp;inHigh, <a class="el" href="class_u_gen.html">UGen</a> const &amp;outLow, <a class="el" href="class_u_gen.html">UGen</a> const &amp;outHigh)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lin_exp_signal_u_gen_internal_k.html#adcb5b6ce9f86d40d196b2e9342437a7f">getKr</a> ()  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lin_exp_signal_u_gen_internal_k.html#a9228e1fb279cc93e9ec8dd14fbd27ca8">getValue</a> (const int channel) const   throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lin_exp_signal_u_gen_internal_k.html#a6b7e13c795ef85e896cc46d631158c5b">setValue</a> (const float newValue)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lin_exp_signal_u_gen_internal_k.html#a15f559dda7e849e420aefb1f61729dbb">processBlock</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Process a block of samples for this blockID and channel.  <a href="#a15f559dda7e849e420aefb1f61729dbb"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
@@ -198,7 +199,27 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___mapping_u_gens_8cpp_source.html#l00100">100</a> of file <a class="el" href="ugen___mapping_u_gens_8cpp_source.html">ugen_MappingUGens.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l00935">UGen::getControlRateBlockSize()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00966">UGen::getControlSlopeFactor()</a>, and <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00390">linexp()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l00930">UGen::getControlRateBlockSize()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00961">UGen::getControlSlopeFactor()</a>, and <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00390">linexp()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6b7e13c795ef85e896cc46d631158c5b"></a><!-- doxytag: member="LinExpSignalUGenInternalK::setValue" ref="a6b7e13c795ef85e896cc46d631158c5b" args="(const float newValue)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LinExpSignalUGenInternalK::setValue </td>
+          <td>(</td>
+          <td class="paramtype">const float&nbsp;</td>
+          <td class="paramname"> <em>newValue</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>  throw ()<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___mapping_u_gens_8h_source.html#l00074">74</a> of file <a class="el" href="ugen___mapping_u_gens_8h_source.html">ugen_MappingUGens.h</a>.</p>
 
 </div>
 </div>
@@ -223,7 +244,7 @@ Private Attributes</h2></td></tr>
 <li>basics/<a class="el" href="ugen___mapping_u_gens_8cpp_source.html">ugen_MappingUGens.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:09 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:13 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

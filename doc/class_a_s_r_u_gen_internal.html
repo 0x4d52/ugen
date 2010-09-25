@@ -63,8 +63,8 @@ Public Types</h2></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s_r_u_gen_internal.html#a37071b83a32159b4d131e686186d2539">ASRUGenInternal</a> (const float attackTime, const float sustainLevel, const float releaseTime, const <a class="el" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1ca">UGen::DoneAction</a> doneAction=UGen::DoNothing)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s_r_u_gen_internal.html#ac2033bbbb02d30cf6423f4878951ca32">prepareForBlock</a> (const int actualBlockSize, const unsigned int blockID)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s_r_u_gen_internal.html#afcb0227b3d4d95c25bdf92785f5a3d80">processBlock</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Process a block of samples for this blockID and channel.  <a href="#afcb0227b3d4d95c25bdf92785f5a3d80"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s_r_u_gen_internal.html#af8800ee3cb7f5539fe6f900f93c41d2b">release</a> ()  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s_r_u_gen_internal.html#a1f37b88f9034e5e7106338596572b5e7">steal</a> ()  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s_r_u_gen_internal.html#af07f0bac28766fd79c1de8729e2626b4">setAttackSegment</a> ()</td></tr>
@@ -112,7 +112,7 @@ Protected Attributes</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00059">59</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00060">60</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
 
 </div>
 </div>
@@ -133,7 +133,7 @@ Protected Attributes</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00057">57</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00058">58</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
 
 </div>
 </div>
@@ -180,6 +180,37 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="ac2033bbbb02d30cf6423f4878951ca32"></a><!-- doxytag: member="ASRUGenInternal::prepareForBlock" ref="ac2033bbbb02d30cf6423f4878951ca32" args="(const int actualBlockSize, const unsigned int blockID)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ASRUGenInternal::prepareForBlock </td>
+          <td>(</td>
+          <td class="paramtype">const int&nbsp;</td>
+          <td class="paramname"> <em>actualBlockSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&nbsp;</td>
+          <td class="paramname"> <em>blockID</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td>  throw ()</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="class_releasable_u_gen_internal.html#a30112bc12f5efb832d6a0e974f209c4d">ReleasableUGenInternal</a>.</p>
+
+<p>Definition at line <a class="el" href="ugen___a_s_r_8cpp_source.html#l00061">61</a> of file <a class="el" href="ugen___a_s_r_8cpp_source.html">ugen_ASR.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="afcb0227b3d4d95c25bdf92785f5a3d80"></a><!-- doxytag: member="ASRUGenInternal::processBlock" ref="afcb0227b3d4d95c25bdf92785f5a3d80" args="(bool &amp;shouldDelete, const unsigned int blockID, const int channel)" -->
 <div class="memitem">
 <div class="memproto">
@@ -205,26 +236,13 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [virtual]</code></td>
+          <td></td><td></td><td>  throw ()</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Process a block of samples for this blockID and channel. </p>
-<p>This is the main rendering function and needs to be implement by all subclasses.</p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>shouldDelete</em>&nbsp;</td><td>A <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> graph can be scheduled for deletion by setting this to true on return. If it is already true it should NOT be set to false. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>blockID</em>&nbsp;</td><td>This is a sample counter, you can assume that calls to this function will have blockIDs which are higher that the last call (until the maximum integer is reached). </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>channel</em>&nbsp;</td><td>The channel index to process. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="class_u_gen_internal.html#ae1c9c941ea6f372d8af8cc5f9ae32ace">UGenInternal</a>.</p>
-
-<p>Definition at line <a class="el" href="ugen___a_s_r_8cpp_source.html#l00061">61</a> of file <a class="el" href="ugen___a_s_r_8cpp_source.html">ugen_ASR.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___a_s_r_8cpp_source.html#l00067">67</a> of file <a class="el" href="ugen___a_s_r_8cpp_source.html">ugen_ASR.cpp</a>.</p>
 
 </div>
 </div>
@@ -245,9 +263,9 @@ Protected Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="class_releasable_u_gen_internal.html#aa9137deddcf02d1ae9cae6d4c081230a">ReleasableUGenInternal</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___a_s_r_8cpp_source.html#l00129">129</a> of file <a class="el" href="ugen___a_s_r_8cpp_source.html">ugen_ASR.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___a_s_r_8cpp_source.html#l00134">134</a> of file <a class="el" href="ugen___a_s_r_8cpp_source.html">ugen_ASR.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_internal_8h_source.html#l00361">ReleasableUGenInternal::setIsReleasing()</a>, and <a class="el" href="ugen___a_s_r_8h_source.html#l00080">setReleaseSegment()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00629">ReleasableUGenInternal::setIsReleasing()</a>, and <a class="el" href="ugen___a_s_r_8h_source.html#l00081">setReleaseSegment()</a>.</p>
 
 </div>
 </div>
@@ -266,9 +284,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00068">68</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00069">69</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
 
-<p>References <a class="el" href="ugen___a_s_r_8h_source.html#l00099">attackTime_</a>, <a class="el" href="ugen___a_s_r_8h_source.html#l00103">currentSegment</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00932">UGen::getReciprocalSampleRate()</a>, <a class="el" href="ugen___a_s_r_8h_source.html#l00105">increment</a>, and <a class="el" href="ugen___a_s_r_8h_source.html#l00100">sustainLevel_</a>.</p>
+<p>References <a class="el" href="ugen___a_s_r_8h_source.html#l00102">attackTime_</a>, <a class="el" href="ugen___a_s_r_8h_source.html#l00106">currentSegment</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00927">UGen::getReciprocalSampleRate()</a>, <a class="el" href="ugen___a_s_r_8h_source.html#l00108">increment</a>, and <a class="el" href="ugen___a_s_r_8h_source.html#l00103">sustainLevel_</a>.</p>
 
 </div>
 </div>
@@ -287,9 +305,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00091">91</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00093">93</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
 
-<p>References <a class="el" href="ugen___a_s_r_8h_source.html#l00103">currentSegment</a>, and <a class="el" href="ugen___a_s_r_8h_source.html#l00104">currentValue</a>.</p>
+<p>References <a class="el" href="ugen___a_s_r_8h_source.html#l00106">currentSegment</a>, <a class="el" href="ugen___a_s_r_8h_source.html#l00107">currentValue</a>, and <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00557">DoneActionSender::setIsDone()</a>.</p>
 
 </div>
 </div>
@@ -308,11 +326,11 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00080">80</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00081">81</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
 
-<p>References <a class="el" href="ugen___a_s_r_8h_source.html#l00103">currentSegment</a>, <a class="el" href="ugen___a_s_r_8h_source.html#l00104">currentValue</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00932">UGen::getReciprocalSampleRate()</a>, <a class="el" href="ugen___a_s_r_8h_source.html#l00105">increment</a>, and <a class="el" href="ugen___a_s_r_8h_source.html#l00101">releaseTime_</a>.</p>
+<p>References <a class="el" href="ugen___a_s_r_8h_source.html#l00106">currentSegment</a>, <a class="el" href="ugen___a_s_r_8h_source.html#l00107">currentValue</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00927">UGen::getReciprocalSampleRate()</a>, <a class="el" href="ugen___a_s_r_8h_source.html#l00108">increment</a>, <a class="el" href="ugen___a_s_r_8h_source.html#l00104">releaseTime_</a>, and <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00580">DoneActionSender::sendReleasing()</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___a_s_r_8cpp_source.html#l00129">release()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___a_s_r_8cpp_source.html#l00134">release()</a>.</p>
 
 </div>
 </div>
@@ -331,11 +349,11 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00086">86</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00088">88</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
 
-<p>References <a class="el" href="ugen___a_s_r_8h_source.html#l00103">currentSegment</a>.</p>
+<p>References <a class="el" href="ugen___a_s_r_8h_source.html#l00106">currentSegment</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___a_s_r_8cpp_source.html#l00135">steal()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___a_s_r_8cpp_source.html#l00140">steal()</a>.</p>
 
 </div>
 </div>
@@ -354,9 +372,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00074">74</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00075">75</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
 
-<p>References <a class="el" href="ugen___a_s_r_8h_source.html#l00103">currentSegment</a>, <a class="el" href="ugen___a_s_r_8h_source.html#l00104">currentValue</a>, and <a class="el" href="ugen___a_s_r_8h_source.html#l00100">sustainLevel_</a>.</p>
+<p>References <a class="el" href="ugen___a_s_r_8h_source.html#l00106">currentSegment</a>, <a class="el" href="ugen___a_s_r_8h_source.html#l00107">currentValue</a>, and <a class="el" href="ugen___a_s_r_8h_source.html#l00103">sustainLevel_</a>.</p>
 
 </div>
 </div>
@@ -377,9 +395,9 @@ Protected Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="class_releasable_u_gen_internal.html#a1a667630654daa5bdae7344b827c81db">ReleasableUGenInternal</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___a_s_r_8cpp_source.html#l00135">135</a> of file <a class="el" href="ugen___a_s_r_8cpp_source.html">ugen_ASR.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___a_s_r_8cpp_source.html#l00140">140</a> of file <a class="el" href="ugen___a_s_r_8cpp_source.html">ugen_ASR.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_internal_8h_source.html#l00362">ReleasableUGenInternal::setIsStealing()</a>, and <a class="el" href="ugen___a_s_r_8h_source.html#l00086">setStealSegment()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00637">ReleasableUGenInternal::setIsStealing()</a>, and <a class="el" href="ugen___a_s_r_8h_source.html#l00088">setStealSegment()</a>.</p>
 
 </div>
 </div>
@@ -395,9 +413,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00099">99</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00102">102</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___a_s_r_8h_source.html#l00068">setAttackSegment()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___a_s_r_8h_source.html#l00069">setAttackSegment()</a>.</p>
 
 </div>
 </div>
@@ -412,9 +430,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00103">103</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00106">106</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___a_s_r_8h_source.html#l00068">setAttackSegment()</a>, <a class="el" href="ugen___a_s_r_8h_source.html#l00091">setEnvDone()</a>, <a class="el" href="ugen___a_s_r_8h_source.html#l00080">setReleaseSegment()</a>, <a class="el" href="ugen___a_s_r_8h_source.html#l00086">setStealSegment()</a>, and <a class="el" href="ugen___a_s_r_8h_source.html#l00074">setSustainSegment()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___a_s_r_8h_source.html#l00069">setAttackSegment()</a>, <a class="el" href="ugen___a_s_r_8h_source.html#l00093">setEnvDone()</a>, <a class="el" href="ugen___a_s_r_8h_source.html#l00081">setReleaseSegment()</a>, <a class="el" href="ugen___a_s_r_8h_source.html#l00088">setStealSegment()</a>, and <a class="el" href="ugen___a_s_r_8h_source.html#l00075">setSustainSegment()</a>.</p>
 
 </div>
 </div>
@@ -429,9 +447,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00104">104</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00107">107</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___a_s_r_8h_source.html#l00091">setEnvDone()</a>, <a class="el" href="ugen___a_s_r_8h_source.html#l00080">setReleaseSegment()</a>, and <a class="el" href="ugen___a_s_r_8h_source.html#l00074">setSustainSegment()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___a_s_r_8h_source.html#l00093">setEnvDone()</a>, <a class="el" href="ugen___a_s_r_8h_source.html#l00081">setReleaseSegment()</a>, and <a class="el" href="ugen___a_s_r_8h_source.html#l00075">setSustainSegment()</a>.</p>
 
 </div>
 </div>
@@ -446,7 +464,7 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00102">102</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00105">105</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
 
 </div>
 </div>
@@ -461,9 +479,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00105">105</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00108">108</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___a_s_r_8h_source.html#l00068">setAttackSegment()</a>, and <a class="el" href="ugen___a_s_r_8h_source.html#l00080">setReleaseSegment()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___a_s_r_8h_source.html#l00069">setAttackSegment()</a>, and <a class="el" href="ugen___a_s_r_8h_source.html#l00081">setReleaseSegment()</a>.</p>
 
 </div>
 </div>
@@ -478,9 +496,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00101">101</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00104">104</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___a_s_r_8h_source.html#l00080">setReleaseSegment()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___a_s_r_8h_source.html#l00081">setReleaseSegment()</a>.</p>
 
 </div>
 </div>
@@ -495,7 +513,7 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00106">106</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00109">109</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
 
 </div>
 </div>
@@ -510,9 +528,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00100">100</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___a_s_r_8h_source.html#l00103">103</a> of file <a class="el" href="ugen___a_s_r_8h_source.html">ugen_ASR.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___a_s_r_8h_source.html#l00068">setAttackSegment()</a>, and <a class="el" href="ugen___a_s_r_8h_source.html#l00074">setSustainSegment()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___a_s_r_8h_source.html#l00069">setAttackSegment()</a>, and <a class="el" href="ugen___a_s_r_8h_source.html#l00075">setSustainSegment()</a>.</p>
 
 </div>
 </div>
@@ -521,7 +539,7 @@ Protected Attributes</h2></td></tr>
 <li>envelopes/<a class="el" href="ugen___a_s_r_8cpp_source.html">ugen_ASR.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:06 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:10 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

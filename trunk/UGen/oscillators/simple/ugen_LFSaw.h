@@ -41,13 +41,18 @@
 #include "../../basics/ugen_MulAdd.h"
 
 /** @ingroup UGenInternals */
-class LFSawUGenInternal : public UGenInternal
+class LFSawUGenInternal :  public UGenInternal,
+						   public Seekable
 {
 public:
 	LFSawUGenInternal(UGen const& freq, const float initialPhase) throw();
 	UGenInternal* getChannel(const int channel) throw();									
 	UGenInternal* getKr() throw();															
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
+	
+	double getDuration() throw();
+	double getPosition() throw();
+	void setPosition(const double newPosition) throw();		
 	
 	enum Inputs { Freq, NumInputs };
 	

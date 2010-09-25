@@ -54,6 +54,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_value_u_gen_internal_k.html#a263ee1feb1455332e2f8688c91a18abe">ValueUGenInternalK</a> (<a class="el" href="class_value.html">Value</a> const &amp;<a class="el" href="class_value_u_gen_internal_k.html#a26086779b02cb032f3d2b224024e31f8">value</a>)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_value_u_gen_internal_k.html#a1434ba526af84ab2b758f81b91b3855b">getKr</a> ()  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_value_u_gen_internal_k.html#a6ecf6ccf2223a399022c467c9009df46">getValue</a> (const int channel) const   throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_value_u_gen_internal_k.html#a0a00ee848d370ea02671adb36b685b1c">setValue</a> (const float newValue)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_value_u_gen_internal_k.html#a6fdaf11d5e018515ea20029cee1d948e">processBlock</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Process a block of samples for this blockID and channel.  <a href="#a6fdaf11d5e018515ea20029cee1d948e"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
@@ -175,9 +176,31 @@ Private Attributes</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="class_value_u_gen_internal.html#abcdefea909b4df92ee9ebdb92d480176">ValueUGenInternal</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___value_8cpp_source.html#l00766">766</a> of file <a class="el" href="ugen___value_8cpp_source.html">ugen_Value.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___value_8cpp_source.html#l00770">770</a> of file <a class="el" href="ugen___value_8cpp_source.html">ugen_Value.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l00935">UGen::getControlRateBlockSize()</a>, and <a class="el" href="ugen___u_gen_8h_source.html#l00966">UGen::getControlSlopeFactor()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l00930">UGen::getControlRateBlockSize()</a>, and <a class="el" href="ugen___u_gen_8h_source.html#l00961">UGen::getControlSlopeFactor()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0a00ee848d370ea02671adb36b685b1c"></a><!-- doxytag: member="ValueUGenInternalK::setValue" ref="a0a00ee848d370ea02671adb36b685b1c" args="(const float newValue)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ValueUGenInternalK::setValue </td>
+          <td>(</td>
+          <td class="paramtype">const float&nbsp;</td>
+          <td class="paramname"> <em>newValue</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>  throw ()<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___value_8h_source.html#l00657">657</a> of file <a class="el" href="ugen___value_8h_source.html">ugen_Value.h</a>.</p>
+
+<p>Referenced by <a class="el" href="ugen___value_8cpp_source.html#l00735">ValueUGenInternal::getKr()</a>.</p>
 
 </div>
 </div>
@@ -202,7 +225,7 @@ Private Attributes</h2></td></tr>
 <li>core/<a class="el" href="ugen___value_8cpp_source.html">ugen_Value.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:12 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:16 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

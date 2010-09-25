@@ -72,43 +72,48 @@
 <a name="l00040"></a>00040 <span class="preprocessor">#include &quot;../../core/ugen_UGen.h&quot;</span>
 <a name="l00041"></a>00041 <span class="preprocessor">#include &quot;../../basics/ugen_MulAdd.h&quot;</span>
 <a name="l00042"></a>00042 
-<a name="l00044"></a><a class="code" href="class_l_f_saw_u_gen_internal.html">00044</a> <span class="keyword">class </span><a class="code" href="class_l_f_saw_u_gen_internal.html">LFSawUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>
-<a name="l00045"></a>00045 {
-<a name="l00046"></a>00046 <span class="keyword">public</span>:
-<a name="l00047"></a>00047  <a class="code" href="class_l_f_saw_u_gen_internal.html#a1d78ae81e366b06478bd3311f1f58eae">LFSawUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq, <span class="keyword">const</span> <span class="keywordtype">float</span> initialPhase) <span class="keywordflow">throw</span>();
-<a name="l00048"></a>00048  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_l_f_saw_u_gen_internal.html#adc5e7fb3620b0c8914e0d5ab26a9d296">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();         
-<a name="l00049"></a>00049  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_l_f_saw_u_gen_internal.html#a110505cbadca4bc759b8af17240e58e5">getKr</a>() <span class="keywordflow">throw</span>();               
-<a name="l00050"></a>00050  <span class="keywordtype">void</span> <a class="code" href="class_l_f_saw_u_gen_internal.html#a9e8ee53c4e0f07a4dcec3d2e14b02a37" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
-<a name="l00051"></a>00051  
-<a name="l00052"></a><a class="code" href="class_l_f_saw_u_gen_internal.html#ac212d023c03fe4341d351ca7d307434fa3de9a3c4b04dee666e5b74438bd20b83">00052</a>  <span class="keyword">enum</span> <a class="code" href="class_l_f_saw_u_gen_internal.html#ac212d023c03fe4341d351ca7d307434f">Inputs</a> { Freq, <a class="code" href="class_l_f_saw_u_gen_internal.html#ac212d023c03fe4341d351ca7d307434fa3de9a3c4b04dee666e5b74438bd20b83">NumInputs</a> };
-<a name="l00053"></a>00053  
-<a name="l00054"></a>00054 <span class="keyword">protected</span>:
-<a name="l00055"></a><a class="code" href="class_l_f_saw_u_gen_internal.html#a40fbd2b72a7c8d839a37da03ebf9d4de">00055</a>  <span class="keywordtype">float</span> <a class="code" href="class_l_f_saw_u_gen_internal.html#a40fbd2b72a7c8d839a37da03ebf9d4de">currentPhase</a>; 
-<a name="l00056"></a>00056 };
-<a name="l00057"></a>00057 
-<a name="l00059"></a><a class="code" href="class_l_f_saw_u_gen_internal_k.html">00059</a> <span class="keyword">class </span><a class="code" href="class_l_f_saw_u_gen_internal_k.html">LFSawUGenInternalK</a> : <span class="keyword">public</span> <a class="code" href="class_l_f_saw_u_gen_internal.html">LFSawUGenInternal</a>
-<a name="l00060"></a>00060 {
-<a name="l00061"></a>00061 <span class="keyword">public</span>:
-<a name="l00062"></a>00062  <a class="code" href="class_l_f_saw_u_gen_internal_k.html#ae7191caba83a1aa0ac46e79f513befad">LFSawUGenInternalK</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq, <span class="keyword">const</span> <span class="keywordtype">float</span> initialPhase) <span class="keywordflow">throw</span>();
-<a name="l00063"></a><a class="code" href="class_l_f_saw_u_gen_internal_k.html#afda098c19849ce721f4b4060d1fba973">00063</a>  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_l_f_saw_u_gen_internal_k.html#afda098c19849ce721f4b4060d1fba973">getKr</a>() throw() { <a class="code" href="class_smart_pointer.html#ad9196fe14d4e4d9b1c28982738436544">incrementRefCount</a>(); <span class="keywordflow">return</span> <span class="keyword">this</span>; }
-<a name="l00064"></a>00064  <span class="keywordtype">void</span> <a class="code" href="class_l_f_saw_u_gen_internal_k.html#a14114a11f7a09a5e56b0308059692307" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
-<a name="l00065"></a>00065  
-<a name="l00066"></a>00066 <span class="keyword">private</span>:
-<a name="l00067"></a><a class="code" href="class_l_f_saw_u_gen_internal_k.html#a4474315d1523aa919824a505bd1a7c27">00067</a>  <span class="keywordtype">float</span> <a class="code" href="class_l_f_saw_u_gen_internal_k.html#a4474315d1523aa919824a505bd1a7c27">value</a>;
-<a name="l00068"></a>00068 };
-<a name="l00069"></a>00069 
-<a name="l00072"></a>00072 <a class="code" href="ugen___mul_add_8h.html#a3c1d2336ae0f1e00bd9ee86f556e4909" title="Declare a UGen with multiply and add inputs.">DirectMulAddUGenDeclaration</a>(<a class="code" href="class_l_f_saw.html" title="Non bandlimted sawtooth.">LFSaw</a>, 
-<a name="l00073"></a>00073        (freq, initialPhase),
-<a name="l00074"></a>00074        (freq, initialPhase, <a class="code" href="ugen___mul_add_8h.html#a0948ded88972de1849c249f13e99c70c">MulAdd_ArgsCall</a>),
-<a name="l00075"></a>00075        (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq = 440.f, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; initialPhase = 0.f),
-<a name="l00076"></a><a class="code" href="class_l_f_saw.html#a72484d41de533048268ee4eabb0fe1fe">00076</a>        (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq = 440.f, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; initialPhase = 0.f, <a class="code" href="ugen___mul_add_8h.html#a26f64cd22a6e4e0933b39d2031396f26">MulAdd_ArgsDeclare</a>), <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>);
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078 
-<a name="l00079"></a>00079 
-<a name="l00080"></a>00080 <span class="preprocessor">#endif // _UGEN_ugen_LFSaw_H_</span>
+<a name="l00044"></a><a class="code" href="class_l_f_saw_u_gen_internal.html">00044</a> <span class="keyword">class </span><a class="code" href="class_l_f_saw_u_gen_internal.html">LFSawUGenInternal</a> :  <span class="keyword">public</span> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>,
+<a name="l00045"></a>00045          <span class="keyword">public</span> <a class="code" href="class_seekable.html" title="Added to UGenInternal classes that can seek a particular point in time.">Seekable</a>
+<a name="l00046"></a>00046 {
+<a name="l00047"></a>00047 <span class="keyword">public</span>:
+<a name="l00048"></a>00048  <a class="code" href="class_l_f_saw_u_gen_internal.html#a1d78ae81e366b06478bd3311f1f58eae">LFSawUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq, <span class="keyword">const</span> <span class="keywordtype">float</span> initialPhase) <span class="keywordflow">throw</span>();
+<a name="l00049"></a>00049  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_l_f_saw_u_gen_internal.html#adc5e7fb3620b0c8914e0d5ab26a9d296">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();         
+<a name="l00050"></a>00050  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_l_f_saw_u_gen_internal.html#a110505cbadca4bc759b8af17240e58e5">getKr</a>() <span class="keywordflow">throw</span>();               
+<a name="l00051"></a>00051  <span class="keywordtype">void</span> <a class="code" href="class_l_f_saw_u_gen_internal.html#a9e8ee53c4e0f07a4dcec3d2e14b02a37">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00052"></a>00052  
+<a name="l00053"></a>00053  <span class="keywordtype">double</span> <a class="code" href="class_l_f_saw_u_gen_internal.html#a759bb9740cb1f84da3cdec4135efebe9" title="Get the maximum duration of the seekable.">getDuration</a>() <span class="keywordflow">throw</span>();
+<a name="l00054"></a>00054  <span class="keywordtype">double</span> <a class="code" href="class_l_f_saw_u_gen_internal.html#a7a9525e2b29f8496e8cc09317ffab968" title="Get the current position of the seekable.">getPosition</a>() <span class="keywordflow">throw</span>();
+<a name="l00055"></a>00055  <span class="keywordtype">void</span> <a class="code" href="class_l_f_saw_u_gen_internal.html#affac2e0ad5a92bfa4183696c3a09a68b" title="Set the current position of the seekable.">setPosition</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> newPosition) <span class="keywordflow">throw</span>();  
+<a name="l00056"></a>00056  
+<a name="l00057"></a><a class="code" href="class_l_f_saw_u_gen_internal.html#ac212d023c03fe4341d351ca7d307434fa3de9a3c4b04dee666e5b74438bd20b83">00057</a>  <span class="keyword">enum</span> <a class="code" href="class_l_f_saw_u_gen_internal.html#ac212d023c03fe4341d351ca7d307434f">Inputs</a> { Freq, <a class="code" href="class_l_f_saw_u_gen_internal.html#ac212d023c03fe4341d351ca7d307434fa3de9a3c4b04dee666e5b74438bd20b83">NumInputs</a> };
+<a name="l00058"></a>00058  
+<a name="l00059"></a>00059 <span class="keyword">protected</span>:
+<a name="l00060"></a><a class="code" href="class_l_f_saw_u_gen_internal.html#a40fbd2b72a7c8d839a37da03ebf9d4de">00060</a>  <span class="keywordtype">float</span> <a class="code" href="class_l_f_saw_u_gen_internal.html#a40fbd2b72a7c8d839a37da03ebf9d4de">currentPhase</a>; 
+<a name="l00061"></a>00061 };
+<a name="l00062"></a>00062 
+<a name="l00064"></a><a class="code" href="class_l_f_saw_u_gen_internal_k.html">00064</a> <span class="keyword">class </span><a class="code" href="class_l_f_saw_u_gen_internal_k.html">LFSawUGenInternalK</a> : <span class="keyword">public</span> <a class="code" href="class_l_f_saw_u_gen_internal.html">LFSawUGenInternal</a>
+<a name="l00065"></a>00065 {
+<a name="l00066"></a>00066 <span class="keyword">public</span>:
+<a name="l00067"></a>00067  <a class="code" href="class_l_f_saw_u_gen_internal_k.html#ae7191caba83a1aa0ac46e79f513befad">LFSawUGenInternalK</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq, <span class="keyword">const</span> <span class="keywordtype">float</span> initialPhase) <span class="keywordflow">throw</span>();
+<a name="l00068"></a><a class="code" href="class_l_f_saw_u_gen_internal_k.html#afda098c19849ce721f4b4060d1fba973">00068</a>  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_l_f_saw_u_gen_internal_k.html#afda098c19849ce721f4b4060d1fba973">getKr</a>() throw() { <a class="code" href="class_smart_pointer.html#ad9196fe14d4e4d9b1c28982738436544">incrementRefCount</a>(); <span class="keywordflow">return</span> <span class="keyword">this</span>; }
+<a name="l00069"></a>00069  <span class="keywordtype">void</span> <a class="code" href="class_l_f_saw_u_gen_internal_k.html#a14114a11f7a09a5e56b0308059692307">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00070"></a>00070  
+<a name="l00071"></a>00071 <span class="keyword">private</span>:
+<a name="l00072"></a><a class="code" href="class_l_f_saw_u_gen_internal_k.html#a4474315d1523aa919824a505bd1a7c27">00072</a>  <span class="keywordtype">float</span> <a class="code" href="class_l_f_saw_u_gen_internal_k.html#a4474315d1523aa919824a505bd1a7c27">value</a>;
+<a name="l00073"></a>00073 };
+<a name="l00074"></a>00074 
+<a name="l00077"></a>00077 <a class="code" href="ugen___mul_add_8h.html#a3c1d2336ae0f1e00bd9ee86f556e4909" title="Declare a UGen with multiply and add inputs.">DirectMulAddUGenDeclaration</a>(<a class="code" href="class_l_f_saw.html" title="Non bandlimted sawtooth.">LFSaw</a>, 
+<a name="l00078"></a>00078        (freq, initialPhase),
+<a name="l00079"></a>00079        (freq, initialPhase, <a class="code" href="ugen___mul_add_8h.html#a0948ded88972de1849c249f13e99c70c">MulAdd_ArgsCall</a>),
+<a name="l00080"></a>00080        (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq = 440.f, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; initialPhase = 0.f),
+<a name="l00081"></a><a class="code" href="class_l_f_saw.html#a72484d41de533048268ee4eabb0fe1fe">00081</a>        (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq = 440.f, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; initialPhase = 0.f, <a class="code" href="ugen___mul_add_8h.html#a26f64cd22a6e4e0933b39d2031396f26">MulAdd_ArgsDeclare</a>), <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>);
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085 <span class="preprocessor">#endif // _UGEN_ugen_LFSaw_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:04 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:07 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

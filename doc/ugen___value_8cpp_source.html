@@ -30,7 +30,7 @@
 <h1>core/ugen_Value.cpp</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___value_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Value.cpp 132 2010-09-08 21:03:51Z 0x4d52 $</span>
+<a href="ugen___value_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Value.cpp 149 2010-09-13 18:44:30Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/core/ugen_Value.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -759,106 +759,110 @@
 <a name="l00727"></a>00727 : <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(0), 
 <a name="l00728"></a>00728  valueObject(value),
 <a name="l00729"></a>00729  isConst(valueObject.containsInternalType&lt;<a class="code" href="class_value_internal.html" title="An internal value class with a constant value.">ValueInternal</a>&gt;())
-<a name="l00730"></a>00730 {     
-<a name="l00731"></a>00731 }
-<a name="l00732"></a>00732 
-<a name="l00733"></a><a class="code" href="class_value_u_gen_internal.html#a8d2603450292257714b86e26d767b53d">00733</a> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_value_u_gen_internal.html#a8d2603450292257714b86e26d767b53d">ValueUGenInternal::getKr</a>() throw()
-<a name="l00734"></a>00734 {
-<a name="l00735"></a>00735  <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_value_u_gen_internal_k.html" title="A UGenInternal which uses a Value as its source.">ValueUGenInternalK</a>(<a class="code" href="class_value_u_gen_internal.html#ad66cea1ade37a412295b7eb87abf0e99">valueObject</a>);
-<a name="l00736"></a>00736 }
-<a name="l00737"></a>00737 
-<a name="l00738"></a><a class="code" href="class_value_u_gen_internal.html#abcdefea909b4df92ee9ebdb92d480176">00738</a> <span class="keywordtype">void</span> <a class="code" href="class_value_u_gen_internal.html#abcdefea909b4df92ee9ebdb92d480176" title="Process a block of samples for this blockID and channel.">ValueUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
-<a name="l00739"></a>00739 {
-<a name="l00740"></a>00740  <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
-<a name="l00741"></a>00741  <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
-<a name="l00742"></a>00742  
-<a name="l00743"></a>00743  <span class="keywordflow">if</span>(!isConst)
-<a name="l00744"></a>00744  {
-<a name="l00745"></a>00745   <span class="keywordflow">while</span>(numSamplesToProcess--)
-<a name="l00746"></a>00746   {
-<a name="l00747"></a>00747    *outputSamples++ = (float)valueObject.getValue();
-<a name="l00748"></a>00748   }
-<a name="l00749"></a>00749  }
-<a name="l00750"></a>00750  <span class="keywordflow">else</span>
-<a name="l00751"></a>00751  { 
-<a name="l00752"></a>00752   <span class="keywordtype">float</span> value = (float)valueObject.getValue();
-<a name="l00753"></a>00753   <span class="keywordflow">while</span>(numSamplesToProcess--)
-<a name="l00754"></a>00754   {
-<a name="l00755"></a>00755    *outputSamples++ = value;
-<a name="l00756"></a>00756   }
-<a name="l00757"></a>00757  }
-<a name="l00758"></a>00758 }
-<a name="l00759"></a>00759 
-<a name="l00760"></a><a class="code" href="class_value_u_gen_internal.html#add26c94a190da18a5ccd17ca2cad5674">00760</a> <span class="keywordtype">void</span> <a class="code" href="class_value_u_gen_internal.html#add26c94a190da18a5ccd17ca2cad5674">ValueUGenInternal::setValue</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; other) <span class="keywordflow">throw</span>()
-<a name="l00761"></a>00761 {
-<a name="l00762"></a>00762  valueObject = other;
-<a name="l00763"></a>00763  isConst = valueObject.containsInternalType&lt;<a class="code" href="class_value_internal.html" title="An internal value class with a constant value.">ValueInternal</a>&gt;();
-<a name="l00764"></a>00764 }
-<a name="l00765"></a>00765 
-<a name="l00766"></a><a class="code" href="class_value_u_gen_internal_k.html#a6fdaf11d5e018515ea20029cee1d948e">00766</a> <span class="keywordtype">void</span> <a class="code" href="class_value_u_gen_internal_k.html#a6fdaf11d5e018515ea20029cee1d948e" title="Process a block of samples for this blockID and channel.">ValueUGenInternalK::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
-<a name="l00767"></a>00767 {
-<a name="l00768"></a>00768  <span class="keyword">const</span> <span class="keywordtype">int</span> krBlockSize = <a class="code" href="class_u_gen.html#a2c362eee1cdf755de0eed14727494235" title="Get the current control rate block size.">UGen::getControlRateBlockSize</a>();
-<a name="l00769"></a>00769  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockPosition = blockID % krBlockSize;
-<a name="l00770"></a>00770  <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
-<a name="l00771"></a>00771  <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
-<a name="l00772"></a>00772  
-<a name="l00773"></a>00773  <span class="keywordtype">int</span> numKrSamples = blockPosition % krBlockSize;
-<a name="l00774"></a>00774  
-<a name="l00775"></a>00775  <span class="keywordflow">while</span>(numSamplesToProcess &gt; 0)
-<a name="l00776"></a>00776  {
-<a name="l00777"></a>00777   <span class="keywordtype">float</span> nextValue = value;
-<a name="l00778"></a>00778   
-<a name="l00779"></a>00779   <span class="keywordflow">if</span>(numKrSamples == 0)   
-<a name="l00780"></a>00780   {
-<a name="l00781"></a>00781    nextValue = (float)valueObject.getValue();
-<a name="l00782"></a>00782   }
-<a name="l00783"></a>00783   
-<a name="l00784"></a>00784   numKrSamples = krBlockSize - numKrSamples;  
-<a name="l00785"></a>00785   blockPosition  += numKrSamples;
-<a name="l00786"></a>00786   
-<a name="l00787"></a>00787   <span class="keywordflow">if</span>(nextValue == value)
-<a name="l00788"></a>00788   {
-<a name="l00789"></a>00789    <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
-<a name="l00790"></a>00790    {
-<a name="l00791"></a>00791     *outputSamples++ = nextValue;
-<a name="l00792"></a>00792     --numSamplesToProcess;
-<a name="l00793"></a>00793     --numKrSamples;
-<a name="l00794"></a>00794    }
-<a name="l00795"></a>00795   }
-<a name="l00796"></a>00796   <span class="keywordflow">else</span>
-<a name="l00797"></a>00797   {
-<a name="l00798"></a>00798    <span class="keywordtype">float</span> valueSlope = (nextValue - value) * <a class="code" href="class_u_gen.html#aa74b2f078838a887bcb29c95ea76b82c" title="Get the current control rate slope factor i.e., 1.0 / (control rate block size).">UGen::getControlSlopeFactor</a>();
-<a name="l00799"></a>00799    
-<a name="l00800"></a>00800    <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
-<a name="l00801"></a>00801    {
-<a name="l00802"></a>00802     *outputSamples++ = value;
-<a name="l00803"></a>00803     value += valueSlope;
-<a name="l00804"></a>00804     --numSamplesToProcess;
-<a name="l00805"></a>00805     --numKrSamples;
-<a name="l00806"></a>00806    }
-<a name="l00807"></a>00807    
-<a name="l00808"></a>00808    value = nextValue;
-<a name="l00809"></a>00809   }
-<a name="l00810"></a>00810  }
-<a name="l00811"></a>00811  
-<a name="l00812"></a>00812 }
-<a name="l00813"></a>00813 
-<a name="l00814"></a>00814 
-<a name="l00815"></a>00815 
-<a name="l00816"></a><a class="code" href="class_value_u_gen.html#a707ecdf005a9b2f1de2698c31a0ac709">00816</a> <a class="code" href="class_value_u_gen.html#a6b09e8b90dc3fb8df4d87b35b598d9a3">ValueUGen::ValueUGen</a>(<a class="code" href="class_value_array.html" title="Store and manipulate an array of Value objects.">ValueArray</a> <span class="keyword">const</span>&amp; values) <span class="keywordflow">throw</span>()
-<a name="l00817"></a>00817 {
-<a name="l00818"></a>00818  initInternal(values.size());
-<a name="l00819"></a>00819  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++)
-<a name="l00820"></a>00820  {
-<a name="l00821"></a>00821   internalUGens[i] = <span class="keyword">new</span> <a class="code" href="class_value_u_gen_internal.html" title="A UGenInternal which uses a Value as its source.">ValueUGenInternal</a>(values[i]);
-<a name="l00822"></a>00822  }
-<a name="l00823"></a>00823 }
-<a name="l00824"></a>00824 
-<a name="l00825"></a>00825 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
-<a name="l00826"></a>00826 
+<a name="l00730"></a>00730 {   
+<a name="l00731"></a>00731  <span class="keywordtype">float</span> val = (float)<a class="code" href="class_value_u_gen_internal.html#ad66cea1ade37a412295b7eb87abf0e99">valueObject</a>.<a class="code" href="class_value.html#a31f2abf24b1d5e189c437fe194b9d60e" title="Evaluate the value.">getValue</a>();
+<a name="l00732"></a>00732  <a class="code" href="class_u_gen_internal.html#a3b9de200fa163a233dab85b3388fd469" title="Initialise the UGen output value.">initValue</a>(val);
+<a name="l00733"></a>00733 }
+<a name="l00734"></a>00734 
+<a name="l00735"></a><a class="code" href="class_value_u_gen_internal.html#a8d2603450292257714b86e26d767b53d">00735</a> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_value_u_gen_internal.html#a8d2603450292257714b86e26d767b53d">ValueUGenInternal::getKr</a>() throw()
+<a name="l00736"></a>00736 {
+<a name="l00737"></a>00737  <a class="code" href="class_value_u_gen_internal_k.html" title="A UGenInternal which uses a Value as its source.">ValueUGenInternalK</a> *result = <span class="keyword">new</span> <a class="code" href="class_value_u_gen_internal_k.html" title="A UGenInternal which uses a Value as its source.">ValueUGenInternalK</a>(<a class="code" href="class_value_u_gen_internal.html#ad66cea1ade37a412295b7eb87abf0e99">valueObject</a>);
+<a name="l00738"></a>00738  result-&gt;<a class="code" href="class_value_u_gen_internal_k.html#a0a00ee848d370ea02671adb36b685b1c">setValue</a>(this-&gt;<a class="code" href="class_u_gen_internal.html#a8025c9bdaa987546001e2da23f97e3c8">getValue</a>(0));
+<a name="l00739"></a>00739  <span class="keywordflow">return</span> result;
+<a name="l00740"></a>00740 }
+<a name="l00741"></a>00741 
+<a name="l00742"></a><a class="code" href="class_value_u_gen_internal.html#abcdefea909b4df92ee9ebdb92d480176">00742</a> <span class="keywordtype">void</span> <a class="code" href="class_value_u_gen_internal.html#abcdefea909b4df92ee9ebdb92d480176" title="Process a block of samples for this blockID and channel.">ValueUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
+<a name="l00743"></a>00743 {
+<a name="l00744"></a>00744  <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
+<a name="l00745"></a>00745  <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
+<a name="l00746"></a>00746  
+<a name="l00747"></a>00747  <span class="keywordflow">if</span>(!isConst)
+<a name="l00748"></a>00748  {
+<a name="l00749"></a>00749   <span class="keywordflow">while</span>(numSamplesToProcess--)
+<a name="l00750"></a>00750   {
+<a name="l00751"></a>00751    *outputSamples++ = (float)valueObject.getValue();
+<a name="l00752"></a>00752   }
+<a name="l00753"></a>00753  }
+<a name="l00754"></a>00754  <span class="keywordflow">else</span>
+<a name="l00755"></a>00755  { 
+<a name="l00756"></a>00756   <span class="keywordtype">float</span> value = (float)valueObject.getValue();
+<a name="l00757"></a>00757   <span class="keywordflow">while</span>(numSamplesToProcess--)
+<a name="l00758"></a>00758   {
+<a name="l00759"></a>00759    *outputSamples++ = value;
+<a name="l00760"></a>00760   }
+<a name="l00761"></a>00761  }
+<a name="l00762"></a>00762 }
+<a name="l00763"></a>00763 
+<a name="l00764"></a><a class="code" href="class_value_u_gen_internal.html#add26c94a190da18a5ccd17ca2cad5674">00764</a> <span class="keywordtype">void</span> <a class="code" href="class_value_u_gen_internal.html#add26c94a190da18a5ccd17ca2cad5674">ValueUGenInternal::setValue</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; other) <span class="keywordflow">throw</span>()
+<a name="l00765"></a>00765 {
+<a name="l00766"></a>00766  valueObject = other;
+<a name="l00767"></a>00767  isConst = valueObject.containsInternalType&lt;<a class="code" href="class_value_internal.html" title="An internal value class with a constant value.">ValueInternal</a>&gt;();
+<a name="l00768"></a>00768 }
+<a name="l00769"></a>00769 
+<a name="l00770"></a><a class="code" href="class_value_u_gen_internal_k.html#a6fdaf11d5e018515ea20029cee1d948e">00770</a> <span class="keywordtype">void</span> <a class="code" href="class_value_u_gen_internal_k.html#a6fdaf11d5e018515ea20029cee1d948e" title="Process a block of samples for this blockID and channel.">ValueUGenInternalK::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
+<a name="l00771"></a>00771 {
+<a name="l00772"></a>00772  <span class="keyword">const</span> <span class="keywordtype">int</span> krBlockSize = <a class="code" href="class_u_gen.html#a2c362eee1cdf755de0eed14727494235" title="Get the current control rate block size.">UGen::getControlRateBlockSize</a>();
+<a name="l00773"></a>00773  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockPosition = blockID % krBlockSize;
+<a name="l00774"></a>00774  <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
+<a name="l00775"></a>00775  <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
+<a name="l00776"></a>00776  
+<a name="l00777"></a>00777  <span class="keywordtype">int</span> numKrSamples = blockPosition % krBlockSize;
+<a name="l00778"></a>00778  
+<a name="l00779"></a>00779  <span class="keywordflow">while</span>(numSamplesToProcess &gt; 0)
+<a name="l00780"></a>00780  {
+<a name="l00781"></a>00781   <span class="keywordtype">float</span> nextValue = value;
+<a name="l00782"></a>00782   
+<a name="l00783"></a>00783   <span class="keywordflow">if</span>(numKrSamples == 0)   
+<a name="l00784"></a>00784   {
+<a name="l00785"></a>00785    nextValue = (float)valueObject.getValue();
+<a name="l00786"></a>00786   }
+<a name="l00787"></a>00787   
+<a name="l00788"></a>00788   numKrSamples = krBlockSize - numKrSamples;  
+<a name="l00789"></a>00789   blockPosition  += numKrSamples;
+<a name="l00790"></a>00790   
+<a name="l00791"></a>00791   <span class="keywordflow">if</span>(nextValue == value)
+<a name="l00792"></a>00792   {
+<a name="l00793"></a>00793    <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
+<a name="l00794"></a>00794    {
+<a name="l00795"></a>00795     *outputSamples++ = nextValue;
+<a name="l00796"></a>00796     --numSamplesToProcess;
+<a name="l00797"></a>00797     --numKrSamples;
+<a name="l00798"></a>00798    }
+<a name="l00799"></a>00799   }
+<a name="l00800"></a>00800   <span class="keywordflow">else</span>
+<a name="l00801"></a>00801   {
+<a name="l00802"></a>00802    <span class="keywordtype">float</span> valueSlope = (nextValue - value) * <a class="code" href="class_u_gen.html#aa74b2f078838a887bcb29c95ea76b82c" title="Get the current control rate slope factor i.e., 1.0 / (control rate block size).">UGen::getControlSlopeFactor</a>();
+<a name="l00803"></a>00803    
+<a name="l00804"></a>00804    <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
+<a name="l00805"></a>00805    {
+<a name="l00806"></a>00806     *outputSamples++ = value;
+<a name="l00807"></a>00807     value += valueSlope;
+<a name="l00808"></a>00808     --numSamplesToProcess;
+<a name="l00809"></a>00809     --numKrSamples;
+<a name="l00810"></a>00810    }
+<a name="l00811"></a>00811    
+<a name="l00812"></a>00812    value = nextValue;
+<a name="l00813"></a>00813   }
+<a name="l00814"></a>00814  }
+<a name="l00815"></a>00815  
+<a name="l00816"></a>00816 }
+<a name="l00817"></a>00817 
+<a name="l00818"></a>00818 
+<a name="l00819"></a>00819 
+<a name="l00820"></a><a class="code" href="class_value_u_gen.html#a707ecdf005a9b2f1de2698c31a0ac709">00820</a> <a class="code" href="class_value_u_gen.html#a6b09e8b90dc3fb8df4d87b35b598d9a3">ValueUGen::ValueUGen</a>(<a class="code" href="class_value_array.html" title="Store and manipulate an array of Value objects.">ValueArray</a> <span class="keyword">const</span>&amp; values) <span class="keywordflow">throw</span>()
+<a name="l00821"></a>00821 {
+<a name="l00822"></a>00822  initInternal(values.size());
+<a name="l00823"></a>00823  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++)
+<a name="l00824"></a>00824  {
+<a name="l00825"></a>00825   internalUGens[i] = <span class="keyword">new</span> <a class="code" href="class_value_u_gen_internal.html" title="A UGenInternal which uses a Value as its source.">ValueUGenInternal</a>(values[i]);
+<a name="l00826"></a>00826  }
+<a name="l00827"></a>00827 }
+<a name="l00828"></a>00828 
+<a name="l00829"></a>00829 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
+<a name="l00830"></a>00830 
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:03 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:05 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -54,6 +54,7 @@
  @see PlayBuf
  @ingroup UGenInternals */
 class PlayBufUGenInternal :	public ProxyOwnerUGenInternal,
+							public Seekable,
 							public DoneActionSender	
 {
 public:
@@ -66,6 +67,10 @@ public:
 	UGenInternal* getChannel(const int channel) throw();
 	void prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
+	
+	double getDuration() throw();
+	double getPosition() throw();
+	void setPosition(const double newPosition) throw();	
 	
 	enum Inputs { Rate, Trig, Offset, Loop, NumInputs };
 	

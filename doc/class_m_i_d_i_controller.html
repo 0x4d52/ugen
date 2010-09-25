@@ -47,9 +47,6 @@
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_i_d_i_controller.html#a96f9d2d36f9b1c5300f6681345e5d708">MIDIController</a> (const int midiChannel=1, const int controllerNumber=1, const float minVal=0.f, const float maxVal=127.f, const <a class="el" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810">ExternalControlSource::Warp</a> warp=ExternalControlSource::Linear, void *port=0)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_m_i_d_i_controller.html">MIDIController</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_i_d_i_controller.html#aea33fe219a641e862429733dcba2d408">init</a> (const int midiChannel=1, const int controllerNumber=1, const float minVal=0.f, const float maxVal=127.f, const <a class="el" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810">ExternalControlSource::Warp</a> warp=ExternalControlSource::Linear, void *port=0)  throw ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_m_i_d_i_controller.html">MIDIController</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_i_d_i_controller.html#ab2e2e4d8115e4fb80068589f3ed03461">operator()</a> (const int midiChannel=1, const int controllerNumber=1, const float minVal=0.f, const float maxVal=127.f, const <a class="el" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810">ExternalControlSource::Warp</a> warp=ExternalControlSource::Linear, void *port=0)  throw ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_i_d_i_controller.html#a6e0a412a57ee3537e4bdd3d00b57d504">kr</a> (const int midiChannel=1, const int controllerNumber=1, const float minVal=0.f, const float maxVal=127.f, const <a class="el" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810">ExternalControlSource::Warp</a> warp=ExternalControlSource::Linear, const double lagTime=0.1, void *port=0)  throw ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_i_d_i_controller.html#a92607437259417221628b2b38374d34c">ar</a> (const int midiChannel=1, const int controllerNumber=1, const float minVal=0.f, const float maxVal=127.f, const <a class="el" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810">ExternalControlSource::Warp</a> warp=ExternalControlSource::Linear, const double lagTime=0.1, void *port=0)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_i_d_i_controller.html#adce65b99bc292463ccca94ab19a1cbd7">handleIncomingMidiMessage</a> (MidiInput *source, const MidiMessage &amp;message)  throw ()</td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -112,65 +109,6 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a92607437259417221628b2b38374d34c"></a><!-- doxytag: member="MIDIController::ar" ref="a92607437259417221628b2b38374d34c" args="(const int midiChannel=1, const int controllerNumber=1, const float minVal=0.f, const float maxVal=127.f, const ExternalControlSource::Warp warp=ExternalControlSource::Linear, const double lagTime=0.1, void *port=0)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> MIDIController::ar </td>
-          <td>(</td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>midiChannel</em> = <code>1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>controllerNumber</em> = <code>1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const float&nbsp;</td>
-          <td class="paramname"> <em>minVal</em> = <code>0.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const float&nbsp;</td>
-          <td class="paramname"> <em>maxVal</em> = <code>127.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810">ExternalControlSource::Warp</a>&nbsp;</td>
-          <td class="paramname"> <em>warp</em> = <code>ExternalControlSource::Linear</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double&nbsp;</td>
-          <td class="paramname"> <em>lagTime</em> = <code>0.1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&nbsp;</td>
-          <td class="paramname"> <em>port</em> = <code>0</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="ugen___juce_m_i_d_i_controller_8h_source.html#l00074">74</a> of file <a class="el" href="ugen___juce_m_i_d_i_controller_8h_source.html">ugen_JuceMIDIController.h</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a7ef5bdd12fba187aeef6a34d9d79931c"></a><!-- doxytag: member="MIDIController::AR" ref="a7ef5bdd12fba187aeef6a34d9d79931c" args="(const int midiChannel=1, const int controllerNumber=1, const float minVal=0.f, const float maxVal=127.f, const ExternalControlSource::Warp warp=ExternalControlSource::Linear, const double lagTime=0.1, void *port=0)" -->
 <div class="memitem">
 <div class="memproto">
@@ -369,123 +307,11 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a6e0a412a57ee3537e4bdd3d00b57d504"></a><!-- doxytag: member="MIDIController::kr" ref="a6e0a412a57ee3537e4bdd3d00b57d504" args="(const int midiChannel=1, const int controllerNumber=1, const float minVal=0.f, const float maxVal=127.f, const ExternalControlSource::Warp warp=ExternalControlSource::Linear, const double lagTime=0.1, void *port=0)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> MIDIController::kr </td>
-          <td>(</td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>midiChannel</em> = <code>1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>controllerNumber</em> = <code>1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const float&nbsp;</td>
-          <td class="paramname"> <em>minVal</em> = <code>0.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const float&nbsp;</td>
-          <td class="paramname"> <em>maxVal</em> = <code>127.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810">ExternalControlSource::Warp</a>&nbsp;</td>
-          <td class="paramname"> <em>warp</em> = <code>ExternalControlSource::Linear</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double&nbsp;</td>
-          <td class="paramname"> <em>lagTime</em> = <code>0.1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&nbsp;</td>
-          <td class="paramname"> <em>port</em> = <code>0</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="ugen___juce_m_i_d_i_controller_8h_source.html#l00074">74</a> of file <a class="el" href="ugen___juce_m_i_d_i_controller_8h_source.html">ugen_JuceMIDIController.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab2e2e4d8115e4fb80068589f3ed03461"></a><!-- doxytag: member="MIDIController::operator()" ref="ab2e2e4d8115e4fb80068589f3ed03461" args="(const int midiChannel=1, const int controllerNumber=1, const float minVal=0.f, const float maxVal=127.f, const ExternalControlSource::Warp warp=ExternalControlSource::Linear, void *port=0)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_m_i_d_i_controller.html">MIDIController</a> MIDIController::operator() </td>
-          <td>(</td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>midiChannel</em> = <code>1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>controllerNumber</em> = <code>1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const float&nbsp;</td>
-          <td class="paramname"> <em>minVal</em> = <code>0.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const float&nbsp;</td>
-          <td class="paramname"> <em>maxVal</em> = <code>127.f</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810">ExternalControlSource::Warp</a>&nbsp;</td>
-          <td class="paramname"> <em>warp</em> = <code>ExternalControlSource::Linear</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&nbsp;</td>
-          <td class="paramname"> <em>port</em> = <code>0</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="ugen___juce_m_i_d_i_controller_8h_source.html#l00074">74</a> of file <a class="el" href="ugen___juce_m_i_d_i_controller_8h_source.html">ugen_JuceMIDIController.h</a>.</p>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>juce/io/<a class="el" href="ugen___juce_m_i_d_i_controller_8h_source.html">ugen_JuceMIDIController.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:09 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:13 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -41,10 +41,10 @@
 </h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="TableOscUGenInternal" --><!-- doxytag: inherits="UGenInternal" -->
+<!-- doxytag: class="TableOscUGenInternal" --><!-- doxytag: inherits="UGenInternal,Seekable" -->
 <p><code>#include &lt;<a class="el" href="ugen___table_osc_8h_source.html">ugen_TableOsc.h</a>&gt;</code></p>
 
-<p>Inherits <a class="el" href="class_u_gen_internal.html">UGenInternal</a>.</p>
+<p>Inherits <a class="el" href="class_u_gen_internal.html">UGenInternal</a>, and <a class="el" href="class_seekable.html">Seekable</a>.</p>
 
 <p>Inherited by <a class="el" href="class_table_osc_u_gen_internal_k.html">TableOscUGenInternalK</a>.</p>
 
@@ -61,7 +61,12 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_table_osc_u_gen_internal.html#a7c555c1233f0100cfebf76848d47bcd7">getChannel</a> (const int channel)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_table_osc_u_gen_internal.html#a361806f78c766ce5e89493563ad71100">getKr</a> ()  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_table_osc_u_gen_internal.html#aa68b8536bb5df1ed2f6f555333b277a4">processBlock</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Process a block of samples for this blockID and channel.  <a href="#aa68b8536bb5df1ed2f6f555333b277a4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_table_osc_u_gen_internal.html#a3bcd9ec75423b8559055673868b45f7a">getDuration</a> ()  throw ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the maximum duration of the seekable.  <a href="#a3bcd9ec75423b8559055673868b45f7a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_table_osc_u_gen_internal.html#a9d5d312cb5030ac4672b6da221c331cd">getPosition</a> ()  throw ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the current position of the seekable.  <a href="#a9d5d312cb5030ac4672b6da221c331cd"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_table_osc_u_gen_internal.html#a7e55e37132e0ae8fce182524010f96da">setPosition</a> (const double newPosition)  throw ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set the current position of the seekable.  <a href="#a7e55e37132e0ae8fce182524010f96da"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_table_osc_u_gen_internal.html#a40dcc067264b4a7c383696102bb23dac">lookupIndex</a> (const float fIndex)  throw ()</td></tr>
@@ -95,7 +100,7 @@ Protected Attributes</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___table_osc_8h_source.html#l00052">52</a> of file <a class="el" href="ugen___table_osc_8h_source.html">ugen_TableOsc.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___table_osc_8h_source.html#l00057">57</a> of file <a class="el" href="ugen___table_osc_8h_source.html">ugen_TableOsc.h</a>.</p>
 
 </div>
 </div>
@@ -148,15 +153,37 @@ Protected Attributes</h2></td></tr>
           <td class="paramtype">const int&nbsp;</td>
           <td class="paramname"> <em>channel</em></td>
           <td>&nbsp;)&nbsp;</td>
+          <td>  throw ()</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___table_osc_8cpp_source.html#l00060">60</a> of file <a class="el" href="ugen___table_osc_8cpp_source.html">ugen_TableOsc.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3bcd9ec75423b8559055673868b45f7a"></a><!-- doxytag: member="TableOscUGenInternal::getDuration" ref="a3bcd9ec75423b8559055673868b45f7a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double TableOscUGenInternal::getDuration </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
           <td>  throw ()<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a6838029815ab52d3263cfacb6c584d2f">UGenInternal</a>.</p>
+<p>Get the maximum duration of the seekable. </p>
+<p>The units will be dependent on the <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> in question. For longer sounds as sound files it is likely to be in seconds. For wavetables it will always be 1.0 </p>
 
-<p>Definition at line <a class="el" href="ugen___table_osc_8cpp_source.html#l00060">60</a> of file <a class="el" href="ugen___table_osc_8cpp_source.html">ugen_TableOsc.cpp</a>.</p>
+<p>Implements <a class="el" href="class_seekable.html#a196cb3e4223eaf45302449926e8fd0f7">Seekable</a>.</p>
+
+<p>Definition at line <a class="el" href="ugen___table_osc_8cpp_source.html#l00093">93</a> of file <a class="el" href="ugen___table_osc_8cpp_source.html">ugen_TableOsc.cpp</a>.</p>
 
 </div>
 </div>
@@ -169,19 +196,43 @@ Protected Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
+          <td>  throw ()</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="class_table_osc_u_gen_internal_k.html#a997ee9f094300e6a7a85c5fde6062510">TableOscUGenInternalK</a>.</p>
+
+<p>Definition at line <a class="el" href="ugen___table_osc_8cpp_source.html#l00067">67</a> of file <a class="el" href="ugen___table_osc_8cpp_source.html">ugen_TableOsc.cpp</a>.</p>
+
+<p>References <a class="el" href="ugen___table_osc_8h_source.html#l00094">currentPhase</a>, <a class="el" href="ugen___table_osc_8h_source.html#l00057">Freq</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00228">UGenInternal::inputs</a>, and <a class="el" href="ugen___table_osc_8h_source.html#l00091">table_</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9d5d312cb5030ac4672b6da221c331cd"></a><!-- doxytag: member="TableOscUGenInternal::getPosition" ref="a9d5d312cb5030ac4672b6da221c331cd" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double TableOscUGenInternal::getPosition </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
           <td>  throw ()<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a5041a93f6c624446f04542b0b82f0563">UGenInternal</a>.</p>
+<p>Get the current position of the seekable. </p>
+<p>The units will be dependent on the <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> in question. For longer sounds as sound files it is likely to be in seconds. For wavetables it will 0...1 </p>
 
-<p>Reimplemented in <a class="el" href="class_table_osc_u_gen_internal_k.html#a997ee9f094300e6a7a85c5fde6062510">TableOscUGenInternalK</a>.</p>
+<p>Implements <a class="el" href="class_seekable.html#a6ea74978de87fb87fb506f2877158d11">Seekable</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___table_osc_8cpp_source.html#l00067">67</a> of file <a class="el" href="ugen___table_osc_8cpp_source.html">ugen_TableOsc.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___table_osc_8cpp_source.html#l00098">98</a> of file <a class="el" href="ugen___table_osc_8cpp_source.html">ugen_TableOsc.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___table_osc_8h_source.html#l00092">currentPhase</a>, <a class="el" href="ugen___table_osc_8h_source.html#l00052">Freq</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00225">UGenInternal::inputs</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l01723">ugen::kr()</a>, and <a class="el" href="ugen___table_osc_8h_source.html#l00089">table_</a>.</p>
+<p>References <a class="el" href="ugen___table_osc_8h_source.html#l00094">currentPhase</a>, and <a class="el" href="ugen___table_osc_8h_source.html#l00092">wavetableSize</a>.</p>
 
 </div>
 </div>
@@ -201,9 +252,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___table_osc_8h_source.html#l00078">78</a> of file <a class="el" href="ugen___table_osc_8h_source.html">ugen_TableOsc.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___table_osc_8h_source.html#l00083">83</a> of file <a class="el" href="ugen___table_osc_8h_source.html">ugen_TableOsc.h</a>.</p>
 
-<p>References <a class="el" href="ugen___table_osc_8h_source.html#l00091">wavetable</a>.</p>
+<p>References <a class="el" href="ugen___table_osc_8h_source.html#l00093">wavetable</a>.</p>
 
 </div>
 </div>
@@ -232,30 +283,44 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [virtual]</code></td>
+          <td></td><td></td><td>  throw ()</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Process a block of samples for this blockID and channel. </p>
-<p>This is the main rendering function and needs to be implement by all subclasses.</p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>shouldDelete</em>&nbsp;</td><td>A <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> graph can be scheduled for deletion by setting this to true on return. If it is already true it should NOT be set to false. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>blockID</em>&nbsp;</td><td>This is a sample counter, you can assume that calls to this function will have blockIDs which are higher that the last call (until the maximum integer is reached). </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>channel</em>&nbsp;</td><td>The channel index to process. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="class_u_gen_internal.html#ae1c9c941ea6f372d8af8cc5f9ae32ace">UGenInternal</a>.</p>
-
 <p>Reimplemented in <a class="el" href="class_table_osc_u_gen_internal_k.html#a71eaa18516166a841f49abd6c5ca464c">TableOscUGenInternalK</a>.</p>
 
 <p>Definition at line <a class="el" href="ugen___table_osc_8cpp_source.html#l00072">72</a> of file <a class="el" href="ugen___table_osc_8cpp_source.html">ugen_TableOsc.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l00932">UGen::getReciprocalSampleRate()</a>, <a class="el" href="ugen___standard_header_8h_source.html#l00080">LOCAL_COPY</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00078">LOCAL_DECLARE</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l00927">UGen::getReciprocalSampleRate()</a>, <a class="el" href="ugen___standard_header_8h_source.html#l00080">LOCAL_COPY</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00078">LOCAL_DECLARE</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7e55e37132e0ae8fce182524010f96da"></a><!-- doxytag: member="TableOscUGenInternal::setPosition" ref="a7e55e37132e0ae8fce182524010f96da" args="(const double newPosition)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TableOscUGenInternal::setPosition </td>
+          <td>(</td>
+          <td class="paramtype">const double&nbsp;</td>
+          <td class="paramname"> <em>newPosition</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>  throw ()<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Set the current position of the seekable. </p>
+<p>The units will be dependent on the <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> in question. For longer sounds as sound files it is likely to be in seconds. For wavetables it will 0...1 </p>
+
+<p>Implements <a class="el" href="class_seekable.html#a1ddb34a184c0521c4049d6f06bf984d6">Seekable</a>.</p>
+
+<p>Definition at line <a class="el" href="ugen___table_osc_8cpp_source.html#l00103">103</a> of file <a class="el" href="ugen___table_osc_8cpp_source.html">ugen_TableOsc.cpp</a>.</p>
+
+<p>References <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00135">clip()</a>.</p>
 
 </div>
 </div>
@@ -271,9 +336,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___table_osc_8h_source.html#l00092">92</a> of file <a class="el" href="ugen___table_osc_8h_source.html">ugen_TableOsc.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___table_osc_8h_source.html#l00094">94</a> of file <a class="el" href="ugen___table_osc_8h_source.html">ugen_TableOsc.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___table_osc_8cpp_source.html#l00067">getKr()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___table_osc_8cpp_source.html#l00067">getKr()</a>, and <a class="el" href="ugen___table_osc_8cpp_source.html#l00098">getPosition()</a>.</p>
 
 </div>
 </div>
@@ -288,7 +353,7 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___table_osc_8h_source.html#l00089">89</a> of file <a class="el" href="ugen___table_osc_8h_source.html">ugen_TableOsc.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___table_osc_8h_source.html#l00091">91</a> of file <a class="el" href="ugen___table_osc_8h_source.html">ugen_TableOsc.h</a>.</p>
 
 <p>Referenced by <a class="el" href="ugen___table_osc_8cpp_source.html#l00067">getKr()</a>.</p>
 
@@ -305,9 +370,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___table_osc_8h_source.html#l00091">91</a> of file <a class="el" href="ugen___table_osc_8h_source.html">ugen_TableOsc.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___table_osc_8h_source.html#l00093">93</a> of file <a class="el" href="ugen___table_osc_8h_source.html">ugen_TableOsc.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___table_osc_8h_source.html#l00078">lookupIndex()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___table_osc_8h_source.html#l00083">lookupIndex()</a>.</p>
 
 </div>
 </div>
@@ -322,7 +387,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___table_osc_8h_source.html#l00090">90</a> of file <a class="el" href="ugen___table_osc_8h_source.html">ugen_TableOsc.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___table_osc_8h_source.html#l00092">92</a> of file <a class="el" href="ugen___table_osc_8h_source.html">ugen_TableOsc.h</a>.</p>
+
+<p>Referenced by <a class="el" href="ugen___table_osc_8cpp_source.html#l00098">getPosition()</a>.</p>
 
 </div>
 </div>
@@ -331,7 +398,7 @@ Protected Attributes</h2></td></tr>
 <li>oscillators/wavetable/<a class="el" href="ugen___table_osc_8cpp_source.html">ugen_TableOsc.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:10 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:14 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -41,13 +41,18 @@
 #include "../../basics/ugen_MulAdd.h"
 
 /** @ingroup UGenInternals */
-class TableOscUGenInternal : public UGenInternal
+class TableOscUGenInternal :	public UGenInternal,
+								public Seekable
 {
 public:
 	TableOscUGenInternal(UGen const& freq, const float initialPhase, Buffer const& table) throw();
 	UGenInternal* getChannel(const int channel) throw();									
 	UGenInternal* getKr() throw();															
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
+	
+	double getDuration() throw();
+	double getPosition() throw();
+	void setPosition(const double newPosition) throw();	
 	
 	enum Inputs { Freq, NumInputs };
 
@@ -83,14 +88,10 @@ protected:
 		return value0 + (fIndex - iIndex0) * (*(pValue0+1) - value0);
 	}
 	
-	
-	
-
 	Buffer table_;
 	const float wavetableSize;
 	float *wavetable;
 	float currentPhase;
-
 };
 
 /** @ingroup UGenInternals */

@@ -40,13 +40,13 @@
 </h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="PlayBufUGenInternal" --><!-- doxytag: inherits="ProxyOwnerUGenInternal" -->
+<!-- doxytag: class="PlayBufUGenInternal" --><!-- doxytag: inherits="ProxyOwnerUGenInternal,Seekable,DoneActionSender" -->
 <p>A <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> which can playback a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>.  
 <a href="#_details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>&gt;</code></p>
 
-<p>Inherits <a class="el" href="class_proxy_owner_u_gen_internal.html">ProxyOwnerUGenInternal</a>.</p>
+<p>Inherits <a class="el" href="class_proxy_owner_u_gen_internal.html">ProxyOwnerUGenInternal</a>, <a class="el" href="class_seekable.html">Seekable</a>, and <a class="el" href="class_done_action_sender.html">DoneActionSender</a>.</p>
 
 <p><a href="class_play_buf_u_gen_internal-members.html">List of all members.</a></p>
 <table class="memberdecls">
@@ -65,8 +65,11 @@ Public Types</h2></td></tr>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_play_buf_u_gen_internal.html#ad79dd3437fa1a4f0f56c58a325d7c1b1">PlayBufUGenInternal</a> (<a class="el" href="class_buffer.html">Buffer</a> const &amp;buffer, <a class="el" href="class_u_gen.html">UGen</a> const &amp;<a class="el" href="class_u_gen_internal.html#a7d2d4b436a5a80c7ebc23c84901c9e63">rate</a>, <a class="el" href="class_u_gen.html">UGen</a> const &amp;trig, <a class="el" href="class_u_gen.html">UGen</a> const &amp;offset, <a class="el" href="class_u_gen.html">UGen</a> const &amp;loop, const <a class="el" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1ca">UGen::DoneAction</a> doneAction)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_play_buf_u_gen_internal.html#aa96103de4eb848fee61eb7e4d2aee6fe">getChannel</a> (const int channel)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_play_buf_u_gen_internal.html#ab4b671e02a2ae3b8b10ee8af28c0693f">prepareForBlock</a> (const int actualBlockSize, const unsigned int blockID)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_play_buf_u_gen_internal.html#a046a6653cb3e9555e909051f60e416e6">processBlock</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Process a block of samples for this blockID and channel.  <a href="#a046a6653cb3e9555e909051f60e416e6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_play_buf_u_gen_internal.html#a966b2eda6b8999cdfd031e5abdd9236b">getDuration</a> ()  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_play_buf_u_gen_internal.html#a55984b6127a6724894337f660f2db2ac">getPosition</a> ()  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_play_buf_u_gen_internal.html#ad278cfaeecf46e4bc3d44be640b987a7">setPosition</a> (const double newPosition)  throw ()</td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_buffer.html">Buffer</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_play_buf_u_gen_internal.html#ac03af12c3b75eb96838f094c1a481d7c">buffer_</a></td></tr>
@@ -107,7 +110,7 @@ Protected Attributes</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00068">68</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00075">75</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
 
 </div>
 </div>
@@ -176,15 +179,84 @@ Protected Attributes</h2></td></tr>
           <td class="paramtype">const int&nbsp;</td>
           <td class="paramname"> <em>channel</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td>  throw ()<code> [virtual]</code></td>
+          <td>  throw ()</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a6838029815ab52d3263cfacb6c584d2f">UGenInternal</a>.</p>
-
 <p>Definition at line <a class="el" href="ugen___play_buf_8cpp_source.html#l00067">67</a> of file <a class="el" href="ugen___play_buf_8cpp_source.html">ugen_PlayBuf.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a966b2eda6b8999cdfd031e5abdd9236b"></a><!-- doxytag: member="PlayBufUGenInternal::getDuration" ref="a966b2eda6b8999cdfd031e5abdd9236b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double PlayBufUGenInternal::getDuration </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>  throw ()</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___play_buf_8cpp_source.html#l00140">140</a> of file <a class="el" href="ugen___play_buf_8cpp_source.html">ugen_PlayBuf.cpp</a>.</p>
+
+<p>References <a class="el" href="ugen___play_buf_8h_source.html#l00078">buffer_</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l01464">Buffer::duration()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a55984b6127a6724894337f660f2db2ac"></a><!-- doxytag: member="PlayBufUGenInternal::getPosition" ref="a55984b6127a6724894337f660f2db2ac" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double PlayBufUGenInternal::getPosition </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>  throw ()</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___play_buf_8cpp_source.html#l00145">145</a> of file <a class="el" href="ugen___play_buf_8cpp_source.html">ugen_PlayBuf.cpp</a>.</p>
+
+<p>References <a class="el" href="ugen___play_buf_8h_source.html#l00079">bufferPos</a>, and <a class="el" href="ugen___u_gen_8h_source.html#l00927">UGen::getReciprocalSampleRate()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab4b671e02a2ae3b8b10ee8af28c0693f"></a><!-- doxytag: member="PlayBufUGenInternal::prepareForBlock" ref="ab4b671e02a2ae3b8b10ee8af28c0693f" args="(const int actualBlockSize, const unsigned int blockID)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayBufUGenInternal::prepareForBlock </td>
+          <td>(</td>
+          <td class="paramtype">const int&nbsp;</td>
+          <td class="paramname"> <em>actualBlockSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&nbsp;</td>
+          <td class="paramname"> <em>blockID</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td>  throw ()</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___play_buf_8cpp_source.html#l00072">72</a> of file <a class="el" href="ugen___play_buf_8cpp_source.html">ugen_PlayBuf.cpp</a>.</p>
 
 </div>
 </div>
@@ -213,28 +285,37 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [virtual]</code></td>
+          <td></td><td></td><td>  throw ()</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Process a block of samples for this blockID and channel. </p>
-<p>This is the main rendering function and needs to be implement by all subclasses.</p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>shouldDelete</em>&nbsp;</td><td>A <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> graph can be scheduled for deletion by setting this to true on return. If it is already true it should NOT be set to false. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>blockID</em>&nbsp;</td><td>This is a sample counter, you can assume that calls to this function will have blockIDs which are higher that the last call (until the maximum integer is reached). </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>channel</em>&nbsp;</td><td>The channel index to process. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Definition at line <a class="el" href="ugen___play_buf_8cpp_source.html#l00078">78</a> of file <a class="el" href="ugen___play_buf_8cpp_source.html">ugen_PlayBuf.cpp</a>.</p>
 
-<p>Implements <a class="el" href="class_u_gen_internal.html#ae1c9c941ea6f372d8af8cc5f9ae32ace">UGenInternal</a>.</p>
+<p>References <a class="el" href="ugen___play_buf_8h_source.html#l00078">buffer_</a>, <a class="el" href="ugen___play_buf_8h_source.html#l00079">bufferPos</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00078">UGenOutput::getBlockSize()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00264">ProxyOwnerUGenInternal::getNumChannels()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00355">Buffer::getSample()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00196">UGenInternal::getSampleData()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00228">UGenInternal::inputs</a>, <a class="el" href="ugen___play_buf_8h_source.html#l00080">lastTrig</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l00935">UGen::processBlock()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00271">ProxyOwnerUGenInternal::proxies</a>, <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00557">DoneActionSender::setIsDone()</a>, <a class="el" href="ugen___play_buf_8h_source.html#l00082">shouldDeleteValue</a>, <a class="el" href="ugen___buffer_8h_source.html#l00335">Buffer::size()</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00233">UGenInternal::uGenOutput</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___play_buf_8cpp_source.html#l00072">72</a> of file <a class="el" href="ugen___play_buf_8cpp_source.html">ugen_PlayBuf.cpp</a>.</p>
+</div>
+</div>
+<a class="anchor" id="ad278cfaeecf46e4bc3d44be640b987a7"></a><!-- doxytag: member="PlayBufUGenInternal::setPosition" ref="ad278cfaeecf46e4bc3d44be640b987a7" args="(const double newPosition)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayBufUGenInternal::setPosition </td>
+          <td>(</td>
+          <td class="paramtype">const double&nbsp;</td>
+          <td class="paramname"> <em>newPosition</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>  throw ()</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
 
-<p>References <a class="el" href="ugen___play_buf_8h_source.html#l00071">buffer_</a>, <a class="el" href="ugen___play_buf_8h_source.html#l00072">bufferPos</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00079">UGenOutput::getBlockSize()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00265">ProxyOwnerUGenInternal::getNumChannels()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00354">Buffer::getSample()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00193">UGenInternal::getSampleData()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00225">UGenInternal::inputs</a>, <a class="el" href="ugen___play_buf_8h_source.html#l00073">lastTrig</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l00919">UGen::processBlock()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00272">ProxyOwnerUGenInternal::proxies</a>, <a class="el" href="ugen___play_buf_8h_source.html#l00075">shouldDeleteValue</a>, <a class="el" href="ugen___buffer_8h_source.html#l00334">Buffer::size()</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00230">UGenInternal::uGenOutput</a>.</p>
+<p>Definition at line <a class="el" href="ugen___play_buf_8cpp_source.html#l00150">150</a> of file <a class="el" href="ugen___play_buf_8cpp_source.html">ugen_PlayBuf.cpp</a>.</p>
+
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l00924">UGen::getSampleRate()</a>, and <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00099">max()</a>.</p>
 
 </div>
 </div>
@@ -250,9 +331,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00071">71</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00078">78</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___play_buf_8cpp_source.html#l00072">processBlock()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___play_buf_8cpp_source.html#l00140">getDuration()</a>, and <a class="el" href="ugen___play_buf_8cpp_source.html#l00078">processBlock()</a>.</p>
 
 </div>
 </div>
@@ -267,9 +348,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00072">72</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00079">79</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___play_buf_8cpp_source.html#l00072">processBlock()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___play_buf_8cpp_source.html#l00145">getPosition()</a>, and <a class="el" href="ugen___play_buf_8cpp_source.html#l00078">processBlock()</a>.</p>
 
 </div>
 </div>
@@ -284,7 +365,7 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00074">74</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00081">81</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
 
 </div>
 </div>
@@ -299,9 +380,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00073">73</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00080">80</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___play_buf_8cpp_source.html#l00072">processBlock()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___play_buf_8cpp_source.html#l00078">processBlock()</a>.</p>
 
 </div>
 </div>
@@ -316,9 +397,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00075">75</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00082">82</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___play_buf_8cpp_source.html#l00072">processBlock()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___play_buf_8cpp_source.html#l00078">processBlock()</a>.</p>
 
 </div>
 </div>
@@ -327,7 +408,7 @@ Protected Attributes</h2></td></tr>
 <li>buffers/<a class="el" href="ugen___play_buf_8cpp_source.html">ugen_PlayBuf.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:10 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:13 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

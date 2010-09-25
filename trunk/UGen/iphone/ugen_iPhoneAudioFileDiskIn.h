@@ -42,6 +42,7 @@
 
 /** @ingroup UGenInternals */
 class DiskInUGenInternal :	public ProxyOwnerUGenInternal,
+							public Seekable,
 							public DoneActionSender
 {
 public:
@@ -53,6 +54,10 @@ public:
 	~DiskInUGenInternal() throw();
 	OSStatus clearOutputsAndReadData(bool& shouldDelete) throw();
 	void prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw();
+		
+	double getDuration() throw();
+	double getPosition() throw();
+	void setPosition(const double newPosition) throw();	
 	
 protected:
 	AudioFileID	audioFile_;
@@ -66,6 +71,7 @@ protected:
 	UInt32 numPackets;
 	UInt32 bytesPerFrame;
 	double fileSampleRate;
+	double reciprocalSampleRate;
 	const UGen::DoneAction doneAction_;
 	const bool shouldDeleteValue;	
 };

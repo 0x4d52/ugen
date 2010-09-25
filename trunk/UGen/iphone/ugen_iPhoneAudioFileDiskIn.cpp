@@ -60,6 +60,7 @@ DiskInUGenInternal::DiskInUGenInternal(AudioFileID audioFile,
 	numPackets(0),
 	bytesPerFrame(format.mBytesPerFrame),
 	fileSampleRate(format.mSampleRate),
+	reciprocalSampleRate(1.0/fileSampleRate),
 	doneAction_(doneAction),
 	shouldDeleteValue(doneAction_ == UGen::DeleteWhenDone)
 {
@@ -78,7 +79,7 @@ DiskInUGenInternal::DiskInUGenInternal(AudioFileID audioFile,
 		}	
 		else
 		{
-			currentPacket = ugen::max(0.0, startTime) * UGen::getSampleRate();
+			currentPacket = ugen::max(0.0, startTime) * fileSampleRate;
 			if(currentPacket >= packetCount)
 				currentPacket = 0;
 			
@@ -162,7 +163,9 @@ OSStatus DiskInUGenInternal::clearOutputsAndReadData(bool& shouldDelete) throw()
 				}
 				else
 				{
-					setIsDone();
+					if(shouldDeleteValue)
+						setIsDone();
+					
 					shouldDelete = shouldDelete ? true : shouldDeleteValue;
 				}
 			}
@@ -177,6 +180,21 @@ void DiskInUGenInternal::prepareForBlock(const int actualBlockSize, const unsign
 {
 	senderUserData = userData;
 	if(isDone()) sendDoneInternal();
+}
+
+double DiskInUGenInternal::getDuration() throw()
+{
+	return packetCount * reciprocalSampleRate;
+}
+
+double DiskInUGenInternal::getPosition() throw()
+{
+	return currentPacket * reciprocalSampleRate;
+}
+
+void DiskInUGenInternal::setPosition(const double newPosition) throw()
+{
+	currentPacket = ugen::max(0.0, newPosition) * fileSampleRate;
 }
 
 DiskInUGenInternalWav16::DiskInUGenInternalWav16(AudioFileID audioFile, 

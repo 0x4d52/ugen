@@ -30,7 +30,9 @@
 </div>
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a>  </div>
   <div class="headertitle">
 <h1>NullUGenInternal Class Reference<br/>
 <small>
@@ -47,13 +49,18 @@
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_null_u_gen_internal.html#a6e1eec29b7fb2f3b5ba00b697f02117e">NullUGenInternal</a> ()  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_null_u_gen_internal.html#a4064a46bf4fd421159c6ce8a768bbb70">getKr</a> ()  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_null_u_gen_internal.html#a656b2762e524a36ac056086dc6b60459">isNull</a> () const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_null_u_gen_internal.html#a314df261c0def1879120757062001bdb">processBlock</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Process a block of samples for this blockID and channel.  <a href="#a314df261c0def1879120757062001bdb"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_null_u_gen_internal.html#a2162aae49e1eb52f9d089cba742d4d15">getValue</a> (const int) const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_null_u_gen_internal.html#a663a1c95bb4f162c78ca4c6b117562e8">isConst</a> () const   throw ()</td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_null_u_gen_internal.html">NullUGenInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_null_u_gen_internal.html#a46c908e6312f31d86792a13a97b756bc">getInstance</a> ()  throw ()</td></tr>
+<tr><td colspan="2"><h2><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_null_u_gen_internal.html#a6e1eec29b7fb2f3b5ba00b697f02117e">NullUGenInternal</a> ()  throw ()</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 
@@ -68,7 +75,7 @@ Public Member Functions</h2></td></tr>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td>  throw ()</td>
+          <td>  throw ()<code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -76,11 +83,34 @@ Public Member Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___scalar_u_gens_8cpp_source.html#l00045">45</a> of file <a class="el" href="ugen___scalar_u_gens_8cpp_source.html">ugen_ScalarUGens.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___scalar_u_gens_8cpp_source.html#l00050">getKr()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___scalar_u_gens_8cpp_source.html#l00064">getInstance()</a>, and <a class="el" href="ugen___scalar_u_gens_8cpp_source.html#l00050">getKr()</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a46c908e6312f31d86792a13a97b756bc"></a><!-- doxytag: member="NullUGenInternal::getInstance" ref="a46c908e6312f31d86792a13a97b756bc" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_null_u_gen_internal.html">NullUGenInternal</a> * NullUGenInternal::getInstance </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>  throw ()<code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___scalar_u_gens_8cpp_source.html#l00064">64</a> of file <a class="el" href="ugen___scalar_u_gens_8cpp_source.html">ugen_ScalarUGens.cpp</a>.</p>
+
+<p>References <a class="el" href="ugen___smart_pointer_8cpp_source.html#l00080">SmartPointer::incrementRefCount()</a>, and <a class="el" href="ugen___scalar_u_gens_8cpp_source.html#l00045">NullUGenInternal()</a>.</p>
+
+<p>Referenced by <a class="el" href="ugen___scalar_u_gens_8cpp_source.html#l00081">NullUGen::NullUGen()</a>, and <a class="el" href="ugen___u_gen_8cpp_source.html#l00076">UGen::UGen()</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a4064a46bf4fd421159c6ce8a768bbb70"></a><!-- doxytag: member="NullUGenInternal::getKr" ref="a4064a46bf4fd421159c6ce8a768bbb70" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -100,7 +130,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___scalar_u_gens_8cpp_source.html#l00050">50</a> of file <a class="el" href="ugen___scalar_u_gens_8cpp_source.html">ugen_ScalarUGens.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___scalar_u_gens_8cpp_source.html#l00045">NullUGenInternal()</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00221">UGenInternal::rate</a>.</p>
+<p>References <a class="el" href="ugen___scalar_u_gens_8cpp_source.html#l00045">NullUGenInternal()</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00224">UGenInternal::rate</a>.</p>
 
 </div>
 </div>
@@ -122,7 +152,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="class_scalar_base_u_gen_internal.html#a5f171ed553aab88ce4570e96d23fe896">ScalarBaseUGenInternal</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___scalar_u_gens_8h_source.html#l00074">74</a> of file <a class="el" href="ugen___scalar_u_gens_8h_source.html">ugen_ScalarUGens.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___scalar_u_gens_8h_source.html#l00073">73</a> of file <a class="el" href="ugen___scalar_u_gens_8h_source.html">ugen_ScalarUGens.h</a>.</p>
 
 </div>
 </div>
@@ -143,7 +173,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a676f2417925e1d86089c29ad63391fa6">UGenInternal</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___scalar_u_gens_8h_source.html#l00075">75</a> of file <a class="el" href="ugen___scalar_u_gens_8h_source.html">ugen_ScalarUGens.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___scalar_u_gens_8h_source.html#l00074">74</a> of file <a class="el" href="ugen___scalar_u_gens_8h_source.html">ugen_ScalarUGens.h</a>.</p>
 
 </div>
 </div>
@@ -164,7 +194,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a5c3ac6f42d7c23a21bce20176e564cc3">UGenInternal</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___scalar_u_gens_8h_source.html#l00072">72</a> of file <a class="el" href="ugen___scalar_u_gens_8h_source.html">ugen_ScalarUGens.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___scalar_u_gens_8h_source.html#l00071">71</a> of file <a class="el" href="ugen___scalar_u_gens_8h_source.html">ugen_ScalarUGens.h</a>.</p>
 
 </div>
 </div>
@@ -214,7 +244,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___scalar_u_gens_8cpp_source.html#l00057">57</a> of file <a class="el" href="ugen___scalar_u_gens_8cpp_source.html">ugen_ScalarUGens.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_internal_8h_source.html#l00079">UGenOutput::getBlockSize()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00080">UGenOutput::getSampleData()</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00230">UGenInternal::uGenOutput</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_internal_8h_source.html#l00078">UGenOutput::getBlockSize()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00079">UGenOutput::getSampleData()</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00233">UGenInternal::uGenOutput</a>.</p>
 
 </div>
 </div>
@@ -223,7 +253,7 @@ Public Member Functions</h2></td></tr>
 <li>basics/<a class="el" href="ugen___scalar_u_gens_8cpp_source.html">ugen_ScalarUGens.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:09 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:13 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

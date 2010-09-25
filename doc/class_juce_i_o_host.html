@@ -66,8 +66,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set the input <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a>.  <a href="#a65a8a135b951fec0139926d7916d900a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_juce_i_o_host.html#a84ebbd01a7fd33f7fc8190f71348bc20">setOutput</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;ugen)  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set the output <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a>.  <a href="#a84ebbd01a7fd33f7fc8190f71348bc20"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_juce_i_o_host.html#a88b8483a909d81b62dac3232ceff5407">addOther</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;ugen)  throw ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Add a <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> to the dependency of this host.  <a href="#a88b8483a909d81b62dac3232ceff5407"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_juce_i_o_host.html#ac14f3b7c3ae59124690cc750571e29d8">addOther</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;ugen)  throw ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Add a <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> to the dependency of this host.  <a href="#ac14f3b7c3ae59124690cc750571e29d8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_juce_i_o_host.html#ab6e822bab10234803fdd9d077af687ef">removeOther</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;ugen)  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove a <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> from the "others" array.  <a href="#ab6e822bab10234803fdd9d077af687ef"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_juce_i_o_host.html#a39dd6f293bbd2ae46c3505fc27ee7332">getCpuUsage</a> () const </td></tr>
@@ -155,12 +155,12 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a88b8483a909d81b62dac3232ceff5407"></a><!-- doxytag: member="JuceIOHost::addOther" ref="a88b8483a909d81b62dac3232ceff5407" args="(UGen const &amp;ugen)" -->
+<a class="anchor" id="ac14f3b7c3ae59124690cc750571e29d8"></a><!-- doxytag: member="JuceIOHost::addOther" ref="ac14f3b7c3ae59124690cc750571e29d8" args="(UGen const &amp;ugen)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void JuceIOHost::addOther </td>
+          <td class="memname"><a class="el" href="class_u_gen.html">UGen</a> JuceIOHost::addOther </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
           <td class="paramname"> <em>ugen</em></td>
@@ -173,8 +173,9 @@ Private Attributes</h2></td></tr>
 
 <p>Add a <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> to the dependency of this host. </p>
 <p>This is mainly used for <a class="el" href="class_scope.html" title="Scope UGen for use with a ScopeGUI.">Scope</a> and/or <a class="el" href="class_disk_out.html" title="Streams data from a UGen out to a disk file.">DiskOut</a>. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> passed in so these calls can be chained. </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00179">179</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00180">180</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
 </div>
 </div>
@@ -204,7 +205,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> graph which will be performed </dd></dl>
 
-<p>Referenced by <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00333">JuceIOHostInternal::audioDeviceAboutToStart()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00335">JuceIOHostInternal::audioDeviceAboutToStart()</a>.</p>
 
 </div>
 </div>
@@ -247,7 +248,7 @@ Private Attributes</h2></td></tr>
 <p>Get the CPU usage. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>CPU usage as 0.0-1.0. </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00192">192</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00194">194</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
 </div>
 </div>
@@ -272,7 +273,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00139">139</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8cpp_source.html#l01030">UGen::getInput()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8cpp_source.html#l01052">UGen::getInput()</a>.</p>
 
 </div>
 </div>
@@ -335,7 +336,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00149">149</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8cpp_source.html#l01041">UGen::getOutput()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8cpp_source.html#l01063">UGen::getOutput()</a>.</p>
 
 </div>
 </div>
@@ -357,7 +358,7 @@ Private Attributes</h2></td></tr>
 
 <p>Remove a <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> from the "others" array. </p>
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00185">185</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00187">187</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
 </div>
 </div>
@@ -431,7 +432,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00209">209</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00211">211</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
 </div>
 </div>
@@ -446,7 +447,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00212">212</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00214">214</a> of file <a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a>.</p>
 
 </div>
 </div>
@@ -454,7 +455,7 @@ Private Attributes</h2></td></tr>
 <li>juce/io/<a class="el" href="ugen___juce_i_o_host_8h_source.html">ugen_JuceIOHost.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:08 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:12 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

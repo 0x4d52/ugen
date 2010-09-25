@@ -30,7 +30,7 @@
 <h1>envelopes/ugen_EnvGen.h</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___env_gen_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_EnvGen.h 89 2010-07-09 16:20:21Z 0x4d52 $</span>
+<a href="ugen___env_gen_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_EnvGen.h 153 2010-09-18 20:30:57Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/envelopes/ugen_EnvGen.h $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -73,12 +73,12 @@
 <a name="l00041"></a>00041 <span class="preprocessor">#include &quot;../basics/ugen_MulAdd.h&quot;</span>
 <a name="l00042"></a>00042 <span class="preprocessor">#include &quot;<a class="code" href="ugen___env_8h.html">ugen_Env.h</a>&quot;</span>
 <a name="l00043"></a>00043 
-<a name="l00045"></a><a class="code" href="class_env_gen_u_gen_internal.html">00045</a> <span class="keyword">class </span><a class="code" href="class_env_gen_u_gen_internal.html">EnvGenUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_releasable_u_gen_internal.html" title="A UGenInternal base that is &amp;quot;releasable&amp;quot; in the sense of a envelope which may be released...">ReleasableUGenInternal</a>
+<a name="l00045"></a><a class="code" href="class_env_gen_u_gen_internal.html">00045</a> <span class="keyword">class </span><a class="code" href="class_env_gen_u_gen_internal.html">EnvGenUGenInternal</a> :  <span class="keyword">public</span> <a class="code" href="class_releasable_u_gen_internal.html" title="A UGenInternal base that is &amp;quot;releasable&amp;quot; in the sense of a envelope which may be released...">ReleasableUGenInternal</a>
 <a name="l00046"></a>00046 {
 <a name="l00047"></a>00047 <span class="keyword">public</span>:
 <a name="l00048"></a>00048  <a class="code" href="class_env_gen_u_gen_internal.html#a3748fa198705880c858eee3449432bd6">EnvGenUGenInternal</a>(<a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <span class="keyword">const</span>&amp; env, <span class="keyword">const</span> <a class="code" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1ca" title="Defines actions to be done at the end of an event e.g., a line or envelope.">UGen::DoneAction</a> doneAction) <span class="keywordflow">throw</span>();
 <a name="l00049"></a>00049  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_env_gen_u_gen_internal.html#a5a9523d7de548ed94548e8d3a8d6349b">getKr</a>() <span class="keywordflow">throw</span>(); 
-<a name="l00050"></a>00050  <span class="keywordtype">void</span> <a class="code" href="class_env_gen_u_gen_internal.html#a8a2e7ec6ee4febc7836690af04520dca" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00050"></a>00050  <span class="keywordtype">void</span> <a class="code" href="class_env_gen_u_gen_internal.html#a8a2e7ec6ee4febc7836690af04520dca">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
 <a name="l00051"></a>00051  <span class="keywordtype">void</span> <a class="code" href="class_env_gen_u_gen_internal.html#a4f0aad71ac0c1c1d9ab4c2825e44581d">release</a>() <span class="keywordflow">throw</span>();
 <a name="l00052"></a>00052  <span class="keywordtype">void</span> <a class="code" href="class_env_gen_u_gen_internal.html#a841bb0f96e0650717e72a81f5996df1d">steal</a>() <span class="keywordflow">throw</span>();
 <a name="l00053"></a>00053  
@@ -101,7 +101,7 @@
 <a name="l00071"></a>00071 <span class="keyword">public</span>: 
 <a name="l00072"></a>00072  <a class="code" href="class_env_gen_u_gen_internal_k.html#a1245730aeb98f1b641edac214967743b">EnvGenUGenInternalK</a> (<a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <span class="keyword">const</span>&amp; env, <span class="keyword">const</span> <a class="code" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1ca" title="Defines actions to be done at the end of an event e.g., a line or envelope.">UGen::DoneAction</a> doneAction) <span class="keywordflow">throw</span>();
 <a name="l00073"></a><a class="code" href="class_env_gen_u_gen_internal_k.html#a031d475930c07a18406b52a0a2b0e68a">00073</a>  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_env_gen_u_gen_internal_k.html#a031d475930c07a18406b52a0a2b0e68a">getKr</a>() throw() { <a class="code" href="class_smart_pointer.html#ad9196fe14d4e4d9b1c28982738436544">incrementRefCount</a>(); <span class="keywordflow">return</span> <span class="keyword">this</span>; } 
-<a name="l00074"></a>00074  <span class="keywordtype">void</span> <a class="code" href="class_env_gen_u_gen_internal_k.html#ab6df15da887b1b77338c5e7228921d35" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>(); 
+<a name="l00074"></a>00074  <span class="keywordtype">void</span> <a class="code" href="class_env_gen_u_gen_internal_k.html#ab6df15da887b1b77338c5e7228921d35">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>(); 
 <a name="l00075"></a>00075 };
 <a name="l00076"></a>00076 
 <a name="l00077"></a><a class="code" href="ugen___env_gen_8h.html#a718dcbf5741abab29bfb01bb4fccae08">00077</a> <span class="preprocessor">#define EnvGen_Docs  @param env   The envelope specified by an Env object.      \</span>
@@ -120,7 +120,7 @@
 <a name="l00093"></a>00093 <span class="preprocessor">#endif // _UGEN_ugen_EnvGen_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:03 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:05 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

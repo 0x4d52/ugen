@@ -74,8 +74,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Removes a particular <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> from the <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> - in-place.  <a href="#afe03887fc89541f462ab64a4c53c3e3a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_gen_array.html#afb1218afbe92e5033cae489f91031ce5">removeNulls</a> ()  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Removes all <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> instances which are null - in-place.  <a href="#afb1218afbe92e5033cae489f91031ce5"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_gen_array.html#af9f7c395c23d20967d5e07139bf4dde9">clear</a> ()  throw ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Removes all items and sets the size to zero - in-place.  <a href="#af9f7c395c23d20967d5e07139bf4dde9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_gen_array.html#a2efae58d13ea689d53955184029b3a50">clear</a> (bool quick=true)  throw ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Removes all items and sets the size to zero - in-place.  <a href="#a2efae58d13ea689d53955184029b3a50"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen_array.html">UGenArray</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_gen_array.html#a3834e37dada0807f76585e02ede15567">operator&lt;&lt;</a> (<a class="el" href="class_u_gen_array.html">UGenArray</a> const &amp;other)  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Append two <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> objects.  <a href="#a3834e37dada0807f76585e02ede15567"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen_array.html">UGenArray</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_gen_array.html#a28a019d2643d1fb372a6b7f24419b740">operator&lt;&lt;</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;other)  throw ()</td></tr>
@@ -297,9 +297,9 @@ Construction and destruction</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00232">232</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00237">237</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00765">interleave()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00810">operator-()</a>, and <a class="el" href="ugen___u_gen_array_8h_source.html#l00067">withSize()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00777">interleave()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00822">operator-()</a>, and <a class="el" href="ugen___u_gen_array_8h_source.html#l00067">withSize()</a>.</p>
 
 </div>
 </div>
@@ -327,7 +327,7 @@ Construction and destruction</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00237">237</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00242">242</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
 </div>
 </div>
@@ -350,7 +350,7 @@ Construction and destruction</h2></td></tr>
 <p>Construct a <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> from an ObjectArray&lt;UGen&gt;. </p>
 <p>This allows you to use the special features of the <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> class that is UGen-aware. </p>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00243">243</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00248">248</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
 </div>
 </div>
@@ -372,7 +372,7 @@ Construction and destruction</h2></td></tr>
 
 <p>Copy constructor. </p>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00269">269</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00274">274</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
 </div>
 </div>
@@ -417,7 +417,7 @@ Construction and destruction</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00276">276</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00281">281</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
 </div>
 </div>
@@ -438,7 +438,7 @@ Construction and destruction</h2></td></tr>
 
 <p>Destructor. </p>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00319">319</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00324">324</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
 </div>
 </div>
@@ -525,9 +525,9 @@ Construction and destruction</h2></td></tr>
 
 <p>Adds an item in-place. </p>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00430">430</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00435">435</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___spawn_8cpp_source.html#l00097">SpawnBaseUGenInternal::initEvents()</a>, <a class="el" href="ugen___t_spawn_8cpp_source.html#l00108">TSpawnUGenInternal::processBlock()</a>, and <a class="el" href="ugen___spawn_8cpp_source.html#l00119">SpawnUGenInternal::processBlock()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___spawn_8cpp_source.html#l00097">SpawnBaseUGenInternal::initEvents()</a>, <a class="el" href="ugen___t_spawn_8cpp_source.html#l00108">TSpawnUGenInternal::processBlock()</a>, <a class="el" href="ugen___spawn_8cpp_source.html#l00119">SpawnUGenInternal::processBlock()</a>, and <a class="el" href="ugen___plug_8cpp_source.html#l00168">PlugUGenInternal::setSource()</a>.</p>
 
 </div>
 </div>
@@ -549,7 +549,7 @@ Construction and destruction</h2></td></tr>
 
 <p>Add one or more items in-place. </p>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00435">435</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00440">440</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
 </div>
 </div>
@@ -598,9 +598,9 @@ Construction and destruction</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00489">489</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00501">501</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01246">UGen::getNull()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01241">UGen::getNull()</a>.</p>
 
 </div>
 </div>
@@ -627,9 +627,9 @@ Construction and destruction</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00510">510</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00522">522</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01246">UGen::getNull()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01241">UGen::getNull()</a>.</p>
 
 </div>
 </div>
@@ -649,9 +649,9 @@ Construction and destruction</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00594">594</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00606">606</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01200">UGen::length()</a>, and <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00467">put()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01195">UGen::length()</a>, and <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00479">put()</a>.</p>
 
 </div>
 </div>
@@ -746,14 +746,15 @@ Construction and destruction</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="af9f7c395c23d20967d5e07139bf4dde9"></a><!-- doxytag: member="UGenArray::clear" ref="af9f7c395c23d20967d5e07139bf4dde9" args="()" -->
+<a class="anchor" id="a2efae58d13ea689d53955184029b3a50"></a><!-- doxytag: member="UGenArray::clear" ref="a2efae58d13ea689d53955184029b3a50" args="(bool quick=true)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void UGenArray::clear </td>
           <td>(</td>
-          <td class="paramname"></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>quick</em> = <code>true</code></td>
           <td>&nbsp;)&nbsp;</td>
           <td>  throw ()</td>
         </tr>
@@ -762,10 +763,16 @@ Construction and destruction</h2></td></tr>
 <div class="memdoc">
 
 <p>Removes all items and sets the size to zero - in-place. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>quick</em>&nbsp;</td><td>If true then the array is actually deallocated but all the items are set to null. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00462">462</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00467">467</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___spawn_8cpp_source.html#l00097">SpawnBaseUGenInternal::initEvents()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___spawn_8cpp_source.html#l00097">SpawnBaseUGenInternal::initEvents()</a>, and <a class="el" href="ugen___plug_8cpp_source.html#l00084">PlugUGenInternal::processBlock()</a>.</p>
 
 </div>
 </div>
@@ -816,7 +823,7 @@ Construction and destruction</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd><code>true</code> if the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> instance is found, otherwise false. </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00723">723</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00735">735</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
 </div>
 </div>
@@ -990,11 +997,11 @@ Construction and destruction</h2></td></tr>
 <p>The largest number of channels the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> instances in the <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> contains. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The maximum number of channels. </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00415">415</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00420">420</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_array_8h_source.html#l00370">internal</a>, and <a class="el" href="ugen___u_gen_array_8h_source.html#l00103">UGenArray::Internal::size()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_array_8h_source.html#l00372">internal</a>, and <a class="el" href="ugen___u_gen_array_8h_source.html#l00103">UGenArray::Internal::size()</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00765">interleave()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00777">interleave()</a>.</p>
 
 </div>
 </div>
@@ -1014,9 +1021,9 @@ Construction and destruction</h2></td></tr>
 <div class="memdoc">
 <dl class="return"><dt><b>Returns:</b></dt><dd>A refernce to the first <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> in the array. This returns a reference to a null <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> if the array is null. </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00550">550</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00562">562</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01246">UGen::getNull()</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00370">internal</a>, and <a class="el" href="ugen___u_gen_array_8h_source.html#l00103">UGenArray::Internal::size()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01241">UGen::getNull()</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00372">internal</a>, and <a class="el" href="ugen___u_gen_array_8h_source.html#l00103">UGenArray::Internal::size()</a>.</p>
 
 </div>
 </div>
@@ -1036,9 +1043,9 @@ Construction and destruction</h2></td></tr>
 <div class="memdoc">
 <dl class="return"><dt><b>Returns:</b></dt><dd>A refernce to the first <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> in the array. This returns a reference to a null <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> if the array is null. </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00572">572</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00584">584</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01246">UGen::getNull()</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00370">internal</a>, and <a class="el" href="ugen___u_gen_array_8h_source.html#l00103">UGenArray::Internal::size()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01241">UGen::getNull()</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00372">internal</a>, and <a class="el" href="ugen___u_gen_array_8h_source.html#l00103">UGenArray::Internal::size()</a>.</p>
 
 </div>
 </div>
@@ -1140,7 +1147,7 @@ Construction and destruction</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00694">694</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00706">706</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
 </div>
 </div>
@@ -1215,9 +1222,9 @@ Construction and destruction</h2></td></tr>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> with the userData which matches userDataToSearchFor or a null <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> if this is not found in the <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>. </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_u_gen_array.html#a4edafe81c688487e9226ce59179c0745" title="Attempts to release all UGen instances in the UGenArray using UGen::release().">release()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00736">736</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00748">748</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01246">UGen::getNull()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01241">UGen::getNull()</a>.</p>
 
 </div>
 </div>
@@ -1287,9 +1294,9 @@ Construction and destruction</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The index of the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> or -1 if it is not found. </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00710">710</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00722">722</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___plug_8cpp_source.html#l00165">PlugUGenInternal::setSource()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___plug_8cpp_source.html#l00168">PlugUGenInternal::setSource()</a>.</p>
 
 </div>
 </div>
@@ -1308,9 +1315,9 @@ Construction and destruction</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00765">765</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00777">777</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00415">findMaxNumChannels()</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00370">internal</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00467">put()</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00103">UGenArray::Internal::size()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00232">UGenArray()</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l00626">UGen::wrapAt()</a>, and <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00520">wrapAt()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00420">findMaxNumChannels()</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00372">internal</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00479">put()</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00103">UGenArray::Internal::size()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00237">UGenArray()</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l00640">UGen::wrapAt()</a>, and <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00532">wrapAt()</a>.</p>
 
 </div>
 </div>
@@ -1392,9 +1399,9 @@ Construction and destruction</h2></td></tr>
 <div class="memdoc">
 <dl class="return"><dt><b>Returns:</b></dt><dd>A refernce to the last <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> in the array (at index size-1). This returns a reference to a null <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> if the array is null. </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00561">561</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00573">573</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01246">UGen::getNull()</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00370">internal</a>, and <a class="el" href="ugen___u_gen_array_8h_source.html#l00103">UGenArray::Internal::size()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01241">UGen::getNull()</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00372">internal</a>, and <a class="el" href="ugen___u_gen_array_8h_source.html#l00103">UGenArray::Internal::size()</a>.</p>
 
 <p>Referenced by <a class="el" href="ugen___chain_8cpp_source.html#l00059">ChainBaseUGenInternal::processBlock()</a>.</p>
 
@@ -1416,9 +1423,9 @@ Construction and destruction</h2></td></tr>
 <div class="memdoc">
 <dl class="return"><dt><b>Returns:</b></dt><dd>A refernce to the last <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> in the array (at index size-1). This returns a reference to a null <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> if the array is null. </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00583">583</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00595">595</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01246">UGen::getNull()</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00370">internal</a>, and <a class="el" href="ugen___u_gen_array_8h_source.html#l00103">UGenArray::Internal::size()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01241">UGen::getNull()</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00372">internal</a>, and <a class="el" href="ugen___u_gen_array_8h_source.html#l00103">UGenArray::Internal::size()</a>.</p>
 
 </div>
 </div>
@@ -1592,11 +1599,11 @@ Construction and destruction</h2></td></tr>
 
 <p>Mixes this <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> down to a multichannel <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a>. </p>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00803">803</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00815">815</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01246">UGen::getNull()</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00370">internal</a>, and <a class="el" href="ugen___u_gen_array_8h_source.html#l00103">UGenArray::Internal::size()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01241">UGen::getNull()</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00372">internal</a>, and <a class="el" href="ugen___u_gen_array_8h_source.html#l00103">UGenArray::Internal::size()</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___u_gen_8cpp_source.html#l01440">UGen::groupMixScale()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___u_gen_8cpp_source.html#l01622">UGen::groupMixScale()</a>.</p>
 
 </div>
 </div>
@@ -1618,9 +1625,9 @@ Construction and destruction</h2></td></tr>
 <p>Mixes each <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> in the array down to a single channel <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a>. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A multichannel <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> containin a mix of each <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> in each ouput channel. </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00789">789</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00801">801</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01246">UGen::getNull()</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00370">internal</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l01663">UGen::mix()</a>, and <a class="el" href="ugen___u_gen_array_8h_source.html#l00103">UGenArray::Internal::size()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01241">UGen::getNull()</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00372">internal</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l01845">UGen::mix()</a>, and <a class="el" href="ugen___u_gen_array_8h_source.html#l00103">UGenArray::Internal::size()</a>.</p>
 
 </div>
 </div>
@@ -1663,9 +1670,9 @@ Construction and destruction</h2></td></tr>
 
 <p>Convert the <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> to an ObjectArray&lt;UGen&gt;. </p>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00255">255</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00260">260</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___arrays_8h_source.html#l00699">ObjectArray&lt; ObjectType &gt;::getArray()</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00370">internal</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00103">UGenArray::Internal::size()</a>, and <a class="el" href="ugen___u_gen_array_8h_source.html#l00067">withSize()</a>.</p>
+<p>References <a class="el" href="ugen___arrays_8h_source.html#l00699">ObjectArray&lt; ObjectType &gt;::getArray()</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00372">internal</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00103">UGenArray::Internal::size()</a>, and <a class="el" href="ugen___u_gen_array_8h_source.html#l00067">withSize()</a>.</p>
 
 </div>
 </div>
@@ -1718,7 +1725,7 @@ Construction and destruction</h2></td></tr>
 
 <p>Assigment and multiplication using <a class="el" href="class_u_gen_array.html#a8ac5e6f6f5b245dc38ca99479937d838" title="Binary multiplication.">UGenArray::operator*()</a> and <a class="el" href="class_u_gen_array.html#a4f5dd8a676fd516b5b696efbd144e264" title="Assignment operator.">UGenArray::operator=()</a>. </p>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00390">390</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00395">395</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
 <p>References <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
@@ -1773,7 +1780,7 @@ Construction and destruction</h2></td></tr>
 
 <p>Assigment and addition using <a class="el" href="class_u_gen_array.html#ad0cba8620d404497c7d22ad507986ad5" title="Binary addition.">UGenArray::operator+()</a> and <a class="el" href="class_u_gen_array.html#a4f5dd8a676fd516b5b696efbd144e264" title="Assignment operator.">UGenArray::operator=()</a>. </p>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00366">366</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00371">371</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
 <p>References <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
@@ -1806,7 +1813,7 @@ Construction and destruction</h2></td></tr>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> with all the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> instances from this <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> with the UGens in the other <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> appended to the end. </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_u_gen_array.html#a4da679727887d21ad5de729177c0211e" title="Append a UGen to the end of this UGenArray.">UGenArray::operator,(UGen const&amp; other)</a>, <a class="el" href="class_u_gen_array.html#a3834e37dada0807f76585e02ede15567" title="Append two UGenArray objects.">UGenArray::operator&lt;&lt;(UGenArray const&amp; other)</a>, <a class="el" href="class_u_gen_array.html#a28a019d2643d1fb372a6b7f24419b740" title="Append a UGen to the end of this UGenArray.">UGenArray::operator&lt;&lt;(UGen const&amp; other)</a>, <a class="el" href="class_u_gen.html#a6486a9fe1c4c64fa9b47d2d1870bf697" title="Create a new UGenArray containing this and another UGen.">UGen::operator&lt;&lt;(UGen const&amp; other)</a>, <a class="el" href="class_u_gen.html#a8ef25a8bae3694ab1bee362d8cae8d48" title="Create a new UGen by appending channels to this one.">UGen::operator,(UGen const&amp; other)</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00335">335</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00340">340</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
 </div>
 </div>
@@ -1837,7 +1844,7 @@ Construction and destruction</h2></td></tr>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> with all the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> instances from this <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> with the other <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> appended to the end. </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_u_gen_array.html#a957392fe432b7815b6bca401128f0493" title="Append two UGenArray objects.">UGenArray::operator,(UGenArray const&amp; other)</a>, <a class="el" href="class_u_gen_array.html#a3834e37dada0807f76585e02ede15567" title="Append two UGenArray objects.">UGenArray::operator&lt;&lt;(UGenArray const&amp; other)</a>, <a class="el" href="class_u_gen_array.html#a28a019d2643d1fb372a6b7f24419b740" title="Append a UGen to the end of this UGenArray.">UGenArray::operator&lt;&lt;(UGen const&amp; other)</a>, <a class="el" href="class_u_gen.html#a6486a9fe1c4c64fa9b47d2d1870bf697" title="Create a new UGenArray containing this and another UGen.">UGen::operator&lt;&lt;(UGen const&amp; other)</a>, <a class="el" href="class_u_gen.html#a8ef25a8bae3694ab1bee362d8cae8d48" title="Create a new UGen by appending channels to this one.">UGen::operator,(UGen const&amp; other)</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00340">340</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00345">345</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
 </div>
 </div>
@@ -1887,9 +1894,9 @@ Construction and destruction</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00810">810</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00822">822</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_array_8h_source.html#l00370">internal</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00103">UGenArray::Internal::size()</a>, and <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00232">UGenArray()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_array_8h_source.html#l00372">internal</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00103">UGenArray::Internal::size()</a>, and <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00237">UGenArray()</a>.</p>
 
 </div>
 </div>
@@ -1911,7 +1918,7 @@ Construction and destruction</h2></td></tr>
 
 <p>Assigment and subtraction using <a class="el" href="class_u_gen_array.html#a2bb75ba43ae7e68e447e422cbdf71b38">UGenArray::operator-()</a> and <a class="el" href="class_u_gen_array.html#a4f5dd8a676fd516b5b696efbd144e264" title="Assignment operator.">UGenArray::operator=()</a>. </p>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00378">378</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00383">383</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
 <p>References <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
@@ -1946,7 +1953,7 @@ Construction and destruction</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00240">240</a> of file <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html">ugen_BinaryOpUGens.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_array_8h_source.html#l00104">UGenArray::Internal::getArray()</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00370">internal</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00140">size()</a>, and <a class="el" href="ugen___u_gen_8cpp_source.html#l00626">UGen::wrapAt()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_array_8h_source.html#l00104">UGenArray::Internal::getArray()</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00372">internal</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00140">size()</a>, and <a class="el" href="ugen___u_gen_8cpp_source.html#l00640">UGen::wrapAt()</a>.</p>
 
 </div>
 </div>
@@ -1968,7 +1975,7 @@ Construction and destruction</h2></td></tr>
 
 <p>Assigment and division using <a class="el" href="class_u_gen_array.html#a31b1d62756a2e33f46fd76776bc91c8b" title="Binary division.">UGenArray::operator/()</a> and <a class="el" href="class_u_gen_array.html#a4f5dd8a676fd516b5b696efbd144e264" title="Assignment operator.">UGenArray::operator=()</a>. </p>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00402">402</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00407">407</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
 <p>References <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
@@ -2032,7 +2039,7 @@ Construction and destruction</h2></td></tr>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> with all the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> instances from this <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> with the other <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> appended to the end. </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_u_gen_array.html#a3834e37dada0807f76585e02ede15567" title="Append two UGenArray objects.">UGenArray::operator&lt;&lt;(UGenArray const&amp; other)</a>, <a class="el" href="class_u_gen_array.html#a957392fe432b7815b6bca401128f0493" title="Append two UGenArray objects.">UGenArray::operator,(UGenArray const&amp; other)</a>, <a class="el" href="class_u_gen_array.html#a4da679727887d21ad5de729177c0211e" title="Append a UGen to the end of this UGenArray.">UGenArray::operator,(UGen const&amp; other)</a>, <a class="el" href="class_u_gen.html#a6486a9fe1c4c64fa9b47d2d1870bf697" title="Create a new UGenArray containing this and another UGen.">UGen::operator&lt;&lt;(UGen const&amp; other)</a>, <a class="el" href="class_u_gen.html#a8ef25a8bae3694ab1bee362d8cae8d48" title="Create a new UGen by appending channels to this one.">UGen::operator,(UGen const&amp; other)</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00330">330</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00335">335</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
 </div>
 </div>
@@ -2063,7 +2070,7 @@ Construction and destruction</h2></td></tr>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> with all the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> instances from this <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> with the UGens in the other <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> appended to the end. </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_u_gen_array.html#a28a019d2643d1fb372a6b7f24419b740" title="Append a UGen to the end of this UGenArray.">UGenArray::operator&lt;&lt;(UGen const&amp; other)</a>, <a class="el" href="class_u_gen_array.html#a957392fe432b7815b6bca401128f0493" title="Append two UGenArray objects.">UGenArray::operator,(UGenArray const&amp; other)</a>, <a class="el" href="class_u_gen_array.html#a4da679727887d21ad5de729177c0211e" title="Append a UGen to the end of this UGenArray.">UGenArray::operator,(UGen const&amp; other)</a>, <a class="el" href="class_u_gen.html#a6486a9fe1c4c64fa9b47d2d1870bf697" title="Create a new UGenArray containing this and another UGen.">UGen::operator&lt;&lt;(UGen const&amp; other)</a>, <a class="el" href="class_u_gen.html#a8ef25a8bae3694ab1bee362d8cae8d48" title="Create a new UGen by appending channels to this one.">UGen::operator,(UGen const&amp; other)</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00325">325</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00330">330</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
 </div>
 </div>
@@ -2085,7 +2092,7 @@ Construction and destruction</h2></td></tr>
 
 <p>Append and assignment. </p>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00361">361</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00366">366</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
 </div>
 </div>
@@ -2138,9 +2145,9 @@ Construction and destruction</h2></td></tr>
 
 <p>Assignment operator. </p>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00345">345</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00350">350</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___smart_pointer_8cpp_source.html#l00080">SmartPointer::incrementRefCount()</a>, and <a class="el" href="ugen___u_gen_array_8h_source.html#l00370">internal</a>.</p>
+<p>References <a class="el" href="ugen___smart_pointer_8cpp_source.html#l00080">SmartPointer::incrementRefCount()</a>, and <a class="el" href="ugen___u_gen_array_8h_source.html#l00372">internal</a>.</p>
 
 </div>
 </div>
@@ -2222,9 +2229,9 @@ Construction and destruction</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00618">618</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00630">630</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01200">UGen::length()</a>, and <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00467">put()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01195">UGen::length()</a>, and <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00479">put()</a>.</p>
 
 </div>
 </div>
@@ -2251,9 +2258,9 @@ Construction and destruction</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00478">478</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00490">490</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01246">UGen::getNull()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01241">UGen::getNull()</a>.</p>
 
 </div>
 </div>
@@ -2280,9 +2287,9 @@ Construction and destruction</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00500">500</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00512">512</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01246">UGen::getNull()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01241">UGen::getNull()</a>.</p>
 
 </div>
 </div>
@@ -2373,9 +2380,9 @@ Construction and destruction</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00467">467</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00479">479</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00594">at()</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l01374">UGen::group()</a>, <a class="el" href="ugen___chain_8h_source.html#l00235">BankUGenInternal&lt; BankEventType, void &gt;::init()</a>, <a class="el" href="ugen___chain_8h_source.html#l00201">BankUGenInternal&lt; BankEventType, OwnerType &gt;::init()</a>, <a class="el" href="ugen___chain_8h_source.html#l00167">ChainUGenInternal&lt; ChainLinkType, void &gt;::init()</a>, <a class="el" href="ugen___chain_8h_source.html#l00133">ChainUGenInternal&lt; ChainLinkType, OwnerType &gt;::init()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00765">interleave()</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l01400">UGen::interleave()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00618">operator[]()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00666">range()</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l01421">UGen::toArray()</a>, and <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00642">wrapAt()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00606">at()</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l01556">UGen::group()</a>, <a class="el" href="ugen___chain_8h_source.html#l00235">BankUGenInternal&lt; BankEventType, void &gt;::init()</a>, <a class="el" href="ugen___chain_8h_source.html#l00201">BankUGenInternal&lt; BankEventType, OwnerType &gt;::init()</a>, <a class="el" href="ugen___chain_8h_source.html#l00167">ChainUGenInternal&lt; ChainLinkType, void &gt;::init()</a>, <a class="el" href="ugen___chain_8h_source.html#l00133">ChainUGenInternal&lt; ChainLinkType, OwnerType &gt;::init()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00777">interleave()</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l01582">UGen::interleave()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00630">operator[]()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00678">range()</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l01603">UGen::toArray()</a>, and <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00654">wrapAt()</a>.</p>
 
 </div>
 </div>
@@ -2404,9 +2411,9 @@ Construction and destruction</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00666">666</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00678">678</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00135">clip()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00467">put()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00135">clip()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00479">put()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
 </div>
 </div>
@@ -2426,7 +2433,7 @@ Construction and destruction</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00704">704</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00716">716</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
 </div>
 </div>
@@ -2470,9 +2477,9 @@ Construction and destruction</h2></td></tr>
 
 <p>Attempts to release all <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> instances with the specified user data in the <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> using <a class="el" href="class_u_gen.html#aa18ce6433b3b6f03fab9fbe841a65657" title="Attempts to release any releasable UGen instances in the UGen graph.">UGen::release()</a>. </p>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00755">755</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00767">767</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01253">UGen::userData</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01248">UGen::userData</a>.</p>
 
 </div>
 </div>
@@ -2493,7 +2500,7 @@ Construction and destruction</h2></td></tr>
 
 <p>Attempts to release all <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> instances in the <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> using <a class="el" href="class_u_gen.html#aa18ce6433b3b6f03fab9fbe841a65657" title="Attempts to release any releasable UGen instances in the UGen graph.">UGen::release()</a>. </p>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00747">747</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00759">759</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
 <p>Referenced by <a class="el" href="ugen___plug_8cpp_source.html#l00064">PlugUGenInternal::releaseInternal()</a>, <a class="el" href="ugen___mix_u_gen_8cpp_source.html#l00118">MixArrayUGenInternal::releaseInternal()</a>, <a class="el" href="ugen___textures_8h_source.html#l00540">TrigXFadeEventUGenInternal&lt; TrigXFadeEventType, void &gt;::spawnEvent()</a>, and <a class="el" href="ugen___textures_8h_source.html#l00502">TrigXFadeEventUGenInternal&lt; TrigXFadeEventType, OwnerType &gt;::spawnEvent()</a>.</p>
 
@@ -2527,7 +2534,7 @@ Construction and destruction</h2></td></tr>
 <p>Remove an item at the index (ignored if the index is out of range) in-place. </p>
 <p>This doesn't reallocate memory, items at the end of the array are set to null. </p>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00440">440</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00445">445</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
 </div>
 </div>
@@ -2558,7 +2565,7 @@ Construction and destruction</h2></td></tr>
 
 <p>Removes a particular <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> from the <a class="el" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> - in-place. </p>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00447">447</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00452">452</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
 </div>
 </div>
@@ -2579,7 +2586,7 @@ Construction and destruction</h2></td></tr>
 
 <p>Removes all <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> instances which are null - in-place. </p>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00457">457</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00462">462</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
 <p>Referenced by <a class="el" href="ugen___t_spawn_8cpp_source.html#l00108">TSpawnUGenInternal::processBlock()</a>, <a class="el" href="ugen___spawn_8cpp_source.html#l00119">SpawnUGenInternal::processBlock()</a>, and <a class="el" href="ugen___spawn_8cpp_source.html#l00065">SpawnBaseUGenInternal::processBlock()</a>.</p>
 
@@ -2768,7 +2775,7 @@ Construction and destruction</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___u_gen_array_8h_source.html#l00140">140</a> of file <a class="el" href="ugen___u_gen_array_8h_source.html">ugen_UGenArray.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00299">JuceIOHostInternal::audioDeviceIOCallback()</a>, <a class="el" href="ugen___voicer_base_8cpp_source.html#l00146">VoicerBaseUGenInternal::chooseStealee()</a>, <a class="el" href="ugen___voicer_base_8cpp_source.html#l00132">VoicerBaseUGenInternal::countNonstealingVoices()</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l01440">UGen::groupMixScale()</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00240">operator/()</a>, <a class="el" href="ugen___plug_8cpp_source.html#l00084">PlugUGenInternal::processBlock()</a>, <a class="el" href="ugen___mix_u_gen_8cpp_source.html#l00156">MixArrayUGenInternal::processBlock()</a>, <a class="el" href="ugen___plug_8cpp_source.html#l00064">PlugUGenInternal::releaseInternal()</a>, <a class="el" href="ugen___mix_u_gen_8cpp_source.html#l00118">MixArrayUGenInternal::releaseInternal()</a>, <a class="el" href="ugen___plug_8cpp_source.html#l00074">PlugUGenInternal::stealInternal()</a>, and <a class="el" href="ugen___mix_u_gen_8cpp_source.html#l00128">MixArrayUGenInternal::stealInternal()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_i_o_host_8h_source.html#l00301">JuceIOHostInternal::audioDeviceIOCallback()</a>, <a class="el" href="ugen___voicer_base_8cpp_source.html#l00146">VoicerBaseUGenInternal::chooseStealee()</a>, <a class="el" href="ugen___voicer_base_8cpp_source.html#l00132">VoicerBaseUGenInternal::countNonstealingVoices()</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l01622">UGen::groupMixScale()</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00240">operator/()</a>, <a class="el" href="ugen___plug_8cpp_source.html#l00084">PlugUGenInternal::processBlock()</a>, <a class="el" href="ugen___mix_u_gen_8cpp_source.html#l00156">MixArrayUGenInternal::processBlock()</a>, <a class="el" href="ugen___plug_8cpp_source.html#l00064">PlugUGenInternal::releaseInternal()</a>, <a class="el" href="ugen___mix_u_gen_8cpp_source.html#l00118">MixArrayUGenInternal::releaseInternal()</a>, <a class="el" href="ugen___plug_8cpp_source.html#l00074">PlugUGenInternal::stealInternal()</a>, and <a class="el" href="ugen___mix_u_gen_8cpp_source.html#l00128">MixArrayUGenInternal::stealInternal()</a>.</p>
 
 </div>
 </div>
@@ -2792,7 +2799,7 @@ Construction and destruction</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___u_gen_array_8h_source.html#l00144">144</a> of file <a class="el" href="ugen___u_gen_array_8h_source.html">ugen_UGenArray.h</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_array_8h_source.html#l00104">UGenArray::Internal::getArray()</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00370">internal</a>, and <a class="el" href="ugen___u_gen_8cpp_source.html#l00787">UGen::isNotNull()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_array_8h_source.html#l00104">UGenArray::Internal::getArray()</a>, <a class="el" href="ugen___u_gen_array_8h_source.html#l00372">internal</a>, and <a class="el" href="ugen___u_gen_8cpp_source.html#l00803">UGen::isNotNull()</a>.</p>
 
 <p>Referenced by <a class="el" href="ugen___spawn_8cpp_source.html#l00065">SpawnBaseUGenInternal::processBlock()</a>.</p>
 
@@ -2979,7 +2986,7 @@ Construction and destruction</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00699">699</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00711">711</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
 </div>
 </div>
@@ -3029,9 +3036,9 @@ Construction and destruction</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___u_gen_array_8h_source.html#l00067">67</a> of file <a class="el" href="ugen___u_gen_array_8h_source.html">ugen_UGenArray.h</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00232">UGenArray()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00237">UGenArray()</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00255">operator const ObjectArray&lt; UGen &gt;()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00260">operator const ObjectArray&lt; UGen &gt;()</a>.</p>
 
 </div>
 </div>
@@ -3102,9 +3109,9 @@ Construction and destruction</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00535">535</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00547">547</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01246">UGen::getNull()</a>, and <a class="el" href="ugen___u_gen_8h_source.html#l01196">UGen::size()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01241">UGen::getNull()</a>, and <a class="el" href="ugen___u_gen_8h_source.html#l01191">UGen::size()</a>.</p>
 
 </div>
 </div>
@@ -3131,11 +3138,11 @@ Construction and destruction</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00520">520</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00532">532</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01246">UGen::getNull()</a>, and <a class="el" href="ugen___u_gen_8h_source.html#l01196">UGen::size()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01241">UGen::getNull()</a>, and <a class="el" href="ugen___u_gen_8h_source.html#l01191">UGen::size()</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00765">interleave()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00777">interleave()</a>.</p>
 
 </div>
 </div>
@@ -3155,9 +3162,9 @@ Construction and destruction</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00642">642</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00654">654</a> of file <a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01200">UGen::length()</a>, and <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00467">put()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l01195">UGen::length()</a>, and <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00479">put()</a>.</p>
 
 </div>
 </div>
@@ -3192,9 +3199,9 @@ Construction and destruction</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_array_8h_source.html#l00370">370</a> of file <a class="el" href="ugen___u_gen_array_8h_source.html">ugen_UGenArray.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_array_8h_source.html#l00372">372</a> of file <a class="el" href="ugen___u_gen_array_8h_source.html">ugen_UGenArray.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00415">findMaxNumChannels()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00550">first()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00765">interleave()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00561">last()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00803">mix()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00789">mixEach()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00255">operator const ObjectArray&lt; UGen &gt;()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00810">operator-()</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00240">operator/()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00345">operator=()</a>, and <a class="el" href="ugen___u_gen_array_8h_source.html#l00144">sizeNotNull()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00420">findMaxNumChannels()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00562">first()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00777">interleave()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00573">last()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00815">mix()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00801">mixEach()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00260">operator const ObjectArray&lt; UGen &gt;()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00822">operator-()</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00240">operator/()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00350">operator=()</a>, and <a class="el" href="ugen___u_gen_array_8h_source.html#l00144">sizeNotNull()</a>.</p>
 
 </div>
 </div>
@@ -3205,7 +3212,7 @@ Construction and destruction</h2></td></tr>
 <li>core/<a class="el" href="ugen___u_gen_array_8cpp_source.html">ugen_UGenArray.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:11 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:15 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

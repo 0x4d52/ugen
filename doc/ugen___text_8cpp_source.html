@@ -30,7 +30,7 @@
 <h1>core/ugen_Text.cpp</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___text_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Text.cpp 141 2010-09-13 08:55:39Z 0x4d52 $</span>
+<a href="ugen___text_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Text.cpp 149 2010-09-13 18:44:30Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/core/ugen_Text.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -113,14 +113,14 @@
 <a name="l00081"></a>00081 : <a class="code" href="ugen___arrays_8h.html#a59dacd9c9b7e5d21600704d028ee11ac">CharArray</a>(spec, <span class="keyword">true</span>)
 <a name="l00082"></a>00082 {
 <a name="l00083"></a>00083  <span class="keywordflow">if</span>(spec.zeroData_)
-<a name="l00084"></a>00084   clear();
+<a name="l00084"></a>00084   <a class="code" href="ugen___constants_8h.html#a554f7b66b1ba49443447eb746978c268">zero</a>();
 <a name="l00085"></a>00085 }
 <a name="l00086"></a>00086 
 <a name="l00087"></a><a class="code" href="class_text.html#a6bcbe3c81d4925f8074c8bcede3b7705">00087</a> <a class="code" href="class_text.html#ab3e26143fccc52699bcc5149cae852bc" title="Creates an emply text string.">Text::Text</a>(<a class="code" href="class_numerical_array_spec.html">NumericalArraySpec</a> <span class="keyword">const</span>&amp; spec, <span class="keyword">const</span> <span class="keywordtype">bool</span> needsNullTermination) <span class="keywordflow">throw</span>()
 <a name="l00088"></a>00088 : <a class="code" href="ugen___arrays_8h.html#a59dacd9c9b7e5d21600704d028ee11ac">CharArray</a>(spec, needsNullTermination)
 <a name="l00089"></a>00089 {
 <a name="l00090"></a>00090  <span class="keywordflow">if</span>(spec.zeroData_)
-<a name="l00091"></a>00091   clear();
+<a name="l00091"></a>00091   <a class="code" href="ugen___constants_8h.html#a554f7b66b1ba49443447eb746978c268">zero</a>();
 <a name="l00092"></a>00092 }
 <a name="l00093"></a>00093 
 <a name="l00094"></a><a class="code" href="class_text.html#aff424fbf995e268141efcb453c5959bf">00094</a> <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <a class="code" href="class_text.html#aff424fbf995e268141efcb453c5959bf">Text::withSize</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, <span class="keyword">const</span> <span class="keywordtype">bool</span> zeroData) <span class="keywordflow">throw</span>()
@@ -382,7 +382,7 @@
 <a name="l00350"></a>00350 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:03 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:05 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

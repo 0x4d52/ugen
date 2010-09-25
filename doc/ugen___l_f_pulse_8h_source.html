@@ -76,43 +76,48 @@
 <a name="l00044"></a><a class="code" href="ugen___l_f_pulse_8h.html#ac32f68fcb74205b2dd848c9f8b3ff6dd">00044</a> <span class="preprocessor"></span><span class="preprocessor">#define LFPulse_InputsWithTypesOnly   UGen const&amp; freq, UGen const&amp; duty</span>
 <a name="l00045"></a><a class="code" href="ugen___l_f_pulse_8h.html#a3eb1a6cb7520127102499bab36ea2b4d">00045</a> <span class="preprocessor"></span><span class="preprocessor">#define LFPulse_InputsNoTypes    freq, duty</span>
 <a name="l00046"></a>00046 <span class="preprocessor"></span>
-<a name="l00048"></a><a class="code" href="class_l_f_pulse_u_gen_internal.html">00048</a> <span class="keyword">class </span><a class="code" href="class_l_f_pulse_u_gen_internal.html">LFPulseUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>
-<a name="l00049"></a>00049 {
-<a name="l00050"></a>00050 <span class="keyword">public</span>:
-<a name="l00051"></a>00051  <a class="code" href="class_l_f_pulse_u_gen_internal.html#abbf04eae0592e2a7e550968945b47568">LFPulseUGenInternal</a>(<a class="code" href="ugen___l_f_pulse_8h.html#ac32f68fcb74205b2dd848c9f8b3ff6dd">LFPulse_InputsWithTypesOnly</a>) <span class="keywordflow">throw</span>();
-<a name="l00052"></a>00052  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_l_f_pulse_u_gen_internal.html#af8e5ad06302dc1fe029dff80ff644fb4">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();         
-<a name="l00053"></a>00053  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_l_f_pulse_u_gen_internal.html#a71e31dceac6cfbaa568536d03bdb0548">getKr</a>() <span class="keywordflow">throw</span>();               
-<a name="l00054"></a>00054  <span class="keywordtype">void</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html#adc2e0f8a28d9ddf4b2360a7079870994" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
-<a name="l00055"></a>00055  
-<a name="l00056"></a><a class="code" href="class_l_f_pulse_u_gen_internal.html#a40455aaa3e2e06732824cfaf304bfdcaa4158d5331cef50f0e997a4f7acf2ade1">00056</a>  <span class="keyword">enum</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html#a40455aaa3e2e06732824cfaf304bfdca">Inputs</a> { Freq, Duty, <a class="code" href="class_l_f_pulse_u_gen_internal.html#a40455aaa3e2e06732824cfaf304bfdcaa4158d5331cef50f0e997a4f7acf2ade1">NumInputs</a> };
-<a name="l00057"></a>00057  
-<a name="l00058"></a>00058 <span class="keyword">protected</span>:
-<a name="l00059"></a><a class="code" href="class_l_f_pulse_u_gen_internal.html#a5340819e7dfdd2bbb12e42464b64320b">00059</a>  <span class="keywordtype">float</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html#a5340819e7dfdd2bbb12e42464b64320b">currentPhase</a>; 
-<a name="l00060"></a>00060 };
-<a name="l00061"></a>00061 
-<a name="l00063"></a><a class="code" href="class_l_f_pulse_u_gen_internal_k.html">00063</a> <span class="keyword">class </span><a class="code" href="class_l_f_pulse_u_gen_internal_k.html">LFPulseUGenInternalK</a> : <span class="keyword">public</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html">LFPulseUGenInternal</a>
-<a name="l00064"></a>00064 {
-<a name="l00065"></a>00065 <span class="keyword">public</span>:
-<a name="l00066"></a>00066  <a class="code" href="class_l_f_pulse_u_gen_internal_k.html#a81cc2c4a5838600fd51a8071d484009e">LFPulseUGenInternalK</a>(<a class="code" href="ugen___l_f_pulse_8h.html#ac32f68fcb74205b2dd848c9f8b3ff6dd">LFPulse_InputsWithTypesOnly</a>) <span class="keywordflow">throw</span>();
-<a name="l00067"></a><a class="code" href="class_l_f_pulse_u_gen_internal_k.html#abed9f02a4743d093b22d676a1697a46f">00067</a>  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_l_f_pulse_u_gen_internal_k.html#abed9f02a4743d093b22d676a1697a46f">getKr</a>() throw() { <a class="code" href="class_smart_pointer.html#ad9196fe14d4e4d9b1c28982738436544">incrementRefCount</a>(); <span class="keywordflow">return</span> <span class="keyword">this</span>; }
-<a name="l00068"></a>00068  <span class="keywordtype">void</span> <a class="code" href="class_l_f_pulse_u_gen_internal_k.html#aa7f385659c9fcab156967884e29fd4c9" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
-<a name="l00069"></a>00069  
-<a name="l00070"></a>00070 <span class="keyword">private</span>:
-<a name="l00071"></a><a class="code" href="class_l_f_pulse_u_gen_internal_k.html#a7e8605df4aeecac2763239d274ca907e">00071</a>  <span class="keywordtype">float</span> <a class="code" href="class_l_f_pulse_u_gen_internal_k.html#a7e8605df4aeecac2763239d274ca907e">value</a>;
-<a name="l00072"></a>00072 };
-<a name="l00073"></a>00073 
-<a name="l00076"></a>00076 <a class="code" href="ugen___mul_add_8h.html#a3c1d2336ae0f1e00bd9ee86f556e4909" title="Declare a UGen with multiply and add inputs.">DirectMulAddUGenDeclaration</a>(<a class="code" href="class_l_f_pulse.html" title="Non bandlimted pulse wave.">LFPulse</a>, 
-<a name="l00077"></a>00077        (<a class="code" href="ugen___l_f_pulse_8h.html#a3eb1a6cb7520127102499bab36ea2b4d">LFPulse_InputsNoTypes</a>), 
-<a name="l00078"></a>00078        (<a class="code" href="ugen___l_f_pulse_8h.html#a3eb1a6cb7520127102499bab36ea2b4d">LFPulse_InputsNoTypes</a>, <a class="code" href="ugen___mul_add_8h.html#a0948ded88972de1849c249f13e99c70c">MulAdd_ArgsCall</a>),
-<a name="l00079"></a>00079        (<a class="code" href="ugen___l_f_pulse_8h.html#a73add4de606141d19ad1d7a19d5a40ce">LFPulse_InputsWithTypesAndDefaults</a>), 
-<a name="l00080"></a><a class="code" href="class_l_f_pulse.html#a3d55006891b828698d3729b198d2b95b">00080</a>        (<a class="code" href="ugen___l_f_pulse_8h.html#a73add4de606141d19ad1d7a19d5a40ce">LFPulse_InputsWithTypesAndDefaults</a>, <a class="code" href="ugen___mul_add_8h.html#a26f64cd22a6e4e0933b39d2031396f26">MulAdd_ArgsDeclare</a>), <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>);
-<a name="l00081"></a>00081 
-<a name="l00082"></a>00082 
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084 <span class="preprocessor">#endif // _UGEN_ugen_LFPulse_H_</span>
+<a name="l00048"></a><a class="code" href="class_l_f_pulse_u_gen_internal.html">00048</a> <span class="keyword">class </span><a class="code" href="class_l_f_pulse_u_gen_internal.html">LFPulseUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>,
+<a name="l00049"></a>00049        <span class="keyword">public</span> <a class="code" href="class_seekable.html" title="Added to UGenInternal classes that can seek a particular point in time.">Seekable</a>
+<a name="l00050"></a>00050 {
+<a name="l00051"></a>00051 <span class="keyword">public</span>:
+<a name="l00052"></a>00052  <a class="code" href="class_l_f_pulse_u_gen_internal.html#abbf04eae0592e2a7e550968945b47568">LFPulseUGenInternal</a>(<a class="code" href="ugen___l_f_pulse_8h.html#ac32f68fcb74205b2dd848c9f8b3ff6dd">LFPulse_InputsWithTypesOnly</a>) <span class="keywordflow">throw</span>();
+<a name="l00053"></a>00053  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_l_f_pulse_u_gen_internal.html#af8e5ad06302dc1fe029dff80ff644fb4">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();         
+<a name="l00054"></a>00054  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_l_f_pulse_u_gen_internal.html#a71e31dceac6cfbaa568536d03bdb0548">getKr</a>() <span class="keywordflow">throw</span>();               
+<a name="l00055"></a>00055  <span class="keywordtype">void</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html#adc2e0f8a28d9ddf4b2360a7079870994">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00056"></a>00056  
+<a name="l00057"></a>00057  <span class="keywordtype">double</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html#aa9b0e02b3ef06333377d3f8a8e4e6e8c" title="Get the maximum duration of the seekable.">getDuration</a>() <span class="keywordflow">throw</span>();
+<a name="l00058"></a>00058  <span class="keywordtype">double</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html#a897a4101644873377b4012a8f5958c32" title="Get the current position of the seekable.">getPosition</a>() <span class="keywordflow">throw</span>();
+<a name="l00059"></a>00059  <span class="keywordtype">void</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html#a1faf95eb4191129d6adf12b180a9539f" title="Set the current position of the seekable.">setPosition</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> newPosition) <span class="keywordflow">throw</span>();   
+<a name="l00060"></a>00060  
+<a name="l00061"></a><a class="code" href="class_l_f_pulse_u_gen_internal.html#a40455aaa3e2e06732824cfaf304bfdcaa4158d5331cef50f0e997a4f7acf2ade1">00061</a>  <span class="keyword">enum</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html#a40455aaa3e2e06732824cfaf304bfdca">Inputs</a> { Freq, Duty, <a class="code" href="class_l_f_pulse_u_gen_internal.html#a40455aaa3e2e06732824cfaf304bfdcaa4158d5331cef50f0e997a4f7acf2ade1">NumInputs</a> };
+<a name="l00062"></a>00062  
+<a name="l00063"></a>00063 <span class="keyword">protected</span>:
+<a name="l00064"></a><a class="code" href="class_l_f_pulse_u_gen_internal.html#a5340819e7dfdd2bbb12e42464b64320b">00064</a>  <span class="keywordtype">float</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html#a5340819e7dfdd2bbb12e42464b64320b">currentPhase</a>; 
+<a name="l00065"></a>00065 };
+<a name="l00066"></a>00066 
+<a name="l00068"></a><a class="code" href="class_l_f_pulse_u_gen_internal_k.html">00068</a> <span class="keyword">class </span><a class="code" href="class_l_f_pulse_u_gen_internal_k.html">LFPulseUGenInternalK</a> : <span class="keyword">public</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html">LFPulseUGenInternal</a>
+<a name="l00069"></a>00069 {
+<a name="l00070"></a>00070 <span class="keyword">public</span>:
+<a name="l00071"></a>00071  <a class="code" href="class_l_f_pulse_u_gen_internal_k.html#a81cc2c4a5838600fd51a8071d484009e">LFPulseUGenInternalK</a>(<a class="code" href="ugen___l_f_pulse_8h.html#ac32f68fcb74205b2dd848c9f8b3ff6dd">LFPulse_InputsWithTypesOnly</a>) <span class="keywordflow">throw</span>();
+<a name="l00072"></a><a class="code" href="class_l_f_pulse_u_gen_internal_k.html#abed9f02a4743d093b22d676a1697a46f">00072</a>  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_l_f_pulse_u_gen_internal_k.html#abed9f02a4743d093b22d676a1697a46f">getKr</a>() throw() { <a class="code" href="class_smart_pointer.html#ad9196fe14d4e4d9b1c28982738436544">incrementRefCount</a>(); <span class="keywordflow">return</span> <span class="keyword">this</span>; }
+<a name="l00073"></a>00073  <span class="keywordtype">void</span> <a class="code" href="class_l_f_pulse_u_gen_internal_k.html#aa7f385659c9fcab156967884e29fd4c9">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00074"></a>00074  
+<a name="l00075"></a>00075 <span class="keyword">private</span>:
+<a name="l00076"></a><a class="code" href="class_l_f_pulse_u_gen_internal_k.html#a7e8605df4aeecac2763239d274ca907e">00076</a>  <span class="keywordtype">float</span> <a class="code" href="class_l_f_pulse_u_gen_internal_k.html#a7e8605df4aeecac2763239d274ca907e">value</a>;
+<a name="l00077"></a>00077 };
+<a name="l00078"></a>00078 
+<a name="l00081"></a>00081 <a class="code" href="ugen___mul_add_8h.html#a3c1d2336ae0f1e00bd9ee86f556e4909" title="Declare a UGen with multiply and add inputs.">DirectMulAddUGenDeclaration</a>(<a class="code" href="class_l_f_pulse.html" title="Non bandlimted pulse wave.">LFPulse</a>, 
+<a name="l00082"></a>00082        (<a class="code" href="ugen___l_f_pulse_8h.html#a3eb1a6cb7520127102499bab36ea2b4d">LFPulse_InputsNoTypes</a>), 
+<a name="l00083"></a>00083        (<a class="code" href="ugen___l_f_pulse_8h.html#a3eb1a6cb7520127102499bab36ea2b4d">LFPulse_InputsNoTypes</a>, <a class="code" href="ugen___mul_add_8h.html#a0948ded88972de1849c249f13e99c70c">MulAdd_ArgsCall</a>),
+<a name="l00084"></a>00084        (<a class="code" href="ugen___l_f_pulse_8h.html#a73add4de606141d19ad1d7a19d5a40ce">LFPulse_InputsWithTypesAndDefaults</a>), 
+<a name="l00085"></a><a class="code" href="class_l_f_pulse.html#a3d55006891b828698d3729b198d2b95b">00085</a>        (<a class="code" href="ugen___l_f_pulse_8h.html#a73add4de606141d19ad1d7a19d5a40ce">LFPulse_InputsWithTypesAndDefaults</a>, <a class="code" href="ugen___mul_add_8h.html#a26f64cd22a6e4e0933b39d2031396f26">MulAdd_ArgsDeclare</a>), <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>);
+<a name="l00086"></a>00086 
+<a name="l00087"></a>00087 
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089 <span class="preprocessor">#endif // _UGEN_ugen_LFPulse_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:04 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:07 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

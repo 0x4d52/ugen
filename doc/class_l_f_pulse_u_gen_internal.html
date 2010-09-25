@@ -40,10 +40,10 @@
 </h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="LFPulseUGenInternal" --><!-- doxytag: inherits="UGenInternal" -->
+<!-- doxytag: class="LFPulseUGenInternal" --><!-- doxytag: inherits="UGenInternal,Seekable" -->
 <p><code>#include &lt;<a class="el" href="ugen___l_f_pulse_8h_source.html">ugen_LFPulse.h</a>&gt;</code></p>
 
-<p>Inherits <a class="el" href="class_u_gen_internal.html">UGenInternal</a>.</p>
+<p>Inherits <a class="el" href="class_u_gen_internal.html">UGenInternal</a>, and <a class="el" href="class_seekable.html">Seekable</a>.</p>
 
 <p>Inherited by <a class="el" href="class_l_f_pulse_u_gen_internal_k.html">LFPulseUGenInternalK</a>.</p>
 
@@ -61,7 +61,12 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_f_pulse_u_gen_internal.html#af8e5ad06302dc1fe029dff80ff644fb4">getChannel</a> (const int channel)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_f_pulse_u_gen_internal.html#a71e31dceac6cfbaa568536d03bdb0548">getKr</a> ()  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_f_pulse_u_gen_internal.html#adc2e0f8a28d9ddf4b2360a7079870994">processBlock</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Process a block of samples for this blockID and channel.  <a href="#adc2e0f8a28d9ddf4b2360a7079870994"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_f_pulse_u_gen_internal.html#aa9b0e02b3ef06333377d3f8a8e4e6e8c">getDuration</a> ()  throw ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the maximum duration of the seekable.  <a href="#aa9b0e02b3ef06333377d3f8a8e4e6e8c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_f_pulse_u_gen_internal.html#a897a4101644873377b4012a8f5958c32">getPosition</a> ()  throw ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the current position of the seekable.  <a href="#a897a4101644873377b4012a8f5958c32"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_f_pulse_u_gen_internal.html#a1faf95eb4191129d6adf12b180a9539f">setPosition</a> (const double newPosition)  throw ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set the current position of the seekable.  <a href="#a1faf95eb4191129d6adf12b180a9539f"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_f_pulse_u_gen_internal.html#a5340819e7dfdd2bbb12e42464b64320b">currentPhase</a></td></tr>
@@ -91,7 +96,7 @@ Protected Attributes</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___l_f_pulse_8h_source.html#l00056">56</a> of file <a class="el" href="ugen___l_f_pulse_8h_source.html">ugen_LFPulse.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___l_f_pulse_8h_source.html#l00061">61</a> of file <a class="el" href="ugen___l_f_pulse_8h_source.html">ugen_LFPulse.h</a>.</p>
 
 </div>
 </div>
@@ -123,7 +128,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___l_f_pulse_8cpp_source.html#l00046">46</a> of file <a class="el" href="ugen___l_f_pulse_8cpp_source.html">ugen_LFPulse.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00320">UGenInternal::initValue()</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00225">UGenInternal::inputs</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00322">UGenInternal::initValue()</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00228">UGenInternal::inputs</a>.</p>
 
 </div>
 </div>
@@ -138,15 +143,37 @@ Protected Attributes</h2></td></tr>
           <td class="paramtype">const int&nbsp;</td>
           <td class="paramname"> <em>channel</em></td>
           <td>&nbsp;)&nbsp;</td>
+          <td>  throw ()</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___l_f_pulse_8cpp_source.html#l00056">56</a> of file <a class="el" href="ugen___l_f_pulse_8cpp_source.html">ugen_LFPulse.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa9b0e02b3ef06333377d3f8a8e4e6e8c"></a><!-- doxytag: member="LFPulseUGenInternal::getDuration" ref="aa9b0e02b3ef06333377d3f8a8e4e6e8c" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double LFPulseUGenInternal::getDuration </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
           <td>  throw ()<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a6838029815ab52d3263cfacb6c584d2f">UGenInternal</a>.</p>
+<p>Get the maximum duration of the seekable. </p>
+<p>The units will be dependent on the <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> in question. For longer sounds as sound files it is likely to be in seconds. For wavetables it will always be 1.0 </p>
 
-<p>Definition at line <a class="el" href="ugen___l_f_pulse_8cpp_source.html#l00056">56</a> of file <a class="el" href="ugen___l_f_pulse_8cpp_source.html">ugen_LFPulse.cpp</a>.</p>
+<p>Implements <a class="el" href="class_seekable.html#a196cb3e4223eaf45302449926e8fd0f7">Seekable</a>.</p>
+
+<p>Definition at line <a class="el" href="ugen___l_f_pulse_8cpp_source.html#l00091">91</a> of file <a class="el" href="ugen___l_f_pulse_8cpp_source.html">ugen_LFPulse.cpp</a>.</p>
 
 </div>
 </div>
@@ -159,19 +186,43 @@ Protected Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
+          <td>  throw ()</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="class_l_f_pulse_u_gen_internal_k.html#abed9f02a4743d093b22d676a1697a46f">LFPulseUGenInternalK</a>.</p>
+
+<p>Definition at line <a class="el" href="ugen___l_f_pulse_8cpp_source.html#l00062">62</a> of file <a class="el" href="ugen___l_f_pulse_8cpp_source.html">ugen_LFPulse.cpp</a>.</p>
+
+<p>References <a class="el" href="ugen___l_f_pulse_8h_source.html#l00061">Duty</a>, <a class="el" href="ugen___l_f_pulse_8h_source.html#l00061">Freq</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00228">UGenInternal::inputs</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a897a4101644873377b4012a8f5958c32"></a><!-- doxytag: member="LFPulseUGenInternal::getPosition" ref="a897a4101644873377b4012a8f5958c32" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double LFPulseUGenInternal::getPosition </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
           <td>  throw ()<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a5041a93f6c624446f04542b0b82f0563">UGenInternal</a>.</p>
+<p>Get the current position of the seekable. </p>
+<p>The units will be dependent on the <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> in question. For longer sounds as sound files it is likely to be in seconds. For wavetables it will 0...1 </p>
 
-<p>Reimplemented in <a class="el" href="class_l_f_pulse_u_gen_internal_k.html#abed9f02a4743d093b22d676a1697a46f">LFPulseUGenInternalK</a>.</p>
+<p>Implements <a class="el" href="class_seekable.html#a6ea74978de87fb87fb506f2877158d11">Seekable</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___l_f_pulse_8cpp_source.html#l00062">62</a> of file <a class="el" href="ugen___l_f_pulse_8cpp_source.html">ugen_LFPulse.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___l_f_pulse_8cpp_source.html#l00096">96</a> of file <a class="el" href="ugen___l_f_pulse_8cpp_source.html">ugen_LFPulse.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___l_f_pulse_8h_source.html#l00056">Duty</a>, <a class="el" href="ugen___l_f_pulse_8h_source.html#l00056">Freq</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00225">UGenInternal::inputs</a>, and <a class="el" href="ugen___u_gen_8cpp_source.html#l01723">ugen::kr()</a>.</p>
+<p>References <a class="el" href="ugen___l_f_pulse_8h_source.html#l00064">currentPhase</a>.</p>
 
 </div>
 </div>
@@ -200,30 +251,44 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [virtual]</code></td>
+          <td></td><td></td><td>  throw ()</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Process a block of samples for this blockID and channel. </p>
-<p>This is the main rendering function and needs to be implement by all subclasses.</p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>shouldDelete</em>&nbsp;</td><td>A <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> graph can be scheduled for deletion by setting this to true on return. If it is already true it should NOT be set to false. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>blockID</em>&nbsp;</td><td>This is a sample counter, you can assume that calls to this function will have blockIDs which are higher that the last call (until the maximum integer is reached). </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>channel</em>&nbsp;</td><td>The channel index to process. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="class_u_gen_internal.html#ae1c9c941ea6f372d8af8cc5f9ae32ace">UGenInternal</a>.</p>
-
 <p>Reimplemented in <a class="el" href="class_l_f_pulse_u_gen_internal_k.html#aa7f385659c9fcab156967884e29fd4c9">LFPulseUGenInternalK</a>.</p>
 
 <p>Definition at line <a class="el" href="ugen___l_f_pulse_8cpp_source.html#l00067">67</a> of file <a class="el" href="ugen___l_f_pulse_8cpp_source.html">ugen_LFPulse.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l00932">UGen::getReciprocalSampleRate()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l00927">UGen::getReciprocalSampleRate()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1faf95eb4191129d6adf12b180a9539f"></a><!-- doxytag: member="LFPulseUGenInternal::setPosition" ref="a1faf95eb4191129d6adf12b180a9539f" args="(const double newPosition)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LFPulseUGenInternal::setPosition </td>
+          <td>(</td>
+          <td class="paramtype">const double&nbsp;</td>
+          <td class="paramname"> <em>newPosition</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>  throw ()<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Set the current position of the seekable. </p>
+<p>The units will be dependent on the <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> in question. For longer sounds as sound files it is likely to be in seconds. For wavetables it will 0...1 </p>
+
+<p>Implements <a class="el" href="class_seekable.html#a1ddb34a184c0521c4049d6f06bf984d6">Seekable</a>.</p>
+
+<p>Definition at line <a class="el" href="ugen___l_f_pulse_8cpp_source.html#l00101">101</a> of file <a class="el" href="ugen___l_f_pulse_8cpp_source.html">ugen_LFPulse.cpp</a>.</p>
+
+<p>References <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00135">clip()</a>.</p>
 
 </div>
 </div>
@@ -239,7 +304,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___l_f_pulse_8h_source.html#l00059">59</a> of file <a class="el" href="ugen___l_f_pulse_8h_source.html">ugen_LFPulse.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___l_f_pulse_8h_source.html#l00064">64</a> of file <a class="el" href="ugen___l_f_pulse_8h_source.html">ugen_LFPulse.h</a>.</p>
+
+<p>Referenced by <a class="el" href="ugen___l_f_pulse_8cpp_source.html#l00096">getPosition()</a>.</p>
 
 </div>
 </div>
@@ -248,7 +315,7 @@ Protected Attributes</h2></td></tr>
 <li>oscillators/simple/<a class="el" href="ugen___l_f_pulse_8cpp_source.html">ugen_LFPulse.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:09 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:12 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

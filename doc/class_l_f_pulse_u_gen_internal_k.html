@@ -51,14 +51,13 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_f_pulse_u_gen_internal_k.html#a81cc2c4a5838600fd51a8071d484009e">LFPulseUGenInternalK</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;freq, <a class="el" href="class_u_gen.html">UGen</a> const &amp;duty)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_f_pulse_u_gen_internal_k.html#abed9f02a4743d093b22d676a1697a46f">getKr</a> ()  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_f_pulse_u_gen_internal_k.html#aa7f385659c9fcab156967884e29fd4c9">processBlock</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Process a block of samples for this blockID and channel.  <a href="#aa7f385659c9fcab156967884e29fd4c9"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_f_pulse_u_gen_internal_k.html#a7e8605df4aeecac2763239d274ca907e">value</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 
-<p>Definition at line <a class="el" href="ugen___l_f_pulse_8h_source.html#l00063">63</a> of file <a class="el" href="ugen___l_f_pulse_8h_source.html">ugen_LFPulse.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___l_f_pulse_8h_source.html#l00068">68</a> of file <a class="el" href="ugen___l_f_pulse_8h_source.html">ugen_LFPulse.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a81cc2c4a5838600fd51a8071d484009e"></a><!-- doxytag: member="LFPulseUGenInternalK::LFPulseUGenInternalK" ref="a81cc2c4a5838600fd51a8071d484009e" args="(UGen const &amp;freq, UGen const &amp;duty)" -->
 <div class="memitem">
@@ -85,7 +84,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___l_f_pulse_8cpp_source.html#l00091">91</a> of file <a class="el" href="ugen___l_f_pulse_8cpp_source.html">ugen_LFPulse.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___l_f_pulse_8cpp_source.html#l00106">106</a> of file <a class="el" href="ugen___l_f_pulse_8cpp_source.html">ugen_LFPulse.cpp</a>.</p>
 
 </div>
 </div>
@@ -99,7 +98,7 @@ Private Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td>  throw ()<code> [inline, virtual]</code></td>
+          <td>  throw ()<code> [inline]</code></td>
         </tr>
       </table>
 </div>
@@ -107,7 +106,7 @@ Private Attributes</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="class_l_f_pulse_u_gen_internal.html#a71e31dceac6cfbaa568536d03bdb0548">LFPulseUGenInternal</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___l_f_pulse_8h_source.html#l00067">67</a> of file <a class="el" href="ugen___l_f_pulse_8h_source.html">ugen_LFPulse.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___l_f_pulse_8h_source.html#l00072">72</a> of file <a class="el" href="ugen___l_f_pulse_8h_source.html">ugen_LFPulse.h</a>.</p>
 
 <p>References <a class="el" href="ugen___smart_pointer_8cpp_source.html#l00080">SmartPointer::incrementRefCount()</a>.</p>
 
@@ -138,28 +137,17 @@ Private Attributes</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [virtual]</code></td>
+          <td></td><td></td><td>  throw ()</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Process a block of samples for this blockID and channel. </p>
-<p>This is the main rendering function and needs to be implement by all subclasses.</p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>shouldDelete</em>&nbsp;</td><td>A <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> graph can be scheduled for deletion by setting this to true on return. If it is already true it should NOT be set to false. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>blockID</em>&nbsp;</td><td>This is a sample counter, you can assume that calls to this function will have blockIDs which are higher that the last call (until the maximum integer is reached). </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>channel</em>&nbsp;</td><td>The channel index to process. </td></tr>
-  </table>
-  </dd>
-</dl>
-
 <p>Reimplemented from <a class="el" href="class_l_f_pulse_u_gen_internal.html#adc2e0f8a28d9ddf4b2360a7079870994">LFPulseUGenInternal</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___l_f_pulse_8cpp_source.html#l00098">98</a> of file <a class="el" href="ugen___l_f_pulse_8cpp_source.html">ugen_LFPulse.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___l_f_pulse_8cpp_source.html#l00113">113</a> of file <a class="el" href="ugen___l_f_pulse_8cpp_source.html">ugen_LFPulse.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l00935">UGen::getControlRateBlockSize()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00966">UGen::getControlSlopeFactor()</a>, and <a class="el" href="ugen___u_gen_8h_source.html#l00932">UGen::getReciprocalSampleRate()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l00930">UGen::getControlRateBlockSize()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00961">UGen::getControlSlopeFactor()</a>, and <a class="el" href="ugen___u_gen_8h_source.html#l00927">UGen::getReciprocalSampleRate()</a>.</p>
 
 </div>
 </div>
@@ -175,7 +163,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___l_f_pulse_8h_source.html#l00071">71</a> of file <a class="el" href="ugen___l_f_pulse_8h_source.html">ugen_LFPulse.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___l_f_pulse_8h_source.html#l00076">76</a> of file <a class="el" href="ugen___l_f_pulse_8h_source.html">ugen_LFPulse.h</a>.</p>
 
 </div>
 </div>
@@ -184,7 +172,7 @@ Private Attributes</h2></td></tr>
 <li>oscillators/simple/<a class="el" href="ugen___l_f_pulse_8cpp_source.html">ugen_LFPulse.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:09 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:12 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

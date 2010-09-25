@@ -90,7 +90,7 @@
 <a name="l00058"></a>00058 
 <a name="l00059"></a><a class="code" href="class_mul_add_u_gen_internal.html#aa2c58f03cbb5ebf4491bc812d3a3aa47">00059</a> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_mul_add_u_gen_internal.html#aa2c58f03cbb5ebf4491bc812d3a3aa47">MulAddUGenInternal::getKr</a>() throw()
 <a name="l00060"></a>00060 { 
-<a name="l00061"></a>00061  <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_mul_add_u_gen_internal.html#a357f8e72cb238b9e293574dfbef57bcf">MulAddUGenInternal</a>(<a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_mul_add_u_gen_internal.html#aeab70439aef4491eae0f2b01a78d4ac9adc489fc7a8357f7f23d1aa2f678af61a">Input</a>].<a class="code" href="namespaceugen.html#af17dc36462ee9d9f533a4ac4cb3e5c0d">kr</a>(), <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_mul_add_u_gen_internal.html#aeab70439aef4491eae0f2b01a78d4ac9ab76f6cc2094f5da2c3bd9c2519e72002">Mul</a>].<a class="code" href="namespaceugen.html#af17dc36462ee9d9f533a4ac4cb3e5c0d">kr</a>(), <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_mul_add_u_gen_internal.html#aeab70439aef4491eae0f2b01a78d4ac9afc32e0592e3edd162ad04e98128d73fe">Add</a>].<a class="code" href="namespaceugen.html#af17dc36462ee9d9f533a4ac4cb3e5c0d">kr</a>()); 
+<a name="l00061"></a>00061  <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_mul_add_u_gen_internal.html#a357f8e72cb238b9e293574dfbef57bcf">MulAddUGenInternal</a>(<a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_mul_add_u_gen_internal.html#aeab70439aef4491eae0f2b01a78d4ac9adc489fc7a8357f7f23d1aa2f678af61a">Input</a>].kr(), <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_mul_add_u_gen_internal.html#aeab70439aef4491eae0f2b01a78d4ac9ab76f6cc2094f5da2c3bd9c2519e72002">Mul</a>].kr(), <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_mul_add_u_gen_internal.html#aeab70439aef4491eae0f2b01a78d4ac9afc32e0592e3edd162ad04e98128d73fe">Add</a>].kr()); 
 <a name="l00062"></a>00062 }
 <a name="l00063"></a>00063 
 <a name="l00064"></a>00064 <span class="preprocessor">#if !defined(UGEN_VFP) &amp;&amp; !defined(UGEN_NEON) &amp;&amp; !defined(UGEN_VDSP)</span>
@@ -180,7 +180,7 @@
 <a name="l00148"></a>00148 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:02 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:03 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

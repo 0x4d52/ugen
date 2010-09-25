@@ -58,6 +58,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_audio_file_player.html#a35577b02330be0b0782ea3d6b06ace5c">setFile</a> (const File &amp;audioFile, const int readAheadBufferSize=32768)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Open and get ready to play a given audio file path.  <a href="#a35577b02330be0b0782ea3d6b06ace5c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const File &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_audio_file_player.html#a368f710a7932e3b5843a3d4500a455c3">getFile</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_audio_file_player.html#a826b5ec596447380c5d909f1d6929b6b">getSampleRate</a> () const   throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_audio_file_player.html#ac83f5be8b68c1665c9636e2d1cbafd45">getReciprocalSampleRate</a> () const   throw ()</td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">AudioFormatReader *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_audio_file_player.html#ae8389c28eba85b03c6222250d3403890">audioFormatReaderFromFile</a> (const File &amp;audioFile)</td></tr>
@@ -65,6 +67,8 @@ Private Member Functions</h2></td></tr>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">AudioFormatReaderSource *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_audio_file_player.html#aa389cb9bd28292051f37a3031d2a1a64">currentAudioFileSource</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">File&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_audio_file_player.html#a769fd2aabdd87c6f4e0c7e190a7450ad">currentFile</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_audio_file_player.html#ab927d5f837d6c93b1edaeb767774ccf1">sampleRate</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_audio_file_player.html#a5969e67e790a22b7b20172d9c97125ae">reciprocalSampleRate</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>A wrapper class for playing audio files. </p>
@@ -188,6 +192,48 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ac83f5be8b68c1665c9636e2d1cbafd45"></a><!-- doxytag: member="AudioFilePlayer::getReciprocalSampleRate" ref="ac83f5be8b68c1665c9636e2d1cbafd45" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double AudioFilePlayer::getReciprocalSampleRate </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const  throw ()<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___audio_file_player_8h_source.html#l00074">74</a> of file <a class="el" href="ugen___audio_file_player_8h_source.html">ugen_AudioFilePlayer.h</a>.</p>
+
+<p>References <a class="el" href="ugen___audio_file_player_8h_source.html#l00086">reciprocalSampleRate</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a826b5ec596447380c5d909f1d6929b6b"></a><!-- doxytag: member="AudioFilePlayer::getSampleRate" ref="a826b5ec596447380c5d909f1d6929b6b" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double AudioFilePlayer::getSampleRate </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const  throw ()<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___audio_file_player_8h_source.html#l00073">73</a> of file <a class="el" href="ugen___audio_file_player_8h_source.html">ugen_AudioFilePlayer.h</a>.</p>
+
+<p>References <a class="el" href="ugen___audio_file_player_8h_source.html#l00085">sampleRate</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a35577b02330be0b0782ea3d6b06ace5c"></a><!-- doxytag: member="AudioFilePlayer::setFile" ref="a35577b02330be0b0782ea3d6b06ace5c" args="(const File &amp;audioFile, const int readAheadBufferSize=32768)" -->
 <div class="memitem">
 <div class="memproto">
@@ -248,7 +294,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___audio_file_player_8h_source.html#l00079">79</a> of file <a class="el" href="ugen___audio_file_player_8h_source.html">ugen_AudioFilePlayer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___audio_file_player_8h_source.html#l00082">82</a> of file <a class="el" href="ugen___audio_file_player_8h_source.html">ugen_AudioFilePlayer.h</a>.</p>
 
 </div>
 </div>
@@ -263,7 +309,41 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___audio_file_player_8h_source.html#l00081">81</a> of file <a class="el" href="ugen___audio_file_player_8h_source.html">ugen_AudioFilePlayer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___audio_file_player_8h_source.html#l00084">84</a> of file <a class="el" href="ugen___audio_file_player_8h_source.html">ugen_AudioFilePlayer.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5969e67e790a22b7b20172d9c97125ae"></a><!-- doxytag: member="AudioFilePlayer::reciprocalSampleRate" ref="a5969e67e790a22b7b20172d9c97125ae" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double <a class="el" href="class_audio_file_player.html#a5969e67e790a22b7b20172d9c97125ae">AudioFilePlayer::reciprocalSampleRate</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___audio_file_player_8h_source.html#l00086">86</a> of file <a class="el" href="ugen___audio_file_player_8h_source.html">ugen_AudioFilePlayer.h</a>.</p>
+
+<p>Referenced by <a class="el" href="ugen___audio_file_player_8h_source.html#l00074">getReciprocalSampleRate()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab927d5f837d6c93b1edaeb767774ccf1"></a><!-- doxytag: member="AudioFilePlayer::sampleRate" ref="ab927d5f837d6c93b1edaeb767774ccf1" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double <a class="el" href="class_audio_file_player.html#ab927d5f837d6c93b1edaeb767774ccf1">AudioFilePlayer::sampleRate</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___audio_file_player_8h_source.html#l00085">85</a> of file <a class="el" href="ugen___audio_file_player_8h_source.html">ugen_AudioFilePlayer.h</a>.</p>
+
+<p>Referenced by <a class="el" href="ugen___audio_file_player_8h_source.html#l00073">getSampleRate()</a>.</p>
 
 </div>
 </div>
@@ -271,7 +351,7 @@ Private Attributes</h2></td></tr>
 <li>juce/io/<a class="el" href="ugen___audio_file_player_8h_source.html">ugen_AudioFilePlayer.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:06 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:10 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

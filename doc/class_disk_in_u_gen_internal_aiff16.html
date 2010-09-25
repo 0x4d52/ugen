@@ -44,15 +44,14 @@
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_disk_in_u_gen_internal_aiff16.html#a3e0e83165dad7e14f184950d0e81b663">DiskInUGenInternalAiff16</a> (AudioFileID audioFile, AudioStreamBasicDescription const &amp;format, const bool loopFlag=false, const double startTime=0.0)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_disk_in_u_gen_internal_aiff16.html#a569ce2e5d4998b02c3c696cc6be2ce2e">DiskInUGenInternalAiff16</a> (AudioFileID audioFile, AudioStreamBasicDescription const &amp;format, const bool loopFlag=false, const double startTime=0.0, const <a class="el" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1ca">UGen::DoneAction</a> doneAction=UGen::DeleteWhenDone)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_disk_in_u_gen_internal_aiff16.html#aa6cc8f947bdf67cbfd66a7907b807118">processBlock</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Process a block of samples for this blockID and channel.  <a href="#aa6cc8f947bdf67cbfd66a7907b807118"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 
-<p>Definition at line <a class="el" href="ugen__i_phone_audio_file_disk_in_8h_source.html#l00072">72</a> of file <a class="el" href="ugen__i_phone_audio_file_disk_in_8h_source.html">ugen_iPhoneAudioFileDiskIn.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen__i_phone_audio_file_disk_in_8h_source.html#l00090">90</a> of file <a class="el" href="ugen__i_phone_audio_file_disk_in_8h_source.html">ugen_iPhoneAudioFileDiskIn.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a3e0e83165dad7e14f184950d0e81b663"></a><!-- doxytag: member="DiskInUGenInternalAiff16::DiskInUGenInternalAiff16" ref="a3e0e83165dad7e14f184950d0e81b663" args="(AudioFileID audioFile, AudioStreamBasicDescription const &amp;format, const bool loopFlag=false, const double startTime=0.0)" -->
+<a class="anchor" id="a569ce2e5d4998b02c3c696cc6be2ce2e"></a><!-- doxytag: member="DiskInUGenInternalAiff16::DiskInUGenInternalAiff16" ref="a569ce2e5d4998b02c3c696cc6be2ce2e" args="(AudioFileID audioFile, AudioStreamBasicDescription const &amp;format, const bool loopFlag=false, const double startTime=0.0, const UGen::DoneAction doneAction=UGen::DeleteWhenDone)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -78,7 +77,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const double&nbsp;</td>
-          <td class="paramname"> <em>startTime</em> = <code>0.0</code></td><td>&nbsp;</td>
+          <td class="paramname"> <em>startTime</em> = <code>0.0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1ca">UGen::DoneAction</a>&nbsp;</td>
+          <td class="paramname"> <em>doneAction</em> = <code>UGen::DeleteWhenDone</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -117,22 +122,11 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [virtual]</code></td>
+          <td></td><td></td><td>  throw ()</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Process a block of samples for this blockID and channel. </p>
-<p>This is the main rendering function and needs to be implement by all subclasses.</p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>shouldDelete</em>&nbsp;</td><td>A <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> graph can be scheduled for deletion by setting this to true on return. If it is already true it should NOT be set to false. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>blockID</em>&nbsp;</td><td>This is a sample counter, you can assume that calls to this function will have blockIDs which are higher that the last call (until the maximum integer is reached). </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>channel</em>&nbsp;</td><td>The channel index to process. </td></tr>
-  </table>
-  </dd>
-</dl>
 
 <p>Reimplemented from <a class="el" href="class_disk_in_u_gen_internal.html#a4d10f292c7035798177f20ee2b8c8bd7">DiskInUGenInternal</a>.</p>
 
@@ -142,7 +136,7 @@ Public Member Functions</h2></td></tr>
 <li>iphone/<a class="el" href="ugen__i_phone_audio_file_disk_in_8h_source.html">ugen_iPhoneAudioFileDiskIn.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:08 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:12 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

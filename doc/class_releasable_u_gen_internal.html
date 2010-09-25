@@ -39,13 +39,13 @@
 </h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="ReleasableUGenInternal" --><!-- doxytag: inherits="UGenInternal" -->
+<!-- doxytag: class="ReleasableUGenInternal" --><!-- doxytag: inherits="UGenInternal,DoneActionSender" -->
 <p>A <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> base that is "releasable" in the sense of a envelope which may be released.  
 <a href="#_details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>&gt;</code></p>
 
-<p>Inherits <a class="el" href="class_u_gen_internal.html">UGenInternal</a>.</p>
+<p>Inherits <a class="el" href="class_u_gen_internal.html">UGenInternal</a>, and <a class="el" href="class_done_action_sender.html">DoneActionSender</a>.</p>
 
 <p>Inherited by <a class="el" href="class_a_s_r_u_gen_internal.html">ASRUGenInternal</a>, and <a class="el" href="class_env_gen_u_gen_internal.html">EnvGenUGenInternal</a>.</p>
 
@@ -57,6 +57,7 @@ Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupText"><p><a class="anchor" id="amgrp12fdc16f3e4af87211fb0ef7cc443050"></a> </p>
 </div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_releasable_u_gen_internal.html#a198fd3ec9711d5111e06e19d777b37f8">ReleasableUGenInternal</a> (const int numInputs)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_releasable_u_gen_internal.html#a30112bc12f5efb832d6a0e974f209c4d">prepareForBlock</a> (const int actualBlockSize, const unsigned int blockID)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_releasable_u_gen_internal.html#aa9137deddcf02d1ae9cae6d4c081230a">release</a> ()=0</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_releasable_u_gen_internal.html#a1a667630654daa5bdae7344b827c81db">steal</a> ()=0</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Tests</div></td></tr>
@@ -66,27 +67,24 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_releasable_u_gen_internal.html#ae6734252da80c0aa091441b02a773b3d">shouldSteal</a> () const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_releasable_u_gen_internal.html#a20f7c44cf7f0a2670448aa87ca31225d">isReleasing</a> () const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_releasable_u_gen_internal.html#a94fc0ca2388a5ac89cf8e5d93cbee201">isStealing</a> () const   throw ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_releasable_u_gen_internal.html#a039a67826379f9250763f0c207a3739e">isDone</a> () const   throw ()</td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_releasable_u_gen_internal.html#ae522c781e6182d456f75365f68adc9e6">releaseInternal</a> ()  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_releasable_u_gen_internal.html#aa5064a48bc7ccf54871e71620696cb12">stealInternal</a> ()  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_releasable_u_gen_internal.html#a7929a32cb2e2cd8fdbae3b2d516b5f48">setIsReleasing</a> ()  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_releasable_u_gen_internal.html#a136f93756d804167ec26d7a3ea909485">setIsStealing</a> ()  throw ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_releasable_u_gen_internal.html#a62e7600642cda04092df284c2ea9f245">setIsDone</a> ()  throw ()</td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_releasable_u_gen_internal.html#a05c315d78837c7e196d409f2010c494a">shouldRelease_</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_releasable_u_gen_internal.html#a0a41eb292b9b33354270b9b83e3a6b5f">shouldSteal_</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_releasable_u_gen_internal.html#ae8a65645fd10f6c88fd4dea4903e5fe2">isReleasing_</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_releasable_u_gen_internal.html#a167cc696b92f1cf36aa423af30097778">isStealing_</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_releasable_u_gen_internal.html#adff462ffc2521ec7826677db7b5e1148">isDone_</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>A <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> base that is "releasable" in the sense of a envelope which may be released. </p>
 <p>This means it should also be "stealable" i.e., told to stop immediately, or at least very quickly. This is normally for envelopes which may have a sustain section (e.g., <a class="el" href="class_a_s_r.html" title="Attack, sustain and release envelope.">ASR</a> or <a class="el" href="class_env_gen.html" title="Generate breakpoint envelopes from an Env specification.">EnvGen</a> using a sustaining <a class="el" href="class_env.html" title="A specification for a segmented envelope.">Env</a>). </p>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00310">310</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00365">365</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a198fd3ec9711d5111e06e19d777b37f8"></a><!-- doxytag: member="ReleasableUGenInternal::ReleasableUGenInternal" ref="a198fd3ec9711d5111e06e19d777b37f8" args="(const int numInputs)" -->
 <div class="memitem">
@@ -98,38 +96,17 @@ Protected Attributes</h2></td></tr>
           <td class="paramtype">const int&nbsp;</td>
           <td class="paramname"> <em>numInputs</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td>  throw ()<code> [inline]</code></td>
+          <td>  throw ()</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00317">317</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00589">589</a> of file <a class="el" href="ugen___u_gen_internal_8cpp_source.html">ugen_UGenInternal.cpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a039a67826379f9250763f0c207a3739e"></a><!-- doxytag: member="ReleasableUGenInternal::isDone" ref="a039a67826379f9250763f0c207a3739e" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ReleasableUGenInternal::isDone </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td> const  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00337">337</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
-
-<p>References <a class="el" href="ugen___u_gen_internal_8h_source.html#l00369">isDone_</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a20f7c44cf7f0a2670448aa87ca31225d"></a><!-- doxytag: member="ReleasableUGenInternal::isReleasing" ref="a20f7c44cf7f0a2670448aa87ca31225d" args="() const " -->
 <div class="memitem">
 <div class="memproto">
@@ -145,9 +122,7 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00335">335</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
-
-<p>References <a class="el" href="ugen___u_gen_internal_8h_source.html#l00367">isReleasing_</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00386">386</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
 
 </div>
 </div>
@@ -166,9 +141,38 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00336">336</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00387">387</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_internal_8h_source.html#l00368">isStealing_</a>.</p>
+</div>
+</div>
+<a class="anchor" id="a30112bc12f5efb832d6a0e974f209c4d"></a><!-- doxytag: member="ReleasableUGenInternal::prepareForBlock" ref="a30112bc12f5efb832d6a0e974f209c4d" args="(const int actualBlockSize, const unsigned int blockID)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ReleasableUGenInternal::prepareForBlock </td>
+          <td>(</td>
+          <td class="paramtype">const int&nbsp;</td>
+          <td class="paramname"> <em>actualBlockSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&nbsp;</td>
+          <td class="paramname"> <em>blockID</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td>  throw ()</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="class_a_s_r_u_gen_internal.html#ac2033bbbb02d30cf6423f4878951ca32">ASRUGenInternal</a>.</p>
+
+<p>Definition at line <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00598">598</a> of file <a class="el" href="ugen___u_gen_internal_8cpp_source.html">ugen_UGenInternal.cpp</a>.</p>
 
 </div>
 </div>
@@ -189,7 +193,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Implemented in <a class="el" href="class_a_s_r_u_gen_internal.html#af8800ee3cb7f5539fe6f900f93c41d2b">ASRUGenInternal</a>, and <a class="el" href="class_env_gen_u_gen_internal.html#a4f0aad71ac0c1c1d9ab4c2825e44581d">EnvGenUGenInternal</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___u_gen_internal_8h_source.html#l00342">releaseInternal()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00608">releaseInternal()</a>.</p>
 
 </div>
 </div>
@@ -202,38 +206,15 @@ Protected Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td>  throw ()<code> [inline, protected, virtual]</code></td>
+          <td>  throw ()<code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#abaf01396d3f7582c43032188e760636c">UGenInternal</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00608">608</a> of file <a class="el" href="ugen___u_gen_internal_8cpp_source.html">ugen_UGenInternal.cpp</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00342">342</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
-
-<p>References <a class="el" href="class_releasable_u_gen_internal.html#aa9137deddcf02d1ae9cae6d4c081230a">release()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00365">shouldRelease_</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00366">shouldSteal_</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a62e7600642cda04092df284c2ea9f245"></a><!-- doxytag: member="ReleasableUGenInternal::setIsDone" ref="a62e7600642cda04092df284c2ea9f245" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ReleasableUGenInternal::setIsDone </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td>  throw ()<code> [inline, protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00363">363</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
-
-<p>References <a class="el" href="ugen___u_gen_internal_8h_source.html#l00369">isDone_</a>.</p>
+<p>References <a class="el" href="class_releasable_u_gen_internal.html#aa9137deddcf02d1ae9cae6d4c081230a">release()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00397">shouldRelease_</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00398">shouldSteal_</a>.</p>
 
 </div>
 </div>
@@ -246,17 +227,17 @@ Protected Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td>  throw ()<code> [inline, protected]</code></td>
+          <td>  throw ()<code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00361">361</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00629">629</a> of file <a class="el" href="ugen___u_gen_internal_8cpp_source.html">ugen_UGenInternal.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_internal_8h_source.html#l00367">isReleasing_</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00365">shouldRelease_</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_internal_8h_source.html#l00399">isReleasing_</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00397">shouldRelease_</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___a_s_r_8cpp_source.html#l00129">ASRUGenInternal::release()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___a_s_r_8cpp_source.html#l00134">ASRUGenInternal::release()</a>.</p>
 
 </div>
 </div>
@@ -269,17 +250,17 @@ Protected Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td>  throw ()<code> [inline, protected]</code></td>
+          <td>  throw ()<code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00362">362</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00637">637</a> of file <a class="el" href="ugen___u_gen_internal_8cpp_source.html">ugen_UGenInternal.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_internal_8h_source.html#l00368">isStealing_</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00366">shouldSteal_</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_internal_8h_source.html#l00400">isStealing_</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00398">shouldSteal_</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___a_s_r_8cpp_source.html#l00135">ASRUGenInternal::steal()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___a_s_r_8cpp_source.html#l00140">ASRUGenInternal::steal()</a>.</p>
 
 </div>
 </div>
@@ -298,9 +279,7 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00333">333</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
-
-<p>References <a class="el" href="ugen___u_gen_internal_8h_source.html#l00365">shouldRelease_</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00384">384</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
 
 </div>
 </div>
@@ -319,9 +298,7 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00334">334</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
-
-<p>References <a class="el" href="ugen___u_gen_internal_8h_source.html#l00366">shouldSteal_</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00385">385</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
 
 </div>
 </div>
@@ -342,7 +319,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Implemented in <a class="el" href="class_a_s_r_u_gen_internal.html#a1f37b88f9034e5e7106338596572b5e7">ASRUGenInternal</a>, and <a class="el" href="class_env_gen_u_gen_internal.html#a841bb0f96e0650717e72a81f5996df1d">EnvGenUGenInternal</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___u_gen_internal_8h_source.html#l00351">stealInternal()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00618">stealInternal()</a>.</p>
 
 </div>
 </div>
@@ -355,38 +332,19 @@ Protected Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td>  throw ()<code> [inline, protected, virtual]</code></td>
+          <td>  throw ()<code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a4d2712dfc348674097ea670aab5c7101">UGenInternal</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00618">618</a> of file <a class="el" href="ugen___u_gen_internal_8cpp_source.html">ugen_UGenInternal.cpp</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00351">351</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
-
-<p>References <a class="el" href="ugen___u_gen_internal_8h_source.html#l00365">shouldRelease_</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00366">shouldSteal_</a>, and <a class="el" href="class_releasable_u_gen_internal.html#a1a667630654daa5bdae7344b827c81db">steal()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_internal_8h_source.html#l00397">shouldRelease_</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00398">shouldSteal_</a>, and <a class="el" href="class_releasable_u_gen_internal.html#a1a667630654daa5bdae7344b827c81db">steal()</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="adff462ffc2521ec7826677db7b5e1148"></a><!-- doxytag: member="ReleasableUGenInternal::isDone_" ref="adff462ffc2521ec7826677db7b5e1148" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool <a class="el" href="class_releasable_u_gen_internal.html#adff462ffc2521ec7826677db7b5e1148">ReleasableUGenInternal::isDone_</a><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00369">369</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
-
-<p>Referenced by <a class="el" href="ugen___u_gen_internal_8h_source.html#l00337">isDone()</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00363">setIsDone()</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="ae8a65645fd10f6c88fd4dea4903e5fe2"></a><!-- doxytag: member="ReleasableUGenInternal::isReleasing_" ref="ae8a65645fd10f6c88fd4dea4903e5fe2" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -398,9 +356,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00367">367</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00399">399</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___u_gen_internal_8h_source.html#l00335">isReleasing()</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00361">setIsReleasing()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00629">setIsReleasing()</a>.</p>
 
 </div>
 </div>
@@ -415,9 +373,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00368">368</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00400">400</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___u_gen_internal_8h_source.html#l00336">isStealing()</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00362">setIsStealing()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00637">setIsStealing()</a>.</p>
 
 </div>
 </div>
@@ -432,9 +390,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00365">365</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00397">397</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___u_gen_internal_8h_source.html#l00342">releaseInternal()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00361">setIsReleasing()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00333">shouldRelease()</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00351">stealInternal()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00608">releaseInternal()</a>, <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00629">setIsReleasing()</a>, and <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00618">stealInternal()</a>.</p>
 
 </div>
 </div>
@@ -449,17 +407,18 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00366">366</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00398">398</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___u_gen_internal_8h_source.html#l00342">releaseInternal()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00362">setIsStealing()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00334">shouldSteal()</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00351">stealInternal()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00608">releaseInternal()</a>, <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00637">setIsStealing()</a>, and <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00618">stealInternal()</a>.</p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>core/<a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a></li>
+<li>core/<a class="el" href="ugen___u_gen_internal_8cpp_source.html">ugen_UGenInternal.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:10 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:14 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

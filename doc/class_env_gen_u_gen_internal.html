@@ -54,7 +54,6 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_env_gen_u_gen_internal.html#a3748fa198705880c858eee3449432bd6">EnvGenUGenInternal</a> (<a class="el" href="class_env.html">Env</a> const &amp;env, const <a class="el" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1ca">UGen::DoneAction</a> doneAction)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_env_gen_u_gen_internal.html#a5a9523d7de548ed94548e8d3a8d6349b">getKr</a> ()  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_env_gen_u_gen_internal.html#a8a2e7ec6ee4febc7836690af04520dca">processBlock</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Process a block of samples for this blockID and channel.  <a href="#a8a2e7ec6ee4febc7836690af04520dca"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_env_gen_u_gen_internal.html#a4f0aad71ac0c1c1d9ab4c2825e44581d">release</a> ()  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_env_gen_u_gen_internal.html#a841bb0f96e0650717e72a81f5996df1d">steal</a> ()  throw ()</td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
@@ -106,7 +105,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___env_gen_8cpp_source.html#l00050">50</a> of file <a class="el" href="ugen___env_gen_8cpp_source.html">ugen_EnvGen.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l00929">UGen::getSampleRate()</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l00924">UGen::getSampleRate()</a>.</p>
 
 </div>
 </div>
@@ -120,13 +119,11 @@ Protected Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td>  throw ()<code> [virtual]</code></td>
+          <td>  throw ()</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a5041a93f6c624446f04542b0b82f0563">UGenInternal</a>.</p>
 
 <p>Reimplemented in <a class="el" href="class_env_gen_u_gen_internal_k.html#a031d475930c07a18406b52a0a2b0e68a">EnvGenUGenInternalK</a>.</p>
 
@@ -161,30 +158,17 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td>  throw ()<code> [virtual]</code></td>
+          <td></td><td></td><td>  throw ()</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Process a block of samples for this blockID and channel. </p>
-<p>This is the main rendering function and needs to be implement by all subclasses.</p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>shouldDelete</em>&nbsp;</td><td>A <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> graph can be scheduled for deletion by setting this to true on return. If it is already true it should NOT be set to false. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>blockID</em>&nbsp;</td><td>This is a sample counter, you can assume that calls to this function will have blockIDs which are higher that the last call (until the maximum integer is reached). </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>channel</em>&nbsp;</td><td>The channel index to process. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="class_u_gen_internal.html#ae1c9c941ea6f372d8af8cc5f9ae32ace">UGenInternal</a>.</p>
-
 <p>Reimplemented in <a class="el" href="class_env_gen_u_gen_internal_k.html#ab6df15da887b1b77338c5e7228921d35">EnvGenUGenInternalK</a>.</p>
 
 <p>Definition at line <a class="el" href="ugen___env_gen_8cpp_source.html#l00069">69</a> of file <a class="el" href="ugen___env_gen_8cpp_source.html">ugen_EnvGen.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___env_curve_8h_source.html#l00055">EnvCurve::Empty</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00059">EnvCurve::Exponential</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00929">UGen::getSampleRate()</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00058">EnvCurve::Linear</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00098">min()</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00056">EnvCurve::Numerical</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00060">EnvCurve::Sine</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00057">EnvCurve::Step</a>, and <a class="el" href="ugen___env_curve_8h_source.html#l00061">EnvCurve::Welch</a>.</p>
+<p>References <a class="el" href="ugen___env_curve_8h_source.html#l00055">EnvCurve::Empty</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00059">EnvCurve::Exponential</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00924">UGen::getSampleRate()</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00058">EnvCurve::Linear</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00098">min()</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00056">EnvCurve::Numerical</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00060">EnvCurve::Sine</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00057">EnvCurve::Step</a>, and <a class="el" href="ugen___env_curve_8h_source.html#l00061">EnvCurve::Welch</a>.</p>
 
 </div>
 </div>
@@ -205,7 +189,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="class_releasable_u_gen_internal.html#aa9137deddcf02d1ae9cae6d4c081230a">ReleasableUGenInternal</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___env_gen_8cpp_source.html#l00199">199</a> of file <a class="el" href="ugen___env_gen_8cpp_source.html">ugen_EnvGen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_gen_8cpp_source.html#l00200">200</a> of file <a class="el" href="ugen___env_gen_8cpp_source.html">ugen_EnvGen.cpp</a>.</p>
 
 </div>
 </div>
@@ -234,7 +218,7 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___env_gen_8cpp_source.html#l00209">209</a> of file <a class="el" href="ugen___env_gen_8cpp_source.html">ugen_EnvGen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_gen_8cpp_source.html#l00210">210</a> of file <a class="el" href="ugen___env_gen_8cpp_source.html">ugen_EnvGen.cpp</a>.</p>
 
 <p>References <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00114">cos()</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00055">EnvCurve::Empty</a>, <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00133">exp()</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00059">EnvCurve::Exponential</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00058">EnvCurve::Linear</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00056">EnvCurve::Numerical</a>, <a class="el" href="ugen___constants_8h_source.html#l00048">pi</a>, <a class="el" href="ugen___constants_8h_source.html#l00049">piOverTwo</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00095">pow()</a>, <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00112">sin()</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00060">EnvCurve::Sine</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00057">EnvCurve::Step</a>, <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>, and <a class="el" href="ugen___env_curve_8h_source.html#l00061">EnvCurve::Welch</a>.</p>
 
@@ -257,7 +241,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="class_releasable_u_gen_internal.html#a1a667630654daa5bdae7344b827c81db">ReleasableUGenInternal</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___env_gen_8cpp_source.html#l00204">204</a> of file <a class="el" href="ugen___env_gen_8cpp_source.html">ugen_EnvGen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_gen_8cpp_source.html#l00205">205</a> of file <a class="el" href="ugen___env_gen_8cpp_source.html">ugen_EnvGen.cpp</a>.</p>
 
 </div>
 </div>
@@ -451,7 +435,7 @@ Protected Attributes</h2></td></tr>
 <li>envelopes/<a class="el" href="ugen___env_gen_8cpp_source.html">ugen_EnvGen.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:08 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:12 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

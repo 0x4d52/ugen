@@ -30,7 +30,7 @@
 <h1>juce/io/ugen_AudioFilePlayer.h</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___audio_file_player_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_AudioFilePlayer.h 77 2010-05-24 10:34:11Z 0x4d52 $</span>
+<a href="ugen___audio_file_player_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_AudioFilePlayer.h 160 2010-09-23 16:49:16Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/juce/io/ugen_AudioFilePlayer.h $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -85,23 +85,27 @@
 <a name="l00067"></a>00067  
 <a name="l00070"></a>00070  <span class="keywordtype">bool</span> <a class="code" href="class_audio_file_player.html#a35577b02330be0b0782ea3d6b06ace5c" title="Open and get ready to play a given audio file path.">setFile</a>(<span class="keyword">const</span> File&amp; audioFile, <span class="keyword">const</span> <span class="keywordtype">int</span> readAheadBufferSize = 32768);
 <a name="l00071"></a>00071  <span class="keyword">const</span> File&amp; <a class="code" href="class_audio_file_player.html#a368f710a7932e3b5843a3d4500a455c3">getFile</a>();
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073  juce_UseDebuggingNewOperator
-<a name="l00074"></a>00074  
-<a name="l00075"></a>00075 <span class="keyword">private</span>: 
-<a name="l00076"></a>00076  AudioFormatReader* <a class="code" href="class_audio_file_player.html#ae8389c28eba85b03c6222250d3403890">audioFormatReaderFromFile</a>(<span class="keyword">const</span> File&amp; audioFile);
+<a name="l00072"></a>00072  
+<a name="l00073"></a><a class="code" href="class_audio_file_player.html#a826b5ec596447380c5d909f1d6929b6b">00073</a>  <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code" href="class_audio_file_player.html#a826b5ec596447380c5d909f1d6929b6b">getSampleRate</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> <a class="code" href="class_audio_file_player.html#ab927d5f837d6c93b1edaeb767774ccf1">sampleRate</a>; }
+<a name="l00074"></a><a class="code" href="class_audio_file_player.html#ac83f5be8b68c1665c9636e2d1cbafd45">00074</a>  <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code" href="class_audio_file_player.html#ac83f5be8b68c1665c9636e2d1cbafd45">getReciprocalSampleRate</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> <a class="code" href="class_audio_file_player.html#a5969e67e790a22b7b20172d9c97125ae">reciprocalSampleRate</a>; }
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076  juce_UseDebuggingNewOperator
 <a name="l00077"></a>00077  
-<a name="l00078"></a>00078  <span class="comment">// this is the actual stream that&#39;s going to read from the audio file.</span>
-<a name="l00079"></a><a class="code" href="class_audio_file_player.html#aa389cb9bd28292051f37a3031d2a1a64">00079</a>  AudioFormatReaderSource* <a class="code" href="class_audio_file_player.html#aa389cb9bd28292051f37a3031d2a1a64">currentAudioFileSource</a>;
+<a name="l00078"></a>00078 <span class="keyword">private</span>: 
+<a name="l00079"></a>00079  AudioFormatReader* <a class="code" href="class_audio_file_player.html#ae8389c28eba85b03c6222250d3403890">audioFormatReaderFromFile</a>(<span class="keyword">const</span> File&amp; audioFile);
 <a name="l00080"></a>00080  
-<a name="l00081"></a><a class="code" href="class_audio_file_player.html#a769fd2aabdd87c6f4e0c7e190a7450ad">00081</a>  File <a class="code" href="class_audio_file_player.html#a769fd2aabdd87c6f4e0c7e190a7450ad">currentFile</a>;
-<a name="l00082"></a>00082  
-<a name="l00083"></a>00083 };
-<a name="l00084"></a>00084 
-<a name="l00085"></a>00085 <span class="preprocessor">#endif // UGEN_AUDIOFILEPLAYER_H</span>
+<a name="l00081"></a>00081  <span class="comment">// this is the actual stream that&#39;s going to read from the audio file.</span>
+<a name="l00082"></a><a class="code" href="class_audio_file_player.html#aa389cb9bd28292051f37a3031d2a1a64">00082</a>  AudioFormatReaderSource* <a class="code" href="class_audio_file_player.html#aa389cb9bd28292051f37a3031d2a1a64">currentAudioFileSource</a>;
+<a name="l00083"></a>00083  
+<a name="l00084"></a><a class="code" href="class_audio_file_player.html#a769fd2aabdd87c6f4e0c7e190a7450ad">00084</a>  File <a class="code" href="class_audio_file_player.html#a769fd2aabdd87c6f4e0c7e190a7450ad">currentFile</a>;
+<a name="l00085"></a><a class="code" href="class_audio_file_player.html#ab927d5f837d6c93b1edaeb767774ccf1">00085</a>  <span class="keywordtype">double</span> <a class="code" href="class_audio_file_player.html#ab927d5f837d6c93b1edaeb767774ccf1">sampleRate</a>;
+<a name="l00086"></a><a class="code" href="class_audio_file_player.html#a5969e67e790a22b7b20172d9c97125ae">00086</a>  <span class="keywordtype">double</span> <a class="code" href="class_audio_file_player.html#a5969e67e790a22b7b20172d9c97125ae">reciprocalSampleRate</a>;
+<a name="l00087"></a>00087 };
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089 <span class="preprocessor">#endif // UGEN_AUDIOFILEPLAYER_H</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:04 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:07 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
