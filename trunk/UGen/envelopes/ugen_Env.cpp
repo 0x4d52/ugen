@@ -227,8 +227,8 @@ float Env::lookup(float time) const throw()
 
 Env::operator Buffer () const throw()
 {
-	float duration = getTimes().sum();
-	int size = UGen::getSampleRate() * duration;
+	const float duration = getTimes().sum();
+	const int size = UGen::getSampleRate() * duration;
 	Buffer buffer = BufferSpec(size, 1, false);
 	float *bufferSamples = buffer.getData();
 	
@@ -243,15 +243,15 @@ Env::operator Buffer () const throw()
 
 void Env::writeToBuffer(Buffer& buffer, const int channel) const throw()
 {
-	double duration = getTimes().sum();
-	int size = buffer.size();
+	const double duration = getTimes().sum();
+	const int size = buffer.size();
 	
 	ugen_assert(size > 0);
 	ugen_assert(buffer.getNumChannels() > 0);
 	
 	float *bufferSamples = buffer.getData(channel % buffer.getNumChannels());
 	
-	double timeInc = duration / size;
+	const double timeInc = duration / size;
 	double time = 0.0;
 	for(int i = 0; i < size; i++, time += timeInc)
 	{
@@ -282,7 +282,7 @@ Env Env::triangle(const double duration,
 	ugen_assert(duration > 0.0);
 	ugen_assert(level > 0.0);
 
-	const double durationHalved = duration * 0.5f;
+	const double durationHalved = duration * 0.5;
 	return Env(Buffer(0.0, level, 0.0), 
 			   Buffer(durationHalved, durationHalved));
 }
@@ -293,7 +293,7 @@ Env Env::sine(const double duration,
 	ugen_assert(duration > 0.0);
 	ugen_assert(level > 0.0);
 	
-	const double durationHalved = duration * 0.5f;
+	const double durationHalved = duration * 0.5;
 	return Env(Buffer(0.0, level, 0.0), 
 			   Buffer(durationHalved, durationHalved),
 			   EnvCurve::Sine);	

@@ -137,12 +137,12 @@ void PlayBufUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 	}
 }
 
-double PlayBufUGenInternal::getDuration() throw()
+double PlayBufUGenInternal::getDuration() const throw()
 {
 	return buffer_.duration();
 }
 
-double PlayBufUGenInternal::getPosition() throw()
+double PlayBufUGenInternal::getPosition() const throw()
 {
 	return bufferPos * UGen::getReciprocalSampleRate();
 }

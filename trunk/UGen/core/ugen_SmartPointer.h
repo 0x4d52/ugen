@@ -62,7 +62,7 @@ public:
 	
 protected:
 	int refCount;
-	bool active;
+	bool active : 1;
 	
 private:
 	SmartPointer (const SmartPointer&);

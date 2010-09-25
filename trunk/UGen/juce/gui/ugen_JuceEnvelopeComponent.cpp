@@ -244,6 +244,7 @@ void EnvelopeHandleComponent::mouseDown(const MouseEvent& e)
 	} 
 	else if(e.mods.isCtrlDown())
 	{
+		ignoreDrag = true;
 		
 		if(PopupComponent::getActivePopups() < 1)
 		{
@@ -328,12 +329,18 @@ void EnvelopeHandleComponent::mouseUp(const MouseEvent& e)
 #ifdef MYDEBUG
 	printf("MyEnvelopeHandleComponent::mouseUp\n");
 #endif
-		
-	if(e.mods.isCtrlDown() == false)
+	
+	if(ignoreDrag == true)
 	{
+		ignoreDrag = false;
+		return;
+	}
+		
+//	if(e.mods.isCtrlDown() == false)
+//	{
 		EnvelopeComponent *env = getParentComponent();
 		env->quantiseHandle(this);
-	}
+//	}
 	
 	setMouseCursor(MouseCursor::CrosshairCursor);
 	setMousePositionToThisHandle();
@@ -1374,7 +1381,17 @@ EnvelopeCurvePopup::EnvelopeCurvePopup(EnvelopeHandleComponent* handleToEdit)
 	combo->addItem(T("Numerical..."),	idOffset + (int)EnvCurve::Numerical);
 	combo->addItem(T("Step"),			idOffset + (int)EnvCurve::Step);
 	combo->addItem(T("Linear"),			idOffset + (int)EnvCurve::Linear);
-	combo->addItem(T("Exponential"),	idOffset + (int)EnvCurve::Exponential);
+	
+	EnvelopeComponent *parent = handleToEdit->getParentComponent();
+	double min, max;
+	parent->getValueRange(min, max);
+	
+	if(((min > 0.0) && (max > 0.0)) || ((min < 0.0) && (min < 0.0)))
+	{
+		// exponential can't cross zero
+		combo->addItem(T("Exponential"),	idOffset + (int)EnvCurve::Exponential);
+	}
+	
 	combo->addItem(T("Sine"),			idOffset + (int)EnvCurve::Sine);
 	combo->addItem(T("Welch"),			idOffset + (int)EnvCurve::Welch);
 	

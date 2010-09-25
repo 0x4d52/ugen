@@ -60,8 +60,8 @@ public:
 	
 	void changeListenerCallback (void*);
 	
-	double getDuration() throw();
-	double getPosition() throw();
+	double getDuration() const throw();
+	double getPosition() const throw();
 	void setPosition(const double newPosition) throw();
 	
 	

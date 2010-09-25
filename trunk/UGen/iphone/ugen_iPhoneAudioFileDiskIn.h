@@ -55,8 +55,8 @@ public:
 	OSStatus clearOutputsAndReadData(bool& shouldDelete) throw();
 	void prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw();
 		
-	double getDuration() throw();
-	double getPosition() throw();
+	double getDuration() const throw();
+	double getPosition() const throw();
 	void setPosition(const double newPosition) throw();	
 	
 protected:

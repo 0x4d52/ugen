@@ -129,12 +129,12 @@ void DiskInUGenInternal::changeListenerCallback (void*)
 	
 }
 
-double DiskInUGenInternal::getDuration() throw()
+double DiskInUGenInternal::getDuration() const throw()
 {
 	return (double)filePlayer.getTotalLength() * filePlayer.getReciprocalSampleRate();
 }
 
-double DiskInUGenInternal::getPosition() throw()
+double DiskInUGenInternal::getPosition() const throw()
 {
 	return filePlayer.getCurrentPosition();
 }

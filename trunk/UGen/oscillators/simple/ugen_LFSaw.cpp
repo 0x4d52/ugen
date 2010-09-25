@@ -81,12 +81,12 @@ void LFSawUGenInternal::processBlock(bool& shouldDelete,
 	}
 }
 
-double LFSawUGenInternal::getDuration() throw()
+double LFSawUGenInternal::getDuration() const throw()
 {
 	return 1.0;
 }
 
-double LFSawUGenInternal::getPosition() throw()
+double LFSawUGenInternal::getPosition() const throw()
 {
 	return (double)(currentPhase * 0.5f + 0.5f);
 }
