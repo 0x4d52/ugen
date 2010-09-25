@@ -88,6 +88,21 @@ void LFPulseUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 	}
 }
 
+double LFPulseUGenInternal::getDuration() throw()
+{ 
+	return 1.0;
+}
+
+double LFPulseUGenInternal::getPosition() throw()
+{
+	return (double)currentPhase;
+}
+
+void LFPulseUGenInternal::setPosition(const double newPosition) throw()
+{
+	currentPhase = (float)ugen::clip(newPosition, 0.0, 1.0);
+}
+
 LFPulseUGenInternalK::LFPulseUGenInternalK(UGen const& freq, UGen const& duty) throw()
 :	LFPulseUGenInternal(freq, duty),
 	value(1.f)

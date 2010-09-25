@@ -90,6 +90,21 @@ void TableOscUGenInternal::processBlock(bool& shouldDelete, const unsigned int b
 	LOCAL_COPY(currentPhase);
 }
 
+double TableOscUGenInternal::getDuration() throw()
+{
+	return 1.0;
+}
+
+double TableOscUGenInternal::getPosition() throw()
+{
+	return (double)currentPhase / (double)wavetableSize;
+}
+
+void TableOscUGenInternal::setPosition(const double newPosition) throw()
+{
+	currentPhase = (float)ugen::clip(newPosition, 0.0, (double)(wavetableSize-1.f));
+}
+
 TableOscUGenInternalK::TableOscUGenInternalK(UGen const& freq, 
 											 const float initialPhase, 
 											 Buffer const& table) throw()

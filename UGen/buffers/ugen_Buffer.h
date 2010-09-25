@@ -229,6 +229,7 @@ public:
 	Buffer(const int size, const int numChannels, const float** sourceDataArray) throw();
 	Buffer(BufferChannelInternal *internalToUse) throw();
 	
+	Buffer(const char *audioFilePath) throw();
 	Buffer(Text const& audioFilePath) throw();
 	Buffer(Text const& audioFilePath, double& sampleRate) throw();
 	bool write(Text const& audioFilePath, bool overwriteExisitingFile = false, int bitDepth = 24) throw();
