@@ -92,6 +92,7 @@ public:
 		Env env = Env::linen(1.0, 1.0, 1.0, 0.7, EnvCurve::Sine);		
 		envComponent->setDomainRange(env.duration());
 		envComponent->setEnv(env);
+		envComponent->setAllowCurveEditing(false);
 		
 		// add scope to the main out
 		UGen scope = Sender::AR(getOutput(), U(ampSlider2) / 10);

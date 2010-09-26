@@ -107,7 +107,7 @@ EnvelopeHandleComponent::EnvelopeHandleComponent()
 	resetOffsets();
 }
 
-EnvelopeComponent* EnvelopeHandleComponent::getParentComponent()
+EnvelopeComponent* EnvelopeHandleComponent::getParentComponent() const
 {
 	return (EnvelopeComponent*)Component::getParentComponent();
 }
@@ -244,13 +244,15 @@ void EnvelopeHandleComponent::mouseDown(const MouseEvent& e)
 	} 
 	else if(e.mods.isCtrlDown())
 	{
-		ignoreDrag = true;
-		
-		if(PopupComponent::getActivePopups() < 1)
+		if(getParentComponent()->getAllowNodeEditing())
 		{
-			EnvelopeNodePopup::create(this, getScreenX()+e.x, getScreenY()+e.y);
+			ignoreDrag = true;
+			
+			if(PopupComponent::getActivePopups() < 1)
+			{
+				EnvelopeNodePopup::create(this, getScreenX()+e.x, getScreenY()+e.y);
+			}
 		}
-		
 	}
 	else 
 	{
@@ -504,7 +506,9 @@ EnvelopeComponent::EnvelopeComponent()
 	draggingHandle(0),
 	curvePoints(64),
 	releaseNode(-1),
-	loopNode(-1)
+	loopNode(-1),
+	allowCurveEditing(true),
+	allowNodeEditing(true)
 {
 	setMouseCursor(MouseCursor::NormalCursor);
 	setBounds(0, 0, 200, 200); // non-zero size to start with
@@ -547,7 +551,7 @@ void EnvelopeComponent::setDomainRange(const double min, const double max)
 	}
 }
 
-void EnvelopeComponent::getDomainRange(double& min, double& max)
+void EnvelopeComponent::getDomainRange(double& min, double& max) const
 {
 	min = domainMin;
 	max = domainMax;
@@ -575,7 +579,7 @@ void EnvelopeComponent::setValueRange(const double min, const double max)
 	}	
 }
 
-void EnvelopeComponent::getValueRange(double& min, double& max)
+void EnvelopeComponent::getValueRange(double& min, double& max) const
 {
 	min = valueMin;
 	max = valueMax;
@@ -613,7 +617,7 @@ void EnvelopeComponent::setGrid(const GridMode display, const GridMode quantise,
 	}
 }
 
-void EnvelopeComponent::getGrid(GridMode& display, GridMode& quantise, double& domainQ, double& valueQ)
+void EnvelopeComponent::getGrid(GridMode& display, GridMode& quantise, double& domainQ, double& valueQ) const
 {
 	display = gridDisplayMode;
 	quantise = gridQuantiseMode;
@@ -781,33 +785,35 @@ void EnvelopeComponent::mouseDown(const MouseEvent& e)
 	}
 	else if(e.mods.isCtrlDown())
 	{
-		float timeAtClick = convertPixelsToDomain(e.x);
-		
-		int i;
-		EnvelopeHandleComponent* handle;
-		
-		for(i = 0; i < handles.size(); i++) {
-			handle = handles.getUnchecked(i);
-			if(handle->getTime() > timeAtClick)
-				break;
-		}
-		
-		if(PopupComponent::getActivePopups() < 1)
+		if(getAllowCurveEditing())
 		{
-			EnvelopeHandleComponent* prev = handle->getPreviousHandle();
+			float timeAtClick = convertPixelsToDomain(e.x);
 			
-			if(!prev)
-			{
-				EnvelopeCurvePopup::create(handle, getScreenX()+e.x, getScreenY()+e.y);
+			int i;
+			EnvelopeHandleComponent* handle;
+			
+			for(i = 0; i < handles.size(); i++) {
+				handle = handles.getUnchecked(i);
+				if(handle->getTime() > timeAtClick)
+					break;
 			}
-			else
+			
+			if(PopupComponent::getActivePopups() < 1)
 			{
-				EnvelopeCurvePopup::create(handle, 
-										   (handle->getScreenX() + prev->getScreenX())/2, 
-										   jmax(handle->getScreenY(), prev->getScreenY())+10);
+				EnvelopeHandleComponent* prev = handle->getPreviousHandle();
+				
+				if(!prev)
+				{
+					EnvelopeCurvePopup::create(handle, getScreenX()+e.x, getScreenY()+e.y);
+				}
+				else
+				{
+					EnvelopeCurvePopup::create(handle, 
+											   (handle->getScreenX() + prev->getScreenX())/2, 
+											   jmax(handle->getScreenY(), prev->getScreenY())+10);
+				}
 			}
 		}
-		
 	}
 	else 
 	{
@@ -1020,7 +1026,7 @@ void EnvelopeComponent::quantiseHandle(EnvelopeHandleComponent* thisHandle)
 	}
 }
 
-bool EnvelopeComponent::isReleaseNode(EnvelopeHandleComponent* thisHandle)
+bool EnvelopeComponent::isReleaseNode(EnvelopeHandleComponent* thisHandle) const
 {
 	int index = handles.indexOf(thisHandle);
 	
@@ -1030,7 +1036,7 @@ bool EnvelopeComponent::isReleaseNode(EnvelopeHandleComponent* thisHandle)
 		return index == releaseNode;
 }
 
-bool EnvelopeComponent::isLoopNode(EnvelopeHandleComponent* thisHandle)
+bool EnvelopeComponent::isLoopNode(EnvelopeHandleComponent* thisHandle) const
 {
 	int index = handles.indexOf(thisHandle);
 	
@@ -1049,7 +1055,7 @@ void EnvelopeComponent::setReleaseNode(const int index)
 	}
 }
 
-int EnvelopeComponent::getReleaseNode()
+int EnvelopeComponent::getReleaseNode() const
 {
 	return releaseNode;
 }
@@ -1063,9 +1069,29 @@ void EnvelopeComponent::setLoopNode(const int index)
 	}
 }
 
-int EnvelopeComponent::getLoopNode()
+int EnvelopeComponent::getLoopNode() const
 {
 	return loopNode;
+}
+
+void EnvelopeComponent::setAllowCurveEditing(const bool flag)
+{
+	allowCurveEditing = flag;
+}
+
+bool EnvelopeComponent::getAllowCurveEditing() const
+{
+	return allowCurveEditing;
+}
+
+void EnvelopeComponent::setAllowNodeEditing(const bool flag)
+{
+	allowNodeEditing = flag;
+}
+
+bool EnvelopeComponent::getAllowNodeEditing() const
+{
+	return allowNodeEditing;
 }
 
 void EnvelopeComponent::setReleaseNode(EnvelopeHandleComponent* thisHandle)
@@ -1078,49 +1104,35 @@ void EnvelopeComponent::setLoopNode(EnvelopeHandleComponent* thisHandle)
 	setLoopNode(handles.indexOf(thisHandle));
 }
 
-double EnvelopeComponent::convertPixelsToDomain(int pixelsX, int pixelsXMax)
+double EnvelopeComponent::convertPixelsToDomain(int pixelsX, int pixelsXMax) const
 {
 	if(pixelsXMax < 0) 
 		pixelsXMax = getWidth()-HANDLESIZE;
 	
-//	return (double)jlimit(0, pixelsXMax, pixelsX) / pixelsXMax * (domainMax-domainMin) + domainMin;
 	return (double)pixelsX / pixelsXMax * (domainMax-domainMin) + domainMin;
 
 }
 
-double EnvelopeComponent::convertPixelsToValue(int pixelsY, int pixelsYMax)
+double EnvelopeComponent::convertPixelsToValue(int pixelsY, int pixelsYMax) const
 {
 	if(pixelsYMax < 0)
 		pixelsYMax = getHeight()-HANDLESIZE;
 	
-//	return (double)(pixelsYMax - jlimit(0, pixelsYMax, pixelsY)) 
-//		/ pixelsYMax 
-//		* (valueMax-valueMin) 
-//		+ valueMin;
-	
 	return (double)(pixelsYMax - pixelsY) / pixelsYMax * (valueMax-valueMin) + valueMin;
 }
 
-double EnvelopeComponent::convertDomainToPixels(double domainValue)
+double EnvelopeComponent::convertDomainToPixels(double domainValue) const
 {
-//	return (jlimit(domainMin, domainMax, domainValue) - domainMin)
-//				 / (domainMax - domainMin) 
-//				 * (getWidth() - HANDLESIZE);
-	
 	return (domainValue - domainMin) / (domainMax - domainMin) * (getWidth() - HANDLESIZE);
 }
 
-double EnvelopeComponent::convertValueToPixels(double value)
+double EnvelopeComponent::convertValueToPixels(double value) const
 {	
-	double pixelsYMax = getHeight()-HANDLESIZE;
-//	return pixelsYMax-((jlimit(valueMin, valueMax, value) - valueMin)
-//				 / (valueMax - valueMin) 
-//				 * pixelsYMax);
-	
+	double pixelsYMax = getHeight()-HANDLESIZE;	
 	return pixelsYMax-((value- valueMin) / (valueMax - valueMin) * pixelsYMax);
 }
 
-Env EnvelopeComponent::getEnv()
+Env EnvelopeComponent::getEnv() const
 {
 	if(handles.size() < 1) return Env(B(0.0, 0.0), B(0.0));
 	if(handles.size() < 2) return Env(B(0.0, 0.0), B(handles.getUnchecked(0)->getValue()));
@@ -1176,7 +1188,7 @@ void EnvelopeComponent::setEnv(Env const& env)
 	loopNode = env.getLoopNode();
 }
 
-float EnvelopeComponent::lookup(const float time)
+float EnvelopeComponent::lookup(const float time) const
 {
 	if(handles.size() < 1)
 	{
@@ -1234,12 +1246,12 @@ void EnvelopeComponent::setMinMaxNumHandles(int min, int max)
 	
 }
 
-double EnvelopeComponent::constrainDomain(double domainToConstrain)
+double EnvelopeComponent::constrainDomain(double domainToConstrain) const
 {
 	return jlimit(domainMin, domainMax, domainToConstrain); 
 }
 
-double EnvelopeComponent::constrainValue(double valueToConstrain)		
+double EnvelopeComponent::constrainValue(double valueToConstrain) const	
 { 
 	return jlimit(valueMin, valueMax, valueToConstrain); 
 }
@@ -1294,7 +1306,7 @@ EnvelopeLegendComponent::~EnvelopeLegendComponent()
 	deleteAllChildren();
 }
 
-EnvelopeComponent* EnvelopeLegendComponent::getEnvelopeComponent()
+EnvelopeComponent* EnvelopeLegendComponent::getEnvelopeComponent() const
 {
 	EnvelopeContainerComponent* parent = dynamic_cast<EnvelopeContainerComponent*> (getParentComponent());
 	
