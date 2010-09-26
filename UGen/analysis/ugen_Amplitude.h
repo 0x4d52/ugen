@@ -58,9 +58,5 @@ protected:
 
 UGenSublcassDeclarationNoDefault(Amplitude, (input), (UGen const& input), COMMON_UGEN_DOCS);
 
-#if defined(UGEN_USER_MODE) && defined(UGEN_SCSTYLE)
-#define Amplitude Amplitude()
-#endif
-
 
 #endif // _UGEN_ugen_Amplitude_H_

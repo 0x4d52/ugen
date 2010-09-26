@@ -74,7 +74,7 @@ class EnvelopeHandleComponent :	public Component
 {
 public:	
 	EnvelopeHandleComponent();
-	EnvelopeComponent* getParentComponent();
+	EnvelopeComponent* getParentComponent() const;
 	
 	void updateTimeAndValue();
 	
@@ -96,9 +96,9 @@ public:
 	void setMousePositionToThisHandle();
 	
 	void resetOffsets() { offsetX = offsetY = 0; }
-	double getTime()	{ return time;	}
-	double getValue()	{ return value; }
-	EnvCurve getCurve()	{ return curve; }
+	double getTime() const	{ return time;	}
+	double getValue() const	{ return value; }
+	EnvCurve getCurve() const	{ return curve; }
 	int getHandleIndex();
 		
 	void setTime(double timeToSet);
@@ -142,10 +142,10 @@ public:
 	
 	void setDomainRange(const double min, const double max);
 	void setDomainRange(const double max) { setDomainRange(0.0, max); }
-	void getDomainRange(double& min, double& max);
+	void getDomainRange(double& min, double& max) const;
 	void setValueRange(const double min, const double max);
 	void setValueRange(const double max) { setValueRange(0.0, max); }
-	void getValueRange(double& min, double& max);
+	void getValueRange(double& min, double& max) const;
 	
 	enum GridMode { 
 		GridLeaveUnchanged = -1,
@@ -155,7 +155,7 @@ public:
 		GridBoth = GridValue | GridDomain 
 	};
 	void setGrid(const GridMode display, const GridMode quantise, const double domain = 0.0, const double value = 0.0);
-	void getGrid(GridMode& display, GridMode& quantise, double& domain, double& value);
+	void getGrid(GridMode& display, GridMode& quantise, double& domain, double& value) const;
 	
 	void paint(Graphics& g);
 	void paintBackground(Graphics& g);
@@ -183,27 +183,32 @@ public:
 	void removeHandle(EnvelopeHandleComponent* thisHandle);
 	void quantiseHandle(EnvelopeHandleComponent* thisHandle);
 	
-	bool isReleaseNode(EnvelopeHandleComponent* thisHandle);
-	bool isLoopNode(EnvelopeHandleComponent* thisHandle);
+	bool isReleaseNode(EnvelopeHandleComponent* thisHandle) const;
+	bool isLoopNode(EnvelopeHandleComponent* thisHandle) const;
 	void setReleaseNode(const int index);
 	void setReleaseNode(EnvelopeHandleComponent* thisHandle);
-	int getReleaseNode();
+	int getReleaseNode() const;
 	void setLoopNode(const int index);
 	void setLoopNode(EnvelopeHandleComponent* thisHandle);
-	int getLoopNode();
+	int getLoopNode() const;
 	
-	double convertPixelsToDomain(int pixelsX, int pixelsXMax = -1);
-	double convertPixelsToValue(int pixelsY, int pixelsYMax = -1);
-	double convertDomainToPixels(double domainValue);
-	double convertValueToPixels(double value);
+	void setAllowCurveEditing(const bool flag);
+	bool getAllowCurveEditing() const;
+	void setAllowNodeEditing(const bool flag);
+	bool getAllowNodeEditing() const;
 	
-	Env getEnv();
+	double convertPixelsToDomain(int pixelsX, int pixelsXMax = -1) const;
+	double convertPixelsToValue(int pixelsY, int pixelsYMax = -1) const;
+	double convertDomainToPixels(double domainValue) const;
+	double convertValueToPixels(double value) const;
+	
+	Env getEnv() const;
 	void setEnv(Env const& env);
-	float lookup(const float time);
+	float lookup(const float time) const;
 	void setMinMaxNumHandles(int min, int max);
 	
-	double constrainDomain(double domainToConstrain);
-	double constrainValue(double valueToConstrain);
+	double constrainDomain(double domainToConstrain) const;
+	double constrainValue(double valueToConstrain) const;
 	
 	double quantiseDomain(double value);
 	double quantiseValue(double value);
@@ -228,6 +233,9 @@ private:
 	int curvePoints;
 	int releaseNode, loopNode;
 	
+	bool allowCurveEditing:1;
+	bool allowNodeEditing:1;
+	
 	RGBAColour colours[NumEnvColours];
 };
 
@@ -237,7 +245,7 @@ public:
 	EnvelopeLegendComponent(Text const& defaultText = Text::empty);
 	~EnvelopeLegendComponent();
 	
-	EnvelopeComponent* getEnvelopeComponent();
+	EnvelopeComponent* getEnvelopeComponent() const;
 	
 	void paint(Graphics& g);
 	void resized();
@@ -256,15 +264,15 @@ public:
 	~EnvelopeContainerComponent();
 	void resized();
 	
-	EnvelopeComponent* getEnvelopeComponent()		{ return envelope; }
-	EnvelopeLegendComponent* getLegendComponent()	{ return legend;   }
+	EnvelopeComponent* getEnvelopeComponent() const		{ return envelope; }
+	EnvelopeLegendComponent* getLegendComponent() const	{ return legend;   }
 	
 	void addListener (EnvelopeComponentListener* const listener) { envelope->addListener(listener); }
     void removeListener (EnvelopeComponentListener* const listener) { envelope->removeListener(listener); }
 	
-	Env getEnv() { return getEnvelopeComponent()->getEnv(); }
+	Env getEnv() const { return getEnvelopeComponent()->getEnv(); }
 	void setEnv(Env const& env) { return getEnvelopeComponent()->setEnv(env); }
-	float lookup(const float time) { return getEnvelopeComponent()->lookup(time); }
+	float lookup(const float time) const { return getEnvelopeComponent()->lookup(time); }
 	
 	void setEnvColour(const EnvelopeComponent::EnvColours which, RGBAColour const& colour) throw()
 	{
@@ -278,10 +286,10 @@ public:
 	
 	void setDomainRange(const double min, const double max)		{ envelope->setDomainRange(min, max);	}
 	void setDomainRange(const double max)						{ setDomainRange(0.0, max);				}
-	void getDomainRange(double& min, double& max)				{ envelope->getDomainRange(min, max);	}
+	void getDomainRange(double& min, double& max) const			{ envelope->getDomainRange(min, max);	}
 	void setValueRange(const double min, const double max)		{ envelope->setValueRange(min, max);	} 
 	void setValueRange(const double max)						{ setValueRange(0.0, max);				}
-	void getValueRange(double& min, double& max)				{ envelope->getValueRange(min, max);	}
+	void getValueRange(double& min, double& max) const			{ envelope->getValueRange(min, max);	}
 	
 	void setGrid(const EnvelopeComponent::GridMode display, 
 				 const EnvelopeComponent::GridMode quantise, 
@@ -294,10 +302,15 @@ public:
 	void getGrid(EnvelopeComponent::GridMode& display, 
 				 EnvelopeComponent::GridMode& quantise,
 				 double& domain, 
-				 double& value)
+				 double& value) const
 	{
 		envelope->getGrid(display, quantise, domain, value);
 	}
+	
+	void setAllowCurveEditing(const bool flag)	{ envelope->setAllowCurveEditing(flag);		}
+	bool getAllowCurveEditing() const			{ return envelope->getAllowCurveEditing();	}
+	void setAllowNodeEditing(const bool flag)	{ envelope->setAllowNodeEditing(flag);		}
+	bool getAllowNodeEditing() const			{ return envelope->getAllowNodeEditing();	}
 
 	
 private:
