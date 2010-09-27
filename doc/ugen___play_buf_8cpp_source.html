@@ -30,7 +30,7 @@
 <h1>buffers/ugen_PlayBuf.cpp</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___play_buf_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_PlayBuf.cpp 155 2010-09-19 11:32:33Z 0x4d52 $</span>
+<a href="ugen___play_buf_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_PlayBuf.cpp 164 2010-09-25 12:29:55Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/buffers/ugen_PlayBuf.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -169,12 +169,12 @@
 <a name="l00137"></a>00137  }
 <a name="l00138"></a>00138 }
 <a name="l00139"></a>00139 
-<a name="l00140"></a><a class="code" href="class_play_buf_u_gen_internal.html#a966b2eda6b8999cdfd031e5abdd9236b">00140</a> <span class="keywordtype">double</span> <a class="code" href="class_play_buf_u_gen_internal.html#a966b2eda6b8999cdfd031e5abdd9236b">PlayBufUGenInternal::getDuration</a>() throw()
+<a name="l00140"></a><a class="code" href="class_play_buf_u_gen_internal.html#a9a88f28474e5141b1cd7199784b30d84">00140</a> <span class="keywordtype">double</span> <a class="code" href="class_play_buf_u_gen_internal.html#a9a88f28474e5141b1cd7199784b30d84">PlayBufUGenInternal::getDuration</a>() <span class="keyword">const</span> throw()
 <a name="l00141"></a>00141 {
 <a name="l00142"></a>00142  <span class="keywordflow">return</span> <a class="code" href="class_play_buf_u_gen_internal.html#ac03af12c3b75eb96838f094c1a481d7c">buffer_</a>.<a class="code" href="class_buffer.html#a0db2e98450da72f708c98136560c4e56">duration</a>();
 <a name="l00143"></a>00143 }
 <a name="l00144"></a>00144 
-<a name="l00145"></a><a class="code" href="class_play_buf_u_gen_internal.html#a55984b6127a6724894337f660f2db2ac">00145</a> <span class="keywordtype">double</span> <a class="code" href="class_play_buf_u_gen_internal.html#a55984b6127a6724894337f660f2db2ac">PlayBufUGenInternal::getPosition</a>() throw()
+<a name="l00145"></a><a class="code" href="class_play_buf_u_gen_internal.html#a2dadc2daf3214f2cbd700b92eded4871">00145</a> <span class="keywordtype">double</span> <a class="code" href="class_play_buf_u_gen_internal.html#a2dadc2daf3214f2cbd700b92eded4871">PlayBufUGenInternal::getPosition</a>() <span class="keyword">const</span> throw()
 <a name="l00146"></a>00146 {
 <a name="l00147"></a>00147  <span class="keywordflow">return</span> <a class="code" href="class_play_buf_u_gen_internal.html#a2bfc802c4bfcb30c94d07fbd13c45099">bufferPos</a> * <a class="code" href="class_u_gen.html#a2e6ab64a2e5ea263113ab4993603537e" title="Get the recirprocal of the current sample rate.">UGen::getReciprocalSampleRate</a>();
 <a name="l00148"></a>00148 }
@@ -258,7 +258,7 @@
 <a name="l00226"></a>00226 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:04 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 27 2010 07:50:26 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

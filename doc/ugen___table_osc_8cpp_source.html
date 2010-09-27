@@ -30,7 +30,7 @@
 <h1>oscillators/wavetable/ugen_TableOsc.cpp</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___table_osc_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_TableOsc.cpp 90 2010-07-14 21:03:59Z 0x4d52 $</span>
+<a href="ugen___table_osc_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_TableOsc.cpp 164 2010-09-25 12:29:55Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/oscillators/wavetable/ugen_TableOsc.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -122,12 +122,12 @@
 <a name="l00090"></a>00090  <a class="code" href="ugen___standard_header_8h.html#ac1a39f55409398450d8e54bf8200a332" title="Copys the value from a local variable back to its member variable.">LOCAL_COPY</a>(currentPhase);
 <a name="l00091"></a>00091 }
 <a name="l00092"></a>00092 
-<a name="l00093"></a><a class="code" href="class_table_osc_u_gen_internal.html#a3bcd9ec75423b8559055673868b45f7a">00093</a> <span class="keywordtype">double</span> <a class="code" href="class_table_osc_u_gen_internal.html#a3bcd9ec75423b8559055673868b45f7a" title="Get the maximum duration of the seekable.">TableOscUGenInternal::getDuration</a>() throw()
+<a name="l00093"></a><a class="code" href="class_table_osc_u_gen_internal.html#a58803a0c4d2e9a9e5d7a1c05517734f4">00093</a> <span class="keywordtype">double</span> <a class="code" href="class_table_osc_u_gen_internal.html#a58803a0c4d2e9a9e5d7a1c05517734f4" title="Get the maximum duration of the seekable.">TableOscUGenInternal::getDuration</a>() <span class="keyword">const</span> throw()
 <a name="l00094"></a>00094 {
 <a name="l00095"></a>00095  <span class="keywordflow">return</span> 1.0;
 <a name="l00096"></a>00096 }
 <a name="l00097"></a>00097 
-<a name="l00098"></a><a class="code" href="class_table_osc_u_gen_internal.html#a9d5d312cb5030ac4672b6da221c331cd">00098</a> <span class="keywordtype">double</span> <a class="code" href="class_table_osc_u_gen_internal.html#a9d5d312cb5030ac4672b6da221c331cd" title="Get the current position of the seekable.">TableOscUGenInternal::getPosition</a>() throw()
+<a name="l00098"></a><a class="code" href="class_table_osc_u_gen_internal.html#aee9e65082e7e6c1d0a08121470925e5d">00098</a> <span class="keywordtype">double</span> <a class="code" href="class_table_osc_u_gen_internal.html#aee9e65082e7e6c1d0a08121470925e5d" title="Get the current position of the seekable.">TableOscUGenInternal::getPosition</a>() <span class="keyword">const</span> throw()
 <a name="l00099"></a>00099 {
 <a name="l00100"></a>00100  <span class="keywordflow">return</span> (<span class="keywordtype">double</span>)<a class="code" href="class_table_osc_u_gen_internal.html#a84f11af8afbf83a3713ba88e0e7f71df">currentPhase</a> / (double)<a class="code" href="class_table_osc_u_gen_internal.html#a94917d688a097ca9db2a8a15aa2040e0">wavetableSize</a>;
 <a name="l00101"></a>00101 }
@@ -254,7 +254,7 @@
 <a name="l00222"></a>00222 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:07 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 27 2010 07:50:29 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

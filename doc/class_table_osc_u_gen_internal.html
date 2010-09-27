@@ -61,10 +61,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_table_osc_u_gen_internal.html#a7c555c1233f0100cfebf76848d47bcd7">getChannel</a> (const int channel)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_table_osc_u_gen_internal.html#a361806f78c766ce5e89493563ad71100">getKr</a> ()  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_table_osc_u_gen_internal.html#aa68b8536bb5df1ed2f6f555333b277a4">processBlock</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_table_osc_u_gen_internal.html#a3bcd9ec75423b8559055673868b45f7a">getDuration</a> ()  throw ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the maximum duration of the seekable.  <a href="#a3bcd9ec75423b8559055673868b45f7a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_table_osc_u_gen_internal.html#a9d5d312cb5030ac4672b6da221c331cd">getPosition</a> ()  throw ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the current position of the seekable.  <a href="#a9d5d312cb5030ac4672b6da221c331cd"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_table_osc_u_gen_internal.html#a58803a0c4d2e9a9e5d7a1c05517734f4">getDuration</a> () const   throw ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the maximum duration of the seekable.  <a href="#a58803a0c4d2e9a9e5d7a1c05517734f4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_table_osc_u_gen_internal.html#aee9e65082e7e6c1d0a08121470925e5d">getPosition</a> () const   throw ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the current position of the seekable.  <a href="#aee9e65082e7e6c1d0a08121470925e5d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_table_osc_u_gen_internal.html#a7e55e37132e0ae8fce182524010f96da">setPosition</a> (const double newPosition)  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set the current position of the seekable.  <a href="#a7e55e37132e0ae8fce182524010f96da"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
@@ -163,7 +163,7 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a3bcd9ec75423b8559055673868b45f7a"></a><!-- doxytag: member="TableOscUGenInternal::getDuration" ref="a3bcd9ec75423b8559055673868b45f7a" args="()" -->
+<a class="anchor" id="a58803a0c4d2e9a9e5d7a1c05517734f4"></a><!-- doxytag: member="TableOscUGenInternal::getDuration" ref="a58803a0c4d2e9a9e5d7a1c05517734f4" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -172,7 +172,7 @@ Protected Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td>  throw ()<code> [virtual]</code></td>
+          <td> const  throw ()<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -181,7 +181,7 @@ Protected Attributes</h2></td></tr>
 <p>Get the maximum duration of the seekable. </p>
 <p>The units will be dependent on the <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> in question. For longer sounds as sound files it is likely to be in seconds. For wavetables it will always be 1.0 </p>
 
-<p>Implements <a class="el" href="class_seekable.html#a196cb3e4223eaf45302449926e8fd0f7">Seekable</a>.</p>
+<p>Implements <a class="el" href="class_seekable.html#a782bca512e104691c5d976f3dc69e4f9">Seekable</a>.</p>
 
 <p>Definition at line <a class="el" href="ugen___table_osc_8cpp_source.html#l00093">93</a> of file <a class="el" href="ugen___table_osc_8cpp_source.html">ugen_TableOsc.cpp</a>.</p>
 
@@ -210,7 +210,7 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a9d5d312cb5030ac4672b6da221c331cd"></a><!-- doxytag: member="TableOscUGenInternal::getPosition" ref="a9d5d312cb5030ac4672b6da221c331cd" args="()" -->
+<a class="anchor" id="aee9e65082e7e6c1d0a08121470925e5d"></a><!-- doxytag: member="TableOscUGenInternal::getPosition" ref="aee9e65082e7e6c1d0a08121470925e5d" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -219,7 +219,7 @@ Protected Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td>  throw ()<code> [virtual]</code></td>
+          <td> const  throw ()<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -228,7 +228,7 @@ Protected Attributes</h2></td></tr>
 <p>Get the current position of the seekable. </p>
 <p>The units will be dependent on the <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> in question. For longer sounds as sound files it is likely to be in seconds. For wavetables it will 0...1 </p>
 
-<p>Implements <a class="el" href="class_seekable.html#a6ea74978de87fb87fb506f2877158d11">Seekable</a>.</p>
+<p>Implements <a class="el" href="class_seekable.html#ada4236b0f852cd507c37b71db7ef5ebe">Seekable</a>.</p>
 
 <p>Definition at line <a class="el" href="ugen___table_osc_8cpp_source.html#l00098">98</a> of file <a class="el" href="ugen___table_osc_8cpp_source.html">ugen_TableOsc.cpp</a>.</p>
 
@@ -398,7 +398,7 @@ Protected Attributes</h2></td></tr>
 <li>oscillators/wavetable/<a class="el" href="ugen___table_osc_8cpp_source.html">ugen_TableOsc.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:14 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 27 2010 07:50:36 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

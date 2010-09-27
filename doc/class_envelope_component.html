@@ -39,6 +39,9 @@
 </div>
 <div class="contents">
 <!-- doxytag: class="EnvelopeComponent" -->
+<p>For displaying and editing a breakpoint envelope.  
+<a href="#_details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>&gt;</code></p>
 
 <p><a href="class_envelope_component-members.html">List of all members.</a></p>
@@ -79,12 +82,12 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a8dbe9d325fdd24d0dc612e528a3bbde2">~EnvelopeComponent</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a50f3993d92e504966d6b28f91bacbd71">setDomainRange</a> (const double min, const double max)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#af6d22d5671adf320385cf87be200f6e1">setDomainRange</a> (const double max)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a1a804d9890ecd714fa907e3be94824b5">getDomainRange</a> (double &amp;min, double &amp;max)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a23d836581d70fea092a33d0f64f18a41">getDomainRange</a> (double &amp;min, double &amp;max) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#aac34f05006c73edfe1d02455b940ba81">setValueRange</a> (const double min, const double max)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a3fa478992f127dd2f6e4da0a96b4d8f5">setValueRange</a> (const double max)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a399e0f79a542f8aff79a7fb4ee309928">getValueRange</a> (double &amp;min, double &amp;max)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#ad6cf227f1fd2ed1fd4bc999b88d10920">getValueRange</a> (double &amp;min, double &amp;max) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a35bc3dd56fca1607b95f96e4d82d72d2">setGrid</a> (const <a class="el" href="class_envelope_component.html#a6299c9803d988093aafc52b00bf078a1">GridMode</a> display, const <a class="el" href="class_envelope_component.html#a6299c9803d988093aafc52b00bf078a1">GridMode</a> quantise, const double domain=0.0, const double value=0.0)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a863054285e26c7f7c04cc2cf2a5af50f">getGrid</a> (<a class="el" href="class_envelope_component.html#a6299c9803d988093aafc52b00bf078a1">GridMode</a> &amp;display, <a class="el" href="class_envelope_component.html#a6299c9803d988093aafc52b00bf078a1">GridMode</a> &amp;quantise, double &amp;domain, double &amp;value)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#aa567a5effcf163e6dc7aea7413fc919a">getGrid</a> (<a class="el" href="class_envelope_component.html#a6299c9803d988093aafc52b00bf078a1">GridMode</a> &amp;display, <a class="el" href="class_envelope_component.html#a6299c9803d988093aafc52b00bf078a1">GridMode</a> &amp;quantise, double &amp;domain, double &amp;value) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a35f296e00cd5b8cb54c11a00ab25636a">paint</a> (Graphics &amp;g)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a6f40619aaca1ba5df310b72eeba50e01">paintBackground</a> (Graphics &amp;g)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a7cce2db9f9328dd84d47f4b47b5289c3">resized</a> ()</td></tr>
@@ -98,34 +101,36 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a94ee3f132453bdac89fa51ae0f74de9d">sendChangeMessage</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#ad8398a24cb107f94536278315d7cf669">setLegendText</a> (<a class="el" href="class_text.html">Text</a> const &amp;legendText)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a8d7fe71b35d6e239985310375bd59af6">setLegendTextToDefault</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#ac0d421669b3fb8e806cb8c6dc36d0987">getHandleIndex</a> (<a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *handle)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#aff52975a5dc2ceeb267e4b808668fcd1">getHandle</a> (const int index)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a317949913ec48442cdf0361093261ba9">getPreviousHandle</a> (<a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *thisHandle)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a31c7373fa3ed6c53ddebb91a2fc43aef">getNextHandle</a> (<a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *thisHandle)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a1d765e6d50012f893c113d7b2f6b5426">getHandleIndex</a> (<a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *handle) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#acdf0214f001f51f671c4a5334f97a0cb">getHandle</a> (const int index) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#ad9f7c21969b0f0129e3893a24b8cc371">getPreviousHandle</a> (const <a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *thisHandle) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a1636b7b12beb19f532c361cb3db676c7">getNextHandle</a> (const <a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *thisHandle) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#aea1ed4c0795b23d5b1bc992ef2855760">addHandle</a> (int newX, int newY, <a class="el" href="class_env_curve.html">EnvCurve</a> curve)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a4444e53cda91ab5d2e681ee7ce6f0dd3">addHandle</a> (double newDomain, double newValue, <a class="el" href="class_env_curve.html">EnvCurve</a> curve)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a6ad32f0f8503a047890230c50dfc4a87">removeHandle</a> (<a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *thisHandle)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#ab288ebcc28363842fae8ed061114f20e">quantiseHandle</a> (<a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *thisHandle)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a6d4a44a43bd78fcd45ce10cd1868fe46">isReleaseNode</a> (<a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *thisHandle)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a5579b1634b5bb2ade0f3ee566ac10086">isLoopNode</a> (<a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *thisHandle)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a5362e76577e423de678f86181c86a49b">isReleaseNode</a> (<a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *thisHandle) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a29268fb624d2fa5e3720e2152fb64208">isLoopNode</a> (<a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *thisHandle) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a64220c6f6da8ee08e726af440a1cfa86">setReleaseNode</a> (const int index)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a4eba938523fcef0ddd18624a42cc341b">setReleaseNode</a> (<a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *thisHandle)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a94cf025a5d186f61f6cdcde9dfe69b03">getReleaseNode</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#aefda087bd6a9629f20e02ed488cd5f3a">getReleaseNode</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#ac578a9f9040a300c5acb33707bf848ee">setLoopNode</a> (const int index)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#af1d62a04285f157628c5b1f3c65b43fd">setLoopNode</a> (<a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *thisHandle)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a315c53f0a52a1229494d99cb596529c4">getLoopNode</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#aa8e8c19b8f2b1f461980493e10ebe07a">convertPixelsToDomain</a> (int pixelsX, int pixelsXMax=-1)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#aef9f79fdb3f117cbf9b7be8c19fec18c">convertPixelsToValue</a> (int pixelsY, int pixelsYMax=-1)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#aeb5eed3e3763500d00b4b130566ab240">convertDomainToPixels</a> (double domainValue)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a737b7037d2bd918f0621a99f6c0906c9">convertValueToPixels</a> (double value)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_env.html">Env</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#ab1a74fd96f12e5ef2ffe2b7c2e2f65e1">getEnv</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#ab0f62e39221faf9d6bcfb2246d400eb3">getLoopNode</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a6242d05fea1f1509f7ef8f748f16ea4e">setAllowCurveEditing</a> (const bool flag)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a85ab06954773b893c88dbc95dfccb555">getAllowCurveEditing</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a86b7ec17aedd3890edf42c6f0f7ab13e">setAllowNodeEditing</a> (const bool flag)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a9322c63771533ecd3dac035250421c7f">getAllowNodeEditing</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a306498b8cbbb902bd5371e1a5897f9bc">convertPixelsToDomain</a> (int pixelsX, int pixelsXMax=-1) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#abac70e51b6beefeb8000519877a65cf5">convertPixelsToValue</a> (int pixelsY, int pixelsYMax=-1) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a1dd0cefbc70ff5383e2778fb0808209d">convertDomainToPixels</a> (double domainValue) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#ab81265f397218d5ee5e7ceaae0caa60d">convertValueToPixels</a> (double value) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_env.html">Env</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a4d881e955ca7605472b9d15e1dbd798a">getEnv</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a6873a87a1f3721002b15993d10f94802">setEnv</a> (<a class="el" href="class_env.html">Env</a> const &amp;env)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a098e103ef37606bf97a366c71361d3c9">lookup</a> (const float time)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a1c91a2d6fb5f454c62af0af4ec25db4b">lookup</a> (const float time) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#aed29d31328b74b4c00ff3684d0974ed4">setMinMaxNumHandles</a> (int min, int max)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#ad158ba0f6afb7d14d11f2bc8d14816ff">constrainDomain</a> (double domainToConstrain)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a8ba23f2f2c558a7bc67f3d5596c9efbf">constrainValue</a> (double valueToConstrain)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#ae1a07159e24eb3fb613397a9e39c0622">quantiseDomain</a> (double value)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a5a4d533eff0daca30c0b118c64159a50">quantiseValue</a> (double value)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a79cd682a2828bff8f4ed8a5626b3f145">constrainDomain</a> (double domainToConstrain) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a289a34c1b75005b8b6f6fc8da8a2e4d8">constrainValue</a> (double valueToConstrain) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a9d6ae4ac84da51e9865a78fb19448dc7">setEnvColour</a> (const <a class="el" href="class_envelope_component.html#a9010bb05d3431c1e75a653ad1bad3bd2">EnvColours</a> which, <a class="el" href="class_r_g_b_a_colour.html">RGBAColour</a> const &amp;colour)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_r_g_b_a_colour.html">RGBAColour</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#ae02f0380f545bda66d41ecb6dbe968f9">getEnvColour</a> (const <a class="el" href="class_envelope_component.html#a9010bb05d3431c1e75a653ad1bad3bd2">EnvColours</a> which) const   throw ()</td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
@@ -149,11 +154,16 @@ Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a794c896bfa367079dc24b6c7e12022d4">curvePoints</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a333fb45b003ec027a57fcecad9084641">releaseNode</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#aa569722117850b8296bce2b68b670bcb">loopNode</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#aca84853b11d9166a3e4f840890ba8821">allowCurveEditing</a>:1</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a1484b0236cbaee07b2f3bec524d1b384">allowNodeEditing</a>:1</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_r_g_b_a_colour.html">RGBAColour</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_component.html#a7d8546037925c08a318e2b2b57c7dc2a">colours</a> [NumEnvColours]</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>For displaying and editing a breakpoint envelope. </p>
+<p>EnvUGens </p>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_env.html" title="A specification for a segmented envelope.">Env</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00137">137</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00140">140</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
 <hr/><h2>Member Enumeration Documentation</h2>
 <a class="anchor" id="a9010bb05d3431c1e75a653ad1bad3bd2"></a><!-- doxytag: member="EnvelopeComponent::EnvColours" ref="a9010bb05d3431c1e75a653ad1bad3bd2" args="" -->
 <div class="memitem">
@@ -190,7 +200,7 @@ Private Attributes</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00211">211</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00219">219</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
 
 </div>
 </div>
@@ -219,7 +229,7 @@ Private Attributes</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00150">150</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00153">153</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
 
 </div>
 </div>
@@ -244,7 +254,7 @@ Private Attributes</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00215">215</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00223">223</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
 
 </div>
 </div>
@@ -366,11 +376,11 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00262">EnvelopeContainerComponent::addListener()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00277">EnvelopeContainerComponent::addListener()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ad158ba0f6afb7d14d11f2bc8d14816ff"></a><!-- doxytag: member="EnvelopeComponent::constrainDomain" ref="ad158ba0f6afb7d14d11f2bc8d14816ff" args="(double domainToConstrain)" -->
+<a class="anchor" id="a79cd682a2828bff8f4ed8a5626b3f145"></a><!-- doxytag: member="EnvelopeComponent::constrainDomain" ref="a79cd682a2828bff8f4ed8a5626b3f145" args="(double domainToConstrain) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -380,7 +390,7 @@ Private Attributes</h2></td></tr>
           <td class="paramtype">double&nbsp;</td>
           <td class="paramname"> <em>domainToConstrain</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
@@ -388,7 +398,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a8ba23f2f2c558a7bc67f3d5596c9efbf"></a><!-- doxytag: member="EnvelopeComponent::constrainValue" ref="a8ba23f2f2c558a7bc67f3d5596c9efbf" args="(double valueToConstrain)" -->
+<a class="anchor" id="a289a34c1b75005b8b6f6fc8da8a2e4d8"></a><!-- doxytag: member="EnvelopeComponent::constrainValue" ref="a289a34c1b75005b8b6f6fc8da8a2e4d8" args="(double valueToConstrain) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -398,7 +408,7 @@ Private Attributes</h2></td></tr>
           <td class="paramtype">double&nbsp;</td>
           <td class="paramname"> <em>valueToConstrain</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
@@ -406,7 +416,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aeb5eed3e3763500d00b4b130566ab240"></a><!-- doxytag: member="EnvelopeComponent::convertDomainToPixels" ref="aeb5eed3e3763500d00b4b130566ab240" args="(double domainValue)" -->
+<a class="anchor" id="a1dd0cefbc70ff5383e2778fb0808209d"></a><!-- doxytag: member="EnvelopeComponent::convertDomainToPixels" ref="a1dd0cefbc70ff5383e2778fb0808209d" args="(double domainValue) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -416,7 +426,7 @@ Private Attributes</h2></td></tr>
           <td class="paramtype">double&nbsp;</td>
           <td class="paramname"> <em>domainValue</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
@@ -424,7 +434,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aa8e8c19b8f2b1f461980493e10ebe07a"></a><!-- doxytag: member="EnvelopeComponent::convertPixelsToDomain" ref="aa8e8c19b8f2b1f461980493e10ebe07a" args="(int pixelsX, int pixelsXMax=&#45;1)" -->
+<a class="anchor" id="a306498b8cbbb902bd5371e1a5897f9bc"></a><!-- doxytag: member="EnvelopeComponent::convertPixelsToDomain" ref="a306498b8cbbb902bd5371e1a5897f9bc" args="(int pixelsX, int pixelsXMax=&#45;1) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -443,7 +453,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td></td>
+          <td></td><td></td><td> const</td>
         </tr>
       </table>
 </div>
@@ -451,7 +461,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aef9f79fdb3f117cbf9b7be8c19fec18c"></a><!-- doxytag: member="EnvelopeComponent::convertPixelsToValue" ref="aef9f79fdb3f117cbf9b7be8c19fec18c" args="(int pixelsY, int pixelsYMax=&#45;1)" -->
+<a class="anchor" id="abac70e51b6beefeb8000519877a65cf5"></a><!-- doxytag: member="EnvelopeComponent::convertPixelsToValue" ref="abac70e51b6beefeb8000519877a65cf5" args="(int pixelsY, int pixelsYMax=&#45;1) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -470,7 +480,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td></td>
+          <td></td><td></td><td> const</td>
         </tr>
       </table>
 </div>
@@ -478,7 +488,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a737b7037d2bd918f0621a99f6c0906c9"></a><!-- doxytag: member="EnvelopeComponent::convertValueToPixels" ref="a737b7037d2bd918f0621a99f6c0906c9" args="(double value)" -->
+<a class="anchor" id="ab81265f397218d5ee5e7ceaae0caa60d"></a><!-- doxytag: member="EnvelopeComponent::convertValueToPixels" ref="ab81265f397218d5ee5e7ceaae0caa60d" args="(double value) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -488,7 +498,7 @@ Private Attributes</h2></td></tr>
           <td class="paramtype">double&nbsp;</td>
           <td class="paramname"> <em>value</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
@@ -496,7 +506,45 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a1a804d9890ecd714fa907e3be94824b5"></a><!-- doxytag: member="EnvelopeComponent::getDomainRange" ref="a1a804d9890ecd714fa907e3be94824b5" args="(double &amp;min, double &amp;max)" -->
+<a class="anchor" id="a85ab06954773b893c88dbc95dfccb555"></a><!-- doxytag: member="EnvelopeComponent::getAllowCurveEditing" ref="a85ab06954773b893c88dbc95dfccb555" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool EnvelopeComponent::getAllowCurveEditing </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00318">EnvelopeContainerComponent::getAllowCurveEditing()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9322c63771533ecd3dac035250421c7f"></a><!-- doxytag: member="EnvelopeComponent::getAllowNodeEditing" ref="a9322c63771533ecd3dac035250421c7f" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool EnvelopeComponent::getAllowNodeEditing </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00320">EnvelopeContainerComponent::getAllowNodeEditing()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a23d836581d70fea092a33d0f64f18a41"></a><!-- doxytag: member="EnvelopeComponent::getDomainRange" ref="a23d836581d70fea092a33d0f64f18a41" args="(double &amp;min, double &amp;max) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -515,17 +563,17 @@ Private Attributes</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td></td>
+          <td></td><td></td><td> const</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00281">EnvelopeContainerComponent::getDomainRange()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00296">EnvelopeContainerComponent::getDomainRange()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ab1a74fd96f12e5ef2ffe2b7c2e2f65e1"></a><!-- doxytag: member="EnvelopeComponent::getEnv" ref="ab1a74fd96f12e5ef2ffe2b7c2e2f65e1" args="()" -->
+<a class="anchor" id="a4d881e955ca7605472b9d15e1dbd798a"></a><!-- doxytag: member="EnvelopeComponent::getEnv" ref="a4d881e955ca7605472b9d15e1dbd798a" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -534,13 +582,13 @@ Private Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00265">EnvelopeContainerComponent::getEnv()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00280">EnvelopeContainerComponent::getEnv()</a>.</p>
 
 </div>
 </div>
@@ -560,11 +608,11 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00274">EnvelopeContainerComponent::getEnvColour()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00289">EnvelopeContainerComponent::getEnvColour()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a863054285e26c7f7c04cc2cf2a5af50f"></a><!-- doxytag: member="EnvelopeComponent::getGrid" ref="a863054285e26c7f7c04cc2cf2a5af50f" args="(GridMode &amp;display, GridMode &amp;quantise, double &amp;domain, double &amp;value)" -->
+<a class="anchor" id="aa567a5effcf163e6dc7aea7413fc919a"></a><!-- doxytag: member="EnvelopeComponent::getGrid" ref="aa567a5effcf163e6dc7aea7413fc919a" args="(GridMode &amp;display, GridMode &amp;quantise, double &amp;domain, double &amp;value) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -595,17 +643,17 @@ Private Attributes</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td></td>
+          <td></td><td></td><td> const</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00294">EnvelopeContainerComponent::getGrid()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00309">EnvelopeContainerComponent::getGrid()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aff52975a5dc2ceeb267e4b808668fcd1"></a><!-- doxytag: member="EnvelopeComponent::getHandle" ref="aff52975a5dc2ceeb267e4b808668fcd1" args="(const int index)" -->
+<a class="anchor" id="acdf0214f001f51f671c4a5334f97a0cb"></a><!-- doxytag: member="EnvelopeComponent::getHandle" ref="acdf0214f001f51f671c4a5334f97a0cb" args="(const int index) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -615,7 +663,7 @@ Private Attributes</h2></td></tr>
           <td class="paramtype">const int&nbsp;</td>
           <td class="paramname"> <em>index</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
@@ -623,7 +671,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac0d421669b3fb8e806cb8c6dc36d0987"></a><!-- doxytag: member="EnvelopeComponent::getHandleIndex" ref="ac0d421669b3fb8e806cb8c6dc36d0987" args="(EnvelopeHandleComponent *handle)" -->
+<a class="anchor" id="a1d765e6d50012f893c113d7b2f6b5426"></a><!-- doxytag: member="EnvelopeComponent::getHandleIndex" ref="a1d765e6d50012f893c113d7b2f6b5426" args="(EnvelopeHandleComponent *handle) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -633,7 +681,7 @@ Private Attributes</h2></td></tr>
           <td class="paramtype"><a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *&nbsp;</td>
           <td class="paramname"> <em>handle</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
@@ -641,7 +689,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a315c53f0a52a1229494d99cb596529c4"></a><!-- doxytag: member="EnvelopeComponent::getLoopNode" ref="a315c53f0a52a1229494d99cb596529c4" args="()" -->
+<a class="anchor" id="ab0f62e39221faf9d6bcfb2246d400eb3"></a><!-- doxytag: member="EnvelopeComponent::getLoopNode" ref="ab0f62e39221faf9d6bcfb2246d400eb3" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -650,7 +698,7 @@ Private Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
@@ -658,17 +706,17 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a31c7373fa3ed6c53ddebb91a2fc43aef"></a><!-- doxytag: member="EnvelopeComponent::getNextHandle" ref="a31c7373fa3ed6c53ddebb91a2fc43aef" args="(EnvelopeHandleComponent *thisHandle)" -->
+<a class="anchor" id="a1636b7b12beb19f532c361cb3db676c7"></a><!-- doxytag: member="EnvelopeComponent::getNextHandle" ref="a1636b7b12beb19f532c361cb3db676c7" args="(const EnvelopeHandleComponent *thisHandle) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a>* EnvelopeComponent::getNextHandle </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *&nbsp;</td>
           <td class="paramname"> <em>thisHandle</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
@@ -676,17 +724,17 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a317949913ec48442cdf0361093261ba9"></a><!-- doxytag: member="EnvelopeComponent::getPreviousHandle" ref="a317949913ec48442cdf0361093261ba9" args="(EnvelopeHandleComponent *thisHandle)" -->
+<a class="anchor" id="ad9f7c21969b0f0129e3893a24b8cc371"></a><!-- doxytag: member="EnvelopeComponent::getPreviousHandle" ref="ad9f7c21969b0f0129e3893a24b8cc371" args="(const EnvelopeHandleComponent *thisHandle) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a>* EnvelopeComponent::getPreviousHandle </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *&nbsp;</td>
           <td class="paramname"> <em>thisHandle</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
@@ -694,7 +742,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a94cf025a5d186f61f6cdcde9dfe69b03"></a><!-- doxytag: member="EnvelopeComponent::getReleaseNode" ref="a94cf025a5d186f61f6cdcde9dfe69b03" args="()" -->
+<a class="anchor" id="aefda087bd6a9629f20e02ed488cd5f3a"></a><!-- doxytag: member="EnvelopeComponent::getReleaseNode" ref="aefda087bd6a9629f20e02ed488cd5f3a" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -703,7 +751,7 @@ Private Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
@@ -711,7 +759,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a399e0f79a542f8aff79a7fb4ee309928"></a><!-- doxytag: member="EnvelopeComponent::getValueRange" ref="a399e0f79a542f8aff79a7fb4ee309928" args="(double &amp;min, double &amp;max)" -->
+<a class="anchor" id="ad6cf227f1fd2ed1fd4bc999b88d10920"></a><!-- doxytag: member="EnvelopeComponent::getValueRange" ref="ad6cf227f1fd2ed1fd4bc999b88d10920" args="(double &amp;min, double &amp;max) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -730,17 +778,17 @@ Private Attributes</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td></td>
+          <td></td><td></td><td> const</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00284">EnvelopeContainerComponent::getValueRange()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00299">EnvelopeContainerComponent::getValueRange()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a5579b1634b5bb2ade0f3ee566ac10086"></a><!-- doxytag: member="EnvelopeComponent::isLoopNode" ref="a5579b1634b5bb2ade0f3ee566ac10086" args="(EnvelopeHandleComponent *thisHandle)" -->
+<a class="anchor" id="a29268fb624d2fa5e3720e2152fb64208"></a><!-- doxytag: member="EnvelopeComponent::isLoopNode" ref="a29268fb624d2fa5e3720e2152fb64208" args="(EnvelopeHandleComponent *thisHandle) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -750,7 +798,7 @@ Private Attributes</h2></td></tr>
           <td class="paramtype"><a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *&nbsp;</td>
           <td class="paramname"> <em>thisHandle</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
@@ -758,7 +806,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a6d4a44a43bd78fcd45ce10cd1868fe46"></a><!-- doxytag: member="EnvelopeComponent::isReleaseNode" ref="a6d4a44a43bd78fcd45ce10cd1868fe46" args="(EnvelopeHandleComponent *thisHandle)" -->
+<a class="anchor" id="a5362e76577e423de678f86181c86a49b"></a><!-- doxytag: member="EnvelopeComponent::isReleaseNode" ref="a5362e76577e423de678f86181c86a49b" args="(EnvelopeHandleComponent *thisHandle) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -768,7 +816,7 @@ Private Attributes</h2></td></tr>
           <td class="paramtype"><a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *&nbsp;</td>
           <td class="paramname"> <em>thisHandle</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
@@ -776,7 +824,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a098e103ef37606bf97a366c71361d3c9"></a><!-- doxytag: member="EnvelopeComponent::lookup" ref="a098e103ef37606bf97a366c71361d3c9" args="(const float time)" -->
+<a class="anchor" id="a1c91a2d6fb5f454c62af0af4ec25db4b"></a><!-- doxytag: member="EnvelopeComponent::lookup" ref="a1c91a2d6fb5f454c62af0af4ec25db4b" args="(const float time) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -786,13 +834,13 @@ Private Attributes</h2></td></tr>
           <td class="paramtype">const float&nbsp;</td>
           <td class="paramname"> <em>time</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00267">EnvelopeContainerComponent::lookup()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00282">EnvelopeContainerComponent::lookup()</a>.</p>
 
 </div>
 </div>
@@ -922,24 +970,6 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ae1a07159e24eb3fb613397a9e39c0622"></a><!-- doxytag: member="EnvelopeComponent::quantiseDomain" ref="ae1a07159e24eb3fb613397a9e39c0622" args="(double value)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double EnvelopeComponent::quantiseDomain </td>
-          <td>(</td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>value</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
 <a class="anchor" id="ab288ebcc28363842fae8ed061114f20e"></a><!-- doxytag: member="EnvelopeComponent::quantiseHandle" ref="ab288ebcc28363842fae8ed061114f20e" args="(EnvelopeHandleComponent *thisHandle)" -->
 <div class="memitem">
 <div class="memproto">
@@ -949,24 +979,6 @@ Private Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a> *&nbsp;</td>
           <td class="paramname"> <em>thisHandle</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a5a4d533eff0daca30c0b118c64159a50"></a><!-- doxytag: member="EnvelopeComponent::quantiseValue" ref="a5a4d533eff0daca30c0b118c64159a50" args="(double value)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double EnvelopeComponent::quantiseValue </td>
-          <td>(</td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>value</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
@@ -1027,7 +1039,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00263">EnvelopeContainerComponent::removeListener()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00278">EnvelopeContainerComponent::removeListener()</a>.</p>
 
 </div>
 </div>
@@ -1065,6 +1077,46 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a6242d05fea1f1509f7ef8f748f16ea4e"></a><!-- doxytag: member="EnvelopeComponent::setAllowCurveEditing" ref="a6242d05fea1f1509f7ef8f748f16ea4e" args="(const bool flag)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EnvelopeComponent::setAllowCurveEditing </td>
+          <td>(</td>
+          <td class="paramtype">const bool&nbsp;</td>
+          <td class="paramname"> <em>flag</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00317">EnvelopeContainerComponent::setAllowCurveEditing()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a86b7ec17aedd3890edf42c6f0f7ab13e"></a><!-- doxytag: member="EnvelopeComponent::setAllowNodeEditing" ref="a86b7ec17aedd3890edf42c6f0f7ab13e" args="(const bool flag)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EnvelopeComponent::setAllowNodeEditing </td>
+          <td>(</td>
+          <td class="paramtype">const bool&nbsp;</td>
+          <td class="paramname"> <em>flag</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00319">EnvelopeContainerComponent::setAllowNodeEditing()</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="af6d22d5671adf320385cf87be200f6e1"></a><!-- doxytag: member="EnvelopeComponent::setDomainRange" ref="af6d22d5671adf320385cf87be200f6e1" args="(const double max)" -->
 <div class="memitem">
 <div class="memproto">
@@ -1081,11 +1133,11 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00144">144</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00147">147</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
 
-<p>References <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00144">setDomainRange()</a>.</p>
+<p>References <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00147">setDomainRange()</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00144">setDomainRange()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00147">setDomainRange()</a>.</p>
 
 </div>
 </div>
@@ -1114,7 +1166,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00279">EnvelopeContainerComponent::setDomainRange()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00294">EnvelopeContainerComponent::setDomainRange()</a>.</p>
 
 </div>
 </div>
@@ -1134,7 +1186,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00266">EnvelopeContainerComponent::setEnv()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00281">EnvelopeContainerComponent::setEnv()</a>.</p>
 
 </div>
 </div>
@@ -1163,7 +1215,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00269">EnvelopeContainerComponent::setEnvColour()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00284">EnvelopeContainerComponent::setEnvColour()</a>.</p>
 
 </div>
 </div>
@@ -1204,7 +1256,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00286">EnvelopeContainerComponent::setGrid()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00301">EnvelopeContainerComponent::setGrid()</a>.</p>
 
 </div>
 </div>
@@ -1306,6 +1358,24 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a64220c6f6da8ee08e726af440a1cfa86"></a><!-- doxytag: member="EnvelopeComponent::setReleaseNode" ref="a64220c6f6da8ee08e726af440a1cfa86" args="(const int index)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EnvelopeComponent::setReleaseNode </td>
+          <td>(</td>
+          <td class="paramtype">const int&nbsp;</td>
+          <td class="paramname"> <em>index</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a4eba938523fcef0ddd18624a42cc341b"></a><!-- doxytag: member="EnvelopeComponent::setReleaseNode" ref="a4eba938523fcef0ddd18624a42cc341b" args="(EnvelopeHandleComponent *thisHandle)" -->
 <div class="memitem">
 <div class="memproto">
@@ -1324,21 +1394,27 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a64220c6f6da8ee08e726af440a1cfa86"></a><!-- doxytag: member="EnvelopeComponent::setReleaseNode" ref="a64220c6f6da8ee08e726af440a1cfa86" args="(const int index)" -->
+<a class="anchor" id="a3fa478992f127dd2f6e4da0a96b4d8f5"></a><!-- doxytag: member="EnvelopeComponent::setValueRange" ref="a3fa478992f127dd2f6e4da0a96b4d8f5" args="(const double max)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void EnvelopeComponent::setReleaseNode </td>
+          <td class="memname">void EnvelopeComponent::setValueRange </td>
           <td>(</td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>index</em></td>
+          <td class="paramtype">const double&nbsp;</td>
+          <td class="paramname"> <em>max</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00150">150</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+
+<p>References <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00150">setValueRange()</a>.</p>
+
+<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00150">setValueRange()</a>.</p>
 
 </div>
 </div>
@@ -1367,35 +1443,41 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00282">EnvelopeContainerComponent::setValueRange()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00297">EnvelopeContainerComponent::setValueRange()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a3fa478992f127dd2f6e4da0a96b4d8f5"></a><!-- doxytag: member="EnvelopeComponent::setValueRange" ref="a3fa478992f127dd2f6e4da0a96b4d8f5" args="(const double max)" -->
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="aca84853b11d9166a3e4f840890ba8821"></a><!-- doxytag: member="EnvelopeComponent::allowCurveEditing" ref="aca84853b11d9166a3e4f840890ba8821" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void EnvelopeComponent::setValueRange </td>
-          <td>(</td>
-          <td class="paramtype">const double&nbsp;</td>
-          <td class="paramname"> <em>max</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
+          <td class="memname">bool <a class="el" href="class_envelope_component.html#aca84853b11d9166a3e4f840890ba8821">EnvelopeComponent::allowCurveEditing</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00147">147</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
-
-<p>References <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00147">setValueRange()</a>.</p>
-
-<p>Referenced by <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00147">setValueRange()</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00239">239</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
 
 </div>
 </div>
-<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a1484b0236cbaee07b2f3bec524d1b384"></a><!-- doxytag: member="EnvelopeComponent::allowNodeEditing" ref="a1484b0236cbaee07b2f3bec524d1b384" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_envelope_component.html#a1484b0236cbaee07b2f3bec524d1b384">EnvelopeComponent::allowNodeEditing</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00240">240</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a7d8546037925c08a318e2b2b57c7dc2a"></a><!-- doxytag: member="EnvelopeComponent::colours" ref="a7d8546037925c08a318e2b2b57c7dc2a" args="[NumEnvColours]" -->
 <div class="memitem">
 <div class="memproto">
@@ -1407,7 +1489,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00231">231</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00242">242</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
 
 </div>
 </div>
@@ -1422,7 +1504,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00228">228</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00236">236</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
 
 </div>
 </div>
@@ -1437,7 +1519,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00225">225</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00233">233</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
 
 </div>
 </div>
@@ -1452,7 +1534,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00223">223</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00231">231</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
 
 </div>
 </div>
@@ -1467,7 +1549,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00223">223</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00231">231</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
 
 </div>
 </div>
@@ -1482,7 +1564,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00227">227</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00235">235</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
 
 </div>
 </div>
@@ -1497,7 +1579,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00226">226</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00234">234</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
 
 </div>
 </div>
@@ -1512,7 +1594,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00226">226</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00234">234</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
 
 </div>
 </div>
@@ -1527,7 +1609,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00221">221</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00229">229</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
 
 </div>
 </div>
@@ -1542,7 +1624,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00220">220</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00228">228</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
 
 </div>
 </div>
@@ -1557,7 +1639,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00229">229</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00237">237</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
 
 </div>
 </div>
@@ -1572,7 +1654,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00222">222</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00230">230</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
 
 </div>
 </div>
@@ -1587,7 +1669,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00222">222</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00230">230</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
 
 </div>
 </div>
@@ -1602,7 +1684,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00229">229</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00237">237</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
 
 </div>
 </div>
@@ -1617,7 +1699,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00225">225</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00233">233</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
 
 </div>
 </div>
@@ -1632,7 +1714,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00224">224</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00232">232</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
 
 </div>
 </div>
@@ -1647,7 +1729,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00224">224</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00232">232</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
 
 </div>
 </div>
@@ -1655,7 +1737,7 @@ Private Attributes</h2></td></tr>
 <li>juce/gui/<a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:08 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 27 2010 07:50:34 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -30,7 +30,7 @@
 <h1>oscillators/wavetable/ugen_TableOsc.h</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___table_osc_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_TableOsc.h 89 2010-07-09 16:20:21Z 0x4d52 $</span>
+<a href="ugen___table_osc_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_TableOsc.h 164 2010-09-25 12:29:55Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/oscillators/wavetable/ugen_TableOsc.h $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -81,8 +81,8 @@
 <a name="l00050"></a>00050  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_table_osc_u_gen_internal.html#a361806f78c766ce5e89493563ad71100">getKr</a>() <span class="keywordflow">throw</span>();               
 <a name="l00051"></a>00051  <span class="keywordtype">void</span> <a class="code" href="class_table_osc_u_gen_internal.html#aa68b8536bb5df1ed2f6f555333b277a4">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
 <a name="l00052"></a>00052  
-<a name="l00053"></a>00053  <span class="keywordtype">double</span> <a class="code" href="class_table_osc_u_gen_internal.html#a3bcd9ec75423b8559055673868b45f7a" title="Get the maximum duration of the seekable.">getDuration</a>() <span class="keywordflow">throw</span>();
-<a name="l00054"></a>00054  <span class="keywordtype">double</span> <a class="code" href="class_table_osc_u_gen_internal.html#a9d5d312cb5030ac4672b6da221c331cd" title="Get the current position of the seekable.">getPosition</a>() <span class="keywordflow">throw</span>();
+<a name="l00053"></a>00053  <span class="keywordtype">double</span> <a class="code" href="class_table_osc_u_gen_internal.html#a58803a0c4d2e9a9e5d7a1c05517734f4" title="Get the maximum duration of the seekable.">getDuration</a>() <span class="keyword">const</span> <span class="keywordflow">throw</span>();
+<a name="l00054"></a>00054  <span class="keywordtype">double</span> <a class="code" href="class_table_osc_u_gen_internal.html#aee9e65082e7e6c1d0a08121470925e5d" title="Get the current position of the seekable.">getPosition</a>() <span class="keyword">const</span> <span class="keywordflow">throw</span>();
 <a name="l00055"></a>00055  <span class="keywordtype">void</span> <a class="code" href="class_table_osc_u_gen_internal.html#a7e55e37132e0ae8fce182524010f96da" title="Set the current position of the seekable.">setPosition</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> newPosition) <span class="keywordflow">throw</span>(); 
 <a name="l00056"></a>00056  
 <a name="l00057"></a><a class="code" href="class_table_osc_u_gen_internal.html#a1f8b633e694dcd8db98f438daa106ae6af3a2a459242364af76b5a4cf6bc862fd">00057</a>  <span class="keyword">enum</span> <a class="code" href="class_table_osc_u_gen_internal.html#a1f8b633e694dcd8db98f438daa106ae6">Inputs</a> { Freq, <a class="code" href="class_table_osc_u_gen_internal.html#a1f8b633e694dcd8db98f438daa106ae6af3a2a459242364af76b5a4cf6bc862fd">NumInputs</a> };
@@ -185,7 +185,7 @@
 <a name="l00170"></a>00170 <span class="preprocessor">#endif // _UGEN_ugen_TableOsc_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:07 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 27 2010 07:50:29 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

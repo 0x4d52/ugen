@@ -30,7 +30,7 @@
 <h1>oscillators/simple/ugen_LFPulse.h</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___l_f_pulse_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_LFPulse.h 89 2010-07-09 16:20:21Z 0x4d52 $</span>
+<a href="ugen___l_f_pulse_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_LFPulse.h 164 2010-09-25 12:29:55Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/oscillators/simple/ugen_LFPulse.h $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -85,8 +85,8 @@
 <a name="l00054"></a>00054  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_l_f_pulse_u_gen_internal.html#a71e31dceac6cfbaa568536d03bdb0548">getKr</a>() <span class="keywordflow">throw</span>();               
 <a name="l00055"></a>00055  <span class="keywordtype">void</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html#adc2e0f8a28d9ddf4b2360a7079870994">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
 <a name="l00056"></a>00056  
-<a name="l00057"></a>00057  <span class="keywordtype">double</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html#aa9b0e02b3ef06333377d3f8a8e4e6e8c" title="Get the maximum duration of the seekable.">getDuration</a>() <span class="keywordflow">throw</span>();
-<a name="l00058"></a>00058  <span class="keywordtype">double</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html#a897a4101644873377b4012a8f5958c32" title="Get the current position of the seekable.">getPosition</a>() <span class="keywordflow">throw</span>();
+<a name="l00057"></a>00057  <span class="keywordtype">double</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html#a16a1859b886ea3f720eb471b00bf7206" title="Get the maximum duration of the seekable.">getDuration</a>() <span class="keyword">const</span> <span class="keywordflow">throw</span>();
+<a name="l00058"></a>00058  <span class="keywordtype">double</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html#aea93d9db895309e23410cbb8bc3399c2" title="Get the current position of the seekable.">getPosition</a>() <span class="keyword">const</span> <span class="keywordflow">throw</span>();
 <a name="l00059"></a>00059  <span class="keywordtype">void</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html#a1faf95eb4191129d6adf12b180a9539f" title="Set the current position of the seekable.">setPosition</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> newPosition) <span class="keywordflow">throw</span>();   
 <a name="l00060"></a>00060  
 <a name="l00061"></a><a class="code" href="class_l_f_pulse_u_gen_internal.html#a40455aaa3e2e06732824cfaf304bfdcaa4158d5331cef50f0e997a4f7acf2ade1">00061</a>  <span class="keyword">enum</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html#a40455aaa3e2e06732824cfaf304bfdca">Inputs</a> { Freq, Duty, <a class="code" href="class_l_f_pulse_u_gen_internal.html#a40455aaa3e2e06732824cfaf304bfdcaa4158d5331cef50f0e997a4f7acf2ade1">NumInputs</a> };
@@ -117,7 +117,7 @@
 <a name="l00089"></a>00089 <span class="preprocessor">#endif // _UGEN_ugen_LFPulse_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:07 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 27 2010 07:50:29 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

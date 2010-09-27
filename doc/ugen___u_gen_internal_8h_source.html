@@ -30,7 +30,7 @@
 <h1>core/ugen_UGenInternal.h</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___u_gen_internal_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_UGenInternal.h 160 2010-09-23 16:49:16Z 0x4d52 $</span>
+<a href="ugen___u_gen_internal_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_UGenInternal.h 164 2010-09-25 12:29:55Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/core/ugen_UGenInternal.h $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -118,7 +118,7 @@
 <a name="l00087"></a><a class="code" href="class_u_gen_output.html#a2f059dc39752460c20a35cd6a2e1504b">00087</a>  <span class="keywordtype">int</span> <a class="code" href="class_u_gen_output.html#a2f059dc39752460c20a35cd6a2e1504b">blockSize</a>;
 <a name="l00088"></a><a class="code" href="class_u_gen_output.html#a913a3b9efd843c1ddf302411a96b473f">00088</a>  <span class="keywordtype">int</span> <a class="code" href="class_u_gen_output.html#a913a3b9efd843c1ddf302411a96b473f">allocatedBlockSize</a>;
 <a name="l00089"></a><a class="code" href="class_u_gen_output.html#a3a86304f84f5f8d681c0679436eb456c">00089</a>  <span class="keywordtype">float</span> *<a class="code" href="class_u_gen_output.html#a3a86304f84f5f8d681c0679436eb456c">block</a>;
-<a name="l00090"></a><a class="code" href="class_u_gen_output.html#a3798ccb58f5d448350edeaaf1598f570">00090</a>  <span class="keywordtype">bool</span> <a class="code" href="class_u_gen_output.html#a3798ccb58f5d448350edeaaf1598f570">usingExternalOutput</a>;
+<a name="l00090"></a><a class="code" href="class_u_gen_output.html#a3798ccb58f5d448350edeaaf1598f570">00090</a>  <span class="keywordtype">bool</span> <a class="code" href="class_u_gen_output.html#a3798ccb58f5d448350edeaaf1598f570">usingExternalOutput</a>:1;
 <a name="l00091"></a><a class="code" href="class_u_gen_output.html#a5766e15d926c5a7e6e1af1afba0823fc">00091</a>  <a class="code" href="class_u_gen_output.html">UGenOutput</a>* <a class="code" href="class_u_gen_output.html#a5766e15d926c5a7e6e1af1afba0823fc">externalOutput</a>;
 <a name="l00092"></a>00092 };
 <a name="l00093"></a>00093 
@@ -288,8 +288,8 @@
 <a name="l00324"></a>00324  <span class="keywordtype">void</span> sendDone() throw();
 <a name="l00325"></a>00325  
 <a name="l00326"></a><a class="code" href="class_done_action_sender.html#a8a1bf5370ebd827fb45b885974cf555c">00326</a>  <a class="code" href="class_object_array.html">DoneActionReceiverArray</a> receivers;
-<a name="l00327"></a><a class="code" href="class_done_action_sender.html#a25585774c1bd975671105617b8421ccf">00327</a>  <span class="keywordtype">bool</span> isDone_;
-<a name="l00328"></a><a class="code" href="class_done_action_sender.html#ab5e2139511ce1995ae6dd63b4d56835f">00328</a>  <span class="keywordtype">bool</span> doneSent;
+<a name="l00327"></a><a class="code" href="class_done_action_sender.html#a25585774c1bd975671105617b8421ccf">00327</a>  <span class="keywordtype">bool</span> isDone_ : 1;
+<a name="l00328"></a><a class="code" href="class_done_action_sender.html#ab5e2139511ce1995ae6dd63b4d56835f">00328</a>  <span class="keywordtype">bool</span> doneSent : 1;
 <a name="l00329"></a>00329 };
 <a name="l00330"></a>00330 
 <a name="l00332"></a><a class="code" href="class_done_action_receiver.html">00332</a> class <a class="code" href="class_done_action_receiver.html" title="Subclasses of this receive UGen done action message.">DoneActionReceiver</a>
@@ -332,10 +332,10 @@
 <a name="l00394"></a>00394  <span class="keywordtype">void</span> setIsReleasing() throw();
 <a name="l00395"></a>00395  <span class="keywordtype">void</span> setIsStealing() throw();
 <a name="l00396"></a>00396  
-<a name="l00397"></a><a class="code" href="class_releasable_u_gen_internal.html#a05c315d78837c7e196d409f2010c494a">00397</a>  <span class="keywordtype">bool</span> shouldRelease_;
-<a name="l00398"></a><a class="code" href="class_releasable_u_gen_internal.html#a0a41eb292b9b33354270b9b83e3a6b5f">00398</a>  <span class="keywordtype">bool</span> shouldSteal_;
-<a name="l00399"></a><a class="code" href="class_releasable_u_gen_internal.html#ae8a65645fd10f6c88fd4dea4903e5fe2">00399</a>  <span class="keywordtype">bool</span> isReleasing_;
-<a name="l00400"></a><a class="code" href="class_releasable_u_gen_internal.html#a167cc696b92f1cf36aa423af30097778">00400</a>  <span class="keywordtype">bool</span> isStealing_;
+<a name="l00397"></a><a class="code" href="class_releasable_u_gen_internal.html#a05c315d78837c7e196d409f2010c494a">00397</a>  <span class="keywordtype">bool</span> shouldRelease_ : 1;
+<a name="l00398"></a><a class="code" href="class_releasable_u_gen_internal.html#a0a41eb292b9b33354270b9b83e3a6b5f">00398</a>  <span class="keywordtype">bool</span> shouldSteal_ : 1;
+<a name="l00399"></a><a class="code" href="class_releasable_u_gen_internal.html#ae8a65645fd10f6c88fd4dea4903e5fe2">00399</a>  <span class="keywordtype">bool</span> isReleasing_ : 1;
+<a name="l00400"></a><a class="code" href="class_releasable_u_gen_internal.html#a167cc696b92f1cf36aa423af30097778">00400</a>  <span class="keywordtype">bool</span> isStealing_ : 1;
 <a name="l00401"></a>00401 };
 <a name="l00402"></a>00402 
 <a name="l00404"></a><a class="code" href="class_seekable.html">00404</a> class <a class="code" href="class_seekable.html" title="Added to UGenInternal classes that can seek a particular point in time.">Seekable</a>
@@ -343,8 +343,8 @@
 <a name="l00406"></a>00406 <span class="keyword">public</span>:
 <a name="l00407"></a><a class="code" href="class_seekable.html#a8bb9099e44c6969e76e53747614eb86b">00407</a>  <a class="code" href="class_seekable.html#a8bb9099e44c6969e76e53747614eb86b">Seekable</a>() throw() {}
 <a name="l00408"></a><a class="code" href="class_seekable.html#a3607135ef5ada648c526f9dfeb149164">00408</a>  <span class="keyword">virtual</span> <a class="code" href="class_seekable.html#a3607135ef5ada648c526f9dfeb149164">~Seekable</a>() {}
-<a name="l00413"></a>00413  <span class="keyword">virtual</span> <span class="keywordtype">double</span> getDuration() = 0;
-<a name="l00418"></a>00418  <span class="keyword">virtual</span> <span class="keywordtype">double</span> getPosition() = 0;
+<a name="l00413"></a>00413  <span class="keyword">virtual</span> <span class="keywordtype">double</span> getDuration() <span class="keyword">const</span> = 0;
+<a name="l00418"></a>00418  <span class="keyword">virtual</span> <span class="keywordtype">double</span> getPosition() <span class="keyword">const</span> = 0;
 <a name="l00423"></a>00423  <span class="keyword">virtual</span> <span class="keywordtype">void</span> setPosition(<span class="keyword">const</span> <span class="keywordtype">double</span> newPosition) = 0;
 <a name="l00424"></a>00424 };
 <a name="l00425"></a>00425 
@@ -352,7 +352,7 @@
 <a name="l00427"></a>00427 <span class="preprocessor">#endif // UGEN_UGENINTERNAL_H</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:05 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 27 2010 07:50:28 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

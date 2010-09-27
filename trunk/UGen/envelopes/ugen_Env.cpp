@@ -46,11 +46,11 @@ BEGIN_UGEN_NAMESPACE
 
 
 
-Env::EnvInternal::EnvInternal(Buffer const& levels, 
-							  Buffer const& times, 
-							  EnvCurveList const& curves, 
-							  const int releaseNode, 
-							  const int loopNode) throw()
+Env::Internal::Internal(Buffer const& levels, 
+						Buffer const& times, 
+						EnvCurveList const& curves, 
+						const int releaseNode, 
+						const int loopNode) throw()
 :	levels_(levels),
 	times_(times),
 	curves_(curves),
@@ -59,24 +59,14 @@ Env::EnvInternal::EnvInternal(Buffer const& levels,
 {
 }
 
-
 Env::Env(Buffer const& levels, 
 		 Buffer const& times, 
 		 EnvCurveList const& curves, 
 		 const int releaseNode, 
 		 const int loopNode) throw()
-:	internal(new EnvInternal(levels, times, curves, releaseNode, loopNode))
+:	internal(new Internal(levels, times, curves, releaseNode, loopNode))
 {
 }
-
-//Env::Env(Buffer const& times, 
-//		 Buffer const& levels, 
-//		 EnvCurve const& curve, 
-//		 const int releaseNode, 
-//		 const int loopNode) throw()
-//{
-//	internal = new EnvInternal(levels, times, curve, releaseNode, loopNode);
-//}
 
 Env::Env(Env const& copy) throw()
 :	internal(copy.internal)

@@ -30,7 +30,7 @@
 <h1>iphone/ugen_iPhoneAudioFileDiskIn.cpp</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen__i_phone_audio_file_disk_in_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_iPhoneAudioFileDiskIn.cpp 159 2010-09-22 14:14:09Z 0x4d52 $</span>
+<a href="ugen__i_phone_audio_file_disk_in_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_iPhoneAudioFileDiskIn.cpp 164 2010-09-25 12:29:55Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/iphone/ugen_iPhoneAudioFileDiskIn.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -214,12 +214,12 @@
 <a name="l00182"></a>00182  <span class="keywordflow">if</span>(isDone()) sendDoneInternal();
 <a name="l00183"></a>00183 }
 <a name="l00184"></a>00184 
-<a name="l00185"></a>00185 <span class="keywordtype">double</span> <a class="code" href="class_disk_in_u_gen_internal.html#a636f56b9e6d60b23d2477ea8bdeb448d">DiskInUGenInternal::getDuration</a>() throw()
+<a name="l00185"></a>00185 <span class="keywordtype">double</span> <a class="code" href="class_disk_in_u_gen_internal.html#a3a77ff362ac4eda51969ce74b2a55bd9">DiskInUGenInternal::getDuration</a>() <span class="keyword">const</span> throw()
 <a name="l00186"></a>00186 {
 <a name="l00187"></a>00187  <span class="keywordflow">return</span> <a class="code" href="class_disk_in_u_gen_internal.html#ab10c0c019356af1b6644d492046859d9">packetCount</a> * <a class="code" href="class_disk_in_u_gen_internal.html#a6ef46cdac68bb856b647ca08f972b5c4">reciprocalSampleRate</a>;
 <a name="l00188"></a>00188 }
 <a name="l00189"></a>00189 
-<a name="l00190"></a>00190 <span class="keywordtype">double</span> <a class="code" href="class_disk_in_u_gen_internal.html#a8dae47f46bff99f230a2f5312dbf8eec">DiskInUGenInternal::getPosition</a>() throw()
+<a name="l00190"></a>00190 <span class="keywordtype">double</span> <a class="code" href="class_disk_in_u_gen_internal.html#a61bc00649b6641615edcfc1bc5f480e9">DiskInUGenInternal::getPosition</a>() <span class="keyword">const</span> throw()
 <a name="l00191"></a>00191 {
 <a name="l00192"></a>00192  <span class="keywordflow">return</span> <a class="code" href="class_disk_in_u_gen_internal.html#ad624f5b69c5c24f37f8c101c5dd80722">currentPacket</a> * <a class="code" href="class_disk_in_u_gen_internal.html#a6ef46cdac68bb856b647ca08f972b5c4">reciprocalSampleRate</a>;
 <a name="l00193"></a>00193 }
@@ -653,7 +653,7 @@
 <a name="l00621"></a>00621 <span class="preprocessor">#endif // UGEN_IPHONE</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:06 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 27 2010 07:50:29 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

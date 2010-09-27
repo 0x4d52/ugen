@@ -30,7 +30,7 @@
 <h1>juce/io/ugen_DiskIn.cpp</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___disk_in_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_DiskIn.cpp 160 2010-09-23 16:49:16Z 0x4d52 $</span>
+<a href="ugen___disk_in_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_DiskIn.cpp 164 2010-09-25 12:29:55Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/juce/io/ugen_DiskIn.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -161,12 +161,12 @@
 <a name="l00129"></a>00129  
 <a name="l00130"></a>00130 }
 <a name="l00131"></a>00131 
-<a name="l00132"></a>00132 <span class="keywordtype">double</span> <a class="code" href="class_disk_in_u_gen_internal.html#a636f56b9e6d60b23d2477ea8bdeb448d">DiskInUGenInternal::getDuration</a>() throw()
+<a name="l00132"></a>00132 <span class="keywordtype">double</span> <a class="code" href="class_disk_in_u_gen_internal.html#a3a77ff362ac4eda51969ce74b2a55bd9">DiskInUGenInternal::getDuration</a>() <span class="keyword">const</span> throw()
 <a name="l00133"></a>00133 {
 <a name="l00134"></a>00134  <span class="keywordflow">return</span> (<span class="keywordtype">double</span>)<a class="code" href="class_disk_in_u_gen_internal.html#a7071e07515261b239116452452454fde">filePlayer</a>.getTotalLength() * <a class="code" href="class_disk_in_u_gen_internal.html#a7071e07515261b239116452452454fde">filePlayer</a>.<a class="code" href="class_audio_file_player.html#ac83f5be8b68c1665c9636e2d1cbafd45">getReciprocalSampleRate</a>();
 <a name="l00135"></a>00135 }
 <a name="l00136"></a>00136 
-<a name="l00137"></a>00137 <span class="keywordtype">double</span> <a class="code" href="class_disk_in_u_gen_internal.html#a8dae47f46bff99f230a2f5312dbf8eec">DiskInUGenInternal::getPosition</a>() throw()
+<a name="l00137"></a>00137 <span class="keywordtype">double</span> <a class="code" href="class_disk_in_u_gen_internal.html#a61bc00649b6641615edcfc1bc5f480e9">DiskInUGenInternal::getPosition</a>() <span class="keyword">const</span> throw()
 <a name="l00138"></a>00138 {
 <a name="l00139"></a>00139  <span class="keywordflow">return</span> <a class="code" href="class_disk_in_u_gen_internal.html#a7071e07515261b239116452452454fde">filePlayer</a>.getCurrentPosition();
 <a name="l00140"></a>00140 }
@@ -227,7 +227,7 @@
 <a name="l00195"></a>00195 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:07 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 27 2010 07:50:29 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

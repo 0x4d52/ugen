@@ -33,7 +33,10 @@
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pri-attribs">Private Attributes</a>  </div>
   <div class="headertitle">
-<h1>Env Class Reference</h1>  </div>
+<h1>Env Class Reference<br/>
+<small>
+[<a class="el" href="group___env_u_gens.html">Envelope UGen classes.</a>]</small>
+</h1>  </div>
 </div>
 <div class="contents">
 <!-- doxytag: class="Env" -->
@@ -46,7 +49,7 @@
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_env_1_1_env_internal.html">EnvInternal</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_env_1_1_internal.html">Internal</a></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Envelope access and manipulation</div></td></tr>
@@ -75,7 +78,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Write the <a class="el" href="class_env.html" title="A specification for a segmented envelope.">Env</a> into an exisiting <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>.  <a href="#ace54f70a44d34a96f5a2443d57e6d0f4"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_env_1_1_env_internal.html">EnvInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_env.html#a1df98503a4321752b107f3c47bdd7346">internal</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_env_1_1_internal.html">Internal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_env.html#a5d7145db0ff92ee1fd2834b655dae7f9">internal</a></td></tr>
 <tr><td colspan="2"><h2><a name="member-group"></a>
 Construction and destruction</h2></td></tr>
 <tr><td colspan="2"><p><a class="anchor" id="amgrp12fdc16f3e4af87211fb0ef7cc443050"></a> </p>
@@ -101,9 +104,11 @@ Construction and destruction</h2></td></tr>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>A specification for a segmented envelope. </p>
 <p>An <a class="el" href="class_env.html" title="A specification for a segmented envelope.">Env</a> can have any number of segments which can stop at a particular value or loop several segments when sustaining. An <a class="el" href="class_env.html" title="A specification for a segmented envelope.">Env</a> can have several shapes for its segments.</p>
-<p>An <a class="el" href="class_env.html" title="A specification for a segmented envelope.">Env</a> is usually passed as an argument to the <a class="el" href="class_env_gen.html" title="Generate breakpoint envelopes from an Env specification.">EnvGen</a> <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which performs the <a class="el" href="class_env.html" title="A specification for a segmented envelope.">Env</a>. </p>
+<p>An <a class="el" href="class_env.html" title="A specification for a segmented envelope.">Env</a> is usually passed as an argument to the <a class="el" href="class_env_gen.html" title="Generate breakpoint envelopes from an Env specification.">EnvGen</a> <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which performs the <a class="el" href="class_env.html" title="A specification for a segmented envelope.">Env</a>, <a class="el" href="class_env.html" title="A specification for a segmented envelope.">Env</a> is not <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> on its own.</p>
+<p>In the Juce version there is an graphical editor <a class="el" href="class_envelope_component.html" title="For displaying and editing a breakpoint envelope.">EnvelopeComponent</a> (and a version with a few more features <a class="el" href="class_envelope_container_component.html" title="For displaying and editing a breakpoint envelope with a legend.">EnvelopeContainerComponent</a>).</p>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_env_gen.html" title="Generate breakpoint envelopes from an Env specification.">EnvGen</a> <a class="el" href="class_envelope_container_component.html" title="For displaying and editing a breakpoint envelope with a legend.">EnvelopeContainerComponent</a> <a class="el" href="class_envelope_component.html" title="For displaying and editing a breakpoint envelope.">EnvelopeComponent</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___env_8h_source.html#l00057">57</a> of file <a class="el" href="ugen___env_8h_source.html">ugen_Env.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_8h_source.html#l00060">60</a> of file <a class="el" href="ugen___env_8h_source.html">ugen_Env.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aef191b587681fb99b9baf73d94419193"></a><!-- doxytag: member="Env::Env" ref="aef191b587681fb99b9baf73d94419193" args="(Buffer const &amp;levels=Buffer(0.0, 1.0, 0.0), Buffer const &amp;times=Buffer(1.0, 1.0), EnvCurveList const &amp;curves=EnvCurve(EnvCurve::Linear), const int releaseNode=&#45;1, const int loopNode=&#45;1)" -->
 <div class="memitem">
@@ -160,7 +165,7 @@ Construction and destruction</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00063">63</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00062">62</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
 
 </div>
 </div>
@@ -180,7 +185,7 @@ Construction and destruction</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00081">81</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00071">71</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
 
 </div>
 </div>
@@ -199,7 +204,7 @@ Construction and destruction</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00099">99</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00089">89</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
 
 </div>
 </div>
@@ -267,7 +272,7 @@ Construction and destruction</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The <a class="el" href="class_env.html" title="A specification for a segmented envelope.">Env</a> envelope specification. </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00317">317</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00307">307</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
 
 <p>References <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
@@ -329,7 +334,7 @@ Construction and destruction</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The <a class="el" href="class_env.html" title="A specification for a segmented envelope.">Env</a> envelope specification. </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00336">336</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00326">326</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
 
 <p>References <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
@@ -360,7 +365,7 @@ Construction and destruction</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00138">138</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00128">128</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
 
 <p>References <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
@@ -383,9 +388,9 @@ Construction and destruction</h2></td></tr>
 
 <p>Returns the sum the time values in the envelope. </p>
 
-<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00104">104</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00094">94</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___env_8cpp_source.html#l00228">operator Buffer()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___env_8cpp_source.html#l00218">operator Buffer()</a>.</p>
 
 </div>
 </div>
@@ -404,7 +409,7 @@ Construction and destruction</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___env_8h_source.html#l00189">189</a> of file <a class="el" href="ugen___env_8h_source.html">ugen_Env.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_8h_source.html#l00183">183</a> of file <a class="el" href="ugen___env_8h_source.html">ugen_Env.h</a>.</p>
 
 </div>
 </div>
@@ -423,7 +428,7 @@ Construction and destruction</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___env_8h_source.html#l00188">188</a> of file <a class="el" href="ugen___env_8h_source.html">ugen_Env.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_8h_source.html#l00182">182</a> of file <a class="el" href="ugen___env_8h_source.html">ugen_Env.h</a>.</p>
 
 </div>
 </div>
@@ -442,7 +447,7 @@ Construction and destruction</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___env_8h_source.html#l00192">192</a> of file <a class="el" href="ugen___env_8h_source.html">ugen_Env.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_8h_source.html#l00186">186</a> of file <a class="el" href="ugen___env_8h_source.html">ugen_Env.h</a>.</p>
 
 </div>
 </div>
@@ -461,7 +466,7 @@ Construction and destruction</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___env_8h_source.html#l00191">191</a> of file <a class="el" href="ugen___env_8h_source.html">ugen_Env.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_8h_source.html#l00185">185</a> of file <a class="el" href="ugen___env_8h_source.html">ugen_Env.h</a>.</p>
 
 </div>
 </div>
@@ -480,9 +485,9 @@ Construction and destruction</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___env_8h_source.html#l00187">187</a> of file <a class="el" href="ugen___env_8h_source.html">ugen_Env.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_8h_source.html#l00181">181</a> of file <a class="el" href="ugen___env_8h_source.html">ugen_Env.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___env_8cpp_source.html#l00228">operator Buffer()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___env_8cpp_source.html#l00218">operator Buffer()</a>.</p>
 
 </div>
 </div>
@@ -504,7 +509,7 @@ Construction and destruction</h2></td></tr>
 
 <p>Returns a new envelope with the levels offset by a constant. </p>
 
-<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00118">118</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00108">108</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
 
 </div>
 </div>
@@ -526,7 +531,7 @@ Construction and destruction</h2></td></tr>
 
 <p>Returns a new envelope with the levels scaled by a constant. </p>
 
-<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00109">109</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00099">99</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
 
 </div>
 </div>
@@ -586,7 +591,7 @@ Construction and destruction</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The <a class="el" href="class_env.html" title="A specification for a segmented envelope.">Env</a> envelope specification. </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00262">262</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00252">252</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
 
 <p>References <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
@@ -611,11 +616,11 @@ Construction and destruction</h2></td></tr>
 <p>Get the level of the <a class="el" href="class_env.html" title="A specification for a segmented envelope.">Env</a> ata given time. </p>
 <p>This ignores loopNode and releaseNode if the are set. </p>
 
-<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00156">156</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00146">146</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
 
 <p>References <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00108">abs()</a>, <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00133">exp()</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00059">EnvCurve::Exponential</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00074">EnvCurve::getCurve()</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00073">EnvCurve::getType()</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00058">EnvCurve::Linear</a>, <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00390">linexp()</a>, <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00324">linlin()</a>, <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00352">linsin()</a>, <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00418">linwelch()</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00056">EnvCurve::Numerical</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00060">EnvCurve::Sine</a>, <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>, and <a class="el" href="ugen___env_curve_8h_source.html#l00061">EnvCurve::Welch</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___env_8cpp_source.html#l00228">operator Buffer()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___env_8cpp_source.html#l00218">operator Buffer()</a>.</p>
 
 </div>
 </div>
@@ -637,9 +642,9 @@ Construction and destruction</h2></td></tr>
 <p>Turn the <a class="el" href="class_env.html" title="A specification for a segmented envelope.">Env</a> into a table in a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>. </p>
 <p>The new <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> has a duration which is the sum of this Env's times. This ignores loopNode and releaseNode if the are set. </p>
 
-<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00228">228</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00218">218</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___env_8cpp_source.html#l00104">duration()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00329">Buffer::getData()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00932">UGen::getReciprocalSampleRate()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00929">UGen::getSampleRate()</a>, <a class="el" href="ugen___env_8h_source.html#l00187">getTimes()</a>, <a class="el" href="ugen___env_8cpp_source.html#l00156">lookup()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l01747">Buffer::sum()</a>.</p>
+<p>References <a class="el" href="ugen___env_8cpp_source.html#l00094">duration()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00330">Buffer::getData()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00927">UGen::getReciprocalSampleRate()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00924">UGen::getSampleRate()</a>, <a class="el" href="ugen___env_8h_source.html#l00181">getTimes()</a>, <a class="el" href="ugen___env_8cpp_source.html#l00146">lookup()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l01772">Buffer::sum()</a>.</p>
 
 </div>
 </div>
@@ -659,9 +664,9 @@ Construction and destruction</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00087">87</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00077">77</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___smart_pointer_8cpp_source.html#l00080">SmartPointer::incrementRefCount()</a>, and <a class="el" href="ugen___env_8h_source.html#l00226">internal</a>.</p>
+<p>References <a class="el" href="ugen___smart_pointer_8cpp_source.html#l00080">SmartPointer::incrementRefCount()</a>, and <a class="el" href="ugen___env_8h_source.html#l00220">internal</a>.</p>
 
 </div>
 </div>
@@ -714,7 +719,7 @@ Construction and destruction</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The <a class="el" href="class_env.html" title="A specification for a segmented envelope.">Env</a> envelope specification. </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00302">302</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00292">292</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
 
 <p>References <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
@@ -735,7 +740,7 @@ Construction and destruction</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00149">149</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00139">139</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
 
 </div>
 </div>
@@ -774,7 +779,7 @@ Construction and destruction</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The <a class="el" href="class_env.html" title="A specification for a segmented envelope.">Env</a> envelope specification. </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00290">290</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00280">280</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
 
 <p>References <a class="el" href="ugen___env_curve_8h_source.html#l00060">EnvCurve::Sine</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
@@ -798,7 +803,7 @@ Construction and destruction</h2></td></tr>
 
 <p>Returns a new envelope with the time values scaled by a constant. </p>
 
-<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00127">127</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00117">117</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
 
 <p>References <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
@@ -839,7 +844,7 @@ Construction and destruction</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The <a class="el" href="class_env.html" title="A specification for a segmented envelope.">Env</a> envelope specification. </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00279">279</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00269">269</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
 
 <p>References <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
@@ -873,27 +878,27 @@ Construction and destruction</h2></td></tr>
 <p>Write the <a class="el" href="class_env.html" title="A specification for a segmented envelope.">Env</a> into an exisiting <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>. </p>
 <p>This fits the <a class="el" href="class_env.html" title="A specification for a segmented envelope.">Env</a> into whatever size the <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> is. This ignores loopNode and releaseNode if the are set. </p>
 
-<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00244">244</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_8cpp_source.html#l00234">234</a> of file <a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a>.</p>
 
 <p>References <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a1df98503a4321752b107f3c47bdd7346"></a><!-- doxytag: member="Env::internal" ref="a1df98503a4321752b107f3c47bdd7346" args="" -->
+<a class="anchor" id="a5d7145db0ff92ee1fd2834b655dae7f9"></a><!-- doxytag: member="Env::internal" ref="a5d7145db0ff92ee1fd2834b655dae7f9" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_env_1_1_env_internal.html">EnvInternal</a>* <a class="el" href="class_env.html#a1df98503a4321752b107f3c47bdd7346">Env::internal</a><code> [private]</code></td>
+          <td class="memname"><a class="el" href="class_env_1_1_internal.html">Internal</a>* <a class="el" href="class_env.html#a5d7145db0ff92ee1fd2834b655dae7f9">Env::internal</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___env_8h_source.html#l00226">226</a> of file <a class="el" href="ugen___env_8h_source.html">ugen_Env.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_8h_source.html#l00220">220</a> of file <a class="el" href="ugen___env_8h_source.html">ugen_Env.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___env_8cpp_source.html#l00087">operator=()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___env_8cpp_source.html#l00077">operator=()</a>.</p>
 
 </div>
 </div>
@@ -902,7 +907,7 @@ Construction and destruction</h2></td></tr>
 <li>envelopes/<a class="el" href="ugen___env_8cpp_source.html">ugen_Env.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:08 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 27 2010 07:50:34 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

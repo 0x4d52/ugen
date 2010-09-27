@@ -30,7 +30,7 @@
 <h1>buffers/ugen_PlayBuf.h</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___play_buf_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_PlayBuf.h 155 2010-09-19 11:32:33Z 0x4d52 $</span>
+<a href="ugen___play_buf_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_PlayBuf.h 164 2010-09-25 12:29:55Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/buffers/ugen_PlayBuf.h $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -92,8 +92,8 @@
 <a name="l00068"></a>00068  <span class="keywordtype">void</span> <a class="code" href="class_play_buf_u_gen_internal.html#ab4b671e02a2ae3b8b10ee8af28c0693f">prepareForBlock</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> actualBlockSize, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID) <span class="keywordflow">throw</span>();
 <a name="l00069"></a>00069  <span class="keywordtype">void</span> <a class="code" href="class_play_buf_u_gen_internal.html#a046a6653cb3e9555e909051f60e416e6">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
 <a name="l00070"></a>00070  
-<a name="l00071"></a>00071  <span class="keywordtype">double</span> <a class="code" href="class_play_buf_u_gen_internal.html#a966b2eda6b8999cdfd031e5abdd9236b">getDuration</a>() <span class="keywordflow">throw</span>();
-<a name="l00072"></a>00072  <span class="keywordtype">double</span> <a class="code" href="class_play_buf_u_gen_internal.html#a55984b6127a6724894337f660f2db2ac">getPosition</a>() <span class="keywordflow">throw</span>();
+<a name="l00071"></a>00071  <span class="keywordtype">double</span> <a class="code" href="class_play_buf_u_gen_internal.html#a9a88f28474e5141b1cd7199784b30d84">getDuration</a>() <span class="keyword">const</span> <span class="keywordflow">throw</span>();
+<a name="l00072"></a>00072  <span class="keywordtype">double</span> <a class="code" href="class_play_buf_u_gen_internal.html#a2dadc2daf3214f2cbd700b92eded4871">getPosition</a>() <span class="keyword">const</span> <span class="keywordflow">throw</span>();
 <a name="l00073"></a>00073  <span class="keywordtype">void</span> <a class="code" href="class_play_buf_u_gen_internal.html#ad278cfaeecf46e4bc3d44be640b987a7">setPosition</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> newPosition) <span class="keywordflow">throw</span>(); 
 <a name="l00074"></a>00074  
 <a name="l00075"></a><a class="code" href="class_play_buf_u_gen_internal.html#aefedddcdc7e9e2d4ebf049e9c2f7e92da2710d4db5e787f9b5daa3a18b7739772">00075</a>  <span class="keyword">enum</span> <a class="code" href="class_play_buf_u_gen_internal.html#aefedddcdc7e9e2d4ebf049e9c2f7e92d">Inputs</a> { Rate, <a class="code" href="class_trig.html">Trig</a>, Offset, Loop, <a class="code" href="class_play_buf_u_gen_internal.html#aefedddcdc7e9e2d4ebf049e9c2f7e92da89fef81f73d85ff89b620e5a5beaf9a6">NumInputs</a> };
@@ -138,7 +138,7 @@
 <a name="l00122"></a>00122 <span class="preprocessor">#endif // _UGEN_ugen_PlayBuf_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:04 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 27 2010 07:50:26 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

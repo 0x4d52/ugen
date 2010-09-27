@@ -320,9 +320,9 @@ Here are the classes, structs, unions and interfaces with brief descriptions:<ta
   <tr><td class="indexkey"><a class="el" href="class_env_curve.html">EnvCurve</a></td><td class="indexvalue">Specify curved sections of breakpoint envelopes </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_env_curve_list.html">EnvCurveList</a></td><td class="indexvalue">An array of <a class="el" href="class_env_curve.html" title="Specify curved sections of breakpoint envelopes.">EnvCurve</a> objects </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_env_curve_list_1_1_env_curve_list_internal.html">EnvCurveList::EnvCurveListInternal</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="class_envelope_component.html">EnvelopeComponent</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_envelope_component.html">EnvelopeComponent</a></td><td class="indexvalue">For displaying and editing a breakpoint envelope </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_envelope_component_listener.html">EnvelopeComponentListener</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="class_envelope_container_component.html">EnvelopeContainerComponent</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_envelope_container_component.html">EnvelopeContainerComponent</a></td><td class="indexvalue">For displaying and editing a breakpoint envelope with a legend </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_envelope_curve_popup.html">EnvelopeCurvePopup</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="class_envelope_handle_component_constrainer.html">EnvelopeHandleComponentConstrainer</a></td><td class="indexvalue"></td></tr>
@@ -331,7 +331,6 @@ Here are the classes, structs, unions and interfaces with brief descriptions:<ta
   <tr><td class="indexkey"><a class="el" href="class_env_gen.html">EnvGen</a></td><td class="indexvalue">Generate breakpoint envelopes from an <a class="el" href="class_env.html" title="A specification for a segmented envelope.">Env</a> specification </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_env_gen_u_gen_internal.html">EnvGenUGenInternal</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="class_env_gen_u_gen_internal_k.html">EnvGenUGenInternalK</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="class_env_1_1_env_internal.html">Env::EnvInternal</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="class_event_base.html">EventBase&lt; OwnerType &gt;</a></td><td class="indexvalue">The base for all event classes </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_event_base_3_01void_01_4.html">EventBase&lt; void &gt;</a></td><td class="indexvalue">Specialised event class with no owner (i.e., OwnerType is void) </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_external_control_source.html">ExternalControlSource</a></td><td class="indexvalue">Used for mapping data from another source for control purposes </td></tr>
@@ -370,6 +369,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:<ta
   <tr><td class="indexkey"><a class="el" href="class_int_buffer.html">IntBuffer</a></td><td class="indexvalue">Not currently used </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_interceptor.html">Interceptor</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="class_u_gen_array_1_1_internal.html">UGenArray::Internal</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_env_1_1_internal.html">Env::Internal</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="class_int_ptr_u_gen_internal.html">IntPtrUGenInternal</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="class_invert.html">Invert</a></td><td class="indexvalue"><a class="el" href="class_invert.html" title="Invert about a particular value.">Invert</a> about a particular value </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_juce_i_o_host.html">JuceIOHost</a></td><td class="indexvalue">An audio IO host for Juce projects </td></tr>
@@ -515,7 +515,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:<ta
   <tr><td class="indexkey"><a class="el" href="class_plug_u_gen_internal.html">PlugUGenInternal</a></td><td class="indexvalue">A <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> which allows repatching </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_poll.html">Poll</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="class_poll_u_gen_internal.html">PollUGenInternal</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="class_popup_component.html">PopupComponent</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_popup_component.html">PopupComponent</a></td><td class="indexvalue">A little Juce class used as a pop-up editor </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_proxy_owner_u_gen_internal.html">ProxyOwnerUGenInternal</a></td><td class="indexvalue">A <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> base which owns other "proxy" channels (i.e., <a class="el" href="class_proxy_u_gen_internal.html" title="A UGenInternal base is owned by a &quot;proxy owner&quot; (i.e., a ProxyOwnerUGenInternal object)...">ProxyUGenInternal</a> objects) </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_proxy_u_gen_internal.html">ProxyUGenInternal</a></td><td class="indexvalue">A <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> base is owned by a "proxy owner" (i.e., a <a class="el" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &quot;proxy&quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a> object) </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_radial_scope_component.html">RadialScopeComponent</a></td><td class="indexvalue"></td></tr>
@@ -799,7 +799,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:<ta
   <tr><td class="indexkey"><a class="el" href="class_zero_latency_convolve.html">ZeroLatencyConvolve</a></td><td class="indexvalue"></td></tr>
 </table>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:09 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 27 2010 07:50:31 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

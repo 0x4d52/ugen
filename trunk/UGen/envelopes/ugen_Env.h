@@ -43,16 +43,19 @@
 
 
 
-
-
-/**
- A specification for a segmented envelope.
+/** A specification for a segmented envelope.
  
  An Env can have any number of segments which can stop at a particular value or 
  loop several segments when sustaining. An Env can have several shapes for its segments.
  
- An Env is usually passed as an argument to the EnvGen UGen which performs the Env.
+ An Env is usually passed as an argument to the EnvGen UGen which performs the Env, Env is 
+ not UGen on its own.
  
+ In the Juce version there is an graphical editor EnvelopeComponent (and a version
+ with a few more features EnvelopeContainerComponent).
+ 
+ @ingroup EnvUGens
+ @see EnvGen EnvelopeContainerComponent EnvelopeComponent
  */
 class Env
 {
@@ -75,15 +78,7 @@ public:
 		const int loopNode = -1								/**<	The index of the level to loop back to from the releaseNode.
 																	If this is -1 the envelope will sustain at the relaseNode. */
 	) throw();
-	
-//	Env(Buffer const& levels = 0.f,		/**<	A Buffer of levels. e.g. B(0.0, 1.0, 1.0, 0.0) you can also use the macro LL - List Levels. */
-//		Buffer const& times = 1.f,		/**<	A Buffer of times. e.g., B(0.1, 0.8, 0.1) would have a total duration of 1sec. Macro LT - List Times can be used. 
-//												There should be one fewer time than level. */
-//		EnvCurve const& curve = EnvCurve::Linear,	/**<	 The shape of each segment. This is an EnvCurve (which can simply be a float) 
-//															 setting each segment to the same shape. */
-//		const int releaseNode = -1, 
-//		const int loopNode = -1) throw();
-	
+		
 	
 	Env(Env const& copy) throw();
 	Env& operator= (Env const& other) throw();
@@ -161,15 +156,14 @@ public:
 	/// @} <!-- end Construction and destruction ------------------------------------------- -->
 
 	/// @internal
-	class EnvInternal : public SmartPointer
+	class Internal : public SmartPointer
 	{
 	public:	
-		EnvInternal(Buffer const& levels,
-					Buffer const& times, 
-					EnvCurveList const& curves, 
-					const int releaseNode, 
-					const int loopNode) throw();
-		
+		Internal(Buffer const& levels,
+				 Buffer const& times, 
+				 EnvCurveList const& curves, 
+				 const int releaseNode, 
+				 const int loopNode) throw();
 		
 		friend class Env;
 		
@@ -223,7 +217,7 @@ public:
 	/// @} <!-- end Envelope access and manipulation ----------------------------- -->
 	
 private:
-	EnvInternal* internal;
+	Internal* internal;
 };
 
 

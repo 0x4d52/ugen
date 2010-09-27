@@ -352,12 +352,12 @@ void EnvelopeHandleComponent::mouseUp(const MouseEvent& e)
 }
 
 
-EnvelopeHandleComponent* EnvelopeHandleComponent::getPreviousHandle()
+EnvelopeHandleComponent* EnvelopeHandleComponent::getPreviousHandle() const
 {
 	return getParentComponent()->getPreviousHandle(this);
 }
 
-EnvelopeHandleComponent* EnvelopeHandleComponent::getNextHandle()
+EnvelopeHandleComponent* EnvelopeHandleComponent::getNextHandle() const
 {
 	return getParentComponent()->getNextHandle(this);
 }
@@ -372,9 +372,9 @@ void EnvelopeHandleComponent::setMousePositionToThisHandle()
 	Desktop::setMousePosition(Point<int>(getScreenX()+offsetX, getScreenY()+offsetY));
 }
 
-int EnvelopeHandleComponent::getHandleIndex()
+int EnvelopeHandleComponent::getHandleIndex() const
 {
-	return getParentComponent()->getHandleIndex(this);
+	return getParentComponent()->getHandleIndex(const_cast<EnvelopeHandleComponent*>(this));
 }
 
 void EnvelopeHandleComponent::setTime(double timeToSet)
@@ -459,7 +459,7 @@ void EnvelopeHandleComponent::offsetTimeAndValue(double offsetTime, double offse
 }
 
 
-double EnvelopeHandleComponent::constrainDomain(double domainToConstrain)
+double EnvelopeHandleComponent::constrainDomain(double domainToConstrain) const
 { 
 	EnvelopeHandleComponent* previousHandle = getPreviousHandle();
 	EnvelopeHandleComponent* nextHandle = getNextHandle();
@@ -476,7 +476,7 @@ double EnvelopeHandleComponent::constrainDomain(double domainToConstrain)
 	return jlimit(left, right, domainToConstrain); 
 }
 
-double EnvelopeHandleComponent::constrainValue(double valueToConstrain)
+double EnvelopeHandleComponent::constrainValue(double valueToConstrain) const
 {
 	return getParentComponent()->constrainValue(valueToConstrain);
 }
@@ -905,19 +905,19 @@ void EnvelopeComponent::setLegendTextToDefault()
 	legend->setText();	
 }
 
-int EnvelopeComponent::getHandleIndex(EnvelopeHandleComponent* thisHandle)
+int EnvelopeComponent::getHandleIndex(EnvelopeHandleComponent* thisHandle) const
 {
 	return handles.indexOf(thisHandle);
 }
 
-EnvelopeHandleComponent* EnvelopeComponent::getHandle(const int index)
+EnvelopeHandleComponent* EnvelopeComponent::getHandle(const int index) const
 {
 	return handles[index];
 }
 
-EnvelopeHandleComponent* EnvelopeComponent::getPreviousHandle(EnvelopeHandleComponent* thisHandle)
+EnvelopeHandleComponent* EnvelopeComponent::getPreviousHandle(const EnvelopeHandleComponent* thisHandle) const
 {
-	int thisHandleIndex = handles.indexOf(thisHandle);
+	int thisHandleIndex = handles.indexOf(const_cast<EnvelopeHandleComponent*>(thisHandle));
 	
 	if(thisHandleIndex <= 0) 
 		return 0;
@@ -925,9 +925,9 @@ EnvelopeHandleComponent* EnvelopeComponent::getPreviousHandle(EnvelopeHandleComp
 		return handles.getUnchecked(thisHandleIndex-1);
 }
 
-EnvelopeHandleComponent* EnvelopeComponent::getNextHandle(EnvelopeHandleComponent* thisHandle)
+EnvelopeHandleComponent* EnvelopeComponent::getNextHandle(const EnvelopeHandleComponent* thisHandle) const
 {
-	int thisHandleIndex = handles.indexOf(thisHandle);
+	int thisHandleIndex = handles.indexOf(const_cast<EnvelopeHandleComponent*>(thisHandle));
 	
 	if(thisHandleIndex == -1 || thisHandleIndex >= handles.size()-1) 
 		return 0;

@@ -30,7 +30,7 @@
 <h1>oscillators/simple/ugen_LFSaw.cpp</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___l_f_saw_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_LFSaw.cpp 77 2010-05-24 10:34:11Z 0x4d52 $</span>
+<a href="ugen___l_f_saw_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_LFSaw.cpp 164 2010-09-25 12:29:55Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/oscillators/simple/ugen_LFSaw.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -113,12 +113,12 @@
 <a name="l00081"></a>00081  }
 <a name="l00082"></a>00082 }
 <a name="l00083"></a>00083 
-<a name="l00084"></a><a class="code" href="class_l_f_saw_u_gen_internal.html#a759bb9740cb1f84da3cdec4135efebe9">00084</a> <span class="keywordtype">double</span> <a class="code" href="class_l_f_saw_u_gen_internal.html#a759bb9740cb1f84da3cdec4135efebe9" title="Get the maximum duration of the seekable.">LFSawUGenInternal::getDuration</a>() throw()
+<a name="l00084"></a><a class="code" href="class_l_f_saw_u_gen_internal.html#a41d6150d5896364a540372613fce6d77">00084</a> <span class="keywordtype">double</span> <a class="code" href="class_l_f_saw_u_gen_internal.html#a41d6150d5896364a540372613fce6d77" title="Get the maximum duration of the seekable.">LFSawUGenInternal::getDuration</a>() <span class="keyword">const</span> throw()
 <a name="l00085"></a>00085 {
 <a name="l00086"></a>00086  <span class="keywordflow">return</span> 1.0;
 <a name="l00087"></a>00087 }
 <a name="l00088"></a>00088 
-<a name="l00089"></a><a class="code" href="class_l_f_saw_u_gen_internal.html#a7a9525e2b29f8496e8cc09317ffab968">00089</a> <span class="keywordtype">double</span> <a class="code" href="class_l_f_saw_u_gen_internal.html#a7a9525e2b29f8496e8cc09317ffab968" title="Get the current position of the seekable.">LFSawUGenInternal::getPosition</a>() throw()
+<a name="l00089"></a><a class="code" href="class_l_f_saw_u_gen_internal.html#a1441ff3a13da1e0cdd92bba27612959e">00089</a> <span class="keywordtype">double</span> <a class="code" href="class_l_f_saw_u_gen_internal.html#a1441ff3a13da1e0cdd92bba27612959e" title="Get the current position of the seekable.">LFSawUGenInternal::getPosition</a>() <span class="keyword">const</span> throw()
 <a name="l00090"></a>00090 {
 <a name="l00091"></a>00091  <span class="keywordflow">return</span> (<span class="keywordtype">double</span>)(<a class="code" href="class_l_f_saw_u_gen_internal.html#a40fbd2b72a7c8d839a37da03ebf9d4de">currentPhase</a> * 0.5f + 0.5f);
 <a name="l00092"></a>00092 }
@@ -207,7 +207,7 @@
 <a name="l00175"></a>00175 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:07 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 27 2010 07:50:29 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

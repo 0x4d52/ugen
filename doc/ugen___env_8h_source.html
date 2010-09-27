@@ -75,120 +75,109 @@
 <a name="l00043"></a>00043 
 <a name="l00044"></a>00044 
 <a name="l00045"></a>00045 
-<a name="l00046"></a>00046 
-<a name="l00047"></a>00047 
-<a name="l00057"></a><a class="code" href="class_env.html">00057</a> <span class="keyword">class </span><a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a>
-<a name="l00058"></a>00058 {
-<a name="l00059"></a>00059 <span class="keyword">public</span>:
-<a name="l00060"></a>00060  
+<a name="l00060"></a><a class="code" href="class_env.html">00060</a> <span class="keyword">class </span><a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a>
+<a name="l00061"></a>00061 {
+<a name="l00062"></a>00062 <span class="keyword">public</span>:
 <a name="l00063"></a>00063  
-<a name="l00067"></a>00067  <a class="code" href="class_env.html#aef191b587681fb99b9baf73d94419193" title="Creates an Env with supplied specification.">Env</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; levels = <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(0.0, 1.0, 0.0),  
-<a name="l00068"></a>00068   <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; times = <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(1.0, 1.0),    
-<a name="l00070"></a>00070   <a class="code" href="class_env_curve_list.html" title="An array of EnvCurve objects.">EnvCurveList</a> <span class="keyword">const</span>&amp; curves = <a class="code" href="class_env_curve.html" title="Specify curved sections of breakpoint envelopes.">EnvCurve</a>(<a class="code" href="class_env_curve.html#ad73f0fddda6a767a0abbabb80d24f83ba167f3a31ff1f2dec778f0720ee885443">EnvCurve::Linear</a>), 
-<a name="l00073"></a>00073   <span class="keyword">const</span> <span class="keywordtype">int</span> releaseNode = -1,       
-<a name="l00075"></a>00075   <span class="keyword">const</span> <span class="keywordtype">int</span> loopNode = -1        
-<a name="l00077"></a>00077  ) <span class="keywordflow">throw</span>();
-<a name="l00078"></a>00078  
-<a name="l00079"></a>00079 <span class="comment">// Env(Buffer const&amp; levels = 0.f,  /**&lt; A Buffer of levels. e.g. B(0.0, 1.0, 1.0, 0.0) you can also use the macro LL - List Levels. */</span>
-<a name="l00080"></a>00080 <span class="comment">//  Buffer const&amp; times = 1.f,  /**&lt; A Buffer of times. e.g., B(0.1, 0.8, 0.1) would have a total duration of 1sec. Macro LT - List Times can be used. </span>
-<a name="l00081"></a>00081 <span class="comment">//            There should be one fewer time than level. */</span>
-<a name="l00082"></a>00082 <span class="comment">//  EnvCurve const&amp; curve = EnvCurve::Linear, /**&lt;  The shape of each segment. This is an EnvCurve (which can simply be a float) </span>
-<a name="l00083"></a>00083 <span class="comment">//                setting each segment to the same shape. */</span>
-<a name="l00084"></a>00084 <span class="comment">//  const int releaseNode = -1, </span>
-<a name="l00085"></a>00085 <span class="comment">//  const int loopNode = -1) throw();</span>
-<a name="l00086"></a>00086  
+<a name="l00066"></a>00066  
+<a name="l00070"></a>00070  <a class="code" href="class_env.html#aef191b587681fb99b9baf73d94419193" title="Creates an Env with supplied specification.">Env</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; levels = <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(0.0, 1.0, 0.0),  
+<a name="l00071"></a>00071   <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; times = <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(1.0, 1.0),    
+<a name="l00073"></a>00073   <a class="code" href="class_env_curve_list.html" title="An array of EnvCurve objects.">EnvCurveList</a> <span class="keyword">const</span>&amp; curves = <a class="code" href="class_env_curve.html" title="Specify curved sections of breakpoint envelopes.">EnvCurve</a>(<a class="code" href="class_env_curve.html#ad73f0fddda6a767a0abbabb80d24f83ba167f3a31ff1f2dec778f0720ee885443">EnvCurve::Linear</a>), 
+<a name="l00076"></a>00076   <span class="keyword">const</span> <span class="keywordtype">int</span> releaseNode = -1,       
+<a name="l00078"></a>00078   <span class="keyword">const</span> <span class="keywordtype">int</span> loopNode = -1        
+<a name="l00080"></a>00080  ) <span class="keywordflow">throw</span>();
+<a name="l00081"></a>00081   
+<a name="l00082"></a>00082  
+<a name="l00083"></a>00083  <a class="code" href="class_env.html#aef191b587681fb99b9baf73d94419193" title="Creates an Env with supplied specification.">Env</a>(<a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <span class="keyword">const</span>&amp; copy) <span class="keywordflow">throw</span>();
+<a name="l00084"></a>00084  <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a>&amp; <a class="code" href="class_env.html#a90c157fbc361084c3b3954d9c8080cc1">operator= </a>(<a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <span class="keyword">const</span>&amp; other) <span class="keywordflow">throw</span>();
+<a name="l00085"></a>00085  
+<a name="l00086"></a>00086  <a class="code" href="class_env.html#aa2296b62ae91d666089f12c324568df9">~Env</a>() <span class="keywordflow">throw</span>();
 <a name="l00087"></a>00087  
-<a name="l00088"></a>00088  <a class="code" href="class_env.html#aef191b587681fb99b9baf73d94419193" title="Creates an Env with supplied specification.">Env</a>(<a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <span class="keyword">const</span>&amp; copy) <span class="keywordflow">throw</span>();
-<a name="l00089"></a>00089  <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a>&amp; <a class="code" href="class_env.html#a90c157fbc361084c3b3954d9c8080cc1">operator= </a>(<a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <span class="keyword">const</span>&amp; other) <span class="keywordflow">throw</span>();
-<a name="l00090"></a>00090  
-<a name="l00091"></a>00091  <a class="code" href="class_env.html#aa2296b62ae91d666089f12c324568df9">~Env</a>() <span class="keywordflow">throw</span>();
-<a name="l00092"></a>00092  
-<a name="l00100"></a>00100  <span class="keyword">static</span> <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <a class="code" href="class_env.html#aa9e48211d14dcda991fd948461b3bcea" title="Creates a new envelope specification which has a trapezoidal shape.">linen</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> attackTime = 1.0, 
-<a name="l00101"></a>00101       <span class="keyword">const</span> <span class="keywordtype">double</span> sustainTime = 2.0, 
-<a name="l00102"></a>00102       <span class="keyword">const</span> <span class="keywordtype">double</span> releaseTime = 1.0, 
-<a name="l00103"></a>00103       <span class="keyword">const</span> <span class="keywordtype">double</span> sustainLevel = 1.0,
-<a name="l00104"></a>00104       <a class="code" href="class_env_curve.html" title="Specify curved sections of breakpoint envelopes.">EnvCurve</a> <span class="keyword">const</span>&amp; curve = <a class="code" href="class_env_curve.html#ad73f0fddda6a767a0abbabb80d24f83ba167f3a31ff1f2dec778f0720ee885443">EnvCurve::Linear</a>) <span class="keywordflow">throw</span>();
-<a name="l00105"></a>00105  
-<a name="l00110"></a>00110  <span class="keyword">static</span> <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <a class="code" href="class_env.html#afcef5c4c0b91597ae87ab00af3e84be3" title="Creates a new envelope specification which has a triangle shape.">triangle</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="class_env.html#a922dc017ef4aeb8100a166316b4195a7" title="Returns the sum the time values in the envelope.">duration</a> = 1.0, 
-<a name="l00111"></a>00111       <span class="keyword">const</span> <span class="keywordtype">double</span> level = 1.0) <span class="keywordflow">throw</span>();
-<a name="l00112"></a>00112  
-<a name="l00117"></a>00117  <span class="keyword">static</span> <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <a class="code" href="class_env.html#a2af7b53365f6715169876b2816abb4f3" title="Creates a new envelope specification which has a hanning window shape.">sine</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="class_env.html#a922dc017ef4aeb8100a166316b4195a7" title="Returns the sum the time values in the envelope.">duration</a> = 1.0, 
-<a name="l00118"></a>00118      <span class="keyword">const</span> <span class="keywordtype">double</span> level = 1.0) <span class="keywordflow">throw</span>();
-<a name="l00119"></a>00119  
-<a name="l00127"></a>00127  <span class="keyword">static</span> <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <a class="code" href="class_env.html#adfeef0e9871e0bd446a76aa74485dd15" title="Creates a new envelope specification which (usually) has a percussive shape.">perc</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> attackTime = 0.01, 
-<a name="l00128"></a>00128      <span class="keyword">const</span> <span class="keywordtype">double</span> releaseTime = 1.0, 
-<a name="l00129"></a>00129      <span class="keyword">const</span> <span class="keywordtype">double</span> level = 1.0, 
-<a name="l00130"></a>00130      <a class="code" href="class_env_curve.html" title="Specify curved sections of breakpoint envelopes.">EnvCurve</a> <span class="keyword">const</span>&amp; curve = -4.0) <span class="keywordflow">throw</span>();
-<a name="l00131"></a>00131  
-<a name="l00141"></a>00141  <span class="keyword">static</span> <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <a class="code" href="class_env.html#a246b1a0b2393aa2b8fc06b75f6e69df4" title="Creates a new envelope specification which is shaped like traditional analog attack-decay-sustain-rel...">adsr</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> attackTime = 0.01, 
-<a name="l00142"></a>00142      <span class="keyword">const</span> <span class="keywordtype">double</span> decayTime = 0.3, 
-<a name="l00143"></a>00143      <span class="keyword">const</span> <span class="keywordtype">double</span> sustainLevel = 0.5, 
-<a name="l00144"></a>00144      <span class="keyword">const</span> <span class="keywordtype">double</span> releaseTime = 1.0, 
-<a name="l00145"></a>00145      <span class="keyword">const</span> <span class="keywordtype">double</span> level = 1.0, 
-<a name="l00146"></a>00146      <a class="code" href="class_env_curve.html" title="Specify curved sections of breakpoint envelopes.">EnvCurve</a> <span class="keyword">const</span>&amp; curve = -4.0) <span class="keywordflow">throw</span>();
-<a name="l00147"></a>00147  
-<a name="l00155"></a>00155  <span class="keyword">static</span> <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <a class="code" href="class_env.html#ad65a69e21690fbd5d160d0fa2f7dc96a" title="Creates a new envelope specification which is shaped like traditional analog attack-sustain-release (...">asr</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> attackTime = 0.01, 
-<a name="l00156"></a>00156        <span class="keyword">const</span> <span class="keywordtype">double</span> sustainLevel = 1.0, 
-<a name="l00157"></a>00157        <span class="keyword">const</span> <span class="keywordtype">double</span> releaseTime = 1.0, 
-<a name="l00158"></a>00158        <span class="keyword">const</span> <span class="keywordtype">double</span> level = 1.0, 
-<a name="l00159"></a>00159        <a class="code" href="class_env_curve.html" title="Specify curved sections of breakpoint envelopes.">EnvCurve</a> <span class="keyword">const</span>&amp; curve = -4.0) <span class="keywordflow">throw</span>();
-<a name="l00160"></a>00160  
-<a name="l00162"></a>00162 
-<a name="l00164"></a><a class="code" href="class_env_1_1_env_internal.html">00164</a>  <span class="keyword">class </span><a class="code" href="class_env_1_1_env_internal.html">EnvInternal</a> : <span class="keyword">public</span> <a class="code" href="class_smart_pointer.html">SmartPointer</a>
-<a name="l00165"></a>00165  {
-<a name="l00166"></a>00166  <span class="keyword">public</span>: 
-<a name="l00167"></a>00167   <a class="code" href="class_env_1_1_env_internal.html#ae1039b8fb05be25373105faa15707b28">EnvInternal</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; levels,
-<a name="l00168"></a>00168      <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; times, 
-<a name="l00169"></a>00169      <a class="code" href="class_env_curve_list.html" title="An array of EnvCurve objects.">EnvCurveList</a> <span class="keyword">const</span>&amp; curves, 
-<a name="l00170"></a>00170      <span class="keyword">const</span> <span class="keywordtype">int</span> releaseNode, 
-<a name="l00171"></a>00171      <span class="keyword">const</span> <span class="keywordtype">int</span> loopNode) <span class="keywordflow">throw</span>();
-<a name="l00172"></a>00172   
-<a name="l00173"></a>00173   
-<a name="l00174"></a><a class="code" href="class_env_1_1_env_internal.html#abdaef0c8ee7a94cd311c47b09aa8fe53">00174</a>   <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a>;
-<a name="l00175"></a>00175   
-<a name="l00176"></a>00176  <span class="keyword">private</span>:
-<a name="l00177"></a><a class="code" href="class_env_1_1_env_internal.html#ad836bc19f39e96a0f08c444eda6aa94e">00177</a>   <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_env_1_1_env_internal.html#ad836bc19f39e96a0f08c444eda6aa94e">levels_</a>;
-<a name="l00178"></a><a class="code" href="class_env_1_1_env_internal.html#a07bc7d89e2cb584977d43e4b456b5ba7">00178</a>   <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_env_1_1_env_internal.html#a07bc7d89e2cb584977d43e4b456b5ba7">times_</a>;
-<a name="l00179"></a><a class="code" href="class_env_1_1_env_internal.html#a9a439dd3755bf140c4b1b54a663b4d04">00179</a>   <a class="code" href="class_env_curve_list.html" title="An array of EnvCurve objects.">EnvCurveList</a> <a class="code" href="class_env_1_1_env_internal.html#a9a439dd3755bf140c4b1b54a663b4d04">curves_</a>;
-<a name="l00180"></a><a class="code" href="class_env_1_1_env_internal.html#a2f1873664f23ecb47fe03cbfa49ea206">00180</a>   <span class="keywordtype">int</span> <a class="code" href="class_env_1_1_env_internal.html#a2f1873664f23ecb47fe03cbfa49ea206">releaseNode_</a>;
-<a name="l00181"></a><a class="code" href="class_env_1_1_env_internal.html#a625793cb5945805b9feb087ad3912c4a">00181</a>   <span class="keywordtype">int</span> <a class="code" href="class_env_1_1_env_internal.html#a625793cb5945805b9feb087ad3912c4a">loopNode_</a>;
-<a name="l00182"></a>00182  };
-<a name="l00183"></a>00183  
-<a name="l00186"></a>00186  
-<a name="l00187"></a><a class="code" href="class_env.html#af3debacc2950ba0f04cf8d0990992a0c">00187</a>  <span class="keyword">inline</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp;   <a class="code" href="class_env.html#af3debacc2950ba0f04cf8d0990992a0c">getTimes</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> <span class="keyword">internal</span>-&gt;times_; }
-<a name="l00188"></a><a class="code" href="class_env.html#af77c15fba91dbeb8a4ddc67deeee47fb">00188</a>  <span class="keyword">inline</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp;   <a class="code" href="class_env.html#af77c15fba91dbeb8a4ddc67deeee47fb">getLevels</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> <span class="keyword">internal</span>-&gt;levels_; }
-<a name="l00189"></a><a class="code" href="class_env.html#a1b41769b2150ea29d59bdec16b8a7f7f">00189</a>  <span class="keyword">inline</span> <a class="code" href="class_env_curve_list.html" title="An array of EnvCurve objects.">EnvCurveList</a>&amp; <a class="code" href="class_env.html#a1b41769b2150ea29d59bdec16b8a7f7f">getCurves</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> <span class="keyword">internal</span>-&gt;curves_; }
+<a name="l00095"></a>00095  <span class="keyword">static</span> <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <a class="code" href="class_env.html#aa9e48211d14dcda991fd948461b3bcea" title="Creates a new envelope specification which has a trapezoidal shape.">linen</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> attackTime = 1.0, 
+<a name="l00096"></a>00096       <span class="keyword">const</span> <span class="keywordtype">double</span> sustainTime = 2.0, 
+<a name="l00097"></a>00097       <span class="keyword">const</span> <span class="keywordtype">double</span> releaseTime = 1.0, 
+<a name="l00098"></a>00098       <span class="keyword">const</span> <span class="keywordtype">double</span> sustainLevel = 1.0,
+<a name="l00099"></a>00099       <a class="code" href="class_env_curve.html" title="Specify curved sections of breakpoint envelopes.">EnvCurve</a> <span class="keyword">const</span>&amp; curve = <a class="code" href="class_env_curve.html#ad73f0fddda6a767a0abbabb80d24f83ba167f3a31ff1f2dec778f0720ee885443">EnvCurve::Linear</a>) <span class="keywordflow">throw</span>();
+<a name="l00100"></a>00100  
+<a name="l00105"></a>00105  <span class="keyword">static</span> <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <a class="code" href="class_env.html#afcef5c4c0b91597ae87ab00af3e84be3" title="Creates a new envelope specification which has a triangle shape.">triangle</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="class_env.html#a922dc017ef4aeb8100a166316b4195a7" title="Returns the sum the time values in the envelope.">duration</a> = 1.0, 
+<a name="l00106"></a>00106       <span class="keyword">const</span> <span class="keywordtype">double</span> level = 1.0) <span class="keywordflow">throw</span>();
+<a name="l00107"></a>00107  
+<a name="l00112"></a>00112  <span class="keyword">static</span> <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <a class="code" href="class_env.html#a2af7b53365f6715169876b2816abb4f3" title="Creates a new envelope specification which has a hanning window shape.">sine</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="class_env.html#a922dc017ef4aeb8100a166316b4195a7" title="Returns the sum the time values in the envelope.">duration</a> = 1.0, 
+<a name="l00113"></a>00113      <span class="keyword">const</span> <span class="keywordtype">double</span> level = 1.0) <span class="keywordflow">throw</span>();
+<a name="l00114"></a>00114  
+<a name="l00122"></a>00122  <span class="keyword">static</span> <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <a class="code" href="class_env.html#adfeef0e9871e0bd446a76aa74485dd15" title="Creates a new envelope specification which (usually) has a percussive shape.">perc</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> attackTime = 0.01, 
+<a name="l00123"></a>00123      <span class="keyword">const</span> <span class="keywordtype">double</span> releaseTime = 1.0, 
+<a name="l00124"></a>00124      <span class="keyword">const</span> <span class="keywordtype">double</span> level = 1.0, 
+<a name="l00125"></a>00125      <a class="code" href="class_env_curve.html" title="Specify curved sections of breakpoint envelopes.">EnvCurve</a> <span class="keyword">const</span>&amp; curve = -4.0) <span class="keywordflow">throw</span>();
+<a name="l00126"></a>00126  
+<a name="l00136"></a>00136  <span class="keyword">static</span> <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <a class="code" href="class_env.html#a246b1a0b2393aa2b8fc06b75f6e69df4" title="Creates a new envelope specification which is shaped like traditional analog attack-decay-sustain-rel...">adsr</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> attackTime = 0.01, 
+<a name="l00137"></a>00137      <span class="keyword">const</span> <span class="keywordtype">double</span> decayTime = 0.3, 
+<a name="l00138"></a>00138      <span class="keyword">const</span> <span class="keywordtype">double</span> sustainLevel = 0.5, 
+<a name="l00139"></a>00139      <span class="keyword">const</span> <span class="keywordtype">double</span> releaseTime = 1.0, 
+<a name="l00140"></a>00140      <span class="keyword">const</span> <span class="keywordtype">double</span> level = 1.0, 
+<a name="l00141"></a>00141      <a class="code" href="class_env_curve.html" title="Specify curved sections of breakpoint envelopes.">EnvCurve</a> <span class="keyword">const</span>&amp; curve = -4.0) <span class="keywordflow">throw</span>();
+<a name="l00142"></a>00142  
+<a name="l00150"></a>00150  <span class="keyword">static</span> <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <a class="code" href="class_env.html#ad65a69e21690fbd5d160d0fa2f7dc96a" title="Creates a new envelope specification which is shaped like traditional analog attack-sustain-release (...">asr</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> attackTime = 0.01, 
+<a name="l00151"></a>00151        <span class="keyword">const</span> <span class="keywordtype">double</span> sustainLevel = 1.0, 
+<a name="l00152"></a>00152        <span class="keyword">const</span> <span class="keywordtype">double</span> releaseTime = 1.0, 
+<a name="l00153"></a>00153        <span class="keyword">const</span> <span class="keywordtype">double</span> level = 1.0, 
+<a name="l00154"></a>00154        <a class="code" href="class_env_curve.html" title="Specify curved sections of breakpoint envelopes.">EnvCurve</a> <span class="keyword">const</span>&amp; curve = -4.0) <span class="keywordflow">throw</span>();
+<a name="l00155"></a>00155  
+<a name="l00157"></a>00157 
+<a name="l00159"></a><a class="code" href="class_env_1_1_internal.html">00159</a>  <span class="keyword">class </span><a class="code" href="class_env_1_1_internal.html">Internal</a> : <span class="keyword">public</span> <a class="code" href="class_smart_pointer.html">SmartPointer</a>
+<a name="l00160"></a>00160  {
+<a name="l00161"></a>00161  <span class="keyword">public</span>: 
+<a name="l00162"></a>00162   <a class="code" href="class_env_1_1_internal.html#abd9f7c07c22dbd927eae28b078e7dfea">Internal</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; levels,
+<a name="l00163"></a>00163      <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; times, 
+<a name="l00164"></a>00164      <a class="code" href="class_env_curve_list.html" title="An array of EnvCurve objects.">EnvCurveList</a> <span class="keyword">const</span>&amp; curves, 
+<a name="l00165"></a>00165      <span class="keyword">const</span> <span class="keywordtype">int</span> releaseNode, 
+<a name="l00166"></a>00166      <span class="keyword">const</span> <span class="keywordtype">int</span> loopNode) <span class="keywordflow">throw</span>();
+<a name="l00167"></a>00167   
+<a name="l00168"></a><a class="code" href="class_env_1_1_internal.html#abdaef0c8ee7a94cd311c47b09aa8fe53">00168</a>   <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a>;
+<a name="l00169"></a>00169   
+<a name="l00170"></a>00170  <span class="keyword">private</span>:
+<a name="l00171"></a><a class="code" href="class_env_1_1_internal.html#af72de335bd4ad8fbbf6ac5318d56a479">00171</a>   <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_env_1_1_internal.html#af72de335bd4ad8fbbf6ac5318d56a479">levels_</a>;
+<a name="l00172"></a><a class="code" href="class_env_1_1_internal.html#a2846838604bd1b9c6de05ce299d33428">00172</a>   <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_env_1_1_internal.html#a2846838604bd1b9c6de05ce299d33428">times_</a>;
+<a name="l00173"></a><a class="code" href="class_env_1_1_internal.html#afe666e3244ee95701d9a07f7e9b241b4">00173</a>   <a class="code" href="class_env_curve_list.html" title="An array of EnvCurve objects.">EnvCurveList</a> <a class="code" href="class_env_1_1_internal.html#afe666e3244ee95701d9a07f7e9b241b4">curves_</a>;
+<a name="l00174"></a><a class="code" href="class_env_1_1_internal.html#a2c263a127dc657ef9d5e2e2f0c83fe8e">00174</a>   <span class="keywordtype">int</span> <a class="code" href="class_env_1_1_internal.html#a2c263a127dc657ef9d5e2e2f0c83fe8e">releaseNode_</a>;
+<a name="l00175"></a><a class="code" href="class_env_1_1_internal.html#ac95a18ad6d645a6ee12f404f6c3676f4">00175</a>   <span class="keywordtype">int</span> <a class="code" href="class_env_1_1_internal.html#ac95a18ad6d645a6ee12f404f6c3676f4">loopNode_</a>;
+<a name="l00176"></a>00176  };
+<a name="l00177"></a>00177  
+<a name="l00180"></a>00180  
+<a name="l00181"></a><a class="code" href="class_env.html#af3debacc2950ba0f04cf8d0990992a0c">00181</a>  <span class="keyword">inline</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp;   <a class="code" href="class_env.html#af3debacc2950ba0f04cf8d0990992a0c">getTimes</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> <span class="keyword">internal</span>-&gt;times_; }
+<a name="l00182"></a><a class="code" href="class_env.html#af77c15fba91dbeb8a4ddc67deeee47fb">00182</a>  <span class="keyword">inline</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp;   <a class="code" href="class_env.html#af77c15fba91dbeb8a4ddc67deeee47fb">getLevels</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> <span class="keyword">internal</span>-&gt;levels_; }
+<a name="l00183"></a><a class="code" href="class_env.html#a1b41769b2150ea29d59bdec16b8a7f7f">00183</a>  <span class="keyword">inline</span> <a class="code" href="class_env_curve_list.html" title="An array of EnvCurve objects.">EnvCurveList</a>&amp; <a class="code" href="class_env.html#a1b41769b2150ea29d59bdec16b8a7f7f">getCurves</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> <span class="keyword">internal</span>-&gt;curves_; }
+<a name="l00184"></a>00184  
+<a name="l00185"></a><a class="code" href="class_env.html#a4f5656e0bea94101076153487e13f377">00185</a>  <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="class_env.html#a4f5656e0bea94101076153487e13f377">getReleaseNode</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> <span class="keyword">internal</span>-&gt;releaseNode_; }
+<a name="l00186"></a><a class="code" href="class_env.html#a31e6c499971ca67619305d7173f8d818">00186</a>  <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="class_env.html#a31e6c499971ca67619305d7173f8d818">getLoopNode</a>() <span class="keyword">const</span> throw()  { <span class="keywordflow">return</span> <span class="keyword">internal</span>-&gt;loopNode_;  }
+<a name="l00187"></a>00187  
+<a name="l00189"></a>00189  <span class="keywordtype">double</span> <a class="code" href="class_env.html#a922dc017ef4aeb8100a166316b4195a7" title="Returns the sum the time values in the envelope.">duration</a>() <span class="keyword">const</span> throw();
 <a name="l00190"></a>00190  
-<a name="l00191"></a><a class="code" href="class_env.html#a4f5656e0bea94101076153487e13f377">00191</a>  <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="class_env.html#a4f5656e0bea94101076153487e13f377">getReleaseNode</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> <span class="keyword">internal</span>-&gt;releaseNode_; }
-<a name="l00192"></a><a class="code" href="class_env.html#a31e6c499971ca67619305d7173f8d818">00192</a>  <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="class_env.html#a31e6c499971ca67619305d7173f8d818">getLoopNode</a>() <span class="keyword">const</span> throw()  { <span class="keywordflow">return</span> <span class="keyword">internal</span>-&gt;loopNode_;  }
+<a name="l00192"></a>00192  <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <a class="code" href="class_env.html#a968a65f0eb2561e5d4931b4f3a038024" title="Returns a new envelope with the levels scaled by a constant.">levelScale</a>(const <span class="keywordtype">double</span> scale) const throw();
 <a name="l00193"></a>00193  
-<a name="l00195"></a>00195  <span class="keywordtype">double</span> <a class="code" href="class_env.html#a922dc017ef4aeb8100a166316b4195a7" title="Returns the sum the time values in the envelope.">duration</a>() <span class="keyword">const</span> throw();
+<a name="l00195"></a>00195  <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <a class="code" href="class_env.html#a5fca1499f3553677652f385e2847b7f7" title="Returns a new envelope with the levels offset by a constant.">levelBias</a>(const <span class="keywordtype">double</span> bias) const throw();
 <a name="l00196"></a>00196  
-<a name="l00198"></a>00198  <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <a class="code" href="class_env.html#a968a65f0eb2561e5d4931b4f3a038024" title="Returns a new envelope with the levels scaled by a constant.">levelScale</a>(const <span class="keywordtype">double</span> scale) const throw();
+<a name="l00198"></a>00198  <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <a class="code" href="class_env.html#a63203bb2f6840f754b53c60e3917794d" title="Returns a new envelope with the time values scaled by a constant.">timeScale</a>(const <span class="keywordtype">double</span> scale) const throw();
 <a name="l00199"></a>00199  
-<a name="l00201"></a>00201  <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <a class="code" href="class_env.html#a5fca1499f3553677652f385e2847b7f7" title="Returns a new envelope with the levels offset by a constant.">levelBias</a>(const <span class="keywordtype">double</span> bias) const throw();
+<a name="l00200"></a>00200  <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <a class="code" href="class_env.html#acd47f08f2262ed1e592949d4df18f9c1">blend</a>(<a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> const&amp; other, const <span class="keywordtype">double</span> fraction) const throw();
+<a name="l00201"></a>00201  <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <a class="code" href="class_env.html#aea023aafc7bab1e957c9da4842c7ec96">simplifyCurves</a>() const throw();
 <a name="l00202"></a>00202  
-<a name="l00204"></a>00204  <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <a class="code" href="class_env.html#a63203bb2f6840f754b53c60e3917794d" title="Returns a new envelope with the time values scaled by a constant.">timeScale</a>(const <span class="keywordtype">double</span> scale) const throw();
-<a name="l00205"></a>00205  
-<a name="l00206"></a>00206  <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <a class="code" href="class_env.html#acd47f08f2262ed1e592949d4df18f9c1">blend</a>(<a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> const&amp; other, const <span class="keywordtype">double</span> fraction) const throw();
-<a name="l00207"></a>00207  <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <a class="code" href="class_env.html#aea023aafc7bab1e957c9da4842c7ec96">simplifyCurves</a>() const throw();
-<a name="l00208"></a>00208  
-<a name="l00211"></a>00211  <span class="keywordtype">float</span> <a class="code" href="class_env.html#a28e59c389804b40d062b130ce3ff0c69" title="Get the level of the Env ata given time.">lookup</a>(<span class="keywordtype">float</span> time) const throw();
-<a name="l00212"></a>00212  
-<a name="l00216"></a>00216  operator <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> () const throw();
-<a name="l00217"></a>00217  
-<a name="l00221"></a>00221  <span class="keywordtype">void</span> <a class="code" href="class_env.html#ace54f70a44d34a96f5a2443d57e6d0f4" title="Write the Env into an exisiting Buffer.">writeToBuffer</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp; buffer, const <span class="keywordtype">int</span> channel = 0) const throw();
-<a name="l00222"></a>00222  
-<a name="l00224"></a>00224  
-<a name="l00225"></a>00225 private:
-<a name="l00226"></a><a class="code" href="class_env.html#a1df98503a4321752b107f3c47bdd7346">00226</a>  <a class="code" href="class_env_1_1_env_internal.html">EnvInternal</a>* <a class="code" href="class_env.html#a1df98503a4321752b107f3c47bdd7346">internal</a>;
-<a name="l00227"></a>00227 };
-<a name="l00228"></a>00228 
-<a name="l00229"></a>00229 
-<a name="l00230"></a>00230 <span class="preprocessor">#endif // _UGEN_ugen_Env_H_</span>
+<a name="l00205"></a>00205  <span class="keywordtype">float</span> <a class="code" href="class_env.html#a28e59c389804b40d062b130ce3ff0c69" title="Get the level of the Env ata given time.">lookup</a>(<span class="keywordtype">float</span> time) const throw();
+<a name="l00206"></a>00206  
+<a name="l00210"></a>00210  operator <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> () const throw();
+<a name="l00211"></a>00211  
+<a name="l00215"></a>00215  <span class="keywordtype">void</span> <a class="code" href="class_env.html#ace54f70a44d34a96f5a2443d57e6d0f4" title="Write the Env into an exisiting Buffer.">writeToBuffer</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp; buffer, const <span class="keywordtype">int</span> channel = 0) const throw();
+<a name="l00216"></a>00216  
+<a name="l00218"></a>00218  
+<a name="l00219"></a>00219 private:
+<a name="l00220"></a><a class="code" href="class_env.html#a5d7145db0ff92ee1fd2834b655dae7f9">00220</a>  <a class="code" href="class_env_1_1_internal.html">Internal</a>* <a class="code" href="class_env.html#a5d7145db0ff92ee1fd2834b655dae7f9">internal</a>;
+<a name="l00221"></a>00221 };
+<a name="l00222"></a>00222 
+<a name="l00223"></a>00223 
+<a name="l00224"></a>00224 <span class="preprocessor">#endif // _UGEN_ugen_Env_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:03 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 27 2010 07:50:28 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
