@@ -52,7 +52,7 @@ inline String getFileNameWithTimeIdentifier(String const& filename) throw()
 	return filename + T("_") + getCurrentTimeIdentifier();
 }
 
-
+/** A little Juce class used as a pop-up editor. */
 class PopupComponent :	public Component,
 						public Timer
 {

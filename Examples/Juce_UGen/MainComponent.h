@@ -31,7 +31,7 @@ class MainComponent  :  public Component,
 	MultiSlider* sliders2;
 	
 	float freqValue1, freqValue2, ampValue1, ampValue2;
-								
+									
 public:
 	//==============================================================================
 	MainComponent()
@@ -92,7 +92,6 @@ public:
 		Env env = Env::linen(1.0, 1.0, 1.0, 0.7, EnvCurve::Sine);		
 		envComponent->setDomainRange(env.duration());
 		envComponent->setEnv(env);
-		envComponent->setAllowCurveEditing(false);
 		
 		// add scope to the main out
 		UGen scope = Sender::AR(getOutput(), U(ampSlider2) / 10);
@@ -163,7 +162,7 @@ public:
 		}
 		else if(button == testButton2)
 		{
-			
+
 		}
 		else if(button == toggle1)
 		{

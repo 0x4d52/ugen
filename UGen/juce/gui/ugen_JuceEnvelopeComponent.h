@@ -89,8 +89,8 @@ public:
     void mouseDrag         (const MouseEvent& e);
     void mouseUp           (const MouseEvent& e);
 		
-	EnvelopeHandleComponent* getPreviousHandle();
-	EnvelopeHandleComponent* getNextHandle();
+	EnvelopeHandleComponent* getPreviousHandle() const;
+	EnvelopeHandleComponent* getNextHandle() const;
 	void removeThisHandle();
 	
 	void setMousePositionToThisHandle();
@@ -99,15 +99,15 @@ public:
 	double getTime() const	{ return time;	}
 	double getValue() const	{ return value; }
 	EnvCurve getCurve() const	{ return curve; }
-	int getHandleIndex();
+	int getHandleIndex() const;
 		
 	void setTime(double timeToSet);
 	void setValue(double valueToSet);
 	void setCurve(EnvCurve curveToSet);
 	void setTimeAndValue(double timeToSet, double valueToSet, double quantise = 0.0);
 	void offsetTimeAndValue(double offsetTime, double offsetValue, double quantise = 0.0);
-	double constrainDomain(double domainToConstrain);
-	double constrainValue(double valueToConstrain);
+	double constrainDomain(double domainToConstrain) const;
+	double constrainValue(double valueToConstrain) const;
 	
 	friend class EnvelopeComponent;
 	
@@ -134,6 +134,9 @@ public:
 	virtual void envelopeChanged(EnvelopeComponent* changedEnvelope) = 0;
 };
 
+/** For displaying and editing a breakpoint envelope. 
+ @ingoup EnvUGens
+ @see Env */
 class EnvelopeComponent : public Component
 {
 public:
@@ -173,11 +176,11 @@ public:
 	
 	void setLegendText(Text const& legendText);
 	void setLegendTextToDefault();
-	int getHandleIndex(EnvelopeHandleComponent* handle);
-	EnvelopeHandleComponent* getHandle(const int index);
+	int getHandleIndex(EnvelopeHandleComponent* handle) const;
+	EnvelopeHandleComponent* getHandle(const int index) const;
 	
-	EnvelopeHandleComponent* getPreviousHandle(EnvelopeHandleComponent* thisHandle);
-	EnvelopeHandleComponent* getNextHandle(EnvelopeHandleComponent* thisHandle);
+	EnvelopeHandleComponent* getPreviousHandle(const EnvelopeHandleComponent* thisHandle) const;
+	EnvelopeHandleComponent* getNextHandle(const EnvelopeHandleComponent* thisHandle) const;
 	EnvelopeHandleComponent* addHandle(int newX, int newY, EnvCurve curve);
 	EnvelopeHandleComponent* addHandle(double newDomain, double newValue, EnvCurve curve);
 	void removeHandle(EnvelopeHandleComponent* thisHandle);
@@ -210,8 +213,8 @@ public:
 	double constrainDomain(double domainToConstrain) const;
 	double constrainValue(double valueToConstrain) const;
 	
-	double quantiseDomain(double value);
-	double quantiseValue(double value);
+//	double quantiseDomain(double value);
+//	double quantiseValue(double value);
 	
 	enum EnvColours { Node, ReleaseNode, LoopNode, Line, LoopLine, Background, GridLine, LegendText, LegendBackground, NumEnvColours };
 	void setEnvColour(const EnvColours which, RGBAColour const& colour) throw();
@@ -257,6 +260,10 @@ private:
 	Text defaultText;
 };
 
+/** For displaying and editing a breakpoint envelope with a legend. 
+ This provides additional information about the points. 
+ @ingoup EnvUGens
+ @see Env */
 class EnvelopeContainerComponent : public Component
 {
 public:
