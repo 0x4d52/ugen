@@ -352,5 +352,63 @@ private:
 
 
 
+class TapInUGenInternal :	public ProxyOwnerUGenInternal
+{
+public:
+	TapInUGenInternal(UGen const& input,
+					  Buffer const& buffer, 
+					  UGen const& recLevel,
+					  UGen const& preLevel) throw();
+	UGenInternal* getChannel(const int channel) throw();
+	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
+		
+	enum Inputs { Input, RecLevel, PreLevel, NumInputs };
+	
+protected:
+	Buffer buffer_;
+};
+
+
+
+UGenSublcassDeclaration(TapIn, (input, buffer, recLevel, preLevel),
+						(UGen const& input,
+						 Buffer const& buffer, 
+						 UGen const& recLevel = 1.f,
+						 UGen const& preLevel = 0.f), COMMON_UGEN_DOCS);
+
+
+class TapOutNUGenInternal :	public ProxyOwnerUGenInternal
+{
+public:
+	TapOutNUGenInternal(Buffer const& buffer, UGen const& delayTime) throw();
+	UGenInternal* getChannel(const int channel) throw();
+	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
+	
+	enum Inputs { DelayTime, NumInputs };
+	
+protected:
+	Buffer buffer_;
+};
+
+class TapOutLUGenInternal :	public ProxyOwnerUGenInternal
+{
+public:
+	TapOutLUGenInternal(Buffer const& buffer, UGen const& delayTime) throw();
+	UGenInternal* getChannel(const int channel) throw();
+	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
+	
+	enum Inputs { DelayTime, NumInputs };
+	
+protected:
+	Buffer buffer_;
+};
+
+
+
+UGenSublcassDeclaration(TapOutN, (buffer, delayTime),
+						         (Buffer const& buffer, UGen const& delayTime), COMMON_UGEN_DOCS);
+
+UGenSublcassDeclaration(TapOutL, (buffer, delayTime),
+						         (Buffer const& buffer, UGen const& delayTime), COMMON_UGEN_DOCS);
 
 #endif // _UGEN_ugen_Delay_H_

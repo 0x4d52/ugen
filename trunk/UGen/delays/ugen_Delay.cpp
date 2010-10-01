@@ -75,7 +75,7 @@ UGenInternal* DelayNUGenInternal::getChannel(const int channel) throw()
 
 void DelayNUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
-	double sampleRate = UGen::getSampleRate();
+	const float sampleRate = UGen::getSampleRate();
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
 	float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
@@ -125,7 +125,7 @@ UGenInternal* DelayNMultiUGenInternal::getChannel(const int channel) throw()
 
 void DelayNMultiUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {
-	double sampleRate = UGen::getSampleRate();
+	const float sampleRate = UGen::getSampleRate();
 	
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
@@ -210,7 +210,7 @@ UGenInternal* DelayLUGenInternal::getChannel(const int channel) throw()
 
 void DelayLUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
-	double sampleRate = UGen::getSampleRate();
+	const float sampleRate = UGen::getSampleRate();
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
 	float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
@@ -232,7 +232,7 @@ void DelayLUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 		{
 			bufferSamples[bufferWritePos] = *inputSamples++;
 			
-			float bufferReadPos = (float)bufferWritePos - (float)(*delayTimeSamples++ * sampleRate);
+			float bufferReadPos = (float)bufferWritePos - *delayTimeSamples++ * sampleRate;
 			if(bufferReadPos < 0.f)
 				bufferReadPos += (float)delayBufferSize;
 			
@@ -262,7 +262,7 @@ UGenInternal* DelayLMultiUGenInternal::getChannel(const int channel) throw()
 
 void DelayLMultiUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
-	double sampleRate = UGen::getSampleRate();
+	const float sampleRate = UGen::getSampleRate();
 	
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
@@ -285,7 +285,7 @@ void DelayLMultiUGenInternal::processBlock(bool& shouldDelete, const unsigned in
 		{
 			bufferSamples[bufferWritePos] = *inputSamples++;
 			
-			float bufferReadPos = (float)bufferWritePos - (float)(*delayTimeSamples++ * sampleRate);
+			float bufferReadPos = (float)bufferWritePos - *delayTimeSamples++ * sampleRate;
 			if(bufferReadPos < 0.f)
 				bufferReadPos += (float)delayBufferSize;
 			
@@ -317,7 +317,7 @@ void DelayLMultiUGenInternal::processBlock(bool& shouldDelete, const unsigned in
 
 			while(numFramesThisTime--)
 			{
-				float bufferReadPos = (float)bufferWritePos - (float)(*delayTimeSamples++ * sampleRate);
+				float bufferReadPos = (float)bufferWritePos - *delayTimeSamples++ * sampleRate;
 				if(bufferReadPos < 0.f)
 					bufferReadPos += (float)delayBufferSize;
 				
@@ -364,7 +364,7 @@ UGenInternal* CombNUGenInternal::getChannel(const int channel) throw()
 
 void CombNUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
-	double sampleRate = UGen::getSampleRate();
+	const float sampleRate = UGen::getSampleRate();
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
 	float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
@@ -435,7 +435,7 @@ UGenInternal* CombLUGenInternal::getChannel(const int channel) throw()
 
 void CombLUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
-	double sampleRate = UGen::getSampleRate();
+	const float sampleRate = UGen::getSampleRate();
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
 	float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
@@ -467,7 +467,7 @@ void CombLUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 		
 		while(numSamplesThisTime--)
 		{
-			float bufferReadPos = (float)bufferWritePos - (float)(*delayTimeSamples++ * sampleRate);
+			float bufferReadPos = (float)bufferWritePos - *delayTimeSamples++ * sampleRate;
 			if(bufferReadPos < 0.f)
 				bufferReadPos += (float)delayBufferSize;
 			
@@ -505,7 +505,7 @@ UGenInternal* AllpassNUGenInternal::getChannel(const int channel) throw()
 
 void AllpassNUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
-	double sampleRate = UGen::getSampleRate();
+	const float sampleRate = UGen::getSampleRate();
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
 	float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
@@ -529,7 +529,7 @@ void AllpassNUGenInternal::processBlock(bool& shouldDelete, const unsigned int b
 		LOCAL_COPY(currentDecay);
 	}
 	
-	float nextDelay = (float)(*delayTimeSamples * sampleRate);
+	float nextDelay = *delayTimeSamples * sampleRate;
 	
 	if(nextDelay != currentDelay)	
 	{
@@ -595,7 +595,7 @@ UGenInternal* AllpassLUGenInternal::getChannel(const int channel) throw()
 
 void AllpassLUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
-	double sampleRate = UGen::getSampleRate();
+	const float sampleRate = UGen::getSampleRate();
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
 	float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
@@ -619,7 +619,7 @@ void AllpassLUGenInternal::processBlock(bool& shouldDelete, const unsigned int b
 		LOCAL_COPY(currentDecay);
 	}
 	
-	float nextDelay = (float)(*delayTimeSamples * sampleRate);
+	float nextDelay = *delayTimeSamples * sampleRate;
 	
 	if(nextDelay != currentDelay)	
 	{
@@ -840,5 +840,194 @@ AllpassL::AllpassL(UGen const& input, const float maximumDelayTime, UGen const& 
 													Buffer(BufferSpec(int(UGen::getSampleRate() * maximumDelayTime) + 1, 1, true)));
 	}	
 }
+
+
+TapInUGenInternal::TapInUGenInternal(UGen const& input,
+									 Buffer const& buffer, 
+									 UGen const& recLevel,
+									 UGen const& preLevel) throw()
+:	ProxyOwnerUGenInternal(NumInputs, ugen::max(buffer.getNumChannels(), input.getNumChannels())-1),
+	buffer_(buffer)
+{
+	inputs[Input] = input;
+	inputs[RecLevel] = recLevel;
+	inputs[PreLevel] = preLevel;
+}
+
+UGenInternal* TapInUGenInternal::getChannel(const int channel) throw()
+{
+	return new TapInUGenInternal(inputs[Input].getChannel(channel),
+								 buffer_.getChannel(channel), 
+								 inputs[RecLevel].getChannel(channel), 
+								 inputs[PreLevel].getChannel(channel));	
+}
+
+void TapInUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
+{
+	const int blockSize = uGenOutput.getBlockSize();
+		
+	for(int channel = 0; channel < getNumChannels(); channel++)
+	{
+		int numSamplesToProcess = blockSize;
+		const int bufferSize = buffer_.size();
+		float* outputSamples = proxies[channel]->getSampleData();
+		float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
+		float* preLevelSamples = inputs[PreLevel].processBlock(shouldDelete, blockID, channel);
+		float* recLevelSamples = inputs[RecLevel].processBlock(shouldDelete, blockID, channel);
+		float* bufferSamples = buffer_.getData(channel);
+		int channelBufferPos = buffer_.getCircularHead(blockID, channel);
+		
+		while(numSamplesToProcess) 
+		{							
+			float recLevel = *recLevelSamples++;
+			float rec = *inputSamples++ * recLevel;
+			float preLevel = *preLevelSamples++;
+			float pre = bufferSamples[channelBufferPos] * preLevel;
+			float out = pre + rec;
+			*outputSamples++ = out;
+			bufferSamples[channelBufferPos] = out;
+			channelBufferPos++;
+			
+			if(channelBufferPos >= bufferSize)
+				channelBufferPos = 0;
+			
+			--numSamplesToProcess;
+		}		
+		
+		buffer_.setCircularHead(blockID, channel, channelBufferPos);
+	}
+}
+
+TapIn::TapIn(UGen const& input,
+			 Buffer const& _buffer, 
+			 UGen const& recLevel,
+			 UGen const& preLevel) throw()
+{
+	ugen_assert(_buffer.size() > 0);
+	ugen_assert(_buffer.getNumChannels() > 0);
+	
+	Buffer buffer = _buffer;
+	
+	for(int i = 0; i < buffer.getNumChannels(); i++)
+	{
+		buffer.setCircularHead(0, i, 0);
+	}
+	
+	const int numChannels = ugen::max(buffer.getNumChannels(), input.getNumChannels());
+	initInternal(numChannels);
+	generateFromProxyOwner(new TapInUGenInternal(input, buffer, recLevel, preLevel));	
+}
+
+TapOutNUGenInternal::TapOutNUGenInternal(Buffer const& buffer, UGen const& delayTime) throw()
+:	ProxyOwnerUGenInternal(NumInputs, ugen::max(buffer.getNumChannels(), delayTime.getNumChannels())-1),	
+	buffer_(buffer)
+{
+	inputs[DelayTime] = delayTime;
+}
+
+UGenInternal* TapOutNUGenInternal::getChannel(const int channel) throw()
+{
+	return new TapOutNUGenInternal(buffer_.getChannel(channel), inputs[DelayTime].getChannel(channel));	
+}
+
+void TapOutNUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+{
+	const float sampleRate = UGen::getSampleRate();
+	const int blockSize = uGenOutput.getBlockSize();
+	
+	for(int channel = 0; channel < getNumChannels(); channel++)
+	{
+		float* outputSamples = proxies[channel]->getSampleData();
+		int channelBufferPos = buffer_.getCircularHead(blockID, channel);
+		
+		if(channelBufferPos < 0)
+		{
+			memset(outputSamples, 0, blockSize * sizeof(float));
+		}
+		else
+		{		
+			int numSamplesToProcess = blockSize;
+			const int bufferSize = buffer_.size();
+			float* delayTimeSamples = inputs[DelayTime].processBlock(shouldDelete, blockID, channel);
+			float* bufferSamples = buffer_.getData(channel);
+
+			while(numSamplesToProcess--) 
+			{							
+				int bufferReadPos = channelBufferPos - (int)(*delayTimeSamples++ * sampleRate);
+				if(bufferReadPos < 0)
+					bufferReadPos += bufferSize;
+				*outputSamples++ = bufferSamples[bufferReadPos];
+				channelBufferPos++;
+			}	
+		}
+	}	
+}
+
+TapOutLUGenInternal::TapOutLUGenInternal(Buffer const& buffer, UGen const& delayTime) throw()
+:	ProxyOwnerUGenInternal(NumInputs, ugen::max(buffer.getNumChannels(), delayTime.getNumChannels())-1),	
+	buffer_(buffer)
+{
+	inputs[DelayTime] = delayTime;
+}
+
+UGenInternal* TapOutLUGenInternal::getChannel(const int channel) throw()
+{
+	return new TapOutLUGenInternal(buffer_.getChannel(channel), inputs[DelayTime].getChannel(channel));	
+}
+
+void TapOutLUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+{
+	const float sampleRate = UGen::getSampleRate();
+	const int blockSize = uGenOutput.getBlockSize();
+	
+	for(int channel = 0; channel < getNumChannels(); channel++)
+	{
+		const float bufferSize = buffer_.size();
+		float* outputSamples = proxies[channel]->getSampleData();
+		float channelBufferPos = (float)buffer_.getCircularHead(blockID, channel);
+		
+		if(channelBufferPos < 0.f)
+		{
+			memset(outputSamples, 0, blockSize * sizeof(float));
+		}
+		else
+		{
+			int numSamplesToProcess = blockSize;
+			const int bufferChannel = channel % buffer_.getNumChannels();
+			float* delayTimeSamples = inputs[DelayTime].processBlock(shouldDelete, blockID, channel);
+
+			while(numSamplesToProcess--) 
+			{							
+				float bufferReadPos = channelBufferPos - *delayTimeSamples++ * sampleRate;
+				if(bufferReadPos < 0.f)
+					bufferReadPos += bufferSize;
+				*outputSamples++ = buffer_.getSampleUnchecked(bufferChannel, bufferReadPos);
+				channelBufferPos += 1.f;
+			}	
+		}
+	}	
+}
+
+TapOutN::TapOutN(Buffer const& buffer, UGen const& delayTime) throw()
+{
+	ugen_assert(buffer.size() > 0);
+	ugen_assert(buffer.getNumChannels() > 0);
+		
+	const int numChannels = ugen::max(buffer.getNumChannels(), delayTime.getNumChannels());
+	initInternal(numChannels);
+	generateFromProxyOwner(new TapOutNUGenInternal(buffer, delayTime));	
+}
+
+TapOutL::TapOutL(Buffer const& buffer, UGen const& delayTime) throw()
+{
+	ugen_assert(buffer.size() > 0);
+	ugen_assert(buffer.getNumChannels() > 0);
+	
+	const int numChannels = ugen::max(buffer.getNumChannels(), delayTime.getNumChannels());
+	initInternal(numChannels);
+	generateFromProxyOwner(new TapOutLUGenInternal(buffer, delayTime));	
+}
+
+
 
 END_UGEN_NAMESPACE

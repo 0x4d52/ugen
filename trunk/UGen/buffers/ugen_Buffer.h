@@ -53,7 +53,8 @@ public:
 	~BufferChannelInternal() throw();
 	
 	inline float getSampleUnchecked(const int index) const throw() { return data[index]; }
-	inline float getSampleUnchecked(const double index) const throw() 
+	inline float getSampleUnchecked(const double index) const throw() { return getSampleUnchecked((float)index); }
+	inline float getSampleUnchecked(const float index) const throw() 
 	{ 
 		const int iIndex0 = (int)index;
 		unsigned int iIndex1 = iIndex0+1;
@@ -68,11 +69,16 @@ public:
 	friend class Buffer;
 	friend class PartBuffer;
 	friend class ComplexBuffer;
+	friend class TapInUGenInternal;
+	friend class TapOutUGenInternal;
 	
 private:
 	float* data;
 	unsigned int size_;
 	unsigned int allocatedSize;
+	unsigned int currentWriteBlockID;
+	int circularHead; // -1 means it is not a crcular buffer
+	int previousCircularHead;
 	
 	BufferChannelInternal (const BufferChannelInternal&);
     const BufferChannelInternal& operator= (const BufferChannelInternal&);
@@ -331,6 +337,7 @@ public:
 	inline const float* getData(const int channel = 0) const throw()					{ ugen_assert(channel >= 0); return channels[channel % numChannels_]->data; }
 	inline float* getDataUnchecked(const int channel = 0) throw()						{ ugen_assert(channel >= 0); return channels[channel]->data; }
 	inline const float* getDataUnchecked(const int channel = 0) const throw()			{ ugen_assert(channel >= 0); return channels[channel]->data; }
+	
 	inline int getNumChannels() const throw()											{ return numChannels_; }
 	inline int size() const throw()														{ return size_; }
 	double duration() const throw();
@@ -367,6 +374,14 @@ public:
 		else
 			return channels[channel]->getSampleUnchecked(sampleIndex);
 	}
+	
+	inline float getSample(const int channel, const float sampleIndex) const throw()	
+	{ 
+		if(sampleIndex < 0.0 || (int)sampleIndex >= size_) 
+			return 0.f;
+		else
+			return channels[channel]->getSampleUnchecked(sampleIndex);
+	}	
 	
 	inline void setSampleUnchecked(const int sampleIndex, const float value) const throw()	
 	{ 
@@ -405,6 +420,14 @@ public:
 
 		return channels[channel]->getSampleUnchecked(index);	
 	}
+	
+	inline float getSampleUnchecked(const int channel, const float index) const throw()
+	{ 
+		ugen_assert(channel >= 0 && channel < numChannels_);
+		ugen_assert(index >= 0 && index < size_);
+		
+		return channels[channel]->getSampleUnchecked(index);	
+	}	
 	
 	inline float lookup(const int channel, const double phase) const throw()
 	{ 
@@ -495,6 +518,29 @@ public:
 			sampleIndex += size_;
 		
 		return channels[channel]->data[sampleIndex % size_];		
+	}
+	
+	inline void setCircularHead(const unsigned int blockID, const int channel, const int position) throw() 
+	{ 
+		ugen_assert((channel >= 0) && (channel < numChannels_)); 
+		BufferChannelInternal* internal = channels[channel];
+		internal->previousCircularHead = internal->circularHead;
+		internal->circularHead = position; 
+		internal->currentWriteBlockID = blockID;
+	}
+	
+	inline int getCircularHead(const unsigned int blockID, const int channel) const throw() 
+	{ 
+		ugen_assert(channel >= 0); 
+		BufferChannelInternal* internal = channels[channel % numChannels_];
+		if(blockID == internal->currentWriteBlockID)
+		{
+			return internal->previousCircularHead;
+		}
+		else
+		{
+			return internal->circularHead;
+		}
 	}
 	
 	Buffer operator<< (Buffer const& other) const throw();

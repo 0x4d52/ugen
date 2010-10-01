@@ -58,7 +58,9 @@ static inline void reportDataPtr(const float* ptr, const int size) throw()
 
 BufferChannelInternal::BufferChannelInternal(const unsigned int size, bool zeroData) throw()
 :	size_(size),
-	allocatedSize(size)
+	allocatedSize(size),
+	currentWriteBlockID(-1),
+	circularHead(-1), previousCircularHead(-1)
 {
 	ugen_assert(size > 0);
 	
@@ -76,7 +78,9 @@ BufferChannelInternal::BufferChannelInternal(const unsigned int size, bool zeroD
 
 BufferChannelInternal::BufferChannelInternal(const unsigned int size, const unsigned int sourceDataSize, const float* sourceData) throw()
 :	size_(size),
-	allocatedSize(size)
+	allocatedSize(size),
+	currentWriteBlockID(-1),
+	circularHead(-1), previousCircularHead(-1)
 {
 	ugen_assert(size > 0);
 	ugen_assert(sourceDataSize > 0);
@@ -101,12 +105,13 @@ BufferChannelInternal::BufferChannelInternal(const unsigned int size, const unsi
 
 BufferChannelInternal::BufferChannelInternal(const unsigned int size, const double start, const double end) throw()
 :	size_(size),
-	allocatedSize(size)
+	allocatedSize(size),
+	currentWriteBlockID(-1),
+	circularHead(-1), previousCircularHead(-1)
 {
 	ugen_assert(size >= 2);
 	
 	data = new float[size_];
-	//data = (float*)malloc(size_ * sizeof(float));
 	double inc = (end - start) / (size_ - 1);
 	double currentValue = start;
 	float *outputSamples = data;
@@ -129,6 +134,9 @@ BufferChannelInternal::~BufferChannelInternal() throw()
 	data = 0;
 	size_= 0;
 	allocatedSize = 0;
+	currentWriteBlockID = -1;
+	circularHead = -1;
+	previousCircularHead = -1;
 }
 
 Buffer::Buffer() throw()
