@@ -1,5 +1,5 @@
-// $Id:$
-// $HeadURL:$
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================
@@ -52,13 +52,23 @@ void BinaryAddUGenInternal::processBlock(bool& shouldDelete, const unsigned int 
 	vDSP_vadd(leftOperandSamples, 1, rightOperandSamples, 1, outputSamples, 1, numSamplesToProcess);
 }
 
+ // apple bug
+static void Workaround_vsub(const float *a, int aStride, const float *b, int bStride, float *c, int cStride, int size )
+{
+    const float minusOne = -1.0f;
+    vsmul(a, aStride, &minusOne, c, cStride, size);
+    vadd( c, cStride, b, bStride, c, cStride, size );	
+}
+
 void BinarySubtractUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw() 
 { 
 	const int numSamplesToProcess = uGenOutput.getBlockSize(); 
 	float*  const  outputSamples = uGenOutput.getSampleData(); 
 	const float* const leftOperandSamples = inputs[LeftOperand].processBlock(shouldDelete, blockID, channel); 
 	const float* const rightOperandSamples = inputs[RightOperand].processBlock(shouldDelete, blockID, channel); 
-	vDSP_vsub(leftOperandSamples, 1, rightOperandSamples, 1, outputSamples, 1, numSamplesToProcess);
+	//vDSP_vsub(leftOperandSamples, 1, rightOperandSamples, 1, outputSamples, 1, numSamplesToProcess);
+	Workaround_vsub(rightOperandSamples, 1, leftOperandSamples, 1, outputSamples, 1, numSamplesToProcess);
+	//vDSP_vsub(rightOperandSamples, 1, leftOperandSamples, 1, outputSamples, 1, numSamplesToProcess);
 }
 
 void BinaryMultiplyUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw() 

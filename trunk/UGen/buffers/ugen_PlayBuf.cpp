@@ -223,4 +223,136 @@ BufferValues::BufferValues(Buffer const& buffer) throw()
 	}
 }
 
+
+RecordBufUGenInternal::RecordBufUGenInternal(UGen const& input,
+											 Buffer const& buffer, 
+											 UGen const& recLevel,
+											 UGen const& preLevel,
+											 UGen const& loop, 
+											 const UGen::DoneAction doneAction) throw()
+:	ProxyOwnerUGenInternal(NumInputs, ugen::max(buffer.getNumChannels(), input.getNumChannels()) - 1),
+	buffer_(buffer),
+	bufferPos(0),
+	doneAction_(doneAction),
+	shouldDeleteValue(doneAction_ == UGen::DeleteWhenDone)
+{
+	inputs[Input] = input;
+	inputs[RecLevel] = recLevel;
+	inputs[PreLevel] = preLevel;
+	inputs[Loop] = loop;
+}
+
+UGenInternal* RecordBufUGenInternal::getChannel(const int channel) throw()
+{
+	return new RecordBufUGenInternal(inputs[Input].getChannel(channel),
+									 buffer_.getChannel(channel), 
+									 inputs[RecLevel].getChannel(channel), 
+									 inputs[PreLevel].getChannel(channel), 
+									 inputs[Loop], 
+									 doneAction_);
+}
+
+void RecordBufUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw()
+{
+	senderUserData = userData;
+	if(isDone()) sendDoneInternal();
+}
+
+void RecordBufUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
+{
+	const int blockSize = uGenOutput.getBlockSize();
+	
+	int channelBufferPos;
+	
+	for(int channel = 0; channel < getNumChannels(); channel++)
+	{
+		int numSamplesToProcess = blockSize;
+		const int bufferSize = buffer_.size();
+		channelBufferPos = bufferPos;
+		float* outputSamples = proxies[channel]->getSampleData();
+		float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
+		float* preLevelSamples = inputs[PreLevel].processBlock(shouldDelete, blockID, channel);
+		float* recLevelSamples = inputs[RecLevel].processBlock(shouldDelete, blockID, channel);
+		float* loopSamples = inputs[Loop].processBlock(shouldDelete, blockID, 0);
+		float* bufferSamples = buffer_.getData(channel);
+		
+		while(numSamplesToProcess) 
+		{				
+			int position = channelBufferPos;
+						
+			if(*loopSamples++ >= 0.5f) 
+			{
+				if(position >= bufferSize)
+					position -= bufferSize;
+				else if(channelBufferPos < 0)
+					position += bufferSize;
+				
+				float recLevel = *recLevelSamples++;
+				float rec = *inputSamples++ * recLevel;
+				float preLevel = *preLevelSamples++;
+				float pre = bufferSamples[position] * preLevel;
+				float out = pre + rec;
+				*outputSamples++ = out;
+				bufferSamples[position] = out;
+				channelBufferPos++;
+				
+				if(channelBufferPos >= bufferSize)
+					channelBufferPos -= bufferSize;
+				else if(channelBufferPos < 0)
+					channelBufferPos += bufferSize;
+			}
+			else
+			{
+				float rec = *inputSamples++ * *recLevelSamples++;
+				float pre = bufferSamples[position] * *preLevelSamples++;
+				float out = pre + rec;
+				*outputSamples++ = out;
+				bufferSamples[position] = out;
+				channelBufferPos++;
+			}
+			
+			--numSamplesToProcess;
+		}		
+	}
+	
+	bufferPos = channelBufferPos;
+	
+	if(bufferPos >= buffer_.size())
+	{
+		shouldDelete = shouldDelete ? true : shouldDeleteValue;
+		setIsDone();
+	}	
+}
+
+double RecordBufUGenInternal::getDuration() const throw()
+{
+	return buffer_.duration();
+}
+
+double RecordBufUGenInternal::getPosition() const throw()
+{
+	return bufferPos * UGen::getReciprocalSampleRate();
+}
+
+void RecordBufUGenInternal::setPosition(const double newPosition) throw()
+{
+	bufferPos = ugen::max(0.0, newPosition) * UGen::getSampleRate();
+}
+
+RecordBuf::RecordBuf(UGen const& input,
+					 Buffer const& buffer, 
+					 UGen const& recLevel,
+					 UGen const& preLevel,
+					 UGen const& loop, 
+					 const UGen::DoneAction doneAction) throw()
+{
+	ugen_assert(buffer.size() > 0);
+	ugen_assert(buffer.getNumChannels() > 0);
+
+	const int numChannels = ugen::max(buffer.getNumChannels(), input.getNumChannels());
+	initInternal(numChannels);
+	generateFromProxyOwner(new RecordBufUGenInternal(input, buffer, recLevel, preLevel, loop, doneAction));
+}
+
+
 END_UGEN_NAMESPACE
