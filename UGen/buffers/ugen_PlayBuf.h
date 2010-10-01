@@ -117,6 +117,44 @@ protected:
 UGenSublcassDeclaration(BufferValues, (buffer), (Buffer const& buffer), COMMON_UGEN_DOCS);
 
 
+class RecordBufUGenInternal :	public ProxyOwnerUGenInternal,
+								public Seekable,
+								public DoneActionSender	
+{
+public:
+	RecordBufUGenInternal(UGen const& input,
+						  Buffer const& buffer, 
+						  UGen const& recLevel,
+						  UGen const& preLevel,
+						  UGen const& loop, 
+						  const UGen::DoneAction doneAction) throw();
+	UGenInternal* getChannel(const int channel) throw();
+	void prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw();
+	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
+	
+	double getDuration() const throw();
+	double getPosition() const throw();
+	void setPosition(const double newPosition) throw();	
+	
+	enum Inputs { Input, RecLevel, PreLevel, Loop, NumInputs };
+	
+protected:
+	Buffer buffer_;
+	int bufferPos;
+	const UGen::DoneAction doneAction_;
+	const bool shouldDeleteValue;	
+};
+
+/** A UGen which writes to a buffer. 
+ @ingroup AllUGens SoundFileUGens
+ @see PlayBufUGen */
+UGenSublcassDeclaration(RecordBuf, (input, buffer, recLevel, preLevel, loop, doneAction),
+						(UGen const& input,
+						 Buffer const& buffer, 
+						 UGen const& recLevel = 1.f,
+						 UGen const& preLevel = 0.f,
+						 UGen const& loop = 0.f, 
+						 const UGen::DoneAction doneAction = UGen::DeleteWhenDone), COMMON_UGEN_DOCS);
 
 
 #endif // _UGEN_ugen_PlayBuf_H_
