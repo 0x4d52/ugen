@@ -31,13 +31,11 @@ class MainComponent  :  public Component,
 	MultiSlider* sliders2;
 	
 	float freqValue1, freqValue2, ampValue1, ampValue2;
-						
-	Buffer buffer;
-	
+							
 public:
 	//==============================================================================
 	MainComponent()
-	:	JuceIOHost(2, 2, 0, true)
+	:	JuceIOHost(1, 2, 0, true)
     {		
 		setName (T("UGen Test"));
 						
@@ -160,19 +158,7 @@ public:
 		}
 		else if(button == testButton1)
 		{
-			Env recenv = Env(Buffer(0.0, 1.0, 0.0), 
-							 Buffer(0.5, 0.5),
-							 EnvCurve::Sine);
-			UGen recLevel = recenv;
-//			Env preenv = Env(Buffer(1.0, 0.0, 1.0), 
-//							 Buffer(0.5, 0.5),
-//							 EnvCurve::Sine);
-			UGen preLevel = UGen(1.0)-recLevel;
-			UGen sine = SinOsc::AR(exprand(100.0, 1000.0));
-			UGen record = RecordBuf::AR(sine, buffer, recLevel, preLevel, 1);
-			double newPosition = rand(buffer.duration());
-			record.setPosition(newPosition);
-			addOther(record);
+
 		}
 		else if(button == testButton2)
 		{
@@ -219,11 +205,13 @@ public:
 //		UGen output = SinOsc::AR(s.kr(), 0, UGen(0.1, 0.1));
 //		return output;
 		
-		buffer = Buffer::newClear(UGen::getSampleRate() * 4, 1, true);
-		UGen out = PlayBuf::AR(buffer, 1.0, 0, 0, 1.0) * 0.3;
-		UGen disk = DiskOut::AR("~/Desktop/test.wav", out, true);
-		//return disk;
-		return out;
+		Buffer buffer = Buffer::newClear(8 * UGen::getSampleRate(), 1, true);
+		
+		UGen tapout = TapOutL::AR(buffer, U(1.0, 2.0));
+		
+		addOther(TapIn::AR(input + tapout.mix() * 0.25, buffer, 1, 0));
+		
+		return tapout;
 	}
 };
 

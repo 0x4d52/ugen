@@ -277,37 +277,31 @@ void RecordBufUGenInternal::processBlock(bool& shouldDelete, const unsigned int 
 		float* bufferSamples = buffer_.getData(channel);
 		
 		while(numSamplesToProcess) 
-		{				
-			int position = channelBufferPos;
-						
+		{										
 			if(*loopSamples++ >= 0.5f) 
 			{
-				if(position >= bufferSize)
-					position -= bufferSize;
-				else if(channelBufferPos < 0)
-					position += bufferSize;
+				if(channelBufferPos >= bufferSize)
+					channelBufferPos = 0;
 				
 				float recLevel = *recLevelSamples++;
 				float rec = *inputSamples++ * recLevel;
 				float preLevel = *preLevelSamples++;
-				float pre = bufferSamples[position] * preLevel;
+				float pre = bufferSamples[channelBufferPos] * preLevel;
 				float out = pre + rec;
 				*outputSamples++ = out;
-				bufferSamples[position] = out;
+				bufferSamples[channelBufferPos] = out;
 				channelBufferPos++;
 				
 				if(channelBufferPos >= bufferSize)
-					channelBufferPos -= bufferSize;
-				else if(channelBufferPos < 0)
-					channelBufferPos += bufferSize;
+					channelBufferPos = 0;
 			}
 			else
 			{
 				float rec = *inputSamples++ * *recLevelSamples++;
-				float pre = bufferSamples[position] * *preLevelSamples++;
+				float pre = bufferSamples[channelBufferPos] * *preLevelSamples++;
 				float out = pre + rec;
 				*outputSamples++ = out;
-				bufferSamples[position] = out;
+				bufferSamples[channelBufferPos] = out;
 				channelBufferPos++;
 			}
 			
@@ -351,7 +345,7 @@ RecordBuf::RecordBuf(UGen const& input,
 
 	const int numChannels = ugen::max(buffer.getNumChannels(), input.getNumChannels());
 	initInternal(numChannels);
-	generateFromProxyOwner(new RecordBufUGenInternal(input, buffer, recLevel, preLevel, loop, doneAction));
+	generateFromProxyOwner(new RecordBufUGenInternal(input, buffer, recLevel, preLevel, loop.mix(), doneAction));
 }
 
 
