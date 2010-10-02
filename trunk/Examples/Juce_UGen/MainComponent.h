@@ -31,6 +31,8 @@ class MainComponent  :  public Component,
 	MultiSlider* sliders2;
 	
 	float freqValue1, freqValue2, ampValue1, ampValue2;
+	
+	UGen delayTime;
 							
 public:
 	//==============================================================================
@@ -170,7 +172,23 @@ public:
 		}
 		else if(button == toggle2)
 		{
-
+			if(toggle1->getToggleState()) return;
+				
+			if(toggle2->getToggleState())
+			{
+				float start = UGen::getBlockSize() * UGen::getReciprocalSampleRate();
+				float end = 8;
+				UGen newDelay = LLine::AR(start, end, end-start, UGen::DoNothing);
+										  
+				const ScopedLock sl(lock);
+				delayTime.setSource(newDelay, true);
+			}
+			else
+			{
+				float newDelay = delayTime.getValue();
+				const ScopedLock sl(lock);
+				delayTime.setSource(newDelay, true);
+			}
 		}
 	}
 	
@@ -205,13 +223,24 @@ public:
 //		UGen output = SinOsc::AR(s.kr(), 0, UGen(0.1, 0.1));
 //		return output;
 		
-		Buffer buffer = Buffer::newClear(8 * UGen::getSampleRate(), 1, true);
+//		UGen sig = Impulse::AR(1);
+//		Buffer buffer = Buffer::newClear(8 * UGen::getSampleRate(), 1, true);
+//		UGen tapout = TapOutL::AR(buffer,  SinOsc::AR(5).linlin(-1, 1, 1.0 / 82, 1.0 / 50));
+//		addOther(TapIn::AR(sig + tapout.mix() * 0.975, buffer, 1, 0));
+//		return (tapout);
 		
-		UGen tapout = TapOutL::AR(buffer, U(1.0, 2.0));
+		Buffer buffer = Buffer::newClear(8 * UGen::getSampleRate(), 1, true); 
 		
-		addOther(TapIn::AR(input + tapout.mix() * 0.25, buffer, 1, 0));
+		UGen recLevel = toggle2;
+		UGen preLevel = 1-recLevel;
 		
-		return tapout;
+		delayTime = Plug::AR(4);
+		
+		UGen tapout = TapOutL::AR(buffer, delayTime);
+		UGen in = recLevel * input + tapout * preLevel;
+		UGen tapin = TapIn::AR(in, buffer);
+		//addOther(tapin);
+		return TapOutL::AR(buffer, 0) ^ tapin;
 	}
 };
 

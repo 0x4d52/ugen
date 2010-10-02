@@ -369,7 +369,9 @@ protected:
 };
 
 
-
+/** Write data to a delay line circular buffer.
+ This forces the Buffer provided to become a circular buffer. You must be careful to use this buffer
+ with only one TapIn but it may be used by one or more TapOutN or TapOutL UGens. */
 UGenSublcassDeclaration(TapIn, (input, buffer, recLevel, preLevel),
 						(UGen const& input,
 						 Buffer const& buffer, 
@@ -403,12 +405,20 @@ protected:
 	Buffer buffer_;
 };
 
+#define TapOut_Docs			@param	buffer				The Buffer being used as a circular delay buffer.							\
+														This must be being written to by a TapIn UGen.								\
+							@param	delayTime			The delay time to use. The minimum for the TapOut UGens is a single			\
+														block delay given by UGen::getBlockSize() / UGen::getSampleRate().			\
+														Values smaller that this will be clipped. The maximum value is determined	\
+														by the duration of the buffer.	
 
 
+/** Tap a delay line using no interpolation. */
 UGenSublcassDeclaration(TapOutN, (buffer, delayTime),
-						         (Buffer const& buffer, UGen const& delayTime), COMMON_UGEN_DOCS);
+						         (Buffer const& buffer, UGen const& delayTime = 0.f), COMMON_UGEN_DOCS TapOut_Docs);
 
+/** Tap a delay line using linear interpolation. */
 UGenSublcassDeclaration(TapOutL, (buffer, delayTime),
-						         (Buffer const& buffer, UGen const& delayTime), COMMON_UGEN_DOCS);
+						         (Buffer const& buffer, UGen const& delayTime = 0.f), COMMON_UGEN_DOCS TapOut_Docs);
 
 #endif // _UGEN_ugen_Delay_H_

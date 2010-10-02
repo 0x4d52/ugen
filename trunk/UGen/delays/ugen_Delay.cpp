@@ -948,7 +948,7 @@ void TapOutNUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 		{		
 			int numSamplesToProcess = blockSize;
 			const int bufferSize = buffer_.size();
-			float* delayTimeSamples = inputs[DelayTime].processBlock(shouldDelete, blockID, channel);
+			const float* delayTimeSamples = inputs[DelayTime].processBlock(shouldDelete, blockID, channel);
 			float* bufferSamples = buffer_.getData(channel);
 
 			while(numSamplesToProcess--) 
@@ -958,6 +958,8 @@ void TapOutNUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 					bufferReadPos += bufferSize;
 				*outputSamples++ = bufferSamples[bufferReadPos];
 				channelBufferPos++;
+				if(channelBufferPos >= bufferSize)
+					channelBufferPos -= bufferSize;
 			}	
 		}
 	}	
@@ -992,17 +994,21 @@ void TapOutLUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 		}
 		else
 		{
+			const float floatBlockSize = blockSize;
 			int numSamplesToProcess = blockSize;
 			const int bufferChannel = channel % buffer_.getNumChannels();
-			float* delayTimeSamples = inputs[DelayTime].processBlock(shouldDelete, blockID, channel);
+			const float* delayTimeSamples = inputs[DelayTime].processBlock(shouldDelete, blockID, channel);
 
 			while(numSamplesToProcess--) 
-			{							
-				float bufferReadPos = channelBufferPos - *delayTimeSamples++ * sampleRate;
+			{				
+				float delay = ugen::max(floatBlockSize, *delayTimeSamples++ * sampleRate);
+				float bufferReadPos = channelBufferPos - delay;
 				if(bufferReadPos < 0.f)
 					bufferReadPos += bufferSize;
 				*outputSamples++ = buffer_.getSampleUnchecked(bufferChannel, bufferReadPos);
 				channelBufferPos += 1.f;
+				if(channelBufferPos >= bufferSize)
+					channelBufferPos -= bufferSize;
 			}	
 		}
 	}	
