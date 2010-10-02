@@ -47,13 +47,11 @@
 <tr><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tap_in_u_gen_internal.html#aa9a00d4b22b51a5f0a5a49bbff31329b">Inputs</a> { <a class="el" href="class_tap_in_u_gen_internal.html#aa9a00d4b22b51a5f0a5a49bbff31329ba25d846bbc2a6654cd67b9fdd76c19bae">Input</a>, 
-<a class="el" href="class_tap_in_u_gen_internal.html#aa9a00d4b22b51a5f0a5a49bbff31329ba9be840bb8e1cbbc19e6b7882ba99f739">RecLevel</a>, 
-<a class="el" href="class_tap_in_u_gen_internal.html#aa9a00d4b22b51a5f0a5a49bbff31329ba34af0cf9e117ab62418c865f57b3fb2f">PreLevel</a>, 
 <a class="el" href="class_tap_in_u_gen_internal.html#aa9a00d4b22b51a5f0a5a49bbff31329bafc5f947a859cb870b820d46927a05c59">NumInputs</a>
  }</td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tap_in_u_gen_internal.html#a2e7bb65344de0ceb672a7884f855d627">TapInUGenInternal</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_buffer.html">Buffer</a> const &amp;buffer, <a class="el" href="class_u_gen.html">UGen</a> const &amp;recLevel, <a class="el" href="class_u_gen.html">UGen</a> const &amp;preLevel)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tap_in_u_gen_internal.html#a2b43785473a5533901024dda35be3ce6">TapInUGenInternal</a> (<a class="el" href="class_u_gen.html">UGen</a> const &amp;input, <a class="el" href="class_buffer.html">Buffer</a> const &amp;buffer)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tap_in_u_gen_internal.html#aa2af89694411e635847b34ebe3762de4">getChannel</a> (const int channel)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tap_in_u_gen_internal.html#ac26c60594feb62349f0ee71e06ea2e36">processBlock</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Process a block of samples for this blockID and channel.  <a href="#ac26c60594feb62349f0ee71e06ea2e36"></a><br/></td></tr>
@@ -78,22 +76,18 @@ Protected Attributes</h2></td></tr>
 <dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
 <tr><td valign="top"><em><a class="anchor" id="aa9a00d4b22b51a5f0a5a49bbff31329ba25d846bbc2a6654cd67b9fdd76c19bae"></a><!-- doxytag: member="Input" ref="aa9a00d4b22b51a5f0a5a49bbff31329ba25d846bbc2a6654cd67b9fdd76c19bae" args="" -->Input</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="aa9a00d4b22b51a5f0a5a49bbff31329ba9be840bb8e1cbbc19e6b7882ba99f739"></a><!-- doxytag: member="RecLevel" ref="aa9a00d4b22b51a5f0a5a49bbff31329ba9be840bb8e1cbbc19e6b7882ba99f739" args="" -->RecLevel</em>&nbsp;</td><td>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" id="aa9a00d4b22b51a5f0a5a49bbff31329ba34af0cf9e117ab62418c865f57b3fb2f"></a><!-- doxytag: member="PreLevel" ref="aa9a00d4b22b51a5f0a5a49bbff31329ba34af0cf9e117ab62418c865f57b3fb2f" args="" -->PreLevel</em>&nbsp;</td><td>
-</td></tr>
 <tr><td valign="top"><em><a class="anchor" id="aa9a00d4b22b51a5f0a5a49bbff31329bafc5f947a859cb870b820d46927a05c59"></a><!-- doxytag: member="NumInputs" ref="aa9a00d4b22b51a5f0a5a49bbff31329bafc5f947a859cb870b820d46927a05c59" args="" -->NumInputs</em>&nbsp;</td><td>
 </td></tr>
 </table>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ugen___delay_8h_source.html#l00365">365</a> of file <a class="el" href="ugen___delay_8h_source.html">ugen_Delay.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___delay_8h_source.html#l00363">363</a> of file <a class="el" href="ugen___delay_8h_source.html">ugen_Delay.h</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a2e7bb65344de0ceb672a7884f855d627"></a><!-- doxytag: member="TapInUGenInternal::TapInUGenInternal" ref="a2e7bb65344de0ceb672a7884f855d627" args="(UGen const &amp;input, Buffer const &amp;buffer, UGen const &amp;recLevel, UGen const &amp;preLevel)" -->
+<a class="anchor" id="a2b43785473a5533901024dda35be3ce6"></a><!-- doxytag: member="TapInUGenInternal::TapInUGenInternal" ref="a2b43785473a5533901024dda35be3ce6" args="(UGen const &amp;input, Buffer const &amp;buffer)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -107,19 +101,7 @@ Protected Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="class_buffer.html">Buffer</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>buffer</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>recLevel</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_u_gen.html">UGen</a> const &amp;&nbsp;</td>
-          <td class="paramname"> <em>preLevel</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>buffer</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -153,7 +135,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a6838029815ab52d3263cfacb6c584d2f">UGenInternal</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___delay_8cpp_source.html#l00857">857</a> of file <a class="el" href="ugen___delay_8cpp_source.html">ugen_Delay.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___delay_8cpp_source.html#l00853">853</a> of file <a class="el" href="ugen___delay_8cpp_source.html">ugen_Delay.cpp</a>.</p>
 
 </div>
 </div>
@@ -201,9 +183,9 @@ Protected Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="class_u_gen_internal.html#ae1c9c941ea6f372d8af8cc5f9ae32ace">UGenInternal</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___delay_8cpp_source.html#l00865">865</a> of file <a class="el" href="ugen___delay_8cpp_source.html">ugen_Delay.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___delay_8cpp_source.html#l00858">858</a> of file <a class="el" href="ugen___delay_8cpp_source.html">ugen_Delay.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___delay_8h_source.html#l00368">buffer_</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00078">UGenOutput::getBlockSize()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00532">Buffer::getCircularHead()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00336">Buffer::getData()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00264">ProxyOwnerUGenInternal::getNumChannels()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00196">UGenInternal::getSampleData()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00228">UGenInternal::inputs</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l00935">UGen::processBlock()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00271">ProxyOwnerUGenInternal::proxies</a>, <a class="el" href="ugen___buffer_8h_source.html#l00523">Buffer::setCircularHead()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00342">Buffer::size()</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00233">UGenInternal::uGenOutput</a>.</p>
+<p>References <a class="el" href="ugen___delay_8h_source.html#l00366">buffer_</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00078">UGenOutput::getBlockSize()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00538">Buffer::getCircularHead()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00523">Buffer::getCurrentWriteBlockID()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00336">Buffer::getData()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00264">ProxyOwnerUGenInternal::getNumChannels()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00196">UGenInternal::getSampleData()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00228">UGenInternal::inputs</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l00935">UGen::processBlock()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00271">ProxyOwnerUGenInternal::proxies</a>, <a class="el" href="ugen___buffer_8h_source.html#l00529">Buffer::setCircularHead()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00342">Buffer::size()</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00233">UGenInternal::uGenOutput</a>.</p>
 
 </div>
 </div>
@@ -219,9 +201,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___delay_8h_source.html#l00368">368</a> of file <a class="el" href="ugen___delay_8h_source.html">ugen_Delay.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___delay_8h_source.html#l00366">366</a> of file <a class="el" href="ugen___delay_8h_source.html">ugen_Delay.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___delay_8cpp_source.html#l00865">processBlock()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___delay_8cpp_source.html#l00858">processBlock()</a>.</p>
 
 </div>
 </div>
@@ -230,7 +212,7 @@ Protected Attributes</h2></td></tr>
 <li>delays/<a class="el" href="ugen___delay_8cpp_source.html">ugen_Delay.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Oct 2 2010 09:31:07 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Oct 2 2010 11:11:24 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
