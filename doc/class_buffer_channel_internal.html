@@ -53,6 +53,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer_channel_internal.html#aa09aac972459b95073a43ca8f204358b">~BufferChannelInternal</a> ()  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer_channel_internal.html#aaca60fcfdb92df772ded792b4f6f6877">getSampleUnchecked</a> (const int index) const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer_channel_internal.html#a0fd4ae68589db2f6cb58d9e8947b5579">getSampleUnchecked</a> (const double index) const   throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer_channel_internal.html#a730478a1202fa08840142f8a94739f65">getSampleUnchecked</a> (const float index) const   throw ()</td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer_channel_internal.html#a3bf87e470de1893cb6e68a5853acfcbe">BufferChannelInternal</a> (const <a class="el" href="class_buffer_channel_internal.html">BufferChannelInternal</a> &amp;)</td></tr>
@@ -62,11 +63,16 @@ Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer_channel_internal.html#a5ac00cc6d7ff9d61e833f7199b6b7e96">data</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer_channel_internal.html#a904fcf9d069f7e4a051035bab88676d5">size_</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer_channel_internal.html#a6d6ef819e16c2a6a9fa7bbc3f0850760">allocatedSize</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer_channel_internal.html#a6a4ce6c8620f275afe5ff5481f9162cd">currentWriteBlockID</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer_channel_internal.html#a81ad758baa72fe886e709b5d78e2d13d">circularHead</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer_channel_internal.html#a597fbcf53cb4c6a3471ddfd411b10773">previousCircularHead</a></td></tr>
 <tr><td colspan="2"><h2><a name="friends"></a>
 Friends</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer_channel_internal.html#a5ba04a2bf0ca34a0f845cd759950664d">Buffer</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer_channel_internal.html#a59619244fe33c14ba462f4c597444e7d">PartBuffer</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer_channel_internal.html#aaca41a700759552f904a7051e3007132">ComplexBuffer</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer_channel_internal.html#adde4ef5cf41acea2feee907cf1b50275">TapInUGenInternal</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer_channel_internal.html#a00cc9f08f56ba6eda93696a1d74e8298">TapOutUGenInternal</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 
@@ -134,7 +140,7 @@ Friends</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00077">77</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00079">79</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 <p>References <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
@@ -171,7 +177,7 @@ Friends</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00102">102</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00106">106</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 <p>References <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
@@ -192,9 +198,9 @@ Friends</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00126">126</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00131">131</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00075">allocatedSize</a>, <a class="el" href="ugen___buffer_8h_source.html#l00073">data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00074">size_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00078">allocatedSize</a>, <a class="el" href="ugen___buffer_8h_source.html#l00080">circularHead</a>, <a class="el" href="ugen___buffer_8h_source.html#l00079">currentWriteBlockID</a>, <a class="el" href="ugen___buffer_8h_source.html#l00076">data</a>, <a class="el" href="ugen___buffer_8h_source.html#l00081">previousCircularHead</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00077">size_</a>.</p>
 
 </div>
 </div>
@@ -235,9 +241,9 @@ Friends</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00055">55</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00073">data</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00076">data</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___buffer_8h_source.html#l00362">Buffer::getSample()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00400">Buffer::getSampleUnchecked()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00408">Buffer::lookup()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___buffer_8h_source.html#l00370">Buffer::getSample()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00416">Buffer::getSampleUnchecked()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00432">Buffer::lookup()</a>.</p>
 
 </div>
 </div>
@@ -259,7 +265,31 @@ Friends</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00056">56</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00073">data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00074">size_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00056">getSampleUnchecked()</a>.</p>
+
+<p>Referenced by <a class="el" href="ugen___buffer_8h_source.html#l00056">getSampleUnchecked()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a730478a1202fa08840142f8a94739f65"></a><!-- doxytag: member="BufferChannelInternal::getSampleUnchecked" ref="a730478a1202fa08840142f8a94739f65" args="(const float index) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float BufferChannelInternal::getSampleUnchecked </td>
+          <td>(</td>
+          <td class="paramtype">const float&nbsp;</td>
+          <td class="paramname"> <em>index</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const  throw ()<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00057">57</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00076">data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00077">size_</a>.</p>
 
 </div>
 </div>
@@ -293,7 +323,7 @@ Friends</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00068">68</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00069">69</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
 </div>
 </div>
@@ -308,7 +338,7 @@ Friends</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00070">70</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00071">71</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
 </div>
 </div>
@@ -323,7 +353,37 @@ Friends</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00069">69</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00070">70</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adde4ef5cf41acea2feee907cf1b50275"></a><!-- doxytag: member="BufferChannelInternal::TapInUGenInternal" ref="adde4ef5cf41acea2feee907cf1b50275" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="class_tap_in_u_gen_internal.html">TapInUGenInternal</a><code> [friend]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00072">72</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a00cc9f08f56ba6eda93696a1d74e8298"></a><!-- doxytag: member="BufferChannelInternal::TapOutUGenInternal" ref="a00cc9f08f56ba6eda93696a1d74e8298" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class TapOutUGenInternal<code> [friend]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00073">73</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
 </div>
 </div>
@@ -339,9 +399,43 @@ Friends</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00075">75</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00078">78</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___buffer_8h_source.html#l00336">Buffer::allocatedSize()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l00126">~BufferChannelInternal()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___buffer_8h_source.html#l00344">Buffer::allocatedSize()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l00131">~BufferChannelInternal()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a81ad758baa72fe886e709b5d78e2d13d"></a><!-- doxytag: member="BufferChannelInternal::circularHead" ref="a81ad758baa72fe886e709b5d78e2d13d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="class_buffer_channel_internal.html#a81ad758baa72fe886e709b5d78e2d13d">BufferChannelInternal::circularHead</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00080">80</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+
+<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l00131">~BufferChannelInternal()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6a4ce6c8620f275afe5ff5481f9162cd"></a><!-- doxytag: member="BufferChannelInternal::currentWriteBlockID" ref="a6a4ce6c8620f275afe5ff5481f9162cd" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int <a class="el" href="class_buffer_channel_internal.html#a6a4ce6c8620f275afe5ff5481f9162cd">BufferChannelInternal::currentWriteBlockID</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00079">79</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+
+<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l00131">~BufferChannelInternal()</a>.</p>
 
 </div>
 </div>
@@ -356,9 +450,26 @@ Friends</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00073">73</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00076">76</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l01563">Buffer::append()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00448">Buffer::at()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00172">Buffer::Buffer()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00329">Buffer::getData()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00644">ComplexBuffer::getDataImag()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00646">ComplexBuffer::getDataImagReadOnly()</a>, <a class="el" href="ugen___convolution_8h_source.html#l00070">PartBuffer::getDataReal()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00643">ComplexBuffer::getDataReal()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00645">ComplexBuffer::getDataRealReadOnly()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00331">Buffer::getDataUnchecked()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00354">Buffer::getSample()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00385">Buffer::getSampleUnchecked()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00055">getSampleUnchecked()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02368">Buffer::mix()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02391">Buffer::operator-()</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00258">Buffer::operator/()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00420">Buffer::operator[]()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02328">Buffer::reciprocalExceptZero()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02350">Buffer::reverse()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00348">Buffer::setSample()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00370">Buffer::setSampleUnchecked()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00483">Buffer::wrapAt()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l00126">~BufferChannelInternal()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l01596">Buffer::append()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00472">Buffer::at()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00178">Buffer::Buffer()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00336">Buffer::getData()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00691">ComplexBuffer::getDataImag()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00693">ComplexBuffer::getDataImagReadOnly()</a>, <a class="el" href="ugen___convolution_8h_source.html#l00070">PartBuffer::getDataReal()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00690">ComplexBuffer::getDataReal()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00692">ComplexBuffer::getDataRealReadOnly()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00338">Buffer::getDataUnchecked()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00362">Buffer::getSample()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00401">Buffer::getSampleUnchecked()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00055">getSampleUnchecked()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02401">Buffer::mix()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02424">Buffer::operator-()</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00258">Buffer::operator/()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00444">Buffer::operator[]()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02361">Buffer::reciprocalExceptZero()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02383">Buffer::reverse()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00356">Buffer::setSample()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00386">Buffer::setSampleUnchecked()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00507">Buffer::wrapAt()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l00131">~BufferChannelInternal()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a597fbcf53cb4c6a3471ddfd411b10773"></a><!-- doxytag: member="BufferChannelInternal::previousCircularHead" ref="a597fbcf53cb4c6a3471ddfd411b10773" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="class_buffer_channel_internal.html#a597fbcf53cb4c6a3471ddfd411b10773">BufferChannelInternal::previousCircularHead</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00081">81</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+
+<p>Referenced by <a class="el" href="ugen___buffer_8h_source.html#l00532">Buffer::getCircularHead()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00523">Buffer::setCircularHead()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l00131">~BufferChannelInternal()</a>.</p>
 
 </div>
 </div>
@@ -373,9 +484,9 @@ Friends</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00074">74</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00077">77</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___buffer_8h_source.html#l00056">getSampleUnchecked()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l00126">~BufferChannelInternal()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___buffer_8h_source.html#l00057">getSampleUnchecked()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l00131">~BufferChannelInternal()</a>.</p>
 
 </div>
 </div>
@@ -384,7 +495,7 @@ Friends</h2></td></tr>
 <li>buffers/<a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:08 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Oct 2 2010 09:31:03 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

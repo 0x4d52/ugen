@@ -30,7 +30,7 @@
 <h1>delays/ugen_Delay.h</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___delay_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Delay.h 89 2010-07-09 16:20:21Z 0x4d52 $</span>
+<a href="ugen___delay_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Delay.h 173 2010-10-02 08:30:07Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/delays/ugen_Delay.h $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -328,11 +328,74 @@
 <a name="l00352"></a>00352 
 <a name="l00353"></a>00353 
 <a name="l00354"></a>00354 
-<a name="l00355"></a>00355 
-<a name="l00356"></a>00356 <span class="preprocessor">#endif // _UGEN_ugen_Delay_H_</span>
+<a name="l00355"></a><a class="code" href="class_tap_in_u_gen_internal.html">00355</a> <span class="keyword">class </span><a class="code" href="class_tap_in_u_gen_internal.html">TapInUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a>
+<a name="l00356"></a>00356 {
+<a name="l00357"></a>00357 <span class="keyword">public</span>:
+<a name="l00358"></a>00358  <a class="code" href="class_tap_in_u_gen_internal.html#a2e7bb65344de0ceb672a7884f855d627">TapInUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input,
+<a name="l00359"></a>00359        <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; buffer, 
+<a name="l00360"></a>00360        <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; recLevel,
+<a name="l00361"></a>00361        <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; preLevel) <span class="keywordflow">throw</span>();
+<a name="l00362"></a>00362  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_tap_in_u_gen_internal.html#aa2af89694411e635847b34ebe3762de4">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00363"></a>00363  <span class="keywordtype">void</span> <a class="code" href="class_tap_in_u_gen_internal.html#ac26c60594feb62349f0ee71e06ea2e36" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00364"></a>00364   
+<a name="l00365"></a><a class="code" href="class_tap_in_u_gen_internal.html#aa9a00d4b22b51a5f0a5a49bbff31329ba9be840bb8e1cbbc19e6b7882ba99f739">00365</a>  <span class="keyword">enum</span> <a class="code" href="class_tap_in_u_gen_internal.html#aa9a00d4b22b51a5f0a5a49bbff31329b">Inputs</a> { Input, RecLevel, PreLevel, <a class="code" href="class_tap_in_u_gen_internal.html#aa9a00d4b22b51a5f0a5a49bbff31329bafc5f947a859cb870b820d46927a05c59">NumInputs</a> };
+<a name="l00366"></a>00366  
+<a name="l00367"></a>00367 <span class="keyword">protected</span>:
+<a name="l00368"></a><a class="code" href="class_tap_in_u_gen_internal.html#ab29b50dbb1e45d4c50fa26ba35ee2dcf">00368</a>  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_tap_in_u_gen_internal.html#ab29b50dbb1e45d4c50fa26ba35ee2dcf">buffer_</a>;
+<a name="l00369"></a>00369 };
+<a name="l00370"></a>00370 
+<a name="l00371"></a>00371 
+<a name="l00375"></a>00375 <a class="code" href="ugen___u_gen_8h.html#a7db186e77855232bec685ee47ef99496" title="Macro for declaring a simple UGen.">UGenSublcassDeclaration</a>(<a class="code" href="class_tap_in.html" title="Write data to a delay line circular buffer.">TapIn</a>, (input, buffer, recLevel, preLevel),
+<a name="l00376"></a>00376       (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input,
+<a name="l00377"></a>00377        <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; buffer, 
+<a name="l00378"></a>00378        <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; recLevel = 1.f,
+<a name="l00379"></a><a class="code" href="class_tap_in.html#a25d077719e093b4354750b923f0a40e2">00379</a>        <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; preLevel = 0.f), <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>);
+<a name="l00380"></a>00380 
+<a name="l00381"></a>00381 
+<a name="l00382"></a><a class="code" href="class_tap_out_n_u_gen_internal.html">00382</a> <span class="keyword">class </span><a class="code" href="class_tap_out_n_u_gen_internal.html">TapOutNUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a>
+<a name="l00383"></a>00383 {
+<a name="l00384"></a>00384 <span class="keyword">public</span>:
+<a name="l00385"></a>00385  <a class="code" href="class_tap_out_n_u_gen_internal.html#a78a71a43acbd513a4890a3edd14eb1e2">TapOutNUGenInternal</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; buffer, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; delayTime) <span class="keywordflow">throw</span>();
+<a name="l00386"></a>00386  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_tap_out_n_u_gen_internal.html#a07532623c0efc678b6a57334630f2e85">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00387"></a>00387  <span class="keywordtype">void</span> <a class="code" href="class_tap_out_n_u_gen_internal.html#ab5c86d7bc5e5e5b65933058839387a10" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00388"></a>00388  
+<a name="l00389"></a><a class="code" href="class_tap_out_n_u_gen_internal.html#af65ecd219ddb8f2a59ea23eea2c8949ba504a678fc46e74921a2da2d61b45b784">00389</a>  <span class="keyword">enum</span> <a class="code" href="class_tap_out_n_u_gen_internal.html#af65ecd219ddb8f2a59ea23eea2c8949b">Inputs</a> { DelayTime, <a class="code" href="class_tap_out_n_u_gen_internal.html#af65ecd219ddb8f2a59ea23eea2c8949ba504a678fc46e74921a2da2d61b45b784">NumInputs</a> };
+<a name="l00390"></a>00390  
+<a name="l00391"></a>00391 <span class="keyword">protected</span>:
+<a name="l00392"></a><a class="code" href="class_tap_out_n_u_gen_internal.html#a2e961eca5b7db405d27f67fb69e96172">00392</a>  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_tap_out_n_u_gen_internal.html#a2e961eca5b7db405d27f67fb69e96172">buffer_</a>;
+<a name="l00393"></a>00393 };
+<a name="l00394"></a>00394 
+<a name="l00395"></a><a class="code" href="class_tap_out_l_u_gen_internal.html">00395</a> <span class="keyword">class </span><a class="code" href="class_tap_out_l_u_gen_internal.html">TapOutLUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a>
+<a name="l00396"></a>00396 {
+<a name="l00397"></a>00397 <span class="keyword">public</span>:
+<a name="l00398"></a>00398  <a class="code" href="class_tap_out_l_u_gen_internal.html#a7ea43ca04132393d1d494956ee872651">TapOutLUGenInternal</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; buffer, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; delayTime) <span class="keywordflow">throw</span>();
+<a name="l00399"></a>00399  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_tap_out_l_u_gen_internal.html#addc19346acaec90217578274146711e7">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00400"></a>00400  <span class="keywordtype">void</span> <a class="code" href="class_tap_out_l_u_gen_internal.html#a9f8a09a839e896451e727afb9220a66a" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00401"></a>00401  
+<a name="l00402"></a><a class="code" href="class_tap_out_l_u_gen_internal.html#a136da0865765477ee82a8e7190ae1f80a099382f429ef6f14f71fa6a0c881fcb5">00402</a>  <span class="keyword">enum</span> <a class="code" href="class_tap_out_l_u_gen_internal.html#a136da0865765477ee82a8e7190ae1f80">Inputs</a> { DelayTime, <a class="code" href="class_tap_out_l_u_gen_internal.html#a136da0865765477ee82a8e7190ae1f80a099382f429ef6f14f71fa6a0c881fcb5">NumInputs</a> };
+<a name="l00403"></a>00403  
+<a name="l00404"></a>00404 <span class="keyword">protected</span>:
+<a name="l00405"></a><a class="code" href="class_tap_out_l_u_gen_internal.html#a221cceb67736b4ac290e35a2bba7ff16">00405</a>  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_tap_out_l_u_gen_internal.html#a221cceb67736b4ac290e35a2bba7ff16">buffer_</a>;
+<a name="l00406"></a>00406 };
+<a name="l00407"></a>00407 
+<a name="l00408"></a><a class="code" href="ugen___delay_8h.html#a8a685a0c5e2506f9b710d4513187bdcc">00408</a> <span class="preprocessor">#define TapOut_Docs   @param buffer    The Buffer being used as a circular delay buffer.       \</span>
+<a name="l00409"></a>00409 <span class="preprocessor">              This must be being written to by a TapIn UGen.        \</span>
+<a name="l00410"></a>00410 <span class="preprocessor">       @param delayTime   The delay time to use. The minimum for the TapOut UGens is a single   \</span>
+<a name="l00411"></a>00411 <span class="preprocessor">              block delay given by UGen::getBlockSize() / UGen::getSampleRate().   \</span>
+<a name="l00412"></a>00412 <span class="preprocessor">              Values smaller that this will be clipped. The maximum value is determined \</span>
+<a name="l00413"></a>00413 <span class="preprocessor">              by the duration of the buffer. </span>
+<a name="l00414"></a>00414 <span class="preprocessor"></span>
+<a name="l00415"></a>00415 
+<a name="l00417"></a>00417 <a class="code" href="ugen___u_gen_8h.html#a7db186e77855232bec685ee47ef99496" title="Macro for declaring a simple UGen.">UGenSublcassDeclaration</a>(<a class="code" href="class_tap_out_n.html" title="Tap a delay line using no interpolation.">TapOutN</a>, (buffer, delayTime),
+<a name="l00418"></a><a class="code" href="class_tap_out_n.html#a61c3c89ad819e296615f48e33b4464c8">00418</a>                (<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; buffer, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; delayTime = 0.f), <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___delay_8h.html#a8a685a0c5e2506f9b710d4513187bdcc">TapOut_Docs</a>);
+<a name="l00419"></a>00419 
+<a name="l00421"></a>00421 <a class="code" href="ugen___u_gen_8h.html#a7db186e77855232bec685ee47ef99496" title="Macro for declaring a simple UGen.">UGenSublcassDeclaration</a>(<a class="code" href="class_tap_out_l.html" title="Tap a delay line using linear interpolation.">TapOutL</a>, (buffer, delayTime),
+<a name="l00422"></a><a class="code" href="class_tap_out_l.html#a63f0a21e1b4815d9c54b956b38dc4823">00422</a>                (<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; buffer, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; delayTime = 0.f), <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a> <a class="code" href="ugen___delay_8h.html#a8a685a0c5e2506f9b710d4513187bdcc">TapOut_Docs</a>);
+<a name="l00423"></a>00423 
+<a name="l00424"></a>00424 <span class="preprocessor">#endif // _UGEN_ugen_Delay_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:03 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Oct 2 2010 09:30:58 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

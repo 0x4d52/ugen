@@ -30,7 +30,7 @@
 <h1>buffers/ugen_PlayBuf.cpp</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___play_buf_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_PlayBuf.cpp 164 2010-09-25 12:29:55Z 0x4d52 $</span>
+<a href="ugen___play_buf_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_PlayBuf.cpp 172 2010-10-01 20:47:00Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/buffers/ugen_PlayBuf.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -255,10 +255,136 @@
 <a name="l00223"></a>00223  }
 <a name="l00224"></a>00224 }
 <a name="l00225"></a>00225 
-<a name="l00226"></a>00226 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
+<a name="l00226"></a>00226 
+<a name="l00227"></a><a class="code" href="class_record_buf_u_gen_internal.html#af5b7506b7a927860e013119b8ead60a0">00227</a> <a class="code" href="class_record_buf_u_gen_internal.html#af5b7506b7a927860e013119b8ead60a0">RecordBufUGenInternal::RecordBufUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input,
+<a name="l00228"></a>00228             <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; buffer, 
+<a name="l00229"></a>00229             <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; recLevel,
+<a name="l00230"></a>00230             <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; preLevel,
+<a name="l00231"></a>00231             <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; loop, 
+<a name="l00232"></a>00232             <span class="keyword">const</span> <a class="code" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1ca" title="Defines actions to be done at the end of an event e.g., a line or envelope.">UGen::DoneAction</a> doneAction) <span class="keywordflow">throw</span>()
+<a name="l00233"></a>00233 : <a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a>(NumInputs, <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(buffer.getNumChannels(), input.getNumChannels()) - 1),
+<a name="l00234"></a>00234  buffer_(buffer),
+<a name="l00235"></a>00235  bufferPos(0),
+<a name="l00236"></a>00236  doneAction_(doneAction),
+<a name="l00237"></a>00237  shouldDeleteValue(doneAction_ == <a class="code" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1caa0fbefeaf163b11d9f88375fdb8f3eaac" title="When the event ends it signals a delete message which should delete an entire UGen graph...">UGen::DeleteWhenDone</a>)
+<a name="l00238"></a>00238 {
+<a name="l00239"></a>00239  inputs[Input] = input;
+<a name="l00240"></a>00240  inputs[RecLevel] = recLevel;
+<a name="l00241"></a>00241  inputs[PreLevel] = preLevel;
+<a name="l00242"></a>00242  inputs[Loop] = loop;
+<a name="l00243"></a>00243 }
+<a name="l00244"></a>00244 
+<a name="l00245"></a><a class="code" href="class_record_buf_u_gen_internal.html#a74501c0e95c6b5d21cf5d582322d8923">00245</a> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_record_buf_u_gen_internal.html#a74501c0e95c6b5d21cf5d582322d8923">RecordBufUGenInternal::getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
+<a name="l00246"></a>00246 {
+<a name="l00247"></a>00247  <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_record_buf_u_gen_internal.html">RecordBufUGenInternal</a>(inputs[Input].getChannel(channel),
+<a name="l00248"></a>00248           buffer_.getChannel(channel), 
+<a name="l00249"></a>00249           inputs[RecLevel].getChannel(channel), 
+<a name="l00250"></a>00250           inputs[PreLevel].getChannel(channel), 
+<a name="l00251"></a>00251           inputs[Loop], 
+<a name="l00252"></a>00252           doneAction_);
+<a name="l00253"></a>00253 }
+<a name="l00254"></a>00254 
+<a name="l00255"></a><a class="code" href="class_record_buf_u_gen_internal.html#a9abb21f3e0ed518dd71354b6f5dc8970">00255</a> <span class="keywordtype">void</span> <a class="code" href="class_record_buf_u_gen_internal.html#a9abb21f3e0ed518dd71354b6f5dc8970">RecordBufUGenInternal::prepareForBlock</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> actualBlockSize, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID) <span class="keywordflow">throw</span>()
+<a name="l00256"></a>00256 {
+<a name="l00257"></a>00257  senderUserData = userData;
+<a name="l00258"></a>00258  <span class="keywordflow">if</span>(isDone()) sendDoneInternal();
+<a name="l00259"></a>00259 }
+<a name="l00260"></a>00260 
+<a name="l00261"></a><a class="code" href="class_record_buf_u_gen_internal.html#af85823f92edcfd6f36de6ac87d6f8a4e">00261</a> <span class="keywordtype">void</span> <a class="code" href="class_record_buf_u_gen_internal.html#af85823f92edcfd6f36de6ac87d6f8a4e">RecordBufUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*channel*/</span>) throw()
+<a name="l00262"></a>00262 {
+<a name="l00263"></a>00263  <span class="keyword">const</span> <span class="keywordtype">int</span> blockSize = <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a118a3566a4758eb4719c57843c25bd57">getBlockSize</a>();
+<a name="l00264"></a>00264  
+<a name="l00265"></a>00265  <span class="keywordtype">int</span> channelBufferPos;
+<a name="l00266"></a>00266  
+<a name="l00267"></a>00267  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_proxy_owner_u_gen_internal.html#a43e6fd05ba69f1ef135463c028e656cd">getNumChannels</a>(); channel++)
+<a name="l00268"></a>00268  {
+<a name="l00269"></a>00269   <span class="keywordtype">int</span> numSamplesToProcess = blockSize;
+<a name="l00270"></a>00270   <span class="keyword">const</span> <span class="keywordtype">int</span> bufferSize = <a class="code" href="class_record_buf_u_gen_internal.html#a3b36d6e715d50785418483652fb37b8d">buffer_</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>();
+<a name="l00271"></a>00271   channelBufferPos = <a class="code" href="class_record_buf_u_gen_internal.html#a8052fa5c6c9af00762b6e73c4a98b30b">bufferPos</a>;
+<a name="l00272"></a>00272   <span class="keywordtype">float</span>* outputSamples = <a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">getSampleData</a>();
+<a name="l00273"></a>00273   <span class="keywordtype">float</span>* inputSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Input].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, channel);
+<a name="l00274"></a>00274   <span class="keywordtype">float</span>* preLevelSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[PreLevel].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, channel);
+<a name="l00275"></a>00275   <span class="keywordtype">float</span>* recLevelSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[RecLevel].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, channel);
+<a name="l00276"></a>00276   <span class="keywordtype">float</span>* loopSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Loop].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
+<a name="l00277"></a>00277   <span class="keywordtype">float</span>* bufferSamples = <a class="code" href="class_record_buf_u_gen_internal.html#a3b36d6e715d50785418483652fb37b8d">buffer_</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(channel);
+<a name="l00278"></a>00278   
+<a name="l00279"></a>00279   <span class="keywordflow">while</span>(numSamplesToProcess) 
+<a name="l00280"></a>00280   {          
+<a name="l00281"></a>00281    <span class="keywordflow">if</span>(*loopSamples++ &gt;= 0.5f) 
+<a name="l00282"></a>00282    {
+<a name="l00283"></a>00283     <span class="keywordflow">if</span>(channelBufferPos &gt;= bufferSize)
+<a name="l00284"></a>00284      channelBufferPos = 0;
+<a name="l00285"></a>00285     
+<a name="l00286"></a>00286     <span class="keywordtype">float</span> recLevel = *recLevelSamples++;
+<a name="l00287"></a>00287     <span class="keywordtype">float</span> rec = *inputSamples++ * recLevel;
+<a name="l00288"></a>00288     <span class="keywordtype">float</span> preLevel = *preLevelSamples++;
+<a name="l00289"></a>00289     <span class="keywordtype">float</span> pre = bufferSamples[channelBufferPos] * preLevel;
+<a name="l00290"></a>00290     <span class="keywordtype">float</span> out = pre + rec;
+<a name="l00291"></a>00291     *outputSamples++ = out;
+<a name="l00292"></a>00292     bufferSamples[channelBufferPos] = out;
+<a name="l00293"></a>00293     channelBufferPos++;
+<a name="l00294"></a>00294     
+<a name="l00295"></a>00295     <span class="keywordflow">if</span>(channelBufferPos &gt;= bufferSize)
+<a name="l00296"></a>00296      channelBufferPos = 0;
+<a name="l00297"></a>00297    }
+<a name="l00298"></a>00298    <span class="keywordflow">else</span>
+<a name="l00299"></a>00299    {
+<a name="l00300"></a>00300     <span class="keywordtype">float</span> rec = *inputSamples++ * *recLevelSamples++;
+<a name="l00301"></a>00301     <span class="keywordtype">float</span> pre = bufferSamples[channelBufferPos] * *preLevelSamples++;
+<a name="l00302"></a>00302     <span class="keywordtype">float</span> out = pre + rec;
+<a name="l00303"></a>00303     *outputSamples++ = out;
+<a name="l00304"></a>00304     bufferSamples[channelBufferPos] = out;
+<a name="l00305"></a>00305     channelBufferPos++;
+<a name="l00306"></a>00306    }
+<a name="l00307"></a>00307    
+<a name="l00308"></a>00308    --numSamplesToProcess;
+<a name="l00309"></a>00309   }  
+<a name="l00310"></a>00310  }
+<a name="l00311"></a>00311  
+<a name="l00312"></a>00312  <a class="code" href="class_record_buf_u_gen_internal.html#a8052fa5c6c9af00762b6e73c4a98b30b">bufferPos</a> = channelBufferPos;
+<a name="l00313"></a>00313  
+<a name="l00314"></a>00314  <span class="keywordflow">if</span>(<a class="code" href="class_record_buf_u_gen_internal.html#a8052fa5c6c9af00762b6e73c4a98b30b">bufferPos</a> &gt;= <a class="code" href="class_record_buf_u_gen_internal.html#a3b36d6e715d50785418483652fb37b8d">buffer_</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>())
+<a name="l00315"></a>00315  {
+<a name="l00316"></a>00316   shouldDelete = shouldDelete ? <span class="keyword">true</span> : <a class="code" href="class_record_buf_u_gen_internal.html#a2eb7c80eaf5ca3e85659926a1596c66f">shouldDeleteValue</a>;
+<a name="l00317"></a>00317   <a class="code" href="class_done_action_sender.html#a6d1992edaa918522f47b7138ba30bd17">setIsDone</a>();
+<a name="l00318"></a>00318  } 
+<a name="l00319"></a>00319 }
+<a name="l00320"></a>00320 
+<a name="l00321"></a><a class="code" href="class_record_buf_u_gen_internal.html#a8e06f584abe024345c610eff91a499e5">00321</a> <span class="keywordtype">double</span> <a class="code" href="class_record_buf_u_gen_internal.html#a8e06f584abe024345c610eff91a499e5">RecordBufUGenInternal::getDuration</a>() <span class="keyword">const</span> throw()
+<a name="l00322"></a>00322 {
+<a name="l00323"></a>00323  <span class="keywordflow">return</span> <a class="code" href="class_record_buf_u_gen_internal.html#a3b36d6e715d50785418483652fb37b8d">buffer_</a>.<a class="code" href="class_buffer.html#a0db2e98450da72f708c98136560c4e56">duration</a>();
+<a name="l00324"></a>00324 }
+<a name="l00325"></a>00325 
+<a name="l00326"></a><a class="code" href="class_record_buf_u_gen_internal.html#a35795c787eb0fd621c308fa7d135a4f3">00326</a> <span class="keywordtype">double</span> <a class="code" href="class_record_buf_u_gen_internal.html#a35795c787eb0fd621c308fa7d135a4f3">RecordBufUGenInternal::getPosition</a>() <span class="keyword">const</span> throw()
+<a name="l00327"></a>00327 {
+<a name="l00328"></a>00328  <span class="keywordflow">return</span> <a class="code" href="class_record_buf_u_gen_internal.html#a8052fa5c6c9af00762b6e73c4a98b30b">bufferPos</a> * <a class="code" href="class_u_gen.html#a2e6ab64a2e5ea263113ab4993603537e" title="Get the recirprocal of the current sample rate.">UGen::getReciprocalSampleRate</a>();
+<a name="l00329"></a>00329 }
+<a name="l00330"></a>00330 
+<a name="l00331"></a><a class="code" href="class_record_buf_u_gen_internal.html#a91d5c6273102abe4880d137e0db47b6a">00331</a> <span class="keywordtype">void</span> <a class="code" href="class_record_buf_u_gen_internal.html#a91d5c6273102abe4880d137e0db47b6a">RecordBufUGenInternal::setPosition</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> newPosition) <span class="keywordflow">throw</span>()
+<a name="l00332"></a>00332 {
+<a name="l00333"></a>00333  bufferPos = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(0.0, newPosition) * <a class="code" href="class_u_gen.html#afddb4177dad7f4056bbf8b91d07d5224" title="Get the current sample rate.">UGen::getSampleRate</a>();
+<a name="l00334"></a>00334 }
+<a name="l00335"></a>00335 
+<a name="l00336"></a><a class="code" href="class_record_buf.html#a789cdabd29b36a4c4930600338675449">00336</a> <a class="code" href="class_record_buf.html#a06573af5676881ca729048acd42f0575">RecordBuf::RecordBuf</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input,
+<a name="l00337"></a>00337       <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; buffer, 
+<a name="l00338"></a>00338       <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; recLevel,
+<a name="l00339"></a>00339       <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; preLevel,
+<a name="l00340"></a>00340       <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; loop, 
+<a name="l00341"></a>00341       <span class="keyword">const</span> <a class="code" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1ca" title="Defines actions to be done at the end of an event e.g., a line or envelope.">UGen::DoneAction</a> doneAction) <span class="keywordflow">throw</span>()
+<a name="l00342"></a>00342 {
+<a name="l00343"></a>00343  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(buffer.size() &gt; 0);
+<a name="l00344"></a>00344  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(buffer.getNumChannels() &gt; 0);
+<a name="l00345"></a>00345 
+<a name="l00346"></a>00346  <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(buffer.getNumChannels(), input.getNumChannels());
+<a name="l00347"></a>00347  initInternal(numChannels);
+<a name="l00348"></a>00348  generateFromProxyOwner(<span class="keyword">new</span> <a class="code" href="class_record_buf_u_gen_internal.html">RecordBufUGenInternal</a>(input, buffer, recLevel, preLevel, loop.mix(), doneAction));
+<a name="l00349"></a>00349 }
+<a name="l00350"></a>00350 
+<a name="l00351"></a>00351 
+<a name="l00352"></a>00352 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 27 2010 07:50:26 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Oct 2 2010 09:30:57 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

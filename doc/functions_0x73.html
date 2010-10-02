@@ -268,6 +268,9 @@ Here is a list of all class members with links to the classes they belong to:
 <li>setChannelPressure()
 : <a class="el" href="class_voicer_u_gen_internal.html#a6d3942cca3bf6a7f78049241ce9d7bee">VoicerUGenInternal</a>
 </li>
+<li>setCircularHead()
+: <a class="el" href="class_buffer.html#a6f047df01dad1235d0bf32697a1ab85b">Buffer</a>
+</li>
 <li>setController()
 : <a class="el" href="class_voicer_u_gen_internal.html#acc0402112621d11a59a3c2bbc85de7b9">VoicerUGenInternal</a>
 </li>
@@ -418,6 +421,7 @@ Here is a list of all class members with links to the classes they belong to:
 </li>
 <li>setPosition()
 : <a class="el" href="class_play_buf_u_gen_internal.html#ad278cfaeecf46e4bc3d44be640b987a7">PlayBufUGenInternal</a>
+, <a class="el" href="class_record_buf_u_gen_internal.html#a91d5c6273102abe4880d137e0db47b6a">RecordBufUGenInternal</a>
 , <a class="el" href="class_u_gen.html#a494d824ea16a5e2e56827814190abc1b">UGen</a>
 , <a class="el" href="class_seekable.html#a1ddb34a184c0521c4049d6f06bf984d6">Seekable</a>
 , <a class="el" href="class_disk_in_u_gen_internal.html#a9dae42c00c2ca71bdf70655bf4a18e90">DiskInUGenInternal</a>
@@ -608,20 +612,21 @@ Here is a list of all class members with links to the classes they belong to:
 : <a class="el" href="interface_u_i_scope_view_base.html#ad8ddd0743829560b15207c3faa925569">UIScopeViewBase</a>
 </li>
 <li>shouldAllowAutoDelete_
-: <a class="el" href="class_plug_u_gen_internal.html#abd6f1cc244a701cd6adbd8ca813d4d63">PlugUGenInternal</a>
+: <a class="el" href="class_mix_array_u_gen_internal.html#a7bbb2e784c67ccdfec6b560304a0824d">MixArrayUGenInternal</a>
+, <a class="el" href="class_plug_u_gen_internal.html#abd6f1cc244a701cd6adbd8ca813d4d63">PlugUGenInternal</a>
 , <a class="el" href="class_mix_u_gen_internal.html#ac44b80804914f2ca56a3001415d1505e">MixUGenInternal</a>
-, <a class="el" href="class_mix_array_u_gen_internal.html#a7bbb2e784c67ccdfec6b560304a0824d">MixArrayUGenInternal</a>
 </li>
 <li>shouldBeDeletedNow()
 : <a class="el" href="class_u_gen_internal.html#a22ea0dbaa91e9d531d3c85cab89ae72c">UGenInternal</a>
 </li>
 <li>shouldDeleteValue
 : <a class="el" href="class_play_buf_u_gen_internal.html#a44ed4d6f2bc31e95773e4882a30a9419">PlayBufUGenInternal</a>
+, <a class="el" href="class_record_buf_u_gen_internal.html#a2eb7c80eaf5ca3e85659926a1596c66f">RecordBufUGenInternal</a>
 , <a class="el" href="class_a_s_r_u_gen_internal.html#a5acf0c2f80a0d4a889fad46c1835dbb9">ASRUGenInternal</a>
 , <a class="el" href="class_env_gen_u_gen_internal.html#a98e6802b789ed3b71f849c083016095c">EnvGenUGenInternal</a>
-, <a class="el" href="class_l_line_u_gen_internal.html#a06ecd06d243e324a0a88ef44e9996912">LLineUGenInternal</a>
 , <a class="el" href="class_linen_u_gen_internal.html#ac12a9cb0bae2e8db8b6039cbb01c5741">LinenUGenInternal</a>
 , <a class="el" href="class_disk_in_u_gen_internal.html#acceea4e389377fd6144f81e66b2b1ffd">DiskInUGenInternal</a>
+, <a class="el" href="class_l_line_u_gen_internal.html#a06ecd06d243e324a0a88ef44e9996912">LLineUGenInternal</a>
 </li>
 <li>shouldRelease()
 : <a class="el" href="class_releasable_u_gen_internal.html#a3da3345ff44a99bad1db694fd4ddbd9e">ReleasableUGenInternal</a>
@@ -667,10 +672,10 @@ Here is a list of all class members with links to the classes they belong to:
 <li>sin()
 : <a class="el" href="class_buffer.html#a7e5f6fb28836e76ee6bb4605ac2cc63d">Buffer</a>
 , <a class="el" href="class_numerical_array.html#a3e07721e13c21876833b47e652f224c6">NumericalArray&lt; NumericalType &gt;</a>
-, <a class="el" href="class_u_gen_array.html#a426034b1549324caf674fe847494f093">UGenArray</a>
+, <a class="el" href="class_u_gen.html#a1cb3aa9674e163daa5fa1999b0df7472">UGen</a>
 , <a class="el" href="class_value.html#a33683fc9bb8bec3cf45f11256a854288">Value</a>
 , <a class="el" href="class_value_array.html#a7701d746036be776cec3ea778bd8fab0">ValueArray</a>
-, <a class="el" href="class_u_gen.html#a1cb3aa9674e163daa5fa1999b0df7472">UGen</a>
+, <a class="el" href="class_u_gen_array.html#a426034b1549324caf674fe847494f093">UGenArray</a>
 </li>
 <li>sine
 : <a class="el" href="class_radial_scope_view.html#ad8986ab7ca5ffb5e6e5df02adf260bee">RadialScopeView</a>
@@ -687,40 +692,40 @@ Here is a list of all class members with links to the classes they belong to:
 <li>sinh()
 : <a class="el" href="class_buffer.html#a8d384a6b39675e85807bbccb9c971df6">Buffer</a>
 , <a class="el" href="class_u_gen.html#acba6be56a49416795d0674650f99c2a7">UGen</a>
-, <a class="el" href="class_value.html#ad28163a7e730b21b50b0d8492f61fb8d">Value</a>
-, <a class="el" href="class_value_array.html#adb14383609a7d858f9214a80c1bac3e1">ValueArray</a>
 , <a class="el" href="class_u_gen_array.html#aa1767e83f8bdccc5df0cc017a6c38073">UGenArray</a>
+, <a class="el" href="class_value_array.html#adb14383609a7d858f9214a80c1bac3e1">ValueArray</a>
+, <a class="el" href="class_value.html#ad28163a7e730b21b50b0d8492f61fb8d">Value</a>
 </li>
 <li>SinOsc()
 : <a class="el" href="class_sin_osc.html#a411d027a483193a2aa8cdbb1fed8f13b">SinOsc</a>
 </li>
-<li>size()
-: <a class="el" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">Buffer</a>
+<li>size
+: <a class="el" href="class_env_curve_list_1_1_env_curve_list_internal.html#aab9cc9d12d2b4208c3283d3dfd447336">EnvCurveList::EnvCurveListInternal</a>
 , <a class="el" href="class_int_buffer.html#a0c09fd0f1c431328ef47422309d49226">IntBuffer</a>
 , <a class="el" href="class_object_array_internal.html#a656ec5cb9ab1402858a140d3eb0140d2">ObjectArrayInternal&lt; ObjectType &gt;</a>
+, <a class="el" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb">ObjectArray&lt; ObjectType &gt;</a>
 , <a class="el" href="class_dictionary.html#a63c0c7e86f5935ea9ae4dce27be28355">Dictionary&lt; ValueType, KeyType &gt;</a>
 , <a class="el" href="class_u_gen.html#ac5c9c85267c0ad69f78063d9ace1b96c">UGen</a>
 , <a class="el" href="class_u_gen_array_1_1_internal.html#af4b539f3fc17878901765b4e7ec89ec6">UGenArray::Internal</a>
 , <a class="el" href="class_u_gen_array.html#adbc33ce837a273d3c5b198e7e2ea7c42">UGenArray</a>
-, <a class="el" href="class_value_array.html#a6453591e799747b8921b8cf783f90d42">ValueArray</a>
 , <a class="el" href="class_env_curve_list.html#ac57bf5ffce22b91013c2b270c23ceead">EnvCurveList</a>
 , <a class="el" href="class_f_f_t_engine.html#a90fc318a8d47f847879038d01bc76583">FFTEngine</a>
 , <a class="el" href="class_f_f_t_engine_internal.html#ad6eadc43151e15bdeabb72a07017f00c">FFTEngineInternal</a>
-, <a class="el" href="class_env_curve_list_1_1_env_curve_list_internal.html#aab9cc9d12d2b4208c3283d3dfd447336">EnvCurveList::EnvCurveListInternal</a>
-, <a class="el" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb">ObjectArray&lt; ObjectType &gt;</a>
+, <a class="el" href="class_value_array.html#a6453591e799747b8921b8cf783f90d42">ValueArray</a>
+, <a class="el" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">Buffer</a>
 </li>
 <li>size_
 : <a class="el" href="class_chain_base_u_gen_internal.html#a2a1acf655e12e32cc5acba48ec8e1a53">ChainBaseUGenInternal</a>
 , <a class="el" href="class_bank_base_u_gen_internal.html#a2c356ccd91db0d2d363aac5c083b431e">BankBaseUGenInternal</a>
 , <a class="el" href="class_buffer_channel_internal.html#a904fcf9d069f7e4a051035bab88676d5">BufferChannelInternal</a>
-, <a class="el" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">Buffer</a>
+, <a class="el" href="class_buffer_spec.html#ab943fa09277cf57e67a417b0e6794314">BufferSpec</a>
 , <a class="el" href="class_int_buffer.html#a81c2202640a8b40d7648676ddd932e3f">IntBuffer</a>
 , <a class="el" href="class_object_array_internal.html#ad35fe7eb8f060c80fc430da73e678634">ObjectArrayInternal&lt; ObjectType &gt;</a>
+, <a class="el" href="class_numerical_array_spec.html#a144de79b0eda4af2b79aa2dfb182591d">NumericalArraySpec</a>
 , <a class="el" href="class_smart_pointer_array_container.html#a74a6fc486b33107beab87cd5d2e632fd">SmartPointerArrayContainer&lt; SmartPointerType &gt;</a>
 , <a class="el" href="class_u_gen_array_1_1_internal.html#a736bf05bea0db4c20f7eba27b0ab273d">UGenArray::Internal</a>
 , <a class="el" href="class_value_array_1_1_value_array_internal.html#a48a3a31d4e7641391f0748b35b9efcca">ValueArray::ValueArrayInternal</a>
-, <a class="el" href="class_buffer_spec.html#ab943fa09277cf57e67a417b0e6794314">BufferSpec</a>
-, <a class="el" href="class_numerical_array_spec.html#a144de79b0eda4af2b79aa2dfb182591d">NumericalArraySpec</a>
+, <a class="el" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">Buffer</a>
 </li>
 <li>sizeNotNull()
 : <a class="el" href="class_u_gen_array.html#ab3ca5067604db1a22bee21d7ed32e020">UGenArray</a>
@@ -733,27 +738,27 @@ Here is a list of all class members with links to the classes they belong to:
 , <a class="el" href="class_slider_value_internal.html#aca57c7dedc632e4fadaa99e7f99b9e92">SliderValueInternal</a>
 </li>
 <li>sliders
-: <a class="el" href="class_multi_slider_u_gen_internal.html#a80d580296246c3f0008a4afcd09b2048">MultiSliderUGenInternal</a>
-, <a class="el" href="class_multi_slider_base.html#adb2282642b13d544b3d5cb6d1e7d1609">MultiSliderBase</a>
+: <a class="el" href="class_multi_slider_base.html#adb2282642b13d544b3d5cb6d1e7d1609">MultiSliderBase</a>
+, <a class="el" href="class_multi_slider_u_gen_internal.html#a80d580296246c3f0008a4afcd09b2048">MultiSliderUGenInternal</a>
 </li>
 <li>SliderValue()
 : <a class="el" href="class_slider_value.html#a83026f16217cb974eb0d941dbaf8e612">SliderValue</a>
 </li>
 <li>sliderValueChanged()
-: <a class="el" href="class_slider_value_internal.html#a93a66ccecc3dcc5260f6d50ffbc91c0d">SliderValueInternal</a>
-, <a class="el" href="class_envelope_curve_popup.html#a0ba1cbd441a4b91363c14f5907e38c14">EnvelopeCurvePopup</a>
+: <a class="el" href="class_envelope_curve_popup.html#a0ba1cbd441a4b91363c14f5907e38c14">EnvelopeCurvePopup</a>
+, <a class="el" href="class_slider_value_internal.html#a93a66ccecc3dcc5260f6d50ffbc91c0d">SliderValueInternal</a>
 </li>
 <li>SliderValueInternal()
 : <a class="el" href="class_slider_value_internal.html#ae7a3685a601d0cd0196a6142dc41ed0e">SliderValueInternal</a>
 </li>
 <li>slope
-: <a class="el" href="class_normaliser_u_gen_internal.html#a8ba7dd243835df1c180aed85ceb07310">NormaliserUGenInternal</a>
-, <a class="el" href="class_l_f_noise2_u_gen_internal.html#a8ce4c27a2f04258e243b6bccca7c0165">LFNoise2UGenInternal</a>
+: <a class="el" href="class_l_f_noise2_u_gen_internal.html#a8ce4c27a2f04258e243b6bccca7c0165">LFNoise2UGenInternal</a>
+, <a class="el" href="class_normaliser_u_gen_internal.html#a8ba7dd243835df1c180aed85ceb07310">NormaliserUGenInternal</a>
 , <a class="el" href="class_l_f_noise1_u_gen_internal.html#a181eecdb9777ef86649c5129ce594f0b">LFNoise1UGenInternal</a>
 </li>
 <li>slopeFactor
-: <a class="el" href="class_u_gen.html#acb7835b9399a2afd375162de7c450df8">UGen</a>
-, <a class="el" href="class_normaliser_u_gen_internal.html#a32b5299aa8028c786f691ff33eb391c5">NormaliserUGenInternal</a>
+: <a class="el" href="class_normaliser_u_gen_internal.html#a32b5299aa8028c786f691ff33eb391c5">NormaliserUGenInternal</a>
+, <a class="el" href="class_u_gen.html#acb7835b9399a2afd375162de7c450df8">UGen</a>
 </li>
 <li>SmartPointer()
 : <a class="el" href="class_smart_pointer.html#ad3f17c115c1fee1cce53700e180076b3">SmartPointer</a>
@@ -762,7 +767,7 @@ Here is a list of all class members with links to the classes they belong to:
 : <a class="el" href="class_smart_pointer_array_container.html#a539d4d6842e41d50c4a6565121584d4c">SmartPointerArrayContainer&lt; SmartPointerType &gt;</a>
 </li>
 <li>SmartPointerContainer()
-: <a class="el" href="class_smart_pointer_container.html#a51b6f41438ee5d5707bd3549d0dfcbc9">SmartPointerContainer&lt; SmartPointerType &gt;</a>
+: <a class="el" href="class_smart_pointer_container.html#ae1467c3bad535e630117e7af0ae7ad1b">SmartPointerContainer&lt; SmartPointerType &gt;</a>
 </li>
 <li>smoothingBuffer
 : <a class="el" href="class_scope_g_u_i.html#a2df4c83a6984e45ea923aa576c2fe9c7">ScopeGUI</a>
@@ -778,8 +783,8 @@ Here is a list of all class members with links to the classes they belong to:
 , <a class="el" href="class_x_fade_loop_play_buf_u_gen_internal.html#a46596d70506614876a9735495f724ca8">XFadeLoopPlayBufUGenInternal</a>
 </li>
 <li>soundOnset
-: <a class="el" href="class_x_fade_loop_play_buf_u_gen_internal.html#abe5963fa3ab72f0fe820afdd51212c77">XFadeLoopPlayBufUGenInternal</a>
-, <a class="el" href="class_x_fade_loop_spec_internal.html#ac7b7b9472bdb40d9c92d9cdc8998d711">XFadeLoopSpecInternal</a>
+: <a class="el" href="class_x_fade_loop_spec_internal.html#ac7b7b9472bdb40d9c92d9cdc8998d711">XFadeLoopSpecInternal</a>
+, <a class="el" href="class_x_fade_loop_play_buf_u_gen_internal.html#abe5963fa3ab72f0fe820afdd51212c77">XFadeLoopPlayBufUGenInternal</a>
 </li>
 <li>sourceLength()
 : <a class="el" href="class_numerical_array.html#a9d0221e7893c6657228bcc689c1a25d3">NumericalArray&lt; NumericalType &gt;</a>
@@ -800,54 +805,54 @@ Here is a list of all class members with links to the classes they belong to:
 : <a class="el" href="class_spawn_base_u_gen_internal.html#a07e94d6a3d8d0935315037c3d32647a6">SpawnBaseUGenInternal</a>
 </li>
 <li>spawnEvent()
-: <a class="el" href="class_x_fade_texture_event_u_gen_internal.html#a59d93bfd5e1a75a26a6ac59d47c2ae10">XFadeTextureEventUGenInternal&lt; XFadeTextureEventType, OwnerType &gt;</a>
-, <a class="el" href="class_overlap_texture_event_u_gen_internal.html#aebd87bf506805fafebd4802e71d558dc">OverlapTextureEventUGenInternal&lt; OverlapTextureEventType, OwnerType &gt;</a>
-, <a class="el" href="class_overlap_texture_event_base_3_01void_01_4.html#a8c82fdfe647c716e7a780f069480e72c">OverlapTextureEventBase&lt; void &gt;</a>
-, <a class="el" href="class_spawn_event_u_gen_internal.html#a16aabe7e77c110fc73b2d709fc27353f">SpawnEventUGenInternal&lt; SpawnEventType, OwnerType &gt;</a>
-, <a class="el" href="class_spawn_event_base_3_01void_01_4.html#a8474f578efb1b6ab78231394658ad12a">SpawnEventBase&lt; void &gt;</a>
-, <a class="el" href="class_x_fade_loop_play_buf_u_gen_internal_1_1_onset_loop_x_fade.html#a79794070febe8e0032543943342b0a94">XFadeLoopPlayBufUGenInternal::OnsetLoopXFade</a>
-, <a class="el" href="class_voicer_base_event_u_gen_internal_3_01_voicer_event_type_00_01void_01_4.html#a7bcb347fd6b052456eee7cf524597ab6">VoicerBaseEventUGenInternal&lt; VoicerEventType, void &gt;</a>
-, <a class="el" href="class_trig_x_fade_event_base_3_01void_01_4.html#a9bd478cc5ae6bd203e68e6a71f63112e">TrigXFadeEventBase&lt; void &gt;</a>
-, <a class="el" href="class_trig_x_fade_event_u_gen_internal_3_01_trig_x_fade_event_type_00_01void_01_4.html#a828567650aafc5784a7f190cc23a4b48">TrigXFadeEventUGenInternal&lt; TrigXFadeEventType, void &gt;</a>
-, <a class="el" href="class_generic_event_base_3_01void_01_4.html#aa83860e2025f0eaf099b02562e943aef">GenericEventBase&lt; void &gt;</a>
-, <a class="el" href="class_x_fade_texture_event_base_3_01void_01_4.html#aa57a0eb1e7b3fc6020367b5bc616fa72">XFadeTextureEventBase&lt; void &gt;</a>
-, <a class="el" href="class_voicer_event.html#afd4ab3a9de5e11b1c88fe21b63ec08de">VoicerEvent&lt; OwnerType &gt;</a>
+: <a class="el" href="class_voicer_base_event_u_gen_internal_3_01_voicer_event_type_00_01void_01_4.html#a7bcb347fd6b052456eee7cf524597ab6">VoicerBaseEventUGenInternal&lt; VoicerEventType, void &gt;</a>
 , <a class="el" href="class_voicer_event_u_gen_internal.html#a8f7de6346c6a2fd0ae7d27140f8caae2">VoicerEventUGenInternal&lt; VoicerEventType, OwnerType &gt;</a>
-, <a class="el" href="class_spawn_u_gen_internal.html#aa763a558bfae14de94ff67d10df15945">SpawnUGenInternal</a>
-, <a class="el" href="class_spawn_event_u_gen_internal_3_01_spawn_event_type_00_01void_01_4.html#a97721ea46a48fe527424243105a94893">SpawnEventUGenInternal&lt; SpawnEventType, void &gt;</a>
-, <a class="el" href="class_x_fade_texture_event_base.html#a381795e4c5402039d37105af70c18f47">XFadeTextureEventBase&lt; OwnerType &gt;</a>
+, <a class="el" href="class_x_fade_texture_event_u_gen_internal.html#a59d93bfd5e1a75a26a6ac59d47c2ae10">XFadeTextureEventUGenInternal&lt; XFadeTextureEventType, OwnerType &gt;</a>
 , <a class="el" href="class_x_fade_texture_event_u_gen_internal_3_01_x_fade_texture_event_type_00_01void_01_4.html#a39316c89e6972e647dcf2b1806eebade">XFadeTextureEventUGenInternal&lt; XFadeTextureEventType, void &gt;</a>
-, <a class="el" href="class_overlap_texture_event_u_gen_internal_3_01_overlap_texture_event_type_00_01void_01_4.html#a6e0c0966778804e847c38de472af09a2">OverlapTextureEventUGenInternal&lt; OverlapTextureEventType, void &gt;</a>
-, <a class="el" href="class_generic_event_base_3_01void_01_4.html#a60691c1f5285b944aa5d6be40473bef9">GenericEventBase&lt; void &gt;</a>
-, <a class="el" href="class_generic_event_base.html#a1a6cf7cb3da45ef8d19b7efae8669e97">GenericEventBase&lt; OwnerType &gt;</a>
-, <a class="el" href="class_t_spawn_u_gen_internal.html#a50ed07250c9b10dfe26d76b6d5add341">TSpawnUGenInternal</a>
-, <a class="el" href="class_generic_event_base_3_01void_01_4.html#ae803ad9d082b21224a29c9454a77a41f">GenericEventBase&lt; void &gt;</a>
-, <a class="el" href="class_t_spawn_event_base.html#a965fc839f39d82801aae22c432fb2a17">TSpawnEventBase&lt; OwnerType &gt;</a>
-, <a class="el" href="class_t_spawn_event_u_gen_internal.html#ada8cd0c6addfb9a4344207ded4462a21">TSpawnEventUGenInternal&lt; TSpawnEventType, OwnerType &gt;</a>
-, <a class="el" href="class_generic_event_base_3_01void_01_4.html#ad75bc3d65ad45bb9d7369577340e28ad">GenericEventBase&lt; void &gt;</a>
-, <a class="el" href="class_generic_event_base.html#aeb84848a61721a5c224d94bdaa25ee00">GenericEventBase&lt; OwnerType &gt;</a>
-, <a class="el" href="class_voicer_event_base_3_01void_01_4.html#a8eed74f16a57929011a78f088f7e2fe8">VoicerEventBase&lt; void &gt;</a>
-, <a class="el" href="class_voicer_base_event_u_gen_internal.html#a7a2fe061b126ff4d1c5635bcc28f3b69">VoicerBaseEventUGenInternal&lt; VoicerEventType, OwnerType &gt;</a>
+, <a class="el" href="class_spawn_event_u_gen_internal_3_01_spawn_event_type_00_01void_01_4.html#a97721ea46a48fe527424243105a94893">SpawnEventUGenInternal&lt; SpawnEventType, void &gt;</a>
+, <a class="el" href="class_spawn_u_gen_internal.html#aa763a558bfae14de94ff67d10df15945">SpawnUGenInternal</a>
+, <a class="el" href="class_voicer_event.html#afd4ab3a9de5e11b1c88fe21b63ec08de">VoicerEvent&lt; OwnerType &gt;</a>
 , <a class="el" href="class_voicer_event_base.html#a77796818e55fe303320ce71a8652625e">VoicerEventBase&lt; OwnerType &gt;</a>
+, <a class="el" href="class_generic_event_base.html#aeb84848a61721a5c224d94bdaa25ee00">GenericEventBase&lt; OwnerType &gt;</a>
+, <a class="el" href="class_x_fade_loop_play_buf_u_gen_internal_1_1_onset_loop_x_fade.html#a79794070febe8e0032543943342b0a94">XFadeLoopPlayBufUGenInternal::OnsetLoopXFade</a>
 , <a class="el" href="class_voicer_event_3_01void_01_4.html#a33cb434e0306893df5849b65fb87de00">VoicerEvent&lt; void &gt;</a>
-, <a class="el" href="class_t_spawn_event_base_3_01void_01_4.html#ac18560d028e7d7556e9179f121d8d1e7">TSpawnEventBase&lt; void &gt;</a>
-, <a class="el" href="class_voicer_base_u_gen_internal.html#aa4f2c512d50c353ef1d86f8f5005719a">VoicerBaseUGenInternal</a>
 , <a class="el" href="class_spawn_event_base.html#ac1a612e98819c8fb9d22ea4c442688bf">SpawnEventBase&lt; OwnerType &gt;</a>
-, <a class="el" href="class_t_spawn_event_u_gen_internal_3_01_t_spawn_event_type_00_01void_01_4.html#a214db88cf048e268250907f2a8be4b0e">TSpawnEventUGenInternal&lt; TSpawnEventType, void &gt;</a>
-, <a class="el" href="class_generic_event_base_3_01void_01_4.html#a47b96ec04d5fa7984ae073676908779c">GenericEventBase&lt; void &gt;</a>
+, <a class="el" href="class_spawn_event_base_3_01void_01_4.html#a8474f578efb1b6ab78231394658ad12a">SpawnEventBase&lt; void &gt;</a>
+, <a class="el" href="class_spawn_event_u_gen_internal.html#a16aabe7e77c110fc73b2d709fc27353f">SpawnEventUGenInternal&lt; SpawnEventType, OwnerType &gt;</a>
+, <a class="el" href="class_x_fade_texture_event_base.html#a381795e4c5402039d37105af70c18f47">XFadeTextureEventBase&lt; OwnerType &gt;</a>
+, <a class="el" href="class_overlap_texture_event_base.html#ad7cef5e10eb3ccb27cd64b51b46b8c7d">OverlapTextureEventBase&lt; OwnerType &gt;</a>
+, <a class="el" href="class_overlap_texture_event_u_gen_internal.html#aebd87bf506805fafebd4802e71d558dc">OverlapTextureEventUGenInternal&lt; OverlapTextureEventType, OwnerType &gt;</a>
 , <a class="el" href="class_trig_x_fade_event_base.html#af5df7a42abf3f38f5eccd9f843aa8865">TrigXFadeEventBase&lt; OwnerType &gt;</a>
+, <a class="el" href="class_generic_event_base.html#ad6fe09201380ac7c7cf6b03620a7ed78">GenericEventBase&lt; OwnerType &gt;</a>
+, <a class="el" href="class_overlap_texture_event_u_gen_internal_3_01_overlap_texture_event_type_00_01void_01_4.html#a6e0c0966778804e847c38de472af09a2">OverlapTextureEventUGenInternal&lt; OverlapTextureEventType, void &gt;</a>
+, <a class="el" href="class_generic_event_base.html#ae08036f216ed0f7222de8c33699a77b0">GenericEventBase&lt; OwnerType &gt;</a>
+, <a class="el" href="class_generic_event_base_3_01void_01_4.html#ad75bc3d65ad45bb9d7369577340e28ad">GenericEventBase&lt; void &gt;</a>
+, <a class="el" href="class_t_spawn_u_gen_internal.html#a50ed07250c9b10dfe26d76b6d5add341">TSpawnUGenInternal</a>
+, <a class="el" href="class_generic_event_base.html#aeb5e5cbc5b8ff10f5c0e72b04f587e9d">GenericEventBase&lt; OwnerType &gt;</a>
+, <a class="el" href="class_generic_event_base_3_01void_01_4.html#a60691c1f5285b944aa5d6be40473bef9">GenericEventBase&lt; void &gt;</a>
+, <a class="el" href="class_t_spawn_event_u_gen_internal_3_01_t_spawn_event_type_00_01void_01_4.html#a214db88cf048e268250907f2a8be4b0e">TSpawnEventUGenInternal&lt; TSpawnEventType, void &gt;</a>
+, <a class="el" href="class_generic_event_base_3_01void_01_4.html#aa83860e2025f0eaf099b02562e943aef">GenericEventBase&lt; void &gt;</a>
+, <a class="el" href="class_voicer_base_u_gen_internal.html#aa4f2c512d50c353ef1d86f8f5005719a">VoicerBaseUGenInternal</a>
+, <a class="el" href="class_voicer_base_event_u_gen_internal.html#a7a2fe061b126ff4d1c5635bcc28f3b69">VoicerBaseEventUGenInternal&lt; VoicerEventType, OwnerType &gt;</a>
+, <a class="el" href="class_t_spawn_event_base.html#a965fc839f39d82801aae22c432fb2a17">TSpawnEventBase&lt; OwnerType &gt;</a>
+, <a class="el" href="class_voicer_event_base_3_01void_01_4.html#a8eed74f16a57929011a78f088f7e2fe8">VoicerEventBase&lt; void &gt;</a>
+, <a class="el" href="class_t_spawn_event_base_3_01void_01_4.html#ac18560d028e7d7556e9179f121d8d1e7">TSpawnEventBase&lt; void &gt;</a>
+, <a class="el" href="class_t_spawn_event_u_gen_internal.html#ada8cd0c6addfb9a4344207ded4462a21">TSpawnEventUGenInternal&lt; TSpawnEventType, OwnerType &gt;</a>
+, <a class="el" href="class_x_fade_texture_event_base_3_01void_01_4.html#aa57a0eb1e7b3fc6020367b5bc616fa72">XFadeTextureEventBase&lt; void &gt;</a>
+, <a class="el" href="class_generic_event_base_3_01void_01_4.html#ae803ad9d082b21224a29c9454a77a41f">GenericEventBase&lt; void &gt;</a>
 , <a class="el" href="class_voicer_event_u_gen_internal_3_01_voicer_event_type_00_01void_01_4.html#a8ed1316c40f597a8743f2fa1e617e318">VoicerEventUGenInternal&lt; VoicerEventType, void &gt;</a>
 , <a class="el" href="class_generic_event_base_3_01void_01_4.html#a6d10a1ebdfd6110b98a0979df2058da6">GenericEventBase&lt; void &gt;</a>
-, <a class="el" href="class_overlap_texture_event_base.html#ad7cef5e10eb3ccb27cd64b51b46b8c7d">OverlapTextureEventBase&lt; OwnerType &gt;</a>
-, <a class="el" href="class_generic_event_base.html#ad6fe09201380ac7c7cf6b03620a7ed78">GenericEventBase&lt; OwnerType &gt;</a>
+, <a class="el" href="class_overlap_texture_event_base_3_01void_01_4.html#a8c82fdfe647c716e7a780f069480e72c">OverlapTextureEventBase&lt; void &gt;</a>
+, <a class="el" href="class_trig_x_fade_event_base_3_01void_01_4.html#a9bd478cc5ae6bd203e68e6a71f63112e">TrigXFadeEventBase&lt; void &gt;</a>
+, <a class="el" href="class_generic_event_base.html#a1a6cf7cb3da45ef8d19b7efae8669e97">GenericEventBase&lt; OwnerType &gt;</a>
 , <a class="el" href="class_trig_x_fade_event_u_gen_internal.html#af73c5473bf7a32ec4bee7f333283181f">TrigXFadeEventUGenInternal&lt; TrigXFadeEventType, OwnerType &gt;</a>
-, <a class="el" href="class_generic_event_base.html#aeb5e5cbc5b8ff10f5c0e72b04f587e9d">GenericEventBase&lt; OwnerType &gt;</a>
+, <a class="el" href="class_trig_x_fade_event_u_gen_internal_3_01_trig_x_fade_event_type_00_01void_01_4.html#a828567650aafc5784a7f190cc23a4b48">TrigXFadeEventUGenInternal&lt; TrigXFadeEventType, void &gt;</a>
 </li>
 <li>SpawnEventBase()
 : <a class="el" href="class_spawn_event_base.html#a992ec1b9cb49ab912c534dd17f320118">SpawnEventBase&lt; OwnerType &gt;</a>
 </li>
 <li>SpawnEventUGenInternal()
-: <a class="el" href="class_spawn_event_u_gen_internal.html#a885008c77d61cb543c0909373294d4cc">SpawnEventUGenInternal&lt; SpawnEventType, OwnerType &gt;</a>
+: <a class="el" href="class_spawn_event_u_gen_internal.html#ae684b066c5313b7cfa84ee591b39fbd4">SpawnEventUGenInternal&lt; SpawnEventType, OwnerType &gt;</a>
 , <a class="el" href="class_spawn_event_u_gen_internal_3_01_spawn_event_type_00_01void_01_4.html#a0005e2b0a8c3270503acd44c609f6e1f">SpawnEventUGenInternal&lt; SpawnEventType, void &gt;</a>
 </li>
 <li>SpawnUGenInternal()
@@ -882,28 +887,28 @@ Here is a list of all class members with links to the classes they belong to:
 , <a class="el" href="class_numerical_array.html#afc40c815c0d10611146aaabcd6232fa7">NumericalArray&lt; NumericalType &gt;</a>
 </li>
 <li>sqrdif()
-: <a class="el" href="class_value_array.html#a272f2091a4fad2497327862d39e306af">ValueArray</a>
-, <a class="el" href="class_u_gen_array.html#aba3bdc73bd0fa69545485ab36352866d">UGenArray</a>
-, <a class="el" href="class_buffer.html#a4d63ff50ce16b415ac95980220a904e6">Buffer</a>
-, <a class="el" href="class_u_gen.html#a5a7737aba213c68afa39a07138bee826">UGen</a>
+: <a class="el" href="class_u_gen_array.html#aba3bdc73bd0fa69545485ab36352866d">UGenArray</a>
 , <a class="el" href="class_value.html#a5b56ff8226346d8087e20cd85355013c">Value</a>
+, <a class="el" href="class_u_gen.html#a5a7737aba213c68afa39a07138bee826">UGen</a>
+, <a class="el" href="class_value_array.html#a272f2091a4fad2497327862d39e306af">ValueArray</a>
+, <a class="el" href="class_buffer.html#a4d63ff50ce16b415ac95980220a904e6">Buffer</a>
 </li>
 <li>sqrsum()
-: <a class="el" href="class_u_gen_array.html#a728d4d88d64f144d8694c72a134b9ccc">UGenArray</a>
-, <a class="el" href="class_value.html#ab7902f2fc8c70e06cabde7ca3281e079">Value</a>
-, <a class="el" href="class_value_array.html#ae493b671cd33ed0b0454ed278d69f6b9">ValueArray</a>
-, <a class="el" href="class_u_gen.html#a78cdfe8b868e5b7df07e4752a8297538">UGen</a>
+: <a class="el" href="class_value.html#ab7902f2fc8c70e06cabde7ca3281e079">Value</a>
 , <a class="el" href="class_buffer.html#a16a0a4a2e3243a00f4059b288d79a574">Buffer</a>
+, <a class="el" href="class_value_array.html#ae493b671cd33ed0b0454ed278d69f6b9">ValueArray</a>
+, <a class="el" href="class_u_gen_array.html#a728d4d88d64f144d8694c72a134b9ccc">UGenArray</a>
+, <a class="el" href="class_u_gen.html#a78cdfe8b868e5b7df07e4752a8297538">UGen</a>
 </li>
 <li>sqrt()
-: <a class="el" href="class_buffer.html#a54c9d573e5fccd34f0fa3d41630db408">Buffer</a>
-, <a class="el" href="class_numerical_array.html#a897324a527a3eaedafeb9bf72187011b">NumericalArray&lt; NumericalType &gt;</a>
-, <a class="el" href="class_value.html#a5d0809b0450fe7e235cdd586a476d441">Value</a>
-, <a class="el" href="class_u_gen.html#ac96f796ae0d03c6cea8a66842f9ea9a5">UGen</a>
-, <a class="el" href="class_v_f_p.html#a13aa62a02bfa0c481dd88c0349a57c33">VFP</a>
+: <a class="el" href="class_v_f_p.html#a13aa62a02bfa0c481dd88c0349a57c33">VFP</a>
 , <a class="el" href="class_neon.html#a3645f35fd3b82566c49c7cd525af82f9">Neon</a>
-, <a class="el" href="class_value_array.html#a52f9c34a7119205b7b531510cbc99a41">ValueArray</a>
+, <a class="el" href="class_numerical_array.html#a897324a527a3eaedafeb9bf72187011b">NumericalArray&lt; NumericalType &gt;</a>
 , <a class="el" href="class_u_gen_array.html#a01003c060bff73cdaad0fdef93d0a113">UGenArray</a>
+, <a class="el" href="class_u_gen.html#ac96f796ae0d03c6cea8a66842f9ea9a5">UGen</a>
+, <a class="el" href="class_value.html#a5d0809b0450fe7e235cdd586a476d441">Value</a>
+, <a class="el" href="class_value_array.html#a52f9c34a7119205b7b531510cbc99a41">ValueArray</a>
+, <a class="el" href="class_buffer.html#a54c9d573e5fccd34f0fa3d41630db408">Buffer</a>
 </li>
 <li>sqrt16()
 : <a class="el" href="class_v_f_p.html#af6a39c988bf7b129bf6e6f85bb465bba">VFP</a>
@@ -912,18 +917,18 @@ Here is a list of all class members with links to the classes they belong to:
 : <a class="el" href="class_v_f_p.html#a5c6d8bfa039c8f73d4c562a7ff33a12c">VFP</a>
 </li>
 <li>squared()
-: <a class="el" href="class_value.html#ab25c4ed92ee9da1a43f6a5fcac34ef1a">Value</a>
-, <a class="el" href="class_u_gen.html#afba74ec676c9313118d668d8021a4a5b">UGen</a>
-, <a class="el" href="class_buffer.html#ab74e86c87d2acd882931f5d55c68b367">Buffer</a>
-, <a class="el" href="class_u_gen_array.html#a7889078e6cea08d9cab66222e9bf0e7a">UGenArray</a>
-, <a class="el" href="class_numerical_array.html#aa24bdfa81a2fa832ea5d59e180590810">NumericalArray&lt; NumericalType &gt;</a>
+: <a class="el" href="class_u_gen_array.html#a7889078e6cea08d9cab66222e9bf0e7a">UGenArray</a>
 , <a class="el" href="class_v_f_p.html#ac3e96fa9c05142900d3995a99fa7cc9e">VFP</a>
-, <a class="el" href="class_neon.html#aa08ca9612b46ea0ea91d6ec85b6f2000">Neon</a>
 , <a class="el" href="class_value_array.html#aa4d75403a5a288645ac147630de72f9b">ValueArray</a>
+, <a class="el" href="class_u_gen.html#afba74ec676c9313118d668d8021a4a5b">UGen</a>
+, <a class="el" href="class_numerical_array.html#aa24bdfa81a2fa832ea5d59e180590810">NumericalArray&lt; NumericalType &gt;</a>
+, <a class="el" href="class_value.html#ab25c4ed92ee9da1a43f6a5fcac34ef1a">Value</a>
+, <a class="el" href="class_buffer.html#ab74e86c87d2acd882931f5d55c68b367">Buffer</a>
+, <a class="el" href="class_neon.html#aa08ca9612b46ea0ea91d6ec85b6f2000">Neon</a>
 </li>
 <li>start_
-: <a class="el" href="class_sequence_value_internal.html#a8886ba5daced09d028212e310700b7d3">SequenceValueInternal</a>
-, <a class="el" href="class_l_line_u_gen_internal.html#a6d1e29ab2748df65048ce9a3439476ff">LLineUGenInternal</a>
+: <a class="el" href="class_l_line_u_gen_internal.html#a6d1e29ab2748df65048ce9a3439476ff">LLineUGenInternal</a>
+, <a class="el" href="class_sequence_value_internal.html#a8886ba5daced09d028212e310700b7d3">SequenceValueInternal</a>
 </li>
 <li>startFromZero()
 : <a class="el" href="class_audio_file_player.html#ac7b3a32504247a642aaa90d2c5b20c81">AudioFilePlayer</a>
@@ -939,16 +944,16 @@ Here is a list of all class members with links to the classes they belong to:
 , <a class="el" href="class_part_convolve_u_gen_internal.html#a303f877197fe60993ed4c6ce90c40375">PartConvolveUGenInternal</a>
 </li>
 <li>startTime_
-: <a class="el" href="class_disk_in_u_gen_internal.html#a18f20b4754297d63a9567e78f332ed68">DiskInUGenInternal</a>
+: <a class="el" href="class_disk_in_u_gen_internal.html#a91b869cd3f451ac66b4ed849cd125c26">DiskInUGenInternal</a>
 </li>
 <li>state
 : <a class="el" href="class_schmidt_u_gen_internal.html#aa4fd3ea245f161ae4f6dc40230565a3e">SchmidtUGenInternal</a>
 </li>
 <li>steal()
-: <a class="el" href="class_env_gen_u_gen_internal.html#a841bb0f96e0650717e72a81f5996df1d">EnvGenUGenInternal</a>
+: <a class="el" href="class_u_gen.html#a0336e416ffc8bb2cc6572f02dc02da3d">UGen</a>
+, <a class="el" href="class_env_gen_u_gen_internal.html#a841bb0f96e0650717e72a81f5996df1d">EnvGenUGenInternal</a>
 , <a class="el" href="class_a_s_r_u_gen_internal.html#a1f37b88f9034e5e7106338596572b5e7">ASRUGenInternal</a>
 , <a class="el" href="class_releasable_u_gen_internal.html#a1a667630654daa5bdae7344b827c81db">ReleasableUGenInternal</a>
-, <a class="el" href="class_u_gen.html#a0336e416ffc8bb2cc6572f02dc02da3d">UGen</a>
 </li>
 <li>StealHighest
 : <a class="el" href="class_voicer_base_u_gen_internal.html#a1c972cc6529996c368d0991f92992f61a9aeea60ac14983ef08bd50cf75656640">VoicerBaseUGenInternal</a>
@@ -957,10 +962,10 @@ Here is a list of all class members with links to the classes they belong to:
 : <a class="el" href="class_voicer_base_u_gen_internal.html#a29cf340543dea7bd55579317fd21f637">VoicerBaseUGenInternal</a>
 </li>
 <li>stealInternal()
-: <a class="el" href="class_plug_u_gen_internal.html#af1ee9caa9ceac014f8e349186d1d1e68">PlugUGenInternal</a>
-, <a class="el" href="class_u_gen_internal.html#a4d2712dfc348674097ea670aab5c7101">UGenInternal</a>
+: <a class="el" href="class_spawn_base_u_gen_internal.html#a177aab3c2150d0cff0dc484180624858">SpawnBaseUGenInternal</a>
 , <a class="el" href="class_releasable_u_gen_internal.html#aa5064a48bc7ccf54871e71620696cb12">ReleasableUGenInternal</a>
-, <a class="el" href="class_spawn_base_u_gen_internal.html#a177aab3c2150d0cff0dc484180624858">SpawnBaseUGenInternal</a>
+, <a class="el" href="class_u_gen_internal.html#a4d2712dfc348674097ea670aab5c7101">UGenInternal</a>
+, <a class="el" href="class_plug_u_gen_internal.html#af1ee9caa9ceac014f8e349186d1d1e68">PlugUGenInternal</a>
 , <a class="el" href="class_mix_array_u_gen_internal.html#ab1b30e7a098ef6d91bd1880062401ae3">MixArrayUGenInternal</a>
 </li>
 <li>StealLowest
@@ -1001,8 +1006,8 @@ Here is a list of all class members with links to the classes they belong to:
 : <a class="el" href="class_scope_g_u_i.html#a2f1ca7125db13eac93739adc541abd78">ScopeGUI</a>
 </li>
 <li>sub()
-: <a class="el" href="class_v_f_p.html#a6e7e45a85c1fdb1ff8d2813e15332669">VFP</a>
-, <a class="el" href="class_neon.html#ae74c7cdc552b6337ffef4d24e93eb700">Neon</a>
+: <a class="el" href="class_neon.html#ae74c7cdc552b6337ffef4d24e93eb700">Neon</a>
+, <a class="el" href="class_v_f_p.html#a6e7e45a85c1fdb1ff8d2813e15332669">VFP</a>
 </li>
 <li>sub16()
 : <a class="el" href="class_v_f_p.html#a8d30a0593ba412d91f77ee950b82d387">VFP</a>
@@ -1011,33 +1016,33 @@ Here is a list of all class members with links to the classes they belong to:
 : <a class="el" href="class_v_f_p.html#ad5650c5a6546c215f5a3e0ea565a1497">VFP</a>
 </li>
 <li>sum()
-: <a class="el" href="class_buffer.html#a304aef7473d7d9dbfae6018b2b5d164b">Buffer</a>
+: <a class="el" href="class_buffer.html#a4bea6016f9dc395551d429db750a1438">Buffer</a>
 </li>
 <li>sumsqr()
-: <a class="el" href="class_value_array.html#a0bab8181c9a7859fa854c293f4da301c">ValueArray</a>
+: <a class="el" href="class_buffer.html#af5a57494b9010379290966ab71ae70a4">Buffer</a>
+, <a class="el" href="class_value.html#a4c03e000d7ca8e5daaf1e835f6337453">Value</a>
 , <a class="el" href="class_u_gen.html#aadf0c8f9f6d5a987a6609ca912ade624">UGen</a>
 , <a class="el" href="class_u_gen_array.html#a8fcd90f0eb69f3abe8ad1be8585d5960">UGenArray</a>
-, <a class="el" href="class_value.html#a4c03e000d7ca8e5daaf1e835f6337453">Value</a>
-, <a class="el" href="class_buffer.html#af5a57494b9010379290966ab71ae70a4">Buffer</a>
+, <a class="el" href="class_value_array.html#a0bab8181c9a7859fa854c293f4da301c">ValueArray</a>
 </li>
 <li>sustainLevel_
-: <a class="el" href="class_a_s_r_u_gen_internal.html#a9b1aed5e1034dbe1f35f9e99151462d0">ASRUGenInternal</a>
-, <a class="el" href="class_linen_u_gen_internal.html#a0f1beb1614fa07da5327450847cfb494">LinenUGenInternal</a>
+: <a class="el" href="class_linen_u_gen_internal.html#a0f1beb1614fa07da5327450847cfb494">LinenUGenInternal</a>
+, <a class="el" href="class_a_s_r_u_gen_internal.html#a9b1aed5e1034dbe1f35f9e99151462d0">ASRUGenInternal</a>
 </li>
 <li>SustainSegment
 : <a class="el" href="class_a_s_r_u_gen_internal.html#aa3d434129c4a5438fa3e25efa156e588a47501c2676a586d7dd5816aa374a65fd">ASRUGenInternal</a>
 , <a class="el" href="class_linen_u_gen_internal.html#a75848d2200412d8767c2a09f054cef48aa2cb6ed2cd40b81cfd235eb3a35d0508">LinenUGenInternal</a>
 </li>
 <li>sustainTime
-: <a class="el" href="class_x_fade_texture_u_gen_internal.html#a592c4c012178f6a382bff976feb6dcda">XFadeTextureUGenInternal</a>
-, <a class="el" href="class_overlap_texture_u_gen_internal.html#ad31641ee234a4f9813e2ec47eb0e37ea">OverlapTextureUGenInternal</a>
+: <a class="el" href="class_overlap_texture_u_gen_internal.html#ad31641ee234a4f9813e2ec47eb0e37ea">OverlapTextureUGenInternal</a>
+, <a class="el" href="class_x_fade_texture_u_gen_internal.html#a592c4c012178f6a382bff976feb6dcda">XFadeTextureUGenInternal</a>
 </li>
 <li>sustainTime_
 : <a class="el" href="class_linen_u_gen_internal.html#ada0ddfa4b3326d30648a88596381eb22">LinenUGenInternal</a>
 </li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 27 2010 07:50:32 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Oct 2 2010 09:31:01 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

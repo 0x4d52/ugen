@@ -69,10 +69,20 @@ Classes</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creat a chain of allpass or comb delays.  <a href="class_recirc_base_chain.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_recirc_base_chain_1_1_recirc_base_chain_link.html">RecircBaseChain&lt; RecircBaseType &gt;::RecircBaseChainLink</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A <a class="el" href="class_chain_bank_event.html" title="An event class for use with a Chain or Bank UGen.">ChainBankEvent</a> which creates a recirculating delay unit.  <a href="class_recirc_base_chain_1_1_recirc_base_chain_link.html#_details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tap_in_u_gen_internal.html">TapInUGenInternal</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tap_in.html">TapIn</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Write data to a delay line circular buffer.  <a href="class_tap_in.html#_details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tap_out_n_u_gen_internal.html">TapOutNUGenInternal</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tap_out_l_u_gen_internal.html">TapOutLUGenInternal</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tap_out_n.html">TapOutN</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tap a delay line using no interpolation.  <a href="class_tap_out_n.html#_details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tap_out_l.html">TapOutL</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tap a delay line using linear interpolation.  <a href="class_tap_out_l.html#_details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="define-members"></a>
 Defines</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="ugen___delay_8h.html#a69c24229a63c7c3546fe977f8a3189e6">Delay_Docs</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="ugen___delay_8h.html#a2fa4a1a255f778bd5f80c8f0dff808ce">Recirc_Docs</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="ugen___delay_8h.html#a8a685a0c5e2506f9b710d4513187bdcc">TapOut_Docs</a></td></tr>
 </table>
 <hr/><h2>Define Documentation</h2>
 <a class="anchor" id="a69c24229a63c7c3546fe977f8a3189e6"></a><!-- doxytag: member="ugen_Delay.h::Delay_Docs" ref="a69c24229a63c7c3546fe977f8a3189e6" args="" -->
@@ -113,8 +123,29 @@ Defines</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a8a685a0c5e2506f9b710d4513187bdcc"></a><!-- doxytag: member="ugen_Delay.h::TapOut_Docs" ref="a8a685a0c5e2506f9b710d4513187bdcc" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TapOut_Docs</td>
+        </tr>
+      </table>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Sep 13 2010 09:57:05 for ugen by&nbsp;
+<div class="memdoc">
+<b>Value:</b><div class="fragment"><pre class="fragment">@param buffer    The <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> being used as a circular delay buffer.       \
+              This must be being written to by a <a class="code" href="class_tap_in.html" title="Write data to a delay line circular buffer.">TapIn</a> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>.        \
+       @param delayTime   The delay time to use. The minimum <span class="keywordflow">for</span> the TapOut UGens is a single   \
+              block delay given by <a class="code" href="class_u_gen.html#ae0de18a1d9478d0bb5b46a2d87ba7f53" title="Get the current actual block size.">UGen::getBlockSize</a>() / <a class="code" href="class_u_gen.html#afddb4177dad7f4056bbf8b91d07d5224" title="Get the current sample rate.">UGen::getSampleRate</a>().   \
+              Values smaller that <span class="keyword">this</span> will be clipped. The maximum value is determined \
+              by the duration of the buffer.
+</pre></div>
+<p>Definition at line <a class="el" href="ugen___delay_8h_source.html#l00408">408</a> of file <a class="el" href="ugen___delay_8h_source.html">ugen_Delay.h</a>.</p>
+
+</div>
+</div>
+</div>
+<hr class="footer"/><address class="footer"><small>Generated on Sat Oct 2 2010 09:31:01 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

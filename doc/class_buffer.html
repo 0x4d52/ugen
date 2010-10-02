@@ -72,11 +72,13 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a92cec09e2a5c7b1e5b7109f8e0ce21c4">setSample</a> (const int channel, const int sampleIndex, const float value) const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a545f21706829cc21413632921adf232b">getSample</a> (const int channel, const int sampleIndex) const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a54b5f49507909eda47d59b7f7061a0b6">getSample</a> (const int channel, const double sampleIndex) const   throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a1d77e2b83f7e1266dfab9b1aa3e085f3">getSample</a> (const int channel, const float sampleIndex) const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a21f77aa00b5362bd1efa0ff1bc7765fb">setSampleUnchecked</a> (const int sampleIndex, const float value) const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a585df95ba451978ddd2efa4c81490328">setSampleUnchecked</a> (const int channel, const int sampleIndex, const float value) const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a54e55fffada89fdd7ea22569c83aa337">getSampleUnchecked</a> (const int channel, const int sampleIndex) const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#abffec869fbfd36d7a7928005ce8f32a5">getSampleUnchecked</a> (const int sampleIndex) const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#affe557dedc3eeac1d48f4d47f67bbd5d">getSampleUnchecked</a> (const int channel, const double index) const   throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a8dbbeaa7eed61098f138940ce4384ffc">getSampleUnchecked</a> (const int channel, const float index) const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a44b9d05f1b14e96ee188744a5d1f5f38">lookup</a> (const int channel, const double phase) const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a7d344cd04d131665fe7f745590b417b0">lookup</a> (const double phase) const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a64465b2fe51e899db01353ea3987d394">operator[]</a> (const int sampleIndex) const   throw ()</td></tr>
@@ -86,6 +88,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_buffer.html">Buffer</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#abfcfad64b9214c73c2da2eca2642b76c">at</a> (<a class="el" href="class_numerical_array.html">IntArray</a> const &amp;indices) const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#af596972ab9cbbb63713a4d9ec2979935">wrapAt</a> (int sampleIndex) const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a945a081dead8517e65006fa2de643ec9">wrapAt</a> (const int channel, int sampleIndex) const   throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a6f047df01dad1235d0bf32697a1ab85b">setCircularHead</a> (const unsigned int blockID, const int channel, const int position)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a44a544da93160f3c262ab4b0a412b521">getCircularHead</a> (const unsigned int blockID, const int channel) const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_buffer.html">Buffer</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#ace8501027c57cf3e4cfb3b2fc5b4df48">operator&lt;&lt;</a> (<a class="el" href="class_buffer.html">Buffer</a> const &amp;other) const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_buffer.html">Buffer</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a7e81bca528dd8620c61252c633732ddd">operator,</a> (<a class="el" href="class_buffer.html">Buffer</a> const &amp;other) const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_buffer.html">Buffer</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#af982db155488044c790f0fe3791e835b">append</a> (<a class="el" href="class_buffer.html">Buffer</a> const &amp;other) const   throw ()</td></tr>
@@ -314,7 +318,7 @@ Miscellaneous</h2></td></tr>
 <p>(possibly for <a class="el" href="class_u_gen_output.html">UGenOutput</a>? later)</p>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_play_buf.html" title="A UGen which can playback a Buffer.">PlayBuf</a>, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a>, <a class="el" href="class_harmonic_osc.html" title="A wavetable-based oscillator initialised with an array of the harmonic amplitudes.">HarmonicOsc</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00122">122</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00128">128</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ae7ef2cd201190fde551dcb902627112b"></a><!-- doxytag: member="Buffer::Buffer" ref="ae7ef2cd201190fde551dcb902627112b" args="()" -->
 <div class="memitem">
@@ -331,9 +335,9 @@ Miscellaneous</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00134">134</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00142">142</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l01416">interleave()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l01424">interleave()</a>.</p>
 
 </div>
 </div>
@@ -353,7 +357,7 @@ Miscellaneous</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00142">142</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00150">150</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 </div>
 </div>
@@ -373,7 +377,7 @@ Miscellaneous</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00156">156</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00164">164</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 </div>
 </div>
@@ -402,7 +406,7 @@ Miscellaneous</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00165">165</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00173">173</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 </div>
 </div>
@@ -437,7 +441,7 @@ Miscellaneous</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00175">175</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00183">183</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 </div>
 </div>
@@ -457,7 +461,7 @@ Miscellaneous</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00187">187</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00195">195</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 </div>
 </div>
@@ -666,7 +670,7 @@ Miscellaneous</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00196">196</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00204">204</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 <p>References <a class="el" href="ugen___standard_header_8h_source.html#l00269">INFINITY</a>.</p>
 
@@ -688,7 +692,7 @@ Miscellaneous</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00305">305</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00313">313</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 </div>
 </div>
@@ -710,9 +714,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00172">172</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00178">178</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00073">BufferChannelInternal::data</a>, <a class="el" href="ugen___buffer_8h_source.html#l00618">numChannels_</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00076">BufferChannelInternal::data</a>, <a class="el" href="ugen___buffer_8h_source.html#l00664">numChannels_</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
 
 </div>
 </div>
@@ -734,9 +738,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00185">185</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00191">191</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00073">BufferChannelInternal::data</a>, <a class="el" href="ugen___buffer_8h_source.html#l00618">numChannels_</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00076">BufferChannelInternal::data</a>, <a class="el" href="ugen___buffer_8h_source.html#l00664">numChannels_</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
 
 </div>
 </div>
@@ -765,7 +769,7 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00372">372</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00380">380</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 </div>
 </div>
@@ -800,7 +804,7 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00380">380</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00388">388</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 </div>
 </div>
@@ -820,7 +824,7 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00391">391</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00399">399</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 </div>
 </div>
@@ -975,7 +979,7 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01612">1612</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01620">1620</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 </div>
 </div>
@@ -994,9 +998,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01388">1388</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01396">1396</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l01405">decrementInternals()</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l01413">decrementInternals()</a>.</p>
 
 </div>
 </div>
@@ -1016,7 +1020,7 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01469">1469</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01477">1477</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 </div>
 </div>
@@ -1100,9 +1104,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00337">337</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00344">344</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00075">BufferChannelInternal::allocatedSize</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00078">BufferChannelInternal::allocatedSize</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>.</p>
 
 </div>
 </div>
@@ -1122,9 +1126,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01588">1588</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01596">1596</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00073">BufferChannelInternal::data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00618">numChannels_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00076">BufferChannelInternal::data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00664">numChannels_</a>.</p>
 
 </div>
 </div>
@@ -1147,28 +1151,6 @@ template&lt;class NumericalType &gt; </div>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> which is the arcsine of this one i.e., <img class="formulaInl" alt="$ asin(x) $" src="form_8.png"/>. </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00088">88</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3e0c43a8e7f06a823712f925659565c6"></a><!-- doxytag: member="Buffer::at" ref="a3e0c43a8e7f06a823712f925659565c6" args="(const int sampleIndex) const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float Buffer::at </td>
-          <td>(</td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>sampleIndex</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td> const  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00449">449</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
-
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00073">BufferChannelInternal::data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>.</p>
 
 </div>
 </div>
@@ -1197,9 +1179,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00457">457</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00480">480</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00073">BufferChannelInternal::data</a>, <a class="el" href="ugen___buffer_8h_source.html#l00618">numChannels_</a>, <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00076">BufferChannelInternal::data</a>, <a class="el" href="ugen___buffer_8h_source.html#l00664">numChannels_</a>, <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
 </div>
 </div>
@@ -1219,9 +1201,31 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00467">467</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00490">490</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00355">getSample()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00618">numChannels_</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00349">setSample()</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00362">getSample()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00664">numChannels_</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00356">setSample()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3e0c43a8e7f06a823712f925659565c6"></a><!-- doxytag: member="Buffer::at" ref="a3e0c43a8e7f06a823712f925659565c6" args="(const int sampleIndex) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Buffer::at </td>
+          <td>(</td>
+          <td class="paramtype">const int&nbsp;</td>
+          <td class="paramname"> <em>sampleIndex</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const  throw ()<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00472">472</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00076">BufferChannelInternal::data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
 
 </div>
 </div>
@@ -1294,9 +1298,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02271">2271</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02279">2279</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l00317">line()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l01757">shrinkSize()</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l00325">line()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l01765">shrinkSize()</a>.</p>
 
 </div>
 </div>
@@ -1344,7 +1348,7 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02290">2290</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02298">2298</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 </div>
 </div>
@@ -1377,9 +1381,9 @@ template&lt;class NumericalType &gt; </div>
 <p>If <code>fraction</code> is between 0 and 1 the two buffers are interpolated. (Where 0 is all ths buffer and 1 is all the other buffer.) If <code>fraction</code> is between 0 and -1 then the buffers are blended using a "peak-hold" algorithm. That is if new values are greater than the original values they are just assigned, if the new value is lower then the <code>fraction</code> is used to interpolate (here the absolute of the <code>fraction</code> argument is used to put this into the range 0 and 1.)</p>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_scope_g_u_i.html" title="This is a wrapper/controller for a platform dependent GUI object.">ScopeGUI</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01930">1930</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01938">1938</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00135">clip()</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00099">max()</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00098">min()</a>, <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00106">neg()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00371">setSampleUnchecked()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00135">clip()</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00099">max()</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00098">min()</a>, <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00106">neg()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00386">setSampleUnchecked()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
 <p>Referenced by <a class="el" href="ugen___scope_8cpp_source.html#l00178">ScopeGUI::setAudioBuffer()</a>.</p>
 
@@ -1429,7 +1433,7 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02174">2174</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02182">2182</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 <p>References <a class="el" href="ugen___u_gen_8h_source.html#l00924">UGen::getSampleRate()</a>.</p>
 
@@ -1450,9 +1454,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00338">338</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00345">345</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00330">getData()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00618">numChannels_</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00336">getData()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00664">numChannels_</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
 
 <p>Referenced by <a class="el" href="ugen___scope_8cpp_source.html#l00416">ScopeGUI::calculateBuffers()</a>.</p>
 
@@ -1495,9 +1499,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01482">1482</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01490">1490</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00330">getData()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00336">getData()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
 
 <p>Referenced by <a class="el" href="ugen___scope_8cpp_source.html#l00178">ScopeGUI::setAudioBuffer()</a>.</p>
 
@@ -1523,7 +1527,7 @@ template&lt;class NumericalType &gt; </div>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00083">83</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l02252">cosineTable()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02452">getTableCosine512()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02458">getTableCosine8192()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l02464">ugen_calculatePanTable512()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l02260">cosineTable()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02460">getTableCosine512()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02466">getTableCosine8192()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l02472">ugen_calculatePanTable512()</a>.</p>
 
 </div>
 </div>
@@ -1574,9 +1578,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02252">2252</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02260">2260</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00083">cos()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l00317">line()</a>, and <a class="el" href="ugen___constants_8h_source.html#l00052">twoPi</a>.</p>
+<p>References <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00083">cos()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l00325">line()</a>, and <a class="el" href="ugen___constants_8h_source.html#l00052">twoPi</a>.</p>
 
 </div>
 </div>
@@ -1605,9 +1609,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02257">2257</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02265">2265</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l00317">line()</a>, <a class="el" href="ugen___constants_8h_source.html#l00048">pi</a>, and <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00082">sin()</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l00325">line()</a>, <a class="el" href="ugen___constants_8h_source.html#l00048">pi</a>, and <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00082">sin()</a>.</p>
 
 </div>
 </div>
@@ -1670,11 +1674,11 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01405">1405</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01413">1413</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, and <a class="el" href="ugen___smart_pointer_8cpp_source.html#l00085">SmartPointer::decrementRefCount()</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, and <a class="el" href="ugen___smart_pointer_8cpp_source.html#l00085">SmartPointer::decrementRefCount()</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l01388">~Buffer()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l01396">~Buffer()</a>.</p>
 
 </div>
 </div>
@@ -1694,9 +1698,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01438">1438</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01446">1446</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00330">getData()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00336">getData()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
 </div>
 </div>
@@ -1757,11 +1761,11 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01464">1464</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01472">1472</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l00927">UGen::getReciprocalSampleRate()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_8h_source.html#l00927">UGen::getReciprocalSampleRate()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___play_buf_8cpp_source.html#l00140">PlayBufUGenInternal::getDuration()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___play_buf_8cpp_source.html#l00321">RecordBufUGenInternal::getDuration()</a>, and <a class="el" href="ugen___play_buf_8cpp_source.html#l00140">PlayBufUGenInternal::getDuration()</a>.</p>
 
 </div>
 </div>
@@ -1824,9 +1828,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02212">2212</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02220">2220</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00330">getData()</a>, <a class="el" href="ugen___random_8h_source.html#l00139">rand()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00371">setSampleUnchecked()</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00336">getData()</a>, <a class="el" href="ugen___random_8h_source.html#l00139">rand()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00386">setSampleUnchecked()</a>.</p>
 
 </div>
 </div>
@@ -1846,7 +1850,7 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01834">1834</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01842">1842</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 </div>
 </div>
@@ -1866,7 +1870,7 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01866">1866</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01874">1874</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 </div>
 </div>
@@ -1886,11 +1890,11 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01898">1898</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01906">1906</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 <p>References <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00108">abs()</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l01809">normalise()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l01817">normalise()</a>.</p>
 
 </div>
 </div>
@@ -2009,9 +2013,9 @@ template&lt;class NumericalType &gt; </div>
 
 <p>Create a single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> containing a geometric series. </p>
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00351">351</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00359">359</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00330">getData()</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00336">getData()</a>.</p>
 
 </div>
 </div>
@@ -2033,9 +2037,42 @@ template&lt;class NumericalType &gt; </div>
 
 <p>Reimplemented in <a class="el" href="class_part_buffer.html#ad13b7c2769f82f593756c13e75c93c2c">PartBuffer</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01685">1685</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01693">1693</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l01819">normaliseEach()</a>, <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00309">FFTEngineInternal::rawToMagnitudePhaseSplit()</a>, and <a class="el" href="ugen___scope_8cpp_source.html#l00178">ScopeGUI::setAudioBuffer()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l01827">normaliseEach()</a>, <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00309">FFTEngineInternal::rawToMagnitudePhaseSplit()</a>, and <a class="el" href="ugen___scope_8cpp_source.html#l00178">ScopeGUI::setAudioBuffer()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a44a544da93160f3c262ab4b0a412b521"></a><!-- doxytag: member="Buffer::getCircularHead" ref="a44a544da93160f3c262ab4b0a412b521" args="(const unsigned int blockID, const int channel) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Buffer::getCircularHead </td>
+          <td>(</td>
+          <td class="paramtype">const unsigned int&nbsp;</td>
+          <td class="paramname"> <em>blockID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&nbsp;</td>
+          <td class="paramname"> <em>channel</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td> const  throw ()<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00532">532</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00664">numChannels_</a>, <a class="el" href="ugen___buffer_8h_source.html#l00081">BufferChannelInternal::previousCircularHead</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+
+<p>Referenced by <a class="el" href="ugen___delay_8cpp_source.html#l00865">TapInUGenInternal::processBlock()</a>.</p>
 
 </div>
 </div>
@@ -2055,11 +2092,11 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00330">330</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00336">336</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00073">BufferChannelInternal::data</a>, <a class="el" href="ugen___buffer_8h_source.html#l00618">numChannels_</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00076">BufferChannelInternal::data</a>, <a class="el" href="ugen___buffer_8h_source.html#l00664">numChannels_</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___buffer_8h_source.html#l00338">clear()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01482">copy()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01438">deinterleave()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02212">exprand()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l00351">geom()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01699">getRegion()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01416">interleave()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l00317">line()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02228">linrand()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02103">loopFade()</a>, <a class="el" href="ugen___env_8cpp_source.html#l00228">Env::operator Buffer()</a>, <a class="el" href="ugen___scope_8cpp_source.html#l00846">FFTSenderUGenInternal::processBlock()</a>, <a class="el" href="ugen___scope_8cpp_source.html#l00696">SpectralScopeUGenInternal::processBlock()</a>, <a class="el" href="ugen___scope_8cpp_source.html#l00603">BufferSenderUGenInternal::processBlock()</a>, <a class="el" href="ugen___scope_8cpp_source.html#l00504">ScopeUGenInternal::processBlock()</a>, <a class="el" href="ugen___f_f_t_magnitude_selection_8cpp_source.html#l00088">FFTMagnitudeSelectionUGenInternal::processBlock()</a>, <a class="el" href="ugen___f_f_t_magnitude_8cpp_source.html#l00092">FFTMagnitudeUGenInternal::processBlock()</a>, <a class="el" href="ugen___poll_8cpp_source.html#l00051">PollUGenInternal::processBlock()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l00335">series()</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00213">FFTEngineInternal::setFFTWindow()</a>, and <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00220">FFTEngineInternal::setIFFTWindow()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___buffer_8h_source.html#l00345">clear()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01490">copy()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01446">deinterleave()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02220">exprand()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l00359">geom()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01707">getRegion()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01424">interleave()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l00325">line()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02236">linrand()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02111">loopFade()</a>, <a class="el" href="ugen___env_8cpp_source.html#l00218">Env::operator Buffer()</a>, <a class="el" href="ugen___scope_8cpp_source.html#l00846">FFTSenderUGenInternal::processBlock()</a>, <a class="el" href="ugen___scope_8cpp_source.html#l00696">SpectralScopeUGenInternal::processBlock()</a>, <a class="el" href="ugen___scope_8cpp_source.html#l00603">BufferSenderUGenInternal::processBlock()</a>, <a class="el" href="ugen___scope_8cpp_source.html#l00504">ScopeUGenInternal::processBlock()</a>, <a class="el" href="ugen___f_f_t_magnitude_selection_8cpp_source.html#l00088">FFTMagnitudeSelectionUGenInternal::processBlock()</a>, <a class="el" href="ugen___f_f_t_magnitude_8cpp_source.html#l00092">FFTMagnitudeUGenInternal::processBlock()</a>, <a class="el" href="ugen___delay_8cpp_source.html#l00865">TapInUGenInternal::processBlock()</a>, <a class="el" href="ugen___play_buf_8cpp_source.html#l00261">RecordBufUGenInternal::processBlock()</a>, <a class="el" href="ugen___poll_8cpp_source.html#l00051">PollUGenInternal::processBlock()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l00343">series()</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00213">FFTEngineInternal::setFFTWindow()</a>, and <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00220">FFTEngineInternal::setIFFTWindow()</a>.</p>
 
 </div>
 </div>
@@ -2079,9 +2116,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00331">331</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00337">337</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00073">BufferChannelInternal::data</a>, <a class="el" href="ugen___buffer_8h_source.html#l00618">numChannels_</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00076">BufferChannelInternal::data</a>, <a class="el" href="ugen___buffer_8h_source.html#l00664">numChannels_</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
 </div>
 </div>
@@ -2101,9 +2138,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00332">332</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00338">338</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00073">BufferChannelInternal::data</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00076">BufferChannelInternal::data</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
 </div>
 </div>
@@ -2123,9 +2160,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00333">333</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00339">339</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00073">BufferChannelInternal::data</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00076">BufferChannelInternal::data</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
 </div>
 </div>
@@ -2144,9 +2181,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00334">334</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00341">341</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00618">numChannels_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00664">numChannels_</a>.</p>
 
 <p>Referenced by <a class="el" href="ugen___scope_8cpp_source.html#l00416">ScopeGUI::calculateBuffers()</a>, <a class="el" href="ugen___scope_8cpp_source.html#l00167">ScopeGUI::initBuffers()</a>, <a class="el" href="ugen___scope_8cpp_source.html#l00846">FFTSenderUGenInternal::processBlock()</a>, <a class="el" href="ugen___scope_8cpp_source.html#l00696">SpectralScopeUGenInternal::processBlock()</a>, <a class="el" href="ugen___scope_8cpp_source.html#l00603">BufferSenderUGenInternal::processBlock()</a>, and <a class="el" href="ugen___scope_8cpp_source.html#l00504">ScopeUGenInternal::processBlock()</a>.</p>
 
@@ -2189,11 +2226,11 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01699">1699</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01707">1707</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00330">getData()</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00336">getData()</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___scope_8cpp_source.html#l00603">BufferSenderUGenInternal::processBlock()</a>, <a class="el" href="ugen___scope_8cpp_source.html#l00504">ScopeUGenInternal::processBlock()</a>, <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00350">FFTEngineInternal::rawToMagnitude()</a>, <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00275">FFTEngineInternal::rawToMagnitudePhase()</a>, <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00309">FFTEngineInternal::rawToMagnitudePhaseSplit()</a>, <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00378">FFTEngineInternal::rawToPhase()</a>, <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00203">FFTEngineInternal::rawToRealImagRawSplit()</a>, <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00221">FFTEngineInternal::rawToRealImagUnpacked()</a>, <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00253">FFTEngineInternal::rawToRealImagUnpackedSplit()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l02262">triangleWindow()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___scope_8cpp_source.html#l00603">BufferSenderUGenInternal::processBlock()</a>, <a class="el" href="ugen___scope_8cpp_source.html#l00504">ScopeUGenInternal::processBlock()</a>, <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00350">FFTEngineInternal::rawToMagnitude()</a>, <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00275">FFTEngineInternal::rawToMagnitudePhase()</a>, <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00309">FFTEngineInternal::rawToMagnitudePhaseSplit()</a>, <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00378">FFTEngineInternal::rawToPhase()</a>, <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00203">FFTEngineInternal::rawToRealImagRawSplit()</a>, <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00221">FFTEngineInternal::rawToRealImagUnpacked()</a>, <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00253">FFTEngineInternal::rawToRealImagUnpackedSplit()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l02270">triangleWindow()</a>.</p>
 
 </div>
 </div>
@@ -2222,11 +2259,11 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00355">355</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00362">362</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00073">BufferChannelInternal::data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00076">BufferChannelInternal::data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___buffer_8h_source.html#l00467">at()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00432">operator[]()</a>, and <a class="el" href="ugen___play_buf_8cpp_source.html#l00078">PlayBufUGenInternal::processBlock()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___buffer_8h_source.html#l00490">at()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00455">operator[]()</a>, and <a class="el" href="ugen___play_buf_8cpp_source.html#l00078">PlayBufUGenInternal::processBlock()</a>.</p>
 
 </div>
 </div>
@@ -2255,9 +2292,40 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00363">363</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00370">370</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00055">BufferChannelInternal::getSampleUnchecked()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00055">BufferChannelInternal::getSampleUnchecked()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1d77e2b83f7e1266dfab9b1aa3e085f3"></a><!-- doxytag: member="Buffer::getSample" ref="a1d77e2b83f7e1266dfab9b1aa3e085f3" args="(const int channel, const float sampleIndex) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Buffer::getSample </td>
+          <td>(</td>
+          <td class="paramtype">const int&nbsp;</td>
+          <td class="paramname"> <em>channel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&nbsp;</td>
+          <td class="paramname"> <em>sampleIndex</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td> const  throw ()<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00378">378</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00055">BufferChannelInternal::getSampleUnchecked()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
 
 </div>
 </div>
@@ -2286,9 +2354,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00386">386</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00401">401</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00073">BufferChannelInternal::data</a>, <a class="el" href="ugen___buffer_8h_source.html#l00618">numChannels_</a>, <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00076">BufferChannelInternal::data</a>, <a class="el" href="ugen___buffer_8h_source.html#l00664">numChannels_</a>, <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
 <p>Referenced by <a class="el" href="ugen___scope_8cpp_source.html#l00416">ScopeGUI::calculateBuffers()</a>, <a class="el" href="ugen___f_f_t_magnitude_selection_8cpp_source.html#l00088">FFTMagnitudeSelectionUGenInternal::processBlock()</a>, <a class="el" href="ugen___f_f_t_magnitude_8cpp_source.html#l00092">FFTMagnitudeUGenInternal::processBlock()</a>, and <a class="el" href="ugen___juce_multi_slider_8h_source.html#l00444">MultiSlider::setValues()</a>.</p>
 
@@ -2310,9 +2378,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00394">394</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00409">409</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00073">BufferChannelInternal::data</a>, <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00076">BufferChannelInternal::data</a>, <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
 </div>
 </div>
@@ -2341,9 +2409,40 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00401">401</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00416">416</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00055">BufferChannelInternal::getSampleUnchecked()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00618">numChannels_</a>, <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00055">BufferChannelInternal::getSampleUnchecked()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00664">numChannels_</a>, <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8dbbeaa7eed61098f138940ce4384ffc"></a><!-- doxytag: member="Buffer::getSampleUnchecked" ref="a8dbbeaa7eed61098f138940ce4384ffc" args="(const int channel, const float index) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Buffer::getSampleUnchecked </td>
+          <td>(</td>
+          <td class="paramtype">const int&nbsp;</td>
+          <td class="paramname"> <em>channel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&nbsp;</td>
+          <td class="paramname"> <em>index</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td> const  throw ()<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00424">424</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00055">BufferChannelInternal::getSampleUnchecked()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00664">numChannels_</a>, <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
 </div>
 </div>
@@ -2362,9 +2461,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02471">2471</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02479">2479</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l02464">ugen_calculatePanTable512()</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l02472">ugen_calculatePanTable512()</a>.</p>
 
 </div>
 </div>
@@ -2383,9 +2482,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02452">2452</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02460">2460</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00083">cos()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l00317">line()</a>, <a class="el" href="ugen___constants_8h_source.html#l00048">pi</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l01757">shrinkSize()</a>.</p>
+<p>References <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00083">cos()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l00325">line()</a>, <a class="el" href="ugen___constants_8h_source.html#l00048">pi</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l01765">shrinkSize()</a>.</p>
 
 </div>
 </div>
@@ -2404,9 +2503,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02458">2458</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02466">2466</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00083">cos()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l00317">line()</a>, <a class="el" href="ugen___constants_8h_source.html#l00048">pi</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l01757">shrinkSize()</a>.</p>
+<p>References <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00083">cos()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l00325">line()</a>, <a class="el" href="ugen___constants_8h_source.html#l00048">pi</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l01765">shrinkSize()</a>.</p>
 
 </div>
 </div>
@@ -2425,9 +2524,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02440">2440</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02448">2448</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l00317">line()</a>, <a class="el" href="ugen___constants_8h_source.html#l00048">pi</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01757">shrinkSize()</a>, and <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00082">sin()</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l00325">line()</a>, <a class="el" href="ugen___constants_8h_source.html#l00048">pi</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01765">shrinkSize()</a>, and <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00082">sin()</a>.</p>
 
 </div>
 </div>
@@ -2446,9 +2545,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02446">2446</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02454">2454</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l00317">line()</a>, <a class="el" href="ugen___constants_8h_source.html#l00048">pi</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01757">shrinkSize()</a>, and <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00082">sin()</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l00325">line()</a>, <a class="el" href="ugen___constants_8h_source.html#l00048">pi</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01765">shrinkSize()</a>, and <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00082">sin()</a>.</p>
 
 <p>Referenced by <a class="el" href="ugen___table_osc_8cpp_source.html#l00209">SinOsc::SinOsc()</a>.</p>
 
@@ -2470,7 +2569,7 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02285">2285</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02293">2293</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 </div>
 </div>
@@ -2490,7 +2589,7 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02280">2280</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02288">2288</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 </div>
 </div>
@@ -2540,11 +2639,11 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01394">1394</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01402">1402</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, and <a class="el" href="ugen___smart_pointer_8cpp_source.html#l00080">SmartPointer::incrementRefCount()</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, and <a class="el" href="ugen___smart_pointer_8cpp_source.html#l00080">SmartPointer::incrementRefCount()</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l01515">operator=()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l01523">operator=()</a>.</p>
 
 </div>
 </div>
@@ -2794,9 +2893,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01416">1416</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01424">1424</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l00134">Buffer()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00330">getData()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l00142">Buffer()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00336">getData()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
 
 </div>
 </div>
@@ -2877,9 +2976,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00600">600</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00646">646</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00618">numChannels_</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00664">numChannels_</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
 
 </div>
 </div>
@@ -2916,11 +3015,11 @@ template&lt;class NumericalType &gt; </div>
 
 <p>Create a single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> ramping from start to end. </p>
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00317">317</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00325">325</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00330">getData()</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00336">getData()</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l02271">bartlettWindow()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02252">cosineTable()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02257">cosineWindow()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02452">getTableCosine512()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02458">getTableCosine8192()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02440">getTableSine512()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02446">getTableSine8192()</a>, <a class="el" href="ugen___table_osc_8cpp_source.html#l00188">HarmonicOsc::HarmonicOsc()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02247">sineTable()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02262">triangleWindow()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l02464">ugen_calculatePanTable512()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l02279">bartlettWindow()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02260">cosineTable()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02265">cosineWindow()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02460">getTableCosine512()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02466">getTableCosine8192()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02448">getTableSine512()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02454">getTableSine8192()</a>, <a class="el" href="ugen___table_osc_8cpp_source.html#l00188">HarmonicOsc::HarmonicOsc()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02255">sineTable()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02270">triangleWindow()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l02472">ugen_calculatePanTable512()</a>.</p>
 
 </div>
 </div>
@@ -2961,9 +3060,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02228">2228</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02236">2236</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00330">getData()</a>, <a class="el" href="ugen___random_8h_source.html#l00139">rand()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00371">setSampleUnchecked()</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00336">getData()</a>, <a class="el" href="ugen___random_8h_source.html#l00139">rand()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00386">setSampleUnchecked()</a>.</p>
 
 </div>
 </div>
@@ -3058,9 +3157,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00409">409</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00432">432</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00135">clip()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00055">BufferChannelInternal::getSampleUnchecked()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00618">numChannels_</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00135">clip()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00055">BufferChannelInternal::getSampleUnchecked()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00664">numChannels_</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
 
 </div>
 </div>
@@ -3080,9 +3179,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00416">416</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00439">439</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00135">clip()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00055">BufferChannelInternal::getSampleUnchecked()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___inline_binary_ops_8h_source.html#l00135">clip()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00055">BufferChannelInternal::getSampleUnchecked()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
 
 </div>
 </div>
@@ -3129,9 +3228,9 @@ template&lt;class NumericalType &gt; </div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The crossfaded <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02103">2103</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02111">2111</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00330">getData()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00924">UGen::getSampleRate()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00336">getData()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00924">UGen::getSampleRate()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
 </div>
 </div>
@@ -3237,9 +3336,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02393">2393</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02401">2401</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00073">BufferChannelInternal::data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00076">BufferChannelInternal::data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
 
 </div>
 </div>
@@ -3296,7 +3395,7 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00367">367</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00375">375</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 <p>Referenced by <a class="el" href="ugen___poll_8cpp_source.html#l00051">PollUGenInternal::processBlock()</a>.</p>
 
@@ -3317,11 +3416,11 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01809">1809</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01817">1817</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l01898">findPeak()</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l01906">findPeak()</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l01819">normaliseEach()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l01827">normaliseEach()</a>.</p>
 
 </div>
 </div>
@@ -3340,9 +3439,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01819">1819</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01827">1827</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l01685">getChannel()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01809">normalise()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l01693">getChannel()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01817">normalise()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
 
 </div>
 </div>
@@ -3363,7 +3462,7 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00304">304</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00310">310</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
 </div>
 </div>
@@ -3383,7 +3482,7 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01510">1510</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01518">1518</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 </div>
 </div>
@@ -3434,7 +3533,7 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01557">1557</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01565">1565</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 </div>
 </div>
@@ -3485,7 +3584,7 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01537">1537</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01545">1545</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 </div>
 </div>
@@ -3505,7 +3604,7 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01674">1674</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01682">1682</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 </div>
 </div>
@@ -3555,9 +3654,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02416">2416</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02424">2424</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00073">BufferChannelInternal::data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00076">BufferChannelInternal::data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
 
 </div>
 </div>
@@ -3577,7 +3676,7 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01547">1547</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01555">1555</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 </div>
 </div>
@@ -3610,7 +3709,7 @@ template&lt;class NumericalType &gt; </div>
 
 <p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00258">258</a> of file <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html">ugen_BinaryOpUGens.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00073">BufferChannelInternal::data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00618">numChannels_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00076">BufferChannelInternal::data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00664">numChannels_</a>.</p>
 
 </div>
 </div>
@@ -3630,7 +3729,7 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01567">1567</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01575">1575</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 </div>
 </div>
@@ -3681,7 +3780,7 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01669">1669</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01677">1677</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 </div>
 </div>
@@ -3701,7 +3800,7 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01577">1577</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01585">1585</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 </div>
 </div>
@@ -3752,9 +3851,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01515">1515</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01523">1523</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01394">incrementInternals()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00618">numChannels_</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01402">incrementInternals()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00664">numChannels_</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
 
 </div>
 </div>
@@ -3774,7 +3873,7 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01497">1497</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01505">1505</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 </div>
 </div>
@@ -3840,28 +3939,6 @@ template&lt;class NumericalType &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a64465b2fe51e899db01353ea3987d394"></a><!-- doxytag: member="Buffer::operator[]" ref="a64465b2fe51e899db01353ea3987d394" args="(const int sampleIndex) const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float Buffer::operator[] </td>
-          <td>(</td>
-          <td class="paramtype">const int&nbsp;</td>
-          <td class="paramname"> <em>sampleIndex</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td> const  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00421">421</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
-
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00073">BufferChannelInternal::data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="ae799cb24eca2ebf8539988c5b4aa6e07"></a><!-- doxytag: member="Buffer::operator[]" ref="ae799cb24eca2ebf8539988c5b4aa6e07" args="(IntArray const &amp;indices) const " -->
 <div class="memitem">
 <div class="memproto">
@@ -3878,9 +3955,31 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00432">432</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00455">455</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00355">getSample()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00618">numChannels_</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00349">setSample()</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00362">getSample()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00664">numChannels_</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00356">setSample()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a64465b2fe51e899db01353ea3987d394"></a><!-- doxytag: member="Buffer::operator[]" ref="a64465b2fe51e899db01353ea3987d394" args="(const int sampleIndex) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Buffer::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">const int&nbsp;</td>
+          <td class="paramname"> <em>sampleIndex</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const  throw ()<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00444">444</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00076">BufferChannelInternal::data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
 
 </div>
 </div>
@@ -3973,11 +4072,11 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02188">2188</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02196">2196</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___random_8h_source.html#l00139">rand()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00371">setSampleUnchecked()</a>.</p>
+<p>References <a class="el" href="ugen___random_8h_source.html#l00139">rand()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00386">setSampleUnchecked()</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l02206">rand2()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l02214">rand2()</a>.</p>
 
 </div>
 </div>
@@ -4012,9 +4111,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02206">2206</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02214">2214</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l02188">rand()</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l02196">rand()</a>.</p>
 
 </div>
 </div>
@@ -4055,9 +4154,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02353">2353</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02361">2361</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00073">BufferChannelInternal::data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00076">BufferChannelInternal::data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
 
 </div>
 </div>
@@ -4077,9 +4176,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02147">2147</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02155">2155</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00371">setSampleUnchecked()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00386">setSampleUnchecked()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
 <p>Referenced by <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00213">FFTEngineInternal::setFFTWindow()</a>, and <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00220">FFTEngineInternal::setIFFTWindow()</a>.</p>
 
@@ -4100,9 +4199,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02375">2375</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02383">2383</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00073">BufferChannelInternal::data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00076">BufferChannelInternal::data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
 
 </div>
 </div>
@@ -4239,9 +4338,48 @@ template&lt;class NumericalType &gt; </div>
 
 <p>Create a single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> containing an arithmetic series. </p>
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00335">335</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l00343">343</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00330">getData()</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00336">getData()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6f047df01dad1235d0bf32697a1ab85b"></a><!-- doxytag: member="Buffer::setCircularHead" ref="a6f047df01dad1235d0bf32697a1ab85b" args="(const unsigned int blockID, const int channel, const int position)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Buffer::setCircularHead </td>
+          <td>(</td>
+          <td class="paramtype">const unsigned int&nbsp;</td>
+          <td class="paramname"> <em>blockID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&nbsp;</td>
+          <td class="paramname"> <em>channel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&nbsp;</td>
+          <td class="paramname"> <em>position</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td>  throw ()<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00523">523</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00664">numChannels_</a>, <a class="el" href="ugen___buffer_8h_source.html#l00081">BufferChannelInternal::previousCircularHead</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+
+<p>Referenced by <a class="el" href="ugen___delay_8cpp_source.html#l00865">TapInUGenInternal::processBlock()</a>.</p>
 
 </div>
 </div>
@@ -4276,11 +4414,11 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00349">349</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00356">356</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00073">BufferChannelInternal::data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00076">BufferChannelInternal::data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___buffer_8h_source.html#l00467">at()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00432">operator[]()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___buffer_8h_source.html#l00490">at()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00455">operator[]()</a>.</p>
 
 </div>
 </div>
@@ -4309,11 +4447,11 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00371">371</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00386">386</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00073">BufferChannelInternal::data</a>, <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00076">BufferChannelInternal::data</a>, <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l01930">blend()</a>, <a class="el" href="ugen___scope_8cpp_source.html#l00416">ScopeGUI::calculateBuffers()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02212">exprand()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02228">linrand()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02188">rand()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l02147">resample()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l01938">blend()</a>, <a class="el" href="ugen___scope_8cpp_source.html#l00416">ScopeGUI::calculateBuffers()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02220">exprand()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02236">linrand()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02196">rand()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l02155">resample()</a>.</p>
 
 </div>
 </div>
@@ -4348,9 +4486,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00378">378</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00393">393</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00073">BufferChannelInternal::data</a>, <a class="el" href="ugen___buffer_8h_source.html#l00618">numChannels_</a>, <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00076">BufferChannelInternal::data</a>, <a class="el" href="ugen___buffer_8h_source.html#l00664">numChannels_</a>, <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
 </div>
 </div>
@@ -4379,11 +4517,11 @@ template&lt;class NumericalType &gt; </div>
   <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> osc = <a class="code" href="class_table_osc.html#ab7de3ce6c72471bad023e8304d0ad91e" title="Construct and return an audio rate TableOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations ...">TableOsc::AR</a>(wt, 440, 0.0, 0.3); <span class="comment">// use the wavetable</span>
 </pre></div> <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01757">1757</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01765">1765</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l02271">bartlettWindow()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02452">getTableCosine512()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02458">getTableCosine8192()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02440">getTableSine512()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02446">getTableSine8192()</a>, <a class="el" href="ugen___table_osc_8cpp_source.html#l00188">HarmonicOsc::HarmonicOsc()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l02262">triangleWindow()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l02279">bartlettWindow()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02460">getTableCosine512()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02466">getTableCosine8192()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02448">getTableSine512()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02454">getTableSine8192()</a>, <a class="el" href="ugen___table_osc_8cpp_source.html#l00188">HarmonicOsc::HarmonicOsc()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l02270">triangleWindow()</a>.</p>
 
 </div>
 </div>
@@ -4426,7 +4564,7 @@ template&lt;class NumericalType &gt; </div>
 
 <p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00082">82</a> of file <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html">ugen_UnaryOpUGens.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l02257">cosineWindow()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02440">getTableSine512()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02446">getTableSine8192()</a>, <a class="el" href="ugen___table_osc_8cpp_source.html#l00188">HarmonicOsc::HarmonicOsc()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02247">sineTable()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l02464">ugen_calculatePanTable512()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l02265">cosineWindow()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02448">getTableSine512()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02454">getTableSine8192()</a>, <a class="el" href="ugen___table_osc_8cpp_source.html#l00188">HarmonicOsc::HarmonicOsc()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02255">sineTable()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l02472">ugen_calculatePanTable512()</a>.</p>
 
 </div>
 </div>
@@ -4455,9 +4593,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02247">2247</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02255">2255</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l00317">line()</a>, <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00082">sin()</a>, and <a class="el" href="ugen___constants_8h_source.html#l00052">twoPi</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l00325">line()</a>, <a class="el" href="ugen___unary_op_u_gens_8cpp_source.html#l00082">sin()</a>, and <a class="el" href="ugen___constants_8h_source.html#l00052">twoPi</a>.</p>
 
 </div>
 </div>
@@ -4498,11 +4636,11 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00335">335</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00342">342</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___scope_8cpp_source.html#l00416">ScopeGUI::calculateBuffers()</a>, <a class="el" href="ugen___juce_multi_slider_8h_source.html#l00487">MultiSlider::handleCommandMessage()</a>, <a class="el" href="ugen___scope_8cpp_source.html#l00167">ScopeGUI::initBuffers()</a>, <a class="el" href="ugen___delay_8h_source.html#l00067">DelayBaseUGenInternal::lookupIndexL()</a>, <a class="el" href="ugen___scope_8cpp_source.html#l00603">BufferSenderUGenInternal::processBlock()</a>, <a class="el" href="ugen___scope_8cpp_source.html#l00504">ScopeUGenInternal::processBlock()</a>, <a class="el" href="ugen___play_buf_8cpp_source.html#l00078">PlayBufUGenInternal::processBlock()</a>, <a class="el" href="ugen___scope_8cpp_source.html#l00480">ScopeGUI::resizedGUI()</a>, and <a class="el" href="ugen___juce_multi_slider_8h_source.html#l00444">MultiSlider::setValues()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___scope_8cpp_source.html#l00416">ScopeGUI::calculateBuffers()</a>, <a class="el" href="ugen___juce_multi_slider_8h_source.html#l00487">MultiSlider::handleCommandMessage()</a>, <a class="el" href="ugen___scope_8cpp_source.html#l00167">ScopeGUI::initBuffers()</a>, <a class="el" href="ugen___delay_8h_source.html#l00067">DelayBaseUGenInternal::lookupIndexL()</a>, <a class="el" href="ugen___scope_8cpp_source.html#l00603">BufferSenderUGenInternal::processBlock()</a>, <a class="el" href="ugen___scope_8cpp_source.html#l00504">ScopeUGenInternal::processBlock()</a>, <a class="el" href="ugen___delay_8cpp_source.html#l00865">TapInUGenInternal::processBlock()</a>, <a class="el" href="ugen___play_buf_8cpp_source.html#l00261">RecordBufUGenInternal::processBlock()</a>, <a class="el" href="ugen___play_buf_8cpp_source.html#l00078">PlayBufUGenInternal::processBlock()</a>, <a class="el" href="ugen___scope_8cpp_source.html#l00480">ScopeGUI::resizedGUI()</a>, and <a class="el" href="ugen___juce_multi_slider_8h_source.html#l00444">MultiSlider::setValues()</a>.</p>
 
 </div>
 </div>
@@ -4587,25 +4725,6 @@ template&lt;class NumericalType &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a4bea6016f9dc395551d429db750a1438"></a><!-- doxytag: member="Buffer::sum" ref="a4bea6016f9dc395551d429db750a1438" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float Buffer::sum </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td> const  throw ()</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01791">1791</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a304aef7473d7d9dbfae6018b2b5d164b"></a><!-- doxytag: member="Buffer::sum" ref="a304aef7473d7d9dbfae6018b2b5d164b" args="(const int channel) const " -->
 <div class="memitem">
 <div class="memproto">
@@ -4622,9 +4741,28 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01772">1772</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01780">1780</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___env_8cpp_source.html#l00228">Env::operator Buffer()</a>, and <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00213">FFTEngineInternal::setFFTWindow()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___env_8cpp_source.html#l00218">Env::operator Buffer()</a>, and <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00213">FFTEngineInternal::setFFTWindow()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4bea6016f9dc395551d429db750a1438"></a><!-- doxytag: member="Buffer::sum" ref="a4bea6016f9dc395551d429db750a1438" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Buffer::sum </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const  throw ()</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l01799">1799</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
 </div>
 </div>
@@ -4732,9 +4870,9 @@ template&lt;class NumericalType &gt; </div>
 
 <p>Convert one channel of the buffer to an array of a specified type. </p>
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00311">311</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00317">317</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00618">numChannels_</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00664">numChannels_</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
 
 </div>
 </div>
@@ -4757,9 +4895,9 @@ template&lt;class NumericalType &gt; </div>
 
 <p>Convert a buffer to a 2D array of a specified type. </p>
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00287">287</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00293">293</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00618">numChannels_</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00664">numChannels_</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
 
 <p>Referenced by <a class="el" href="ugen___f_f_t_magnitude_selection_8cpp_source.html#l00088">FFTMagnitudeSelectionUGenInternal::processBlock()</a>.</p>
 
@@ -4781,9 +4919,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02262">2262</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8cpp_source.html#l02270">2270</a> of file <a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l01699">getRegion()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l00317">line()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l01757">shrinkSize()</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l01707">getRegion()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l00325">line()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l01765">shrinkSize()</a>.</p>
 
 </div>
 </div>
@@ -4867,9 +5005,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00484">484</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00507">507</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00073">BufferChannelInternal::data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00076">BufferChannelInternal::data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
 
 </div>
 </div>
@@ -4898,42 +5036,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00492">492</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00515">515</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00620">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00073">BufferChannelInternal::data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00619">size_</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a536de0388ee6436730f2bcb506799415"></a><!-- doxytag: member="Buffer::write" ref="a536de0388ee6436730f2bcb506799415" args="(const File &amp;audioFile, bool overwriteExisitingFile=false, int bitDepth=24)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Buffer::write </td>
-          <td>(</td>
-          <td class="paramtype">const File &amp;&nbsp;</td>
-          <td class="paramname"> <em>audioFile</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&nbsp;</td>
-          <td class="paramname"> <em>overwriteExisitingFile</em> = <code>false</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>bitDepth</em> = <code>24</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td>  throw ()</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00666">channels</a>, <a class="el" href="ugen___buffer_8h_source.html#l00076">BufferChannelInternal::data</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00665">size_</a>.</p>
 
 </div>
 </div>
@@ -5003,6 +5108,39 @@ template&lt;class NumericalType &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="a536de0388ee6436730f2bcb506799415"></a><!-- doxytag: member="Buffer::write" ref="a536de0388ee6436730f2bcb506799415" args="(const File &amp;audioFile, bool overwriteExisitingFile=false, int bitDepth=24)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Buffer::write </td>
+          <td>(</td>
+          <td class="paramtype">const File &amp;&nbsp;</td>
+          <td class="paramname"> <em>audioFile</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>overwriteExisitingFile</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>bitDepth</em> = <code>24</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td>  throw ()</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="af6b0783728dfe55c29f39dd6e7dd34bf"></a><!-- doxytag: member="Buffer::zap" ref="af6b0783728dfe55c29f39dd6e7dd34bf" args="() const " -->
 <div class="memitem">
 <div class="memproto">
@@ -5034,9 +5172,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00620">620</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00666">666</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___buffer_8h_source.html#l00337">allocatedSize()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01588">append()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00449">at()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00172">Buffer()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00338">clear()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01405">decrementInternals()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00330">getData()</a>, <a class="el" href="ugen___convolution_8h_source.html#l00070">PartBuffer::getDataReal()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00332">getDataUnchecked()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00355">getSample()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00386">getSampleUnchecked()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01394">incrementInternals()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00409">lookup()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02393">mix()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02416">operator-()</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00258">operator/()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01515">operator=()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00421">operator[]()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02353">reciprocalExceptZero()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02375">reverse()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00349">setSample()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00371">setSampleUnchecked()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00287">toArray()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00484">wrapAt()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l01388">~Buffer()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___buffer_8h_source.html#l00344">allocatedSize()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01596">append()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00472">at()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00178">Buffer()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00345">clear()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01413">decrementInternals()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00532">getCircularHead()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00336">getData()</a>, <a class="el" href="ugen___convolution_8h_source.html#l00070">PartBuffer::getDataReal()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00338">getDataUnchecked()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00362">getSample()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00401">getSampleUnchecked()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01402">incrementInternals()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00432">lookup()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02401">mix()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02424">operator-()</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00258">operator/()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01523">operator=()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00444">operator[]()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02361">reciprocalExceptZero()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02383">reverse()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00523">setCircularHead()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00356">setSample()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00386">setSampleUnchecked()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00293">toArray()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00507">wrapAt()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l01396">~Buffer()</a>.</p>
 
 </div>
 </div>
@@ -5051,9 +5189,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00618">618</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00664">664</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l01588">append()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00457">at()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00172">Buffer()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00338">clear()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00330">getData()</a>, <a class="el" href="ugen___convolution_8h_source.html#l00070">PartBuffer::getDataReal()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00334">getNumChannels()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00386">getSampleUnchecked()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00600">isNull()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00409">lookup()</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00258">operator/()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01515">operator=()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00432">operator[]()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00378">setSampleUnchecked()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00287">toArray()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___buffer_8cpp_source.html#l01596">append()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00480">at()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00178">Buffer()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00345">clear()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00532">getCircularHead()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00336">getData()</a>, <a class="el" href="ugen___convolution_8h_source.html#l00070">PartBuffer::getDataReal()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00341">getNumChannels()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00401">getSampleUnchecked()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00646">isNull()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00432">lookup()</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00258">operator/()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01523">operator=()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00455">operator[]()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00523">setCircularHead()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00393">setSampleUnchecked()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00293">toArray()</a>.</p>
 
 </div>
 </div>
@@ -5068,9 +5206,9 @@ template&lt;class NumericalType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00619">619</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___buffer_8h_source.html#l00665">665</a> of file <a class="el" href="ugen___buffer_8h_source.html">ugen_Buffer.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___buffer_8h_source.html#l00449">at()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00172">Buffer()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00338">clear()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01482">copy()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01464">duration()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00355">getSample()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00386">getSampleUnchecked()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01416">interleave()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00600">isNull()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00409">lookup()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02393">mix()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01819">normaliseEach()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02416">operator-()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01515">operator=()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00421">operator[]()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02353">reciprocalExceptZero()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02375">reverse()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00349">setSample()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00371">setSampleUnchecked()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01757">shrinkSize()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00335">size()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00287">toArray()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00484">wrapAt()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___buffer_8h_source.html#l00472">at()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00178">Buffer()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00345">clear()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01490">copy()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01472">duration()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00362">getSample()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00401">getSampleUnchecked()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01424">interleave()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00646">isNull()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00432">lookup()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02401">mix()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01827">normaliseEach()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02424">operator-()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01523">operator=()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00444">operator[]()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02361">reciprocalExceptZero()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02383">reverse()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00356">setSample()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00386">setSampleUnchecked()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01765">shrinkSize()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00342">size()</a>, <a class="el" href="ugen___buffer_8h_source.html#l00293">toArray()</a>, and <a class="el" href="ugen___buffer_8h_source.html#l00507">wrapAt()</a>.</p>
 
 </div>
 </div>
@@ -5081,7 +5219,7 @@ template&lt;class NumericalType &gt; </div>
 <li>buffers/<a class="el" href="ugen___buffer_8cpp_source.html">ugen_Buffer.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 25 2010 07:44:11 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Oct 2 2010 09:31:03 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
