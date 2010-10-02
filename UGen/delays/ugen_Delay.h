@@ -371,7 +371,9 @@ protected:
 
 /** Write data to a delay line circular buffer.
  This forces the Buffer provided to become a circular buffer. You must be careful to use this buffer
- with only one TapIn but it may be used by one or more TapOutN or TapOutL UGens. */
+ with only one TapIn but it may be used by one or more TapOutN or TapOutL UGens.
+ @see TapOutN TapOutL RecordBuf
+ @ingroup AllUGens DelayUGens */
 UGenSublcassDeclaration(TapIn, (input, buffer, recLevel, preLevel),
 						(UGen const& input,
 						 Buffer const& buffer, 
@@ -413,11 +415,15 @@ protected:
 														by the duration of the buffer.	
 
 
-/** Tap a delay line using no interpolation. */
+/** Tap a delay line using no interpolation. 
+ @see TapIn TapOutL PlayBuf
+ @ingroup AllUGens DelayUGens */
 UGenSublcassDeclaration(TapOutN, (buffer, delayTime),
 						         (Buffer const& buffer, UGen const& delayTime = 0.f), COMMON_UGEN_DOCS TapOut_Docs);
 
-/** Tap a delay line using linear interpolation. */
+/** Tap a delay line using linear interpolation. 
+ @see TapIn TapOutN PlayBuf
+ @ingroup AllUGens DelayUGens */
 UGenSublcassDeclaration(TapOutL, (buffer, delayTime),
 						         (Buffer const& buffer, UGen const& delayTime = 0.f), COMMON_UGEN_DOCS TapOut_Docs);
 
