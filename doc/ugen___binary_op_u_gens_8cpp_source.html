@@ -417,50 +417,31 @@
 <a name="l00385"></a>00385              inputs[RightOperand].getChannel(channel)); 
 <a name="l00386"></a>00386 }
 <a name="l00387"></a>00387 
-<a name="l00388"></a>00388 <span class="comment">//void IngoreRightOperandUGenInternal::processBlock(bool&amp; shouldDelete, const unsigned int blockID, const int channel) throw()</span>
-<a name="l00389"></a>00389 <span class="comment">//{</span>
-<a name="l00390"></a>00390 <span class="comment">// const int numSamplesToProcess = uGenOutput.getBlockSize(); </span>
-<a name="l00391"></a>00391 <span class="comment">// float* outputSamples = uGenOutput.getSampleData(); </span>
-<a name="l00392"></a>00392 <span class="comment">// float* leftOperandSamples = inputs[LeftOperand].processBlock(shouldDelete, blockID, channel); </span>
-<a name="l00393"></a>00393 <span class="comment">// </span>
-<a name="l00394"></a>00394 <span class="comment">// inputs[RightOperand].processBlock(shouldDelete, blockID); </span>
-<a name="l00395"></a>00395 <span class="comment">// memcpy(outputSamples, leftOperandSamples, numSamplesToProcess * sizeof(float));</span>
-<a name="l00396"></a>00396 <span class="comment">//}</span>
-<a name="l00397"></a>00397 <span class="comment">//</span>
-<a name="l00398"></a>00398 <span class="comment">//IngoreRightOperandUGen::IngoreRightOperandUGen(UGen const&amp; leftOperand, UGen const&amp; rightOperand) throw()</span>
-<a name="l00399"></a>00399 <span class="comment">//{</span>
-<a name="l00400"></a>00400 <span class="comment">// initInternal(leftOperand.getNumChannels()); </span>
-<a name="l00401"></a>00401 <span class="comment">// for(int i = 0; i &lt; numInternalUGens; i++) </span>
-<a name="l00402"></a>00402 <span class="comment">// { </span>
-<a name="l00403"></a>00403 <span class="comment">//  internalUGens[i] = new IngoreRightOperandUGenInternal(leftOperand, rightOperand); </span>
-<a name="l00404"></a>00404 <span class="comment">// } </span>
-<a name="l00405"></a>00405 <span class="comment">//}</span>
+<a name="l00388"></a><a class="code" href="class_ingore_right_operand_u_gen_internal.html#a127aac278a7866d5e421514583c2e899">00388</a> <span class="keywordtype">void</span> <a class="code" href="class_ingore_right_operand_u_gen_internal.html#a127aac278a7866d5e421514583c2e899" title="Process a block of samples for this blockID and channel.">IngoreRightOperandUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
+<a name="l00389"></a>00389 {
+<a name="l00390"></a>00390  <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize(); 
+<a name="l00391"></a>00391  <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();  
+<a name="l00392"></a>00392  inputs[RightOperand].processBlock(shouldDelete, blockID); 
+<a name="l00393"></a>00393  inputs[LeftOperand].setOutput(outputSamples, numSamplesToProcess, channel);
+<a name="l00394"></a>00394  inputs[LeftOperand].processBlock(shouldDelete, blockID, channel); 
+<a name="l00395"></a>00395  <span class="comment">//inputs[RightOperand].processBlock(shouldDelete, blockID); </span>
+<a name="l00396"></a>00396 }
+<a name="l00397"></a>00397 
+<a name="l00398"></a><a class="code" href="class_ingore_right_operand_u_gen.html#a0e41cfbb47d7f36b4d3414bfc3da4dc2">00398</a> <a class="code" href="class_ingore_right_operand_u_gen.html#a0e41cfbb47d7f36b4d3414bfc3da4dc2">IngoreRightOperandUGen::IngoreRightOperandUGen</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; leftOperand, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; rightOperand) <span class="keywordflow">throw</span>()
+<a name="l00399"></a>00399 {
+<a name="l00400"></a>00400  initInternal(leftOperand.getNumChannels()); 
+<a name="l00401"></a>00401  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++) 
+<a name="l00402"></a>00402  { 
+<a name="l00403"></a>00403   internalUGens[i] = <span class="keyword">new</span> <a class="code" href="class_ingore_right_operand_u_gen_internal.html" title="Internal for IngoreRightOperandUGen.">IngoreRightOperandUGenInternal</a>(leftOperand, rightOperand); 
+<a name="l00404"></a>00404  } 
+<a name="l00405"></a>00405 }
 <a name="l00406"></a>00406 
 <a name="l00407"></a>00407 
-<a name="l00408"></a><a class="code" href="class_ingore_right_operand_u_gen_internal.html#a127aac278a7866d5e421514583c2e899">00408</a> <span class="keywordtype">void</span> <a class="code" href="class_ingore_right_operand_u_gen_internal.html#a127aac278a7866d5e421514583c2e899" title="Process a block of samples for this blockID and channel.">IngoreRightOperandUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
-<a name="l00409"></a>00409 {
-<a name="l00410"></a>00410  <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize(); 
-<a name="l00411"></a>00411  <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();  
-<a name="l00412"></a>00412  inputs[LeftOperand].setOutput(outputSamples, numSamplesToProcess, channel);
-<a name="l00413"></a>00413  inputs[LeftOperand].processBlock(shouldDelete, blockID, channel); 
-<a name="l00414"></a>00414  inputs[RightOperand].processBlock(shouldDelete, blockID); 
-<a name="l00415"></a>00415 }
-<a name="l00416"></a>00416 
-<a name="l00417"></a><a class="code" href="class_ingore_right_operand_u_gen.html#a0e41cfbb47d7f36b4d3414bfc3da4dc2">00417</a> <a class="code" href="class_ingore_right_operand_u_gen.html#a0e41cfbb47d7f36b4d3414bfc3da4dc2">IngoreRightOperandUGen::IngoreRightOperandUGen</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; leftOperand, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; rightOperand) <span class="keywordflow">throw</span>()
-<a name="l00418"></a>00418 {
-<a name="l00419"></a>00419  initInternal(leftOperand.getNumChannels()); 
-<a name="l00420"></a>00420  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++) 
-<a name="l00421"></a>00421  { 
-<a name="l00422"></a>00422   internalUGens[i] = <span class="keyword">new</span> <a class="code" href="class_ingore_right_operand_u_gen_internal.html" title="Internal for IngoreRightOperandUGen.">IngoreRightOperandUGenInternal</a>(leftOperand, rightOperand); 
-<a name="l00423"></a>00423  } 
-<a name="l00424"></a>00424 }
-<a name="l00425"></a>00425 
-<a name="l00426"></a>00426 
-<a name="l00427"></a>00427 
-<a name="l00428"></a>00428 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
+<a name="l00408"></a>00408 
+<a name="l00409"></a>00409 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Oct 2 2010 09:30:56 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Oct 6 2010 14:32:46 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

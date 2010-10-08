@@ -63,10 +63,10 @@ Static Public Member Functions</h2></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Write data to a delay line circular buffer. </p>
-<p>This forces the <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> provided to become a circular buffer. You must be careful to use this buffer with only one <a class="el" href="class_tap_in.html" title="Write data to a delay line circular buffer.">TapIn</a> but it may be used by one or more <a class="el" href="class_tap_out_n.html" title="Tap a delay line using no interpolation.">TapOutN</a> or <a class="el" href="class_tap_out_l.html" title="Tap a delay line using linear interpolation.">TapOutL</a> UGens. </p>
+<p>This forces the <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> provided to become a circular buffer. Generally you would use this buffer with only one <a class="el" href="class_tap_in.html" title="Write data to a delay line circular buffer.">TapIn</a> (UGen++ will attempt to mix multiple TapIns writing to a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> but mixing them manually would be a more controllable and reliable method). However, the buffer may be used safely by one or more <a class="el" href="class_tap_out_n.html" title="Tap a delay line using no interpolation.">TapOutN</a> or <a class="el" href="class_tap_out_l.html" title="Tap a delay line using linear interpolation.">TapOutL</a> UGens. </p>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_tap_out_n.html" title="Tap a delay line using no interpolation.">TapOutN</a> <a class="el" href="class_tap_out_l.html" title="Tap a delay line using linear interpolation.">TapOutL</a> <a class="el" href="class_record_buf.html" title="A UGen which writes to a buffer.">RecordBuf</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___delay_8h_source.html#l00376">376</a> of file <a class="el" href="ugen___delay_8h_source.html">ugen_Delay.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___delay_8h_source.html#l00378">378</a> of file <a class="el" href="ugen___delay_8h_source.html">ugen_Delay.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a25d077719e093b4354750b923f0a40e2"></a><!-- doxytag: member="TapIn::TapIn" ref="a25d077719e093b4354750b923f0a40e2" args="()" -->
 <div class="memitem">
@@ -83,7 +83,7 @@ Static Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___delay_8h_source.html#l00376">376</a> of file <a class="el" href="ugen___delay_8h_source.html">ugen_Delay.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___delay_8h_source.html#l00378">378</a> of file <a class="el" href="ugen___delay_8h_source.html">ugen_Delay.h</a>.</p>
 
 </div>
 </div>
@@ -155,7 +155,7 @@ Static Public Member Functions</h2></td></tr>
  </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_tap_in.html" title="Write data to a delay line circular buffer.">TapIn</a> . </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___delay_8h_source.html#l00376">376</a> of file <a class="el" href="ugen___delay_8h_source.html">ugen_Delay.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___delay_8h_source.html#l00378">378</a> of file <a class="el" href="ugen___delay_8h_source.html">ugen_Delay.h</a>.</p>
 
 </div>
 </div>
@@ -190,7 +190,7 @@ Static Public Member Functions</h2></td></tr>
  </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The control rate <a class="el" href="class_tap_in.html" title="Write data to a delay line circular buffer.">TapIn</a> . </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___delay_8h_source.html#l00376">376</a> of file <a class="el" href="ugen___delay_8h_source.html">ugen_Delay.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___delay_8h_source.html#l00378">378</a> of file <a class="el" href="ugen___delay_8h_source.html">ugen_Delay.h</a>.</p>
 
 </div>
 </div>
@@ -199,7 +199,7 @@ Static Public Member Functions</h2></td></tr>
 <li>delays/<a class="el" href="ugen___delay_8cpp_source.html">ugen_Delay.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Oct 2 2010 11:11:24 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Oct 6 2010 14:33:03 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

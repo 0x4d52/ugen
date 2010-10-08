@@ -112,7 +112,7 @@
   <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> output = sines.<a class="code" href="class_u_gen.html#ac6e78009d56d6dd44ac56745c83a568f">groupMix</a>(2); <span class="comment">// 200 &amp; 1000 on left, 555 &amp; 1234 on right</span>
   <span class="keywordflow">return</span> output;
 </pre></div><hr/>
-<p>Soundfile playback using a memory-based buffer. Here you may need to change the path to the soundfile. If you are testing this in the iPhone project the <code>guitar.wav</code> sample is included in the project and the iPhone UGen++ wrapper automatically searches for soundfiles in the application bundle (if the path is NOT already a full path). On the Juce (Mac/Windows) projects you will need to specify the full path to an AIFF or WAV file (16 or 24 bits). E.g., <code>"/Users/JoeBloggs/Desktop/guitar.wav"</code> on the Mac or <code>"C:\Documents and Settings\JoeBloggs\Desktop\guitar.wav"</code> on Windows. </p>
+<p>Soundfile playback using a memory-based buffer. Here you may need to change the path to the soundfile. If you are testing this in the iPhone project the <code>guitar.wav</code> sample is included in the project and the iPhone UGen++ wrapper automatically searches for soundfiles in the application bundle (if the path is NOT already a full path). On the Juce (Mac/Windows) projects you will need to specify the full path to an AIFF or WAV file (16 or 24 bits). E.g., <code>"/Users/JoeBloggs/Desktop/guitar.wav"</code> or <code>"~/Desktop/guitar.wav"</code> on the Mac, or <code>"C:\Documents and Settings\JoeBloggs\Desktop\guitar.wav"</code> on Windows. </p>
 <div class="fragment"><pre class="fragment"> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> sound(<span class="stringliteral">&quot;guitar.wav&quot;</span>);
  <span class="keywordtype">float</span> rate = 1.0;
  <span class="keywordtype">float</span> trigger = 0.0;
@@ -196,7 +196,7 @@
 </pre></div><p>prev: <a class="el" href="_tutorial_01_03.html">Tutorial 01.03: Building more complex UGen graphs</a></p>
 <p>next: <a class="el" href="_tutorial_01_05.html">Tutorial 01.05: Maths examples</a> </p>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Oct 2 2010 09:31:01 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Oct 6 2010 14:32:57 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

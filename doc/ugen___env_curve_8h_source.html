@@ -172,21 +172,22 @@
 <a name="l00160"></a>00160  
 <a name="l00161"></a><a class="code" href="class_env_curve_list.html#ac57bf5ffce22b91013c2b270c23ceead">00161</a>  <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="class_env_curve_list.html#ac57bf5ffce22b91013c2b270c23ceead">size</a>() <span class="keyword">const</span> throw()         { <span class="keywordflow">return</span> <span class="keyword">internal</span>-&gt;size;  }
 <a name="l00162"></a><a class="code" href="class_env_curve_list.html#a778a28073bf73c094601ec6618d1f994">00162</a>  <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code" href="class_env_curve.html" title="Specify curved sections of breakpoint envelopes.">EnvCurve</a>* <span class="keyword">const</span> <a class="code" href="class_env_curve_list.html#a778a28073bf73c094601ec6618d1f994">getData</a>() throw()     { <span class="keywordflow">return</span> <span class="keyword">internal</span>-&gt;data;  }
-<a name="l00163"></a><a class="code" href="class_env_curve_list.html#a2933439d2bed4ff81acc13bd606485df">00163</a>  <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code" href="class_env_curve.html" title="Specify curved sections of breakpoint envelopes.">EnvCurve</a>* <span class="keyword">const</span> <a class="code" href="class_env_curve_list.html#a2933439d2bed4ff81acc13bd606485df">getDataReadOnly</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> <span class="keyword">internal</span>-&gt;data;  }
-<a name="l00164"></a>00164  
-<a name="l00165"></a>00165  <a class="code" href="class_env_curve_list.html" title="An array of EnvCurve objects.">EnvCurveList</a> <a class="code" href="class_env_curve_list.html#aaab18986945599c4e1751d5098656c6b">blend</a>(<a class="code" href="class_env_curve_list.html" title="An array of EnvCurve objects.">EnvCurveList</a> <span class="keyword">const</span>&amp; other, <span class="keywordtype">float</span> fraction) <span class="keyword">const</span> <span class="keywordflow">throw</span>();
-<a name="l00166"></a>00166  
-<a name="l00168"></a>00168  
-<a name="l00169"></a>00169 <span class="keyword">private</span>:
-<a name="l00170"></a><a class="code" href="class_env_curve_list.html#a30a2fd6cbb2500606ee6a7788e5d1ca0">00170</a>  <a class="code" href="class_env_curve_list_1_1_env_curve_list_internal.html">EnvCurveListInternal</a>* <span class="keyword">internal</span>;
-<a name="l00171"></a><a class="code" href="class_env_curve_list.html#a15735d95ca39aa0073efe785e9ddd2a7">00171</a>  <span class="keyword">static</span> <a class="code" href="class_env_curve.html" title="Specify curved sections of breakpoint envelopes.">EnvCurve</a> <a class="code" href="class_env_curve_list.html#a15735d95ca39aa0073efe785e9ddd2a7">empty</a>;
-<a name="l00172"></a>00172 };
-<a name="l00173"></a>00173 
+<a name="l00163"></a><a class="code" href="class_env_curve_list.html#a053690dc8d478b310ce9d6cd910d2945">00163</a>  <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code" href="class_env_curve.html" title="Specify curved sections of breakpoint envelopes.">EnvCurve</a>* <span class="keyword">const</span> <a class="code" href="class_env_curve_list.html#a053690dc8d478b310ce9d6cd910d2945">getData</a>() <span class="keyword">const</span> throw()   { <span class="keywordflow">return</span> <span class="keyword">internal</span>-&gt;data;  }
+<a name="l00164"></a>00164  <span class="comment">//inline const EnvCurve* const getDataReadOnly() const throw() { return internal-&gt;data;  }</span>
+<a name="l00165"></a>00165  
+<a name="l00166"></a>00166  <a class="code" href="class_env_curve_list.html" title="An array of EnvCurve objects.">EnvCurveList</a> <a class="code" href="class_env_curve_list.html#aaab18986945599c4e1751d5098656c6b">blend</a>(<a class="code" href="class_env_curve_list.html" title="An array of EnvCurve objects.">EnvCurveList</a> <span class="keyword">const</span>&amp; other, <span class="keywordtype">float</span> fraction) <span class="keyword">const</span> <span class="keywordflow">throw</span>();
+<a name="l00167"></a>00167  
+<a name="l00169"></a>00169  
+<a name="l00170"></a>00170 <span class="keyword">private</span>:
+<a name="l00171"></a><a class="code" href="class_env_curve_list.html#a30a2fd6cbb2500606ee6a7788e5d1ca0">00171</a>  <a class="code" href="class_env_curve_list_1_1_env_curve_list_internal.html">EnvCurveListInternal</a>* <span class="keyword">internal</span>;
+<a name="l00172"></a><a class="code" href="class_env_curve_list.html#a15735d95ca39aa0073efe785e9ddd2a7">00172</a>  <span class="keyword">static</span> <a class="code" href="class_env_curve.html" title="Specify curved sections of breakpoint envelopes.">EnvCurve</a> <a class="code" href="class_env_curve_list.html#a15735d95ca39aa0073efe785e9ddd2a7">empty</a>;
+<a name="l00173"></a>00173 };
 <a name="l00174"></a>00174 
-<a name="l00175"></a>00175 <span class="preprocessor">#endif // _UGEN_ugen_EnvCurve_H_</span>
+<a name="l00175"></a>00175 
+<a name="l00176"></a>00176 <span class="preprocessor">#endif // _UGEN_ugen_EnvCurve_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Oct 2 2010 09:30:58 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Oct 6 2010 14:32:50 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

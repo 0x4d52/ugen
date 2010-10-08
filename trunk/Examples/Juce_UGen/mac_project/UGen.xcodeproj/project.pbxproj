@@ -1281,45 +1281,6 @@
 			};
 			name = Release;
 		};
-		A8BDBABD0F8A8ED6002F906C /* Release-i386only */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = "UGEN_JUCE=1";
-				HEADER_SEARCH_PATHS = "$(JUCE_SOURCE)";
-			};
-			name = "Release-i386only";
-		};
-		A8BDBABE0F8A8ED6002F906C /* Release-i386only */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH)";
-				COPY_PHASE_STRIP = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_SSE3_EXTENSIONS = YES;
-				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"UGEN_JUCE=1",
-					"UGEN_VDSP=1",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_UNROLL_LOOPS = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = "";
-				PREBINDING = NO;
-				PRODUCT_NAME = "$(PROJECT_NAME)";
-				WRAPPER_EXTENSION = app;
-				ZERO_LINK = NO;
-			};
-			name = "Release-i386only";
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1328,7 +1289,6 @@
 			buildConfigurations = (
 				84F30CC008FEAA620087E26C /* Debug */,
 				84F30CC108FEAA620087E26C /* Release */,
-				A8BDBABE0F8A8ED6002F906C /* Release-i386only */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -1338,7 +1298,6 @@
 			buildConfigurations = (
 				84F30CC408FEAA620087E26C /* Debug */,
 				84F30CC508FEAA620087E26C /* Release */,
-				A8BDBABD0F8A8ED6002F906C /* Release-i386only */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

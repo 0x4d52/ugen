@@ -356,13 +356,11 @@ class TapInUGenInternal :	public ProxyOwnerUGenInternal
 {
 public:
 	TapInUGenInternal(UGen const& input,
-					  Buffer const& buffer, 
-					  UGen const& recLevel,
-					  UGen const& preLevel) throw();
+					  Buffer const& buffer) throw();
 	UGenInternal* getChannel(const int channel) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 		
-	enum Inputs { Input, RecLevel, PreLevel, NumInputs };
+	enum Inputs { Input, NumInputs };
 	
 protected:
 	Buffer buffer_;
@@ -370,15 +368,14 @@ protected:
 
 
 /** Write data to a delay line circular buffer.
- This forces the Buffer provided to become a circular buffer. You must be careful to use this buffer
- with only one TapIn but it may be used by one or more TapOutN or TapOutL UGens.
+ This forces the Buffer provided to become a circular buffer. Generally you would use this buffer
+ with only one TapIn (UGen++ will attempt to mix multiple TapIns writing to a Buffer but mixing them
+ manually would be a more controllable and reliable method). However, the buffer may be used safely by one 
+ or more TapOutN or TapOutL UGens.
  @see TapOutN TapOutL RecordBuf
  @ingroup AllUGens DelayUGens */
-UGenSublcassDeclaration(TapIn, (input, buffer, recLevel, preLevel),
-						(UGen const& input,
-						 Buffer const& buffer, 
-						 UGen const& recLevel = 1.f,
-						 UGen const& preLevel = 0.f), COMMON_UGEN_DOCS);
+UGenSublcassDeclaration(TapIn, (input, buffer),
+							   (UGen const& input, Buffer const& buffer), COMMON_UGEN_DOCS);
 
 
 class TapOutNUGenInternal :	public ProxyOwnerUGenInternal

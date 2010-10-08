@@ -67,7 +67,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_env_curve.html">EnvCurve</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_env_curve_list.html#ab560daf70d6e019e43555bb4131124a7">operator[]</a> (const int index) const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_env_curve_list.html#ac57bf5ffce22b91013c2b270c23ceead">size</a> () const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_env_curve.html">EnvCurve</a> *const&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_env_curve_list.html#a778a28073bf73c094601ec6618d1f994">getData</a> ()  throw ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_env_curve.html">EnvCurve</a> *const&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_env_curve_list.html#a2933439d2bed4ff81acc13bd606485df">getDataReadOnly</a> () const   throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_env_curve.html">EnvCurve</a> *const&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_env_curve_list.html#a053690dc8d478b310ce9d6cd910d2945">getData</a> () const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_env_curve_list.html">EnvCurveList</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_env_curve_list.html#aaab18986945599c4e1751d5098656c6b">blend</a> (<a class="el" href="class_env_curve_list.html">EnvCurveList</a> const &amp;other, float fraction) const   throw ()</td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -338,7 +338,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___env_curve_8cpp_source.html#l00170">170</a> of file <a class="el" href="ugen___env_curve_8cpp_source.html">ugen_EnvCurve.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___env_curve_8h_source.html#l00152">EnvCurveList::EnvCurveListInternal::data</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00170">internal</a>, and <a class="el" href="ugen___env_curve_8h_source.html#l00161">size()</a>.</p>
+<p>References <a class="el" href="ugen___env_curve_8h_source.html#l00152">EnvCurveList::EnvCurveListInternal::data</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00171">internal</a>, and <a class="el" href="ugen___env_curve_8h_source.html#l00161">size()</a>.</p>
 
 </div>
 </div>
@@ -369,7 +369,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___env_curve_8cpp_source.html#l00177">177</a> of file <a class="el" href="ugen___env_curve_8cpp_source.html">ugen_EnvCurve.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___env_curve_8h_source.html#l00152">EnvCurveList::EnvCurveListInternal::data</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00170">internal</a>, and <a class="el" href="ugen___env_curve_8h_source.html#l00161">size()</a>.</p>
+<p>References <a class="el" href="ugen___env_curve_8h_source.html#l00152">EnvCurveList::EnvCurveListInternal::data</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00171">internal</a>, and <a class="el" href="ugen___env_curve_8h_source.html#l00161">size()</a>.</p>
 
 </div>
 </div>
@@ -440,7 +440,26 @@ Static Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___env_curve_8cpp_source.html#l00221">221</a> of file <a class="el" href="ugen___env_curve_8cpp_source.html">ugen_EnvCurve.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___env_curve_8h_source.html#l00152">EnvCurveList::EnvCurveListInternal::data</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00074">EnvCurve::getCurve()</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00073">EnvCurve::getType()</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00170">internal</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00058">EnvCurve::Linear</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00099">max()</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00098">min()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___env_curve_8h_source.html#l00152">EnvCurveList::EnvCurveListInternal::data</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00074">EnvCurve::getCurve()</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00073">EnvCurve::getType()</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00171">internal</a>, <a class="el" href="ugen___env_curve_8h_source.html#l00058">EnvCurve::Linear</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00099">max()</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00098">min()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a053690dc8d478b310ce9d6cd910d2945"></a><!-- doxytag: member="EnvCurveList::getData" ref="a053690dc8d478b310ce9d6cd910d2945" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_env_curve.html">EnvCurve</a>* const EnvCurveList::getData </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const  throw ()<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___env_curve_8h_source.html#l00163">163</a> of file <a class="el" href="ugen___env_curve_8h_source.html">ugen_EnvCurve.h</a>.</p>
 
 </div>
 </div>
@@ -463,25 +482,6 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a2933439d2bed4ff81acc13bd606485df"></a><!-- doxytag: member="EnvCurveList::getDataReadOnly" ref="a2933439d2bed4ff81acc13bd606485df" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="class_env_curve.html">EnvCurve</a>* const EnvCurveList::getDataReadOnly </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td> const  throw ()<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="ugen___env_curve_8h_source.html#l00163">163</a> of file <a class="el" href="ugen___env_curve_8h_source.html">ugen_EnvCurve.h</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="ae4b75aa6a0d8435a5995c8d98912443b"></a><!-- doxytag: member="EnvCurveList::operator=" ref="ae4b75aa6a0d8435a5995c8d98912443b" args="(EnvCurveList const &amp;other)" -->
 <div class="memitem">
 <div class="memproto">
@@ -500,7 +500,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___env_curve_8cpp_source.html#l00195">195</a> of file <a class="el" href="ugen___env_curve_8cpp_source.html">ugen_EnvCurve.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___smart_pointer_8cpp_source.html#l00080">SmartPointer::incrementRefCount()</a>, and <a class="el" href="ugen___env_curve_8h_source.html#l00170">internal</a>.</p>
+<p>References <a class="el" href="ugen___smart_pointer_8cpp_source.html#l00080">SmartPointer::incrementRefCount()</a>, and <a class="el" href="ugen___env_curve_8h_source.html#l00171">internal</a>.</p>
 
 </div>
 </div>
@@ -577,7 +577,7 @@ Static Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___env_curve_8h_source.html#l00171">171</a> of file <a class="el" href="ugen___env_curve_8h_source.html">ugen_EnvCurve.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_curve_8h_source.html#l00172">172</a> of file <a class="el" href="ugen___env_curve_8h_source.html">ugen_EnvCurve.h</a>.</p>
 
 </div>
 </div>
@@ -592,7 +592,7 @@ Static Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___env_curve_8h_source.html#l00170">170</a> of file <a class="el" href="ugen___env_curve_8h_source.html">ugen_EnvCurve.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___env_curve_8h_source.html#l00171">171</a> of file <a class="el" href="ugen___env_curve_8h_source.html">ugen_EnvCurve.h</a>.</p>
 
 <p>Referenced by <a class="el" href="ugen___env_curve_8cpp_source.html#l00221">blend()</a>, <a class="el" href="ugen___env_curve_8cpp_source.html#l00170">EnvCurveList()</a>, and <a class="el" href="ugen___env_curve_8cpp_source.html#l00195">operator=()</a>.</p>
 
@@ -603,7 +603,7 @@ Static Private Attributes</h2></td></tr>
 <li>envelopes/<a class="el" href="ugen___env_curve_8cpp_source.html">ugen_EnvCurve.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Oct 2 2010 09:31:04 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Oct 6 2010 14:33:01 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
