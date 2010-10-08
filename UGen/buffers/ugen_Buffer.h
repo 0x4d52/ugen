@@ -520,6 +520,12 @@ public:
 		return channels[channel]->data[sampleIndex % size_];		
 	}
 	
+	inline unsigned int getCurrentWriteBlockID(const int channel) const throw()
+	{
+		ugen_assert((channel >= 0) && (channel < numChannels_)); 
+		return channels[channel]->currentWriteBlockID;
+	}
+	
 	inline void setCircularHead(const unsigned int blockID, const int channel, const int position) throw() 
 	{ 
 		ugen_assert((channel >= 0) && (channel < numChannels_)); 

@@ -116,7 +116,7 @@
  are testing this in the iPhone project the @c guitar.wav sample is included in the project and the iPhone UGen++
  wrapper automatically searches for soundfiles in the application bundle (if the path is NOT already a full path).
  On the Juce (Mac/Windows) projects you will need to specify the full path to an AIFF or WAV file (16 or 24 bits).
- E.g., @c "/Users/JoeBloggs/Desktop/guitar.wav" on the Mac or 
+ E.g., @c "/Users/JoeBloggs/Desktop/guitar.wav" or @c "~/Desktop/guitar.wav" on the Mac, or 
  @c "C:\Documents and Settings\JoeBloggs\Desktop\guitar.wav" on Windows.
  @code
 	Buffer sound("guitar.wav");

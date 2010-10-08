@@ -37,7 +37,7 @@ class MainComponent  :  public Component,
 public:
 	//==============================================================================
 	MainComponent()
-	:	JuceIOHost(1, 2, 0, true)
+	:	JuceIOHost(1, 2, 512, true)
     {		
 		setName (T("UGen Test"));
 						
@@ -237,10 +237,10 @@ public:
 		delayTime = Plug::AR(4);
 		
 		UGen tapout = TapOutL::AR(buffer, delayTime);
-		UGen in = recLevel * input + tapout * preLevel;
+		UGen in = recLevel * input - tapout * preLevel;
 		UGen tapin = TapIn::AR(in, buffer);
 		//addOther(tapin);
-		return TapOutL::AR(buffer, 0) ^ tapin;
+		return TapOutL::AR(buffer, 0)  ^ tapin;
 	}
 };
 

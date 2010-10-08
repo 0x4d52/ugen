@@ -385,33 +385,14 @@ UGenInternal* IngoreRightOperandUGenInternal::getChannel(const int channel) thro
 											  inputs[RightOperand].getChannel(channel)); 
 }
 
-//void IngoreRightOperandUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
-//{
-//	const int numSamplesToProcess = uGenOutput.getBlockSize(); 
-//	float* outputSamples = uGenOutput.getSampleData(); 
-//	float* leftOperandSamples = inputs[LeftOperand].processBlock(shouldDelete, blockID, channel); 
-//	
-//	inputs[RightOperand].processBlock(shouldDelete, blockID); 
-//	memcpy(outputSamples, leftOperandSamples, numSamplesToProcess * sizeof(float));
-//}
-//
-//IngoreRightOperandUGen::IngoreRightOperandUGen(UGen const& leftOperand, UGen const& rightOperand) throw()
-//{
-//	initInternal(leftOperand.getNumChannels()); 
-//	for(int i = 0; i < numInternalUGens; i++) 
-//	{ 
-//		internalUGens[i] = new IngoreRightOperandUGenInternal(leftOperand, rightOperand); 
-//	}	
-//}
-
-
 void IngoreRightOperandUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
 	const int numSamplesToProcess = uGenOutput.getBlockSize(); 
 	float* outputSamples = uGenOutput.getSampleData(); 	
+	inputs[RightOperand].processBlock(shouldDelete, blockID); 
 	inputs[LeftOperand].setOutput(outputSamples, numSamplesToProcess, channel);
 	inputs[LeftOperand].processBlock(shouldDelete, blockID, channel); 
-	inputs[RightOperand].processBlock(shouldDelete, blockID); 
+	//inputs[RightOperand].processBlock(shouldDelete, blockID); 
 }
 
 IngoreRightOperandUGen::IngoreRightOperandUGen(UGen const& leftOperand, UGen const& rightOperand) throw()

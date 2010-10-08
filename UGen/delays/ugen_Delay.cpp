@@ -843,23 +843,16 @@ AllpassL::AllpassL(UGen const& input, const float maximumDelayTime, UGen const& 
 
 
 TapInUGenInternal::TapInUGenInternal(UGen const& input,
-									 Buffer const& buffer, 
-									 UGen const& recLevel,
-									 UGen const& preLevel) throw()
+									 Buffer const& buffer) throw()
 :	ProxyOwnerUGenInternal(NumInputs, ugen::max(buffer.getNumChannels(), input.getNumChannels())-1),
 	buffer_(buffer)
 {
 	inputs[Input] = input;
-	inputs[RecLevel] = recLevel;
-	inputs[PreLevel] = preLevel;
 }
 
 UGenInternal* TapInUGenInternal::getChannel(const int channel) throw()
 {
-	return new TapInUGenInternal(inputs[Input].getChannel(channel),
-								 buffer_.getChannel(channel), 
-								 inputs[RecLevel].getChannel(channel), 
-								 inputs[PreLevel].getChannel(channel));	
+	return new TapInUGenInternal(inputs[Input].getChannel(channel), buffer_.getChannel(channel));	
 }
 
 void TapInUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
@@ -872,36 +865,45 @@ void TapInUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 		const int bufferSize = buffer_.size();
 		float* outputSamples = proxies[channel]->getSampleData();
 		float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
-		float* preLevelSamples = inputs[PreLevel].processBlock(shouldDelete, blockID, channel);
-		float* recLevelSamples = inputs[RecLevel].processBlock(shouldDelete, blockID, channel);
 		float* bufferSamples = buffer_.getData(channel);
 		int channelBufferPos = buffer_.getCircularHead(blockID, channel);
 		
-		while(numSamplesToProcess) 
-		{							
-			float recLevel = *recLevelSamples++;
-			float rec = *inputSamples++ * recLevel;
-			float preLevel = *preLevelSamples++;
-			float pre = bufferSamples[channelBufferPos] * preLevel;
-			float out = pre + rec;
-			*outputSamples++ = out;
-			bufferSamples[channelBufferPos] = out;
-			channelBufferPos++;
-			
-			if(channelBufferPos >= bufferSize)
-				channelBufferPos = 0;
-			
-			--numSamplesToProcess;
-		}		
+		unsigned int currentWriteBlockID = buffer_.getCurrentWriteBlockID(channel);
 		
-		buffer_.setCircularHead(blockID, channel, channelBufferPos);
+		if(blockID == currentWriteBlockID)
+		{
+			while(numSamplesToProcess--) 
+			{							
+				// accumulate
+				bufferSamples[channelBufferPos] += *inputSamples++;
+				*outputSamples++ = bufferSamples[channelBufferPos];
+				channelBufferPos++;
+				
+				if(channelBufferPos >= bufferSize)
+					channelBufferPos = 0;
+			}					
+		}
+		else
+		{
+			while(numSamplesToProcess--) 
+			{							
+				// replace
+				bufferSamples[channelBufferPos] = *inputSamples++;
+				*outputSamples++ = bufferSamples[channelBufferPos];
+				channelBufferPos++;
+				
+				if(channelBufferPos >= bufferSize)
+					channelBufferPos = 0;
+			}		
+			
+			// only set this if this is the first block to be written during this blockID
+			buffer_.setCircularHead(blockID, channel, channelBufferPos);
+		}
 	}
 }
 
 TapIn::TapIn(UGen const& input,
-			 Buffer const& _buffer, 
-			 UGen const& recLevel,
-			 UGen const& preLevel) throw()
+			 Buffer const& _buffer) throw()
 {
 	ugen_assert(_buffer.size() > 0);
 	ugen_assert(_buffer.getNumChannels() > 0);
@@ -915,7 +917,7 @@ TapIn::TapIn(UGen const& input,
 	
 	const int numChannels = ugen::max(buffer.getNumChannels(), input.getNumChannels());
 	initInternal(numChannels);
-	generateFromProxyOwner(new TapInUGenInternal(input, buffer, recLevel, preLevel));	
+	generateFromProxyOwner(new TapInUGenInternal(input, buffer));	
 }
 
 TapOutNUGenInternal::TapOutNUGenInternal(Buffer const& buffer, UGen const& delayTime) throw()

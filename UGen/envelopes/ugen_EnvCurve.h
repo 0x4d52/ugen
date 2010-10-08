@@ -160,7 +160,8 @@ public:
 	
 	inline int size() const throw()									{ return internal->size;		}
 	inline const EnvCurve* const getData() throw()					{ return internal->data;		}
-	inline const EnvCurve* const getDataReadOnly() const throw()	{ return internal->data;		}
+	inline const EnvCurve* const getData() const throw()			{ return internal->data;		}
+	//inline const EnvCurve* const getDataReadOnly() const throw()	{ return internal->data;		}
 	
 	EnvCurveList blend(EnvCurveList const& other, float fraction) const throw();
 	

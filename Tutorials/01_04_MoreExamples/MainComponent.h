@@ -18,6 +18,7 @@ public:
 		return SinOsc::AR(SinOsc::AR(5, 0, 100, 1000), 0, 0.2);
 		
 	}
+	
 };
 
 #endif //_MAINCOMPONENT_H_ 
