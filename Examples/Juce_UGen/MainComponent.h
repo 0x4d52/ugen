@@ -37,7 +37,7 @@ class MainComponent  :  public Component,
 public:
 	//==============================================================================
 	MainComponent()
-	:	JuceIOHost(1, 2, 512, true)
+	:	JuceIOHost(1, 2, 1024, true)
     {		
 		setName (T("UGen Test"));
 						
@@ -219,28 +219,9 @@ public:
 			
 	UGen constructGraph(UGen const& input)
 	{				
-//		Value s = freqSlider1;
-//		UGen output = SinOsc::AR(s.kr(), 0, UGen(0.1, 0.1));
-//		return output;
-		
-//		UGen sig = Impulse::AR(1);
-//		Buffer buffer = Buffer::newClear(8 * UGen::getSampleRate(), 1, true);
-//		UGen tapout = TapOutL::AR(buffer,  SinOsc::AR(5).linlin(-1, 1, 1.0 / 82, 1.0 / 50));
-//		addOther(TapIn::AR(sig + tapout.mix() * 0.975, buffer, 1, 0));
-//		return (tapout);
-		
-		Buffer buffer = Buffer::newClear(8 * UGen::getSampleRate(), 1, true); 
-		
-		UGen recLevel = toggle2;
-		UGen preLevel = 1-recLevel;
-		
-		delayTime = Plug::AR(4);
-		
-		UGen tapout = TapOutL::AR(buffer, delayTime);
-		UGen in = recLevel * input - tapout * preLevel;
-		UGen tapin = TapIn::AR(in, buffer);
-		//addOther(tapin);
-		return TapOutL::AR(buffer, 0)  ^ tapin;
+		Value s = freqSlider1;
+		UGen output = SinOsc::AR(s.kr(), 0, UGen(0.1, 0.1));
+		return output * LLine::AR(0.0, 1.0, 1.0);
 	}
 };
 
