@@ -51,9 +51,10 @@
 <a name="l00018"></a>00018   <span class="keywordflow">return</span> <a class="code" href="class_sin_osc.html#a76c3d2fcbcfad830654e0a1ee5c296fd" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(<a class="code" href="class_sin_osc.html#a76c3d2fcbcfad830654e0a1ee5c296fd" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(5, 0, 100, 1000), 0, 0.2);
 <a name="l00019"></a>00019   
 <a name="l00020"></a>00020  }
-<a name="l00021"></a>00021 };
-<a name="l00022"></a>00022 
-<a name="l00023"></a>00023 <span class="preprocessor">#endif //_MAINCOMPONENT_H_ </span>
+<a name="l00021"></a>00021  
+<a name="l00022"></a>00022 };
+<a name="l00023"></a>00023 
+<a name="l00024"></a>00024 <span class="preprocessor">#endif //_MAINCOMPONENT_H_ </span>
 </pre></div><p>Notice the <a class="el" href="class_juce_i_o_host.html" title="An audio IO host for Juce projects.">JuceIOHost</a> is set up for 2-in and 2-out.</p>
 <p>You can copy and paste each of these examples to replace the entire body of the <code>constructGraph()</code> function. In fact you can use these examples to test the iPhone project too (use the <code>iPhone_UGen_AU/UGenRemoteIO.xcodeproj</code>). In this case the <code>constructGraph()</code> is an Objective-C function but works in a similar way to the Juce project.</p>
 <p>Note that you can click on the name of a <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> (e.g., <a class="el" href="class_sin_osc.html" title="A wavetable-based oscillator using an internal 8192-point sine table.">SinOsc</a>) and it should to take you to its more detailed documentation.</p>
@@ -112,7 +113,7 @@
   <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> output = sines.<a class="code" href="class_u_gen.html#ac6e78009d56d6dd44ac56745c83a568f">groupMix</a>(2); <span class="comment">// 200 &amp; 1000 on left, 555 &amp; 1234 on right</span>
   <span class="keywordflow">return</span> output;
 </pre></div><hr/>
-<p>Soundfile playback using a memory-based buffer. Here you may need to change the path to the soundfile. If you are testing this in the iPhone project the <code>guitar.wav</code> sample is included in the project and the iPhone UGen++ wrapper automatically searches for soundfiles in the application bundle (if the path is NOT already a full path). On the Juce (Mac/Windows) projects you will need to specify the full path to an AIFF or WAV file (16 or 24 bits). E.g., <code>"/Users/JoeBloggs/Desktop/guitar.wav"</code> or <code>"~/Desktop/guitar.wav"</code> on the Mac, or <code>"C:\Documents and Settings\JoeBloggs\Desktop\guitar.wav"</code> on Windows. </p>
+<p>Soundfile playback using a memory-based buffer. Here you may need to change the path to the soundfile. If you are testing this in the iPhone project the <code>guitar.wav</code> sample is included in the project and the iPhone UGen++ wrapper automatically searches for soundfiles in the application bundle (if the path is NOT already a full path). On the Juce (Mac/Windows) projects you will need to specify the full path to <b> any AIFF or WAV </b> file (16 or 24 bits). E.g., <code>"/Users/JoeBloggs/Desktop/guitar.wav"</code> or <code>"~/Desktop/guitar.wav"</code> on the Mac, or <code>"C:\\Documents and Settings\\JoeBloggs\\Desktop\\guitar.wav"</code> on Windows (notice the double backslashes required in code on Windows). </p>
 <div class="fragment"><pre class="fragment"> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> sound(<span class="stringliteral">&quot;guitar.wav&quot;</span>);
  <span class="keywordtype">float</span> rate = 1.0;
  <span class="keywordtype">float</span> trigger = 0.0;
@@ -196,7 +197,7 @@
 </pre></div><p>prev: <a class="el" href="_tutorial_01_03.html">Tutorial 01.03: Building more complex UGen graphs</a></p>
 <p>next: <a class="el" href="_tutorial_01_05.html">Tutorial 01.05: Maths examples</a> </p>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Oct 6 2010 14:32:57 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:39 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
