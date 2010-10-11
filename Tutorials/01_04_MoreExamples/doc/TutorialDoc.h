@@ -115,9 +115,10 @@
  Soundfile playback using a memory-based buffer. Here you may need to change the path to the soundfile. If you
  are testing this in the iPhone project the @c guitar.wav sample is included in the project and the iPhone UGen++
  wrapper automatically searches for soundfiles in the application bundle (if the path is NOT already a full path).
- On the Juce (Mac/Windows) projects you will need to specify the full path to an AIFF or WAV file (16 or 24 bits).
- E.g., @c "/Users/JoeBloggs/Desktop/guitar.wav" or @c "~/Desktop/guitar.wav" on the Mac, or 
- @c "C:\Documents and Settings\JoeBloggs\Desktop\guitar.wav" on Windows.
+ On the Juce (Mac/Windows) projects you will need to specify the full path to <b> any AIFF or WAV </b> file 
+ (16 or 24 bits). E.g., @c "/Users/JoeBloggs/Desktop/guitar.wav" or @c "~/Desktop/guitar.wav" on the Mac, or 
+ @c "C:\\Documents and Settings\\JoeBloggs\\Desktop\\guitar.wav" on Windows (notice the double
+ backslashes required in code on Windows).
  @code
 	Buffer sound("guitar.wav");
 	float rate = 1.0;
