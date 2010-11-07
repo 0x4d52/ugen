@@ -56,7 +56,7 @@ public:
 		freqSlider1->setSkewFactorFromMidPoint(250.0);
 		freqSlider1->addListener(this);
 		freqSlider1->setValue(100, true, true);
-		
+				
 		addAndMakeVisible(freqSlider2 = new Slider(T("Frequency2")));
 		freqSlider2->setRange(50, 5000, 0.0);
 		freqSlider2->setSkewFactorFromMidPoint(250.0);
