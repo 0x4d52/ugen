@@ -348,5 +348,74 @@ RecordBuf::RecordBuf(UGen const& input,
 	generateFromProxyOwner(new RecordBufUGenInternal(input, buffer, recLevel, preLevel, loop.mix(), doneAction));
 }
 
+	
+LoopPointsUGenInternal::LoopPointsUGenInternal(Buffer const& buffer, 
+											   UGen const& rate, 
+											   UGen const& start, 
+											   UGen const& end,
+											   bool startAtZero) throw()
+:	UGenInternal(NumInputs),
+	b(buffer),
+	currentValue(startAtZero ? 0.f : start.getValue() * b.size())
+{
+	inputs[Rate] = rate;
+	inputs[Start] = start;
+	inputs[End] = end;
+}
+
+void LoopPointsUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+{
+	int numSamplesToProcess = uGenOutput.getBlockSize();
+	float* outputSamples = uGenOutput.getSampleData();
+	float* rateSamples = inputs[Rate].processBlock(shouldDelete, blockID, 0);
+	float* startSamples = inputs[Start].processBlock(shouldDelete, blockID, 0);
+	float* endSamples = inputs[End].processBlock(shouldDelete, blockID, 0);
+	
+	while(numSamplesToProcess--)
+	{
+		float rate = *rateSamples;
+		float start = *startSamples * b.size();
+		float end = *endSamples * b.size();
+		
+		if(start > end)
+		{
+			float temp = start;
+			start = end;
+			end = temp;
+			rate = -rate;
+		}
+		
+		float diff = end - start;
+		currentValue += rate;
+		
+		if(currentValue >= end)
+		{
+			currentValue -= diff;
+		}
+		else if(currentValue < start)
+		{
+			currentValue += diff;
+		}
+		
+		*outputSamples = currentValue;
+		
+		rateSamples++;
+		startSamples++;
+		endSamples++;
+		outputSamples++;
+	}
+}
+
+LoopPoints::LoopPoints(Buffer const& buffer, 
+					   UGen const& rate, 
+					   UGen const& start, 
+					   UGen const& end,
+					   bool startAtZero) throw()
+{
+	initInternal(1);
+	internalUGens[0] = new LoopPointsUGenInternal(buffer, rate.mix(), start.mix(), end.mix(), startAtZero);
+}
+
+
 
 END_UGEN_NAMESPACE
