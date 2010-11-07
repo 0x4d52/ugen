@@ -4,21 +4,17 @@
 #include <juce/juce.h>
 #include "../../UGen/UGen.h"
 
-
-class MainComponent :	public Component,
-						public JuceIOHost
+class MainComponent : public Component,
+public JuceIOHost
 {	
 public:
-	MainComponent () : JuceIOHost(2, 2) { }	
+	MainComponent () : JuceIOHost(0, 2) { }	
 	
 	UGen constructGraph(UGen const& input)
 	{
-		
-		// replace this test tone with one of the examples in the tutorial document
-		return SinOsc::AR(SinOsc::AR(5, 0, 100, 1000), 0, 0.2);
-		
+		// replace the entire body of this function with the examples in the HTML tutorial
+		return SinOsc::AR(1000, 0, 0.1);
 	}
-	
 };
 
 #endif //_MAINCOMPONENT_H_ 

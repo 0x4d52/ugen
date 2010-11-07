@@ -192,8 +192,8 @@ public:
 	{
 		if(internal == 0) 
 			return false;
-		else {
-			return dynamic_cast<ValueInternalType*> (internal) != 0;
+		else { //return dynamic_cast<ValueInternalType*> (internal) != 0;
+			return typeid(ValueInternalType*) == typeid(internal);
 		}
 	}
 	

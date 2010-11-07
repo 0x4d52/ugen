@@ -242,6 +242,8 @@ public:
 	
 #if defined(JUCE_VERSION) || defined(DOXYGEN)
 	Buffer(AudioSampleBuffer& audioSampleBuffer) throw();
+	Buffer(String const& audioFilePath) throw();
+	Buffer(String const& audioFilePath, double& sampleRate) throw();
 	Buffer(const File& audioFile) throw();
 	Buffer(const File& audioFile, double& sampleRate) throw();
 	

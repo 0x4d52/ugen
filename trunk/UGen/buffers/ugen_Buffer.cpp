@@ -419,6 +419,28 @@ Buffer::Buffer(AudioSampleBuffer& audioSampleBuffer) throw()
 	}
 }
 
+Buffer::Buffer(String const& audioFilePath) throw()
+:	numChannels_(0),
+	size_(0),
+	channels(0)
+{
+	File audioFile (audioFilePath);
+	double sampleRate = initFromJuceFile(audioFile);
+	double currentSampleRate = UGen::getSampleRate();
+	
+	if((sampleRate != 0.0) && (sampleRate != currentSampleRate))
+		operator= (changeSampleRate(sampleRate, currentSampleRate));		
+}
+
+Buffer::Buffer(String const& audioFilePath, double& sampleRate) throw()
+:	numChannels_(0),
+	size_(0),
+	channels(0)
+{
+	File audioFile (audioFilePath);
+	sampleRate = initFromJuceFile(audioFile);
+}
+
 Buffer::Buffer(const char *audioFilePath) throw()
 :	numChannels_(0),
 	size_(0),
