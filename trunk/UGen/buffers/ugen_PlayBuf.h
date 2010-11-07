@@ -157,4 +157,28 @@ UGenSublcassDeclaration(RecordBuf, (input, buffer, recLevel, preLevel, loop, don
 						 const UGen::DoneAction doneAction = UGen::DeleteWhenDone), COMMON_UGEN_DOCS);
 
 
+
+class LoopPointsUGenInternal : public UGenInternal
+{
+public:
+	LoopPointsUGenInternal(Buffer const& buffer, UGen const& rate, UGen const& start, UGen const& end, bool startAtZero) throw();
+	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
+	
+	enum Inputs { Rate, Start, End, NumInputs };
+	
+private:
+	Buffer b;
+	float currentValue;
+};
+
+
+/** A UGen for controlling PlayBuf loop points via its offset input. 
+ You need to provide the buffer, the rate of playback (1=normal) then the start
+ and end loop points as a fraction 0.0-1.0 */
+UGenSublcassDeclaration(LoopPoints, 
+						(buffer, rate, start, end, startAtZero), 
+						(Buffer const& buffer, UGen const& rate, UGen const& start, UGen const& end, bool startAtZero = false), 
+						COMMON_UGEN_DOCS);
+
+
 #endif // _UGEN_ugen_PlayBuf_H_
