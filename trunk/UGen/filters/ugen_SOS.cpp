@@ -69,8 +69,9 @@ UGenInternal* SOSUGenInternal::getChannel(const int channel) throw()
 
 void SOSUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
-	int filterLoops = UGen::getFilterLoops();
-	int filterRemain = UGen::getFilterRemain();
+//	int filterLoops = UGen::getFilterLoops();
+//	int filterRemain = UGen::getFilterRemain();
+	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
 	float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
 	float* a0Samples = inputs[A0].processBlock(shouldDelete, blockID, channel);
@@ -79,20 +80,8 @@ void SOSUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockI
 	float* b1Samples = inputs[B1].processBlock(shouldDelete, blockID, channel);
 	float* b2Samples = inputs[B2].processBlock(shouldDelete, blockID, channel);
 	float y0;
-	
-	while(filterLoops--)
-	{
-		y0 = *inputSamples++ + *b1Samples++ * y1 + *b2Samples++ * y2; 
-		*outputSamples++ = *a0Samples++ * y0 + *a1Samples++ * y1 + *a2Samples++ * y2;
 		
-		y2 = *inputSamples++ + *b1Samples++ * y0 + *b2Samples++ * y1; 
-		*outputSamples++ = *a0Samples++ * y2 + *a1Samples++ * y0 + *a2Samples++ * y1;
-		
-		y1 = *inputSamples++ + *b1Samples++ * y2 + *b2Samples++ * y0; 
-		*outputSamples++ = *a0Samples++ * y1 + *a1Samples++ * y2 + *a2Samples++ * y0;
-	}
-	
-	while(filterRemain--)
+	while(numSamplesToProcess--)
 	{
 		y0 = *inputSamples++ + *b1Samples++ * y1 + *b2Samples++ * y2; 
 		*outputSamples++ = *a0Samples++ * y0 + *a1Samples++ * y1 + *a2Samples++ * y2;

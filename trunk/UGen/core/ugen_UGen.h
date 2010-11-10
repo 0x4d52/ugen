@@ -947,22 +947,22 @@ public:
 	
 	static void setBlockSize(const int newSize) throw();
 	
-	/** Get the current value of "filter loops".
-	 
-	 This is used for "unrolling" 2nd order filters. It is equal to the (block size) / 3.
-	 
-	 @returns (block size) / 3
-	 */
-	inline static int				getFilterLoops() throw()					{ return filterLoops;													}
-	inline static double			getReciprocalFilterLoops() throw()			{ return reciprocalFilterLoops;											}
-	
-	/** Get the current vaue of "filter remain".
-	 
-	 This is used for "unrolling" 2nd order filters. It is equal to the (block size) % 3.
-	 
-	 @returns (block size) % 3
-	 */
-	inline static int				getFilterRemain() throw()					{ return filterRemain;													}
+//	/** Get the current value of "filter loops".
+//	 
+//	 This is used for "unrolling" 2nd order filters. It is equal to the (block size) / 3.
+//	 
+//	 @returns (block size) / 3
+//	 */
+//	inline static int				getFilterLoops() throw()					{ return filterLoops;													}
+//	inline static double			getReciprocalFilterLoops() throw()			{ return reciprocalFilterLoops;											}
+//	
+//	/** Get the current vaue of "filter remain".
+//	 
+//	 This is used for "unrolling" 2nd order filters. It is equal to the (block size) % 3.
+//	 
+//	 @returns (block size) % 3
+//	 */
+//	inline static int				getFilterRemain() throw()					{ return filterRemain;													}
 	
 	/** Get the current slope factor i.e., 1.0 / (block size). @return 1.0 / (block size). */
 	inline static double			getSlopeFactor() throw()					{ return slopeFactor;													}
@@ -1284,9 +1284,9 @@ protected:
 	static int estimatedSamplesPerBlock_;
 	static int controlRateBlockSize;
 	static int blockSize;
-	static int filterLoops;
-	static int filterRemain;
-	static double reciprocalFilterLoops;
+//	static int filterLoops;
+//	static int filterRemain;
+//	static double reciprocalFilterLoops;
 	static bool isInitialised;
 	static Deleter defaultDeleter;
 	static Deleter* internalUGenDeleter;
