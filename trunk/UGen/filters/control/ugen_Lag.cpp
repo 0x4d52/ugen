@@ -79,7 +79,8 @@ void LagUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockI
 	if(newLagTime != currentLagTime)
 	{
 		float next_b1 = newLagTime == 0.f ? 0.f : (float)exp(log001 / (newLagTime * UGen::getSampleRate()));
-		float b1_slope = (next_b1 - b1) * UGen::getSlopeFactor();
+//		float b1_slope = (next_b1 - b1) * UGen::getSlopeFactor();
+		float b1_slope = (next_b1 - b1) / (float)numSamplesToProcess;
 		currentLagTime = newLagTime;
 		
 		while(numSamplesToProcess--)
@@ -127,7 +128,8 @@ void LagUGenInternalK::processBlock(bool& shouldDelete, const unsigned int block
 	if(newLagTime != currentLagTime)
 	{
 		float next_b1 = newLagTime == 0.f ? 0.f : (float)exp(log001 * krBlockSize / (newLagTime * UGen::getSampleRate()));
-		float b1_slope = (next_b1 - b1) * UGen::getSlopeFactor() * krBlockSize;
+//		float b1_slope = (next_b1 - b1) * UGen::getSlopeFactor() * krBlockSize;
+		float b1_slope = (next_b1 - b1) * krBlockSize / (float)numSamplesToProcess;
 		currentLagTime = newLagTime; 
 				
 		while(numSamplesToProcess > 0)
@@ -156,7 +158,8 @@ void LagUGenInternalK::processBlock(bool& shouldDelete, const unsigned int block
 			} 
 			else
 			{
-				float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+//				float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+				float valueSlope = (nextValue - value) / (float)UGen::getControlRateBlockSize();
 				
 				while(numSamplesToProcess && numKrSamples)
 				{
@@ -199,7 +202,8 @@ void LagUGenInternalK::processBlock(bool& shouldDelete, const unsigned int block
 			} 
 			else
 			{
-				float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+//				float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+				float valueSlope = (nextValue - value) / (float)UGen::getControlRateBlockSize();
 				
 				while(numSamplesToProcess && numKrSamples)
 				{
@@ -279,8 +283,9 @@ void LagUDUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 	{
 		float next_b1u = newLagTimeUp == 0.f ? 0.f : (float)exp(log001 / (newLagTimeUp * UGen::getSampleRate()));
 		float next_b1d = newLagTimeDown == 0.f ? 0.f : (float)exp(log001 / (newLagTimeDown * UGen::getSampleRate()));
-		float b1u_slope = (next_b1u - b1u) * UGen::getSlopeFactor();
-		float b1d_slope = (next_b1d - b1d) * UGen::getSlopeFactor();
+		float slope = 1.f / (float)numSamplesToProcess;
+		float b1u_slope = (next_b1u - b1u) * slope;
+		float b1d_slope = (next_b1d - b1d) * slope;
 		currentLagTimeUp = newLagTimeUp;
 		currentLagTimeDown = newLagTimeDown;
 		
@@ -342,8 +347,9 @@ void LagUDUGenInternalK::processBlock(bool& shouldDelete, const unsigned int blo
 	{
 		float next_b1u = newLagTimeUp == 0.f ? 0.f : (float)exp(log001 * krBlockSize / (newLagTimeUp * UGen::getSampleRate()));
 		float next_b1d = newLagTimeDown == 0.f ? 0.f : (float)exp(log001 * krBlockSize / (newLagTimeDown * UGen::getSampleRate()));
-		float b1u_slope = (next_b1u - b1u) * UGen::getSlopeFactor() * krBlockSize;
-		float b1d_slope = (next_b1d - b1d) * UGen::getSlopeFactor() * krBlockSize;
+		float slope = (float)krBlockSize / (float)numSamplesToProcess;
+		float b1u_slope = (next_b1u - b1u) * slope;
+		float b1d_slope = (next_b1d - b1d) * slope;
 		currentLagTimeUp = newLagTimeUp;
 		currentLagTimeDown = newLagTimeDown;
 		
@@ -379,7 +385,8 @@ void LagUDUGenInternalK::processBlock(bool& shouldDelete, const unsigned int blo
 			} 
 			else
 			{
-				float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+//				float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+				float valueSlope = (nextValue - value) / (float)UGen::getControlRateBlockSize();
 				
 				while(numSamplesToProcess && numKrSamples)
 				{
@@ -427,7 +434,8 @@ void LagUDUGenInternalK::processBlock(bool& shouldDelete, const unsigned int blo
 			} 
 			else
 			{
-				float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+//				float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+				float valueSlope = (nextValue - value) / (float)UGen::getControlRateBlockSize();
 				
 				while(numSamplesToProcess && numKrSamples)
 				{

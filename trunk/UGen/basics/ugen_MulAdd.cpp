@@ -115,8 +115,9 @@ void MulAddUGenInternalK::processBlock(bool& shouldDelete, const unsigned int bl
 		}
 		else
 		{
-			float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
-			
+//			float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+			float valueSlope = (nextValue - value) / (float)UGen::getControlRateBlockSize();
+
 			while(numSamplesToProcess && numKrSamples)
 			{
 				*outputSamples++ = value;

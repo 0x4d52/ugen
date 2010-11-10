@@ -183,7 +183,7 @@ void VoicerUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 		
 			if(numSamples > 0)
 			{
-				UGen::setBlockSize(numSamples);
+//				UGen::setBlockSize(numSamples);
 				
 				for(int channel = 0; channel < numChannels; channel++)
 				{
@@ -271,7 +271,7 @@ void VoicerUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 		
 		if(numSamples > 0)
 		{
-			UGen::setBlockSize(numSamples);
+//			UGen::setBlockSize(numSamples);
 			
 			for(int channel = 0; channel < numChannels; channel++)
 			{
@@ -283,7 +283,7 @@ void VoicerUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 			mixer.processBlock(shouldDelete, blockID + startSample, -1);
 		}
 		
-		UGen::setBlockSize(blockSize);
+//		UGen::setBlockSize(blockSize);
 		
 		midiMessages.clear();
 		events.removeNulls();

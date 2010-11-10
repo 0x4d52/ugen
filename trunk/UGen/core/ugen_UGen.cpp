@@ -925,7 +925,7 @@ bool UGen::containsIdenticalInternalsAs(UGen const& other, const bool mustBeInTh
 
 float* UGen::prepareAndProcessBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
 {
-	setBlockSize(actualBlockSize);
+//	setBlockSize(actualBlockSize);
 
 	prepareForBlock(actualBlockSize, blockID);
 	bool shouldDelete = false;
@@ -987,52 +987,15 @@ void UGen::prepareForBlock(const int actualBlockSize, const unsigned int blockID
 
 
 
-void UGen::setBlockSize(const int newSize) throw()
-{
-	ugen_assert(newSize > 0);
-	
-	if(newSize != blockSize)
-	{
-		blockSize = newSize;
-		slopeFactor = 1.0 / blockSize;
-		controlSlopeFactor = 1.0 / (double)controlRateBlockSize;
-//		filterLoops = blockSize / 3;
-//		filterRemain = blockSize % 3;
-//		reciprocalFilterLoops = 1.0 / (double)filterLoops;
-	}
-}
-
-
-//void UGen::prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw()
-//{	
-//	bool shouldDelete = false;
+//void UGen::setBlockSize(const int newSize) throw()
+//{
+//	ugen_assert(newSize > 0);
 //	
-//	for(int i = 0; i < numInternalUGens; i++)
+//	if(newSize != blockSize)
 //	{
-//		if(internalUGens[i]->shouldBeDeletedNow(blockID))
-//		{
-//			shouldDelete = true;
-//			break;
-//		}
-//	}
-//	
-//	if(shouldDelete)
-//	{
-//		for(int i = 0; i < numInternalUGens; i++)
-//		{
-//			internalUGens[i]->decrementRefCount();
-//		}
-//		
-//		numInternalUGens = 1;
-//		internalUGens[0] = getNullInternal();
-//		internalUGens[0]->prepareForBlockInternal(actualBlockSize, blockID);		
-//	}
-//	else 
-//	{
-//		for(int i = 0; i < numInternalUGens; i++)
-//		{
-//			internalUGens[i]->prepareForBlockInternal(actualBlockSize, blockID);
-//		}
+//		blockSize = newSize;
+//		slopeFactor = 1.0 / blockSize;
+//		controlSlopeFactor = 1.0 / (double)controlRateBlockSize;
 //	}
 //}
 
@@ -1907,12 +1870,9 @@ double			UGen::sampleRate_					= 44100.0;
 double			UGen::reciprocalSampleRate			= 1.0 / UGen::sampleRate_;
 int				UGen::estimatedSamplesPerBlock_		= 512;
 int				UGen::controlRateBlockSize			= 64;
-int				UGen::blockSize						= 0;
-//int				UGen::filterLoops					= estimatedSamplesPerBlock_ / 3;
-//int				UGen::filterRemain					= estimatedSamplesPerBlock_ % 3;
-//double			UGen::reciprocalFilterLoops			= 1.0 / (double)filterLoops;
-double			UGen::slopeFactor					= 1.0 / estimatedSamplesPerBlock_;
-double			UGen::controlSlopeFactor			= (double)controlRateBlockSize / estimatedSamplesPerBlock_;
+//int				UGen::blockSize						= 0;
+//double			UGen::slopeFactor					= 1.0 / estimatedSamplesPerBlock_;
+//double			UGen::controlSlopeFactor			= (double)controlRateBlockSize / estimatedSamplesPerBlock_;
 
 bool			UGen::isInitialised					= false;
 

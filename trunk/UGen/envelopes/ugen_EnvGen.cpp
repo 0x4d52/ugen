@@ -448,7 +448,9 @@ void EnvGenUGenInternalK::processBlock(bool& shouldDelete, const unsigned int bl
 		}
 		else
 		{
-			double valueSlope = (currentValue - prevValue) * UGen::getControlSlopeFactor();
+//			double valueSlope = (currentValue - prevValue) * UGen::getControlSlopeFactor();
+			double valueSlope = (currentValue - prevValue) / (double)UGen::getControlRateBlockSize();
+			
 			while(numSamplesToProcess && numKrSamples)
 			{
 				*outputSamples++ = (float)prevValue;

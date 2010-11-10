@@ -1,5 +1,5 @@
-// $Id:$
-// $HeadURL:$
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================
@@ -52,9 +52,9 @@ NormaliserUGenInternal::NormaliserUGenInternal(UGen const& input, UGen const& le
 	currentMaximum(0.f),
 	prevMaximum(0.f),
 	slopeFactor(1.f/ bufferSize),
-	inputBuffer(Buffer::newClear(bufferSize, 1, true)),
-	midBuffer(Buffer::newClear(bufferSize, 1, true)),
-	outputBuffer(Buffer::newClear(bufferSize, 1, true))
+	inputBuffer(Buffer::newClear(bufferSize, 1)),
+	midBuffer(Buffer::newClear(bufferSize, 1)),
+	outputBuffer(Buffer::newClear(bufferSize, 1))
 {
 	inputs[Input] = input;
 	inputs[Level] = level;

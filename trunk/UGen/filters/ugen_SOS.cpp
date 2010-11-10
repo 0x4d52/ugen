@@ -69,8 +69,6 @@ UGenInternal* SOSUGenInternal::getChannel(const int channel) throw()
 
 void SOSUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
-//	int filterLoops = UGen::getFilterLoops();
-//	int filterRemain = UGen::getFilterRemain();
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
 	float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);

@@ -148,7 +148,7 @@ void SpawnUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 			UGen newVoice = spawnEvent(*this, currentEventIndex++);
 			newVoice.prepareForBlock(blockSize, blockID); // prepare for full size (allocates the output buffers)
 			
-			UGen::setBlockSize(numSamplesToProcess);
+//			UGen::setBlockSize(numSamplesToProcess);
 			newVoice.prepareForBlock(numSamplesToProcess, nextTimeSamples); // prepare for sub block
 			
 			unsigned int nextTimeSamplesDelta = (unsigned int)(nextTime * UGen::getSampleRate());
@@ -169,7 +169,7 @@ void SpawnUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 		} 
 		while(nextTimeSamples <	nextBlockID && reachedMaxRepeats() == false);
 		
-		UGen::setBlockSize(blockSize); // reset
+//		UGen::setBlockSize(blockSize); // reset
 		
 		//mixer = Mix(&events, false);		
 		events.removeNulls();

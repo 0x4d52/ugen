@@ -42,7 +42,7 @@ BEGIN_UGEN_NAMESPACE
 
 BlockDelayUGenInternal::BlockDelayUGenInternal(UGen const& input) throw()
 :	UGenInternal(NumInputs),
-	delayBuffer(BufferSpec(UGen::getBlockSize(), 1, true)),
+	delayBuffer(BufferSpec(UGen::getEstimatedBlockSize(), 1, true)),
 	delayBufferSamples(delayBuffer.getData())
 {
 	inputs[Input] = input;

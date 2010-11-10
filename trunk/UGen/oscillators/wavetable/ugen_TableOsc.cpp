@@ -155,7 +155,8 @@ void TableOscUGenInternalK::processBlock(bool& shouldDelete, const unsigned int 
 		}
 		else
 		{
-			float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+//			float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+			float valueSlope = (nextValue - value) / (float)UGen::getControlRateBlockSize();
 			
 			while(numSamplesToProcess && numKrSamples)
 			{
