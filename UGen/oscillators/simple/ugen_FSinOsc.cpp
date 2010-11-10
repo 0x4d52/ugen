@@ -111,34 +111,34 @@ void FSinOscUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 		y2 = zap(std::sin(initialPhase-w));
 	}
 	
-	int filterLoops = UGen::getFilterLoops();
-	while(filterLoops--)
-	{
-		y0 = b1 * y1 - y2;
-		*outputSamples++ = y0;
-		y2 = b1 * y0 - y1;
-		*outputSamples++ = y2; 
-		y1 = b1 * y2 - y0;
-		*outputSamples++ = y1; 
-	}
-	
-	int filterRemain = UGen::getFilterRemain();
-	while(filterRemain--)
-	{
-		y0 = b1 * y1 - y2;
-		*outputSamples++ = y0; 
-		y2 = y1; 
-		y1 = y0;
-	}
-	
-//	int numSamplesToProcess = uGenOutput.getBlockSize();
-//	for(int i = 0; i < numSamplesToProcess; ++i)
+//	int filterLoops = UGen::getFilterLoops();
+//	while(filterLoops--)
 //	{
 //		y0 = b1 * y1 - y2;
-//		outputSamples[i] = y0;// = b1 * y1 - y2; 
+//		*outputSamples++ = y0;
+//		y2 = b1 * y0 - y1;
+//		*outputSamples++ = y2; 
+//		y1 = b1 * y2 - y0;
+//		*outputSamples++ = y1; 
+//	}
+//	
+//	int filterRemain = UGen::getFilterRemain();
+//	while(filterRemain--)
+//	{
+//		y0 = b1 * y1 - y2;
+//		*outputSamples++ = y0; 
 //		y2 = y1; 
 //		y1 = y0;
 //	}
+	
+	int numSamplesToProcess = uGenOutput.getBlockSize();
+	for(int i = 0; i < numSamplesToProcess; ++i)
+	{
+		y0 = b1 * y1 - y2;
+		outputSamples[i] = y0;// = b1 * y1 - y2; 
+		y2 = y1; 
+		y1 = y0;
+	}
 		
 	y1 = zap(y1);
 	y2 = zap(y2);

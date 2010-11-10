@@ -996,9 +996,9 @@ void UGen::setBlockSize(const int newSize) throw()
 		blockSize = newSize;
 		slopeFactor = 1.0 / blockSize;
 		controlSlopeFactor = 1.0 / (double)controlRateBlockSize;
-		filterLoops = blockSize / 3;
-		filterRemain = blockSize % 3;
-		reciprocalFilterLoops = 1.0 / (double)filterLoops;
+//		filterLoops = blockSize / 3;
+//		filterRemain = blockSize % 3;
+//		reciprocalFilterLoops = 1.0 / (double)filterLoops;
 	}
 }
 
@@ -1908,9 +1908,9 @@ double			UGen::reciprocalSampleRate			= 1.0 / UGen::sampleRate_;
 int				UGen::estimatedSamplesPerBlock_		= 512;
 int				UGen::controlRateBlockSize			= 64;
 int				UGen::blockSize						= 0;
-int				UGen::filterLoops					= estimatedSamplesPerBlock_ / 3;
-int				UGen::filterRemain					= estimatedSamplesPerBlock_ % 3;
-double			UGen::reciprocalFilterLoops			= 1.0 / (double)filterLoops;
+//int				UGen::filterLoops					= estimatedSamplesPerBlock_ / 3;
+//int				UGen::filterRemain					= estimatedSamplesPerBlock_ % 3;
+//double			UGen::reciprocalFilterLoops			= 1.0 / (double)filterLoops;
 double			UGen::slopeFactor					= 1.0 / estimatedSamplesPerBlock_;
 double			UGen::controlSlopeFactor			= (double)controlRateBlockSize / estimatedSamplesPerBlock_;
 
