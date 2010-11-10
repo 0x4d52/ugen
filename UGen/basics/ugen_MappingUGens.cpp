@@ -142,8 +142,9 @@ void LinExpSignalUGenInternalK::processBlock(bool& shouldDelete, const unsigned 
 		}
 		else
 		{
-			float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
-			
+//			float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+			float valueSlope = (nextValue - value) / (float)UGen::getControlRateBlockSize();
+
 			while(numSamplesToProcess && numKrSamples)
 			{
 				*outputSamples++ = value;
@@ -247,8 +248,9 @@ void LinExpScalarUGenInternalK::processBlock(bool& shouldDelete, const unsigned 
 		}
 		else
 		{
-			float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
-			
+//			float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+			float valueSlope = (nextValue - value) / (float)UGen::getControlRateBlockSize();
+
 			while(numSamplesToProcess && numKrSamples)
 			{
 				*outputSamples++ = value;
@@ -350,7 +352,8 @@ void LinLinSignalUGenInternalK::processBlock(bool& shouldDelete, const unsigned 
 		}
 		else
 		{
-			float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+//			float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+			float valueSlope = (nextValue - value) / (float)UGen::getControlRateBlockSize();
 			
 			while(numSamplesToProcess && numKrSamples)
 			{
@@ -449,8 +452,9 @@ void LinLinScalarUGenInternalK::processBlock(bool& shouldDelete, const unsigned 
 		}
 		else
 		{
-			float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
-			
+//			float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+			float valueSlope = (nextValue - value) / (float)UGen::getControlRateBlockSize();
+
 			while(numSamplesToProcess && numKrSamples)
 			{
 				*outputSamples++ = value;
@@ -550,7 +554,8 @@ void LinSinSignalUGenInternalK::processBlock(bool& shouldDelete, const unsigned 
 		}
 		else
 		{
-			float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+//			float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+			float valueSlope = (nextValue - value) / (float)UGen::getControlRateBlockSize();
 			
 			while(numSamplesToProcess && numKrSamples)
 			{
@@ -651,7 +656,8 @@ void LinSinScalarUGenInternalK::processBlock(bool& shouldDelete, const unsigned 
 		}
 		else
 		{
-			float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+//			float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+			float valueSlope = (nextValue - value) / (float)UGen::getControlRateBlockSize();
 			
 			while(numSamplesToProcess && numKrSamples)
 			{
@@ -766,7 +772,8 @@ void MapTableSignalUGenInternalK::processBlock(bool& shouldDelete, const unsigne
 		}
 		else
 		{
-			float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+//			float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+			float valueSlope = (nextValue - value) / (float)UGen::getControlRateBlockSize();
 			
 			while(numSamplesToProcess && numKrSamples)
 			{
@@ -862,7 +869,8 @@ void MapTableScalarUGenInternalK::processBlock(bool& shouldDelete, const unsigne
 		}
 		else
 		{
-			float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+//			float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+			float valueSlope = (nextValue - value) / (float)UGen::getControlRateBlockSize();
 			
 			while(numSamplesToProcess && numKrSamples)
 			{

@@ -106,6 +106,7 @@ private:
 
 class Value;
 class ValueArray;
+class UGen;
 
 /**
  Buffer stores one or more arrays of floats.
@@ -215,7 +216,9 @@ public:
 	/** Create a single channel Buffer containing a geometric series. */
 	static Buffer geom(const int size, const double start, const double grow) throw();
 	
-	static Buffer newClear(const int size = 1, const int numChannels = 1, bool zeroData = false) throw();
+	static Buffer newClear(const int size = 1, const int numChannels = 1) throw();
+	static Buffer withSize(const int size = 1, const int numChannels = 1, bool zeroData = false) throw();
+
 	static Buffer rand(const int size, const double lower, const double upper, const int numChannels = 1) throw();
 	static Buffer rand2(const int size, const double positive, const int numChannels = 1) throw();
 	static Buffer exprand(const int size, const double lower, const double upper, const int numChannels = 1) throw();
@@ -230,6 +233,23 @@ public:
 	static Buffer hammingWindow(const int size) throw();
 	static Buffer blackmanWindow(const int size, const float alpha = 0.16f) throw();
 	//static Buffer kaiserWindow(const int size, const float alpha = 3.0f) throw();
+	
+	/** Synthesise a Buffer using a UGen graph. 
+	 Be very careful that none of the UGens in the graph 
+	 are used elsewhere in another context e.g., for real-time use.
+	 This graph must be completely separate from any other graphs otherwise
+	 unusual results may be experienced.
+	 @param size	The number of samples to generate.
+	 @param graph	The audio graph to process to synthesise the audio Buffer.	*/
+	static Buffer synth(const int size, UGen const& graph) throw();
+	
+	/** Synthesise into an exisiting Buffer using a UGen graph. 
+	 Be very careful that none of the UGens in the graph 
+	 are used elsewhere in another context e.g., for real-time use.
+	 This graph must be completely separate from any other graphs otherwise
+	 unusual results may be experienced.
+	 @param graph	The audio graph to process to synthesise the audio Buffer.	*/	
+	void synthInPlace(UGen const& graph) throw();
 	
 	Buffer(const int size, const float* sourceData) throw();
 	Buffer(const int size, const int numChannels, const float** sourceDataArray) throw();
@@ -610,6 +630,24 @@ public:
 	
 	Buffer reverse() const throw();
 	Buffer mix() const throw();
+		
+	/** Process this Buffer to a new Buffer through a UGen graph.
+	 Be very careful that none of the UGens in either the input or graph 
+	 parameters are used elsewhere in another context e.g., for real-time use.
+	 This graph must be completely separate from any other graphs otherwise
+	 unusual results may be experienced.
+	 @param input	An AudioIn UGen which is at the top of the graph.
+	 @param graph	The audio graph to process the audio with input at the top. */
+	Buffer process(UGen const& input, UGen const& graph) const throw();
+	
+	/** Process this Buffer in-place through a UGen graph.
+	 Be very careful that none of the UGens in either the input or graph 
+	 parameters are used elsewhere in another context e.g., for real-time use.
+	 This graph must be completely separate from any other graphs otherwise
+	 unusual results may be experienced.	 
+	 @param input	An AudioIn UGen which is at the top of the graph.
+	 @param graph	The audio graph to process the audio with input at the top. */
+	void processInPlace(UGen const& input, UGen const& graph) throw();
 	
 	/// @} <!-- end Data access and manipulation ------------------------------ -->
 	

@@ -219,7 +219,6 @@ protected:
 	void getInternalChannels(const int channel, UGenInternal** internals) throw();
 	UGenInternal* getInput(const int input, const int channel) throw();
 	
-	
 	const short numInputs_;
 	char rate;
 	const bool ownsInputsPointer:1;

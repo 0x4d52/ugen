@@ -79,7 +79,8 @@ void DecayUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 	if(newDecayTime != currentDecayTime)
 	{
 		float next_b1 = newDecayTime == 0.f ? 0.f : (float)exp(log001 / (newDecayTime * UGen::getSampleRate()));
-		float b1_slope = (next_b1 - b1) * UGen::getSlopeFactor();
+//		float b1_slope = (next_b1 - b1) * UGen::getSlopeFactor();
+		float b1_slope = (next_b1 - b1) / (float)numSamplesToProcess;
 		currentDecayTime = newDecayTime;
 		
 		while(numSamplesToProcess--)
@@ -125,7 +126,8 @@ void DecayUGenInternalK::processBlock(bool& shouldDelete, const unsigned int blo
 	if(newDecayTime != currentDecayTime)
 	{
 		float next_b1 = newDecayTime == 0.f ? 0.f : (float)exp(log001 * krBlockSize / (newDecayTime * UGen::getSampleRate()));
-		float b1_slope = (next_b1 - b1) * UGen::getSlopeFactor() * krBlockSize;
+//		float b1_slope = (next_b1 - b1) * UGen::getSlopeFactor() * krBlockSize;
+		float b1_slope = (next_b1 - b1) * krBlockSize / (float)numSamplesToProcess;
 		currentDecayTime = newDecayTime;
 				
 		while(numSamplesToProcess > 0)
@@ -154,7 +156,8 @@ void DecayUGenInternalK::processBlock(bool& shouldDelete, const unsigned int blo
 			} 
 			else
 			{
-				float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+//				float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+				float valueSlope = (nextValue - value) / (float)UGen::getControlRateBlockSize();
 				
 				while(numSamplesToProcess && numKrSamples)
 				{
@@ -198,7 +201,8 @@ void DecayUGenInternalK::processBlock(bool& shouldDelete, const unsigned int blo
 			} 
 			else
 			{
-				float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+//				float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
+				float valueSlope = (nextValue - value) / (float)UGen::getControlRateBlockSize();
 				
 				while(numSamplesToProcess && numKrSamples)
 				{

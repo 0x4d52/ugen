@@ -133,7 +133,7 @@ void TSpawnUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 				if(numSamples > 0)
 				{
 					// render samples from startSample to startSample+numSample
-					UGen::setBlockSize(numSamples);
+//					UGen::setBlockSize(numSamples);
 					
 					for(int channel = 0; channel < numChannels; channel++)
 					{
@@ -163,7 +163,7 @@ void TSpawnUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 			--numSamplesToProcess;
 		}
 		
-		UGen::setBlockSize(numSamples);
+//		UGen::setBlockSize(numSamples);
 		
 		for(int channel = 0; channel < numChannels; channel++)
 		{
@@ -174,7 +174,7 @@ void TSpawnUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 		mixer.setOutputs(bufferData, numSamples, numChannels);
 		mixer.processBlock(shouldDelete, blockID + startSample, -1);
 		
-		UGen::setBlockSize(blockSize);
+//		UGen::setBlockSize(blockSize);
 		events.removeNulls();
 	}
 }

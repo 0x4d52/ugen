@@ -372,7 +372,12 @@ Buffer Buffer::geom(const int size, const double start, const double grow) throw
 	return newBuffer;
 }
 
-Buffer Buffer::newClear(const int size, const int numChannels, bool zeroData) throw()
+Buffer Buffer::newClear(const int size, const int numChannels) throw()
+{
+	return Buffer(BufferSpec(size, numChannels, true));
+}
+
+Buffer Buffer::withSize(const int size, const int numChannels, bool zeroData) throw()
 {
 	return Buffer(BufferSpec(size, numChannels, zeroData));
 }
@@ -2338,6 +2343,52 @@ Buffer Buffer::blackmanWindow(const int size, const float alpha) throw()
 //	return window;
 //}
 
+Buffer Buffer::synth(const int size, UGen const& graph_) throw()
+{
+	UGen graph = graph_;	
+	ugen_assert(size > 0);
+	
+	int numChannels = graph.getNumChannels();
+	ugen_assert(numChannels > 0);
+	
+	Buffer result = Buffer::withSize(size, numChannels);
+	
+	for(int i = 0; i < numChannels; i++)
+	{
+		graph.setOutput(result.getData(i), size, i);
+	}
+	
+	graph.prepareAndProcessBlock(size, 0, 0);
+	
+	return result;	
+}
+
+void Buffer::synthInPlace(UGen const& graph_) throw()
+{
+	UGen graph = graph_;	
+	
+	int numSamples = size();
+	ugen_assert(numSamples > 0);
+	
+	int numChannels = ugen::min(getNumChannels(), graph.getNumChannels());
+	ugen_assert(numChannels > 0);
+		
+	for(int i = 0; i < numChannels; i++)
+	{
+		graph.setOutput(getData(i), numSamples, i);
+	}
+		
+	graph.prepareAndProcessBlock(numSamples, 0, 0);
+	
+	if(numChannels < getNumChannels())
+	{
+		for(int channel = numChannels; channel < getNumChannels(); channel++)
+		{
+			memcpy(getData(channel), getData(channel % numChannels), sizeof(float) * numSamples);
+		}
+	}	
+}
+
 //Buffer Buffer::normalise() const
 //{
 //	Buffer newBuffer(size_, numChannels_, false);
@@ -2443,6 +2494,58 @@ Buffer Buffer::mix() const throw()
 	return newBuffer;
 }
 
+Buffer Buffer::process(UGen const& input_, UGen const& graph_) const throw()
+{
+	UGen input = input_;
+	UGen graph = graph_;
+	
+	int numSamples = size();
+	ugen_assert(numSamples > 0);
+	
+	int numChannels = ugen::min(getNumChannels(), graph.getNumChannels());
+	ugen_assert(numChannels > 0);
+		
+	Buffer result = Buffer::withSize(numSamples, numChannels);
+		
+	for(int i = 0; i < numChannels; i++)
+	{
+		input.setInput(getData(i), numSamples, i);
+		graph.setOutput(result.getData(i), numSamples, i);
+	}
+	
+	graph.prepareAndProcessBlock(numSamples, 0, 0);
+	
+	return result;
+}
+
+void Buffer::processInPlace(UGen const& input_, UGen const& graph_) throw()
+{
+	UGen input = input_;
+	UGen graph = graph_;
+	
+	int numSamples = size();
+	ugen_assert(numSamples > 0);
+	
+	int numChannels = ugen::min(getNumChannels(), graph.getNumChannels());
+	ugen_assert(numChannels > 0);
+		
+	for(int i = 0; i < numChannels; i++)
+	{
+		input.setInput(getData(i), numSamples, i);
+		graph.setOutput(getData(i), numSamples, i);
+	}
+		
+	graph.prepareAndProcessBlock(numSamples, 0, 0);	
+	
+	if(numChannels < getNumChannels())
+	{
+		for(int channel = numChannels; channel < getNumChannels(); channel++)
+		{
+			memcpy(getData(channel), getData(channel % numChannels), sizeof(float) * numSamples);
+		}
+	}		
+}
+
 Buffer Buffer::operator- () const throw()
 {	
 	Buffer newBuffer(BufferSpec(size_, numChannels_, false));
@@ -2460,12 +2563,6 @@ Buffer Buffer::operator- () const throw()
 	
 	return newBuffer;
 }
-
-//Buffer Buffer::tableSine512;
-//Buffer Buffer::tableSine8192;
-//Buffer Buffer::tableCosine512;
-//Buffer Buffer::tableCosine8192;
-//Buffer Buffer::tableConstantPan512;
 
 const Buffer& Buffer::getTableSine512() throw()
 {

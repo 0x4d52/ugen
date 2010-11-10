@@ -209,7 +209,7 @@ class UGenArray;
 class ExternalControlSource;
 class MultiSlider;
 class Env;
-
+class RawInputUGenInternal;
 
 /**	The UGen class!
 
@@ -942,33 +942,16 @@ public:
 	/** Get the current estimated block size. @return The current estimated block size. */
 	inline static int				getEstimatedBlockSize() throw()				{ return estimatedSamplesPerBlock_;										}
 	
-	/** Get the current actual block size. @return The current actual block size. */
-	inline static int				getBlockSize() throw()						{ return blockSize;														}
+//	/** Get the current actual block size. @return The current actual block size. */
+//	inline static int				getBlockSize() throw()						{ return blockSize;														}
 	
-	static void setBlockSize(const int newSize) throw();
-	
-//	/** Get the current value of "filter loops".
-//	 
-//	 This is used for "unrolling" 2nd order filters. It is equal to the (block size) / 3.
-//	 
-//	 @returns (block size) / 3
-//	 */
-//	inline static int				getFilterLoops() throw()					{ return filterLoops;													}
-//	inline static double			getReciprocalFilterLoops() throw()			{ return reciprocalFilterLoops;											}
+//	static void setBlockSize(const int newSize) throw();
+		
+//	/** Get the current slope factor i.e., 1.0 / (block size). @return 1.0 / (block size). */
+//	inline static double			getSlopeFactor() throw()					{ return slopeFactor;													}
 //	
-//	/** Get the current vaue of "filter remain".
-//	 
-//	 This is used for "unrolling" 2nd order filters. It is equal to the (block size) % 3.
-//	 
-//	 @returns (block size) % 3
-//	 */
-//	inline static int				getFilterRemain() throw()					{ return filterRemain;													}
-	
-	/** Get the current slope factor i.e., 1.0 / (block size). @return 1.0 / (block size). */
-	inline static double			getSlopeFactor() throw()					{ return slopeFactor;													}
-	
-	/** Get the current control rate slope factor i.e., 1.0 / (control rate block size). @return 1.0 / (control rate block size). */
-	inline static double			getControlSlopeFactor() throw()				{ return controlSlopeFactor;											}
+//	/** Get the current control rate slope factor i.e., 1.0 / (control rate block size). @return 1.0 / (control rate block size). */
+//	inline static double			getControlSlopeFactor() throw()				{ return controlSlopeFactor;											}
 	
 	/** Get a null internal. @return A null internal. */
 	inline static UGenInternal*		getNullInternal() throw()					{ return getNull().getInternalUGen(0);									}
@@ -1279,14 +1262,11 @@ protected:
 											// a unsigned 64-bit int would be enough for nearly 5 billion days (or over 13 centuries)
 	static double sampleRate_;
 	static double reciprocalSampleRate;
-	static double slopeFactor;
-	static double controlSlopeFactor;
+//	static double slopeFactor;
+//	static double controlSlopeFactor;
 	static int estimatedSamplesPerBlock_;
 	static int controlRateBlockSize;
-	static int blockSize;
-//	static int filterLoops;
-//	static int filterRemain;
-//	static double reciprocalFilterLoops;
+//	static int blockSize;
 	static bool isInitialised;
 	static Deleter defaultDeleter;
 	static Deleter* internalUGenDeleter;

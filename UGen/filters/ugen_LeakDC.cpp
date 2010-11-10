@@ -76,7 +76,8 @@ void LeakDCUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 	
 	if(newb1 != b1)
 	{
-		float b1_slope = (newb1 - b1) * UGen::getSlopeFactor();
+//		float b1_slope = (newb1 - b1) * UGen::getSlopeFactor();
+		float b1_slope = (newb1 - b1) / (float)numSamplesToProcess;
 		
 		while(numSamplesToProcess--)
 		{
@@ -122,7 +123,8 @@ void LeakDCUGenInternalK::processBlock(bool& shouldDelete, const unsigned int bl
 	
 	if(newb1 != b1)
 	{
-		float b1_slope = (newb1 - b1) * UGen::getSlopeFactor() * krBlockSize;
+//		float b1_slope = (newb1 - b1) * UGen::getSlopeFactor() * krBlockSize;
+		float b1_slope = (newb1 - b1) * krBlockSize / (float)numSamplesToProcess;
 						
 		while(numSamplesToProcess > 0)
 		{
