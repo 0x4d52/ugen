@@ -157,6 +157,7 @@ UGenSublcassDeclaration(RecordBuf, (input, buffer, recLevel, preLevel, loop, don
 						 const UGen::DoneAction doneAction = UGen::DeleteWhenDone), COMMON_UGEN_DOCS);
 
 
+#if 0
 
 class LoopPointsUGenInternal : public UGenInternal
 {
@@ -191,5 +192,6 @@ UGenSublcassDeclaration(LoopPoints,
 						 bool startAtZero = false), 
 						COMMON_UGEN_DOCS);
 
+#endif //0
 
 #endif // _UGEN_ugen_PlayBuf_H_

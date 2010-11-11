@@ -2389,6 +2389,14 @@ void Buffer::synthInPlace(UGen const& graph_) throw()
 	}	
 }
 
+void Buffer::synthAndSend(const int size, UGen const& graph, BufferReceiver* receiver, const int bufferID) throw()
+{
+	ugen_assert(receiver != 0);
+	
+	Buffer result = synth(size, graph);
+	receiver->handleBuffer(result, 0.0, bufferID);	
+}
+
 //Buffer Buffer::normalise() const
 //{
 //	Buffer newBuffer(size_, numChannels_, false);
@@ -2546,6 +2554,14 @@ void Buffer::processInPlace(UGen const& input_, UGen const& graph_) throw()
 	}		
 }
 
+void Buffer::processAndSend(UGen const& input, UGen const& graph, BufferReceiver* receiver, const int bufferID) const throw()
+{
+	ugen_assert(receiver != 0);
+	
+	Buffer result = process(input, graph);
+	receiver->handleBuffer(result, 0.0, bufferID);
+}
+
 Buffer Buffer::operator- () const throw()
 {	
 	Buffer newBuffer(BufferSpec(size_, numChannels_, false));
@@ -2627,7 +2643,6 @@ ComplexBuffer::ComplexBuffer(const int size, const float* realSource, const floa
 ComplexBuffer::ComplexBuffer(Buffer const& realBuffer) throw()
 :	Buffer(BufferSpec(realBuffer.size(), 2, false))
 {
-	//const float* sourceSamples = realBuffer.getDataReadOnly(0); // ignore other channels
 	const float* sourceSamples = realBuffer.getData(0); // ignore other channels
 	
 	float* realSamples = getDataReal();

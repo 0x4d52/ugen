@@ -107,6 +107,7 @@ private:
 class Value;
 class ValueArray;
 class UGen;
+class BufferReceiver;
 
 /**
  Buffer stores one or more arrays of floats.
@@ -250,6 +251,16 @@ public:
 	 unusual results may be experienced.
 	 @param graph	The audio graph to process to synthesise the audio Buffer.	*/	
 	void synthInPlace(UGen const& graph) throw();
+	
+	/** Process this Buffer and send it to a BufferReceiver.
+	 This would be useful when run on a backgrond thread especially if the 
+	 Buffer is large, since the processsing may take some time.
+	 @param size		The number of samples to generate.
+	 @param graph		The audio graph to process to synthesise the audio Buffer.
+	 @param receiver	The BufferReceiver to recevie the Buffer when it's done.
+	 @param bufferID	A number to pass to the third argument of handleBuffer() when the Buffer is sent. */
+	static void synthAndSend(const int size, UGen const& graph, BufferReceiver* receiver, const int bufferID = 0) throw();
+	
 	
 	Buffer(const int size, const float* sourceData) throw();
 	Buffer(const int size, const int numChannels, const float** sourceDataArray) throw();
@@ -636,6 +647,12 @@ public:
 	 parameters are used elsewhere in another context e.g., for real-time use.
 	 This graph must be completely separate from any other graphs otherwise
 	 unusual results may be experienced.
+	 @code
+		Buffer sound("test.wav");
+		UGen audioin = AudioIn::AR(sound.getNumChannels());
+		UGen filter = BLowPass::AR(audioin, 1000, 1);
+		Buffer filteredBuffer = sound.process(audioin, filter);
+	 @endcode
 	 @param input	An AudioIn UGen which is at the top of the graph.
 	 @param graph	The audio graph to process the audio with input at the top. */
 	Buffer process(UGen const& input, UGen const& graph) const throw();
@@ -645,9 +662,24 @@ public:
 	 parameters are used elsewhere in another context e.g., for real-time use.
 	 This graph must be completely separate from any other graphs otherwise
 	 unusual results may be experienced.	 
+	 @code
+		Buffer sound("test.wav");
+		UGen audioin = AudioIn::AR(sound.getNumChannels());
+		UGen filter = BLowPass::AR(audioin, 1000, 1);
+		sound.processInPlace(audioin, filter);
+	 @endcode	 
 	 @param input	An AudioIn UGen which is at the top of the graph.
 	 @param graph	The audio graph to process the audio with input at the top. */
 	void processInPlace(UGen const& input, UGen const& graph) throw();
+		
+	/** Process this Buffer and send it to a BufferReceiver.
+	 This would be useful when run on a backgrond thread especially if the 
+	 Buffer is large, since the processsing may take some time.
+	 @param input		An AudioIn UGen which is at the top of the graph.
+	 @param graph		The audio graph to process the audio with input at the top. 
+	 @param receiver	The BufferReceiver to recevie the Buffer when it's done.
+	 @param bufferID	A number to pass to the third argument of handleBuffer() when the Buffer is sent. */
+	void processAndSend(UGen const& input, UGen const& graph, BufferReceiver* receiver, const int bufferID = 0) const throw();
 	
 	/// @} <!-- end Data access and manipulation ------------------------------ -->
 	
