@@ -41,6 +41,7 @@
 BEGIN_UGEN_NAMESPACE
 
 #include "ugen_JuceUtility.h"
+#include "../core/ugen_UGen.h"
 
 PopupComponent::PopupComponent(const int max) 
 :	maxCount(max) 
@@ -93,6 +94,91 @@ void PopupComponent::expire()
 }
 
 int PopupComponent::activePopups = 0;
+
+
+
+BufferProcess::BufferProcess() throw()
+:	Thread("BufferProcess")
+{
+	startThread();
+}
+
+BufferProcess::~BufferProcess()
+{
+	stopThread(4000);
+}
+
+void BufferProcess::add(Buffer const& buffer, UGen const& input, UGen const& graph, const int bufferID) throw()
+{
+	ugen_assert(buffer.size() > 0);
+	ugen_assert(buffer.getNumChannels() > 0);
+	ugen_assert(input.getNumChannels() > 0);
+	ugen_assert(graph.getNumChannels() > 0);
+	
+	const ScopedLock sl(lock);
+	
+	buffers.add(buffer);
+	inputs.add(input);
+	graphs.add(graph);
+	ids.add(bufferID);
+}
+
+void BufferProcess::add(const int size, UGen const& graph, const int bufferID) throw()
+{
+	ugen_assert(size > 0);
+	ugen_assert(graph.getNumChannels() > 0);
+	
+	const ScopedLock sl(lock);
+	
+	buffers.add(Buffer::withSize(size, graph.getNumChannels(), false));
+	inputs.add(UGen::getNull());
+	graphs.add(graph);
+	ids.add(bufferID);
+}
+
+
+void BufferProcess::run() throw()
+{
+	while(threadShouldExit() == false)
+	{
+		Thread::yield();
+		
+		const ScopedLock sl(lock);
+		
+		int count = buffers.length();
+		bool needClear = false;
+		
+		for(int i = 0; i < count; i++)
+		{
+			if(threadShouldExit() == true) break;
+			
+			needClear = true;
+			
+			Buffer buffer = buffers[i];
+			
+			if(inputs[i].isNull())
+			{
+				buffer.synthInPlace(graphs[i]);
+				sendBuffer(buffer, 0.0, ids[i]);
+			}
+			else
+			{
+				Buffer result = buffer.process(inputs[i], graphs[i]);
+				sendBuffer(result, 0.0, ids[i]);
+			}
+		}
+		
+		if(needClear)
+		{
+			buffers = ObjectArray<Buffer>();
+			inputs = ObjectArray<UGen>();
+			graphs = ObjectArray<UGen>();
+			ids = IntArray();
+		}
+	}
+}
+
+
 
 END_UGEN_NAMESPACE
 

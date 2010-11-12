@@ -37,6 +37,8 @@
 #ifndef _UGEN_ugen_JuceUtility_H_
 #define _UGEN_ugen_JuceUtility_H_
 
+#include "../buffers/ugen_Buffer.h"
+
 /** Get a string which is useful as a time identifier.
  @return The time string. */
 inline String getCurrentTimeIdentifier() throw()
@@ -74,6 +76,39 @@ protected:
 	void timerCallback();
 	void expire();
 };
+
+/** Manages Buffer processing on a background thread. */
+class BufferProcess :	public Thread,
+						public BufferSender
+{
+public:
+	BufferProcess() throw();
+	~BufferProcess();
+	
+	/** Adds a Buffer process to the job array.
+	 This processes @c buffer through @c graph (where @c input is at the top) and sends the
+	 result to registered BufferReceiver objects using @c bufferID as an ID 
+	 (which is passed to the third argument of the handleBuffer() callbacks). 
+	 @see Buffer::process(), Buffer::processInPlace() */
+	void add(Buffer const& buffer, UGen const& input, UGen const& graph, const int bufferID = 0) throw();
+	
+	/** Adds a Buffer synthesiser to the job array.
+	 This processes @c graph for @c size samples and sends the
+	 result to registered BufferReceiver objects using @c bufferID as an ID 
+	 (which is passed to the third argument of the handleBuffer() callbacks). 
+	 @see Buffer::synth(), Buffer::synthInPlace() */	
+	void add(const int size, UGen const& graph, const int bufferID = 0) throw();
+	
+	
+private:	
+	void run() throw();
+	ObjectArray<Buffer> buffers;
+	ObjectArray<UGen> inputs;
+	ObjectArray<UGen> graphs;
+	IntArray ids;
+	CriticalSection lock;
+};
+
 
 
 #endif // _UGEN_ugen_JuceUtility_H_
