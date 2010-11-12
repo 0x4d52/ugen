@@ -38,6 +38,7 @@
 #define _UGEN_ugen_IntBuffer_H_
 
 /** Not currently used. */
+/*
 class IntBuffer
 {
 public:
@@ -84,5 +85,5 @@ private:
 	int data[32];
 	unsigned int size_;
 };
-
+*/
 #endif // _UGEN_ugen_IntBuffer_H_
