@@ -80,31 +80,31 @@
 <a name="l00048"></a>00048 
 <a name="l00049"></a>00049 <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">const</span> String timeToTimecodeString (<span class="keyword">const</span> <span class="keywordtype">double</span> seconds)
 <a name="l00050"></a>00050 {
-<a name="l00051"></a>00051     <span class="keyword">const</span> <span class="keywordtype">double</span> absSecs = fabs (seconds);
+<a name="l00051"></a>00051     <span class="keyword">const</span> <span class="keywordtype">double</span> absSecs = <a class="code" href="ugen___play_buf_8ii.html#a1354b6667fe971c1d7bf28dcef770265">fabs</a> (seconds);
 <a name="l00052"></a>00052     <span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keyword">const</span> <a class="code" href="ugen___inline_unary_ops_8h.html#a61e5145bbc7aa0f76c074b4e9e91e06b">sign</a> = (seconds &lt; 0) ? <span class="stringliteral">&quot;-&quot;</span> : <span class="stringliteral">&quot;&quot;</span>;
 <a name="l00053"></a>00053  
 <a name="l00054"></a>00054     <span class="keyword">const</span> <span class="keywordtype">int</span> hours = (int) (absSecs / (60.0 * 60.0));
 <a name="l00055"></a>00055     <span class="keyword">const</span> <span class="keywordtype">int</span> mins  = ((int) (absSecs / 60.0)) % 60;
 <a name="l00056"></a>00056     <span class="keyword">const</span> <span class="keywordtype">int</span> secs  = ((int) absSecs) % 60;
-<a name="l00057"></a>00057  <span class="keyword">const</span> <span class="keywordtype">int</span> ms = roundDoubleToInt (absSecs * 1000) % 1000;
+<a name="l00057"></a>00057  <span class="keyword">const</span> <span class="keywordtype">int</span> ms = <a class="code" href="namespacejuce.html#a5e6be9343d810f2c41664f73f5e82a38">roundDoubleToInt</a> (absSecs * 1000) % 1000;
 <a name="l00058"></a>00058  
 <a name="l00059"></a>00059  <span class="keyword">const</span> <span class="keywordtype">int</span> size = 128;
-<a name="l00060"></a>00060  <span class="keywordtype">char</span> buf[size];
+<a name="l00060"></a>00060  <span class="keywordtype">char</span> <a class="code" href="ugen___play_buf_8ii.html#afd5893abcfbb48f4c058252de505c7fe">buf</a>[size];
 <a name="l00061"></a>00061  
 <a name="l00062"></a>00062  <span class="keywordflow">if</span>(hours == 0)
 <a name="l00063"></a>00063  {
 <a name="l00064"></a>00064   <span class="keywordflow">if</span>(mins == 0)
 <a name="l00065"></a>00065   {
-<a name="l00066"></a>00066    snprintf(buf, size, <span class="stringliteral">&quot;%s%01d.%03d&quot;</span>, sign, secs, ms);   
+<a name="l00066"></a>00066    <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(buf, size, <span class="stringliteral">&quot;%s%01d.%03d&quot;</span>, sign, secs, ms);   
 <a name="l00067"></a>00067   }
 <a name="l00068"></a>00068   <span class="keywordflow">else</span>
 <a name="l00069"></a>00069   {
-<a name="l00070"></a>00070    snprintf(buf, size, <span class="stringliteral">&quot;%s%01d:%02d.%03d&quot;</span>, sign, mins, secs, ms);   
+<a name="l00070"></a>00070    <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(buf, size, <span class="stringliteral">&quot;%s%01d:%02d.%03d&quot;</span>, sign, mins, secs, ms);   
 <a name="l00071"></a>00071   }
 <a name="l00072"></a>00072  }
 <a name="l00073"></a>00073  <span class="keywordflow">else</span>
 <a name="l00074"></a>00074  {
-<a name="l00075"></a>00075   snprintf(buf, size, <span class="stringliteral">&quot;%s%01d:%02d:%02d.%03d&quot;</span>, sign, hours, mins, secs, ms);
+<a name="l00075"></a>00075   <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(buf, size, <span class="stringliteral">&quot;%s%01d:%02d:%02d.%03d&quot;</span>, sign, hours, mins, secs, ms);
 <a name="l00076"></a>00076  }
 <a name="l00077"></a>00077  
 <a name="l00078"></a>00078  <span class="keywordflow">return</span> String(buf);
@@ -161,7 +161,7 @@
 <a name="l00129"></a>00129 {
 <a name="l00130"></a>00130 }
 <a name="l00131"></a>00131 
-<a name="l00132"></a>00132 <span class="keywordtype">void</span> <a class="code" href="class_scope_component.html#a565e4f84bb1bcc72e25b94179a0480c3">ScopeComponent::paint</a>(Graphics&amp; g)
+<a name="l00132"></a>00132 <span class="keywordtype">void</span> <a class="code" href="class_scope_component.html#a565e4f84bb1bcc72e25b94179a0480c3">ScopeComponent::paint</a>(Graphics&amp; <a class="code" href="ugen___play_buf_8ii.html#a3db823ffd65d26adcfb5687f02f9e7bd">g</a>)
 <a name="l00133"></a>00133 { 
 <a name="l00134"></a>00134  g.setColour(Colour(<a class="code" href="class_scope_g_u_i.html#a42b6db50103320027f8218f75d502054">colours</a>[<a class="code" href="class_scope_g_u_i.html#a63bdb7e1d850e13113594db7c37059b4a57288538c9303b2645ad8434de4c3982">Background</a>].get32bitColour()));
 <a name="l00135"></a>00135  g.fillRect(0, 0, getWidth(), getHeight());
@@ -447,7 +447,7 @@
 <a name="l00415"></a>00415  }
 <a name="l00416"></a>00416 }
 <a name="l00417"></a>00417 
-<a name="l00418"></a>00418 <span class="keywordtype">void</span> <a class="code" href="class_scope_component.html#ade3277949dac2565ffca3916d344aa96">ScopeComponent::paintChannelLabel</a>(Graphics&amp; g, <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <span class="keyword">const</span>&amp; label, <span class="keyword">const</span> <span class="keywordtype">int</span> index, <span class="keyword">const</span> <span class="keywordtype">int</span> top)
+<a name="l00418"></a>00418 <span class="keywordtype">void</span> <a class="code" href="class_scope_component.html#ade3277949dac2565ffca3916d344aa96">ScopeComponent::paintChannelLabel</a>(Graphics&amp; g, <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <span class="keyword">const</span>&amp; label, <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a>, <span class="keyword">const</span> <span class="keywordtype">int</span> top)
 <a name="l00419"></a>00419 {
 <a name="l00420"></a>00420  <span class="keywordflow">if</span>(<a class="code" href="class_scope_g_u_i.html#a03fd48195aaeb8d277959326892603dd">labelChannels</a>)
 <a name="l00421"></a>00421  {
@@ -456,24 +456,24 @@
 <a name="l00424"></a>00424   
 <a name="l00425"></a>00425   <span class="keywordflow">if</span>(label.<a class="code" href="class_object_array.html#a6eb3d6ad48798a021d3dc9f23e9c5260" title="Length is the number of real elements of storage available.">length</a>() == 0)
 <a name="l00426"></a>00426   {
-<a name="l00427"></a>00427    snprintf(labelToPaint, size, <span class="stringliteral">&quot;Ch%d&quot;</span>, index + <a class="code" href="class_scope_g_u_i.html#ab4d677886bd9a3495d552a32b7b3e02f">channelLabelOffset</a>);
+<a name="l00427"></a>00427    <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(labelToPaint, size, <span class="stringliteral">&quot;Ch%d&quot;</span>, index + <a class="code" href="class_scope_g_u_i.html#ab4d677886bd9a3495d552a32b7b3e02f">channelLabelOffset</a>);
 <a name="l00428"></a>00428   }
 <a name="l00429"></a>00429   <span class="keywordflow">else</span>
 <a name="l00430"></a>00430   {
-<a name="l00431"></a>00431    snprintf(labelToPaint, size, (<span class="keyword">const</span> <span class="keywordtype">char</span>*)label, index + <a class="code" href="class_scope_g_u_i.html#ab4d677886bd9a3495d552a32b7b3e02f">channelLabelOffset</a>);
+<a name="l00431"></a>00431    <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(labelToPaint, size, (<span class="keyword">const</span> <span class="keywordtype">char</span>*)label, index + <a class="code" href="class_scope_g_u_i.html#ab4d677886bd9a3495d552a32b7b3e02f">channelLabelOffset</a>);
 <a name="l00432"></a>00432   }
 <a name="l00433"></a>00433   
 <a name="l00434"></a>00434   g.setFont(<a class="code" href="class_scope_g_u_i.html#a88669f7f49fd34ec10af92598dc1550d">textSizeChannel</a>);
 <a name="l00435"></a>00435   g.setColour(Colour(<a class="code" href="class_scope_g_u_i.html#a42b6db50103320027f8218f75d502054">colours</a>[<a class="code" href="class_scope_g_u_i.html#a63bdb7e1d850e13113594db7c37059b4aa5fc7caa5b34ef4e98db85a15003d6ae">TextChannel</a>].get32bitColour()));
 <a name="l00436"></a>00436   
-<a name="l00437"></a>00437   <span class="keyword">const</span> <span class="keywordtype">int</span> left = <a class="code" href="class_scope_g_u_i.html#a8824195d2917b13a80d734fc53a95142">scaleY</a> == <a class="code" href="class_scope_g_u_i.html#a96164b3a354c89827031c16c5c9f3d8aa322b24cf2a6da9f164fefa139da7d9e9" title="No labelling of the y axis.">ScopeGUI::LabelYNone</a> ? 3 : <a class="code" href="class_scope_g_u_i.html#a401ddeb6200c2eadb87556d32358a911">markYWidth</a> * 1.5 + 3;
+<a name="l00437"></a>00437   <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="namespacestd.html#a96d1c2cab30f14f4e34ccb460f1ad1c9">left</a> = <a class="code" href="class_scope_g_u_i.html#a8824195d2917b13a80d734fc53a95142">scaleY</a> == <a class="code" href="class_scope_g_u_i.html#a96164b3a354c89827031c16c5c9f3d8aa322b24cf2a6da9f164fefa139da7d9e9" title="No labelling of the y axis.">ScopeGUI::LabelYNone</a> ? 3 : <a class="code" href="class_scope_g_u_i.html#a401ddeb6200c2eadb87556d32358a911">markYWidth</a> * 1.5 + 3;
 <a name="l00438"></a>00438   
 <a name="l00439"></a>00439   g.drawText(labelToPaint, 
 <a name="l00440"></a>00440        left, 
 <a name="l00441"></a>00441        top + 3, 
 <a name="l00442"></a>00442        getWidth() - left - 3, 
 <a name="l00443"></a>00443        <a class="code" href="class_scope_g_u_i.html#a88669f7f49fd34ec10af92598dc1550d">textSizeChannel</a>, 
-<a name="l00444"></a>00444        Justification::right, 
+<a name="l00444"></a>00444        <a class="code" href="namespacestd.html#a1a23b13efe06ee9b3cd9324af25ab538">Justification::right</a>, 
 <a name="l00445"></a>00445        <span class="keyword">false</span>);
 <a name="l00446"></a>00446  }
 <a name="l00447"></a>00447 }
@@ -539,7 +539,7 @@
 <a name="l00507"></a>00507    <span class="keywordtype">float</span> oldMinimum = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#acb0d2d9159eff0b1d0fe99ae10257de0" title="Global function for the UGen::clip2() binary operator.">clip2</a>(<a class="code" href="class_scope_g_u_i.html#a040f3aa4ef308dc320a73d4b5a174bb5">minDrawBuffer</a>.<a class="code" href="class_buffer.html#af596972ab9cbbb63713a4d9ec2979935">wrapAt</a>(channel, 0 + wrapOffset), <a class="code" href="class_scope_g_u_i.html#ab32174e466eca5192052dfc625b1fabc">yMaximum</a>) * halfChannelHeightOverYMaximum - 0.5f;
 <a name="l00508"></a>00508    <span class="keywordtype">float</span> oldMaximum = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#acb0d2d9159eff0b1d0fe99ae10257de0" title="Global function for the UGen::clip2() binary operator.">clip2</a>(<a class="code" href="class_scope_g_u_i.html#a3d7692c02a7e1463f125795d2fed672b">maxDrawBuffer</a>.<a class="code" href="class_buffer.html#af596972ab9cbbb63713a4d9ec2979935">wrapAt</a>(channel, 0 + wrapOffset), <a class="code" href="class_scope_g_u_i.html#ab32174e466eca5192052dfc625b1fabc">yMaximum</a>) * halfChannelHeightOverYMaximum + 0.5f;
 <a name="l00509"></a>00509    
-<a name="l00510"></a>00510    <span class="keyword">const</span> <span class="keywordtype">double</span> delta = <a class="code" href="class_radial_scope_component.html#a653b7f488adbe2b37b873f2907afeed1">getDelta</a>() * <a class="code" href="class_radial_scope_component.html#a1fa040d5dd522a23294b2e73c78c17f0">sine</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>();
+<a name="l00510"></a>00510    <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="ugen___play_buf_8ii.html#af12056bc2a8e3ec563f0940d87abbd2e">delta</a> = <a class="code" href="class_radial_scope_component.html#a653b7f488adbe2b37b873f2907afeed1">getDelta</a>() * <a class="code" href="class_radial_scope_component.html#a1fa040d5dd522a23294b2e73c78c17f0">sine</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>();
 <a name="l00511"></a>00511    <span class="keywordtype">double</span> position = delta;
 <a name="l00512"></a>00512    
 <a name="l00513"></a>00513    <span class="comment">// first scope line</span>
@@ -680,7 +680,7 @@
 <a name="l00648"></a>00648      g.setColour(Colour(<a class="code" href="class_scope_g_u_i.html#a42b6db50103320027f8218f75d502054">colours</a>[<a class="code" href="class_scope_g_u_i.html#a63bdb7e1d850e13113594db7c37059b4adfd49bb846c6750d94ac420150205380">TextX</a>].get32bitColour()));    
 <a name="l00649"></a>00649      <span class="keyword">const</span> <span class="keywordtype">double</span> rotation = -<a class="code" href="ugen___constants_8h.html#ab0bf38bc19b14ba80f346e7b22ddec9f">piOverTwo</a>+angle;
 <a name="l00650"></a>00650      <span class="comment">//if(angle &gt; pi) rotation += pi;</span>
-<a name="l00651"></a>00651      AffineTransform transform = AffineTransform::identity.rotated(rotation).translated(centreX+endX*1.01, centreY-endY*1.01);
+<a name="l00651"></a>00651      AffineTransform <a class="code" href="namespacestd.html#a4a34c97cdb7d4be438709c80ad99d4d8">transform</a> = AffineTransform::identity.rotated(rotation).translated(centreX+endX*1.01, centreY-endY*1.01);
 <a name="l00652"></a>00652      g.drawTextAsPath(label, transform);
 <a name="l00653"></a>00653      g.setColour(Colour(<a class="code" href="class_scope_g_u_i.html#a42b6db50103320027f8218f75d502054">colours</a>[<a class="code" href="class_scope_g_u_i.html#a63bdb7e1d850e13113594db7c37059b4a110c235af3ec823ba07215bffd2e79b8">LabelMarks</a>].get32bitColour()));
 <a name="l00654"></a>00654     }
@@ -726,7 +726,7 @@
 <a name="l00694"></a>00694 
 <a name="l00695"></a>00695 <span class="keywordtype">int</span> <a class="code" href="class_radial_scope_component.html#a7650aa91350c89eb81847e66aba1f25f">RadialScopeComponent::getRadius</a>() <span class="keyword">const</span> throw()
 <a name="l00696"></a>00696 {
-<a name="l00697"></a>00697  <span class="keywordflow">return</span> jmin(getWidth(), getHeight()) / 2;
+<a name="l00697"></a>00697  <span class="keywordflow">return</span> <a class="code" href="namespacejuce.html#a8376c7c1cf78e56ce17eb98000101d8f">jmin</a>(getWidth(), getHeight()) / 2;
 <a name="l00698"></a>00698 }
 <a name="l00699"></a>00699 
 <a name="l00700"></a>00700 <span class="keywordtype">int</span> <a class="code" href="class_radial_scope_component.html#abdbf4b89252195a05ab90267ea21abba">RadialScopeComponent::getCentreX</a>() <span class="keyword">const</span> throw()
@@ -748,7 +748,7 @@
 <a name="l00716"></a>00716 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:38 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:31 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -75,7 +75,7 @@
 <a name="l00043"></a>00043 <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_neural_network_simple_internal.html#a9ad03a4bf832a28818847acecee31a04">NeuralNetworkSimpleInternal::defaultLearnRate</a> = 0.25;
 <a name="l00044"></a>00044 <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_neural_network_simple_internal.html#a90248a8a6f2c15fef8240dcc5d852f59">NeuralNetworkSimpleInternal::defaultActFuncOffset</a> = 0.01;
 <a name="l00045"></a>00045 
-<a name="l00046"></a><a class="code" href="class_neural_network_simple_internal.html#acbfe65b4bd84cdc84294fcccab86ace4">00046</a> <a class="code" href="class_neural_network_simple_internal.html#acbfe65b4bd84cdc84294fcccab86ace4">NeuralNetworkSimpleInternal::NeuralNetworkSimpleInternal</a>(<a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">IntArray</a> <span class="keyword">const</span>&amp; numNodes, 
+<a name="l00046"></a><a class="code" href="class_neural_network_simple_internal.html#acbfe65b4bd84cdc84294fcccab86ace4">00046</a> <a class="code" href="class_neural_network_simple_internal.html#acbfe65b4bd84cdc84294fcccab86ace4">NeuralNetworkSimpleInternal::NeuralNetworkSimpleInternal</a>(<a class="code" href="class_numerical_array.html">IntArray</a> <span class="keyword">const</span>&amp; numNodes, 
 <a name="l00047"></a>00047                <span class="keyword">const</span> <span class="keywordtype">float</span> _learnRate, 
 <a name="l00048"></a>00048                <span class="keyword">const</span> <span class="keywordtype">float</span> _actFuncOffset) <span class="keywordflow">throw</span>()
 <a name="l00049"></a>00049 : learnRate(_learnRate),
@@ -124,9 +124,9 @@
 <a name="l00092"></a>00092  errorVector = <a class="code" href="class_numerical_array.html#ada7cd40ff1de921243a1ba6d0a73fe5d">NumericalArray&lt;float&gt;::withSize</a>(numOutputs);
 <a name="l00093"></a>00093 }
 <a name="l00094"></a>00094 
-<a name="l00095"></a><a class="code" href="class_neural_network_simple_internal.html#a71c809c0179ccdb12dc9acec6a55c94f">00095</a> <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">IntArray</a> <a class="code" href="class_neural_network_simple_internal.html#a71c809c0179ccdb12dc9acec6a55c94f">NeuralNetworkSimpleInternal::getStructure</a>() <span class="keyword">const</span> throw()
+<a name="l00095"></a><a class="code" href="class_neural_network_simple_internal.html#a71c809c0179ccdb12dc9acec6a55c94f">00095</a> <a class="code" href="class_numerical_array.html">IntArray</a> <a class="code" href="class_neural_network_simple_internal.html#a71c809c0179ccdb12dc9acec6a55c94f">NeuralNetworkSimpleInternal::getStructure</a>() <span class="keyword">const</span> throw()
 <a name="l00096"></a>00096 {
-<a name="l00097"></a>00097  <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">IntArray</a> structure = <a class="code" href="class_numerical_array.html#ada7cd40ff1de921243a1ba6d0a73fe5d">IntArray::withSize</a>(<a class="code" href="class_neural_network_simple_internal.html#a396d7235316d71c4daffa1d976f340fd">getNumLayersIncludingInput</a>(), <span class="keyword">false</span>);
+<a name="l00097"></a>00097  <a class="code" href="class_numerical_array.html">IntArray</a> structure = <a class="code" href="class_numerical_array.html#ada7cd40ff1de921243a1ba6d0a73fe5d">IntArray::withSize</a>(<a class="code" href="class_neural_network_simple_internal.html#a396d7235316d71c4daffa1d976f340fd">getNumLayersIncludingInput</a>(), <span class="keyword">false</span>);
 <a name="l00098"></a>00098  
 <a name="l00099"></a>00099  structure[0] = <a class="code" href="class_neural_network_simple_internal.html#a1f1b79091d2d115b0aebd8470c124443">getNumInputs</a>();
 <a name="l00100"></a>00100  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 1; i &lt; structure.<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>(); i++)
@@ -190,25 +190,25 @@
 <a name="l00158"></a>00158 {
 <a name="l00159"></a>00159  <span class="keyword">const</span> <span class="keywordtype">int</span> intFieldWidth = 4;
 <a name="l00160"></a>00160  <span class="keyword">const</span> <span class="keywordtype">int</span> size = 128;
-<a name="l00161"></a>00161  <span class="keywordtype">char</span> buf[size];
+<a name="l00161"></a>00161  <span class="keywordtype">char</span> <a class="code" href="ugen___play_buf_8ii.html#afd5893abcfbb48f4c058252de505c7fe">buf</a>[size];
 <a name="l00162"></a>00162  
 <a name="l00163"></a>00163  <a class="code" href="class_text_file_writer.html">TextFileWriter</a> file = _file;
 <a name="l00164"></a>00164  
 <a name="l00165"></a>00165  file.<a class="code" href="class_text_file_writer.html#ae7977b5433f3cfc897343131d3edaea4">write</a>(<span class="stringliteral">&quot;NeuralNetworkSimple:v1\n&quot;</span>);
 <a name="l00166"></a>00166  
-<a name="l00167"></a>00167  snprintf(buf, size, <span class="stringliteral">&quot;learnRate: %f actFuncOffset: %f\n&quot;</span>, getLearnRate(), getActFuncOffset());
+<a name="l00167"></a>00167  <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(buf, size, <span class="stringliteral">&quot;learnRate: %f actFuncOffset: %f\n&quot;</span>, getLearnRate(), getActFuncOffset());
 <a name="l00168"></a>00168  file.<a class="code" href="class_text_file_writer.html#ae7977b5433f3cfc897343131d3edaea4">write</a>(buf);
 <a name="l00169"></a>00169  
-<a name="l00170"></a>00170  snprintf(buf, size, <span class="stringliteral">&quot;Layers:%*d\n&quot;</span>, intFieldWidth, getNumLayersIncludingInput());
+<a name="l00170"></a>00170  <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(buf, size, <span class="stringliteral">&quot;Layers:%*d\n&quot;</span>, intFieldWidth, getNumLayersIncludingInput());
 <a name="l00171"></a>00171  file.<a class="code" href="class_text_file_writer.html#ae7977b5433f3cfc897343131d3edaea4">write</a>(buf);
 <a name="l00172"></a>00172  
-<a name="l00173"></a>00173  snprintf(buf, size, <span class="stringliteral">&quot;Layer %*d:%*d\n&quot;</span>, intFieldWidth, 0, 
+<a name="l00173"></a>00173  <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(buf, size, <span class="stringliteral">&quot;Layer %*d:%*d\n&quot;</span>, intFieldWidth, 0, 
 <a name="l00174"></a>00174              intFieldWidth, numInputs);
 <a name="l00175"></a>00175  file.<a class="code" href="class_text_file_writer.html#ae7977b5433f3cfc897343131d3edaea4">write</a>(buf);
 <a name="l00176"></a>00176  
 <a name="l00177"></a>00177  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> layer = 0; layer &lt; getNumLayersExcludingInput(); layer++)
 <a name="l00178"></a>00178  {
-<a name="l00179"></a>00179   snprintf(buf, size, <span class="stringliteral">&quot;Layer %*d:%*d\n&quot;</span>, intFieldWidth, layer+1, 
+<a name="l00179"></a>00179   <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(buf, size, <span class="stringliteral">&quot;Layer %*d:%*d\n&quot;</span>, intFieldWidth, layer+1, 
 <a name="l00180"></a>00180               intFieldWidth, getNumNodesOnLayer(layer));
 <a name="l00181"></a>00181   file.<a class="code" href="class_text_file_writer.html#ae7977b5433f3cfc897343131d3edaea4">write</a>(buf);
 <a name="l00182"></a>00182  }
@@ -222,7 +222,7 @@
 <a name="l00190"></a>00190    <span class="keywordtype">float</span> threshold;
 <a name="l00191"></a>00191    <span class="keyword">get</span>(layer, node, &amp;weights, threshold);
 <a name="l00192"></a>00192     
-<a name="l00193"></a>00193    snprintf(buf, size, <span class="stringliteral">&quot;%*d %*d %*d   %.16f\n&quot;</span>, intFieldWidth, layer, 
+<a name="l00193"></a>00193    <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(buf, size, <span class="stringliteral">&quot;%*d %*d %*d   %.16f\n&quot;</span>, intFieldWidth, layer, 
 <a name="l00194"></a>00194                intFieldWidth, node, 
 <a name="l00195"></a>00195                intFieldWidth, -1, 
 <a name="l00196"></a>00196                threshold);
@@ -231,7 +231,7 @@
 <a name="l00199"></a>00199    <span class="keyword">const</span> <span class="keywordtype">int</span> numWeights = weights.size();
 <a name="l00200"></a>00200    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> weight = 0; weight &lt; numWeights; weight++)
 <a name="l00201"></a>00201    {
-<a name="l00202"></a>00202     snprintf(buf, size, <span class="stringliteral">&quot;%*d %*d %*d   %.16f\n&quot;</span>, intFieldWidth, layer, 
+<a name="l00202"></a>00202     <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(buf, size, <span class="stringliteral">&quot;%*d %*d %*d   %.16f\n&quot;</span>, intFieldWidth, layer, 
 <a name="l00203"></a>00203                 intFieldWidth, node, 
 <a name="l00204"></a>00204                 intFieldWidth, weight, 
 <a name="l00205"></a>00205                 weights[weight]);
@@ -279,7 +279,7 @@
 <a name="l00247"></a>00247  }
 <a name="l00248"></a>00248 }
 <a name="l00249"></a>00249 
-<a name="l00250"></a><a class="code" href="class_neural_network_simple_internal.html#aaab68d77f7b9820efbfcd796d81105a3">00250</a> <span class="keywordtype">void</span> <a class="code" href="class_neural_network_simple_internal.html#aaab68d77f7b9820efbfcd796d81105a3">NeuralNetworkSimpleInternal::train</a>(<a class="code" href="class_neural_pattern_array.html">NeuralPatternArray</a> <span class="keyword">const</span>&amp; patterns, <span class="keyword">const</span> <span class="keywordtype">int</span> count) <span class="keywordflow">throw</span>()
+<a name="l00250"></a><a class="code" href="class_neural_network_simple_internal.html#aaab68d77f7b9820efbfcd796d81105a3">00250</a> <span class="keywordtype">void</span> <a class="code" href="class_neural_network_simple_internal.html#aaab68d77f7b9820efbfcd796d81105a3">NeuralNetworkSimpleInternal::train</a>(<a class="code" href="class_neural_pattern_array.html">NeuralPatternArray</a> <span class="keyword">const</span>&amp; patterns, <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="namespacestd.html#a81511cd7112567fa262b05bb22e69874">count</a>) <span class="keywordflow">throw</span>()
 <a name="l00251"></a>00251 {
 <a name="l00252"></a>00252  <span class="keyword">const</span> <a class="code" href="class_neural_pattern.html">NeuralPattern</a> *patternPtr = patterns.getArray();
 <a name="l00253"></a>00253  
@@ -308,7 +308,7 @@
 <a name="l00276"></a>00276  <span class="keywordtype">int</span> numLayers = -1;
 <a name="l00277"></a>00277  <span class="keywordtype">float</span> learnRate, actFuncOffset;
 <a name="l00278"></a>00278  
-<a name="l00279"></a>00279  <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">IntArray</a> nodes;
+<a name="l00279"></a>00279  <a class="code" href="class_numerical_array.html">IntArray</a> nodes;
 <a name="l00280"></a>00280  
 <a name="l00281"></a>00281  <span class="keywordflow">while</span>(file.<a class="code" href="class_text_file_reader.html#a0f60976dcc5e432867e281d61c3b5aae">isEof</a>() == <span class="keyword">false</span>)
 <a name="l00282"></a>00282  {
@@ -319,23 +319,23 @@
 <a name="l00287"></a>00287    <span class="comment">// should be the format/version string</span>
 <a name="l00288"></a>00288    <span class="keywordflow">if</span>(text.<a class="code" href="class_numerical_array.html#a9246716a1489ad9ed6eb3f746cf5f090">contains</a>(<span class="stringliteral">&quot;NeuralNetworkSimple:v1&quot;</span>) == <span class="keyword">false</span>)
 <a name="l00289"></a>00289    {
-<a name="l00290"></a>00290     printf(<span class="stringliteral">&quot;NeuralNetwork::read wrong version type\n&quot;</span>);
+<a name="l00290"></a>00290     <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;NeuralNetwork::read wrong version type\n&quot;</span>);
 <a name="l00291"></a>00291     <span class="keywordflow">return</span>;
 <a name="l00292"></a>00292    }
 <a name="l00293"></a>00293   }
 <a name="l00294"></a>00294   <span class="keywordflow">else</span> <span class="keywordflow">if</span>(line == 1)
 <a name="l00295"></a>00295   {
 <a name="l00296"></a>00296    <span class="comment">// should be learn rate and act func offset   </span>
-<a name="l00297"></a>00297    sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;learnRate: %f actFuncOffset: %f&quot;</span>, &amp;learnRate, &amp;actFuncOffset);
+<a name="l00297"></a>00297    <a class="code" href="ugen___play_buf_8ii.html#a2256f668bdd3192173bb90c396a1d4fa">sscanf</a>(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;learnRate: %f actFuncOffset: %f&quot;</span>, &amp;learnRate, &amp;actFuncOffset);
 <a name="l00298"></a>00298   }
 <a name="l00299"></a>00299   <span class="keywordflow">else</span> <span class="keywordflow">if</span>(line == 2)
 <a name="l00300"></a>00300   {
 <a name="l00301"></a>00301    <span class="comment">// should be the number of layers   </span>
-<a name="l00302"></a>00302    sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;Layers:%d&quot;</span>, &amp;numLayers);
+<a name="l00302"></a>00302    <a class="code" href="ugen___play_buf_8ii.html#a2256f668bdd3192173bb90c396a1d4fa">sscanf</a>(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;Layers:%d&quot;</span>, &amp;numLayers);
 <a name="l00303"></a>00303    
 <a name="l00304"></a>00304    <span class="keywordflow">if</span>(numLayers &lt; 2) 
 <a name="l00305"></a>00305    {
-<a name="l00306"></a>00306     printf(<span class="stringliteral">&quot;NeuralNetwork::read invalid number of layers\n&quot;</span>);
+<a name="l00306"></a>00306     <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;NeuralNetwork::read invalid number of layers\n&quot;</span>);
 <a name="l00307"></a>00307     <span class="keywordflow">return</span>;
 <a name="l00308"></a>00308    }
 <a name="l00309"></a>00309    
@@ -344,7 +344,7 @@
 <a name="l00312"></a>00312   <span class="keywordflow">else</span> <span class="keywordflow">if</span>(numLayers &gt; 0)
 <a name="l00313"></a>00313   {
 <a name="l00314"></a>00314    <span class="keywordtype">int</span> layer, numNodes;
-<a name="l00315"></a>00315    sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;Layer %d:%d&quot;</span>, &amp;layer, &amp;numNodes);
+<a name="l00315"></a>00315    <a class="code" href="ugen___play_buf_8ii.html#a2256f668bdd3192173bb90c396a1d4fa">sscanf</a>(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;Layer %d:%d&quot;</span>, &amp;layer, &amp;numNodes);
 <a name="l00316"></a>00316    numLayers--;
 <a name="l00317"></a>00317    
 <a name="l00318"></a>00318    nodes[layer] = numNodes;
@@ -366,8 +366,8 @@
 <a name="l00334"></a>00334   {
 <a name="l00335"></a>00335    <span class="comment">// it&#39;s a weight or a threshold</span>
 <a name="l00336"></a>00336    <span class="keywordtype">int</span> layer, node, index;
-<a name="l00337"></a>00337    <span class="keywordtype">float</span> value;
-<a name="l00338"></a>00338    sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;%d %d %d %f&quot;</span>, &amp;layer, &amp;node, &amp;index, &amp;value);
+<a name="l00337"></a>00337    <span class="keywordtype">float</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>;
+<a name="l00338"></a>00338    <a class="code" href="ugen___play_buf_8ii.html#a2256f668bdd3192173bb90c396a1d4fa">sscanf</a>(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;%d %d %d %f&quot;</span>, &amp;layer, &amp;node, &amp;index, &amp;value);
 <a name="l00339"></a>00339    
 <a name="l00340"></a>00340    <span class="keywordflow">if</span>(index &lt; 0)
 <a name="l00341"></a>00341     setThreshold(layer, node, value);
@@ -384,7 +384,7 @@
 <a name="l00352"></a>00352 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:38 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:31 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

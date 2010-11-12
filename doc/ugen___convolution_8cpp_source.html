@@ -93,7 +93,7 @@
 <a name="l00061"></a>00061  numPartitions(0),
 <a name="l00062"></a>00062  startPoint(startPointToUse),
 <a name="l00063"></a>00063  endPoint(endPointToUse),
-<a name="l00064"></a>00064  length(0),
+<a name="l00064"></a>00064  <a class="code" href="ugen___play_buf_8ii.html#a20fe2f855cdad8e20c5b7c9acb230cef">length</a>(0),
 <a name="l00065"></a>00065  fftSizeLog2(fftSizeLog2FromArg(fftSizelog2ToUse)),
 <a name="l00066"></a>00066  fftSize(fftSizeFromArg(fftSizelog2ToUse)),
 <a name="l00067"></a>00067  fftSizeOver2(fftSize &gt;&gt; 1),
@@ -114,7 +114,7 @@
 <a name="l00082"></a>00082  numPartitions(partitionsInBuffer),
 <a name="l00083"></a>00083  startPoint(startPointToUse),
 <a name="l00084"></a>00084  endPoint(endPointToUse),
-<a name="l00085"></a>00085  length(0),
+<a name="l00085"></a>00085  <a class="code" href="ugen___play_buf_8ii.html#a20fe2f855cdad8e20c5b7c9acb230cef">length</a>(0),
 <a name="l00086"></a>00086  fftSizeLog2(fftSizeLog2FromArg(fftSizelog2ToUse)),
 <a name="l00087"></a>00087  fftSize(fftSizeFromArg(fftSizelog2ToUse)),
 <a name="l00088"></a>00088  fftSizeOver2(fftSize &gt;&gt; 1),
@@ -184,13 +184,13 @@
 <a name="l00152"></a>00152  <span class="keywordtype">float</span> *impulseReal = <a class="code" href="class_part_buffer.html#a5bea2658d23baa2d6107dfe514fedcf0" title="Get a pointer to the real samples.">getDataReal</a>(channel);
 <a name="l00153"></a>00153  <span class="keywordtype">float</span> *impulseImag = <a class="code" href="class_part_buffer.html#a26901b9dcd7c31e9137c7373c42791c5" title="Get a pointer to the imaginary samples.">getDataImag</a>(channel);
 <a name="l00154"></a>00154   
-<a name="l00155"></a>00155  DSPSplitComplex bufferTemp2;
+<a name="l00155"></a>00155  <a class="code" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a> bufferTemp2;
 <a name="l00156"></a>00156  
 <a name="l00157"></a>00157  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; numPartitions; i++)
 <a name="l00158"></a>00158  {
 <a name="l00159"></a>00159   <span class="keywordtype">int</span> bufferPos = i * fftSizeHalved;
-<a name="l00160"></a>00160   bufferTemp2.realp = impulseReal + (bufferPos);
-<a name="l00161"></a>00161   bufferTemp2.imagp = impulseImag + (bufferPos);
+<a name="l00160"></a>00160   bufferTemp2.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a> = impulseReal + (bufferPos);
+<a name="l00161"></a>00161   bufferTemp2.<a class="code" href="struct_d_s_p_split_complex.html#a72d222ae37a256ca0e3b5a3c8eb4c670">imagp</a> = impulseImag + (bufferPos);
 <a name="l00162"></a>00162   
 <a name="l00163"></a>00163   <span class="comment">// For proper ampwarping etc. - get two partitions - take FFTs of both - clip - ifft and overlap with hannging window</span>
 <a name="l00164"></a>00164   
@@ -203,11 +203,11 @@
 <a name="l00171"></a>00171 <span class="comment">// #else</span>
 <a name="l00172"></a>00172 <span class="comment">//  vScopy(numSamples, bufferSamples + startPoint + bufferPos, bufferTemp1);</span>
 <a name="l00173"></a>00173 <span class="comment">// #endif </span>
-<a name="l00174"></a>00174   memcpy(bufferTemp1, bufferSamples + startPoint + bufferPos, <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>) * numSamples);
-<a name="l00175"></a>00175   vDSP_vclr(bufferTemp1+numSamples, 1, <a class="code" href="class_part_buffer.html#aa5e800d2610cc2e50a401d9baebfc225">partTempBuffer</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>()-numSamples);
+<a name="l00174"></a>00174   <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(bufferTemp1, bufferSamples + startPoint + bufferPos, <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>) * numSamples);
+<a name="l00175"></a>00175   <a class="code" href="ugen___play_buf_8ii.html#afc2b276b4b41c364ec3e4aa7f0425196">vDSP_vclr</a>(bufferTemp1+numSamples, 1, <a class="code" href="class_part_buffer.html#aa5e800d2610cc2e50a401d9baebfc225">partTempBuffer</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>()-numSamples);
 <a name="l00176"></a>00176 <span class="preprocessor">#else</span>
 <a name="l00177"></a>00177 <span class="preprocessor"></span>  <span class="comment">// copy real time domain samples to Buffer_Temp1</span>
-<a name="l00178"></a>00178   memcpy(bufferTemp1, bufferSamples + startPoint + bufferPos, <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>) * numSamples);
+<a name="l00178"></a>00178   <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(bufferTemp1, bufferSamples + startPoint + bufferPos, <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>) * numSamples);
 <a name="l00179"></a>00179   
 <a name="l00180"></a>00180   <span class="comment">// zero pad the rest of Buffer_Temp1</span>
 <a name="l00181"></a>00181   <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = numSamples; j &lt; <a class="code" href="class_part_buffer.html#aa5e800d2610cc2e50a401d9baebfc225">partTempBuffer</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>(); j++)
@@ -228,7 +228,7 @@
 <a name="l00196"></a>00196  partImpulse_(partImpulse),
 <a name="l00197"></a>00197  startPoint(partImpulse.startPoint),
 <a name="l00198"></a>00198  endPoint(partImpulse.endPoint),
-<a name="l00199"></a>00199  length(partImpulse.length),
+<a name="l00199"></a>00199  <a class="code" href="ugen___play_buf_8ii.html#a20fe2f855cdad8e20c5b7c9acb230cef">length</a>(partImpulse.length),
 <a name="l00200"></a>00200  fftSize(partImpulse.fftSize),
 <a name="l00201"></a>00201  fftSizeOver4(partImpulse.fftSizeOver4),
 <a name="l00202"></a>00202  fftSizeLog2(partImpulse.fftSizeLog2),
@@ -260,7 +260,7 @@
 <a name="l00228"></a>00228 
 <a name="l00229"></a>00229 <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_part_convolve_u_gen_internal.html#a08131137bab5fcc1d043ed64fe269236">PartConvolveUGenInternal::getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
 <a name="l00230"></a>00230 {
-<a name="l00231"></a>00231  <span class="keywordtype">int</span> numInternalChannels = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(inputs[Input].getNumChannels(), 
+<a name="l00231"></a>00231  <span class="keywordtype">int</span> numInternalChannels = <a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(inputs[Input].getNumChannels(), 
 <a name="l00232"></a>00232           partImpulse_.getNumChannels()); 
 <a name="l00233"></a>00233   
 <a name="l00234"></a>00234  <span class="keywordflow">if</span>(channel &lt; 0 || numInternalChannels &lt; 2)
@@ -285,11 +285,11 @@
 <a name="l00253"></a>00253     <a class="code" href="ugen__neon___utilities_8h.html#a3ea49531bb5615ccb701b79ab7a900d1">vFloat</a> *outputSamples = (<a class="code" href="ugen__neon___utilities_8h.html#a3ea49531bb5615ccb701b79ab7a900d1">vFloat</a>*)uGenOutput.getSampleData();  
 <a name="l00254"></a>00254  <a class="code" href="ugen__neon___utilities_8h.html#a3ea49531bb5615ccb701b79ab7a900d1">vFloat</a> *inputSamples = (<a class="code" href="ugen__neon___utilities_8h.html#a3ea49531bb5615ccb701b79ab7a900d1">vFloat</a>*)inputs[Input].processBlock(shouldDelete, blockID, channel);
 <a name="l00255"></a>00255      
-<a name="l00256"></a>00256  DSPSplitComplex impulseTemp, bufferTemp;
-<a name="l00257"></a>00257  DSPSplitComplex impulse;
+<a name="l00256"></a>00256  <a class="code" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a> impulseTemp, bufferTemp;
+<a name="l00257"></a>00257  <a class="code" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a> impulse;
 <a name="l00258"></a>00258   
-<a name="l00259"></a>00259  impulse.realp = partImpulse_.getDataReal(channel);
-<a name="l00260"></a>00260  impulse.imagp = partImpulse_.getDataImag(channel);
+<a name="l00259"></a>00259  impulse.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a> = partImpulse_.getDataReal(channel);
+<a name="l00260"></a>00260  impulse.<a class="code" href="struct_d_s_p_split_complex.html#a72d222ae37a256ca0e3b5a3c8eb4c670">imagp</a> = partImpulse_.getDataImag(channel);
 <a name="l00261"></a>00261  
 <a name="l00262"></a>00262  <span class="comment">//LOCAL_DECLARE(float* const, fftBuffersMemorySamples);</span>
 <a name="l00263"></a>00263  <a class="code" href="ugen___standard_header_8h.html#a9a37472ac55b2fcd8760b2a0db82f035" title="Declares a local variable which is a copy of a member variable.">LOCAL_DECLARE</a>(<span class="keywordtype">float</span>* <span class="keyword">const</span>, fftTempBufferSamples);
@@ -311,9 +311,9 @@
 <a name="l00279"></a>00279 <span class="preprocessor"></span> <a class="code" href="ugen___standard_header_8h.html#a9a37472ac55b2fcd8760b2a0db82f035" title="Declares a local variable which is a copy of a member variable.">LOCAL_DECLARE</a>(<span class="keyword">const</span> <span class="keywordtype">int</span>, fftSizeOver4);
 <a name="l00280"></a>00280 <span class="preprocessor">#endif</span>
 <a name="l00281"></a>00281 <span class="preprocessor"></span> 
-<a name="l00282"></a>00282  DSPSplitComplex fftTemp;
-<a name="l00283"></a>00283  fftTemp.realp = fftTempBufferSamples;
-<a name="l00284"></a>00284  fftTemp.imagp = fftTemp.realp + fftSizeHalved;
+<a name="l00282"></a>00282  <a class="code" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a> fftTemp;
+<a name="l00283"></a>00283  fftTemp.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a> = fftTempBufferSamples;
+<a name="l00284"></a>00284  fftTemp.<a class="code" href="struct_d_s_p_split_complex.html#a72d222ae37a256ca0e3b5a3c8eb4c670">imagp</a> = fftTemp.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a> + fftSizeHalved;
 <a name="l00285"></a>00285  
 <a name="l00286"></a>00286  <span class="keyword">const</span> <span class="keywordtype">int</span> Partitions = partImpulse_.numPartitions;
 <a name="l00287"></a>00287  <a class="code" href="ugen___standard_header_8h.html#a9a37472ac55b2fcd8760b2a0db82f035" title="Declares a local variable which is a copy of a member variable.">LOCAL_DECLARE</a>(<span class="keywordtype">int</span>, bufPosition);
@@ -347,8 +347,8 @@
 <a name="l00315"></a>00315   fftOffset = 0;
 <a name="l00316"></a>00316 
 <a name="l00317"></a>00317 <span class="preprocessor">#ifdef UGEN_VDSP</span>
-<a name="l00318"></a>00318 <span class="preprocessor"></span>  vDSP_vclr(fftTempBufferSamples, 1, fftSize);
-<a name="l00319"></a>00319   vDSP_vclr(fftBuffersMemorySamples, 1, fftSize&lt;&lt;2);
+<a name="l00318"></a>00318 <span class="preprocessor"></span>  <a class="code" href="ugen___play_buf_8ii.html#afc2b276b4b41c364ec3e4aa7f0425196">vDSP_vclr</a>(fftTempBufferSamples, 1, fftSize);
+<a name="l00319"></a>00319   <a class="code" href="ugen___play_buf_8ii.html#afc2b276b4b41c364ec3e4aa7f0425196">vDSP_vclr</a>(fftBuffersMemorySamples, 1, fftSize&lt;&lt;2);
 <a name="l00320"></a>00320 <span class="preprocessor">#else</span>
 <a name="l00321"></a>00321 <span class="preprocessor"></span>  tempvPointer1 = (<a class="code" href="ugen__neon___utilities_8h.html#a3ea49531bb5615ccb701b79ab7a900d1">vFloat</a>*)fftTempBufferSamples;
 <a name="l00322"></a>00322   <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; fftSizeOver4; i++) tempvPointer1[i] = zero;
@@ -403,9 +403,9 @@
 <a name="l00371"></a>00371 <span class="comment">//  outputSamples += loop;</span>
 <a name="l00372"></a>00372 <span class="preprocessor">#if 1 // let&#39;s try this...</span>
 <a name="l00373"></a>00373 <span class="preprocessor"></span>  <span class="keyword">const</span> <span class="keywordtype">int</span> loopX4 = loop&lt;&lt;2;
-<a name="l00374"></a>00374   memcpy(fftBuffers[0] + rwPointer1, inputSamples, loopX4*<span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
-<a name="l00375"></a>00375   memcpy(fftBuffers[1] + rwPointer2, inputSamples, loopX4*<span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
-<a name="l00376"></a>00376   memcpy(outputSamples, fftBuffers[3] + rwPointer1, loopX4*<span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00374"></a>00374   <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(fftBuffers[0] + rwPointer1, inputSamples, loopX4*<span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00375"></a>00375   <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(fftBuffers[1] + rwPointer2, inputSamples, loopX4*<span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00376"></a>00376   <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(outputSamples, fftBuffers[3] + rwPointer1, loopX4*<span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l00377"></a>00377   rwPointer1 += loop;
 <a name="l00378"></a>00378   rwPointer2 += loop;
 <a name="l00379"></a>00379   inputSamples += loop;
@@ -449,20 +449,20 @@
 <a name="l00417"></a>00417    
 <a name="l00418"></a>00418    <span class="comment">// Do Processing</span>
 <a name="l00419"></a>00419    <span class="keywordtype">int</span> offset = (partitionsDone + 1) &lt;&lt; fftSizeHalvedLog2; <span class="comment">// * fftSizeHalved;</span>
-<a name="l00420"></a>00420    impulseTemp.realp = impulse.realp + offset;
-<a name="l00421"></a>00421    impulseTemp.imagp = impulse.imagp + offset;
+<a name="l00420"></a>00420    impulseTemp.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a> = impulse.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a> + offset;
+<a name="l00421"></a>00421    impulseTemp.<a class="code" href="struct_d_s_p_split_complex.html#a72d222ae37a256ca0e3b5a3c8eb4c670">imagp</a> = impulse.<a class="code" href="struct_d_s_p_split_complex.html#a72d222ae37a256ca0e3b5a3c8eb4c670">imagp</a> + offset;
 <a name="l00422"></a>00422    offset = nextPart &lt;&lt; fftSizeHalvedLog2; <span class="comment">// * fftSizeHalved;</span>
-<a name="l00423"></a>00423    bufferTemp.realp = inputBufferSamples + offset; <span class="comment">// InputBuffer.realp + Offset;</span>
-<a name="l00424"></a>00424    bufferTemp.imagp = bufferTemp.realp + bufferSize; <span class="comment">// InputBuffer.imagp + Offset;</span>
+<a name="l00423"></a>00423    bufferTemp.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a> = inputBufferSamples + offset; <span class="comment">// InputBuffer.realp + Offset;</span>
+<a name="l00424"></a>00424    bufferTemp.<a class="code" href="struct_d_s_p_split_complex.html#a72d222ae37a256ca0e3b5a3c8eb4c670">imagp</a> = bufferTemp.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a> + bufferSize; <span class="comment">// InputBuffer.imagp + Offset;</span>
 <a name="l00425"></a>00425    
 <a name="l00426"></a>00426    partitionsDone += numPartitionsToDo;
 <a name="l00427"></a>00427    
 <a name="l00428"></a>00428    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; numPartitionsToDo; i++) { 
 <a name="l00429"></a>00429     <a class="code" href="ugen___f_f_t_engine_internal_8h.html#a1d1a4d94418f3c5e4f947f2763fbd5ce">MultAndAdd</a>(bufferTemp, impulseTemp, fftTemp, fftSizeHalvedOver4);
-<a name="l00430"></a>00430     impulseTemp.realp += fftSizeHalved;
-<a name="l00431"></a>00431     impulseTemp.imagp += fftSizeHalved;
-<a name="l00432"></a>00432     bufferTemp.realp += fftSizeHalved;
-<a name="l00433"></a>00433     bufferTemp.imagp += fftSizeHalved;
+<a name="l00430"></a>00430     impulseTemp.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a> += fftSizeHalved;
+<a name="l00431"></a>00431     impulseTemp.<a class="code" href="struct_d_s_p_split_complex.html#a72d222ae37a256ca0e3b5a3c8eb4c670">imagp</a> += fftSizeHalved;
+<a name="l00432"></a>00432     bufferTemp.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a> += fftSizeHalved;
+<a name="l00433"></a>00433     bufferTemp.<a class="code" href="struct_d_s_p_split_complex.html#a72d222ae37a256ca0e3b5a3c8eb4c670">imagp</a> += fftSizeHalved;
 <a name="l00434"></a>00434    }
 <a name="l00435"></a>00435   }
 <a name="l00436"></a>00436   
@@ -475,8 +475,8 @@
 <a name="l00443"></a>00443    <span class="comment">// Calculate the position to put the FFT output into</span>
 <a name="l00444"></a>00444    impulseTemp = impulse;
 <a name="l00445"></a>00445    <span class="keyword">const</span> <span class="keywordtype">int</span> offset = bufPosition &lt;&lt; fftSizeHalvedLog2; <span class="comment">// * fftSizeHalved;</span>
-<a name="l00446"></a>00446    bufferTemp.realp = inputBufferSamples + offset; <span class="comment">// InputBuffer.realp + Offset;</span>
-<a name="l00447"></a>00447    bufferTemp.imagp = bufferTemp.realp + bufferSize; <span class="comment">// InputBuffer.imagp + Offset;</span>
+<a name="l00446"></a>00446    bufferTemp.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a> = inputBufferSamples + offset; <span class="comment">// InputBuffer.realp + Offset;</span>
+<a name="l00447"></a>00447    bufferTemp.<a class="code" href="struct_d_s_p_split_complex.html#a72d222ae37a256ca0e3b5a3c8eb4c670">imagp</a> = bufferTemp.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a> + bufferSize; <span class="comment">// InputBuffer.imagp + Offset;</span>
 <a name="l00448"></a>00448    
 <a name="l00449"></a>00449    <span class="comment">// Do the FFT, Process and Convert back with scaling</span>
 <a name="l00450"></a>00450    tempvPointer1 = fftBuffers[fftOffset];
@@ -502,8 +502,8 @@
 <a name="l00470"></a>00470    <span class="comment">// post ifft scaling required by vDSP fft processes</span>
 <a name="l00471"></a>00471    
 <a name="l00472"></a>00472 <span class="preprocessor">#ifdef UGEN_VDSP</span>
-<a name="l00473"></a>00473 <span class="preprocessor"></span>   vDSP_vsmsa((<span class="keywordtype">float</span>*)fftBuffers[2], 1, (<span class="keywordtype">float</span>*)&amp;scaleMult, (<span class="keywordtype">float</span>*)&amp;zero, (<span class="keywordtype">float</span>*)tempvPointer1, 1, loop&lt;&lt;2);
-<a name="l00474"></a>00474    vDSP_vsma((<span class="keywordtype">float</span>*)(fftBuffers[2]+loop), 1, (<span class="keywordtype">float</span>*)&amp;scaleMult, (<span class="keywordtype">float</span>*)tempvPointer2, 1, (<span class="keywordtype">float</span>*)tempvPointer2, 1, loop&lt;&lt;2);
+<a name="l00473"></a>00473 <span class="preprocessor"></span>   <a class="code" href="ugen___play_buf_8ii.html#a24358fc5b10978e5cbc1e4128b1a1d9e">vDSP_vsmsa</a>((<span class="keywordtype">float</span>*)fftBuffers[2], 1, (<span class="keywordtype">float</span>*)&amp;scaleMult, (<span class="keywordtype">float</span>*)&amp;zero, (<span class="keywordtype">float</span>*)tempvPointer1, 1, loop&lt;&lt;2);
+<a name="l00474"></a>00474    <a class="code" href="ugen___play_buf_8ii.html#aa4db4f5b2a306a7d5b77f58511713689">vDSP_vsma</a>((<span class="keywordtype">float</span>*)(fftBuffers[2]+loop), 1, (<span class="keywordtype">float</span>*)&amp;scaleMult, (<span class="keywordtype">float</span>*)tempvPointer2, 1, (<span class="keywordtype">float</span>*)tempvPointer2, 1, loop&lt;&lt;2);
 <a name="l00475"></a>00475 <span class="preprocessor">#else</span>
 <a name="l00476"></a>00476 <span class="preprocessor"></span>   <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; loop; i++)
 <a name="l00477"></a>00477     *(tempvPointer1++) = <a class="code" href="ugen__vfp___f_f_t_utilities_8h.html#aad8c032b0c7dc78e9f335f3d2f6e8233">VEC_MUL_OP</a>(*(fftBuffers[2] + i), scaleMult <a class="code" href="ugen___f_f_t_engine_internal_8h.html#a1333dae0ee8e84c2ce478f949ca080b5">ZEROARG</a>);
@@ -516,17 +516,17 @@
 <a name="l00484"></a>00484 <span class="preprocessor"></span>
 <a name="l00485"></a>00485    <span class="comment">// Clear Buffer</span>
 <a name="l00486"></a>00486 <span class="preprocessor">#ifdef UGEN_VDSP</span>
-<a name="l00487"></a>00487 <span class="preprocessor"></span>   vDSP_vclr(fftTemp.realp, 1, fftSizeHalved);
-<a name="l00488"></a>00488    vDSP_vclr(fftTemp.imagp, 1, fftSizeHalved);
+<a name="l00487"></a>00487 <span class="preprocessor"></span>   <a class="code" href="ugen___play_buf_8ii.html#afc2b276b4b41c364ec3e4aa7f0425196">vDSP_vclr</a>(fftTemp.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a>, 1, fftSizeHalved);
+<a name="l00488"></a>00488    <a class="code" href="ugen___play_buf_8ii.html#afc2b276b4b41c364ec3e4aa7f0425196">vDSP_vclr</a>(fftTemp.<a class="code" href="struct_d_s_p_split_complex.html#a72d222ae37a256ca0e3b5a3c8eb4c670">imagp</a>, 1, fftSizeHalved);
 <a name="l00489"></a>00489 <span class="preprocessor">#else</span>
-<a name="l00490"></a>00490 <span class="preprocessor"></span>   <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; fftSizeHalved; i++) fftTemp.realp[i] = 0.f;
-<a name="l00491"></a>00491    for (<span class="keywordtype">int</span> i = 0; i &lt; fftSizeHalved; i++) fftTemp.imagp[i] = 0.f;
+<a name="l00490"></a>00490 <span class="preprocessor"></span>   <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; fftSizeHalved; i++) fftTemp.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a>[i] = 0.f;
+<a name="l00491"></a>00491    for (<span class="keywordtype">int</span> i = 0; i &lt; fftSizeHalved; i++) fftTemp.<a class="code" href="struct_d_s_p_split_complex.html#a72d222ae37a256ca0e3b5a3c8eb4c670">imagp</a>[i] = 0.f;
 <a name="l00492"></a>00492 #endif     
 <a name="l00493"></a>00493    <span class="comment">// Set wait till next data to hop time</span>
 <a name="l00494"></a>00494    tillNextFFT = loop;
 <a name="l00495"></a>00495    
 <a name="l00496"></a>00496    <span class="comment">// Reset RW_Pointers</span>
-<a name="l00497"></a>00497    if (fftOffset) rwPointer1 = 0;
+<a name="l00497"></a>00497    <a class="code" href="namespace____gnu__cxx.html#ad2b54764be47c833e5503119a7003de1">if</a> (fftOffset) rwPointer1 = 0;
 <a name="l00498"></a>00498    <span class="keywordflow">else</span> rwPointer2 = 0;
 <a name="l00499"></a>00499    fftOffset = 1 - fftOffset; <span class="comment">// swaps between 0 and 1</span>
 <a name="l00500"></a>00500    
@@ -554,7 +554,7 @@
 <a name="l00522"></a>00522          <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; impulse, 
 <a name="l00523"></a>00523          <span class="keywordtype">long</span> startPoint, <span class="keywordtype">long</span> endPoint, <span class="keywordtype">long</span> fftSizeLog2) <span class="keywordflow">throw</span>()
 <a name="l00524"></a>00524 { 
-<a name="l00525"></a>00525  <span class="keywordtype">int</span> numChannels = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(input.getNumChannels(), impulse.getNumChannels());
+<a name="l00525"></a>00525  <span class="keywordtype">int</span> numChannels = <a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(input.getNumChannels(), impulse.getNumChannels());
 <a name="l00526"></a>00526  initInternal(numChannels);
 <a name="l00527"></a>00527  
 <a name="l00528"></a>00528  <a class="code" href="class_part_buffer.html" title="Stores a &amp;quot;partitioned&amp;quot; FFT buffer.">PartBuffer</a> partImpulse(impulse, startPoint, endPoint, fftSizeLog2);
@@ -600,7 +600,7 @@
 <a name="l00568"></a>00568 
 <a name="l00569"></a>00569 <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* TimeConvolveUGenInternal::getChannel(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
 <a name="l00570"></a>00570 {
-<a name="l00571"></a>00571  <span class="keywordtype">int</span> numInternalChannels = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(inputs[Input].getNumChannels(), 
+<a name="l00571"></a>00571  <span class="keywordtype">int</span> numInternalChannels = <a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(inputs[Input].getNumChannels(), 
 <a name="l00572"></a>00572           filters.getNumChannels()); 
 <a name="l00573"></a>00573  
 <a name="l00574"></a>00574  <span class="keywordflow">if</span>(channel &lt; 0 || numInternalChannels &lt; 2)
@@ -611,7 +611,7 @@
 <a name="l00579"></a>00579  <span class="keywordflow">else</span>
 <a name="l00580"></a>00580  {
 <a name="l00581"></a>00581   <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* inputInternal = inputs[Input].getInternalUGen(channel % inputs[Input].getNumChannels());
-<a name="l00582"></a>00582   <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> filterChannel = filters.<a class="code" href="class_u_gen_internal.html#a6838029815ab52d3263cfacb6c584d2f">getChannel</a>(channel % filters.getNumChannels());
+<a name="l00582"></a>00582   <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> filterChannel = filters.<a class="code" href="class_u_gen_internal.html#ae9624445b9d8328a9032305687333039">getChannel</a>(channel % filters.getNumChannels());
 <a name="l00583"></a>00583   
 <a name="l00584"></a>00584   <span class="keywordflow">return</span> <span class="keyword">new</span> TimeConvolveUGenInternal(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>(inputInternal, channel), filterChannel, -1, -1);
 <a name="l00585"></a>00585  } 
@@ -632,8 +632,8 @@
 <a name="l00600"></a>00600  <span class="comment">// We must be able to read out input in one go </span>
 <a name="l00601"></a>00601  <span class="comment">// Copy input twice</span>
 <a name="l00602"></a>00602  
-<a name="l00603"></a>00603  memcpy(inputBufferSamples + position, inputSamples, <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>) * numSamples);
-<a name="l00604"></a>00604  memcpy(inputBufferSamples + 4096 + position, inputSamples, <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>) * numSamples);
+<a name="l00603"></a>00603  <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(inputBufferSamples + position, inputSamples, <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>) * numSamples);
+<a name="l00604"></a>00604  <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(inputBufferSamples + 4096 + position, inputSamples, <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>) * numSamples);
 <a name="l00605"></a>00605  
 <a name="l00606"></a>00606  position += numSamples;
 <a name="l00607"></a>00607  <span class="keywordflow">if</span> (position &gt;= 4096) position = 0;
@@ -652,7 +652,7 @@
 <a name="l00620"></a>00620          <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; impulse, 
 <a name="l00621"></a>00621          <span class="keywordtype">long</span> startPoint, <span class="keywordtype">long</span> endPoint, <span class="keywordtype">long</span> fftSizeLog2) <span class="keywordflow">throw</span>()
 <a name="l00622"></a>00622 { 
-<a name="l00623"></a>00623  <span class="keywordtype">int</span> numChannels = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(input.getNumChannels(), impulse.getNumChannels());
+<a name="l00623"></a>00623  <span class="keywordtype">int</span> numChannels = <a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(input.getNumChannels(), impulse.getNumChannels());
 <a name="l00624"></a>00624  initInternal(numChannels);
 <a name="l00625"></a>00625  
 <a name="l00626"></a>00626  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numChannels; i++)
@@ -669,7 +669,7 @@
 <a name="l00637"></a>00637 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:36 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:29 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

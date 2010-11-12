@@ -84,21 +84,21 @@
 <a name="l00052"></a>00052  <a class="code" href="class_u_i_slider_value_internal.html">UISliderValueInternal</a>* owner_;
 <a name="l00053"></a>00053 }
 <a name="l00054"></a>00054 
-<a name="l00055"></a>00055 - (void) setOwner: (<a class="code" href="class_u_i_slider_value_internal.html">UISliderValueInternal</a>*) owner;
-<a name="l00056"></a>00056 - (void) updateValue: (UISlider *) slider;
+<a name="l00055"></a>00055 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>) setOwner: (<a class="code" href="class_u_i_slider_value_internal.html">UISliderValueInternal</a>*) owner;
+<a name="l00056"></a>00056 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>) updateValue: (UISlider *) slider;
 <a name="l00057"></a>00057 <span class="keyword">@end</span>
 <a name="l00058"></a>00058 
 <a name="l00059"></a>00059 
 <a name="l00060"></a>00060 <span class="keyword">@implementation </span>UISliderValueInternalPeer
-<a name="l00061"></a>00061 - (void) setOwner: (<a class="code" href="class_u_i_slider_value_internal.html">UISliderValueInternal</a>*) owner
+<a name="l00061"></a>00061 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>) setOwner: (<a class="code" href="class_u_i_slider_value_internal.html">UISliderValueInternal</a>*) owner
 <a name="l00062"></a>00062 {
 <a name="l00063"></a>00063  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(owner != 0);
 <a name="l00064"></a>00064  owner_ = owner;
 <a name="l00065"></a>00065 }
 <a name="l00066"></a>00066 
-<a name="l00067"></a>00067 - (void) updateValue: (UISlider *) slider
+<a name="l00067"></a>00067 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>) updateValue: (UISlider *) slider
 <a name="l00068"></a>00068 {
-<a name="l00069"></a>00069  owner_-&gt;<a class="code" href="class_value_internal.html#a7a63578d1807f89c798853704dcd75de" title="Set the current value.">setValue</a>([slider value]);
+<a name="l00069"></a>00069  owner_-&gt;setValue([slider <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>]);
 <a name="l00070"></a>00070 }
 <a name="l00071"></a>00071 <span class="keyword">@end</span>
 <a name="l00072"></a>00072 
@@ -107,7 +107,7 @@
 <a name="l00075"></a>00075 <a class="code" href="ugen___standard_header_8h.html#ae236e43a85c6905c3285f031bf456685">BEGIN_UGEN_NAMESPACE</a>
 <a name="l00076"></a>00076 
 <a name="l00077"></a>00077 <a class="code" href="class_u_i_slider_value_internal.html#a51f5eeef161cd139c6e42edb0d38434f">UISliderValueInternal::UISliderValueInternal</a>(UISlider* slider) <span class="keywordflow">throw</span>()
-<a name="l00078"></a>00078 : <a class="code" href="class_value_internal.html" title="An internal value class with a constant value.">ValueInternal</a>([slider value]),
+<a name="l00078"></a>00078 : <a class="code" href="class_value_internal.html" title="An internal value class with a constant value.">ValueInternal</a>([slider <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>]),
 <a name="l00079"></a>00079  slider_(slider)
 <a name="l00080"></a>00080 {
 <a name="l00081"></a>00081  UISliderValueInternalPeer* peer = [UISliderValueInternalPeer alloc];
@@ -139,7 +139,7 @@
 <a name="l00107"></a>00107 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:31 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

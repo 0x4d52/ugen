@@ -30,7 +30,7 @@
 <h1>spawn/ugen_TSpawn.cpp</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___t_spawn_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_TSpawn.cpp 138 2010-09-11 08:00:33Z 0x4d52 $</span>
+<a href="ugen___t_spawn_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_TSpawn.cpp 194 2010-11-10 22:30:50Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/spawn/ugen_TSpawn.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -154,7 +154,7 @@
 <a name="l00122"></a>00122   
 <a name="l00123"></a>00123   <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_spawn_base_u_gen_internal.html#ae0b3f29046ad4bb78aedd20e1cfda471">numChannels</a> = <a class="code" href="class_proxy_owner_u_gen_internal.html#a43e6fd05ba69f1ef135463c028e656cd">getNumChannels</a>();
 <a name="l00124"></a>00124   
-<a name="l00125"></a>00125   <span class="keywordtype">float</span>* trigSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_trig.html">Trig</a>].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
+<a name="l00125"></a>00125   <span class="keywordtype">float</span>* trigSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_trig.html">Trig</a>].<a class="code" href="class_u_gen.html#a373ba4141dfb16167cd9061852ffad15" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
 <a name="l00126"></a>00126   
 <a name="l00127"></a>00127   <span class="keywordflow">while</span>(numSamplesToProcess)
 <a name="l00128"></a>00128   {
@@ -165,7 +165,7 @@
 <a name="l00133"></a>00133     <span class="keywordflow">if</span>(numSamples &gt; 0)
 <a name="l00134"></a>00134     {
 <a name="l00135"></a>00135      <span class="comment">// render samples from startSample to startSample+numSample</span>
-<a name="l00136"></a>00136      <a class="code" href="class_u_gen.html#a8acc7dd5f218816ac8759fdaa770900e">UGen::setBlockSize</a>(numSamples);
+<a name="l00136"></a>00136 <span class="comment">//     UGen::setBlockSize(numSamples);</span>
 <a name="l00137"></a>00137      
 <a name="l00138"></a>00138      <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numChannels; channel++)
 <a name="l00139"></a>00139      {
@@ -174,7 +174,7 @@
 <a name="l00142"></a>00142      
 <a name="l00143"></a>00143      <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a>.<a class="code" href="class_u_gen.html#aa1930046f6d3ff1656ad244fedb53f13" title="Prepares a UGen for processing.">prepareForBlock</a>(numSamples, blockID + startSample);
 <a name="l00144"></a>00144      <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a>.<a class="code" href="class_u_gen.html#ab63673f3a08b506605eff7abd481072d" title="Set the outputs for the UGenInternal instances.">setOutputs</a>(<a class="code" href="class_spawn_base_u_gen_internal.html#a0c9bb36182f19036764f20be0db1972a">bufferData</a>, numSamples, numChannels);
-<a name="l00145"></a>00145      <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a>.<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID + startSample, -1);
+<a name="l00145"></a>00145      <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a>.<a class="code" href="class_u_gen.html#a373ba4141dfb16167cd9061852ffad15" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID + startSample, -1);
 <a name="l00146"></a>00146     }
 <a name="l00147"></a>00147     
 <a name="l00148"></a>00148     startSample += numSamples;
@@ -195,7 +195,7 @@
 <a name="l00163"></a>00163    --numSamplesToProcess;
 <a name="l00164"></a>00164   }
 <a name="l00165"></a>00165   
-<a name="l00166"></a>00166   <a class="code" href="class_u_gen.html#a8acc7dd5f218816ac8759fdaa770900e">UGen::setBlockSize</a>(numSamples);
+<a name="l00166"></a>00166 <span class="comment">//  UGen::setBlockSize(numSamples);</span>
 <a name="l00167"></a>00167   
 <a name="l00168"></a>00168   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numChannels; channel++)
 <a name="l00169"></a>00169   {
@@ -204,9 +204,9 @@
 <a name="l00172"></a>00172   
 <a name="l00173"></a>00173   <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a>.<a class="code" href="class_u_gen.html#aa1930046f6d3ff1656ad244fedb53f13" title="Prepares a UGen for processing.">prepareForBlock</a>(numSamples, blockID + startSample);
 <a name="l00174"></a>00174   <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a>.<a class="code" href="class_u_gen.html#ab63673f3a08b506605eff7abd481072d" title="Set the outputs for the UGenInternal instances.">setOutputs</a>(<a class="code" href="class_spawn_base_u_gen_internal.html#a0c9bb36182f19036764f20be0db1972a">bufferData</a>, numSamples, numChannels);
-<a name="l00175"></a>00175   <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a>.<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID + startSample, -1);
+<a name="l00175"></a>00175   <a class="code" href="class_spawn_base_u_gen_internal.html#a534e1eef70ce601c15c8b8ecf2d81a2e">mixer</a>.<a class="code" href="class_u_gen.html#a373ba4141dfb16167cd9061852ffad15" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID + startSample, -1);
 <a name="l00176"></a>00176   
-<a name="l00177"></a>00177   <a class="code" href="class_u_gen.html#a8acc7dd5f218816ac8759fdaa770900e">UGen::setBlockSize</a>(blockSize);
+<a name="l00177"></a>00177 <span class="comment">//  UGen::setBlockSize(blockSize);</span>
 <a name="l00178"></a>00178   <a class="code" href="class_spawn_base_u_gen_internal.html#ac4f3ccd84782a6498d3d06d673ab1719">events</a>.<a class="code" href="class_u_gen_array.html#afb1218afbe92e5033cae489f91031ce5" title="Removes all UGen instances which are null - in-place.">removeNulls</a>();
 <a name="l00179"></a>00179  }
 <a name="l00180"></a>00180 }
@@ -224,7 +224,7 @@
 <a name="l00192"></a>00192 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:38 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:32 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

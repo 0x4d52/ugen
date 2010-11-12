@@ -80,12 +80,12 @@
 <a name="l00048"></a>00048 
 <a name="l00049"></a><a class="code" href="class_text_file_reader_internal.html#a41286b48d52ae925f1eaab9a24b5f3e5">00049</a> <a class="code" href="class_text_file_reader_internal.html#a41286b48d52ae925f1eaab9a24b5f3e5">TextFileReaderInternal::TextFileReaderInternal</a>(<a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <span class="keyword">const</span>&amp; path) <span class="keywordflow">throw</span>()
 <a name="l00050"></a>00050 {
-<a name="l00051"></a>00051  peer = <span class="keyword">new</span> ifstream(path.getArray()); 
+<a name="l00051"></a>00051  peer = <span class="keyword">new</span> <a class="code" href="namespacestd.html#a58ca5f477d7afac57c22e9bdd90d323b">ifstream</a>(path.getArray()); 
 <a name="l00052"></a>00052 }
 <a name="l00053"></a>00053 
 <a name="l00054"></a><a class="code" href="class_text_file_reader_internal.html#ad4a44f36503f414fb6a7b3ec4557d931">00054</a> <a class="code" href="class_text_file_reader_internal.html#ad4a44f36503f414fb6a7b3ec4557d931">TextFileReaderInternal::~TextFileReaderInternal</a>()
 <a name="l00055"></a>00055 {
-<a name="l00056"></a>00056  ifstream *file = (ifstream*)<a class="code" href="class_text_file_reader_internal.html#a4408ef54e77fb537e17236e17b3b092e">peer</a>;
+<a name="l00056"></a>00056  <a class="code" href="namespacestd.html#a58ca5f477d7afac57c22e9bdd90d323b">ifstream</a> *file = (<a class="code" href="namespacestd.html#a58ca5f477d7afac57c22e9bdd90d323b">ifstream</a>*)<a class="code" href="class_text_file_reader_internal.html#a4408ef54e77fb537e17236e17b3b092e">peer</a>;
 <a name="l00057"></a>00057  
 <a name="l00058"></a>00058  <span class="keywordflow">if</span>(file &amp;&amp; file-&gt;is_open())
 <a name="l00059"></a>00059   file-&gt;close();
@@ -95,15 +95,15 @@
 <a name="l00063"></a>00063 
 <a name="l00064"></a><a class="code" href="class_text_file_reader_internal.html#aec568112b9fcaca3250bc965ed4934f7">00064</a> <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <a class="code" href="class_text_file_reader_internal.html#aec568112b9fcaca3250bc965ed4934f7">TextFileReaderInternal::readLine</a>() throw()
 <a name="l00065"></a>00065 {
-<a name="l00066"></a>00066  ifstream *file = (ifstream*)<a class="code" href="class_text_file_reader_internal.html#a4408ef54e77fb537e17236e17b3b092e">peer</a>;
+<a name="l00066"></a>00066  <a class="code" href="namespacestd.html#a58ca5f477d7afac57c22e9bdd90d323b">ifstream</a> *file = (<a class="code" href="namespacestd.html#a58ca5f477d7afac57c22e9bdd90d323b">ifstream</a>*)<a class="code" href="class_text_file_reader_internal.html#a4408ef54e77fb537e17236e17b3b092e">peer</a>;
 <a name="l00067"></a>00067  <span class="keywordtype">string</span> line;
 <a name="l00068"></a>00068  
 <a name="l00069"></a>00069  <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> text;
 <a name="l00070"></a>00070  
 <a name="l00071"></a>00071  <span class="keywordflow">if</span> (file &amp;&amp; file-&gt;is_open() &amp;&amp; !file-&gt;eof())
 <a name="l00072"></a>00072  {
-<a name="l00073"></a>00073   getline (*file,line);
-<a name="l00074"></a>00074   text = <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a>(line.c_str());
+<a name="l00073"></a>00073   <a class="code" href="namespacestd.html#a0a6f448d4c39f090952756cd157c3f23">getline</a> (*file,line);
+<a name="l00074"></a>00074   text = <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a>(line.<a class="code" href="classstd_1_1basic__string.html#a0f3d8c7b031efea71704ca87660012e0">c_str</a>());
 <a name="l00075"></a>00075  }
 <a name="l00076"></a>00076  
 <a name="l00077"></a>00077  <span class="keywordflow">return</span> text;
@@ -126,7 +126,7 @@
 <a name="l00094"></a>00094 
 <a name="l00095"></a><a class="code" href="class_text_file_reader_internal.html#afe0e04317a53c8860da9d8209c6ecccb">00095</a> <span class="keywordtype">bool</span> <a class="code" href="class_text_file_reader_internal.html#afe0e04317a53c8860da9d8209c6ecccb">TextFileReaderInternal::isEof</a>() <span class="keyword">const</span> throw()
 <a name="l00096"></a>00096 {
-<a name="l00097"></a>00097  ifstream *file = (ifstream*)<a class="code" href="class_text_file_reader_internal.html#a4408ef54e77fb537e17236e17b3b092e">peer</a>;
+<a name="l00097"></a>00097  <a class="code" href="namespacestd.html#a58ca5f477d7afac57c22e9bdd90d323b">ifstream</a> *file = (<a class="code" href="namespacestd.html#a58ca5f477d7afac57c22e9bdd90d323b">ifstream</a>*)<a class="code" href="class_text_file_reader_internal.html#a4408ef54e77fb537e17236e17b3b092e">peer</a>;
 <a name="l00098"></a>00098  
 <a name="l00099"></a>00099  <span class="keywordflow">if</span> (file &amp;&amp; file-&gt;is_open() &amp;&amp; !file-&gt;eof())
 <a name="l00100"></a>00100   <span class="keywordflow">return</span> <span class="keyword">false</span>;
@@ -146,7 +146,7 @@
 <a name="l00114"></a>00114  
 <a name="l00115"></a>00115  text = readLine(); <span class="comment">// should be size info;</span>
 <a name="l00116"></a>00116  <span class="keywordtype">int</span> size;
-<a name="l00117"></a>00117  sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;size:%d&quot;</span>, &amp;size);
+<a name="l00117"></a>00117  <a class="code" href="ugen___play_buf_8ii.html#a2256f668bdd3192173bb90c396a1d4fa">sscanf</a>(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;size:%d&quot;</span>, &amp;size);
 <a name="l00118"></a>00118  
 <a name="l00119"></a>00119  <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;char&gt;</a> newArray = <a class="code" href="class_numerical_array.html#ada7cd40ff1de921243a1ba6d0a73fe5d">NumericalArray&lt;char&gt;::withSize</a>(size);
 <a name="l00120"></a>00120  <span class="keywordtype">char</span> *newArrayPtr = newArray.getArray();
@@ -155,8 +155,8 @@
 <a name="l00123"></a>00123  {
 <a name="l00124"></a>00124   text = readLine();
 <a name="l00125"></a>00125   <span class="keywordtype">int</span> index;
-<a name="l00126"></a>00126   <span class="keywordtype">int</span> value;
-<a name="l00127"></a>00127   sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;[%d]=%d&quot;</span>, &amp;index, &amp;value);
+<a name="l00126"></a>00126   <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>;
+<a name="l00127"></a>00127   <a class="code" href="ugen___play_buf_8ii.html#a2256f668bdd3192173bb90c396a1d4fa">sscanf</a>(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;[%d]=%d&quot;</span>, &amp;index, &amp;value);
 <a name="l00128"></a>00128   
 <a name="l00129"></a>00129   <span class="keywordflow">if</span>(index != i) <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00130"></a>00130   
@@ -167,7 +167,7 @@
 <a name="l00135"></a>00135  <span class="keywordflow">return</span> <span class="keyword">true</span>;
 <a name="l00136"></a>00136 }
 <a name="l00137"></a>00137 
-<a name="l00138"></a><a class="code" href="class_text_file_reader_internal.html#a5128c32829bdbf8a7962d3ace240b378">00138</a> <span class="keywordtype">bool</span> <a class="code" href="class_text_file_reader_internal.html#ad1fc47b04de6cfd1f6c8f7b49dc279fa">TextFileReaderInternal::readArray</a>(<a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;int&gt;</a> *array) <span class="keywordflow">throw</span>()
+<a name="l00138"></a><a class="code" href="class_text_file_reader_internal.html#a5128c32829bdbf8a7962d3ace240b378">00138</a> <span class="keywordtype">bool</span> <a class="code" href="class_text_file_reader_internal.html#ad1fc47b04de6cfd1f6c8f7b49dc279fa">TextFileReaderInternal::readArray</a>(<a class="code" href="class_numerical_array.html">NumericalArray&lt;int&gt;</a> *array) <span class="keywordflow">throw</span>()
 <a name="l00139"></a>00139 {
 <a name="l00140"></a>00140  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(array != 0);
 <a name="l00141"></a>00141  
@@ -179,17 +179,17 @@
 <a name="l00147"></a>00147  
 <a name="l00148"></a>00148  text = readLine(); <span class="comment">// should be size info;</span>
 <a name="l00149"></a>00149  <span class="keywordtype">int</span> size;
-<a name="l00150"></a>00150  sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;size:%d&quot;</span>, &amp;size);
+<a name="l00150"></a>00150  <a class="code" href="ugen___play_buf_8ii.html#a2256f668bdd3192173bb90c396a1d4fa">sscanf</a>(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;size:%d&quot;</span>, &amp;size);
 <a name="l00151"></a>00151  
-<a name="l00152"></a>00152  <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;int&gt;</a> newArray = <a class="code" href="class_numerical_array.html#ada7cd40ff1de921243a1ba6d0a73fe5d">NumericalArray&lt;int&gt;::withSize</a>(size);
+<a name="l00152"></a>00152  <a class="code" href="class_numerical_array.html">NumericalArray&lt;int&gt;</a> newArray = <a class="code" href="class_numerical_array.html#ada7cd40ff1de921243a1ba6d0a73fe5d">NumericalArray&lt;int&gt;::withSize</a>(size);
 <a name="l00153"></a>00153  <span class="keywordtype">int</span> *newArrayPtr = newArray.getArray();
 <a name="l00154"></a>00154  
 <a name="l00155"></a>00155  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++)
 <a name="l00156"></a>00156  {
 <a name="l00157"></a>00157   text = readLine();
 <a name="l00158"></a>00158   <span class="keywordtype">int</span> index;
-<a name="l00159"></a>00159   <span class="keywordtype">int</span> value;
-<a name="l00160"></a>00160   sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;[%d]=%d&quot;</span>, &amp;index, &amp;value);
+<a name="l00159"></a>00159   <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>;
+<a name="l00160"></a>00160   <a class="code" href="ugen___play_buf_8ii.html#a2256f668bdd3192173bb90c396a1d4fa">sscanf</a>(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;[%d]=%d&quot;</span>, &amp;index, &amp;value);
 <a name="l00161"></a>00161   
 <a name="l00162"></a>00162   <span class="keywordflow">if</span>(index != i) <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00163"></a>00163   
@@ -212,7 +212,7 @@
 <a name="l00180"></a>00180  
 <a name="l00181"></a>00181  text = readLine(); <span class="comment">// should be size info;</span>
 <a name="l00182"></a>00182  <span class="keywordtype">int</span> size;
-<a name="l00183"></a>00183  sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;size:%d&quot;</span>, &amp;size);
+<a name="l00183"></a>00183  <a class="code" href="ugen___play_buf_8ii.html#a2256f668bdd3192173bb90c396a1d4fa">sscanf</a>(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;size:%d&quot;</span>, &amp;size);
 <a name="l00184"></a>00184  
 <a name="l00185"></a>00185  <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a> newArray = <a class="code" href="class_numerical_array.html#ada7cd40ff1de921243a1ba6d0a73fe5d">NumericalArray&lt;float&gt;::withSize</a>(size);
 <a name="l00186"></a>00186  <span class="keywordtype">float</span> *newArrayPtr = newArray.getArray();
@@ -221,8 +221,8 @@
 <a name="l00189"></a>00189  {
 <a name="l00190"></a>00190   text = readLine();
 <a name="l00191"></a>00191   <span class="keywordtype">int</span> index;
-<a name="l00192"></a>00192   <span class="keywordtype">float</span> value;
-<a name="l00193"></a>00193   sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;[%d]=%f&quot;</span>, &amp;index, &amp;value);
+<a name="l00192"></a>00192   <span class="keywordtype">float</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>;
+<a name="l00193"></a>00193   <a class="code" href="ugen___play_buf_8ii.html#a2256f668bdd3192173bb90c396a1d4fa">sscanf</a>(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;[%d]=%f&quot;</span>, &amp;index, &amp;value);
 <a name="l00194"></a>00194   
 <a name="l00195"></a>00195   <span class="keywordflow">if</span>(index != i) <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00196"></a>00196   
@@ -245,7 +245,7 @@
 <a name="l00213"></a>00213  
 <a name="l00214"></a>00214  text = readLine(); <span class="comment">// should be size info;</span>
 <a name="l00215"></a>00215  <span class="keywordtype">int</span> size;
-<a name="l00216"></a>00216  sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;size:%d&quot;</span>, &amp;size);
+<a name="l00216"></a>00216  <a class="code" href="ugen___play_buf_8ii.html#a2256f668bdd3192173bb90c396a1d4fa">sscanf</a>(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;size:%d&quot;</span>, &amp;size);
 <a name="l00217"></a>00217  
 <a name="l00218"></a>00218  <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;double&gt;</a> newArray = <a class="code" href="class_numerical_array.html#ada7cd40ff1de921243a1ba6d0a73fe5d">NumericalArray&lt;double&gt;::withSize</a>(size);
 <a name="l00219"></a>00219  <span class="keywordtype">double</span> *newArrayPtr = newArray.getArray();
@@ -254,8 +254,8 @@
 <a name="l00222"></a>00222  {
 <a name="l00223"></a>00223   text = readLine();
 <a name="l00224"></a>00224   <span class="keywordtype">int</span> index;
-<a name="l00225"></a>00225   <span class="keywordtype">double</span> value;
-<a name="l00226"></a>00226   sscanf(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;[%d]=%lg&quot;</span>, &amp;index, &amp;value);
+<a name="l00225"></a>00225   <span class="keywordtype">double</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>;
+<a name="l00226"></a>00226   <a class="code" href="ugen___play_buf_8ii.html#a2256f668bdd3192173bb90c396a1d4fa">sscanf</a>(text.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>(), <span class="stringliteral">&quot;[%d]=%lg&quot;</span>, &amp;index, &amp;value);
 <a name="l00227"></a>00227   
 <a name="l00228"></a>00228   <span class="keywordflow">if</span>(index != i) <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00229"></a>00229   
@@ -268,12 +268,12 @@
 <a name="l00236"></a>00236 
 <a name="l00237"></a><a class="code" href="class_text_file_writer_internal.html#affe833116026c005e925e90b15743711">00237</a> <a class="code" href="class_text_file_writer_internal.html#affe833116026c005e925e90b15743711">TextFileWriterInternal::TextFileWriterInternal</a>(<a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <span class="keyword">const</span>&amp; path) <span class="keywordflow">throw</span>()
 <a name="l00238"></a>00238 {
-<a name="l00239"></a>00239  peer = <span class="keyword">new</span> ofstream(path.getArray(), ios_base::out | ios_base::trunc);
+<a name="l00239"></a>00239  peer = <span class="keyword">new</span> <a class="code" href="namespacestd.html#a7a439605cbbc7d72fcefc9d6a59c4f0a">ofstream</a>(path.getArray(), ios_base::out | ios_base::trunc);
 <a name="l00240"></a>00240 }
 <a name="l00241"></a>00241 
 <a name="l00242"></a><a class="code" href="class_text_file_writer_internal.html#a6431468b9289e194816ed49f23c6b2fd">00242</a> <a class="code" href="class_text_file_writer_internal.html#a6431468b9289e194816ed49f23c6b2fd">TextFileWriterInternal::~TextFileWriterInternal</a>()
 <a name="l00243"></a>00243 {
-<a name="l00244"></a>00244  ofstream *file = (ofstream*)<a class="code" href="class_text_file_writer_internal.html#aa13b591bce63f0b5d8952cb8fe717140">peer</a>;
+<a name="l00244"></a>00244  <a class="code" href="namespacestd.html#a7a439605cbbc7d72fcefc9d6a59c4f0a">ofstream</a> *file = (<a class="code" href="namespacestd.html#a7a439605cbbc7d72fcefc9d6a59c4f0a">ofstream</a>*)<a class="code" href="class_text_file_writer_internal.html#aa13b591bce63f0b5d8952cb8fe717140">peer</a>;
 <a name="l00245"></a>00245  
 <a name="l00246"></a>00246  <span class="keywordflow">if</span>(file &amp;&amp; file-&gt;is_open())
 <a name="l00247"></a>00247   file-&gt;close();
@@ -283,7 +283,7 @@
 <a name="l00251"></a>00251 
 <a name="l00252"></a><a class="code" href="class_text_file_writer_internal.html#a213fddaaa2d93dc76564eaf77ed0f86c">00252</a> <span class="keywordtype">void</span> <a class="code" href="class_text_file_writer_internal.html#a213fddaaa2d93dc76564eaf77ed0f86c">TextFileWriterInternal::write</a>(<a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <span class="keyword">const</span>&amp; text) <span class="keywordflow">throw</span>()
 <a name="l00253"></a>00253 {
-<a name="l00254"></a>00254  ofstream *file = (ofstream*)peer;
+<a name="l00254"></a>00254  <a class="code" href="namespacestd.html#a7a439605cbbc7d72fcefc9d6a59c4f0a">ofstream</a> *file = (<a class="code" href="namespacestd.html#a7a439605cbbc7d72fcefc9d6a59c4f0a">ofstream</a>*)peer;
 <a name="l00255"></a>00255  <span class="keywordflow">if</span>(file &amp;&amp; file-&gt;is_open())
 <a name="l00256"></a>00256   *file &lt;&lt; text.getArray();
 <a name="l00257"></a>00257 }
@@ -292,65 +292,65 @@
 <a name="l00260"></a>00260 {
 <a name="l00261"></a>00261  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(text != 0);
 <a name="l00262"></a>00262  
-<a name="l00263"></a>00263  ofstream *file = (ofstream*)peer;
+<a name="l00263"></a>00263  <a class="code" href="namespacestd.html#a7a439605cbbc7d72fcefc9d6a59c4f0a">ofstream</a> *file = (<a class="code" href="namespacestd.html#a7a439605cbbc7d72fcefc9d6a59c4f0a">ofstream</a>*)peer;
 <a name="l00264"></a>00264  <span class="keywordflow">if</span>(file &amp;&amp; file-&gt;is_open())
 <a name="l00265"></a>00265   *file &lt;&lt; text;
 <a name="l00266"></a>00266 }
 <a name="l00267"></a>00267 
-<a name="l00268"></a><a class="code" href="class_text_file_writer_internal.html#a94ec990d7acc5b72a2ac6be3282d5042">00268</a> <span class="keywordtype">void</span> <a class="code" href="class_text_file_writer_internal.html#a94ec990d7acc5b72a2ac6be3282d5042">TextFileWriterInternal::writeValue</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> value) <span class="keywordflow">throw</span>()
+<a name="l00268"></a><a class="code" href="class_text_file_writer_internal.html#a94ec990d7acc5b72a2ac6be3282d5042">00268</a> <span class="keywordtype">void</span> <a class="code" href="class_text_file_writer_internal.html#a94ec990d7acc5b72a2ac6be3282d5042">TextFileWriterInternal::writeValue</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>) <span class="keywordflow">throw</span>()
 <a name="l00269"></a>00269 {
 <a name="l00270"></a>00270  <span class="keyword">const</span> <span class="keywordtype">int</span> size = 64;
-<a name="l00271"></a>00271  <span class="keywordtype">char</span> buf[size];
-<a name="l00272"></a>00272  snprintf(buf, size, <span class="stringliteral">&quot;%d&quot;</span>, value);
-<a name="l00273"></a>00273  write(buf);
+<a name="l00271"></a>00271  <span class="keywordtype">char</span> <a class="code" href="ugen___play_buf_8ii.html#afd5893abcfbb48f4c058252de505c7fe">buf</a>[size];
+<a name="l00272"></a>00272  <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(buf, size, <span class="stringliteral">&quot;%d&quot;</span>, <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>);
+<a name="l00273"></a>00273  <a class="code" href="ugen___play_buf_8ii.html#a3c1697bddee8b212e6a680f90d0b0da5">write</a>(buf);
 <a name="l00274"></a>00274 }
 <a name="l00275"></a>00275 
-<a name="l00276"></a><a class="code" href="class_text_file_writer_internal.html#af64a176115cc326eacbb19d7885ccc3b">00276</a> <span class="keywordtype">void</span> <a class="code" href="class_text_file_writer_internal.html#a94ec990d7acc5b72a2ac6be3282d5042">TextFileWriterInternal::writeValue</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> value) <span class="keywordflow">throw</span>()
+<a name="l00276"></a><a class="code" href="class_text_file_writer_internal.html#af64a176115cc326eacbb19d7885ccc3b">00276</a> <span class="keywordtype">void</span> <a class="code" href="class_text_file_writer_internal.html#a94ec990d7acc5b72a2ac6be3282d5042">TextFileWriterInternal::writeValue</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>) <span class="keywordflow">throw</span>()
 <a name="l00277"></a>00277 {
 <a name="l00278"></a>00278  <span class="keyword">const</span> <span class="keywordtype">int</span> size = 64;
-<a name="l00279"></a>00279  <span class="keywordtype">char</span> buf[size];
-<a name="l00280"></a>00280  snprintf(buf, size, <span class="stringliteral">&quot;%d&quot;</span>, value);
-<a name="l00281"></a>00281  write(buf);
+<a name="l00279"></a>00279  <span class="keywordtype">char</span> <a class="code" href="ugen___play_buf_8ii.html#afd5893abcfbb48f4c058252de505c7fe">buf</a>[size];
+<a name="l00280"></a>00280  <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(buf, size, <span class="stringliteral">&quot;%d&quot;</span>, <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>);
+<a name="l00281"></a>00281  <a class="code" href="ugen___play_buf_8ii.html#a3c1697bddee8b212e6a680f90d0b0da5">write</a>(buf);
 <a name="l00282"></a>00282 }
 <a name="l00283"></a>00283 
-<a name="l00284"></a><a class="code" href="class_text_file_writer_internal.html#ab90a4a94f7d4db97c0302a6c9e6ddb6a">00284</a> <span class="keywordtype">void</span> <a class="code" href="class_text_file_writer_internal.html#a94ec990d7acc5b72a2ac6be3282d5042">TextFileWriterInternal::writeValue</a>(<span class="keyword">const</span> <span class="keywordtype">long</span> value) <span class="keywordflow">throw</span>()
+<a name="l00284"></a><a class="code" href="class_text_file_writer_internal.html#ab90a4a94f7d4db97c0302a6c9e6ddb6a">00284</a> <span class="keywordtype">void</span> <a class="code" href="class_text_file_writer_internal.html#a94ec990d7acc5b72a2ac6be3282d5042">TextFileWriterInternal::writeValue</a>(<span class="keyword">const</span> <span class="keywordtype">long</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>) <span class="keywordflow">throw</span>()
 <a name="l00285"></a>00285 {
 <a name="l00286"></a>00286  <span class="keyword">const</span> <span class="keywordtype">int</span> size = 64;
-<a name="l00287"></a>00287  <span class="keywordtype">char</span> buf[size];
-<a name="l00288"></a>00288  snprintf(buf, size, <span class="stringliteral">&quot;%ld&quot;</span>, value);
-<a name="l00289"></a>00289  write(buf);
+<a name="l00287"></a>00287  <span class="keywordtype">char</span> <a class="code" href="ugen___play_buf_8ii.html#afd5893abcfbb48f4c058252de505c7fe">buf</a>[size];
+<a name="l00288"></a>00288  <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(buf, size, <span class="stringliteral">&quot;%ld&quot;</span>, <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>);
+<a name="l00289"></a>00289  <a class="code" href="ugen___play_buf_8ii.html#a3c1697bddee8b212e6a680f90d0b0da5">write</a>(buf);
 <a name="l00290"></a>00290 }
 <a name="l00291"></a>00291 
-<a name="l00292"></a><a class="code" href="class_text_file_writer_internal.html#afa544d91b4ffb8912c2527cf1e8cba59">00292</a> <span class="keywordtype">void</span> <a class="code" href="class_text_file_writer_internal.html#a94ec990d7acc5b72a2ac6be3282d5042">TextFileWriterInternal::writeValue</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> value) <span class="keywordflow">throw</span>()
+<a name="l00292"></a><a class="code" href="class_text_file_writer_internal.html#afa544d91b4ffb8912c2527cf1e8cba59">00292</a> <span class="keywordtype">void</span> <a class="code" href="class_text_file_writer_internal.html#a94ec990d7acc5b72a2ac6be3282d5042">TextFileWriterInternal::writeValue</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>) <span class="keywordflow">throw</span>()
 <a name="l00293"></a>00293 {
 <a name="l00294"></a>00294  <span class="keyword">const</span> <span class="keywordtype">int</span> size = 64;
-<a name="l00295"></a>00295  <span class="keywordtype">char</span> buf[size];
-<a name="l00296"></a>00296  snprintf(buf, size, <span class="stringliteral">&quot;%lu&quot;</span>, value);
-<a name="l00297"></a>00297  write(buf);
+<a name="l00295"></a>00295  <span class="keywordtype">char</span> <a class="code" href="ugen___play_buf_8ii.html#afd5893abcfbb48f4c058252de505c7fe">buf</a>[size];
+<a name="l00296"></a>00296  <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(buf, size, <span class="stringliteral">&quot;%lu&quot;</span>, <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>);
+<a name="l00297"></a>00297  <a class="code" href="ugen___play_buf_8ii.html#a3c1697bddee8b212e6a680f90d0b0da5">write</a>(buf);
 <a name="l00298"></a>00298 }
 <a name="l00299"></a>00299 
-<a name="l00300"></a><a class="code" href="class_text_file_writer_internal.html#a0dca86e7ac1cbb7176b1803798e5c71f">00300</a> <span class="keywordtype">void</span> <a class="code" href="class_text_file_writer_internal.html#a94ec990d7acc5b72a2ac6be3282d5042">TextFileWriterInternal::writeValue</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> value) <span class="keywordflow">throw</span>()
+<a name="l00300"></a><a class="code" href="class_text_file_writer_internal.html#a0dca86e7ac1cbb7176b1803798e5c71f">00300</a> <span class="keywordtype">void</span> <a class="code" href="class_text_file_writer_internal.html#a94ec990d7acc5b72a2ac6be3282d5042">TextFileWriterInternal::writeValue</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>) <span class="keywordflow">throw</span>()
 <a name="l00301"></a>00301 {
 <a name="l00302"></a>00302  <span class="keyword">const</span> <span class="keywordtype">int</span> size = 64;
-<a name="l00303"></a>00303  <span class="keywordtype">char</span> buf[size];
-<a name="l00304"></a>00304  snprintf(buf, size, <span class="stringliteral">&quot;%u&quot;</span>, value);
-<a name="l00305"></a>00305  write(buf);
+<a name="l00303"></a>00303  <span class="keywordtype">char</span> <a class="code" href="ugen___play_buf_8ii.html#afd5893abcfbb48f4c058252de505c7fe">buf</a>[size];
+<a name="l00304"></a>00304  <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(buf, size, <span class="stringliteral">&quot;%u&quot;</span>, <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>);
+<a name="l00305"></a>00305  <a class="code" href="ugen___play_buf_8ii.html#a3c1697bddee8b212e6a680f90d0b0da5">write</a>(buf);
 <a name="l00306"></a>00306 }
 <a name="l00307"></a>00307 
-<a name="l00308"></a><a class="code" href="class_text_file_writer_internal.html#a48719031c1620dbf3c748857ebd8ee55">00308</a> <span class="keywordtype">void</span> <a class="code" href="class_text_file_writer_internal.html#a94ec990d7acc5b72a2ac6be3282d5042">TextFileWriterInternal::writeValue</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> value) <span class="keywordflow">throw</span>()
+<a name="l00308"></a><a class="code" href="class_text_file_writer_internal.html#a48719031c1620dbf3c748857ebd8ee55">00308</a> <span class="keywordtype">void</span> <a class="code" href="class_text_file_writer_internal.html#a94ec990d7acc5b72a2ac6be3282d5042">TextFileWriterInternal::writeValue</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>) <span class="keywordflow">throw</span>()
 <a name="l00309"></a>00309 {
 <a name="l00310"></a>00310  <span class="keyword">const</span> <span class="keywordtype">int</span> size = 64;
-<a name="l00311"></a>00311  <span class="keywordtype">char</span> buf[size];
-<a name="l00312"></a>00312  snprintf(buf, size, <span class="stringliteral">&quot;%.16f&quot;</span>, value);
-<a name="l00313"></a>00313  write(buf);
+<a name="l00311"></a>00311  <span class="keywordtype">char</span> <a class="code" href="ugen___play_buf_8ii.html#afd5893abcfbb48f4c058252de505c7fe">buf</a>[size];
+<a name="l00312"></a>00312  <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(buf, size, <span class="stringliteral">&quot;%.16f&quot;</span>, <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>);
+<a name="l00313"></a>00313  <a class="code" href="ugen___play_buf_8ii.html#a3c1697bddee8b212e6a680f90d0b0da5">write</a>(buf);
 <a name="l00314"></a>00314 }
 <a name="l00315"></a>00315 
-<a name="l00316"></a><a class="code" href="class_text_file_writer_internal.html#acef153ebd6e0b519e4608bcc293e6e18">00316</a> <span class="keywordtype">void</span> <a class="code" href="class_text_file_writer_internal.html#a94ec990d7acc5b72a2ac6be3282d5042">TextFileWriterInternal::writeValue</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> value) <span class="keywordflow">throw</span>()
+<a name="l00316"></a><a class="code" href="class_text_file_writer_internal.html#acef153ebd6e0b519e4608bcc293e6e18">00316</a> <span class="keywordtype">void</span> <a class="code" href="class_text_file_writer_internal.html#a94ec990d7acc5b72a2ac6be3282d5042">TextFileWriterInternal::writeValue</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>) <span class="keywordflow">throw</span>()
 <a name="l00317"></a>00317 {
 <a name="l00318"></a>00318  <span class="keyword">const</span> <span class="keywordtype">int</span> size = 64;
-<a name="l00319"></a>00319  <span class="keywordtype">char</span> buf[size];
-<a name="l00320"></a>00320  snprintf(buf, size, <span class="stringliteral">&quot;%.16f&quot;</span>, (<span class="keywordtype">float</span>)value);
-<a name="l00321"></a>00321  write(buf);
+<a name="l00319"></a>00319  <span class="keywordtype">char</span> <a class="code" href="ugen___play_buf_8ii.html#afd5893abcfbb48f4c058252de505c7fe">buf</a>[size];
+<a name="l00320"></a>00320  <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(buf, size, <span class="stringliteral">&quot;%.16f&quot;</span>, (<span class="keywordtype">float</span>)<a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>);
+<a name="l00321"></a>00321  <a class="code" href="ugen___play_buf_8ii.html#a3c1697bddee8b212e6a680f90d0b0da5">write</a>(buf);
 <a name="l00322"></a>00322 }
 <a name="l00323"></a>00323 
 <a name="l00324"></a><a class="code" href="class_text_file_writer_internal.html#a41a7b8bc96f6a6dabc969139e12d2fdc">00324</a> <span class="keywordtype">void</span> <a class="code" href="class_text_file_writer_internal.html#a41a7b8bc96f6a6dabc969139e12d2fdc">TextFileWriterInternal::writeArray</a>(<a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;char&gt;</a> <span class="keyword">const</span>&amp; array) <span class="keywordflow">throw</span>()
@@ -358,7 +358,7 @@
 <a name="l00326"></a>00326  writeArrayInternal(array, <span class="stringliteral">&quot;NumericalArray&lt;char&gt;:v1\n&quot;</span>);
 <a name="l00327"></a>00327 }
 <a name="l00328"></a>00328 
-<a name="l00329"></a><a class="code" href="class_text_file_writer_internal.html#a69694484bf1f874b57799ae48ae6f8d7">00329</a> <span class="keywordtype">void</span> <a class="code" href="class_text_file_writer_internal.html#a41a7b8bc96f6a6dabc969139e12d2fdc">TextFileWriterInternal::writeArray</a>(<a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;int&gt;</a> <span class="keyword">const</span>&amp; array) <span class="keywordflow">throw</span>()
+<a name="l00329"></a><a class="code" href="class_text_file_writer_internal.html#a69694484bf1f874b57799ae48ae6f8d7">00329</a> <span class="keywordtype">void</span> <a class="code" href="class_text_file_writer_internal.html#a41a7b8bc96f6a6dabc969139e12d2fdc">TextFileWriterInternal::writeArray</a>(<a class="code" href="class_numerical_array.html">NumericalArray&lt;int&gt;</a> <span class="keyword">const</span>&amp; array) <span class="keywordflow">throw</span>()
 <a name="l00330"></a>00330 {
 <a name="l00331"></a>00331  writeArrayInternal(array, <span class="stringliteral">&quot;NumericalArray&lt;int&gt;:v1\n&quot;</span>);
 <a name="l00332"></a>00332 }
@@ -377,7 +377,7 @@
 <a name="l00345"></a>00345 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:30 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

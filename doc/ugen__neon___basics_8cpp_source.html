@@ -235,9 +235,9 @@
 <a name="l00203"></a>00203  <span class="keywordtype">bool</span>&amp; shouldDeleteToPass = <a class="code" href="class_mix_u_gen_internal.html#ac44b80804914f2ca56a3001415d1505e">shouldAllowAutoDelete_</a> ? shouldDelete : shouldDeleteLocal; 
 <a name="l00204"></a>00204  <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesToProcess = <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a118a3566a4758eb4719c57843c25bd57">getBlockSize</a>();
 <a name="l00205"></a>00205  <span class="keywordtype">float</span>* <span class="keyword">const</span> outputSamples = <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a2f81d76a08bdae1136fb9eb94c34aa14">getSampleData</a>();
-<a name="l00206"></a>00206  <span class="keywordtype">float</span>* <span class="keyword">const</span> channelSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>-&gt;<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDeleteToPass, blockID, channel);
+<a name="l00206"></a>00206  <span class="keywordtype">float</span>* <span class="keyword">const</span> channelSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>-&gt;<a class="code" href="class_u_gen.html#a373ba4141dfb16167cd9061852ffad15" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDeleteToPass, blockID, channel);
 <a name="l00207"></a>00207  
-<a name="l00208"></a>00208  memcpy(outputSamples, channelSamples, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00208"></a>00208  <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(outputSamples, channelSamples, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l00209"></a>00209  
 <a name="l00210"></a>00210  channel++;
 <a name="l00211"></a>00211  
@@ -246,7 +246,7 @@
 <a name="l00214"></a>00214  <span class="keywordflow">for</span>(<span class="comment">/* leave channel value alone */</span>; channel &lt; numChannels; channel++)
 <a name="l00215"></a>00215  {
 <a name="l00216"></a>00216   shouldDeleteLocal = <span class="keyword">false</span>;
-<a name="l00217"></a>00217   <span class="keywordtype">float</span>* <span class="keyword">const</span> channelSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>-&gt;<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDeleteToPass, blockID, channel);
+<a name="l00217"></a>00217   <span class="keywordtype">float</span>* <span class="keyword">const</span> channelSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>-&gt;<a class="code" href="class_u_gen.html#a373ba4141dfb16167cd9061852ffad15" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDeleteToPass, blockID, channel);
 <a name="l00218"></a>00218   
 <a name="l00219"></a>00219   <a class="code" href="class_neon.html#a0269a128cf506e3dfd9726597654742f">Neon::add</a>(outputSamples, channelSamples, outputSamples, numSamplesToProcess);
 <a name="l00220"></a>00220  } 
@@ -265,7 +265,7 @@
 <a name="l00233"></a>00233  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numOutputChannels; channel++)
 <a name="l00234"></a>00234  {
 <a name="l00235"></a>00235   <span class="keywordtype">float</span>* <span class="keyword">const</span> outputSamples = <a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">getSampleData</a>();  
-<a name="l00236"></a>00236   memset(outputSamples, 0, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00236"></a>00236   <a class="code" href="ugen___play_buf_8ii.html#a68d2b40ef2213b9227a1ce3b81997ae5">memset</a>(outputSamples, 0, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l00237"></a>00237   
 <a name="l00238"></a>00238   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> arrayIndex = 0; arrayIndex &lt; arraySize; arrayIndex++)
 <a name="l00239"></a>00239   {
@@ -276,7 +276,7 @@
 <a name="l00244"></a>00244    <span class="keywordflow">if</span>(<a class="code" href="class_mix_array_u_gen_internal.html#aab554fcf7547f0aaf353cd6070f27f42">shouldWrapChannels_</a> || (channel &lt; ugen.<a class="code" href="class_u_gen.html#a996ea2091a1af960134353f9780f2ae9" title="Get the number of channels (i.e., number of internals).">getNumChannels</a>()))
 <a name="l00245"></a>00245    {
 <a name="l00246"></a>00246     shouldDeleteLocal = <span class="keyword">false</span>;
-<a name="l00247"></a>00247     <span class="keywordtype">float</span>* <span class="keyword">const</span> channelSamples = ugen.<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDeleteToPass, blockID, channel);
+<a name="l00247"></a>00247     <span class="keywordtype">float</span>* <span class="keyword">const</span> channelSamples = ugen.<a class="code" href="class_u_gen.html#a373ba4141dfb16167cd9061852ffad15" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDeleteToPass, blockID, channel);
 <a name="l00248"></a>00248     <a class="code" href="class_neon.html#a0269a128cf506e3dfd9726597654742f">Neon::add</a>(outputSamples, channelSamples, outputSamples, numSamplesToProcess);   
 <a name="l00249"></a>00249    }
 <a name="l00250"></a>00250   }
@@ -335,7 +335,7 @@
 <a name="l00303"></a>00303 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:31 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -53,7 +53,7 @@
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_value_u_gen_internal.html#af7da80c4313b4bc60a0673aefc577321">ValueUGenInternal</a> (<a class="el" href="class_value.html">Value</a> const &amp;value)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_value_u_gen_internal.html#af7da80c4313b4bc60a0673aefc577321">ValueUGenInternal</a> (<a class="el" href="class_value.html">Value</a> const &amp;<a class="el" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_value_u_gen_internal.html#a8d2603450292257714b86e26d767b53d">getKr</a> ()  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_value_u_gen_internal.html#abcdefea909b4df92ee9ebdb92d480176">processBlock</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Process a block of samples for this blockID and channel.  <a href="#abcdefea909b4df92ee9ebdb92d480176"></a><br/></td></tr>
@@ -88,7 +88,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___value_8cpp_source.html#l00726">726</a> of file <a class="el" href="ugen___value_8cpp_source.html">ugen_Value.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___value_8h_source.html#l00163">Value::getValue()</a>, <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00322">UGenInternal::initValue()</a>, and <a class="el" href="ugen___value_8h_source.html#l00645">valueObject</a>.</p>
+<p>References <a class="el" href="ugen___value_8h_source.html#l00163">Value::getValue()</a>, <a class="el" href="class_u_gen_internal.html#a02969e1ea45efde745a41fec2ac36dc4">UGenInternal::initValue()</a>, and <a class="el" href="ugen___value_8h_source.html#l00645">valueObject</a>.</p>
 
 </div>
 </div>
@@ -108,13 +108,13 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a5041a93f6c624446f04542b0b82f0563">UGenInternal</a>.</p>
+<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a637e36a73842e8c10f62bc42c34c515c">UGenInternal</a>.</p>
 
 <p>Reimplemented in <a class="el" href="class_value_u_gen_internal_k.html#a1434ba526af84ab2b758f81b91b3855b">ValueUGenInternalK</a>.</p>
 
 <p>Definition at line <a class="el" href="ugen___value_8cpp_source.html#l00735">735</a> of file <a class="el" href="ugen___value_8cpp_source.html">ugen_Value.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00327">UGenInternal::getValue()</a>, <a class="el" href="ugen___value_8h_source.html#l00657">ValueUGenInternalK::setValue()</a>, and <a class="el" href="ugen___value_8h_source.html#l00645">valueObject</a>.</p>
+<p>References <a class="el" href="class_u_gen_internal.html#a9f79b23e6cc88f6987890357b4a5ba3b">UGenInternal::getValue()</a>, <a class="el" href="ugen___value_8h_source.html#l00657">ValueUGenInternalK::setValue()</a>, and <a class="el" href="ugen___value_8h_source.html#l00645">valueObject</a>.</p>
 
 </div>
 </div>
@@ -166,6 +166,8 @@ Protected Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___value_8cpp_source.html#l00742">742</a> of file <a class="el" href="ugen___value_8cpp_source.html">ugen_Value.cpp</a>.</p>
 
+<p>References <a class="el" href="ugen___play_buf_8ii_source.html#l06697">value</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="add26c94a190da18a5ccd17ca2cad5674"></a><!-- doxytag: member="ValueUGenInternal::setValue" ref="add26c94a190da18a5ccd17ca2cad5674" args="(Value const &amp;other)" -->
@@ -185,8 +187,6 @@ Protected Attributes</h2></td></tr>
 <div class="memdoc">
 
 <p>Definition at line <a class="el" href="ugen___value_8cpp_source.html#l00764">764</a> of file <a class="el" href="ugen___value_8cpp_source.html">ugen_Value.cpp</a>.</p>
-
-<p>Referenced by <a class="el" href="ugen___u_gen_8cpp_source.html#l01133">UGen::setValue()</a>.</p>
 
 </div>
 </div>
@@ -228,7 +228,7 @@ Protected Attributes</h2></td></tr>
 <li>core/<a class="el" href="ugen___value_8cpp_source.html">ugen_Value.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:45 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:46 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

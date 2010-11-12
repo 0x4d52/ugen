@@ -30,7 +30,7 @@
 <h1>buffers/ugen_PlayBuf.cpp</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___play_buf_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_PlayBuf.cpp 172 2010-10-01 20:47:00Z 0x4d52 $</span>
+<a href="ugen___play_buf_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_PlayBuf.cpp 196 2010-11-12 10:35:56Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/buffers/ugen_PlayBuf.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -119,10 +119,10 @@
 <a name="l00087"></a>00087   <span class="keyword">const</span> <span class="keywordtype">int</span> bufferSize = <a class="code" href="class_play_buf_u_gen_internal.html#ac03af12c3b75eb96838f094c1a481d7c">buffer_</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>();
 <a name="l00088"></a>00088   channelBufferPos = <a class="code" href="class_play_buf_u_gen_internal.html#a2bfc802c4bfcb30c94d07fbd13c45099">bufferPos</a>;
 <a name="l00089"></a>00089   <span class="keywordtype">float</span>* outputSamples = <a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">getSampleData</a>();
-<a name="l00090"></a>00090   <span class="keywordtype">float</span>* rateSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Rate].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
-<a name="l00091"></a>00091   <span class="keywordtype">float</span>* trigSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_trig.html">Trig</a>].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
-<a name="l00092"></a>00092   <span class="keywordtype">float</span>* offsetSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Offset].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
-<a name="l00093"></a>00093   <span class="keywordtype">float</span>* loopSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Loop].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
+<a name="l00090"></a>00090   <span class="keywordtype">float</span>* rateSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Rate].<a class="code" href="class_u_gen.html#a373ba4141dfb16167cd9061852ffad15" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
+<a name="l00091"></a>00091   <span class="keywordtype">float</span>* trigSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[<a class="code" href="class_trig.html">Trig</a>].<a class="code" href="class_u_gen.html#a373ba4141dfb16167cd9061852ffad15" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
+<a name="l00092"></a>00092   <span class="keywordtype">float</span>* offsetSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Offset].<a class="code" href="class_u_gen.html#a373ba4141dfb16167cd9061852ffad15" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
+<a name="l00093"></a>00093   <span class="keywordtype">float</span>* loopSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Loop].<a class="code" href="class_u_gen.html#a373ba4141dfb16167cd9061852ffad15" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
 <a name="l00094"></a>00094     
 <a name="l00095"></a>00095   <span class="keywordflow">while</span>(numSamplesToProcess ) 
 <a name="l00096"></a>00096   {    
@@ -181,7 +181,7 @@
 <a name="l00149"></a>00149 
 <a name="l00150"></a><a class="code" href="class_play_buf_u_gen_internal.html#ad278cfaeecf46e4bc3d44be640b987a7">00150</a> <span class="keywordtype">void</span> <a class="code" href="class_play_buf_u_gen_internal.html#ad278cfaeecf46e4bc3d44be640b987a7">PlayBufUGenInternal::setPosition</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> newPosition) <span class="keywordflow">throw</span>()
 <a name="l00151"></a>00151 {
-<a name="l00152"></a>00152  bufferPos = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(0.0, newPosition) * <a class="code" href="class_u_gen.html#afddb4177dad7f4056bbf8b91d07d5224" title="Get the current sample rate.">UGen::getSampleRate</a>();
+<a name="l00152"></a>00152  bufferPos = <a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(0.0, newPosition) * <a class="code" href="class_u_gen.html#afddb4177dad7f4056bbf8b91d07d5224" title="Get the current sample rate.">UGen::getSampleRate</a>();
 <a name="l00153"></a>00153 }
 <a name="l00154"></a>00154 
 <a name="l00155"></a>00155 
@@ -230,7 +230,7 @@
 <a name="l00198"></a>00198  {
 <a name="l00199"></a>00199   <span class="keywordtype">int</span> numSamplesToProcess = <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a118a3566a4758eb4719c57843c25bd57">getBlockSize</a>();
 <a name="l00200"></a>00200   <span class="keywordtype">float</span>* outputSamples = <a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">getSampleData</a>();
-<a name="l00201"></a>00201   <span class="keywordtype">float</span> value = <a class="code" href="class_buffer_values_u_gen_internal.html#a84ffa9b184385b30e76546847a19ec86">buffer</a>[channel];
+<a name="l00201"></a>00201   <span class="keywordtype">float</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> = <a class="code" href="class_buffer_values_u_gen_internal.html#a84ffa9b184385b30e76546847a19ec86">buffer</a>[channel];
 <a name="l00202"></a>00202   
 <a name="l00203"></a>00203   <span class="keywordflow">while</span>(numSamplesToProcess--) *outputSamples++ = value;
 <a name="l00204"></a>00204  }
@@ -262,7 +262,7 @@
 <a name="l00230"></a>00230             <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; preLevel,
 <a name="l00231"></a>00231             <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; loop, 
 <a name="l00232"></a>00232             <span class="keyword">const</span> <a class="code" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1ca" title="Defines actions to be done at the end of an event e.g., a line or envelope.">UGen::DoneAction</a> doneAction) <span class="keywordflow">throw</span>()
-<a name="l00233"></a>00233 : <a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a>(NumInputs, <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(buffer.getNumChannels(), input.getNumChannels()) - 1),
+<a name="l00233"></a>00233 : <a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a>(NumInputs, <a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(buffer.getNumChannels(), input.getNumChannels()) - 1),
 <a name="l00234"></a>00234  buffer_(buffer),
 <a name="l00235"></a>00235  bufferPos(0),
 <a name="l00236"></a>00236  doneAction_(doneAction),
@@ -302,10 +302,10 @@
 <a name="l00270"></a>00270   <span class="keyword">const</span> <span class="keywordtype">int</span> bufferSize = <a class="code" href="class_record_buf_u_gen_internal.html#a3b36d6e715d50785418483652fb37b8d">buffer_</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>();
 <a name="l00271"></a>00271   channelBufferPos = <a class="code" href="class_record_buf_u_gen_internal.html#a8052fa5c6c9af00762b6e73c4a98b30b">bufferPos</a>;
 <a name="l00272"></a>00272   <span class="keywordtype">float</span>* outputSamples = <a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">getSampleData</a>();
-<a name="l00273"></a>00273   <span class="keywordtype">float</span>* inputSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Input].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, channel);
-<a name="l00274"></a>00274   <span class="keywordtype">float</span>* preLevelSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[PreLevel].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, channel);
-<a name="l00275"></a>00275   <span class="keywordtype">float</span>* recLevelSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[RecLevel].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, channel);
-<a name="l00276"></a>00276   <span class="keywordtype">float</span>* loopSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Loop].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
+<a name="l00273"></a>00273   <span class="keywordtype">float</span>* inputSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Input].<a class="code" href="class_u_gen.html#a373ba4141dfb16167cd9061852ffad15" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, channel);
+<a name="l00274"></a>00274   <span class="keywordtype">float</span>* preLevelSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[PreLevel].<a class="code" href="class_u_gen.html#a373ba4141dfb16167cd9061852ffad15" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, channel);
+<a name="l00275"></a>00275   <span class="keywordtype">float</span>* recLevelSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[RecLevel].<a class="code" href="class_u_gen.html#a373ba4141dfb16167cd9061852ffad15" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, channel);
+<a name="l00276"></a>00276   <span class="keywordtype">float</span>* loopSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Loop].<a class="code" href="class_u_gen.html#a373ba4141dfb16167cd9061852ffad15" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
 <a name="l00277"></a>00277   <span class="keywordtype">float</span>* bufferSamples = <a class="code" href="class_record_buf_u_gen_internal.html#a3b36d6e715d50785418483652fb37b8d">buffer_</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(channel);
 <a name="l00278"></a>00278   
 <a name="l00279"></a>00279   <span class="keywordflow">while</span>(numSamplesToProcess) 
@@ -362,7 +362,7 @@
 <a name="l00330"></a>00330 
 <a name="l00331"></a><a class="code" href="class_record_buf_u_gen_internal.html#a91d5c6273102abe4880d137e0db47b6a">00331</a> <span class="keywordtype">void</span> <a class="code" href="class_record_buf_u_gen_internal.html#a91d5c6273102abe4880d137e0db47b6a">RecordBufUGenInternal::setPosition</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> newPosition) <span class="keywordflow">throw</span>()
 <a name="l00332"></a>00332 {
-<a name="l00333"></a>00333  bufferPos = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(0.0, newPosition) * <a class="code" href="class_u_gen.html#afddb4177dad7f4056bbf8b91d07d5224" title="Get the current sample rate.">UGen::getSampleRate</a>();
+<a name="l00333"></a>00333  bufferPos = <a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(0.0, newPosition) * <a class="code" href="class_u_gen.html#afddb4177dad7f4056bbf8b91d07d5224" title="Get the current sample rate.">UGen::getSampleRate</a>();
 <a name="l00334"></a>00334 }
 <a name="l00335"></a>00335 
 <a name="l00336"></a><a class="code" href="class_record_buf.html#a789cdabd29b36a4c4930600338675449">00336</a> <a class="code" href="class_record_buf.html#a06573af5676881ca729048acd42f0575">RecordBuf::RecordBuf</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input,
@@ -375,16 +375,138 @@
 <a name="l00343"></a>00343  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(buffer.size() &gt; 0);
 <a name="l00344"></a>00344  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(buffer.getNumChannels() &gt; 0);
 <a name="l00345"></a>00345 
-<a name="l00346"></a>00346  <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(buffer.getNumChannels(), input.getNumChannels());
+<a name="l00346"></a>00346  <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels = <a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(buffer.getNumChannels(), input.getNumChannels());
 <a name="l00347"></a>00347  initInternal(numChannels);
 <a name="l00348"></a>00348  generateFromProxyOwner(<span class="keyword">new</span> <a class="code" href="class_record_buf_u_gen_internal.html">RecordBufUGenInternal</a>(input, buffer, recLevel, preLevel, loop.mix(), doneAction));
 <a name="l00349"></a>00349 }
 <a name="l00350"></a>00350 
-<a name="l00351"></a>00351 
-<a name="l00352"></a>00352 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
+<a name="l00351"></a>00351  
+<a name="l00352"></a><a class="code" href="class_loop_points_u_gen_internal.html#a1cdbb70d06b0e41c4f381cee92c5fe4e">00352</a> <a class="code" href="class_loop_points_u_gen_internal.html#a1cdbb70d06b0e41c4f381cee92c5fe4e">LoopPointsUGenInternal::LoopPointsUGenInternal</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; buffer, 
+<a name="l00353"></a>00353               <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; rate, 
+<a name="l00354"></a>00354               <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, 
+<a name="l00355"></a>00355               <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; end,
+<a name="l00356"></a>00356               <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; loop, 
+<a name="l00357"></a>00357               <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; startAtZero,
+<a name="l00358"></a>00358               <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; playToEnd) <span class="keywordflow">throw</span>()
+<a name="l00359"></a>00359 : <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(NumInputs),
+<a name="l00360"></a>00360  <a class="code" href="ugen___play_buf_8ii.html#ad1f2e41640df3d6024036b2f01fe81be">b</a>(buffer),
+<a name="l00361"></a>00361  currentValue((startAtZero.getValue() &gt;= 0.5f) ? 0.f : <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>.getValue() * <a class="code" href="ugen___play_buf_8ii.html#ad1f2e41640df3d6024036b2f01fe81be">b</a>.size()),
+<a name="l00362"></a>00362  lastLoop(<span class="keyword">false</span>)
+<a name="l00363"></a>00363 {
+<a name="l00364"></a>00364  inputs[Rate] = rate;
+<a name="l00365"></a>00365  inputs[Start] = <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>;
+<a name="l00366"></a>00366  inputs[End] = end;
+<a name="l00367"></a>00367  inputs[Loop] = loop;
+<a name="l00368"></a>00368  inputs[StartAtZero] = startAtZero;
+<a name="l00369"></a>00369  inputs[PlayToEnd] = playToEnd;
+<a name="l00370"></a>00370 }
+<a name="l00371"></a>00371 
+<a name="l00372"></a><a class="code" href="class_loop_points_u_gen_internal.html#ac44b6930385f2260c389571902c9bc05">00372</a> <span class="keywordtype">void</span> <a class="code" href="class_loop_points_u_gen_internal.html#ac44b6930385f2260c389571902c9bc05" title="Process a block of samples for this blockID and channel.">LoopPointsUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
+<a name="l00373"></a>00373 {
+<a name="l00374"></a>00374  <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
+<a name="l00375"></a>00375  <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
+<a name="l00376"></a>00376  <span class="keywordtype">float</span>* rateSamples = inputs[Rate].processBlock(shouldDelete, blockID, 0);
+<a name="l00377"></a>00377  <span class="keywordtype">float</span>* startSamples = inputs[Start].processBlock(shouldDelete, blockID, 0);
+<a name="l00378"></a>00378  <span class="keywordtype">float</span>* endSamples = inputs[End].processBlock(shouldDelete, blockID, 0);
+<a name="l00379"></a>00379  <span class="keywordtype">float</span>* loopSamples = inputs[Loop].processBlock(shouldDelete, blockID, 0);
+<a name="l00380"></a>00380  <span class="keywordtype">float</span>* startAtZeroSamples = inputs[StartAtZero].processBlock(shouldDelete, blockID, 0);
+<a name="l00381"></a>00381  <span class="keywordtype">float</span>* playToEndSamples = inputs[PlayToEnd].processBlock(shouldDelete, blockID, 0);
+<a name="l00382"></a>00382  
+<a name="l00383"></a>00383  <span class="keywordflow">while</span>(numSamplesToProcess--)
+<a name="l00384"></a>00384  {
+<a name="l00385"></a>00385   <span class="keywordtype">float</span> rate = *rateSamples;
+<a name="l00386"></a>00386   <span class="keywordtype">float</span> <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a> = *startSamples * <a class="code" href="ugen___play_buf_8ii.html#ad1f2e41640df3d6024036b2f01fe81be">b</a>.size();
+<a name="l00387"></a>00387   <span class="keywordtype">float</span> end = *endSamples * <a class="code" href="ugen___play_buf_8ii.html#ad1f2e41640df3d6024036b2f01fe81be">b</a>.size();
+<a name="l00388"></a>00388   <span class="keywordtype">bool</span> loop = *loopSamples &gt;= 0.5f;
+<a name="l00389"></a>00389   
+<a name="l00390"></a>00390   <span class="keywordflow">if</span>(start &gt; end)
+<a name="l00391"></a>00391   {
+<a name="l00392"></a>00392    <span class="keywordtype">float</span> temp = start;
+<a name="l00393"></a>00393    start = end;
+<a name="l00394"></a>00394    end = temp;
+<a name="l00395"></a>00395    rate = -rate;
+<a name="l00396"></a>00396   }
+<a name="l00397"></a>00397   
+<a name="l00398"></a>00398   currentValue += rate;
+<a name="l00399"></a>00399   
+<a name="l00400"></a>00400   <span class="keywordflow">if</span>(loop)
+<a name="l00401"></a>00401   {            
+<a name="l00402"></a>00402    <span class="keywordflow">if</span>((rate &gt; 0.f) &amp;&amp; (currentValue &gt;= end))
+<a name="l00403"></a>00403    {
+<a name="l00404"></a>00404     <span class="keywordflow">if</span>(lastLoop == <span class="keyword">false</span>)
+<a name="l00405"></a>00405     {
+<a name="l00406"></a>00406      <span class="keywordtype">bool</span> fromZero = *startAtZeroSamples &gt;= 0.5f;
+<a name="l00407"></a>00407      
+<a name="l00408"></a>00408      currentValue = fromZero ? 0.f : start;
+<a name="l00409"></a>00409     }
+<a name="l00410"></a>00410     <span class="keywordflow">else</span>
+<a name="l00411"></a>00411     {
+<a name="l00412"></a>00412      currentValue -= (end - start);
+<a name="l00413"></a>00413     }
+<a name="l00414"></a>00414    }
+<a name="l00415"></a>00415    <span class="keywordflow">else</span> <span class="keywordflow">if</span>((rate &lt; 0.f) &amp;&amp; (currentValue &lt; start))
+<a name="l00416"></a>00416    {
+<a name="l00417"></a>00417     <span class="keywordflow">if</span>(lastLoop == <span class="keyword">false</span>)
+<a name="l00418"></a>00418     {
+<a name="l00419"></a>00419      <span class="keywordtype">bool</span> fromEnd = *startAtZeroSamples &gt;= 0.5f;
+<a name="l00420"></a>00420 
+<a name="l00421"></a>00421      currentValue = fromEnd ? (<a class="code" href="ugen___play_buf_8ii.html#ad1f2e41640df3d6024036b2f01fe81be">b</a>.size()-1) : end;
+<a name="l00422"></a>00422     }
+<a name="l00423"></a>00423     <span class="keywordflow">else</span>
+<a name="l00424"></a>00424     {            
+<a name="l00425"></a>00425      currentValue += (end - start);
+<a name="l00426"></a>00426     }
+<a name="l00427"></a>00427    }
+<a name="l00428"></a>00428   }
+<a name="l00429"></a>00429   <span class="keywordflow">else</span> <span class="keywordflow">if</span>(*playToEndSamples &lt; 0.5f)
+<a name="l00430"></a>00430   {
+<a name="l00431"></a>00431    <span class="keywordflow">if</span>((rate &gt; 0.f) &amp;&amp; (currentValue &gt;= end))
+<a name="l00432"></a>00432    {
+<a name="l00433"></a>00433     currentValue = (float)<a class="code" href="ugen___play_buf_8ii.html#ad1f2e41640df3d6024036b2f01fe81be">b</a>.size();
+<a name="l00434"></a>00434    }
+<a name="l00435"></a>00435    <span class="keywordflow">else</span> <span class="keywordflow">if</span>((rate &lt; 0.f) &amp;&amp; (currentValue &lt; start))
+<a name="l00436"></a>00436    {
+<a name="l00437"></a>00437     currentValue = -1.f;
+<a name="l00438"></a>00438    }   
+<a name="l00439"></a>00439   }
+<a name="l00440"></a>00440   
+<a name="l00441"></a>00441   *outputSamples = currentValue;
+<a name="l00442"></a>00442   
+<a name="l00443"></a>00443   rateSamples++;
+<a name="l00444"></a>00444   startSamples++;
+<a name="l00445"></a>00445   endSamples++;
+<a name="l00446"></a>00446   loopSamples++;
+<a name="l00447"></a>00447   startAtZeroSamples++;
+<a name="l00448"></a>00448   playToEndSamples++;
+<a name="l00449"></a>00449   outputSamples++;
+<a name="l00450"></a>00450   
+<a name="l00451"></a>00451   lastLoop = loop;
+<a name="l00452"></a>00452  }
+<a name="l00453"></a>00453 }
+<a name="l00454"></a>00454 
+<a name="l00455"></a><a class="code" href="class_loop_points.html#a8cb2de8ab156426acdfceb3e6c432737">00455</a> <a class="code" href="class_loop_points.html#aa1a63368a7ecdec9ad85bb1845145c19">LoopPoints::LoopPoints</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; buffer, 
+<a name="l00456"></a>00456         <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; rate, 
+<a name="l00457"></a>00457         <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, 
+<a name="l00458"></a>00458         <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; end,
+<a name="l00459"></a>00459         <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; loop, 
+<a name="l00460"></a>00460         <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; startAtZero,
+<a name="l00461"></a>00461         <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; playToEnd) <span class="keywordflow">throw</span>()
+<a name="l00462"></a>00462 {
+<a name="l00463"></a>00463  initInternal(1);
+<a name="l00464"></a>00464  internalUGens[0] = <span class="keyword">new</span> <a class="code" href="class_loop_points_u_gen_internal.html">LoopPointsUGenInternal</a>(buffer, 
+<a name="l00465"></a>00465               rate.mix(), 
+<a name="l00466"></a>00466               <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>.mix(), 
+<a name="l00467"></a>00467               end.mix(), 
+<a name="l00468"></a>00468               loop.mix(), 
+<a name="l00469"></a>00469               startAtZero.mix(), 
+<a name="l00470"></a>00470               playToEnd.mix());
+<a name="l00471"></a>00471 }
+<a name="l00472"></a>00472 
+<a name="l00473"></a>00473 
+<a name="l00474"></a>00474 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:36 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:29 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

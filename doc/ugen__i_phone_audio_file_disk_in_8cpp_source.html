@@ -96,27 +96,27 @@
 <a name="l00064"></a>00064  doneAction_(doneAction),
 <a name="l00065"></a>00065  shouldDeleteValue(doneAction_ == <a class="code" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1caa0fbefeaf163b11d9f88375fdb8f3eaac" title="When the event ends it signals a delete message which should delete an entire UGen graph...">UGen::DeleteWhenDone</a>)
 <a name="l00066"></a>00066 {
-<a name="l00067"></a>00067  OSStatus result;
-<a name="l00068"></a>00068  UInt32 dataSize;
+<a name="l00067"></a>00067  <a class="code" href="ugen___play_buf_8ii.html#a389e8a167a89832edb1c7f2d0302537c">OSStatus</a> result;
+<a name="l00068"></a>00068  <a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a> dataSize;
 <a name="l00069"></a>00069  
 <a name="l00070"></a>00070  <span class="keywordflow">if</span>(audioFile_)
 <a name="l00071"></a>00071  {
 <a name="l00072"></a>00072   dataSize = <span class="keyword">sizeof</span>(packetCount);
 <a name="l00073"></a>00073   result = AudioFileGetProperty(audioFile, kAudioFilePropertyAudioDataPacketCount, &amp;dataSize, &amp;packetCount);
-<a name="l00074"></a>00074   <span class="keywordflow">if</span> (result != noErr) 
+<a name="l00074"></a>00074   <span class="keywordflow">if</span> (result != <a class="code" href="ugen___play_buf_8ii.html#a06fc87d81c62e9abb8790b6e5713c55ba29314e147c76ea079f859e0db61a0dfd">noErr</a>) 
 <a name="l00075"></a>00075   {
-<a name="l00076"></a>00076    printf(<span class="stringliteral">&quot;DiskIn: error: Could not get packet count: ID=%p err=%d\n&quot;</span>, audioFile_, (<span class="keywordtype">int</span>)result);
+<a name="l00076"></a>00076    <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;DiskIn: error: Could not get packet count: ID=%p err=%d\n&quot;</span>, audioFile_, (<span class="keywordtype">int</span>)result);
 <a name="l00077"></a>00077    AudioFileClose(audioFile_);
 <a name="l00078"></a>00078    audioFile_ = 0;
 <a name="l00079"></a>00079   } 
 <a name="l00080"></a>00080   <span class="keywordflow">else</span>
 <a name="l00081"></a>00081   {
-<a name="l00082"></a>00082    currentPacket = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(0.0, startTime) * fileSampleRate;
+<a name="l00082"></a>00082    currentPacket = <a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(0.0, startTime) * fileSampleRate;
 <a name="l00083"></a>00083    <span class="keywordflow">if</span>(currentPacket &gt;= packetCount)
 <a name="l00084"></a>00084     currentPacket = 0;
 <a name="l00085"></a>00085    
 <a name="l00086"></a>00086    allocatedBlockSize = <a class="code" href="class_u_gen.html#a6b9bb9ac00a913e2eb17fb2ad7e51414" title="Get the current estimated block size.">UGen::getEstimatedBlockSize</a>();
-<a name="l00087"></a>00087    audioData = malloc(bytesPerFrame * allocatedBlockSize);
+<a name="l00087"></a>00087    audioData = <a class="code" href="ugen___play_buf_8ii.html#a1c8580582aae58105f16108d4ec89e9a">malloc</a>(bytesPerFrame * allocatedBlockSize);
 <a name="l00088"></a>00088   }
 <a name="l00089"></a>00089  }
 <a name="l00090"></a>00090 }
@@ -126,10 +126,10 @@
 <a name="l00094"></a>00094  <span class="keywordflow">if</span>(<a class="code" href="class_disk_in_u_gen_internal.html#ab7e25f8b4695223dcc10de13acf38cc6">audioFile_</a>)
 <a name="l00095"></a>00095   AudioFileClose(<a class="code" href="class_disk_in_u_gen_internal.html#ab7e25f8b4695223dcc10de13acf38cc6">audioFile_</a>);
 <a name="l00096"></a>00096  
-<a name="l00097"></a>00097  free(<a class="code" href="class_disk_in_u_gen_internal.html#afc566294fe640542aaf79c21fa70c36e">audioData</a>);
+<a name="l00097"></a>00097  <a class="code" href="ugen___play_buf_8ii.html#af07d89f5ceaea0c7c8252cc41fd75f37">free</a>(<a class="code" href="class_disk_in_u_gen_internal.html#afc566294fe640542aaf79c21fa70c36e">audioData</a>);
 <a name="l00098"></a>00098 }
 <a name="l00099"></a>00099 
-<a name="l00100"></a>00100 OSStatus <a class="code" href="class_disk_in_u_gen_internal.html#a811b3d36ae8817f10fae92af56784e5c">DiskInUGenInternal::clearOutputsAndReadData</a>(<span class="keywordtype">bool</span>&amp; shouldDelete) <span class="keywordflow">throw</span>()
+<a name="l00100"></a>00100 <a class="code" href="ugen___play_buf_8ii.html#a389e8a167a89832edb1c7f2d0302537c">OSStatus</a> <a class="code" href="class_disk_in_u_gen_internal.html#a811b3d36ae8817f10fae92af56784e5c">DiskInUGenInternal::clearOutputsAndReadData</a>(<span class="keywordtype">bool</span>&amp; shouldDelete) <span class="keywordflow">throw</span>()
 <a name="l00101"></a>00101 {
 <a name="l00102"></a>00102  <span class="keyword">const</span> <span class="keywordtype">int</span> outputBlockSize = uGenOutput.getBlockSize();
 <a name="l00103"></a>00103  <span class="keyword">const</span> <span class="keywordtype">double</span> sampeRateRatio = 1.0;<span class="comment">//fileSampleRate * UGen::getReciprocalSampleRate();</span>
@@ -139,10 +139,10 @@
 <a name="l00107"></a>00107  <span class="keywordflow">if</span>(inputBlockSize &gt; allocatedBlockSize)
 <a name="l00108"></a>00108  {
 <a name="l00109"></a>00109   allocatedBlockSize = inputBlockSize;
-<a name="l00110"></a>00110   audioData = realloc(audioData, bytesPerFrame * allocatedBlockSize);
+<a name="l00110"></a>00110   audioData = <a class="code" href="ugen___play_buf_8ii.html#afa148085b6fa9594b4c35e100d94a183">realloc</a>(audioData, bytesPerFrame * allocatedBlockSize);
 <a name="l00111"></a>00111   <span class="keywordflow">if</span>(!audioData)
 <a name="l00112"></a>00112   {
-<a name="l00113"></a>00113    printf(<span class="stringliteral">&quot;DiskIn: error: could not allocated memory for the new buffer size\n\n&quot;</span>);
+<a name="l00113"></a>00113    <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;DiskIn: error: could not allocated memory for the new buffer size\n\n&quot;</span>);
 <a name="l00114"></a>00114    AudioFileClose(audioFile_);
 <a name="l00115"></a>00115    audioFile_ = 0;
 <a name="l00116"></a>00116   }
@@ -151,7 +151,7 @@
 <a name="l00119"></a>00119  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numChannels_; channel++)
 <a name="l00120"></a>00120  {
 <a name="l00121"></a>00121   <span class="keywordtype">float</span> *outputSamples = proxies[channel]-&gt;getSampleData();
-<a name="l00122"></a>00122   memset(outputSamples, 0, outputBlockSize * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00122"></a>00122   <a class="code" href="ugen___play_buf_8ii.html#a68d2b40ef2213b9227a1ce3b81997ae5">memset</a>(outputSamples, 0, outputBlockSize * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l00123"></a>00123  } 
 <a name="l00124"></a>00124  
 <a name="l00125"></a>00125  <span class="keywordflow">if</span>(!audioFile_)
@@ -162,12 +162,12 @@
 <a name="l00130"></a>00130  <span class="keywordflow">else</span>
 <a name="l00131"></a>00131  {
 <a name="l00132"></a>00132   numPackets = inputBlockSize;
-<a name="l00133"></a>00133   UInt32 numBytesRead = -1;
-<a name="l00134"></a>00134   OSStatus result = AudioFileReadPackets(audioFile_, <span class="keyword">false</span>,
+<a name="l00133"></a>00133   <a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a> numBytesRead = -1;
+<a name="l00134"></a>00134   <a class="code" href="ugen___play_buf_8ii.html#a389e8a167a89832edb1c7f2d0302537c">OSStatus</a> result = AudioFileReadPackets(audioFile_, <span class="keyword">false</span>,
 <a name="l00135"></a>00135               &amp;numBytesRead, NULL, 
 <a name="l00136"></a>00136               currentPacket, &amp;numPackets, audioData); 
 <a name="l00137"></a>00137   
-<a name="l00138"></a>00138   <span class="keywordflow">if</span>(result == noErr)
+<a name="l00138"></a>00138   <span class="keywordflow">if</span>(result == <a class="code" href="ugen___play_buf_8ii.html#a06fc87d81c62e9abb8790b6e5713c55ba29314e147c76ea079f859e0db61a0dfd">noErr</a>)
 <a name="l00139"></a>00139   {  
 <a name="l00140"></a>00140    currentPacket += numPackets;
 <a name="l00141"></a>00141    
@@ -188,7 +188,7 @@
 <a name="l00156"></a>00156               &amp;numBytesRead, NULL, 
 <a name="l00157"></a>00157               0, &amp;numPackets, audioData);
 <a name="l00158"></a>00158      
-<a name="l00159"></a>00159      <span class="keywordflow">if</span>(result == noErr)
+<a name="l00159"></a>00159      <span class="keywordflow">if</span>(result == <a class="code" href="ugen___play_buf_8ii.html#a06fc87d81c62e9abb8790b6e5713c55ba29314e147c76ea079f859e0db61a0dfd">noErr</a>)
 <a name="l00160"></a>00160      { 
 <a name="l00161"></a>00161       currentPacket = remainingPackets;
 <a name="l00162"></a>00162      }
@@ -226,7 +226,7 @@
 <a name="l00194"></a>00194 
 <a name="l00195"></a>00195 <span class="keywordtype">void</span> <a class="code" href="class_disk_in_u_gen_internal.html#a9dae42c00c2ca71bdf70655bf4a18e90">DiskInUGenInternal::setPosition</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> newPosition) <span class="keywordflow">throw</span>()
 <a name="l00196"></a>00196 {
-<a name="l00197"></a>00197  currentPacket = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(0.0, newPosition) * fileSampleRate;
+<a name="l00197"></a>00197  currentPacket = <a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(0.0, newPosition) * fileSampleRate;
 <a name="l00198"></a>00198 }
 <a name="l00199"></a>00199 
 <a name="l00200"></a>00200 <a class="code" href="class_disk_in_u_gen_internal_wav16.html#a97283c2ecfbc20b11bc0e582dd075d49">DiskInUGenInternalWav16::DiskInUGenInternalWav16</a>(AudioFileID audioFile, 
@@ -242,12 +242,12 @@
 <a name="l00210"></a>00210 {
 <a name="l00211"></a>00211  <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> factor = 1.0 / 0x7FFF;
 <a name="l00212"></a>00212  
-<a name="l00213"></a>00213  <span class="keywordflow">if</span>(<a class="code" href="class_disk_in_u_gen_internal.html#a811b3d36ae8817f10fae92af56784e5c">clearOutputsAndReadData</a>(shouldDelete) == noErr)
+<a name="l00213"></a>00213  <span class="keywordflow">if</span>(<a class="code" href="class_disk_in_u_gen_internal.html#a811b3d36ae8817f10fae92af56784e5c">clearOutputsAndReadData</a>(shouldDelete) == <a class="code" href="ugen___play_buf_8ii.html#a06fc87d81c62e9abb8790b6e5713c55ba29314e147c76ea079f859e0db61a0dfd">noErr</a>)
 <a name="l00214"></a>00214  {  
 <a name="l00215"></a>00215   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numChannels_; channel++)
 <a name="l00216"></a>00216   {
 <a name="l00217"></a>00217    <span class="keywordtype">float</span> *outputSamples = <a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">getSampleData</a>();
-<a name="l00218"></a>00218    SInt16* audioFileSamples = (SInt16*)<a class="code" href="class_disk_in_u_gen_internal.html#afc566294fe640542aaf79c21fa70c36e">audioData</a> + channel;
+<a name="l00218"></a>00218    <a class="code" href="ugen___play_buf_8ii.html#a8ef590265e1637c30a97cdeb6630e9a3">SInt16</a>* audioFileSamples = (<a class="code" href="ugen___play_buf_8ii.html#a8ef590265e1637c30a97cdeb6630e9a3">SInt16</a>*)<a class="code" href="class_disk_in_u_gen_internal.html#afc566294fe640542aaf79c21fa70c36e">audioData</a> + channel;
 <a name="l00219"></a>00219    <span class="keywordtype">int</span> numSamplesToProcess = <a class="code" href="class_disk_in_u_gen_internal.html#a061020ec87b567e80b50d1c51b95efae">numPackets</a>;
 <a name="l00220"></a>00220    
 <a name="l00221"></a>00221    <span class="keywordflow">while</span>(numSamplesToProcess--)
@@ -273,12 +273,12 @@
 <a name="l00241"></a>00241 {
 <a name="l00242"></a>00242  <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> factor = 1.0 / 0x7FFF;
 <a name="l00243"></a>00243  
-<a name="l00244"></a>00244  <span class="keywordflow">if</span>(<a class="code" href="class_disk_in_u_gen_internal.html#a811b3d36ae8817f10fae92af56784e5c">clearOutputsAndReadData</a>(shouldDelete) == noErr)
+<a name="l00244"></a>00244  <span class="keywordflow">if</span>(<a class="code" href="class_disk_in_u_gen_internal.html#a811b3d36ae8817f10fae92af56784e5c">clearOutputsAndReadData</a>(shouldDelete) == <a class="code" href="ugen___play_buf_8ii.html#a06fc87d81c62e9abb8790b6e5713c55ba29314e147c76ea079f859e0db61a0dfd">noErr</a>)
 <a name="l00245"></a>00245  {  
 <a name="l00246"></a>00246   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numChannels_; channel++)
 <a name="l00247"></a>00247   {
 <a name="l00248"></a>00248    <span class="keywordtype">float</span> *outputSamples = <a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">getSampleData</a>();
-<a name="l00249"></a>00249    SInt16* audioFileSamples = (SInt16*)<a class="code" href="class_disk_in_u_gen_internal.html#afc566294fe640542aaf79c21fa70c36e">audioData</a> + channel;
+<a name="l00249"></a>00249    <a class="code" href="ugen___play_buf_8ii.html#a8ef590265e1637c30a97cdeb6630e9a3">SInt16</a>* audioFileSamples = (<a class="code" href="ugen___play_buf_8ii.html#a8ef590265e1637c30a97cdeb6630e9a3">SInt16</a>*)<a class="code" href="class_disk_in_u_gen_internal.html#afc566294fe640542aaf79c21fa70c36e">audioData</a> + channel;
 <a name="l00250"></a>00250    <span class="keywordtype">int</span> numSamplesToProcess = <a class="code" href="class_disk_in_u_gen_internal.html#a061020ec87b567e80b50d1c51b95efae">numPackets</a>;
 <a name="l00251"></a>00251    
 <a name="l00252"></a>00252    <span class="keywordflow">while</span>(numSamplesToProcess--)
@@ -305,7 +305,7 @@
 <a name="l00273"></a>00273  <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> factor = 1.0 / 0x7FFFFF;
 <a name="l00274"></a>00274  <span class="keyword">const</span> <span class="keywordtype">int</span> intInc = numChannels_ * 3;
 <a name="l00275"></a>00275  
-<a name="l00276"></a>00276  <span class="keywordflow">if</span>(<a class="code" href="class_disk_in_u_gen_internal.html#a811b3d36ae8817f10fae92af56784e5c">clearOutputsAndReadData</a>(shouldDelete) == noErr)
+<a name="l00276"></a>00276  <span class="keywordflow">if</span>(<a class="code" href="class_disk_in_u_gen_internal.html#a811b3d36ae8817f10fae92af56784e5c">clearOutputsAndReadData</a>(shouldDelete) == <a class="code" href="ugen___play_buf_8ii.html#a06fc87d81c62e9abb8790b6e5713c55ba29314e147c76ea079f859e0db61a0dfd">noErr</a>)
 <a name="l00277"></a>00277  {  
 <a name="l00278"></a>00278   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numChannels_; channel++)
 <a name="l00279"></a>00279   {
@@ -337,7 +337,7 @@
 <a name="l00305"></a>00305  <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> factor = 1.0 / 0x7FFFFF;
 <a name="l00306"></a>00306  <span class="keyword">const</span> <span class="keywordtype">int</span> intInc = numChannels_ * 3;
 <a name="l00307"></a>00307  
-<a name="l00308"></a>00308  <span class="keywordflow">if</span>(<a class="code" href="class_disk_in_u_gen_internal.html#a811b3d36ae8817f10fae92af56784e5c">clearOutputsAndReadData</a>(shouldDelete) == noErr)
+<a name="l00308"></a>00308  <span class="keywordflow">if</span>(<a class="code" href="class_disk_in_u_gen_internal.html#a811b3d36ae8817f10fae92af56784e5c">clearOutputsAndReadData</a>(shouldDelete) == <a class="code" href="ugen___play_buf_8ii.html#a06fc87d81c62e9abb8790b6e5713c55ba29314e147c76ea079f859e0db61a0dfd">noErr</a>)
 <a name="l00309"></a>00309  {  
 <a name="l00310"></a>00310   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numChannels_; channel++)
 <a name="l00311"></a>00311   {
@@ -368,12 +368,12 @@
 <a name="l00336"></a>00336 {
 <a name="l00337"></a>00337  <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> factor = 1.0 / 0x7FFFFFFF;
 <a name="l00338"></a>00338  
-<a name="l00339"></a>00339  <span class="keywordflow">if</span>(<a class="code" href="class_disk_in_u_gen_internal.html#a811b3d36ae8817f10fae92af56784e5c">clearOutputsAndReadData</a>(shouldDelete) == noErr)
+<a name="l00339"></a>00339  <span class="keywordflow">if</span>(<a class="code" href="class_disk_in_u_gen_internal.html#a811b3d36ae8817f10fae92af56784e5c">clearOutputsAndReadData</a>(shouldDelete) == <a class="code" href="ugen___play_buf_8ii.html#a06fc87d81c62e9abb8790b6e5713c55ba29314e147c76ea079f859e0db61a0dfd">noErr</a>)
 <a name="l00340"></a>00340  {  
 <a name="l00341"></a>00341   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numChannels_; channel++)
 <a name="l00342"></a>00342   {
 <a name="l00343"></a>00343    <span class="keywordtype">float</span> *outputSamples = <a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">getSampleData</a>();
-<a name="l00344"></a>00344    SInt32* audioFileSamples = (SInt32*)<a class="code" href="class_disk_in_u_gen_internal.html#afc566294fe640542aaf79c21fa70c36e">audioData</a> + channel;
+<a name="l00344"></a>00344    <a class="code" href="ugen___play_buf_8ii.html#aabbb11e51ad4827ab2e02c7c76323ab7">SInt32</a>* audioFileSamples = (<a class="code" href="ugen___play_buf_8ii.html#aabbb11e51ad4827ab2e02c7c76323ab7">SInt32</a>*)<a class="code" href="class_disk_in_u_gen_internal.html#afc566294fe640542aaf79c21fa70c36e">audioData</a> + channel;
 <a name="l00345"></a>00345    <span class="keywordtype">int</span> numSamplesToProcess = <a class="code" href="class_disk_in_u_gen_internal.html#a061020ec87b567e80b50d1c51b95efae">numPackets</a>;
 <a name="l00346"></a>00346    
 <a name="l00347"></a>00347    <span class="keywordflow">while</span>(numSamplesToProcess--)
@@ -399,12 +399,12 @@
 <a name="l00367"></a>00367 {
 <a name="l00368"></a>00368  <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> factor = 1.0 / 0x7FFFFFFF;
 <a name="l00369"></a>00369  
-<a name="l00370"></a>00370  <span class="keywordflow">if</span>(<a class="code" href="class_disk_in_u_gen_internal.html#a811b3d36ae8817f10fae92af56784e5c">clearOutputsAndReadData</a>(shouldDelete) == noErr)
+<a name="l00370"></a>00370  <span class="keywordflow">if</span>(<a class="code" href="class_disk_in_u_gen_internal.html#a811b3d36ae8817f10fae92af56784e5c">clearOutputsAndReadData</a>(shouldDelete) == <a class="code" href="ugen___play_buf_8ii.html#a06fc87d81c62e9abb8790b6e5713c55ba29314e147c76ea079f859e0db61a0dfd">noErr</a>)
 <a name="l00371"></a>00371  {  
 <a name="l00372"></a>00372   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numChannels_; channel++)
 <a name="l00373"></a>00373   {
 <a name="l00374"></a>00374    <span class="keywordtype">float</span> *outputSamples = <a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">getSampleData</a>();
-<a name="l00375"></a>00375    SInt32* audioFileSamples = (SInt32*)<a class="code" href="class_disk_in_u_gen_internal.html#afc566294fe640542aaf79c21fa70c36e">audioData</a> + channel;
+<a name="l00375"></a>00375    <a class="code" href="ugen___play_buf_8ii.html#aabbb11e51ad4827ab2e02c7c76323ab7">SInt32</a>* audioFileSamples = (<a class="code" href="ugen___play_buf_8ii.html#aabbb11e51ad4827ab2e02c7c76323ab7">SInt32</a>*)<a class="code" href="class_disk_in_u_gen_internal.html#afc566294fe640542aaf79c21fa70c36e">audioData</a> + channel;
 <a name="l00376"></a>00376    <span class="keywordtype">int</span> numSamplesToProcess = <a class="code" href="class_disk_in_u_gen_internal.html#a061020ec87b567e80b50d1c51b95efae">numPackets</a>;
 <a name="l00377"></a>00377    
 <a name="l00378"></a>00378    <span class="keywordflow">while</span>(numSamplesToProcess--)
@@ -428,7 +428,7 @@
 <a name="l00396"></a>00396 
 <a name="l00397"></a>00397 <span class="keywordtype">void</span> <a class="code" href="class_disk_in_u_gen_internal_float_big_endian.html#a4193abe9548bae1a1ee6af8b2c6be13d">DiskInUGenInternalFloatBigEndian::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*channel*/</span>) throw()
 <a name="l00398"></a>00398 {
-<a name="l00399"></a>00399  <span class="keywordflow">if</span>(<a class="code" href="class_disk_in_u_gen_internal.html#a811b3d36ae8817f10fae92af56784e5c">clearOutputsAndReadData</a>(shouldDelete) == noErr)
+<a name="l00399"></a>00399  <span class="keywordflow">if</span>(<a class="code" href="class_disk_in_u_gen_internal.html#a811b3d36ae8817f10fae92af56784e5c">clearOutputsAndReadData</a>(shouldDelete) == <a class="code" href="ugen___play_buf_8ii.html#a06fc87d81c62e9abb8790b6e5713c55ba29314e147c76ea079f859e0db61a0dfd">noErr</a>)
 <a name="l00400"></a>00400  {  
 <a name="l00401"></a>00401   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numChannels_; channel++)
 <a name="l00402"></a>00402   {
@@ -457,7 +457,7 @@
 <a name="l00425"></a>00425 
 <a name="l00426"></a>00426 <span class="keywordtype">void</span> <a class="code" href="class_disk_in_u_gen_internal_float_little_endian.html#a055d59953e83fcf3396453faf031e0d8">DiskInUGenInternalFloatLittleEndian::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*channel*/</span>) throw()
 <a name="l00427"></a>00427 {
-<a name="l00428"></a>00428  <span class="keywordflow">if</span>(<a class="code" href="class_disk_in_u_gen_internal.html#a811b3d36ae8817f10fae92af56784e5c">clearOutputsAndReadData</a>(shouldDelete) == noErr)
+<a name="l00428"></a>00428  <span class="keywordflow">if</span>(<a class="code" href="class_disk_in_u_gen_internal.html#a811b3d36ae8817f10fae92af56784e5c">clearOutputsAndReadData</a>(shouldDelete) == <a class="code" href="ugen___play_buf_8ii.html#a06fc87d81c62e9abb8790b6e5713c55ba29314e147c76ea079f859e0db61a0dfd">noErr</a>)
 <a name="l00429"></a>00429  {  
 <a name="l00430"></a>00430   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numChannels_; channel++)
 <a name="l00431"></a>00431   {
@@ -498,21 +498,21 @@
 <a name="l00466"></a>00466   audioFilePath = path.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>();
 <a name="l00467"></a>00467  }
 <a name="l00468"></a>00468  
-<a name="l00469"></a>00469  OSStatus result;
-<a name="l00470"></a>00470  UInt32 dataSize;
+<a name="l00469"></a>00469  <a class="code" href="ugen___play_buf_8ii.html#a389e8a167a89832edb1c7f2d0302537c">OSStatus</a> result;
+<a name="l00470"></a>00470  <a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a> dataSize;
 <a name="l00471"></a>00471  
-<a name="l00472"></a>00472  CFURLRef audioFileURL;
-<a name="l00473"></a>00473  audioFileURL = CFURLCreateFromFileSystemRepresentation(NULL,
-<a name="l00474"></a>00474                  (<span class="keyword">const</span> UInt8*)audioFilePath, 
-<a name="l00475"></a>00475                  strlen(audioFilePath), 
+<a name="l00472"></a>00472  <a class="code" href="ugen___play_buf_8ii.html#a924c4c61fd5e5f6aa830c04d17d240d8">CFURLRef</a> audioFileURL;
+<a name="l00473"></a>00473  audioFileURL = <a class="code" href="ugen___play_buf_8ii.html#a579a0910e60faac58a00df138cf52d88">CFURLCreateFromFileSystemRepresentation</a>(NULL,
+<a name="l00474"></a>00474                  (<span class="keyword">const</span> <a class="code" href="ugen___play_buf_8ii.html#a9b66271558bfa5abc5095791246b540d">UInt8</a>*)audioFilePath, 
+<a name="l00475"></a>00475                  <a class="code" href="ugen___play_buf_8ii.html#a219836f542ce53545052bed5353820ca">strlen</a>(audioFilePath), 
 <a name="l00476"></a>00476                  <span class="keyword">false</span>);
 <a name="l00477"></a>00477  
 <a name="l00478"></a>00478  AudioFileID audioFile = 0;
 <a name="l00479"></a>00479  result = AudioFileOpenURL (audioFileURL, kAudioFileReadPermission, 0, &amp;audioFile);
-<a name="l00480"></a>00480  CFRelease(audioFileURL);
-<a name="l00481"></a>00481  <span class="keywordflow">if</span> (result != noErr) 
+<a name="l00480"></a>00480  <a class="code" href="ugen___play_buf_8ii.html#ac05c50c5a105a12787c2e27fb4e7b283">CFRelease</a>(audioFileURL);
+<a name="l00481"></a>00481  <span class="keywordflow">if</span> (result != <a class="code" href="ugen___play_buf_8ii.html#a06fc87d81c62e9abb8790b6e5713c55ba29314e147c76ea079f859e0db61a0dfd">noErr</a>) 
 <a name="l00482"></a>00482  {
-<a name="l00483"></a>00483   printf(<span class="stringliteral">&quot;DiskIn: error: Could not open file: %s err=%d\n&quot;</span>, audioFilePath, (<span class="keywordtype">int</span>)result);
+<a name="l00483"></a>00483   <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;DiskIn: error: Could not open file: %s err=%d\n&quot;</span>, audioFilePath, (<span class="keywordtype">int</span>)result);
 <a name="l00484"></a>00484   audioFile = 0;
 <a name="l00485"></a>00485  }
 <a name="l00486"></a>00486  
@@ -521,15 +521,15 @@
 <a name="l00489"></a>00489   AudioStreamBasicDescription format;
 <a name="l00490"></a>00490   dataSize = <span class="keyword">sizeof</span>(format);
 <a name="l00491"></a>00491   result = AudioFileGetProperty(audioFile, kAudioFilePropertyDataFormat, &amp;dataSize, &amp;format);
-<a name="l00492"></a>00492   <span class="keywordflow">if</span> (result != noErr) 
+<a name="l00492"></a>00492   <span class="keywordflow">if</span> (result != <a class="code" href="ugen___play_buf_8ii.html#a06fc87d81c62e9abb8790b6e5713c55ba29314e147c76ea079f859e0db61a0dfd">noErr</a>) 
 <a name="l00493"></a>00493   {
-<a name="l00494"></a>00494    printf(<span class="stringliteral">&quot;DiskIn: error: Could not get data format: %s err=%d\n&quot;</span>, audioFilePath, (<span class="keywordtype">int</span>)result);
+<a name="l00494"></a>00494    <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;DiskIn: error: Could not get data format: %s err=%d\n&quot;</span>, audioFilePath, (<span class="keywordtype">int</span>)result);
 <a name="l00495"></a>00495    AudioFileClose(audioFile);
 <a name="l00496"></a>00496    audioFile = 0;
 <a name="l00497"></a>00497   }
 <a name="l00498"></a>00498   <span class="keywordflow">else</span> <span class="keywordflow">if</span>(format.mFormatID != kAudioFormatLinearPCM)
 <a name="l00499"></a>00499   {
-<a name="l00500"></a>00500    printf(<span class="stringliteral">&quot;DiskIn: error: Only PCM formats supported\\n&quot;</span>);
+<a name="l00500"></a>00500    <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;DiskIn: error: Only PCM formats supported\\n&quot;</span>);
 <a name="l00501"></a>00501    AudioFileClose(audioFile);
 <a name="l00502"></a>00502    audioFile = 0;
 <a name="l00503"></a>00503   }
@@ -537,7 +537,7 @@
 <a name="l00505"></a>00505   {
 <a name="l00506"></a>00506    <span class="keywordflow">if</span>(format.mSampleRate != <a class="code" href="class_u_gen.html#afddb4177dad7f4056bbf8b91d07d5224" title="Get the current sample rate.">UGen::getSampleRate</a>())
 <a name="l00507"></a>00507    {
-<a name="l00508"></a>00508     printf(<span class="stringliteral">&quot;DiskIn: warning: Sample rate mismatch - resampling is not yet implemented\\n&quot;</span>);
+<a name="l00508"></a>00508     <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;DiskIn: warning: Sample rate mismatch - resampling is not yet implemented\\n&quot;</span>);
 <a name="l00509"></a>00509    }
 <a name="l00510"></a>00510    
 <a name="l00511"></a>00511    <span class="keywordflow">if</span>((format.mFormatFlags &amp; kAudioFormatFlagIsFloat) != 0)
@@ -598,7 +598,7 @@
 <a name="l00566"></a>00566     }
 <a name="l00567"></a>00567     <span class="keywordflow">else</span>
 <a name="l00568"></a>00568     {
-<a name="l00569"></a>00569      printf(<span class="stringliteral">&quot;DiskIn: error: Sound file format not yet supported.&quot;</span>);
+<a name="l00569"></a>00569      <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;DiskIn: error: Sound file format not yet supported.&quot;</span>);
 <a name="l00570"></a>00570      AudioFileClose(audioFile);
 <a name="l00571"></a>00571      audioFile = 0;
 <a name="l00572"></a>00572     }
@@ -638,7 +638,7 @@
 <a name="l00606"></a>00606     }
 <a name="l00607"></a>00607     <span class="keywordflow">else</span>
 <a name="l00608"></a>00608     {
-<a name="l00609"></a>00609      printf(<span class="stringliteral">&quot;DiskIn: error: Sound file format not yet supported.&quot;</span>);
+<a name="l00609"></a>00609      <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;DiskIn: error: Sound file format not yet supported.&quot;</span>);
 <a name="l00610"></a>00610      AudioFileClose(audioFile);
 <a name="l00611"></a>00611      audioFile = 0;
 <a name="l00612"></a>00612     }
@@ -653,7 +653,7 @@
 <a name="l00621"></a>00621 <span class="preprocessor">#endif // UGEN_IPHONE</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:31 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

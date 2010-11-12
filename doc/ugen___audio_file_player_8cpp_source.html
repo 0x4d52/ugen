@@ -101,7 +101,7 @@
 <a name="l00069"></a>00069 <a class="code" href="class_audio_file_player.html#a7a4c7bfa95e231deab8ed7634f550be8">AudioFilePlayer::~AudioFilePlayer</a>()
 <a name="l00070"></a>00070 {
 <a name="l00071"></a>00071  setSource (0);
-<a name="l00072"></a>00072  deleteAndZero (<a class="code" href="class_audio_file_player.html#aa389cb9bd28292051f37a3031d2a1a64">currentAudioFileSource</a>);
+<a name="l00072"></a>00072  <a class="code" href="namespacejuce.html#af45ad8ae033d2c0adb28a6f2c5af337b">deleteAndZero</a> (<a class="code" href="class_audio_file_player.html#aa389cb9bd28292051f37a3031d2a1a64">currentAudioFileSource</a>);
 <a name="l00073"></a>00073 }
 <a name="l00074"></a>00074 
 <a name="l00075"></a>00075 <span class="keywordtype">void</span> <a class="code" href="class_audio_file_player.html#ac7b3a32504247a642aaa90d2c5b20c81" title="Play the audio file from the start.">AudioFilePlayer::startFromZero</a>()
@@ -109,14 +109,14 @@
 <a name="l00077"></a>00077  <span class="keywordflow">if</span>(<a class="code" href="class_audio_file_player.html#aa389cb9bd28292051f37a3031d2a1a64">currentAudioFileSource</a> == 0) <span class="keywordflow">return</span>;
 <a name="l00078"></a>00078  
 <a name="l00079"></a>00079  setPosition (0.0);
-<a name="l00080"></a>00080  start();
+<a name="l00080"></a>00080  <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>();
 <a name="l00081"></a>00081 }
 <a name="l00082"></a>00082 
 <a name="l00083"></a>00083 <span class="keywordtype">bool</span> <a class="code" href="class_audio_file_player.html#a35577b02330be0b0782ea3d6b06ace5c" title="Open and get ready to play a given audio file path.">AudioFilePlayer::setFile</a>(<span class="keyword">const</span> File&amp; audioFile, <span class="keyword">const</span> <span class="keywordtype">int</span> readAheadBufferSize)
 <a name="l00084"></a>00084 {
 <a name="l00085"></a>00085  stop();
 <a name="l00086"></a>00086  setSource (0);
-<a name="l00087"></a>00087  deleteAndZero (<a class="code" href="class_audio_file_player.html#aa389cb9bd28292051f37a3031d2a1a64">currentAudioFileSource</a>);
+<a name="l00087"></a>00087  <a class="code" href="namespacejuce.html#af45ad8ae033d2c0adb28a6f2c5af337b">deleteAndZero</a> (<a class="code" href="class_audio_file_player.html#aa389cb9bd28292051f37a3031d2a1a64">currentAudioFileSource</a>);
 <a name="l00088"></a>00088  
 <a name="l00089"></a>00089  AudioFormatReader* reader = <a class="code" href="class_audio_file_player.html#ae8389c28eba85b03c6222250d3403890">audioFormatReaderFromFile</a>(audioFile);
 <a name="l00090"></a>00090  
@@ -154,7 +154,7 @@
 <a name="l00122"></a>00122 <span class="preprocessor"></span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:38 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:31 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

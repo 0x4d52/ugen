@@ -30,7 +30,7 @@
 <h1>basics/ugen_BinaryOpUGens.h</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___binary_op_u_gens_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_BinaryOpUGens.h 137 2010-09-11 07:23:14Z 0x4d52 $</span>
+<a href="ugen___binary_op_u_gens_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_BinaryOpUGens.h 194 2010-11-10 22:30:50Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/basics/ugen_BinaryOpUGens.h $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -134,7 +134,7 @@
 <a name="l00102"></a>00102 <span class="preprocessor">      --numKrSamples;                     \</span>
 <a name="l00103"></a>00103 <span class="preprocessor">     }                         \</span>
 <a name="l00104"></a>00104 <span class="preprocessor">    } else {                        \</span>
-<a name="l00105"></a>00105 <span class="preprocessor">     float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();        \</span>
+<a name="l00105"></a>00105 <span class="preprocessor">     float valueSlope = (nextValue - value) / (float)UGen::getControlRateBlockSize();     \</span>
 <a name="l00106"></a>00106 <span class="preprocessor">     while(numSamplesToProcess &amp;&amp; numKrSamples) {              \</span>
 <a name="l00107"></a>00107 <span class="preprocessor">      *outputSamples++ = value;                  \</span>
 <a name="l00108"></a>00108 <span class="preprocessor">      value += valueSlope;                   \</span>
@@ -185,7 +185,7 @@
 <a name="l00153"></a>00153 <span class="preprocessor">      --numKrSamples;                     \</span>
 <a name="l00154"></a>00154 <span class="preprocessor">     }                         \</span>
 <a name="l00155"></a>00155 <span class="preprocessor">    } else {                        \</span>
-<a name="l00156"></a>00156 <span class="preprocessor">     float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();        \</span>
+<a name="l00156"></a>00156 <span class="preprocessor">     float valueSlope = (nextValue - value) / (float)UGen::getControlRateBlockSize();     \</span>
 <a name="l00157"></a>00157 <span class="preprocessor">     while(numSamplesToProcess &amp;&amp; numKrSamples) {              \</span>
 <a name="l00158"></a>00158 <span class="preprocessor">      *outputSamples++ = value;                  \</span>
 <a name="l00159"></a>00159 <span class="preprocessor">      value += valueSlope;                   \</span>
@@ -702,13 +702,13 @@
 <a name="l00734"></a>00734  <a class="code" href="class_binary_divide_u_gen_internal_k.html" title="Control rate internal for BinaryDivideUGen.">BinaryDivideUGenInternalK</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; leftOperand, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; rightOperand) <span class="keywordflow">throw</span>(); 
 <a name="l00735"></a>00735  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_binary_divide_u_gen_internal.html#a2c57982f66a9711963eb510407b5445e">getKr</a>() throw() { <a class="code" href="class_smart_pointer.html#ad9196fe14d4e4d9b1c28982738436544">incrementRefCount</a>(); <span class="keywordflow">return</span> <span class="keyword">this</span>; } 
 <a name="l00736"></a>00736  <span class="keywordtype">void</span> <a class="code" href="class_binary_divide_u_gen_internal.html#a52bf4bbbd64d02c30a7e5eed5b775cd4" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>(); 
-<a name="l00737"></a>00737  <span class="keywordtype">float</span> <a class="code" href="class_u_gen_internal.html#a8025c9bdaa987546001e2da23f97e3c8">getValue</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keyword">const</span> <span class="keywordflow">throw</span>() 
+<a name="l00737"></a>00737  <span class="keywordtype">float</span> <a class="code" href="class_u_gen_internal.html#a9f79b23e6cc88f6987890357b4a5ba3b">getValue</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keyword">const</span> <span class="keywordflow">throw</span>() 
 <a name="l00738"></a>00738  { 
 <a name="l00739"></a>00739   <span class="keywordflow">return</span> <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[LeftOperand].<a class="code" href="class_u_gen.html#a7d8d5a661cd52dd001cfefc5fa51022d" title="Get the value of one of the channels.">getValue</a>(channel) / <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[RightOperand].<a class="code" href="class_u_gen.html#a7d8d5a661cd52dd001cfefc5fa51022d" title="Get the value of one of the channels.">getValue</a>(channel);
 <a name="l00740"></a><a class="code" href="class_binary_divide_value_internal.html">00740</a>  }
 <a name="l00741"></a>00741  
 <a name="l00742"></a>00742 <span class="keyword">private</span>: 
-<a name="l00743"></a>00743  <span class="keywordtype">float</span> value; 
+<a name="l00743"></a>00743  <span class="keywordtype">float</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>; 
 <a name="l00744"></a>00744 }; 
 <a name="l00745"></a>00745 
 <a name="l00769"></a>00769 <span class="keyword">class </span><a class="code" href="class_binary_divide_u_gen.html" title="A BinaryOpUGen usually created using the operator / when applied to other UGen instances.">BinaryDivideUGen</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> 
@@ -728,7 +728,7 @@
 <a name="l00803"></a>00803 {                            
 <a name="l00804"></a>00804 <span class="keyword">public</span>:                           
 <a name="l00805"></a>00805  <a class="code" href="class_binary_divide_value_internal.html" title="Internal for BinaryDivideValue.">BinaryDivideValueInternal</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; leftOperand, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; rightOperand) <span class="keywordflow">throw</span>();     
-<a name="l00806"></a>00806  <span class="keywordtype">double</span> <a class="code" href="class_u_gen_internal.html#a8025c9bdaa987546001e2da23f97e3c8">getValue</a>() throw();                     
+<a name="l00806"></a>00806  <span class="keywordtype">double</span> <a class="code" href="class_u_gen_internal.html#a9f79b23e6cc88f6987890357b4a5ba3b">getValue</a>() throw();                     
 <a name="l00807"></a>00807 };                            
 <a name="l00808"></a>00808 
 <a name="l00810"></a>00810 class <a class="code" href="class_binary_divide_value.html" title="Applies a division to the left and right values.">BinaryDivideValue</a> : public <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a>                   
@@ -758,7 +758,7 @@
 <a name="l00835"></a>00835 <span class="preprocessor">#endif // BINARYOPUGENS_H</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:35 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:28 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -118,14 +118,14 @@ Static Public Member Functions</h2></td></tr>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>buffer</em>&nbsp;</td><td>The <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> being used as a circular delay buffer. This must be being written to by a <a class="el" href="class_tap_in.html" title="Write data to a delay line circular buffer.">TapIn</a> <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a>. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>delayTime</em>&nbsp;</td><td>The delay time to use. The minimum for the TapOut UGens is a single block delay given by <a class="el" href="class_u_gen.html#ae0de18a1d9478d0bb5b46a2d87ba7f53" title="Get the current actual block size.">UGen::getBlockSize()</a> / <a class="el" href="class_u_gen.html#afddb4177dad7f4056bbf8b91d07d5224" title="Get the current sample rate.">UGen::getSampleRate()</a>. Values smaller that this will be clipped. The maximum value is determined by the duration of the buffer. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>delayTime</em>&nbsp;</td><td>The delay time to use. The minimum for the TapOut UGens is a single block delay given by UGen::getBlockSize() / <a class="el" href="class_u_gen.html#afddb4177dad7f4056bbf8b91d07d5224" title="Get the current sample rate.">UGen::getSampleRate()</a>. Values smaller that this will be clipped. The maximum value is determined by the duration of the buffer. </td></tr>
   </table>
   </dd>
 </dl>
 
 <p>Definition at line <a class="el" href="ugen___delay_8cpp_source.html#l01029">1029</a> of file <a class="el" href="ugen___delay_8cpp_source.html">ugen_Delay.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00099">max()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___play_buf_8ii_source.html#l91804">ugen::max()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
 </div>
 </div>
@@ -162,7 +162,7 @@ Static Public Member Functions</h2></td></tr>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>buffer</em>&nbsp;</td><td>The <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> being used as a circular delay buffer. This must be being written to by a <a class="el" href="class_tap_in.html" title="Write data to a delay line circular buffer.">TapIn</a> <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a>. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>delayTime</em>&nbsp;</td><td>The delay time to use. The minimum for the TapOut UGens is a single block delay given by <a class="el" href="class_u_gen.html#ae0de18a1d9478d0bb5b46a2d87ba7f53" title="Get the current actual block size.">UGen::getBlockSize()</a> / <a class="el" href="class_u_gen.html#afddb4177dad7f4056bbf8b91d07d5224" title="Get the current sample rate.">UGen::getSampleRate()</a>. Values smaller that this will be clipped. The maximum value is determined by the duration of the buffer. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>delayTime</em>&nbsp;</td><td>The delay time to use. The minimum for the TapOut UGens is a single block delay given by UGen::getBlockSize() / <a class="el" href="class_u_gen.html#afddb4177dad7f4056bbf8b91d07d5224" title="Get the current sample rate.">UGen::getSampleRate()</a>. Values smaller that this will be clipped. The maximum value is determined by the duration of the buffer. </td></tr>
   </table>
   </dd>
 </dl>
@@ -204,7 +204,7 @@ Static Public Member Functions</h2></td></tr>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>buffer</em>&nbsp;</td><td>The <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> being used as a circular delay buffer. This must be being written to by a <a class="el" href="class_tap_in.html" title="Write data to a delay line circular buffer.">TapIn</a> <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a>. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>delayTime</em>&nbsp;</td><td>The delay time to use. The minimum for the TapOut UGens is a single block delay given by <a class="el" href="class_u_gen.html#ae0de18a1d9478d0bb5b46a2d87ba7f53" title="Get the current actual block size.">UGen::getBlockSize()</a> / <a class="el" href="class_u_gen.html#afddb4177dad7f4056bbf8b91d07d5224" title="Get the current sample rate.">UGen::getSampleRate()</a>. Values smaller that this will be clipped. The maximum value is determined by the duration of the buffer. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>delayTime</em>&nbsp;</td><td>The delay time to use. The minimum for the TapOut UGens is a single block delay given by UGen::getBlockSize() / <a class="el" href="class_u_gen.html#afddb4177dad7f4056bbf8b91d07d5224" title="Get the current sample rate.">UGen::getSampleRate()</a>. Values smaller that this will be clipped. The maximum value is determined by the duration of the buffer. </td></tr>
   </table>
   </dd>
 </dl>
@@ -219,7 +219,7 @@ Static Public Member Functions</h2></td></tr>
 <li>delays/<a class="el" href="ugen___delay_8cpp_source.html">ugen_Delay.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:44 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:45 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

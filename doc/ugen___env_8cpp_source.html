@@ -100,8 +100,8 @@
 <a name="l00068"></a>00068 {
 <a name="l00069"></a>00069 }
 <a name="l00070"></a>00070 
-<a name="l00071"></a><a class="code" href="class_env.html#af6819ed2012998cdb6baabd69cc7d88c">00071</a> <a class="code" href="class_env.html#aef191b587681fb99b9baf73d94419193" title="Creates an Env with supplied specification.">Env::Env</a>(<a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <span class="keyword">const</span>&amp; copy) <span class="keywordflow">throw</span>()
-<a name="l00072"></a>00072 : <span class="keyword">internal</span>(copy.internal)
+<a name="l00071"></a><a class="code" href="class_env.html#af6819ed2012998cdb6baabd69cc7d88c">00071</a> <a class="code" href="class_env.html#aef191b587681fb99b9baf73d94419193" title="Creates an Env with supplied specification.">Env::Env</a>(<a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <span class="keyword">const</span>&amp; <a class="code" href="namespacestd.html#a9b36270cdb50d9a631ba58ee0405f135">copy</a>) <span class="keywordflow">throw</span>()
+<a name="l00072"></a>00072 : <span class="keyword">internal</span>(<a class="code" href="namespacestd.html#a9b36270cdb50d9a631ba58ee0405f135">copy</a>.internal)
 <a name="l00073"></a>00073 {
 <a name="l00074"></a>00074  <span class="keyword">internal</span>-&gt;incrementRefCount();
 <a name="l00075"></a>00075 }
@@ -130,38 +130,38 @@
 <a name="l00098"></a>00098 
 <a name="l00099"></a><a class="code" href="class_env.html#a968a65f0eb2561e5d4931b4f3a038024">00099</a> <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <a class="code" href="class_env.html#a968a65f0eb2561e5d4931b4f3a038024" title="Returns a new envelope with the levels scaled by a constant.">Env::levelScale</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> scale) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00100"></a>00100 {
-<a name="l00101"></a>00101  <span class="keywordflow">return</span> <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a>(internal-&gt;levels_ * scale,
-<a name="l00102"></a>00102       internal-&gt;times_, 
-<a name="l00103"></a>00103       internal-&gt;curves_,
-<a name="l00104"></a>00104       internal-&gt;releaseNode_,
-<a name="l00105"></a>00105       internal-&gt;loopNode_);
+<a name="l00101"></a>00101  <span class="keywordflow">return</span> <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a>(<a class="code" href="namespacestd.html#a084be990a1caf21a3b1ce38fe61bad3f">internal</a>-&gt;levels_ * scale,
+<a name="l00102"></a>00102       <a class="code" href="namespacestd.html#a084be990a1caf21a3b1ce38fe61bad3f">internal</a>-&gt;times_, 
+<a name="l00103"></a>00103       <a class="code" href="namespacestd.html#a084be990a1caf21a3b1ce38fe61bad3f">internal</a>-&gt;curves_,
+<a name="l00104"></a>00104       <a class="code" href="namespacestd.html#a084be990a1caf21a3b1ce38fe61bad3f">internal</a>-&gt;releaseNode_,
+<a name="l00105"></a>00105       <a class="code" href="namespacestd.html#a084be990a1caf21a3b1ce38fe61bad3f">internal</a>-&gt;loopNode_);
 <a name="l00106"></a>00106 }
 <a name="l00107"></a>00107 
 <a name="l00108"></a><a class="code" href="class_env.html#a5fca1499f3553677652f385e2847b7f7">00108</a> <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <a class="code" href="class_env.html#a5fca1499f3553677652f385e2847b7f7" title="Returns a new envelope with the levels offset by a constant.">Env::levelBias</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> bias) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00109"></a>00109 {
-<a name="l00110"></a>00110  <span class="keywordflow">return</span> <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a>(internal-&gt;levels_ + bias,
-<a name="l00111"></a>00111       internal-&gt;times_, 
-<a name="l00112"></a>00112       internal-&gt;curves_,
-<a name="l00113"></a>00113       internal-&gt;releaseNode_,
-<a name="l00114"></a>00114       internal-&gt;loopNode_);
+<a name="l00110"></a>00110  <span class="keywordflow">return</span> <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a>(<a class="code" href="namespacestd.html#a084be990a1caf21a3b1ce38fe61bad3f">internal</a>-&gt;levels_ + bias,
+<a name="l00111"></a>00111       <a class="code" href="namespacestd.html#a084be990a1caf21a3b1ce38fe61bad3f">internal</a>-&gt;times_, 
+<a name="l00112"></a>00112       <a class="code" href="namespacestd.html#a084be990a1caf21a3b1ce38fe61bad3f">internal</a>-&gt;curves_,
+<a name="l00113"></a>00113       <a class="code" href="namespacestd.html#a084be990a1caf21a3b1ce38fe61bad3f">internal</a>-&gt;releaseNode_,
+<a name="l00114"></a>00114       <a class="code" href="namespacestd.html#a084be990a1caf21a3b1ce38fe61bad3f">internal</a>-&gt;loopNode_);
 <a name="l00115"></a>00115 }
 <a name="l00116"></a>00116 
 <a name="l00117"></a><a class="code" href="class_env.html#a63203bb2f6840f754b53c60e3917794d">00117</a> <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <a class="code" href="class_env.html#a63203bb2f6840f754b53c60e3917794d" title="Returns a new envelope with the time values scaled by a constant.">Env::timeScale</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> scale) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00118"></a>00118 {
 <a name="l00119"></a>00119  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(scale &gt; 0.0);
 <a name="l00120"></a>00120  
-<a name="l00121"></a>00121  <span class="keywordflow">return</span> <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a>(internal-&gt;levels_,
-<a name="l00122"></a>00122       internal-&gt;times_ * scale, 
-<a name="l00123"></a>00123       internal-&gt;curves_,
-<a name="l00124"></a>00124       internal-&gt;releaseNode_,
-<a name="l00125"></a>00125       internal-&gt;loopNode_);
+<a name="l00121"></a>00121  <span class="keywordflow">return</span> <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a>(<a class="code" href="namespacestd.html#a084be990a1caf21a3b1ce38fe61bad3f">internal</a>-&gt;levels_,
+<a name="l00122"></a>00122       <a class="code" href="namespacestd.html#a084be990a1caf21a3b1ce38fe61bad3f">internal</a>-&gt;times_ * scale, 
+<a name="l00123"></a>00123       <a class="code" href="namespacestd.html#a084be990a1caf21a3b1ce38fe61bad3f">internal</a>-&gt;curves_,
+<a name="l00124"></a>00124       <a class="code" href="namespacestd.html#a084be990a1caf21a3b1ce38fe61bad3f">internal</a>-&gt;releaseNode_,
+<a name="l00125"></a>00125       <a class="code" href="namespacestd.html#a084be990a1caf21a3b1ce38fe61bad3f">internal</a>-&gt;loopNode_);
 <a name="l00126"></a>00126 }
 <a name="l00127"></a>00127 
 <a name="l00128"></a><a class="code" href="class_env.html#acd47f08f2262ed1e592949d4df18f9c1">00128</a> <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <a class="code" href="class_env.html#acd47f08f2262ed1e592949d4df18f9c1">Env::blend</a>(<a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <span class="keyword">const</span>&amp; other, <span class="keyword">const</span> <span class="keywordtype">double</span> fraction) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00129"></a>00129 {
 <a name="l00130"></a>00130  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(fraction &gt;= 0.0 &amp;&amp; fraction &lt;= 1.0);
 <a name="l00131"></a>00131 
-<a name="l00132"></a>00132  <span class="keywordflow">return</span> <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a>(internal-&gt;levels_.blend(other.internal-&gt;levels_, fraction),
+<a name="l00132"></a>00132  <span class="keywordflow">return</span> <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a>(<a class="code" href="namespacestd.html#a084be990a1caf21a3b1ce38fe61bad3f">internal</a>-&gt;levels_.blend(other.internal-&gt;levels_, fraction),
 <a name="l00133"></a>00133       <span class="keyword">internal</span>-&gt;times_.blend(other.internal-&gt;times_, fraction),
 <a name="l00134"></a>00134       <span class="keyword">internal</span>-&gt;curves_,
 <a name="l00135"></a>00135       <span class="keyword">internal</span>-&gt;releaseNode_,
@@ -175,7 +175,7 @@
 <a name="l00143"></a>00143  <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00144"></a>00144 }
 <a name="l00145"></a>00145 
-<a name="l00146"></a><a class="code" href="class_env.html#a28e59c389804b40d062b130ce3ff0c69">00146</a> <span class="keywordtype">float</span> <a class="code" href="class_env.html#a28e59c389804b40d062b130ce3ff0c69" title="Get the level of the Env ata given time.">Env::lookup</a>(<span class="keywordtype">float</span> time) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l00146"></a><a class="code" href="class_env.html#a28e59c389804b40d062b130ce3ff0c69">00146</a> <span class="keywordtype">float</span> <a class="code" href="class_env.html#a28e59c389804b40d062b130ce3ff0c69" title="Get the level of the Env ata given time.">Env::lookup</a>(<span class="keywordtype">float</span> <a class="code" href="ugen___play_buf_8ii.html#aae026724f73c36340024c657f4f44dab">time</a>) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00147"></a>00147 {
 <a name="l00148"></a>00148  <span class="keyword">const</span> <span class="keywordtype">int</span> numTimes = getTimes().size();
 <a name="l00149"></a>00149  <span class="keyword">const</span> <span class="keywordtype">int</span> numLevels = getLevels().size();
@@ -184,13 +184,13 @@
 <a name="l00152"></a>00152  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(numTimes == lastLevel);
 <a name="l00153"></a>00153  
 <a name="l00154"></a>00154  <span class="keywordflow">if</span>(numLevels &lt; 1) <span class="keywordflow">return</span> 0.f;
-<a name="l00155"></a>00155  <span class="keywordflow">if</span>(time &lt;= 0.f || numTimes == 0) <span class="keywordflow">return</span> getLevels().getSampleUnchecked(0);
+<a name="l00155"></a>00155  <span class="keywordflow">if</span>(<a class="code" href="ugen___play_buf_8ii.html#aae026724f73c36340024c657f4f44dab">time</a> &lt;= 0.f || numTimes == 0) <span class="keywordflow">return</span> getLevels().getSampleUnchecked(0);
 <a name="l00156"></a>00156  
 <a name="l00157"></a>00157  <span class="keywordtype">float</span> lastTime = 0.f;
 <a name="l00158"></a>00158  <span class="keywordtype">float</span> stageTime = 0.f;
 <a name="l00159"></a>00159  <span class="keywordtype">int</span> stageIndex = 0;
 <a name="l00160"></a>00160  
-<a name="l00161"></a>00161  <span class="keywordflow">while</span>(stageTime &lt; time &amp;&amp; stageIndex &lt; numTimes)
+<a name="l00161"></a>00161  <span class="keywordflow">while</span>(stageTime &lt; <a class="code" href="ugen___play_buf_8ii.html#aae026724f73c36340024c657f4f44dab">time</a> &amp;&amp; stageIndex &lt; numTimes)
 <a name="l00162"></a>00162  {
 <a name="l00163"></a>00163   lastTime = stageTime;
 <a name="l00164"></a>00164   stageTime += getTimes().getSampleUnchecked(stageIndex);
@@ -212,33 +212,33 @@
 <a name="l00180"></a>00180  }
 <a name="l00181"></a>00181  <span class="keywordflow">else</span> <span class="keywordflow">if</span>(type == <a class="code" href="class_env_curve.html#ad73f0fddda6a767a0abbabb80d24f83ba167f3a31ff1f2dec778f0720ee885443">EnvCurve::Linear</a>)
 <a name="l00182"></a>00182  {
-<a name="l00183"></a>00183   <span class="keywordflow">return</span> <a class="code" href="ugen___inline_binary_ops_8h.html#a046063e9c7b28dd88333e00b2000f317">linlin</a>(time, lastTime, stageTime, level0, level1);
+<a name="l00183"></a>00183   <span class="keywordflow">return</span> <a class="code" href="ugen___inline_binary_ops_8h.html#a046063e9c7b28dd88333e00b2000f317">linlin</a>(<a class="code" href="ugen___play_buf_8ii.html#aae026724f73c36340024c657f4f44dab">time</a>, lastTime, stageTime, level0, level1);
 <a name="l00184"></a>00184  }
 <a name="l00185"></a>00185  <span class="keywordflow">else</span> <span class="keywordflow">if</span>(type == <a class="code" href="class_env_curve.html#ad73f0fddda6a767a0abbabb80d24f83ba868ea9cc8bcd865642b57716e0c7255f">EnvCurve::Numerical</a>)
 <a name="l00186"></a>00186  {
 <a name="l00187"></a>00187   <span class="keywordflow">if</span>(<a class="code" href="ugen___inline_unary_ops_8h.html#a1fece69e5643cf60acb4daf83ee60405">abs</a>(curveValue) &lt;= 0.001)
 <a name="l00188"></a>00188   {
-<a name="l00189"></a>00189    <span class="keywordflow">return</span> <a class="code" href="ugen___inline_binary_ops_8h.html#a046063e9c7b28dd88333e00b2000f317">linlin</a>(time, lastTime, stageTime, level0, level1);
+<a name="l00189"></a>00189    <span class="keywordflow">return</span> <a class="code" href="ugen___inline_binary_ops_8h.html#a046063e9c7b28dd88333e00b2000f317">linlin</a>(<a class="code" href="ugen___play_buf_8ii.html#aae026724f73c36340024c657f4f44dab">time</a>, lastTime, stageTime, level0, level1);
 <a name="l00190"></a>00190   }
 <a name="l00191"></a>00191   <span class="keywordflow">else</span>
 <a name="l00192"></a>00192   {   
-<a name="l00193"></a>00193    <span class="keywordtype">float</span> pos = (time-lastTime) / (stageTime-lastTime);
-<a name="l00194"></a>00194    <span class="keywordtype">float</span> denom = 1.f - <a class="code" href="ugen___inline_unary_ops_8h.html#a8d8658f0531a1acd46c22f61d5084dc3">std::exp</a>(curveValue);
-<a name="l00195"></a>00195    <span class="keywordtype">float</span> numer = 1.f - <a class="code" href="ugen___inline_unary_ops_8h.html#a8d8658f0531a1acd46c22f61d5084dc3">std::exp</a>(pos * curveValue);
+<a name="l00193"></a>00193    <span class="keywordtype">float</span> pos = (<a class="code" href="ugen___play_buf_8ii.html#aae026724f73c36340024c657f4f44dab">time</a>-lastTime) / (stageTime-lastTime);
+<a name="l00194"></a>00194    <span class="keywordtype">float</span> denom = 1.f - <a class="code" href="namespacestd.html#a4e5e0feef5ff0d3473f3af6eac395480">std::exp</a>(curveValue);
+<a name="l00195"></a>00195    <span class="keywordtype">float</span> numer = 1.f - <a class="code" href="namespacestd.html#a4e5e0feef5ff0d3473f3af6eac395480">std::exp</a>(pos * curveValue);
 <a name="l00196"></a>00196    <span class="keywordflow">return</span> level0 + (level1 - level0) * (numer/denom);
 <a name="l00197"></a>00197   }
 <a name="l00198"></a>00198  }
 <a name="l00199"></a>00199  <span class="keywordflow">else</span> <span class="keywordflow">if</span>(type == <a class="code" href="class_env_curve.html#ad73f0fddda6a767a0abbabb80d24f83baa644de1bd3f8e8cba8c403cb01650e72">EnvCurve::Sine</a>)
 <a name="l00200"></a>00200  {
-<a name="l00201"></a>00201   <span class="keywordflow">return</span> <a class="code" href="ugen___inline_binary_ops_8h.html#a7f32a90d418a4600947ce0f3e7806be9">linsin</a>(time, lastTime, stageTime, level0, level1);
+<a name="l00201"></a>00201   <span class="keywordflow">return</span> <a class="code" href="ugen___inline_binary_ops_8h.html#a7f32a90d418a4600947ce0f3e7806be9">linsin</a>(<a class="code" href="ugen___play_buf_8ii.html#aae026724f73c36340024c657f4f44dab">time</a>, lastTime, stageTime, level0, level1);
 <a name="l00202"></a>00202  }
 <a name="l00203"></a>00203  <span class="keywordflow">else</span> <span class="keywordflow">if</span>(type == <a class="code" href="class_env_curve.html#ad73f0fddda6a767a0abbabb80d24f83ba2f0198541c85939b6178dbed54b451c4">EnvCurve::Exponential</a>)
 <a name="l00204"></a>00204  {
-<a name="l00205"></a>00205   <span class="keywordflow">return</span> <a class="code" href="ugen___inline_binary_ops_8h.html#aad40eb949eddf23e675737fa60517bfd">linexp</a>(time, lastTime, stageTime, level0, level1);
+<a name="l00205"></a>00205   <span class="keywordflow">return</span> <a class="code" href="ugen___inline_binary_ops_8h.html#aad40eb949eddf23e675737fa60517bfd">linexp</a>(<a class="code" href="ugen___play_buf_8ii.html#aae026724f73c36340024c657f4f44dab">time</a>, lastTime, stageTime, level0, level1);
 <a name="l00206"></a>00206  }
 <a name="l00207"></a>00207  <span class="keywordflow">else</span> <span class="keywordflow">if</span>(type == <a class="code" href="class_env_curve.html#ad73f0fddda6a767a0abbabb80d24f83ba555f1efc4709b5bf5700727ba499b8ca">EnvCurve::Welch</a>)
 <a name="l00208"></a>00208  {
-<a name="l00209"></a>00209   <span class="keywordflow">return</span> <a class="code" href="ugen___inline_binary_ops_8h.html#a6d5709bce0110cc7c5114af2f4145bf5">linwelch</a>(time, lastTime, stageTime, level0, level1);
+<a name="l00209"></a>00209   <span class="keywordflow">return</span> <a class="code" href="ugen___inline_binary_ops_8h.html#a6d5709bce0110cc7c5114af2f4145bf5">linwelch</a>(<a class="code" href="ugen___play_buf_8ii.html#aae026724f73c36340024c657f4f44dab">time</a>, lastTime, stageTime, level0, level1);
 <a name="l00210"></a>00210  }
 <a name="l00211"></a>00211  <span class="keywordflow">else</span>
 <a name="l00212"></a>00212  {
@@ -254,7 +254,7 @@
 <a name="l00222"></a>00222  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> buffer = <a class="code" href="class_buffer_spec.html">BufferSpec</a>(size, 1, <span class="keyword">false</span>);
 <a name="l00223"></a>00223  <span class="keywordtype">float</span> *bufferSamples = buffer.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>();
 <a name="l00224"></a>00224  
-<a name="l00225"></a>00225  <span class="keywordtype">double</span> time = 0.0;
+<a name="l00225"></a>00225  <span class="keywordtype">double</span> <a class="code" href="ugen___play_buf_8ii.html#aae026724f73c36340024c657f4f44dab">time</a> = 0.0;
 <a name="l00226"></a>00226  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++, time += <a class="code" href="class_u_gen.html#a2e6ab64a2e5ea263113ab4993603537e" title="Get the recirprocal of the current sample rate.">UGen::getReciprocalSampleRate</a>())
 <a name="l00227"></a>00227  {
 <a name="l00228"></a>00228   *bufferSamples++ = <a class="code" href="class_env.html#a28e59c389804b40d062b130ce3ff0c69" title="Get the level of the Env ata given time.">lookup</a>(time);
@@ -274,7 +274,7 @@
 <a name="l00242"></a>00242  <span class="keywordtype">float</span> *bufferSamples = buffer.getData(channel % buffer.getNumChannels());
 <a name="l00243"></a>00243  
 <a name="l00244"></a>00244  <span class="keyword">const</span> <span class="keywordtype">double</span> timeInc = duration / size;
-<a name="l00245"></a>00245  <span class="keywordtype">double</span> time = 0.0;
+<a name="l00245"></a>00245  <span class="keywordtype">double</span> <a class="code" href="ugen___play_buf_8ii.html#aae026724f73c36340024c657f4f44dab">time</a> = 0.0;
 <a name="l00246"></a>00246  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++, time += timeInc)
 <a name="l00247"></a>00247  {
 <a name="l00248"></a>00248   *bufferSamples++ = lookup(time);
@@ -378,7 +378,7 @@
 <a name="l00346"></a>00346 <span class="preprocessor">#endif // gpl</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:30 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

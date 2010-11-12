@@ -66,6 +66,8 @@ This is the complete list of members for <a class="el" href="class_part_buffer.h
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a168ee6082450d5d4dc1c359573763003">Buffer</a>(Text const &amp;audioFilePath)</td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a5f341a41010bad1886bf83e81a7eaf7b">Buffer</a>(Text const &amp;audioFilePath, double &amp;sampleRate)</td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#ad6e3bc4ce7b47aa10ed58830bac91467">Buffer</a>(AudioSampleBuffer &amp;audioSampleBuffer)</td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_buffer.html#a5f1ede218646d28714790bec25c445ec">Buffer</a>(String const &amp;audioFilePath)</td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_buffer.html#a964f14150c80ab2943a16b9f82d0d178">Buffer</a>(String const &amp;audioFilePath, double &amp;sampleRate)</td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a832b2b8a7de490fe7f1afb3a60e41589">Buffer</a>(const File &amp;audioFile)</td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a258047c3536fa7be98b16363b93f352d">Buffer</a>(const File &amp;audioFile, double &amp;sampleRate)</td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a3f097aad68182f893c880f0105043f42">Buffer</a>(Buffer const &amp;channels0, Buffer const &amp;channels1)</td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
@@ -161,7 +163,7 @@ This is the complete list of members for <a class="el" href="class_part_buffer.h
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a9be5804d53344264d85c760f1b5b1b1c">min</a>(Buffer const &amp;rightOperand) const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a0a70ff184047479336856a3c5dc188bf">mix</a>() const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a7d3f05f15e3a8c52851c21f182469ec8">neg</a>() const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_buffer.html#ac1b908f99da6afe5392292ec809a119e">newClear</a>(const int size=1, const int numChannels=1, bool zeroData=false)</td><td><a class="el" href="class_buffer.html">Buffer</a></td><td><code> [static]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_buffer.html#a569b52e716d12cff3ee2caeca9e8d8c3">newClear</a>(const int size=1, const int numChannels=1)</td><td><a class="el" href="class_buffer.html">Buffer</a></td><td><code> [static]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a3062f87c831d35846581e6882acd928c">normalise</a>() const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a6156165994ad3a37b4d591de33aede2e">normaliseEach</a>() const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a></td><td><a class="el" href="class_buffer.html">Buffer</a></td><td><code> [protected]</code></td></tr>
@@ -196,6 +198,9 @@ This is the complete list of members for <a class="el" href="class_part_buffer.h
   <tr class="memlist"><td><a class="el" href="class_part_buffer.html#a71f947fcbff12e5bdaf56b76e789686e">partitionImpulseChannel</a>(Buffer const &amp;original, const int channel)</td><td><a class="el" href="class_part_buffer.html">PartBuffer</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_part_buffer.html#aa5e800d2610cc2e50a401d9baebfc225">partTempBuffer</a></td><td><a class="el" href="class_part_buffer.html">PartBuffer</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#aff39ce86c8b3d6f7ea5aedfc50c9cdd2">pow</a>(Buffer const &amp;rightOperand) const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_buffer.html#aca2bd2ffab3fc3334fb25861d3178991">process</a>(UGen const &amp;input, UGen const &amp;graph) const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_buffer.html#af146d2eb75d23635c5013e446d7cb8d3">processAndSend</a>(UGen const &amp;input, UGen const &amp;graph, BufferReceiver *receiver, const int bufferID=0) const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_buffer.html#ac26f6683aec201094902a3f6068d1b24">processInPlace</a>(UGen const &amp;input, UGen const &amp;graph)</td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#aa6d1470f9469bdf1b0e710b4297ece97">rand</a>(const int size, const double lower, const double upper, const int numChannels=1)</td><td><a class="el" href="class_buffer.html">Buffer</a></td><td><code> [static]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a988f4ed80af6b0e39e6cd11fae4c5ad1">rand2</a>(const int size, const double positive, const int numChannels=1)</td><td><a class="el" href="class_buffer.html">Buffer</a></td><td><code> [static]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#acbd7b1e90caec04b8865831191ae2636">reciprocal</a>() const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
@@ -227,6 +232,9 @@ This is the complete list of members for <a class="el" href="class_part_buffer.h
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a304aef7473d7d9dbfae6018b2b5d164b">sum</a>(const int channel) const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a4bea6016f9dc395551d429db750a1438">sum</a>() const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#af5a57494b9010379290966ab71ae70a4">sumsqr</a>(Buffer const &amp;rightOperand) const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_buffer.html#adcfabe370f8cc709e794230f4f229e4b">synth</a>(const int size, UGen const &amp;graph)</td><td><a class="el" href="class_buffer.html">Buffer</a></td><td><code> [static]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_buffer.html#a9ff8c3d917eccea96e5ecc31fade79e2">synthAndSend</a>(const int size, UGen const &amp;graph, BufferReceiver *receiver, const int bufferID=0)</td><td><a class="el" href="class_buffer.html">Buffer</a></td><td><code> [static]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_buffer.html#a320ee92824bbf0d5b9608a6bdb89c92f">synthInPlace</a>(UGen const &amp;graph)</td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#ae5faa75d2d1ac657f48b29b0fcb3ad91">tan</a>() const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a208afd35bc88b41c5bd65c5b47c0a50b">tanh</a>() const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#afd4bfdc8745883693a43d9189e3fc6bc">thresh</a>(Buffer const &amp;rightOperand) const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
@@ -234,6 +242,7 @@ This is the complete list of members for <a class="el" href="class_part_buffer.h
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a312126a6a3b5d4753c6cc523d4580a1b">toArray</a>(const int channel) const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td><code> [inline]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a6862661fa406b246a4237a37acff7d51">triangleWindow</a>(const int size)</td><td><a class="el" href="class_buffer.html">Buffer</a></td><td><code> [static]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a0a67f74e92a3ba985b44708f790998c1">trunc</a>(Buffer const &amp;rightOperand=1) const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_buffer.html#a47d152c7810a8af1283cd39315604e08">withSize</a>(const int size=1, const int numChannels=1, bool zeroData=false)</td><td><a class="el" href="class_buffer.html">Buffer</a></td><td><code> [static]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a2601b137ee069c15462085ebaddc1120">wrap</a>(Buffer const &amp;rightOperand) const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#ad7569900b55aa740adac69dfe91c0f58">wrap2</a>(Buffer const &amp;rightOperand) const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_buffer.html#af596972ab9cbbb63713a4d9ec2979935">wrapAt</a>(int sampleIndex) const </td><td><a class="el" href="class_buffer.html">Buffer</a></td><td><code> [inline]</code></td></tr>
@@ -245,7 +254,7 @@ This is the complete list of members for <a class="el" href="class_part_buffer.h
   <tr class="memlist"><td><a class="el" href="class_buffer.html#a59b8743e4a5f731bdd0c4185c9ef263b">~Buffer</a>()</td><td><a class="el" href="class_buffer.html">Buffer</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_part_buffer.html#a92241493e9bfb38c418f618a96c82369">~PartBuffer</a>()</td><td><a class="el" href="class_part_buffer.html">PartBuffer</a></td><td></td></tr>
 </table></div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:43 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:44 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

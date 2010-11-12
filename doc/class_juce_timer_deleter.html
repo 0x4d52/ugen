@@ -65,7 +65,7 @@ Private Attributes</h2></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Stores and deletes <a class="el" href="class_smart_pointer.html">SmartPointer</a> objects using a timer. </p>
-<p>The default <a class="el" href="class_deleter.html" title="A SmartPointer deleter.">Deleter</a> deletes objects immediately using the delete operator. This stores SmartPointers (e.g., <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>) in a juce::Array which is checked periodically, any items found in the Array are deleted. This defers the deletion of these objects to a different Thread, rather than performing the delete operator on an audio procesing Thread for example.</p>
+<p>The default <a class="el" href="class_deleter.html" title="A SmartPointer deleter.">Deleter</a> deletes objects immediately using the delete operator. This stores SmartPointers (e.g., <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>) in a <a class="el" href="classjuce_1_1_array.html">juce::Array</a> which is checked periodically, any items found in the Array are deleted. This defers the deletion of these objects to a different Thread, rather than performing the delete operator on an audio procesing Thread for example.</p>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_u_gen.html#a21e50c75c8fe866dc17c82ebdf58209d" title="Set the current Deleter.">UGen::setDeleter()</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___juce_timer_deleter_8h_source.html#l00051">51</a> of file <a class="el" href="ugen___juce_timer_deleter_8h_source.html">ugen_JuceTimerDeleter.h</a>.</p>
@@ -192,7 +192,7 @@ Private Attributes</h2></td></tr>
 <li>juce/<a class="el" href="ugen___juce_timer_deleter_8h_source.html">ugen_JuceTimerDeleter.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:42 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:42 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

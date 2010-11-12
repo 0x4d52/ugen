@@ -120,7 +120,7 @@
 <a name="l00088"></a>00088  {
 <a name="l00089"></a>00089   <span class="keywordtype">int</span> bufferSamplesRemaining = delayBufferSize - bufferWritePos;
 <a name="l00090"></a>00090   
-<a name="l00091"></a>00091   <span class="keywordtype">int</span> numFramesThisTime = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#afc2720859a4075c66da741d8ad063ba1" title="Global function for the UGen::min() binary operator.">ugen::min</a>(bufferSamplesRemaining, numSamplesToProcess);
+<a name="l00091"></a>00091   <span class="keywordtype">int</span> numFramesThisTime = <a class="code" href="namespaceugen.html#a8c7a6f32b24d3558d3311255ea21eff0">ugen::min</a>(bufferSamplesRemaining, numSamplesToProcess);
 <a name="l00092"></a>00092   numSamplesToProcess -= numFramesThisTime;
 <a name="l00093"></a>00093   
 <a name="l00094"></a>00094   <span class="keywordflow">while</span>(numFramesThisTime--)
@@ -161,8 +161,8 @@
 <a name="l00129"></a>00129  
 <a name="l00130"></a>00130  <span class="keywordtype">int</span> numSamplesToProcess = <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a118a3566a4758eb4719c57843c25bd57">getBlockSize</a>();
 <a name="l00131"></a>00131  <span class="keywordtype">float</span>* outputSamples = <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a2f81d76a08bdae1136fb9eb94c34aa14">getSampleData</a>();
-<a name="l00132"></a>00132  <span class="keywordtype">float</span>* inputSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Input].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
-<a name="l00133"></a>00133  <span class="keywordtype">float</span>* delayTimeSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[DelayTime].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
+<a name="l00132"></a>00132  <span class="keywordtype">float</span>* inputSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Input].<a class="code" href="class_u_gen.html#a373ba4141dfb16167cd9061852ffad15" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
+<a name="l00133"></a>00133  <span class="keywordtype">float</span>* delayTimeSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[DelayTime].<a class="code" href="class_u_gen.html#a373ba4141dfb16167cd9061852ffad15" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
 <a name="l00134"></a>00134  <a class="code" href="ugen___standard_header_8h.html#a9a37472ac55b2fcd8760b2a0db82f035" title="Declares a local variable which is a copy of a member variable.">LOCAL_DECLARE</a>(<span class="keywordtype">float</span> * <span class="keyword">const</span>, <a class="code" href="class_delay_base_u_gen_internal.html#ae79b58a31d8c55c0f04e4914f32ad0fc">bufferSamples</a>);
 <a name="l00135"></a>00135  <a class="code" href="ugen___standard_header_8h.html#a9a37472ac55b2fcd8760b2a0db82f035" title="Declares a local variable which is a copy of a member variable.">LOCAL_DECLARE</a>(<span class="keyword">const</span> <span class="keywordtype">double</span>, <a class="code" href="class_delay_base_u_gen_internal.html#a153100a48b9dd7a6b72223b9e4859a73">delayBufferSize</a>);
 <a name="l00136"></a>00136  
@@ -198,7 +198,7 @@
 <a name="l00166"></a>00166  {
 <a name="l00167"></a>00167   <span class="keywordtype">int</span> numSamplesToProcess = <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a118a3566a4758eb4719c57843c25bd57">getBlockSize</a>();
 <a name="l00168"></a>00168   <span class="keywordtype">float</span>* outputSamples = <a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">getSampleData</a>();
-<a name="l00169"></a>00169   <span class="keywordtype">float</span>* delayTimeSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[DelayTime].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, channel);
+<a name="l00169"></a>00169   <span class="keywordtype">float</span>* delayTimeSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[DelayTime].<a class="code" href="class_u_gen.html#a373ba4141dfb16167cd9061852ffad15" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, channel);
 <a name="l00170"></a>00170   <span class="keywordtype">int</span> bufferWritePos = this-&gt;bufferWritePos; <span class="comment">// fresh copy</span>
 <a name="l00171"></a>00171   
 <a name="l00172"></a>00172   <span class="keywordflow">while</span>(numSamplesToProcess &gt; 0)
@@ -257,7 +257,7 @@
 <a name="l00225"></a>00225  {
 <a name="l00226"></a>00226   <span class="keywordtype">int</span> bufferSamplesRemaining = delayBufferSize - bufferWritePos;
 <a name="l00227"></a>00227   
-<a name="l00228"></a>00228   <span class="keywordtype">int</span> numFramesThisTime = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#afc2720859a4075c66da741d8ad063ba1" title="Global function for the UGen::min() binary operator.">ugen::min</a>(bufferSamplesRemaining, numSamplesToProcess);
+<a name="l00228"></a>00228   <span class="keywordtype">int</span> numFramesThisTime = <a class="code" href="namespaceugen.html#a8c7a6f32b24d3558d3311255ea21eff0">ugen::min</a>(bufferSamplesRemaining, numSamplesToProcess);
 <a name="l00229"></a>00229   numSamplesToProcess -= numFramesThisTime;
 <a name="l00230"></a>00230 
 <a name="l00231"></a>00231   <span class="keywordflow">while</span>(numFramesThisTime--)
@@ -310,7 +310,7 @@
 <a name="l00278"></a>00278  {
 <a name="l00279"></a>00279   <span class="keywordtype">int</span> bufferSamplesRemaining = delayBufferSize - bufferWritePos;
 <a name="l00280"></a>00280   
-<a name="l00281"></a>00281   <span class="keywordtype">int</span> numFramesThisTime = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#afc2720859a4075c66da741d8ad063ba1" title="Global function for the UGen::min() binary operator.">ugen::min</a>(bufferSamplesRemaining, numSamplesToProcess);
+<a name="l00281"></a>00281   <span class="keywordtype">int</span> numFramesThisTime = <a class="code" href="namespaceugen.html#a8c7a6f32b24d3558d3311255ea21eff0">ugen::min</a>(bufferSamplesRemaining, numSamplesToProcess);
 <a name="l00282"></a>00282   numSamplesToProcess -= numFramesThisTime;
 <a name="l00283"></a>00283 
 <a name="l00284"></a>00284   <span class="keywordflow">while</span>(numFramesThisTime--)
@@ -344,7 +344,7 @@
 <a name="l00312"></a>00312   {   
 <a name="l00313"></a>00313    <span class="keywordtype">int</span> bufferSamplesRemaining = delayBufferSize - bufferWritePos;
 <a name="l00314"></a>00314    
-<a name="l00315"></a>00315    <span class="keywordtype">int</span> numFramesThisTime = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#afc2720859a4075c66da741d8ad063ba1" title="Global function for the UGen::min() binary operator.">ugen::min</a>(bufferSamplesRemaining, numSamplesToProcess);
+<a name="l00315"></a>00315    <span class="keywordtype">int</span> numFramesThisTime = <a class="code" href="namespaceugen.html#a8c7a6f32b24d3558d3311255ea21eff0">ugen::min</a>(bufferSamplesRemaining, numSamplesToProcess);
 <a name="l00316"></a>00316    numSamplesToProcess -= numFramesThisTime;
 <a name="l00317"></a>00317 
 <a name="l00318"></a>00318    <span class="keywordflow">while</span>(numFramesThisTime--)
@@ -423,7 +423,7 @@
 <a name="l00391"></a>00391  {
 <a name="l00392"></a>00392   <span class="keywordtype">int</span> bufferSamplesRemaining = delayBufferSize - bufferWritePos;
 <a name="l00393"></a>00393   
-<a name="l00394"></a>00394   <span class="keywordtype">int</span> numFramesThisTime = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#afc2720859a4075c66da741d8ad063ba1" title="Global function for the UGen::min() binary operator.">ugen::min</a>(bufferSamplesRemaining, numSamplesToProcess);
+<a name="l00394"></a>00394   <span class="keywordtype">int</span> numFramesThisTime = <a class="code" href="namespaceugen.html#a8c7a6f32b24d3558d3311255ea21eff0">ugen::min</a>(bufferSamplesRemaining, numSamplesToProcess);
 <a name="l00395"></a>00395   numSamplesToProcess -= numFramesThisTime;
 <a name="l00396"></a>00396   
 <a name="l00397"></a>00397   <span class="keywordflow">while</span>(numFramesThisTime--)
@@ -432,7 +432,7 @@
 <a name="l00400"></a>00400    <span class="keywordflow">if</span>(bufferReadPos &lt; 0)
 <a name="l00401"></a>00401     bufferReadPos += (int)delayBufferSize;
 <a name="l00402"></a>00402    
-<a name="l00403"></a>00403    <span class="keywordtype">float</span> value = bufferSamples[bufferReadPos];
+<a name="l00403"></a>00403    <span class="keywordtype">float</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> = bufferSamples[bufferReadPos];
 <a name="l00404"></a>00404    
 <a name="l00405"></a>00405    bufferSamples[bufferWritePos] = value * feedback + *inputSamples++;
 <a name="l00406"></a>00406    
@@ -503,7 +503,7 @@
 <a name="l00471"></a>00471    <span class="keywordflow">if</span>(bufferReadPos &lt; 0.f)
 <a name="l00472"></a>00472     bufferReadPos += (float)delayBufferSize;
 <a name="l00473"></a>00473    
-<a name="l00474"></a>00474    <span class="keywordtype">float</span> value = lookupIndexL(bufferReadPos);
+<a name="l00474"></a>00474    <span class="keywordtype">float</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> = lookupIndexL(bufferReadPos);
 <a name="l00475"></a>00475    
 <a name="l00476"></a>00476    bufferSamples[bufferWritePos] = value * feedback + *inputSamples++;
 <a name="l00477"></a>00477    
@@ -576,13 +576,13 @@
 <a name="l00545"></a>00545   <a class="code" href="ugen___standard_header_8h.html#ac1a39f55409398450d8e54bf8200a332" title="Copys the value from a local variable back to its member variable.">LOCAL_COPY</a>(feedback);
 <a name="l00546"></a>00546  }
 <a name="l00547"></a>00547  
-<a name="l00548"></a>00548  <span class="keywordtype">float</span> currentDelayMax1 = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">std::max</a>(1.f, currentDelay);
+<a name="l00548"></a>00548  <span class="keywordtype">float</span> currentDelayMax1 = <a class="code" href="namespacestd.html#a52121ceba557c246d2dd17538a1f92df">std::max</a>(1.f, currentDelay);
 <a name="l00549"></a>00549  
 <a name="l00550"></a>00550  <span class="keywordflow">while</span>(numSamplesToProcess &gt; 0)
 <a name="l00551"></a>00551  {
 <a name="l00552"></a>00552   <span class="keywordtype">int</span> bufferSamplesRemaining = delayBufferSize - bufferWritePos;
 <a name="l00553"></a>00553   
-<a name="l00554"></a>00554   <span class="keywordtype">int</span> numFramesThisTime = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#afc2720859a4075c66da741d8ad063ba1" title="Global function for the UGen::min() binary operator.">ugen::min</a>(bufferSamplesRemaining, numSamplesToProcess);
+<a name="l00554"></a>00554   <span class="keywordtype">int</span> numFramesThisTime = <a class="code" href="namespaceugen.html#a8c7a6f32b24d3558d3311255ea21eff0">ugen::min</a>(bufferSamplesRemaining, numSamplesToProcess);
 <a name="l00555"></a>00555   numSamplesToProcess -= numFramesThisTime;
 <a name="l00556"></a>00556 
 <a name="l00557"></a>00557   <span class="keywordflow">while</span>(numFramesThisTime--)
@@ -665,7 +665,7 @@
 <a name="l00635"></a>00635   <a class="code" href="ugen___standard_header_8h.html#ac1a39f55409398450d8e54bf8200a332" title="Copys the value from a local variable back to its member variable.">LOCAL_COPY</a>(feedback);
 <a name="l00636"></a>00636  }
 <a name="l00637"></a>00637  
-<a name="l00638"></a>00638  <span class="keywordtype">float</span> currentDelayMax1 = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">std::max</a>(1.f, currentDelay);
+<a name="l00638"></a>00638  <span class="keywordtype">float</span> currentDelayMax1 = <a class="code" href="namespacestd.html#a52121ceba557c246d2dd17538a1f92df">std::max</a>(1.f, currentDelay);
 <a name="l00639"></a>00639  
 <a name="l00640"></a>00640  <span class="keywordflow">while</span>(numSamplesToProcess &gt; 0)
 <a name="l00641"></a>00641  {
@@ -730,7 +730,7 @@
 <a name="l00700"></a>00700    }
 <a name="l00701"></a>00701    <span class="keywordflow">else</span>
 <a name="l00702"></a>00702    {
-<a name="l00703"></a>00703     internalUGens[delayChannel] = proxyOwner-&gt;<a class="code" href="class_proxy_owner_u_gen_internal.html#a64c2e538cec7a1c10ed9d3e770146dc8">getProxy</a>(delayChannel);
+<a name="l00703"></a>00703     internalUGens[delayChannel] = proxyOwner-&gt;<a class="code" href="class_proxy_owner_u_gen_internal.html#af2cd364e4725d92633dbfb5f698e03c8">getProxy</a>(delayChannel);
 <a name="l00704"></a>00704    }
 <a name="l00705"></a>00705    
 <a name="l00706"></a>00706    inputChannel++;
@@ -740,7 +740,7 @@
 <a name="l00710"></a>00710  }
 <a name="l00711"></a>00711  <span class="keywordflow">else</span>
 <a name="l00712"></a>00712  {
-<a name="l00713"></a>00713   initInternal(<a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(numInputChannels, numDelayTimeChannels));
+<a name="l00713"></a>00713   initInternal(<a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(numInputChannels, numDelayTimeChannels));
 <a name="l00714"></a>00714   
 <a name="l00715"></a>00715   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++)
 <a name="l00716"></a>00716   {
@@ -783,7 +783,7 @@
 <a name="l00753"></a>00753    }
 <a name="l00754"></a>00754    <span class="keywordflow">else</span>
 <a name="l00755"></a>00755    {
-<a name="l00756"></a>00756     internalUGens[delayChannel] = proxyOwner-&gt;<a class="code" href="class_proxy_owner_u_gen_internal.html#a64c2e538cec7a1c10ed9d3e770146dc8">getProxy</a>(delayChannel);
+<a name="l00756"></a>00756     internalUGens[delayChannel] = proxyOwner-&gt;<a class="code" href="class_proxy_owner_u_gen_internal.html#af2cd364e4725d92633dbfb5f698e03c8">getProxy</a>(delayChannel);
 <a name="l00757"></a>00757    }
 <a name="l00758"></a>00758    
 <a name="l00759"></a>00759    inputChannel++;
@@ -793,7 +793,7 @@
 <a name="l00763"></a>00763  }
 <a name="l00764"></a>00764  <span class="keywordflow">else</span>
 <a name="l00765"></a>00765  {
-<a name="l00766"></a>00766   initInternal(<a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(numInputChannels, numDelayTimeChannels));
+<a name="l00766"></a>00766   initInternal(<a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(numInputChannels, numDelayTimeChannels));
 <a name="l00767"></a>00767   
 <a name="l00768"></a>00768   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++)
 <a name="l00769"></a>00769   {
@@ -874,7 +874,7 @@
 <a name="l00844"></a>00844 
 <a name="l00845"></a><a class="code" href="class_tap_in_u_gen_internal.html#a2b43785473a5533901024dda35be3ce6">00845</a> <a class="code" href="class_tap_in_u_gen_internal.html#a2b43785473a5533901024dda35be3ce6">TapInUGenInternal::TapInUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input,
 <a name="l00846"></a>00846           <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; buffer) <span class="keywordflow">throw</span>()
-<a name="l00847"></a>00847 : <a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a>(NumInputs, <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(buffer.getNumChannels(), input.getNumChannels())-1),
+<a name="l00847"></a>00847 : <a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a>(NumInputs, <a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(buffer.getNumChannels(), input.getNumChannels())-1),
 <a name="l00848"></a>00848  buffer_(buffer)
 <a name="l00849"></a>00849 {
 <a name="l00850"></a>00850  inputs[Input] = input;
@@ -894,7 +894,7 @@
 <a name="l00864"></a>00864   <span class="keywordtype">int</span> numSamplesToProcess = blockSize;
 <a name="l00865"></a>00865   <span class="keyword">const</span> <span class="keywordtype">int</span> bufferSize = <a class="code" href="class_tap_in_u_gen_internal.html#ab29b50dbb1e45d4c50fa26ba35ee2dcf">buffer_</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>();
 <a name="l00866"></a>00866   <span class="keywordtype">float</span>* outputSamples = <a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">getSampleData</a>();
-<a name="l00867"></a>00867   <span class="keywordtype">float</span>* inputSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Input].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, channel);
+<a name="l00867"></a>00867   <span class="keywordtype">float</span>* inputSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Input].<a class="code" href="class_u_gen.html#a373ba4141dfb16167cd9061852ffad15" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, channel);
 <a name="l00868"></a>00868   <span class="keywordtype">float</span>* bufferSamples = <a class="code" href="class_tap_in_u_gen_internal.html#ab29b50dbb1e45d4c50fa26ba35ee2dcf">buffer_</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(channel);
 <a name="l00869"></a>00869   <span class="keywordtype">int</span> channelBufferPos = <a class="code" href="class_tap_in_u_gen_internal.html#ab29b50dbb1e45d4c50fa26ba35ee2dcf">buffer_</a>.<a class="code" href="class_buffer.html#a44a544da93160f3c262ab4b0a412b521">getCircularHead</a>(blockID, channel);
 <a name="l00870"></a>00870   
@@ -945,13 +945,13 @@
 <a name="l00915"></a>00915   buffer.setCircularHead(0, i, 0);
 <a name="l00916"></a>00916  }
 <a name="l00917"></a>00917  
-<a name="l00918"></a>00918  <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(buffer.getNumChannels(), input.getNumChannels());
+<a name="l00918"></a>00918  <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels = <a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(buffer.getNumChannels(), input.getNumChannels());
 <a name="l00919"></a>00919  initInternal(numChannels);
 <a name="l00920"></a>00920  generateFromProxyOwner(<span class="keyword">new</span> <a class="code" href="class_tap_in_u_gen_internal.html">TapInUGenInternal</a>(input, buffer)); 
 <a name="l00921"></a>00921 }
 <a name="l00922"></a>00922 
 <a name="l00923"></a><a class="code" href="class_tap_out_n_u_gen_internal.html#a78a71a43acbd513a4890a3edd14eb1e2">00923</a> <a class="code" href="class_tap_out_n_u_gen_internal.html#a78a71a43acbd513a4890a3edd14eb1e2">TapOutNUGenInternal::TapOutNUGenInternal</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; buffer, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; delayTime) <span class="keywordflow">throw</span>()
-<a name="l00924"></a>00924 : <a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a>(NumInputs, <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(buffer.getNumChannels(), delayTime.getNumChannels())-1), 
+<a name="l00924"></a>00924 : <a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a>(NumInputs, <a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(buffer.getNumChannels(), delayTime.getNumChannels())-1), 
 <a name="l00925"></a>00925  buffer_(buffer)
 <a name="l00926"></a>00926 {
 <a name="l00927"></a>00927  inputs[DelayTime] = delayTime;
@@ -974,7 +974,7 @@
 <a name="l00944"></a>00944   
 <a name="l00945"></a>00945   <span class="keywordflow">if</span>(channelBufferPos &lt; 0)
 <a name="l00946"></a>00946   {
-<a name="l00947"></a>00947    memset(outputSamples, 0, blockSize * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00947"></a>00947    <a class="code" href="ugen___play_buf_8ii.html#a68d2b40ef2213b9227a1ce3b81997ae5">memset</a>(outputSamples, 0, blockSize * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l00948"></a>00948   }
 <a name="l00949"></a>00949   <span class="keywordflow">else</span>
 <a name="l00950"></a>00950   {  
@@ -998,7 +998,7 @@
 <a name="l00968"></a>00968 }
 <a name="l00969"></a>00969 
 <a name="l00970"></a><a class="code" href="class_tap_out_l_u_gen_internal.html#a7ea43ca04132393d1d494956ee872651">00970</a> <a class="code" href="class_tap_out_l_u_gen_internal.html#a7ea43ca04132393d1d494956ee872651">TapOutLUGenInternal::TapOutLUGenInternal</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; buffer, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; delayTime) <span class="keywordflow">throw</span>()
-<a name="l00971"></a>00971 : <a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a>(NumInputs, <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(buffer.getNumChannels(), delayTime.getNumChannels())-1), 
+<a name="l00971"></a>00971 : <a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a>(NumInputs, <a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(buffer.getNumChannels(), delayTime.getNumChannels())-1), 
 <a name="l00972"></a>00972  buffer_(buffer)
 <a name="l00973"></a>00973 {
 <a name="l00974"></a>00974  inputs[DelayTime] = delayTime;
@@ -1022,7 +1022,7 @@
 <a name="l00992"></a>00992   
 <a name="l00993"></a>00993   <span class="keywordflow">if</span>(channelBufferPos &lt; 0.f)
 <a name="l00994"></a>00994   {
-<a name="l00995"></a>00995    memset(outputSamples, 0, blockSize * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00995"></a>00995    <a class="code" href="ugen___play_buf_8ii.html#a68d2b40ef2213b9227a1ce3b81997ae5">memset</a>(outputSamples, 0, blockSize * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l00996"></a>00996   }
 <a name="l00997"></a>00997   <span class="keywordflow">else</span>
 <a name="l00998"></a>00998   {
@@ -1033,7 +1033,7 @@
 <a name="l01003"></a>01003 
 <a name="l01004"></a>01004    <span class="keywordflow">while</span>(numSamplesToProcess--) 
 <a name="l01005"></a>01005    {    
-<a name="l01006"></a>01006     <span class="keywordtype">float</span> delay = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(floatBlockSize, *delayTimeSamples++ * sampleRate);
+<a name="l01006"></a>01006     <span class="keywordtype">float</span> delay = <a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(floatBlockSize, *delayTimeSamples++ * sampleRate);
 <a name="l01007"></a>01007     <span class="keywordtype">float</span> bufferReadPos = channelBufferPos - delay;
 <a name="l01008"></a>01008     <span class="keywordflow">if</span>(bufferReadPos &lt; 0.f)
 <a name="l01009"></a>01009      bufferReadPos += bufferSize;
@@ -1051,7 +1051,7 @@
 <a name="l01021"></a>01021  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(buffer.size() &gt; 0);
 <a name="l01022"></a>01022  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(buffer.getNumChannels() &gt; 0);
 <a name="l01023"></a>01023   
-<a name="l01024"></a>01024  <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(buffer.getNumChannels(), delayTime.getNumChannels());
+<a name="l01024"></a>01024  <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels = <a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(buffer.getNumChannels(), delayTime.getNumChannels());
 <a name="l01025"></a>01025  initInternal(numChannels);
 <a name="l01026"></a>01026  generateFromProxyOwner(<span class="keyword">new</span> <a class="code" href="class_tap_out_n_u_gen_internal.html">TapOutNUGenInternal</a>(buffer, delayTime)); 
 <a name="l01027"></a>01027 }
@@ -1061,7 +1061,7 @@
 <a name="l01031"></a>01031  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(buffer.size() &gt; 0);
 <a name="l01032"></a>01032  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(buffer.getNumChannels() &gt; 0);
 <a name="l01033"></a>01033  
-<a name="l01034"></a>01034  <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(buffer.getNumChannels(), delayTime.getNumChannels());
+<a name="l01034"></a>01034  <span class="keyword">const</span> <span class="keywordtype">int</span> numChannels = <a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(buffer.getNumChannels(), delayTime.getNumChannels());
 <a name="l01035"></a>01035  initInternal(numChannels);
 <a name="l01036"></a>01036  generateFromProxyOwner(<span class="keyword">new</span> <a class="code" href="class_tap_out_l_u_gen_internal.html">TapOutLUGenInternal</a>(buffer, delayTime)); 
 <a name="l01037"></a>01037 }
@@ -1071,7 +1071,7 @@
 <a name="l01041"></a>01041 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:30 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

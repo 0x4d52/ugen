@@ -89,9 +89,9 @@
 <a name="l00068"></a>00068  
 <a name="l00072"></a>00072  <a class="code" href="class_u_gen_array.html#a3f61184efb7b7b07d2502e559d0913ab" title="Construct a UGenArray with a certain number of slots.">UGenArray</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; ugen) <span class="keywordflow">throw</span>();
 <a name="l00073"></a>00073  
-<a name="l00076"></a>00076  <a class="code" href="class_u_gen_array.html#a3f61184efb7b7b07d2502e559d0913ab" title="Construct a UGenArray with a certain number of slots.">UGenArray</a>(<a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt;UGen&gt;</a> <span class="keyword">const</span>&amp; array) <span class="keywordflow">throw</span>();
+<a name="l00076"></a>00076  <a class="code" href="class_u_gen_array.html#a3f61184efb7b7b07d2502e559d0913ab" title="Construct a UGenArray with a certain number of slots.">UGenArray</a>(<a class="code" href="class_object_array.html">ObjectArray&lt;UGen&gt;</a> <span class="keyword">const</span>&amp; array) <span class="keywordflow">throw</span>();
 <a name="l00077"></a>00077  
-<a name="l00079"></a>00079  <a class="code" href="class_u_gen_array.html#a3f61184efb7b7b07d2502e559d0913ab" title="Construct a UGenArray with a certain number of slots.">UGenArray</a>(<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <span class="keyword">const</span>&amp; copy) <span class="keywordflow">throw</span>();
+<a name="l00079"></a>00079  <a class="code" href="class_u_gen_array.html#a3f61184efb7b7b07d2502e559d0913ab" title="Construct a UGenArray with a certain number of slots.">UGenArray</a>(<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <span class="keyword">const</span>&amp; <a class="code" href="namespacestd.html#a9b36270cdb50d9a631ba58ee0405f135">copy</a>) <span class="keywordflow">throw</span>();
 <a name="l00080"></a>00080  
 <a name="l00086"></a>00086  <a class="code" href="class_u_gen_array.html#a3f61184efb7b7b07d2502e559d0913ab" title="Construct a UGenArray with a certain number of slots.">UGenArray</a>(<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <span class="keyword">const</span>&amp; array0, <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <span class="keyword">const</span>&amp; array1, <span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code" href="class_u_gen_array.html#afb1218afbe92e5033cae489f91031ce5" title="Removes all UGen instances which are null - in-place.">removeNulls</a>) <span class="keywordflow">throw</span>();
 <a name="l00087"></a>00087  
@@ -193,9 +193,9 @@
 <a name="l00276"></a>00276  
 <a name="l00279"></a>00279  const <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>&amp; <a class="code" href="class_u_gen_array.html#ad5af24b928ef6aa9144be9784ef4049b">last</a>() const throw();
 <a name="l00280"></a>00280  
-<a name="l00281"></a>00281  <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <a class="code" href="class_u_gen_array.html#ad80315c49a0926910988ebd3f3fc665e">at</a>(<a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">IntArray</a> const&amp; indices) const throw();
-<a name="l00282"></a>00282  <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> operator[] (<a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">IntArray</a> const&amp; indices) const throw();
-<a name="l00283"></a>00283  <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <a class="code" href="class_u_gen_array.html#a44f159f51c8f00ad8f4cb2ca39147d03">wrapAt</a>(<a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">IntArray</a> const&amp; indices) const throw();
+<a name="l00281"></a>00281  <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <a class="code" href="class_u_gen_array.html#ad80315c49a0926910988ebd3f3fc665e">at</a>(<a class="code" href="class_numerical_array.html">IntArray</a> const&amp; indices) const throw();
+<a name="l00282"></a>00282  <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> operator[] (<a class="code" href="class_numerical_array.html">IntArray</a> const&amp; indices) const throw();
+<a name="l00283"></a>00283  <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <a class="code" href="class_u_gen_array.html#a44f159f51c8f00ad8f4cb2ca39147d03">wrapAt</a>(<a class="code" href="class_numerical_array.html">IntArray</a> const&amp; indices) const throw();
 <a name="l00284"></a>00284  <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <a class="code" href="class_u_gen_array.html#a98b11e92564491ed07e2693de04a78f7">range</a>(const <span class="keywordtype">int</span> startIndex, const <span class="keywordtype">int</span> endIndex) const throw();
 <a name="l00285"></a>00285  <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <a class="code" href="class_u_gen_array.html#abb6c898da32d4f84845eab3018b0664e">from</a>(const <span class="keywordtype">int</span> startIndex) const throw();
 <a name="l00286"></a>00286  <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <a class="code" href="class_u_gen_array.html#a58bbea98328d89308e521f809ac0460d">to</a>(const <span class="keywordtype">int</span> endIndex) const throw();
@@ -246,7 +246,7 @@
 <a name="l00376"></a>00376 <span class="preprocessor">#endif // UGEN_UGENARRAY_H</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:30 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

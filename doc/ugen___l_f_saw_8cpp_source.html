@@ -30,7 +30,7 @@
 <h1>oscillators/simple/ugen_LFSaw.cpp</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___l_f_saw_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_LFSaw.cpp 164 2010-09-25 12:29:55Z 0x4d52 $</span>
+<a href="ugen___l_f_saw_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_LFSaw.cpp 194 2010-11-10 22:30:50Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/oscillators/simple/ugen_LFSaw.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -76,7 +76,7 @@
 <a name="l00044"></a><a class="code" href="class_l_f_saw_u_gen_internal.html#a1d78ae81e366b06478bd3311f1f58eae">00044</a> <a class="code" href="class_l_f_saw_u_gen_internal.html#a1d78ae81e366b06478bd3311f1f58eae">LFSawUGenInternal::LFSawUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq, 
 <a name="l00045"></a>00045           <span class="keyword">const</span> <span class="keywordtype">float</span> initialPhase) <span class="keywordflow">throw</span>()
 <a name="l00046"></a>00046 : <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(NumInputs),
-<a name="l00047"></a>00047  currentPhase(<a class="code" href="ugen___binary_op_u_gens_8cpp.html#acb0d2d9159eff0b1d0fe99ae10257de0" title="Global function for the UGen::clip2() binary operator.">ugen::clip2</a>(initialPhase, 1.f))
+<a name="l00047"></a>00047  currentPhase(<a class="code" href="namespaceugen.html#ada5218d5761350025b1682186573b921">ugen::clip2</a>(initialPhase, 1.f))
 <a name="l00048"></a>00048 {
 <a name="l00049"></a>00049  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(initialPhase == currentPhase); <span class="comment">// checking it was in range</span>
 <a name="l00050"></a>00050      
@@ -125,12 +125,12 @@
 <a name="l00093"></a>00093 
 <a name="l00094"></a><a class="code" href="class_l_f_saw_u_gen_internal.html#affac2e0ad5a92bfa4183696c3a09a68b">00094</a> <span class="keywordtype">void</span> <a class="code" href="class_l_f_saw_u_gen_internal.html#affac2e0ad5a92bfa4183696c3a09a68b" title="Set the current position of the seekable.">LFSawUGenInternal::setPosition</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> newPosition) <span class="keywordflow">throw</span>()
 <a name="l00095"></a>00095 {
-<a name="l00096"></a>00096  currentPhase = (float)<a class="code" href="ugen___binary_op_u_gens_8cpp.html#acb0d2d9159eff0b1d0fe99ae10257de0" title="Global function for the UGen::clip2() binary operator.">ugen::clip2</a>(newPosition * 2.0 - 1.0, 1.0);
+<a name="l00096"></a>00096  currentPhase = (float)<a class="code" href="namespaceugen.html#ada5218d5761350025b1682186573b921">ugen::clip2</a>(newPosition * 2.0 - 1.0, 1.0);
 <a name="l00097"></a>00097 }
 <a name="l00098"></a>00098 
 <a name="l00099"></a><a class="code" href="class_l_f_saw_u_gen_internal_k.html#ae7191caba83a1aa0ac46e79f513befad">00099</a> <a class="code" href="class_l_f_saw_u_gen_internal_k.html#ae7191caba83a1aa0ac46e79f513befad">LFSawUGenInternalK::LFSawUGenInternalK</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq, <span class="keyword">const</span> <span class="keywordtype">float</span> initialPhase) <span class="keywordflow">throw</span>()
 <a name="l00100"></a>00100 : <a class="code" href="class_l_f_saw_u_gen_internal.html">LFSawUGenInternal</a>(freq, initialPhase),
-<a name="l00101"></a>00101  value(currentPhase)
+<a name="l00101"></a>00101  <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>(currentPhase)
 <a name="l00102"></a>00102 {
 <a name="l00103"></a>00103  rate = ControlRate;
 <a name="l00104"></a>00104 }
@@ -148,7 +148,7 @@
 <a name="l00116"></a>00116  
 <a name="l00117"></a>00117  <span class="keywordflow">while</span>(numSamplesToProcess &gt; 0)
 <a name="l00118"></a>00118  {
-<a name="l00119"></a>00119   <span class="keywordtype">float</span> nextValue = value;
+<a name="l00119"></a>00119   <span class="keywordtype">float</span> nextValue = <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>;
 <a name="l00120"></a>00120   
 <a name="l00121"></a>00121   <span class="keywordflow">if</span>(numKrSamples == 0)   
 <a name="l00122"></a>00122   {
@@ -165,7 +165,7 @@
 <a name="l00133"></a>00133   blockPosition  += numKrSamples;
 <a name="l00134"></a>00134   freqSamples   += numKrSamples;
 <a name="l00135"></a>00135   
-<a name="l00136"></a>00136   <span class="keywordflow">if</span>(nextValue == value)
+<a name="l00136"></a>00136   <span class="keywordflow">if</span>(nextValue == <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>)
 <a name="l00137"></a>00137   {
 <a name="l00138"></a>00138    <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
 <a name="l00139"></a>00139    {
@@ -176,38 +176,39 @@
 <a name="l00144"></a>00144   }
 <a name="l00145"></a>00145   <span class="keywordflow">else</span>
 <a name="l00146"></a>00146   {
-<a name="l00147"></a>00147    <span class="keywordtype">float</span> valueSlope = (nextValue - value) * <a class="code" href="class_u_gen.html#aa74b2f078838a887bcb29c95ea76b82c" title="Get the current control rate slope factor i.e., 1.0 / (control rate block size).">UGen::getControlSlopeFactor</a>();
-<a name="l00148"></a>00148    
-<a name="l00149"></a>00149    <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
-<a name="l00150"></a>00150    {
-<a name="l00151"></a>00151     *outputSamples++ = value;
-<a name="l00152"></a>00152     value += valueSlope;
-<a name="l00153"></a>00153     --numSamplesToProcess;
-<a name="l00154"></a>00154     --numKrSamples;
-<a name="l00155"></a>00155    }
-<a name="l00156"></a>00156    
-<a name="l00157"></a>00157    value = nextValue;
-<a name="l00158"></a>00158   }
-<a name="l00159"></a>00159  }
-<a name="l00160"></a>00160 }
-<a name="l00161"></a>00161 
+<a name="l00147"></a>00147 <span class="comment">//   float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();</span>
+<a name="l00148"></a>00148    <span class="keywordtype">float</span> valueSlope = (nextValue - <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>) / (<span class="keywordtype">float</span>)<a class="code" href="class_u_gen.html#a2c362eee1cdf755de0eed14727494235" title="Get the current control rate block size.">UGen::getControlRateBlockSize</a>();
+<a name="l00149"></a>00149    
+<a name="l00150"></a>00150    <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
+<a name="l00151"></a>00151    {
+<a name="l00152"></a>00152     *outputSamples++ = <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>;
+<a name="l00153"></a>00153     <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> += valueSlope;
+<a name="l00154"></a>00154     --numSamplesToProcess;
+<a name="l00155"></a>00155     --numKrSamples;
+<a name="l00156"></a>00156    }
+<a name="l00157"></a>00157    
+<a name="l00158"></a>00158    <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> = nextValue;
+<a name="l00159"></a>00159   }
+<a name="l00160"></a>00160  }
+<a name="l00161"></a>00161 }
 <a name="l00162"></a>00162 
-<a name="l00163"></a><a class="code" href="class_l_f_saw.html#a9269148b0b099cc825a41f09da071e96">00163</a> <a class="code" href="class_l_f_saw.html#a9269148b0b099cc825a41f09da071e96" title="Base MulAdd LFSaw Constuctor (without &amp;quot;mul&amp;quot; or &amp;quot;add&amp;quot;), use the AR() and KR() vers...">LFSaw::LFSaw</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; initialPhase) <span class="keywordflow">throw</span>()
-<a name="l00164"></a>00164 { 
-<a name="l00165"></a>00165  <span class="keywordtype">int</span> numChannels = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(freq.getNumChannels(), initialPhase.size());
-<a name="l00166"></a>00166  
-<a name="l00167"></a>00167  initInternal(numChannels);
-<a name="l00168"></a>00168  
-<a name="l00169"></a>00169  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++)
-<a name="l00170"></a>00170  {
-<a name="l00171"></a>00171   internalUGens[i] = <span class="keyword">new</span> <a class="code" href="class_l_f_saw_u_gen_internal.html">LFSawUGenInternal</a>(freq, initialPhase.wrapAt(i));
-<a name="l00172"></a>00172  }
-<a name="l00173"></a>00173 }
-<a name="l00174"></a>00174 
-<a name="l00175"></a>00175 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
+<a name="l00163"></a>00163 
+<a name="l00164"></a><a class="code" href="class_l_f_saw.html#a9269148b0b099cc825a41f09da071e96">00164</a> <a class="code" href="class_l_f_saw.html#a9269148b0b099cc825a41f09da071e96" title="Base MulAdd LFSaw Constuctor (without &amp;quot;mul&amp;quot; or &amp;quot;add&amp;quot;), use the AR() and KR() vers...">LFSaw::LFSaw</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; initialPhase) <span class="keywordflow">throw</span>()
+<a name="l00165"></a>00165 { 
+<a name="l00166"></a>00166  <span class="keywordtype">int</span> numChannels = <a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(freq.getNumChannels(), initialPhase.size());
+<a name="l00167"></a>00167  
+<a name="l00168"></a>00168  initInternal(numChannels);
+<a name="l00169"></a>00169  
+<a name="l00170"></a>00170  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++)
+<a name="l00171"></a>00171  {
+<a name="l00172"></a>00172   internalUGens[i] = <span class="keyword">new</span> <a class="code" href="class_l_f_saw_u_gen_internal.html">LFSawUGenInternal</a>(freq, initialPhase.wrapAt(i));
+<a name="l00173"></a>00173  }
+<a name="l00174"></a>00174 }
+<a name="l00175"></a>00175 
+<a name="l00176"></a>00176 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:38 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:32 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

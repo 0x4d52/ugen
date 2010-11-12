@@ -83,9 +83,9 @@
 <a name="l00051"></a>00051  <span class="keyword">internal</span> = <span class="keyword">new</span> <a class="code" href="class_f_f_t_engine_internal.html" title="Provides real to complex FFT and complex to real IFFT processes using a selection of underlying libra...">FFTEngineInternal</a>(fftSize);
 <a name="l00052"></a>00052 }
 <a name="l00053"></a>00053 
-<a name="l00054"></a><a class="code" href="class_f_f_t_engine.html#af2fa8e4c35f098adf4000fcf556e743d">00054</a> <a class="code" href="class_f_f_t_engine.html#a37eb3b37d034966885edaa85909ca06c">FFTEngine::FFTEngine</a>(<a class="code" href="class_f_f_t_engine.html">FFTEngine</a> <span class="keyword">const</span>&amp; copy) <span class="keywordflow">throw</span>()
+<a name="l00054"></a><a class="code" href="class_f_f_t_engine.html#af2fa8e4c35f098adf4000fcf556e743d">00054</a> <a class="code" href="class_f_f_t_engine.html#a37eb3b37d034966885edaa85909ca06c">FFTEngine::FFTEngine</a>(<a class="code" href="class_f_f_t_engine.html">FFTEngine</a> <span class="keyword">const</span>&amp; <a class="code" href="namespacestd.html#a9b36270cdb50d9a631ba58ee0405f135">copy</a>) <span class="keywordflow">throw</span>()
 <a name="l00055"></a>00055 {
-<a name="l00056"></a>00056  <span class="keyword">internal</span> = copy.internal;
+<a name="l00056"></a>00056  <span class="keyword">internal</span> = <a class="code" href="namespacestd.html#a9b36270cdb50d9a631ba58ee0405f135">copy</a>.internal;
 <a name="l00057"></a>00057  <span class="keyword">internal</span>-&gt;incrementRefCount();
 <a name="l00058"></a>00058 }
 <a name="l00059"></a>00059 
@@ -180,7 +180,7 @@
 <a name="l00148"></a>00148 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:30 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

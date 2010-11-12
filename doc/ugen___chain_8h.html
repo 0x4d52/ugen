@@ -86,7 +86,7 @@ Typedefs</h2></td></tr>
 <b>Value:</b><div class="fragment"><pre class="fragment"><a class="code" href="ugen___u_gen_8h.html#a56e509ea94bda71cfa6c759572ac75c2">EVENT_TEMPLATESPECIAL_DOC</a>(<a class="code" href="class_bank.html" title="Construct a bank of UGen instances.">Bank</a>, BankEventType, <a class="code" href="class_chain_bank_event.html" title="An event class for use with a Chain or Bank UGen.">ChainBankEvent</a>)         \
         <a class="code" href="ugen___u_gen_8h.html#a79a263dffd070caca24c4474361eca4c">EVENT_UGEN_OWNEREVENT_DOC</a>                  \
         @param input The input to the <a class="code" href="class_bank.html" title="Construct a bank of UGen instances.">Bank</a>.               \
-        @param size  The number of events to generate and mix.          \
+        @param size  The number of events to <a class="code" href="namespacestd.html#ae20f33763c4689d82e3fcc1e649c0ac9">generate</a> and mix.          \
         <a class="code" href="ugen___u_gen_8h.html#a99ca8a58c5e07bb2ae1405ac26c08742">EVENT_UGEN_NUMCHANNELS_DOC</a>(<a class="code" href="class_bank.html" title="Construct a bank of UGen instances.">Bank</a>)
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___chain_8h_source.html#l00311">311</a> of file <a class="el" href="ugen___chain_8h_source.html">ugen_Chain.h</a>.</p>
@@ -121,7 +121,7 @@ Typedefs</h2></td></tr>
 <b>Value:</b><div class="fragment"><pre class="fragment"><a class="code" href="ugen___u_gen_8h.html#a56e509ea94bda71cfa6c759572ac75c2">EVENT_TEMPLATESPECIAL_DOC</a>(<a class="code" href="class_chain.html" title="Construct a chain of UGen instances.">Chain</a>, ChainLinkType, <a class="code" href="class_chain_bank_event.html" title="An event class for use with a Chain or Bank UGen.">ChainBankEvent</a>)         \
         <a class="code" href="ugen___u_gen_8h.html#a79a263dffd070caca24c4474361eca4c">EVENT_UGEN_OWNEREVENT_DOC</a>                  \
         @param input The input to the <a class="code" href="class_chain.html" title="Construct a chain of UGen instances.">Chain</a>.               \
-        @param size  The number of events to generate in a chain.         \
+        @param size  The number of events to <a class="code" href="namespacestd.html#ae20f33763c4689d82e3fcc1e649c0ac9">generate</a> in <a class="code" href="ugen___play_buf_8ii.html#acf981a770380ca98690ebca553cf9846">a</a> chain.         \
         <a class="code" href="ugen___u_gen_8h.html#a99ca8a58c5e07bb2ae1405ac26c08742">EVENT_UGEN_NUMCHANNELS_DOC</a>(<a class="code" href="class_chain.html" title="Construct a chain of UGen instances.">Chain</a>)
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___chain_8h_source.html#l00255">255</a> of file <a class="el" href="ugen___chain_8h_source.html">ugen_Chain.h</a>.</p>
@@ -198,16 +198,16 @@ Typedefs</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment">You must implement <span class="keyword">this</span> <span class="keyword">virtual</span> function in your subclass.      \
-              The parent <a class="code" href="class_bank.html" title="Construct a bank of UGen instances.">Bank</a> or <a class="code" href="class_chain.html" title="Construct a chain of UGen instances.">Chain</a> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> calls <span class="keyword">this</span> function multiple times to    \
-              create an array of <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> instances to use in a chain or bank structure.   \
-              @param input  If <span class="keyword">this</span> is used in a <a class="code" href="class_bank.html" title="Construct a bank of UGen instances.">Bank</a> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">this</span> will be the    \
+<b>Value:</b><div class="fragment"><pre class="fragment">You must implement <span class="keyword">this</span> <span class="keyword">virtual</span> <a class="code" href="ugen___play_buf_8ii.html#a95a94aa2ba352fb2f78d567e2332b7db">function</a> in your subclass.      \
+              The parent <a class="code" href="class_bank.html" title="Construct a bank of UGen instances.">Bank</a> or <a class="code" href="class_chain.html" title="Construct a chain of UGen instances.">Chain</a> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> calls <span class="keyword">this</span> <a class="code" href="ugen___play_buf_8ii.html#a95a94aa2ba352fb2f78d567e2332b7db">function</a> multiple times to    \
+              create an array of <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> instances to use in <a class="code" href="ugen___play_buf_8ii.html#acf981a770380ca98690ebca553cf9846">a</a> chain or bank structure.   \
+              @param input  If <span class="keyword">this</span> is used in <a class="code" href="ugen___play_buf_8ii.html#acf981a770380ca98690ebca553cf9846">a</a> <a class="code" href="class_bank.html" title="Construct a bank of UGen instances.">Bank</a> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">this</span> will be the    \
                    input to the <a class="code" href="class_bank.html" title="Construct a bank of UGen instances.">Bank</a> and all events <span class="keyword">get</span> the same input.  \
-                   If <span class="keyword">this</span> is used in a <a class="code" href="class_chain.html" title="Construct a chain of UGen instances.">Chain</a> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> the first link (when  \
+                   If <span class="keyword">this</span> is used in <a class="code" href="ugen___play_buf_8ii.html#acf981a770380ca98690ebca553cf9846">a</a> <a class="code" href="class_chain.html" title="Construct a chain of UGen instances.">Chain</a> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> the first <a class="code" href="ugen___play_buf_8ii.html#a9f0ffa429d1a466322fb9b5bb084f828">link</a> (when  \
                    eventCount is 0) will <span class="keyword">get</span> the input to the chain but  \
                    subsequent links will <span class="keyword">get</span> the output of the previous  \
-                   link as their input.          \
-              @param eventCount The index of the <span class="keyword">event</span> instance starting at 0 <span class="keywordflow">for</span>   \
+                   <a class="code" href="ugen___play_buf_8ii.html#a9f0ffa429d1a466322fb9b5bb084f828">link</a> as their input.          \
+              @param eventCount The <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a> of the <span class="keyword">event</span> instance starting at 0 <span class="keywordflow">for</span>   \
                    the first <span class="keyword">event</span>.           \
               @<span class="keywordflow">return</span>    The <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> graph <span class="keywordflow">for</span> <span class="keyword">this</span> <span class="keyword">event</span> instance.
 </pre></div>
@@ -232,7 +232,7 @@ Typedefs</h2></td></tr>
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:38 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:35 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -63,7 +63,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lag_u_d_u_gen_internal.html#a4e70d91a71f115e14cda9803eeec5b8f">getKr</a> ()  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lag_u_d_u_gen_internal.html#aae3442dfab7cd4cb8b60465a099646b4">processBlock</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Process a block of samples for this blockID and channel.  <a href="#aae3442dfab7cd4cb8b60465a099646b4"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lag_u_d_u_gen_internal.html#adae1c90b4d0a8154783884b914386bcc">initValue</a> (const float value)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lag_u_d_u_gen_internal.html#adae1c90b4d0a8154783884b914386bcc">initValue</a> (const float <a class="el" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>)  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> output value.  <a href="#adae1c90b4d0a8154783884b914386bcc"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -136,7 +136,7 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___lag_8cpp_source.html#l00236">236</a> of file <a class="el" href="ugen___lag_8cpp_source.html">ugen_Lag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___lag_8cpp_source.html#l00240">240</a> of file <a class="el" href="ugen___lag_8cpp_source.html">ugen_Lag.cpp</a>.</p>
 
 </div>
 </div>
@@ -157,9 +157,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a6838029815ab52d3263cfacb6c584d2f">UGenInternal</a>.</p>
+<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#ae9624445b9d8328a9032305687333039">UGenInternal</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___lag_8cpp_source.html#l00258">258</a> of file <a class="el" href="ugen___lag_8cpp_source.html">ugen_Lag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___lag_8cpp_source.html#l00262">262</a> of file <a class="el" href="ugen___lag_8cpp_source.html">ugen_Lag.cpp</a>.</p>
 
 </div>
 </div>
@@ -178,13 +178,13 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a5041a93f6c624446f04542b0b82f0563">UGenInternal</a>.</p>
+<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a637e36a73842e8c10f62bc42c34c515c">UGenInternal</a>.</p>
 
 <p>Reimplemented in <a class="el" href="class_lag_u_d_u_gen_internal_k.html#afbec8f88ce36c78b0c5726625e6a6728">LagUDUGenInternalK</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___lag_8cpp_source.html#l00251">251</a> of file <a class="el" href="ugen___lag_8cpp_source.html">ugen_Lag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___lag_8cpp_source.html#l00255">255</a> of file <a class="el" href="ugen___lag_8cpp_source.html">ugen_Lag.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___lag_8h_source.html#l00095">Input</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00228">UGenInternal::inputs</a>, <a class="el" href="ugen___lag_8h_source.html#l00095">LagTimeDown</a>, and <a class="el" href="ugen___lag_8h_source.html#l00095">LagTimeUp</a>.</p>
+<p>References <a class="el" href="ugen___lag_8h_source.html#l00095">Input</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00227">UGenInternal::inputs</a>, <a class="el" href="ugen___lag_8h_source.html#l00095">LagTimeDown</a>, and <a class="el" href="ugen___lag_8h_source.html#l00095">LagTimeUp</a>.</p>
 
 </div>
 </div>
@@ -205,13 +205,13 @@ Protected Attributes</h2></td></tr>
 <div class="memdoc">
 
 <p>Initialise the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> output value. </p>
-<p>This helps <a class="el" href="class_u_gen_internal.html#a8025c9bdaa987546001e2da23f97e3c8">getValue()</a> return the correct (or at lease approximately correct) value even before processing begins. Oscillators can generally set their own value here in their UGenInternal-inherited constructor. Processing-type <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> classes will probably need to set the values in the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> class as the <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> classes are created (since they may contain multichannel inputs). </p>
+<p>This helps <a class="el" href="class_u_gen_internal.html#a9f79b23e6cc88f6987890357b4a5ba3b">getValue()</a> return the correct (or at lease approximately correct) value even before processing begins. Oscillators can generally set their own value here in their UGenInternal-inherited constructor. Processing-type <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> classes will probably need to set the values in the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> class as the <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> classes are created (since they may contain multichannel inputs). </p>
 
-<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a3b9de200fa163a233dab85b3388fd469">UGenInternal</a>.</p>
+<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a02969e1ea45efde745a41fec2ac36dc4">UGenInternal</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___lag_8cpp_source.html#l00317">317</a> of file <a class="el" href="ugen___lag_8cpp_source.html">ugen_Lag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___lag_8cpp_source.html#l00322">322</a> of file <a class="el" href="ugen___lag_8cpp_source.html">ugen_Lag.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00322">UGenInternal::initValue()</a>, and <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00142">zap()</a>.</p>
+<p>References <a class="el" href="class_u_gen_internal.html#a02969e1ea45efde745a41fec2ac36dc4">UGenInternal::initValue()</a>, <a class="el" href="ugen___play_buf_8ii_source.html#l06697">value</a>, <a class="el" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1()</a>, and <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00142">zap()</a>.</p>
 
 </div>
 </div>
@@ -261,9 +261,9 @@ Protected Attributes</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="class_lag_u_d_u_gen_internal_k.html#abc9d2318ed07363d103dddfc971e16e8">LagUDUGenInternalK</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___lag_8cpp_source.html#l00265">265</a> of file <a class="el" href="ugen___lag_8cpp_source.html">ugen_Lag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___lag_8cpp_source.html#l00269">269</a> of file <a class="el" href="ugen___lag_8cpp_source.html">ugen_Lag.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00133">exp()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00924">UGen::getSampleRate()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00958">UGen::getSlopeFactor()</a>, <a class="el" href="ugen___constants_8h_source.html#l00055">log001</a>, <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>, and <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00142">zap()</a>.</p>
+<p>References <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00133">exp()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00928">UGen::getSampleRate()</a>, <a class="el" href="ugen___constants_8h_source.html#l00055">log001</a>, <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>, <a class="el" href="ugen___play_buf_8ii.html#a6fbdbf626ac525026616c62da6e3b3a4">y0()</a>, <a class="el" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1()</a>, and <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00142">zap()</a>.</p>
 
 </div>
 </div>
@@ -348,7 +348,7 @@ Protected Attributes</h2></td></tr>
 <li>filters/control/<a class="el" href="ugen___lag_8cpp_source.html">ugen_Lag.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:42 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:42 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

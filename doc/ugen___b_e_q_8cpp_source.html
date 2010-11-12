@@ -81,7 +81,7 @@
 <a name="l00049"></a>00049 
 <a name="l00050"></a><a class="code" href="class_b_e_q_base_u_gen_internal.html#aa97fbc8974f152bd771199c2bd606146">00050</a> <a class="code" href="class_b_e_q_base_u_gen_internal.html#aa97fbc8974f152bd771199c2bd606146">BEQBaseUGenInternal::BEQBaseUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; control, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; gain) <span class="keywordflow">throw</span>()
 <a name="l00051"></a>00051 : <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(NumInputs),
-<a name="l00052"></a>00052  y1(0.f), y2(0.f), a0(0.f), a1(0.f), a2(0.f), b1(0.f), b2(0.f),
+<a name="l00052"></a>00052  <a class="code" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1</a>(0.f), y2(0.f), a0(0.f), a1(0.f), a2(0.f), b1(0.f), b2(0.f),
 <a name="l00053"></a>00053  currentFreq(0.f), currentControl(0.f), currentGain(0.f)
 <a name="l00054"></a>00054 {
 <a name="l00055"></a>00055  inputs[Input] = input;
@@ -167,10 +167,10 @@
 <a name="l00135"></a>00135   {
 <a name="l00136"></a>00136    calculateCoeffs(*freqSamples++, *controlSamples++, *gainSamples++);
 <a name="l00137"></a>00137    
-<a name="l00138"></a>00138    y0 = *inputSamples++ + b1 * y1 + b2 * y2; 
-<a name="l00139"></a>00139    *outputSamples++ = (float)(a0 * y0 + a1 * y1 + a2 * y2);
+<a name="l00138"></a>00138    y0 = *inputSamples++ + b1 * <a class="code" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1</a> + b2 * y2; 
+<a name="l00139"></a>00139    *outputSamples++ = (float)(a0 * y0 + a1 * <a class="code" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1</a> + a2 * y2);
 <a name="l00140"></a>00140    y2 = y1; 
-<a name="l00141"></a>00141    y1 = y0;   
+<a name="l00141"></a>00141    <a class="code" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1</a> = y0;   
 <a name="l00142"></a>00142   }
 <a name="l00143"></a>00143     
 <a name="l00144"></a>00144   currentFreq = *(freqSamples-1);
@@ -181,24 +181,24 @@
 <a name="l00149"></a>00149  {  
 <a name="l00150"></a>00150   <span class="keywordflow">while</span>(numSamplesToProcess--)
 <a name="l00151"></a>00151   {
-<a name="l00152"></a>00152    y0 = *inputSamples++ + b1 * y1 + b2 * y2; 
-<a name="l00153"></a>00153    *outputSamples++ = a0 * y0 + a1 * y1 + a2 * y2;
+<a name="l00152"></a>00152    y0 = *inputSamples++ + b1 * <a class="code" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1</a> + b2 * y2; 
+<a name="l00153"></a>00153    *outputSamples++ = a0 * y0 + a1 * <a class="code" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1</a> + a2 * y2;
 <a name="l00154"></a>00154    
 <a name="l00155"></a>00155    y2 = y1; 
-<a name="l00156"></a>00156    y1 = y0;
+<a name="l00156"></a>00156    <a class="code" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1</a> = y0;
 <a name="l00157"></a>00157   }
 <a name="l00158"></a>00158  }
 <a name="l00159"></a>00159  
-<a name="l00160"></a>00160  y1 = <a class="code" href="ugen___inline_unary_ops_8h.html#a6ed2bbde65e0032256bd4e8832b99b91">zap</a>(y1);
+<a name="l00160"></a>00160  <a class="code" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1</a> = <a class="code" href="ugen___inline_unary_ops_8h.html#a6ed2bbde65e0032256bd4e8832b99b91">zap</a>(<a class="code" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1</a>);
 <a name="l00161"></a>00161  y2 = <a class="code" href="ugen___inline_unary_ops_8h.html#a6ed2bbde65e0032256bd4e8832b99b91">zap</a>(y2);
 <a name="l00162"></a>00162 }
 <a name="l00163"></a>00163 
 <a name="l00164"></a>00164 
-<a name="l00165"></a><a class="code" href="class_b_e_q_base_u_gen_internal.html#a4ca73a49b4203918c937b1c9f5b816f0">00165</a> <span class="keywordtype">void</span> <a class="code" href="class_b_e_q_base_u_gen_internal.html#a4ca73a49b4203918c937b1c9f5b816f0" title="Initialise the UGen output value.">BEQBaseUGenInternal::initValue</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> value) <span class="keywordflow">throw</span>()
+<a name="l00165"></a><a class="code" href="class_b_e_q_base_u_gen_internal.html#a4ca73a49b4203918c937b1c9f5b816f0">00165</a> <span class="keywordtype">void</span> <a class="code" href="class_b_e_q_base_u_gen_internal.html#a4ca73a49b4203918c937b1c9f5b816f0" title="Initialise the UGen output value.">BEQBaseUGenInternal::initValue</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>) <span class="keywordflow">throw</span>()
 <a name="l00166"></a>00166 {
-<a name="l00167"></a>00167  <span class="keywordtype">float</span> checkedValue = <a class="code" href="ugen___inline_unary_ops_8h.html#a6ed2bbde65e0032256bd4e8832b99b91">zap</a>(value);
-<a name="l00168"></a>00168  <a class="code" href="class_u_gen_internal.html#a3b9de200fa163a233dab85b3388fd469" title="Initialise the UGen output value.">UGenInternal::initValue</a>(checkedValue);
-<a name="l00169"></a>00169  y1 = y2 = checkedValue;
+<a name="l00167"></a>00167  <span class="keywordtype">float</span> checkedValue = <a class="code" href="ugen___inline_unary_ops_8h.html#a6ed2bbde65e0032256bd4e8832b99b91">zap</a>(<a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>);
+<a name="l00168"></a>00168  <a class="code" href="class_u_gen_internal.html#a02969e1ea45efde745a41fec2ac36dc4" title="Initialise the UGen output value.">UGenInternal::initValue</a>(checkedValue);
+<a name="l00169"></a>00169  <a class="code" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1</a> = y2 = checkedValue;
 <a name="l00170"></a>00170 }
 <a name="l00171"></a>00171 
 <a name="l00172"></a><a class="code" href="class_b_low_pass_u_gen_internal.html#a87b9f48fc61115eb6f77d0864c0797b6">00172</a> <a class="code" href="class_b_low_pass_u_gen_internal.html#a87b9f48fc61115eb6f77d0864c0797b6">BLowPassUGenInternal::BLowPassUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; rq) <span class="keywordflow">throw</span>()
@@ -472,7 +472,7 @@
 <a name="l00440"></a>00440 
 <a name="l00441"></a><a class="code" href="class_b_peak_e_q_u_gen_internal.html#a2bcf6b78d36d5149802d85b027c5d8e6">00441</a> <span class="keywordtype">void</span> <a class="code" href="class_b_peak_e_q_u_gen_internal.html#a2bcf6b78d36d5149802d85b027c5d8e6">BPeakEQUGenInternal::calculateCoeffs</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> freq, <span class="keyword">const</span> <span class="keywordtype">float</span> rq, <span class="keyword">const</span> <span class="keywordtype">float</span> gain)
 <a name="l00442"></a>00442 { 
-<a name="l00443"></a>00443  <a class="code" href="ugen___b_e_q_8h.html#af60d57cb476a8517447379cfefe92d7e">BEQ_CALC_TYPE</a> a = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a6fa1308b8c07eb1bcac7853238deb6f3" title="Global function for the UGen::pow() binary operator.">pow</a>(10., (<a class="code" href="ugen___b_e_q_8h.html#af60d57cb476a8517447379cfefe92d7e">BEQ_CALC_TYPE</a>)gain * (1.0 / 40.0));
+<a name="l00443"></a>00443  <a class="code" href="ugen___b_e_q_8h.html#af60d57cb476a8517447379cfefe92d7e">BEQ_CALC_TYPE</a> <a class="code" href="ugen___play_buf_8ii.html#acf981a770380ca98690ebca553cf9846">a</a> = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a6fa1308b8c07eb1bcac7853238deb6f3" title="Global function for the UGen::pow() binary operator.">pow</a>(10., (<a class="code" href="ugen___b_e_q_8h.html#af60d57cb476a8517447379cfefe92d7e">BEQ_CALC_TYPE</a>)gain * (1.0 / 40.0));
 <a name="l00444"></a>00444  <a class="code" href="ugen___b_e_q_8h.html#af60d57cb476a8517447379cfefe92d7e">BEQ_CALC_TYPE</a> w0 = <a class="code" href="ugen___constants_8h.html#a41456563667051ed589712c38e7427e6">twoPi</a> * (BEQ_CALC_TYPE)freq * <a class="code" href="class_u_gen.html#a2e6ab64a2e5ea263113ab4993603537e" title="Get the recirprocal of the current sample rate.">UGen::getReciprocalSampleRate</a>(); 
 <a name="l00445"></a>00445  <a class="code" href="ugen___b_e_q_8h.html#af60d57cb476a8517447379cfefe92d7e">BEQ_CALC_TYPE</a> alpha = <a class="code" href="ugen___inline_unary_ops_8h.html#a2ec3d3237aa0701b9a2ca86ae265fcb5">sin</a>(w0) * 0.5 * (BEQ_CALC_TYPE)rq;
 <a name="l00446"></a>00446  <a class="code" href="ugen___b_e_q_8h.html#af60d57cb476a8517447379cfefe92d7e">BEQ_CALC_TYPE</a> alphaBy_a = alpha * a;
@@ -515,7 +515,7 @@
 <a name="l00483"></a>00483 
 <a name="l00484"></a><a class="code" href="class_b_low_shelf_u_gen_internal.html#aca8ad7c7685cec33512574b819c247bf">00484</a> <span class="keywordtype">void</span> <a class="code" href="class_b_low_shelf_u_gen_internal.html#aca8ad7c7685cec33512574b819c247bf">BLowShelfUGenInternal::calculateCoeffs</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> freq, <span class="keyword">const</span> <span class="keywordtype">float</span> rs, <span class="keyword">const</span> <span class="keywordtype">float</span> gain)
 <a name="l00485"></a>00485 { 
-<a name="l00486"></a>00486  <a class="code" href="ugen___b_e_q_8h.html#af60d57cb476a8517447379cfefe92d7e">BEQ_CALC_TYPE</a> a = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a6fa1308b8c07eb1bcac7853238deb6f3" title="Global function for the UGen::pow() binary operator.">pow</a>(10., (<a class="code" href="ugen___b_e_q_8h.html#af60d57cb476a8517447379cfefe92d7e">BEQ_CALC_TYPE</a>)gain * (1.0 / 40.0));
+<a name="l00486"></a>00486  <a class="code" href="ugen___b_e_q_8h.html#af60d57cb476a8517447379cfefe92d7e">BEQ_CALC_TYPE</a> <a class="code" href="ugen___play_buf_8ii.html#acf981a770380ca98690ebca553cf9846">a</a> = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a6fa1308b8c07eb1bcac7853238deb6f3" title="Global function for the UGen::pow() binary operator.">pow</a>(10., (<a class="code" href="ugen___b_e_q_8h.html#af60d57cb476a8517447379cfefe92d7e">BEQ_CALC_TYPE</a>)gain * (1.0 / 40.0));
 <a name="l00487"></a>00487  <a class="code" href="ugen___b_e_q_8h.html#af60d57cb476a8517447379cfefe92d7e">BEQ_CALC_TYPE</a> w0 = <a class="code" href="ugen___constants_8h.html#a41456563667051ed589712c38e7427e6">twoPi</a> * (BEQ_CALC_TYPE)freq * <a class="code" href="class_u_gen.html#a2e6ab64a2e5ea263113ab4993603537e" title="Get the recirprocal of the current sample rate.">UGen::getReciprocalSampleRate</a>(); 
 <a name="l00488"></a>00488  <a class="code" href="ugen___b_e_q_8h.html#af60d57cb476a8517447379cfefe92d7e">BEQ_CALC_TYPE</a> sinw0 = <a class="code" href="ugen___inline_unary_ops_8h.html#a2ec3d3237aa0701b9a2ca86ae265fcb5">sin</a>(w0);
 <a name="l00489"></a>00489  <a class="code" href="ugen___b_e_q_8h.html#af60d57cb476a8517447379cfefe92d7e">BEQ_CALC_TYPE</a> cosw0 = <a class="code" href="ugen___inline_unary_ops_8h.html#aa8f70c6ff79ea20ca30a6034b31568e2">cos</a>(w0);
@@ -565,7 +565,7 @@
 <a name="l00533"></a>00533 
 <a name="l00534"></a><a class="code" href="class_b_hi_shelf_u_gen_internal.html#ad927044312fd4a092300fe1bbc07dc9d">00534</a> <span class="keywordtype">void</span> <a class="code" href="class_b_hi_shelf_u_gen_internal.html#ad927044312fd4a092300fe1bbc07dc9d">BHiShelfUGenInternal::calculateCoeffs</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> freq, <span class="keyword">const</span> <span class="keywordtype">float</span> rs, <span class="keyword">const</span> <span class="keywordtype">float</span> gain)
 <a name="l00535"></a>00535 { 
-<a name="l00536"></a>00536  <a class="code" href="ugen___b_e_q_8h.html#af60d57cb476a8517447379cfefe92d7e">BEQ_CALC_TYPE</a> a = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a6fa1308b8c07eb1bcac7853238deb6f3" title="Global function for the UGen::pow() binary operator.">pow</a>(10., (<a class="code" href="ugen___b_e_q_8h.html#af60d57cb476a8517447379cfefe92d7e">BEQ_CALC_TYPE</a>)gain * 0.025);
+<a name="l00536"></a>00536  <a class="code" href="ugen___b_e_q_8h.html#af60d57cb476a8517447379cfefe92d7e">BEQ_CALC_TYPE</a> <a class="code" href="ugen___play_buf_8ii.html#acf981a770380ca98690ebca553cf9846">a</a> = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a6fa1308b8c07eb1bcac7853238deb6f3" title="Global function for the UGen::pow() binary operator.">pow</a>(10., (<a class="code" href="ugen___b_e_q_8h.html#af60d57cb476a8517447379cfefe92d7e">BEQ_CALC_TYPE</a>)gain * 0.025);
 <a name="l00537"></a>00537  <a class="code" href="ugen___b_e_q_8h.html#af60d57cb476a8517447379cfefe92d7e">BEQ_CALC_TYPE</a> w0 = <a class="code" href="ugen___constants_8h.html#a41456563667051ed589712c38e7427e6">twoPi</a> * (BEQ_CALC_TYPE)freq * <a class="code" href="class_u_gen.html#a2e6ab64a2e5ea263113ab4993603537e" title="Get the recirprocal of the current sample rate.">UGen::getReciprocalSampleRate</a>(); 
 <a name="l00538"></a>00538  <a class="code" href="ugen___b_e_q_8h.html#af60d57cb476a8517447379cfefe92d7e">BEQ_CALC_TYPE</a> sinw0 = <a class="code" href="ugen___inline_unary_ops_8h.html#a2ec3d3237aa0701b9a2ca86ae265fcb5">sin</a>(w0);
 <a name="l00539"></a>00539  <a class="code" href="ugen___b_e_q_8h.html#af60d57cb476a8517447379cfefe92d7e">BEQ_CALC_TYPE</a> cosw0 = <a class="code" href="ugen___inline_unary_ops_8h.html#aa8f70c6ff79ea20ca30a6034b31568e2">cos</a>(w0);
@@ -647,7 +647,7 @@
 <a name="l00615"></a>00615 <span class="preprocessor">#endif // gpl</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:31 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

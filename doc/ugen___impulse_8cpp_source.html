@@ -80,7 +80,7 @@
 <a name="l00048"></a>00048  currentPhase(1.f)
 <a name="l00049"></a>00049 {
 <a name="l00050"></a>00050  <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Freq] = freq;
-<a name="l00051"></a>00051  <a class="code" href="class_u_gen_internal.html#a3b9de200fa163a233dab85b3388fd469" title="Initialise the UGen output value.">initValue</a>(1.f);
+<a name="l00051"></a>00051  <a class="code" href="class_u_gen_internal.html#a02969e1ea45efde745a41fec2ac36dc4" title="Initialise the UGen output value.">initValue</a>(1.f);
 <a name="l00052"></a>00052 }
 <a name="l00053"></a>00053 
 <a name="l00054"></a><a class="code" href="class_impulse_u_gen_internal.html#a42a72cef206e260a3c29add30d038b80">00054</a> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_impulse_u_gen_internal.html#a42a72cef206e260a3c29add30d038b80">ImpulseUGenInternal::getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
@@ -118,7 +118,7 @@
 <a name="l00086"></a>00086 
 <a name="l00087"></a><a class="code" href="class_impulse_u_gen_internal_k.html#a175a5bc1a1a1993379b444ad4fb61457">00087</a> <a class="code" href="class_impulse_u_gen_internal_k.html#a175a5bc1a1a1993379b444ad4fb61457">ImpulseUGenInternalK::ImpulseUGenInternalK</a>(<a class="code" href="ugen___impulse_8h.html#ac32c282ebd4a97c7953a30533d18a6c2">Impulse_InputsWithTypesOnly</a>) throw()
 <a name="l00088"></a>00088 : <a class="code" href="class_impulse_u_gen_internal.html">ImpulseUGenInternal</a>(<a class="code" href="ugen___impulse_8h.html#af2408a0241f91d8ca598e6ca12e75c3b">Impulse_InputsNoTypes</a>),
-<a name="l00089"></a>00089  value(1.f)
+<a name="l00089"></a>00089  <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>(1.f)
 <a name="l00090"></a>00090 {
 <a name="l00091"></a>00091  <a class="code" href="class_u_gen_internal.html#a7d2d4b436a5a80c7ebc23c84901c9e63">rate</a> = ControlRate;
 <a name="l00092"></a>00092 }
@@ -148,7 +148,7 @@
 <a name="l00116"></a>00116    }
 <a name="l00117"></a>00117    
 <a name="l00118"></a>00118    currentPhase += *freqSamples * krBlockSizeOverSampleRate;
-<a name="l00119"></a>00119    value = out;
+<a name="l00119"></a>00119    <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> = out;
 <a name="l00120"></a>00120   }
 <a name="l00121"></a>00121   
 <a name="l00122"></a>00122   numKrSamples = krBlockSize - numKrSamples;
@@ -158,7 +158,7 @@
 <a name="l00126"></a>00126   
 <a name="l00127"></a>00127   <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
 <a name="l00128"></a>00128   {
-<a name="l00129"></a>00129    *outputSamples++ = value;
+<a name="l00129"></a>00129    *outputSamples++ = <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>;
 <a name="l00130"></a>00130    --numSamplesToProcess;
 <a name="l00131"></a>00131    --numKrSamples;
 <a name="l00132"></a>00132   }
@@ -169,7 +169,7 @@
 <a name="l00137"></a><a class="code" href="class_impulse.html#a43e55f7eb99ce6a406368b5f02e76b51">00137</a> <a class="code" href="class_impulse.html#a43e55f7eb99ce6a406368b5f02e76b51" title="Base MulAdd Impulse Constuctor (without &amp;quot;mul&amp;quot; or &amp;quot;add&amp;quot;), use the AR() and KR() ve...">Impulse::Impulse</a>(<a class="code" href="ugen___impulse_8h.html#ac32c282ebd4a97c7953a30533d18a6c2">Impulse_InputsWithTypesOnly</a>) throw()
 <a name="l00138"></a>00138 { 
 <a name="l00139"></a>00139  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> inputs[] = { <a class="code" href="ugen___impulse_8h.html#af2408a0241f91d8ca598e6ca12e75c3b">Impulse_InputsNoTypes</a> };
-<a name="l00140"></a>00140  <span class="keyword">const</span> <span class="keywordtype">int</span> numInputChannels = <a class="code" href="class_u_gen.html#ab40c76e992156358e4254ae8ad46e520">findMaxInputChannels</a>(<a class="code" href="ugen___standard_header_8h.html#a3b96e342c541e61ffe6104777007f4b5">numElementsInArray</a>(inputs), inputs);
+<a name="l00140"></a>00140  <span class="keyword">const</span> <span class="keywordtype">int</span> numInputChannels = <a class="code" href="class_u_gen.html#a78429e006c0ab5d864404d589b36022c">findMaxInputChannels</a>(<a class="code" href="ugen___standard_header_8h.html#a3b96e342c541e61ffe6104777007f4b5">numElementsInArray</a>(inputs), inputs);
 <a name="l00141"></a>00141  <a class="code" href="class_u_gen.html#a0d18108fe75e774a48e51382b091671f">initInternal</a>(numInputChannels);
 <a name="l00142"></a>00142  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_u_gen.html#a2fc8fefb17c555a8443dc18c74bf3382">numInternalUGens</a>; i++)
 <a name="l00143"></a>00143  {
@@ -182,7 +182,7 @@
 <a name="l00150"></a>00150 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:38 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:32 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -97,11 +97,11 @@
 <a name="l00065"></a>00065 <span class="preprocessor"></span><span class="comment">//#define DEFAULT_BUFFERSIZE 2048</span>
 <a name="l00066"></a>00066 
 <a name="l00067"></a>00067 
-<a name="l00068"></a>00068 <span class="keyword">static</span> OSStatus Render(<span class="keywordtype">void</span>       *inRefCon, 
+<a name="l00068"></a>00068 <span class="keyword">static</span> <a class="code" href="ugen___play_buf_8ii.html#a389e8a167a89832edb1c7f2d0302537c">OSStatus</a> Render(<span class="keywordtype">void</span>       *inRefCon, 
 <a name="l00069"></a>00069         AudioUnitRenderActionFlags  *ioActionFlags, 
 <a name="l00070"></a>00070         <span class="keyword">const</span> AudioTimeStamp   *inTimeStamp, 
-<a name="l00071"></a>00071         UInt32       inBusNumber, 
-<a name="l00072"></a>00072         UInt32       inNumberFrames, 
+<a name="l00071"></a>00071         <a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a>       inBusNumber, 
+<a name="l00072"></a>00072         <a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a>       inNumberFrames, 
 <a name="l00073"></a>00073         AudioBufferList    *ioData)
 <a name="l00074"></a>00074 { 
 <a name="l00075"></a>00075  <a class="code" href="interface_u_i_kit_a_u_i_o_host.html" title="AudioUnit / iPhone audio support.">UIKitAUIOHost</a> *host = (<a class="code" href="interface_u_i_kit_a_u_i_o_host.html" title="AudioUnit / iPhone audio support.">UIKitAUIOHost</a> *)inRefCon;
@@ -114,7 +114,7 @@
 <a name="l00082"></a>00082 
 <a name="l00083"></a>00083 <span class="keywordtype">void</span> PropertyListener(<span class="keywordtype">void</span> *                  inClientData,
 <a name="l00084"></a>00084        AudioSessionPropertyID  inID,
-<a name="l00085"></a>00085        UInt32                  inDataSize,
+<a name="l00085"></a>00085        <a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a>                  inDataSize,
 <a name="l00086"></a>00086        <span class="keyword">const</span> <span class="keywordtype">void</span> *            inPropertyValue)
 <a name="l00087"></a>00087 {
 <a name="l00088"></a>00088 <span class="comment">// printf(&quot;Property changed!\n&quot;);</span>
@@ -125,7 +125,7 @@
 <a name="l00093"></a>00093      <a class="code" href="interface_u_i_kit_a_u_i_o_host.html#ae148e8b1dba67fd6debce1ad12ab58f2">withProperty</a>:inPropertyValue];;
 <a name="l00094"></a>00094 }
 <a name="l00095"></a>00095 
-<a name="l00096"></a>00096 <span class="keywordtype">void</span> InterruptionListener(<span class="keywordtype">void</span> *inClientData, UInt32 inInterruption)
+<a name="l00096"></a>00096 <span class="keywordtype">void</span> InterruptionListener(<span class="keywordtype">void</span> *inClientData, <a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a> inInterruption)
 <a name="l00097"></a>00097 {
 <a name="l00098"></a>00098 <span class="comment">// printf(&quot;Session interrupted! --- %s ---\n&quot;, inInterruption == kAudioSessionBeginInterruption ? &quot;Begin Interruption&quot; : &quot;End Interruption&quot;);</span>
 <a name="l00099"></a>00099  
@@ -148,9 +148,9 @@
 <a name="l00116"></a>00116  <span class="keywordflow">return</span> <span class="keyword">self</span>;
 <a name="l00117"></a>00117 }
 <a name="l00118"></a>00118 
-<a name="l00119"></a>00119 - (void)<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#afc2df6595bc881ca6a10682133ab48e0">setFormat</a>
+<a name="l00119"></a>00119 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#afc2df6595bc881ca6a10682133ab48e0">setFormat</a>
 <a name="l00120"></a>00120 {
-<a name="l00121"></a>00121  memset(&amp;<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a88b285c33122b966dc2d38d9612140c0">format</a>, 0, <span class="keyword">sizeof</span>(AudioStreamBasicDescription));
+<a name="l00121"></a>00121  <a class="code" href="ugen___play_buf_8ii.html#a68d2b40ef2213b9227a1ce3b81997ae5">memset</a>(&amp;<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a88b285c33122b966dc2d38d9612140c0">format</a>, 0, <span class="keyword">sizeof</span>(AudioStreamBasicDescription));
 <a name="l00122"></a>00122  <a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a88b285c33122b966dc2d38d9612140c0">format</a>.mFormatID = kAudioFormatLinearPCM;
 <a name="l00123"></a>00123  <span class="keywordtype">int</span> sampleSize = <span class="keyword">sizeof</span>(AudioSampleType);
 <a name="l00124"></a>00124  <a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a88b285c33122b966dc2d38d9612140c0">format</a>.mFormatFlags = kAudioFormatFlagsCanonical;
@@ -176,7 +176,7 @@
 <a name="l00144"></a>00144  AudioComponent comp = AudioComponentFindNext(NULL, &amp;desc);
 <a name="l00145"></a>00145  AudioComponentInstanceNew(comp, &amp;<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a0d08cf999ed5cf5b3fbbe9a0431fce22">rioUnit</a>);
 <a name="l00146"></a>00146  
-<a name="l00147"></a>00147  <span class="keyword">const</span> UInt32 one = 1;
+<a name="l00147"></a>00147  <span class="keyword">const</span> <a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a> one = 1;
 <a name="l00148"></a>00148  AudioUnitSetProperty(<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a0d08cf999ed5cf5b3fbbe9a0431fce22">rioUnit</a>, kAudioOutputUnitProperty_EnableIO, kAudioUnitScope_Input, 1, &amp;one, <span class="keyword">sizeof</span>(one)); 
 <a name="l00149"></a>00149  AudioUnitSetProperty(<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a0d08cf999ed5cf5b3fbbe9a0431fce22">rioUnit</a>, kAudioUnitProperty_SetRenderCallback, kAudioUnitScope_Input, 0, &amp;<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#ac84e17d50ddb9ed0f3415c730a624947">inputProc</a>, <span class="keyword">sizeof</span>(<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#ac84e17d50ddb9ed0f3415c730a624947">inputProc</a>));
 <a name="l00150"></a>00150  
@@ -189,7 +189,7 @@
 <a name="l00157"></a>00157 }
 <a name="l00158"></a>00158 
 <a name="l00159"></a>00159 <span class="preprocessor">#ifdef UGEN_VFP</span>
-<a name="l00160"></a>00160 <span class="preprocessor"></span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> audioFloatToShort(<span class="keywordtype">float</span> *src, <span class="keywordtype">short</span>* dst, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> length)
+<a name="l00160"></a>00160 <span class="preprocessor"></span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> audioFloatToShort(<span class="keywordtype">float</span> *src, <span class="keywordtype">short</span>* dst, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a20fe2f855cdad8e20c5b7c9acb230cef">length</a>)
 <a name="l00161"></a>00161 {
 <a name="l00162"></a>00162  <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> scale = 32767.f;
 <a name="l00163"></a>00163  <span class="keywordtype">int</span> temp[16] UGEN_ALIGN; 
@@ -235,7 +235,7 @@
 <a name="l00203"></a>00203  VFP_SWITCH_TO_ARM_ASM;
 <a name="l00204"></a>00204  <a class="code" href="ugen__vfp__macros_8h.html#a66ec28bbf5a4734d78828cc37139e30b">VFP_VECTOR_LENGTH_ASM</a>(7);
 <a name="l00205"></a>00205  
-<a name="l00206"></a>00206  <span class="keywordflow">for</span> (UInt32 channel = 0; channel &lt; numChannels; channel++)
+<a name="l00206"></a>00206  <span class="keywordflow">for</span> (<a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a> channel = 0; channel &lt; numChannels; channel++)
 <a name="l00207"></a>00207  {
 <a name="l00208"></a>00208   AudioSampleType *audioUnitBuffer = (AudioSampleType*)dst-&gt;mBuffers[channel].mData;  
 <a name="l00209"></a>00209   audioFloatToShort(src[channel], audioUnitBuffer, length);
@@ -291,7 +291,7 @@
 <a name="l00259"></a>00259  VFP_SWITCH_TO_ARM_ASM;
 <a name="l00260"></a>00260  <a class="code" href="ugen__vfp__macros_8h.html#a66ec28bbf5a4734d78828cc37139e30b">VFP_VECTOR_LENGTH_ASM</a>(7);
 <a name="l00261"></a>00261 
-<a name="l00262"></a>00262  <span class="keywordflow">for</span> (UInt32 channel = 0; channel &lt; numChannels; channel++)
+<a name="l00262"></a>00262  <span class="keywordflow">for</span> (<a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a> channel = 0; channel &lt; numChannels; channel++)
 <a name="l00263"></a>00263  {
 <a name="l00264"></a>00264   AudioSampleType *audioUnitBuffer = (AudioSampleType*)src-&gt;mBuffers[0].mData; <span class="comment">// need this other than 0?...  </span>
 <a name="l00265"></a>00265   audioShortToFloat(audioUnitBuffer, dst[channel], length);
@@ -336,7 +336,7 @@
 <a name="l00304"></a>00304 
 <a name="l00305"></a>00305 <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> audioFloatToShortChannels(<span class="keywordtype">float</span> *src[], AudioBufferList* dst, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> length, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> numChannels)
 <a name="l00306"></a>00306 { 
-<a name="l00307"></a>00307  <span class="keywordflow">for</span> (UInt32 channel = 0; channel &lt; numChannels; channel++)
+<a name="l00307"></a>00307  <span class="keywordflow">for</span> (<a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a> channel = 0; channel &lt; numChannels; channel++)
 <a name="l00308"></a>00308  {
 <a name="l00309"></a>00309   AudioSampleType *audioUnitBuffer = (AudioSampleType*)dst-&gt;mBuffers[channel].mData;  
 <a name="l00310"></a>00310   audioFloatToShort(src[channel], audioUnitBuffer, length);
@@ -376,7 +376,7 @@
 <a name="l00344"></a>00344 
 <a name="l00345"></a>00345 <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> audioShortToFloatChannels(AudioBufferList* src, <span class="keywordtype">float</span>* dst[], <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> length, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> numChannels)
 <a name="l00346"></a>00346 {
-<a name="l00347"></a>00347  <span class="keywordflow">for</span> (UInt32 channel = 0; channel &lt; numChannels; channel++)
+<a name="l00347"></a>00347  <span class="keywordflow">for</span> (<a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a> channel = 0; channel &lt; numChannels; channel++)
 <a name="l00348"></a>00348  {
 <a name="l00349"></a>00349   AudioSampleType *audioUnitBuffer = (AudioSampleType*)src-&gt;mBuffers[0].mData; <span class="comment">// need this other than 0?...  </span>
 <a name="l00350"></a>00350   audioShortToFloat(audioUnitBuffer, dst[channel], length);
@@ -389,13 +389,13 @@
 <a name="l00357"></a>00357 {
 <a name="l00358"></a>00358  <span class="keyword">static</span> <span class="keywordtype">float</span> scale = 32767.f;
 <a name="l00359"></a>00359  <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code" href="ugen___constants_8h.html#a554f7b66b1ba49443447eb746978c268">zero</a> = 0.f;
-<a name="l00360"></a>00360  vDSP_vsmsa(src, 1, &amp;scale, &amp;zero, src, 1, length); 
-<a name="l00361"></a>00361  vDSP_vfix16(src, 1, dst, 1, length);
+<a name="l00360"></a>00360  <a class="code" href="ugen___play_buf_8ii.html#a24358fc5b10978e5cbc1e4128b1a1d9e">vDSP_vsmsa</a>(src, 1, &amp;scale, &amp;zero, src, 1, length); 
+<a name="l00361"></a>00361  <a class="code" href="ugen___play_buf_8ii.html#aa1ee9948e0eba98edea408c69f7b0fa0">vDSP_vfix16</a>(src, 1, dst, 1, length);
 <a name="l00362"></a>00362 }
 <a name="l00363"></a>00363 
 <a name="l00364"></a>00364 <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> audioFloatToShortChannels(<span class="keywordtype">float</span> *src[], AudioBufferList* dst, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> length, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> numChannels)
 <a name="l00365"></a>00365 {
-<a name="l00366"></a>00366  <span class="keywordflow">for</span> (UInt32 channel = 0; channel &lt; numChannels; channel++)
+<a name="l00366"></a>00366  <span class="keywordflow">for</span> (<a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a> channel = 0; channel &lt; numChannels; channel++)
 <a name="l00367"></a>00367  {
 <a name="l00368"></a>00368   AudioSampleType *audioUnitBuffer = (AudioSampleType*)dst-&gt;mBuffers[channel].mData;  
 <a name="l00369"></a>00369   audioFloatToShort(src[channel], audioUnitBuffer, length);
@@ -406,13 +406,13 @@
 <a name="l00374"></a>00374 {
 <a name="l00375"></a>00375  <span class="keyword">static</span> <span class="keywordtype">float</span> scale = 1.f / 32767.f;
 <a name="l00376"></a>00376  <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code" href="ugen___constants_8h.html#a554f7b66b1ba49443447eb746978c268">zero</a> = 0.f;
-<a name="l00377"></a>00377  vDSP_vflt16(src, 1, dst, 1, length);
-<a name="l00378"></a>00378  vDSP_vsmsa(dst, 1, &amp;scale, &amp;zero, dst, 1, length);
+<a name="l00377"></a>00377  <a class="code" href="ugen___play_buf_8ii.html#aaae6a2b7eaa818e55b719cecbcf331ea">vDSP_vflt16</a>(src, 1, dst, 1, length);
+<a name="l00378"></a>00378  <a class="code" href="ugen___play_buf_8ii.html#a24358fc5b10978e5cbc1e4128b1a1d9e">vDSP_vsmsa</a>(dst, 1, &amp;scale, &amp;zero, dst, 1, length);
 <a name="l00379"></a>00379 }
 <a name="l00380"></a>00380 
 <a name="l00381"></a>00381 <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> audioShortToFloatChannels(AudioBufferList* src, <span class="keywordtype">float</span>* dst[], <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> length, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> numChannels)
 <a name="l00382"></a>00382 {
-<a name="l00383"></a>00383  <span class="keywordflow">for</span> (UInt32 channel = 0; channel &lt; numChannels; channel++)
+<a name="l00383"></a>00383  <span class="keywordflow">for</span> (<a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a> channel = 0; channel &lt; numChannels; channel++)
 <a name="l00384"></a>00384  {
 <a name="l00385"></a>00385   AudioSampleType *audioUnitBuffer = (AudioSampleType*)src-&gt;mBuffers[0].mData; <span class="comment">// need this other than 0?...  </span>
 <a name="l00386"></a>00386   audioShortToFloat(audioUnitBuffer, dst[channel], length);
@@ -433,7 +433,7 @@
 <a name="l00401"></a>00401 
 <a name="l00402"></a>00402 <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> audioFloatToShortChannels(<span class="keywordtype">float</span> *src[], AudioBufferList* dst, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> length, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> numChannels)
 <a name="l00403"></a>00403 {
-<a name="l00404"></a>00404  <span class="keywordflow">for</span> (UInt32 channel = 0; channel &lt; numChannels; channel++)
+<a name="l00404"></a>00404  <span class="keywordflow">for</span> (<a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a> channel = 0; channel &lt; numChannels; channel++)
 <a name="l00405"></a>00405  {
 <a name="l00406"></a>00406   AudioSampleType *audioUnitBuffer = (AudioSampleType*)dst-&gt;mBuffers[channel].mData;  
 <a name="l00407"></a>00407   audioFloatToShort(src[channel], audioUnitBuffer, length);
@@ -452,7 +452,7 @@
 <a name="l00420"></a>00420 
 <a name="l00421"></a>00421 <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> audioShortToFloatChannels(AudioBufferList* src, <span class="keywordtype">float</span>* dst[], <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> length, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> numChannels)
 <a name="l00422"></a>00422 {
-<a name="l00423"></a>00423  <span class="keywordflow">for</span> (UInt32 channel = 0; channel &lt; numChannels; channel++)
+<a name="l00423"></a>00423  <span class="keywordflow">for</span> (<a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a> channel = 0; channel &lt; numChannels; channel++)
 <a name="l00424"></a>00424  {
 <a name="l00425"></a>00425   AudioSampleType *audioUnitBuffer = (AudioSampleType*)src-&gt;mBuffers[0].mData; <span class="comment">// need this other than 0?...  </span>
 <a name="l00426"></a>00426   audioShortToFloat(audioUnitBuffer, dst[channel], length);
@@ -461,12 +461,12 @@
 <a name="l00429"></a>00429 <span class="preprocessor">#endif</span>
 <a name="l00430"></a>00430 <span class="preprocessor"></span>
 <a name="l00431"></a>00431 
-<a name="l00432"></a>00432 - (OSStatus)renderCallback:(UInt32)inNumberFrames 
+<a name="l00432"></a>00432 - (<a class="code" href="ugen___play_buf_8ii.html#a389e8a167a89832edb1c7f2d0302537c">OSStatus</a>)renderCallback:(<a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a>)inNumberFrames 
 <a name="l00433"></a>00433      withActionFlags:(AudioUnitRenderActionFlags*)ioActionFlags
 <a name="l00434"></a>00434       atTimeStamp:(const AudioTimeStamp*)inTimeStamp 
 <a name="l00435"></a>00435       withBuffers:(AudioBufferList*)ioData
 <a name="l00436"></a>00436 {
-<a name="l00437"></a>00437  OSStatus err = 0;
+<a name="l00437"></a>00437  <a class="code" href="ugen___play_buf_8ii.html#a389e8a167a89832edb1c7f2d0302537c">OSStatus</a> err = 0;
 <a name="l00438"></a>00438  
 <a name="l00439"></a>00439  <span class="keywordflow">if</span>(inNumberFrames &gt; <a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a1c0537643dbf254bd8d1eb6212d9c5e6">bufferSize</a>)
 <a name="l00440"></a>00440  {
@@ -485,7 +485,7 @@
 <a name="l00453"></a>00453  <span class="keywordflow">if</span>(<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a5694c56d09ff8e934c4cc59beec7e51a">audioInputIsAvailable</a>)
 <a name="l00454"></a>00454  {
 <a name="l00455"></a>00455   err = AudioUnitRender(<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a0d08cf999ed5cf5b3fbbe9a0431fce22">rioUnit</a>, ioActionFlags, inTimeStamp, 1, inNumberFrames, ioData);
-<a name="l00456"></a>00456   <span class="keywordflow">if</span> (err) { printf(<span class="stringliteral">&quot;renderCallback: error %d\n&quot;</span>, (<span class="keywordtype">int</span>)err); <span class="keywordflow">return</span> err; }
+<a name="l00456"></a>00456   <span class="keywordflow">if</span> (err) { <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;renderCallback: error %d\n&quot;</span>, (<span class="keywordtype">int</span>)err); <span class="keywordflow">return</span> err; }
 <a name="l00457"></a>00457   
 <a name="l00458"></a>00458   audioShortToFloatChannels(ioData, floatBufferData, inNumberFrames, <a class="code" href="interface_u_i_kit_a_u_i_o_host.html#aff2eddf091f61dd8cf46686324ecdaaf">numInputChannels</a>);
 <a name="l00459"></a>00459     
@@ -494,7 +494,7 @@
 <a name="l00462"></a>00462  }
 <a name="l00463"></a>00463  <span class="keywordflow">else</span>
 <a name="l00464"></a>00464  {
-<a name="l00465"></a>00465   memset(<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a6e52acf61e62b524b9e49a8a41e9888b">floatBuffer</a>, 0, <a class="code" href="interface_u_i_kit_a_u_i_o_host.html#aff2eddf091f61dd8cf46686324ecdaaf">numInputChannels</a> * inNumberFrames * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00465"></a>00465   <a class="code" href="ugen___play_buf_8ii.html#a68d2b40ef2213b9227a1ce3b81997ae5">memset</a>(<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a6e52acf61e62b524b9e49a8a41e9888b">floatBuffer</a>, 0, <a class="code" href="interface_u_i_kit_a_u_i_o_host.html#aff2eddf091f61dd8cf46686324ecdaaf">numInputChannels</a> * inNumberFrames * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l00466"></a>00466   [<span class="keyword">self</span> lock];
 <a name="l00467"></a>00467  }
 <a name="l00468"></a>00468  
@@ -506,8 +506,8 @@
 <a name="l00474"></a>00474   <a class="code" href="interface_u_i_kit_a_u_i_o_host.html#ae4be0eeb018749e335e196176ef3cd03">others</a>[i].prepareAndProcessBlock(inNumberFrames, blockID);
 <a name="l00475"></a>00475  }  
 <a name="l00476"></a>00476  
-<a name="l00477"></a>00477  <a class="code" href="interface_u_i_kit_a_u_i_o_host.html#af441bb1eed898c95b478ab3c37ec277d">preFadeOutput</a>.<a class="code" href="class_u_gen.html#aa590fbb03f1c7abae104b5b6c7410b55" title="Prepares for a block then processes it.">prepareAndProcessBlock</a>(inNumberFrames, blockID);
-<a name="l00478"></a>00478  <a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a8b56c88ac3a93ca377bfbfad4cd67457">postFadeOutput</a>.<a class="code" href="class_u_gen.html#aa590fbb03f1c7abae104b5b6c7410b55" title="Prepares for a block then processes it.">prepareAndProcessBlock</a>(inNumberFrames, blockID);
+<a name="l00477"></a>00477  <a class="code" href="interface_u_i_kit_a_u_i_o_host.html#af441bb1eed898c95b478ab3c37ec277d">preFadeOutput</a>.<a class="code" href="class_u_gen.html#af63bec49af4836b1c2b355804dfaeee7" title="Prepares for a block then processes it.">prepareAndProcessBlock</a>(inNumberFrames, blockID);
+<a name="l00478"></a>00478  <a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a8b56c88ac3a93ca377bfbfad4cd67457">postFadeOutput</a>.<a class="code" href="class_u_gen.html#af63bec49af4836b1c2b355804dfaeee7" title="Prepares for a block then processes it.">prepareAndProcessBlock</a>(inNumberFrames, blockID);
 <a name="l00479"></a>00479  
 <a name="l00480"></a>00480  [<span class="keyword">self</span> unlock];
 <a name="l00481"></a>00481  
@@ -516,38 +516,38 @@
 <a name="l00484"></a>00484  <span class="keywordflow">return</span> err; 
 <a name="l00485"></a>00485 } 
 <a name="l00486"></a>00486 
-<a name="l00487"></a>00487 - (void)propertyCallback:(AudioSessionPropertyID)inID
-<a name="l00488"></a>00488     withSize:(UInt32)inDataSize 
+<a name="l00487"></a>00487 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)propertyCallback:(AudioSessionPropertyID)inID
+<a name="l00488"></a>00488     withSize:(<a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a>)inDataSize 
 <a name="l00489"></a>00489    withProperty:(const <span class="keywordtype">void</span> *)inPropertyValue
 <a name="l00490"></a>00490 { 
 <a name="l00491"></a>00491  <span class="keywordflow">if</span>(!<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a832186d988eee3825295363625145aa6">isRunning</a>) <span class="keywordflow">return</span>;
 <a name="l00492"></a>00492  
 <a name="l00493"></a>00493  <span class="keywordflow">if</span>(inPropertyValue)
 <a name="l00494"></a>00494  {
-<a name="l00495"></a>00495   CFDictionaryRef routeChangeDictionary  = (CFDictionaryRef)inPropertyValue;
-<a name="l00496"></a>00496   CFNumberRef     routeChangeReasonRef   = 
-<a name="l00497"></a>00497   (CFNumberRef)CFDictionaryGetValue (routeChangeDictionary, 
+<a name="l00495"></a>00495   <a class="code" href="ugen___play_buf_8ii.html#a50a4085f8ea4ac09695274811f03c02d">CFDictionaryRef</a> routeChangeDictionary  = (CFDictionaryRef)inPropertyValue;
+<a name="l00496"></a>00496   <a class="code" href="ugen___play_buf_8ii.html#ac2f747de101ef076521ccc225f713381">CFNumberRef</a>     routeChangeReasonRef   = 
+<a name="l00497"></a>00497   (CFNumberRef)<a class="code" href="ugen___play_buf_8ii.html#a5c243c8f0baa55279e98ea840f540cd8">CFDictionaryGetValue</a> (routeChangeDictionary, 
 <a name="l00498"></a>00498              CFSTR (kAudioSession_AudioRouteChangeKey_Reason));
 <a name="l00499"></a>00499   
-<a name="l00500"></a>00500   SInt32 routeChangeReason;
-<a name="l00501"></a>00501   CFNumberGetValue(routeChangeReasonRef, kCFNumberSInt32Type, &amp;routeChangeReason);
+<a name="l00500"></a>00500   <a class="code" href="ugen___play_buf_8ii.html#aabbb11e51ad4827ab2e02c7c76323ab7">SInt32</a> routeChangeReason;
+<a name="l00501"></a>00501   <a class="code" href="ugen___play_buf_8ii.html#a4ccb78fdd9052a90671f3ba08d1d6540">CFNumberGetValue</a>(routeChangeReasonRef, <a class="code" href="ugen___play_buf_8ii.html#a4790f45dcc812c1b00184a2edccdddf5a77835c5f2922e1369a87de743d1715b4">kCFNumberSInt32Type</a>, &amp;routeChangeReason);
 <a name="l00502"></a>00502   
-<a name="l00503"></a>00503   CFStringRef newAudioRoute;
-<a name="l00504"></a>00504   UInt32 propertySize = <span class="keyword">sizeof</span> (CFStringRef);
+<a name="l00503"></a>00503   <a class="code" href="ugen___play_buf_8ii.html#ad35eb97932d08076f748ac657b1ae024">CFStringRef</a> newAudioRoute;
+<a name="l00504"></a>00504   <a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a> propertySize = <span class="keyword">sizeof</span> (CFStringRef);
 <a name="l00505"></a>00505   AudioSessionGetProperty(kAudioSessionProperty_AudioRoute, &amp;propertySize, &amp;newAudioRoute);
 <a name="l00506"></a>00506   
-<a name="l00507"></a>00507   printf(<span class="stringliteral">&quot;route=%s\n&quot;</span>, CFStringGetCStringPtr(newAudioRoute, CFStringGetSystemEncoding()));
+<a name="l00507"></a>00507   <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;route=%s\n&quot;</span>, <a class="code" href="ugen___play_buf_8ii.html#ad03f370cff7494feb8607b7b803402b2">CFStringGetCStringPtr</a>(newAudioRoute, <a class="code" href="ugen___play_buf_8ii.html#ab27d699380a2e36c3458308a5947649c">CFStringGetSystemEncoding</a>()));
 <a name="l00508"></a>00508   
 <a name="l00509"></a>00509 <span class="comment">//  if (routeChangeReason == kAudioSessionRouteChangeReason_OldDeviceUnavailable)</span>
 <a name="l00510"></a>00510 <span class="comment">//   [self fixAudioRouteIfSetToReceiver];</span>
 <a name="l00511"></a>00511  }
 <a name="l00512"></a>00512  
-<a name="l00513"></a>00513  UInt32 size = <span class="keyword">sizeof</span>(UInt32);
+<a name="l00513"></a>00513  <a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a> size = <span class="keyword">sizeof</span>(UInt32);
 <a name="l00514"></a>00514  AudioSessionGetProperty(kAudioSessionProperty_CurrentHardwareInputNumberChannels, &amp;size, &amp;<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#aff2eddf091f61dd8cf46686324ecdaaf">numInputChannels</a>);
 <a name="l00515"></a>00515  AudioSessionGetProperty(kAudioSessionProperty_CurrentHardwareOutputNumberChannels, &amp;size, &amp;<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a466cf95f3f8d3bd506eef5f5fa6ee9fd">numOutputChannels</a>);
 <a name="l00516"></a>00516  AudioSessionGetProperty(kAudioSessionProperty_AudioInputAvailable, &amp;size, &amp;<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a5694c56d09ff8e934c4cc59beec7e51a">audioInputIsAvailable</a>);
 <a name="l00517"></a>00517  
-<a name="l00518"></a>00518  printf(<span class="stringliteral">&quot;inputs=%d outputs=%d audioInputIsAvailable=%d\n&quot;</span>, (<span class="keywordtype">int</span>)<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#aff2eddf091f61dd8cf46686324ecdaaf">numInputChannels</a>, (<span class="keywordtype">int</span>)<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a466cf95f3f8d3bd506eef5f5fa6ee9fd">numOutputChannels</a>, (<span class="keywordtype">int</span>)<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a5694c56d09ff8e934c4cc59beec7e51a">audioInputIsAvailable</a>);
+<a name="l00518"></a>00518  <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;inputs=%d outputs=%d audioInputIsAvailable=%d\n&quot;</span>, (<span class="keywordtype">int</span>)<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#aff2eddf091f61dd8cf46686324ecdaaf">numInputChannels</a>, (<span class="keywordtype">int</span>)<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a466cf95f3f8d3bd506eef5f5fa6ee9fd">numOutputChannels</a>, (<span class="keywordtype">int</span>)<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a5694c56d09ff8e934c4cc59beec7e51a">audioInputIsAvailable</a>);
 <a name="l00519"></a>00519  
 <a name="l00520"></a>00520  <span class="keywordflow">if</span>(<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a0d08cf999ed5cf5b3fbbe9a0431fce22">rioUnit</a>) AudioComponentInstanceDispose(<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a0d08cf999ed5cf5b3fbbe9a0431fce22">rioUnit</a>);
 <a name="l00521"></a>00521  
@@ -565,25 +565,25 @@
 <a name="l00533"></a>00533  
 <a name="l00534"></a>00534 }
 <a name="l00535"></a>00535 
-<a name="l00536"></a>00536 - (void)<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a150e2b2b4b1ea4c310c3e37e53a810ec">fixAudioRouteIfSetToReceiver</a>
+<a name="l00536"></a>00536 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a150e2b2b4b1ea4c310c3e37e53a810ec">fixAudioRouteIfSetToReceiver</a>
 <a name="l00537"></a>00537 {
-<a name="l00538"></a>00538  CFStringRef audioRoute = 0;
-<a name="l00539"></a>00539  UInt32 propertySize = <span class="keyword">sizeof</span> (audioRoute);
+<a name="l00538"></a>00538  <a class="code" href="ugen___play_buf_8ii.html#ad35eb97932d08076f748ac657b1ae024">CFStringRef</a> audioRoute = 0;
+<a name="l00539"></a>00539  <a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a> propertySize = <span class="keyword">sizeof</span> (audioRoute);
 <a name="l00540"></a>00540  <span class="keywordflow">if</span> (AudioSessionGetProperty (kAudioSessionProperty_AudioRoute, &amp;propertySize, &amp;audioRoute) == noErr)
 <a name="l00541"></a>00541  {
 <a name="l00542"></a>00542   NSString* route = (NSString*) audioRoute;
 <a name="l00543"></a>00543     
 <a name="l00544"></a>00544   <span class="keywordflow">if</span> ([route hasPrefix: <span class="stringliteral">@&quot;Receiver&quot;</span>])
 <a name="l00545"></a>00545   {
-<a name="l00546"></a>00546    UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
+<a name="l00546"></a>00546    <a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a> audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
 <a name="l00547"></a>00547    AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute, <span class="keyword">sizeof</span> (audioRouteOverride), &amp;audioRouteOverride);
 <a name="l00548"></a>00548   }
 <a name="l00549"></a>00549   
-<a name="l00550"></a>00550   CFRelease (audioRoute);
+<a name="l00550"></a>00550   <a class="code" href="ugen___play_buf_8ii.html#ac05c50c5a105a12787c2e27fb4e7b283">CFRelease</a> (audioRoute);
 <a name="l00551"></a>00551  }
 <a name="l00552"></a>00552 }
 <a name="l00553"></a>00553 
-<a name="l00554"></a>00554 - (void)interruptionCallback:(UInt32)inInterruption
+<a name="l00554"></a>00554 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)interruptionCallback:(<a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a>)inInterruption
 <a name="l00555"></a>00555 {
 <a name="l00556"></a>00556  <span class="keywordflow">if</span> (inInterruption == kAudioSessionEndInterruption) {
 <a name="l00557"></a>00557   <span class="comment">// make sure we are again the active session</span>
@@ -622,17 +622,17 @@
 <a name="l00590"></a>00590  AudioSessionInitialize(NULL, NULL, InterruptionListener, <span class="keyword">self</span>);
 <a name="l00591"></a>00591  AudioSessionSetActive(<span class="keyword">true</span>);
 <a name="l00592"></a>00592  
-<a name="l00593"></a>00593  UInt32 audioCategory = kAudioSessionCategory_PlayAndRecord;
+<a name="l00593"></a>00593  <a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a> audioCategory = kAudioSessionCategory_PlayAndRecord;
 <a name="l00594"></a>00594  AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, <span class="keyword">sizeof</span>(audioCategory), &amp;audioCategory);
 <a name="l00595"></a>00595  AudioSessionAddPropertyListener(kAudioSessionProperty_AudioRouteChange, PropertyListener, <span class="keyword">self</span>);
 <a name="l00596"></a>00596  
 <a name="l00597"></a>00597  [<span class="keyword">self</span> fixAudioRouteIfSetToReceiver];
 <a name="l00598"></a>00598  
-<a name="l00599"></a>00599  UInt32 size = <span class="keyword">sizeof</span>(<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a6dee2bd894a75a319121b7b07457b1eb">hwSampleRate</a>);
+<a name="l00599"></a>00599  <a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a> size = <span class="keyword">sizeof</span>(<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a6dee2bd894a75a319121b7b07457b1eb">hwSampleRate</a>);
 <a name="l00600"></a>00600  AudioSessionGetProperty(kAudioSessionProperty_CurrentHardwareSampleRate, &amp;size, &amp;<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a6dee2bd894a75a319121b7b07457b1eb">hwSampleRate</a>);
 <a name="l00601"></a>00601  
 <a name="l00602"></a>00602  <span class="comment">//Float32 bufferDuration = DEFAULT_BUFFERSIZE / hwSampleRate;</span>
-<a name="l00603"></a>00603  Float32 bufferDuration = <a class="code" href="interface_u_i_kit_a_u_i_o_host.html#ad17be42d50c079d0e45dc0a9b0c2f2ba">preferredBufferSize</a> / <a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a6dee2bd894a75a319121b7b07457b1eb">hwSampleRate</a>;
+<a name="l00603"></a>00603  <a class="code" href="ugen___play_buf_8ii.html#a87d38f886e617ced2698fc55afa07637">Float32</a> bufferDuration = <a class="code" href="interface_u_i_kit_a_u_i_o_host.html#ad17be42d50c079d0e45dc0a9b0c2f2ba">preferredBufferSize</a> / <a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a6dee2bd894a75a319121b7b07457b1eb">hwSampleRate</a>;
 <a name="l00604"></a>00604  AudioSessionSetProperty(kAudioSessionProperty_PreferredHardwareIOBufferDuration, <span class="keyword">sizeof</span>(bufferDuration), &amp;bufferDuration);
 <a name="l00605"></a>00605  
 <a name="l00606"></a>00606  size = <span class="keyword">sizeof</span>(UInt32);
@@ -649,7 +649,7 @@
 <a name="l00617"></a>00617 <span class="preprocessor">#endif</span>
 <a name="l00618"></a>00618 <span class="preprocessor"></span> 
 <a name="l00619"></a>00619  <span class="comment">//UGen::prepareToPlay(hwSampleRate, DEFAULT_BUFFERSIZE);</span>
-<a name="l00620"></a>00620  <a class="code" href="class_u_gen.html#a498640a31a6aa85d3c7f83d77ce27c98" title="Prepares UGen++ for a rendering session.">UGen::prepareToPlay</a>(<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a6dee2bd894a75a319121b7b07457b1eb">hwSampleRate</a>, <a class="code" href="interface_u_i_kit_a_u_i_o_host.html#ad17be42d50c079d0e45dc0a9b0c2f2ba">preferredBufferSize</a>);
+<a name="l00620"></a>00620  <a class="code" href="class_u_gen.html#aa85351219341229067e450b037235a10" title="Prepares UGen++ for a rendering session.">UGen::prepareToPlay</a>(<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a6dee2bd894a75a319121b7b07457b1eb">hwSampleRate</a>, <a class="code" href="interface_u_i_kit_a_u_i_o_host.html#ad17be42d50c079d0e45dc0a9b0c2f2ba">preferredBufferSize</a>);
 <a name="l00621"></a>00621  
 <a name="l00622"></a>00622  <a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a9e2c86e49baf974175a7bd957f7ecc29">rawInput</a> = <a class="code" href="class_plug.html#a3af4b01a76a7264a9837b002995cf7a4" title="Construct and return an audio rate Plug .">Plug::AR</a>(<a class="code" href="class_u_gen.html#a0e889a35de22c1c46293425788eebe15" title="Create a UGen with a number of empty (null) channels.">UGen::emptyChannels</a>(NUM_CHANNELS));
 <a name="l00623"></a>00623  <a class="code" href="interface_u_i_kit_a_u_i_o_host.html#af441bb1eed898c95b478ab3c37ec277d">preFadeOutput</a> = [<span class="keyword">self</span> constructGraph: rawInput];
@@ -671,23 +671,23 @@
 <a name="l00639"></a>00639  <a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a6e52acf61e62b524b9e49a8a41e9888b">floatBuffer</a> = <span class="keyword">new</span> <span class="keywordtype">float</span>[bufferSize * NUM_CHANNELS];
 <a name="l00640"></a>00640  
 <a name="l00641"></a>00641 <span class="preprocessor">#if defined(UGEN_VFP)</span>
-<a name="l00642"></a>00642 <span class="preprocessor"></span> printf(<span class="stringliteral">&quot;UIKitAUIOHost: using vector floating point (vfp) ops in places     \n&quot;</span>);
-<a name="l00643"></a>00643  printf(<span class="stringliteral">&quot;               make sure this is only used for Release builds on the device, \n&quot;</span>);
-<a name="l00644"></a>00644  printf(<span class="stringliteral">&quot;               and set optimisations to fastest/smallest (-Os)     \n&quot;</span>);
-<a name="l00645"></a>00645  printf(<span class="stringliteral">&quot;               do not use:  -ftree-vectorize         \n&quot;</span>);
-<a name="l00646"></a>00646  printf(<span class="stringliteral">&quot;                            -ffast-math           \n&quot;</span>);
-<a name="l00647"></a>00647  printf(<span class="stringliteral">&quot;                    Thumb Mode           \n&quot;</span>);
+<a name="l00642"></a>00642 <span class="preprocessor"></span> <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;UIKitAUIOHost: using vector floating point (vfp) ops in places     \n&quot;</span>);
+<a name="l00643"></a>00643  <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;               make sure this is only used for Release builds on the device, \n&quot;</span>);
+<a name="l00644"></a>00644  <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;               and set optimisations to fastest/smallest (-Os)     \n&quot;</span>);
+<a name="l00645"></a>00645  <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;               do not use:  -ftree-vectorize         \n&quot;</span>);
+<a name="l00646"></a>00646  <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;                            -ffast-math           \n&quot;</span>);
+<a name="l00647"></a>00647  <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;                    Thumb Mode           \n&quot;</span>);
 <a name="l00648"></a>00648 <span class="preprocessor">#elif defined(UGEN_NEON)</span>
-<a name="l00649"></a>00649 <span class="preprocessor"></span> printf(<span class="stringliteral">&quot;UIKitAUIOHost: using arm neon instuctions for float ops in places    \n&quot;</span>);
+<a name="l00649"></a>00649 <span class="preprocessor"></span> <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;UIKitAUIOHost: using arm neon instuctions for float ops in places    \n&quot;</span>);
 <a name="l00650"></a>00650 <span class="preprocessor">#else</span>
-<a name="l00651"></a>00651 <span class="preprocessor"></span> printf(<span class="stringliteral">&quot;UIKitAUIOHost: using standard floating point ops (non-vfp) \n&quot;</span>);
+<a name="l00651"></a>00651 <span class="preprocessor"></span> <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;UIKitAUIOHost: using standard floating point ops (non-vfp) \n&quot;</span>);
 <a name="l00652"></a>00652 <span class="preprocessor">#endif</span>
 <a name="l00653"></a>00653 <span class="preprocessor"></span> <span class="comment">//[self unlock];</span>
 <a name="l00654"></a>00654  
 <a name="l00655"></a>00655  <span class="keywordflow">return</span> <span class="keyword">self</span>;
 <a name="l00656"></a>00656 }
 <a name="l00657"></a>00657 
-<a name="l00658"></a>00658 - (void)setPreferredBufferSize:(<span class="keywordtype">int</span>)size
+<a name="l00658"></a>00658 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)setPreferredBufferSize:(<span class="keywordtype">int</span>)size
 <a name="l00659"></a>00659 {
 <a name="l00660"></a>00660  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(size &gt; 0);
 <a name="l00661"></a>00661  <a class="code" href="interface_u_i_kit_a_u_i_o_host.html#ad17be42d50c079d0e45dc0a9b0c2f2ba">preferredBufferSize</a> = size;
@@ -698,19 +698,19 @@
 <a name="l00666"></a>00666  <span class="keywordflow">return</span> <a class="code" href="class_u_gen.html#a0e889a35de22c1c46293425788eebe15" title="Create a UGen with a number of empty (null) channels.">UGen::emptyChannels</a>(NUM_CHANNELS); 
 <a name="l00667"></a>00667 }
 <a name="l00668"></a>00668 
-<a name="l00669"></a>00669 - (void)addOther:(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>)ugen
+<a name="l00669"></a>00669 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)addOther:(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>)ugen
 <a name="l00670"></a>00670 {
 <a name="l00671"></a>00671  [<span class="keyword">self</span> lock];
 <a name="l00672"></a>00672  <a class="code" href="interface_u_i_kit_a_u_i_o_host.html#ae4be0eeb018749e335e196176ef3cd03">others</a> &lt;&lt;= ugen;
 <a name="l00673"></a>00673  [<span class="keyword">self</span> unlock];
 <a name="l00674"></a>00674 }
 <a name="l00675"></a>00675 
-<a name="l00676"></a>00676 - (void)<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a06ed8cabe18fcfc22d611a3cacc67279">lock</a>
+<a name="l00676"></a>00676 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a06ed8cabe18fcfc22d611a3cacc67279">lock</a>
 <a name="l00677"></a>00677 {
 <a name="l00678"></a>00678  [nsLock lock];
 <a name="l00679"></a>00679 }
 <a name="l00680"></a>00680 
-<a name="l00681"></a>00681 - (void)<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a38d37d704b3c48d6e867d8db9d35e7db">unlock</a>
+<a name="l00681"></a>00681 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a38d37d704b3c48d6e867d8db9d35e7db">unlock</a>
 <a name="l00682"></a>00682 {
 <a name="l00683"></a>00683  [nsLock unlock];
 <a name="l00684"></a>00684 }
@@ -720,9 +720,9 @@
 <a name="l00688"></a>00688  <span class="keywordflow">return</span> [nsLock tryLock];
 <a name="l00689"></a>00689 }
 <a name="l00690"></a>00690 
-<a name="l00691"></a>00691 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+<a name="l00691"></a>00691 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 <a name="l00692"></a>00692 {
-<a name="l00693"></a>00693  printf(<span class="stringliteral">&quot;buttonIndex=%d\n&quot;</span>, buttonIndex);
+<a name="l00693"></a>00693  <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;buttonIndex=%d\n&quot;</span>, buttonIndex);
 <a name="l00694"></a>00694  
 <a name="l00695"></a>00695  <span class="keywordflow">if</span>(buttonIndex == 0)
 <a name="l00696"></a>00696  {
@@ -742,18 +742,18 @@
 <a name="l00710"></a>00710 <span class="comment">// [self shutdown]; </span>
 <a name="l00711"></a>00711 <span class="comment">//} </span>
 <a name="l00712"></a>00712 
-<a name="l00713"></a>00713 - (void)<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#aebfb675dd303728725a4e83a3b99beb3">isAboutToShutdown</a>
+<a name="l00713"></a>00713 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#aebfb675dd303728725a4e83a3b99beb3">isAboutToShutdown</a>
 <a name="l00714"></a>00714 {
 <a name="l00715"></a>00715  <span class="comment">// override this to do something just before shutdown</span>
 <a name="l00716"></a>00716 }
 <a name="l00717"></a>00717 
-<a name="l00718"></a>00718 - (void)<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a83c673fb9017127f69887d096a62beee">shutdown</a>
+<a name="l00718"></a>00718 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)<a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a83c673fb9017127f69887d096a62beee">shutdown</a>
 <a name="l00719"></a>00719 {
 <a name="l00720"></a>00720  [<span class="keyword">self</span> isAboutToShutdown];
 <a name="l00721"></a>00721  
 <a name="l00722"></a>00722  <span class="comment">// fade out before shutdown</span>
 <a name="l00723"></a>00723  <span class="keyword">const</span> <span class="keywordtype">double</span> fadeTime = 0.5;
-<a name="l00724"></a>00724  <span class="keyword">const</span> <span class="keywordtype">double</span> pause = 0.25;
+<a name="l00724"></a>00724  <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="ugen___play_buf_8ii.html#a3d6fc8ccaf5f3772dbe0ee134532fd63">pause</a> = 0.25;
 <a name="l00725"></a>00725  <a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a8b56c88ac3a93ca377bfbfad4cd67457">postFadeOutput</a>.<a class="code" href="class_u_gen.html#a0225a66769d5c5a7a013cba0aa7f8a63" title="Attempts to set the source of a Plug using a cross fade.">fadeSourceAndRelease</a>(<a class="code" href="class_u_gen.html#a0e889a35de22c1c46293425788eebe15" title="Create a UGen with a number of empty (null) channels.">UGen::emptyChannels</a>(NUM_CHANNELS), fadeTime);
 <a name="l00726"></a>00726  [NSThread sleepForTimeInterval: fadeTime+pause];
 <a name="l00727"></a>00727  
@@ -768,7 +768,7 @@
 <a name="l00736"></a>00736 }
 <a name="l00737"></a>00737 
 <a name="l00738"></a>00738 
-<a name="l00739"></a>00739 -(void) dealloc
+<a name="l00739"></a>00739 -(<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>) dealloc
 <a name="l00740"></a>00740 {
 <a name="l00741"></a>00741  <span class="keyword">delete</span> [] <a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a6e52acf61e62b524b9e49a8a41e9888b">floatBuffer</a>;
 <a name="l00742"></a>00742  [nsLock release];
@@ -785,7 +785,7 @@
 <a name="l00753"></a>00753 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:31 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

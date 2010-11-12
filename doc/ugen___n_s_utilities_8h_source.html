@@ -81,39 +81,39 @@
 <a name="l00049"></a><a class="code" href="class_n_s_utilities.html#ab71c4bc753917a39670f1d3739643de0a110d8ea7599f3ae822677afde14904ea">00049</a>   <a class="code" href="class_n_s_utilities.html#ab71c4bc753917a39670f1d3739643de0a110d8ea7599f3ae822677afde14904ea" title="The application&amp;#39;s tmp directory, NB this is cleared when the device is restarted.">Temporary</a> 
 <a name="l00050"></a>00050  };
 <a name="l00051"></a>00051  
-<a name="l00056"></a>00056  <span class="keyword">static</span> <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <a class="code" href="class_n_s_utilities.html#ab2a645d0b45b0d8da2d42ed9d6f90b43" title="Returns the absolute path of a file on the iPhone.">pathInDirectory</a>(<a class="code" href="class_n_s_utilities.html#ab71c4bc753917a39670f1d3739643de0">Locations</a> location, <span class="keyword">const</span> <span class="keywordtype">char</span> *filename) <span class="keywordflow">throw</span>();
+<a name="l00056"></a>00056  <span class="keyword">static</span> <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <a class="code" href="class_n_s_utilities.html#ab2a645d0b45b0d8da2d42ed9d6f90b43" title="Returns the absolute path of a file on the iPhone.">pathInDirectory</a>(<a class="code" href="class_n_s_utilities.html#ab71c4bc753917a39670f1d3739643de0">Locations</a> <a class="code" href="ugen___play_buf_8ii.html#a1873ad182e2d459d5197b01ca3633cf0">location</a>, <span class="keyword">const</span> <span class="keywordtype">char</span> *filename) <span class="keywordflow">throw</span>();
 <a name="l00057"></a>00057 };
 <a name="l00058"></a>00058 
 <a name="l00059"></a>00059 
 <a name="l00060"></a><a class="code" href="ugen___n_s_utilities_8h.html#af1493e06b396f2182c05c850386b46cd">00060</a> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="ugen___n_s_utilities_8h.html#af1493e06b396f2182c05c850386b46cd">littleEndian24Bit</a> (<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keyword">const</span> bytes) <span class="keywordflow">throw</span>()                          
 <a name="l00061"></a>00061 { 
-<a name="l00062"></a>00062  <span class="keywordflow">return</span> (((<span class="keywordtype">int</span>) bytes[2]) &lt;&lt; 16) | (((UInt32) (UInt8) bytes[1]) &lt;&lt; 8) | ((UInt32) (UInt8) bytes[0]); 
+<a name="l00062"></a>00062  <span class="keywordflow">return</span> (((<span class="keywordtype">int</span>) bytes[2]) &lt;&lt; 16) | (((UInt32) (<a class="code" href="ugen___play_buf_8ii.html#a9b66271558bfa5abc5095791246b540d">UInt8</a>) bytes[1]) &lt;&lt; 8) | ((UInt32) (<a class="code" href="ugen___play_buf_8ii.html#a9b66271558bfa5abc5095791246b540d">UInt8</a>) bytes[0]); 
 <a name="l00063"></a>00063 }
 <a name="l00064"></a>00064 
 <a name="l00065"></a><a class="code" href="ugen___n_s_utilities_8h.html#a6df6733013ff0b27def21f71ea6f7c17">00065</a> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="ugen___n_s_utilities_8h.html#a6df6733013ff0b27def21f71ea6f7c17">bigEndian24Bit</a> (<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keyword">const</span> bytes) <span class="keywordflow">throw</span>()                             
 <a name="l00066"></a>00066 { 
-<a name="l00067"></a>00067  <span class="keywordflow">return</span> (((<span class="keywordtype">int</span>) bytes[0]) &lt;&lt; 16) | (((UInt32) (UInt8) bytes[1]) &lt;&lt; 8) | ((UInt32) (UInt8) bytes[2]); 
+<a name="l00067"></a>00067  <span class="keywordflow">return</span> (((<span class="keywordtype">int</span>) bytes[0]) &lt;&lt; 16) | (((UInt32) (<a class="code" href="ugen___play_buf_8ii.html#a9b66271558bfa5abc5095791246b540d">UInt8</a>) bytes[1]) &lt;&lt; 8) | ((UInt32) (<a class="code" href="ugen___play_buf_8ii.html#a9b66271558bfa5abc5095791246b540d">UInt8</a>) bytes[2]); 
 <a name="l00068"></a>00068 }
 <a name="l00069"></a>00069 
-<a name="l00070"></a><a class="code" href="ugen___n_s_utilities_8h.html#a3e49e3a9162919b135f59301d0d2ecda">00070</a> <span class="keyword">inline</span> SInt16 <a class="code" href="ugen___n_s_utilities_8h.html#a3e49e3a9162919b135f59301d0d2ecda">bigEndian16Bit</a> (<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keyword">const</span> bytes) <span class="keywordflow">throw</span>()                             
+<a name="l00070"></a><a class="code" href="ugen___n_s_utilities_8h.html#a3e49e3a9162919b135f59301d0d2ecda">00070</a> <span class="keyword">inline</span> <a class="code" href="ugen___play_buf_8ii.html#a8ef590265e1637c30a97cdeb6630e9a3">SInt16</a> <a class="code" href="ugen___n_s_utilities_8h.html#a3e49e3a9162919b135f59301d0d2ecda">bigEndian16Bit</a> (<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keyword">const</span> bytes) <span class="keywordflow">throw</span>()                             
 <a name="l00071"></a>00071 { 
-<a name="l00072"></a>00072  <span class="keywordflow">return</span> (((<span class="keywordtype">int</span>) bytes[0]) &lt;&lt; 8) | (((UInt16) (UInt8) bytes[1])); 
+<a name="l00072"></a>00072  <span class="keywordflow">return</span> (((<span class="keywordtype">int</span>) bytes[0]) &lt;&lt; 8) | (((UInt16) (<a class="code" href="ugen___play_buf_8ii.html#a9b66271558bfa5abc5095791246b540d">UInt8</a>) bytes[1])); 
 <a name="l00073"></a>00073 }
 <a name="l00074"></a>00074 
-<a name="l00075"></a><a class="code" href="ugen___n_s_utilities_8h.html#acf41313fe0b9810effe3deda25b0efdb">00075</a> <span class="keyword">inline</span> SInt32 <a class="code" href="ugen___n_s_utilities_8h.html#acf41313fe0b9810effe3deda25b0efdb">bigEndian32Bit</a> (<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keyword">const</span> bytes) <span class="keywordflow">throw</span>()                             
+<a name="l00075"></a><a class="code" href="ugen___n_s_utilities_8h.html#acf41313fe0b9810effe3deda25b0efdb">00075</a> <span class="keyword">inline</span> <a class="code" href="ugen___play_buf_8ii.html#aabbb11e51ad4827ab2e02c7c76323ab7">SInt32</a> <a class="code" href="ugen___n_s_utilities_8h.html#acf41313fe0b9810effe3deda25b0efdb">bigEndian32Bit</a> (<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keyword">const</span> bytes) <span class="keywordflow">throw</span>()                             
 <a name="l00076"></a>00076 { 
 <a name="l00077"></a>00077  <span class="keywordflow">return</span> (((<span class="keywordtype">int</span>) bytes[0]) &lt;&lt; 24) | 
-<a name="l00078"></a>00078    (((UInt32) (UInt8) bytes[1]) &lt;&lt; 16) |
-<a name="l00079"></a>00079    (((UInt32) (UInt8) bytes[2]) &lt;&lt; 8) |
-<a name="l00080"></a>00080    (((UInt32) (UInt8) bytes[3])); 
+<a name="l00078"></a>00078    (((UInt32) (<a class="code" href="ugen___play_buf_8ii.html#a9b66271558bfa5abc5095791246b540d">UInt8</a>) bytes[1]) &lt;&lt; 16) |
+<a name="l00079"></a>00079    (((UInt32) (<a class="code" href="ugen___play_buf_8ii.html#a9b66271558bfa5abc5095791246b540d">UInt8</a>) bytes[2]) &lt;&lt; 8) |
+<a name="l00080"></a>00080    (((UInt32) (<a class="code" href="ugen___play_buf_8ii.html#a9b66271558bfa5abc5095791246b540d">UInt8</a>) bytes[3])); 
 <a name="l00081"></a>00081 }
 <a name="l00082"></a>00082 
 <a name="l00083"></a><a class="code" href="ugen___n_s_utilities_8h.html#a3f1bbd97bdc48d7aca9bd8dcab93385f">00083</a> <span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="ugen___n_s_utilities_8h.html#a3f1bbd97bdc48d7aca9bd8dcab93385f">bigEndianFloat</a> (<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keyword">const</span> bytes) <span class="keywordflow">throw</span>()                             
 <a name="l00084"></a>00084 { 
-<a name="l00085"></a>00085  UInt32 temp = (((UInt32) (UInt8) bytes[0]) &lt;&lt; 24) | 
-<a name="l00086"></a>00086      (((UInt32) (UInt8) bytes[1]) &lt;&lt; 16) |
-<a name="l00087"></a>00087      (((UInt32) (UInt8) bytes[2]) &lt;&lt; 8) |
-<a name="l00088"></a>00088      (((UInt32) (UInt8) bytes[3])); 
+<a name="l00085"></a>00085  <a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a> temp = (((UInt32) (<a class="code" href="ugen___play_buf_8ii.html#a9b66271558bfa5abc5095791246b540d">UInt8</a>) bytes[0]) &lt;&lt; 24) | 
+<a name="l00086"></a>00086      (((UInt32) (<a class="code" href="ugen___play_buf_8ii.html#a9b66271558bfa5abc5095791246b540d">UInt8</a>) bytes[1]) &lt;&lt; 16) |
+<a name="l00087"></a>00087      (((UInt32) (<a class="code" href="ugen___play_buf_8ii.html#a9b66271558bfa5abc5095791246b540d">UInt8</a>) bytes[2]) &lt;&lt; 8) |
+<a name="l00088"></a>00088      (((UInt32) (<a class="code" href="ugen___play_buf_8ii.html#a9b66271558bfa5abc5095791246b540d">UInt8</a>) bytes[3])); 
 <a name="l00089"></a>00089  
 <a name="l00090"></a>00090  <span class="keywordflow">return</span> *((<span class="keywordtype">float</span>*)(&amp;temp));
 <a name="l00091"></a>00091 }
@@ -122,7 +122,7 @@
 <a name="l00094"></a>00094 <span class="preprocessor">#endif // _UGEN_ugen_NSUtilities_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:31 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

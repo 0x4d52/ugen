@@ -255,7 +255,7 @@
 <a name="l00224"></a>00224    <span class="keywordflow">if</span> (testResult == 0)
 <a name="l00225"></a>00225    {
 <a name="l00226"></a>00226     <span class="keyword">struct </span>kinfo_proc info;
-<a name="l00227"></a>00227     <span class="keywordtype">int</span> m[] = { CTL_KERN, KERN_PROC, KERN_PROC_PID, getpid() };
+<a name="l00227"></a>00227     <span class="keywordtype">int</span> m[] = { CTL_KERN, KERN_PROC, KERN_PROC_PID, <a class="code" href="ugen___play_buf_8ii.html#ac61b207337ca21b3b309593fd1a0cb82">getpid</a>() };
 <a name="l00228"></a>00228     <span class="keywordtype">size_t</span> sz = <span class="keyword">sizeof</span> (info);
 <a name="l00229"></a>00229     sysctl (m, 4, &amp;info, &amp;sz, 0, 0);
 <a name="l00230"></a>00230     testResult = ((info.kp_proc.p_flag &amp; P_TRACED) != 0) ? 1 : -1;
@@ -315,7 +315,7 @@
 <a name="l00284"></a>00284 <span class="preprocessor">#endif // __VEC__</span>
 <a name="l00285"></a>00285 <span class="preprocessor"></span>
 <a name="l00286"></a>00286 
-<a name="l00287"></a><a class="code" href="ugen___standard_header_8h.html#afc240db36316d29d9ba75d7a64bda591">00287</a> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="ugen___standard_header_8h.html#afc240db36316d29d9ba75d7a64bda591">quantiseUp</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> a, <span class="keyword">const</span> <span class="keywordtype">int</span> q) 
+<a name="l00287"></a><a class="code" href="ugen___standard_header_8h.html#afc240db36316d29d9ba75d7a64bda591">00287</a> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="ugen___standard_header_8h.html#afc240db36316d29d9ba75d7a64bda591">quantiseUp</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#acf981a770380ca98690ebca553cf9846">a</a>, <span class="keyword">const</span> <span class="keywordtype">int</span> q) 
 <a name="l00288"></a>00288 { 
 <a name="l00289"></a>00289  <span class="keywordflow">if</span>(a % q)
 <a name="l00290"></a>00290   <span class="keywordflow">return</span> a / q * q + q;
@@ -323,7 +323,7 @@
 <a name="l00292"></a>00292   <span class="keywordflow">return</span> a / q * q;
 <a name="l00293"></a>00293 }
 <a name="l00294"></a>00294 
-<a name="l00295"></a><a class="code" href="ugen___standard_header_8h.html#a651544c2b72553473b087ab5b5b5e822">00295</a> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="ugen___standard_header_8h.html#a651544c2b72553473b087ab5b5b5e822">quantiseDown</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> a, <span class="keyword">const</span> <span class="keywordtype">int</span> q) 
+<a name="l00295"></a><a class="code" href="ugen___standard_header_8h.html#a651544c2b72553473b087ab5b5b5e822">00295</a> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="ugen___standard_header_8h.html#a651544c2b72553473b087ab5b5b5e822">quantiseDown</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#acf981a770380ca98690ebca553cf9846">a</a>, <span class="keyword">const</span> <span class="keywordtype">int</span> q) 
 <a name="l00296"></a>00296 { 
 <a name="l00297"></a>00297  <span class="keywordflow">return</span> a / q * q; 
 <a name="l00298"></a>00298 }
@@ -346,7 +346,7 @@
 <a name="l00315"></a>00315 <span class="preprocessor">#endif // UGEN_STANDARDHEADER_H</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:29 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

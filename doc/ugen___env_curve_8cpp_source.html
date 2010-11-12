@@ -125,7 +125,7 @@
 <a name="l00093"></a>00093          <a class="code" href="class_env_curve.html" title="Specify curved sections of breakpoint envelopes.">EnvCurve</a> <span class="keyword">const</span>&amp; i30, 
 <a name="l00094"></a>00094          <a class="code" href="class_env_curve.html" title="Specify curved sections of breakpoint envelopes.">EnvCurve</a> <span class="keyword">const</span>&amp; i31) <span class="keywordflow">throw</span>()
 <a name="l00095"></a>00095 {
-<a name="l00096"></a>00096  <span class="keywordtype">int</span> count = 2;
+<a name="l00096"></a>00096  <span class="keywordtype">int</span> <a class="code" href="namespacestd.html#a81511cd7112567fa262b05bb22e69874">count</a> = 2;
 <a name="l00097"></a>00097  
 <a name="l00098"></a>00098  <span class="keywordflow">if</span>(i02.equalsInfinity()) <span class="keywordflow">goto</span> init; <span class="keywordflow">else</span> count++;
 <a name="l00099"></a>00099  <span class="keywordflow">if</span>(i03.equalsInfinity()) <span class="keywordflow">goto</span> init; <span class="keywordflow">else</span> count++;
@@ -164,38 +164,38 @@
 <a name="l00132"></a>00132  <span class="keyword">internal</span>-&gt;data[0] = i00;
 <a name="l00133"></a>00133  <span class="keyword">internal</span>-&gt;data[1] = i01;
 <a name="l00134"></a>00134  
-<a name="l00135"></a>00135  <span class="keywordflow">if</span>(i02.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[ 2] = i02;
-<a name="l00136"></a>00136  <span class="keywordflow">if</span>(i03.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[ 3] = i03;
-<a name="l00137"></a>00137  <span class="keywordflow">if</span>(i04.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[ 4] = i04;
-<a name="l00138"></a>00138  <span class="keywordflow">if</span>(i05.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[ 5] = i05;
-<a name="l00139"></a>00139  <span class="keywordflow">if</span>(i06.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[ 6] = i06;
-<a name="l00140"></a>00140  <span class="keywordflow">if</span>(i07.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[ 7] = i07;
-<a name="l00141"></a>00141  <span class="keywordflow">if</span>(i08.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[ 8] = i08;
-<a name="l00142"></a>00142  <span class="keywordflow">if</span>(i09.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[ 9] = i09;
-<a name="l00143"></a>00143  <span class="keywordflow">if</span>(i10.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[10] = i10;
-<a name="l00144"></a>00144  <span class="keywordflow">if</span>(i11.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[11] = i11;
-<a name="l00145"></a>00145  <span class="keywordflow">if</span>(i12.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[12] = i12;
-<a name="l00146"></a>00146  <span class="keywordflow">if</span>(i13.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[13] = i13;
-<a name="l00147"></a>00147  <span class="keywordflow">if</span>(i14.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[14] = i14;
-<a name="l00148"></a>00148  <span class="keywordflow">if</span>(i15.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[15] = i15;
-<a name="l00149"></a>00149  <span class="keywordflow">if</span>(i16.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[16] = i16;
-<a name="l00150"></a>00150  <span class="keywordflow">if</span>(i17.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[17] = i17;
-<a name="l00151"></a>00151  <span class="keywordflow">if</span>(i18.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[18] = i18;
-<a name="l00152"></a>00152  <span class="keywordflow">if</span>(i19.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[19] = i19;
-<a name="l00153"></a>00153  <span class="keywordflow">if</span>(i20.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[20] = i20;
-<a name="l00154"></a>00154  <span class="keywordflow">if</span>(i21.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[21] = i21;
-<a name="l00155"></a>00155  <span class="keywordflow">if</span>(i22.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[22] = i22;
-<a name="l00156"></a>00156  <span class="keywordflow">if</span>(i23.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[23] = i23;
-<a name="l00157"></a>00157  <span class="keywordflow">if</span>(i24.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[24] = i24;
-<a name="l00158"></a>00158  <span class="keywordflow">if</span>(i25.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[25] = i25;
-<a name="l00159"></a>00159  <span class="keywordflow">if</span>(i26.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[26] = i26;
-<a name="l00160"></a>00160  <span class="keywordflow">if</span>(i27.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[27] = i27;
-<a name="l00161"></a>00161  <span class="keywordflow">if</span>(i28.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[28] = i28;
-<a name="l00162"></a>00162  <span class="keywordflow">if</span>(i29.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[29] = i29;
-<a name="l00163"></a>00163  <span class="keywordflow">if</span>(i30.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[30] = i30;
-<a name="l00164"></a>00164  <span class="keywordflow">if</span>(i31.equalsInfinity()) <span class="keywordflow">goto</span> exit; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[31] = i31;
+<a name="l00135"></a>00135  <span class="keywordflow">if</span>(i02.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[ 2] = i02;
+<a name="l00136"></a>00136  <span class="keywordflow">if</span>(i03.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[ 3] = i03;
+<a name="l00137"></a>00137  <span class="keywordflow">if</span>(i04.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[ 4] = i04;
+<a name="l00138"></a>00138  <span class="keywordflow">if</span>(i05.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[ 5] = i05;
+<a name="l00139"></a>00139  <span class="keywordflow">if</span>(i06.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[ 6] = i06;
+<a name="l00140"></a>00140  <span class="keywordflow">if</span>(i07.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[ 7] = i07;
+<a name="l00141"></a>00141  <span class="keywordflow">if</span>(i08.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[ 8] = i08;
+<a name="l00142"></a>00142  <span class="keywordflow">if</span>(i09.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[ 9] = i09;
+<a name="l00143"></a>00143  <span class="keywordflow">if</span>(i10.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[10] = i10;
+<a name="l00144"></a>00144  <span class="keywordflow">if</span>(i11.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[11] = i11;
+<a name="l00145"></a>00145  <span class="keywordflow">if</span>(i12.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[12] = i12;
+<a name="l00146"></a>00146  <span class="keywordflow">if</span>(i13.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[13] = i13;
+<a name="l00147"></a>00147  <span class="keywordflow">if</span>(i14.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[14] = i14;
+<a name="l00148"></a>00148  <span class="keywordflow">if</span>(i15.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[15] = i15;
+<a name="l00149"></a>00149  <span class="keywordflow">if</span>(i16.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[16] = i16;
+<a name="l00150"></a>00150  <span class="keywordflow">if</span>(i17.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[17] = i17;
+<a name="l00151"></a>00151  <span class="keywordflow">if</span>(i18.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[18] = i18;
+<a name="l00152"></a>00152  <span class="keywordflow">if</span>(i19.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[19] = i19;
+<a name="l00153"></a>00153  <span class="keywordflow">if</span>(i20.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[20] = i20;
+<a name="l00154"></a>00154  <span class="keywordflow">if</span>(i21.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[21] = i21;
+<a name="l00155"></a>00155  <span class="keywordflow">if</span>(i22.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[22] = i22;
+<a name="l00156"></a>00156  <span class="keywordflow">if</span>(i23.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[23] = i23;
+<a name="l00157"></a>00157  <span class="keywordflow">if</span>(i24.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[24] = i24;
+<a name="l00158"></a>00158  <span class="keywordflow">if</span>(i25.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[25] = i25;
+<a name="l00159"></a>00159  <span class="keywordflow">if</span>(i26.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[26] = i26;
+<a name="l00160"></a>00160  <span class="keywordflow">if</span>(i27.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[27] = i27;
+<a name="l00161"></a>00161  <span class="keywordflow">if</span>(i28.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[28] = i28;
+<a name="l00162"></a>00162  <span class="keywordflow">if</span>(i29.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[29] = i29;
+<a name="l00163"></a>00163  <span class="keywordflow">if</span>(i30.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[30] = i30;
+<a name="l00164"></a>00164  <span class="keywordflow">if</span>(i31.equalsInfinity()) <span class="keywordflow">goto</span> <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>; <span class="keywordflow">else</span> <span class="keyword">internal</span>-&gt;data[31] = i31;
 <a name="l00165"></a>00165  
-<a name="l00166"></a>00166 exit:
+<a name="l00166"></a>00166 <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>:
 <a name="l00167"></a>00167  <span class="keywordflow">return</span>;
 <a name="l00168"></a>00168 }
 <a name="l00169"></a>00169 
@@ -218,8 +218,8 @@
 <a name="l00186"></a>00186  <span class="keyword">internal</span>-&gt;decrementRefCount();
 <a name="l00187"></a>00187 }
 <a name="l00188"></a>00188 
-<a name="l00189"></a><a class="code" href="class_env_curve_list.html#a07d57c5b8708b4661007d12f3e22fb5e">00189</a> <a class="code" href="class_env_curve_list.html#a9fa30f9cec2a7c65229b97dd4fd39f60">EnvCurveList::EnvCurveList</a>(<a class="code" href="class_env_curve_list.html" title="An array of EnvCurve objects.">EnvCurveList</a> <span class="keyword">const</span>&amp; copy) <span class="keywordflow">throw</span>()
-<a name="l00190"></a>00190 : <span class="keyword">internal</span>(copy.internal)
+<a name="l00189"></a><a class="code" href="class_env_curve_list.html#a07d57c5b8708b4661007d12f3e22fb5e">00189</a> <a class="code" href="class_env_curve_list.html#a9fa30f9cec2a7c65229b97dd4fd39f60">EnvCurveList::EnvCurveList</a>(<a class="code" href="class_env_curve_list.html" title="An array of EnvCurve objects.">EnvCurveList</a> <span class="keyword">const</span>&amp; <a class="code" href="namespacestd.html#a9b36270cdb50d9a631ba58ee0405f135">copy</a>) <span class="keywordflow">throw</span>()
+<a name="l00190"></a>00190 : <span class="keyword">internal</span>(<a class="code" href="namespacestd.html#a9b36270cdb50d9a631ba58ee0405f135">copy</a>.internal)
 <a name="l00191"></a>00191 {
 <a name="l00192"></a>00192  <span class="keyword">internal</span>-&gt;incrementRefCount();
 <a name="l00193"></a>00193 }
@@ -236,28 +236,28 @@
 <a name="l00204"></a>00204     <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00205"></a>00205 }
 <a name="l00206"></a>00206 
-<a name="l00207"></a><a class="code" href="class_env_curve_list.html#a3af9428c9c85e49438be5fab93a3c777">00207</a> <a class="code" href="class_env_curve.html" title="Specify curved sections of breakpoint envelopes.">EnvCurve</a>&amp; <a class="code" href="class_env_curve_list.html#a3af9428c9c85e49438be5fab93a3c777">EnvCurveList::operator[] </a>(<span class="keyword">const</span> <span class="keywordtype">int</span> index) <span class="keywordflow">throw</span>()
+<a name="l00207"></a><a class="code" href="class_env_curve_list.html#a3af9428c9c85e49438be5fab93a3c777">00207</a> <a class="code" href="class_env_curve.html" title="Specify curved sections of breakpoint envelopes.">EnvCurve</a>&amp; <a class="code" href="class_env_curve_list.html#a3af9428c9c85e49438be5fab93a3c777">EnvCurveList::operator[] </a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a>) <span class="keywordflow">throw</span>()
 <a name="l00208"></a>00208 {
-<a name="l00209"></a>00209  <span class="keywordflow">if</span>(index &lt; 0) { ugen_assertfalse; <span class="keywordflow">return</span> empty; }
+<a name="l00209"></a>00209  <span class="keywordflow">if</span>(<a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a> &lt; 0) { ugen_assertfalse; <span class="keywordflow">return</span> empty; }
 <a name="l00210"></a>00210  
-<a name="l00211"></a>00211  <span class="keywordflow">return</span> <span class="keyword">internal</span>-&gt;data[index % size()];
+<a name="l00211"></a>00211  <span class="keywordflow">return</span> <span class="keyword">internal</span>-&gt;data[<a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a> % size()];
 <a name="l00212"></a>00212 }
 <a name="l00213"></a>00213 
-<a name="l00214"></a><a class="code" href="class_env_curve_list.html#ab560daf70d6e019e43555bb4131124a7">00214</a> <span class="keyword">const</span> <a class="code" href="class_env_curve.html" title="Specify curved sections of breakpoint envelopes.">EnvCurve</a>&amp; <a class="code" href="class_env_curve_list.html#a3af9428c9c85e49438be5fab93a3c777">EnvCurveList::operator[] </a>(<span class="keyword">const</span> <span class="keywordtype">int</span> index) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l00214"></a><a class="code" href="class_env_curve_list.html#ab560daf70d6e019e43555bb4131124a7">00214</a> <span class="keyword">const</span> <a class="code" href="class_env_curve.html" title="Specify curved sections of breakpoint envelopes.">EnvCurve</a>&amp; <a class="code" href="class_env_curve_list.html#a3af9428c9c85e49438be5fab93a3c777">EnvCurveList::operator[] </a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a>) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00215"></a>00215 {
-<a name="l00216"></a>00216  <span class="keywordflow">if</span>(index &lt; 0) { ugen_assertfalse; <span class="keywordflow">return</span> empty; }
+<a name="l00216"></a>00216  <span class="keywordflow">if</span>(<a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a> &lt; 0) { ugen_assertfalse; <span class="keywordflow">return</span> empty; }
 <a name="l00217"></a>00217  
-<a name="l00218"></a>00218  <span class="keywordflow">return</span> <span class="keyword">internal</span>-&gt;data[index % size()];
+<a name="l00218"></a>00218  <span class="keywordflow">return</span> <span class="keyword">internal</span>-&gt;data[<a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a> % size()];
 <a name="l00219"></a>00219 }
 <a name="l00220"></a>00220 
 <a name="l00221"></a><a class="code" href="class_env_curve_list.html#aaab18986945599c4e1751d5098656c6b">00221</a> <a class="code" href="class_env_curve_list.html" title="An array of EnvCurve objects.">EnvCurveList</a> <a class="code" href="class_env_curve_list.html#aaab18986945599c4e1751d5098656c6b">EnvCurveList::blend</a>(<a class="code" href="class_env_curve_list.html" title="An array of EnvCurve objects.">EnvCurveList</a> <span class="keyword">const</span>&amp; other, <span class="keywordtype">float</span> fraction) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00222"></a>00222 {
 <a name="l00223"></a>00223  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(fraction &gt;= 0.f &amp;&amp; fraction &lt;= 1.f);
 <a name="l00224"></a>00224  
-<a name="l00225"></a>00225  <span class="keyword">const</span> <span class="keywordtype">int</span> maxSize = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(size(), other.size());
-<a name="l00226"></a>00226  <span class="keyword">const</span> <span class="keywordtype">int</span> minSize = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#afc2720859a4075c66da741d8ad063ba1" title="Global function for the UGen::min() binary operator.">ugen::min</a>(size(), other.size());
-<a name="l00227"></a>00227  fraction = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(0.f, fraction);
-<a name="l00228"></a>00228  fraction = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#afc2720859a4075c66da741d8ad063ba1" title="Global function for the UGen::min() binary operator.">ugen::min</a>(1.f, fraction);
+<a name="l00225"></a>00225  <span class="keyword">const</span> <span class="keywordtype">int</span> maxSize = <a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(size(), other.size());
+<a name="l00226"></a>00226  <span class="keyword">const</span> <span class="keywordtype">int</span> minSize = <a class="code" href="namespaceugen.html#a8c7a6f32b24d3558d3311255ea21eff0">ugen::min</a>(size(), other.size());
+<a name="l00227"></a>00227  fraction = <a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(0.f, fraction);
+<a name="l00228"></a>00228  fraction = <a class="code" href="namespaceugen.html#a8c7a6f32b24d3558d3311255ea21eff0">ugen::min</a>(1.f, fraction);
 <a name="l00229"></a>00229  
 <a name="l00230"></a>00230  <a class="code" href="class_env_curve_list.html" title="An array of EnvCurve objects.">EnvCurveList</a> newList(0.0, maxSize);
 <a name="l00231"></a>00231  
@@ -314,7 +314,7 @@
 <a name="l00282"></a>00282 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:30 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

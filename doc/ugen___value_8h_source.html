@@ -30,7 +30,7 @@
 <h1>core/ugen_Value.h</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___value_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Value.h 132 2010-09-08 21:03:51Z 0x4d52 $</span>
+<a href="ugen___value_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Value.h 191 2010-11-07 21:30:39Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/core/ugen_Value.h $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -89,7 +89,7 @@
 <a name="l00065"></a><a class="code" href="class_value_internal.html">00065</a> <span class="keyword">class </span><a class="code" href="class_value_internal.html" title="An internal value class with a constant value.">ValueInternal</a> : <span class="keyword">public</span> <a class="code" href="class_value_base_internal.html" title="Base class for internal value classes.">ValueBaseInternal</a>
 <a name="l00066"></a>00066 {
 <a name="l00067"></a>00067 <span class="keyword">public</span>:
-<a name="l00069"></a>00069  <a class="code" href="class_value_internal.html#af43338dd2ac32d044000eb1a05b81846" title="Constructor.">ValueInternal</a>(<span class="keywordtype">double</span> value = 0.0) <span class="keywordflow">throw</span>();
+<a name="l00069"></a>00069  <a class="code" href="class_value_internal.html#af43338dd2ac32d044000eb1a05b81846" title="Constructor.">ValueInternal</a>(<span class="keywordtype">double</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> = 0.0) <span class="keywordflow">throw</span>();
 <a name="l00071"></a>00071  <span class="keywordtype">double</span> <a class="code" href="class_value_internal.html#ae9c78e510cb7374be5e23c7a783bca37" title="Return the value.">getValue</a>() <span class="keywordflow">throw</span>(); 
 <a name="l00072"></a>00072  <span class="keywordtype">void</span> <a class="code" href="class_value_internal.html#a7a63578d1807f89c798853704dcd75de" title="Set the current value.">setValue</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> newValue) <span class="keywordflow">throw</span>();
 <a name="l00073"></a>00073 
@@ -107,7 +107,7 @@
 <a name="l00105"></a>00105  
 <a name="l00108"></a>00108  <a class="code" href="class_value.html#abc2a5a2e6484fac66dae2539cc955667" title="Default constructor.">Value</a>() <span class="keywordflow">throw</span>();
 <a name="l00109"></a>00109  
-<a name="l00112"></a>00112  <a class="code" href="class_value.html#abc2a5a2e6484fac66dae2539cc955667" title="Default constructor.">Value</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> value) <span class="keywordflow">throw</span>();
+<a name="l00112"></a>00112  <a class="code" href="class_value.html#abc2a5a2e6484fac66dae2539cc955667" title="Default constructor.">Value</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>) <span class="keywordflow">throw</span>();
 <a name="l00113"></a>00113  
 <a name="l00116"></a>00116  <a class="code" href="class_value.html#abc2a5a2e6484fac66dae2539cc955667" title="Default constructor.">Value</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> value) <span class="keywordflow">throw</span>();
 <a name="l00117"></a>00117  
@@ -125,7 +125,7 @@
 <a name="l00131"></a>00131 <span class="preprocessor"></span> 
 <a name="l00132"></a>00132  <a class="code" href="class_value.html#a3a578f458da8a4ab67052dba0f7bffdd">~Value</a>();
 <a name="l00133"></a>00133  
-<a name="l00135"></a>00135  <a class="code" href="class_value.html#abc2a5a2e6484fac66dae2539cc955667" title="Default constructor.">Value</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; copy) <span class="keywordflow">throw</span>();
+<a name="l00135"></a>00135  <a class="code" href="class_value.html#abc2a5a2e6484fac66dae2539cc955667" title="Default constructor.">Value</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; <a class="code" href="namespacestd.html#a9b36270cdb50d9a631ba58ee0405f135">copy</a>) <span class="keywordflow">throw</span>();
 <a name="l00136"></a>00136  
 <a name="l00138"></a>00138  <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a>&amp; <a class="code" href="class_value.html#a64db0776c33394d1b4d17b9cde712739" title="Assignment operator.">operator= </a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; other) <span class="keywordflow">throw</span>();
 <a name="l00139"></a>00139  
@@ -159,8 +159,8 @@
 <a name="l00192"></a>00192 <span class="keyword"> </span>{
 <a name="l00193"></a>00193   <span class="keywordflow">if</span>(<span class="keyword">internal</span> == 0) 
 <a name="l00194"></a>00194    <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00195"></a>00195   <span class="keywordflow">else</span> {
-<a name="l00196"></a>00196    <span class="keywordflow">return</span> <span class="keyword">dynamic_cast&lt;</span>ValueInternalType*<span class="keyword">&gt;</span> (<span class="keyword">internal</span>) != 0;
+<a name="l00195"></a>00195   <span class="keywordflow">else</span> { <span class="comment">//return dynamic_cast&lt;ValueInternalType*&gt; (internal) != 0;</span>
+<a name="l00196"></a>00196    <span class="keywordflow">return</span> <span class="keyword">typeid</span>(ValueInternalType*) == <span class="keyword">typeid</span>(<span class="keyword">internal</span>);
 <a name="l00197"></a>00197   }
 <a name="l00198"></a>00198  }
 <a name="l00199"></a>00199  
@@ -227,7 +227,7 @@
 <a name="l00306"></a>00306  <span class="keywordtype">double</span> <a class="code" href="class_value.html#a31f2abf24b1d5e189c437fe194b9d60e" title="Evaluate the value.">getValue</a>() <span class="keywordflow">throw</span>(); 
 <a name="l00307"></a>00307  
 <a name="l00308"></a>00308 <span class="keyword">private</span>: 
-<a name="l00309"></a><a class="code" href="class_random_int_range_value_internal.html#ab76ea148f4e193f3f6baec112466925a">00309</a>  <span class="keyword">const</span> <span class="keywordtype">int</span> lo_, range;
+<a name="l00309"></a><a class="code" href="class_random_int_range_value_internal.html#ab76ea148f4e193f3f6baec112466925a">00309</a>  <span class="keyword">const</span> <span class="keywordtype">int</span> lo_, <a class="code" href="ugen___play_buf_8ii.html#aaf4a4d494928a9a40f1972bd7c956597">range</a>;
 <a name="l00310"></a>00310 };
 <a name="l00311"></a>00311 
 <a name="l00314"></a><a class="code" href="class_random_value.html">00314</a> <span class="keyword">class </span><a class="code" href="class_random_value.html" title="This produces a new random value according to a specification each time it is evaluated.">RandomValue</a> : <span class="keyword">public</span> Value
@@ -260,7 +260,7 @@
 <a name="l00366"></a>00366 <span class="keyword">public</span>:
 <a name="l00367"></a>00367  
 <a name="l00370"></a>00370  
-<a name="l00371"></a>00371  <a class="code" href="class_sequence_value_internal.html" title="An intermediate internal class that generates sequences.">SequenceValueInternal</a>(Value <span class="keyword">const</span>&amp; start, Value <span class="keyword">const</span>&amp; grow) <span class="keywordflow">throw</span>();
+<a name="l00371"></a>00371  <a class="code" href="class_sequence_value_internal.html" title="An intermediate internal class that generates sequences.">SequenceValueInternal</a>(Value <span class="keyword">const</span>&amp; <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, Value <span class="keyword">const</span>&amp; grow) <span class="keywordflow">throw</span>();
 <a name="l00372"></a>00372  
 <a name="l00373"></a><a class="code" href="class_sequence_value_internal.html#aed6abbb710612b376e4c2ddf7fb947e0">00373</a>  <span class="keyword">enum</span> <a class="code" href="class_sequence_value_internal.html#aed6abbb710612b376e4c2ddf7fb947e0">LoopType</a> { 
 <a name="l00374"></a><a class="code" href="class_sequence_value_internal.html#aed6abbb710612b376e4c2ddf7fb947e0a595bbc779dfbbfee6966200a8442787d">00374</a>   NoLoop, 
@@ -396,13 +396,13 @@
 <a name="l00549"></a>00549  
 <a name="l00552"></a><a class="code" href="class_value_array.html#a6453591e799747b8921b8cf783f90d42">00552</a>  <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="class_value_array.html#a6453591e799747b8921b8cf783f90d42" title="Get the number of values in the array.">size</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> <span class="keyword">internal</span> == 0 ? 0 : <span class="keyword">internal</span>-&gt;size_; }
 <a name="l00553"></a>00553  
-<a name="l00557"></a>00557  <span class="keywordtype">void</span> <a class="code" href="class_value_array.html#a90dbd6caeeede619f6976f2cfa1c4839" title="Replace a value at a specified index.">put</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> index, Value <span class="keyword">const</span>&amp; item) <span class="keywordflow">throw</span>();
+<a name="l00557"></a>00557  <span class="keywordtype">void</span> <a class="code" href="class_value_array.html#a90dbd6caeeede619f6976f2cfa1c4839" title="Replace a value at a specified index.">put</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a>, Value <span class="keyword">const</span>&amp; item) <span class="keywordflow">throw</span>();
 <a name="l00558"></a>00558  
-<a name="l00564"></a>00564  Value&amp; <a class="code" href="class_value_array.html#a9b2ff68de6a1ae4d8308b27ae39146b4" title="Get a value at a specified index.">operator[] </a>(<span class="keyword">const</span> <span class="keywordtype">int</span> index) <span class="keyword">const</span> <span class="keywordflow">throw</span>();
+<a name="l00564"></a>00564  Value&amp; <a class="code" href="class_value_array.html#a9b2ff68de6a1ae4d8308b27ae39146b4" title="Get a value at a specified index.">operator[] </a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a>) <span class="keyword">const</span> <span class="keywordflow">throw</span>();
 <a name="l00565"></a>00565  
-<a name="l00571"></a>00571  Value&amp; <a class="code" href="class_value_array.html#a6cf127c2b4cb02543f67d48d5722b81f" title="Get a value at a specified index.">at</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> index) <span class="keyword">const</span> <span class="keywordflow">throw</span>();
+<a name="l00571"></a>00571  Value&amp; <a class="code" href="class_value_array.html#a6cf127c2b4cb02543f67d48d5722b81f" title="Get a value at a specified index.">at</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a>) <span class="keyword">const</span> <span class="keywordflow">throw</span>();
 <a name="l00572"></a>00572  
-<a name="l00578"></a>00578  Value&amp; <a class="code" href="class_value_array.html#a7b9678d50e1155e41b8ed8133056004b" title="Get a value at a specified index.">wrapAt</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> index) <span class="keyword">const</span> <span class="keywordflow">throw</span>();
+<a name="l00578"></a>00578  Value&amp; <a class="code" href="class_value_array.html#a7b9678d50e1155e41b8ed8133056004b" title="Get a value at a specified index.">wrapAt</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a>) <span class="keyword">const</span> <span class="keywordflow">throw</span>();
 <a name="l00579"></a>00579  
 <a name="l00582"></a>00582  Value&amp; <a class="code" href="class_value_array.html#a1d2f47791aa80a1c28929c10556fafbd" title="Get the first value in the array.">first</a>() <span class="keyword">const</span> throw();
 <a name="l00583"></a>00583  
@@ -465,7 +465,7 @@
 <a name="l00677"></a>00677 };
 <a name="l00678"></a>00678 
 <a name="l00680"></a>00680 <span class="keyword">template</span>&lt;&gt;
-<a name="l00681"></a><a class="code" href="class_value_event_base_3_01void_01_4.html">00681</a> <span class="keyword">class </span><a class="code" href="class_value_event_base.html">ValueEventBase</a>&lt;void&gt; : <span class="keyword">public</span> <a class="code" href="class_event_base.html" title="The base for all event classes.">EventBase</a>&lt;void&gt;
+<a name="l00681"></a><a class="code" href="class_value_event_base_3_01void_01_4.html">00681</a> <span class="keyword">class </span><a class="code" href="class_value_event_base.html">ValueEventBase</a>&lt;<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>&gt; : <span class="keyword">public</span> <a class="code" href="class_event_base.html" title="The base for all event classes.">EventBase</a>&lt;void&gt;
 <a name="l00682"></a>00682 {
 <a name="l00683"></a>00683 <span class="keyword">public</span>:
 <a name="l00684"></a>00684  <span class="keyword">virtual</span> <span class="keywordtype">double</span> <a class="code" href="class_value.html#a31f2abf24b1d5e189c437fe194b9d60e" title="Evaluate the value.">getValue</a>() = 0;
@@ -475,24 +475,24 @@
 <a name="l00689"></a><a class="code" href="class_function_value_internal.html">00689</a> <span class="keyword">class </span><a class="code" href="class_function_value_internal.html">FunctionValueInternal</a> : <span class="keyword">public</span> <a class="code" href="class_value_internal.html" title="An internal value class with a constant value.">ValueInternal</a>
 <a name="l00690"></a>00690 {
 <a name="l00691"></a>00691 <span class="keyword">public</span>:
-<a name="l00692"></a><a class="code" href="class_function_value_internal.html#ac6fa1d4b13763f489578bcef280f7b69">00692</a>  <a class="code" href="class_function_value_internal.html#ac6fa1d4b13763f489578bcef280f7b69">FunctionValueInternal</a>(OwnerType* o) <span class="keywordflow">throw</span>() : function(o) { }
-<a name="l00693"></a><a class="code" href="class_function_value_internal.html#ac90e2a6005c25168137e9d6de9b73d7a">00693</a>  <a class="code" href="class_function_value_internal.html#ac90e2a6005c25168137e9d6de9b73d7a">FunctionValueInternal</a>(ValueEventType <span class="keyword">const</span>&amp; f) <span class="keywordflow">throw</span>() : function(f) { }
-<a name="l00694"></a><a class="code" href="class_function_value_internal.html#a48d2894ff88221358b75d7764d0b0f74">00694</a>  <span class="keywordtype">double</span> <a class="code" href="class_function_value_internal.html#a48d2894ff88221358b75d7764d0b0f74" title="Return the value.">getValue</a>() throw() { <span class="keywordflow">return</span> function.getValue(); }
+<a name="l00692"></a><a class="code" href="class_function_value_internal.html#ac6fa1d4b13763f489578bcef280f7b69">00692</a>  <a class="code" href="class_function_value_internal.html#ac6fa1d4b13763f489578bcef280f7b69">FunctionValueInternal</a>(OwnerType* o) <span class="keywordflow">throw</span>() : <a class="code" href="ugen___play_buf_8ii.html#a95a94aa2ba352fb2f78d567e2332b7db">function</a>(o) { }
+<a name="l00693"></a><a class="code" href="class_function_value_internal.html#ac90e2a6005c25168137e9d6de9b73d7a">00693</a>  <a class="code" href="class_function_value_internal.html#ac90e2a6005c25168137e9d6de9b73d7a">FunctionValueInternal</a>(ValueEventType <span class="keyword">const</span>&amp; f) <span class="keywordflow">throw</span>() : <a class="code" href="ugen___play_buf_8ii.html#a95a94aa2ba352fb2f78d567e2332b7db">function</a>(f) { }
+<a name="l00694"></a><a class="code" href="class_function_value_internal.html#a48d2894ff88221358b75d7764d0b0f74">00694</a>  <span class="keywordtype">double</span> <a class="code" href="class_function_value_internal.html#a48d2894ff88221358b75d7764d0b0f74" title="Return the value.">getValue</a>() throw() { <span class="keywordflow">return</span> <a class="code" href="ugen___play_buf_8ii.html#a95a94aa2ba352fb2f78d567e2332b7db">function</a>.getValue(); }
 <a name="l00695"></a>00695 
 <a name="l00696"></a>00696 <span class="keyword">private</span>:
-<a name="l00697"></a><a class="code" href="class_function_value_internal.html#a3a2d6ca76a4b8ab048faba4622326080">00697</a>  ValueEventType function;
+<a name="l00697"></a><a class="code" href="class_function_value_internal.html#a3a2d6ca76a4b8ab048faba4622326080">00697</a>  ValueEventType <a class="code" href="ugen___play_buf_8ii.html#a95a94aa2ba352fb2f78d567e2332b7db">function</a>;
 <a name="l00698"></a>00698 };
 <a name="l00699"></a>00699 
 <a name="l00701"></a>00701 <span class="keyword">template</span>&lt;<span class="keyword">class</span> ValueEventType&gt;
-<a name="l00702"></a><a class="code" href="class_function_value_internal_3_01_value_event_type_00_01void_01_4.html">00702</a> <span class="keyword">class </span><a class="code" href="class_function_value_internal.html">FunctionValueInternal</a>&lt;ValueEventType, void&gt; : <span class="keyword">public</span> <a class="code" href="class_value_internal.html" title="An internal value class with a constant value.">ValueInternal</a>
+<a name="l00702"></a><a class="code" href="class_function_value_internal_3_01_value_event_type_00_01void_01_4.html">00702</a> <span class="keyword">class </span><a class="code" href="class_function_value_internal.html">FunctionValueInternal</a>&lt;ValueEventType, <a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>&gt; : <span class="keyword">public</span> <a class="code" href="class_value_internal.html" title="An internal value class with a constant value.">ValueInternal</a>
 <a name="l00703"></a>00703 {
 <a name="l00704"></a>00704 <span class="keyword">public</span>:
 <a name="l00705"></a><a class="code" href="class_function_value_internal_3_01_value_event_type_00_01void_01_4.html#a059e68a4b8b572448584febfec0ce044">00705</a>  <a class="code" href="class_function_value_internal_3_01_value_event_type_00_01void_01_4.html#a059e68a4b8b572448584febfec0ce044">FunctionValueInternal</a>(<span class="keywordtype">void</span>* o) <span class="keywordflow">throw</span>() { }
-<a name="l00706"></a><a class="code" href="class_function_value_internal_3_01_value_event_type_00_01void_01_4.html#a914d32f91705aa8d33ba8c312320cc8a">00706</a>  <a class="code" href="class_function_value_internal_3_01_value_event_type_00_01void_01_4.html#a914d32f91705aa8d33ba8c312320cc8a">FunctionValueInternal</a>(ValueEventType <span class="keyword">const</span>&amp; f) <span class="keywordflow">throw</span>() : function(f) { }
-<a name="l00707"></a><a class="code" href="class_function_value_internal_3_01_value_event_type_00_01void_01_4.html#a58d5ed0e6b026c04f8663ff6f2220b81">00707</a>  <span class="keywordtype">double</span> <a class="code" href="class_function_value_internal_3_01_value_event_type_00_01void_01_4.html#a58d5ed0e6b026c04f8663ff6f2220b81" title="Return the value.">getValue</a>() throw() { <span class="keywordflow">return</span> function.getValue(); }
+<a name="l00706"></a><a class="code" href="class_function_value_internal_3_01_value_event_type_00_01void_01_4.html#a914d32f91705aa8d33ba8c312320cc8a">00706</a>  <a class="code" href="class_function_value_internal_3_01_value_event_type_00_01void_01_4.html#a914d32f91705aa8d33ba8c312320cc8a">FunctionValueInternal</a>(ValueEventType <span class="keyword">const</span>&amp; f) <span class="keywordflow">throw</span>() : <a class="code" href="ugen___play_buf_8ii.html#a95a94aa2ba352fb2f78d567e2332b7db">function</a>(f) { }
+<a name="l00707"></a><a class="code" href="class_function_value_internal_3_01_value_event_type_00_01void_01_4.html#a58d5ed0e6b026c04f8663ff6f2220b81">00707</a>  <span class="keywordtype">double</span> <a class="code" href="class_function_value_internal_3_01_value_event_type_00_01void_01_4.html#a58d5ed0e6b026c04f8663ff6f2220b81" title="Return the value.">getValue</a>() throw() { <span class="keywordflow">return</span> <a class="code" href="ugen___play_buf_8ii.html#a95a94aa2ba352fb2f78d567e2332b7db">function</a>.getValue(); }
 <a name="l00708"></a>00708 
 <a name="l00709"></a>00709 <span class="keyword">private</span>:
-<a name="l00710"></a><a class="code" href="class_function_value_internal_3_01_value_event_type_00_01void_01_4.html#a85bedee579c4c1d931d4f09fbc8120d1">00710</a>  ValueEventType function;
+<a name="l00710"></a><a class="code" href="class_function_value_internal_3_01_value_event_type_00_01void_01_4.html#a85bedee579c4c1d931d4f09fbc8120d1">00710</a>  ValueEventType <a class="code" href="ugen___play_buf_8ii.html#a95a94aa2ba352fb2f78d567e2332b7db">function</a>;
 <a name="l00711"></a>00711 };
 <a name="l00712"></a>00712 
 <a name="l00714"></a>00714 <span class="keyword">template</span>&lt;<span class="keyword">class</span> ValueEventType, <span class="keyword">class</span> OwnerType = <span class="keywordtype">void</span>&gt;
@@ -511,7 +511,7 @@
 <a name="l00727"></a>00727 <span class="preprocessor">#endif // _UGEN_ugen_Value_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:30 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

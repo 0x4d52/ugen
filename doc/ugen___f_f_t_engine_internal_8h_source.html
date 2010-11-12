@@ -92,7 +92,7 @@
 <a name="l00060"></a>00060 <span class="preprocessor"></span>  <span class="keyword">typedef</span> <span class="keyword">struct </span>_DSPSplitComplex {
 <a name="l00061"></a>00061    <span class="keywordtype">float</span> *             realp;
 <a name="l00062"></a>00062    <span class="keywordtype">float</span> *             imagp;
-<a name="l00063"></a>00063   } DSPSplitComplex;
+<a name="l00063"></a>00063   } <a class="code" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a>;
 <a name="l00064"></a>00064 <span class="preprocessor"> #endif</span>
 <a name="l00065"></a>00065 <span class="preprocessor"></span>
 <a name="l00066"></a>00066 <span class="preprocessor"> #if defined(UGEN_VFP)</span>
@@ -252,12 +252,12 @@
 <a name="l00229"></a>00229     <span class="keyword">const</span> <span class="keywordtype">int</span> outputChannel = 0,
 <a name="l00230"></a>00230     <span class="keyword">const</span> <span class="keywordtype">int</span> inputChannel = 0) throw();
 <a name="l00231"></a>00231  
-<a name="l00232"></a><a class="code" href="class_f_f_t_engine_internal.html#a96647eb4fa2ce97f20b82800c5b1cebf">00232</a>  inline <span class="keywordtype">void</span> <a class="code" href="class_f_f_t_engine_internal.html#a3d7b411ad7369239afea9ecc902bc1c5">fft</a>(DSPSplitComplex&amp; outputBuffer, const <span class="keywordtype">float</span>* const inputBuffer) throw()
+<a name="l00232"></a><a class="code" href="class_f_f_t_engine_internal.html#a96647eb4fa2ce97f20b82800c5b1cebf">00232</a>  inline <span class="keywordtype">void</span> <a class="code" href="class_f_f_t_engine_internal.html#a3d7b411ad7369239afea9ecc902bc1c5">fft</a>(<a class="code" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a>&amp; outputBuffer, const <span class="keywordtype">float</span>* const inputBuffer) throw()
 <a name="l00233"></a>00233  {
 <a name="l00234"></a>00234   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(inputBuffer != 0);
 <a name="l00235"></a>00235   
 <a name="l00236"></a>00236 <span class="preprocessor">#ifdef UGEN_FFTW</span>
-<a name="l00237"></a>00237 <span class="preprocessor"></span>  memcpy(<a class="code" href="class_f_f_t_engine_internal.html#abc1ff690fba933f78b7abb0057f8081c">transformBufferSamples</a>, inputBuffer, <a class="code" href="class_f_f_t_engine_internal.html#a8478d9811999cf385823faaf62ecdb05">fftSizeBytes</a>);
+<a name="l00237"></a>00237 <span class="preprocessor"></span>  <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(<a class="code" href="class_f_f_t_engine_internal.html#abc1ff690fba933f78b7abb0057f8081c">transformBufferSamples</a>, inputBuffer, <a class="code" href="class_f_f_t_engine_internal.html#a8478d9811999cf385823faaf62ecdb05">fftSizeBytes</a>);
 <a name="l00238"></a>00238   fftwf_execute(fftwPlan);
 <a name="l00239"></a>00239 
 <a name="l00240"></a>00240   <span class="keywordtype">float</span> nyquist = <a class="code" href="class_f_f_t_engine_internal.html#abc1ff690fba933f78b7abb0057f8081c">transformBufferSamples</a>[fftSize]; <span class="comment">// remember nyquist val</span>
@@ -272,19 +272,19 @@
 <a name="l00249"></a>00249   
 <a name="l00250"></a>00250 <span class="preprocessor">#elif defined(UGEN_FFTREAL)</span>
 <a name="l00251"></a>00251 <span class="preprocessor"></span>  <a class="code" href="class_f_f_t_engine_internal.html#a2298ebaa172f04eafc16e0530709c855">fftReal</a>-&gt;do_fft(<a class="code" href="class_f_f_t_engine_internal.html#abc1ff690fba933f78b7abb0057f8081c">transformBufferSamples</a>, inputBuffer);
-<a name="l00252"></a>00252   memcpy(outputBuffer.realp, <a class="code" href="class_f_f_t_engine_internal.html#a9b5e484a25aba46c7c9ee393b4038c9a">transformBufferSplit</a>.realp, <a class="code" href="class_f_f_t_engine_internal.html#a990a98e20fa450d186ce9ac5639379bc">fftSizeHalvedBytes</a>);
-<a name="l00253"></a>00253   memcpy(outputBuffer.imagp, <a class="code" href="class_f_f_t_engine_internal.html#a9b5e484a25aba46c7c9ee393b4038c9a">transformBufferSplit</a>.imagp, <a class="code" href="class_f_f_t_engine_internal.html#a990a98e20fa450d186ce9ac5639379bc">fftSizeHalvedBytes</a>);
+<a name="l00252"></a>00252   <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(outputBuffer.realp, <a class="code" href="class_f_f_t_engine_internal.html#a9b5e484a25aba46c7c9ee393b4038c9a">transformBufferSplit</a>.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a>, <a class="code" href="class_f_f_t_engine_internal.html#a990a98e20fa450d186ce9ac5639379bc">fftSizeHalvedBytes</a>);
+<a name="l00253"></a>00253   <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(outputBuffer.imagp, <a class="code" href="class_f_f_t_engine_internal.html#a9b5e484a25aba46c7c9ee393b4038c9a">transformBufferSplit</a>.<a class="code" href="struct_d_s_p_split_complex.html#a72d222ae37a256ca0e3b5a3c8eb4c670">imagp</a>, <a class="code" href="class_f_f_t_engine_internal.html#a990a98e20fa450d186ce9ac5639379bc">fftSizeHalvedBytes</a>);
 <a name="l00254"></a>00254   
 <a name="l00255"></a>00255 <span class="preprocessor">#else</span>
 <a name="l00256"></a>00256 <span class="preprocessor"></span>  <span class="keyword">static</span> <span class="keywordtype">float</span> scale = 0.5f;
 <a name="l00257"></a>00257   vDSP_vsmul(inputBuffer, 1, &amp;scale, <a class="code" href="class_f_f_t_engine_internal.html#abc1ff690fba933f78b7abb0057f8081c">transformBufferSamples</a>, 1, fftSize);
-<a name="l00258"></a>00258   vDSP_ctoz ((COMPLEX *) <a class="code" href="class_f_f_t_engine_internal.html#abc1ff690fba933f78b7abb0057f8081c">transformBufferSamples</a>, 2, &amp;outputBuffer, 1, fftSizeHalved);
-<a name="l00259"></a>00259   vDSP_fft_zrip (fftvDSP, &amp;outputBuffer, 1, fftSizeLog2, FFT_FORWARD);
+<a name="l00258"></a>00258   vDSP_ctoz ((<a class="code" href="struct_d_s_p_complex.html">COMPLEX</a> *) <a class="code" href="class_f_f_t_engine_internal.html#abc1ff690fba933f78b7abb0057f8081c">transformBufferSamples</a>, 2, &amp;outputBuffer, 1, fftSizeHalved);
+<a name="l00259"></a>00259   vDSP_fft_zrip (fftvDSP, &amp;outputBuffer, 1, fftSizeLog2, <a class="code" href="ugen___play_buf_8ii.html#ade9ca5088d171ad20b4c237f1c2d6260a7052223ae26883446425d6fc3338a869">FFT_FORWARD</a>);
 <a name="l00260"></a>00260   
 <a name="l00261"></a>00261 <span class="preprocessor">#endif</span>
 <a name="l00262"></a>00262 <span class="preprocessor"></span> }
 <a name="l00263"></a>00263  
-<a name="l00264"></a>00264  <span class="keywordtype">void</span> <a class="code" href="class_f_f_t_engine_internal.html#a3d7b411ad7369239afea9ecc902bc1c5">fft</a>(DSPSplitComplex&amp; outputBuffer, <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inputBuffer, <span class="keyword">const</span> <span class="keywordtype">bool</span> applyWindow) <span class="keywordflow">throw</span>();
+<a name="l00264"></a>00264  <span class="keywordtype">void</span> <a class="code" href="class_f_f_t_engine_internal.html#a3d7b411ad7369239afea9ecc902bc1c5">fft</a>(<a class="code" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a>&amp; outputBuffer, <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inputBuffer, <span class="keyword">const</span> <span class="keywordtype">bool</span> applyWindow) <span class="keywordflow">throw</span>();
 <a name="l00265"></a>00265  
 <a name="l00266"></a>00266  <span class="keywordtype">void</span> <a class="code" href="class_f_f_t_engine_internal.html#a82706f43d792ca37a9bec251304b6971">ifft</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; outputBuffer, 
 <a name="l00267"></a>00267      <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; inputBuffer, 
@@ -293,7 +293,7 @@
 <a name="l00270"></a>00270      <span class="keyword">const</span> <span class="keywordtype">int</span> outputChannel = 0,
 <a name="l00271"></a>00271      <span class="keyword">const</span> <span class="keywordtype">int</span> inputChannel = 0) throw();
 <a name="l00272"></a>00272  
-<a name="l00273"></a><a class="code" href="class_f_f_t_engine_internal.html#a4cc97b2706d473d4142963dc058fdd54">00273</a>  inline <span class="keywordtype">void</span> <a class="code" href="class_f_f_t_engine_internal.html#a82706f43d792ca37a9bec251304b6971">ifft</a>(<span class="keywordtype">float</span>* const outputBuffer, DSPSplitComplex const&amp; inputBuffer) throw()
+<a name="l00273"></a><a class="code" href="class_f_f_t_engine_internal.html#a4cc97b2706d473d4142963dc058fdd54">00273</a>  inline <span class="keywordtype">void</span> <a class="code" href="class_f_f_t_engine_internal.html#a82706f43d792ca37a9bec251304b6971">ifft</a>(<span class="keywordtype">float</span>* const outputBuffer, <a class="code" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a> const&amp; inputBuffer) throw()
 <a name="l00274"></a>00274  {
 <a name="l00275"></a>00275   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(outputBuffer != 0);
 <a name="l00276"></a>00276   
@@ -304,7 +304,7 @@
 <a name="l00281"></a>00281   <a class="code" href="ugen___standard_header_8h.html#a9a37472ac55b2fcd8760b2a0db82f035" title="Declares a local variable which is a copy of a member variable.">LOCAL_DECLARE</a>(<span class="keyword">const</span> <span class="keywordtype">int</span>, <a class="code" href="class_f_f_t_engine_internal.html#a990a98e20fa450d186ce9ac5639379bc">fftSizeHalvedBytes</a>);
 <a name="l00282"></a>00282   
 <a name="l00283"></a>00283   <a class="code" href="ugen___standard_header_8h.html#a9a37472ac55b2fcd8760b2a0db82f035" title="Declares a local variable which is a copy of a member variable.">LOCAL_DECLARE</a>(<span class="keywordtype">float</span> * <span class="keyword">const</span>, <a class="code" href="class_f_f_t_engine_internal.html#abc1ff690fba933f78b7abb0057f8081c">transformBufferSamples</a>);
-<a name="l00284"></a>00284   <a class="code" href="ugen___standard_header_8h.html#a9a37472ac55b2fcd8760b2a0db82f035" title="Declares a local variable which is a copy of a member variable.">LOCAL_DECLARE</a>(DSPSplitComplex&amp;, <a class="code" href="class_f_f_t_engine_internal.html#a9b5e484a25aba46c7c9ee393b4038c9a">transformBufferSplit</a>);
+<a name="l00284"></a>00284   <a class="code" href="ugen___standard_header_8h.html#a9a37472ac55b2fcd8760b2a0db82f035" title="Declares a local variable which is a copy of a member variable.">LOCAL_DECLARE</a>(<a class="code" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a>&amp;, <a class="code" href="class_f_f_t_engine_internal.html#a9b5e484a25aba46c7c9ee393b4038c9a">transformBufferSplit</a>);
 <a name="l00285"></a>00285 
 <a name="l00286"></a>00286   <span class="keywordtype">float</span> *interleavedSamples = <a class="code" href="class_f_f_t_engine_internal.html#abc1ff690fba933f78b7abb0057f8081c">transformBufferSamples</a>;
 <a name="l00287"></a>00287   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j = 0; j &lt; <a class="code" href="class_f_f_t_engine_internal.html#a9a75db5154ee746e3ef0f6b27f07bc41">fftSizeHalved</a>; j++)
@@ -317,9 +317,9 @@
 <a name="l00294"></a>00294   <a class="code" href="class_f_f_t_engine_internal.html#abc1ff690fba933f78b7abb0057f8081c">transformBufferSamples</a>[1        ] = 0.f; <span class="comment">// DC imag always zero</span>
 <a name="l00295"></a>00295   
 <a name="l00296"></a>00296   fftwf_execute(ifftwPlan);
-<a name="l00297"></a>00297   memcpy(outputBuffer, <a class="code" href="class_f_f_t_engine_internal.html#abc1ff690fba933f78b7abb0057f8081c">transformBufferSamples</a>, <a class="code" href="class_f_f_t_engine_internal.html#a8478d9811999cf385823faaf62ecdb05">fftSizeBytes</a>);
+<a name="l00297"></a>00297   <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(outputBuffer, <a class="code" href="class_f_f_t_engine_internal.html#abc1ff690fba933f78b7abb0057f8081c">transformBufferSamples</a>, <a class="code" href="class_f_f_t_engine_internal.html#a8478d9811999cf385823faaf62ecdb05">fftSizeBytes</a>);
 <a name="l00298"></a>00298 <span class="preprocessor">#elif defined(UGEN_FFTREAL)</span>
-<a name="l00299"></a>00299 <span class="preprocessor"></span>  memcpy(<a class="code" href="class_f_f_t_engine_internal.html#a9b5e484a25aba46c7c9ee393b4038c9a">transformBufferSplit</a>.realp, inputBuffer.realp, <a class="code" href="class_f_f_t_engine_internal.html#a8478d9811999cf385823faaf62ecdb05">fftSizeBytes</a>);
+<a name="l00299"></a>00299 <span class="preprocessor"></span>  <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(<a class="code" href="class_f_f_t_engine_internal.html#a9b5e484a25aba46c7c9ee393b4038c9a">transformBufferSplit</a>.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a>, inputBuffer.realp, <a class="code" href="class_f_f_t_engine_internal.html#a8478d9811999cf385823faaf62ecdb05">fftSizeBytes</a>);
 <a name="l00300"></a>00300   <a class="code" href="class_f_f_t_engine_internal.html#a2298ebaa172f04eafc16e0530709c855">fftReal</a>-&gt;do_ifft(<a class="code" href="class_f_f_t_engine_internal.html#abc1ff690fba933f78b7abb0057f8081c">transformBufferSamples</a>, outputBuffer);
 <a name="l00301"></a>00301 <span class="preprocessor">#else</span>
 <a name="l00302"></a>00302 <span class="preprocessor"></span><span class="comment">// #ifdef UGEN_IPHONE</span>
@@ -327,13 +327,13 @@
 <a name="l00304"></a>00304 <span class="comment">// #else</span>
 <a name="l00305"></a>00305 <span class="comment">//  vScopy(fftSize, (const vFloat*)inputBuffer.realp, (vFloat*)transformBufferSplit.realp);</span>
 <a name="l00306"></a>00306 <span class="comment">// #endif   </span>
-<a name="l00307"></a>00307   memcpy(<a class="code" href="class_f_f_t_engine_internal.html#a9b5e484a25aba46c7c9ee393b4038c9a">transformBufferSplit</a>.realp, inputBuffer.realp, <a class="code" href="class_f_f_t_engine_internal.html#a8478d9811999cf385823faaf62ecdb05">fftSizeBytes</a>);
-<a name="l00308"></a>00308   vDSP_fft_zrip (fftvDSP, &amp;<a class="code" href="class_f_f_t_engine_internal.html#a9b5e484a25aba46c7c9ee393b4038c9a">transformBufferSplit</a>, 1, fftSizeLog2, FFT_INVERSE);
-<a name="l00309"></a>00309   vDSP_ztoc (&amp;<a class="code" href="class_f_f_t_engine_internal.html#a9b5e484a25aba46c7c9ee393b4038c9a">transformBufferSplit</a>, 1, (COMPLEX *) outputBuffer, 2, fftSizeHalved);
+<a name="l00307"></a>00307   <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(<a class="code" href="class_f_f_t_engine_internal.html#a9b5e484a25aba46c7c9ee393b4038c9a">transformBufferSplit</a>.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a>, inputBuffer.realp, <a class="code" href="class_f_f_t_engine_internal.html#a8478d9811999cf385823faaf62ecdb05">fftSizeBytes</a>);
+<a name="l00308"></a>00308   vDSP_fft_zrip (fftvDSP, &amp;<a class="code" href="class_f_f_t_engine_internal.html#a9b5e484a25aba46c7c9ee393b4038c9a">transformBufferSplit</a>, 1, fftSizeLog2, <a class="code" href="ugen___play_buf_8ii.html#ade9ca5088d171ad20b4c237f1c2d6260ac0edad6dc8a3ce7171841babca6798e3">FFT_INVERSE</a>);
+<a name="l00309"></a>00309   vDSP_ztoc (&amp;<a class="code" href="class_f_f_t_engine_internal.html#a9b5e484a25aba46c7c9ee393b4038c9a">transformBufferSplit</a>, 1, (<a class="code" href="struct_d_s_p_complex.html">COMPLEX</a> *) outputBuffer, 2, fftSizeHalved);
 <a name="l00310"></a>00310 <span class="preprocessor">#endif  </span>
 <a name="l00311"></a>00311 <span class="preprocessor"></span> }
 <a name="l00312"></a>00312  
-<a name="l00313"></a>00313  <span class="keywordtype">void</span> <a class="code" href="class_f_f_t_engine_internal.html#a82706f43d792ca37a9bec251304b6971">ifft</a>(<span class="keywordtype">float</span>* <span class="keyword">const</span> outputBuffer, DSPSplitComplex <span class="keyword">const</span>&amp; inputBuffer, <span class="keyword">const</span> <span class="keywordtype">bool</span> applyWindow, <span class="keyword">const</span> <span class="keywordtype">bool</span> applyScaling) <span class="keywordflow">throw</span>();
+<a name="l00313"></a>00313  <span class="keywordtype">void</span> <a class="code" href="class_f_f_t_engine_internal.html#a82706f43d792ca37a9bec251304b6971">ifft</a>(<span class="keywordtype">float</span>* <span class="keyword">const</span> outputBuffer, <a class="code" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a> <span class="keyword">const</span>&amp; inputBuffer, <span class="keyword">const</span> <span class="keywordtype">bool</span> applyWindow, <span class="keyword">const</span> <span class="keywordtype">bool</span> applyScaling) <span class="keywordflow">throw</span>();
 <a name="l00314"></a>00314  
 <a name="l00315"></a>00315  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_f_f_t_engine_internal.html#a894e0c3f9bcb01db255aa1ec69336401">rawToRealImagRawSplit</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; raw) <span class="keywordflow">throw</span>();
 <a name="l00316"></a>00316  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_f_f_t_engine_internal.html#aee20fbed38ae09ea757fb00cc160fb54">rawToRealImagUnpacked</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; raw) <span class="keywordflow">throw</span>();
@@ -359,7 +359,7 @@
 <a name="l00336"></a>00336 <span class="preprocessor">#elif defined(UGEN_FFTREAL)</span>
 <a name="l00337"></a><a class="code" href="class_f_f_t_engine_internal.html#a2298ebaa172f04eafc16e0530709c855">00337</a> <span class="preprocessor"></span> FFTReal&lt;float&gt; *<a class="code" href="class_f_f_t_engine_internal.html#a2298ebaa172f04eafc16e0530709c855">fftReal</a>;
 <a name="l00338"></a>00338 <span class="preprocessor">#else</span>
-<a name="l00339"></a>00339 <span class="preprocessor"></span>    FFTSetup fftvDSP;
+<a name="l00339"></a>00339 <span class="preprocessor"></span>    <a class="code" href="ugen___play_buf_8ii.html#a0cc13f3aed1ed575f68aa5a167985137">FFTSetup</a> fftvDSP;
 <a name="l00340"></a>00340  <span class="keywordtype">int</span> fftSizeLog2;
 <a name="l00341"></a>00341 <span class="preprocessor">#endif </span>
 <a name="l00342"></a>00342 <span class="preprocessor"></span> 
@@ -371,7 +371,7 @@
 <a name="l00348"></a>00348  
 <a name="l00349"></a><a class="code" href="class_f_f_t_engine_internal.html#a82024a151ca73df4fa178771e394e5cd">00349</a>  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_f_f_t_engine_internal.html#a82024a151ca73df4fa178771e394e5cd">transformBuffer</a>;
 <a name="l00350"></a><a class="code" href="class_f_f_t_engine_internal.html#abc1ff690fba933f78b7abb0057f8081c">00350</a>  <span class="keywordtype">float</span> * <span class="keyword">const</span> <a class="code" href="class_f_f_t_engine_internal.html#abc1ff690fba933f78b7abb0057f8081c">transformBufferSamples</a>;
-<a name="l00351"></a><a class="code" href="class_f_f_t_engine_internal.html#a9b5e484a25aba46c7c9ee393b4038c9a">00351</a>  DSPSplitComplex <a class="code" href="class_f_f_t_engine_internal.html#a9b5e484a25aba46c7c9ee393b4038c9a">transformBufferSplit</a>;
+<a name="l00351"></a><a class="code" href="class_f_f_t_engine_internal.html#a9b5e484a25aba46c7c9ee393b4038c9a">00351</a>  <a class="code" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a> <a class="code" href="class_f_f_t_engine_internal.html#a9b5e484a25aba46c7c9ee393b4038c9a">transformBufferSplit</a>;
 <a name="l00352"></a>00352  
 <a name="l00353"></a><a class="code" href="class_f_f_t_engine_internal.html#ae3df9cee96ab24ea0663d3cf22af4fe0">00353</a>  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_f_f_t_engine_internal.html#a71ad7491d6d959b48f8f819aabe98b57">fftWindow</a>, <a class="code" href="class_f_f_t_engine_internal.html#ae3df9cee96ab24ea0663d3cf22af4fe0">ifftWindow</a>;
 <a name="l00354"></a><a class="code" href="class_f_f_t_engine_internal.html#a67e7e846c266dd447533496b73bf2937">00354</a>  <span class="keywordtype">float</span>* <a class="code" href="class_f_f_t_engine_internal.html#a67e7e846c266dd447533496b73bf2937">fftWindowSamples</a>;
@@ -387,7 +387,7 @@
 <a name="l00364"></a>00364 <span class="preprocessor">#define TEMPSIZE 65536</span>
 <a name="l00365"></a>00365 <span class="preprocessor"></span><span class="keyword">static</span> <span class="keywordtype">float</span> tempData[TEMPSIZE];
 <a name="l00366"></a>00366 
-<a name="l00367"></a>00367 <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="ugen___f_f_t_engine_internal_8h.html#a1d1a4d94418f3c5e4f947f2763fbd5ce">MultAndAdd</a>(DSPSplitComplex&amp; In1, DSPSplitComplex&amp; In2, DSPSplitComplex&amp; Out, <span class="keyword">const</span> <span class="keywordtype">int</span> VecLength) <span class="keywordflow">throw</span>()
+<a name="l00367"></a>00367 <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="ugen___f_f_t_engine_internal_8h.html#a1d1a4d94418f3c5e4f947f2763fbd5ce">MultAndAdd</a>(<a class="code" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a>&amp; In1, <a class="code" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a>&amp; In2, <a class="code" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a>&amp; Out, <span class="keyword">const</span> <span class="keywordtype">int</span> VecLength) <span class="keywordflow">throw</span>()
 <a name="l00368"></a>00368 {
 <a name="l00369"></a>00369  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(VecLength &gt; 0);
 <a name="l00370"></a>00370  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(VecLength*4/2 &lt;= TEMPSIZE);
@@ -403,9 +403,9 @@
 <a name="l00380"></a>00380  
 <a name="l00381"></a>00381  <span class="keyword">const</span> <span class="keywordtype">int</span> VecLengthX4 = VecLength&lt;&lt;2;
 <a name="l00382"></a>00382  
-<a name="l00383"></a>00383  DSPSplitComplex temp;
-<a name="l00384"></a>00384  temp.realp = tempData;
-<a name="l00385"></a>00385  temp.imagp = tempData + VecLengthX4;
+<a name="l00383"></a>00383  <a class="code" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a> temp;
+<a name="l00384"></a>00384  temp.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a> = tempData;
+<a name="l00385"></a>00385  temp.<a class="code" href="struct_d_s_p_split_complex.html#a72d222ae37a256ca0e3b5a3c8eb4c670">imagp</a> = tempData + VecLengthX4;
 <a name="l00386"></a>00386  
 <a name="l00387"></a>00387  vDSP_zvmul(&amp;In1, 1, &amp;In2, 1, &amp;temp, 1, VecLengthX4, 1);
 <a name="l00388"></a>00388  vDSP_zvadd(&amp;temp, 1, &amp;Out, 1, &amp;Out, 1, VecLengthX4);
@@ -414,7 +414,7 @@
 <a name="l00391"></a>00391  In2.imagp[0] = Nyquist2;
 <a name="l00392"></a>00392 }
 <a name="l00393"></a>00393 <span class="preprocessor">#elif !defined(UGEN_VFP) // &amp;&amp; !defined(UGEN_NEON)</span>
-<a name="l00394"></a><a class="code" href="ugen___f_f_t_engine_internal_8h.html#a1d1a4d94418f3c5e4f947f2763fbd5ce">00394</a> <span class="preprocessor"></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="ugen___f_f_t_engine_internal_8h.html#a1d1a4d94418f3c5e4f947f2763fbd5ce">MultAndAdd</a>(DSPSplitComplex&amp; In1, DSPSplitComplex&amp; In2, DSPSplitComplex&amp; Out, <span class="keyword">const</span> <span class="keywordtype">int</span> VecLength) <span class="keywordflow">throw</span>()
+<a name="l00394"></a><a class="code" href="ugen___f_f_t_engine_internal_8h.html#a1d1a4d94418f3c5e4f947f2763fbd5ce">00394</a> <span class="preprocessor"></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="ugen___f_f_t_engine_internal_8h.html#a1d1a4d94418f3c5e4f947f2763fbd5ce">MultAndAdd</a>(<a class="code" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a>&amp; In1, <a class="code" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a>&amp; In2, <a class="code" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a>&amp; Out, <span class="keyword">const</span> <span class="keywordtype">int</span> VecLength) <span class="keywordflow">throw</span>()
 <a name="l00395"></a>00395 {
 <a name="l00396"></a>00396  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(VecLength &gt; 0);
 <a name="l00397"></a>00397  
@@ -451,7 +451,7 @@
 <a name="l00428"></a>00428 <span class="preprocessor">#endif // _UGEN_ugen_FFTEngineInternal_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:30 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -105,14 +105,14 @@
 <a name="l00073"></a>00073  transformBufferSplit.imagp = transformBufferSamples + fftSizeHalved;
 <a name="l00074"></a>00074  
 <a name="l00075"></a>00075 <span class="preprocessor">#ifdef UGEN_FFTW</span>
-<a name="l00076"></a>00076 <span class="preprocessor"></span> <span class="keywordflow">if</span>(!announced) printf(<span class="stringliteral">&quot;FFTEngine using FFTW\n&quot;</span>); announced = 1;
+<a name="l00076"></a>00076 <span class="preprocessor"></span> <span class="keywordflow">if</span>(!announced) <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;FFTEngine using FFTW\n&quot;</span>); announced = 1;
 <a name="l00077"></a>00077  fftwPlan = fftwf_plan_dft_r2c_1d(fftSize, transformBufferSamples, (fftwf_complex*) transformBufferSamples, FFTW_ESTIMATE);
 <a name="l00078"></a>00078  ifftwPlan = fftwf_plan_dft_c2r_1d(fftSize, (fftwf_complex*) transformBufferSamples, transformBufferSamples, FFTW_ESTIMATE);
 <a name="l00079"></a>00079 <span class="preprocessor">#elif defined(UGEN_FFTREAL)</span>
-<a name="l00080"></a>00080 <span class="preprocessor"></span> <span class="keywordflow">if</span>(!announced) printf(<span class="stringliteral">&quot;FFTEngine using FFTReal\n&quot;</span>); announced = 1;
+<a name="l00080"></a>00080 <span class="preprocessor"></span> <span class="keywordflow">if</span>(!announced) <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;FFTEngine using FFTReal\n&quot;</span>); announced = 1;
 <a name="l00081"></a>00081  fftReal = <span class="keyword">new</span> FFTReal&lt;float&gt;(fftSize);
 <a name="l00082"></a>00082 <span class="preprocessor">#else</span>
-<a name="l00083"></a>00083 <span class="preprocessor"></span> <span class="keywordflow">if</span>(!announced) printf(<span class="stringliteral">&quot;FFTEngine using vDSP\n&quot;</span>); announced = 1;
+<a name="l00083"></a>00083 <span class="preprocessor"></span> <span class="keywordflow">if</span>(!announced) <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;FFTEngine using vDSP\n&quot;</span>); announced = 1;
 <a name="l00084"></a>00084  fftSizeLog2 = 4;
 <a name="l00085"></a>00085  <span class="keywordflow">while</span>((1 &lt;&lt; fftSizeLog2) &lt; fftSize)
 <a name="l00086"></a>00086   fftSizeLog2++;
@@ -147,18 +147,18 @@
 <a name="l00115"></a>00115 {
 <a name="l00116"></a>00116  <span class="keywordflow">if</span>((outputBuffer.size() &lt; fftSize) || (inputBuffer.size() &lt; fftSize))
 <a name="l00117"></a>00117  {
-<a name="l00118"></a>00118   printf(<span class="stringliteral">&quot;FFTEngineInternal::fft() - buffer(s) too small\n&quot;</span>);
+<a name="l00118"></a>00118   <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;FFTEngineInternal::fft() - buffer(s) too small\n&quot;</span>);
 <a name="l00119"></a>00119   <span class="keywordflow">return</span>;
 <a name="l00120"></a>00120  }
 <a name="l00121"></a>00121  
-<a name="l00122"></a>00122  DSPSplitComplex fftBuffer;
-<a name="l00123"></a>00123  fftBuffer.realp = <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(outputBuffer).getData(outputChannel);
-<a name="l00124"></a>00124  fftBuffer.imagp = fftBuffer.realp + fftSizeHalved;
+<a name="l00122"></a>00122  <a class="code" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a> fftBuffer;
+<a name="l00123"></a>00123  fftBuffer.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a> = <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(outputBuffer).getData(outputChannel);
+<a name="l00124"></a>00124  fftBuffer.<a class="code" href="struct_d_s_p_split_complex.html#a72d222ae37a256ca0e3b5a3c8eb4c670">imagp</a> = fftBuffer.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a> + fftSizeHalved;
 <a name="l00125"></a>00125  
 <a name="l00126"></a>00126  fft(fftBuffer, inputBuffer.getData(inputChannel), applyWindow);
 <a name="l00127"></a>00127 }
 <a name="l00128"></a>00128  
-<a name="l00129"></a><a class="code" href="class_f_f_t_engine_internal.html#a18cd48641f2a96ace5b750cdffd7a439">00129</a> <span class="keywordtype">void</span> <a class="code" href="class_f_f_t_engine_internal.html#a3d7b411ad7369239afea9ecc902bc1c5">FFTEngineInternal::fft</a>(DSPSplitComplex&amp; outputBuffer, <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inputBuffer, <span class="keyword">const</span> <span class="keywordtype">bool</span> applyWindow) <span class="keywordflow">throw</span>()
+<a name="l00129"></a><a class="code" href="class_f_f_t_engine_internal.html#a18cd48641f2a96ace5b750cdffd7a439">00129</a> <span class="keywordtype">void</span> <a class="code" href="class_f_f_t_engine_internal.html#a3d7b411ad7369239afea9ecc902bc1c5">FFTEngineInternal::fft</a>(<a class="code" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a>&amp; outputBuffer, <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> inputBuffer, <span class="keyword">const</span> <span class="keywordtype">bool</span> applyWindow) <span class="keywordflow">throw</span>()
 <a name="l00130"></a>00130 {  
 <a name="l00131"></a>00131  <span class="keywordflow">if</span>(applyWindow)
 <a name="l00132"></a>00132  {
@@ -190,14 +190,14 @@
 <a name="l00158"></a>00158   <span class="keywordflow">return</span>;
 <a name="l00159"></a>00159  }
 <a name="l00160"></a>00160  
-<a name="l00161"></a>00161  DSPSplitComplex fftBuffer;
-<a name="l00162"></a>00162  fftBuffer.realp = (<span class="keywordtype">float</span>*)inputBuffer.getData(inputChannel);
-<a name="l00163"></a>00163  fftBuffer.imagp = fftBuffer.realp + fftSizeHalved;
+<a name="l00161"></a>00161  <a class="code" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a> fftBuffer;
+<a name="l00162"></a>00162  fftBuffer.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a> = (<span class="keywordtype">float</span>*)inputBuffer.getData(inputChannel);
+<a name="l00163"></a>00163  fftBuffer.<a class="code" href="struct_d_s_p_split_complex.html#a72d222ae37a256ca0e3b5a3c8eb4c670">imagp</a> = fftBuffer.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a> + fftSizeHalved;
 <a name="l00164"></a>00164  
 <a name="l00165"></a>00165  ifft(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(outputBuffer).getData(outputChannel), fftBuffer, applyWindow, applyScaling);
 <a name="l00166"></a>00166 } 
 <a name="l00167"></a>00167 
-<a name="l00168"></a><a class="code" href="class_f_f_t_engine_internal.html#ad2b6f224c03f37d7ab3b5fc7d0619716">00168</a> <span class="keywordtype">void</span> <a class="code" href="class_f_f_t_engine_internal.html#a82706f43d792ca37a9bec251304b6971">FFTEngineInternal::ifft</a>(<span class="keywordtype">float</span>* <span class="keyword">const</span> outputBuffer, DSPSplitComplex <span class="keyword">const</span>&amp; inputBuffer, <span class="keyword">const</span> <span class="keywordtype">bool</span> applyWindow, <span class="keyword">const</span> <span class="keywordtype">bool</span> applyScaling) <span class="keywordflow">throw</span>()
+<a name="l00168"></a><a class="code" href="class_f_f_t_engine_internal.html#ad2b6f224c03f37d7ab3b5fc7d0619716">00168</a> <span class="keywordtype">void</span> <a class="code" href="class_f_f_t_engine_internal.html#a82706f43d792ca37a9bec251304b6971">FFTEngineInternal::ifft</a>(<span class="keywordtype">float</span>* <span class="keyword">const</span> outputBuffer, <a class="code" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a> <span class="keyword">const</span>&amp; inputBuffer, <span class="keyword">const</span> <span class="keywordtype">bool</span> applyWindow, <span class="keyword">const</span> <span class="keywordtype">bool</span> applyScaling) <span class="keywordflow">throw</span>()
 <a name="l00169"></a>00169 {
 <a name="l00170"></a>00170  ifft(outputBuffer, inputBuffer);
 <a name="l00171"></a>00171  
@@ -323,17 +323,17 @@
 <a name="l00291"></a>00291  
 <a name="l00292"></a>00292  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> unpacked = rawToRealImagUnpacked(raw);
 <a name="l00293"></a>00293  
-<a name="l00294"></a>00294  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> real(unpacked.<a class="code" href="class_buffer.html#ab6d2424995bb36bc1305dc7cfca910dc">getRegion</a>(firstRealBin, firstRealBin + numBins - 1));
-<a name="l00295"></a>00295  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> imag(unpacked.<a class="code" href="class_buffer.html#ab6d2424995bb36bc1305dc7cfca910dc">getRegion</a>(firstImagBin, firstImagBin + numBins - 1));
+<a name="l00294"></a>00294  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="namespacestd.html#a4d5391e3acf6dfcad0901664d0fb9752">real</a>(unpacked.<a class="code" href="class_buffer.html#ab6d2424995bb36bc1305dc7cfca910dc">getRegion</a>(firstRealBin, firstRealBin + numBins - 1));
+<a name="l00295"></a>00295  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="namespacestd.html#a3902ae539720e2ff1396151f26384002">imag</a>(unpacked.<a class="code" href="class_buffer.html#ab6d2424995bb36bc1305dc7cfca910dc">getRegion</a>(firstImagBin, firstImagBin + numBins - 1));
 <a name="l00296"></a>00296  
-<a name="l00297"></a>00297  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> magnitude(<a class="code" href="ugen___binary_op_u_gens_8cpp.html#a8e40fd093fb24a8568f11c963627a3ec" title="Global function for the UGen::hypot() binary operator.">hypot</a>(imag, real));
+<a name="l00297"></a>00297  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> magnitude(<a class="code" href="ugen___binary_op_u_gens_8cpp.html#a8e40fd093fb24a8568f11c963627a3ec" title="Global function for the UGen::hypot() binary operator.">hypot</a>(<a class="code" href="namespacestd.html#a3902ae539720e2ff1396151f26384002">imag</a>, <a class="code" href="namespacestd.html#a4d5391e3acf6dfcad0901664d0fb9752">real</a>));
 <a name="l00298"></a>00298  
 <a name="l00299"></a>00299  <span class="keywordflow">if</span>(magnitudeAssumesWindowedFFT)
 <a name="l00300"></a>00300   magnitude = magnitude * (1.0 / (fftSizeHalved * fftWindowFactor));
 <a name="l00301"></a>00301  <span class="keywordflow">else</span>
 <a name="l00302"></a>00302   magnitude = magnitude * (1.0 / fftSizeHalved);
 <a name="l00303"></a>00303  
-<a name="l00304"></a>00304  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> phase(<a class="code" href="ugen___binary_op_u_gens_8cpp.html#a8b9bba14d03c891faedba158ff374ff7" title="Global function for the UGen::atan2() binary operator.">atan2</a>(imag, real));
+<a name="l00304"></a>00304  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> phase(<a class="code" href="ugen___binary_op_u_gens_8cpp.html#a8b9bba14d03c891faedba158ff374ff7" title="Global function for the UGen::atan2() binary operator.">atan2</a>(<a class="code" href="namespacestd.html#a3902ae539720e2ff1396151f26384002">imag</a>, <a class="code" href="namespacestd.html#a4d5391e3acf6dfcad0901664d0fb9752">real</a>));
 <a name="l00305"></a>00305  
 <a name="l00306"></a>00306  <span class="keywordflow">return</span> (magnitude, phase);
 <a name="l00307"></a>00307 }
@@ -357,17 +357,17 @@
 <a name="l00325"></a>00325  
 <a name="l00326"></a>00326  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> unpacked = rawToRealImagUnpacked(raw);
 <a name="l00327"></a>00327  
-<a name="l00328"></a>00328  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> real(unpacked.<a class="code" href="class_buffer.html#ab6d2424995bb36bc1305dc7cfca910dc">getRegion</a>(firstRealBin, firstRealBin + numBins - 1));
-<a name="l00329"></a>00329  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> imag(unpacked.<a class="code" href="class_buffer.html#ab6d2424995bb36bc1305dc7cfca910dc">getRegion</a>(firstImagBin, firstImagBin + numBins - 1));
+<a name="l00328"></a>00328  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="namespacestd.html#a4d5391e3acf6dfcad0901664d0fb9752">real</a>(unpacked.<a class="code" href="class_buffer.html#ab6d2424995bb36bc1305dc7cfca910dc">getRegion</a>(firstRealBin, firstRealBin + numBins - 1));
+<a name="l00329"></a>00329  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="namespacestd.html#a3902ae539720e2ff1396151f26384002">imag</a>(unpacked.<a class="code" href="class_buffer.html#ab6d2424995bb36bc1305dc7cfca910dc">getRegion</a>(firstImagBin, firstImagBin + numBins - 1));
 <a name="l00330"></a>00330  
-<a name="l00331"></a>00331  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> magnitude(<a class="code" href="ugen___binary_op_u_gens_8cpp.html#a8e40fd093fb24a8568f11c963627a3ec" title="Global function for the UGen::hypot() binary operator.">hypot</a>(imag, real));
+<a name="l00331"></a>00331  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> magnitude(<a class="code" href="ugen___binary_op_u_gens_8cpp.html#a8e40fd093fb24a8568f11c963627a3ec" title="Global function for the UGen::hypot() binary operator.">hypot</a>(<a class="code" href="namespacestd.html#a3902ae539720e2ff1396151f26384002">imag</a>, <a class="code" href="namespacestd.html#a4d5391e3acf6dfcad0901664d0fb9752">real</a>));
 <a name="l00332"></a>00332  
 <a name="l00333"></a>00333  <span class="keywordflow">if</span>(magnitudeAssumesWindowedFFT)
 <a name="l00334"></a>00334   magnitude = magnitude * (1.0 / (fftSizeHalved * fftWindowFactor));
 <a name="l00335"></a>00335  <span class="keywordflow">else</span>
 <a name="l00336"></a>00336   magnitude = magnitude * (1.0 / fftSizeHalved);
 <a name="l00337"></a>00337  
-<a name="l00338"></a>00338  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> phase(<a class="code" href="ugen___binary_op_u_gens_8cpp.html#a8b9bba14d03c891faedba158ff374ff7" title="Global function for the UGen::atan2() binary operator.">atan2</a>(imag, real));
+<a name="l00338"></a>00338  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> phase(<a class="code" href="ugen___binary_op_u_gens_8cpp.html#a8b9bba14d03c891faedba158ff374ff7" title="Global function for the UGen::atan2() binary operator.">atan2</a>(<a class="code" href="namespacestd.html#a3902ae539720e2ff1396151f26384002">imag</a>, <a class="code" href="namespacestd.html#a4d5391e3acf6dfcad0901664d0fb9752">real</a>));
 <a name="l00339"></a>00339  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> splitBuffer;
 <a name="l00340"></a>00340  
 <a name="l00341"></a>00341  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; raw.getNumChannels(); i++)
@@ -398,13 +398,13 @@
 <a name="l00366"></a>00366  
 <a name="l00367"></a>00367  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> unpacked = rawToRealImagUnpacked(raw);
 <a name="l00368"></a>00368  
-<a name="l00369"></a>00369  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> real(unpacked.<a class="code" href="class_buffer.html#ab6d2424995bb36bc1305dc7cfca910dc">getRegion</a>(firstRealBin, firstRealBin + numBins - 1));
-<a name="l00370"></a>00370  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> imag(unpacked.<a class="code" href="class_buffer.html#ab6d2424995bb36bc1305dc7cfca910dc">getRegion</a>(firstImagBin, firstImagBin + numBins - 1));
+<a name="l00369"></a>00369  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="namespacestd.html#a4d5391e3acf6dfcad0901664d0fb9752">real</a>(unpacked.<a class="code" href="class_buffer.html#ab6d2424995bb36bc1305dc7cfca910dc">getRegion</a>(firstRealBin, firstRealBin + numBins - 1));
+<a name="l00370"></a>00370  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="namespacestd.html#a3902ae539720e2ff1396151f26384002">imag</a>(unpacked.<a class="code" href="class_buffer.html#ab6d2424995bb36bc1305dc7cfca910dc">getRegion</a>(firstImagBin, firstImagBin + numBins - 1));
 <a name="l00371"></a>00371  
 <a name="l00372"></a>00372  <span class="keywordflow">if</span>(magnitudeAssumesWindowedFFT)
-<a name="l00373"></a>00373   <span class="keywordflow">return</span> <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a8e40fd093fb24a8568f11c963627a3ec" title="Global function for the UGen::hypot() binary operator.">hypot</a>(imag, real) * (1.0 / (fftSizeHalved * fftWindowFactor));
+<a name="l00373"></a>00373   <span class="keywordflow">return</span> <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a8e40fd093fb24a8568f11c963627a3ec" title="Global function for the UGen::hypot() binary operator.">hypot</a>(<a class="code" href="namespacestd.html#a3902ae539720e2ff1396151f26384002">imag</a>, <a class="code" href="namespacestd.html#a4d5391e3acf6dfcad0901664d0fb9752">real</a>) * (1.0 / (fftSizeHalved * fftWindowFactor));
 <a name="l00374"></a>00374  <span class="keywordflow">else</span>
-<a name="l00375"></a>00375   <span class="keywordflow">return</span> <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a8e40fd093fb24a8568f11c963627a3ec" title="Global function for the UGen::hypot() binary operator.">hypot</a>(imag, real) * (1.0 / fftSizeHalved);
+<a name="l00375"></a>00375   <span class="keywordflow">return</span> <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a8e40fd093fb24a8568f11c963627a3ec" title="Global function for the UGen::hypot() binary operator.">hypot</a>(<a class="code" href="namespacestd.html#a3902ae539720e2ff1396151f26384002">imag</a>, <a class="code" href="namespacestd.html#a4d5391e3acf6dfcad0901664d0fb9752">real</a>) * (1.0 / fftSizeHalved);
 <a name="l00376"></a>00376 }
 <a name="l00377"></a>00377 
 <a name="l00378"></a><a class="code" href="class_f_f_t_engine_internal.html#aa5b1fe6129b5e638f9ea4805b0f65ff2">00378</a> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_f_f_t_engine_internal.html#aa5b1fe6129b5e638f9ea4805b0f65ff2">FFTEngineInternal::rawToPhase</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; raw, <span class="keyword">const</span> <span class="keywordtype">int</span> firstBin, <span class="keyword">const</span> <span class="keywordtype">int</span> numBins) <span class="keywordflow">throw</span>()
@@ -423,10 +423,10 @@
 <a name="l00391"></a>00391  
 <a name="l00392"></a>00392  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> unpacked = rawToRealImagUnpacked(raw);
 <a name="l00393"></a>00393  
-<a name="l00394"></a>00394  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> real(unpacked.<a class="code" href="class_buffer.html#ab6d2424995bb36bc1305dc7cfca910dc">getRegion</a>(firstRealBin, firstRealBin + numBins - 1));
-<a name="l00395"></a>00395  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> imag(unpacked.<a class="code" href="class_buffer.html#ab6d2424995bb36bc1305dc7cfca910dc">getRegion</a>(firstImagBin, firstImagBin + numBins - 1));
+<a name="l00394"></a>00394  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="namespacestd.html#a4d5391e3acf6dfcad0901664d0fb9752">real</a>(unpacked.<a class="code" href="class_buffer.html#ab6d2424995bb36bc1305dc7cfca910dc">getRegion</a>(firstRealBin, firstRealBin + numBins - 1));
+<a name="l00395"></a>00395  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="namespacestd.html#a3902ae539720e2ff1396151f26384002">imag</a>(unpacked.<a class="code" href="class_buffer.html#ab6d2424995bb36bc1305dc7cfca910dc">getRegion</a>(firstImagBin, firstImagBin + numBins - 1));
 <a name="l00396"></a>00396  
-<a name="l00397"></a>00397  <span class="keywordflow">return</span> <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a8b9bba14d03c891faedba158ff374ff7" title="Global function for the UGen::atan2() binary operator.">atan2</a>(imag, real);
+<a name="l00397"></a>00397  <span class="keywordflow">return</span> <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a8b9bba14d03c891faedba158ff374ff7" title="Global function for the UGen::atan2() binary operator.">atan2</a>(<a class="code" href="namespacestd.html#a3902ae539720e2ff1396151f26384002">imag</a>, <a class="code" href="namespacestd.html#a4d5391e3acf6dfcad0901664d0fb9752">real</a>);
 <a name="l00398"></a>00398 }
 <a name="l00399"></a>00399 
 <a name="l00400"></a>00400 
@@ -437,7 +437,7 @@
 <a name="l00405"></a>00405 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:30 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

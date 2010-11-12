@@ -30,7 +30,7 @@
 <h1>buffers/ugen_PlayBuf.h</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___play_buf_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_PlayBuf.h 171 2010-10-01 07:21:41Z 0x4d52 $</span>
+<a href="ugen___play_buf_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_PlayBuf.h 196 2010-11-12 10:35:56Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/buffers/ugen_PlayBuf.h $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -170,10 +170,42 @@
 <a name="l00157"></a><a class="code" href="class_record_buf.html#a06573af5676881ca729048acd42f0575">00157</a>        <span class="keyword">const</span> <a class="code" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1ca" title="Defines actions to be done at the end of an event e.g., a line or envelope.">UGen::DoneAction</a> doneAction = <a class="code" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1caa0fbefeaf163b11d9f88375fdb8f3eaac" title="When the event ends it signals a delete message which should delete an entire UGen graph...">UGen::DeleteWhenDone</a>), <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>);
 <a name="l00158"></a>00158 
 <a name="l00159"></a>00159 
-<a name="l00160"></a>00160 <span class="preprocessor">#endif // _UGEN_ugen_PlayBuf_H_</span>
+<a name="l00160"></a><a class="code" href="class_loop_points_u_gen_internal.html">00160</a> <span class="keyword">class </span><a class="code" href="class_loop_points_u_gen_internal.html">LoopPointsUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>
+<a name="l00161"></a>00161 {
+<a name="l00162"></a>00162 <span class="keyword">public</span>:
+<a name="l00163"></a>00163  <a class="code" href="class_loop_points_u_gen_internal.html#a1cdbb70d06b0e41c4f381cee92c5fe4e">LoopPointsUGenInternal</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; buffer, 
+<a name="l00164"></a>00164          <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; <a class="code" href="class_u_gen_internal.html#a7d2d4b436a5a80c7ebc23c84901c9e63">rate</a>, 
+<a name="l00165"></a>00165          <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, 
+<a name="l00166"></a>00166          <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; end, 
+<a name="l00167"></a>00167          <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; loop,
+<a name="l00168"></a>00168          <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; startAtZero,
+<a name="l00169"></a>00169          <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; playToEnd) <span class="keywordflow">throw</span>();
+<a name="l00170"></a>00170  <span class="keywordtype">void</span> <a class="code" href="class_loop_points_u_gen_internal.html#ac44b6930385f2260c389571902c9bc05" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00171"></a>00171  
+<a name="l00172"></a><a class="code" href="class_loop_points_u_gen_internal.html#aceeea0174190c488e32d9092ea6c3b72a9f39925497c9780454d8f5d07377c1f5">00172</a>  <span class="keyword">enum</span> <a class="code" href="class_loop_points_u_gen_internal.html#aceeea0174190c488e32d9092ea6c3b72">Inputs</a> { Rate, Start, End, Loop, StartAtZero, PlayToEnd, <a class="code" href="class_loop_points_u_gen_internal.html#aceeea0174190c488e32d9092ea6c3b72aaa747120cd6cb109b44f5da91edea8cd">NumInputs</a> };
+<a name="l00173"></a>00173  
+<a name="l00174"></a>00174 <span class="keyword">private</span>:
+<a name="l00175"></a><a class="code" href="class_loop_points_u_gen_internal.html#a3edeaf1e62877d51c591b4915aa9d48a">00175</a>  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_loop_points_u_gen_internal.html#a3edeaf1e62877d51c591b4915aa9d48a">b</a>;
+<a name="l00176"></a><a class="code" href="class_loop_points_u_gen_internal.html#afa50004c2dfee27fd26dc8e5adfbe3e1">00176</a>  <span class="keywordtype">float</span> <a class="code" href="class_loop_points_u_gen_internal.html#afa50004c2dfee27fd26dc8e5adfbe3e1">currentValue</a>;
+<a name="l00177"></a><a class="code" href="class_loop_points_u_gen_internal.html#a49773b395bcdf8cc12c4de249110b71a">00177</a>  <span class="keywordtype">bool</span> <a class="code" href="class_loop_points_u_gen_internal.html#a49773b395bcdf8cc12c4de249110b71a">lastLoop</a>;
+<a name="l00178"></a>00178 };
+<a name="l00179"></a>00179 
+<a name="l00180"></a>00180 
+<a name="l00184"></a>00184 <a class="code" href="ugen___u_gen_8h.html#a7db186e77855232bec685ee47ef99496" title="Macro for declaring a simple UGen.">UGenSublcassDeclaration</a>(<a class="code" href="class_loop_points.html" title="A UGen for controlling PlayBuf loop points via its offset input.">LoopPoints</a>, 
+<a name="l00185"></a>00185       (buffer, rate, <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, end, loop, startAtZero, playToEnd), 
+<a name="l00186"></a>00186       (<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; buffer, 
+<a name="l00187"></a>00187        <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; rate, 
+<a name="l00188"></a>00188        <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, 
+<a name="l00189"></a>00189        <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; end, 
+<a name="l00190"></a>00190        <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; loop = 1.f, 
+<a name="l00191"></a>00191        <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; startAtZero = 0.f,
+<a name="l00192"></a>00192        <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; playToEnd = 1.f), 
+<a name="l00193"></a><a class="code" href="class_loop_points.html#aa1a63368a7ecdec9ad85bb1845145c19">00193</a>       <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>);
+<a name="l00194"></a>00194 
+<a name="l00195"></a>00195 <span class="preprocessor">#endif // _UGEN_ugen_PlayBuf_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:36 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:29 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

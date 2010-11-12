@@ -97,7 +97,7 @@
 <a name="l00065"></a>00065 <span class="preprocessor"></span>
 <a name="l00066"></a>00066 <span class="keyword">typedef</span> <span class="keyword">struct </span>AQIOStruct
 <a name="l00067"></a>00067 {
-<a name="l00068"></a>00068  AudioQueueRef queue;
+<a name="l00068"></a>00068  AudioQueueRef <a class="code" href="ugen___play_buf_8ii.html#a839103337d1936e47f7884bf2cc4469c">queue</a>;
 <a name="l00069"></a>00069  AudioStreamBasicDescription dataFormat;
 <a name="l00070"></a>00070  AudioQueueBufferRef buffers[AUDIO_BUFFERS];
 <a name="l00071"></a>00071  <span class="keywordtype">float</span> floatBuffer[FLOATBUFFER_SIZE*AUDIO_BUFFERS];
@@ -110,7 +110,7 @@
 <a name="l00078"></a>00078 <span class="keyword">typedef</span> <span class="keyword">struct </span>AQCallbackStruct 
 <a name="l00079"></a>00079 {
 <a name="l00080"></a>00080  <a class="code" href="interface_audio_queue_i_o_host_controller.html" title="AudioQueue / iPhone audio support.">AudioQueueIOHostController</a>* owner;
-<a name="l00081"></a>00081  UInt32 frameCount;
+<a name="l00081"></a>00081  <a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a> frameCount;
 <a name="l00082"></a>00082  
 <a name="l00083"></a>00083  AQIOStruct inputInfo;
 <a name="l00084"></a>00084  AQIOStruct outputInfo;
@@ -156,7 +156,7 @@
 <a name="l00124"></a>00124  <span class="comment">// to create a new thread but it looks like a lot of management</span>
 <a name="l00125"></a>00125  
 <a name="l00126"></a>00126  <span class="keyword">const</span> <span class="keywordtype">int</span> sampleSize = <span class="keyword">sizeof</span>(short);
-<a name="l00127"></a>00127     UInt32 err;
+<a name="l00127"></a>00127     <a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a> err;
 <a name="l00128"></a>00128  
 <a name="l00129"></a>00129  <a class="code" href="class_u_gen.html#af6936b37fa6d0ffd11555938e69c0646" title="Initialise UGen++.">UGen::initialise</a>();
 <a name="l00130"></a>00130  <a class="code" href="interface_audio_queue_i_o_host_controller.html#a4360edabfe05eb1dd9710edd74762769">deleter</a> = <span class="keyword">new</span> <a class="code" href="class_n_s_deleter.html">NSDeleter</a>();
@@ -179,18 +179,18 @@
 <a name="l00147"></a>00147  <span class="comment">//aqc-&gt;inputInfo.dataFormat.mFormatFlags = kLinearPCMFormatFlagIsBigEndian | kLinearPCMFormatFlagIsSignedInteger | kLinearPCMFormatFlagIsPacked;</span>
 <a name="l00148"></a>00148  
 <a name="l00149"></a>00149     <a class="code" href="interface_audio_queue_i_o_host_controller.html#add6b5316ef594d46423e4ab4a567059f" title="Private internal structure.">aqc</a>-&gt;frameCount = FRAME_COUNT;
-<a name="l00150"></a>00150  <span class="keyword">const</span> UInt32 bufferSize = <a class="code" href="interface_audio_queue_i_o_host_controller.html#add6b5316ef594d46423e4ab4a567059f" title="Private internal structure.">aqc</a>-&gt;frameCount * <a class="code" href="interface_audio_queue_i_o_host_controller.html#add6b5316ef594d46423e4ab4a567059f" title="Private internal structure.">aqc</a>-&gt;outputInfo.dataFormat.mBytesPerFrame;
+<a name="l00150"></a>00150  <span class="keyword">const</span> <a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a> bufferSize = <a class="code" href="interface_audio_queue_i_o_host_controller.html#add6b5316ef594d46423e4ab4a567059f" title="Private internal structure.">aqc</a>-&gt;frameCount * <a class="code" href="interface_audio_queue_i_o_host_controller.html#add6b5316ef594d46423e4ab4a567059f" title="Private internal structure.">aqc</a>-&gt;outputInfo.dataFormat.mBytesPerFrame;
 <a name="l00151"></a>00151  
 <a name="l00152"></a>00152  <span class="comment">// init UGen++</span>
 <a name="l00153"></a>00153  <a class="code" href="interface_audio_queue_i_o_host_controller.html#add6b5316ef594d46423e4ab4a567059f" title="Private internal structure.">aqc</a>-&gt;inputInfo.graph = <a class="code" href="class_audio_in.html#a38d828464a46955cf83c91f090eb1b4e" title="Construct and return an audio rate AudioIn .">AudioIn::AR</a>(NUM_CHANNELS);
 <a name="l00154"></a>00154  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> output = [<span class="keyword">self</span> constructGraph:aqc-&gt;inputInfo.graph];
 <a name="l00155"></a>00155  <a class="code" href="interface_audio_queue_i_o_host_controller.html#add6b5316ef594d46423e4ab4a567059f" title="Private internal structure.">aqc</a>-&gt;outputInfo.graph = output * <a class="code" href="class_env_gen.html#a6efe7153787854b8074ddaf2ade4abad" title="Construct and return a control rate EnvGen (if available, otherise returns an audio version by defaul...">EnvGen::KR</a>(<a class="code" href="class_env.html#ad65a69e21690fbd5d160d0fa2f7dc96a" title="Creates a new envelope specification which is shaped like traditional analog attack-sustain-release (...">Env::asr</a>(0.1, 1.0, 0.1, 1.0, 0.0));
-<a name="l00156"></a>00156  <a class="code" href="class_u_gen.html#a498640a31a6aa85d3c7f83d77ce27c98" title="Prepares UGen++ for a rendering session.">UGen::prepareToPlay</a>(<a class="code" href="interface_audio_queue_i_o_host_controller.html#add6b5316ef594d46423e4ab4a567059f" title="Private internal structure.">aqc</a>-&gt;outputInfo.dataFormat.mSampleRate, <a class="code" href="interface_audio_queue_i_o_host_controller.html#add6b5316ef594d46423e4ab4a567059f" title="Private internal structure.">aqc</a>-&gt;frameCount, 64);
+<a name="l00156"></a>00156  <a class="code" href="class_u_gen.html#aa85351219341229067e450b037235a10" title="Prepares UGen++ for a rendering session.">UGen::prepareToPlay</a>(<a class="code" href="interface_audio_queue_i_o_host_controller.html#add6b5316ef594d46423e4ab4a567059f" title="Private internal structure.">aqc</a>-&gt;outputInfo.dataFormat.mSampleRate, <a class="code" href="interface_audio_queue_i_o_host_controller.html#add6b5316ef594d46423e4ab4a567059f" title="Private internal structure.">aqc</a>-&gt;frameCount, 64);
 <a name="l00157"></a>00157  
 <a name="l00158"></a>00158  
 <a name="l00159"></a>00159  <a class="code" href="interface_audio_queue_i_o_host_controller.html#add6b5316ef594d46423e4ab4a567059f" title="Private internal structure.">aqc</a>-&gt;inputInfo.writeIndex = 0;
 <a name="l00160"></a>00160  <a class="code" href="interface_audio_queue_i_o_host_controller.html#add6b5316ef594d46423e4ab4a567059f" title="Private internal structure.">aqc</a>-&gt;inputInfo.readIndex = AUDIO_BUFFERS-1;
-<a name="l00161"></a>00161  memset(<a class="code" href="interface_audio_queue_i_o_host_controller.html#add6b5316ef594d46423e4ab4a567059f" title="Private internal structure.">aqc</a>-&gt;inputInfo.floatBuffer, 0, (FLOATBUFFER_SIZE*AUDIO_BUFFERS) * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00161"></a>00161  <a class="code" href="ugen___play_buf_8ii.html#a68d2b40ef2213b9227a1ce3b81997ae5">memset</a>(<a class="code" href="interface_audio_queue_i_o_host_controller.html#add6b5316ef594d46423e4ab4a567059f" title="Private internal structure.">aqc</a>-&gt;inputInfo.floatBuffer, 0, (FLOATBUFFER_SIZE*AUDIO_BUFFERS) * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l00162"></a>00162  
 <a name="l00163"></a>00163  <span class="comment">// init input queue</span>
 <a name="l00164"></a>00164  
@@ -251,7 +251,7 @@
 <a name="l00219"></a>00219     <span class="keywordflow">return</span> 0;
 <a name="l00220"></a>00220 }
 <a name="l00221"></a>00221 
-<a name="l00222"></a>00222 - (void) audioQueueInputCallback: (AudioQueueRef) inQ bufferRef: (AudioQueueBufferRef) inQB;
+<a name="l00222"></a>00222 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>) audioQueueInputCallback: (AudioQueueRef) inQ bufferRef: (AudioQueueBufferRef) inQB;
 <a name="l00223"></a>00223 {
 <a name="l00224"></a>00224  <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> oneOverMaxVal = 1.f / (float) 0x7ffe;
 <a name="l00225"></a>00225  
@@ -306,7 +306,7 @@
 <a name="l00274"></a>00274  AudioQueueEnqueueBuffer (inQ, inQB, 0, NULL);
 <a name="l00275"></a>00275 }
 <a name="l00276"></a>00276 
-<a name="l00277"></a>00277 - (void) audioQueueOutputCallback: (AudioQueueRef) inQ bufferRef: (AudioQueueBufferRef) outQB;
+<a name="l00277"></a>00277 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>) audioQueueOutputCallback: (AudioQueueRef) inQ bufferRef: (AudioQueueBufferRef) outQB;
 <a name="l00278"></a>00278 {
 <a name="l00279"></a>00279  <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> maxVal = (float) 0x7ffe;
 <a name="l00280"></a>00280  
@@ -391,12 +391,12 @@
 <a name="l00359"></a>00359  <span class="keywordflow">return</span> <a class="code" href="class_u_gen.html#a0e889a35de22c1c46293425788eebe15" title="Create a UGen with a number of empty (null) channels.">UGen::emptyChannels</a>(NUM_CHANNELS);
 <a name="l00360"></a>00360 }
 <a name="l00361"></a>00361 
-<a name="l00362"></a>00362 - (void) <a class="code" href="interface_audio_queue_i_o_host_controller.html#aee00072060d3698546767b49d3a33ca8">cleanUp</a>
+<a name="l00362"></a>00362 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>) <a class="code" href="interface_audio_queue_i_o_host_controller.html#aee00072060d3698546767b49d3a33ca8">cleanUp</a>
 <a name="l00363"></a>00363 {
 <a name="l00364"></a>00364  <a class="code" href="interface_audio_queue_i_o_host_controller.html#add6b5316ef594d46423e4ab4a567059f" title="Private internal structure.">aqc</a>-&gt;outputInfo.graph.release();
 <a name="l00365"></a>00365  <span class="keywordflow">while</span>(<a class="code" href="interface_audio_queue_i_o_host_controller.html#add6b5316ef594d46423e4ab4a567059f" title="Private internal structure.">aqc</a>-&gt;outputInfo.graph.isNotNull())
 <a name="l00366"></a>00366  {
-<a name="l00367"></a>00367   sleep(200);
+<a name="l00367"></a>00367   <a class="code" href="ugen___play_buf_8ii.html#ad959be76661a4bd7ed77165fbceb9b64">sleep</a>(200);
 <a name="l00368"></a>00368  }
 <a name="l00369"></a>00369  
 <a name="l00370"></a>00370  <span class="comment">// do this input stuff conditionally on input being there!...</span>
@@ -434,7 +434,7 @@
 <a name="l00402"></a>00402 <span class="preprocessor">#endif // gpl</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:31 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

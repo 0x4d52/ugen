@@ -77,10 +77,10 @@
 <a name="l00045"></a><a class="code" href="class_brown_noise_u_gen_internal.html#a5b9fd9f8973842ec0d03c0dbdc8dff46">00045</a> <a class="code" href="class_brown_noise_u_gen_internal.html#a5b9fd9f8973842ec0d03c0dbdc8dff46">BrownNoiseUGenInternal::BrownNoiseUGenInternal</a>() throw()
 <a name="l00046"></a>00046 : <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(NoInputs),
 <a name="l00047"></a>00047  <span class="comment">//random((unsigned int)this * 123463463UL + 423815L + rand(455563)),</span>
-<a name="l00048"></a>00048  random(<a class="code" href="ugen___random_8h.html#a4a9d748503ef7330212b77884f7fb4b6">rand</a>(0x7fffffff)),
-<a name="l00049"></a>00049  currentValue(random.nextBiFloat())
+<a name="l00048"></a>00048  <a class="code" href="ugen___play_buf_8ii.html#a114aeb1751119382aaf3340355b22cfd">random</a>(<a class="code" href="ugen___random_8h.html#a4a9d748503ef7330212b77884f7fb4b6">rand</a>(0x7fffffff)),
+<a name="l00049"></a>00049  currentValue(<a class="code" href="ugen___play_buf_8ii.html#a114aeb1751119382aaf3340355b22cfd">random</a>.nextBiFloat())
 <a name="l00050"></a>00050 {
-<a name="l00051"></a>00051  <a class="code" href="class_u_gen_internal.html#a3b9de200fa163a233dab85b3388fd469" title="Initialise the UGen output value.">initValue</a>(<a class="code" href="class_brown_noise_u_gen_internal.html#a6209eb05e7273a2bec013f736df15cf9">currentValue</a>);
+<a name="l00051"></a>00051  <a class="code" href="class_u_gen_internal.html#a02969e1ea45efde745a41fec2ac36dc4" title="Initialise the UGen output value.">initValue</a>(<a class="code" href="class_brown_noise_u_gen_internal.html#a6209eb05e7273a2bec013f736df15cf9">currentValue</a>);
 <a name="l00052"></a>00052 }
 <a name="l00053"></a>00053 
 <a name="l00054"></a><a class="code" href="class_brown_noise_u_gen_internal.html#a49b2a3038c98039dde862d3720791048">00054</a> <span class="keywordtype">void</span> <a class="code" href="class_brown_noise_u_gen_internal.html#a49b2a3038c98039dde862d3720791048" title="Process a block of samples for this blockID and channel.">BrownNoiseUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
@@ -89,7 +89,7 @@
 <a name="l00057"></a>00057  <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
 <a name="l00058"></a>00058  
 <a name="l00059"></a>00059  <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> s1, s2, s3;
-<a name="l00060"></a>00060  random.get(s1, s2, s3);
+<a name="l00060"></a>00060  <a class="code" href="ugen___play_buf_8ii.html#a114aeb1751119382aaf3340355b22cfd">random</a>.get(s1, s2, s3);
 <a name="l00061"></a>00061  
 <a name="l00062"></a>00062  <span class="keywordflow">while</span>(numSamplesToProcess--)
 <a name="l00063"></a>00063  {
@@ -102,7 +102,7 @@
 <a name="l00070"></a>00070   *outputSamples++ = currentValue;
 <a name="l00071"></a>00071  }
 <a name="l00072"></a>00072  
-<a name="l00073"></a>00073  random.set(s1, s2, s3);
+<a name="l00073"></a>00073  <a class="code" href="ugen___play_buf_8ii.html#a114aeb1751119382aaf3340355b22cfd">random</a>.set(s1, s2, s3);
 <a name="l00074"></a>00074 }
 <a name="l00075"></a>00075 
 <a name="l00076"></a><a class="code" href="class_brown_noise.html#a63c2c9e1bcd2640fdcb0b56dc2c52d82">00076</a> <a class="code" href="class_brown_noise.html#a63c2c9e1bcd2640fdcb0b56dc2c52d82" title="Base MulAdd BrownNoise Constuctor (without &amp;quot;mul&amp;quot; or &amp;quot;add&amp;quot;), use the AR() and KR()...">BrownNoise::BrownNoise</a>() throw()
@@ -116,7 +116,7 @@
 <a name="l00084"></a>00084 <span class="preprocessor">#endif // gpl</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:38 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:32 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

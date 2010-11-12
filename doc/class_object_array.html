@@ -46,6 +46,8 @@
 
 <p>Inherits <a class="el" href="class_smart_pointer_container.html">SmartPointerContainer&lt; ObjectArrayInternal&lt; ObjectType &gt; &gt;</a>.</p>
 
+<p>Inherited by <a class="el" href="class_numerical_array.html">NumericalArray&lt; NumericalType &gt;</a>, and <a class="el" href="class_object_array2_d_base.html">ObjectArray2DBase&lt; NumericalType, RowType &gt;</a>.</p>
+
 <p><a href="class_object_array-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
@@ -887,7 +889,7 @@ template&lt;class ObjectType&gt; </div>
 
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l00718">718</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l00725">ObjectArray&lt; Text &gt;::add()</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l01414">UGen::getDurations()</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l01431">UGen::getPositions()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01365">ObjectArray&lt; Text &gt;::group()</a>, <a class="el" href="ugen___neural_network_u_gen_8cpp_source.html#l00075">NeuralNetworkUGenUGenInternal::processBlock()</a>, <a class="el" href="ugen___collections_8h_source.html#l00158">Dictionary&lt; ValueType, KeyType &gt;::put()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01319">ObjectArray&lt; Text &gt;::replace()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01411">ObjectArray&lt; Text &gt;::split()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l01463">ObjectArray&lt; Text &gt;::splitSequence()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___text_8cpp_source.html#l00131">ugen::Text::add()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00725">ObjectArray&lt; Buffer &gt;::add()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01365">ObjectArray&lt; Buffer &gt;::group()</a>, <a class="el" href="ugen___neural_network_u_gen_8cpp_source.html#l00075">NeuralNetworkUGenUGenInternal::processBlock()</a>, <a class="el" href="ugen___collections_8h_source.html#l00158">Dictionary&lt; ValueType, KeyType &gt;::put()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01319">ObjectArray&lt; Buffer &gt;::replace()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01411">ObjectArray&lt; Buffer &gt;::split()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l01463">ObjectArray&lt; Buffer &gt;::splitSequence()</a>.</p>
 
 </div>
 </div>
@@ -937,6 +939,8 @@ template&lt;class ObjectType&gt; </div>
 <p>If you are not sure about the index being in range check for the object being "null" as a separate internal null value may have been returned instead. </p>
 
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l00786">786</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
+
+<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l03087">NumericalArray2D&lt; NumericalType, RowType &gt;::print()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l02434">NumericalArray&lt; int &gt;::print()</a>.</p>
 
 </div>
 </div>
@@ -1277,7 +1281,7 @@ template&lt;class ObjectType&gt; </div>
 
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l01115">1115</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l01239">ObjectArray&lt; Text &gt;::indexOfAny()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l01239">ObjectArray&lt; Buffer &gt;::indexOfAny()</a>.</p>
 
 </div>
 </div>
@@ -1333,7 +1337,7 @@ template&lt;class ObjectType&gt; </div>
 
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l00383">383</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___text_8cpp_source.html#l00285">Text::getPunctuation()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l00285">ObjectArray&lt; Text &gt;::ObjectArray()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l01638">NumericalArray&lt; int &gt;::NumericalArray()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l00285">ObjectArray&lt; Buffer &gt;::ObjectArray()</a>.</p>
 
 </div>
 </div>
@@ -1660,7 +1664,7 @@ template&lt;class ObjectType&gt; </div>
 
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l00699">699</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l00786">ObjectArray&lt; Text &gt;::at()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00836">ObjectArray&lt; Text &gt;::atUnchecked()</a>, <a class="el" href="ugen___neural_network_8cpp_source.html#l00227">NeuralNetworkSimpleInternal::backProp()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00954">ObjectArray&lt; Text &gt;::choose()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01115">ObjectArray&lt; Text &gt;::contains()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00383">ObjectArray&lt; Text &gt;::copy()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00907">ObjectArray&lt; Text &gt;::first()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01365">ObjectArray&lt; Text &gt;::group()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01178">ObjectArray&lt; Text &gt;::indexOf()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01239">ObjectArray&lt; Text &gt;::indexOfAny()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00931">ObjectArray&lt; Text &gt;::last()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01638">NumericalArray&lt; float &gt;::NumericalArray()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00416">ObjectArray&lt; Text &gt;::ObjectArray()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00260">UGenArray::operator const ObjectArray&lt; UGen &gt;()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00705">ObjectArray&lt; ValueType &gt;::operator const ValueType *()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00707">ObjectArray&lt; ValueType &gt;::operator ValueType *()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01063">ObjectArray&lt; Text &gt;::operator==()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00760">ObjectArray&lt; Text &gt;::operator[]()</a>, <a class="el" href="ugen___neural_network_8cpp_source.html#l00213">NeuralNetworkSimpleInternal::propogate()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00746">ObjectArray&lt; Text &gt;::put()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01284">ObjectArray&lt; Text &gt;::range()</a>, <a class="el" href="ugen___neural_pattern_8cpp_source.html#l00084">NeuralPattern::read()</a>, <a class="el" href="ugen___neural_network_8cpp_source.html#l00270">NeuralNetwork::read()</a>, <a class="el" href="ugen___text_file_8cpp_source.html#l00105">TextFileReaderInternal::readArray()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01411">ObjectArray&lt; Text &gt;::split()</a>, <a class="el" href="ugen___text_8cpp_source.html#l00175">Text::toLower()</a>, <a class="el" href="ugen___text_8cpp_source.html#l00152">Text::toUpper()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00986">ObjectArray&lt; Text &gt;::wchoose()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l00879">ObjectArray&lt; Text &gt;::wrapAt()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l00786">ObjectArray&lt; Buffer &gt;::at()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00836">ObjectArray&lt; Buffer &gt;::atUnchecked()</a>, <a class="el" href="ugen___neural_network_8cpp_source.html#l00227">NeuralNetworkSimpleInternal::backProp()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00954">ObjectArray&lt; Buffer &gt;::choose()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01115">ObjectArray&lt; Buffer &gt;::contains()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00383">ObjectArray&lt; Buffer &gt;::copy()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01805">NumericalArray&lt; int &gt;::exprand()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00907">ObjectArray&lt; Buffer &gt;::first()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01753">NumericalArray&lt; int &gt;::geom()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01365">ObjectArray&lt; Buffer &gt;::group()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01178">ObjectArray&lt; Buffer &gt;::indexOf()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01239">ObjectArray&lt; Buffer &gt;::indexOfAny()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00931">ObjectArray&lt; Buffer &gt;::last()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01709">NumericalArray&lt; int &gt;::line()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01824">NumericalArray&lt; int &gt;::linrand()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01638">NumericalArray&lt; int &gt;::NumericalArray()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00416">ObjectArray&lt; Buffer &gt;::ObjectArray()</a>, <a class="el" href="ugen___u_gen_array_8cpp_source.html#l00260">UGenArray::operator const ObjectArray&lt; UGen &gt;()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00705">ObjectArray&lt; ValueType &gt;::operator const ValueType *()</a>, <a class="el" href="ugen___text_8cpp_source.html#l00063">ugen::Text::operator String()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00707">ObjectArray&lt; ValueType &gt;::operator ValueType *()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01063">ObjectArray&lt; Buffer &gt;::operator==()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00760">ObjectArray&lt; Buffer &gt;::operator[]()</a>, <a class="el" href="ugen___neural_network_8cpp_source.html#l00213">NeuralNetworkSimpleInternal::propogate()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00746">ObjectArray&lt; Buffer &gt;::put()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01776">NumericalArray&lt; int &gt;::rand()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01284">ObjectArray&lt; Buffer &gt;::range()</a>, <a class="el" href="ugen___neural_pattern_8cpp_source.html#l00084">NeuralPattern::read()</a>, <a class="el" href="ugen___neural_network_8cpp_source.html#l00270">NeuralNetwork::read()</a>, <a class="el" href="ugen___text_file_8cpp_source.html#l00105">TextFileReaderInternal::readArray()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01730">NumericalArray&lt; int &gt;::series()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01411">ObjectArray&lt; Buffer &gt;::split()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00986">ObjectArray&lt; Buffer &gt;::wchoose()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01938">NumericalArray&lt; int &gt;::withArray()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00879">ObjectArray&lt; Buffer &gt;::wrapAt()</a>, <a class="el" href="ugen___text_file_8h_source.html#l00090">TextFileWriterInternal::writeArrayInternal()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l02367">NumericalArray&lt; int &gt;::zero()</a>.</p>
 
 </div>
 </div>
@@ -1706,7 +1710,7 @@ template&lt;class ObjectType&gt; </div>
 
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l01055">1055</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l00786">ObjectArray&lt; Text &gt;::at()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00836">ObjectArray&lt; Text &gt;::atUnchecked()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00954">ObjectArray&lt; Text &gt;::choose()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00907">ObjectArray&lt; Text &gt;::first()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01365">ObjectArray&lt; Text &gt;::group()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00931">ObjectArray&lt; Text &gt;::last()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00648">ObjectArray&lt; Text &gt;::ObjectArray()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00760">ObjectArray&lt; Text &gt;::operator[]()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01284">ObjectArray&lt; Text &gt;::range()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01411">ObjectArray&lt; Text &gt;::split()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00986">ObjectArray&lt; Text &gt;::wchoose()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l00879">ObjectArray&lt; Text &gt;::wrapAt()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l00786">ObjectArray&lt; Buffer &gt;::at()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00836">ObjectArray&lt; Buffer &gt;::atUnchecked()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00954">ObjectArray&lt; Buffer &gt;::choose()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00907">ObjectArray&lt; Buffer &gt;::first()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01365">ObjectArray&lt; Buffer &gt;::group()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00931">ObjectArray&lt; Buffer &gt;::last()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00648">ObjectArray&lt; Buffer &gt;::ObjectArray()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00760">ObjectArray&lt; Buffer &gt;::operator[]()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01284">ObjectArray&lt; Buffer &gt;::range()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01411">ObjectArray&lt; Buffer &gt;::split()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00986">ObjectArray&lt; Buffer &gt;::wchoose()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l00879">ObjectArray&lt; Buffer &gt;::wrapAt()</a>.</p>
 
 </div>
 </div>
@@ -1775,7 +1779,7 @@ template&lt;class ObjectType&gt; </div>
 
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l01178">1178</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___collections_8h_source.html#l00195">Dictionary&lt; ValueType, KeyType &gt;::at()</a>, <a class="el" href="ugen___collections_8h_source.html#l00260">Dictionary&lt; ValueType, KeyType &gt;::keyForValue()</a>, <a class="el" href="ugen___collections_8h_source.html#l00217">Dictionary&lt; ValueType, KeyType &gt;::operator[]()</a>, <a class="el" href="ugen___collections_8h_source.html#l00158">Dictionary&lt; ValueType, KeyType &gt;::put()</a>, <a class="el" href="ugen___collections_8h_source.html#l00239">Dictionary&lt; ValueType, KeyType &gt;::remove()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01341">ObjectArray&lt; Text &gt;::removeItem()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01319">ObjectArray&lt; Text &gt;::replace()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l01463">ObjectArray&lt; Text &gt;::splitSequence()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___collections_8h_source.html#l00195">Dictionary&lt; ValueType, KeyType &gt;::at()</a>, <a class="el" href="ugen___collections_8h_source.html#l00260">Dictionary&lt; ValueType, KeyType &gt;::keyForValue()</a>, <a class="el" href="ugen___collections_8h_source.html#l00217">Dictionary&lt; ValueType, KeyType &gt;::operator[]()</a>, <a class="el" href="ugen___collections_8h_source.html#l00158">Dictionary&lt; ValueType, KeyType &gt;::put()</a>, <a class="el" href="ugen___collections_8h_source.html#l00239">Dictionary&lt; ValueType, KeyType &gt;::remove()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01341">ObjectArray&lt; Buffer &gt;::removeItem()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01319">ObjectArray&lt; Buffer &gt;::replace()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l01463">ObjectArray&lt; Buffer &gt;::splitSequence()</a>.</p>
 
 </div>
 </div>
@@ -1866,7 +1870,7 @@ template&lt;class ObjectType&gt; </div>
 
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l00710">710</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l00810">ObjectArray&lt; Text &gt;::at()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00836">ObjectArray&lt; Text &gt;::atUnchecked()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00383">ObjectArray&lt; Text &gt;::copy()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01365">ObjectArray&lt; Text &gt;::group()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01284">ObjectArray&lt; Text &gt;::range()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l01411">ObjectArray&lt; Text &gt;::split()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l00810">ObjectArray&lt; Buffer &gt;::at()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00836">ObjectArray&lt; Buffer &gt;::atUnchecked()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00383">ObjectArray&lt; Buffer &gt;::copy()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01365">ObjectArray&lt; Buffer &gt;::group()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01284">ObjectArray&lt; Buffer &gt;::range()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l01411">ObjectArray&lt; Buffer &gt;::split()</a>.</p>
 
 </div>
 </div>
@@ -1940,7 +1944,7 @@ template&lt;class ObjectType&gt; </div>
 
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l00692">692</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___text_8cpp_source.html#l00131">Text::add()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00725">ObjectArray&lt; Text &gt;::add()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00810">ObjectArray&lt; Text &gt;::at()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00836">ObjectArray&lt; Text &gt;::atUnchecked()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00954">ObjectArray&lt; Text &gt;::choose()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00299">ObjectArray&lt; Text &gt;::collect()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01134">ObjectArray&lt; Text &gt;::contains()</a>, <a class="el" href="ugen___f_f_t_magnitude_selection_8h_source.html#l00052">FFTMagnitudeSelectionUGenInternal::getNumBins()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01365">ObjectArray&lt; Text &gt;::group()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01196">ObjectArray&lt; Text &gt;::indexOf()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01239">ObjectArray&lt; Text &gt;::indexOfAny()</a>, <a class="el" href="ugen___arrays_8h_source.html#l02768">ObjectArray2DBase&lt; char, Text &gt;::isMatrix()</a>, <a class="el" href="ugen___collections_8h_source.html#l00294">Dictionary&lt; ValueType, KeyType &gt;::length()</a>, <a class="el" href="ugen___arrays_8h_source.html#l02794">ObjectArray2DBase&lt; char, Text &gt;::numColumns()</a>, <a class="el" href="ugen___f_f_t_magnitude_selection_8cpp_source.html#l00088">FFTMagnitudeSelectionUGenInternal::processBlock()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01411">ObjectArray&lt; Text &gt;::split()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l00986">ObjectArray&lt; Text &gt;::wchoose()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l00725">ObjectArray&lt; Buffer &gt;::add()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00810">ObjectArray&lt; Buffer &gt;::at()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00836">ObjectArray&lt; Buffer &gt;::atUnchecked()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00954">ObjectArray&lt; Buffer &gt;::choose()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00299">ObjectArray&lt; Buffer &gt;::collect()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01134">ObjectArray&lt; Buffer &gt;::contains()</a>, <a class="el" href="ugen___f_f_t_magnitude_selection_8h_source.html#l00052">FFTMagnitudeSelectionUGenInternal::getNumBins()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01365">ObjectArray&lt; Buffer &gt;::group()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01196">ObjectArray&lt; Buffer &gt;::indexOf()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01239">ObjectArray&lt; Buffer &gt;::indexOfAny()</a>, <a class="el" href="ugen___arrays_8h_source.html#l02768">ObjectArray2DBase&lt; char, Text &gt;::isMatrix()</a>, <a class="el" href="ugen___collections_8h_source.html#l00294">Dictionary&lt; ValueType, KeyType &gt;::length()</a>, <a class="el" href="ugen___arrays_8h_source.html#l02794">ObjectArray2DBase&lt; char, Text &gt;::numColumns()</a>, <a class="el" href="ugen___f_f_t_magnitude_selection_8cpp_source.html#l00088">FFTMagnitudeSelectionUGenInternal::processBlock()</a>, <a class="el" href="ugen___juce_multi_slider_8h_source.html#l00433">MultiSlider::setValues()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01411">ObjectArray&lt; Buffer &gt;::split()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00986">ObjectArray&lt; Buffer &gt;::wchoose()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l01938">NumericalArray&lt; int &gt;::withArray()</a>.</p>
 
 </div>
 </div>
@@ -2102,7 +2106,7 @@ template&lt;class ObjectType&gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="class_numerical_array.html#a17408e7ba93543746d9f2695fc8c3c01">NumericalArray&lt; NumericalType &gt;</a>, and <a class="el" href="class_numerical_array.html#a17408e7ba93543746d9f2695fc8c3c01">NumericalArray&lt; float &gt;</a>.</p>
+<p>Reimplemented in <a class="el" href="class_numerical_array.html#a17408e7ba93543746d9f2695fc8c3c01">NumericalArray&lt; float &gt;</a>, and <a class="el" href="class_numerical_array.html#a17408e7ba93543746d9f2695fc8c3c01">NumericalArray&lt; int &gt;</a>.</p>
 
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l00715">715</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
@@ -2148,7 +2152,7 @@ template&lt;class ObjectType&gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="class_numerical_array.html#ad2a1b80a57239e1a7ade9cdaf126e56d">NumericalArray&lt; NumericalType &gt;</a>, and <a class="el" href="class_numerical_array.html#ad2a1b80a57239e1a7ade9cdaf126e56d">NumericalArray&lt; float &gt;</a>.</p>
+<p>Reimplemented in <a class="el" href="class_numerical_array.html#ad2a1b80a57239e1a7ade9cdaf126e56d">NumericalArray&lt; float &gt;</a>, and <a class="el" href="class_numerical_array.html#ad2a1b80a57239e1a7ade9cdaf126e56d">NumericalArray&lt; int &gt;</a>.</p>
 
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l00715">715</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
@@ -2172,7 +2176,7 @@ template&lt;class ObjectType&gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="class_numerical_array.html#aa7a615f3e9b011bc9bccb724f1a53577">NumericalArray&lt; NumericalType &gt;</a>, and <a class="el" href="class_numerical_array.html#aa7a615f3e9b011bc9bccb724f1a53577">NumericalArray&lt; float &gt;</a>.</p>
+<p>Reimplemented in <a class="el" href="class_numerical_array.html#aa7a615f3e9b011bc9bccb724f1a53577">NumericalArray&lt; float &gt;</a>, and <a class="el" href="class_numerical_array.html#aa7a615f3e9b011bc9bccb724f1a53577">NumericalArray&lt; int &gt;</a>.</p>
 
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l00715">715</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
@@ -2222,7 +2226,7 @@ template&lt;class ObjectType&gt; </div>
 
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l01063">1063</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l01103">ObjectArray&lt; Text &gt;::operator!=()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l01103">ObjectArray&lt; Buffer &gt;::operator!=()</a>.</p>
 
 </div>
 </div>
@@ -2332,7 +2336,7 @@ template&lt;class ObjectType&gt; </div>
 
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l00746">746</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l00299">ObjectArray&lt; Text &gt;::collect()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00285">ObjectArray&lt; Text &gt;::ObjectArray()</a>, and <a class="el" href="ugen___collections_8h_source.html#l00158">Dictionary&lt; ValueType, KeyType &gt;::put()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l00299">ObjectArray&lt; Buffer &gt;::collect()</a>, <a class="el" href="ugen___arrays_8h_source.html#l02963">NumericalArray2D&lt; NumericalType, RowType &gt;::NumericalArray2D()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00285">ObjectArray&lt; Buffer &gt;::ObjectArray()</a>, <a class="el" href="ugen___collections_8h_source.html#l00158">Dictionary&lt; ValueType, KeyType &gt;::put()</a>, and <a class="el" href="ugen___text_8h_source.html#l00147">TextArray::TextArray()</a>.</p>
 
 </div>
 </div>
@@ -2359,7 +2363,7 @@ template&lt;class ObjectType&gt; </div>
 
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l01270">1270</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l01263">ObjectArray&lt; Text &gt;::from()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01270">ObjectArray&lt; Text &gt;::range()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01319">ObjectArray&lt; Text &gt;::replace()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01463">ObjectArray&lt; Text &gt;::splitSequence()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l01277">ObjectArray&lt; Text &gt;::to()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l01263">ObjectArray&lt; Buffer &gt;::from()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01270">ObjectArray&lt; Buffer &gt;::range()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01319">ObjectArray&lt; Buffer &gt;::replace()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01463">ObjectArray&lt; Buffer &gt;::splitSequence()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01277">ObjectArray&lt; Buffer &gt;::to()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l01868">NumericalArray&lt; int &gt;::triangleWindow()</a>.</p>
 
 </div>
 </div>
@@ -2446,7 +2450,7 @@ template&lt;class ObjectType&gt; </div>
 
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l01341">1341</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___text_8cpp_source.html#l00285">Text::getPunctuation()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l01354">ObjectArray&lt; Text &gt;::removeItems()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l01354">ObjectArray&lt; Buffer &gt;::removeItems()</a>.</p>
 
 </div>
 </div>
@@ -2471,8 +2475,6 @@ template&lt;class ObjectType&gt; </div>
 <p>Remove several items in-place. </p>
 
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l01354">1354</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
-
-<p>Referenced by <a class="el" href="ugen___text_8cpp_source.html#l00285">Text::getPunctuation()</a>.</p>
 
 </div>
 </div>
@@ -2532,7 +2534,7 @@ template&lt;class ObjectType&gt; </div>
 
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l00713">713</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l01365">ObjectArray&lt; Text &gt;::group()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l01411">ObjectArray&lt; Text &gt;::split()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l01365">ObjectArray&lt; Buffer &gt;::group()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l01411">ObjectArray&lt; Buffer &gt;::split()</a>.</p>
 
 </div>
 </div>
@@ -2558,7 +2560,7 @@ template&lt;class ObjectType&gt; </div>
 
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l00687">687</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l00786">ObjectArray&lt; Text &gt;::at()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00836">ObjectArray&lt; Text &gt;::atUnchecked()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00954">ObjectArray&lt; Text &gt;::choose()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01115">ObjectArray&lt; Text &gt;::contains()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00383">ObjectArray&lt; Text &gt;::copy()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00406">ObjectArray&lt; Text &gt;::countValidInitialisers()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00907">ObjectArray&lt; Text &gt;::first()</a>, <a class="el" href="ugen___neural_pattern_8h_source.html#l00060">NeuralPatternSimpleInternal::getNumInputs()</a>, <a class="el" href="ugen___neural_layer_8h_source.html#l00071">NeuralLayerSimpleInternal::getNumInputs()</a>, <a class="el" href="ugen___neural_network_8h_source.html#l00090">NeuralNetworkSimpleInternal::getNumLayersExcludingInput()</a>, <a class="el" href="ugen___neural_network_8h_source.html#l00089">NeuralNetworkSimpleInternal::getNumLayersIncludingInput()</a>, <a class="el" href="ugen___neural_layer_8h_source.html#l00070">NeuralLayerSimpleInternal::getNumNodes()</a>, <a class="el" href="ugen___neural_pattern_8h_source.html#l00061">NeuralPatternSimpleInternal::getNumOutputs()</a>, <a class="el" href="ugen___neural_layer_8h_source.html#l00072">NeuralLayerSimpleInternal::getNumOutputs()</a>, <a class="el" href="ugen___neural_node_8h_source.html#l00079">NeuralNodeSimpleInternal::getNumWeights()</a>, <a class="el" href="ugen___neural_network_8cpp_source.html#l00095">NeuralNetworkSimpleInternal::getStructure()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01178">ObjectArray&lt; Text &gt;::indexOf()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00931">ObjectArray&lt; Text &gt;::last()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00285">ObjectArray&lt; Text &gt;::ObjectArray()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01063">ObjectArray&lt; Text &gt;::operator==()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00760">ObjectArray&lt; Text &gt;::operator[]()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00746">ObjectArray&lt; Text &gt;::put()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01284">ObjectArray&lt; Text &gt;::range()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01319">ObjectArray&lt; Text &gt;::replace()</a>, <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00571">DoneActionSender::sendDone()</a>, <a class="el" href="ugen___collections_8h_source.html#l00305">Dictionary&lt; ValueType, KeyType &gt;::size()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01463">ObjectArray&lt; Text &gt;::splitSequence()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00986">ObjectArray&lt; Text &gt;::wchoose()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l00879">ObjectArray&lt; Text &gt;::wrapAt()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l00786">ObjectArray&lt; Buffer &gt;::at()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00836">ObjectArray&lt; Buffer &gt;::atUnchecked()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00954">ObjectArray&lt; Buffer &gt;::choose()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01115">ObjectArray&lt; Buffer &gt;::contains()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00383">ObjectArray&lt; Buffer &gt;::copy()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01986">NumericalArray&lt; int &gt;::countValidInitialisers()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00406">ObjectArray&lt; Buffer &gt;::countValidInitialisers()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01805">NumericalArray&lt; int &gt;::exprand()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00907">ObjectArray&lt; Buffer &gt;::first()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01753">NumericalArray&lt; int &gt;::geom()</a>, <a class="el" href="ugen___neural_pattern_8h_source.html#l00060">NeuralPatternSimpleInternal::getNumInputs()</a>, <a class="el" href="ugen___neural_layer_8h_source.html#l00071">NeuralLayerSimpleInternal::getNumInputs()</a>, <a class="el" href="ugen___neural_network_8h_source.html#l00090">NeuralNetworkSimpleInternal::getNumLayersExcludingInput()</a>, <a class="el" href="ugen___neural_network_8h_source.html#l00089">NeuralNetworkSimpleInternal::getNumLayersIncludingInput()</a>, <a class="el" href="ugen___neural_layer_8h_source.html#l00070">NeuralLayerSimpleInternal::getNumNodes()</a>, <a class="el" href="ugen___neural_pattern_8h_source.html#l00061">NeuralPatternSimpleInternal::getNumOutputs()</a>, <a class="el" href="ugen___neural_layer_8h_source.html#l00072">NeuralLayerSimpleInternal::getNumOutputs()</a>, <a class="el" href="ugen___neural_node_8h_source.html#l00079">NeuralNodeSimpleInternal::getNumWeights()</a>, <a class="el" href="ugen___neural_network_8cpp_source.html#l00095">NeuralNetworkSimpleInternal::getStructure()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01178">ObjectArray&lt; Buffer &gt;::indexOf()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00931">ObjectArray&lt; Buffer &gt;::last()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01709">NumericalArray&lt; int &gt;::line()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01824">NumericalArray&lt; int &gt;::linrand()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01704">NumericalArray&lt; int &gt;::newClear()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01638">NumericalArray&lt; int &gt;::NumericalArray()</a>, <a class="el" href="ugen___arrays_8h_source.html#l02976">NumericalArray2D&lt; NumericalType, RowType &gt;::NumericalArray2D()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00285">ObjectArray&lt; Buffer &gt;::ObjectArray()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01063">ObjectArray&lt; Buffer &gt;::operator==()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00760">ObjectArray&lt; Buffer &gt;::operator[]()</a>, <a class="el" href="ugen___arrays_8h_source.html#l03087">NumericalArray2D&lt; NumericalType, RowType &gt;::print()</a>, <a class="el" href="ugen___arrays_8h_source.html#l02434">NumericalArray&lt; int &gt;::print()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00746">ObjectArray&lt; Buffer &gt;::put()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01776">NumericalArray&lt; int &gt;::rand()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01798">NumericalArray&lt; int &gt;::rand2()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01284">ObjectArray&lt; Buffer &gt;::range()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01319">ObjectArray&lt; Buffer &gt;::replace()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01730">NumericalArray&lt; int &gt;::series()</a>, <a class="el" href="ugen___collections_8h_source.html#l00305">Dictionary&lt; ValueType, KeyType &gt;::size()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01904">NumericalArray&lt; int &gt;::sourceLength()</a>, <a class="el" href="ugen___arrays_8h_source.html#l01463">ObjectArray&lt; Buffer &gt;::splitSequence()</a>, <a class="el" href="ugen___text_8h_source.html#l00147">TextArray::TextArray()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00986">ObjectArray&lt; Buffer &gt;::wchoose()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00879">ObjectArray&lt; Buffer &gt;::wrapAt()</a>, <a class="el" href="ugen___text_file_8h_source.html#l00090">TextFileWriterInternal::writeArrayInternal()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l02367">NumericalArray&lt; int &gt;::zero()</a>.</p>
 
 </div>
 </div>
@@ -2775,7 +2777,7 @@ template&lt;class ObjectType&gt; </div>
 
 <p>Definition at line <a class="el" href="ugen___arrays_8h_source.html#l00879">879</a> of file <a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l00986">ObjectArray&lt; Text &gt;::wchoose()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___arrays_8h_source.html#l00986">ObjectArray&lt; Buffer &gt;::wchoose()</a>.</p>
 
 </div>
 </div>
@@ -2783,7 +2785,7 @@ template&lt;class ObjectType&gt; </div>
 <li>core/<a class="el" href="ugen___arrays_8h_source.html">ugen_Arrays.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:43 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:43 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

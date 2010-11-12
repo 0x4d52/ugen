@@ -80,7 +80,7 @@
 <a name="l00048"></a>00048 <a class="code" href="class_envelope_handle_component_constrainer.html#a1a5bc9a9401390f23b5fb922c7fe8588">EnvelopeHandleComponentConstrainer::EnvelopeHandleComponentConstrainer</a>(<a class="code" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a>* handleOwner)
 <a name="l00049"></a>00049  : leftLimit(0),
 <a name="l00050"></a>00050   rightLimit(0xffffff),
-<a name="l00051"></a>00051   handle(handleOwner)
+<a name="l00051"></a>00051   <a class="code" href="ugen___play_buf_8ii.html#a203c46f7acdb51d71d469f934255135c">handle</a>(handleOwner)
 <a name="l00052"></a>00052 {
 <a name="l00053"></a>00053 }
 <a name="l00054"></a>00054 
@@ -90,7 +90,7 @@
 <a name="l00058"></a>00058        <span class="keywordtype">bool</span> isStretchingBottom, <span class="keywordtype">bool</span> isStretchingRight)
 <a name="l00059"></a>00059 {
 <a name="l00060"></a>00060 <span class="preprocessor">#ifdef MYDEBUG</span>
-<a name="l00061"></a>00061 <span class="preprocessor"></span> printf(<span class="stringliteral">&quot;MyEnvelopeHandleComponentConstrainer::checkBounds\n&quot;</span>);
+<a name="l00061"></a>00061 <span class="preprocessor"></span> <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;MyEnvelopeHandleComponentConstrainer::checkBounds\n&quot;</span>);
 <a name="l00062"></a>00062 <span class="preprocessor">#endif</span>
 <a name="l00063"></a>00063 <span class="preprocessor"></span> 
 <a name="l00064"></a>00064  <a class="code" href="class_envelope_handle_component_constrainer.html#a5e22c274f1a04d99ac307e3771ca1137">ComponentBoundsConstrainer::checkBounds</a>(bounds,
@@ -100,7 +100,7 @@
 <a name="l00068"></a>00068  
 <a name="l00069"></a>00069  <span class="comment">// prevent this handle moving before the previous point</span>
 <a name="l00070"></a>00070  <span class="comment">// or after the next point </span>
-<a name="l00071"></a>00071  bounds.setPosition(jlimit(<a class="code" href="class_envelope_handle_component_constrainer.html#a96a9891c0b5a4f261a63f94dc4f1b4ad">leftLimit</a>, <a class="code" href="class_envelope_handle_component_constrainer.html#ab18ed16b31ce1b07e5c1eef55eb96636">rightLimit</a>, bounds.getX()), bounds.getY());
+<a name="l00071"></a>00071  bounds.setPosition(<a class="code" href="namespacejuce.html#a9a5c44dbdb80d2c0a5c58ca6f4272556">jlimit</a>(<a class="code" href="class_envelope_handle_component_constrainer.html#a96a9891c0b5a4f261a63f94dc4f1b4ad">leftLimit</a>, <a class="code" href="class_envelope_handle_component_constrainer.html#ab18ed16b31ce1b07e5c1eef55eb96636">rightLimit</a>, bounds.getX()), bounds.getY());
 <a name="l00072"></a>00072  
 <a name="l00073"></a>00073  
 <a name="l00074"></a>00074  <span class="comment">// then use the handle to access the envelope to then quantise x+y..</span>
@@ -150,7 +150,7 @@
 <a name="l00118"></a>00118  <a class="code" href="class_envelope_handle_component.html#af315317fcf5acf1820e0abfde03ffcf2">value</a> = <a class="code" href="class_envelope_handle_component.html#a6eca3912a7b2001b29c3d1b1551c9a7b">getParentComponent</a>()-&gt;<a class="code" href="class_envelope_component.html#abac70e51b6beefeb8000519877a65cf5">convertPixelsToValue</a>(getY());
 <a name="l00119"></a>00119  
 <a name="l00120"></a>00120 <span class="preprocessor">#ifdef MYDEBUG</span>
-<a name="l00121"></a>00121 <span class="preprocessor"></span> printf(<span class="stringliteral">&quot;MyEnvelopeHandleComponent::updateTimeAndValue(%f, %f)\n&quot;</span>, <a class="code" href="class_envelope_handle_component.html#a2e980f55e6bf4c95a797cf6198136bb9">time</a>, <a class="code" href="class_envelope_handle_component.html#af315317fcf5acf1820e0abfde03ffcf2">value</a>);
+<a name="l00121"></a>00121 <span class="preprocessor"></span> <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;MyEnvelopeHandleComponent::updateTimeAndValue(%f, %f)\n&quot;</span>, <a class="code" href="class_envelope_handle_component.html#a2e980f55e6bf4c95a797cf6198136bb9">time</a>, <a class="code" href="class_envelope_handle_component.html#af315317fcf5acf1820e0abfde03ffcf2">value</a>);
 <a name="l00122"></a>00122 <span class="preprocessor">#endif</span>
 <a name="l00123"></a>00123 <span class="preprocessor"></span>}
 <a name="l00124"></a>00124 
@@ -201,7 +201,7 @@
 <a name="l00169"></a>00169  <a class="code" href="class_envelope_handle_component.html#a6eca3912a7b2001b29c3d1b1551c9a7b">getParentComponent</a>()-&gt;<a class="code" href="class_envelope_component.html#ad8398a24cb107f94536278315d7cf669">setLegendText</a>(text);
 <a name="l00170"></a>00170 }
 <a name="l00171"></a>00171 
-<a name="l00172"></a>00172 <span class="keywordtype">void</span> <a class="code" href="class_envelope_handle_component.html#a4c35ef5600c92b7bfd176373eba68d7a">EnvelopeHandleComponent::paint</a>(Graphics&amp; g)
+<a name="l00172"></a>00172 <span class="keywordtype">void</span> <a class="code" href="class_envelope_handle_component.html#a4c35ef5600c92b7bfd176373eba68d7a">EnvelopeHandleComponent::paint</a>(Graphics&amp; <a class="code" href="ugen___play_buf_8ii.html#a3db823ffd65d26adcfb5687f02f9e7bd">g</a>)
 <a name="l00173"></a>00173 {
 <a name="l00174"></a>00174  <a class="code" href="class_envelope_component.html" title="For displaying and editing a breakpoint envelope.">EnvelopeComponent</a> *env = <a class="code" href="class_envelope_handle_component.html#a6eca3912a7b2001b29c3d1b1551c9a7b">getParentComponent</a>();
 <a name="l00175"></a>00175  <a class="code" href="class_r_g_b_a_colour.html" title="A simple colour class.">RGBAColour</a> handleColour;
@@ -236,14 +236,14 @@
 <a name="l00204"></a>00204 <span class="keywordtype">void</span> <a class="code" href="class_envelope_handle_component.html#a69ea8ad6525a3943a4d326685ef37fa7">EnvelopeHandleComponent::mouseMove</a>(<span class="keyword">const</span> MouseEvent&amp; e)
 <a name="l00205"></a>00205 {
 <a name="l00206"></a>00206 <span class="preprocessor">#ifdef MYDEBUG</span>
-<a name="l00207"></a>00207 <span class="preprocessor"></span> printf(<span class="stringliteral">&quot;MyEnvelopeHandleComponent::mouseMove\n&quot;</span>);
+<a name="l00207"></a>00207 <span class="preprocessor"></span> <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;MyEnvelopeHandleComponent::mouseMove\n&quot;</span>);
 <a name="l00208"></a>00208 <span class="preprocessor">#endif</span>
 <a name="l00209"></a>00209 <span class="preprocessor"></span>}
 <a name="l00210"></a>00210 
 <a name="l00211"></a>00211 <span class="keywordtype">void</span> <a class="code" href="class_envelope_handle_component.html#ab48f14a24865e24e70ea59511325c0fa">EnvelopeHandleComponent::mouseEnter</a>(<span class="keyword">const</span> MouseEvent&amp; e)
 <a name="l00212"></a>00212 {
 <a name="l00213"></a>00213 <span class="preprocessor">#ifdef MYDEBUG</span>
-<a name="l00214"></a>00214 <span class="preprocessor"></span> printf(<span class="stringliteral">&quot;MyEnvelopeHandleComponent::mouseEnter\n&quot;</span>);
+<a name="l00214"></a>00214 <span class="preprocessor"></span> <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;MyEnvelopeHandleComponent::mouseEnter\n&quot;</span>);
 <a name="l00215"></a>00215 <span class="preprocessor">#endif</span>
 <a name="l00216"></a>00216 <span class="preprocessor"></span> 
 <a name="l00217"></a>00217  setMouseCursor(MouseCursor::CrosshairCursor); 
@@ -253,7 +253,7 @@
 <a name="l00221"></a>00221 <span class="keywordtype">void</span> <a class="code" href="class_envelope_handle_component.html#a74830548df6a3694f19da36267275f96">EnvelopeHandleComponent::mouseExit</a>(<span class="keyword">const</span> MouseEvent&amp; e)
 <a name="l00222"></a>00222 {
 <a name="l00223"></a>00223 <span class="preprocessor">#ifdef MYDEBUG</span>
-<a name="l00224"></a>00224 <span class="preprocessor"></span> printf(<span class="stringliteral">&quot;MyEnvelopeHandleComponent::mouseExit\n&quot;</span>);
+<a name="l00224"></a>00224 <span class="preprocessor"></span> <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;MyEnvelopeHandleComponent::mouseExit\n&quot;</span>);
 <a name="l00225"></a>00225 <span class="preprocessor">#endif</span>
 <a name="l00226"></a>00226 <span class="preprocessor"></span> 
 <a name="l00227"></a>00227  <a class="code" href="class_envelope_handle_component.html#a6eca3912a7b2001b29c3d1b1551c9a7b">getParentComponent</a>()-&gt;<a class="code" href="class_envelope_component.html#a8d7fe71b35d6e239985310375bd59af6">setLegendTextToDefault</a>();
@@ -262,7 +262,7 @@
 <a name="l00230"></a>00230 <span class="keywordtype">void</span> <a class="code" href="class_envelope_handle_component.html#a5fcfba069191e7a412bca83958565e3e">EnvelopeHandleComponent::mouseDown</a>(<span class="keyword">const</span> MouseEvent&amp; e)
 <a name="l00231"></a>00231 {
 <a name="l00232"></a>00232 <span class="preprocessor">#ifdef MYDEBUG</span>
-<a name="l00233"></a>00233 <span class="preprocessor"></span> printf(<span class="stringliteral">&quot;MyEnvelopeHandleComponent::mouseDown (%d, %d)\n&quot;</span>, e.x, e.y);
+<a name="l00233"></a>00233 <span class="preprocessor"></span> <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;MyEnvelopeHandleComponent::mouseDown (%d, %d)\n&quot;</span>, e.x, e.y);
 <a name="l00234"></a>00234 <span class="preprocessor">#endif</span>
 <a name="l00235"></a>00235 <span class="preprocessor"></span> 
 <a name="l00236"></a>00236  setMouseCursor(MouseCursor::NoCursor);
@@ -338,7 +338,7 @@
 <a name="l00306"></a>00306 <span class="preprocessor">#ifdef MYDEBUG</span>
 <a name="l00307"></a>00307 <span class="preprocessor"></span>  <span class="keywordtype">int</span> x, y;
 <a name="l00308"></a>00308   Desktop::getMousePosition(x, y); 
-<a name="l00309"></a>00309   printf(<span class="stringliteral">&quot;screen pos (and mouse pos): %d (%d) %d (%d)\n&quot;</span>, getScreenX(), x, getScreenY(), y);
+<a name="l00309"></a>00309   <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;screen pos (and mouse pos): %d (%d) %d (%d)\n&quot;</span>, getScreenX(), x, getScreenY(), y);
 <a name="l00310"></a>00310 <span class="preprocessor">#endif </span>
 <a name="l00311"></a>00311 <span class="preprocessor"></span> }
 <a name="l00312"></a>00312 
@@ -348,7 +348,7 @@
 <a name="l00316"></a>00316 <span class="preprocessor">#ifdef MYDEBUG</span>
 <a name="l00317"></a>00317 <span class="preprocessor"></span> <span class="keywordtype">double</span> domain = <a class="code" href="class_envelope_handle_component.html#a6eca3912a7b2001b29c3d1b1551c9a7b">getParentComponent</a>()-&gt;<a class="code" href="class_envelope_component.html#a306498b8cbbb902bd5371e1a5897f9bc">convertPixelsToDomain</a>(getX());
 <a name="l00318"></a>00318  <span class="keywordtype">double</span> <a class="code" href="class_envelope_handle_component.html#af315317fcf5acf1820e0abfde03ffcf2">value</a> = <a class="code" href="class_envelope_handle_component.html#a6eca3912a7b2001b29c3d1b1551c9a7b">getParentComponent</a>()-&gt;<a class="code" href="class_envelope_component.html#abac70e51b6beefeb8000519877a65cf5">convertPixelsToValue</a>(getY());
-<a name="l00319"></a>00319  printf(<span class="stringliteral">&quot;MyEnvelopeHandleComponent::mouseDrag(%d, %d) [%f, %f] (%d, %d)\n&quot;</span>, e.x, e.y, 
+<a name="l00319"></a>00319  <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;MyEnvelopeHandleComponent::mouseDrag(%d, %d) [%f, %f] (%d, %d)\n&quot;</span>, e.x, e.y, 
 <a name="l00320"></a>00320      domain,
 <a name="l00321"></a>00321      value,
 <a name="l00322"></a>00322      <a class="code" href="class_envelope_handle_component.html#a6eca3912a7b2001b29c3d1b1551c9a7b">getParentComponent</a>()-&gt;convertDomainToPixels(domain),
@@ -361,7 +361,7 @@
 <a name="l00329"></a>00329 <span class="keywordtype">void</span> <a class="code" href="class_envelope_handle_component.html#a78a5b8c36e1ed381b44c99037b33e63e">EnvelopeHandleComponent::mouseUp</a>(<span class="keyword">const</span> MouseEvent&amp; e)
 <a name="l00330"></a>00330 {
 <a name="l00331"></a>00331 <span class="preprocessor">#ifdef MYDEBUG</span>
-<a name="l00332"></a>00332 <span class="preprocessor"></span> printf(<span class="stringliteral">&quot;MyEnvelopeHandleComponent::mouseUp\n&quot;</span>);
+<a name="l00332"></a>00332 <span class="preprocessor"></span> <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;MyEnvelopeHandleComponent::mouseUp\n&quot;</span>);
 <a name="l00333"></a>00333 <span class="preprocessor">#endif</span>
 <a name="l00334"></a>00334 <span class="preprocessor"></span> 
 <a name="l00335"></a>00335  <span class="keywordflow">if</span>(<a class="code" href="class_envelope_handle_component.html#a420a61c1a377dd8cffb6f29eda37e9fd">ignoreDrag</a> == <span class="keyword">true</span>)
@@ -401,7 +401,7 @@
 <a name="l00369"></a>00369 
 <a name="l00370"></a>00370 <span class="keywordtype">void</span> <a class="code" href="class_envelope_handle_component.html#a23a0767011bcb7ff457b03c75b5a2e1f">EnvelopeHandleComponent::setMousePositionToThisHandle</a>()
 <a name="l00371"></a>00371 {
-<a name="l00372"></a>00372  Desktop::setMousePosition(Point&lt;int&gt;(getScreenX()+<a class="code" href="class_envelope_handle_component.html#ab2135b8d7ca9538d2eaa380262a74aba">offsetX</a>, getScreenY()+<a class="code" href="class_envelope_handle_component.html#a7edec76b4128cf03d709926fafd51596">offsetY</a>));
+<a name="l00372"></a>00372  Desktop::setMousePosition(<a class="code" href="struct_point.html">Point&lt;int&gt;</a>(getScreenX()+<a class="code" href="class_envelope_handle_component.html#ab2135b8d7ca9538d2eaa380262a74aba">offsetX</a>, getScreenY()+<a class="code" href="class_envelope_handle_component.html#a7edec76b4128cf03d709926fafd51596">offsetY</a>));
 <a name="l00373"></a>00373 }
 <a name="l00374"></a>00374 
 <a name="l00375"></a>00375 <span class="keywordtype">int</span> <a class="code" href="class_envelope_handle_component.html#a41c67c80f7d99aeb89320feb9e6bb1a3">EnvelopeHandleComponent::getHandleIndex</a>()<span class="keyword"> const</span>
@@ -454,7 +454,7 @@
 <a name="l00422"></a>00422  <a class="code" href="class_envelope_handle_component.html#a30fd3a0e402c1ede88805a6b647641cb">dontUpdateTimeAndValue</a> = <span class="keyword">true</span>;
 <a name="l00423"></a>00423 
 <a name="l00424"></a>00424 <span class="preprocessor">#ifdef MYDEBUG</span>
-<a name="l00425"></a>00425 <span class="preprocessor"></span> printf(<span class="stringliteral">&quot;MyEnvelopeHandleComponent::setTimeAndValue original (%f, %f)\n&quot;</span>, timeToSet, valueToSet);
+<a name="l00425"></a>00425 <span class="preprocessor"></span> <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;MyEnvelopeHandleComponent::setTimeAndValue original (%f, %f)\n&quot;</span>, timeToSet, valueToSet);
 <a name="l00426"></a>00426 <span class="preprocessor">#endif</span>
 <a name="l00427"></a>00427 <span class="preprocessor"></span> 
 <a name="l00428"></a>00428  <span class="keywordflow">if</span>(quantise &gt; 0.0) {
@@ -466,7 +466,7 @@
 <a name="l00434"></a>00434   timeToSet = steps * quantise;
 <a name="l00435"></a>00435   
 <a name="l00436"></a>00436 <span class="preprocessor">#ifdef MYDEBUG</span>
-<a name="l00437"></a>00437 <span class="preprocessor"></span>  printf(<span class="stringliteral">&quot;MyEnvelopeHandleComponent::setTimeAndValue quantised (%f, %f)\n&quot;</span>, timeToSet, valueToSet);
+<a name="l00437"></a>00437 <span class="preprocessor"></span>  <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;MyEnvelopeHandleComponent::setTimeAndValue quantised (%f, %f)\n&quot;</span>, timeToSet, valueToSet);
 <a name="l00438"></a>00438 <span class="preprocessor">#endif</span>
 <a name="l00439"></a>00439 <span class="preprocessor"></span> }
 <a name="l00440"></a>00440  
@@ -499,13 +499,13 @@
 <a name="l00467"></a>00467  <span class="keywordtype">int</span> leftLimit = previousHandle == 0 ? 0 : previousHandle-&gt;getX();
 <a name="l00468"></a>00468  <span class="keywordtype">int</span> rightLimit = nextHandle == 0 ? getParentWidth()-<a class="code" href="ugen___juce_envelope_component_8h.html#ae86a74357f6dda99093bd9d1ba595bbe">HANDLESIZE</a> : nextHandle-&gt;getX();
 <a name="l00469"></a>00469  
-<a name="l00470"></a>00470  <span class="keywordtype">double</span> left = <a class="code" href="class_envelope_handle_component.html#a6eca3912a7b2001b29c3d1b1551c9a7b">getParentComponent</a>()-&gt;<a class="code" href="class_envelope_component.html#a306498b8cbbb902bd5371e1a5897f9bc">convertPixelsToDomain</a>(leftLimit);
-<a name="l00471"></a>00471  <span class="keywordtype">double</span> right = <a class="code" href="class_envelope_handle_component.html#a6eca3912a7b2001b29c3d1b1551c9a7b">getParentComponent</a>()-&gt;<a class="code" href="class_envelope_component.html#a306498b8cbbb902bd5371e1a5897f9bc">convertPixelsToDomain</a>(rightLimit);
+<a name="l00470"></a>00470  <span class="keywordtype">double</span> <a class="code" href="namespacestd.html#a96d1c2cab30f14f4e34ccb460f1ad1c9">left</a> = <a class="code" href="class_envelope_handle_component.html#a6eca3912a7b2001b29c3d1b1551c9a7b">getParentComponent</a>()-&gt;<a class="code" href="class_envelope_component.html#a306498b8cbbb902bd5371e1a5897f9bc">convertPixelsToDomain</a>(leftLimit);
+<a name="l00471"></a>00471  <span class="keywordtype">double</span> <a class="code" href="namespacestd.html#a1a23b13efe06ee9b3cd9324af25ab538">right</a> = <a class="code" href="class_envelope_handle_component.html#a6eca3912a7b2001b29c3d1b1551c9a7b">getParentComponent</a>()-&gt;<a class="code" href="class_envelope_component.html#a306498b8cbbb902bd5371e1a5897f9bc">convertPixelsToDomain</a>(rightLimit);
 <a name="l00472"></a>00472  
 <a name="l00473"></a>00473  <span class="keywordflow">if</span>(previousHandle != 0) left += FINETUNE;
 <a name="l00474"></a>00474  <span class="keywordflow">if</span>(nextHandle != 0) right -= FINETUNE;
 <a name="l00475"></a>00475   
-<a name="l00476"></a>00476  <span class="keywordflow">return</span> jlimit(left, right, domainToConstrain); 
+<a name="l00476"></a>00476  <span class="keywordflow">return</span> <a class="code" href="namespacejuce.html#a9a5c44dbdb80d2c0a5c58ca6f4272556">jlimit</a>(left, right, domainToConstrain); 
 <a name="l00477"></a>00477 }
 <a name="l00478"></a>00478 
 <a name="l00479"></a>00479 <span class="keywordtype">double</span> <a class="code" href="class_envelope_handle_component.html#a6e82a3943798d16b836b5cd0d985bf6b">EnvelopeHandleComponent::constrainValue</a>(<span class="keywordtype">double</span> valueToConstrain)<span class="keyword"> const</span>
@@ -666,12 +666,12 @@
 <a name="l00634"></a>00634   Path path;
 <a name="l00635"></a>00635   <a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> env = <a class="code" href="class_envelope_component.html#a4d881e955ca7605472b9d15e1dbd798a">getEnv</a>();
 <a name="l00636"></a>00636   
-<a name="l00637"></a>00637   <a class="code" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a>* handle = <a class="code" href="class_envelope_component.html#a14687b42d110584a11018112b1c2cfce">handles</a>.getUnchecked(0);
+<a name="l00637"></a>00637   <a class="code" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a>* <a class="code" href="ugen___play_buf_8ii.html#a203c46f7acdb51d71d469f934255135c">handle</a> = <a class="code" href="class_envelope_component.html#a14687b42d110584a11018112b1c2cfce">handles</a>.getUnchecked(0);
 <a name="l00638"></a>00638   path.startNewSubPath((handle-&gt;getX() + handle-&gt;getRight()) * 0.5f,
 <a name="l00639"></a>00639         (handle-&gt;getY() + handle-&gt;getBottom()) * 0.5f);
 <a name="l00640"></a>00640   
 <a name="l00641"></a>00641   <span class="keyword">const</span> <span class="keywordtype">float</span> firstTime = handle-&gt;<a class="code" href="class_envelope_handle_component.html#ab39fe8c4f591f7603e9ced55741dd91b">getTime</a>();
-<a name="l00642"></a>00642   <span class="keywordtype">float</span> time = firstTime;
+<a name="l00642"></a>00642   <span class="keywordtype">float</span> <a class="code" href="ugen___play_buf_8ii.html#aae026724f73c36340024c657f4f44dab">time</a> = firstTime;
 <a name="l00643"></a>00643   
 <a name="l00644"></a>00644   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 1; i &lt; <a class="code" href="class_envelope_component.html#a14687b42d110584a11018112b1c2cfce">handles</a>.size(); i++) 
 <a name="l00645"></a>00645   {
@@ -732,7 +732,7 @@
 <a name="l00700"></a>00700 <span class="comment">//    g.drawArrow(loopX + arrowLength, releaseY, </span>
 <a name="l00701"></a>00701 <span class="comment">//       loopX, releaseY, </span>
 <a name="l00702"></a>00702 <span class="comment">//       0.5f, HANDLESIZE, arrowLength);</span>
-<a name="l00703"></a>00703     g.drawArrow(juce::Line&lt;float&gt;((<span class="keywordtype">float</span>)(loopX + arrowLength), releaseY, loopX, releaseY), 
+<a name="l00703"></a>00703     g.drawArrow(<a class="code" href="classjuce_1_1_line.html">juce::Line&lt;float&gt;</a>((<span class="keywordtype">float</span>)(loopX + arrowLength), releaseY, loopX, releaseY), 
 <a name="l00704"></a>00704        0.5f, <a class="code" href="ugen___juce_envelope_component_8h.html#ae86a74357f6dda99093bd9d1ba595bbe">HANDLESIZE</a>, arrowLength);
 <a name="l00705"></a>00705     
 <a name="l00706"></a>00706    }
@@ -777,7 +777,7 @@
 <a name="l00745"></a>00745 <span class="keywordtype">void</span> <a class="code" href="class_envelope_component.html#a7cce2db9f9328dd84d47f4b47b5289c3">EnvelopeComponent::resized</a>()
 <a name="l00746"></a>00746 { 
 <a name="l00747"></a>00747 <span class="preprocessor">#ifdef MYDEBUG</span>
-<a name="l00748"></a>00748 <span class="preprocessor"></span> printf(<span class="stringliteral">&quot;MyEnvelopeComponent::resized(%d, %d)\n&quot;</span>, getWidth(), getHeight());
+<a name="l00748"></a>00748 <span class="preprocessor"></span> <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;MyEnvelopeComponent::resized(%d, %d)\n&quot;</span>, getWidth(), getHeight());
 <a name="l00749"></a>00749 <span class="preprocessor">#endif</span>
 <a name="l00750"></a>00750 <span class="preprocessor"></span> <span class="keywordflow">if</span>(<a class="code" href="class_envelope_component.html#a14687b42d110584a11018112b1c2cfce">handles</a>.size() != 0) {
 <a name="l00751"></a>00751   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_envelope_component.html#a14687b42d110584a11018112b1c2cfce">handles</a>.size(); i++) {
@@ -806,7 +806,7 @@
 <a name="l00774"></a>00774 <span class="keywordtype">void</span> <a class="code" href="class_envelope_component.html#ad5c6693857290d951b304990856a6c31">EnvelopeComponent::mouseDown</a>(<span class="keyword">const</span> MouseEvent&amp; e)
 <a name="l00775"></a>00775 {
 <a name="l00776"></a>00776 <span class="preprocessor">#ifdef MYDEBUG</span>
-<a name="l00777"></a>00777 <span class="preprocessor"></span> printf(<span class="stringliteral">&quot;MyEnvelopeComponent::mouseDown(%d, %d)\n&quot;</span>, e.x, e.y);
+<a name="l00777"></a>00777 <span class="preprocessor"></span> <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;MyEnvelopeComponent::mouseDown(%d, %d)\n&quot;</span>, e.x, e.y);
 <a name="l00778"></a>00778 <span class="preprocessor">#endif</span>
 <a name="l00779"></a>00779 <span class="preprocessor"></span> 
 <a name="l00780"></a>00780  <span class="keywordflow">if</span>(e.mods.isShiftDown()) 
@@ -842,7 +842,7 @@
 <a name="l00810"></a>00810     {
 <a name="l00811"></a>00811      <a class="code" href="class_envelope_curve_popup.html#a0054d354d22944dd641bf06ae6836d7c">EnvelopeCurvePopup::create</a>(handle, 
 <a name="l00812"></a>00812               (handle-&gt;getScreenX() + prev-&gt;getScreenX())/2, 
-<a name="l00813"></a>00813               jmax(handle-&gt;getScreenY(), prev-&gt;getScreenY())+10);
+<a name="l00813"></a>00813               <a class="code" href="namespacejuce.html#ac59820d1a295f91d5e4cd47484122294">jmax</a>(handle-&gt;getScreenY(), prev-&gt;getScreenY())+10);
 <a name="l00814"></a>00814     }
 <a name="l00815"></a>00815    }
 <a name="l00816"></a>00816   }
@@ -862,7 +862,7 @@
 <a name="l00830"></a>00830 <span class="keywordtype">void</span> <a class="code" href="class_envelope_component.html#a7ec0fb4d1e5a054edc6967ccf68d5ff7">EnvelopeComponent::mouseDrag</a>(<span class="keyword">const</span> MouseEvent&amp; e)
 <a name="l00831"></a>00831 {
 <a name="l00832"></a>00832 <span class="preprocessor">#ifdef MYDEBUG</span>
-<a name="l00833"></a>00833 <span class="preprocessor"></span> printf(<span class="stringliteral">&quot;MyEnvelopeComponent::mouseDrag(%d, %d)\n&quot;</span>, e.x, e.y);
+<a name="l00833"></a>00833 <span class="preprocessor"></span> <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;MyEnvelopeComponent::mouseDrag(%d, %d)\n&quot;</span>, e.x, e.y);
 <a name="l00834"></a>00834 <span class="preprocessor">#endif</span>
 <a name="l00835"></a>00835 <span class="preprocessor"></span>  
 <a name="l00836"></a>00836  <span class="keywordflow">if</span>(<a class="code" href="class_envelope_component.html#ad77740213da5f9e29888c2c7a4a0433f">draggingHandle</a> != 0)
@@ -872,7 +872,7 @@
 <a name="l00840"></a>00840 <span class="keywordtype">void</span> <a class="code" href="class_envelope_component.html#a1d5f7b0eaf7668a7cdf50783f0820ccf">EnvelopeComponent::mouseUp</a>(<span class="keyword">const</span> MouseEvent&amp; e)
 <a name="l00841"></a>00841 {
 <a name="l00842"></a>00842 <span class="preprocessor">#ifdef MYDEBUG</span>
-<a name="l00843"></a>00843 <span class="preprocessor"></span> printf(<span class="stringliteral">&quot;MyEnvelopeComponent::mouseUp\n&quot;</span>);
+<a name="l00843"></a>00843 <span class="preprocessor"></span> <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;MyEnvelopeComponent::mouseUp\n&quot;</span>);
 <a name="l00844"></a>00844 <span class="preprocessor">#endif</span>
 <a name="l00845"></a>00845 <span class="preprocessor"></span> 
 <a name="l00846"></a>00846  <span class="keywordflow">if</span>(<a class="code" href="class_envelope_component.html#ad77740213da5f9e29888c2c7a4a0433f">draggingHandle</a> != 0) 
@@ -905,7 +905,7 @@
 <a name="l00873"></a>00873  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = <a class="code" href="class_envelope_component.html#a41c4e545ad629af1408d55dcef42bfb8">listeners</a>.size(); --i &gt;= 0;)
 <a name="l00874"></a>00874     {
 <a name="l00875"></a>00875         ((<a class="code" href="class_envelope_component_listener.html">EnvelopeComponentListener</a>*) <a class="code" href="class_envelope_component.html#a41c4e545ad629af1408d55dcef42bfb8">listeners</a>.getUnchecked (i))-&gt;envelopeChanged (<span class="keyword">this</span>);
-<a name="l00876"></a>00876         i = jmin (i, <a class="code" href="class_envelope_component.html#a41c4e545ad629af1408d55dcef42bfb8">listeners</a>.size());
+<a name="l00876"></a>00876         i = <a class="code" href="namespacejuce.html#a8376c7c1cf78e56ce17eb98000101d8f">jmin</a> (i, <a class="code" href="class_envelope_component.html#a41c4e545ad629af1408d55dcef42bfb8">listeners</a>.size());
 <a name="l00877"></a>00877     }
 <a name="l00878"></a>00878 }
 <a name="l00879"></a>00879 
@@ -942,7 +942,7 @@
 <a name="l00910"></a>00910  <span class="keywordflow">return</span> <a class="code" href="class_envelope_component.html#a14687b42d110584a11018112b1c2cfce">handles</a>.indexOf(thisHandle);
 <a name="l00911"></a>00911 }
 <a name="l00912"></a>00912 
-<a name="l00913"></a>00913 <a class="code" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a>* <a class="code" href="class_envelope_component.html#acdf0214f001f51f671c4a5334f97a0cb">EnvelopeComponent::getHandle</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> index)<span class="keyword"> const</span>
+<a name="l00913"></a>00913 <a class="code" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a>* <a class="code" href="class_envelope_component.html#acdf0214f001f51f671c4a5334f97a0cb">EnvelopeComponent::getHandle</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a>)<span class="keyword"> const</span>
 <a name="l00914"></a>00914 <span class="keyword"></span>{
 <a name="l00915"></a>00915  <span class="keywordflow">return</span> <a class="code" href="class_envelope_component.html#a14687b42d110584a11018112b1c2cfce">handles</a>[index];
 <a name="l00916"></a>00916 }
@@ -971,7 +971,7 @@
 <a name="l00939"></a>00939 <a class="code" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a>* <a class="code" href="class_envelope_component.html#aea1ed4c0795b23d5b1bc992ef2855760">EnvelopeComponent::addHandle</a>(<span class="keywordtype">int</span> newX, <span class="keywordtype">int</span> newY, <a class="code" href="class_env_curve.html" title="Specify curved sections of breakpoint envelopes.">EnvCurve</a> curve)
 <a name="l00940"></a>00940 {
 <a name="l00941"></a>00941 <span class="preprocessor">#ifdef MYDEBUG</span>
-<a name="l00942"></a>00942 <span class="preprocessor"></span> printf(<span class="stringliteral">&quot;MyEnvelopeComponent::addHandle(%d, %d)\n&quot;</span>, newX, newY);
+<a name="l00942"></a>00942 <span class="preprocessor"></span> <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;MyEnvelopeComponent::addHandle(%d, %d)\n&quot;</span>, newX, newY);
 <a name="l00943"></a>00943 <span class="preprocessor">#endif</span>
 <a name="l00944"></a>00944 <span class="preprocessor"></span> 
 <a name="l00945"></a>00945  <span class="keywordflow">return</span> <a class="code" href="class_envelope_component.html#aea1ed4c0795b23d5b1bc992ef2855760">addHandle</a>(<a class="code" href="class_envelope_component.html#a306498b8cbbb902bd5371e1a5897f9bc">convertPixelsToDomain</a>(newX), <a class="code" href="class_envelope_component.html#abac70e51b6beefeb8000519877a65cf5">convertPixelsToValue</a>(newY), curve);
@@ -981,7 +981,7 @@
 <a name="l00949"></a>00949 <a class="code" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a>* <a class="code" href="class_envelope_component.html#aea1ed4c0795b23d5b1bc992ef2855760">EnvelopeComponent::addHandle</a>(<span class="keywordtype">double</span> newDomain, <span class="keywordtype">double</span> newValue, <a class="code" href="class_env_curve.html" title="Specify curved sections of breakpoint envelopes.">EnvCurve</a> curve)
 <a name="l00950"></a>00950 {
 <a name="l00951"></a>00951 <span class="preprocessor">#ifdef MYDEBUG</span>
-<a name="l00952"></a>00952 <span class="preprocessor"></span> printf(<span class="stringliteral">&quot;MyEnvelopeComponent::addHandle(%f, %f)\n&quot;</span>, (<span class="keywordtype">float</span>)newDomain, (<span class="keywordtype">float</span>)newValue);
+<a name="l00952"></a>00952 <span class="preprocessor"></span> <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;MyEnvelopeComponent::addHandle(%f, %f)\n&quot;</span>, (<span class="keywordtype">float</span>)newDomain, (<span class="keywordtype">float</span>)newValue);
 <a name="l00953"></a>00953 <span class="preprocessor">#endif</span>
 <a name="l00954"></a>00954 <span class="preprocessor"></span> 
 <a name="l00955"></a>00955 <span class="comment">// newDomain = quantiseDomain(newDomain);</span>
@@ -1014,7 +1014,7 @@
 <a name="l00982"></a>00982 <span class="keywordtype">void</span> <a class="code" href="class_envelope_component.html#a6ad32f0f8503a047890230c50dfc4a87">EnvelopeComponent::removeHandle</a>(<a class="code" href="class_envelope_handle_component.html">EnvelopeHandleComponent</a>* thisHandle)
 <a name="l00983"></a>00983 {
 <a name="l00984"></a>00984  <span class="keywordflow">if</span>(<a class="code" href="class_envelope_component.html#a14687b42d110584a11018112b1c2cfce">handles</a>.size() &gt; <a class="code" href="class_envelope_component.html#adf1897156f36f63518c7af1cb5b079c6">minNumHandles</a>) {
-<a name="l00985"></a>00985   <span class="keywordtype">int</span> index = <a class="code" href="class_envelope_component.html#a14687b42d110584a11018112b1c2cfce">handles</a>.indexOf(thisHandle);
+<a name="l00985"></a>00985   <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a> = <a class="code" href="class_envelope_component.html#a14687b42d110584a11018112b1c2cfce">handles</a>.indexOf(thisHandle);
 <a name="l00986"></a>00986   
 <a name="l00987"></a>00987   <span class="keywordflow">if</span>(<a class="code" href="class_envelope_component.html#a333fb45b003ec027a57fcecad9084641">releaseNode</a> &gt;= 0)
 <a name="l00988"></a>00988   {
@@ -1173,8 +1173,8 @@
 <a name="l01141"></a>01141  <span class="keywordtype">double</span> currentLevel = startHandle-&gt;<a class="code" href="class_envelope_handle_component.html#a65c571a7a9b75bf11ef551f60b9b0211">getValue</a>();
 <a name="l01142"></a>01142  <span class="keywordtype">double</span> currentTime = startHandle-&gt;<a class="code" href="class_envelope_handle_component.html#ab39fe8c4f591f7603e9ced55741dd91b">getTime</a>();
 <a name="l01143"></a>01143  
-<a name="l01144"></a>01144  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> levels = <a class="code" href="class_buffer.html#ac1b908f99da6afe5392292ec809a119e">Buffer::newClear</a>(<a class="code" href="class_envelope_component.html#a14687b42d110584a11018112b1c2cfce">handles</a>.size());
-<a name="l01145"></a>01145  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> times = <a class="code" href="class_buffer.html#ac1b908f99da6afe5392292ec809a119e">Buffer::newClear</a>(<a class="code" href="class_envelope_component.html#a14687b42d110584a11018112b1c2cfce">handles</a>.size()-1);
+<a name="l01144"></a>01144  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> levels = <a class="code" href="class_buffer.html#a569b52e716d12cff3ee2caeca9e8d8c3">Buffer::newClear</a>(<a class="code" href="class_envelope_component.html#a14687b42d110584a11018112b1c2cfce">handles</a>.size());
+<a name="l01145"></a>01145  <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> times = <a class="code" href="class_buffer.html#a569b52e716d12cff3ee2caeca9e8d8c3">Buffer::newClear</a>(<a class="code" href="class_envelope_component.html#a14687b42d110584a11018112b1c2cfce">handles</a>.size()-1);
 <a name="l01146"></a>01146  <a class="code" href="class_env_curve_list.html" title="An array of EnvCurve objects.">EnvCurveList</a> curves = <a class="code" href="class_env_curve_list.html" title="An array of EnvCurve objects.">EnvCurveList</a>(<a class="code" href="class_env_curve.html#ad73f0fddda6a767a0abbabb80d24f83ba9f84cc3b51cfccad9b296ff9416b935b">EnvCurve::Empty</a>, <a class="code" href="class_envelope_component.html#a14687b42d110584a11018112b1c2cfce">handles</a>.size()-1);
 <a name="l01147"></a>01147  
 <a name="l01148"></a>01148  levels.<a class="code" href="class_buffer.html#a21f77aa00b5362bd1efa0ff1bc7765fb">setSampleUnchecked</a>(0, currentLevel);
@@ -1280,12 +1280,12 @@
 <a name="l01248"></a>01248 
 <a name="l01249"></a>01249 <span class="keywordtype">double</span> <a class="code" href="class_envelope_component.html#a79cd682a2828bff8f4ed8a5626b3f145">EnvelopeComponent::constrainDomain</a>(<span class="keywordtype">double</span> domainToConstrain)<span class="keyword"> const</span>
 <a name="l01250"></a>01250 <span class="keyword"></span>{
-<a name="l01251"></a>01251  <span class="keywordflow">return</span> jlimit(<a class="code" href="class_envelope_component.html#a08c0acc60c432ba55720f84167bebf16">domainMin</a>, <a class="code" href="class_envelope_component.html#ab6179c97b4ecbe378e601a0c16aab075">domainMax</a>, domainToConstrain); 
+<a name="l01251"></a>01251  <span class="keywordflow">return</span> <a class="code" href="namespacejuce.html#a9a5c44dbdb80d2c0a5c58ca6f4272556">jlimit</a>(<a class="code" href="class_envelope_component.html#a08c0acc60c432ba55720f84167bebf16">domainMin</a>, <a class="code" href="class_envelope_component.html#ab6179c97b4ecbe378e601a0c16aab075">domainMax</a>, domainToConstrain); 
 <a name="l01252"></a>01252 }
 <a name="l01253"></a>01253 
 <a name="l01254"></a>01254 <span class="keywordtype">double</span> <a class="code" href="class_envelope_component.html#a289a34c1b75005b8b6f6fc8da8a2e4d8">EnvelopeComponent::constrainValue</a>(<span class="keywordtype">double</span> valueToConstrain)<span class="keyword"> const </span>
 <a name="l01255"></a>01255 <span class="keyword"></span>{ 
-<a name="l01256"></a>01256  <span class="keywordflow">return</span> jlimit(<a class="code" href="class_envelope_component.html#a95ead9236ae184feedcc8ef440e01d57">valueMin</a>, <a class="code" href="class_envelope_component.html#ad1578d7d932272e191fe4fc6216b4224">valueMax</a>, valueToConstrain); 
+<a name="l01256"></a>01256  <span class="keywordflow">return</span> <a class="code" href="namespacejuce.html#a9a5c44dbdb80d2c0a5c58ca6f4272556">jlimit</a>(<a class="code" href="class_envelope_component.html#a95ead9236ae184feedcc8ef440e01d57">valueMin</a>, <a class="code" href="class_envelope_component.html#ad1578d7d932272e191fe4fc6216b4224">valueMax</a>, valueToConstrain); 
 <a name="l01257"></a>01257 }
 <a name="l01258"></a>01258 
 <a name="l01259"></a>01259 <span class="comment">//double EnvelopeComponent::quantiseDomain(double value)</span>
@@ -1465,8 +1465,8 @@
 <a name="l01433"></a>01433  
 <a name="l01434"></a>01434  <span class="keyword">const</span> <span class="keywordtype">int</span> w = 200;
 <a name="l01435"></a>01435  <span class="keyword">const</span> <span class="keywordtype">int</span> h = 50;
-<a name="l01436"></a>01436  <span class="keyword">const</span> <span class="keywordtype">int</span> r = x+w;
-<a name="l01437"></a>01437  <span class="keyword">const</span> <span class="keywordtype">int</span> b = y+h;
+<a name="l01436"></a>01436  <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a723a9953fbfea7f614028fd93697642a">r</a> = x+w;
+<a name="l01437"></a>01437  <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#ad1f2e41640df3d6024036b2f01fe81be">b</a> = y+h;
 <a name="l01438"></a>01438  
 <a name="l01439"></a>01439  Rectangle&lt;int&gt; monitorArea = popup-&gt;getParentMonitorArea();
 <a name="l01440"></a>01440  
@@ -1732,7 +1732,7 @@
 <a name="l01700"></a>01700 
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:38 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:31 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

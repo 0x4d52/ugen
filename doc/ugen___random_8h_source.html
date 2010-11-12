@@ -82,7 +82,7 @@
 <a name="l00052"></a>00052  <a class="code" href="class_ran088.html#a8aa47f3cfc21a7c23726c021e7e0a0fe">Ran088</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> seed) <span class="keywordflow">throw</span>();
 <a name="l00053"></a><a class="code" href="class_ran088.html#af8a35e490656edc4b3260a1ef4989da0">00053</a>  <span class="keyword">static</span> <a class="code" href="class_ran088.html">Ran088</a>&amp; <a class="code" href="class_ran088.html#af8a35e490656edc4b3260a1ef4989da0">defaultGenerator</a>() throw()
 <a name="l00054"></a>00054  {
-<a name="l00055"></a>00055   <span class="keyword">static</span> <a class="code" href="class_ran088.html">Ran088</a> r(0);
+<a name="l00055"></a>00055   <span class="keyword">static</span> <a class="code" href="class_ran088.html">Ran088</a> <a class="code" href="ugen___play_buf_8ii.html#a723a9953fbfea7f614028fd93697642a">r</a>(0);
 <a name="l00056"></a>00056   <span class="keywordflow">return</span> r;
 <a name="l00057"></a>00057  }
 <a name="l00058"></a>00058  
@@ -155,7 +155,7 @@
 <a name="l00132"></a>00132  <span class="comment">// instead of:</span>
 <a name="l00133"></a>00133  <span class="comment">// Ran088&amp; rand = Ran088::defaultGenerator();</span>
 <a name="l00134"></a>00134  <span class="comment">// if you really wqnt two or more Ran088 with the same state use get() and set()</span>
-<a name="l00135"></a>00135  <a class="code" href="class_ran088.html#a8aa47f3cfc21a7c23726c021e7e0a0fe">Ran088</a>(<a class="code" href="class_ran088.html">Ran088</a> <span class="keyword">const</span>&amp; copy);
+<a name="l00135"></a>00135  <a class="code" href="class_ran088.html#a8aa47f3cfc21a7c23726c021e7e0a0fe">Ran088</a>(<a class="code" href="class_ran088.html">Ran088</a> <span class="keyword">const</span>&amp; <a class="code" href="namespacestd.html#a9b36270cdb50d9a631ba58ee0405f135">copy</a>);
 <a name="l00136"></a>00136  <a class="code" href="class_ran088.html">Ran088</a>&amp; <a class="code" href="class_ran088.html#ae0a99f02c6d7c754fdad8420a7c20623">operator= </a>(<a class="code" href="class_ran088.html">Ran088</a> <span class="keyword">const</span>&amp; other);
 <a name="l00137"></a>00137 };
 <a name="l00138"></a>00138 
@@ -336,53 +336,53 @@
 <a name="l00313"></a><a class="code" href="class_ran088.html#adf751fb9257280a4f403964c54415f4e">00313</a> <span class="keyword">inline</span> <span class="keywordtype">long</span> <a class="code" href="class_ran088.html#adf751fb9257280a4f403964c54415f4e">Ran088::nextLong</a>(<span class="keywordtype">long</span> scale) <span class="keywordflow">throw</span>()
 <a name="l00314"></a>00314 {
 <a name="l00315"></a>00315  <span class="comment">// return an int from 0 to scale - 1</span>
-<a name="l00316"></a>00316  <span class="keywordflow">return</span> (<span class="keywordtype">long</span>)<a class="code" href="ugen___inline_unary_ops_8h.html#ac7ed6290f83ad687844135ceec4f6c78">std::floor</a>(scale * nextDouble());
+<a name="l00316"></a>00316  <span class="keywordflow">return</span> (<span class="keywordtype">long</span>)<a class="code" href="namespacestd.html#a71e6dbbbf152b18caa084880fbf409b2">std::floor</a>(scale * nextDouble());
 <a name="l00317"></a>00317 }
 <a name="l00318"></a>00318 
 <a name="l00319"></a><a class="code" href="class_ran088.html#ad5ad6487ffc5e21caa46f89924bbbdcb">00319</a> <span class="keyword">inline</span> <span class="keywordtype">long</span> <a class="code" href="class_ran088.html#ad5ad6487ffc5e21caa46f89924bbbdcb">Ran088::nextBiLong</a>(<span class="keywordtype">long</span> scale) <span class="keywordflow">throw</span>()
 <a name="l00320"></a>00320 {
 <a name="l00321"></a>00321  <span class="comment">// return a int from -scale to +scale</span>
-<a name="l00322"></a>00322  <span class="keywordflow">return</span> (<span class="keywordtype">long</span>)<a class="code" href="ugen___inline_unary_ops_8h.html#ac7ed6290f83ad687844135ceec4f6c78">std::floor</a>((2. * scale + 1.) * nextDouble() - scale);
+<a name="l00322"></a>00322  <span class="keywordflow">return</span> (<span class="keywordtype">long</span>)<a class="code" href="namespacestd.html#a71e6dbbbf152b18caa084880fbf409b2">std::floor</a>((2. * scale + 1.) * nextDouble() - scale);
 <a name="l00323"></a>00323 }
 <a name="l00324"></a>00324 
 <a name="l00325"></a><a class="code" href="class_ran088.html#aa48de1d1ec9e293056cd5942fcc3991b">00325</a> <span class="keyword">inline</span> <span class="keywordtype">long</span> <a class="code" href="class_ran088.html#aa48de1d1ec9e293056cd5942fcc3991b">Ran088::nextLinearLong</a>(<span class="keywordtype">long</span> scale) <span class="keywordflow">throw</span>()
 <a name="l00326"></a>00326 {
-<a name="l00327"></a>00327  <span class="keywordtype">long</span> a = nextLong(scale);
-<a name="l00328"></a>00328  <span class="keywordtype">long</span> b = nextLong(scale);
+<a name="l00327"></a>00327  <span class="keywordtype">long</span> <a class="code" href="ugen___play_buf_8ii.html#acf981a770380ca98690ebca553cf9846">a</a> = nextLong(scale);
+<a name="l00328"></a>00328  <span class="keywordtype">long</span> <a class="code" href="ugen___play_buf_8ii.html#ad1f2e41640df3d6024036b2f01fe81be">b</a> = nextLong(scale);
 <a name="l00329"></a>00329  <span class="keywordflow">return</span> <a class="code" href="ugen___binary_op_u_gens_8cpp.html#afc2720859a4075c66da741d8ad063ba1" title="Global function for the UGen::min() binary operator.">min</a>(a,b);
 <a name="l00330"></a>00330 }
 <a name="l00331"></a>00331 
 <a name="l00332"></a><a class="code" href="class_ran088.html#a90462d5f9e649624c5621c770b8ac788">00332</a> <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code" href="class_ran088.html#a90462d5f9e649624c5621c770b8ac788">Ran088::nextLinearDouble</a>(<span class="keywordtype">double</span> scale) <span class="keywordflow">throw</span>()
 <a name="l00333"></a>00333 {
-<a name="l00334"></a>00334  <span class="keywordtype">double</span> a = nextDouble();
-<a name="l00335"></a>00335  <span class="keywordtype">double</span> b = nextDouble();
+<a name="l00334"></a>00334  <span class="keywordtype">double</span> <a class="code" href="ugen___play_buf_8ii.html#acf981a770380ca98690ebca553cf9846">a</a> = nextDouble();
+<a name="l00335"></a>00335  <span class="keywordtype">double</span> <a class="code" href="ugen___play_buf_8ii.html#ad1f2e41640df3d6024036b2f01fe81be">b</a> = nextDouble();
 <a name="l00336"></a>00336  <span class="keywordflow">return</span> <a class="code" href="ugen___binary_op_u_gens_8cpp.html#afc2720859a4075c66da741d8ad063ba1" title="Global function for the UGen::min() binary operator.">min</a>(a,b) * scale;
 <a name="l00337"></a>00337 }
 <a name="l00338"></a>00338 
 <a name="l00339"></a><a class="code" href="class_ran088.html#ad0149b937a0937ee44a0ca51ca3d11d9">00339</a> <span class="keyword">inline</span> <span class="keywordtype">long</span> <a class="code" href="class_ran088.html#ad0149b937a0937ee44a0ca51ca3d11d9">Ran088::nextBiLinearLong</a>(<span class="keywordtype">long</span> scale) <span class="keywordflow">throw</span>()
 <a name="l00340"></a>00340 {
-<a name="l00341"></a>00341  <span class="keywordtype">long</span> a = nextLong(scale);
-<a name="l00342"></a>00342  <span class="keywordtype">long</span> b = nextLong(scale);
+<a name="l00341"></a>00341  <span class="keywordtype">long</span> <a class="code" href="ugen___play_buf_8ii.html#acf981a770380ca98690ebca553cf9846">a</a> = nextLong(scale);
+<a name="l00342"></a>00342  <span class="keywordtype">long</span> <a class="code" href="ugen___play_buf_8ii.html#ad1f2e41640df3d6024036b2f01fe81be">b</a> = nextLong(scale);
 <a name="l00343"></a>00343  <span class="keywordflow">return</span> a - b;
 <a name="l00344"></a>00344 }
 <a name="l00345"></a>00345 
 <a name="l00346"></a><a class="code" href="class_ran088.html#a9e95a84c3ab363ebd75cf7d4ec9feadb">00346</a> <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code" href="class_ran088.html#a9e95a84c3ab363ebd75cf7d4ec9feadb">Ran088::nextBiLinearDouble</a>(<span class="keywordtype">double</span> scale) <span class="keywordflow">throw</span>()
 <a name="l00347"></a>00347 {
-<a name="l00348"></a>00348  <span class="keywordtype">double</span> a = nextDouble();
-<a name="l00349"></a>00349  <span class="keywordtype">double</span> b = nextDouble();
+<a name="l00348"></a>00348  <span class="keywordtype">double</span> <a class="code" href="ugen___play_buf_8ii.html#acf981a770380ca98690ebca553cf9846">a</a> = nextDouble();
+<a name="l00349"></a>00349  <span class="keywordtype">double</span> <a class="code" href="ugen___play_buf_8ii.html#ad1f2e41640df3d6024036b2f01fe81be">b</a> = nextDouble();
 <a name="l00350"></a>00350  <span class="keywordflow">return</span> (a - b) * scale;
 <a name="l00351"></a>00351 }
 <a name="l00352"></a>00352 
 <a name="l00353"></a><a class="code" href="class_ran088.html#abd6dec68dd3a501c69923ca6c325a8f0">00353</a> <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code" href="class_ran088.html#abd6dec68dd3a501c69923ca6c325a8f0">Ran088::nextExpRandRange</a>(<span class="keywordtype">double</span> lo, <span class="keywordtype">double</span> hi) <span class="keywordflow">throw</span>()
 <a name="l00354"></a>00354 {
-<a name="l00355"></a>00355  <span class="keywordflow">return</span> lo * <a class="code" href="ugen___inline_unary_ops_8h.html#a8d8658f0531a1acd46c22f61d5084dc3">std::exp</a>(<a class="code" href="ugen___inline_unary_ops_8h.html#a0fc158a0245f0a9b82b9c2157d7bd40b">std::log</a>(hi / lo) * nextDouble());
+<a name="l00355"></a>00355  <span class="keywordflow">return</span> lo * <a class="code" href="namespacestd.html#a4e5e0feef5ff0d3473f3af6eac395480">std::exp</a>(<a class="code" href="namespacestd.html#ad8edcec240671f8ca5d660cd49f7539c">std::log</a>(hi / lo) * nextDouble());
 <a name="l00356"></a>00356 }
 <a name="l00357"></a>00357 
 <a name="l00358"></a><a class="code" href="class_ran088.html#ae83f8a8a0e7cd1458a66147d5afaa76d">00358</a> <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code" href="class_ran088.html#ae83f8a8a0e7cd1458a66147d5afaa76d">Ran088::nextExpRand</a>(<span class="keywordtype">double</span> scale) <span class="keywordflow">throw</span>()
 <a name="l00359"></a>00359 {
 <a name="l00360"></a>00360  <span class="keywordtype">double</span> z;
 <a name="l00361"></a>00361  <span class="keywordflow">while</span> ((z = nextDouble()) == 0.0) {}
-<a name="l00362"></a>00362  <span class="keywordflow">return</span> -<a class="code" href="ugen___inline_unary_ops_8h.html#a0fc158a0245f0a9b82b9c2157d7bd40b">std::log</a>(z) * scale;
+<a name="l00362"></a>00362  <span class="keywordflow">return</span> -<a class="code" href="namespacestd.html#ad8edcec240671f8ca5d660cd49f7539c">std::log</a>(z) * scale;
 <a name="l00363"></a>00363 }
 <a name="l00364"></a>00364 
 <a name="l00365"></a>00365 <span class="comment">//inline double Ran088::nextBiExpRand(double scale)</span>
@@ -468,7 +468,7 @@
 <a name="l00445"></a>00445 <span class="preprocessor">#endif // _UGEN_ugen_Random_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:36 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:29 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

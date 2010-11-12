@@ -30,7 +30,7 @@
 <h1>envelopes/ugen_EnvGen.cpp</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___env_gen_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_EnvGen.cpp 155 2010-09-19 11:32:33Z 0x4d52 $</span>
+<a href="ugen___env_gen_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_EnvGen.cpp 194 2010-11-10 22:30:50Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/envelopes/ugen_EnvGen.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -172,10 +172,10 @@
 <a name="l00140"></a>00140      <span class="keywordflow">while</span>(samplesThisTime)
 <a name="l00141"></a>00141      {
 <a name="l00142"></a>00142       *outputSamples++ = (float)currentValue;
-<a name="l00143"></a>00143       <span class="keywordtype">double</span> y0 = b1 * y1 - y2; 
+<a name="l00143"></a>00143       <span class="keywordtype">double</span> <a class="code" href="ugen___play_buf_8ii.html#a6fbdbf626ac525026616c62da6e3b3a4">y0</a> = b1 * <a class="code" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1</a> - y2; 
 <a name="l00144"></a>00144       currentValue = a2 - y0;
 <a name="l00145"></a>00145       y2 = y1; 
-<a name="l00146"></a>00146       y1 = y0;
+<a name="l00146"></a>00146       <a class="code" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1</a> = y0;
 <a name="l00147"></a>00147       --samplesThisTime;
 <a name="l00148"></a>00148      }
 <a name="l00149"></a>00149      <span class="keywordflow">break</span>;
@@ -183,10 +183,10 @@
 <a name="l00151"></a>00151      <span class="keywordflow">while</span>(samplesThisTime)
 <a name="l00152"></a>00152      {
 <a name="l00153"></a>00153       *outputSamples++ = (float)currentValue;
-<a name="l00154"></a>00154       <span class="keywordtype">double</span> y0 = b1 * y1 - y2; 
+<a name="l00154"></a>00154       <span class="keywordtype">double</span> <a class="code" href="ugen___play_buf_8ii.html#a6fbdbf626ac525026616c62da6e3b3a4">y0</a> = b1 * <a class="code" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1</a> - y2; 
 <a name="l00155"></a>00155       currentValue = a2 + y0;
 <a name="l00156"></a>00156       y2 = y1; 
-<a name="l00157"></a>00157       y1 = y0;
+<a name="l00157"></a>00157       <a class="code" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1</a> = y0;
 <a name="l00158"></a>00158       --samplesThisTime;
 <a name="l00159"></a>00159      }
 <a name="l00160"></a>00160      <span class="keywordflow">break</span>;
@@ -221,7 +221,7 @@
 <a name="l00189"></a>00189   
 <a name="l00190"></a>00190  <span class="keywordflow">return</span>;
 <a name="l00191"></a>00191  
-<a name="l00192"></a>00192 exit:
+<a name="l00192"></a>00192 <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>:
 <a name="l00193"></a>00193  <span class="keywordflow">while</span>(numSamplesToProcess--)
 <a name="l00194"></a>00194  {
 <a name="l00195"></a>00195   *outputSamples++ = (float)currentValue;
@@ -299,12 +299,12 @@
 <a name="l00267"></a>00267  {
 <a name="l00268"></a>00268   <span class="keywordflow">case</span> <a class="code" href="class_env_curve.html#ad73f0fddda6a767a0abbabb80d24f83ba868ea9cc8bcd865642b57716e0c7255f">EnvCurve::Numerical</a>:
 <a name="l00269"></a>00269    curveValue = currentCurve.getCurve();
-<a name="l00270"></a>00270    <span class="keywordflow">if</span>(std::fabs(curveValue) &gt; 0.001)
+<a name="l00270"></a>00270    <span class="keywordflow">if</span>(<a class="code" href="namespacestd.html#afcdea84cd05176eab938512d65c0a200">std::fabs</a>(curveValue) &gt; 0.001)
 <a name="l00271"></a>00271    {
-<a name="l00272"></a>00272     <span class="keywordtype">double</span> a1 = (targetValue - currentValue) / (1.0 - <a class="code" href="ugen___inline_unary_ops_8h.html#a8d8658f0531a1acd46c22f61d5084dc3">std::exp</a>(curveValue)); 
+<a name="l00272"></a>00272     <span class="keywordtype">double</span> a1 = (targetValue - currentValue) / (1.0 - <a class="code" href="namespacestd.html#a4e5e0feef5ff0d3473f3af6eac395480">std::exp</a>(curveValue)); 
 <a name="l00273"></a>00273     a2 = currentValue + a1;
 <a name="l00274"></a>00274     b1 = a1; 
-<a name="l00275"></a>00275     grow = <a class="code" href="ugen___inline_unary_ops_8h.html#a8d8658f0531a1acd46c22f61d5084dc3">std::exp</a>(curveValue / (<span class="keywordtype">double</span>)stepsUntilTarget);
+<a name="l00275"></a>00275     grow = <a class="code" href="namespacestd.html#a4e5e0feef5ff0d3473f3af6eac395480">std::exp</a>(curveValue / (<span class="keywordtype">double</span>)stepsUntilTarget);
 <a name="l00276"></a>00276     <span class="keywordflow">break</span>;
 <a name="l00277"></a>00277    }
 <a name="l00278"></a>00278    <span class="keywordflow">else</span>
@@ -316,34 +316,34 @@
 <a name="l00284"></a>00284    grow = (targetValue - currentValue) / (<span class="keywordtype">double</span>)stepsUntilTarget;
 <a name="l00285"></a>00285    <span class="keywordflow">break</span>;
 <a name="l00286"></a>00286   <span class="keywordflow">case</span> <a class="code" href="class_env_curve.html#ad73f0fddda6a767a0abbabb80d24f83ba2f0198541c85939b6178dbed54b451c4">EnvCurve::Exponential</a>:
-<a name="l00287"></a>00287    grow = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a6fa1308b8c07eb1bcac7853238deb6f3" title="Global function for the UGen::pow() binary operator.">std::pow</a>(targetValue / currentValue, 1.0 / (<span class="keywordtype">double</span>)stepsUntilTarget);
+<a name="l00287"></a>00287    grow = <a class="code" href="namespacestd.html#a53b780f389a64792dfc655a735bb9910">std::pow</a>(targetValue / currentValue, 1.0 / (<span class="keywordtype">double</span>)stepsUntilTarget);
 <a name="l00288"></a>00288    <span class="keywordflow">break</span>;
 <a name="l00289"></a>00289   <span class="keywordflow">case</span> <a class="code" href="class_env_curve.html#ad73f0fddda6a767a0abbabb80d24f83baa644de1bd3f8e8cba8c403cb01650e72">EnvCurve::Sine</a>:
 <a name="l00290"></a>00290    w = <a class="code" href="ugen___constants_8h.html#a43016d873124d39034edb8cd164794db">pi</a> / (double)stepsUntilTarget;
 <a name="l00291"></a>00291    
 <a name="l00292"></a>00292    a2 = (targetValue + currentValue) * 0.5;
-<a name="l00293"></a>00293    b1 = 2.0 * <a class="code" href="ugen___inline_unary_ops_8h.html#aa8f70c6ff79ea20ca30a6034b31568e2">std::cos</a>(w);
-<a name="l00294"></a>00294    y1 = (targetValue - currentValue) * 0.5;
-<a name="l00295"></a>00295    y2 = y1 * <a class="code" href="ugen___inline_unary_ops_8h.html#a2ec3d3237aa0701b9a2ca86ae265fcb5">std::sin</a>(<a class="code" href="ugen___constants_8h.html#ab0bf38bc19b14ba80f346e7b22ddec9f">piOverTwo</a> - w);
+<a name="l00293"></a>00293    b1 = 2.0 * <a class="code" href="namespacestd.html#ad9f2d11047cd823128044e1aeed38a99">std::cos</a>(w);
+<a name="l00294"></a>00294    <a class="code" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1</a> = (targetValue - currentValue) * 0.5;
+<a name="l00295"></a>00295    y2 = <a class="code" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1</a> * <a class="code" href="namespacestd.html#a7f58713d87f6b42cc70d9f63c637455b">std::sin</a>(<a class="code" href="ugen___constants_8h.html#ab0bf38bc19b14ba80f346e7b22ddec9f">piOverTwo</a> - w);
 <a name="l00296"></a>00296    currentValue = a2 - y1;
 <a name="l00297"></a>00297    
 <a name="l00298"></a>00298    <span class="keywordflow">break</span>;
 <a name="l00299"></a>00299   <span class="keywordflow">case</span> <a class="code" href="class_env_curve.html#ad73f0fddda6a767a0abbabb80d24f83ba555f1efc4709b5bf5700727ba499b8ca">EnvCurve::Welch</a>:
 <a name="l00300"></a>00300    w = <a class="code" href="ugen___constants_8h.html#ab0bf38bc19b14ba80f346e7b22ddec9f">piOverTwo</a> / (double)stepsUntilTarget;
 <a name="l00301"></a>00301    
-<a name="l00302"></a>00302    b1 = 2.0 * <a class="code" href="ugen___inline_unary_ops_8h.html#aa8f70c6ff79ea20ca30a6034b31568e2">std::cos</a>(w);
+<a name="l00302"></a>00302    b1 = 2.0 * <a class="code" href="namespacestd.html#ad9f2d11047cd823128044e1aeed38a99">std::cos</a>(w);
 <a name="l00303"></a>00303    
 <a name="l00304"></a>00304    <span class="keywordflow">if</span> (targetValue &gt;= currentValue) 
 <a name="l00305"></a>00305    {
 <a name="l00306"></a>00306     a2 = currentValue;
 <a name="l00307"></a>00307     y1 = 0.;
-<a name="l00308"></a>00308     y2 = -<a class="code" href="ugen___inline_unary_ops_8h.html#a2ec3d3237aa0701b9a2ca86ae265fcb5">std::sin</a>(w) * (targetValue - currentValue);
+<a name="l00308"></a>00308     y2 = -<a class="code" href="namespacestd.html#a7f58713d87f6b42cc70d9f63c637455b">std::sin</a>(w) * (targetValue - currentValue);
 <a name="l00309"></a>00309    } 
 <a name="l00310"></a>00310    <span class="keywordflow">else</span> 
 <a name="l00311"></a>00311    {
 <a name="l00312"></a>00312     a2 = targetValue;
 <a name="l00313"></a>00313     y1 = currentValue - targetValue;
-<a name="l00314"></a>00314     y2 = <a class="code" href="ugen___inline_unary_ops_8h.html#aa8f70c6ff79ea20ca30a6034b31568e2">std::cos</a>(w) * (currentValue - targetValue);
+<a name="l00314"></a>00314     y2 = <a class="code" href="namespacestd.html#ad9f2d11047cd823128044e1aeed38a99">std::cos</a>(w) * (currentValue - targetValue);
 <a name="l00315"></a>00315    }
 <a name="l00316"></a>00316    
 <a name="l00317"></a>00317    currentValue = a2 + y1;
@@ -436,14 +436,14 @@
 <a name="l00404"></a>00404       currentValue *= grow;
 <a name="l00405"></a>00405       <span class="keywordflow">break</span>;
 <a name="l00406"></a>00406      <span class="keywordflow">case</span> <a class="code" href="class_env_curve.html#ad73f0fddda6a767a0abbabb80d24f83baa644de1bd3f8e8cba8c403cb01650e72">EnvCurve::Sine</a>:
-<a name="l00407"></a>00407       y0 = b1 * y1 - y2; 
+<a name="l00407"></a>00407       y0 = b1 * <a class="code" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1</a> - y2; 
 <a name="l00408"></a>00408       currentValue = a2 - y0;
-<a name="l00409"></a>00409       y2 = y1; y1 = y0;
+<a name="l00409"></a>00409       y2 = y1; <a class="code" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1</a> = y0;
 <a name="l00410"></a>00410       <span class="keywordflow">break</span>;
 <a name="l00411"></a>00411      <span class="keywordflow">case</span> <a class="code" href="class_env_curve.html#ad73f0fddda6a767a0abbabb80d24f83ba555f1efc4709b5bf5700727ba499b8ca">EnvCurve::Welch</a>:
-<a name="l00412"></a>00412       y0 = b1 * y1 - y2; 
+<a name="l00412"></a>00412       y0 = b1 * <a class="code" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1</a> - y2; 
 <a name="l00413"></a>00413       currentValue = a2 + y0;
-<a name="l00414"></a>00414       y2 = y1; y1 = y0;
+<a name="l00414"></a>00414       y2 = y1; <a class="code" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1</a> = y0;
 <a name="l00415"></a>00415       <span class="keywordflow">break</span>;
 <a name="l00416"></a>00416      <span class="keywordflow">case</span> <a class="code" href="class_env_curve.html#ad73f0fddda6a767a0abbabb80d24f83ba9f84cc3b51cfccad9b296ff9416b935b">EnvCurve::Empty</a>:
 <a name="l00417"></a>00417      <span class="keywordflow">case</span> <a class="code" href="class_env_curve.html#ad73f0fddda6a767a0abbabb80d24f83ba8ede11fd194c135067fcad313889d46e">EnvCurve::Step</a>:
@@ -480,55 +480,57 @@
 <a name="l00448"></a>00448   }
 <a name="l00449"></a>00449   <span class="keywordflow">else</span>
 <a name="l00450"></a>00450   {
-<a name="l00451"></a>00451    <span class="keywordtype">double</span> valueSlope = (currentValue - prevValue) * <a class="code" href="class_u_gen.html#aa74b2f078838a887bcb29c95ea76b82c" title="Get the current control rate slope factor i.e., 1.0 / (control rate block size).">UGen::getControlSlopeFactor</a>();
-<a name="l00452"></a>00452    <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
-<a name="l00453"></a>00453    {
-<a name="l00454"></a>00454     *outputSamples++ = (float)prevValue;
-<a name="l00455"></a>00455     prevValue += valueSlope;
-<a name="l00456"></a>00456     --numSamplesToProcess;
-<a name="l00457"></a>00457     --numKrSamples;
-<a name="l00458"></a>00458    }
-<a name="l00459"></a>00459   }
-<a name="l00460"></a>00460  }  
-<a name="l00461"></a>00461  
-<a name="l00462"></a>00462  <span class="keywordflow">return</span>;
-<a name="l00463"></a>00463 
-<a name="l00464"></a>00464 exit:
-<a name="l00465"></a>00465  
-<a name="l00466"></a>00466  <span class="keywordflow">if</span>(prevValue == currentValue)
-<a name="l00467"></a>00467  {
-<a name="l00468"></a>00468   <span class="keywordflow">while</span>(numSamplesToProcess &gt; 0)
-<a name="l00469"></a>00469   {
-<a name="l00470"></a>00470    *outputSamples++ = (float)prevValue;
-<a name="l00471"></a>00471    --numSamplesToProcess;
-<a name="l00472"></a>00472   }
-<a name="l00473"></a>00473  }
-<a name="l00474"></a>00474  <span class="keywordflow">else</span>
-<a name="l00475"></a>00475  {
-<a name="l00476"></a>00476   <span class="keywordtype">double</span> valueSlope = (currentValue - prevValue) / (<span class="keywordtype">double</span>)numSamplesToProcess;
-<a name="l00477"></a>00477   <span class="keywordflow">while</span>(numSamplesToProcess &gt; 0)
-<a name="l00478"></a>00478   {
-<a name="l00479"></a>00479    *outputSamples++ = (float)prevValue;
-<a name="l00480"></a>00480    prevValue += valueSlope;
-<a name="l00481"></a>00481    --numSamplesToProcess;
-<a name="l00482"></a>00482   }
-<a name="l00483"></a>00483  }
-<a name="l00484"></a>00484  
-<a name="l00485"></a>00485  setIsDone();
-<a name="l00486"></a>00486 }
-<a name="l00487"></a>00487 
-<a name="l00488"></a><a class="code" href="class_env_gen.html#aa0687837112cb247fde59aa132ce1d89">00488</a> <a class="code" href="class_env_gen.html#aa0687837112cb247fde59aa132ce1d89" title="Base MulAdd EnvGen Constuctor (without &amp;quot;mul&amp;quot; or &amp;quot;add&amp;quot;), use the AR() and KR() ver...">EnvGen::EnvGen</a>(<a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <span class="keyword">const</span>&amp; env, <span class="keyword">const</span> <a class="code" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1ca" title="Defines actions to be done at the end of an event e.g., a line or envelope.">UGen::DoneAction</a> doneAction) <span class="keywordflow">throw</span>()
-<a name="l00489"></a>00489 {
-<a name="l00490"></a>00490  initInternal(1);
-<a name="l00491"></a>00491  internalUGens[0] = <span class="keyword">new</span> <a class="code" href="class_env_gen_u_gen_internal.html">EnvGenUGenInternal</a>(env, doneAction);
-<a name="l00492"></a>00492 }
-<a name="l00493"></a>00493 
-<a name="l00494"></a>00494 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
+<a name="l00451"></a>00451 <span class="comment">//   double valueSlope = (currentValue - prevValue) * UGen::getControlSlopeFactor();</span>
+<a name="l00452"></a>00452    <span class="keywordtype">double</span> valueSlope = (currentValue - prevValue) / (<span class="keywordtype">double</span>)<a class="code" href="class_u_gen.html#a2c362eee1cdf755de0eed14727494235" title="Get the current control rate block size.">UGen::getControlRateBlockSize</a>();
+<a name="l00453"></a>00453    
+<a name="l00454"></a>00454    <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
+<a name="l00455"></a>00455    {
+<a name="l00456"></a>00456     *outputSamples++ = (float)prevValue;
+<a name="l00457"></a>00457     prevValue += valueSlope;
+<a name="l00458"></a>00458     --numSamplesToProcess;
+<a name="l00459"></a>00459     --numKrSamples;
+<a name="l00460"></a>00460    }
+<a name="l00461"></a>00461   }
+<a name="l00462"></a>00462  }  
+<a name="l00463"></a>00463  
+<a name="l00464"></a>00464  <span class="keywordflow">return</span>;
+<a name="l00465"></a>00465 
+<a name="l00466"></a>00466 <a class="code" href="ugen___play_buf_8ii.html#af92224d6393c075d08a30d289c534c6e">exit</a>:
+<a name="l00467"></a>00467  
+<a name="l00468"></a>00468  <span class="keywordflow">if</span>(prevValue == currentValue)
+<a name="l00469"></a>00469  {
+<a name="l00470"></a>00470   <span class="keywordflow">while</span>(numSamplesToProcess &gt; 0)
+<a name="l00471"></a>00471   {
+<a name="l00472"></a>00472    *outputSamples++ = (float)prevValue;
+<a name="l00473"></a>00473    --numSamplesToProcess;
+<a name="l00474"></a>00474   }
+<a name="l00475"></a>00475  }
+<a name="l00476"></a>00476  <span class="keywordflow">else</span>
+<a name="l00477"></a>00477  {
+<a name="l00478"></a>00478   <span class="keywordtype">double</span> valueSlope = (currentValue - prevValue) / (<span class="keywordtype">double</span>)numSamplesToProcess;
+<a name="l00479"></a>00479   <span class="keywordflow">while</span>(numSamplesToProcess &gt; 0)
+<a name="l00480"></a>00480   {
+<a name="l00481"></a>00481    *outputSamples++ = (float)prevValue;
+<a name="l00482"></a>00482    prevValue += valueSlope;
+<a name="l00483"></a>00483    --numSamplesToProcess;
+<a name="l00484"></a>00484   }
+<a name="l00485"></a>00485  }
+<a name="l00486"></a>00486  
+<a name="l00487"></a>00487  setIsDone();
+<a name="l00488"></a>00488 }
+<a name="l00489"></a>00489 
+<a name="l00490"></a><a class="code" href="class_env_gen.html#aa0687837112cb247fde59aa132ce1d89">00490</a> <a class="code" href="class_env_gen.html#aa0687837112cb247fde59aa132ce1d89" title="Base MulAdd EnvGen Constuctor (without &amp;quot;mul&amp;quot; or &amp;quot;add&amp;quot;), use the AR() and KR() ver...">EnvGen::EnvGen</a>(<a class="code" href="class_env.html" title="A specification for a segmented envelope.">Env</a> <span class="keyword">const</span>&amp; env, <span class="keyword">const</span> <a class="code" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1ca" title="Defines actions to be done at the end of an event e.g., a line or envelope.">UGen::DoneAction</a> doneAction) <span class="keywordflow">throw</span>()
+<a name="l00491"></a>00491 {
+<a name="l00492"></a>00492  initInternal(1);
+<a name="l00493"></a>00493  internalUGens[0] = <span class="keyword">new</span> <a class="code" href="class_env_gen_u_gen_internal.html">EnvGenUGenInternal</a>(env, doneAction);
+<a name="l00494"></a>00494 }
 <a name="l00495"></a>00495 
-<a name="l00496"></a>00496 <span class="preprocessor">#endif</span>
+<a name="l00496"></a>00496 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
+<a name="l00497"></a>00497 
+<a name="l00498"></a>00498 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:30 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

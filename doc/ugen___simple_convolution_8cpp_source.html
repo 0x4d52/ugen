@@ -123,17 +123,17 @@
 <a name="l00091"></a>00091  <span class="keywordtype">float</span>* <span class="keyword">const</span> bufferBSamples = buffers.getDataUnchecked(InputB);
 <a name="l00092"></a>00092  <span class="keywordtype">float</span>* <span class="keyword">const</span> outputBufferSamples = buffers.getDataUnchecked(Output);
 <a name="l00093"></a>00093   
-<a name="l00094"></a>00094  DSPSplitComplex fftABuffer;
-<a name="l00095"></a>00095  fftABuffer.realp = buffers.getDataUnchecked(ProcessA);
-<a name="l00096"></a>00096  fftABuffer.imagp = fftABuffer.realp + fftSizeHalved;
+<a name="l00094"></a>00094  <a class="code" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a> fftABuffer;
+<a name="l00095"></a>00095  fftABuffer.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a> = buffers.getDataUnchecked(ProcessA);
+<a name="l00096"></a>00096  fftABuffer.<a class="code" href="struct_d_s_p_split_complex.html#a72d222ae37a256ca0e3b5a3c8eb4c670">imagp</a> = fftABuffer.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a> + fftSizeHalved;
 <a name="l00097"></a>00097  
-<a name="l00098"></a>00098  DSPSplitComplex fftBBuffer;
-<a name="l00099"></a>00099  fftBBuffer.realp = buffers.getDataUnchecked(ProcessB);
-<a name="l00100"></a>00100  fftBBuffer.imagp = fftBBuffer.realp + fftSizeHalved;
+<a name="l00098"></a>00098  <a class="code" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a> fftBBuffer;
+<a name="l00099"></a>00099  fftBBuffer.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a> = buffers.getDataUnchecked(ProcessB);
+<a name="l00100"></a>00100  fftBBuffer.<a class="code" href="struct_d_s_p_split_complex.html#a72d222ae37a256ca0e3b5a3c8eb4c670">imagp</a> = fftBBuffer.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a> + fftSizeHalved;
 <a name="l00101"></a>00101  
-<a name="l00102"></a>00102  DSPSplitComplex fftResultBufferSplit;
-<a name="l00103"></a>00103  fftResultBufferSplit.realp = buffers.getDataUnchecked(FFTResult);
-<a name="l00104"></a>00104  fftResultBufferSplit.imagp = fftResultBufferSplit.realp + fftSizeHalved;
+<a name="l00102"></a>00102  <a class="code" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a> fftResultBufferSplit;
+<a name="l00103"></a>00103  fftResultBufferSplit.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a> = buffers.getDataUnchecked(FFTResult);
+<a name="l00104"></a>00104  fftResultBufferSplit.<a class="code" href="struct_d_s_p_split_complex.html#a72d222ae37a256ca0e3b5a3c8eb4c670">imagp</a> = fftResultBufferSplit.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a> + fftSizeHalved;
 <a name="l00105"></a>00105  
 <a name="l00106"></a>00106  <span class="keywordflow">while</span>(numSamplesToProcess &gt; 0)
 <a name="l00107"></a>00107  {
@@ -142,11 +142,11 @@
 <a name="l00110"></a>00110   <span class="keywordflow">if</span>(bufferSamplesToProcess &gt; numSamplesToProcess)
 <a name="l00111"></a>00111   {   
 <a name="l00112"></a>00112    <span class="comment">// buffer the inputs</span>
-<a name="l00113"></a>00113    memcpy(bufferASamples + bufferIndex, inputASamples, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
-<a name="l00114"></a>00114    memcpy(bufferBSamples + bufferIndex, inputBSamples, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00113"></a>00113    <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(bufferASamples + bufferIndex, inputASamples, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00114"></a>00114    <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(bufferBSamples + bufferIndex, inputBSamples, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l00115"></a>00115    
 <a name="l00116"></a>00116    <span class="comment">// ...and the output</span>
-<a name="l00117"></a>00117    memcpy(outputSamples, outputBufferSamples + bufferIndex, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00117"></a>00117    <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(outputSamples, outputBufferSamples + bufferIndex, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l00118"></a>00118             
 <a name="l00119"></a>00119    bufferIndex += numSamplesToProcess;
 <a name="l00120"></a>00120    inputASamples += numSamplesToProcess;
@@ -158,10 +158,10 @@
 <a name="l00126"></a>00126   {
 <a name="l00127"></a>00127    numSamplesToProcess -= bufferSamplesToProcess;
 <a name="l00128"></a>00128    
-<a name="l00129"></a>00129    memcpy(bufferASamples + bufferIndex, inputASamples, bufferSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
-<a name="l00130"></a>00130    memcpy(bufferBSamples + bufferIndex, inputBSamples, bufferSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00129"></a>00129    <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(bufferASamples + bufferIndex, inputASamples, bufferSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00130"></a>00130    <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(bufferBSamples + bufferIndex, inputBSamples, bufferSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l00131"></a>00131    
-<a name="l00132"></a>00132    memcpy(outputSamples, outputBufferSamples + bufferIndex, bufferSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00132"></a>00132    <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(outputSamples, outputBufferSamples + bufferIndex, bufferSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l00133"></a>00133    
 <a name="l00134"></a>00134    bufferIndex += bufferSamplesToProcess;
 <a name="l00135"></a>00135    inputASamples += bufferSamplesToProcess;
@@ -174,7 +174,7 @@
 <a name="l00142"></a>00142    fftEngine-&gt;fft(fftBBuffer, buffers.getDataUnchecked(InputB), <span class="keyword">true</span>);
 <a name="l00143"></a>00143    
 <a name="l00144"></a>00144    <span class="comment">// convolve</span>
-<a name="l00145"></a>00145    memset(fftResultBufferSplit.realp, 0, fftSize_ * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00145"></a>00145    <a class="code" href="ugen___play_buf_8ii.html#a68d2b40ef2213b9227a1ce3b81997ae5">memset</a>(fftResultBufferSplit.<a class="code" href="struct_d_s_p_split_complex.html#a8cd1a62a980eb6b661c87a7a84476164">realp</a>, 0, fftSize_ * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l00146"></a>00146    <a class="code" href="ugen___f_f_t_engine_internal_8h.html#a1d1a4d94418f3c5e4f947f2763fbd5ce">MultAndAdd</a>(fftABuffer, fftBBuffer, fftResultBufferSplit, fftSizeHalved / 4);
 <a name="l00147"></a>00147       
 <a name="l00148"></a>00148    <span class="comment">// do ifft</span>
@@ -193,7 +193,7 @@
 <a name="l00161"></a>00161 { 
 <a name="l00162"></a>00162  <span class="keyword">const</span> <span class="keywordtype">int</span> fftSizeChecked = <a class="code" href="class_bits.html#ae0b61f4f2add97227eca8f5d9aaec56a">Bits::isPowerOf2</a>(fftSize) ? fftSize : <a class="code" href="class_bits.html#a5b721a90f111bcfb0e103f1cb002dfa1">Bits::nextPowerOf2</a>(fftSize);
 <a name="l00163"></a>00163 
-<a name="l00164"></a>00164  <span class="keyword">const</span> <span class="keywordtype">int</span> numInputChannels = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(inputA.getNumChannels(), inputB.getNumChannels());
+<a name="l00164"></a>00164  <span class="keyword">const</span> <span class="keywordtype">int</span> numInputChannels = <a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(inputA.getNumChannels(), inputB.getNumChannels());
 <a name="l00165"></a>00165  initInternal(numInputChannels);
 <a name="l00166"></a>00166  
 <a name="l00167"></a>00167  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++)
@@ -220,7 +220,7 @@
 <a name="l00188"></a>00188   
 <a name="l00189"></a>00189  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> mixer = overlappingConvolutions.<a class="code" href="class_u_gen_array.html#af8df6b08eb4feda63566d279a071fb88" title="Mixes this UGenArray down to a multichannel UGen.">mix</a>();
 <a name="l00190"></a>00190  
-<a name="l00191"></a>00191  <span class="keyword">const</span> <span class="keywordtype">int</span> numInputChannels = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(inputA.getNumChannels(), inputB.getNumChannels());
+<a name="l00191"></a>00191  <span class="keyword">const</span> <span class="keywordtype">int</span> numInputChannels = <a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(inputA.getNumChannels(), inputB.getNumChannels());
 <a name="l00192"></a>00192  initInternal(numInputChannels);
 <a name="l00193"></a>00193  
 <a name="l00194"></a>00194  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++)
@@ -235,7 +235,7 @@
 <a name="l00203"></a>00203 <span class="preprocessor">#endif // UGEN_CONVOLUTION</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:36 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:29 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

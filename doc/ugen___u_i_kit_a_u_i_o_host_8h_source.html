@@ -83,16 +83,16 @@
 <a name="l00074"></a>00074 {
 <a name="l00075"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a88b285c33122b966dc2d38d9612140c0">00075</a>  AudioStreamBasicDescription format;
 <a name="l00076"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#ac84e17d50ddb9ed0f3415c730a624947">00076</a>  AURenderCallbackStruct  inputProc;
-<a name="l00077"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a6dee2bd894a75a319121b7b07457b1eb">00077</a>  Float64      hwSampleRate;
+<a name="l00077"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a6dee2bd894a75a319121b7b07457b1eb">00077</a>  <a class="code" href="ugen___play_buf_8ii.html#a3f1431cb9f76da10f59246d1d743dc2c">Float64</a>      hwSampleRate;
 <a name="l00078"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a0d08cf999ed5cf5b3fbbe9a0431fce22">00078</a>  AudioUnit     rioUnit;
 <a name="l00079"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a9e2c86e49baf974175a7bd957f7ecc29">00079</a>  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>      rawInput;
 <a name="l00080"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a8b56c88ac3a93ca377bfbfad4cd67457">00080</a>  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>      postFadeOutput;
 <a name="l00081"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#af441bb1eed898c95b478ab3c37ec277d">00081</a>  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>      preFadeOutput;
 <a name="l00082"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a1c0537643dbf254bd8d1eb6212d9c5e6">00082</a>  <span class="keywordtype">int</span>       bufferSize;
 <a name="l00083"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a6e52acf61e62b524b9e49a8a41e9888b">00083</a>  <span class="keywordtype">float</span>      *floatBuffer;
-<a name="l00084"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a5694c56d09ff8e934c4cc59beec7e51a">00084</a>  UInt32      audioInputIsAvailable;
-<a name="l00085"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#aff2eddf091f61dd8cf46686324ecdaaf">00085</a>  UInt32      numInputChannels;
-<a name="l00086"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a466cf95f3f8d3bd506eef5f5fa6ee9fd">00086</a>  UInt32      numOutputChannels;
+<a name="l00084"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a5694c56d09ff8e934c4cc59beec7e51a">00084</a>  <a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a>      audioInputIsAvailable;
+<a name="l00085"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#aff2eddf091f61dd8cf46686324ecdaaf">00085</a>  <a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a>      numInputChannels;
+<a name="l00086"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a466cf95f3f8d3bd506eef5f5fa6ee9fd">00086</a>  <a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a>      numOutputChannels;
 <a name="l00087"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a832186d988eee3825295363625145aa6">00087</a>  <span class="keywordtype">bool</span>      isRunning;
 <a name="l00088"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#a03267b3c0cafe461baa274af9a03b09e">00088</a>  <span class="keywordtype">float</span>      fadeInTime;
 <a name="l00089"></a><a class="code" href="interface_u_i_kit_a_u_i_o_host.html#ae4be0eeb018749e335e196176ef3cd03">00089</a>  <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>     others;
@@ -102,29 +102,29 @@
 <a name="l00093"></a>00093 }
 <a name="l00094"></a>00094 
 <a name="l00100"></a>00100 - (id)initAudio;
-<a name="l00101"></a>00101 - (void)setPreferredBufferSize:(<span class="keywordtype">int</span>)size;
-<a name="l00102"></a>00102 - (void)setFormat;
+<a name="l00101"></a>00101 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)setPreferredBufferSize:(<span class="keywordtype">int</span>)size;
+<a name="l00102"></a>00102 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)setFormat;
 <a name="l00103"></a>00103 - (int)setupRemoteIO;
-<a name="l00104"></a>00104 - (OSStatus)renderCallback:(UInt32)inNumberFrames 
+<a name="l00104"></a>00104 - (<a class="code" href="ugen___play_buf_8ii.html#a389e8a167a89832edb1c7f2d0302537c">OSStatus</a>)renderCallback:(<a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a>)inNumberFrames 
 <a name="l00105"></a>00105      withActionFlags:(AudioUnitRenderActionFlags*)ioActionFlags
 <a name="l00106"></a>00106       atTimeStamp:(const AudioTimeStamp*)inTimeStamp 
 <a name="l00107"></a>00107       withBuffers:(AudioBufferList*)ioData;
-<a name="l00108"></a>00108 - (void)propertyCallback:(AudioSessionPropertyID)inID
-<a name="l00109"></a>00109     withSize:(UInt32)inDataSize 
+<a name="l00108"></a>00108 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)propertyCallback:(AudioSessionPropertyID)inID
+<a name="l00109"></a>00109     withSize:(<a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a>)inDataSize 
 <a name="l00110"></a>00110    withProperty:(const <span class="keywordtype">void</span> *)inPropertyValue;
-<a name="l00111"></a>00111 - (void)fixAudioRouteIfSetToReceiver;
-<a name="l00112"></a>00112 - (void)interruptionCallback:(UInt32)inInterruption;
+<a name="l00111"></a>00111 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)fixAudioRouteIfSetToReceiver;
+<a name="l00112"></a>00112 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)interruptionCallback:(<a class="code" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a>)inInterruption;
 <a name="l00113"></a>00113 
 <a name="l00121"></a>00121 - (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>)constructGraph:(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>)input;
 <a name="l00122"></a>00122 
-<a name="l00123"></a>00123 - (void)addOther:(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>)ugen;
+<a name="l00123"></a>00123 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)addOther:(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>)ugen;
 <a name="l00124"></a>00124 
-<a name="l00125"></a>00125 - (void)lock;
-<a name="l00126"></a>00126 - (void)unlock;
+<a name="l00125"></a>00125 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)lock;
+<a name="l00126"></a>00126 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)unlock;
 <a name="l00127"></a>00127 - (BOOL)tryLock;
 <a name="l00128"></a>00128 
-<a name="l00129"></a>00129 - (void)isAboutToShutdown;
-<a name="l00130"></a>00130 - (void)shutdown;
+<a name="l00129"></a>00129 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)isAboutToShutdown;
+<a name="l00130"></a>00130 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)shutdown;
 <a name="l00131"></a>00131 
 <a name="l00132"></a>00132 <span class="keyword">@end</span>
 <a name="l00133"></a>00133 
@@ -140,7 +140,7 @@
 <a name="l00143"></a>00143 <span class="preprocessor">#endif // _UGEN_ugen_iPhoneAUIOHost_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:31 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -69,44 +69,68 @@
 <a name="l00037"></a>00037 <span class="preprocessor">#ifndef _UGEN_ugen_JuceUtility_H_</span>
 <a name="l00038"></a>00038 <span class="preprocessor"></span><span class="preprocessor">#define _UGEN_ugen_JuceUtility_H_</span>
 <a name="l00039"></a>00039 <span class="preprocessor"></span>
-<a name="l00042"></a><a class="code" href="ugen___juce_utility_8h.html#a40e0bc3d343c79c29a14961e43827c0f">00042</a> <span class="keyword">inline</span> String <a class="code" href="ugen___juce_utility_8h.html#a40e0bc3d343c79c29a14961e43827c0f" title="Get a string which is useful as a time identifier.">getCurrentTimeIdentifier</a>() throw()
-<a name="l00043"></a>00043 {
-<a name="l00044"></a>00044  String ms = String(Time::getMillisecondCounter() % 1000).paddedLeft(<a class="code" href="ugen___standard_header_8h.html#a5ef253115820acf7d27f3c5c3b02a0f0">T</a>(<span class="charliteral">&#39;0&#39;</span>), 3);
-<a name="l00045"></a>00045  <span class="keywordflow">return</span> Time::getCurrentTime().formatted(<a class="code" href="ugen___standard_header_8h.html#a5ef253115820acf7d27f3c5c3b02a0f0">T</a>(<span class="stringliteral">&quot;%Y%m%d_%H%M%S_&quot;</span>)) + ms; 
-<a name="l00046"></a>00046 }
-<a name="l00047"></a>00047 
-<a name="l00050"></a><a class="code" href="ugen___juce_utility_8h.html#a4f08bab5eedb77baba81938617e04b1e">00050</a> <span class="keyword">inline</span> String <a class="code" href="ugen___juce_utility_8h.html#a4f08bab5eedb77baba81938617e04b1e" title="Append a time identifier to t string useful as a filename.">getFileNameWithTimeIdentifier</a>(String <span class="keyword">const</span>&amp; filename) <span class="keywordflow">throw</span>()
-<a name="l00051"></a>00051 {
-<a name="l00052"></a>00052  <span class="keywordflow">return</span> filename + <a class="code" href="ugen___standard_header_8h.html#a5ef253115820acf7d27f3c5c3b02a0f0">T</a>(<span class="stringliteral">&quot;_&quot;</span>) + <a class="code" href="ugen___juce_utility_8h.html#a40e0bc3d343c79c29a14961e43827c0f" title="Get a string which is useful as a time identifier.">getCurrentTimeIdentifier</a>();
-<a name="l00053"></a>00053 }
-<a name="l00054"></a>00054 
-<a name="l00056"></a><a class="code" href="class_popup_component.html">00056</a> <span class="keyword">class </span><a class="code" href="class_popup_component.html" title="A little Juce class used as a pop-up editor.">PopupComponent</a> : <span class="keyword">public</span> Component,
-<a name="l00057"></a>00057       <span class="keyword">public</span> Timer
-<a name="l00058"></a>00058 {
-<a name="l00059"></a>00059 <span class="keyword">private</span>:
-<a name="l00060"></a><a class="code" href="class_popup_component.html#a94fa9066c8c63b006b1fe26c4404d037">00060</a>  <span class="keywordtype">int</span> <a class="code" href="class_popup_component.html#a94fa9066c8c63b006b1fe26c4404d037">counter</a>;
-<a name="l00061"></a><a class="code" href="class_popup_component.html#a5e4bb24617391cd2a7831fa5b8ad4393">00061</a>  <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_popup_component.html#a5e4bb24617391cd2a7831fa5b8ad4393">maxCount</a>;  
-<a name="l00062"></a><a class="code" href="class_popup_component.html#a8f02b899354dc2b29224fe71a05ac496">00062</a>  <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="class_popup_component.html#a8f02b899354dc2b29224fe71a05ac496">activePopups</a>;
-<a name="l00063"></a>00063  
-<a name="l00064"></a>00064 <span class="keyword">public</span>:
-<a name="l00065"></a>00065  <a class="code" href="class_popup_component.html#a0d475511536885abee311b40e3814c09">PopupComponent</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">max</a> = 20); 
-<a name="l00066"></a>00066  <a class="code" href="class_popup_component.html#aa15efb030775c793e08ff029e12c4de6">~PopupComponent</a>();
-<a name="l00067"></a>00067  <span class="keywordtype">void</span> <a class="code" href="class_popup_component.html#a721b6347164f7c67a08fcc4a0680e761">paint</a>(Graphics &amp;g); 
-<a name="l00068"></a>00068  <span class="keywordtype">void</span> <a class="code" href="class_popup_component.html#aa988ad313f6433a723473b64b6cf3d64">mouseDown</a>(MouseEvent <span class="keyword">const</span>&amp; e);
-<a name="l00069"></a>00069  
-<a name="l00070"></a><a class="code" href="class_popup_component.html#a610dc2d06a783d2a0afdd2485aa0cccd">00070</a>  <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="class_popup_component.html#a610dc2d06a783d2a0afdd2485aa0cccd">getActivePopups</a>() { <span class="keywordflow">return</span> <a class="code" href="class_popup_component.html#a8f02b899354dc2b29224fe71a05ac496">activePopups</a>; }
-<a name="l00071"></a>00071 
-<a name="l00072"></a>00072 <span class="keyword">protected</span>:
-<a name="l00073"></a>00073  <span class="keywordtype">void</span> <a class="code" href="class_popup_component.html#a280417a09281ac1da18cb885f4aac8d1">resetCounter</a>(); 
-<a name="l00074"></a>00074  <span class="keywordtype">void</span> <a class="code" href="class_popup_component.html#aead86a443f5360498867d47afd478d37">timerCallback</a>();
-<a name="l00075"></a>00075  <span class="keywordtype">void</span> <a class="code" href="class_popup_component.html#a073f40b943e6fa1b6868462c05785d6f">expire</a>();
-<a name="l00076"></a>00076 };
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078 
-<a name="l00079"></a>00079 <span class="preprocessor">#endif // _UGEN_ugen_JuceUtility_H_</span>
+<a name="l00040"></a>00040 <span class="preprocessor">#include &quot;../buffers/ugen_Buffer.h&quot;</span>
+<a name="l00041"></a>00041 
+<a name="l00044"></a><a class="code" href="ugen___juce_utility_8h.html#a40e0bc3d343c79c29a14961e43827c0f">00044</a> <span class="keyword">inline</span> String <a class="code" href="ugen___juce_utility_8h.html#a40e0bc3d343c79c29a14961e43827c0f" title="Get a string which is useful as a time identifier.">getCurrentTimeIdentifier</a>() throw()
+<a name="l00045"></a>00045 {
+<a name="l00046"></a>00046  String ms = String(Time::getMillisecondCounter() % 1000).paddedLeft(<a class="code" href="ugen___standard_header_8h.html#a5ef253115820acf7d27f3c5c3b02a0f0">T</a>(<span class="charliteral">&#39;0&#39;</span>), 3);
+<a name="l00047"></a>00047  <span class="keywordflow">return</span> Time::getCurrentTime().formatted(<a class="code" href="ugen___standard_header_8h.html#a5ef253115820acf7d27f3c5c3b02a0f0">T</a>(<span class="stringliteral">&quot;%Y%m%d_%H%M%S_&quot;</span>)) + ms; 
+<a name="l00048"></a>00048 }
+<a name="l00049"></a>00049 
+<a name="l00052"></a><a class="code" href="ugen___juce_utility_8h.html#a4f08bab5eedb77baba81938617e04b1e">00052</a> <span class="keyword">inline</span> String <a class="code" href="ugen___juce_utility_8h.html#a4f08bab5eedb77baba81938617e04b1e" title="Append a time identifier to t string useful as a filename.">getFileNameWithTimeIdentifier</a>(String <span class="keyword">const</span>&amp; filename) <span class="keywordflow">throw</span>()
+<a name="l00053"></a>00053 {
+<a name="l00054"></a>00054  <span class="keywordflow">return</span> filename + <a class="code" href="ugen___standard_header_8h.html#a5ef253115820acf7d27f3c5c3b02a0f0">T</a>(<span class="stringliteral">&quot;_&quot;</span>) + <a class="code" href="ugen___juce_utility_8h.html#a40e0bc3d343c79c29a14961e43827c0f" title="Get a string which is useful as a time identifier.">getCurrentTimeIdentifier</a>();
+<a name="l00055"></a>00055 }
+<a name="l00056"></a>00056 
+<a name="l00058"></a><a class="code" href="class_popup_component.html">00058</a> <span class="keyword">class </span><a class="code" href="class_popup_component.html" title="A little Juce class used as a pop-up editor.">PopupComponent</a> : <span class="keyword">public</span> Component,
+<a name="l00059"></a>00059       <span class="keyword">public</span> Timer
+<a name="l00060"></a>00060 {
+<a name="l00061"></a>00061 <span class="keyword">private</span>:
+<a name="l00062"></a><a class="code" href="class_popup_component.html#a94fa9066c8c63b006b1fe26c4404d037">00062</a>  <span class="keywordtype">int</span> <a class="code" href="class_popup_component.html#a94fa9066c8c63b006b1fe26c4404d037">counter</a>;
+<a name="l00063"></a><a class="code" href="class_popup_component.html#a5e4bb24617391cd2a7831fa5b8ad4393">00063</a>  <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_popup_component.html#a5e4bb24617391cd2a7831fa5b8ad4393">maxCount</a>;  
+<a name="l00064"></a><a class="code" href="class_popup_component.html#a8f02b899354dc2b29224fe71a05ac496">00064</a>  <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="class_popup_component.html#a8f02b899354dc2b29224fe71a05ac496">activePopups</a>;
+<a name="l00065"></a>00065  
+<a name="l00066"></a>00066 <span class="keyword">public</span>:
+<a name="l00067"></a>00067  <a class="code" href="class_popup_component.html#a0d475511536885abee311b40e3814c09">PopupComponent</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">max</a> = 20); 
+<a name="l00068"></a>00068  <a class="code" href="class_popup_component.html#aa15efb030775c793e08ff029e12c4de6">~PopupComponent</a>();
+<a name="l00069"></a>00069  <span class="keywordtype">void</span> <a class="code" href="class_popup_component.html#a721b6347164f7c67a08fcc4a0680e761">paint</a>(Graphics &amp;<a class="code" href="ugen___play_buf_8ii.html#a3db823ffd65d26adcfb5687f02f9e7bd">g</a>); 
+<a name="l00070"></a>00070  <span class="keywordtype">void</span> <a class="code" href="class_popup_component.html#aa988ad313f6433a723473b64b6cf3d64">mouseDown</a>(MouseEvent <span class="keyword">const</span>&amp; e);
+<a name="l00071"></a>00071  
+<a name="l00072"></a><a class="code" href="class_popup_component.html#a610dc2d06a783d2a0afdd2485aa0cccd">00072</a>  <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="class_popup_component.html#a610dc2d06a783d2a0afdd2485aa0cccd">getActivePopups</a>() { <span class="keywordflow">return</span> <a class="code" href="class_popup_component.html#a8f02b899354dc2b29224fe71a05ac496">activePopups</a>; }
+<a name="l00073"></a>00073 
+<a name="l00074"></a>00074 <span class="keyword">protected</span>:
+<a name="l00075"></a>00075  <span class="keywordtype">void</span> <a class="code" href="class_popup_component.html#a280417a09281ac1da18cb885f4aac8d1">resetCounter</a>(); 
+<a name="l00076"></a>00076  <span class="keywordtype">void</span> <a class="code" href="class_popup_component.html#aead86a443f5360498867d47afd478d37">timerCallback</a>();
+<a name="l00077"></a>00077  <span class="keywordtype">void</span> <a class="code" href="class_popup_component.html#a073f40b943e6fa1b6868462c05785d6f">expire</a>();
+<a name="l00078"></a>00078 };
+<a name="l00079"></a>00079 
+<a name="l00081"></a><a class="code" href="class_buffer_process.html">00081</a> <span class="keyword">class </span><a class="code" href="class_buffer_process.html" title="Manages Buffer processing on a background thread.">BufferProcess</a> : <span class="keyword">public</span> Thread,
+<a name="l00082"></a>00082       <span class="keyword">public</span> <a class="code" href="class_buffer_sender.html" title="Subclasses of this collect samples into a Buffer and transmit it to BufferReceiver objects...">BufferSender</a>
+<a name="l00083"></a>00083 {
+<a name="l00084"></a>00084 <span class="keyword">public</span>:
+<a name="l00085"></a>00085  <a class="code" href="class_buffer_process.html#af70fe55a871f04b8d7886867a1475c6f">BufferProcess</a>() <span class="keywordflow">throw</span>();
+<a name="l00086"></a>00086  <a class="code" href="class_buffer_process.html#a05494a44ed3b61ac1b7672822e72ba10">~BufferProcess</a>();
+<a name="l00087"></a>00087  
+<a name="l00093"></a>00093  <span class="keywordtype">void</span> <a class="code" href="class_buffer_process.html#a49a38007e06aa42ea7c4a9c9e5128cca" title="Adds a Buffer process to the job array.">add</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; buffer, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; graph, <span class="keyword">const</span> <span class="keywordtype">int</span> bufferID = 0) <span class="keywordflow">throw</span>();
+<a name="l00094"></a>00094  
+<a name="l00100"></a>00100  <span class="keywordtype">void</span> <a class="code" href="class_buffer_process.html#a49a38007e06aa42ea7c4a9c9e5128cca" title="Adds a Buffer process to the job array.">add</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; graph, <span class="keyword">const</span> <span class="keywordtype">int</span> bufferID = 0) <span class="keywordflow">throw</span>();
+<a name="l00101"></a>00101  
+<a name="l00102"></a>00102  
+<a name="l00103"></a>00103 <span class="keyword">private</span>: 
+<a name="l00104"></a>00104  <span class="keywordtype">void</span> <a class="code" href="class_buffer_process.html#ab50a10f6b856a9e0917216006fdba98d">run</a>() <span class="keywordflow">throw</span>();
+<a name="l00105"></a><a class="code" href="class_buffer_process.html#a02372e86edbcb8099e02cbe1e99d924a">00105</a>  <a class="code" href="class_object_array.html">ObjectArray&lt;Buffer&gt;</a> <a class="code" href="class_buffer_process.html#a02372e86edbcb8099e02cbe1e99d924a">buffers</a>;
+<a name="l00106"></a><a class="code" href="class_buffer_process.html#aff4124391314f18bc9a4e28069b8f5ad">00106</a>  <a class="code" href="class_object_array.html">ObjectArray&lt;UGen&gt;</a> <a class="code" href="class_buffer_process.html#aff4124391314f18bc9a4e28069b8f5ad">inputs</a>;
+<a name="l00107"></a><a class="code" href="class_buffer_process.html#a069e73f9db6f15cd0dd915586cd39c57">00107</a>  <a class="code" href="class_object_array.html">ObjectArray&lt;UGen&gt;</a> <a class="code" href="class_buffer_process.html#a069e73f9db6f15cd0dd915586cd39c57">graphs</a>;
+<a name="l00108"></a><a class="code" href="class_buffer_process.html#ae3f03c3ad665859b46e253333e2b55ee">00108</a>  <a class="code" href="class_numerical_array.html">IntArray</a> <a class="code" href="class_buffer_process.html#ae3f03c3ad665859b46e253333e2b55ee">ids</a>;
+<a name="l00109"></a><a class="code" href="class_buffer_process.html#ade5d5f583e8edaa68e8652c09d849837">00109</a>  CriticalSection <a class="code" href="class_buffer_process.html#ade5d5f583e8edaa68e8652c09d849837">lock</a>;
+<a name="l00110"></a>00110 };
+<a name="l00111"></a>00111 
+<a name="l00112"></a>00112 
+<a name="l00113"></a>00113 
+<a name="l00114"></a>00114 <span class="preprocessor">#endif // _UGEN_ugen_JuceUtility_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:38 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:31 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -30,7 +30,7 @@
 <h1>delays/ugen_BlockDelay.cpp</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___block_delay_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_BlockDelay.cpp 77 2010-05-24 10:34:11Z 0x4d52 $</span>
+<a href="ugen___block_delay_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_BlockDelay.cpp 194 2010-11-10 22:30:50Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/delays/ugen_BlockDelay.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -74,7 +74,7 @@
 <a name="l00042"></a>00042 
 <a name="l00043"></a><a class="code" href="class_block_delay_u_gen_internal.html#a7e60d05cdd41bea600d7357fe41047f3">00043</a> <a class="code" href="class_block_delay_u_gen_internal.html#a7e60d05cdd41bea600d7357fe41047f3">BlockDelayUGenInternal::BlockDelayUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input) <span class="keywordflow">throw</span>()
 <a name="l00044"></a>00044 : <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(NumInputs),
-<a name="l00045"></a>00045  delayBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(<a class="code" href="class_u_gen.html#ae0de18a1d9478d0bb5b46a2d87ba7f53" title="Get the current actual block size.">UGen::getBlockSize</a>(), 1, <span class="keyword">true</span>)),
+<a name="l00045"></a>00045  delayBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(<a class="code" href="class_u_gen.html#a6b9bb9ac00a913e2eb17fb2ad7e51414" title="Get the current estimated block size.">UGen::getEstimatedBlockSize</a>(), 1, <span class="keyword">true</span>)),
 <a name="l00046"></a>00046  delayBufferSamples(delayBuffer.getData())
 <a name="l00047"></a>00047 {
 <a name="l00048"></a>00048  inputs[Input] = input;
@@ -110,12 +110,12 @@
 <a name="l00078"></a>00078  <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
 <a name="l00079"></a>00079  <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
 <a name="l00080"></a>00080  
-<a name="l00081"></a>00081  memcpy(outputSamples, delayBufferSamples, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00081"></a>00081  <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(outputSamples, delayBufferSamples, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l00082"></a>00082  
 <a name="l00083"></a>00083  <span class="keywordtype">float</span>* inputSamples = inputs[Input].processBlock(shouldDelete, lastBlockID, channel);
 <a name="l00084"></a>00084  
 <a name="l00085"></a>00085  <span class="keywordflow">if</span>(inputSamples)
-<a name="l00086"></a>00086   memcpy(delayBufferSamples, inputSamples, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00086"></a>00086   <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(delayBufferSamples, inputSamples, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l00087"></a>00087 }
 <a name="l00088"></a>00088 
 <a name="l00089"></a><a class="code" href="class_block_delay.html#a6023943fb44b44a7cc1a1d2b7f3c2abb">00089</a> <a class="code" href="class_block_delay.html#a6023943fb44b44a7cc1a1d2b7f3c2abb" title="Base BlockDelay Constuctor, use the AR() and KR() versions in user code.">BlockDelay::BlockDelay</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input) <span class="keywordflow">throw</span>()
@@ -131,7 +131,7 @@
 <a name="l00099"></a>00099 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:30 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

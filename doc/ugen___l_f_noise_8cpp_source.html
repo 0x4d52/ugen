@@ -78,8 +78,8 @@
 <a name="l00046"></a><a class="code" href="class_l_f_noise0_u_gen_internal.html#adbcdfe6dc86d315c4fe8f4d7433166cf">00046</a> <a class="code" href="class_l_f_noise0_u_gen_internal.html#adbcdfe6dc86d315c4fe8f4d7433166cf">LFNoise0UGenInternal::LFNoise0UGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq) <span class="keywordflow">throw</span>()
 <a name="l00047"></a>00047 : <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(NumInputs),
 <a name="l00048"></a>00048  <span class="comment">//random((unsigned int)this * 123463463UL + 423815L + rand(92557)),</span>
-<a name="l00049"></a>00049  random(<a class="code" href="ugen___random_8h.html#a4a9d748503ef7330212b77884f7fb4b6">rand</a>(0x7fffffff)),
-<a name="l00050"></a>00050  currentValue(random.nextBiFloat()),
+<a name="l00049"></a>00049  <a class="code" href="ugen___play_buf_8ii.html#a114aeb1751119382aaf3340355b22cfd">random</a>(<a class="code" href="ugen___random_8h.html#a4a9d748503ef7330212b77884f7fb4b6">rand</a>(0x7fffffff)),
+<a name="l00050"></a>00050  currentValue(<a class="code" href="ugen___play_buf_8ii.html#a114aeb1751119382aaf3340355b22cfd">random</a>.nextBiFloat()),
 <a name="l00051"></a>00051  counter(0)
 <a name="l00052"></a>00052 {
 <a name="l00053"></a>00053  inputs[Freq] = freq;
@@ -99,7 +99,7 @@
 <a name="l00067"></a>00067  <span class="keywordtype">float</span> currentFreq = *(inputs[Freq].processBlock(shouldDelete, blockID, channel));
 <a name="l00068"></a>00068  
 <a name="l00069"></a>00069  <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> s1, s2, s3;
-<a name="l00070"></a>00070  random.get(s1, s2, s3);
+<a name="l00070"></a>00070  <a class="code" href="ugen___play_buf_8ii.html#a114aeb1751119382aaf3340355b22cfd">random</a>.get(s1, s2, s3);
 <a name="l00071"></a>00071  
 <a name="l00072"></a>00072  <span class="keywordflow">do</span> {
 <a name="l00073"></a>00073   <span class="keywordflow">if</span> (counter &lt;= 0) {
@@ -118,14 +118,14 @@
 <a name="l00086"></a>00086   
 <a name="l00087"></a>00087  } <span class="keywordflow">while</span> (numSamplesToProcess);
 <a name="l00088"></a>00088  
-<a name="l00089"></a>00089  random.set(s1, s2, s3);
+<a name="l00089"></a>00089  <a class="code" href="ugen___play_buf_8ii.html#a114aeb1751119382aaf3340355b22cfd">random</a>.set(s1, s2, s3);
 <a name="l00090"></a>00090 }
 <a name="l00091"></a>00091 
 <a name="l00092"></a><a class="code" href="class_l_f_noise1_u_gen_internal.html#ab03532e208805b069d4e1210da57e9d2">00092</a> <a class="code" href="class_l_f_noise1_u_gen_internal.html#ab03532e208805b069d4e1210da57e9d2">LFNoise1UGenInternal::LFNoise1UGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq) <span class="keywordflow">throw</span>()
 <a name="l00093"></a>00093 : <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(NumInputs),
 <a name="l00094"></a>00094  <span class="comment">//random((unsigned int)this * 123463463UL + 423815L + rand(54288)),</span>
-<a name="l00095"></a>00095  random(<a class="code" href="ugen___random_8h.html#a4a9d748503ef7330212b77884f7fb4b6">rand</a>(0x7fffffff)),
-<a name="l00096"></a>00096  currentValue(random.nextBiFloat()),
+<a name="l00095"></a>00095  <a class="code" href="ugen___play_buf_8ii.html#a114aeb1751119382aaf3340355b22cfd">random</a>(<a class="code" href="ugen___random_8h.html#a4a9d748503ef7330212b77884f7fb4b6">rand</a>(0x7fffffff)),
+<a name="l00096"></a>00096  currentValue(<a class="code" href="ugen___play_buf_8ii.html#a114aeb1751119382aaf3340355b22cfd">random</a>.nextBiFloat()),
 <a name="l00097"></a>00097  slope(0.f),
 <a name="l00098"></a>00098  counter(0)
 <a name="l00099"></a>00099 {
@@ -146,7 +146,7 @@
 <a name="l00114"></a>00114  <span class="keywordtype">float</span> currentFreq = *(inputs[Freq].processBlock(shouldDelete, blockID, channel));
 <a name="l00115"></a>00115  
 <a name="l00116"></a>00116  <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> s1, s2, s3;
-<a name="l00117"></a>00117  random.get(s1, s2, s3);
+<a name="l00117"></a>00117  <a class="code" href="ugen___play_buf_8ii.html#a114aeb1751119382aaf3340355b22cfd">random</a>.get(s1, s2, s3);
 <a name="l00118"></a>00118  
 <a name="l00119"></a>00119  <span class="keywordflow">do</span> {
 <a name="l00120"></a>00120   <span class="keywordflow">if</span> (counter &lt;= 0) {
@@ -167,15 +167,15 @@
 <a name="l00135"></a>00135   
 <a name="l00136"></a>00136  } <span class="keywordflow">while</span> (numSamplesToProcess);
 <a name="l00137"></a>00137  
-<a name="l00138"></a>00138  random.set(s1, s2, s3);
+<a name="l00138"></a>00138  <a class="code" href="ugen___play_buf_8ii.html#a114aeb1751119382aaf3340355b22cfd">random</a>.set(s1, s2, s3);
 <a name="l00139"></a>00139 }
 <a name="l00140"></a>00140 
 <a name="l00141"></a><a class="code" href="class_l_f_noise2_u_gen_internal.html#a8742bc0964830fb5cb24c50f19da0aa4">00141</a> <a class="code" href="class_l_f_noise2_u_gen_internal.html#a8742bc0964830fb5cb24c50f19da0aa4">LFNoise2UGenInternal::LFNoise2UGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq) <span class="keywordflow">throw</span>()
 <a name="l00142"></a>00142 : <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(NumInputs),
 <a name="l00143"></a>00143  <span class="comment">//random((unsigned int)this * 123463463UL + 423815L + rand(8277)),</span>
-<a name="l00144"></a>00144  random(<a class="code" href="ugen___random_8h.html#a4a9d748503ef7330212b77884f7fb4b6">rand</a>(0x7fffffff)),
-<a name="l00145"></a>00145  currentValue(random.nextBiFloat()),
-<a name="l00146"></a>00146  nextValue(random.nextBiFloat()),
+<a name="l00144"></a>00144  <a class="code" href="ugen___play_buf_8ii.html#a114aeb1751119382aaf3340355b22cfd">random</a>(<a class="code" href="ugen___random_8h.html#a4a9d748503ef7330212b77884f7fb4b6">rand</a>(0x7fffffff)),
+<a name="l00145"></a>00145  currentValue(<a class="code" href="ugen___play_buf_8ii.html#a114aeb1751119382aaf3340355b22cfd">random</a>.nextBiFloat()),
+<a name="l00146"></a>00146  nextValue(<a class="code" href="ugen___play_buf_8ii.html#a114aeb1751119382aaf3340355b22cfd">random</a>.nextBiFloat()),
 <a name="l00147"></a>00147  nextMidPoint(nextValue * 0.5f),
 <a name="l00148"></a>00148  curve(0.f),
 <a name="l00149"></a>00149  slope(0.f),
@@ -198,11 +198,11 @@
 <a name="l00166"></a>00166  <span class="keywordtype">float</span> currentFreq = *(inputs[Freq].processBlock(shouldDelete, blockID, channel));
 <a name="l00167"></a>00167  
 <a name="l00168"></a>00168  <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> s1, s2, s3;
-<a name="l00169"></a>00169  random.get(s1, s2, s3);
+<a name="l00169"></a>00169  <a class="code" href="ugen___play_buf_8ii.html#a114aeb1751119382aaf3340355b22cfd">random</a>.get(s1, s2, s3);
 <a name="l00170"></a>00170  
 <a name="l00171"></a>00171  <span class="keywordflow">do</span> {
 <a name="l00172"></a>00172   <span class="keywordflow">if</span> (counter &lt;= 0) {
-<a name="l00173"></a>00173    <span class="keywordtype">float</span> value = nextValue;
+<a name="l00173"></a>00173    <span class="keywordtype">float</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> = nextValue;
 <a name="l00174"></a>00174    nextValue = <a class="code" href="class_ran088.html#a46936f058b8667fc20fe0d21dc604f8b">Ran088::nextBiFloat</a>(s1,s2,s3);
 <a name="l00175"></a>00175    currentValue = nextMidPoint;
 <a name="l00176"></a>00176    nextMidPoint = (nextValue + value) * 0.5f;
@@ -225,7 +225,7 @@
 <a name="l00193"></a>00193   
 <a name="l00194"></a>00194  } <span class="keywordflow">while</span> (numSamplesToProcess);
 <a name="l00195"></a>00195  
-<a name="l00196"></a>00196  random.set(s1, s2, s3);
+<a name="l00196"></a>00196  <a class="code" href="ugen___play_buf_8ii.html#a114aeb1751119382aaf3340355b22cfd">random</a>.set(s1, s2, s3);
 <a name="l00197"></a>00197 }
 <a name="l00198"></a>00198 
 <a name="l00199"></a><a class="code" href="class_l_f_noise0.html#affa1be2ba7e20242ea25628eafe9ce93">00199</a> <a class="code" href="class_l_f_noise0.html#affa1be2ba7e20242ea25628eafe9ce93" title="Base MulAdd LFNoise0 Constuctor (without &amp;quot;mul&amp;quot; or &amp;quot;add&amp;quot;), use the AR() and KR() v...">LFNoise0::LFNoise0</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq) <span class="keywordflow">throw</span>()
@@ -254,7 +254,7 @@
 <a name="l00222"></a>00222 <span class="preprocessor">#endif // gpl</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:38 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:32 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -338,9 +338,9 @@
 <a name="l00334"></a>00334              <a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt;CollectionType2&gt;</a> <span class="keyword">const</span>&amp; collection2,
 <a name="l00335"></a>00335              <a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt;CollectionType3&gt;</a> <span class="keyword">const</span>&amp; collection3) <span class="keywordflow">throw</span>()
 <a name="l00336"></a>00336  {
-<a name="l00337"></a>00337   <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_object_array.html#a6eb3d6ad48798a021d3dc9f23e9c5260" title="Length is the number of real elements of storage available.">length</a> = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(<a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(collection1.length(), 
+<a name="l00337"></a>00337   <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_object_array.html#a6eb3d6ad48798a021d3dc9f23e9c5260" title="Length is the number of real elements of storage available.">length</a> = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(<a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(collection1.length(), 
 <a name="l00338"></a>00338               collection2.length()), 
-<a name="l00339"></a>00339               collection3.<a class="code" href="class_u_gen.html#a477dde36e69390706faced0c06f57a98" title="Get the number of channels (i.e., number of internals).">length</a>());
+<a name="l00339"></a>00339               collection3.length());
 <a name="l00340"></a>00340   
 <a name="l00341"></a>00341   <a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt;ObjectType&gt;</a> result(length, <span class="keyword">false</span>);
 <a name="l00342"></a>00342   
@@ -363,10 +363,10 @@
 <a name="l00359"></a>00359              <a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt;CollectionType3&gt;</a> <span class="keyword">const</span>&amp; collection3,
 <a name="l00360"></a>00360              <a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt;CollectionType4&gt;</a> <span class="keyword">const</span>&amp; collection4) <span class="keywordflow">throw</span>()
 <a name="l00361"></a>00361  {
-<a name="l00362"></a>00362   <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_object_array.html#a6eb3d6ad48798a021d3dc9f23e9c5260" title="Length is the number of real elements of storage available.">length</a> = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(<a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(<a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(collection1.length(), 
+<a name="l00362"></a>00362   <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_object_array.html#a6eb3d6ad48798a021d3dc9f23e9c5260" title="Length is the number of real elements of storage available.">length</a> = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(<a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(<a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(collection1.length(), 
 <a name="l00363"></a>00363                collection2.length()), 
-<a name="l00364"></a>00364                collection3.<a class="code" href="class_u_gen.html#a477dde36e69390706faced0c06f57a98" title="Get the number of channels (i.e., number of internals).">length</a>()),
-<a name="l00365"></a>00365                collection4.<a class="code" href="class_u_gen.html#a477dde36e69390706faced0c06f57a98" title="Get the number of channels (i.e., number of internals).">length</a>());
+<a name="l00364"></a>00364                collection3.length()),
+<a name="l00365"></a>00365                collection4.length());
 <a name="l00366"></a>00366   
 <a name="l00367"></a>00367   <a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt;ObjectType&gt;</a> result(length, <span class="keyword">false</span>);
 <a name="l00368"></a>00368   
@@ -719,11 +719,11 @@
 <a name="l00735"></a>00735  
 <a name="l00738"></a><a class="code" href="class_object_array.html#a6b2d22402553fb5e22ed7c2966d74de7">00738</a>  <a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt;ObjectType&gt;</a>&amp; <span class="keyword">remove</span>(<span class="keyword">const</span> <span class="keywordtype">int</span> index) <span class="keywordflow">throw</span>()
 <a name="l00739"></a>00739  { 
-<a name="l00740"></a>00740   this-&gt;<a class="code" href="class_smart_pointer_container.html#a34208db0dbe736f85828225175a412c2">getInternal</a>()-&gt;remove(index); 
+<a name="l00740"></a>00740   this-&gt;<a class="code" href="class_smart_pointer_container.html#a34208db0dbe736f85828225175a412c2">getInternal</a>()-&gt;remove(<a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a>); 
 <a name="l00741"></a>00741   <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00742"></a>00742  }
 <a name="l00743"></a>00743  
-<a name="l00746"></a><a class="code" href="class_object_array.html#ad675f23eada53adcadda78f096b3642d">00746</a>  <a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt;ObjectType&gt;</a>&amp; <a class="code" href="class_object_array.html#ad675f23eada53adcadda78f096b3642d" title="Places an item at the given index.">put</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> index, ObjectType <span class="keyword">const</span>&amp; item) <span class="keywordflow">throw</span>()
+<a name="l00746"></a><a class="code" href="class_object_array.html#ad675f23eada53adcadda78f096b3642d">00746</a>  <a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt;ObjectType&gt;</a>&amp; <a class="code" href="class_object_array.html#ad675f23eada53adcadda78f096b3642d" title="Places an item at the given index.">put</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a>, ObjectType <span class="keyword">const</span>&amp; item) <span class="keywordflow">throw</span>()
 <a name="l00747"></a>00747  {
 <a name="l00748"></a>00748   <span class="keywordflow">if</span>(index &lt; 0 || index &gt;= this-&gt;<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>()) 
 <a name="l00749"></a>00749   {
@@ -734,7 +734,7 @@
 <a name="l00754"></a>00754   <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00755"></a>00755  }
 <a name="l00756"></a>00756  
-<a name="l00760"></a><a class="code" href="class_object_array.html#a64873f1b21d3888d606f555da6a2014a">00760</a>  ObjectType&amp; <a class="code" href="class_object_array.html#a64873f1b21d3888d606f555da6a2014a" title="Returns a reference to an item at the specified index.">operator[] </a>(<span class="keyword">const</span> <span class="keywordtype">int</span> index) <span class="keywordflow">throw</span>()
+<a name="l00760"></a><a class="code" href="class_object_array.html#a64873f1b21d3888d606f555da6a2014a">00760</a>  ObjectType&amp; <a class="code" href="class_object_array.html#a64873f1b21d3888d606f555da6a2014a" title="Returns a reference to an item at the specified index.">operator[] </a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a>) <span class="keywordflow">throw</span>()
 <a name="l00761"></a>00761  {
 <a name="l00762"></a>00762   <span class="keywordflow">if</span>(index &lt; 0 || index &gt;= this-&gt;<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>()) 
 <a name="l00763"></a>00763   {
@@ -744,7 +744,7 @@
 <a name="l00767"></a>00767    <span class="keywordflow">return</span> this-&gt;<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>()[index];
 <a name="l00768"></a>00768  }
 <a name="l00769"></a>00769  
-<a name="l00773"></a><a class="code" href="class_object_array.html#a0bc80ee77d245f592d75f480293937b6">00773</a>  <span class="keyword">const</span> ObjectType&amp; <a class="code" href="class_object_array.html#a64873f1b21d3888d606f555da6a2014a" title="Returns a reference to an item at the specified index.">operator[] </a>(<span class="keyword">const</span> <span class="keywordtype">int</span> index) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l00773"></a><a class="code" href="class_object_array.html#a0bc80ee77d245f592d75f480293937b6">00773</a>  <span class="keyword">const</span> ObjectType&amp; <a class="code" href="class_object_array.html#a64873f1b21d3888d606f555da6a2014a" title="Returns a reference to an item at the specified index.">operator[] </a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a>) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00774"></a>00774  {
 <a name="l00775"></a>00775   <span class="keywordflow">if</span>(index &lt; 0 || index &gt;= this-&gt;<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>()) 
 <a name="l00776"></a>00776   {
@@ -754,7 +754,7 @@
 <a name="l00780"></a>00780    <span class="keywordflow">return</span> this-&gt;<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>()[index];
 <a name="l00781"></a>00781  }
 <a name="l00782"></a>00782  
-<a name="l00786"></a><a class="code" href="class_object_array.html#a01dda59cdcbad97e572fae969ec7e992">00786</a>  ObjectType&amp; <a class="code" href="class_object_array.html#a01dda59cdcbad97e572fae969ec7e992" title="Returns a reference to an item at the specified index.">at</a> (<span class="keyword">const</span> <span class="keywordtype">int</span> index) <span class="keywordflow">throw</span>()
+<a name="l00786"></a><a class="code" href="class_object_array.html#a01dda59cdcbad97e572fae969ec7e992">00786</a>  ObjectType&amp; <a class="code" href="class_object_array.html#a01dda59cdcbad97e572fae969ec7e992" title="Returns a reference to an item at the specified index.">at</a> (<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a>) <span class="keywordflow">throw</span>()
 <a name="l00787"></a>00787  {
 <a name="l00788"></a>00788   <span class="keywordflow">if</span>(index &lt; 0 || index &gt;= this-&gt;<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>()) 
 <a name="l00789"></a>00789   {
@@ -764,7 +764,7 @@
 <a name="l00793"></a>00793    <span class="keywordflow">return</span> this-&gt;<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>()[index];
 <a name="l00794"></a>00794  }
 <a name="l00795"></a>00795  
-<a name="l00799"></a><a class="code" href="class_object_array.html#a525a2021265a54a85212893f650f7deb">00799</a>  <span class="keyword">const</span> ObjectType&amp; <a class="code" href="class_object_array.html#a01dda59cdcbad97e572fae969ec7e992" title="Returns a reference to an item at the specified index.">at</a> (<span class="keyword">const</span> <span class="keywordtype">int</span> index) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l00799"></a><a class="code" href="class_object_array.html#a525a2021265a54a85212893f650f7deb">00799</a>  <span class="keyword">const</span> ObjectType&amp; <a class="code" href="class_object_array.html#a01dda59cdcbad97e572fae969ec7e992" title="Returns a reference to an item at the specified index.">at</a> (<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a>) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00800"></a>00800  {
 <a name="l00801"></a>00801   <span class="keywordflow">if</span>(index &lt; 0 || index &gt;= this-&gt;<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>()) 
 <a name="l00802"></a>00802   {
@@ -774,7 +774,7 @@
 <a name="l00806"></a>00806    <span class="keywordflow">return</span> this-&gt;<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>()[index];
 <a name="l00807"></a>00807  }
 <a name="l00808"></a>00808  
-<a name="l00810"></a><a class="code" href="class_object_array.html#ad0ddd1b46e1b7ae32dd0e232ebcece5f">00810</a>  <a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt;ObjectType&gt;</a> <a class="code" href="class_object_array.html#a01dda59cdcbad97e572fae969ec7e992" title="Returns a reference to an item at the specified index.">at</a> (<a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt;int&gt;</a> <span class="keyword">const</span>&amp; indices) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l00810"></a><a class="code" href="class_object_array.html#ad0ddd1b46e1b7ae32dd0e232ebcece5f">00810</a>  <a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt;ObjectType&gt;</a> <a class="code" href="class_object_array.html#a01dda59cdcbad97e572fae969ec7e992" title="Returns a reference to an item at the specified index.">at</a> (<a class="code" href="class_object_array.html">ObjectArray&lt;int&gt;</a> <span class="keyword">const</span>&amp; indices) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00811"></a>00811  {
 <a name="l00812"></a>00812   <span class="keywordflow">if</span>(this-&gt;<a class="code" href="class_smart_pointer_container.html#a34208db0dbe736f85828225175a412c2">getInternal</a>()-&gt;<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>() == 0) { <span class="keywordflow">return</span> *<span class="keyword">this</span>; }
 <a name="l00813"></a>00813    
@@ -789,7 +789,7 @@
 <a name="l00822"></a>00822   <span class="keyword">const</span> <span class="keywordtype">int</span> thisSize = this-&gt;<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>();
 <a name="l00823"></a>00823   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; length; i++)
 <a name="l00824"></a>00824   {
-<a name="l00825"></a>00825    <span class="keyword">const</span> <span class="keywordtype">int</span> index = indices[i];
+<a name="l00825"></a>00825    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a> = indices[i];
 <a name="l00826"></a>00826    resultArray[i] = index &lt; 0 || index &gt;= thisSize ? <a class="code" href="class_object_array.html#a3c271afb3c1c413e6bc0fcb596e7ceeb">getNull</a>() : thisArray[index];
 <a name="l00827"></a>00827   }
 <a name="l00828"></a>00828   
@@ -799,7 +799,7 @@
 <a name="l00832"></a>00832   <span class="keywordflow">return</span> result;
 <a name="l00833"></a>00833  }
 <a name="l00834"></a>00834 
-<a name="l00836"></a><a class="code" href="class_object_array.html#a3027a6cfd4eef94f604a7d446c244cfc">00836</a>  <a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt;ObjectType&gt;</a> <a class="code" href="class_object_array.html#a3027a6cfd4eef94f604a7d446c244cfc" title="Returns a new array by iterating through an array of indices provided.">atUnchecked</a> (<a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt;int&gt;</a> <span class="keyword">const</span>&amp; indices) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l00836"></a><a class="code" href="class_object_array.html#a3027a6cfd4eef94f604a7d446c244cfc">00836</a>  <a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt;ObjectType&gt;</a> <a class="code" href="class_object_array.html#a3027a6cfd4eef94f604a7d446c244cfc" title="Returns a new array by iterating through an array of indices provided.">atUnchecked</a> (<a class="code" href="class_object_array.html">ObjectArray&lt;int&gt;</a> <span class="keyword">const</span>&amp; indices) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00837"></a>00837  {    
 <a name="l00838"></a>00838   <span class="keyword">const</span> <span class="keywordtype">bool</span> needsNull = this-&gt;<a class="code" href="class_object_array.html#ab5013b564df8b9f768b3ab7a799c31af" title="Returns whether this is a null terminated array or not.">isNullTerminated</a>();
 <a name="l00839"></a>00839   <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_object_array.html#a6eb3d6ad48798a021d3dc9f23e9c5260" title="Length is the number of real elements of storage available.">length</a> = indices.length();
@@ -811,7 +811,7 @@
 <a name="l00845"></a>00845   
 <a name="l00846"></a>00846   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; length; i++)
 <a name="l00847"></a>00847   {
-<a name="l00848"></a>00848    <span class="keyword">const</span> <span class="keywordtype">int</span> index = indices[i];
+<a name="l00848"></a>00848    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a> = indices[i];
 <a name="l00849"></a>00849    resultArray[i] = thisArray[index];
 <a name="l00850"></a>00850   }
 <a name="l00851"></a>00851   
@@ -822,19 +822,19 @@
 <a name="l00856"></a>00856  }
 <a name="l00857"></a>00857  
 <a name="l00858"></a>00858  
-<a name="l00861"></a><a class="code" href="class_object_array.html#a9ec04e1862ebea9767bbbf45a169792d">00861</a>  ObjectType&amp; <a class="code" href="class_object_array.html#a3027a6cfd4eef94f604a7d446c244cfc" title="Returns a new array by iterating through an array of indices provided.">atUnchecked</a> (<span class="keyword">const</span> <span class="keywordtype">int</span> index) <span class="keywordflow">throw</span>()
+<a name="l00861"></a><a class="code" href="class_object_array.html#a9ec04e1862ebea9767bbbf45a169792d">00861</a>  ObjectType&amp; <a class="code" href="class_object_array.html#a3027a6cfd4eef94f604a7d446c244cfc" title="Returns a new array by iterating through an array of indices provided.">atUnchecked</a> (<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a>) <span class="keywordflow">throw</span>()
 <a name="l00862"></a>00862  {
-<a name="l00863"></a>00863   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>((index &gt;= 0) &amp;&amp; (index &lt; this-&gt;<a class="code" href="class_smart_pointer_container.html#a34208db0dbe736f85828225175a412c2">getInternal</a>()-&gt;<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>()));
+<a name="l00863"></a>00863   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>((<a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a> &gt;= 0) &amp;&amp; (index &lt; this-&gt;<a class="code" href="class_smart_pointer_container.html#a34208db0dbe736f85828225175a412c2">getInternal</a>()-&gt;<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>()));
 <a name="l00864"></a>00864   <span class="keywordflow">return</span> this-&gt;<a class="code" href="class_smart_pointer_container.html#a34208db0dbe736f85828225175a412c2">getInternal</a>()-&gt;getArray()[index];
 <a name="l00865"></a>00865  }
 <a name="l00866"></a>00866 
-<a name="l00869"></a><a class="code" href="class_object_array.html#a7b01a9b2e82501caa5bb01c7626d5232">00869</a>  <span class="keyword">const</span> ObjectType&amp; <a class="code" href="class_object_array.html#a3027a6cfd4eef94f604a7d446c244cfc" title="Returns a new array by iterating through an array of indices provided.">atUnchecked</a> (<span class="keyword">const</span> <span class="keywordtype">int</span> index) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l00869"></a><a class="code" href="class_object_array.html#a7b01a9b2e82501caa5bb01c7626d5232">00869</a>  <span class="keyword">const</span> ObjectType&amp; <a class="code" href="class_object_array.html#a3027a6cfd4eef94f604a7d446c244cfc" title="Returns a new array by iterating through an array of indices provided.">atUnchecked</a> (<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a>) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00870"></a>00870  {
-<a name="l00871"></a>00871   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>((index &gt;= 0) &amp;&amp; (index &lt; this-&gt;<a class="code" href="class_smart_pointer_container.html#a34208db0dbe736f85828225175a412c2">getInternal</a>()-&gt;<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>()));
+<a name="l00871"></a>00871   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>((<a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a> &gt;= 0) &amp;&amp; (index &lt; this-&gt;<a class="code" href="class_smart_pointer_container.html#a34208db0dbe736f85828225175a412c2">getInternal</a>()-&gt;<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>()));
 <a name="l00872"></a>00872   <span class="keywordflow">return</span> this-&gt;<a class="code" href="class_smart_pointer_container.html#a34208db0dbe736f85828225175a412c2">getInternal</a>()-&gt;getArray()[index];
 <a name="l00873"></a>00873  } 
 <a name="l00874"></a>00874  
-<a name="l00879"></a><a class="code" href="class_object_array.html#a7f8923e3ea4e9737e04a0b35100db841">00879</a>  ObjectType&amp; <a class="code" href="class_object_array.html#a7f8923e3ea4e9737e04a0b35100db841" title="Returns a reference to an item at the specified index.">wrapAt</a> (<span class="keyword">const</span> <span class="keywordtype">int</span> index) <span class="keywordflow">throw</span>()
+<a name="l00879"></a><a class="code" href="class_object_array.html#a7f8923e3ea4e9737e04a0b35100db841">00879</a>  ObjectType&amp; <a class="code" href="class_object_array.html#a7f8923e3ea4e9737e04a0b35100db841" title="Returns a reference to an item at the specified index.">wrapAt</a> (<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a>) <span class="keywordflow">throw</span>()
 <a name="l00880"></a>00880  {
 <a name="l00881"></a>00881   <span class="keywordflow">if</span>(this-&gt;<a class="code" href="class_smart_pointer_container.html#a34208db0dbe736f85828225175a412c2">getInternal</a>()-&gt;<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>() == 0) { <span class="keywordflow">return</span> <a class="code" href="class_object_array.html#a3c271afb3c1c413e6bc0fcb596e7ceeb">getNull</a>(); }
 <a name="l00882"></a>00882   
@@ -845,7 +845,7 @@
 <a name="l00887"></a>00887   <span class="keywordflow">return</span> this-&gt;<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>()[(<span class="keywordtype">unsigned</span> int)indexToUse % (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)this-&gt;<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>()];
 <a name="l00888"></a>00888  }
 <a name="l00889"></a>00889  
-<a name="l00894"></a><a class="code" href="class_object_array.html#ad4aaf1341f5ababca4afcc0830a7da1e">00894</a>  <span class="keyword">const</span> ObjectType&amp; <a class="code" href="class_object_array.html#a7f8923e3ea4e9737e04a0b35100db841" title="Returns a reference to an item at the specified index.">wrapAt</a> (<span class="keyword">const</span> <span class="keywordtype">int</span> index) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l00894"></a><a class="code" href="class_object_array.html#ad4aaf1341f5ababca4afcc0830a7da1e">00894</a>  <span class="keyword">const</span> ObjectType&amp; <a class="code" href="class_object_array.html#a7f8923e3ea4e9737e04a0b35100db841" title="Returns a reference to an item at the specified index.">wrapAt</a> (<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a>) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00895"></a>00895  {
 <a name="l00896"></a>00896   <span class="keywordflow">if</span>(this-&gt;<a class="code" href="class_smart_pointer_container.html#a34208db0dbe736f85828225175a412c2">getInternal</a>()-&gt;<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>() == 0) { <span class="keywordflow">return</span> <a class="code" href="class_object_array.html#a3c271afb3c1c413e6bc0fcb596e7ceeb">getNull</a>(); }
 <a name="l00897"></a>00897   
@@ -933,7 +933,7 @@
 <a name="l01001"></a>01001     thresholds[i] = sum;
 <a name="l01002"></a>01002    }
 <a name="l01003"></a>01003    
-<a name="l01004"></a>01004    WeightType random = <a class="code" href="ugen___random_8h.html#a4a9d748503ef7330212b77884f7fb4b6">rand</a>(sum);
+<a name="l01004"></a>01004    WeightType <a class="code" href="ugen___play_buf_8ii.html#a114aeb1751119382aaf3340355b22cfd">random</a> = <a class="code" href="ugen___random_8h.html#a4a9d748503ef7330212b77884f7fb4b6">rand</a>(sum);
 <a name="l01005"></a>01005    
 <a name="l01006"></a>01006    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; length; i++)
 <a name="l01007"></a>01007    {
@@ -964,7 +964,7 @@
 <a name="l01040"></a>01040     thresholds[i] = sum;
 <a name="l01041"></a>01041    }
 <a name="l01042"></a>01042    
-<a name="l01043"></a>01043    WeightType random = <a class="code" href="ugen___random_8h.html#a4a9d748503ef7330212b77884f7fb4b6">rand</a>(sum);
+<a name="l01043"></a>01043    WeightType <a class="code" href="ugen___play_buf_8ii.html#a114aeb1751119382aaf3340355b22cfd">random</a> = <a class="code" href="ugen___random_8h.html#a4a9d748503ef7330212b77884f7fb4b6">rand</a>(sum);
 <a name="l01044"></a>01044    
 <a name="l01045"></a>01045    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; length; i++)
 <a name="l01046"></a>01046    {
@@ -1217,16 +1217,16 @@
 <a name="l01314"></a>01314   <span class="keywordflow">return</span> result;
 <a name="l01315"></a>01315  }
 <a name="l01316"></a>01316  
-<a name="l01319"></a><a class="code" href="class_object_array.html#a596d19434b80e819291091dd81a9c4b4">01319</a>  <a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt;ObjectType&gt;</a> <a class="code" href="class_object_array.html#a596d19434b80e819291091dd81a9c4b4" title="Perform a find and replace on the array and return the result.">replace</a>(<a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt;ObjectType&gt;</a> <span class="keyword">const</span>&amp; find, <a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt;ObjectType&gt;</a> <span class="keyword">const</span>&amp; substitute) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l01319"></a><a class="code" href="class_object_array.html#a596d19434b80e819291091dd81a9c4b4">01319</a>  <a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt;ObjectType&gt;</a> <a class="code" href="class_object_array.html#a596d19434b80e819291091dd81a9c4b4" title="Perform a find and replace on the array and return the result.">replace</a>(<a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt;ObjectType&gt;</a> <span class="keyword">const</span>&amp; <a class="code" href="namespacestd.html#abb197a6f8db31b82e4d93abb60364b41">find</a>, <a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt;ObjectType&gt;</a> <span class="keyword">const</span>&amp; substitute) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l01320"></a>01320  {
 <a name="l01321"></a>01321   <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a> = this-&gt;<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>();
-<a name="l01322"></a>01322   <span class="keyword">const</span> <span class="keywordtype">int</span> findLength = find.length();
+<a name="l01322"></a>01322   <span class="keyword">const</span> <span class="keywordtype">int</span> findLength = <a class="code" href="namespacestd.html#abb197a6f8db31b82e4d93abb60364b41">find</a>.length();
 <a name="l01323"></a>01323   <span class="keywordtype">int</span> startIndex = 0;
 <a name="l01324"></a>01324   <span class="keywordtype">int</span> findIndex;
 <a name="l01325"></a>01325   
 <a name="l01326"></a>01326   <a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt;ObjectType&gt;</a> result;
 <a name="l01327"></a>01327   
-<a name="l01328"></a>01328   <span class="keywordflow">while</span>((findIndex = this-&gt;<a class="code" href="class_object_array.html#ad2065d1c59f281fb17c78cce33f62b41" title="Gets the index of a particular item.">indexOf</a>(find, startIndex)) &gt;= 0)
+<a name="l01328"></a>01328   <span class="keywordflow">while</span>((findIndex = this-&gt;<a class="code" href="class_object_array.html#ad2065d1c59f281fb17c78cce33f62b41" title="Gets the index of a particular item.">indexOf</a>(<a class="code" href="namespacestd.html#abb197a6f8db31b82e4d93abb60364b41">find</a>, startIndex)) &gt;= 0)
 <a name="l01329"></a>01329   {
 <a name="l01330"></a>01330    result.<a class="code" href="class_object_array.html#aa15b17d07062a81fa7fbc0fb275d18af" title="Adds an item in-place.">add</a>(this-&gt;<a class="code" href="class_object_array.html#a4d6c495b62d477184230022511cee67a" title="Return a new array which is a subarray of this one.">range</a>(startIndex, findIndex));
 <a name="l01331"></a>01331    result.<a class="code" href="class_object_array.html#aa15b17d07062a81fa7fbc0fb275d18af" title="Adds an item in-place.">add</a>(substitute);
@@ -1240,7 +1240,7 @@
 <a name="l01339"></a>01339  
 <a name="l01341"></a><a class="code" href="class_object_array.html#a691f1805e81bbe042bcc07d84d7eb8e0">01341</a>  <a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt;ObjectType&gt;</a>&amp; <a class="code" href="class_object_array.html#a691f1805e81bbe042bcc07d84d7eb8e0" title="Remove an item in-place.">removeItem</a>(<span class="keyword">const</span> ObjectType item) <span class="keywordflow">throw</span>()
 <a name="l01342"></a>01342  {
-<a name="l01343"></a>01343   <span class="keyword">const</span> <span class="keywordtype">int</span> index = this-&gt;<a class="code" href="class_object_array.html#ad2065d1c59f281fb17c78cce33f62b41" title="Gets the index of a particular item.">indexOf</a>(item);
+<a name="l01343"></a>01343   <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a> = this-&gt;<a class="code" href="class_object_array.html#ad2065d1c59f281fb17c78cce33f62b41" title="Gets the index of a particular item.">indexOf</a>(item);
 <a name="l01344"></a>01344   
 <a name="l01345"></a>01345   <span class="keywordflow">if</span>(index &gt;= 0)
 <a name="l01346"></a>01346   {
@@ -1531,10 +1531,10 @@
 <a name="l01636"></a>01636 <span class="keyword">public</span>:
 <a name="l01637"></a>01637  <span class="keyword">template</span>&lt;<span class="keyword">class</span> CopyType&gt;
 <a name="l01638"></a><a class="code" href="class_numerical_array.html#af5db4734cc12532869206ac97312d669">01638</a>  <a class="code" href="class_numerical_array.html#aff07b60edb2ff143b8bc4342c958ee4a">NumericalArray</a>(<a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;CopyType&gt;</a> <span class="keyword">const</span>&amp; <a class="code" href="class_object_array.html#a03baa6c06a77a576a05e1898b9ccd19f" title="Creates a deep copy of the array.">copy</a>) <span class="keywordflow">throw</span>()
-<a name="l01639"></a>01639  : <a class="code" href="class_object_array.html">ObjectArray&lt;NumericalType&gt;</a>(<a class="code" href="class_object_array.html#a03baa6c06a77a576a05e1898b9ccd19f" title="Creates a deep copy of the array.">copy</a>.<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>(), <a class="code" href="class_object_array.html#a03baa6c06a77a576a05e1898b9ccd19f" title="Creates a deep copy of the array.">copy</a>.<a class="code" href="class_object_array.html#ab5013b564df8b9f768b3ab7a799c31af" title="Returns whether this is a null terminated array or not.">isNullTerminated</a>())
+<a name="l01639"></a>01639  : <a class="code" href="class_object_array.html">ObjectArray&lt;NumericalType&gt;</a>(<a class="code" href="class_object_array.html#a03baa6c06a77a576a05e1898b9ccd19f" title="Creates a deep copy of the array.">copy</a>.size(), <a class="code" href="class_object_array.html#a03baa6c06a77a576a05e1898b9ccd19f" title="Creates a deep copy of the array.">copy</a>.isNullTerminated())
 <a name="l01640"></a>01640  {  
 <a name="l01641"></a>01641   NumericalType *thisArray = this-&gt;<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>();
-<a name="l01642"></a>01642   <span class="keyword">const</span> CopyType *copyArray = <a class="code" href="class_object_array.html#a03baa6c06a77a576a05e1898b9ccd19f" title="Creates a deep copy of the array.">copy</a>.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>();
+<a name="l01642"></a>01642   <span class="keyword">const</span> CopyType *copyArray = <a class="code" href="class_object_array.html#a03baa6c06a77a576a05e1898b9ccd19f" title="Creates a deep copy of the array.">copy</a>.getArray();
 <a name="l01643"></a>01643   
 <a name="l01644"></a>01644   <span class="keywordflow">if</span>(thisArray != 0 &amp;&amp; copyArray != 0)
 <a name="l01645"></a>01645   {
@@ -1548,10 +1548,10 @@
 <a name="l01653"></a>01653  
 <a name="l01654"></a>01654  <span class="keyword">template</span>&lt;<span class="keyword">class</span> CopyType&gt;
 <a name="l01655"></a><a class="code" href="class_numerical_array.html#a8252e40234e6de0cb678bcb0f751dc57">01655</a>  <a class="code" href="class_numerical_array.html#aff07b60edb2ff143b8bc4342c958ee4a">NumericalArray</a>(<a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt;CopyType&gt;</a> <span class="keyword">const</span>&amp; <a class="code" href="class_object_array.html#a03baa6c06a77a576a05e1898b9ccd19f" title="Creates a deep copy of the array.">copy</a>) <span class="keywordflow">throw</span>()
-<a name="l01656"></a>01656  : <a class="code" href="class_object_array.html">ObjectArray&lt;NumericalType&gt;</a>(<a class="code" href="class_object_array.html#a03baa6c06a77a576a05e1898b9ccd19f" title="Creates a deep copy of the array.">copy</a>.<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>(), <a class="code" href="class_object_array.html#a03baa6c06a77a576a05e1898b9ccd19f" title="Creates a deep copy of the array.">copy</a>.<a class="code" href="class_object_array.html#ab5013b564df8b9f768b3ab7a799c31af" title="Returns whether this is a null terminated array or not.">isNullTerminated</a>())
+<a name="l01656"></a>01656  : <a class="code" href="class_object_array.html">ObjectArray&lt;NumericalType&gt;</a>(<a class="code" href="class_object_array.html#a03baa6c06a77a576a05e1898b9ccd19f" title="Creates a deep copy of the array.">copy</a>.size(), <a class="code" href="class_object_array.html#a03baa6c06a77a576a05e1898b9ccd19f" title="Creates a deep copy of the array.">copy</a>.isNullTerminated())
 <a name="l01657"></a>01657  {  
 <a name="l01658"></a>01658   NumericalType *thisArray = this-&gt;<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>();
-<a name="l01659"></a>01659   <span class="keyword">const</span> CopyType *copyArray = <a class="code" href="class_object_array.html#a03baa6c06a77a576a05e1898b9ccd19f" title="Creates a deep copy of the array.">copy</a>.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>();
+<a name="l01659"></a>01659   <span class="keyword">const</span> CopyType *copyArray = <a class="code" href="class_object_array.html#a03baa6c06a77a576a05e1898b9ccd19f" title="Creates a deep copy of the array.">copy</a>.getArray();
 <a name="l01660"></a>01660   
 <a name="l01661"></a>01661   <span class="keywordflow">if</span>(thisArray != 0 &amp;&amp; copyArray != 0)
 <a name="l01662"></a>01662   {
@@ -1601,7 +1601,7 @@
 <a name="l01706"></a>01706   <span class="keywordflow">return</span> <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a>(<a class="code" href="class_numerical_array_spec.html">NumericalArraySpec</a>(<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>, <span class="keyword">true</span>));
 <a name="l01707"></a>01707  }
 <a name="l01708"></a>01708   
-<a name="l01709"></a><a class="code" href="class_numerical_array.html#aee42d54db01e66d26ee8128183dd0136">01709</a>  <span class="keyword">static</span> <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a> <a class="code" href="class_numerical_array.html#aee42d54db01e66d26ee8128183dd0136">line</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>, <span class="keyword">const</span> NumericalType start, <span class="keyword">const</span> NumericalType end) <span class="keywordflow">throw</span>()
+<a name="l01709"></a><a class="code" href="class_numerical_array.html#aee42d54db01e66d26ee8128183dd0136">01709</a>  <span class="keyword">static</span> <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a> <a class="code" href="class_numerical_array.html#aee42d54db01e66d26ee8128183dd0136">line</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>, <span class="keyword">const</span> NumericalType <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, <span class="keyword">const</span> NumericalType end) <span class="keywordflow">throw</span>()
 <a name="l01710"></a>01710  {
 <a name="l01711"></a>01711   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a> &gt;= 2);
 <a name="l01712"></a>01712   
@@ -1609,8 +1609,8 @@
 <a name="l01714"></a>01714   
 <a name="l01715"></a>01715   <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a> newArray = <a class="code" href="class_numerical_array.html#ada7cd40ff1de921243a1ba6d0a73fe5d">NumericalArray&lt;NumericalType&gt;::withSize</a>(numValues);
 <a name="l01716"></a>01716   
-<a name="l01717"></a>01717   <span class="keywordtype">double</span> inc = double(end - start) / (numValues - 1);
-<a name="l01718"></a>01718   <span class="keywordtype">double</span> currentValue = start;
+<a name="l01717"></a>01717   <span class="keywordtype">double</span> inc = double(end - <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>) / (numValues - 1);
+<a name="l01718"></a>01718   <span class="keywordtype">double</span> currentValue = <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>;
 <a name="l01719"></a>01719   NumericalType *outputValues = newArray.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>();
 <a name="l01720"></a>01720   
 <a name="l01721"></a>01721   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numValues; i++)
@@ -1623,7 +1623,7 @@
 <a name="l01728"></a>01728  }
 <a name="l01729"></a>01729  
 <a name="l01730"></a><a class="code" href="class_numerical_array.html#a59b2257afb948d77ebb88255ef6e6167">01730</a>  <span class="keyword">static</span> <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a> <a class="code" href="class_numerical_array.html#a59b2257afb948d77ebb88255ef6e6167">series</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>, 
-<a name="l01731"></a>01731             <span class="keyword">const</span> NumericalType start, 
+<a name="l01731"></a>01731             <span class="keyword">const</span> NumericalType <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, 
 <a name="l01732"></a>01732             <span class="keyword">const</span> NumericalType grow) <span class="keywordflow">throw</span>()
 <a name="l01733"></a>01733  {
 <a name="l01734"></a>01734   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a> &gt;= 2);
@@ -1632,7 +1632,7 @@
 <a name="l01737"></a>01737   
 <a name="l01738"></a>01738   <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a> newArray = <a class="code" href="class_numerical_array.html#ada7cd40ff1de921243a1ba6d0a73fe5d">NumericalArray&lt;NumericalType&gt;::withSize</a>(numValues);
 <a name="l01739"></a>01739   
-<a name="l01740"></a>01740   NumericalType currentValue = start;
+<a name="l01740"></a>01740   NumericalType currentValue = <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>;
 <a name="l01741"></a>01741   NumericalType *outputValues = newArray.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>();
 <a name="l01742"></a>01742   
 <a name="l01743"></a>01743   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numValues; i++)
@@ -1646,7 +1646,7 @@
 <a name="l01751"></a>01751  }
 <a name="l01752"></a>01752  
 <a name="l01753"></a><a class="code" href="class_numerical_array.html#a30a41a8d2f38fa905f05b339d8e0f9a0">01753</a>  <span class="keyword">static</span> <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a> <a class="code" href="class_numerical_array.html#a30a41a8d2f38fa905f05b339d8e0f9a0">geom</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>, 
-<a name="l01754"></a>01754              <span class="keyword">const</span> NumericalType start, 
+<a name="l01754"></a>01754              <span class="keyword">const</span> NumericalType <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, 
 <a name="l01755"></a>01755              <span class="keyword">const</span> NumericalType grow) <span class="keywordflow">throw</span>()
 <a name="l01756"></a>01756  {
 <a name="l01757"></a>01757   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a> &gt;= 2);
@@ -1655,7 +1655,7 @@
 <a name="l01760"></a>01760   
 <a name="l01761"></a>01761   <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a> newArray = <a class="code" href="class_numerical_array.html#ada7cd40ff1de921243a1ba6d0a73fe5d">NumericalArray&lt;NumericalType&gt;::withSize</a>(numValues);
 <a name="l01762"></a>01762   
-<a name="l01763"></a>01763   NumericalType currentValue = start;
+<a name="l01763"></a>01763   NumericalType currentValue = <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>;
 <a name="l01764"></a>01764   NumericalType *outputValues = newArray.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>();
 <a name="l01765"></a>01765   
 <a name="l01766"></a>01766   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numValues; i++)
@@ -1872,8 +1872,8 @@
 <a name="l01977"></a>01977   <span class="keywordflow">return</span> <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a>(size, sourceArray, needsNullTermination);
 <a name="l01978"></a>01978  }
 <a name="l01979"></a>01979  
-<a name="l01980"></a><a class="code" href="class_numerical_array.html#a785d36340a1a3fadd27a9a33c4445861">01980</a>  <a class="code" href="class_numerical_array.html#aff07b60edb2ff143b8bc4342c958ee4a">NumericalArray</a>(NumericalType value) <span class="keywordflow">throw</span>()
-<a name="l01981"></a>01981  : <a class="code" href="class_object_array.html">ObjectArray&lt;NumericalType&gt;</a>(value)
+<a name="l01980"></a><a class="code" href="class_numerical_array.html#a785d36340a1a3fadd27a9a33c4445861">01980</a>  <a class="code" href="class_numerical_array.html#aff07b60edb2ff143b8bc4342c958ee4a">NumericalArray</a>(NumericalType <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>) <span class="keywordflow">throw</span>()
+<a name="l01981"></a>01981  : <a class="code" href="class_object_array.html">ObjectArray&lt;NumericalType&gt;</a>(<a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>)
 <a name="l01982"></a>01982  {
 <a name="l01983"></a>01983  }
 <a name="l01984"></a>01984 
@@ -2225,7 +2225,7 @@
 <a name="l02356"></a>02356 <span class="preprocessor"></span> 
 <a name="l02357"></a><a class="code" href="class_numerical_array.html#a96d2379a6bf60b5188a69d44ce53c451">02357</a>  <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a> <a class="code" href="class_numerical_array.html#a96d2379a6bf60b5188a69d44ce53c451">operator- </a>() throw()
 <a name="l02358"></a>02358  {
-<a name="l02359"></a>02359   <a class="code" href="ugen___arrays_8h.html#ab40bb830e96dcc160a24eabb21ca4999">NumericalArrayUnaryFunctionBody</a>(<a class="code" href="ugen___inline_unary_ops_8h.html#ad465f1849af0e4650ea8470cc12d4417">ugen::neg</a>);
+<a name="l02359"></a>02359   <a class="code" href="ugen___arrays_8h.html#ab40bb830e96dcc160a24eabb21ca4999">NumericalArrayUnaryFunctionBody</a>(<a class="code" href="namespaceugen.html#af7fa6dfa500a07b21fa7e239876837c9">ugen::neg</a>);
 <a name="l02360"></a>02360  }
 <a name="l02361"></a>02361  
 <a name="l02362"></a><a class="code" href="class_numerical_array.html#a4643dbcfa7ba2d6d82affbc9853c2018">02362</a>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_numerical_array.html#a4643dbcfa7ba2d6d82affbc9853c2018">clear</a>() throw()
@@ -2267,23 +2267,23 @@
 <a name="l02400"></a>02400   <span class="keywordflow">return</span> <a class="code" href="class_numerical_array.html#a101ace1e49b4d50bc0f7c42be825ab2d" title="Search for any items in a given array.">ObjectArray&lt;NumericalType&gt;::indexOfAny</a>(<a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a>(items), startIndex);
 <a name="l02401"></a>02401  }
 <a name="l02402"></a>02402  
-<a name="l02403"></a><a class="code" href="class_numerical_array.html#ad3c31d1dc080c82547b49e23e8364bad">02403</a>  <a class="code" href="class_object_array.html">ObjectArray&lt;NumericalType&gt;</a> <a class="code" href="class_numerical_array.html#ad3c31d1dc080c82547b49e23e8364bad">replace</a>(<a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a> <span class="keyword">const</span>&amp; find, <span class="keyword">const</span> NumericalType *substitute) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l02403"></a><a class="code" href="class_numerical_array.html#ad3c31d1dc080c82547b49e23e8364bad">02403</a>  <a class="code" href="class_object_array.html">ObjectArray&lt;NumericalType&gt;</a> <a class="code" href="class_numerical_array.html#ad3c31d1dc080c82547b49e23e8364bad">replace</a>(<a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a> <span class="keyword">const</span>&amp; <a class="code" href="namespacestd.html#abb197a6f8db31b82e4d93abb60364b41">find</a>, <span class="keyword">const</span> NumericalType *substitute) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l02404"></a>02404  {
 <a name="l02405"></a>02405   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(substitute != 0);
-<a name="l02406"></a>02406   <span class="keywordflow">return</span> <a class="code" href="class_numerical_array.html#ad3c31d1dc080c82547b49e23e8364bad">ObjectArray&lt;NumericalType&gt;::replace</a>(find, <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a>(substitute));
+<a name="l02406"></a>02406   <span class="keywordflow">return</span> <a class="code" href="class_numerical_array.html#ad3c31d1dc080c82547b49e23e8364bad">ObjectArray&lt;NumericalType&gt;::replace</a>(<a class="code" href="namespacestd.html#abb197a6f8db31b82e4d93abb60364b41">find</a>, <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a>(substitute));
 <a name="l02407"></a>02407  }
 <a name="l02408"></a>02408  
-<a name="l02409"></a><a class="code" href="class_numerical_array.html#a9475cf107d6573863c23b07d061b6a32">02409</a>  <a class="code" href="class_object_array.html">ObjectArray&lt;NumericalType&gt;</a> <a class="code" href="class_numerical_array.html#ad3c31d1dc080c82547b49e23e8364bad">replace</a>(<span class="keyword">const</span> NumericalType *find, <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a> <span class="keyword">const</span>&amp; substitute) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l02409"></a><a class="code" href="class_numerical_array.html#a9475cf107d6573863c23b07d061b6a32">02409</a>  <a class="code" href="class_object_array.html">ObjectArray&lt;NumericalType&gt;</a> <a class="code" href="class_numerical_array.html#ad3c31d1dc080c82547b49e23e8364bad">replace</a>(<span class="keyword">const</span> NumericalType *<a class="code" href="namespacestd.html#abb197a6f8db31b82e4d93abb60364b41">find</a>, <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a> <span class="keyword">const</span>&amp; substitute) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l02410"></a>02410  {
-<a name="l02411"></a>02411   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(find != 0);
-<a name="l02412"></a>02412   <span class="keywordflow">return</span> <a class="code" href="class_numerical_array.html#ad3c31d1dc080c82547b49e23e8364bad">ObjectArray&lt;NumericalType&gt;::replace</a>(<a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a>(find), substitute);
+<a name="l02411"></a>02411   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(<a class="code" href="namespacestd.html#abb197a6f8db31b82e4d93abb60364b41">find</a> != 0);
+<a name="l02412"></a>02412   <span class="keywordflow">return</span> <a class="code" href="class_numerical_array.html#ad3c31d1dc080c82547b49e23e8364bad">ObjectArray&lt;NumericalType&gt;::replace</a>(<a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a>(<a class="code" href="namespacestd.html#abb197a6f8db31b82e4d93abb60364b41">find</a>), substitute);
 <a name="l02413"></a>02413  }
 <a name="l02414"></a>02414  
-<a name="l02415"></a><a class="code" href="class_numerical_array.html#a77022ce86443f0c118b2b1db008c90b7">02415</a>  <a class="code" href="class_object_array.html">ObjectArray&lt;NumericalType&gt;</a> <a class="code" href="class_numerical_array.html#ad3c31d1dc080c82547b49e23e8364bad">replace</a>(<span class="keyword">const</span> NumericalType *find, <span class="keyword">const</span> NumericalType *substitute) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l02415"></a><a class="code" href="class_numerical_array.html#a77022ce86443f0c118b2b1db008c90b7">02415</a>  <a class="code" href="class_object_array.html">ObjectArray&lt;NumericalType&gt;</a> <a class="code" href="class_numerical_array.html#ad3c31d1dc080c82547b49e23e8364bad">replace</a>(<span class="keyword">const</span> NumericalType *<a class="code" href="namespacestd.html#abb197a6f8db31b82e4d93abb60364b41">find</a>, <span class="keyword">const</span> NumericalType *substitute) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l02416"></a>02416  {
-<a name="l02417"></a>02417   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(find != 0);
+<a name="l02417"></a>02417   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(<a class="code" href="namespacestd.html#abb197a6f8db31b82e4d93abb60364b41">find</a> != 0);
 <a name="l02418"></a>02418   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(substitute != 0);
-<a name="l02419"></a>02419   <span class="keywordflow">return</span> <a class="code" href="class_numerical_array.html#ad3c31d1dc080c82547b49e23e8364bad">ObjectArray&lt;NumericalType&gt;::replace</a>(<a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a>(find), <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a>(substitute));
+<a name="l02419"></a>02419   <span class="keywordflow">return</span> <a class="code" href="class_numerical_array.html#ad3c31d1dc080c82547b49e23e8364bad">ObjectArray&lt;NumericalType&gt;::replace</a>(<a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a>(<a class="code" href="namespacestd.html#abb197a6f8db31b82e4d93abb60364b41">find</a>), <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;NumericalType&gt;</a>(substitute));
 <a name="l02420"></a>02420  }
 <a name="l02421"></a>02421  
 <a name="l02422"></a><a class="code" href="class_numerical_array.html#a0a61a58f45e730846fd6a3f552558fad">02422</a>  <a class="code" href="class_object_array.html" title="This is the base class for arrays in UGen++.">ObjectArray&lt; ObjectArray&lt;NumericalType&gt;</a> &gt; <a class="code" href="class_numerical_array.html#a0a61a58f45e730846fd6a3f552558fad">split</a>(<span class="keyword">const</span> NumericalType *delimiters) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
@@ -2302,22 +2302,22 @@
 <a name="l02435"></a>02435  {
 <a name="l02436"></a>02436   <span class="keywordflow">if</span>(oneLine)
 <a name="l02437"></a>02437   {
-<a name="l02438"></a>02438    <span class="keywordflow">if</span>(prefix) std::cout &lt;&lt; prefix &lt;&lt; <span class="stringliteral">&quot;: &quot;</span>;
+<a name="l02438"></a>02438    <span class="keywordflow">if</span>(prefix) <a class="code" href="namespacestd.html#aaf93fdf0812752e0e02c501dea1b38f0">std::cout</a> &lt;&lt; prefix &lt;&lt; <span class="stringliteral">&quot;: &quot;</span>;
 <a name="l02439"></a>02439    
 <a name="l02440"></a>02440    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; this-&gt;<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>(); i++)
 <a name="l02441"></a>02441    {
-<a name="l02442"></a>02442     std::cout &lt;&lt; this-&gt;<a class="code" href="class_object_array.html#a01dda59cdcbad97e572fae969ec7e992" title="Returns a reference to an item at the specified index.">at</a>(i) &lt;&lt; <span class="stringliteral">&quot; &quot;</span>;
+<a name="l02442"></a>02442     <a class="code" href="namespacestd.html#aaf93fdf0812752e0e02c501dea1b38f0">std::cout</a> &lt;&lt; this-&gt;<a class="code" href="class_object_array.html#a01dda59cdcbad97e572fae969ec7e992" title="Returns a reference to an item at the specified index.">at</a>(i) &lt;&lt; <span class="stringliteral">&quot; &quot;</span>;
 <a name="l02443"></a>02443    }
 <a name="l02444"></a>02444    
-<a name="l02445"></a>02445    std::cout &lt;&lt; std::endl;
+<a name="l02445"></a>02445    <a class="code" href="namespacestd.html#aaf93fdf0812752e0e02c501dea1b38f0">std::cout</a> &lt;&lt; std::endl;
 <a name="l02446"></a>02446   }
 <a name="l02447"></a>02447   <span class="keywordflow">else</span>
 <a name="l02448"></a>02448   {
 <a name="l02449"></a>02449    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; this-&gt;<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>(); i++)
 <a name="l02450"></a>02450    {
-<a name="l02451"></a>02451     <span class="keywordflow">if</span>(prefix) std::cout &lt;&lt; prefix;
+<a name="l02451"></a>02451     <span class="keywordflow">if</span>(prefix) <a class="code" href="namespacestd.html#aaf93fdf0812752e0e02c501dea1b38f0">std::cout</a> &lt;&lt; prefix;
 <a name="l02452"></a>02452     
-<a name="l02453"></a>02453     std::cout &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot;] = &quot;</span> &lt;&lt; this-&gt;<a class="code" href="class_object_array.html#a01dda59cdcbad97e572fae969ec7e992" title="Returns a reference to an item at the specified index.">at</a>(i) &lt;&lt; std::endl;
+<a name="l02453"></a>02453     <a class="code" href="namespacestd.html#aaf93fdf0812752e0e02c501dea1b38f0">std::cout</a> &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot;] = &quot;</span> &lt;&lt; this-&gt;<a class="code" href="class_object_array.html#a01dda59cdcbad97e572fae969ec7e992" title="Returns a reference to an item at the specified index.">at</a>(i) &lt;&lt; std::endl;
 <a name="l02454"></a>02454    }
 <a name="l02455"></a>02455   }
 <a name="l02456"></a>02456  }
@@ -2328,7 +2328,7 @@
 <a name="l02461"></a><a class="code" href="ugen___arrays_8h.html#aceba6891a14583b66e4eebd5afa9e0f4">02461</a> <span class="keyword">typedef</span> <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;bool&gt;</a>   <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">BoolArray</a>;
 <a name="l02462"></a><a class="code" href="ugen___arrays_8h.html#a59dacd9c9b7e5d21600704d028ee11ac">02462</a> <span class="keyword">typedef</span> <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;char&gt;</a>   <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">CharArray</a>;
 <a name="l02463"></a><a class="code" href="ugen___arrays_8h.html#abc0a20117bdf13511047792860a4f78c">02463</a> <span class="keyword">typedef</span> <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;short&gt;</a>   <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">ShortArray</a>;
-<a name="l02464"></a><a class="code" href="ugen___arrays_8h.html#a2e782adcf94f499517022cd8b26c9369">02464</a> <span class="keyword">typedef</span> <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;int&gt;</a>    <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">IntArray</a>;
+<a name="l02464"></a><a class="code" href="ugen___arrays_8h.html#a2e782adcf94f499517022cd8b26c9369">02464</a> <span class="keyword">typedef</span> <a class="code" href="class_numerical_array.html">NumericalArray&lt;int&gt;</a>    <a class="code" href="class_numerical_array.html">IntArray</a>;
 <a name="l02465"></a><a class="code" href="ugen___arrays_8h.html#a1ee3512538d7cbb29b065fde7c964860">02465</a> <span class="keyword">typedef</span> <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;long&gt;</a>   <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">LongArray</a>;
 <a name="l02466"></a><a class="code" href="ugen___arrays_8h.html#a9b84a3236be1274b6cb840648a4ef33f">02466</a> <span class="keyword">typedef</span> <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;unsigned char&gt;</a> <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">UnsignedCharArray</a>;
 <a name="l02467"></a><a class="code" href="ugen___arrays_8h.html#a5fd9e3b25ca11633ad5322330b922ec6">02467</a> <span class="keyword">typedef</span> <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">NumericalArray&lt;unsigned short&gt;</a> <a class="code" href="class_numerical_array.html" title="Stores arrays of simple numerical values.">UnsignedShortArray</a>;
@@ -2953,9 +2953,9 @@
 <a name="l03090"></a>03090   {
 <a name="l03091"></a>03091    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> row = 0; row &lt; this-&gt;<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>(); row++)
 <a name="l03092"></a>03092    {
-<a name="l03093"></a>03093     <span class="keywordflow">if</span>(prefix) std::cout &lt;&lt; prefix;
+<a name="l03093"></a>03093     <span class="keywordflow">if</span>(prefix) <a class="code" href="namespacestd.html#aaf93fdf0812752e0e02c501dea1b38f0">std::cout</a> &lt;&lt; prefix;
 <a name="l03094"></a>03094     
-<a name="l03095"></a>03095     std::cout &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; row &lt;&lt; <span class="stringliteral">&quot;]: &quot;</span>;
+<a name="l03095"></a>03095     <a class="code" href="namespacestd.html#aaf93fdf0812752e0e02c501dea1b38f0">std::cout</a> &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; row &lt;&lt; <span class="stringliteral">&quot;]: &quot;</span>;
 <a name="l03096"></a>03096         
 <a name="l03097"></a>03097     this-&gt;<a class="code" href="class_object_array.html#a01dda59cdcbad97e572fae969ec7e992" title="Returns a reference to an item at the specified index.">at</a>(row).print(0, <span class="keyword">true</span>);
 <a name="l03098"></a>03098    }
@@ -2968,9 +2968,9 @@
 <a name="l03105"></a>03105     
 <a name="l03106"></a>03106     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> column = 0; column &lt; rowArray.<a class="code" href="class_object_array.html#a53983ca686506e7f8c87b77175b148fb" title="Size is the actual number of elements of storage needed for the array.">size</a>(); column++)
 <a name="l03107"></a>03107     {
-<a name="l03108"></a>03108      <span class="keywordflow">if</span>(prefix) std::cout &lt;&lt; prefix;
+<a name="l03108"></a>03108      <span class="keywordflow">if</span>(prefix) <a class="code" href="namespacestd.html#aaf93fdf0812752e0e02c501dea1b38f0">std::cout</a> &lt;&lt; prefix;
 <a name="l03109"></a>03109      
-<a name="l03110"></a>03110      std::cout &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; row &lt;&lt; <span class="stringliteral">&quot;][&quot;</span> &lt;&lt; column &lt;&lt; <span class="stringliteral">&quot;] = &quot;</span> &lt;&lt; rowArray[column] &lt;&lt; std::endl;
+<a name="l03110"></a>03110      <a class="code" href="namespacestd.html#aaf93fdf0812752e0e02c501dea1b38f0">std::cout</a> &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; row &lt;&lt; <span class="stringliteral">&quot;][&quot;</span> &lt;&lt; column &lt;&lt; <span class="stringliteral">&quot;] = &quot;</span> &lt;&lt; rowArray[column] &lt;&lt; std::endl;
 <a name="l03111"></a>03111     }  
 <a name="l03112"></a>03112    }
 <a name="l03113"></a>03113   }
@@ -2994,7 +2994,7 @@
 <a name="l03131"></a>03131 <span class="preprocessor">#endif // _UGEN_ugen_Arrays_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:36 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:29 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

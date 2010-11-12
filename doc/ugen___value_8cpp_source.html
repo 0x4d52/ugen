@@ -30,7 +30,7 @@
 <h1>core/ugen_Value.cpp</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___value_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Value.cpp 149 2010-09-13 18:44:30Z 0x4d52 $</span>
+<a href="ugen___value_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_Value.cpp 194 2010-11-10 22:30:50Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/core/ugen_Value.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -75,8 +75,8 @@
 <a name="l00043"></a>00043 <span class="preprocessor">#include &quot;../basics/ugen_UnaryOpUGens.h&quot;</span>
 <a name="l00044"></a>00044 
 <a name="l00045"></a>00045 
-<a name="l00046"></a><a class="code" href="class_value_internal.html#af43338dd2ac32d044000eb1a05b81846">00046</a> <a class="code" href="class_value_internal.html#af43338dd2ac32d044000eb1a05b81846" title="Constructor.">ValueInternal::ValueInternal</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> value) <span class="keywordflow">throw</span>()
-<a name="l00047"></a>00047 : value_(value)
+<a name="l00046"></a><a class="code" href="class_value_internal.html#af43338dd2ac32d044000eb1a05b81846">00046</a> <a class="code" href="class_value_internal.html#af43338dd2ac32d044000eb1a05b81846" title="Constructor.">ValueInternal::ValueInternal</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>) <span class="keywordflow">throw</span>()
+<a name="l00047"></a>00047 : value_(<a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>)
 <a name="l00048"></a>00048 { 
 <a name="l00049"></a>00049 }
 <a name="l00050"></a>00050 
@@ -91,22 +91,22 @@
 <a name="l00059"></a>00059 }
 <a name="l00060"></a>00060 
 <a name="l00061"></a><a class="code" href="class_value.html#abc2a5a2e6484fac66dae2539cc955667">00061</a> <a class="code" href="class_value.html#abc2a5a2e6484fac66dae2539cc955667" title="Default constructor.">Value::Value</a>() throw()
-<a name="l00062"></a>00062 : internal(new <a class="code" href="class_value_internal.html" title="An internal value class with a constant value.">ValueInternal</a>(0.0))  
+<a name="l00062"></a>00062 : <a class="code" href="namespacestd.html#a084be990a1caf21a3b1ce38fe61bad3f">internal</a>(new <a class="code" href="class_value_internal.html" title="An internal value class with a constant value.">ValueInternal</a>(0.0))  
 <a name="l00063"></a>00063 {
 <a name="l00064"></a>00064 }
 <a name="l00065"></a>00065 
-<a name="l00066"></a><a class="code" href="class_value.html#a2c59797246563c815cbd138f3f3a9ea4">00066</a> <a class="code" href="class_value.html#abc2a5a2e6484fac66dae2539cc955667" title="Default constructor.">Value::Value</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> value) <span class="keywordflow">throw</span>()
-<a name="l00067"></a>00067 : <span class="keyword">internal</span>(<span class="keyword">new</span> <a class="code" href="class_value_internal.html" title="An internal value class with a constant value.">ValueInternal</a>(value))  
+<a name="l00066"></a><a class="code" href="class_value.html#a2c59797246563c815cbd138f3f3a9ea4">00066</a> <a class="code" href="class_value.html#abc2a5a2e6484fac66dae2539cc955667" title="Default constructor.">Value::Value</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>) <span class="keywordflow">throw</span>()
+<a name="l00067"></a>00067 : <span class="keyword">internal</span>(<span class="keyword">new</span> <a class="code" href="class_value_internal.html" title="An internal value class with a constant value.">ValueInternal</a>(<a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>))  
 <a name="l00068"></a>00068 { 
 <a name="l00069"></a>00069 }
 <a name="l00070"></a>00070 
-<a name="l00071"></a><a class="code" href="class_value.html#a8722dc3615060c131544c6724b35178c">00071</a> <a class="code" href="class_value.html#abc2a5a2e6484fac66dae2539cc955667" title="Default constructor.">Value::Value</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> value) <span class="keywordflow">throw</span>()
-<a name="l00072"></a>00072 : <span class="keyword">internal</span>(<span class="keyword">new</span> <a class="code" href="class_value_internal.html" title="An internal value class with a constant value.">ValueInternal</a>((<span class="keywordtype">double</span>)value))  
+<a name="l00071"></a><a class="code" href="class_value.html#a8722dc3615060c131544c6724b35178c">00071</a> <a class="code" href="class_value.html#abc2a5a2e6484fac66dae2539cc955667" title="Default constructor.">Value::Value</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>) <span class="keywordflow">throw</span>()
+<a name="l00072"></a>00072 : <span class="keyword">internal</span>(<span class="keyword">new</span> <a class="code" href="class_value_internal.html" title="An internal value class with a constant value.">ValueInternal</a>((<span class="keywordtype">double</span>)<a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>))  
 <a name="l00073"></a>00073 { 
 <a name="l00074"></a>00074 }
 <a name="l00075"></a>00075 
-<a name="l00076"></a><a class="code" href="class_value.html#a26d092829f1e255af8e87b581c29e805">00076</a> <a class="code" href="class_value.html#abc2a5a2e6484fac66dae2539cc955667" title="Default constructor.">Value::Value</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> value) <span class="keywordflow">throw</span>()   
-<a name="l00077"></a>00077 : <span class="keyword">internal</span>(<span class="keyword">new</span> <a class="code" href="class_value_internal.html" title="An internal value class with a constant value.">ValueInternal</a>((<span class="keywordtype">double</span>)value))  
+<a name="l00076"></a><a class="code" href="class_value.html#a26d092829f1e255af8e87b581c29e805">00076</a> <a class="code" href="class_value.html#abc2a5a2e6484fac66dae2539cc955667" title="Default constructor.">Value::Value</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>) <span class="keywordflow">throw</span>()   
+<a name="l00077"></a>00077 : <span class="keyword">internal</span>(<span class="keyword">new</span> <a class="code" href="class_value_internal.html" title="An internal value class with a constant value.">ValueInternal</a>((<span class="keywordtype">double</span>)<a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>))  
 <a name="l00078"></a>00078 { 
 <a name="l00079"></a>00079 }
 <a name="l00080"></a>00080 
@@ -146,9 +146,9 @@
 <a name="l00114"></a>00114  <span class="keyword">internal</span>-&gt;decrementRefCount(); 
 <a name="l00115"></a>00115 }
 <a name="l00116"></a>00116 
-<a name="l00117"></a><a class="code" href="class_value.html#aaa9985c640f1146c59ec78b983bdb72c">00117</a> <a class="code" href="class_value.html#abc2a5a2e6484fac66dae2539cc955667" title="Default constructor.">Value::Value</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; copy) <span class="keywordflow">throw</span>()
+<a name="l00117"></a><a class="code" href="class_value.html#aaa9985c640f1146c59ec78b983bdb72c">00117</a> <a class="code" href="class_value.html#abc2a5a2e6484fac66dae2539cc955667" title="Default constructor.">Value::Value</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; <a class="code" href="namespacestd.html#a9b36270cdb50d9a631ba58ee0405f135">copy</a>) <span class="keywordflow">throw</span>()
 <a name="l00118"></a>00118 {
-<a name="l00119"></a>00119  <span class="keyword">internal</span> = copy.internal;
+<a name="l00119"></a>00119  <span class="keyword">internal</span> = <a class="code" href="namespacestd.html#a9b36270cdb50d9a631ba58ee0405f135">copy</a>.internal;
 <a name="l00120"></a>00120  <span class="keyword">internal</span>-&gt;incrementRefCount();
 <a name="l00121"></a>00121 }
 <a name="l00122"></a>00122 
@@ -228,13 +228,13 @@
 <a name="l00196"></a>00196 <span class="preprocessor">#ifndef UGEN_NOEXTGPL</span>
 <a name="l00197"></a>00197 <span class="preprocessor"></span>
 <a name="l00198"></a><a class="code" href="class_random_value_base_internal.html#a081b79b04fa348852ea078e29447f570">00198</a> <a class="code" href="class_random_value_base_internal.html#a081b79b04fa348852ea078e29447f570">RandomValueBaseInternal::RandomValueBaseInternal</a>() throw()
-<a name="l00199"></a>00199 : random(<a class="code" href="class_ran088.html">Ran088</a>::defaultGenerator().next()) 
+<a name="l00199"></a>00199 : <a class="code" href="ugen___play_buf_8ii.html#a114aeb1751119382aaf3340355b22cfd">random</a>(<a class="code" href="class_ran088.html">Ran088</a>::defaultGenerator().next()) 
 <a name="l00200"></a>00200 { 
 <a name="l00201"></a>00201 }
 <a name="l00202"></a>00202 
 <a name="l00203"></a><a class="code" href="class_random_value_base_internal.html#afa860cf179c0d466b9e7788ffb3a79ed">00203</a> <span class="keywordtype">void</span> <a class="code" href="class_random_value_base_internal.html#afa860cf179c0d466b9e7788ffb3a79ed" title="Set the current value.">RandomValueBaseInternal::setValue</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> newValue) <span class="keywordflow">throw</span>()
 <a name="l00204"></a>00204 {
-<a name="l00205"></a>00205  random.setSeed(newValue);
+<a name="l00205"></a>00205  <a class="code" href="ugen___play_buf_8ii.html#a114aeb1751119382aaf3340355b22cfd">random</a>.setSeed(newValue);
 <a name="l00206"></a>00206 }
 <a name="l00207"></a>00207 
 <a name="l00208"></a><a class="code" href="class_random_double_range_value_internal.html#a965d0acf5dfbb5179f3aa5d23fa552db">00208</a> <a class="code" href="class_random_double_range_value_internal.html#a965d0acf5dfbb5179f3aa5d23fa552db">RandomDoubleRangeValueInternal::RandomDoubleRangeValueInternal</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; lo, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; hi) <span class="keywordflow">throw</span>()
@@ -263,7 +263,7 @@
 <a name="l00231"></a>00231 }
 <a name="l00232"></a>00232 
 <a name="l00233"></a><a class="code" href="class_random_int_range_value_internal.html#a4be2fd947f9463f85484c03f6d4a995f">00233</a> <a class="code" href="class_random_int_range_value_internal.html#a4be2fd947f9463f85484c03f6d4a995f">RandomIntRangeValueInternal::RandomIntRangeValueInternal</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> lo, <span class="keyword">const</span> <span class="keywordtype">int</span> hi) <span class="keywordflow">throw</span>()
-<a name="l00234"></a>00234 : lo_(lo), range(hi-lo)
+<a name="l00234"></a>00234 : lo_(lo), <a class="code" href="ugen___play_buf_8ii.html#aaf4a4d494928a9a40f1972bd7c956597">range</a>(hi-lo)
 <a name="l00235"></a>00235 {
 <a name="l00236"></a>00236 }
 <a name="l00237"></a>00237 
@@ -310,8 +310,8 @@
 <a name="l00278"></a>00278 
 <a name="l00279"></a>00279 <span class="preprocessor">#endif // gpl</span>
 <a name="l00280"></a>00280 <span class="preprocessor"></span>
-<a name="l00281"></a><a class="code" href="class_sequence_value_internal.html#a366a09122f44c47be7a97b7398d9344a">00281</a> <a class="code" href="class_sequence_value_internal.html#a366a09122f44c47be7a97b7398d9344a">SequenceValueInternal::SequenceValueInternal</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; start, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow) <span class="keywordflow">throw</span>()
-<a name="l00282"></a>00282 : start_(start),
+<a name="l00281"></a><a class="code" href="class_sequence_value_internal.html#a366a09122f44c47be7a97b7398d9344a">00281</a> <a class="code" href="class_sequence_value_internal.html#a366a09122f44c47be7a97b7398d9344a">SequenceValueInternal::SequenceValueInternal</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow) <span class="keywordflow">throw</span>()
+<a name="l00282"></a>00282 : start_(<a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>),
 <a name="l00283"></a>00283  currentValue(start_.getValue()),
 <a name="l00284"></a>00284  grow_(grow),
 <a name="l00285"></a>00285  threshold_(0.0),
@@ -323,11 +323,11 @@
 <a name="l00291"></a>00291 {
 <a name="l00292"></a>00292 }
 <a name="l00293"></a>00293 
-<a name="l00294"></a><a class="code" href="class_sequence_value_internal.html#a7beea95cafcd08c990487e4c057dbb6b">00294</a> <a class="code" href="class_sequence_value_internal.html#a366a09122f44c47be7a97b7398d9344a">SequenceValueInternal::SequenceValueInternal</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; start, 
+<a name="l00294"></a><a class="code" href="class_sequence_value_internal.html#a7beea95cafcd08c990487e4c057dbb6b">00294</a> <a class="code" href="class_sequence_value_internal.html#a366a09122f44c47be7a97b7398d9344a">SequenceValueInternal::SequenceValueInternal</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, 
 <a name="l00295"></a>00295             <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow, 
 <a name="l00296"></a>00296             <span class="keyword">const</span> <span class="keywordtype">int</span> numSteps, 
 <a name="l00297"></a>00297             <a class="code" href="class_sequence_value_internal.html#a0483970dc29f79e444b50ceae8d6d2f6">LoopDirection</a> loopDirection) <span class="keywordflow">throw</span>()
-<a name="l00298"></a>00298 : start_(start),
+<a name="l00298"></a>00298 : start_(<a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>),
 <a name="l00299"></a>00299  currentValue(start_.getValue()),
 <a name="l00300"></a>00300  grow_(grow), 
 <a name="l00301"></a>00301  threshold_(0.0),
@@ -339,11 +339,11 @@
 <a name="l00307"></a>00307 {
 <a name="l00308"></a>00308 }
 <a name="l00309"></a>00309 
-<a name="l00310"></a><a class="code" href="class_sequence_value_internal.html#aa215087f68c695ef6126749dbc499e48">00310</a> <a class="code" href="class_sequence_value_internal.html#a366a09122f44c47be7a97b7398d9344a">SequenceValueInternal::SequenceValueInternal</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; start, 
+<a name="l00310"></a><a class="code" href="class_sequence_value_internal.html#aa215087f68c695ef6126749dbc499e48">00310</a> <a class="code" href="class_sequence_value_internal.html#a366a09122f44c47be7a97b7398d9344a">SequenceValueInternal::SequenceValueInternal</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, 
 <a name="l00311"></a>00311             <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow, 
 <a name="l00312"></a>00312             <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; threshold, 
 <a name="l00313"></a>00313             <a class="code" href="class_sequence_value_internal.html#a0483970dc29f79e444b50ceae8d6d2f6">LoopDirection</a> loopDirection) <span class="keywordflow">throw</span>()
-<a name="l00314"></a>00314 : start_(start),
+<a name="l00314"></a>00314 : start_(<a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>),
 <a name="l00315"></a>00315  currentValue(start_.getValue()),
 <a name="l00316"></a>00316  grow_(grow),
 <a name="l00317"></a>00317  threshold_(threshold),
@@ -421,18 +421,18 @@
 <a name="l00389"></a>00389  currentValue = newValue;
 <a name="l00390"></a>00390 }
 <a name="l00391"></a>00391 
-<a name="l00392"></a><a class="code" href="class_series_value_internal.html#ad44efa5d82c8a34c4c89cc793eb1fb1c">00392</a> <a class="code" href="class_series_value_internal.html#ad44efa5d82c8a34c4c89cc793eb1fb1c">SeriesValueInternal::SeriesValueInternal</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; start, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow) <span class="keywordflow">throw</span>()
-<a name="l00393"></a>00393 : <a class="code" href="class_sequence_value_internal.html" title="An intermediate internal class that generates sequences.">SequenceValueInternal</a>(start, grow)
+<a name="l00392"></a><a class="code" href="class_series_value_internal.html#ad44efa5d82c8a34c4c89cc793eb1fb1c">00392</a> <a class="code" href="class_series_value_internal.html#ad44efa5d82c8a34c4c89cc793eb1fb1c">SeriesValueInternal::SeriesValueInternal</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow) <span class="keywordflow">throw</span>()
+<a name="l00393"></a>00393 : <a class="code" href="class_sequence_value_internal.html" title="An intermediate internal class that generates sequences.">SequenceValueInternal</a>(<a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, grow)
 <a name="l00394"></a>00394 {
 <a name="l00395"></a>00395 }
 <a name="l00396"></a>00396 
-<a name="l00397"></a><a class="code" href="class_series_value_internal.html#afec367db9451dae339920ec7c3a2bbcb">00397</a> <a class="code" href="class_series_value_internal.html#ad44efa5d82c8a34c4c89cc793eb1fb1c">SeriesValueInternal::SeriesValueInternal</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; start, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow, <span class="keyword">const</span> <span class="keywordtype">int</span> numSteps, <a class="code" href="class_sequence_value_internal.html#a0483970dc29f79e444b50ceae8d6d2f6">LoopDirection</a> loopDirection) <span class="keywordflow">throw</span>()
-<a name="l00398"></a>00398 : <a class="code" href="class_sequence_value_internal.html" title="An intermediate internal class that generates sequences.">SequenceValueInternal</a>(start, grow, numSteps, loopDirection)
+<a name="l00397"></a><a class="code" href="class_series_value_internal.html#afec367db9451dae339920ec7c3a2bbcb">00397</a> <a class="code" href="class_series_value_internal.html#ad44efa5d82c8a34c4c89cc793eb1fb1c">SeriesValueInternal::SeriesValueInternal</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow, <span class="keyword">const</span> <span class="keywordtype">int</span> numSteps, <a class="code" href="class_sequence_value_internal.html#a0483970dc29f79e444b50ceae8d6d2f6">LoopDirection</a> loopDirection) <span class="keywordflow">throw</span>()
+<a name="l00398"></a>00398 : <a class="code" href="class_sequence_value_internal.html" title="An intermediate internal class that generates sequences.">SequenceValueInternal</a>(<a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, grow, numSteps, loopDirection)
 <a name="l00399"></a>00399 {
 <a name="l00400"></a>00400 }
 <a name="l00401"></a>00401 
-<a name="l00402"></a><a class="code" href="class_series_value_internal.html#a41767cbc13f58daeb3e594b82a896ce1">00402</a> <a class="code" href="class_series_value_internal.html#ad44efa5d82c8a34c4c89cc793eb1fb1c">SeriesValueInternal::SeriesValueInternal</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; start, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; threshold, <a class="code" href="class_sequence_value_internal.html#a0483970dc29f79e444b50ceae8d6d2f6">LoopDirection</a> loopDirection) <span class="keywordflow">throw</span>()
-<a name="l00403"></a>00403 : <a class="code" href="class_sequence_value_internal.html" title="An intermediate internal class that generates sequences.">SequenceValueInternal</a>(start, grow, threshold, loopDirection)
+<a name="l00402"></a><a class="code" href="class_series_value_internal.html#a41767cbc13f58daeb3e594b82a896ce1">00402</a> <a class="code" href="class_series_value_internal.html#ad44efa5d82c8a34c4c89cc793eb1fb1c">SeriesValueInternal::SeriesValueInternal</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; threshold, <a class="code" href="class_sequence_value_internal.html#a0483970dc29f79e444b50ceae8d6d2f6">LoopDirection</a> loopDirection) <span class="keywordflow">throw</span>()
+<a name="l00403"></a>00403 : <a class="code" href="class_sequence_value_internal.html" title="An intermediate internal class that generates sequences.">SequenceValueInternal</a>(<a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, grow, threshold, loopDirection)
 <a name="l00404"></a>00404 {
 <a name="l00405"></a>00405 }
 <a name="l00406"></a>00406 
@@ -458,33 +458,33 @@
 <a name="l00426"></a>00426  <span class="keywordflow">return</span> returnValue;
 <a name="l00427"></a>00427 }
 <a name="l00428"></a>00428 
-<a name="l00429"></a><a class="code" href="class_series_value.html#a53d61fd2e4d2770e5691d9df8904fcde">00429</a> <a class="code" href="class_series_value.html#a5da1f1c3e0beda08740dd18016c090d4">SeriesValue::SeriesValue</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; start, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow) <span class="keywordflow">throw</span>()
-<a name="l00430"></a>00430 : <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a>(<span class="keyword">new</span> <a class="code" href="class_series_value_internal.html">SeriesValueInternal</a>(start, grow))
+<a name="l00429"></a><a class="code" href="class_series_value.html#a53d61fd2e4d2770e5691d9df8904fcde">00429</a> <a class="code" href="class_series_value.html#a5da1f1c3e0beda08740dd18016c090d4">SeriesValue::SeriesValue</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow) <span class="keywordflow">throw</span>()
+<a name="l00430"></a>00430 : <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a>(<span class="keyword">new</span> <a class="code" href="class_series_value_internal.html">SeriesValueInternal</a>(<a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, grow))
 <a name="l00431"></a>00431 {
 <a name="l00432"></a>00432 }
 <a name="l00433"></a>00433 
-<a name="l00434"></a><a class="code" href="class_series_value.html#ad26c1593cf3c9fc1471d4d242d754423">00434</a> <a class="code" href="class_series_value.html#a5da1f1c3e0beda08740dd18016c090d4">SeriesValue::SeriesValue</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; start, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow, <span class="keyword">const</span> <span class="keywordtype">int</span> numSteps, <a class="code" href="class_sequence_value_internal.html#a0483970dc29f79e444b50ceae8d6d2f6">SequenceValueInternal::LoopDirection</a> loopDirection) <span class="keywordflow">throw</span>()
-<a name="l00435"></a>00435 : <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a>(<span class="keyword">new</span> <a class="code" href="class_series_value_internal.html">SeriesValueInternal</a>(start, grow, numSteps, loopDirection))
+<a name="l00434"></a><a class="code" href="class_series_value.html#ad26c1593cf3c9fc1471d4d242d754423">00434</a> <a class="code" href="class_series_value.html#a5da1f1c3e0beda08740dd18016c090d4">SeriesValue::SeriesValue</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow, <span class="keyword">const</span> <span class="keywordtype">int</span> numSteps, <a class="code" href="class_sequence_value_internal.html#a0483970dc29f79e444b50ceae8d6d2f6">SequenceValueInternal::LoopDirection</a> loopDirection) <span class="keywordflow">throw</span>()
+<a name="l00435"></a>00435 : <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a>(<span class="keyword">new</span> <a class="code" href="class_series_value_internal.html">SeriesValueInternal</a>(<a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, grow, numSteps, loopDirection))
 <a name="l00436"></a>00436 {
 <a name="l00437"></a>00437 }
 <a name="l00438"></a>00438 
-<a name="l00439"></a><a class="code" href="class_series_value.html#a0bd4fe975a56dc3a33f3a624d31902ef">00439</a> <a class="code" href="class_series_value.html#a5da1f1c3e0beda08740dd18016c090d4">SeriesValue::SeriesValue</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; start, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; threshold, <a class="code" href="class_sequence_value_internal.html#a0483970dc29f79e444b50ceae8d6d2f6">SequenceValueInternal::LoopDirection</a> loopDirection) <span class="keywordflow">throw</span>()
-<a name="l00440"></a>00440 : <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a>(<span class="keyword">new</span> <a class="code" href="class_series_value_internal.html">SeriesValueInternal</a>(start, grow, threshold, loopDirection))
+<a name="l00439"></a><a class="code" href="class_series_value.html#a0bd4fe975a56dc3a33f3a624d31902ef">00439</a> <a class="code" href="class_series_value.html#a5da1f1c3e0beda08740dd18016c090d4">SeriesValue::SeriesValue</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; threshold, <a class="code" href="class_sequence_value_internal.html#a0483970dc29f79e444b50ceae8d6d2f6">SequenceValueInternal::LoopDirection</a> loopDirection) <span class="keywordflow">throw</span>()
+<a name="l00440"></a>00440 : <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a>(<span class="keyword">new</span> <a class="code" href="class_series_value_internal.html">SeriesValueInternal</a>(<a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, grow, threshold, loopDirection))
 <a name="l00441"></a>00441 {
 <a name="l00442"></a>00442 }
 <a name="l00443"></a>00443 
-<a name="l00444"></a><a class="code" href="class_geom_value_internal.html#a8c1295c252e93725927bb5c7d8418a07">00444</a> <a class="code" href="class_geom_value_internal.html#a8c1295c252e93725927bb5c7d8418a07">GeomValueInternal::GeomValueInternal</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; start, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow) <span class="keywordflow">throw</span>()
-<a name="l00445"></a>00445 : <a class="code" href="class_sequence_value_internal.html" title="An intermediate internal class that generates sequences.">SequenceValueInternal</a>(start, grow)
+<a name="l00444"></a><a class="code" href="class_geom_value_internal.html#a8c1295c252e93725927bb5c7d8418a07">00444</a> <a class="code" href="class_geom_value_internal.html#a8c1295c252e93725927bb5c7d8418a07">GeomValueInternal::GeomValueInternal</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow) <span class="keywordflow">throw</span>()
+<a name="l00445"></a>00445 : <a class="code" href="class_sequence_value_internal.html" title="An intermediate internal class that generates sequences.">SequenceValueInternal</a>(<a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, grow)
 <a name="l00446"></a>00446 {
 <a name="l00447"></a>00447 }
 <a name="l00448"></a>00448 
-<a name="l00449"></a><a class="code" href="class_geom_value_internal.html#ac69a7a37ef2e7ac3624478c4bed85d41">00449</a> <a class="code" href="class_geom_value_internal.html#a8c1295c252e93725927bb5c7d8418a07">GeomValueInternal::GeomValueInternal</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; start, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow, <span class="keyword">const</span> <span class="keywordtype">int</span> numSteps, <a class="code" href="class_sequence_value_internal.html#a0483970dc29f79e444b50ceae8d6d2f6">LoopDirection</a> loopDirection) <span class="keywordflow">throw</span>()
-<a name="l00450"></a>00450 : <a class="code" href="class_sequence_value_internal.html" title="An intermediate internal class that generates sequences.">SequenceValueInternal</a>(start, grow, numSteps, loopDirection)
+<a name="l00449"></a><a class="code" href="class_geom_value_internal.html#ac69a7a37ef2e7ac3624478c4bed85d41">00449</a> <a class="code" href="class_geom_value_internal.html#a8c1295c252e93725927bb5c7d8418a07">GeomValueInternal::GeomValueInternal</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow, <span class="keyword">const</span> <span class="keywordtype">int</span> numSteps, <a class="code" href="class_sequence_value_internal.html#a0483970dc29f79e444b50ceae8d6d2f6">LoopDirection</a> loopDirection) <span class="keywordflow">throw</span>()
+<a name="l00450"></a>00450 : <a class="code" href="class_sequence_value_internal.html" title="An intermediate internal class that generates sequences.">SequenceValueInternal</a>(<a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, grow, numSteps, loopDirection)
 <a name="l00451"></a>00451 {
 <a name="l00452"></a>00452 }
 <a name="l00453"></a>00453 
-<a name="l00454"></a><a class="code" href="class_geom_value_internal.html#a70b7123c416cf95e15fe00488eefb863">00454</a> <a class="code" href="class_geom_value_internal.html#a8c1295c252e93725927bb5c7d8418a07">GeomValueInternal::GeomValueInternal</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; start, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; threshold, <a class="code" href="class_sequence_value_internal.html#a0483970dc29f79e444b50ceae8d6d2f6">LoopDirection</a> loopDirection) <span class="keywordflow">throw</span>()
-<a name="l00455"></a>00455 : <a class="code" href="class_sequence_value_internal.html" title="An intermediate internal class that generates sequences.">SequenceValueInternal</a>(start, grow, threshold, loopDirection)
+<a name="l00454"></a><a class="code" href="class_geom_value_internal.html#a70b7123c416cf95e15fe00488eefb863">00454</a> <a class="code" href="class_geom_value_internal.html#a8c1295c252e93725927bb5c7d8418a07">GeomValueInternal::GeomValueInternal</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; threshold, <a class="code" href="class_sequence_value_internal.html#a0483970dc29f79e444b50ceae8d6d2f6">LoopDirection</a> loopDirection) <span class="keywordflow">throw</span>()
+<a name="l00455"></a>00455 : <a class="code" href="class_sequence_value_internal.html" title="An intermediate internal class that generates sequences.">SequenceValueInternal</a>(<a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, grow, threshold, loopDirection)
 <a name="l00456"></a>00456 {
 <a name="l00457"></a>00457 }
 <a name="l00458"></a>00458 
@@ -510,18 +510,18 @@
 <a name="l00478"></a>00478  <span class="keywordflow">return</span> returnValue;
 <a name="l00479"></a>00479 }
 <a name="l00480"></a>00480 
-<a name="l00481"></a><a class="code" href="class_geom_value.html#ac67cb92e9448be5259c6c3ebffb2c5f8">00481</a> <a class="code" href="class_geom_value.html#aba5f9c536e2bed2ab27d4e21360e7325">GeomValue::GeomValue</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; start, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow) <span class="keywordflow">throw</span>()
-<a name="l00482"></a>00482 : <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a>(<span class="keyword">new</span> <a class="code" href="class_geom_value_internal.html">GeomValueInternal</a>(start, grow))
+<a name="l00481"></a><a class="code" href="class_geom_value.html#ac67cb92e9448be5259c6c3ebffb2c5f8">00481</a> <a class="code" href="class_geom_value.html#aba5f9c536e2bed2ab27d4e21360e7325">GeomValue::GeomValue</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow) <span class="keywordflow">throw</span>()
+<a name="l00482"></a>00482 : <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a>(<span class="keyword">new</span> <a class="code" href="class_geom_value_internal.html">GeomValueInternal</a>(<a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, grow))
 <a name="l00483"></a>00483 {
 <a name="l00484"></a>00484 }
 <a name="l00485"></a>00485 
-<a name="l00486"></a><a class="code" href="class_geom_value.html#a1cd68cc008aefadf65a7fb409f87629a">00486</a> <a class="code" href="class_geom_value.html#aba5f9c536e2bed2ab27d4e21360e7325">GeomValue::GeomValue</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; start, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow, <span class="keyword">const</span> <span class="keywordtype">int</span> numSteps, <a class="code" href="class_sequence_value_internal.html#a0483970dc29f79e444b50ceae8d6d2f6">SequenceValueInternal::LoopDirection</a> loopDirection) <span class="keywordflow">throw</span>()
-<a name="l00487"></a>00487 : <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a>(<span class="keyword">new</span> <a class="code" href="class_geom_value_internal.html">GeomValueInternal</a>(start, grow, numSteps, loopDirection))
+<a name="l00486"></a><a class="code" href="class_geom_value.html#a1cd68cc008aefadf65a7fb409f87629a">00486</a> <a class="code" href="class_geom_value.html#aba5f9c536e2bed2ab27d4e21360e7325">GeomValue::GeomValue</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow, <span class="keyword">const</span> <span class="keywordtype">int</span> numSteps, <a class="code" href="class_sequence_value_internal.html#a0483970dc29f79e444b50ceae8d6d2f6">SequenceValueInternal::LoopDirection</a> loopDirection) <span class="keywordflow">throw</span>()
+<a name="l00487"></a>00487 : <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a>(<span class="keyword">new</span> <a class="code" href="class_geom_value_internal.html">GeomValueInternal</a>(<a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, grow, numSteps, loopDirection))
 <a name="l00488"></a>00488 {
 <a name="l00489"></a>00489 }
 <a name="l00490"></a>00490 
-<a name="l00491"></a><a class="code" href="class_geom_value.html#aba8a6a8cac5d9838a29e5e499a2f16a6">00491</a> <a class="code" href="class_geom_value.html#aba5f9c536e2bed2ab27d4e21360e7325">GeomValue::GeomValue</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; start, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; threshold, <a class="code" href="class_sequence_value_internal.html#a0483970dc29f79e444b50ceae8d6d2f6">SequenceValueInternal::LoopDirection</a> loopDirection) <span class="keywordflow">throw</span>()
-<a name="l00492"></a>00492 : <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a>(<span class="keyword">new</span> <a class="code" href="class_geom_value_internal.html">GeomValueInternal</a>(start, grow, threshold, loopDirection))
+<a name="l00491"></a><a class="code" href="class_geom_value.html#aba8a6a8cac5d9838a29e5e499a2f16a6">00491</a> <a class="code" href="class_geom_value.html#aba5f9c536e2bed2ab27d4e21360e7325">GeomValue::GeomValue</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; grow, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; threshold, <a class="code" href="class_sequence_value_internal.html#a0483970dc29f79e444b50ceae8d6d2f6">SequenceValueInternal::LoopDirection</a> loopDirection) <span class="keywordflow">throw</span>()
+<a name="l00492"></a>00492 : <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a>(<span class="keyword">new</span> <a class="code" href="class_geom_value_internal.html">GeomValueInternal</a>(<a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a>, grow, threshold, loopDirection))
 <a name="l00493"></a>00493 {
 <a name="l00494"></a>00494 }
 <a name="l00495"></a>00495 
@@ -549,42 +549,42 @@
 <a name="l00517"></a>00517 {
 <a name="l00518"></a>00518 }
 <a name="l00519"></a>00519 
-<a name="l00520"></a><a class="code" href="class_value_array.html#aca2c736843a44c19fb333a6f5f473dbb">00520</a> <a class="code" href="class_value_array.html#a8c00387f8fee9e26255063d4221fcc9d">ValueArray::ValueArray</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; value) <span class="keywordflow">throw</span>()
+<a name="l00520"></a><a class="code" href="class_value_array.html#aca2c736843a44c19fb333a6f5f473dbb">00520</a> <a class="code" href="class_value_array.html#a8c00387f8fee9e26255063d4221fcc9d">ValueArray::ValueArray</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>) <span class="keywordflow">throw</span>()
 <a name="l00521"></a>00521 : <span class="keyword">internal</span>(<span class="keyword">new</span> <a class="code" href="class_value_array_1_1_value_array_internal.html">ValueArrayInternal</a>(1))
 <a name="l00522"></a>00522 {
-<a name="l00523"></a>00523  <span class="keyword">internal</span>-&gt;array[0] = value;
+<a name="l00523"></a>00523  <span class="keyword">internal</span>-&gt;array[0] = <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>;
 <a name="l00524"></a>00524 }
 <a name="l00525"></a>00525 
-<a name="l00526"></a><a class="code" href="class_value_array.html#aa8394ea1e4b422e074380ef0856e5a20">00526</a> <a class="code" href="class_value_array.html#a8c00387f8fee9e26255063d4221fcc9d">ValueArray::ValueArray</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> value) <span class="keywordflow">throw</span>()
+<a name="l00526"></a><a class="code" href="class_value_array.html#aa8394ea1e4b422e074380ef0856e5a20">00526</a> <a class="code" href="class_value_array.html#a8c00387f8fee9e26255063d4221fcc9d">ValueArray::ValueArray</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>) <span class="keywordflow">throw</span>()
 <a name="l00527"></a>00527 : <span class="keyword">internal</span>(<span class="keyword">new</span> <a class="code" href="class_value_array_1_1_value_array_internal.html">ValueArrayInternal</a>(1))
 <a name="l00528"></a>00528 {
-<a name="l00529"></a>00529  <span class="keyword">internal</span>-&gt;array[0] = value;
+<a name="l00529"></a>00529  <span class="keyword">internal</span>-&gt;array[0] = <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>;
 <a name="l00530"></a>00530 }
 <a name="l00531"></a>00531 
-<a name="l00532"></a><a class="code" href="class_value_array.html#ab76752facb2df2ff6a8cceef14dd82d9">00532</a> <a class="code" href="class_value_array.html#a8c00387f8fee9e26255063d4221fcc9d">ValueArray::ValueArray</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; value, <span class="keyword">const</span> <span class="keywordtype">int</span> size) <span class="keywordflow">throw</span>()
+<a name="l00532"></a><a class="code" href="class_value_array.html#ab76752facb2df2ff6a8cceef14dd82d9">00532</a> <a class="code" href="class_value_array.html#a8c00387f8fee9e26255063d4221fcc9d">ValueArray::ValueArray</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>, <span class="keyword">const</span> <span class="keywordtype">int</span> size) <span class="keywordflow">throw</span>()
 <a name="l00533"></a>00533 : <span class="keyword">internal</span>(<span class="keyword">new</span> <a class="code" href="class_value_array_1_1_value_array_internal.html">ValueArrayInternal</a>(size))
 <a name="l00534"></a>00534 {
 <a name="l00535"></a>00535  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++)
 <a name="l00536"></a>00536  {
-<a name="l00537"></a>00537   <span class="keyword">internal</span>-&gt;array[i] = value;
+<a name="l00537"></a>00537   <span class="keyword">internal</span>-&gt;array[i] = <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>;
 <a name="l00538"></a>00538  }
 <a name="l00539"></a>00539 }
 <a name="l00540"></a>00540 
-<a name="l00541"></a><a class="code" href="class_value_array.html#aaba2b7d1b2c705ce5692c5a23882fef8">00541</a> <a class="code" href="class_value_array.html#a8c00387f8fee9e26255063d4221fcc9d">ValueArray::ValueArray</a>(<a class="code" href="class_value_array.html" title="Store and manipulate an array of Value objects.">ValueArray</a> <span class="keyword">const</span>&amp; copy) <span class="keywordflow">throw</span>()
-<a name="l00542"></a>00542 : <span class="keyword">internal</span>(copy.internal)
+<a name="l00541"></a><a class="code" href="class_value_array.html#aaba2b7d1b2c705ce5692c5a23882fef8">00541</a> <a class="code" href="class_value_array.html#a8c00387f8fee9e26255063d4221fcc9d">ValueArray::ValueArray</a>(<a class="code" href="class_value_array.html" title="Store and manipulate an array of Value objects.">ValueArray</a> <span class="keyword">const</span>&amp; <a class="code" href="namespacestd.html#a9b36270cdb50d9a631ba58ee0405f135">copy</a>) <span class="keywordflow">throw</span>()
+<a name="l00542"></a>00542 : <span class="keyword">internal</span>(<a class="code" href="namespacestd.html#a9b36270cdb50d9a631ba58ee0405f135">copy</a>.internal)
 <a name="l00543"></a>00543 {
 <a name="l00544"></a>00544  <span class="keywordflow">if</span>(<span class="keyword">internal</span> != 0)
 <a name="l00545"></a>00545   <span class="keyword">internal</span>-&gt;incrementRefCount();
 <a name="l00546"></a>00546 }
 <a name="l00547"></a>00547 
-<a name="l00548"></a><a class="code" href="class_value_array.html#a526c4a12646750dec82da97777fb6ebe">00548</a> <a class="code" href="class_value_array.html#a8c00387f8fee9e26255063d4221fcc9d">ValueArray::ValueArray</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; copy) <span class="keywordflow">throw</span>()
-<a name="l00549"></a>00549 : <span class="keyword">internal</span>(copy.size() &gt; 0 ? <span class="keyword">new</span> <a class="code" href="class_value_array_1_1_value_array_internal.html">ValueArrayInternal</a>(copy.size()) : 0)
+<a name="l00548"></a><a class="code" href="class_value_array.html#a526c4a12646750dec82da97777fb6ebe">00548</a> <a class="code" href="class_value_array.html#a8c00387f8fee9e26255063d4221fcc9d">ValueArray::ValueArray</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; <a class="code" href="namespacestd.html#a9b36270cdb50d9a631ba58ee0405f135">copy</a>) <span class="keywordflow">throw</span>()
+<a name="l00549"></a>00549 : <span class="keyword">internal</span>(<a class="code" href="namespacestd.html#a9b36270cdb50d9a631ba58ee0405f135">copy</a>.size() &gt; 0 ? <span class="keyword">new</span> <a class="code" href="class_value_array_1_1_value_array_internal.html">ValueArrayInternal</a>(<a class="code" href="namespacestd.html#a9b36270cdb50d9a631ba58ee0405f135">copy</a>.size()) : 0)
 <a name="l00550"></a>00550 {
 <a name="l00551"></a>00551  <span class="keywordflow">if</span>(<span class="keyword">internal</span> != 0)
 <a name="l00552"></a>00552  {
 <a name="l00553"></a>00553   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <span class="keyword">internal</span>-&gt;size_; i++)
 <a name="l00554"></a>00554   {
-<a name="l00555"></a>00555    <span class="keyword">internal</span>-&gt;array[i] = copy.getSampleUnchecked(i);
+<a name="l00555"></a>00555    <span class="keyword">internal</span>-&gt;array[i] = <a class="code" href="namespacestd.html#a9b36270cdb50d9a631ba58ee0405f135">copy</a>.getSampleUnchecked(i);
 <a name="l00556"></a>00556   }
 <a name="l00557"></a>00557  }
 <a name="l00558"></a>00558 }
@@ -697,28 +697,28 @@
 <a name="l00665"></a>00665  <span class="keywordflow">return</span> operator= (<a class="code" href="class_value_array.html" title="Store and manipulate an array of Value objects.">ValueArray</a>(*<span class="keyword">this</span>, other));
 <a name="l00666"></a>00666 }
 <a name="l00667"></a>00667 
-<a name="l00668"></a><a class="code" href="class_value_array.html#a90dbd6caeeede619f6976f2cfa1c4839">00668</a> <span class="keywordtype">void</span> <a class="code" href="class_value_array.html#a90dbd6caeeede619f6976f2cfa1c4839" title="Replace a value at a specified index.">ValueArray::put</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> index, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; item) <span class="keywordflow">throw</span>()
+<a name="l00668"></a><a class="code" href="class_value_array.html#a90dbd6caeeede619f6976f2cfa1c4839">00668</a> <span class="keywordtype">void</span> <a class="code" href="class_value_array.html#a90dbd6caeeede619f6976f2cfa1c4839" title="Replace a value at a specified index.">ValueArray::put</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a>, <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; item) <span class="keywordflow">throw</span>()
 <a name="l00669"></a>00669 {
-<a name="l00670"></a>00670  <span class="keywordflow">if</span>(<span class="keyword">internal</span> == 0 || index &lt; 0 || index &gt;= internal-&gt;size_) <span class="keywordflow">return</span>;
+<a name="l00670"></a>00670  <span class="keywordflow">if</span>(<span class="keyword">internal</span> == 0 || index &lt; 0 || index &gt;= <a class="code" href="namespacestd.html#a084be990a1caf21a3b1ce38fe61bad3f">internal</a>-&gt;size_) <span class="keywordflow">return</span>;
 <a name="l00671"></a>00671  
 <a name="l00672"></a>00672  <span class="keyword">internal</span>-&gt;array[index] = item;
 <a name="l00673"></a>00673 }
 <a name="l00674"></a>00674 
-<a name="l00675"></a><a class="code" href="class_value_array.html#a9b2ff68de6a1ae4d8308b27ae39146b4">00675</a> <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a>&amp; <a class="code" href="class_value_array.html#a9b2ff68de6a1ae4d8308b27ae39146b4" title="Get a value at a specified index.">ValueArray::operator[] </a>(<span class="keyword">const</span> <span class="keywordtype">int</span> index) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l00675"></a><a class="code" href="class_value_array.html#a9b2ff68de6a1ae4d8308b27ae39146b4">00675</a> <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a>&amp; <a class="code" href="class_value_array.html#a9b2ff68de6a1ae4d8308b27ae39146b4" title="Get a value at a specified index.">ValueArray::operator[] </a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a>) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00676"></a>00676 {
-<a name="l00677"></a>00677  <span class="keywordflow">if</span>(<span class="keyword">internal</span> == 0 || index &lt; 0 || index &gt;= internal-&gt;size_) <span class="keywordflow">return</span> <a class="code" href="class_value.html#ad1fed6096f40b54b366aea8cf44ffd22" title="A null value (equal to 0.0).">Value::getNull</a>();
+<a name="l00677"></a>00677  <span class="keywordflow">if</span>(<span class="keyword">internal</span> == 0 || index &lt; 0 || index &gt;= <a class="code" href="namespacestd.html#a084be990a1caf21a3b1ce38fe61bad3f">internal</a>-&gt;size_) <span class="keywordflow">return</span> <a class="code" href="class_value.html#ad1fed6096f40b54b366aea8cf44ffd22" title="A null value (equal to 0.0).">Value::getNull</a>();
 <a name="l00678"></a>00678  
 <a name="l00679"></a>00679  <span class="keywordflow">return</span> <span class="keyword">internal</span>-&gt;array[index];
 <a name="l00680"></a>00680 }
 <a name="l00681"></a>00681 
-<a name="l00682"></a><a class="code" href="class_value_array.html#a6cf127c2b4cb02543f67d48d5722b81f">00682</a> <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a>&amp; <a class="code" href="class_value_array.html#a6cf127c2b4cb02543f67d48d5722b81f" title="Get a value at a specified index.">ValueArray::at</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> index) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l00682"></a><a class="code" href="class_value_array.html#a6cf127c2b4cb02543f67d48d5722b81f">00682</a> <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a>&amp; <a class="code" href="class_value_array.html#a6cf127c2b4cb02543f67d48d5722b81f" title="Get a value at a specified index.">ValueArray::at</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a>) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00683"></a>00683 {
-<a name="l00684"></a>00684  <span class="keywordflow">if</span>(<span class="keyword">internal</span> == 0 || index &lt; 0 || index &gt;= internal-&gt;size_) <span class="keywordflow">return</span> <a class="code" href="class_value.html#ad1fed6096f40b54b366aea8cf44ffd22" title="A null value (equal to 0.0).">Value::getNull</a>();
+<a name="l00684"></a>00684  <span class="keywordflow">if</span>(<span class="keyword">internal</span> == 0 || index &lt; 0 || index &gt;= <a class="code" href="namespacestd.html#a084be990a1caf21a3b1ce38fe61bad3f">internal</a>-&gt;size_) <span class="keywordflow">return</span> <a class="code" href="class_value.html#ad1fed6096f40b54b366aea8cf44ffd22" title="A null value (equal to 0.0).">Value::getNull</a>();
 <a name="l00685"></a>00685  
 <a name="l00686"></a>00686  <span class="keywordflow">return</span> <span class="keyword">internal</span>-&gt;array[index];
 <a name="l00687"></a>00687 }
 <a name="l00688"></a>00688 
-<a name="l00689"></a><a class="code" href="class_value_array.html#a7b9678d50e1155e41b8ed8133056004b">00689</a> <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a>&amp; <a class="code" href="class_value_array.html#a7b9678d50e1155e41b8ed8133056004b" title="Get a value at a specified index.">ValueArray::wrapAt</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> index) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l00689"></a><a class="code" href="class_value_array.html#a7b9678d50e1155e41b8ed8133056004b">00689</a> <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a>&amp; <a class="code" href="class_value_array.html#a7b9678d50e1155e41b8ed8133056004b" title="Get a value at a specified index.">ValueArray::wrapAt</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a>) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00690"></a>00690 {
 <a name="l00691"></a>00691  <span class="keywordflow">if</span>(<span class="keyword">internal</span> == 0) <span class="keywordflow">return</span> <a class="code" href="class_value.html#ad1fed6096f40b54b366aea8cf44ffd22" title="A null value (equal to 0.0).">Value::getNull</a>();
 <a name="l00692"></a>00692  
@@ -726,7 +726,7 @@
 <a name="l00694"></a>00694  <span class="keywordflow">while</span>(indexToUse &lt; 0)
 <a name="l00695"></a>00695   indexToUse += <span class="keyword">internal</span>-&gt;size_;
 <a name="l00696"></a>00696  
-<a name="l00697"></a>00697  <span class="keywordflow">return</span> <span class="keyword">internal</span>-&gt;array[index % <span class="keyword">internal</span>-&gt;size_];
+<a name="l00697"></a>00697  <span class="keywordflow">return</span> <span class="keyword">internal</span>-&gt;array[<a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a> % <span class="keyword">internal</span>-&gt;size_];
 <a name="l00698"></a>00698 }
 <a name="l00699"></a>00699 
 <a name="l00700"></a><a class="code" href="class_value_array.html#a1d2f47791aa80a1c28929c10556fafbd">00700</a> <a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a>&amp; <a class="code" href="class_value_array.html#a1d2f47791aa80a1c28929c10556fafbd" title="Get the first value in the array.">ValueArray::first</a>() <span class="keyword">const</span> throw()
@@ -755,19 +755,19 @@
 <a name="l00723"></a>00723  }                              
 <a name="l00724"></a>00724 }
 <a name="l00725"></a>00725 
-<a name="l00726"></a><a class="code" href="class_value_u_gen_internal.html#af7da80c4313b4bc60a0673aefc577321">00726</a> <a class="code" href="class_value_u_gen_internal.html#af7da80c4313b4bc60a0673aefc577321">ValueUGenInternal::ValueUGenInternal</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; value) 
+<a name="l00726"></a><a class="code" href="class_value_u_gen_internal.html#af7da80c4313b4bc60a0673aefc577321">00726</a> <a class="code" href="class_value_u_gen_internal.html#af7da80c4313b4bc60a0673aefc577321">ValueUGenInternal::ValueUGenInternal</a>(<a class="code" href="class_value.html" title="This provides a means for providing a &amp;quot;specification&amp;quot; for a value which will be evaluated l...">Value</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>) 
 <a name="l00727"></a>00727 : <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(0), 
 <a name="l00728"></a>00728  valueObject(value),
 <a name="l00729"></a>00729  isConst(valueObject.containsInternalType&lt;<a class="code" href="class_value_internal.html" title="An internal value class with a constant value.">ValueInternal</a>&gt;())
 <a name="l00730"></a>00730 {   
 <a name="l00731"></a>00731  <span class="keywordtype">float</span> val = (float)<a class="code" href="class_value_u_gen_internal.html#ad66cea1ade37a412295b7eb87abf0e99">valueObject</a>.<a class="code" href="class_value.html#a31f2abf24b1d5e189c437fe194b9d60e" title="Evaluate the value.">getValue</a>();
-<a name="l00732"></a>00732  <a class="code" href="class_u_gen_internal.html#a3b9de200fa163a233dab85b3388fd469" title="Initialise the UGen output value.">initValue</a>(val);
+<a name="l00732"></a>00732  <a class="code" href="class_u_gen_internal.html#a02969e1ea45efde745a41fec2ac36dc4" title="Initialise the UGen output value.">initValue</a>(val);
 <a name="l00733"></a>00733 }
 <a name="l00734"></a>00734 
 <a name="l00735"></a><a class="code" href="class_value_u_gen_internal.html#a8d2603450292257714b86e26d767b53d">00735</a> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_value_u_gen_internal.html#a8d2603450292257714b86e26d767b53d">ValueUGenInternal::getKr</a>() throw()
 <a name="l00736"></a>00736 {
 <a name="l00737"></a>00737  <a class="code" href="class_value_u_gen_internal_k.html" title="A UGenInternal which uses a Value as its source.">ValueUGenInternalK</a> *result = <span class="keyword">new</span> <a class="code" href="class_value_u_gen_internal_k.html" title="A UGenInternal which uses a Value as its source.">ValueUGenInternalK</a>(<a class="code" href="class_value_u_gen_internal.html#ad66cea1ade37a412295b7eb87abf0e99">valueObject</a>);
-<a name="l00738"></a>00738  result-&gt;<a class="code" href="class_value_u_gen_internal_k.html#a0a00ee848d370ea02671adb36b685b1c">setValue</a>(this-&gt;<a class="code" href="class_u_gen_internal.html#a8025c9bdaa987546001e2da23f97e3c8">getValue</a>(0));
+<a name="l00738"></a>00738  result-&gt;<a class="code" href="class_value_u_gen_internal_k.html#a0a00ee848d370ea02671adb36b685b1c">setValue</a>(this-&gt;<a class="code" href="class_u_gen_internal.html#a9f79b23e6cc88f6987890357b4a5ba3b">getValue</a>(0));
 <a name="l00739"></a>00739  <span class="keywordflow">return</span> result;
 <a name="l00740"></a>00740 }
 <a name="l00741"></a>00741 
@@ -785,7 +785,7 @@
 <a name="l00753"></a>00753  }
 <a name="l00754"></a>00754  <span class="keywordflow">else</span>
 <a name="l00755"></a>00755  { 
-<a name="l00756"></a>00756   <span class="keywordtype">float</span> value = (float)valueObject.getValue();
+<a name="l00756"></a>00756   <span class="keywordtype">float</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> = (float)valueObject.getValue();
 <a name="l00757"></a>00757   <span class="keywordflow">while</span>(numSamplesToProcess--)
 <a name="l00758"></a>00758   {
 <a name="l00759"></a>00759    *outputSamples++ = value;
@@ -810,7 +810,7 @@
 <a name="l00778"></a>00778  
 <a name="l00779"></a>00779  <span class="keywordflow">while</span>(numSamplesToProcess &gt; 0)
 <a name="l00780"></a>00780  {
-<a name="l00781"></a>00781   <span class="keywordtype">float</span> nextValue = value;
+<a name="l00781"></a>00781   <span class="keywordtype">float</span> nextValue = <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>;
 <a name="l00782"></a>00782   
 <a name="l00783"></a>00783   <span class="keywordflow">if</span>(numKrSamples == 0)   
 <a name="l00784"></a>00784   {
@@ -820,7 +820,7 @@
 <a name="l00788"></a>00788   numKrSamples = krBlockSize - numKrSamples;  
 <a name="l00789"></a>00789   blockPosition  += numKrSamples;
 <a name="l00790"></a>00790   
-<a name="l00791"></a>00791   <span class="keywordflow">if</span>(nextValue == value)
+<a name="l00791"></a>00791   <span class="keywordflow">if</span>(nextValue == <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>)
 <a name="l00792"></a>00792   {
 <a name="l00793"></a>00793    <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
 <a name="l00794"></a>00794    {
@@ -831,38 +831,39 @@
 <a name="l00799"></a>00799   }
 <a name="l00800"></a>00800   <span class="keywordflow">else</span>
 <a name="l00801"></a>00801   {
-<a name="l00802"></a>00802    <span class="keywordtype">float</span> valueSlope = (nextValue - value) * <a class="code" href="class_u_gen.html#aa74b2f078838a887bcb29c95ea76b82c" title="Get the current control rate slope factor i.e., 1.0 / (control rate block size).">UGen::getControlSlopeFactor</a>();
-<a name="l00803"></a>00803    
-<a name="l00804"></a>00804    <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
-<a name="l00805"></a>00805    {
-<a name="l00806"></a>00806     *outputSamples++ = value;
-<a name="l00807"></a>00807     value += valueSlope;
-<a name="l00808"></a>00808     --numSamplesToProcess;
-<a name="l00809"></a>00809     --numKrSamples;
-<a name="l00810"></a>00810    }
-<a name="l00811"></a>00811    
-<a name="l00812"></a>00812    value = nextValue;
-<a name="l00813"></a>00813   }
-<a name="l00814"></a>00814  }
-<a name="l00815"></a>00815  
-<a name="l00816"></a>00816 }
-<a name="l00817"></a>00817 
+<a name="l00802"></a>00802 <span class="comment">//   float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();</span>
+<a name="l00803"></a>00803    <span class="keywordtype">float</span> valueSlope = (nextValue - <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>) / (<span class="keywordtype">float</span>)<a class="code" href="class_u_gen.html#a2c362eee1cdf755de0eed14727494235" title="Get the current control rate block size.">UGen::getControlRateBlockSize</a>();
+<a name="l00804"></a>00804 
+<a name="l00805"></a>00805    <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
+<a name="l00806"></a>00806    {
+<a name="l00807"></a>00807     *outputSamples++ = <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>;
+<a name="l00808"></a>00808     <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> += valueSlope;
+<a name="l00809"></a>00809     --numSamplesToProcess;
+<a name="l00810"></a>00810     --numKrSamples;
+<a name="l00811"></a>00811    }
+<a name="l00812"></a>00812    
+<a name="l00813"></a>00813    <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> = nextValue;
+<a name="l00814"></a>00814   }
+<a name="l00815"></a>00815  }
+<a name="l00816"></a>00816  
+<a name="l00817"></a>00817 }
 <a name="l00818"></a>00818 
 <a name="l00819"></a>00819 
-<a name="l00820"></a><a class="code" href="class_value_u_gen.html#a707ecdf005a9b2f1de2698c31a0ac709">00820</a> <a class="code" href="class_value_u_gen.html#a6b09e8b90dc3fb8df4d87b35b598d9a3">ValueUGen::ValueUGen</a>(<a class="code" href="class_value_array.html" title="Store and manipulate an array of Value objects.">ValueArray</a> <span class="keyword">const</span>&amp; values) <span class="keywordflow">throw</span>()
-<a name="l00821"></a>00821 {
-<a name="l00822"></a>00822  initInternal(values.size());
-<a name="l00823"></a>00823  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++)
-<a name="l00824"></a>00824  {
-<a name="l00825"></a>00825   internalUGens[i] = <span class="keyword">new</span> <a class="code" href="class_value_u_gen_internal.html" title="A UGenInternal which uses a Value as its source.">ValueUGenInternal</a>(values[i]);
-<a name="l00826"></a>00826  }
-<a name="l00827"></a>00827 }
-<a name="l00828"></a>00828 
-<a name="l00829"></a>00829 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
-<a name="l00830"></a>00830 
+<a name="l00820"></a>00820 
+<a name="l00821"></a><a class="code" href="class_value_u_gen.html#a707ecdf005a9b2f1de2698c31a0ac709">00821</a> <a class="code" href="class_value_u_gen.html#a6b09e8b90dc3fb8df4d87b35b598d9a3">ValueUGen::ValueUGen</a>(<a class="code" href="class_value_array.html" title="Store and manipulate an array of Value objects.">ValueArray</a> <span class="keyword">const</span>&amp; values) <span class="keywordflow">throw</span>()
+<a name="l00822"></a>00822 {
+<a name="l00823"></a>00823  initInternal(values.size());
+<a name="l00824"></a>00824  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++)
+<a name="l00825"></a>00825  {
+<a name="l00826"></a>00826   internalUGens[i] = <span class="keyword">new</span> <a class="code" href="class_value_u_gen_internal.html" title="A UGenInternal which uses a Value as its source.">ValueUGenInternal</a>(values[i]);
+<a name="l00827"></a>00827  }
+<a name="l00828"></a>00828 }
+<a name="l00829"></a>00829 
+<a name="l00830"></a>00830 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
+<a name="l00831"></a>00831 
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:30 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

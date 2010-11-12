@@ -84,7 +84,7 @@
 <a name="l00052"></a>00052  inputs[Input] = input;
 <a name="l00053"></a>00053   
 <a name="l00054"></a>00054  <span class="keywordflow">if</span>(values)
-<a name="l00055"></a>00055   memset(values, 0, input.getNumChannels() * <span class="keyword">sizeof</span>(double));
+<a name="l00055"></a>00055   <a class="code" href="ugen___play_buf_8ii.html#a68d2b40ef2213b9227a1ce3b81997ae5">memset</a>(values, 0, input.getNumChannels() * <span class="keyword">sizeof</span>(double));
 <a name="l00056"></a>00056  
 <a name="l00057"></a>00057  <span class="keywordflow">if</span>(sliders &amp;&amp; sliders-&gt;isValidComponent())
 <a name="l00058"></a>00058  {
@@ -121,11 +121,11 @@
 <a name="l00089"></a>00089  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_proxy_owner_u_gen_internal.html#a43e6fd05ba69f1ef135463c028e656cd">getNumChannels</a>(); channel++)
 <a name="l00090"></a>00090  {
 <a name="l00091"></a>00091   <span class="keywordtype">float</span> *outputSamples = <a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">getSampleData</a>();
-<a name="l00092"></a>00092   <span class="keyword">const</span> <span class="keywordtype">float</span> *inputSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Input].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, channel);
+<a name="l00092"></a>00092   <span class="keyword">const</span> <span class="keywordtype">float</span> *inputSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Input].<a class="code" href="class_u_gen.html#a373ba4141dfb16167cd9061852ffad15" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, channel);
 <a name="l00093"></a>00093   
 <a name="l00094"></a>00094   <span class="keywordflow">if</span>(<a class="code" href="class_multi_slider_u_gen_internal.html#aee9a396f3700f9c27b435a3a15858748">values</a>) <a class="code" href="class_multi_slider_u_gen_internal.html#aee9a396f3700f9c27b435a3a15858748">values</a>[channel] = *inputSamples;
 <a name="l00095"></a>00095   
-<a name="l00096"></a>00096   memcpy(outputSamples, inputSamples, blockSize * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00096"></a>00096   <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(outputSamples, inputSamples, blockSize * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l00097"></a>00097  }
 <a name="l00098"></a>00098 }
 <a name="l00099"></a>00099 
@@ -150,7 +150,7 @@
 <a name="l00118"></a>00118 <span class="preprocessor"></span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:38 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:31 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

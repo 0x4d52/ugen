@@ -62,7 +62,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_leak_d_c_u_gen_internal.html#a3c9c62c921b84ec8fc8d8eb73d635592">getKr</a> ()  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_leak_d_c_u_gen_internal.html#acc4e077cf54b7ca2d0902e68ef4e1720">processBlock</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Process a block of samples for this blockID and channel.  <a href="#acc4e077cf54b7ca2d0902e68ef4e1720"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_leak_d_c_u_gen_internal.html#a26216456bdf2451560c3a5dac0590254">initValue</a> (const float value)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_leak_d_c_u_gen_internal.html#a26216456bdf2451560c3a5dac0590254">initValue</a> (const float <a class="el" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>)  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> output value.  <a href="#a26216456bdf2451560c3a5dac0590254"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -146,7 +146,7 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a6838029815ab52d3263cfacb6c584d2f">UGenInternal</a>.</p>
+<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#ae9624445b9d8328a9032305687333039">UGenInternal</a>.</p>
 
 <p>Definition at line <a class="el" href="ugen___leak_d_c_8cpp_source.html#l00063">63</a> of file <a class="el" href="ugen___leak_d_c_8cpp_source.html">ugen_LeakDC.cpp</a>.</p>
 
@@ -167,13 +167,13 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a5041a93f6c624446f04542b0b82f0563">UGenInternal</a>.</p>
+<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a637e36a73842e8c10f62bc42c34c515c">UGenInternal</a>.</p>
 
 <p>Reimplemented in <a class="el" href="class_leak_d_c_u_gen_internal_k.html#a2165773db0bb0550aba3b0b21a89918b">LeakDCUGenInternalK</a>.</p>
 
 <p>Definition at line <a class="el" href="ugen___leak_d_c_8cpp_source.html#l00058">58</a> of file <a class="el" href="ugen___leak_d_c_8cpp_source.html">ugen_LeakDC.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___leak_d_c_8h_source.html#l00054">Coeff</a>, <a class="el" href="ugen___leak_d_c_8h_source.html#l00054">Input</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00228">UGenInternal::inputs</a>.</p>
+<p>References <a class="el" href="ugen___leak_d_c_8h_source.html#l00054">Coeff</a>, <a class="el" href="ugen___leak_d_c_8h_source.html#l00054">Input</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00227">UGenInternal::inputs</a>.</p>
 
 </div>
 </div>
@@ -194,13 +194,13 @@ Protected Attributes</h2></td></tr>
 <div class="memdoc">
 
 <p>Initialise the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> output value. </p>
-<p>This helps <a class="el" href="class_u_gen_internal.html#a8025c9bdaa987546001e2da23f97e3c8">getValue()</a> return the correct (or at lease approximately correct) value even before processing begins. Oscillators can generally set their own value here in their UGenInternal-inherited constructor. Processing-type <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> classes will probably need to set the values in the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> class as the <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> classes are created (since they may contain multichannel inputs). </p>
+<p>This helps <a class="el" href="class_u_gen_internal.html#a9f79b23e6cc88f6987890357b4a5ba3b">getValue()</a> return the correct (or at lease approximately correct) value even before processing begins. Oscillators can generally set their own value here in their UGenInternal-inherited constructor. Processing-type <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> classes will probably need to set the values in the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> class as the <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> classes are created (since they may contain multichannel inputs). </p>
 
-<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a3b9de200fa163a233dab85b3388fd469">UGenInternal</a>.</p>
+<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a02969e1ea45efde745a41fec2ac36dc4">UGenInternal</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___leak_d_c_8cpp_source.html#l00104">104</a> of file <a class="el" href="ugen___leak_d_c_8cpp_source.html">ugen_LeakDC.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___leak_d_c_8cpp_source.html#l00105">105</a> of file <a class="el" href="ugen___leak_d_c_8cpp_source.html">ugen_LeakDC.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00322">UGenInternal::initValue()</a>, and <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00142">zap()</a>.</p>
+<p>References <a class="el" href="class_u_gen_internal.html#a02969e1ea45efde745a41fec2ac36dc4">UGenInternal::initValue()</a>, <a class="el" href="ugen___play_buf_8ii_source.html#l06697">value</a>, <a class="el" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1()</a>, and <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00142">zap()</a>.</p>
 
 </div>
 </div>
@@ -252,7 +252,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___leak_d_c_8cpp_source.html#l00069">69</a> of file <a class="el" href="ugen___leak_d_c_8cpp_source.html">ugen_LeakDC.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l00958">UGen::getSlopeFactor()</a>, and <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00142">zap()</a>.</p>
+<p>References <a class="el" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1()</a>, and <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00142">zap()</a>.</p>
 
 </div>
 </div>
@@ -307,7 +307,7 @@ Protected Attributes</h2></td></tr>
 <li>filters/<a class="el" href="ugen___leak_d_c_8cpp_source.html">ugen_LeakDC.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:42 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:42 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

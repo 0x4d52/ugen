@@ -30,7 +30,7 @@
 <h1>filters/ugen_SOS.cpp</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___s_o_s_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_SOS.cpp 89 2010-07-09 16:20:21Z 0x4d52 $</span>
+<a href="ugen___s_o_s_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_SOS.cpp 194 2010-11-10 22:30:50Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/filters/ugen_SOS.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -101,68 +101,55 @@
 <a name="l00069"></a>00069 
 <a name="l00070"></a><a class="code" href="class_s_o_s_u_gen_internal.html#ad0b7d4e2cd9e09f3edaaa1c348443a44">00070</a> <span class="keywordtype">void</span> <a class="code" href="class_s_o_s_u_gen_internal.html#ad0b7d4e2cd9e09f3edaaa1c348443a44" title="Process a block of samples for this blockID and channel.">SOSUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
 <a name="l00071"></a>00071 {
-<a name="l00072"></a>00072  <span class="keywordtype">int</span> filterLoops = <a class="code" href="class_u_gen.html#a75239574324dd00af84181ec0d0fa85e" title="Get the current value of &amp;quot;filter loops&amp;quot;.">UGen::getFilterLoops</a>();
-<a name="l00073"></a>00073  <span class="keywordtype">int</span> filterRemain = <a class="code" href="class_u_gen.html#a5a75f63c283d6c2f11a236a14ec9f408" title="Get the current vaue of &amp;quot;filter remain&amp;quot;.">UGen::getFilterRemain</a>();
-<a name="l00074"></a>00074  <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
-<a name="l00075"></a>00075  <span class="keywordtype">float</span>* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
-<a name="l00076"></a>00076  <span class="keywordtype">float</span>* a0Samples = inputs[A0].processBlock(shouldDelete, blockID, channel);
-<a name="l00077"></a>00077  <span class="keywordtype">float</span>* a1Samples = inputs[A1].processBlock(shouldDelete, blockID, channel);
-<a name="l00078"></a>00078  <span class="keywordtype">float</span>* a2Samples = inputs[A2].processBlock(shouldDelete, blockID, channel);
-<a name="l00079"></a>00079  <span class="keywordtype">float</span>* b1Samples = inputs[B1].processBlock(shouldDelete, blockID, channel);
-<a name="l00080"></a>00080  <span class="keywordtype">float</span>* b2Samples = inputs[B2].processBlock(shouldDelete, blockID, channel);
-<a name="l00081"></a>00081  <span class="keywordtype">float</span> y0;
-<a name="l00082"></a>00082  
-<a name="l00083"></a>00083  <span class="keywordflow">while</span>(filterLoops--)
-<a name="l00084"></a>00084  {
-<a name="l00085"></a>00085   y0 = *inputSamples++ + *b1Samples++ * y1 + *b2Samples++ * y2; 
-<a name="l00086"></a>00086   *outputSamples++ = *a0Samples++ * y0 + *a1Samples++ * y1 + *a2Samples++ * y2;
-<a name="l00087"></a>00087   
-<a name="l00088"></a>00088   y2 = *inputSamples++ + *b1Samples++ * y0 + *b2Samples++ * y1; 
-<a name="l00089"></a>00089   *outputSamples++ = *a0Samples++ * y2 + *a1Samples++ * y0 + *a2Samples++ * y1;
-<a name="l00090"></a>00090   
-<a name="l00091"></a>00091   y1 = *inputSamples++ + *b1Samples++ * y2 + *b2Samples++ * y0; 
-<a name="l00092"></a>00092   *outputSamples++ = *a0Samples++ * y1 + *a1Samples++ * y2 + *a2Samples++ * y0;
-<a name="l00093"></a>00093  }
-<a name="l00094"></a>00094  
-<a name="l00095"></a>00095  <span class="keywordflow">while</span>(filterRemain--)
-<a name="l00096"></a>00096  {
-<a name="l00097"></a>00097   y0 = *inputSamples++ + *b1Samples++ * y1 + *b2Samples++ * y2; 
-<a name="l00098"></a>00098   *outputSamples++ = *a0Samples++ * y0 + *a1Samples++ * y1 + *a2Samples++ * y2;
-<a name="l00099"></a>00099 
-<a name="l00100"></a>00100   y2 = y1; 
-<a name="l00101"></a>00101   y1 = y0;
-<a name="l00102"></a>00102  }
-<a name="l00103"></a>00103  
-<a name="l00104"></a>00104  y1 = <a class="code" href="ugen___inline_unary_ops_8h.html#a6ed2bbde65e0032256bd4e8832b99b91">zap</a>(y1);
-<a name="l00105"></a>00105  y2 = <a class="code" href="ugen___inline_unary_ops_8h.html#a6ed2bbde65e0032256bd4e8832b99b91">zap</a>(y2);
-<a name="l00106"></a>00106 }
-<a name="l00107"></a>00107 
-<a name="l00108"></a><a class="code" href="class_s_o_s_u_gen_internal.html#a274bb0c2bcbeaf4c2b2868f7033bbc7f">00108</a> <span class="keywordtype">void</span> <a class="code" href="class_s_o_s_u_gen_internal.html#a274bb0c2bcbeaf4c2b2868f7033bbc7f" title="Initialise the UGen output value.">SOSUGenInternal::initValue</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> value) <span class="keywordflow">throw</span>()
-<a name="l00109"></a>00109 {
-<a name="l00110"></a>00110  <span class="keywordtype">float</span> checkedValue = <a class="code" href="ugen___inline_unary_ops_8h.html#a6ed2bbde65e0032256bd4e8832b99b91">zap</a>(value);
-<a name="l00111"></a>00111  <a class="code" href="class_u_gen_internal.html#a3b9de200fa163a233dab85b3388fd469" title="Initialise the UGen output value.">UGenInternal::initValue</a>(checkedValue);
-<a name="l00112"></a>00112  y1 = y2 = checkedValue;
+<a name="l00072"></a>00072  <span class="keywordtype">int</span> numSamplesToProcess = uGenOutput.getBlockSize();
+<a name="l00073"></a>00073  <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
+<a name="l00074"></a>00074  <span class="keywordtype">float</span>* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
+<a name="l00075"></a>00075  <span class="keywordtype">float</span>* a0Samples = inputs[A0].processBlock(shouldDelete, blockID, channel);
+<a name="l00076"></a>00076  <span class="keywordtype">float</span>* a1Samples = inputs[A1].processBlock(shouldDelete, blockID, channel);
+<a name="l00077"></a>00077  <span class="keywordtype">float</span>* a2Samples = inputs[A2].processBlock(shouldDelete, blockID, channel);
+<a name="l00078"></a>00078  <span class="keywordtype">float</span>* b1Samples = inputs[B1].processBlock(shouldDelete, blockID, channel);
+<a name="l00079"></a>00079  <span class="keywordtype">float</span>* b2Samples = inputs[B2].processBlock(shouldDelete, blockID, channel);
+<a name="l00080"></a>00080  <span class="keywordtype">float</span> y0;
+<a name="l00081"></a>00081   
+<a name="l00082"></a>00082  <span class="keywordflow">while</span>(numSamplesToProcess--)
+<a name="l00083"></a>00083  {
+<a name="l00084"></a>00084   y0 = *inputSamples++ + *b1Samples++ * <a class="code" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1</a> + *b2Samples++ * y2; 
+<a name="l00085"></a>00085   *outputSamples++ = *a0Samples++ * y0 + *a1Samples++ * <a class="code" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1</a> + *a2Samples++ * y2;
+<a name="l00086"></a>00086 
+<a name="l00087"></a>00087   y2 = y1; 
+<a name="l00088"></a>00088   <a class="code" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1</a> = y0;
+<a name="l00089"></a>00089  }
+<a name="l00090"></a>00090  
+<a name="l00091"></a>00091  <a class="code" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1</a> = <a class="code" href="ugen___inline_unary_ops_8h.html#a6ed2bbde65e0032256bd4e8832b99b91">zap</a>(<a class="code" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1</a>);
+<a name="l00092"></a>00092  y2 = <a class="code" href="ugen___inline_unary_ops_8h.html#a6ed2bbde65e0032256bd4e8832b99b91">zap</a>(y2);
+<a name="l00093"></a>00093 }
+<a name="l00094"></a>00094 
+<a name="l00095"></a><a class="code" href="class_s_o_s_u_gen_internal.html#a274bb0c2bcbeaf4c2b2868f7033bbc7f">00095</a> <span class="keywordtype">void</span> <a class="code" href="class_s_o_s_u_gen_internal.html#a274bb0c2bcbeaf4c2b2868f7033bbc7f" title="Initialise the UGen output value.">SOSUGenInternal::initValue</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>) <span class="keywordflow">throw</span>()
+<a name="l00096"></a>00096 {
+<a name="l00097"></a>00097  <span class="keywordtype">float</span> checkedValue = <a class="code" href="ugen___inline_unary_ops_8h.html#a6ed2bbde65e0032256bd4e8832b99b91">zap</a>(<a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>);
+<a name="l00098"></a>00098  <a class="code" href="class_u_gen_internal.html#a02969e1ea45efde745a41fec2ac36dc4" title="Initialise the UGen output value.">UGenInternal::initValue</a>(checkedValue);
+<a name="l00099"></a>00099  <a class="code" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1</a> = y2 = checkedValue;
+<a name="l00100"></a>00100 }
+<a name="l00101"></a>00101 
+<a name="l00102"></a><a class="code" href="class_s_o_s.html#a27eee3e5876fc45d7aa9b84401d28905">00102</a> <a class="code" href="class_s_o_s.html#a27eee3e5876fc45d7aa9b84401d28905" title="Base MulAdd SOS Constuctor (without &amp;quot;mul&amp;quot; or &amp;quot;add&amp;quot;), use the AR() and KR() versio...">SOS::SOS</a>(<a class="code" href="ugen___s_o_s_8h.html#a77741dd60ef80ce8b9cecc330e7ca4b9">SOS_InputsWithTypesOnly</a>) throw()
+<a name="l00103"></a>00103 {
+<a name="l00104"></a>00104  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> inputs[] = { <a class="code" href="ugen___s_o_s_8h.html#a8f690a3c67f5e5d02ccd554dbbe6bc00">SOS_InputsNoTypes</a> };
+<a name="l00105"></a>00105  <span class="keyword">const</span> <span class="keywordtype">int</span> numInputChannels = <a class="code" href="class_u_gen.html#a78429e006c0ab5d864404d589b36022c">findMaxInputChannels</a>(<a class="code" href="ugen___standard_header_8h.html#a3b96e342c541e61ffe6104777007f4b5">numElementsInArray</a>(inputs), inputs);  
+<a name="l00106"></a>00106  <a class="code" href="class_u_gen.html#a0d18108fe75e774a48e51382b091671f">initInternal</a>(numInputChannels);
+<a name="l00107"></a>00107  
+<a name="l00108"></a>00108  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_u_gen.html#a2fc8fefb17c555a8443dc18c74bf3382">numInternalUGens</a>; i++)
+<a name="l00109"></a>00109  {
+<a name="l00110"></a>00110   <a class="code" href="class_u_gen.html#ad9e8ba9e81ce7f3909ac9f3c3b69ab45">internalUGens</a>[i] = <span class="keyword">new</span> <a class="code" href="class_s_o_s_u_gen_internal.html">SOSUGenInternal</a>(<a class="code" href="ugen___s_o_s_8h.html#a8f690a3c67f5e5d02ccd554dbbe6bc00">SOS_InputsNoTypes</a>);
+<a name="l00111"></a>00111   <a class="code" href="class_u_gen.html#ad9e8ba9e81ce7f3909ac9f3c3b69ab45">internalUGens</a>[i]-&gt;<a class="code" href="class_u_gen_internal.html#a02969e1ea45efde745a41fec2ac36dc4" title="Initialise the UGen output value.">initValue</a>(input.getValue(i) * a0.getValue(i)); <span class="comment">// a0 is gain</span>
+<a name="l00112"></a>00112  }
 <a name="l00113"></a>00113 }
 <a name="l00114"></a>00114 
-<a name="l00115"></a><a class="code" href="class_s_o_s.html#a27eee3e5876fc45d7aa9b84401d28905">00115</a> <a class="code" href="class_s_o_s.html#a27eee3e5876fc45d7aa9b84401d28905" title="Base MulAdd SOS Constuctor (without &amp;quot;mul&amp;quot; or &amp;quot;add&amp;quot;), use the AR() and KR() versio...">SOS::SOS</a>(<a class="code" href="ugen___s_o_s_8h.html#a77741dd60ef80ce8b9cecc330e7ca4b9">SOS_InputsWithTypesOnly</a>) throw()
-<a name="l00116"></a>00116 {
-<a name="l00117"></a>00117  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> inputs[] = { <a class="code" href="ugen___s_o_s_8h.html#a8f690a3c67f5e5d02ccd554dbbe6bc00">SOS_InputsNoTypes</a> };
-<a name="l00118"></a>00118  <span class="keyword">const</span> <span class="keywordtype">int</span> numInputChannels = <a class="code" href="class_u_gen.html#ab40c76e992156358e4254ae8ad46e520">findMaxInputChannels</a>(<a class="code" href="ugen___standard_header_8h.html#a3b96e342c541e61ffe6104777007f4b5">numElementsInArray</a>(inputs), inputs);  
-<a name="l00119"></a>00119  <a class="code" href="class_u_gen.html#a0d18108fe75e774a48e51382b091671f">initInternal</a>(numInputChannels);
-<a name="l00120"></a>00120  
-<a name="l00121"></a>00121  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_u_gen.html#a2fc8fefb17c555a8443dc18c74bf3382">numInternalUGens</a>; i++)
-<a name="l00122"></a>00122  {
-<a name="l00123"></a>00123   <a class="code" href="class_u_gen.html#ad9e8ba9e81ce7f3909ac9f3c3b69ab45">internalUGens</a>[i] = <span class="keyword">new</span> <a class="code" href="class_s_o_s_u_gen_internal.html">SOSUGenInternal</a>(<a class="code" href="ugen___s_o_s_8h.html#a8f690a3c67f5e5d02ccd554dbbe6bc00">SOS_InputsNoTypes</a>);
-<a name="l00124"></a>00124   <a class="code" href="class_u_gen.html#ad9e8ba9e81ce7f3909ac9f3c3b69ab45">internalUGens</a>[i]-&gt;<a class="code" href="class_u_gen_internal.html#a3b9de200fa163a233dab85b3388fd469" title="Initialise the UGen output value.">initValue</a>(input.getValue(i) * a0.getValue(i)); <span class="comment">// a0 is gain</span>
-<a name="l00125"></a>00125  }
-<a name="l00126"></a>00126 }
-<a name="l00127"></a>00127 
-<a name="l00128"></a>00128 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
-<a name="l00129"></a>00129 
-<a name="l00130"></a>00130 <span class="preprocessor">#endif // gpl</span>
+<a name="l00115"></a>00115 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
+<a name="l00116"></a>00116 
+<a name="l00117"></a>00117 <span class="preprocessor">#endif // gpl</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:31 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

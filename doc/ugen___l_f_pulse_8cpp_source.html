@@ -30,7 +30,7 @@
 <h1>oscillators/simple/ugen_LFPulse.cpp</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___l_f_pulse_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_LFPulse.cpp 164 2010-09-25 12:29:55Z 0x4d52 $</span>
+<a href="ugen___l_f_pulse_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_LFPulse.cpp 194 2010-11-10 22:30:50Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/oscillators/simple/ugen_LFPulse.cpp $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -82,7 +82,7 @@
 <a name="l00050"></a>00050  <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Freq] = freq;
 <a name="l00051"></a>00051  <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Duty] = duty;
 <a name="l00052"></a>00052  
-<a name="l00053"></a>00053  <a class="code" href="class_u_gen_internal.html#a3b9de200fa163a233dab85b3388fd469" title="Initialise the UGen output value.">initValue</a>(1.f);
+<a name="l00053"></a>00053  <a class="code" href="class_u_gen_internal.html#a02969e1ea45efde745a41fec2ac36dc4" title="Initialise the UGen output value.">initValue</a>(1.f);
 <a name="l00054"></a>00054 }
 <a name="l00055"></a>00055 
 <a name="l00056"></a><a class="code" href="class_l_f_pulse_u_gen_internal.html#af8e5ad06302dc1fe029dff80ff644fb4">00056</a> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_l_f_pulse_u_gen_internal.html#af8e5ad06302dc1fe029dff80ff644fb4">LFPulseUGenInternal::getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
@@ -132,12 +132,12 @@
 <a name="l00100"></a>00100 
 <a name="l00101"></a><a class="code" href="class_l_f_pulse_u_gen_internal.html#a1faf95eb4191129d6adf12b180a9539f">00101</a> <span class="keywordtype">void</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html#a1faf95eb4191129d6adf12b180a9539f" title="Set the current position of the seekable.">LFPulseUGenInternal::setPosition</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> newPosition) <span class="keywordflow">throw</span>()
 <a name="l00102"></a>00102 {
-<a name="l00103"></a>00103  currentPhase = (float)<a class="code" href="ugen___inline_binary_ops_8h.html#a0ccb8f97ec261cc0cb8e5d4b0ca112c9">ugen::clip</a>(newPosition, 0.0, 1.0);
+<a name="l00103"></a>00103  currentPhase = (float)<a class="code" href="namespaceugen.html#a9ab82e27c245c5cfcd44d4326cc9d364">ugen::clip</a>(newPosition, 0.0, 1.0);
 <a name="l00104"></a>00104 }
 <a name="l00105"></a>00105 
 <a name="l00106"></a><a class="code" href="class_l_f_pulse_u_gen_internal_k.html#a81cc2c4a5838600fd51a8071d484009e">00106</a> <a class="code" href="class_l_f_pulse_u_gen_internal_k.html#a81cc2c4a5838600fd51a8071d484009e">LFPulseUGenInternalK::LFPulseUGenInternalK</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; freq, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; duty) <span class="keywordflow">throw</span>()
 <a name="l00107"></a>00107 : <a class="code" href="class_l_f_pulse_u_gen_internal.html">LFPulseUGenInternal</a>(freq, duty),
-<a name="l00108"></a>00108  value(1.f)
+<a name="l00108"></a>00108  <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>(1.f)
 <a name="l00109"></a>00109 {
 <a name="l00110"></a>00110  rate = ControlRate;
 <a name="l00111"></a>00111 }
@@ -156,7 +156,7 @@
 <a name="l00124"></a>00124  
 <a name="l00125"></a>00125  <span class="keywordflow">while</span>(numSamplesToProcess &gt; 0)
 <a name="l00126"></a>00126  {
-<a name="l00127"></a>00127   <span class="keywordtype">float</span> nextValue = value;
+<a name="l00127"></a>00127   <span class="keywordtype">float</span> nextValue = <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>;
 <a name="l00128"></a>00128   
 <a name="l00129"></a>00129   <span class="keywordflow">if</span>(numKrSamples == 0)   
 <a name="l00130"></a>00130   {
@@ -179,7 +179,7 @@
 <a name="l00147"></a>00147   freqSamples   += numKrSamples;
 <a name="l00148"></a>00148   dutySamples   += numKrSamples;
 <a name="l00149"></a>00149   
-<a name="l00150"></a>00150   <span class="keywordflow">if</span>(value == nextValue)
+<a name="l00150"></a>00150   <span class="keywordflow">if</span>(<a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> == nextValue)
 <a name="l00151"></a>00151   {
 <a name="l00152"></a>00152    <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
 <a name="l00153"></a>00153    {
@@ -190,39 +190,40 @@
 <a name="l00158"></a>00158   }
 <a name="l00159"></a>00159   <span class="keywordflow">else</span>
 <a name="l00160"></a>00160   {
-<a name="l00161"></a>00161    <span class="keywordtype">float</span> valueSlope = (nextValue - value) * <a class="code" href="class_u_gen.html#aa74b2f078838a887bcb29c95ea76b82c" title="Get the current control rate slope factor i.e., 1.0 / (control rate block size).">UGen::getControlSlopeFactor</a>();
-<a name="l00162"></a>00162    
-<a name="l00163"></a>00163    <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
-<a name="l00164"></a>00164    {
-<a name="l00165"></a>00165     *outputSamples++ = value;
-<a name="l00166"></a>00166     value += valueSlope;
-<a name="l00167"></a>00167     --numSamplesToProcess;
-<a name="l00168"></a>00168     --numKrSamples;
-<a name="l00169"></a>00169    }
-<a name="l00170"></a>00170    
-<a name="l00171"></a>00171    value = nextValue;
-<a name="l00172"></a>00172   }
-<a name="l00173"></a>00173  }
-<a name="l00174"></a>00174 }
-<a name="l00175"></a>00175 
+<a name="l00161"></a>00161 <span class="comment">//   float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();</span>
+<a name="l00162"></a>00162    <span class="keywordtype">float</span> valueSlope = (nextValue - <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>) / (<span class="keywordtype">float</span>)<a class="code" href="class_u_gen.html#a2c362eee1cdf755de0eed14727494235" title="Get the current control rate block size.">UGen::getControlRateBlockSize</a>();
+<a name="l00163"></a>00163    
+<a name="l00164"></a>00164    <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples)
+<a name="l00165"></a>00165    {
+<a name="l00166"></a>00166     *outputSamples++ = <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>;
+<a name="l00167"></a>00167     <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> += valueSlope;
+<a name="l00168"></a>00168     --numSamplesToProcess;
+<a name="l00169"></a>00169     --numKrSamples;
+<a name="l00170"></a>00170    }
+<a name="l00171"></a>00171    
+<a name="l00172"></a>00172    <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> = nextValue;
+<a name="l00173"></a>00173   }
+<a name="l00174"></a>00174  }
+<a name="l00175"></a>00175 }
 <a name="l00176"></a>00176 
-<a name="l00177"></a><a class="code" href="class_l_f_pulse.html#a64aee22db98cd6fb21346e8b1ef652d5">00177</a> <a class="code" href="class_l_f_pulse.html#a64aee22db98cd6fb21346e8b1ef652d5" title="Base MulAdd LFPulse Constuctor (without &amp;quot;mul&amp;quot; or &amp;quot;add&amp;quot;), use the AR() and KR() ve...">LFPulse::LFPulse</a>(<a class="code" href="ugen___l_f_pulse_8h.html#ac32f68fcb74205b2dd848c9f8b3ff6dd">LFPulse_InputsWithTypesOnly</a>) throw()
-<a name="l00178"></a>00178 { 
-<a name="l00179"></a>00179  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> inputs[] = { <a class="code" href="ugen___l_f_pulse_8h.html#a3eb1a6cb7520127102499bab36ea2b4d">LFPulse_InputsNoTypes</a> };
-<a name="l00180"></a>00180  <span class="keyword">const</span> <span class="keywordtype">int</span> numInputChannels = <a class="code" href="class_u_gen.html#ab40c76e992156358e4254ae8ad46e520">findMaxInputChannels</a>(<a class="code" href="ugen___standard_header_8h.html#a3b96e342c541e61ffe6104777007f4b5">numElementsInArray</a>(inputs), inputs);
-<a name="l00181"></a>00181  <a class="code" href="class_u_gen.html#a0d18108fe75e774a48e51382b091671f">initInternal</a>(numInputChannels);
-<a name="l00182"></a>00182  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_u_gen.html#a2fc8fefb17c555a8443dc18c74bf3382">numInternalUGens</a>; i++)
-<a name="l00183"></a>00183  {
-<a name="l00184"></a>00184   <a class="code" href="class_u_gen.html#ad9e8ba9e81ce7f3909ac9f3c3b69ab45">internalUGens</a>[i] = <span class="keyword">new</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html">LFPulseUGenInternal</a>(<a class="code" href="ugen___l_f_pulse_8h.html#a3eb1a6cb7520127102499bab36ea2b4d">LFPulse_InputsNoTypes</a>);
-<a name="l00185"></a>00185  }
-<a name="l00186"></a>00186 }
-<a name="l00187"></a>00187 
-<a name="l00188"></a>00188 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
-<a name="l00189"></a>00189 
-<a name="l00190"></a>00190 <span class="preprocessor">#endif // gpl</span>
+<a name="l00177"></a>00177 
+<a name="l00178"></a><a class="code" href="class_l_f_pulse.html#a64aee22db98cd6fb21346e8b1ef652d5">00178</a> <a class="code" href="class_l_f_pulse.html#a64aee22db98cd6fb21346e8b1ef652d5" title="Base MulAdd LFPulse Constuctor (without &amp;quot;mul&amp;quot; or &amp;quot;add&amp;quot;), use the AR() and KR() ve...">LFPulse::LFPulse</a>(<a class="code" href="ugen___l_f_pulse_8h.html#ac32f68fcb74205b2dd848c9f8b3ff6dd">LFPulse_InputsWithTypesOnly</a>) throw()
+<a name="l00179"></a>00179 { 
+<a name="l00180"></a>00180  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> inputs[] = { <a class="code" href="ugen___l_f_pulse_8h.html#a3eb1a6cb7520127102499bab36ea2b4d">LFPulse_InputsNoTypes</a> };
+<a name="l00181"></a>00181  <span class="keyword">const</span> <span class="keywordtype">int</span> numInputChannels = <a class="code" href="class_u_gen.html#a78429e006c0ab5d864404d589b36022c">findMaxInputChannels</a>(<a class="code" href="ugen___standard_header_8h.html#a3b96e342c541e61ffe6104777007f4b5">numElementsInArray</a>(inputs), inputs);
+<a name="l00182"></a>00182  <a class="code" href="class_u_gen.html#a0d18108fe75e774a48e51382b091671f">initInternal</a>(numInputChannels);
+<a name="l00183"></a>00183  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_u_gen.html#a2fc8fefb17c555a8443dc18c74bf3382">numInternalUGens</a>; i++)
+<a name="l00184"></a>00184  {
+<a name="l00185"></a>00185   <a class="code" href="class_u_gen.html#ad9e8ba9e81ce7f3909ac9f3c3b69ab45">internalUGens</a>[i] = <span class="keyword">new</span> <a class="code" href="class_l_f_pulse_u_gen_internal.html">LFPulseUGenInternal</a>(<a class="code" href="ugen___l_f_pulse_8h.html#a3eb1a6cb7520127102499bab36ea2b4d">LFPulse_InputsNoTypes</a>);
+<a name="l00186"></a>00186  }
+<a name="l00187"></a>00187 }
+<a name="l00188"></a>00188 
+<a name="l00189"></a>00189 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
+<a name="l00190"></a>00190 
+<a name="l00191"></a>00191 <span class="preprocessor">#endif // gpl</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:38 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:32 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

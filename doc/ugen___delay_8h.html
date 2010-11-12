@@ -96,10 +96,10 @@ Defines</h2></td></tr>
 </div>
 <div class="memdoc">
 <b>Value:</b><div class="fragment"><pre class="fragment">@param input    Input source to delay.           \
-       @param maximumDelayTime The maximum delay time in seconds <span class="keyword">this</span> delay <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> could use, \
+       @param maximumDelayTime The maximum delay <a class="code" href="ugen___play_buf_8ii.html#aae026724f73c36340024c657f4f44dab">time</a> in seconds <span class="keyword">this</span> delay <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> could use, \
               <span class="keyword">this</span> governs the amount of memory allocated when the <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>  \
               is created.              \
-       @param delayTime   The delay time to use, <span class="keyword">this</span> must be between 0 and the value  \
+       @param delayTime   The delay <a class="code" href="ugen___play_buf_8ii.html#aae026724f73c36340024c657f4f44dab">time</a> to use, <span class="keyword">this</span> must be between 0 and the <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>  \
               given <span class="keywordflow">for</span> the maximumDelayTime on the <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>`s creation
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___delay_8h_source.html#l00223">223</a> of file <a class="el" href="ugen___delay_8h_source.html">ugen_Delay.h</a>.</p>
@@ -116,7 +116,7 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment">@param decayTime   The time in seconds <span class="keywordflow">for</span> the recirculated signal to decay  \
+<b>Value:</b><div class="fragment"><pre class="fragment">@param decayTime   The <a class="code" href="ugen___play_buf_8ii.html#aae026724f73c36340024c657f4f44dab">time</a> in seconds <span class="keywordflow">for</span> the recirculated <a class="code" href="ugen___play_buf_8ii.html#a6fc82cd60ac4b31003cf10983a4d5cde">signal</a> to decay  \
               by 60 dBs
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___delay_8h_source.html#l00230">230</a> of file <a class="el" href="ugen___delay_8h_source.html">ugen_Delay.h</a>.</p>
@@ -133,11 +133,11 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment">@param buffer    The <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> being used as a circular delay buffer.       \
-              This must be being written to by a <a class="code" href="class_tap_in.html" title="Write data to a delay line circular buffer.">TapIn</a> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>.        \
-       @param delayTime   The delay time to use. The minimum <span class="keywordflow">for</span> the TapOut UGens is a single   \
-              block delay given by <a class="code" href="class_u_gen.html#ae0de18a1d9478d0bb5b46a2d87ba7f53" title="Get the current actual block size.">UGen::getBlockSize</a>() / <a class="code" href="class_u_gen.html#afddb4177dad7f4056bbf8b91d07d5224" title="Get the current sample rate.">UGen::getSampleRate</a>().   \
-              Values smaller that <span class="keyword">this</span> will be clipped. The maximum value is determined \
+<b>Value:</b><div class="fragment"><pre class="fragment">@param buffer    The <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> being used as <a class="code" href="ugen___play_buf_8ii.html#acf981a770380ca98690ebca553cf9846">a</a> circular delay buffer.       \
+              This must be being written to by <a class="code" href="ugen___play_buf_8ii.html#acf981a770380ca98690ebca553cf9846">a</a> <a class="code" href="class_tap_in.html" title="Write data to a delay line circular buffer.">TapIn</a> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>.        \
+       @param delayTime   The delay <a class="code" href="ugen___play_buf_8ii.html#aae026724f73c36340024c657f4f44dab">time</a> to use. The minimum <span class="keywordflow">for</span> the TapOut UGens is <a class="code" href="ugen___play_buf_8ii.html#acf981a770380ca98690ebca553cf9846">a</a> single   \
+              <a class="code" href="ugen___play_buf_8ii.html#a6623865f97969ec4413c12665d087450">block</a> delay given by UGen::getBlockSize() / <a class="code" href="class_u_gen.html#afddb4177dad7f4056bbf8b91d07d5224" title="Get the current sample rate.">UGen::getSampleRate</a>().   \
+              Values smaller that <span class="keyword">this</span> will be clipped. The maximum <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> is determined \
               by the duration of the buffer.
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___delay_8h_source.html#l00407">407</a> of file <a class="el" href="ugen___delay_8h_source.html">ugen_Delay.h</a>.</p>
@@ -145,7 +145,7 @@ Defines</h2></td></tr>
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:39 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:36 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

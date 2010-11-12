@@ -82,7 +82,7 @@
 <a name="l00053"></a>00053  
 <a name="l00056"></a>00056  
 <a name="l00057"></a>00057  <a class="code" href="class_external_control_source.html#a0c79a6b83724dc1d536f214e693a9771">ExternalControlSource</a>() <span class="keywordflow">throw</span>();
-<a name="l00058"></a>00058  <a class="code" href="class_external_control_source.html#a0c79a6b83724dc1d536f214e693a9771">ExternalControlSource</a>(<a class="code" href="class_external_control_source.html" title="Used for mapping data from another source for control purposes.">ExternalControlSource</a> <span class="keyword">const</span>&amp; copy) <span class="keywordflow">throw</span>();
+<a name="l00058"></a>00058  <a class="code" href="class_external_control_source.html#a0c79a6b83724dc1d536f214e693a9771">ExternalControlSource</a>(<a class="code" href="class_external_control_source.html" title="Used for mapping data from another source for control purposes.">ExternalControlSource</a> <span class="keyword">const</span>&amp; <a class="code" href="namespacestd.html#a9b36270cdb50d9a631ba58ee0405f135">copy</a>) <span class="keywordflow">throw</span>();
 <a name="l00059"></a>00059  <a class="code" href="class_external_control_source.html" title="Used for mapping data from another source for control purposes.">ExternalControlSource</a>&amp; <a class="code" href="class_external_control_source.html#a561eea6a6f692b378f08b3f238f3abb2">operator= </a>(<a class="code" href="class_external_control_source.html" title="Used for mapping data from another source for control purposes.">ExternalControlSource</a> <span class="keyword">const</span>&amp; other) <span class="keywordflow">throw</span>();
 <a name="l00060"></a>00060  <span class="keyword">virtual</span> <a class="code" href="class_external_control_source.html#a4959b40cd35958f8cf7cd968a76ec0d6">~ExternalControlSource</a>() <span class="keywordflow">throw</span>();
 <a name="l00061"></a>00061  
@@ -113,22 +113,22 @@
 <a name="l00092"></a>00092  
 <a name="l00093"></a><a class="code" href="class_external_control_source_internal.html#a132b7b258e78c831c8d39e5740e47a71">00093</a>  <a class="code" href="class_external_control_source_internal.html">ExternalControlSourceInternal</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> minVal = 0.f, <span class="keyword">const</span> <span class="keywordtype">float</span> maxVal = 127.f, 
 <a name="l00094"></a>00094           <span class="keyword">const</span> <a class="code" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810">ExternalControlSource::Warp</a> warp = <a class="code" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810acb94ecf0a2f55e6cb3051f00d5ca7926">ExternalControlSource::Linear</a>) throw()
-<a name="l00095"></a>00095  : value(minVal), minVal_(minVal), maxVal_(maxVal), warp_(warp) { }
+<a name="l00095"></a>00095  : <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>(minVal), minVal_(minVal), maxVal_(maxVal), warp_(warp) { }
 <a name="l00096"></a>00096  
 <a name="l00098"></a>00098  
 <a name="l00101"></a>00101  
-<a name="l00102"></a><a class="code" href="class_external_control_source_internal.html#aebe3ed9f0be198180b4334cd5da18baa">00102</a>  <span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="class_external_control_source_internal.html#aebe3ed9f0be198180b4334cd5da18baa">getValue</a>() <span class="keyword">const</span> throw()    { <span class="keywordflow">return</span> value;  }
-<a name="l00103"></a><a class="code" href="class_external_control_source_internal.html#adb4f2610cc65163aadafd758eb943e09">00103</a>  <span class="keyword">inline</span> <span class="keyword">const</span> <span class="keywordtype">float</span>* <a class="code" href="class_external_control_source_internal.html#adb4f2610cc65163aadafd758eb943e09">getValuePtr</a>() <span class="keyword">const</span> throw()  { <span class="keywordflow">return</span> &amp;value; }
-<a name="l00104"></a><a class="code" href="class_external_control_source_internal.html#a6646d3d77f2a1c97a35c43c64f953c15">00104</a>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_external_control_source_internal.html#a6646d3d77f2a1c97a35c43c64f953c15">setValue</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> newValue) <span class="keywordflow">throw</span>() { value = newValue; }
+<a name="l00102"></a><a class="code" href="class_external_control_source_internal.html#aebe3ed9f0be198180b4334cd5da18baa">00102</a>  <span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="class_external_control_source_internal.html#aebe3ed9f0be198180b4334cd5da18baa">getValue</a>() <span class="keyword">const</span> throw()    { <span class="keywordflow">return</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>;  }
+<a name="l00103"></a><a class="code" href="class_external_control_source_internal.html#adb4f2610cc65163aadafd758eb943e09">00103</a>  <span class="keyword">inline</span> <span class="keyword">const</span> <span class="keywordtype">float</span>* <a class="code" href="class_external_control_source_internal.html#adb4f2610cc65163aadafd758eb943e09">getValuePtr</a>() <span class="keyword">const</span> throw()  { <span class="keywordflow">return</span> &amp;<a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>; }
+<a name="l00104"></a><a class="code" href="class_external_control_source_internal.html#a6646d3d77f2a1c97a35c43c64f953c15">00104</a>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_external_control_source_internal.html#a6646d3d77f2a1c97a35c43c64f953c15">setValue</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> newValue) <span class="keywordflow">throw</span>() { <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> = newValue; }
 <a name="l00105"></a><a class="code" href="class_external_control_source_internal.html#a4b7a7962db9d334814fa630c357fcf9e">00105</a>  <span class="keyword">inline</span> <span class="keywordtype">void</span> setNormalisedValue(<span class="keywordtype">float</span> value0_1) <span class="keywordflow">throw</span>()
 <a name="l00106"></a>00106  {
 <a name="l00107"></a>00107   <span class="keywordflow">switch</span>(warp_)
 <a name="l00108"></a>00108   {
 <a name="l00109"></a>00109    <span class="keywordflow">case</span> <a class="code" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810acb94ecf0a2f55e6cb3051f00d5ca7926">ExternalControlSource::Linear</a>:
-<a name="l00110"></a>00110     value = value0_1 * (maxVal_ - minVal_) + minVal_;
+<a name="l00110"></a>00110     <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> = value0_1 * (maxVal_ - minVal_) + minVal_;
 <a name="l00111"></a>00111     <span class="keywordflow">break</span>;
 <a name="l00112"></a>00112    <span class="keywordflow">case</span> <a class="code" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810a5da2f528835949cacb797f1b4dd4199e">ExternalControlSource::Exponential</a>:
-<a name="l00113"></a>00113     value = minVal_ * <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a6fa1308b8c07eb1bcac7853238deb6f3" title="Global function for the UGen::pow() binary operator.">pow</a>(maxVal_ / minVal_, value0_1);
+<a name="l00113"></a>00113     <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> = minVal_ * <a class="code" href="ugen___binary_op_u_gens_8cpp.html#a6fa1308b8c07eb1bcac7853238deb6f3" title="Global function for the UGen::pow() binary operator.">pow</a>(maxVal_ / minVal_, value0_1);
 <a name="l00114"></a>00114     <span class="keywordflow">break</span>;
 <a name="l00115"></a>00115   }
 <a name="l00116"></a>00116  }
@@ -137,7 +137,7 @@
 <a name="l00120"></a><a class="code" href="class_external_control_source_internal.html#a9c621e09954d3f5159de55523e25de55">00120</a>  <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="class_external_control_source_u_gen_internal.html">ExternalControlSourceUGenInternal</a>;
 <a name="l00121"></a>00121  
 <a name="l00122"></a>00122 <span class="keyword">protected</span>:
-<a name="l00123"></a><a class="code" href="class_external_control_source_internal.html#a2fa1841f494816cbee481e6a7ea0ba1f">00123</a>  <span class="keywordtype">float</span> value;
+<a name="l00123"></a><a class="code" href="class_external_control_source_internal.html#a2fa1841f494816cbee481e6a7ea0ba1f">00123</a>  <span class="keywordtype">float</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>;
 <a name="l00124"></a><a class="code" href="class_external_control_source_internal.html#a320f823e6554c34d2f5f8e6276b78b3e">00124</a>  <span class="keywordtype">float</span> minVal_;
 <a name="l00125"></a><a class="code" href="class_external_control_source_internal.html#a992a4dfffcab0ed1007364a6e9aac920">00125</a>  <span class="keywordtype">float</span> maxVal_;
 <a name="l00126"></a><a class="code" href="class_external_control_source_internal.html#a8ec6c1bb161d12325cc9e673d4075482">00126</a>  <a class="code" href="class_external_control_source.html#aff9fc7f26e97fc5c886377f964b1a810">ExternalControlSource::Warp</a> warp_;
@@ -157,7 +157,7 @@
 <a name="l00143"></a>00143 <span class="preprocessor">#endif // _UGEN_ugen_ExternalControlSource_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:36 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:29 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

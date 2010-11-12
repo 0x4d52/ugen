@@ -60,11 +60,11 @@ Public Member Functions</h2></td></tr>
 </div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_value.html#abc2a5a2e6484fac66dae2539cc955667">Value</a> ()  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default constructor.  <a href="#abc2a5a2e6484fac66dae2539cc955667"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_value.html#a2c59797246563c815cbd138f3f3a9ea4">Value</a> (const double value)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_value.html#a2c59797246563c815cbd138f3f3a9ea4">Value</a> (const double <a class="el" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>)  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A construct a <a class="el" href="class_value.html" title="This provides a means for providing a &quot;specification&quot; for a value which will be evaluated l...">Value</a> from a double.  <a href="#a2c59797246563c815cbd138f3f3a9ea4"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_value.html#a8722dc3615060c131544c6724b35178c">Value</a> (const float value)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_value.html#a8722dc3615060c131544c6724b35178c">Value</a> (const float <a class="el" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>)  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A construct a <a class="el" href="class_value.html" title="This provides a means for providing a &quot;specification&quot; for a value which will be evaluated l...">Value</a> from a float.  <a href="#a8722dc3615060c131544c6724b35178c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_value.html#a26d092829f1e255af8e87b581c29e805">Value</a> (const int value)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_value.html#a26d092829f1e255af8e87b581c29e805">Value</a> (const int <a class="el" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>)  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A construct a <a class="el" href="class_value.html" title="This provides a means for providing a &quot;specification&quot; for a value which will be evaluated l...">Value</a> from an int.  <a href="#a26d092829f1e255af8e87b581c29e805"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_value.html#a452f23261d0920992c0b2dc0ba77dcdf">Value</a> (Slider *slider)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_value.html#a2947f2fabf42111475672f3dc662ac9b">Value</a> (Button *button)  throw ()</td></tr>
@@ -450,6 +450,8 @@ Values</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___value_8cpp_source.html#l00117">117</a> of file <a class="el" href="ugen___value_8cpp_source.html">ugen_Value.cpp</a>.</p>
 
+<p>References <a class="el" href="namespacestd.html#a9b36270cdb50d9a631ba58ee0405f135">std::copy</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a140cb5ab72725e11480722ab826b3864"></a><!-- doxytag: member="Value::Value" ref="a140cb5ab72725e11480722ab826b3864" args="(ValueBaseInternal *internalToUse)" -->
@@ -606,7 +608,7 @@ Values</h2></td></tr>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_value.html" title="This provides a means for providing a &quot;specification&quot; for a value which will be evaluated l...">Value</a> which the result of <img class="formulaInl" alt="$ atan2(x,y) $" src="form_23.png"/>. </dd></dl>
-<dl class="see"><dt><b>See also:</b></dt><dd>ugen::atan2 </dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="namespaceugen.html#a232f74132af8ff472dda71a94fbe14e0">ugen::atan2</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00097">97</a> of file <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html">ugen_BinaryOpUGens.cpp</a>.</p>
 
@@ -1004,7 +1006,7 @@ template&lt;class ValueInternalType &gt; </div>
 
 <p>Definition at line <a class="el" href="ugen___value_8h_source.html#l00163">163</a> of file <a class="el" href="ugen___value_8h_source.html">ugen_Value.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___value_8cpp_source.html#l00326">SequenceValueInternal::checkLoop()</a>, <a class="el" href="ugen___value_8cpp_source.html#l00459">GeomValueInternal::getValue()</a>, <a class="el" href="ugen___value_8cpp_source.html#l00408">SeriesValueInternal::getValue()</a>, <a class="el" href="ugen___value_8cpp_source.html#l00226">RandomDoubleExpRangeValueInternal::getValue()</a>, <a class="el" href="ugen___value_8cpp_source.html#l00213">RandomDoubleRangeValueInternal::getValue()</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00366">BinaryDivideValueInternal::getValue()</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00326">operator/()</a>, <a class="el" href="ugen___u_gen_8cpp_source.html#l00363">UGen::UGen()</a>, and <a class="el" href="ugen___value_8cpp_source.html#l00726">ValueUGenInternal::ValueUGenInternal()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___value_8cpp_source.html#l00326">SequenceValueInternal::checkLoop()</a>, <a class="el" href="ugen___value_8cpp_source.html#l00459">GeomValueInternal::getValue()</a>, <a class="el" href="ugen___value_8cpp_source.html#l00408">SeriesValueInternal::getValue()</a>, <a class="el" href="ugen___value_8cpp_source.html#l00226">RandomDoubleExpRangeValueInternal::getValue()</a>, <a class="el" href="ugen___value_8cpp_source.html#l00213">RandomDoubleRangeValueInternal::getValue()</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00366">BinaryDivideValueInternal::getValue()</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00326">operator/()</a>, and <a class="el" href="ugen___value_8cpp_source.html#l00726">ValueUGenInternal::ValueUGenInternal()</a>.</p>
 
 </div>
 </div>
@@ -1033,7 +1035,7 @@ template&lt;class ValueInternalType &gt; </div>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_value.html" title="This provides a means for providing a &quot;specification&quot; for a value which will be evaluated l...">Value</a> which is the result of <img class="formulaInl" alt="$ \sqrt{L^{2}+R^{2}} $" src="form_22.png"/> </dd></dl>
-<dl class="see"><dt><b>See also:</b></dt><dd>ugen::hypot() </dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="namespaceugen.html#a41ae895e9a6edb747790e7929b048479">ugen::hypot()</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00096">96</a> of file <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html">ugen_BinaryOpUGens.cpp</a>.</p>
 
@@ -1121,7 +1123,7 @@ template&lt;class ValueInternalType &gt; </div>
 
 <p>Definition at line <a class="el" href="ugen___value_8h_source.html#l00177">177</a> of file <a class="el" href="ugen___value_8h_source.html">ugen_Value.h</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8cpp_source.html#l01781">UGen::kr()</a>.</p>
+<p>References <a class="el" href="class_u_gen.html#a05778e35ac2ee92c1311a691fd43c57e">UGen::kr()</a>.</p>
 
 </div>
 </div>
@@ -1216,7 +1218,7 @@ template&lt;class ValueInternalType &gt; </div>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_value.html" title="This provides a means for providing a &quot;specification&quot; for a value which will be evaluated l...">Value</a> which the result of <img class="formulaInl" alt="$ max(L,R) $" src="form_25.png"/>. </dd></dl>
-<dl class="see"><dt><b>See also:</b></dt><dd>ugen::max() </dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max()</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00099">99</a> of file <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html">ugen_BinaryOpUGens.cpp</a>.</p>
 
@@ -1272,7 +1274,7 @@ template&lt;class ValueInternalType &gt; </div>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_value.html" title="This provides a means for providing a &quot;specification&quot; for a value which will be evaluated l...">Value</a> which the result of <img class="formulaInl" alt="$ min(L,R) $" src="form_24.png"/>. </dd></dl>
-<dl class="see"><dt><b>See also:</b></dt><dd>ugen::min() </dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="namespaceugen.html#a8c7a6f32b24d3558d3311255ea21eff0">ugen::min()</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00098">98</a> of file <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html">ugen_BinaryOpUGens.cpp</a>.</p>
 
@@ -1710,7 +1712,7 @@ template&lt;class ValueInternalType &gt; </div>
 
 <p>Definition at line <a class="el" href="ugen___value_8cpp_source.html#l00123">123</a> of file <a class="el" href="ugen___value_8cpp_source.html">ugen_Value.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___smart_pointer_8cpp_source.html#l00080">SmartPointer::incrementRefCount()</a>, and <a class="el" href="ugen___value_8h_source.html#l00257">internal</a>.</p>
+<p>References <a class="el" href="class_smart_pointer.html#ad9196fe14d4e4d9b1c28982738436544">SmartPointer::incrementRefCount()</a>, and <a class="el" href="ugen___value_8h_source.html#l00257">internal</a>.</p>
 
 </div>
 </div>
@@ -1822,7 +1824,7 @@ template&lt;class ValueInternalType &gt; </div>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_value.html" title="This provides a means for providing a &quot;specification&quot; for a value which will be evaluated l...">Value</a> which the result of <img class="formulaInl" alt="$ L^{R} $" src="form_21.png"/> </dd></dl>
-<dl class="see"><dt><b>See also:</b></dt><dd>ugen::pow() </dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="namespaceugen.html#a49572c3ed3c9ebaf808e9b04fb7ba9b0">ugen::pow()</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00095">95</a> of file <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html">ugen_BinaryOpUGens.cpp</a>.</p>
 
@@ -2332,7 +2334,7 @@ template&lt;class ValueInternalType &gt; </div>
 <li>core/<a class="el" href="ugen___value_8cpp_source.html">ugen_Value.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:45 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:46 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

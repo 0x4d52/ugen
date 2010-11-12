@@ -49,7 +49,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_gen_output.html#a118a3566a4758eb4719c57843c25bd57">getBlockSize</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_gen_output.html#a2f81d76a08bdae1136fb9eb94c34aa14">getSampleData</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_gen_output.html#a8cc9fa1314725957dcae7825d03fa6a7">zeroAllData</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_gen_output.html#a75afd710546d8f0904e103eec4a53477">initValue</a> (const float value)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_gen_output.html#a75afd710546d8f0904e103eec4a53477">initValue</a> (const float <a class="el" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_gen_output.html#a24489756da0d98d2ef97b2fa2f63984e">useExternalOutput</a> (<a class="el" href="class_u_gen_output.html">UGenOutput</a> *externalOutputToUse)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_gen_output.html#a78a005d9b9c1af11b2fb8156598da8da">useExternalOutput</a> (float *externalOutputToUse, const int externalBlockSize)</td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
@@ -79,10 +79,6 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00049">49</a> of file <a class="el" href="ugen___u_gen_internal_8cpp_source.html">ugen_UGenInternal.cpp</a>.</p>
-
-<p>References <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00071">initValue()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a7c3ecb8de905783d437c89ef7682eb0b"></a><!-- doxytag: member="UGenOutput::~UGenOutput" ref="a7c3ecb8de905783d437c89ef7682eb0b" args="()" -->
@@ -99,10 +95,6 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00060">60</a> of file <a class="el" href="ugen___u_gen_internal_8cpp_source.html">ugen_UGenInternal.cpp</a>.</p>
-
-<p>References <a class="el" href="ugen___u_gen_internal_8h_source.html#l00088">allocatedBlockSize</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00089">block</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00087">blockSize</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00091">externalOutput</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00090">usingExternalOutput</a>.</p>
 
 </div>
 </div>
@@ -169,9 +161,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00071">71</a> of file <a class="el" href="ugen___u_gen_internal_8cpp_source.html">ugen_UGenInternal.cpp</a>.</p>
-
-<p>Referenced by <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00049">UGenOutput()</a>, and <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00077">useExternalOutput()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00049">ugen::UGenOutput::UGenOutput()</a>, and <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00077">ugen::UGenOutput::useExternalOutput()</a>.</p>
 
 </div>
 </div>
@@ -215,10 +205,6 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00077">77</a> of file <a class="el" href="ugen___u_gen_internal_8cpp_source.html">ugen_UGenInternal.cpp</a>.</p>
-
-<p>References <a class="el" href="ugen___u_gen_internal_8h_source.html#l00088">allocatedBlockSize</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00089">block</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00087">blockSize</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00091">externalOutput</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00933">UGen::getEstimatedBlockSize()</a>, <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00071">initValue()</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00090">usingExternalOutput</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a78a005d9b9c1af11b2fb8156598da8da"></a><!-- doxytag: member="UGenOutput::useExternalOutput" ref="a78a005d9b9c1af11b2fb8156598da8da" args="(float *externalOutputToUse, const int externalBlockSize)" -->
@@ -246,10 +232,6 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00114">114</a> of file <a class="el" href="ugen___u_gen_internal_8cpp_source.html">ugen_UGenInternal.cpp</a>.</p>
-
-<p>References <a class="el" href="ugen___u_gen_internal_8h_source.html#l00088">allocatedBlockSize</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00089">block</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00087">blockSize</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00091">externalOutput</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00933">UGen::getEstimatedBlockSize()</a>, <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00071">initValue()</a>, <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00090">usingExternalOutput</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a8cc9fa1314725957dcae7825d03fa6a7"></a><!-- doxytag: member="UGenOutput::zeroAllData" ref="a8cc9fa1314725957dcae7825d03fa6a7" args="()" -->
@@ -269,7 +251,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00080">80</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_internal_8h_source.html#l00089">block</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00087">blockSize</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_internal_8h_source.html#l00089">block</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00087">blockSize</a>, and <a class="el" href="ugen___play_buf_8ii.html#a68d2b40ef2213b9227a1ce3b81997ae5">memset()</a>.</p>
 
 </div>
 </div>
@@ -287,7 +269,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00088">88</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___u_gen_internal_8h_source.html#l00052">prepareForBlock()</a>, <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00077">useExternalOutput()</a>, and <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00060">~UGenOutput()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___u_gen_internal_8h_source.html#l00052">prepareForBlock()</a>, <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00077">ugen::UGenOutput::useExternalOutput()</a>, and <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00060">ugen::UGenOutput::~UGenOutput()</a>.</p>
 
 </div>
 </div>
@@ -304,7 +286,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00089">89</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___u_gen_internal_8h_source.html#l00079">getSampleData()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00052">prepareForBlock()</a>, <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00077">useExternalOutput()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00080">zeroAllData()</a>, and <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00060">~UGenOutput()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___u_gen_internal_8h_source.html#l00079">getSampleData()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00052">prepareForBlock()</a>, <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00077">ugen::UGenOutput::useExternalOutput()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00080">zeroAllData()</a>, and <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00060">ugen::UGenOutput::~UGenOutput()</a>.</p>
 
 </div>
 </div>
@@ -321,7 +303,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00087">87</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___u_gen_internal_8h_source.html#l00078">getBlockSize()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00052">prepareForBlock()</a>, <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00077">useExternalOutput()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00080">zeroAllData()</a>, and <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00060">~UGenOutput()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___u_gen_internal_8h_source.html#l00078">getBlockSize()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00052">prepareForBlock()</a>, <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00077">ugen::UGenOutput::useExternalOutput()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00080">zeroAllData()</a>, and <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00060">ugen::UGenOutput::~UGenOutput()</a>.</p>
 
 </div>
 </div>
@@ -338,7 +320,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00091">91</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___u_gen_internal_8h_source.html#l00052">prepareForBlock()</a>, <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00077">useExternalOutput()</a>, and <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00060">~UGenOutput()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___u_gen_internal_8h_source.html#l00052">prepareForBlock()</a>, <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00077">ugen::UGenOutput::useExternalOutput()</a>, and <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00060">ugen::UGenOutput::~UGenOutput()</a>.</p>
 
 </div>
 </div>
@@ -355,16 +337,15 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00090">90</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___u_gen_internal_8h_source.html#l00052">prepareForBlock()</a>, <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00077">useExternalOutput()</a>, and <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00060">~UGenOutput()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___u_gen_internal_8h_source.html#l00052">prepareForBlock()</a>, <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00077">ugen::UGenOutput::useExternalOutput()</a>, and <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00060">ugen::UGenOutput::~UGenOutput()</a>.</p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>core/<a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a></li>
-<li>core/<a class="el" href="ugen___u_gen_internal_8cpp_source.html">ugen_UGenInternal.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:44 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:45 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

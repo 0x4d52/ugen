@@ -52,7 +52,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_raw_input_u_gen_internal.html#ad5da6e3c3e23b39858c44ed3ce1d3a89">~RawInputUGenInternal</a> ()  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_raw_input_u_gen_internal.html#a1f3d70191fafb35abca2024b2a0baf13">processBlock</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Process a block of samples for this blockID and channel.  <a href="#a1f3d70191fafb35abca2024b2a0baf13"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_raw_input_u_gen_internal.html#a1061f68c01ae8285eaded0c06970d122">setInput</a> (const float *block, const int channel)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_raw_input_u_gen_internal.html#a1061f68c01ae8285eaded0c06970d122">setInput</a> (const float *<a class="el" href="ugen___play_buf_8ii.html#a6623865f97969ec4413c12665d087450">block</a>, const int channel)  throw ()</td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const float **&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_raw_input_u_gen_internal.html#a37dd4ab074171935c5f772c64554875a">bufferData</a></td></tr>
@@ -79,7 +79,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___raw_input_u_gens_8cpp_source.html#l00044">44</a> of file <a class="el" href="ugen___raw_input_u_gens_8cpp_source.html">ugen_RawInputUGens.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___play_buf_8ii.html#a68d2b40ef2213b9227a1ce3b81997ae5">memset()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
 </div>
 </div>
@@ -151,6 +151,8 @@ Protected Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___raw_input_u_gens_8cpp_source.html#l00058">58</a> of file <a class="el" href="ugen___raw_input_u_gens_8cpp_source.html">ugen_RawInputUGens.cpp</a>.</p>
 
+<p>References <a class="el" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy()</a>, and <a class="el" href="ugen___play_buf_8ii.html#a68d2b40ef2213b9227a1ce3b81997ae5">memset()</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a1061f68c01ae8285eaded0c06970d122"></a><!-- doxytag: member="RawInputUGenInternal::setInput" ref="a1061f68c01ae8285eaded0c06970d122" args="(const float *block, const int channel)" -->
@@ -180,9 +182,9 @@ Protected Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___raw_input_u_gens_8h_source.html#l00051">51</a> of file <a class="el" href="ugen___raw_input_u_gens_8h_source.html">ugen_RawInputUGens.h</a>.</p>
 
-<p>References <a class="el" href="ugen___raw_input_u_gens_8h_source.html#l00054">bufferData</a>.</p>
+<p>References <a class="el" href="ugen___play_buf_8ii_source.html#l06169">block</a>, and <a class="el" href="ugen___raw_input_u_gens_8h_source.html#l00054">bufferData</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___u_gen_8cpp_source.html#l01097">UGen::setInput()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___u_gen_8cpp_source.html#l01087">ugen::UGen::setInput()</a>.</p>
 
 </div>
 </div>
@@ -209,7 +211,7 @@ Protected Attributes</h2></td></tr>
 <li>basics/<a class="el" href="ugen___raw_input_u_gens_8cpp_source.html">ugen_RawInputUGens.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:43 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:44 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

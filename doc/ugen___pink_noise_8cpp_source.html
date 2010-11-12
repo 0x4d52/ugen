@@ -78,21 +78,21 @@
 <a name="l00046"></a><a class="code" href="class_pink_noise_u_gen_internal.html#af0ebc42349e883c88e3b35c1d6479785">00046</a> <a class="code" href="class_pink_noise_u_gen_internal.html#af0ebc42349e883c88e3b35c1d6479785">PinkNoiseUGenInternal::PinkNoiseUGenInternal</a>() throw()
 <a name="l00047"></a>00047 : <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(NoInputs),
 <a name="l00048"></a>00048  <span class="comment">//random((unsigned int)this * 123463463UL + 423815L + rand(19469146))</span>
-<a name="l00049"></a>00049  random(<a class="code" href="ugen___random_8h.html#a4a9d748503ef7330212b77884f7fb4b6">rand</a>(0x7fffffff))
+<a name="l00049"></a>00049  <a class="code" href="ugen___play_buf_8ii.html#a114aeb1751119382aaf3340355b22cfd">random</a>(<a class="code" href="ugen___random_8h.html#a4a9d748503ef7330212b77884f7fb4b6">rand</a>(0x7fffffff))
 <a name="l00050"></a>00050 { 
 <a name="l00051"></a>00051  <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> s1, s2, s3;
 <a name="l00052"></a>00052  <a class="code" href="class_pink_noise_u_gen_internal.html#a1c9321d9912d1b928a0c330297fd4170">random</a>.<a class="code" href="class_ran088.html#a51170684303b8f9853cdffce53d63728">get</a>(s1, s2, s3);
 <a name="l00053"></a>00053  
 <a name="l00054"></a>00054  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 16; ++i) 
 <a name="l00055"></a>00055  {
-<a name="l00056"></a>00056   <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> r = <a class="code" href="class_ran088.html#a3043729cb19cb714eb7af2a48864317c">Ran088::next</a>(s1, s2, s3) &gt;&gt; 13;
+<a name="l00056"></a>00056   <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="ugen___play_buf_8ii.html#a723a9953fbfea7f614028fd93697642a">r</a> = <a class="code" href="class_ran088.html#a3043729cb19cb714eb7af2a48864317c">Ran088::next</a>(s1, s2, s3) &gt;&gt; 13;
 <a name="l00057"></a>00057   <a class="code" href="class_pink_noise_u_gen_internal.html#af4c42a0372aaeed04c8e064b51ef66b1">total</a> += r;
 <a name="l00058"></a>00058   <a class="code" href="class_pink_noise_u_gen_internal.html#ad9e879486b6f9318110e509484012e82">dice</a>[i] = r;
 <a name="l00059"></a>00059  } 
 <a name="l00060"></a>00060  
 <a name="l00061"></a>00061  <a class="code" href="class_pink_noise_u_gen_internal.html#a1c9321d9912d1b928a0c330297fd4170">random</a>.<a class="code" href="class_ran088.html#abbc3e7677dd34f86f8c0ba880890fe68">set</a>(s1, s2, s3);
 <a name="l00062"></a>00062  
-<a name="l00063"></a>00063  <a class="code" href="class_u_gen_internal.html#a3b9de200fa163a233dab85b3388fd469" title="Initialise the UGen output value.">initValue</a>(<a class="code" href="class_pink_noise_u_gen_internal.html#a1c9321d9912d1b928a0c330297fd4170">random</a>.<a class="code" href="class_ran088.html#a72879a73c0be002bef4693e1a1af85ff">nextBiFloat</a>());
+<a name="l00063"></a>00063  <a class="code" href="class_u_gen_internal.html#a02969e1ea45efde745a41fec2ac36dc4" title="Initialise the UGen output value.">initValue</a>(<a class="code" href="class_pink_noise_u_gen_internal.html#a1c9321d9912d1b928a0c330297fd4170">random</a>.<a class="code" href="class_ran088.html#a72879a73c0be002bef4693e1a1af85ff">nextBiFloat</a>());
 <a name="l00064"></a>00064 }
 <a name="l00065"></a>00065 
 <a name="l00066"></a><a class="code" href="class_pink_noise_u_gen_internal.html#a0f1de770615abc0a3c58c9776a599096">00066</a> <span class="keywordtype">void</span> <a class="code" href="class_pink_noise_u_gen_internal.html#a0f1de770615abc0a3c58c9776a599096" title="Process a block of samples for this blockID and channel.">PinkNoiseUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
@@ -101,7 +101,7 @@
 <a name="l00069"></a>00069  <span class="keywordtype">float</span>* outputSamples = uGenOutput.getSampleData();
 <a name="l00070"></a>00070  
 <a name="l00071"></a>00071  <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> s1, s2, s3;
-<a name="l00072"></a>00072  random.get(s1, s2, s3);
+<a name="l00072"></a>00072  <a class="code" href="ugen___play_buf_8ii.html#a114aeb1751119382aaf3340355b22cfd">random</a>.get(s1, s2, s3);
 <a name="l00073"></a>00073  
 <a name="l00074"></a>00074  <span class="keywordflow">while</span>(numSamplesToProcess--)
 <a name="l00075"></a>00075  {
@@ -117,7 +117,7 @@
 <a name="l00085"></a>00085   *outputSamples++ = (val.<a class="code" href="union_element.html#af81e66246a294e95e6c811cda7344bdf">f</a> - 3.f);
 <a name="l00086"></a>00086  }
 <a name="l00087"></a>00087  
-<a name="l00088"></a>00088  random.set(s1, s2, s3);
+<a name="l00088"></a>00088  <a class="code" href="ugen___play_buf_8ii.html#a114aeb1751119382aaf3340355b22cfd">random</a>.set(s1, s2, s3);
 <a name="l00089"></a>00089 }
 <a name="l00090"></a>00090 
 <a name="l00091"></a><a class="code" href="class_pink_noise.html#aaac894a16925eb95bc06434d5f37fff2">00091</a> <a class="code" href="class_pink_noise.html#aaac894a16925eb95bc06434d5f37fff2" title="Base MulAdd PinkNoise Constuctor (without &amp;quot;mul&amp;quot; or &amp;quot;add&amp;quot;), use the AR() and KR() ...">PinkNoise::PinkNoise</a>() throw()
@@ -131,7 +131,7 @@
 <a name="l00099"></a>00099 <span class="preprocessor">#endif // gpl</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:38 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:32 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

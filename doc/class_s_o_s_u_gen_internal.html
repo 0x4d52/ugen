@@ -66,7 +66,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_o_s_u_gen_internal.html#a1e86ba25ce8e600ccd9d4bd0eaf66932">getChannel</a> (const int channel)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_o_s_u_gen_internal.html#ad0b7d4e2cd9e09f3edaaa1c348443a44">processBlock</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Process a block of samples for this blockID and channel.  <a href="#ad0b7d4e2cd9e09f3edaaa1c348443a44"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_o_s_u_gen_internal.html#a274bb0c2bcbeaf4c2b2868f7033bbc7f">initValue</a> (const float value)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_o_s_u_gen_internal.html#a274bb0c2bcbeaf4c2b2868f7033bbc7f">initValue</a> (const float <a class="el" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>)  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> output value.  <a href="#a274bb0c2bcbeaf4c2b2868f7033bbc7f"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -162,7 +162,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___s_o_s_8cpp_source.html#l00050">50</a> of file <a class="el" href="ugen___s_o_s_8cpp_source.html">ugen_SOS.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_internal_8h_source.html#l00228">UGenInternal::inputs</a>, and <a class="el" href="ugen___s_o_s_8h_source.html#l00047">SOS_InputsNoTypes</a>.</p>
+<p>References <a class="el" href="ugen___u_gen_internal_8h_source.html#l00227">UGenInternal::inputs</a>, and <a class="el" href="ugen___s_o_s_8h_source.html#l00047">SOS_InputsNoTypes</a>.</p>
 
 </div>
 </div>
@@ -183,7 +183,7 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a6838029815ab52d3263cfacb6c584d2f">UGenInternal</a>.</p>
+<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#ae9624445b9d8328a9032305687333039">UGenInternal</a>.</p>
 
 <p>Definition at line <a class="el" href="ugen___s_o_s_8cpp_source.html#l00060">60</a> of file <a class="el" href="ugen___s_o_s_8cpp_source.html">ugen_SOS.cpp</a>.</p>
 
@@ -206,13 +206,13 @@ Protected Attributes</h2></td></tr>
 <div class="memdoc">
 
 <p>Initialise the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> output value. </p>
-<p>This helps <a class="el" href="class_u_gen_internal.html#a8025c9bdaa987546001e2da23f97e3c8">getValue()</a> return the correct (or at lease approximately correct) value even before processing begins. Oscillators can generally set their own value here in their UGenInternal-inherited constructor. Processing-type <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> classes will probably need to set the values in the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> class as the <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> classes are created (since they may contain multichannel inputs). </p>
+<p>This helps <a class="el" href="class_u_gen_internal.html#a9f79b23e6cc88f6987890357b4a5ba3b">getValue()</a> return the correct (or at lease approximately correct) value even before processing begins. Oscillators can generally set their own value here in their UGenInternal-inherited constructor. Processing-type <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> classes will probably need to set the values in the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> class as the <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> classes are created (since they may contain multichannel inputs). </p>
 
-<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a3b9de200fa163a233dab85b3388fd469">UGenInternal</a>.</p>
+<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a02969e1ea45efde745a41fec2ac36dc4">UGenInternal</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___s_o_s_8cpp_source.html#l00108">108</a> of file <a class="el" href="ugen___s_o_s_8cpp_source.html">ugen_SOS.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ugen___s_o_s_8cpp_source.html#l00095">95</a> of file <a class="el" href="ugen___s_o_s_8cpp_source.html">ugen_SOS.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00322">UGenInternal::initValue()</a>, and <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00142">zap()</a>.</p>
+<p>References <a class="el" href="class_u_gen_internal.html#a02969e1ea45efde745a41fec2ac36dc4">UGenInternal::initValue()</a>, <a class="el" href="ugen___play_buf_8ii_source.html#l06697">value</a>, <a class="el" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1()</a>, and <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00142">zap()</a>.</p>
 
 </div>
 </div>
@@ -262,7 +262,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___s_o_s_8cpp_source.html#l00070">70</a> of file <a class="el" href="ugen___s_o_s_8cpp_source.html">ugen_SOS.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_8h_source.html#l00946">UGen::getFilterLoops()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00955">UGen::getFilterRemain()</a>, and <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00142">zap()</a>.</p>
+<p>References <a class="el" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1()</a>, and <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00142">zap()</a>.</p>
 
 </div>
 </div>
@@ -302,7 +302,7 @@ Protected Attributes</h2></td></tr>
 <li>filters/<a class="el" href="ugen___s_o_s_8cpp_source.html">ugen_SOS.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:44 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:44 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

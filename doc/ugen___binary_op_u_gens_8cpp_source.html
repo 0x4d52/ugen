@@ -93,8 +93,8 @@
 <a name="l00061"></a>00061   <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* leftInternal = leftOperand.getInternalUGen(channel % numLeftChannels);
 <a name="l00062"></a>00062   <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* rightInternal = rightOperand.getInternalUGen(channel % numRightChannels);
 <a name="l00063"></a>00063   
-<a name="l00064"></a>00064   inputs[LeftOperand] = <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>(leftInternal-&gt;<a class="code" href="class_u_gen_internal.html#ad754dddff5c68e4f9bd1fc496656e2c3">getChannelInternal</a>(channel), channel);
-<a name="l00065"></a>00065   inputs[RightOperand] = <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>(rightInternal-&gt;<a class="code" href="class_u_gen_internal.html#ad754dddff5c68e4f9bd1fc496656e2c3">getChannelInternal</a>(channel), channel);
+<a name="l00064"></a>00064   inputs[LeftOperand] = <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>(leftInternal-&gt;<a class="code" href="class_u_gen_internal.html#a69790714c8253527c367ff39bf4fa7c6">getChannelInternal</a>(channel), channel);
+<a name="l00065"></a>00065   inputs[RightOperand] = <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>(rightInternal-&gt;<a class="code" href="class_u_gen_internal.html#a69790714c8253527c367ff39bf4fa7c6">getChannelInternal</a>(channel), channel);
 <a name="l00066"></a>00066  }
 <a name="l00067"></a>00067 }
 <a name="l00068"></a>00068 
@@ -172,7 +172,7 @@
 <a name="l00140"></a>00140 
 <a name="l00141"></a><a class="code" href="class_binary_divide_u_gen_internal_k.html#ab381e69adba275b05e6a4acabf20ec0c">00141</a> <a class="code" href="class_binary_divide_u_gen_internal_k.html#ab381e69adba275b05e6a4acabf20ec0c">BinaryDivideUGenInternalK::BinaryDivideUGenInternalK</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; leftOperand, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; rightOperand) <span class="keywordflow">throw</span>() 
 <a name="l00142"></a>00142 : <a class="code" href="class_binary_divide_u_gen_internal.html" title="Internal for BinaryDivideUGen.">BinaryDivideUGenInternal</a>(leftOperand, rightOperand), 
-<a name="l00143"></a>00143  value(0.f) 
+<a name="l00143"></a>00143  <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>(0.f) 
 <a name="l00144"></a>00144 { 
 <a name="l00145"></a>00145  rate = ControlRate; 
 <a name="l00146"></a>00146 } 
@@ -231,7 +231,7 @@
 <a name="l00199"></a>00199  <span class="keywordflow">while</span>(numSamplesToProcess &gt; 0) 
 <a name="l00200"></a>00200  { 
 <a name="l00201"></a>00201   <span class="keywordflow">if</span>(numKrSamples == 0) 
-<a name="l00202"></a>00202    value = *leftOperandSamples / *rightOperandSamples; <span class="comment">// maybe should &quot;zap&quot; the output?</span>
+<a name="l00202"></a>00202    <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> = *leftOperandSamples / *rightOperandSamples; <span class="comment">// maybe should &quot;zap&quot; the output?</span>
 <a name="l00203"></a>00203   
 <a name="l00204"></a>00204   numKrSamples  =  krBlockSize - numKrSamples; 
 <a name="l00205"></a>00205   blockPosition  += numKrSamples; 
@@ -240,7 +240,7 @@
 <a name="l00208"></a>00208  
 <a name="l00209"></a>00209   <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples) 
 <a name="l00210"></a>00210   { 
-<a name="l00211"></a>00211    *outputSamples++ = value; 
+<a name="l00211"></a>00211    *outputSamples++ = <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>; 
 <a name="l00212"></a>00212    --numSamplesToProcess; 
 <a name="l00213"></a>00213    --numKrSamples; 
 <a name="l00214"></a>00214   } 
@@ -272,8 +272,8 @@
 <a name="l00240"></a><a class="code" href="class_u_gen_array.html#a31b1d62756a2e33f46fd76776bc91c8b">00240</a> <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <a class="code" href="class_u_gen_array.html#a31b1d62756a2e33f46fd76776bc91c8b" title="Binary division.">UGenArray::operator / </a>(<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a> <span class="keyword">const</span>&amp; rightOperand) <span class="keyword">const</span> <span class="keywordflow">throw</span>() 
 <a name="l00241"></a>00241 { 
 <a name="l00242"></a>00242  <span class="keywordtype">int</span> size; 
-<a name="l00243"></a>00243  <span class="keywordflow">if</span>(internal-&gt;size() &gt; rightOperand.internal-&gt;size()) 
-<a name="l00244"></a>00244   size = internal-&gt;<a class="code" href="class_u_gen_array.html#adbc33ce837a273d3c5b198e7e2ea7c42" title="Get the available size of the UGenArray.">size</a>(); 
+<a name="l00243"></a>00243  <span class="keywordflow">if</span>(<a class="code" href="namespacestd.html#a084be990a1caf21a3b1ce38fe61bad3f">internal</a>-&gt;size() &gt; rightOperand.internal-&gt;size()) 
+<a name="l00244"></a>00244   size = <a class="code" href="namespacestd.html#a084be990a1caf21a3b1ce38fe61bad3f">internal</a>-&gt;size(); 
 <a name="l00245"></a>00245  <span class="keywordflow">else</span> 
 <a name="l00246"></a>00246   size = rightOperand.internal-&gt;size(); 
 <a name="l00247"></a>00247 
@@ -381,7 +381,7 @@
 <a name="l00349"></a>00349  <span class="keywordflow">else</span> <span class="keywordflow">if</span>(rightOperand.size() == 0)                    
 <a name="l00350"></a>00350   <span class="keywordflow">return</span> *<span class="keyword">this</span>;                        
 <a name="l00351"></a>00351  <span class="keywordflow">else</span> {                          
-<a name="l00352"></a>00352   <span class="keyword">const</span> <span class="keywordtype">int</span> maxSize = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">ugen::max</a>(size(), rightOperand.size());             
+<a name="l00352"></a>00352   <span class="keyword">const</span> <span class="keywordtype">int</span> maxSize = <a class="code" href="namespaceugen.html#a1f7960029f34bcca208e049fb1e74016">ugen::max</a>(size(), rightOperand.size());             
 <a name="l00353"></a>00353   <a class="code" href="class_value_array.html" title="Store and manipulate an array of Value objects.">ValueArray</a> newArray(maxSize);                    
 <a name="l00354"></a>00354   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; maxSize; i++) {                   
 <a name="l00355"></a>00355    newArray.put(i, wrapAt(i) / rightOperand.wrapAt(i));            
@@ -441,7 +441,7 @@
 <a name="l00409"></a>00409 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:35 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:28 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

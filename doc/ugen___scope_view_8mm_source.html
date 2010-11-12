@@ -125,19 +125,19 @@
 <a name="l00093"></a>00093  <span class="keywordflow">return</span> <span class="keyword">self</span>;
 <a name="l00094"></a>00094 }
 <a name="l00095"></a>00095 
-<a name="l00096"></a>00096 -(void) dealloc
+<a name="l00096"></a>00096 -(<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>) dealloc
 <a name="l00097"></a>00097 {
 <a name="l00098"></a>00098  <span class="keyword">delete</span> peer;
 <a name="l00099"></a>00099  [nsLock release];
 <a name="l00100"></a>00100  [<span class="keyword">super</span> dealloc];
 <a name="l00101"></a>00101 }
 <a name="l00102"></a>00102 
-<a name="l00103"></a>00103 - (void)<a class="code" href="interface_u_i_scope_view_base.html#a081ff17f8fbe26a006c25cd0a7fb1676">lock</a>
+<a name="l00103"></a>00103 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)<a class="code" href="interface_u_i_scope_view_base.html#a081ff17f8fbe26a006c25cd0a7fb1676">lock</a>
 <a name="l00104"></a>00104 {
 <a name="l00105"></a>00105  [nsLock lock];
 <a name="l00106"></a>00106 }
 <a name="l00107"></a>00107 
-<a name="l00108"></a>00108 - (void)<a class="code" href="interface_u_i_scope_view_base.html#a35ecb1bac85820292d7d099868fa170f">unlock</a>
+<a name="l00108"></a>00108 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)<a class="code" href="interface_u_i_scope_view_base.html#a35ecb1bac85820292d7d099868fa170f">unlock</a>
 <a name="l00109"></a>00109 {
 <a name="l00110"></a>00110  [nsLock unlock];
 <a name="l00111"></a>00111 }
@@ -147,7 +147,7 @@
 <a name="l00115"></a>00115  <span class="keywordflow">return</span> [nsLock tryLock];
 <a name="l00116"></a>00116 }
 <a name="l00117"></a>00117 
-<a name="l00118"></a>00118 - (void)setPolarity:(BOOL)isBipolar
+<a name="l00118"></a>00118 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)setPolarity:(BOOL)isBipolar
 <a name="l00119"></a>00119 {
 <a name="l00120"></a>00120  <span class="keywordflow">if</span>(!<a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>) <span class="keywordflow">return</span>;
 <a name="l00121"></a>00121  
@@ -161,7 +161,7 @@
 <a name="l00129"></a>00129  <span class="keywordflow">return</span> <a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>-&gt;<a class="code" href="class_scope_g_u_i.html#adbafa5b94c205e95851171a9a8021aa0" title="Gets the current unipolar/bipolar state.">getPolarity</a>();
 <a name="l00130"></a>00130 }
 <a name="l00131"></a>00131 
-<a name="l00132"></a>00132 - (void)setYMaximum:(<span class="keywordtype">float</span>)maximum
+<a name="l00132"></a>00132 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)setYMaximum:(<span class="keywordtype">float</span>)maximum
 <a name="l00133"></a>00133 {
 <a name="l00134"></a>00134  <span class="keywordflow">if</span>(!<a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>) <span class="keywordflow">return</span>;
 <a name="l00135"></a>00135  
@@ -175,7 +175,7 @@
 <a name="l00143"></a>00143  <span class="keywordflow">return</span> <a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>-&gt;<a class="code" href="class_scope_g_u_i.html#adabaaaadbffe775626bcc69512eba85d" title="Get the current maximum value of the y axis scale.">getYMaximum</a>();
 <a name="l00144"></a>00144 }
 <a name="l00145"></a>00145 
-<a name="l00146"></a>00146 - (void)setLowerMargin:(<span class="keywordtype">float</span>)margin
+<a name="l00146"></a>00146 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)setLowerMargin:(<span class="keywordtype">float</span>)margin
 <a name="l00147"></a>00147 {
 <a name="l00148"></a>00148  <span class="keywordflow">if</span>(!<a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>) <span class="keywordflow">return</span>;
 <a name="l00149"></a>00149  
@@ -189,28 +189,28 @@
 <a name="l00157"></a>00157  <span class="keywordflow">return</span> <a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>-&gt;<a class="code" href="class_scope_g_u_i.html#a3ec8c55894bc84b97c4032cda7cdb334" title="Get the current lower margin value.">getLowerMargin</a>();
 <a name="l00158"></a>00158 }
 <a name="l00159"></a>00159 
-<a name="l00160"></a>00160 - (void)setScaleX:(<a class="code" href="class_scope_g_u_i.html" title="This is a wrapper/controller for a platform dependent GUI object.">ScopeGUI</a>::Scales)scale
+<a name="l00160"></a>00160 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)setScaleX:(<a class="code" href="class_scope_g_u_i.html" title="This is a wrapper/controller for a platform dependent GUI object.">ScopeGUI</a>::Scales)scale
 <a name="l00161"></a>00161 {
 <a name="l00162"></a>00162  <span class="keywordflow">if</span>(!<a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>) <span class="keywordflow">return</span>;
 <a name="l00163"></a>00163  
 <a name="l00164"></a>00164  <a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>-&gt;<a class="code" href="class_scope_g_u_i.html#a5684d32a27213eb586cb019242665500" title="Set the labelling of the scale on the x axis.">setScaleX</a>(scale);
 <a name="l00165"></a>00165 }
 <a name="l00166"></a>00166 
-<a name="l00167"></a>00167 - (void)setScaleX:(<a class="code" href="class_scope_g_u_i.html" title="This is a wrapper/controller for a platform dependent GUI object.">ScopeGUI</a>::Scales)scale withMarkSpacing:(<span class="keywordtype">double</span>)size
+<a name="l00167"></a>00167 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)setScaleX:(<a class="code" href="class_scope_g_u_i.html" title="This is a wrapper/controller for a platform dependent GUI object.">ScopeGUI</a>::Scales)scale withMarkSpacing:(<span class="keywordtype">double</span>)size
 <a name="l00168"></a>00168 {
 <a name="l00169"></a>00169  <span class="keywordflow">if</span>(!<a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>) <span class="keywordflow">return</span>;
 <a name="l00170"></a>00170  
 <a name="l00171"></a>00171  <a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>-&gt;<a class="code" href="class_scope_g_u_i.html#a5684d32a27213eb586cb019242665500" title="Set the labelling of the scale on the x axis.">setScaleX</a>(scale, size);
 <a name="l00172"></a>00172 }
 <a name="l00173"></a>00173 
-<a name="l00174"></a>00174 - (void)setScaleX:(<a class="code" href="class_scope_g_u_i.html" title="This is a wrapper/controller for a platform dependent GUI object.">ScopeGUI</a>::Scales)scale withMarkSpacing:(<span class="keywordtype">double</span>)size usingLabelHop:(<span class="keywordtype">int</span>)num
+<a name="l00174"></a>00174 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)setScaleX:(<a class="code" href="class_scope_g_u_i.html" title="This is a wrapper/controller for a platform dependent GUI object.">ScopeGUI</a>::Scales)scale withMarkSpacing:(<span class="keywordtype">double</span>)size usingLabelHop:(<span class="keywordtype">int</span>)num
 <a name="l00175"></a>00175 {
 <a name="l00176"></a>00176  <span class="keywordflow">if</span>(!<a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>) <span class="keywordflow">return</span>;
 <a name="l00177"></a>00177  
 <a name="l00178"></a>00178  <a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>-&gt;<a class="code" href="class_scope_g_u_i.html#a5684d32a27213eb586cb019242665500" title="Set the labelling of the scale on the x axis.">setScaleX</a>(scale, size, num);
 <a name="l00179"></a>00179 }
 <a name="l00180"></a>00180 
-<a name="l00181"></a>00181 - (void)setScaleX:(<a class="code" href="class_scope_g_u_i.html" title="This is a wrapper/controller for a platform dependent GUI object.">ScopeGUI</a>::Scales)scale withMarkSpacing:(<span class="keywordtype">double</span>)size usingLabelHop:(<span class="keywordtype">int</span>)num labellingFirst:(BOOL)flag
+<a name="l00181"></a>00181 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)setScaleX:(<a class="code" href="class_scope_g_u_i.html" title="This is a wrapper/controller for a platform dependent GUI object.">ScopeGUI</a>::Scales)scale withMarkSpacing:(<span class="keywordtype">double</span>)size usingLabelHop:(<span class="keywordtype">int</span>)num labellingFirst:(BOOL)flag
 <a name="l00182"></a>00182 {
 <a name="l00183"></a>00183  <span class="keywordflow">if</span>(!<a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>) <span class="keywordflow">return</span>;
 <a name="l00184"></a>00184  
@@ -225,28 +225,28 @@
 <a name="l00193"></a>00193 }
 <a name="l00194"></a>00194 
 <a name="l00195"></a>00195 
-<a name="l00196"></a>00196 - (void)setScaleY:(<a class="code" href="class_scope_g_u_i.html" title="This is a wrapper/controller for a platform dependent GUI object.">ScopeGUI</a>::Scales)scale
+<a name="l00196"></a>00196 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)setScaleY:(<a class="code" href="class_scope_g_u_i.html" title="This is a wrapper/controller for a platform dependent GUI object.">ScopeGUI</a>::Scales)scale
 <a name="l00197"></a>00197 {
 <a name="l00198"></a>00198  <span class="keywordflow">if</span>(!<a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>) <span class="keywordflow">return</span>;
 <a name="l00199"></a>00199  
 <a name="l00200"></a>00200  <a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>-&gt;<a class="code" href="class_scope_g_u_i.html#a667f76a2adcd41a53718140fa80a75b8" title="Set the labelling of the scale on the x axis.">setScaleY</a>(scale);
 <a name="l00201"></a>00201 }
 <a name="l00202"></a>00202 
-<a name="l00203"></a>00203 - (void)setScaleY:(<a class="code" href="class_scope_g_u_i.html" title="This is a wrapper/controller for a platform dependent GUI object.">ScopeGUI</a>::Scales)scale withMarkSpacing:(<span class="keywordtype">double</span>)size
+<a name="l00203"></a>00203 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)setScaleY:(<a class="code" href="class_scope_g_u_i.html" title="This is a wrapper/controller for a platform dependent GUI object.">ScopeGUI</a>::Scales)scale withMarkSpacing:(<span class="keywordtype">double</span>)size
 <a name="l00204"></a>00204 {
 <a name="l00205"></a>00205  <span class="keywordflow">if</span>(!<a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>) <span class="keywordflow">return</span>;
 <a name="l00206"></a>00206  
 <a name="l00207"></a>00207  <a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>-&gt;<a class="code" href="class_scope_g_u_i.html#a667f76a2adcd41a53718140fa80a75b8" title="Set the labelling of the scale on the x axis.">setScaleY</a>(scale, size);
 <a name="l00208"></a>00208 }
 <a name="l00209"></a>00209 
-<a name="l00210"></a>00210 - (void)setScaleY:(<a class="code" href="class_scope_g_u_i.html" title="This is a wrapper/controller for a platform dependent GUI object.">ScopeGUI</a>::Scales)scale withMarkSpacing:(<span class="keywordtype">double</span>)size usingLabelHop:(<span class="keywordtype">int</span>)num
+<a name="l00210"></a>00210 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)setScaleY:(<a class="code" href="class_scope_g_u_i.html" title="This is a wrapper/controller for a platform dependent GUI object.">ScopeGUI</a>::Scales)scale withMarkSpacing:(<span class="keywordtype">double</span>)size usingLabelHop:(<span class="keywordtype">int</span>)num
 <a name="l00211"></a>00211 {
 <a name="l00212"></a>00212  <span class="keywordflow">if</span>(!<a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>) <span class="keywordflow">return</span>;
 <a name="l00213"></a>00213  
 <a name="l00214"></a>00214  <a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>-&gt;<a class="code" href="class_scope_g_u_i.html#a667f76a2adcd41a53718140fa80a75b8" title="Set the labelling of the scale on the x axis.">setScaleY</a>(scale, size, num);
 <a name="l00215"></a>00215 }
 <a name="l00216"></a>00216 
-<a name="l00217"></a>00217 - (void)setScaleY:(<a class="code" href="class_scope_g_u_i.html" title="This is a wrapper/controller for a platform dependent GUI object.">ScopeGUI</a>::Scales)scale withMarkSpacing:(<span class="keywordtype">double</span>)size usingLabelHop:(<span class="keywordtype">int</span>)num toDecimalPlaces:(<span class="keywordtype">int</span>)places
+<a name="l00217"></a>00217 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)setScaleY:(<a class="code" href="class_scope_g_u_i.html" title="This is a wrapper/controller for a platform dependent GUI object.">ScopeGUI</a>::Scales)scale withMarkSpacing:(<span class="keywordtype">double</span>)size usingLabelHop:(<span class="keywordtype">int</span>)num toDecimalPlaces:(<span class="keywordtype">int</span>)places
 <a name="l00218"></a>00218 {
 <a name="l00219"></a>00219  <span class="keywordflow">if</span>(!<a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>) <span class="keywordflow">return</span>;
 <a name="l00220"></a>00220  
@@ -261,21 +261,21 @@
 <a name="l00229"></a>00229 }
 <a name="l00230"></a>00230 
 <a name="l00231"></a>00231 
-<a name="l00232"></a>00232 - (void) setAudioBuffer:(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>)buffer
+<a name="l00232"></a>00232 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>) setAudioBuffer:(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>)buffer
 <a name="l00233"></a>00233 {
 <a name="l00234"></a>00234  <span class="keywordflow">if</span>(!<a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>) <span class="keywordflow">return</span>;
 <a name="l00235"></a>00235  
 <a name="l00236"></a>00236  <a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>-&gt;<a class="code" href="class_scope_g_u_i.html#ac566d6d9924d6e20ba0f54fdbfe5bfd0">setAudioBuffer</a>(buffer);
 <a name="l00237"></a>00237 }
 <a name="l00238"></a>00238 
-<a name="l00239"></a>00239 - (void) setAudioBuffer:(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>)buffer withOffset:(<span class="keywordtype">double</span>)offset
+<a name="l00239"></a>00239 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>) setAudioBuffer:(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>)buffer withOffset:(<span class="keywordtype">double</span>)offset
 <a name="l00240"></a>00240 {
 <a name="l00241"></a>00241  <span class="keywordflow">if</span>(!<a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>) <span class="keywordflow">return</span>;
 <a name="l00242"></a>00242  
 <a name="l00243"></a>00243  <a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>-&gt;<a class="code" href="class_scope_g_u_i.html#ac566d6d9924d6e20ba0f54fdbfe5bfd0">setAudioBuffer</a>(buffer, offset);
 <a name="l00244"></a>00244 }
 <a name="l00245"></a>00245 
-<a name="l00246"></a>00246 - (void) setAudioBuffer:(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>)buffer withOffset:(<span class="keywordtype">double</span>)offset withFFT:(<span class="keywordtype">int</span>)size
+<a name="l00246"></a>00246 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>) setAudioBuffer:(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>)buffer withOffset:(<span class="keywordtype">double</span>)offset withFFT:(<span class="keywordtype">int</span>)size
 <a name="l00247"></a>00247 {
 <a name="l00248"></a>00248  <span class="keywordflow">if</span>(!<a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>) <span class="keywordflow">return</span>;
 <a name="l00249"></a>00249  
@@ -289,7 +289,7 @@
 <a name="l00257"></a>00257  <span class="keywordflow">return</span> <a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>-&gt;<a class="code" href="class_scope_g_u_i.html#a6ed921e07be109de328333ee2f6b8b1a">getAudioBuffer</a>();
 <a name="l00258"></a>00258 }
 <a name="l00259"></a>00259 
-<a name="l00260"></a>00260 - (void) setWrap:(<span class="keywordtype">double</span>)amount
+<a name="l00260"></a>00260 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>) setWrap:(<span class="keywordtype">double</span>)amount
 <a name="l00261"></a>00261 {
 <a name="l00262"></a>00262  <span class="keywordflow">if</span>(!<a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>) <span class="keywordflow">return</span>;
 <a name="l00263"></a>00263  
@@ -304,7 +304,7 @@
 <a name="l00272"></a>00272 }
 <a name="l00273"></a>00273 
 <a name="l00274"></a>00274 
-<a name="l00275"></a>00275 - (void)setSmoothing:(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>)smooth
+<a name="l00275"></a>00275 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)setSmoothing:(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>)smooth
 <a name="l00276"></a>00276 {
 <a name="l00277"></a>00277  <span class="keywordflow">if</span>(!<a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>) <span class="keywordflow">return</span>;
 <a name="l00278"></a>00278  
@@ -318,7 +318,7 @@
 <a name="l00286"></a>00286  <span class="keywordflow">return</span> <a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>-&gt;<a class="code" href="class_scope_g_u_i.html#a3104597b5ab6d8d6840b75bb64a32e1d">getSmoothing</a>();
 <a name="l00287"></a>00287 }
 <a name="l00288"></a>00288 
-<a name="l00289"></a>00289 - (void)setScopeColour:(<a class="code" href="class_scope_g_u_i.html" title="This is a wrapper/controller for a platform dependent GUI object.">ScopeGUI</a>::ScopeColours)which:(<a class="code" href="class_r_g_b_a_colour.html" title="A simple colour class.">RGBAColour</a>)colour
+<a name="l00289"></a>00289 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)setScopeColour:(<a class="code" href="class_scope_g_u_i.html" title="This is a wrapper/controller for a platform dependent GUI object.">ScopeGUI</a>::ScopeColours)which:(<a class="code" href="class_r_g_b_a_colour.html" title="A simple colour class.">RGBAColour</a>)colour
 <a name="l00290"></a>00290 {
 <a name="l00291"></a>00291  <span class="keywordflow">if</span>(!<a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>) <span class="keywordflow">return</span>;
 <a name="l00292"></a>00292  
@@ -332,21 +332,21 @@
 <a name="l00300"></a>00300  <span class="keywordflow">return</span> <a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>-&gt;<a class="code" href="class_scope_g_u_i.html#afc41325b932311a9e1ef25c2ade854cc">getScopeColour</a>(which);
 <a name="l00301"></a>00301 }
 <a name="l00302"></a>00302 
-<a name="l00303"></a>00303 - (void)setMarkXHeight:(<span class="keywordtype">int</span>)size
+<a name="l00303"></a>00303 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)setMarkXHeight:(<span class="keywordtype">int</span>)size
 <a name="l00304"></a>00304 {
 <a name="l00305"></a>00305  <span class="keywordflow">if</span>(!<a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>) <span class="keywordflow">return</span>;
 <a name="l00306"></a>00306  
 <a name="l00307"></a>00307  <a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>-&gt;<a class="code" href="class_scope_g_u_i.html#a9106d91ca094c746727f0713d545def2" title="Set the height of the marks on the X axis.">setMarkXHeight</a>(size);
 <a name="l00308"></a>00308 }
 <a name="l00309"></a>00309 
-<a name="l00310"></a>00310 - (void)setMarkYWidth:(<span class="keywordtype">int</span>)size
+<a name="l00310"></a>00310 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)setMarkYWidth:(<span class="keywordtype">int</span>)size
 <a name="l00311"></a>00311 {
 <a name="l00312"></a>00312  <span class="keywordflow">if</span>(!<a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>) <span class="keywordflow">return</span>;
 <a name="l00313"></a>00313  
 <a name="l00314"></a>00314  <a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>-&gt;<a class="code" href="class_scope_g_u_i.html#af39d428c2725b2cbd22d6d90c99f710e" title="Set the width of the marks on the Y axis.">setMarkYWidth</a>(size);
 <a name="l00315"></a>00315 }
 <a name="l00316"></a>00316 
-<a name="l00317"></a>00317 - (void)setMarkSizes:(<span class="keywordtype">int</span>)size
+<a name="l00317"></a>00317 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)setMarkSizes:(<span class="keywordtype">int</span>)size
 <a name="l00318"></a>00318 {
 <a name="l00319"></a>00319  <span class="keywordflow">if</span>(!<a class="code" href="interface_u_i_scope_view_base.html#a694514c327d2572df815244f8324104f">peer</a>) <span class="keywordflow">return</span>;
 <a name="l00320"></a>00320  
@@ -393,12 +393,12 @@
 <a name="l00361"></a>00361  <span class="keywordflow">return</span> (<a class="code" href="class_scope_view.html">ScopeView</a>*)peer;
 <a name="l00362"></a>00362 }
 <a name="l00363"></a>00363 
-<a name="l00364"></a>00364 -(void) dealloc
+<a name="l00364"></a>00364 -(<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>) dealloc
 <a name="l00365"></a>00365 {
 <a name="l00366"></a>00366  [<span class="keyword">super</span> dealloc];
 <a name="l00367"></a>00367 }
 <a name="l00368"></a>00368 
-<a name="l00369"></a>00369 - (void) drawRect: (CGRect) aRect
+<a name="l00369"></a>00369 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>) drawRect: (CGRect) aRect
 <a name="l00370"></a>00370 { 
 <a name="l00371"></a>00371  <span class="keywordflow">if</span>(<a class="code" href="interface_u_i_scope_view.html#afb13f5fbff9ffcc58d05441b66324579">peer</a>) <a class="code" href="interface_u_i_scope_view.html#afb13f5fbff9ffcc58d05441b66324579">peer</a>-&gt;<a class="code" href="class_scope_view.html#a497fccc41b6bbc98aa7c1f85ecc99e8c">paint</a>(aRect);
 <a name="l00372"></a>00372 }
@@ -428,12 +428,12 @@
 <a name="l00396"></a>00396  <span class="keywordflow">return</span> (<a class="code" href="class_radial_scope_view.html">RadialScopeView</a>*)peer;
 <a name="l00397"></a>00397 }
 <a name="l00398"></a>00398 
-<a name="l00399"></a>00399 -(void) dealloc
+<a name="l00399"></a>00399 -(<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>) dealloc
 <a name="l00400"></a>00400 {
 <a name="l00401"></a>00401  [<span class="keyword">super</span> dealloc];
 <a name="l00402"></a>00402 }
 <a name="l00403"></a>00403 
-<a name="l00404"></a>00404 - (void) drawRect: (CGRect) aRect
+<a name="l00404"></a>00404 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>) drawRect: (CGRect) aRect
 <a name="l00405"></a>00405 { 
 <a name="l00406"></a>00406  <span class="keywordflow">if</span>(<a class="code" href="interface_u_i_radial_scope_view.html#a480700f1fbd1e83ecba74f1407b30ed8">peer</a>) <a class="code" href="interface_u_i_radial_scope_view.html#a480700f1fbd1e83ecba74f1407b30ed8">peer</a>-&gt;<a class="code" href="class_radial_scope_view.html#aff499aa3c4536ce67d309ef2b68307d4">paint</a>(aRect);
 <a name="l00407"></a>00407 }
@@ -496,14 +496,14 @@
 <a name="l00464"></a>00464 
 <a name="l00465"></a>00465 <span class="keyword">static</span> <span class="keyword">const</span> CGAffineTransform flipTransform = CGAffineTransformMake(1.0,0.0,0.0,-1.0, 0.0,0.0);
 <a name="l00466"></a>00466 
-<a name="l00467"></a>00467 <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> floatToString(<span class="keywordtype">char</span>* <span class="keywordtype">string</span>, <span class="keyword">const</span> <span class="keywordtype">int</span> size, <span class="keyword">const</span> <span class="keywordtype">float</span> value, <span class="keyword">const</span> <span class="keywordtype">int</span> decimalPlaces)
+<a name="l00467"></a>00467 <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> floatToString(<span class="keywordtype">char</span>* <span class="keywordtype">string</span>, <span class="keyword">const</span> <span class="keywordtype">int</span> size, <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>, <span class="keyword">const</span> <span class="keywordtype">int</span> decimalPlaces)
 <a name="l00468"></a>00468 {
-<a name="l00469"></a>00469  snprintf(<span class="keywordtype">string</span>, size, <span class="stringliteral">&quot;%.*f&quot;</span>, decimalPlaces, value);
+<a name="l00469"></a>00469  <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(<span class="keywordtype">string</span>, size, <span class="stringliteral">&quot;%.*f&quot;</span>, decimalPlaces, value);
 <a name="l00470"></a>00470 }
 <a name="l00471"></a>00471 
 <a name="l00472"></a>00472 <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> timeToTimecodeString (<span class="keywordtype">char</span>* <span class="keywordtype">string</span>, <span class="keyword">const</span> <span class="keywordtype">int</span> size, <span class="keyword">const</span> <span class="keywordtype">double</span> seconds)
 <a name="l00473"></a>00473 {
-<a name="l00474"></a>00474     <span class="keyword">const</span> <span class="keywordtype">double</span> absSecs = fabs (seconds);
+<a name="l00474"></a>00474     <span class="keyword">const</span> <span class="keywordtype">double</span> absSecs = <a class="code" href="ugen___play_buf_8ii.html#a1354b6667fe971c1d7bf28dcef770265">fabs</a> (seconds);
 <a name="l00475"></a>00475     <span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keyword">const</span> <a class="code" href="ugen___inline_unary_ops_8h.html#a61e5145bbc7aa0f76c074b4e9e91e06b">sign</a> = (seconds &lt; 0) ? <span class="stringliteral">&quot;-&quot;</span> : <span class="stringliteral">&quot;&quot;</span>;
 <a name="l00476"></a>00476  
 <a name="l00477"></a>00477     <span class="keyword">const</span> <span class="keywordtype">int</span> hours = (int) (absSecs / (60.0 * 60.0));
@@ -515,16 +515,16 @@
 <a name="l00483"></a>00483  {
 <a name="l00484"></a>00484   <span class="keywordflow">if</span>(mins == 0)
 <a name="l00485"></a>00485   {
-<a name="l00486"></a>00486    snprintf(<span class="keywordtype">string</span>, size, <span class="stringliteral">&quot;%s%01d.%03d&quot;</span>, sign, secs, ms);
+<a name="l00486"></a>00486    <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(<span class="keywordtype">string</span>, size, <span class="stringliteral">&quot;%s%01d.%03d&quot;</span>, sign, secs, ms);
 <a name="l00487"></a>00487   }
 <a name="l00488"></a>00488   <span class="keywordflow">else</span>
 <a name="l00489"></a>00489   {
-<a name="l00490"></a>00490    snprintf(<span class="keywordtype">string</span>, size, <span class="stringliteral">&quot;%s%01d:%02d.%03d&quot;</span>, sign, mins, secs, ms);
+<a name="l00490"></a>00490    <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(<span class="keywordtype">string</span>, size, <span class="stringliteral">&quot;%s%01d:%02d.%03d&quot;</span>, sign, mins, secs, ms);
 <a name="l00491"></a>00491   }
 <a name="l00492"></a>00492  }
 <a name="l00493"></a>00493  <span class="keywordflow">else</span>
 <a name="l00494"></a>00494  {
-<a name="l00495"></a>00495   snprintf(<span class="keywordtype">string</span>, size, <span class="stringliteral">&quot;%s%01d:%02d:%02d.%03d&quot;</span>, sign, hours, mins, secs, ms);
+<a name="l00495"></a>00495   <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(<span class="keywordtype">string</span>, size, <span class="stringliteral">&quot;%s%01d:%02d:%02d.%03d&quot;</span>, sign, hours, mins, secs, ms);
 <a name="l00496"></a>00496  }
 <a name="l00497"></a>00497 }
 <a name="l00498"></a>00498 
@@ -532,11 +532,11 @@
 <a name="l00500"></a>00500 {
 <a name="l00501"></a>00501  <span class="keywordflow">if</span>(frequency &gt;= 1000.0)
 <a name="l00502"></a>00502  {
-<a name="l00503"></a>00503   snprintf(<span class="keywordtype">string</span>, size, <span class="stringliteral">&quot;%.2fkHz&quot;</span>, frequency * 0.001);
+<a name="l00503"></a>00503   <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(<span class="keywordtype">string</span>, size, <span class="stringliteral">&quot;%.2fkHz&quot;</span>, frequency * 0.001);
 <a name="l00504"></a>00504  }
 <a name="l00505"></a>00505  <span class="keywordflow">else</span>
 <a name="l00506"></a>00506  {
-<a name="l00507"></a>00507   snprintf(<span class="keywordtype">string</span>, size, <span class="stringliteral">&quot;%dHz&quot;</span>, (<span class="keywordtype">int</span>)(frequency + 0.5));
+<a name="l00507"></a>00507   <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(<span class="keywordtype">string</span>, size, <span class="stringliteral">&quot;%dHz&quot;</span>, (<span class="keywordtype">int</span>)(frequency + 0.5));
 <a name="l00508"></a>00508  }
 <a name="l00509"></a>00509 }
 <a name="l00510"></a>00510 
@@ -553,7 +553,7 @@
 <a name="l00521"></a>00521 
 <a name="l00522"></a>00522 <span class="keywordtype">void</span> <a class="code" href="class_scope_view.html#a497fccc41b6bbc98aa7c1f85ecc99e8c">ScopeView::paint</a>(CGRect <span class="keyword">const</span>&amp; rect) <span class="keywordflow">throw</span>()
 <a name="l00523"></a>00523 {
-<a name="l00524"></a>00524  CGContextRef context = UIGraphicsGetCurrentContext();
+<a name="l00524"></a>00524  CGContextRef <a class="code" href="ugen___play_buf_8ii.html#aacb71df172f4ba9ea0ca45c676747914">context</a> = UIGraphicsGetCurrentContext();
 <a name="l00525"></a>00525  CGContextClearRect(context, rect);
 <a name="l00526"></a>00526  
 <a name="l00527"></a>00527  CGContextSetFillColor(context, colours[Background].getFloatArray());
@@ -822,13 +822,13 @@
 <a name="l00790"></a>00790      }
 <a name="l00791"></a>00791      <span class="keywordflow">else</span>
 <a name="l00792"></a>00792      {
-<a name="l00793"></a>00793       snprintf(label, <span class="keyword">sizeof</span>(label), <span class="stringliteral">&quot;%d&quot;</span>, (<span class="keywordtype">int</span>)(audioIndex + offsetSamples + 0.5));
+<a name="l00793"></a>00793       <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(label, <span class="keyword">sizeof</span>(label), <span class="stringliteral">&quot;%d&quot;</span>, (<span class="keywordtype">int</span>)(audioIndex + offsetSamples + 0.5));
 <a name="l00794"></a>00794      }
 <a name="l00795"></a>00795      
 <a name="l00796"></a>00796      CGContextShowTextAtPoint(context, 
 <a name="l00797"></a>00797             x + labelOffsetX + 0.5f, 
 <a name="l00798"></a>00798             y - labelOffsetY + 0.5f, 
-<a name="l00799"></a>00799             label, strlen(label)); 
+<a name="l00799"></a>00799             label, <a class="code" href="ugen___play_buf_8ii.html#a219836f542ce53545052bed5353820ca">strlen</a>(label)); 
 <a name="l00800"></a>00800     }
 <a name="l00801"></a>00801    }
 <a name="l00802"></a>00802    <span class="keywordflow">else</span>
@@ -885,7 +885,7 @@
 <a name="l00853"></a>00853     {
 <a name="l00854"></a>00854      <span class="keywordtype">char</span> label[256];
 <a name="l00855"></a>00855      floatToString(label, <span class="keyword">sizeof</span>(label), sign * level, decimalPlaces);
-<a name="l00856"></a>00856      CGContextShowTextAtPoint(context, labelOffsetX + 0.5f, y + labelOffsetY + 0.5f, label, strlen(label)); 
+<a name="l00856"></a>00856      CGContextShowTextAtPoint(context, labelOffsetX + 0.5f, y + labelOffsetY + 0.5f, label, <a class="code" href="ugen___play_buf_8ii.html#a219836f542ce53545052bed5353820ca">strlen</a>(label)); 
 <a name="l00857"></a>00857     }
 <a name="l00858"></a>00858    }
 <a name="l00859"></a>00859    <span class="keywordflow">else</span>
@@ -900,7 +900,7 @@
 <a name="l00868"></a>00868  }
 <a name="l00869"></a>00869 }
 <a name="l00870"></a>00870 
-<a name="l00871"></a>00871 <span class="keywordtype">void</span> <a class="code" href="class_scope_view.html#a4f39340cf22c2b522087df1a3a46c776">ScopeView::paintChannelLabel</a>(CGRect <span class="keyword">const</span>&amp; rect, <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <span class="keyword">const</span>&amp; label, <span class="keyword">const</span> <span class="keywordtype">int</span> index, <span class="keyword">const</span> <span class="keywordtype">int</span> top) <span class="keywordflow">throw</span>()
+<a name="l00871"></a>00871 <span class="keywordtype">void</span> <a class="code" href="class_scope_view.html#a4f39340cf22c2b522087df1a3a46c776">ScopeView::paintChannelLabel</a>(CGRect <span class="keyword">const</span>&amp; rect, <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <span class="keyword">const</span>&amp; label, <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a>, <span class="keyword">const</span> <span class="keywordtype">int</span> top) <span class="keywordflow">throw</span>()
 <a name="l00872"></a>00872 {
 <a name="l00873"></a>00873  <span class="keywordflow">if</span>(labelChannels)
 <a name="l00874"></a>00874  {
@@ -911,11 +911,11 @@
 <a name="l00879"></a>00879   
 <a name="l00880"></a>00880   <span class="keywordflow">if</span>(label.length() == 0)
 <a name="l00881"></a>00881   {
-<a name="l00882"></a>00882    snprintf(labelToPaint, size, <span class="stringliteral">&quot;Ch%d&quot;</span>, index + channelLabelOffset);
+<a name="l00882"></a>00882    <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(labelToPaint, size, <span class="stringliteral">&quot;Ch%d&quot;</span>, <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a> + channelLabelOffset);
 <a name="l00883"></a>00883   }
 <a name="l00884"></a>00884   <span class="keywordflow">else</span>
 <a name="l00885"></a>00885   {
-<a name="l00886"></a>00886    snprintf(labelToPaint, size, (<span class="keyword">const</span> <span class="keywordtype">char</span>*)label, index + channelLabelOffset);
+<a name="l00886"></a>00886    <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(labelToPaint, size, (<span class="keyword">const</span> <span class="keywordtype">char</span>*)label, <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a> + channelLabelOffset);
 <a name="l00887"></a>00887   }
 <a name="l00888"></a>00888   
 <a name="l00889"></a>00889   CGContextSelectFont (context, <span class="stringliteral">&quot;Arial&quot;</span>, textSizeChannel, kCGEncodingMacRoman);
@@ -924,7 +924,7 @@
 <a name="l00892"></a>00892     
 <a name="l00893"></a>00893   <span class="comment">// measure the text</span>
 <a name="l00894"></a>00894   CGContextSetTextDrawingMode(context, kCGTextInvisible);
-<a name="l00895"></a>00895   CGContextShowTextAtPoint(context, 0, 0, labelToPaint, strlen(labelToPaint));
+<a name="l00895"></a>00895   CGContextShowTextAtPoint(context, 0, 0, labelToPaint, <a class="code" href="ugen___play_buf_8ii.html#a219836f542ce53545052bed5353820ca">strlen</a>(labelToPaint));
 <a name="l00896"></a>00896   CGPoint pt = CGContextGetTextPosition(context);
 <a name="l00897"></a>00897   CGContextSetTextDrawingMode(context, kCGTextFill);
 <a name="l00898"></a>00898   
@@ -932,7 +932,7 @@
 <a name="l00900"></a>00900   CGContextShowTextAtPoint(context, 
 <a name="l00901"></a>00901          getWidth() - pt.x - 3 + 0.5f,
 <a name="l00902"></a>00902          top + textSizeChannel + 2 + 0.5f, 
-<a name="l00903"></a>00903          labelToPaint, strlen(labelToPaint)); 
+<a name="l00903"></a>00903          labelToPaint, <a class="code" href="ugen___play_buf_8ii.html#a219836f542ce53545052bed5353820ca">strlen</a>(labelToPaint)); 
 <a name="l00904"></a>00904  } 
 <a name="l00905"></a>00905 }
 <a name="l00906"></a>00906 
@@ -1022,7 +1022,7 @@
 <a name="l00990"></a>00990    <span class="keywordtype">float</span> oldMaximum = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#acb0d2d9159eff0b1d0fe99ae10257de0" title="Global function for the UGen::clip2() binary operator.">clip2</a>(maxDrawBuffer.wrapAt(channel, 0 + wrapOffset), yMaximum) * halfChannelHeightOverYMaximum + 0.5f;
 <a name="l00991"></a>00991 
 <a name="l00992"></a>00992    
-<a name="l00993"></a>00993    <span class="keyword">const</span> <span class="keywordtype">double</span> delta = getDelta() * sine.<a class="code" href="class_u_gen.html#ac5c9c85267c0ad69f78063d9ace1b96c" title="Get the number of channels (i.e., number of internals).">size</a>();
+<a name="l00993"></a>00993    <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="ugen___play_buf_8ii.html#af12056bc2a8e3ec563f0940d87abbd2e">delta</a> = getDelta() * sine.size();
 <a name="l00994"></a>00994    <span class="keywordtype">double</span> position = delta;
 <a name="l00995"></a>00995    
 <a name="l00996"></a>00996    <span class="comment">// first scope line</span>
@@ -1162,17 +1162,17 @@
 <a name="l01130"></a>01130      }
 <a name="l01131"></a>01131      <span class="keywordflow">else</span>
 <a name="l01132"></a>01132      {
-<a name="l01133"></a>01133       snprintf(label, <span class="keyword">sizeof</span>(label), <span class="stringliteral">&quot;%d&quot;</span>, (<span class="keywordtype">int</span>)(audioIndex + offsetSamples + 0.5));
+<a name="l01133"></a>01133       <a class="code" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(label, <span class="keyword">sizeof</span>(label), <span class="stringliteral">&quot;%d&quot;</span>, (<span class="keywordtype">int</span>)(audioIndex + offsetSamples + 0.5));
 <a name="l01134"></a>01134      }
 <a name="l01135"></a>01135      
 <a name="l01136"></a>01136      <span class="keyword">const</span> <span class="keywordtype">double</span> rotation = <a class="code" href="ugen___constants_8h.html#ab0bf38bc19b14ba80f346e7b22ddec9f">piOverTwo</a>-angle;
 <a name="l01137"></a>01137      <span class="comment">//if(angle &gt; pi) rotation += pi;     </span>
-<a name="l01138"></a>01138      CGAffineTransform transform = CGAffineTransformRotate(flipTransform, rotation);
+<a name="l01138"></a>01138      CGAffineTransform <a class="code" href="namespacestd.html#a4a34c97cdb7d4be438709c80ad99d4d8">transform</a> = CGAffineTransformRotate(flipTransform, rotation);
 <a name="l01139"></a>01139      CGContextSetTextMatrix(context, transform);
 <a name="l01140"></a>01140      CGContextShowTextAtPoint(context, 
 <a name="l01141"></a>01141             centreX+endX*1.01, 
 <a name="l01142"></a>01142             centreY-endY*1.01, 
-<a name="l01143"></a>01143             label, strlen(label)); 
+<a name="l01143"></a>01143             label, <a class="code" href="ugen___play_buf_8ii.html#a219836f542ce53545052bed5353820ca">strlen</a>(label)); 
 <a name="l01144"></a>01144     }
 <a name="l01145"></a>01145    }
 <a name="l01146"></a>01146    <span class="keywordflow">else</span>
@@ -1243,7 +1243,7 @@
 <a name="l01211"></a>01211 <span class="comment"> */</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:31 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

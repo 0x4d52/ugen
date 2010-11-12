@@ -87,7 +87,7 @@
 <a name="l00056"></a><a class="code" href="class_scalar_base_u_gen_internal.html">00056</a> <span class="keyword">class </span><a class="code" href="class_scalar_base_u_gen_internal.html">ScalarBaseUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>
 <a name="l00057"></a>00057 { 
 <a name="l00058"></a>00058 <span class="keyword">public</span>:
-<a name="l00059"></a><a class="code" href="class_scalar_base_u_gen_internal.html#a6f3e1d6e1457fa02c6f7b48dd483a3ba">00059</a>  <a class="code" href="class_scalar_base_u_gen_internal.html#a6f3e1d6e1457fa02c6f7b48dd483a3ba">ScalarBaseUGenInternal</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> value) : <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(0), <a class="code" href="class_scalar_base_u_gen_internal.html#a86f2ef73de129af4e9a467c16296aec5">value_</a>(value) {     }
+<a name="l00059"></a><a class="code" href="class_scalar_base_u_gen_internal.html#a6f3e1d6e1457fa02c6f7b48dd483a3ba">00059</a>  <a class="code" href="class_scalar_base_u_gen_internal.html#a6f3e1d6e1457fa02c6f7b48dd483a3ba">ScalarBaseUGenInternal</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>) : <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(0), <a class="code" href="class_scalar_base_u_gen_internal.html#a86f2ef73de129af4e9a467c16296aec5">value_</a>(value) {     }
 <a name="l00060"></a><a class="code" href="class_scalar_base_u_gen_internal.html#a0b701aebd71393a67be26e5846a5b50d">00060</a>  <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_scalar_base_u_gen_internal.html#a0b701aebd71393a67be26e5846a5b50d">isScalar</a>() <span class="keyword">const</span> throw()          { <span class="keywordflow">return</span> <span class="keyword">true</span>;   }
 <a name="l00061"></a><a class="code" href="class_scalar_base_u_gen_internal.html#a5f171ed553aab88ce4570e96d23fe896">00061</a>  <span class="keywordtype">float</span> <a class="code" href="class_scalar_base_u_gen_internal.html#a5f171ed553aab88ce4570e96d23fe896">getValue</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*channel*/</span>) <span class="keyword">const</span> throw()       { <span class="keywordflow">return</span> <a class="code" href="class_scalar_base_u_gen_internal.html#a86f2ef73de129af4e9a467c16296aec5">value_</a>; }
 <a name="l00062"></a>00062 <span class="keyword">protected</span>:
@@ -115,7 +115,7 @@
 <a name="l00086"></a><a class="code" href="class_scalar_u_gen_internal.html">00086</a> class <a class="code" href="class_scalar_u_gen_internal.html">ScalarUGenInternal</a> : public <a class="code" href="class_scalar_base_u_gen_internal.html">ScalarBaseUGenInternal</a>
 <a name="l00087"></a>00087 {
 <a name="l00088"></a>00088 <span class="keyword">public</span>:
-<a name="l00089"></a>00089  <a class="code" href="class_scalar_u_gen_internal.html">ScalarUGenInternal</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> value) <span class="keywordflow">throw</span>();
+<a name="l00089"></a>00089  <a class="code" href="class_scalar_u_gen_internal.html">ScalarUGenInternal</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>) <span class="keywordflow">throw</span>();
 <a name="l00090"></a>00090  <span class="comment">//UGenInternal* getKr() throw();</span>
 <a name="l00091"></a>00091  <span class="keywordtype">void</span> <a class="code" href="class_null_u_gen_internal.html#a314df261c0def1879120757062001bdb" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
 <a name="l00092"></a><a class="code" href="class_scalar_u_gen_internal.html#af066eb329e86562071ab580df376cff6">00092</a>  <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_scalar_u_gen_internal.html#af066eb329e86562071ab580df376cff6">isConst</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> <span class="keyword">true</span>; }
@@ -199,7 +199,7 @@
 <a name="l00176"></a>00176 <span class="preprocessor">#endif // SCALARUGENS_H</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:36 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:28 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

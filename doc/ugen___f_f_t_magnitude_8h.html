@@ -59,18 +59,18 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment">@param input  The input signal to perform the FFT on, <span class="keyword">this</span> should be mono  \
+<b>Value:</b><div class="fragment"><pre class="fragment">@param input  The input <a class="code" href="ugen___play_buf_8ii.html#a6fc82cd60ac4b31003cf10983a4d5cde">signal</a> to perform the FFT on, <span class="keyword">this</span> should be mono  \
        @param fft   The <a class="code" href="class_f_f_t_engine.html">FFTEngine</a> to use. This can be just an <span class="keywordtype">int</span> which will be  \
             used to create an <a class="code" href="class_f_f_t_engine.html">FFTEngine</a> or you can pass in an existing  \
-            <a class="code" href="class_f_f_t_engine.html">FFTEngine</a> <span class="keywordtype">object</span>. The FFT size should be a power of 2   \
+            <a class="code" href="class_f_f_t_engine.html">FFTEngine</a> <span class="keywordtype">object</span>. The FFT size should be <a class="code" href="ugen___play_buf_8ii.html#acf981a770380ca98690ebca553cf9846">a</a> power of 2   \
             (<span class="keywordflow">if</span> not, it will be rounded up to the next power of 2).   \
        @param overlap  Overlap factor <span class="keywordflow">for</span> the FFT. E.g., <span class="keywordflow">if</span> overlap is 2 and FFT size \
             is 1024, an FFT will be performed every 512 samples. This  \
-            should be a small power of 2 (e.g., 1, 2, 4, 8, 16 etc).  \
-       @param firstBin  The first bin index to report, 0 is the DC bin and the bin at \
-            index equal to the FFT size is the Nyquist bin.     \
+            should be <a class="code" href="ugen___play_buf_8ii.html#acf981a770380ca98690ebca553cf9846">a</a> small power of 2 (e.g., 1, 2, 4, 8, 16 etc).  \
+       @param firstBin  The first bin <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a> to report, 0 is the DC bin and the bin at \
+            <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a> <a class="code" href="namespacestd.html#aa484b87d40ea743b0eb5d89993dc7c74">equal</a> to the FFT size is the Nyquist bin.     \
        @param numBins  The number of bins to report. The maximum <span class="keywordflow">if</span> firstBin is <a class="code" href="ugen___constants_8h.html#a554f7b66b1ba49443447eb746978c268">zero</a> \
-            is equal to one greater than half the FFT size (e.g., <span class="keywordflow">if</span> FFT \
+            is <a class="code" href="namespacestd.html#aa484b87d40ea743b0eb5d89993dc7c74">equal</a> to one greater than half the FFT size (e.g., <span class="keywordflow">if</span> FFT \
             size is 128 the maximum is 65 assuming firstBin is <a class="code" href="ugen___constants_8h.html#a554f7b66b1ba49443447eb746978c268">zero</a>).
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___f_f_t_magnitude_8h_source.html#l00073">73</a> of file <a class="el" href="ugen___f_f_t_magnitude_8h_source.html">ugen_FFTMagnitude.h</a>.</p>
@@ -78,7 +78,7 @@ Defines</h2></td></tr>
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:39 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:36 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

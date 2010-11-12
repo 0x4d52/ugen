@@ -55,9 +55,9 @@
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_proxy_owner_u_gen_internal.html#a6747eb82c6fa3e7eb11b4934be4eb161">getNumProxies</a> () const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_proxy_owner_u_gen_internal.html#a43e6fd05ba69f1ef135463c028e656cd">getNumChannels</a> () const   throw ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_proxy_owner_u_gen_internal.html#a64c2e538cec7a1c10ed9d3e770146dc8">getProxy</a> (const int index)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_proxy_owner_u_gen_internal.html#af2cd364e4725d92633dbfb5f698e03c8">getProxy</a> (const int index)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_proxy_owner_u_gen_internal.html#a2e2a3afa69961c43fb1da407703b70f8">prepareForBlockInternal</a> (const int actualBlockSize, const unsigned int blockID)  throw ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">float *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_proxy_owner_u_gen_internal.html#a90e1ba8307c771ad49f630880d82d7f9">processBlockInternal</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_proxy_owner_u_gen_internal.html#a5a1104836d5008ba5da4753e4872ab64">processBlockInternal</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Construction and destruction</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p><a class="anchor" id="amgrp12fdc16f3e4af87211fb0ef7cc443050"></a> </p>
 </div></td></tr>
@@ -74,7 +74,7 @@ Protected Attributes</h2></td></tr>
 <p>A <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> base which owns other "proxy" channels (i.e., <a class="el" href="class_proxy_u_gen_internal.html" title="A UGenInternal base is owned by a &quot;proxy owner&quot; (i.e., a ProxyOwnerUGenInternal object)...">ProxyUGenInternal</a> objects). </p>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_proxy_u_gen_internal.html" title="A UGenInternal base is owned by a &quot;proxy owner&quot; (i.e., a ProxyOwnerUGenInternal object)...">ProxyUGenInternal</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00248">248</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00247">247</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a65789823e66ccfcb6cf7b84262d43c15"></a><!-- doxytag: member="ProxyOwnerUGenInternal::ProxyOwnerUGenInternal" ref="a65789823e66ccfcb6cf7b84262d43c15" args="(const int numInputs, const int numProxies)" -->
 <div class="memitem">
@@ -101,8 +101,6 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00364">364</a> of file <a class="el" href="ugen___u_gen_internal_8cpp_source.html">ugen_UGenInternal.cpp</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="ab4cd9f4ded0cc6ce0bb5a1c10416d801"></a><!-- doxytag: member="ProxyOwnerUGenInternal::~ProxyOwnerUGenInternal" ref="ab4cd9f4ded0cc6ce0bb5a1c10416d801" args="()" -->
@@ -119,10 +117,6 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00378">378</a> of file <a class="el" href="ugen___u_gen_internal_8cpp_source.html">ugen_UGenInternal.cpp</a>.</p>
-
-<p>References <a class="el" href="ugen___u_gen_internal_8h_source.html#l00271">proxies</a>.</p>
 
 </div>
 </div>
@@ -142,11 +136,7 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="class_smart_pointer.html#acea9f749c0ab920d2833d4bb81f6eb9f">SmartPointer</a>.</p>
-
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00391">391</a> of file <a class="el" href="ugen___u_gen_internal_8cpp_source.html">ugen_UGenInternal.cpp</a>.</p>
-
-<p>References <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00398">deleteIfOnlyMutualReferencesRemain()</a>, and <a class="el" href="ugen___smart_pointer_8h_source.html#l00064">SmartPointer::refCount</a>.</p>
+<p>Reimplemented from <a class="el" href="class_smart_pointer.html#af98785b14188a5a26d51bce859bc49dc">SmartPointer</a>.</p>
 
 </div>
 </div>
@@ -165,11 +155,7 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00398">398</a> of file <a class="el" href="ugen___u_gen_internal_8cpp_source.html">ugen_UGenInternal.cpp</a>.</p>
-
-<p>References <a class="el" href="ugen___smart_pointer_8h_source.html#l00065">SmartPointer::active</a>, <a class="el" href="ugen___deleter_8cpp_source.html#l00052">Deleter::deleteInternal()</a>, <a class="el" href="ugen___u_gen_8h_source.html#l00989">UGen::getDeleter()</a>, <a class="el" href="ugen___smart_pointer_8h_source.html#l00059">SmartPointer::getRefCount()</a>, <a class="el" href="ugen___u_gen_internal_8h_source.html#l00270">numProxies_</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00271">proxies</a>.</p>
-
-<p>Referenced by <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00492">ProxyUGenInternal::decrementRefCount()</a>, and <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00391">decrementRefCount()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00391">ugen::ProxyOwnerUGenInternal::decrementRefCount()</a>.</p>
 
 </div>
 </div>
@@ -190,7 +176,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a1f641058be4a8696754a7ea57bd21801">UGenInternal</a>.</p>
 
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00264">264</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00263">263</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
 
 <p>Referenced by <a class="el" href="ugen___t_spawn_8cpp_source.html#l00108">TSpawnUGenInternal::processBlock()</a>, <a class="el" href="ugen___spawn_8cpp_source.html#l00119">SpawnUGenInternal::processBlock()</a>, <a class="el" href="ugen___spawn_8cpp_source.html#l00065">SpawnBaseUGenInternal::processBlock()</a>, <a class="el" href="ugen___neural_network_u_gen_8cpp_source.html#l00075">NeuralNetworkUGenUGenInternal::processBlock()</a>, <a class="el" href="ugen___delay_8cpp_source.html#l00858">TapInUGenInternal::processBlock()</a>, <a class="el" href="ugen___delay_8cpp_source.html#l00126">DelayNMultiUGenInternal::processBlock()</a>, <a class="el" href="ugen___x_fade_play_buf_8cpp_source.html#l00112">XFadeLoopPlayBufUGenInternal::processBlock()</a>, <a class="el" href="ugen___play_buf_8cpp_source.html#l00261">RecordBufUGenInternal::processBlock()</a>, <a class="el" href="ugen___play_buf_8cpp_source.html#l00193">BufferValuesUGenInternal::processBlock()</a>, <a class="el" href="ugen___play_buf_8cpp_source.html#l00078">PlayBufUGenInternal::processBlock()</a>, <a class="el" href="ugen___plug_8cpp_source.html#l00084">PlugUGenInternal::processBlock()</a>, <a class="el" href="ugen___mix_u_gen_8cpp_source.html#l00156">MixArrayUGenInternal::processBlock()</a>, <a class="el" href="ugen___chain_8cpp_source.html#l00098">BankBaseUGenInternal::processBlock()</a>, and <a class="el" href="ugen___chain_8cpp_source.html#l00059">ChainBaseUGenInternal::processBlock()</a>.</p>
 
@@ -211,16 +197,16 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00263">263</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00262">262</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a64c2e538cec7a1c10ed9d3e770146dc8"></a><!-- doxytag: member="ProxyOwnerUGenInternal::getProxy" ref="a64c2e538cec7a1c10ed9d3e770146dc8" args="(const int index)" -->
+<a class="anchor" id="af2cd364e4725d92633dbfb5f698e03c8"></a><!-- doxytag: member="ProxyOwnerUGenInternal::getProxy" ref="af2cd364e4725d92633dbfb5f698e03c8" args="(const int index)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_u_gen_internal.html">UGenInternal</a> * ProxyOwnerUGenInternal::getProxy </td>
+          <td class="memname"><a class="el" href="class_u_gen_internal.html">UGenInternal</a>* ProxyOwnerUGenInternal::getProxy </td>
           <td>(</td>
           <td class="paramtype">const int&nbsp;</td>
           <td class="paramname"> <em>index</em></td>
@@ -230,8 +216,6 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00416">416</a> of file <a class="el" href="ugen___u_gen_internal_8cpp_source.html">ugen_UGenInternal.cpp</a>.</p>
 
 <p>Referenced by <a class="el" href="ugen___delay_8cpp_source.html#l00723">DelayL::DelayL()</a>, and <a class="el" href="ugen___delay_8cpp_source.html#l00670">DelayN::DelayN()</a>.</p>
 
@@ -262,20 +246,16 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#aa0dd89af52ec18c7a0a73bb54f0ca736">UGenInternal</a>.</p>
-
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00429">429</a> of file <a class="el" href="ugen___u_gen_internal_8cpp_source.html">ugen_UGenInternal.cpp</a>.</p>
-
-<p>References <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00265">UGenInternal::prepareForBlockInternal()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#ab1d371db06f11a87c5b947e05eba0fa0">UGenInternal</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a90e1ba8307c771ad49f630880d82d7f9"></a><!-- doxytag: member="ProxyOwnerUGenInternal::processBlockInternal" ref="a90e1ba8307c771ad49f630880d82d7f9" args="(bool &amp;shouldDelete, const unsigned int blockID, const int channel)" -->
+<a class="anchor" id="a5a1104836d5008ba5da4753e4872ab64"></a><!-- doxytag: member="ProxyOwnerUGenInternal::processBlockInternal" ref="a5a1104836d5008ba5da4753e4872ab64" args="(bool &amp;shouldDelete, const unsigned int blockID, const int channel)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">float * ProxyOwnerUGenInternal::processBlockInternal </td>
+          <td class="memname">float* ProxyOwnerUGenInternal::processBlockInternal </td>
           <td>(</td>
           <td class="paramtype">bool &amp;&nbsp;</td>
           <td class="paramname"> <em>shouldDelete</em>, </td>
@@ -301,11 +281,7 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a288c2d7564bd78feec88a54e53dbf806">UGenInternal</a>.</p>
-
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00448">448</a> of file <a class="el" href="ugen___u_gen_internal_8cpp_source.html">ugen_UGenInternal.cpp</a>.</p>
-
-<p>References <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00236">UGenInternal::processBlockInternal()</a>.</p>
+<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a0a183b0bcb10f089a3db0b50cc51c7ab">UGenInternal</a>.</p>
 
 </div>
 </div>
@@ -321,9 +297,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00270">270</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00269">269</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00398">deleteIfOnlyMutualReferencesRemain()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00398">ugen::ProxyOwnerUGenInternal::deleteIfOnlyMutualReferencesRemain()</a>.</p>
 
 </div>
 </div>
@@ -338,18 +314,17 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00271">271</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___u_gen_internal_8h_source.html#l00270">270</a> of file <a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00398">deleteIfOnlyMutualReferencesRemain()</a>, <a class="el" href="ugen___t_spawn_8cpp_source.html#l00108">TSpawnUGenInternal::processBlock()</a>, <a class="el" href="ugen___spawn_8cpp_source.html#l00065">SpawnBaseUGenInternal::processBlock()</a>, <a class="el" href="ugen___neural_network_u_gen_8cpp_source.html#l00075">NeuralNetworkUGenUGenInternal::processBlock()</a>, <a class="el" href="ugen___f_f_t_magnitude_selection_8cpp_source.html#l00088">FFTMagnitudeSelectionUGenInternal::processBlock()</a>, <a class="el" href="ugen___f_f_t_magnitude_8cpp_source.html#l00092">FFTMagnitudeUGenInternal::processBlock()</a>, <a class="el" href="ugen___delay_8cpp_source.html#l00858">TapInUGenInternal::processBlock()</a>, <a class="el" href="ugen___delay_8cpp_source.html#l00126">DelayNMultiUGenInternal::processBlock()</a>, <a class="el" href="ugen___x_fade_play_buf_8cpp_source.html#l00112">XFadeLoopPlayBufUGenInternal::processBlock()</a>, <a class="el" href="ugen___play_buf_8cpp_source.html#l00261">RecordBufUGenInternal::processBlock()</a>, <a class="el" href="ugen___play_buf_8cpp_source.html#l00193">BufferValuesUGenInternal::processBlock()</a>, <a class="el" href="ugen___play_buf_8cpp_source.html#l00078">PlayBufUGenInternal::processBlock()</a>, <a class="el" href="ugen___plug_8cpp_source.html#l00084">PlugUGenInternal::processBlock()</a>, <a class="el" href="ugen___mix_u_gen_8cpp_source.html#l00156">MixArrayUGenInternal::processBlock()</a>, <a class="el" href="ugen___chain_8cpp_source.html#l00098">BankBaseUGenInternal::processBlock()</a>, <a class="el" href="ugen___chain_8cpp_source.html#l00059">ChainBaseUGenInternal::processBlock()</a>, <a class="el" href="ugen___data_recorder_8cpp_source.html#l00057">DataRecorderUGenInternal::processBlock()</a>, and <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00378">~ProxyOwnerUGenInternal()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00398">ugen::ProxyOwnerUGenInternal::deleteIfOnlyMutualReferencesRemain()</a>, <a class="el" href="ugen___t_spawn_8cpp_source.html#l00108">TSpawnUGenInternal::processBlock()</a>, <a class="el" href="ugen___spawn_8cpp_source.html#l00065">SpawnBaseUGenInternal::processBlock()</a>, <a class="el" href="ugen___neural_network_u_gen_8cpp_source.html#l00075">NeuralNetworkUGenUGenInternal::processBlock()</a>, <a class="el" href="ugen___f_f_t_magnitude_selection_8cpp_source.html#l00088">FFTMagnitudeSelectionUGenInternal::processBlock()</a>, <a class="el" href="ugen___f_f_t_magnitude_8cpp_source.html#l00092">FFTMagnitudeUGenInternal::processBlock()</a>, <a class="el" href="ugen___delay_8cpp_source.html#l00858">TapInUGenInternal::processBlock()</a>, <a class="el" href="ugen___delay_8cpp_source.html#l00126">DelayNMultiUGenInternal::processBlock()</a>, <a class="el" href="ugen___x_fade_play_buf_8cpp_source.html#l00112">XFadeLoopPlayBufUGenInternal::processBlock()</a>, <a class="el" href="ugen___play_buf_8cpp_source.html#l00261">RecordBufUGenInternal::processBlock()</a>, <a class="el" href="ugen___play_buf_8cpp_source.html#l00193">BufferValuesUGenInternal::processBlock()</a>, <a class="el" href="ugen___play_buf_8cpp_source.html#l00078">PlayBufUGenInternal::processBlock()</a>, <a class="el" href="ugen___plug_8cpp_source.html#l00084">PlugUGenInternal::processBlock()</a>, <a class="el" href="ugen___mix_u_gen_8cpp_source.html#l00156">MixArrayUGenInternal::processBlock()</a>, <a class="el" href="ugen___chain_8cpp_source.html#l00098">BankBaseUGenInternal::processBlock()</a>, <a class="el" href="ugen___chain_8cpp_source.html#l00059">ChainBaseUGenInternal::processBlock()</a>, <a class="el" href="ugen___data_recorder_8cpp_source.html#l00057">DataRecorderUGenInternal::processBlock()</a>, and <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00378">ugen::ProxyOwnerUGenInternal::~ProxyOwnerUGenInternal()</a>.</p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>core/<a class="el" href="ugen___u_gen_internal_8h_source.html">ugen_UGenInternal.h</a></li>
-<li>core/<a class="el" href="ugen___u_gen_internal_8cpp_source.html">ugen_UGenInternal.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:43 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:44 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

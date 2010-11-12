@@ -33,7 +33,7 @@
 <p>This tutorial introduces UGen++'s concept of event-based <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> classes.</p>
 <p>An event class is a class which can generate new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> graph events and connect them to the running audio engine. The new <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> graph events might be generated according to time (e.g., a new event every second) or according to a trigger (e.g., a signal exceeding a threshold, or a button click on a GUI). The idea is closely developed around SuperCollider 2's 'Spawn' and in fact one of the event-based <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> classes is <a class="el" href="class_spawn.html" title="Spawn creates new events at timed intervals in a sample-accurate fashion.">Spawn</a> in UGen++. Each event-based <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> has a corresponding event class which is used to generate events for that event-based <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a>. There is also a generic event class which can be used with most of the event-based <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> classes although this limits the possibilities.</p>
 <p>This tutorial uses the generic event class to illustrate some of the operations which are possible using event-based <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> classes. Later tutorials show more complex systems, some of which illustrate the benefits of using the dedicated event class for the event-based <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> in question.</p>
-<p>(As with some of the previous introductory tutorials the examples here can be used with the iPhone example project. Simply replace the entire <code>Factory</code> class at the top of the <code><a class="el" href="main_8mm.html">main.mm</a></code> file.)</p>
+<p>(As with some of the previous introductory tutorials the examples here can be used with the iPhone example project. Simply replace the entire <code>Factory</code> class at the top of the <code>main.mm</code> file.)</p>
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef _MAINCOMPONENT_H_</span>
 <a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define _MAINCOMPONENT_H_</span>
 <a name="l00003"></a>00003 <span class="preprocessor"></span>
@@ -44,7 +44,7 @@
 <a name="l00008"></a>00008 <span class="keyword">class </span>Factory : <span class="keyword">public</span> <a class="code" href="class_generic_event_base.html" title="A generic event class with an owner.">GenericEventDefault</a>
 <a name="l00009"></a>00009 {
 <a name="l00010"></a>00010 <span class="keyword">public</span>:
-<a name="l00011"></a>00011  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> createEvent(<span class="keyword">const</span> <span class="keywordtype">int</span> count)
+<a name="l00011"></a>00011  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> createEvent(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="namespacestd.html#a81511cd7112567fa262b05bb22e69874">count</a>)
 <a name="l00012"></a>00012  {
 <a name="l00013"></a>00013   <span class="comment">// random frequency</span>
 <a name="l00014"></a>00014   <span class="keywordflow">return</span> <a class="code" href="class_sin_osc.html#a76c3d2fcbcfad830654e0a1ee5c296fd" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(<a class="code" href="ugen___random_8h.html#aafa7937ba4a245e09e5a2e98ca22f58f">exprand</a>(100, 1000), 0, 0.2);
@@ -77,7 +77,7 @@
 <div class="fragment"><pre class="fragment"> <span class="keyword">class </span>Factory : <span class="keyword">public</span> <a class="code" href="class_generic_event_base.html" title="A generic event class with an owner.">GenericEventDefault</a>
  {
  <span class="keyword">public</span>:
-  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> createEvent(<span class="keyword">const</span> <span class="keywordtype">int</span> count)
+  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> createEvent(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="namespacestd.html#a81511cd7112567fa262b05bb22e69874">count</a>)
   {
    <span class="comment">// random frequency</span>
    <span class="keywordflow">return</span> <a class="code" href="class_sin_osc.html#a76c3d2fcbcfad830654e0a1ee5c296fd" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(<a class="code" href="ugen___random_8h.html#aafa7937ba4a245e09e5a2e98ca22f58f">exprand</a>(100, 1000), 0, 0.2);
@@ -97,7 +97,7 @@
 <div class="fragment"><pre class="fragment"> <span class="keyword">class </span>Factory : <span class="keyword">public</span> <a class="code" href="class_generic_event_base.html" title="A generic event class with an owner.">GenericEventDefault</a>
  {
  <span class="keyword">public</span>:
-  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> createEvent(<span class="keyword">const</span> <span class="keywordtype">int</span> count)
+  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> createEvent(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="namespacestd.html#a81511cd7112567fa262b05bb22e69874">count</a>)
   {
    <span class="keywordflow">return</span> <a class="code" href="class_sin_osc.html#a76c3d2fcbcfad830654e0a1ee5c296fd" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(<a class="code" href="ugen___random_8h.html#aafa7937ba4a245e09e5a2e98ca22f58f">exprand</a>(100, 1000), 0, 0.2);
   }
@@ -115,7 +115,7 @@
 <div class="fragment"><pre class="fragment"> <span class="keyword">class </span>Factory : <span class="keyword">public</span> <a class="code" href="class_generic_event_base.html" title="A generic event class with an owner.">GenericEventDefault</a>
  {
  <span class="keyword">public</span>:
-  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> createEvent(<span class="keyword">const</span> <span class="keywordtype">int</span> count)
+  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> createEvent(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="namespacestd.html#a81511cd7112567fa262b05bb22e69874">count</a>)
   {
    <span class="keywordflow">return</span> <a class="code" href="class_sin_osc.html#a76c3d2fcbcfad830654e0a1ee5c296fd" title="Construct and return an audio rate SinOsc adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations as...">SinOsc::AR</a>(<a class="code" href="ugen___random_8h.html#aafa7937ba4a245e09e5a2e98ca22f58f">exprand</a>(100, 1000), 0, 0.2);
   }
@@ -130,7 +130,7 @@
  };
 </pre></div><p>prev: <a class="el" href="_tutorials_01.html">Tutorials 01: Fundamentals</a> </p>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:39 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:37 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

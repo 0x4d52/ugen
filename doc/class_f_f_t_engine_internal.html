@@ -57,11 +57,11 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_engine_internal.html#a17ce5c2f923d70dfb1a6df7164c560d0">setFFTWindow</a> (<a class="el" href="class_buffer.html">Buffer</a> const &amp;window)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_engine_internal.html#a025af96447548781a489729de475d7b7">setIFFTWindow</a> (<a class="el" href="class_buffer.html">Buffer</a> const &amp;window)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_engine_internal.html#a3d7b411ad7369239afea9ecc902bc1c5">fft</a> (<a class="el" href="class_buffer.html">Buffer</a> const &amp;outputBuffer, <a class="el" href="class_buffer.html">Buffer</a> const &amp;inputBuffer, const bool applyWindow=false, const int outputChannel=0, const int inputChannel=0)  throw ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_engine_internal.html#a96647eb4fa2ce97f20b82800c5b1cebf">fft</a> (DSPSplitComplex &amp;outputBuffer, const float *const inputBuffer)  throw ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_engine_internal.html#a18cd48641f2a96ace5b750cdffd7a439">fft</a> (DSPSplitComplex &amp;outputBuffer, const float *const inputBuffer, const bool applyWindow)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_engine_internal.html#a96647eb4fa2ce97f20b82800c5b1cebf">fft</a> (<a class="el" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a> &amp;outputBuffer, const float *const inputBuffer)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_engine_internal.html#a18cd48641f2a96ace5b750cdffd7a439">fft</a> (<a class="el" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a> &amp;outputBuffer, const float *const inputBuffer, const bool applyWindow)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_engine_internal.html#a82706f43d792ca37a9bec251304b6971">ifft</a> (<a class="el" href="class_buffer.html">Buffer</a> const &amp;outputBuffer, <a class="el" href="class_buffer.html">Buffer</a> const &amp;inputBuffer, const bool applyWindow=false, const bool applyScaling=false, const int outputChannel=0, const int inputChannel=0)  throw ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_engine_internal.html#a4cc97b2706d473d4142963dc058fdd54">ifft</a> (float *const outputBuffer, DSPSplitComplex const &amp;inputBuffer)  throw ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_engine_internal.html#ad2b6f224c03f37d7ab3b5fc7d0619716">ifft</a> (float *const outputBuffer, DSPSplitComplex const &amp;inputBuffer, const bool applyWindow, const bool applyScaling)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_engine_internal.html#a4cc97b2706d473d4142963dc058fdd54">ifft</a> (float *const outputBuffer, <a class="el" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a> const &amp;inputBuffer)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_engine_internal.html#ad2b6f224c03f37d7ab3b5fc7d0619716">ifft</a> (float *const outputBuffer, <a class="el" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a> const &amp;inputBuffer, const bool applyWindow, const bool applyScaling)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_buffer.html">Buffer</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_engine_internal.html#a894e0c3f9bcb01db255aa1ec69336401">rawToRealImagRawSplit</a> (<a class="el" href="class_buffer.html">Buffer</a> const &amp;raw)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_buffer.html">Buffer</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_engine_internal.html#aee20fbed38ae09ea757fb00cc160fb54">rawToRealImagUnpacked</a> (<a class="el" href="class_buffer.html">Buffer</a> const &amp;raw)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_buffer.html">Buffer</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_engine_internal.html#a55f7558506b90a307d947ae4fae2cfb1">rawToRealImagUnpacked</a> (<a class="el" href="class_buffer.html">Buffer</a> const &amp;raw, const int firstBin, const int numBins)  throw ()</td></tr>
@@ -80,7 +80,7 @@ Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_engine_internal.html#ad75ae09068c2cdce9db7c250f66c7d5d">ifftScaling</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_buffer.html">Buffer</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_engine_internal.html#a82024a151ca73df4fa178771e394e5cd">transformBuffer</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float *const&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_engine_internal.html#abc1ff690fba933f78b7abb0057f8081c">transformBufferSamples</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">DSPSplitComplex&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_engine_internal.html#a9b5e484a25aba46c7c9ee393b4038c9a">transformBufferSplit</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_engine_internal.html#a9b5e484a25aba46c7c9ee393b4038c9a">transformBufferSplit</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_buffer.html">Buffer</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_engine_internal.html#a71ad7491d6d959b48f8f819aabe98b57">fftWindow</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_buffer.html">Buffer</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_engine_internal.html#ae3df9cee96ab24ea0663d3cf22af4fe0">ifftWindow</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_f_t_engine_internal.html#a67e7e846c266dd447533496b73bf2937">fftWindowSamples</a></td></tr>
@@ -114,7 +114,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00048">48</a> of file <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html">ugen_FFTEngineInternal.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
 </div>
 </div>
@@ -166,7 +166,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void FFTEngineInternal::fft </td>
           <td>(</td>
-          <td class="paramtype">DSPSplitComplex &amp;&nbsp;</td>
+          <td class="paramtype"><a class="el" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a> &amp;&nbsp;</td>
           <td class="paramname"> <em>outputBuffer</em>, </td>
         </tr>
         <tr>
@@ -186,7 +186,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00232">232</a> of file <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html">ugen_FFTEngineInternal.h</a>.</p>
 
-<p>References <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00337">fftReal</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00345">fftSizeBytes</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00344">fftSizeHalved</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00346">fftSizeHalvedBytes</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00350">transformBufferSamples</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00351">transformBufferSplit</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___play_buf_8ii_source.html#l81914">FFT_FORWARD</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00337">fftReal</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00345">fftSizeBytes</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00344">fftSizeHalved</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00346">fftSizeHalvedBytes</a>, <a class="el" href="ugen___play_buf_8ii_source.html#l78378">DSPSplitComplex::imagp</a>, <a class="el" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy()</a>, <a class="el" href="ugen___play_buf_8ii_source.html#l78377">DSPSplitComplex::realp</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00350">transformBufferSamples</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00351">transformBufferSplit</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
 </div>
 </div>
@@ -197,7 +197,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void FFTEngineInternal::fft </td>
           <td>(</td>
-          <td class="paramtype">DSPSplitComplex &amp;&nbsp;</td>
+          <td class="paramtype"><a class="el" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a> &amp;&nbsp;</td>
           <td class="paramname"> <em>outputBuffer</em>, </td>
         </tr>
         <tr>
@@ -269,6 +269,8 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 
 <p>Definition at line <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00110">110</a> of file <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html">ugen_FFTEngineInternal.cpp</a>.</p>
+
+<p>References <a class="el" href="ugen___play_buf_8ii_source.html#l78378">DSPSplitComplex::imagp</a>, <a class="el" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf()</a>, and <a class="el" href="ugen___play_buf_8ii_source.html#l78377">DSPSplitComplex::realp</a>.</p>
 
 </div>
 </div>
@@ -365,6 +367,8 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00148">148</a> of file <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html">ugen_FFTEngineInternal.cpp</a>.</p>
 
+<p>References <a class="el" href="ugen___play_buf_8ii_source.html#l78378">DSPSplitComplex::imagp</a>, and <a class="el" href="ugen___play_buf_8ii_source.html#l78377">DSPSplitComplex::realp</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a4cc97b2706d473d4142963dc058fdd54"></a><!-- doxytag: member="FFTEngineInternal::ifft" ref="a4cc97b2706d473d4142963dc058fdd54" args="(float *const outputBuffer, DSPSplitComplex const &amp;inputBuffer)" -->
@@ -380,7 +384,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">DSPSplitComplex const &amp;&nbsp;</td>
+          <td class="paramtype"><a class="el" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a> const &amp;&nbsp;</td>
           <td class="paramname"> <em>inputBuffer</em></td><td>&nbsp;</td>
         </tr>
         <tr>
@@ -394,7 +398,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00273">273</a> of file <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html">ugen_FFTEngineInternal.h</a>.</p>
 
-<p>References <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00337">fftReal</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00345">fftSizeBytes</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00344">fftSizeHalved</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00346">fftSizeHalvedBytes</a>, <a class="el" href="ugen___standard_header_8h_source.html#l00078">LOCAL_DECLARE</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00350">transformBufferSamples</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00351">transformBufferSplit</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___play_buf_8ii_source.html#l81915">FFT_INVERSE</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00337">fftReal</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00345">fftSizeBytes</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00344">fftSizeHalved</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00346">fftSizeHalvedBytes</a>, <a class="el" href="ugen___standard_header_8h_source.html#l00078">LOCAL_DECLARE</a>, <a class="el" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy()</a>, <a class="el" href="ugen___play_buf_8ii_source.html#l78377">DSPSplitComplex::realp</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00350">transformBufferSamples</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00351">transformBufferSplit</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
 </div>
 </div>
@@ -411,7 +415,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">DSPSplitComplex const &amp;&nbsp;</td>
+          <td class="paramtype"><a class="el" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a> const &amp;&nbsp;</td>
           <td class="paramname"> <em>inputBuffer</em>, </td>
         </tr>
         <tr>
@@ -478,7 +482,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00350">350</a> of file <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html">ugen_FFTEngineInternal.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l01707">Buffer::getRegion()</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00096">hypot()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l01734">Buffer::getRegion()</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00096">hypot()</a>, <a class="el" href="ugen___play_buf_8ii_source.html#l89440">std::imag()</a>, <a class="el" href="ugen___play_buf_8ii_source.html#l89430">std::real()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
 </div>
 </div>
@@ -521,7 +525,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00275">275</a> of file <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html">ugen_FFTEngineInternal.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00097">atan2()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01707">Buffer::getRegion()</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00096">hypot()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00097">atan2()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01734">Buffer::getRegion()</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00096">hypot()</a>, <a class="el" href="ugen___play_buf_8ii_source.html#l89440">std::imag()</a>, <a class="el" href="ugen___play_buf_8ii_source.html#l89430">std::real()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
 </div>
 </div>
@@ -564,7 +568,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00309">309</a> of file <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html">ugen_FFTEngineInternal.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00097">atan2()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01693">Buffer::getChannel()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01707">Buffer::getRegion()</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00096">hypot()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00097">atan2()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01720">Buffer::getChannel()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01734">Buffer::getRegion()</a>, <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00096">hypot()</a>, <a class="el" href="ugen___play_buf_8ii_source.html#l89440">std::imag()</a>, <a class="el" href="ugen___play_buf_8ii_source.html#l89430">std::real()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
 </div>
 </div>
@@ -601,7 +605,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00378">378</a> of file <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html">ugen_FFTEngineInternal.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00097">atan2()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01707">Buffer::getRegion()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___binary_op_u_gens_8cpp_source.html#l00097">atan2()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01734">Buffer::getRegion()</a>, <a class="el" href="ugen___play_buf_8ii_source.html#l89440">std::imag()</a>, <a class="el" href="ugen___play_buf_8ii_source.html#l89430">std::real()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
 </div>
 </div>
@@ -623,7 +627,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00203">203</a> of file <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html">ugen_FFTEngineInternal.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l01707">Buffer::getRegion()</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l01734">Buffer::getRegion()</a>.</p>
 
 </div>
 </div>
@@ -660,7 +664,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00233">233</a> of file <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html">ugen_FFTEngineInternal.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l01707">Buffer::getRegion()</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l01734">Buffer::getRegion()</a>.</p>
 
 </div>
 </div>
@@ -682,7 +686,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00221">221</a> of file <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html">ugen_FFTEngineInternal.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l01707">Buffer::getRegion()</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8cpp_source.html#l01734">Buffer::getRegion()</a>.</p>
 
 </div>
 </div>
@@ -719,7 +723,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html#l00253">253</a> of file <a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html">ugen_FFTEngineInternal.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___standard_header_8h_source.html#l00061">B</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01707">Buffer::getRegion()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
+<p>References <a class="el" href="ugen___standard_header_8h_source.html#l00061">B</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l01734">Buffer::getRegion()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00249">ugen_assert</a>.</p>
 
 </div>
 </div>
@@ -741,7 +745,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00213">213</a> of file <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html">ugen_FFTEngineInternal.h</a>.</p>
 
-<p>References <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00353">fftWindow</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00356">fftWindowFactor</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00354">fftWindowSamples</a>, <a class="el" href="ugen___buffer_8h_source.html#l00336">Buffer::getData()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02155">Buffer::resample()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l01780">Buffer::sum()</a>.</p>
+<p>References <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00353">fftWindow</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00356">fftWindowFactor</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00354">fftWindowSamples</a>, <a class="el" href="ugen___buffer_8h_source.html#l00369">Buffer::getData()</a>, <a class="el" href="ugen___buffer_8cpp_source.html#l02182">Buffer::resample()</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l01807">Buffer::sum()</a>.</p>
 
 </div>
 </div>
@@ -763,7 +767,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00220">220</a> of file <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html">ugen_FFTEngineInternal.h</a>.</p>
 
-<p>References <a class="el" href="ugen___buffer_8h_source.html#l00336">Buffer::getData()</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00353">ifftWindow</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00355">ifftWindowSamples</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l02155">Buffer::resample()</a>.</p>
+<p>References <a class="el" href="ugen___buffer_8h_source.html#l00369">Buffer::getData()</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00353">ifftWindow</a>, <a class="el" href="ugen___f_f_t_engine_internal_8h_source.html#l00355">ifftWindowSamples</a>, and <a class="el" href="ugen___buffer_8cpp_source.html#l02182">Buffer::resample()</a>.</p>
 
 </div>
 </div>
@@ -1007,7 +1011,7 @@ Private Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">DSPSplitComplex <a class="el" href="class_f_f_t_engine_internal.html#a9b5e484a25aba46c7c9ee393b4038c9a">FFTEngineInternal::transformBufferSplit</a><code> [private]</code></td>
+          <td class="memname"><a class="el" href="struct_d_s_p_split_complex.html">DSPSplitComplex</a> <a class="el" href="class_f_f_t_engine_internal.html#a9b5e484a25aba46c7c9ee393b4038c9a">FFTEngineInternal::transformBufferSplit</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1054,7 +1058,7 @@ Private Attributes</h2></td></tr>
 <li>fft/<a class="el" href="ugen___f_f_t_engine_internal_8cpp_source.html">ugen_FFTEngineInternal.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:42 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:41 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

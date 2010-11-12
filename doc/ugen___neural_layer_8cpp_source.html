@@ -127,7 +127,7 @@
 <a name="l00095"></a>00095 
 <a name="l00096"></a><a class="code" href="class_neural_layer_simple_internal.html#ade1b08c1fd3e1315b017b01d5d35dc2b">00096</a> <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a>&amp; <a class="code" href="class_neural_layer_simple_internal.html#ade1b08c1fd3e1315b017b01d5d35dc2b">NeuralLayerSimpleInternal::propogate</a>(<a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a> <span class="keyword">const</span>&amp; _inputVector) <span class="keywordflow">throw</span>()
 <a name="l00097"></a>00097 {
-<a name="l00098"></a>00098  memcpy(inputVector.getArray(), _inputVector.getArray(), inputVector.size() * <span class="keyword">sizeof</span>(float));
+<a name="l00098"></a>00098  <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(inputVector.getArray(), _inputVector.getArray(), inputVector.size() * <span class="keyword">sizeof</span>(float));
 <a name="l00099"></a>00099  
 <a name="l00100"></a>00100  <span class="keywordtype">float</span>* outputVectorPtr = outputVector.getArray();
 <a name="l00101"></a>00101  
@@ -143,7 +143,7 @@
 <a name="l00111"></a>00111 
 <a name="l00112"></a><a class="code" href="class_neural_layer_simple_internal.html#aa2f7f26f9e74ab90e11205b73ab6a947">00112</a> <a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a>&amp; <a class="code" href="class_neural_layer_simple_internal.html#aa2f7f26f9e74ab90e11205b73ab6a947">NeuralLayerSimpleInternal::backProp</a>(<a class="code" href="class_numerical_array.html">NumericalArray&lt;float&gt;</a>&amp; errorVector, <span class="keyword">const</span> <span class="keywordtype">float</span> actFuncOffset, <span class="keyword">const</span> <span class="keywordtype">float</span> learnRate) <span class="keywordflow">throw</span>()
 <a name="l00113"></a>00113 {
-<a name="l00114"></a>00114  memset(adjustVector.getArray(), 0, adjustVector.size() * <span class="keyword">sizeof</span>(float));
+<a name="l00114"></a>00114  <a class="code" href="ugen___play_buf_8ii.html#a68d2b40ef2213b9227a1ce3b81997ae5">memset</a>(adjustVector.getArray(), 0, adjustVector.size() * <span class="keyword">sizeof</span>(float));
 <a name="l00115"></a>00115  
 <a name="l00116"></a>00116  <span class="keywordtype">float</span>* errorVectorPtr = errorVector.getArray();
 <a name="l00117"></a>00117  
@@ -161,7 +161,7 @@
 <a name="l00129"></a>00129 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:38 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:31 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -85,21 +85,21 @@
 <a name="l00053"></a>00053 <span class="keyword">@public</span>
 <a name="l00054"></a>00054  <a class="code" href="class_u_i_acceleration_singleton.html" title="This listens to the global accelerometer.">UIAccelerationSingleton</a>* owner_;
 <a name="l00055"></a>00055 }
-<a name="l00056"></a>00056 - (void)setOwner: (<a class="code" href="class_u_i_acceleration_singleton.html" title="This listens to the global accelerometer.">UIAccelerationSingleton</a>*) owner;
-<a name="l00057"></a>00057 - (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration;
+<a name="l00056"></a>00056 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)setOwner: (<a class="code" href="class_u_i_acceleration_singleton.html" title="This listens to the global accelerometer.">UIAccelerationSingleton</a>*) owner;
+<a name="l00057"></a>00057 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration;
 <a name="l00058"></a>00058 <span class="keyword">@end</span>
 <a name="l00059"></a>00059 
 <a name="l00060"></a>00060 
 <a name="l00061"></a>00061 <span class="keyword">@implementation </span>UIAccelerationSingletonPeer
-<a name="l00062"></a>00062 - (void) setOwner: (<a class="code" href="class_u_i_acceleration_singleton.html" title="This listens to the global accelerometer.">UIAccelerationSingleton</a>*) owner
+<a name="l00062"></a>00062 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>) setOwner: (<a class="code" href="class_u_i_acceleration_singleton.html" title="This listens to the global accelerometer.">UIAccelerationSingleton</a>*) owner
 <a name="l00063"></a>00063 {
 <a name="l00064"></a>00064  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(owner != 0);
 <a name="l00065"></a>00065  owner_ = owner;
 <a name="l00066"></a>00066 }
 <a name="l00067"></a>00067 
-<a name="l00068"></a>00068 - (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
+<a name="l00068"></a>00068 - (<a class="code" href="ugen___play_buf_8ii.html#a36b35b943f310ad73b5e870cce5f720c">void</a>)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
 <a name="l00069"></a>00069 {
-<a name="l00070"></a>00070  owner_-&gt;<a class="code" href="class_u_i_acceleration_singleton.html#a77824a4a9f5693c081384d36cda505fb">set</a>([acceleration x], [acceleration y], [acceleration z]);
+<a name="l00070"></a>00070  owner_-&gt;set([acceleration x], [acceleration y], [acceleration z]);
 <a name="l00071"></a>00071 }
 <a name="l00072"></a>00072 <span class="keyword">@end</span>
 <a name="l00073"></a>00073 
@@ -119,7 +119,7 @@
 <a name="l00087"></a>00087  
 <a name="l00088"></a>00088  accel.updateInterval = 1024.0 / 44100.0;
 <a name="l00089"></a>00089  
-<a name="l00090"></a>00090  printf(<span class="stringliteral">&quot;UIAccelerometer update interval = %f\n&quot;</span>, [accel updateInterval]);
+<a name="l00090"></a>00090  <a class="code" href="ugen___play_buf_8ii.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="stringliteral">&quot;UIAccelerometer update interval = %f\n&quot;</span>, [accel updateInterval]);
 <a name="l00091"></a>00091  
 <a name="l00092"></a>00092  voidPeer = (<span class="keywordtype">void</span>*)peer;
 <a name="l00093"></a>00093 }
@@ -283,7 +283,7 @@
 <a name="l00251"></a>00251 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:31 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

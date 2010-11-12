@@ -69,7 +69,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#ac2ce98457e60caa872a04b5aec2d990c">processBlock</a> (bool &amp;shouldDelete, const unsigned int blockID, const int channel)  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Process a block of samples for this blockID and channel.  <a href="#ac2ce98457e60caa872a04b5aec2d990c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#acc5c6c434063ec021a5a167d8840d240">calculateCoeffs</a> (const float freq, const float control, const float gain)=0</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#a4ca73a49b4203918c937b1c9f5b816f0">initValue</a> (const float value)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_e_q_base_u_gen_internal.html#a4ca73a49b4203918c937b1c9f5b816f0">initValue</a> (const float <a class="el" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>)  throw ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> output value.  <a href="#a4ca73a49b4203918c937b1c9f5b816f0"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -216,13 +216,13 @@ Protected Attributes</h2></td></tr>
 <div class="memdoc">
 
 <p>Initialise the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> output value. </p>
-<p>This helps <a class="el" href="class_u_gen_internal.html#a8025c9bdaa987546001e2da23f97e3c8">getValue()</a> return the correct (or at lease approximately correct) value even before processing begins. Oscillators can generally set their own value here in their UGenInternal-inherited constructor. Processing-type <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> classes will probably need to set the values in the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> class as the <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> classes are created (since they may contain multichannel inputs). </p>
+<p>This helps <a class="el" href="class_u_gen_internal.html#a9f79b23e6cc88f6987890357b4a5ba3b">getValue()</a> return the correct (or at lease approximately correct) value even before processing begins. Oscillators can generally set their own value here in their UGenInternal-inherited constructor. Processing-type <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> classes will probably need to set the values in the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> class as the <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> classes are created (since they may contain multichannel inputs). </p>
 
-<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a3b9de200fa163a233dab85b3388fd469">UGenInternal</a>.</p>
+<p>Reimplemented from <a class="el" href="class_u_gen_internal.html#a02969e1ea45efde745a41fec2ac36dc4">UGenInternal</a>.</p>
 
 <p>Definition at line <a class="el" href="ugen___b_e_q_8cpp_source.html#l00165">165</a> of file <a class="el" href="ugen___b_e_q_8cpp_source.html">ugen_BEQ.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___u_gen_internal_8cpp_source.html#l00322">UGenInternal::initValue()</a>, and <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00142">zap()</a>.</p>
+<p>References <a class="el" href="class_u_gen_internal.html#a02969e1ea45efde745a41fec2ac36dc4">UGenInternal::initValue()</a>, <a class="el" href="ugen___play_buf_8ii_source.html#l06697">value</a>, <a class="el" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1()</a>, and <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00142">zap()</a>.</p>
 
 <p>Referenced by <a class="el" href="ugen___b_e_q_8cpp_source.html#l00597">BAllPass::BAllPass()</a>, <a class="el" href="ugen___b_e_q_8cpp_source.html#l00371">BBandPass::BBandPass()</a>, <a class="el" href="ugen___b_e_q_8cpp_source.html#l00413">BBandStop::BBandStop()</a>, <a class="el" href="ugen___b_e_q_8cpp_source.html#l00312">BHiPass::BHiPass()</a>, <a class="el" href="ugen___b_e_q_8cpp_source.html#l00327">BHiPass4::BHiPass4()</a>, <a class="el" href="ugen___b_e_q_8cpp_source.html#l00556">BHiShelf::BHiShelf()</a>, <a class="el" href="ugen___b_e_q_8cpp_source.html#l00252">BLowPass::BLowPass()</a>, <a class="el" href="ugen___b_e_q_8cpp_source.html#l00267">BLowPass4::BLowPass4()</a>, <a class="el" href="ugen___b_e_q_8cpp_source.html#l00506">BLowShelf::BLowShelf()</a>, and <a class="el" href="ugen___b_e_q_8cpp_source.html#l00456">BPeakEQ::BPeakEQ()</a>.</p>
 
@@ -274,7 +274,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___b_e_q_8cpp_source.html#l00119">119</a> of file <a class="el" href="ugen___b_e_q_8cpp_source.html">ugen_BEQ.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00142">zap()</a>.</p>
+<p>References <a class="el" href="ugen___play_buf_8ii.html#ace4141a10c19a766e4288e7b613227ad">y1()</a>, and <a class="el" href="ugen___inline_unary_ops_8h_source.html#l00142">zap()</a>.</p>
 
 </div>
 </div>
@@ -444,7 +444,7 @@ Protected Attributes</h2></td></tr>
 <li>filters/<a class="el" href="ugen___b_e_q_8cpp_source.html">ugen_BEQ.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:40 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:39 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

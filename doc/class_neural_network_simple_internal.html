@@ -56,8 +56,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_neural_network_simple_internal.html#a09490d4651cd3b1b8415b4c2f3662649">getNumNodesOnLayer</a> (const int layer) const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_neural_network_simple_internal.html#ab227ed834ab34f7f31e561a6636db6ce">getLearnRate</a> () const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_neural_network_simple_internal.html#a777367ef274d274d4a414f3ff3c5d4d8">getActFuncOffset</a> () const   throw ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_neural_network_simple_internal.html#a9dd100f44daa5f0539f5c04d8044682b">setLearnRate</a> (const float value)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_neural_network_simple_internal.html#aa9189220304252a5b96d9e6e19cb5add">setActFuncOffset</a> (const float value)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_neural_network_simple_internal.html#a9dd100f44daa5f0539f5c04d8044682b">setLearnRate</a> (const float <a class="el" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_neural_network_simple_internal.html#aa9189220304252a5b96d9e6e19cb5add">setActFuncOffset</a> (const float <a class="el" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_numerical_array.html">NumericalArray</a>&lt; float &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_neural_network_simple_internal.html#a9d772d3be28422dc3d7f6e7b701098bf">getErrorVector</a> () const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_neural_network_simple_internal.html#a0befbbe7b30bb4b7627a133b07a78829">init</a> (const float weightMaximum)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_neural_network_simple_internal.html#a9003456f0c3850f4a99b514d31cf92a1">randomise</a> (const float amount)  throw ()</td></tr>
@@ -413,7 +413,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___neural_network_8cpp_source.html#l00095">95</a> of file <a class="el" href="ugen___neural_network_8cpp_source.html">ugen_NeuralNetwork.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___neural_network_8h_source.html#l00091">getNumInputs()</a>, <a class="el" href="ugen___neural_network_8h_source.html#l00089">getNumLayersIncludingInput()</a>, <a class="el" href="ugen___neural_network_8h_source.html#l00098">getNumNodesOnLayer()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00687">ObjectArray&lt; ObjectType &gt;::size()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l01699">NumericalArray&lt; NumericalType &gt;::withSize()</a>.</p>
+<p>References <a class="el" href="ugen___neural_network_8h_source.html#l00091">getNumInputs()</a>, <a class="el" href="ugen___neural_network_8h_source.html#l00089">getNumLayersIncludingInput()</a>, <a class="el" href="ugen___neural_network_8h_source.html#l00098">getNumNodesOnLayer()</a>, <a class="el" href="ugen___arrays_8h_source.html#l00687">ObjectArray&lt; ObjectType &gt;::size()</a>, and <a class="el" href="ugen___arrays_8h_source.html#l01699">NumericalArray&lt; int &gt;::withSize()</a>.</p>
 
 </div>
 </div>
@@ -742,7 +742,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___neural_network_8cpp_source.html#l00157">157</a> of file <a class="el" href="ugen___neural_network_8cpp_source.html">ugen_NeuralNetwork.cpp</a>.</p>
 
-<p>References <a class="el" href="ugen___text_file_8h_source.html#l00186">TextFileWriter::write()</a>.</p>
+<p>References <a class="el" href="ugen___play_buf_8ii_source.html#l04118">buf</a>, <a class="el" href="ugen___play_buf_8ii.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf()</a>, and <a class="el" href="ugen___text_file_8h_source.html#l00186">TextFileWriter::write()</a>.</p>
 
 </div>
 </div>
@@ -884,7 +884,7 @@ Private Attributes</h2></td></tr>
 <li>neuralnet/<a class="el" href="ugen___neural_network_8cpp_source.html">ugen_NeuralNetwork.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:43 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:43 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

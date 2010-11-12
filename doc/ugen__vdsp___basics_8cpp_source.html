@@ -87,7 +87,7 @@
 <a name="l00055"></a>00055 {  
 <a name="l00056"></a>00056  <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesToProcess = <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a118a3566a4758eb4719c57843c25bd57">getBlockSize</a>();
 <a name="l00057"></a>00057  <span class="keywordtype">float</span>* <span class="keyword">const</span> outputSamples = <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a2f81d76a08bdae1136fb9eb94c34aa14">getSampleData</a>(); 
-<a name="l00058"></a>00058  vDSP_vfill(&amp;<a class="code" href="class_scalar_base_u_gen_internal.html#a86f2ef73de129af4e9a467c16296aec5">value_</a>, outputSamples, 1, numSamplesToProcess);
+<a name="l00058"></a>00058  <a class="code" href="ugen___play_buf_8ii.html#aa91a91db3c9321b7d5666a2e0358fa0b">vDSP_vfill</a>(&amp;<a class="code" href="class_scalar_base_u_gen_internal.html#a86f2ef73de129af4e9a467c16296aec5">value_</a>, outputSamples, 1, numSamplesToProcess);
 <a name="l00059"></a>00059 }
 <a name="l00060"></a>00060 
 <a name="l00061"></a>00061 <span class="keywordtype">void</span> <a class="code" href="class_float_ptr_u_gen_internal.html#a225da19a9a2c17011b6e2c9a0465aa9e" title="Process a block of samples for this blockID and channel.">FloatPtrUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="comment">/*blockID*/</span>, <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*channel*/</span>) throw()
@@ -97,7 +97,7 @@
 <a name="l00065"></a>00065  <span class="keywordtype">float</span> nextValue = (float)*<a class="code" href="class_float_ptr_u_gen_internal.html#aa65558333e0c38ed2079e873ea1d5ec4">ptr</a>; 
 <a name="l00066"></a>00066 
 <a name="l00067"></a>00067  <a class="code" href="class_scalar_base_u_gen_internal.html#a86f2ef73de129af4e9a467c16296aec5">value_</a> = nextValue;
-<a name="l00068"></a>00068  vDSP_vfill(&amp;nextValue, outputSamples, 1, numSamplesToProcess);
+<a name="l00068"></a>00068  <a class="code" href="ugen___play_buf_8ii.html#aa91a91db3c9321b7d5666a2e0358fa0b">vDSP_vfill</a>(&amp;nextValue, outputSamples, 1, numSamplesToProcess);
 <a name="l00069"></a>00069 }
 <a name="l00070"></a>00070 
 <a name="l00071"></a>00071 <span class="keywordtype">void</span> <a class="code" href="class_double_ptr_u_gen_internal.html#a939292220e02644d8b6cf3e56298c2fe" title="Process a block of samples for this blockID and channel.">DoublePtrUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="comment">/*blockID*/</span>, <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*channel*/</span>) throw()
@@ -107,7 +107,7 @@
 <a name="l00075"></a>00075  <span class="keywordtype">float</span> nextValue = (float)*<a class="code" href="class_double_ptr_u_gen_internal.html#aca6398733c7d211e63d36473c11c9cbc">ptr</a>; 
 <a name="l00076"></a>00076  
 <a name="l00077"></a>00077  <a class="code" href="class_scalar_base_u_gen_internal.html#a86f2ef73de129af4e9a467c16296aec5">value_</a> = nextValue;
-<a name="l00078"></a>00078  vDSP_vfill(&amp;nextValue, outputSamples, 1, numSamplesToProcess);
+<a name="l00078"></a>00078  <a class="code" href="ugen___play_buf_8ii.html#aa91a91db3c9321b7d5666a2e0358fa0b">vDSP_vfill</a>(&amp;nextValue, outputSamples, 1, numSamplesToProcess);
 <a name="l00079"></a>00079 }
 <a name="l00080"></a>00080 
 <a name="l00081"></a>00081 <span class="keywordtype">void</span> <a class="code" href="class_int_ptr_u_gen_internal.html#a9f55cca4dc7057b060013f5fb1bb9b2d" title="Process a block of samples for this blockID and channel.">IntPtrUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="comment">/*blockID*/</span>, <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*channel*/</span>) throw()
@@ -117,7 +117,7 @@
 <a name="l00085"></a>00085  <span class="keywordtype">float</span> nextValue = (float)*<a class="code" href="class_int_ptr_u_gen_internal.html#a181b9806b8b79b559ae16adf0f7284b0">ptr</a>; 
 <a name="l00086"></a>00086  
 <a name="l00087"></a>00087  <a class="code" href="class_scalar_base_u_gen_internal.html#a86f2ef73de129af4e9a467c16296aec5">value_</a> = nextValue;
-<a name="l00088"></a>00088  vDSP_vfill(&amp;nextValue, outputSamples, 1, numSamplesToProcess);
+<a name="l00088"></a>00088  <a class="code" href="ugen___play_buf_8ii.html#aa91a91db3c9321b7d5666a2e0358fa0b">vDSP_vfill</a>(&amp;nextValue, outputSamples, 1, numSamplesToProcess);
 <a name="l00089"></a>00089 }
 <a name="l00090"></a>00090 
 <a name="l00091"></a>00091 <span class="keywordtype">void</span> <a class="code" href="class_bool_ptr_u_gen_internal.html#a2fdefa5a3c74db9a7634128ab88e5780" title="Process a block of samples for this blockID and channel.">BoolPtrUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="comment">/*blockID*/</span>, <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*channel*/</span>) throw()
@@ -127,7 +127,7 @@
 <a name="l00095"></a>00095  <span class="keywordtype">float</span> nextValue = (float)(*<a class="code" href="class_bool_ptr_u_gen_internal.html#aee288dd1e568a46b281d2695339defaa">ptr</a> != 0);
 <a name="l00096"></a>00096  
 <a name="l00097"></a>00097  <a class="code" href="class_scalar_base_u_gen_internal.html#a86f2ef73de129af4e9a467c16296aec5">value_</a> = nextValue;
-<a name="l00098"></a>00098  vDSP_vfill(&amp;nextValue, outputSamples, 1, numSamplesToProcess);
+<a name="l00098"></a>00098  <a class="code" href="ugen___play_buf_8ii.html#aa91a91db3c9321b7d5666a2e0358fa0b">vDSP_vfill</a>(&amp;nextValue, outputSamples, 1, numSamplesToProcess);
 <a name="l00099"></a>00099 }
 <a name="l00100"></a>00100 
 <a name="l00101"></a>00101 <span class="keywordtype">void</span> <a class="code" href="class_mix_u_gen_internal.html#a1c9ff40b79174cbff3316fe627bbb016" title="Render a block of audio.">MixUGenInternal::processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*channel*/</span>) throw()
@@ -138,7 +138,7 @@
 <a name="l00106"></a>00106  <span class="keywordtype">bool</span>&amp; shouldDeleteToPass = <a class="code" href="class_mix_u_gen_internal.html#ac44b80804914f2ca56a3001415d1505e">shouldAllowAutoDelete_</a> ? shouldDelete : shouldDeleteLocal; 
 <a name="l00107"></a>00107  <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesToProcess = <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a118a3566a4758eb4719c57843c25bd57">getBlockSize</a>();
 <a name="l00108"></a>00108  <span class="keywordtype">float</span>* <span class="keyword">const</span> outputSamples = <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a2f81d76a08bdae1136fb9eb94c34aa14">getSampleData</a>();
-<a name="l00109"></a>00109  <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> channelSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>-&gt;<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDeleteToPass, blockID, channel);
+<a name="l00109"></a>00109  <span class="keyword">const</span> <span class="keywordtype">float</span>* <span class="keyword">const</span> channelSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>-&gt;<a class="code" href="class_u_gen.html#a373ba4141dfb16167cd9061852ffad15" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDeleteToPass, blockID, channel);
 <a name="l00110"></a>00110   
 <a name="l00111"></a>00111 <span class="comment">//#ifdef UGEN_IPHONE</span>
 <a name="l00112"></a>00112 <span class="comment">// cblas_ccopy(numSamplesToProcess, channelSamples, 1, outputSamples, 1);</span>
@@ -146,7 +146,7 @@
 <a name="l00114"></a>00114 <span class="comment">// vScopy(numSamplesToProcess, (const vFloat*)channelSamples, (vFloat*)outputSamples); // might not be x4</span>
 <a name="l00115"></a>00115 <span class="comment">//#endif </span>
 <a name="l00116"></a>00116  
-<a name="l00117"></a>00117  memcpy(outputSamples, channelSamples, numSamplesToProcess*<span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00117"></a>00117  <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(outputSamples, channelSamples, numSamplesToProcess*<span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l00118"></a>00118  
 <a name="l00119"></a>00119  channel++;
 <a name="l00120"></a>00120  
@@ -155,7 +155,7 @@
 <a name="l00123"></a>00123  <span class="keywordflow">for</span>(<span class="comment">/* leave channel value alone */</span>; channel &lt; numChannels; channel++)
 <a name="l00124"></a>00124  {
 <a name="l00125"></a>00125   shouldDeleteLocal = <span class="keyword">false</span>;
-<a name="l00126"></a>00126   <span class="keywordtype">float</span>* <span class="keyword">const</span> channelSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>-&gt;<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDeleteToPass, blockID, channel);
+<a name="l00126"></a>00126   <span class="keywordtype">float</span>* <span class="keyword">const</span> channelSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>-&gt;<a class="code" href="class_u_gen.html#a373ba4141dfb16167cd9061852ffad15" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDeleteToPass, blockID, channel);
 <a name="l00127"></a>00127   
 <a name="l00128"></a>00128   <span class="comment">// must check vDSP_vadd() can operate in place</span>
 <a name="l00129"></a>00129   vDSP_vadd(outputSamples, 1, channelSamples, 1, outputSamples, 1, numSamplesToProcess);
@@ -174,7 +174,7 @@
 <a name="l00142"></a>00142  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numOutputChannels; channel++)
 <a name="l00143"></a>00143  {
 <a name="l00144"></a>00144   <span class="keywordtype">float</span>* <span class="keyword">const</span> outputSamples = <a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">getSampleData</a>();  
-<a name="l00145"></a>00145   vDSP_vclr(outputSamples, 1, numSamplesToProcess);
+<a name="l00145"></a>00145   <a class="code" href="ugen___play_buf_8ii.html#afc2b276b4b41c364ec3e4aa7f0425196">vDSP_vclr</a>(outputSamples, 1, numSamplesToProcess);
 <a name="l00146"></a>00146   
 <a name="l00147"></a>00147   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> arrayIndex = 0; arrayIndex &lt; arraySize; arrayIndex++)
 <a name="l00148"></a>00148   {
@@ -185,7 +185,7 @@
 <a name="l00153"></a>00153    <span class="keywordflow">if</span>(<a class="code" href="class_mix_array_u_gen_internal.html#aab554fcf7547f0aaf353cd6070f27f42">shouldWrapChannels_</a> || (channel &lt; ugen.<a class="code" href="class_u_gen.html#a996ea2091a1af960134353f9780f2ae9" title="Get the number of channels (i.e., number of internals).">getNumChannels</a>()))
 <a name="l00154"></a>00154    {
 <a name="l00155"></a>00155     shouldDeleteLocal = <span class="keyword">false</span>;
-<a name="l00156"></a>00156     <span class="keywordtype">float</span>* <span class="keyword">const</span> channelSamples = ugen.<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDeleteToPass, blockID, channel);
+<a name="l00156"></a>00156     <span class="keywordtype">float</span>* <span class="keyword">const</span> channelSamples = ugen.<a class="code" href="class_u_gen.html#a373ba4141dfb16167cd9061852ffad15" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDeleteToPass, blockID, channel);
 <a name="l00157"></a>00157     vDSP_vadd(outputSamples, 1, channelSamples, 1, outputSamples, 1, numSamplesToProcess);
 <a name="l00158"></a>00158    }
 <a name="l00159"></a>00159   }
@@ -200,7 +200,7 @@
 <a name="l00168"></a>00168  <span class="keywordtype">float</span>* <span class="keyword">const</span> inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
 <a name="l00169"></a>00169  <span class="keywordtype">float</span>* <span class="keyword">const</span> mulSamples = inputs[Mul].processBlock(shouldDelete, blockID, channel);
 <a name="l00170"></a>00170  <span class="keywordtype">float</span>* <span class="keyword">const</span> addSamples = inputs[Add].processBlock(shouldDelete, blockID, channel); 
-<a name="l00171"></a>00171  vDSP_vma(inputSamples, 1, mulSamples, 1, addSamples, 1, outputSamples, 1, numSamplesToProcess);
+<a name="l00171"></a>00171  <a class="code" href="ugen___play_buf_8ii.html#af503ee5171428d41dcd2d43816f190f1">vDSP_vma</a>(inputSamples, 1, mulSamples, 1, addSamples, 1, outputSamples, 1, numSamplesToProcess);
 <a name="l00172"></a>00172 }
 <a name="l00173"></a>00173 
 <a name="l00174"></a>00174 
@@ -244,7 +244,7 @@
 <a name="l00212"></a>00212 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:38 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:32 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

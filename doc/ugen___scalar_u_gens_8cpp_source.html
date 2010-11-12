@@ -90,7 +90,7 @@
 <a name="l00058"></a>00058 { 
 <a name="l00059"></a>00059  <span class="keywordtype">int</span> numSamplesToProcess = <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a118a3566a4758eb4719c57843c25bd57">getBlockSize</a>();
 <a name="l00060"></a>00060  <span class="keywordtype">float</span>* outputSamples = <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a2f81d76a08bdae1136fb9eb94c34aa14">getSampleData</a>();
-<a name="l00061"></a>00061  memset(outputSamples, 0, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00061"></a>00061  <a class="code" href="ugen___play_buf_8ii.html#a68d2b40ef2213b9227a1ce3b81997ae5">memset</a>(outputSamples, 0, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l00062"></a>00062 }
 <a name="l00063"></a>00063 
 <a name="l00064"></a><a class="code" href="class_null_u_gen_internal.html#a46c908e6312f31d86792a13a97b756bc">00064</a> <a class="code" href="class_null_u_gen_internal.html">NullUGenInternal</a>* <a class="code" href="class_null_u_gen_internal.html#a46c908e6312f31d86792a13a97b756bc">NullUGenInternal::getInstance</a>() throw()
@@ -116,8 +116,8 @@
 <a name="l00084"></a>00084  <a class="code" href="class_u_gen.html#ad9e8ba9e81ce7f3909ac9f3c3b69ab45">internalUGens</a>[0] = <a class="code" href="class_null_u_gen_internal.html#a46c908e6312f31d86792a13a97b756bc">NullUGenInternal::getInstance</a>();
 <a name="l00085"></a>00085 }
 <a name="l00086"></a>00086 
-<a name="l00087"></a><a class="code" href="class_scalar_u_gen_internal.html#a56e199f7f93a0f373da0863643a28535">00087</a> <a class="code" href="class_scalar_u_gen_internal.html#a56e199f7f93a0f373da0863643a28535">ScalarUGenInternal::ScalarUGenInternal</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> value) <span class="keywordflow">throw</span>()
-<a name="l00088"></a>00088 : <a class="code" href="class_scalar_base_u_gen_internal.html">ScalarBaseUGenInternal</a>(value)
+<a name="l00087"></a><a class="code" href="class_scalar_u_gen_internal.html#a56e199f7f93a0f373da0863643a28535">00087</a> <a class="code" href="class_scalar_u_gen_internal.html#a56e199f7f93a0f373da0863643a28535">ScalarUGenInternal::ScalarUGenInternal</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>) <span class="keywordflow">throw</span>()
+<a name="l00088"></a>00088 : <a class="code" href="class_scalar_base_u_gen_internal.html">ScalarBaseUGenInternal</a>(<a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>)
 <a name="l00089"></a>00089 {
 <a name="l00090"></a>00090 }
 <a name="l00091"></a>00091 
@@ -131,7 +131,7 @@
 <a name="l00099"></a>00099  
 <a name="l00100"></a>00100  <span class="comment">// this is faster on the Mac with compiler optimisations on the Mac sice it</span>
 <a name="l00101"></a>00101  <span class="comment">// gets replaced by vectorised operations!</span>
-<a name="l00102"></a>00102  memset(outputSamples, 0, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00102"></a>00102  <a class="code" href="ugen___play_buf_8ii.html#a68d2b40ef2213b9227a1ce3b81997ae5">memset</a>(outputSamples, 0, numSamplesToProcess * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l00103"></a>00103  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numSamplesToProcess; ++i)
 <a name="l00104"></a>00104   outputSamples[i] += <a class="code" href="class_scalar_base_u_gen_internal.html#a86f2ef73de129af4e9a467c16296aec5">value_</a>;
 <a name="l00105"></a>00105 }
@@ -246,7 +246,7 @@
 <a name="l00214"></a>00214 
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:36 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:28 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

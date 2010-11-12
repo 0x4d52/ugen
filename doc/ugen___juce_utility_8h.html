@@ -34,6 +34,7 @@
 <h1>juce/ugen_JuceUtility.h File Reference</h1>  </div>
 </div>
 <div class="contents">
+<code>#include &quot;../buffers/ugen_Buffer.h&quot;</code><br/>
 
 <p><a href="ugen___juce_utility_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -41,6 +42,8 @@
 Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_popup_component.html">PopupComponent</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A little Juce class used as a pop-up editor.  <a href="class_popup_component.html#_details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer_process.html">BufferProcess</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Manages <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> processing on a background thread.  <a href="class_buffer_process.html#_details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">String&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="ugen___juce_utility_8h.html#a40e0bc3d343c79c29a14961e43827c0f">getCurrentTimeIdentifier</a> ()  throw ()</td></tr>
@@ -67,11 +70,11 @@ Functions</h2></td></tr>
 <p>Get a string which is useful as a time identifier. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The time string. </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___juce_utility_8h_source.html#l00042">42</a> of file <a class="el" href="ugen___juce_utility_8h_source.html">ugen_JuceUtility.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_utility_8h_source.html#l00044">44</a> of file <a class="el" href="ugen___juce_utility_8h_source.html">ugen_JuceUtility.h</a>.</p>
 
 <p>References <a class="el" href="ugen___standard_header_8h_source.html#l00147">T</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___juce_utility_8h_source.html#l00050">getFileNameWithTimeIdentifier()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___juce_utility_8h_source.html#l00052">getFileNameWithTimeIdentifier()</a>.</p>
 
 </div>
 </div>
@@ -94,14 +97,14 @@ Functions</h2></td></tr>
 <p>Append a time identifier to t string useful as a filename. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Check if there's a extension and insert the identifier before the dot. </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___juce_utility_8h_source.html#l00050">50</a> of file <a class="el" href="ugen___juce_utility_8h_source.html">ugen_JuceUtility.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_utility_8h_source.html#l00052">52</a> of file <a class="el" href="ugen___juce_utility_8h_source.html">ugen_JuceUtility.h</a>.</p>
 
-<p>References <a class="el" href="ugen___juce_utility_8h_source.html#l00042">getCurrentTimeIdentifier()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00147">T</a>.</p>
+<p>References <a class="el" href="ugen___juce_utility_8h_source.html#l00044">getCurrentTimeIdentifier()</a>, and <a class="el" href="ugen___standard_header_8h_source.html#l00147">T</a>.</p>
 
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:39 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:36 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

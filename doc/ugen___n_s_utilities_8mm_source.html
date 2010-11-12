@@ -74,11 +74,11 @@
 <a name="l00042"></a>00042 
 <a name="l00043"></a>00043 <span class="preprocessor">#include &quot;<a class="code" href="ugen___n_s_utilities_8h.html">ugen_NSUtilities.h</a>&quot;</span>
 <a name="l00044"></a>00044 
-<a name="l00045"></a>00045 <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <a class="code" href="class_n_s_utilities.html#ab2a645d0b45b0d8da2d42ed9d6f90b43" title="Returns the absolute path of a file on the iPhone.">NSUtilities::pathInDirectory</a>(Locations location, <span class="keyword">const</span> <span class="keywordtype">char</span> *filename) <span class="keywordflow">throw</span>()
+<a name="l00045"></a>00045 <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <a class="code" href="class_n_s_utilities.html#ab2a645d0b45b0d8da2d42ed9d6f90b43" title="Returns the absolute path of a file on the iPhone.">NSUtilities::pathInDirectory</a>(Locations <a class="code" href="ugen___play_buf_8ii.html#a1873ad182e2d459d5197b01ca3633cf0">location</a>, <span class="keyword">const</span> <span class="keywordtype">char</span> *filename) <span class="keywordflow">throw</span>()
 <a name="l00046"></a>00046 {
 <a name="l00047"></a>00047  <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(filename != 0);
 <a name="l00048"></a>00048  
-<a name="l00049"></a>00049  <span class="keywordflow">switch</span>(location)
+<a name="l00049"></a>00049  <span class="keywordflow">switch</span>(<a class="code" href="ugen___play_buf_8ii.html#a1873ad182e2d459d5197b01ca3633cf0">location</a>)
 <a name="l00050"></a>00050  {
 <a name="l00051"></a>00051   <span class="keywordflow">case</span> Bundle: {
 <a name="l00052"></a>00052    NSString *nsFilename = [[NSString alloc] initWithUTF8String: filename];
@@ -141,7 +141,7 @@
 <a name="l00109"></a>00109 <span class="preprocessor">#endif // UGEN_IPHONE</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:31 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

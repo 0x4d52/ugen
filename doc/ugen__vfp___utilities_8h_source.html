@@ -105,7 +105,7 @@
 <a name="l00073"></a>00073   }
 <a name="l00074"></a>00074   
 <a name="l00075"></a>00075   <span class="keywordflow">if</span>(numScalars &gt; 0)
-<a name="l00076"></a>00076    memset(outputSamples, 0, numScalars * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00076"></a>00076    <a class="code" href="ugen___play_buf_8ii.html#a68d2b40ef2213b9227a1ce3b81997ae5">memset</a>(outputSamples, 0, numScalars * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l00077"></a>00077     
 <a name="l00078"></a>00078   VFP_VECTOR_LENGTH_ZERO_ASM;
 <a name="l00079"></a>00079   VFP_SWITCH_TO_THUMB_ASM;
@@ -133,7 +133,7 @@
 <a name="l00101"></a>00101   }
 <a name="l00102"></a>00102   
 <a name="l00103"></a>00103   <span class="keywordflow">if</span>(numScalars &gt; 0)
-<a name="l00104"></a>00104    memset(outputSamples, 0, numScalars * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00104"></a>00104    <a class="code" href="ugen___play_buf_8ii.html#a68d2b40ef2213b9227a1ce3b81997ae5">memset</a>(outputSamples, 0, numScalars * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l00105"></a>00105   
 <a name="l00106"></a>00106   VFP_VECTOR_LENGTH_ZERO_ASM;
 <a name="l00107"></a>00107   VFP_SWITCH_TO_THUMB_ASM;
@@ -212,7 +212,7 @@
 <a name="l00180"></a>00180   }
 <a name="l00181"></a>00181   
 <a name="l00182"></a>00182   <span class="keywordflow">if</span>(numScalars &gt; 0)
-<a name="l00183"></a>00183    memcpy(outputSamples, inputSamples, numScalars * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00183"></a>00183    <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(outputSamples, inputSamples, numScalars * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l00184"></a>00184   
 <a name="l00185"></a>00185   VFP_VECTOR_LENGTH_ZERO_ASM;
 <a name="l00186"></a>00186   VFP_SWITCH_TO_THUMB_ASM;
@@ -239,7 +239,7 @@
 <a name="l00207"></a>00207   VFP_VECTOR_LENGTH_ZERO_ASM;
 <a name="l00208"></a>00208   
 <a name="l00209"></a>00209   <span class="keywordflow">if</span>(numScalars &gt; 0)
-<a name="l00210"></a>00210    memcpy(outputSamples, inputSamples, numScalars * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
+<a name="l00210"></a>00210    <a class="code" href="ugen___play_buf_8ii.html#a0a3e682eff8f0c6e8adc371f54cc9f3f">memcpy</a>(outputSamples, inputSamples, numScalars * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l00211"></a>00211   
 <a name="l00212"></a>00212   VFP_SWITCH_TO_THUMB_ASM;
 <a name="l00213"></a>00213  }
@@ -261,7 +261,7 @@
 <a name="l00229"></a>00229 
 <a name="l00230"></a>00230   <span class="keywordflow">while</span>(numScalars--)
 <a name="l00231"></a>00231   {
-<a name="l00232"></a>00232    *outputSamples++ = std::fabs(*inputSamples++);
+<a name="l00232"></a>00232    *outputSamples++ = <a class="code" href="ugen___play_buf_8ii.html#a1354b6667fe971c1d7bf28dcef770265">std::fabs</a>(*inputSamples++);
 <a name="l00233"></a>00233   } 
 <a name="l00234"></a>00234   
 <a name="l00235"></a>00235   VFP_SWITCH_TO_THUMB_ASM;
@@ -289,7 +289,7 @@
 <a name="l00257"></a>00257   
 <a name="l00258"></a>00258   <span class="keywordflow">while</span>(numScalars--)
 <a name="l00259"></a>00259   {
-<a name="l00260"></a>00260    *outputSamples++ = std::fabs(*inputSamples++);
+<a name="l00260"></a>00260    *outputSamples++ = <a class="code" href="ugen___play_buf_8ii.html#a1354b6667fe971c1d7bf28dcef770265">std::fabs</a>(*inputSamples++);
 <a name="l00261"></a>00261   } 
 <a name="l00262"></a>00262   
 <a name="l00263"></a>00263   VFP_SWITCH_TO_THUMB_ASM;
@@ -824,7 +824,7 @@
 <a name="l00792"></a>00792 <span class="preprocessor">#endif // _UGEN_ugen_vfp_Utilities_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:31 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

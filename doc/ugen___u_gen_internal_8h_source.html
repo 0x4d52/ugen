@@ -30,7 +30,7 @@
 <h1>core/ugen_UGenInternal.h</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___u_gen_internal_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_UGenInternal.h 164 2010-09-25 12:29:55Z 0x4d52 $</span>
+<a href="ugen___u_gen_internal_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_UGenInternal.h 194 2010-11-10 22:30:50Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/core/ugen_UGenInternal.h $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -108,8 +108,8 @@
 <a name="l00077"></a>00077  
 <a name="l00078"></a><a class="code" href="class_u_gen_output.html#a118a3566a4758eb4719c57843c25bd57">00078</a>  <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="class_u_gen_output.html#a118a3566a4758eb4719c57843c25bd57">getBlockSize</a>()<span class="keyword"> const      </span>{ <span class="keywordflow">return</span> <a class="code" href="class_u_gen_output.html#a2f059dc39752460c20a35cd6a2e1504b">blockSize</a>;   }
 <a name="l00079"></a><a class="code" href="class_u_gen_output.html#a2f81d76a08bdae1136fb9eb94c34aa14">00079</a>  <span class="keyword">inline</span> <span class="keywordtype">float</span>* <a class="code" href="class_u_gen_output.html#a2f81d76a08bdae1136fb9eb94c34aa14">getSampleData</a>()<span class="keyword"> const     </span>{ <span class="keywordflow">return</span> <a class="code" href="class_u_gen_output.html#a3a86304f84f5f8d681c0679436eb456c">block</a>;    }
-<a name="l00080"></a><a class="code" href="class_u_gen_output.html#a8cc9fa1314725957dcae7825d03fa6a7">00080</a>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_u_gen_output.html#a8cc9fa1314725957dcae7825d03fa6a7">zeroAllData</a>()       { memset(<a class="code" href="class_u_gen_output.html#a3a86304f84f5f8d681c0679436eb456c">block</a>, 0, <a class="code" href="class_u_gen_output.html#a2f059dc39752460c20a35cd6a2e1504b">blockSize</a> * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)); }
-<a name="l00081"></a>00081  <span class="keywordtype">void</span> <a class="code" href="class_u_gen_output.html#a75afd710546d8f0904e103eec4a53477">initValue</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> value) <span class="keywordflow">throw</span>();
+<a name="l00080"></a><a class="code" href="class_u_gen_output.html#a8cc9fa1314725957dcae7825d03fa6a7">00080</a>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_u_gen_output.html#a8cc9fa1314725957dcae7825d03fa6a7">zeroAllData</a>()       { <a class="code" href="ugen___play_buf_8ii.html#a68d2b40ef2213b9227a1ce3b81997ae5">memset</a>(<a class="code" href="class_u_gen_output.html#a3a86304f84f5f8d681c0679436eb456c">block</a>, 0, <a class="code" href="class_u_gen_output.html#a2f059dc39752460c20a35cd6a2e1504b">blockSize</a> * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)); }
+<a name="l00081"></a>00081  <span class="keywordtype">void</span> <a class="code" href="class_u_gen_output.html#a75afd710546d8f0904e103eec4a53477">initValue</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>) <span class="keywordflow">throw</span>();
 <a name="l00082"></a>00082  
 <a name="l00083"></a>00083  <span class="keywordtype">void</span> <a class="code" href="class_u_gen_output.html#a24489756da0d98d2ef97b2fa2f63984e">useExternalOutput</a>(<a class="code" href="class_u_gen_output.html">UGenOutput</a>* externalOutputToUse);
 <a name="l00084"></a>00084  <span class="keywordtype">void</span> <a class="code" href="class_u_gen_output.html#a24489756da0d98d2ef97b2fa2f63984e">useExternalOutput</a>(<span class="keywordtype">float</span>* externalOutputToUse, <span class="keyword">const</span> <span class="keywordtype">int</span> externalBlockSize);
@@ -135,11 +135,11 @@
 <a name="l00123"></a>00123  
 <a name="l00126"></a><a class="code" href="class_u_gen_internal.html#a864d6cb986f1d30abe44cd160dd58cd9">00126</a>  <span class="keywordtype">int</span> <a class="code" href="class_u_gen_internal.html#a864d6cb986f1d30abe44cd160dd58cd9" title="User data passed down from the enclosing UGen.">userData</a>;
 <a name="l00127"></a>00127  
-<a name="l00128"></a>00128  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_u_gen_internal.html#ad754dddff5c68e4f9bd1fc496656e2c3">getChannelInternal</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
-<a name="l00129"></a>00129  <span class="keyword">virtual</span> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_u_gen_internal.html#a5041a93f6c624446f04542b0b82f0563">getKr</a>() throw();
+<a name="l00128"></a>00128  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_u_gen_internal.html#a69790714c8253527c367ff39bf4fa7c6">getChannelInternal</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00129"></a>00129  <span class="keyword">virtual</span> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_u_gen_internal.html#a637e36a73842e8c10f62bc42c34c515c">getKr</a>() throw();
 <a name="l00130"></a>00130  
-<a name="l00131"></a>00131  virtual <span class="keywordtype">void</span> <a class="code" href="class_u_gen_internal.html#abaf01396d3f7582c43032188e760636c">releaseInternal</a>() throw();
-<a name="l00132"></a>00132  virtual <span class="keywordtype">void</span> <a class="code" href="class_u_gen_internal.html#a4d2712dfc348674097ea670aab5c7101">stealInternal</a>() throw();
+<a name="l00131"></a>00131  virtual <span class="keywordtype">void</span> <a class="code" href="class_u_gen_internal.html#a2dc7bf41a60b8405cd250debf79bd0e3">releaseInternal</a>() throw();
+<a name="l00132"></a>00132  virtual <span class="keywordtype">void</span> <a class="code" href="class_u_gen_internal.html#a08c7f94ea1fdf37323c88ae4739de3ef">stealInternal</a>() throw();
 <a name="l00133"></a>00133  <span class="comment">// NB. should use 64 bit ints for blockID to avoid the complexity of spotting the overflow</span>
 <a name="l00134"></a><a class="code" href="class_u_gen_internal.html#a22ea0dbaa91e9d531d3c85cab89ae72c">00134</a>  inline <span class="keywordtype">bool</span> <a class="code" href="class_u_gen_internal.html#a22ea0dbaa91e9d531d3c85cab89ae72c">shouldBeDeletedNow</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID) const throw() { <span class="keywordflow">return</span> <a class="code" href="class_u_gen_internal.html#a6e1dfb409dd4ceea2855b1bc05e0ab6a">isScheduledForDeletion</a> &amp;&amp; blockID &gt; <a class="code" href="class_u_gen_internal.html#a49cc38065e2335e9f5cbb5a44438e077">blockIDtoBeDeletedAfter</a>; }
 <a name="l00135"></a>00135  
@@ -168,10 +168,10 @@
 <a name="l00165"></a>00165  
 <a name="l00166"></a>00166  
 <a name="l00169"></a>00169  
-<a name="l00170"></a>00170  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_u_gen_internal.html#aa0dd89af52ec18c7a0a73bb54f0ca736">prepareForBlockInternal</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> actualBlockSize, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID) <span class="keywordflow">throw</span>();
+<a name="l00170"></a>00170  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_u_gen_internal.html#ab1d371db06f11a87c5b947e05eba0fa0">prepareForBlockInternal</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> actualBlockSize, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID) <span class="keywordflow">throw</span>();
 <a name="l00171"></a><a class="code" href="class_u_gen_internal.html#a639bba878cc85d9dd20453cfea87b4b3">00171</a>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_u_gen_internal.html#a639bba878cc85d9dd20453cfea87b4b3">prepareForBlock</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> actualBlockSize, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID)  <span class="keywordflow">throw</span>() { }
 <a name="l00172"></a>00172  
-<a name="l00173"></a>00173  <span class="keyword">virtual</span> <span class="keywordtype">float</span>* <a class="code" href="class_u_gen_internal.html#a288c2d7564bd78feec88a54e53dbf806">processBlockInternal</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00173"></a>00173  <span class="keyword">virtual</span> <span class="keywordtype">float</span>* <a class="code" href="class_u_gen_internal.html#a0a183b0bcb10f089a3db0b50cc51c7ab">processBlockInternal</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
 <a name="l00174"></a>00174  
 <a name="l00186"></a>00186  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_u_gen_internal.html#ae1c9c941ea6f372d8af8cc5f9ae32ace" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) = 0; 
 <a name="l00187"></a>00187  
@@ -183,176 +183,175 @@
 <a name="l00196"></a><a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">00196</a>  <span class="keyword">inline</span> <span class="keywordtype">float</span>* <a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">getSampleData</a>() throw()    { <span class="keywordflow">return</span> <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a2f81d76a08bdae1136fb9eb94c34aa14">getSampleData</a>(); }
 <a name="l00197"></a><a class="code" href="class_u_gen_internal.html#a4e5436e3429333e9571c4e823e39c61f">00197</a>  <span class="keyword">inline</span> <span class="keyword">const</span> <span class="keywordtype">float</span>* <a class="code" href="class_u_gen_internal.html#a4e5436e3429333e9571c4e823e39c61f">getSampleData</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a2f81d76a08bdae1136fb9eb94c34aa14">getSampleData</a>(); }
 <a name="l00198"></a><a class="code" href="class_u_gen_internal.html#a1f641058be4a8696754a7ea57bd21801">00198</a>  <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="class_u_gen_internal.html#a1f641058be4a8696754a7ea57bd21801">getNumChannels</a>() <span class="keyword">const</span> throw()   { <span class="keywordflow">return</span> 1;        }
-<a name="l00199"></a>00199  <span class="keyword">virtual</span> <span class="keywordtype">float</span> <a class="code" href="class_u_gen_internal.html#a8025c9bdaa987546001e2da23f97e3c8">getValue</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keyword">const</span> <span class="keywordflow">throw</span>();
+<a name="l00199"></a>00199  <span class="keyword">virtual</span> <span class="keywordtype">float</span> <a class="code" href="class_u_gen_internal.html#a9f79b23e6cc88f6987890357b4a5ba3b">getValue</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keyword">const</span> <span class="keywordflow">throw</span>();
 <a name="l00200"></a>00200  <span class="keywordtype">float</span> <a class="code" href="class_u_gen_internal.html#a644715da8be7a3a7fc7a0732ddd3d80c">poll</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
-<a name="l00201"></a>00201  <span class="keyword">const</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>&amp; <a class="code" href="class_u_gen_internal.html#a0f6aaba8c5eae1e30ee4e284a8c2e060">getInput</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> index) <span class="keywordflow">throw</span>(); 
+<a name="l00201"></a>00201  <span class="keyword">const</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>&amp; <a class="code" href="class_u_gen_internal.html#aa579da88034ae4322dbba0c4966eda28">getInput</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a>) <span class="keywordflow">throw</span>(); 
 <a name="l00202"></a>00202  
-<a name="l00210"></a>00210  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_u_gen_internal.html#a3b9de200fa163a233dab85b3388fd469" title="Initialise the UGen output value.">initValue</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> value) <span class="keywordflow">throw</span>();
+<a name="l00210"></a>00210  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_u_gen_internal.html#a02969e1ea45efde745a41fec2ac36dc4" title="Initialise the UGen output value.">initValue</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>) <span class="keywordflow">throw</span>();
 <a name="l00211"></a>00211  
 <a name="l00212"></a>00212  
 <a name="l00214"></a>00214  
 <a name="l00215"></a>00215  
 <a name="l00216"></a>00216 <span class="keyword">protected</span>:  
-<a name="l00217"></a>00217  <span class="keyword">virtual</span> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_u_gen_internal.html#a6838029815ab52d3263cfacb6c584d2f">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00217"></a>00217  <span class="keyword">virtual</span> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_u_gen_internal.html#ae9624445b9d8328a9032305687333039">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
 <a name="l00218"></a>00218  <span class="keywordtype">int</span> <a class="code" href="class_u_gen_internal.html#ae0b132077dda39b6140ce26d08d6d466">findMaxInputChannels</a>() <span class="keyword">const</span> throw();
 <a name="l00219"></a>00219  <span class="keywordtype">void</span> <a class="code" href="class_u_gen_internal.html#a1a104c1a952810e7a856ea4b07e06391">getInternalChannels</a>(const <span class="keywordtype">int</span> channel, <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>** internals) throw();
-<a name="l00220"></a>00220  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_u_gen_internal.html#a0f6aaba8c5eae1e30ee4e284a8c2e060">getInput</a>(const <span class="keywordtype">int</span> input, const <span class="keywordtype">int</span> channel) throw();
+<a name="l00220"></a>00220  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_u_gen_internal.html#aa579da88034ae4322dbba0c4966eda28">getInput</a>(const <span class="keywordtype">int</span> input, const <span class="keywordtype">int</span> channel) throw();
 <a name="l00221"></a>00221  
-<a name="l00222"></a>00222  
-<a name="l00223"></a><a class="code" href="class_u_gen_internal.html#a9208e597005363c3616b889d5b090908">00223</a>  const <span class="keywordtype">short</span> <a class="code" href="class_u_gen_internal.html#a9208e597005363c3616b889d5b090908">numInputs_</a>;
-<a name="l00224"></a><a class="code" href="class_u_gen_internal.html#a7d2d4b436a5a80c7ebc23c84901c9e63">00224</a>  <span class="keywordtype">char</span> <a class="code" href="class_u_gen_internal.html#a7d2d4b436a5a80c7ebc23c84901c9e63">rate</a>;
-<a name="l00225"></a><a class="code" href="class_u_gen_internal.html#afd867ac0278151e74baffbfd62e03c8f">00225</a>  const <span class="keywordtype">bool</span> <a class="code" href="class_u_gen_internal.html#afd867ac0278151e74baffbfd62e03c8f">ownsInputsPointer</a>:1;
-<a name="l00226"></a><a class="code" href="class_u_gen_internal.html#a6e1dfb409dd4ceea2855b1bc05e0ab6a">00226</a>  <span class="keywordtype">bool</span> <a class="code" href="class_u_gen_internal.html#a6e1dfb409dd4ceea2855b1bc05e0ab6a">isScheduledForDeletion</a>:1;
-<a name="l00227"></a>00227  
-<a name="l00228"></a><a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">00228</a>  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> * const <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>;  
-<a name="l00229"></a>00229  
-<a name="l00230"></a><a class="code" href="class_u_gen_internal.html#aa93acfc7e57471b278ac8cccca62d598">00230</a>  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_u_gen_internal.html#aa93acfc7e57471b278ac8cccca62d598">lastBlockID</a>;  <span class="comment">// blockIDs count samples  and should be enough for about 27hrs @ 44.1kHz</span>
-<a name="l00231"></a>00231          <span class="comment">// a unsigned 64-bit int would be enough for nearly 5 billion days (or over 13 centuries)</span>
-<a name="l00232"></a><a class="code" href="class_u_gen_internal.html#a49cc38065e2335e9f5cbb5a44438e077">00232</a>  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_u_gen_internal.html#a49cc38065e2335e9f5cbb5a44438e077">blockIDtoBeDeletedAfter</a>;
-<a name="l00233"></a><a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">00233</a>  <a class="code" href="class_u_gen_output.html">UGenOutput</a> <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>;
-<a name="l00234"></a>00234  
-<a name="l00235"></a>00235 private:
-<a name="l00236"></a>00236  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> (const <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>&amp;);
-<a name="l00237"></a>00237     const UGenInternal&amp; operator= (const UGenInternal&amp;);
-<a name="l00238"></a>00238  
-<a name="l00239"></a>00239 };
+<a name="l00222"></a><a class="code" href="class_u_gen_internal.html#a9208e597005363c3616b889d5b090908">00222</a>  const <span class="keywordtype">short</span> <a class="code" href="class_u_gen_internal.html#a9208e597005363c3616b889d5b090908">numInputs_</a>;
+<a name="l00223"></a><a class="code" href="class_u_gen_internal.html#a7d2d4b436a5a80c7ebc23c84901c9e63">00223</a>  <span class="keywordtype">char</span> <a class="code" href="class_u_gen_internal.html#a7d2d4b436a5a80c7ebc23c84901c9e63">rate</a>;
+<a name="l00224"></a><a class="code" href="class_u_gen_internal.html#afd867ac0278151e74baffbfd62e03c8f">00224</a>  const <span class="keywordtype">bool</span> <a class="code" href="class_u_gen_internal.html#afd867ac0278151e74baffbfd62e03c8f">ownsInputsPointer</a>:1;
+<a name="l00225"></a><a class="code" href="class_u_gen_internal.html#a6e1dfb409dd4ceea2855b1bc05e0ab6a">00225</a>  <span class="keywordtype">bool</span> <a class="code" href="class_u_gen_internal.html#a6e1dfb409dd4ceea2855b1bc05e0ab6a">isScheduledForDeletion</a>:1;
+<a name="l00226"></a>00226  
+<a name="l00227"></a><a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">00227</a>  <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> * const <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>;  
+<a name="l00228"></a>00228  
+<a name="l00229"></a><a class="code" href="class_u_gen_internal.html#aa93acfc7e57471b278ac8cccca62d598">00229</a>  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_u_gen_internal.html#aa93acfc7e57471b278ac8cccca62d598">lastBlockID</a>;  <span class="comment">// blockIDs count samples  and should be enough for about 27hrs @ 44.1kHz</span>
+<a name="l00230"></a>00230          <span class="comment">// a unsigned 64-bit int would be enough for nearly 5 billion days (or over 13 centuries)</span>
+<a name="l00231"></a><a class="code" href="class_u_gen_internal.html#a49cc38065e2335e9f5cbb5a44438e077">00231</a>  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_u_gen_internal.html#a49cc38065e2335e9f5cbb5a44438e077">blockIDtoBeDeletedAfter</a>;
+<a name="l00232"></a><a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">00232</a>  <a class="code" href="class_u_gen_output.html">UGenOutput</a> <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>;
+<a name="l00233"></a>00233  
+<a name="l00234"></a>00234 private:
+<a name="l00235"></a>00235  <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> (const <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>&amp;);
+<a name="l00236"></a>00236     const UGenInternal&amp; operator= (const UGenInternal&amp;);
+<a name="l00237"></a>00237  
+<a name="l00238"></a>00238 };
+<a name="l00239"></a>00239 
 <a name="l00240"></a>00240 
-<a name="l00241"></a>00241 
-<a name="l00242"></a>00242 class <a class="code" href="class_proxy_u_gen_internal.html" title="A UGenInternal base is owned by a &amp;quot;proxy owner&amp;quot; (i.e., a ProxyOwnerUGenInternal object)...">ProxyUGenInternal</a>;
-<a name="l00243"></a>00243 
-<a name="l00248"></a><a class="code" href="class_proxy_owner_u_gen_internal.html">00248</a> class <a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a> : public UGenInternal
-<a name="l00249"></a>00249 {
-<a name="l00250"></a>00250 <span class="keyword">public</span>: 
-<a name="l00251"></a>00251  
-<a name="l00254"></a>00254  
-<a name="l00255"></a>00255  <a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> numInputs, <span class="keyword">const</span> <span class="keywordtype">int</span> numProxies) <span class="keywordflow">throw</span>();
-<a name="l00256"></a>00256  ~<a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a>(); <span class="comment">// throw();</span>
-<a name="l00257"></a>00257  <span class="keywordtype">void</span> <a class="code" href="class_smart_pointer.html#acea9f749c0ab920d2833d4bb81f6eb9f">decrementRefCount</a>() <span class="keywordflow">throw</span>();
-<a name="l00258"></a>00258  <span class="keywordtype">void</span> deleteIfOnlyMutualReferencesRemain() <span class="keywordflow">throw</span>();
-<a name="l00259"></a>00259  
+<a name="l00241"></a>00241 class <a class="code" href="class_proxy_u_gen_internal.html" title="A UGenInternal base is owned by a &amp;quot;proxy owner&amp;quot; (i.e., a ProxyOwnerUGenInternal object)...">ProxyUGenInternal</a>;
+<a name="l00242"></a>00242 
+<a name="l00247"></a><a class="code" href="class_proxy_owner_u_gen_internal.html">00247</a> class <a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a> : public UGenInternal
+<a name="l00248"></a>00248 {
+<a name="l00249"></a>00249 <span class="keyword">public</span>: 
+<a name="l00250"></a>00250  
+<a name="l00253"></a>00253  
+<a name="l00254"></a>00254  <a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> numInputs, <span class="keyword">const</span> <span class="keywordtype">int</span> numProxies) <span class="keywordflow">throw</span>();
+<a name="l00255"></a>00255  ~<a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a>(); <span class="comment">// throw();</span>
+<a name="l00256"></a>00256  <span class="keywordtype">void</span> <a class="code" href="class_smart_pointer.html#af98785b14188a5a26d51bce859bc49dc">decrementRefCount</a>() <span class="keywordflow">throw</span>();
+<a name="l00257"></a>00257  <span class="keywordtype">void</span> deleteIfOnlyMutualReferencesRemain() <span class="keywordflow">throw</span>();
+<a name="l00258"></a>00258  
+<a name="l00260"></a>00260  
 <a name="l00261"></a>00261  
-<a name="l00262"></a>00262  
-<a name="l00263"></a><a class="code" href="class_proxy_owner_u_gen_internal.html#a6747eb82c6fa3e7eb11b4934be4eb161">00263</a>  <span class="keywordtype">int</span> <a class="code" href="class_proxy_owner_u_gen_internal.html#a6747eb82c6fa3e7eb11b4934be4eb161">getNumProxies</a>() <span class="keyword">const</span> throw()  { <span class="keywordflow">return</span> numProxies_;  }
-<a name="l00264"></a><a class="code" href="class_proxy_owner_u_gen_internal.html#a43e6fd05ba69f1ef135463c028e656cd">00264</a>  <span class="keywordtype">int</span> <a class="code" href="class_proxy_owner_u_gen_internal.html#a43e6fd05ba69f1ef135463c028e656cd">getNumChannels</a>() <span class="keyword">const</span> throw()  { <span class="keywordflow">return</span> numProxies_+1; }
-<a name="l00265"></a>00265  UGenInternal* getProxy(<span class="keyword">const</span> <span class="keywordtype">int</span> index) <span class="keywordflow">throw</span>();
-<a name="l00266"></a>00266  <span class="keywordtype">void</span> <a class="code" href="class_u_gen_internal.html#aa0dd89af52ec18c7a0a73bb54f0ca736">prepareForBlockInternal</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> actualBlockSize, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID) <span class="keywordflow">throw</span>();
-<a name="l00267"></a>00267  <span class="keywordtype">float</span>* <a class="code" href="class_u_gen_internal.html#a288c2d7564bd78feec88a54e53dbf806">processBlockInternal</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
-<a name="l00268"></a>00268  
-<a name="l00269"></a>00269 <span class="keyword">protected</span>:
-<a name="l00270"></a><a class="code" href="class_proxy_owner_u_gen_internal.html#aac2e5ce464ed1926a901a6069f793d7c">00270</a>  <span class="keyword">const</span> <span class="keywordtype">int</span> numProxies_;
-<a name="l00271"></a><a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">00271</a>  UGenInternal** <span class="keyword">const</span> proxies; <span class="comment">// UGenInternal** proxies;  ??</span>
-<a name="l00272"></a>00272 };
-<a name="l00273"></a>00273 
-<a name="l00278"></a><a class="code" href="class_proxy_u_gen_internal.html">00278</a> <span class="keyword">class </span>ProxyUGenInternal : <span class="keyword">public</span> UGenInternal
-<a name="l00279"></a>00279 {
-<a name="l00280"></a>00280 <span class="keyword">public</span>:
-<a name="l00281"></a>00281  
-<a name="l00284"></a>00284  
-<a name="l00285"></a>00285  ProxyUGenInternal(<a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a>* owner, <span class="keyword">const</span> <span class="keywordtype">int</span> proxyChannel) <span class="keywordflow">throw</span>();
-<a name="l00286"></a>00286  ~ProxyUGenInternal() <span class="keywordflow">throw</span>();
-<a name="l00287"></a>00287  <span class="keywordtype">void</span> <a class="code" href="class_smart_pointer.html#acea9f749c0ab920d2833d4bb81f6eb9f">decrementRefCount</a>() <span class="keywordflow">throw</span>();
-<a name="l00288"></a>00288  
-<a name="l00290"></a>00290  
-<a name="l00291"></a><a class="code" href="class_proxy_u_gen_internal.html#a7ee9bff86a9b792f6e09db72b5cded2c">00291</a>  <span class="keywordtype">bool</span> <a class="code" href="class_proxy_u_gen_internal.html#a7ee9bff86a9b792f6e09db72b5cded2c">isProxy</a>() <span class="keyword">const</span> throw()   { <span class="keywordflow">return</span> <span class="keyword">true</span>;      }
-<a name="l00292"></a><a class="code" href="class_proxy_u_gen_internal.html#a335f02992cb1dbfda56fe78118a9de31">00292</a>  UGenInternal* <a class="code" href="class_proxy_u_gen_internal.html#a335f02992cb1dbfda56fe78118a9de31">getOwner</a>() throw()  { <span class="keywordflow">return</span> owner_;      }
-<a name="l00293"></a>00293  <span class="keywordtype">int</span> getProxyChannel() throw();
-<a name="l00294"></a><a class="code" href="class_proxy_u_gen_internal.html#a6e331d2db07bbee002aeccac8d9097d8">00294</a>  <span class="keywordtype">int</span> <a class="code" href="class_u_gen_internal.html#a1f641058be4a8696754a7ea57bd21801">getNumChannels</a>() const throw()  { <span class="keywordflow">return</span> owner_-&gt;getNumChannels(); }
-<a name="l00295"></a>00295  <span class="keywordtype">void</span> <a class="code" href="class_u_gen_internal.html#a639bba878cc85d9dd20453cfea87b4b3">prepareForBlock</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> actualBlockSize, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID) <span class="keywordflow">throw</span>();
-<a name="l00296"></a>00296  <span class="keywordtype">void</span> <a class="code" href="class_u_gen_internal.html#ae1c9c941ea6f372d8af8cc5f9ae32ace" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
-<a name="l00297"></a>00297  
-<a name="l00298"></a>00298 <span class="keyword">private</span>:
-<a name="l00299"></a><a class="code" href="class_proxy_u_gen_internal.html#add6e92f6f6db3ceec4ed1c9739f6aaa5">00299</a>  <a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a>* <span class="keyword">const</span> owner_;
-<a name="l00300"></a><a class="code" href="class_proxy_u_gen_internal.html#a3f3c8152e1c080c470450521b6d327aa">00300</a>  <span class="keywordtype">int</span> proxyChannel_;
-<a name="l00301"></a>00301 };
-<a name="l00302"></a>00302 
-<a name="l00303"></a><a class="code" href="ugen___u_gen_internal_8h.html#aa79bb6a9ad704e08ac4b3792cdaa208a">00303</a> <span class="keyword">class </span><a class="code" href="class_done_action_receiver.html" title="Subclasses of this receive UGen done action message.">DoneActionReceiver</a>;
-<a name="l00304"></a>00304 <span class="keyword">typedef</span> <a class="code" href="class_object_array.html">ObjectArray&lt;DoneActionReceiver*&gt;</a> <a class="code" href="class_object_array.html">DoneActionReceiverArray</a>;
-<a name="l00305"></a>00305 
-<a name="l00307"></a><a class="code" href="class_done_action_sender.html">00307</a> <span class="keyword">class </span><a class="code" href="class_done_action_sender.html" title="This allows some UGens to send messages to indicate they are finsihed.">DoneActionSender</a>
-<a name="l00308"></a>00308 {
-<a name="l00309"></a>00309 <span class="keyword">public</span>:
-<a name="l00310"></a>00310  <a class="code" href="class_done_action_sender.html" title="This allows some UGens to send messages to indicate they are finsihed.">DoneActionSender</a>() <span class="keywordflow">throw</span>();
-<a name="l00311"></a>00311  <span class="keyword">virtual</span> ~<a class="code" href="class_done_action_sender.html" title="This allows some UGens to send messages to indicate they are finsihed.">DoneActionSender</a>();
-<a name="l00312"></a>00312  
-<a name="l00313"></a>00313  <span class="keywordtype">void</span> addDoneActionReceiver(<a class="code" href="class_done_action_receiver.html" title="Subclasses of this receive UGen done action message.">DoneActionReceiver</a>* <span class="keyword">const</span> receiver) <span class="keywordflow">throw</span>();
-<a name="l00314"></a>00314  <span class="keywordtype">void</span> removeDoneActionReceiver(<a class="code" href="class_done_action_receiver.html" title="Subclasses of this receive UGen done action message.">DoneActionReceiver</a>* <span class="keyword">const</span> receiver) <span class="keywordflow">throw</span>();
-<a name="l00315"></a>00315  <span class="keywordtype">void</span> sendDoneInternal() <span class="keywordflow">throw</span>();
-<a name="l00316"></a>00316  <span class="keywordtype">void</span> sendReleasing(<span class="keyword">const</span> <span class="keywordtype">double</span> time) <span class="keywordflow">throw</span>();
-<a name="l00317"></a>00317  <span class="keywordtype">void</span> setIsDone() <span class="keywordflow">throw</span>();
-<a name="l00318"></a><a class="code" href="class_done_action_sender.html#a9559ce0c32a694efebe85ea90010507e">00318</a>  <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_done_action_sender.html#a9559ce0c32a694efebe85ea90010507e">isDoneSent</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> doneSent; }
-<a name="l00319"></a><a class="code" href="class_done_action_sender.html#a5357e71bce9ec19f1d7582be78255ac5">00319</a>  <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_done_action_sender.html#a5357e71bce9ec19f1d7582be78255ac5">isDone</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> isDone_; }
-<a name="l00320"></a>00320  
-<a name="l00321"></a><a class="code" href="class_done_action_sender.html#ae92c7ba101889a3fd5dc130cffc2f8f4">00321</a>  <span class="keywordtype">int</span> senderUserData;
-<a name="l00322"></a>00322  
-<a name="l00323"></a>00323 <span class="keyword">private</span>:
-<a name="l00324"></a>00324  <span class="keywordtype">void</span> sendDone() throw();
-<a name="l00325"></a>00325  
-<a name="l00326"></a><a class="code" href="class_done_action_sender.html#a8a1bf5370ebd827fb45b885974cf555c">00326</a>  <a class="code" href="class_object_array.html">DoneActionReceiverArray</a> receivers;
-<a name="l00327"></a><a class="code" href="class_done_action_sender.html#a25585774c1bd975671105617b8421ccf">00327</a>  <span class="keywordtype">bool</span> isDone_ : 1;
-<a name="l00328"></a><a class="code" href="class_done_action_sender.html#ab5e2139511ce1995ae6dd63b4d56835f">00328</a>  <span class="keywordtype">bool</span> doneSent : 1;
-<a name="l00329"></a>00329 };
-<a name="l00330"></a>00330 
-<a name="l00332"></a><a class="code" href="class_done_action_receiver.html">00332</a> class <a class="code" href="class_done_action_receiver.html" title="Subclasses of this receive UGen done action message.">DoneActionReceiver</a>
-<a name="l00333"></a>00333 {
-<a name="l00334"></a>00334 <span class="keyword">public</span>:
-<a name="l00335"></a><a class="code" href="class_done_action_receiver.html#ae2d6bf342d80e1723907ae2953e70b0f">00335</a>  <a class="code" href="class_done_action_receiver.html#ae2d6bf342d80e1723907ae2953e70b0f">DoneActionReceiver</a>() throw() {}
-<a name="l00336"></a><a class="code" href="class_done_action_receiver.html#a71f147fe51f3fe6b1eea150a0260dc84">00336</a>  <span class="keyword">virtual</span> <a class="code" href="class_done_action_receiver.html#a71f147fe51f3fe6b1eea150a0260dc84">~DoneActionReceiver</a>() {}
-<a name="l00337"></a>00337  
-<a name="l00342"></a>00342  <span class="keyword">virtual</span> <span class="keywordtype">void</span> handleDone(<span class="keyword">const</span> <span class="keywordtype">int</span> senderUserData) = 0;
-<a name="l00343"></a>00343  
-<a name="l00352"></a><a class="code" href="class_done_action_receiver.html#ac3e949dd9926abe1e212c51bdd2a1b95">00352</a>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_done_action_receiver.html#ac3e949dd9926abe1e212c51bdd2a1b95" title="This is optional, sent when a UGen is releasing or fading out naturally.">handleReleasing</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> senderUserData, <span class="keyword">const</span> <span class="keywordtype">double</span> time) { (void)senderUserData; (void)time; };
-<a name="l00353"></a>00353  
-<a name="l00355"></a><a class="code" href="class_done_action_receiver.html#a0becdd133ebd30b3d5beaa0a17fc2473">00355</a>  operator DoneActionReceiver*() throw() { <span class="keywordflow">return</span> <span class="keyword">this</span>; }
-<a name="l00356"></a>00356 };
+<a name="l00262"></a><a class="code" href="class_proxy_owner_u_gen_internal.html#a6747eb82c6fa3e7eb11b4934be4eb161">00262</a>  <span class="keywordtype">int</span> <a class="code" href="class_proxy_owner_u_gen_internal.html#a6747eb82c6fa3e7eb11b4934be4eb161">getNumProxies</a>() <span class="keyword">const</span> throw()  { <span class="keywordflow">return</span> numProxies_;  }
+<a name="l00263"></a><a class="code" href="class_proxy_owner_u_gen_internal.html#a43e6fd05ba69f1ef135463c028e656cd">00263</a>  <span class="keywordtype">int</span> <a class="code" href="class_proxy_owner_u_gen_internal.html#a43e6fd05ba69f1ef135463c028e656cd">getNumChannels</a>() <span class="keyword">const</span> throw()  { <span class="keywordflow">return</span> numProxies_+1; }
+<a name="l00264"></a>00264  UGenInternal* getProxy(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="ugen___play_buf_8ii.html#a61405661f3bf3097efcac27bcc31c137">index</a>) <span class="keywordflow">throw</span>();
+<a name="l00265"></a>00265  <span class="keywordtype">void</span> <a class="code" href="class_u_gen_internal.html#ab1d371db06f11a87c5b947e05eba0fa0">prepareForBlockInternal</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> actualBlockSize, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID) <span class="keywordflow">throw</span>();
+<a name="l00266"></a>00266  <span class="keywordtype">float</span>* <a class="code" href="class_u_gen_internal.html#a0a183b0bcb10f089a3db0b50cc51c7ab">processBlockInternal</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00267"></a>00267  
+<a name="l00268"></a>00268 <span class="keyword">protected</span>:
+<a name="l00269"></a><a class="code" href="class_proxy_owner_u_gen_internal.html#aac2e5ce464ed1926a901a6069f793d7c">00269</a>  <span class="keyword">const</span> <span class="keywordtype">int</span> numProxies_;
+<a name="l00270"></a><a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">00270</a>  UGenInternal** <span class="keyword">const</span> proxies; <span class="comment">// UGenInternal** proxies;  ??</span>
+<a name="l00271"></a>00271 };
+<a name="l00272"></a>00272 
+<a name="l00277"></a><a class="code" href="class_proxy_u_gen_internal.html">00277</a> <span class="keyword">class </span>ProxyUGenInternal : <span class="keyword">public</span> UGenInternal
+<a name="l00278"></a>00278 {
+<a name="l00279"></a>00279 <span class="keyword">public</span>:
+<a name="l00280"></a>00280  
+<a name="l00283"></a>00283  
+<a name="l00284"></a>00284  ProxyUGenInternal(<a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a>* owner, <span class="keyword">const</span> <span class="keywordtype">int</span> proxyChannel) <span class="keywordflow">throw</span>();
+<a name="l00285"></a>00285  ~ProxyUGenInternal() <span class="keywordflow">throw</span>();
+<a name="l00286"></a>00286  <span class="keywordtype">void</span> <a class="code" href="class_smart_pointer.html#af98785b14188a5a26d51bce859bc49dc">decrementRefCount</a>() <span class="keywordflow">throw</span>();
+<a name="l00287"></a>00287  
+<a name="l00289"></a>00289  
+<a name="l00290"></a><a class="code" href="class_proxy_u_gen_internal.html#a7ee9bff86a9b792f6e09db72b5cded2c">00290</a>  <span class="keywordtype">bool</span> <a class="code" href="class_proxy_u_gen_internal.html#a7ee9bff86a9b792f6e09db72b5cded2c">isProxy</a>() <span class="keyword">const</span> throw()   { <span class="keywordflow">return</span> <span class="keyword">true</span>;      }
+<a name="l00291"></a><a class="code" href="class_proxy_u_gen_internal.html#a335f02992cb1dbfda56fe78118a9de31">00291</a>  UGenInternal* <a class="code" href="class_proxy_u_gen_internal.html#a335f02992cb1dbfda56fe78118a9de31">getOwner</a>() throw()  { <span class="keywordflow">return</span> owner_;      }
+<a name="l00292"></a>00292  <span class="keywordtype">int</span> getProxyChannel() throw();
+<a name="l00293"></a><a class="code" href="class_proxy_u_gen_internal.html#a6e331d2db07bbee002aeccac8d9097d8">00293</a>  <span class="keywordtype">int</span> <a class="code" href="class_u_gen_internal.html#a1f641058be4a8696754a7ea57bd21801">getNumChannels</a>() const throw()  { <span class="keywordflow">return</span> owner_-&gt;getNumChannels(); }
+<a name="l00294"></a>00294  <span class="keywordtype">void</span> <a class="code" href="class_u_gen_internal.html#a639bba878cc85d9dd20453cfea87b4b3">prepareForBlock</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> actualBlockSize, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID) <span class="keywordflow">throw</span>();
+<a name="l00295"></a>00295  <span class="keywordtype">void</span> <a class="code" href="class_u_gen_internal.html#ae1c9c941ea6f372d8af8cc5f9ae32ace" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00296"></a>00296  
+<a name="l00297"></a>00297 <span class="keyword">private</span>:
+<a name="l00298"></a><a class="code" href="class_proxy_u_gen_internal.html#add6e92f6f6db3ceec4ed1c9739f6aaa5">00298</a>  <a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a>* <span class="keyword">const</span> owner_;
+<a name="l00299"></a><a class="code" href="class_proxy_u_gen_internal.html#a3f3c8152e1c080c470450521b6d327aa">00299</a>  <span class="keywordtype">int</span> proxyChannel_;
+<a name="l00300"></a>00300 };
+<a name="l00301"></a>00301 
+<a name="l00302"></a><a class="code" href="ugen___u_gen_internal_8h.html#aa79bb6a9ad704e08ac4b3792cdaa208a">00302</a> <span class="keyword">class </span><a class="code" href="class_done_action_receiver.html" title="Subclasses of this receive UGen done action message.">DoneActionReceiver</a>;
+<a name="l00303"></a>00303 <span class="keyword">typedef</span> <a class="code" href="class_object_array.html">ObjectArray&lt;DoneActionReceiver*&gt;</a> <a class="code" href="class_object_array.html">DoneActionReceiverArray</a>;
+<a name="l00304"></a>00304 
+<a name="l00306"></a><a class="code" href="class_done_action_sender.html">00306</a> <span class="keyword">class </span><a class="code" href="class_done_action_sender.html" title="This allows some UGens to send messages to indicate they are finsihed.">DoneActionSender</a>
+<a name="l00307"></a>00307 {
+<a name="l00308"></a>00308 <span class="keyword">public</span>:
+<a name="l00309"></a>00309  <a class="code" href="class_done_action_sender.html" title="This allows some UGens to send messages to indicate they are finsihed.">DoneActionSender</a>() <span class="keywordflow">throw</span>();
+<a name="l00310"></a>00310  <span class="keyword">virtual</span> ~<a class="code" href="class_done_action_sender.html" title="This allows some UGens to send messages to indicate they are finsihed.">DoneActionSender</a>();
+<a name="l00311"></a>00311  
+<a name="l00312"></a>00312  <span class="keywordtype">void</span> addDoneActionReceiver(<a class="code" href="class_done_action_receiver.html" title="Subclasses of this receive UGen done action message.">DoneActionReceiver</a>* <span class="keyword">const</span> receiver) <span class="keywordflow">throw</span>();
+<a name="l00313"></a>00313  <span class="keywordtype">void</span> removeDoneActionReceiver(<a class="code" href="class_done_action_receiver.html" title="Subclasses of this receive UGen done action message.">DoneActionReceiver</a>* <span class="keyword">const</span> receiver) <span class="keywordflow">throw</span>();
+<a name="l00314"></a>00314  <span class="keywordtype">void</span> sendDoneInternal() <span class="keywordflow">throw</span>();
+<a name="l00315"></a>00315  <span class="keywordtype">void</span> sendReleasing(<span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="ugen___play_buf_8ii.html#aae026724f73c36340024c657f4f44dab">time</a>) <span class="keywordflow">throw</span>();
+<a name="l00316"></a>00316  <span class="keywordtype">void</span> setIsDone() <span class="keywordflow">throw</span>();
+<a name="l00317"></a><a class="code" href="class_done_action_sender.html#a9559ce0c32a694efebe85ea90010507e">00317</a>  <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_done_action_sender.html#a9559ce0c32a694efebe85ea90010507e">isDoneSent</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> doneSent; }
+<a name="l00318"></a><a class="code" href="class_done_action_sender.html#a5357e71bce9ec19f1d7582be78255ac5">00318</a>  <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_done_action_sender.html#a5357e71bce9ec19f1d7582be78255ac5">isDone</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> isDone_; }
+<a name="l00319"></a>00319  
+<a name="l00320"></a><a class="code" href="class_done_action_sender.html#ae92c7ba101889a3fd5dc130cffc2f8f4">00320</a>  <span class="keywordtype">int</span> senderUserData;
+<a name="l00321"></a>00321  
+<a name="l00322"></a>00322 <span class="keyword">private</span>:
+<a name="l00323"></a>00323  <span class="keywordtype">void</span> sendDone() throw();
+<a name="l00324"></a>00324  
+<a name="l00325"></a><a class="code" href="class_done_action_sender.html#a8a1bf5370ebd827fb45b885974cf555c">00325</a>  <a class="code" href="class_object_array.html">DoneActionReceiverArray</a> receivers;
+<a name="l00326"></a><a class="code" href="class_done_action_sender.html#a25585774c1bd975671105617b8421ccf">00326</a>  <span class="keywordtype">bool</span> isDone_ : 1;
+<a name="l00327"></a><a class="code" href="class_done_action_sender.html#ab5e2139511ce1995ae6dd63b4d56835f">00327</a>  <span class="keywordtype">bool</span> doneSent : 1;
+<a name="l00328"></a>00328 };
+<a name="l00329"></a>00329 
+<a name="l00331"></a><a class="code" href="class_done_action_receiver.html">00331</a> class <a class="code" href="class_done_action_receiver.html" title="Subclasses of this receive UGen done action message.">DoneActionReceiver</a>
+<a name="l00332"></a>00332 {
+<a name="l00333"></a>00333 <span class="keyword">public</span>:
+<a name="l00334"></a><a class="code" href="class_done_action_receiver.html#ae2d6bf342d80e1723907ae2953e70b0f">00334</a>  <a class="code" href="class_done_action_receiver.html#ae2d6bf342d80e1723907ae2953e70b0f">DoneActionReceiver</a>() throw() {}
+<a name="l00335"></a><a class="code" href="class_done_action_receiver.html#a71f147fe51f3fe6b1eea150a0260dc84">00335</a>  <span class="keyword">virtual</span> <a class="code" href="class_done_action_receiver.html#a71f147fe51f3fe6b1eea150a0260dc84">~DoneActionReceiver</a>() {}
+<a name="l00336"></a>00336  
+<a name="l00341"></a>00341  <span class="keyword">virtual</span> <span class="keywordtype">void</span> handleDone(<span class="keyword">const</span> <span class="keywordtype">int</span> senderUserData) = 0;
+<a name="l00342"></a>00342  
+<a name="l00351"></a><a class="code" href="class_done_action_receiver.html#ac3e949dd9926abe1e212c51bdd2a1b95">00351</a>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_done_action_receiver.html#ac3e949dd9926abe1e212c51bdd2a1b95" title="This is optional, sent when a UGen is releasing or fading out naturally.">handleReleasing</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> senderUserData, <span class="keyword">const</span> <span class="keywordtype">double</span> time) { (void)senderUserData; (void)time; };
+<a name="l00352"></a>00352  
+<a name="l00354"></a><a class="code" href="class_done_action_receiver.html#a0becdd133ebd30b3d5beaa0a17fc2473">00354</a>  operator DoneActionReceiver*() throw() { <span class="keywordflow">return</span> <span class="keyword">this</span>; }
+<a name="l00355"></a>00355 };
+<a name="l00356"></a>00356 
 <a name="l00357"></a>00357 
-<a name="l00358"></a>00358 
-<a name="l00365"></a><a class="code" href="class_releasable_u_gen_internal.html">00365</a> <span class="keyword">class </span><a class="code" href="class_releasable_u_gen_internal.html" title="A UGenInternal base that is &amp;quot;releasable&amp;quot; in the sense of a envelope which may be released...">ReleasableUGenInternal</a> : <span class="keyword">public</span> UGenInternal,
-<a name="l00366"></a>00366         <span class="keyword">public</span> <a class="code" href="class_done_action_sender.html" title="This allows some UGens to send messages to indicate they are finsihed.">DoneActionSender</a>
-<a name="l00367"></a>00367 {
-<a name="l00368"></a>00368 <span class="keyword">public</span>:
-<a name="l00369"></a>00369  
-<a name="l00372"></a>00372  
-<a name="l00373"></a>00373  <a class="code" href="class_releasable_u_gen_internal.html" title="A UGenInternal base that is &amp;quot;releasable&amp;quot; in the sense of a envelope which may be released...">ReleasableUGenInternal</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> numInputs) <span class="keywordflow">throw</span>();
-<a name="l00374"></a>00374  <span class="keywordtype">void</span> <a class="code" href="class_u_gen_internal.html#a639bba878cc85d9dd20453cfea87b4b3">prepareForBlock</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> actualBlockSize, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID) <span class="keywordflow">throw</span>();
-<a name="l00375"></a>00375 
-<a name="l00376"></a>00376  <span class="keyword">virtual</span> <span class="keywordtype">void</span> release() = 0;
-<a name="l00377"></a>00377  <span class="keyword">virtual</span> <span class="keywordtype">void</span> steal() = 0;
-<a name="l00378"></a>00378  
-<a name="l00380"></a>00380  
-<a name="l00383"></a>00383  
-<a name="l00384"></a><a class="code" href="class_releasable_u_gen_internal.html#a3da3345ff44a99bad1db694fd4ddbd9e">00384</a>  <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_releasable_u_gen_internal.html#a3da3345ff44a99bad1db694fd4ddbd9e">shouldRelease</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> shouldRelease_; }
-<a name="l00385"></a><a class="code" href="class_releasable_u_gen_internal.html#ae6734252da80c0aa091441b02a773b3d">00385</a>  <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_releasable_u_gen_internal.html#ae6734252da80c0aa091441b02a773b3d">shouldSteal</a>() <span class="keyword">const</span> throw()  { <span class="keywordflow">return</span> shouldSteal_;  }
-<a name="l00386"></a><a class="code" href="class_releasable_u_gen_internal.html#a20f7c44cf7f0a2670448aa87ca31225d">00386</a>  <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_releasable_u_gen_internal.html#a20f7c44cf7f0a2670448aa87ca31225d">isReleasing</a>() <span class="keyword">const</span> throw()  { <span class="keywordflow">return</span> isReleasing_;  }
-<a name="l00387"></a><a class="code" href="class_releasable_u_gen_internal.html#a94fc0ca2388a5ac89cf8e5d93cbee201">00387</a>  <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_releasable_u_gen_internal.html#a94fc0ca2388a5ac89cf8e5d93cbee201">isStealing</a>() <span class="keyword">const</span> throw()  { <span class="keywordflow">return</span> isStealing_;  }
-<a name="l00388"></a>00388   
-<a name="l00390"></a>00390  
-<a name="l00391"></a>00391 <span class="keyword">protected</span>:
-<a name="l00392"></a>00392  <span class="keywordtype">void</span> <a class="code" href="class_u_gen_internal.html#abaf01396d3f7582c43032188e760636c">releaseInternal</a>() throw();
-<a name="l00393"></a>00393  <span class="keywordtype">void</span> <a class="code" href="class_u_gen_internal.html#a4d2712dfc348674097ea670aab5c7101">stealInternal</a>() throw();
-<a name="l00394"></a>00394  <span class="keywordtype">void</span> setIsReleasing() throw();
-<a name="l00395"></a>00395  <span class="keywordtype">void</span> setIsStealing() throw();
-<a name="l00396"></a>00396  
-<a name="l00397"></a><a class="code" href="class_releasable_u_gen_internal.html#a05c315d78837c7e196d409f2010c494a">00397</a>  <span class="keywordtype">bool</span> shouldRelease_ : 1;
-<a name="l00398"></a><a class="code" href="class_releasable_u_gen_internal.html#a0a41eb292b9b33354270b9b83e3a6b5f">00398</a>  <span class="keywordtype">bool</span> shouldSteal_ : 1;
-<a name="l00399"></a><a class="code" href="class_releasable_u_gen_internal.html#ae8a65645fd10f6c88fd4dea4903e5fe2">00399</a>  <span class="keywordtype">bool</span> isReleasing_ : 1;
-<a name="l00400"></a><a class="code" href="class_releasable_u_gen_internal.html#a167cc696b92f1cf36aa423af30097778">00400</a>  <span class="keywordtype">bool</span> isStealing_ : 1;
-<a name="l00401"></a>00401 };
-<a name="l00402"></a>00402 
-<a name="l00404"></a><a class="code" href="class_seekable.html">00404</a> class <a class="code" href="class_seekable.html" title="Added to UGenInternal classes that can seek a particular point in time.">Seekable</a>
-<a name="l00405"></a>00405 {
-<a name="l00406"></a>00406 <span class="keyword">public</span>:
-<a name="l00407"></a><a class="code" href="class_seekable.html#a8bb9099e44c6969e76e53747614eb86b">00407</a>  <a class="code" href="class_seekable.html#a8bb9099e44c6969e76e53747614eb86b">Seekable</a>() throw() {}
-<a name="l00408"></a><a class="code" href="class_seekable.html#a3607135ef5ada648c526f9dfeb149164">00408</a>  <span class="keyword">virtual</span> <a class="code" href="class_seekable.html#a3607135ef5ada648c526f9dfeb149164">~Seekable</a>() {}
-<a name="l00413"></a>00413  <span class="keyword">virtual</span> <span class="keywordtype">double</span> getDuration() <span class="keyword">const</span> = 0;
-<a name="l00418"></a>00418  <span class="keyword">virtual</span> <span class="keywordtype">double</span> getPosition() <span class="keyword">const</span> = 0;
-<a name="l00423"></a>00423  <span class="keyword">virtual</span> <span class="keywordtype">void</span> setPosition(<span class="keyword">const</span> <span class="keywordtype">double</span> newPosition) = 0;
-<a name="l00424"></a>00424 };
+<a name="l00364"></a><a class="code" href="class_releasable_u_gen_internal.html">00364</a> <span class="keyword">class </span><a class="code" href="class_releasable_u_gen_internal.html" title="A UGenInternal base that is &amp;quot;releasable&amp;quot; in the sense of a envelope which may be released...">ReleasableUGenInternal</a> : <span class="keyword">public</span> UGenInternal,
+<a name="l00365"></a>00365         <span class="keyword">public</span> <a class="code" href="class_done_action_sender.html" title="This allows some UGens to send messages to indicate they are finsihed.">DoneActionSender</a>
+<a name="l00366"></a>00366 {
+<a name="l00367"></a>00367 <span class="keyword">public</span>:
+<a name="l00368"></a>00368  
+<a name="l00371"></a>00371  
+<a name="l00372"></a>00372  <a class="code" href="class_releasable_u_gen_internal.html" title="A UGenInternal base that is &amp;quot;releasable&amp;quot; in the sense of a envelope which may be released...">ReleasableUGenInternal</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> numInputs) <span class="keywordflow">throw</span>();
+<a name="l00373"></a>00373  <span class="keywordtype">void</span> <a class="code" href="class_u_gen_internal.html#a639bba878cc85d9dd20453cfea87b4b3">prepareForBlock</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> actualBlockSize, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID) <span class="keywordflow">throw</span>();
+<a name="l00374"></a>00374 
+<a name="l00375"></a>00375  <span class="keyword">virtual</span> <span class="keywordtype">void</span> release() = 0;
+<a name="l00376"></a>00376  <span class="keyword">virtual</span> <span class="keywordtype">void</span> steal() = 0;
+<a name="l00377"></a>00377  
+<a name="l00379"></a>00379  
+<a name="l00382"></a>00382  
+<a name="l00383"></a><a class="code" href="class_releasable_u_gen_internal.html#a3da3345ff44a99bad1db694fd4ddbd9e">00383</a>  <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_releasable_u_gen_internal.html#a3da3345ff44a99bad1db694fd4ddbd9e">shouldRelease</a>() <span class="keyword">const</span> throw() { <span class="keywordflow">return</span> shouldRelease_; }
+<a name="l00384"></a><a class="code" href="class_releasable_u_gen_internal.html#ae6734252da80c0aa091441b02a773b3d">00384</a>  <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_releasable_u_gen_internal.html#ae6734252da80c0aa091441b02a773b3d">shouldSteal</a>() <span class="keyword">const</span> throw()  { <span class="keywordflow">return</span> shouldSteal_;  }
+<a name="l00385"></a><a class="code" href="class_releasable_u_gen_internal.html#a20f7c44cf7f0a2670448aa87ca31225d">00385</a>  <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_releasable_u_gen_internal.html#a20f7c44cf7f0a2670448aa87ca31225d">isReleasing</a>() <span class="keyword">const</span> throw()  { <span class="keywordflow">return</span> isReleasing_;  }
+<a name="l00386"></a><a class="code" href="class_releasable_u_gen_internal.html#a94fc0ca2388a5ac89cf8e5d93cbee201">00386</a>  <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_releasable_u_gen_internal.html#a94fc0ca2388a5ac89cf8e5d93cbee201">isStealing</a>() <span class="keyword">const</span> throw()  { <span class="keywordflow">return</span> isStealing_;  }
+<a name="l00387"></a>00387   
+<a name="l00389"></a>00389  
+<a name="l00390"></a>00390 <span class="keyword">protected</span>:
+<a name="l00391"></a>00391  <span class="keywordtype">void</span> <a class="code" href="class_u_gen_internal.html#a2dc7bf41a60b8405cd250debf79bd0e3">releaseInternal</a>() throw();
+<a name="l00392"></a>00392  <span class="keywordtype">void</span> <a class="code" href="class_u_gen_internal.html#a08c7f94ea1fdf37323c88ae4739de3ef">stealInternal</a>() throw();
+<a name="l00393"></a>00393  <span class="keywordtype">void</span> setIsReleasing() throw();
+<a name="l00394"></a>00394  <span class="keywordtype">void</span> setIsStealing() throw();
+<a name="l00395"></a>00395  
+<a name="l00396"></a><a class="code" href="class_releasable_u_gen_internal.html#a05c315d78837c7e196d409f2010c494a">00396</a>  <span class="keywordtype">bool</span> shouldRelease_ : 1;
+<a name="l00397"></a><a class="code" href="class_releasable_u_gen_internal.html#a0a41eb292b9b33354270b9b83e3a6b5f">00397</a>  <span class="keywordtype">bool</span> shouldSteal_ : 1;
+<a name="l00398"></a><a class="code" href="class_releasable_u_gen_internal.html#ae8a65645fd10f6c88fd4dea4903e5fe2">00398</a>  <span class="keywordtype">bool</span> isReleasing_ : 1;
+<a name="l00399"></a><a class="code" href="class_releasable_u_gen_internal.html#a167cc696b92f1cf36aa423af30097778">00399</a>  <span class="keywordtype">bool</span> isStealing_ : 1;
+<a name="l00400"></a>00400 };
+<a name="l00401"></a>00401 
+<a name="l00403"></a><a class="code" href="class_seekable.html">00403</a> class <a class="code" href="class_seekable.html" title="Added to UGenInternal classes that can seek a particular point in time.">Seekable</a>
+<a name="l00404"></a>00404 {
+<a name="l00405"></a>00405 <span class="keyword">public</span>:
+<a name="l00406"></a><a class="code" href="class_seekable.html#a8bb9099e44c6969e76e53747614eb86b">00406</a>  <a class="code" href="class_seekable.html#a8bb9099e44c6969e76e53747614eb86b">Seekable</a>() throw() {}
+<a name="l00407"></a><a class="code" href="class_seekable.html#a3607135ef5ada648c526f9dfeb149164">00407</a>  <span class="keyword">virtual</span> <a class="code" href="class_seekable.html#a3607135ef5ada648c526f9dfeb149164">~Seekable</a>() {}
+<a name="l00412"></a>00412  <span class="keyword">virtual</span> <span class="keywordtype">double</span> getDuration() <span class="keyword">const</span> = 0;
+<a name="l00417"></a>00417  <span class="keyword">virtual</span> <span class="keywordtype">double</span> getPosition() <span class="keyword">const</span> = 0;
+<a name="l00422"></a>00422  <span class="keyword">virtual</span> <span class="keywordtype">void</span> setPosition(<span class="keyword">const</span> <span class="keywordtype">double</span> newPosition) = 0;
+<a name="l00423"></a>00423 };
+<a name="l00424"></a>00424 
 <a name="l00425"></a>00425 
-<a name="l00426"></a>00426 
-<a name="l00427"></a>00427 <span class="preprocessor">#endif // UGEN_UGENINTERNAL_H</span>
+<a name="l00426"></a>00426 <span class="preprocessor">#endif // UGEN_UGENINTERNAL_H</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:37 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:30 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -52,7 +52,7 @@
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_disk_in_u_gen_internal.html#a97ae7e67320e1956e69269cb94535766">DiskInUGenInternal</a> (AudioFileID audioFile, AudioStreamBasicDescription const &amp;format, const bool loopFlag=false, const double startTime=0.0, const <a class="el" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1ca">UGen::DoneAction</a> doneAction=UGen::DeleteWhenDone)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_disk_in_u_gen_internal.html#af3f7c86d9a8c99d2411256d5e1806443">~DiskInUGenInternal</a> ()  throw ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">OSStatus&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_disk_in_u_gen_internal.html#a811b3d36ae8817f10fae92af56784e5c">clearOutputsAndReadData</a> (bool &amp;shouldDelete)  throw ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="ugen___play_buf_8ii.html#a389e8a167a89832edb1c7f2d0302537c">OSStatus</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_disk_in_u_gen_internal.html#a811b3d36ae8817f10fae92af56784e5c">clearOutputsAndReadData</a> (bool &amp;shouldDelete)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_disk_in_u_gen_internal.html#a40e1418b9ac68c423eeaef61930ea58a">prepareForBlock</a> (const int actualBlockSize, const unsigned int blockID)  throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_disk_in_u_gen_internal.html#a3a77ff362ac4eda51969ce74b2a55bd9">getDuration</a> () const   throw ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_disk_in_u_gen_internal.html#a61bc00649b6641615edcfc1bc5f480e9">getPosition</a> () const   throw ()</td></tr>
@@ -71,12 +71,12 @@ Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_disk_in_u_gen_internal.html#a1346d2ad6497ea0ce11e6fffda174da4">numChannels_</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_disk_in_u_gen_internal.html#ab514cb4aa21864ceb5a6242aa72b483d">loopFlag_</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_disk_in_u_gen_internal.html#a91b869cd3f451ac66b4ed849cd125c26">startTime_</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">SInt64&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_disk_in_u_gen_internal.html#ab10c0c019356af1b6644d492046859d9">packetCount</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">SInt64&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_disk_in_u_gen_internal.html#ad624f5b69c5c24f37f8c101c5dd80722">currentPacket</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="ugen___play_buf_8ii.html#a9e85b8f018aa486ef4dd802e4eff6e1a">SInt64</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_disk_in_u_gen_internal.html#ab10c0c019356af1b6644d492046859d9">packetCount</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="ugen___play_buf_8ii.html#a9e85b8f018aa486ef4dd802e4eff6e1a">SInt64</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_disk_in_u_gen_internal.html#ad624f5b69c5c24f37f8c101c5dd80722">currentPacket</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_disk_in_u_gen_internal.html#a411730680c82b3c4a12e0769f28f98b1">allocatedBlockSize</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_disk_in_u_gen_internal.html#afc566294fe640542aaf79c21fa70c36e">audioData</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">UInt32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_disk_in_u_gen_internal.html#a061020ec87b567e80b50d1c51b95efae">numPackets</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">UInt32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_disk_in_u_gen_internal.html#af0e1454c1381e8394cac5fb1636d7118">bytesPerFrame</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_disk_in_u_gen_internal.html#a061020ec87b567e80b50d1c51b95efae">numPackets</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_disk_in_u_gen_internal.html#af0e1454c1381e8394cac5fb1636d7118">bytesPerFrame</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_disk_in_u_gen_internal.html#a5c08e98e6e98d9575988048b7bbe7bd7">fileSampleRate</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_disk_in_u_gen_internal.html#a6ef46cdac68bb856b647ca08f972b5c4">reciprocalSampleRate</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1ca">UGen::DoneAction</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_disk_in_u_gen_internal.html#aaff68b1d4ab03e94a6deb97283263f69">doneAction_</a></td></tr>
@@ -245,7 +245,7 @@ Protected Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">OSStatus DiskInUGenInternal::clearOutputsAndReadData </td>
+          <td class="memname"><a class="el" href="ugen___play_buf_8ii.html#a389e8a167a89832edb1c7f2d0302537c">OSStatus</a> DiskInUGenInternal::clearOutputsAndReadData </td>
           <td>(</td>
           <td class="paramtype">bool &amp;&nbsp;</td>
           <td class="paramname"> <em>shouldDelete</em></td>
@@ -517,7 +517,7 @@ Protected Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">UInt32 <a class="el" href="class_disk_in_u_gen_internal.html#af0e1454c1381e8394cac5fb1636d7118">DiskInUGenInternal::bytesPerFrame</a><code> [protected]</code></td>
+          <td class="memname"><a class="el" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a> <a class="el" href="class_disk_in_u_gen_internal.html#af0e1454c1381e8394cac5fb1636d7118">DiskInUGenInternal::bytesPerFrame</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -532,7 +532,7 @@ Protected Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">SInt64 <a class="el" href="class_disk_in_u_gen_internal.html#ad624f5b69c5c24f37f8c101c5dd80722">DiskInUGenInternal::currentPacket</a><code> [protected]</code></td>
+          <td class="memname"><a class="el" href="ugen___play_buf_8ii.html#a9e85b8f018aa486ef4dd802e4eff6e1a">SInt64</a> <a class="el" href="class_disk_in_u_gen_internal.html#ad624f5b69c5c24f37f8c101c5dd80722">DiskInUGenInternal::currentPacket</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -652,7 +652,7 @@ Protected Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">UInt32 <a class="el" href="class_disk_in_u_gen_internal.html#a061020ec87b567e80b50d1c51b95efae">DiskInUGenInternal::numPackets</a><code> [protected]</code></td>
+          <td class="memname"><a class="el" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a> <a class="el" href="class_disk_in_u_gen_internal.html#a061020ec87b567e80b50d1c51b95efae">DiskInUGenInternal::numPackets</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -667,7 +667,7 @@ Protected Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">SInt64 <a class="el" href="class_disk_in_u_gen_internal.html#ab10c0c019356af1b6644d492046859d9">DiskInUGenInternal::packetCount</a><code> [protected]</code></td>
+          <td class="memname"><a class="el" href="ugen___play_buf_8ii.html#a9e85b8f018aa486ef4dd802e4eff6e1a">SInt64</a> <a class="el" href="class_disk_in_u_gen_internal.html#ab10c0c019356af1b6644d492046859d9">DiskInUGenInternal::packetCount</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -742,7 +742,7 @@ Protected Attributes</h2></td></tr>
 <li>juce/io/<a class="el" href="ugen___disk_in_8h_source.html">ugen_DiskIn.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:42 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:41 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

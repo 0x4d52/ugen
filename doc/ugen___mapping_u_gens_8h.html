@@ -94,11 +94,11 @@ Defines</h2></td></tr>
 </div>
 <div class="memdoc">
 <b>Value:</b><div class="fragment"><pre class="fragment"><a class="code" href="ugen___mapping_u_gens_8h.html#a87aa3a1e1b8ae00c1e69cc2556f83ecd">MappingBaseBase_Docs</a>                 \
-        @param table <a class="code" href="ugen___value_8h.html#a70993d52766e31cb0157958a18aa499a">A</a> single channel <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> used as a lookup table. Here an input   \
-            value of inLow would output the first value in the table, an   \
-            input value of inHigh would output the last value in the table.   \
-            An input value half way between inLow and inHigh would output the  \
-            value in the middle of the table, and so on.
+        @param table <a class="code" href="ugen___value_8h.html#a70993d52766e31cb0157958a18aa499a">A</a> single channel <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> used as <a class="code" href="ugen___play_buf_8ii.html#acf981a770380ca98690ebca553cf9846">a</a> lookup table. Here an input   \
+            <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> of inLow would output the first <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> in the table, an   \
+            input <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> of inHigh would output the last <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> in the table.   \
+            An input <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> half way between inLow and inHigh would output the  \
+            <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> in the middle of the table, and so on.
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___mapping_u_gens_8h_source.html#l00232">232</a> of file <a class="el" href="ugen___mapping_u_gens_8h_source.html">ugen_MappingUGens.h</a>.</p>
 
@@ -115,8 +115,8 @@ Defines</h2></td></tr>
 </div>
 <div class="memdoc">
 <b>Value:</b><div class="fragment"><pre class="fragment"><a class="code" href="ugen___mapping_u_gens_8h.html#a87aa3a1e1b8ae00c1e69cc2556f83ecd">MappingBaseBase_Docs</a>                 \
-        @param outLow The lower range of the desired output value.       \
-        @param outHigh The upper range of the desired output value.
+        @param outLow The lower <a class="code" href="ugen___play_buf_8ii.html#aaf4a4d494928a9a40f1972bd7c956597">range</a> of the desired output <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>.       \
+        @param outHigh The upper <a class="code" href="ugen___play_buf_8ii.html#aaf4a4d494928a9a40f1972bd7c956597">range</a> of the desired output <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>.
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___mapping_u_gens_8h_source.html#l00203">203</a> of file <a class="el" href="ugen___mapping_u_gens_8h_source.html">ugen_MappingUGens.h</a>.</p>
 
@@ -150,7 +150,7 @@ Defines</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___mapping_u_gens_8h_source.html#l00048">48</a> of file <a class="el" href="ugen___mapping_u_gens_8h_source.html">ugen_MappingUGens.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___mapping_u_gens_8cpp_source.html#l00882">LinExp::LinExp()</a>, <a class="el" href="ugen___mapping_u_gens_8cpp_source.html#l00915">LinLin::LinLin()</a>, <a class="el" href="ugen___mapping_u_gens_8cpp_source.html#l00950">LinSin::LinSin()</a>, and <a class="el" href="ugen___mapping_u_gens_8cpp_source.html#l00048">MappingBaseUGenInternal::MappingBaseUGenInternal()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___mapping_u_gens_8cpp_source.html#l00890">LinExp::LinExp()</a>, <a class="el" href="ugen___mapping_u_gens_8cpp_source.html#l00923">LinLin::LinLin()</a>, <a class="el" href="ugen___mapping_u_gens_8cpp_source.html#l00958">LinSin::LinSin()</a>, and <a class="el" href="ugen___mapping_u_gens_8cpp_source.html#l00048">MappingBaseUGenInternal::MappingBaseUGenInternal()</a>.</p>
 
 </div>
 </div>
@@ -195,10 +195,10 @@ Defines</h2></td></tr>
 </div>
 <div class="memdoc">
 <b>Value:</b><div class="fragment"><pre class="fragment">@param input The input <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> to map.             \
-        @param inLow The lower range of the input value (note <span class="keyword">this</span> is not clipped so   \
-            it is the user`s responsibility to make sure the value is in range)  \
-        @param inHigh The upper range of the input value (note <span class="keyword">this</span> is not clipped so   \
-            it is the user`s responsibility to make sure the value is in range)  \
+        @param inLow The lower <a class="code" href="ugen___play_buf_8ii.html#aaf4a4d494928a9a40f1972bd7c956597">range</a> of the input <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> (note <span class="keyword">this</span> is not clipped so   \
+            it is the user`s responsibility to make sure the <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> is in <a class="code" href="ugen___play_buf_8ii.html#aaf4a4d494928a9a40f1972bd7c956597">range</a>)  \
+        @param inHigh The upper <a class="code" href="ugen___play_buf_8ii.html#aaf4a4d494928a9a40f1972bd7c956597">range</a> of the input <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> (note <span class="keyword">this</span> is not clipped so   \
+            it is the user`s responsibility to make sure the <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> is in <a class="code" href="ugen___play_buf_8ii.html#aaf4a4d494928a9a40f1972bd7c956597">range</a>)  \
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___mapping_u_gens_8h_source.html#l00197">197</a> of file <a class="el" href="ugen___mapping_u_gens_8h_source.html">ugen_MappingUGens.h</a>.</p>
 
@@ -232,7 +232,7 @@ Defines</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ugen___mapping_u_gens_8h_source.html#l00145">145</a> of file <a class="el" href="ugen___mapping_u_gens_8h_source.html">ugen_MappingUGens.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ugen___mapping_u_gens_8cpp_source.html#l00986">Map::Map()</a>.</p>
+<p>Referenced by <a class="el" href="ugen___mapping_u_gens_8cpp_source.html#l00994">Map::Map()</a>.</p>
 
 </div>
 </div>
@@ -267,7 +267,7 @@ Defines</h2></td></tr>
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:39 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:35 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

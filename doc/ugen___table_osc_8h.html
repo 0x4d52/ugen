@@ -66,11 +66,11 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment">@param harmonicWeights  This creates an <span class="keyword">internal</span> wavetable <span class="keyword">using</span> a series of sine wave   \
+<b>Value:</b><div class="fragment"><pre class="fragment">@param harmonicWeights  This creates an <span class="keyword">internal</span> wavetable <span class="keyword">using</span> <a class="code" href="ugen___play_buf_8ii.html#acf981a770380ca98690ebca553cf9846">a</a> series of sine wave   \
               harmonics. The amplitude of these sines is govened by <span class="keyword">this</span> single  \
               channel <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>. e.g.,             \
               @code <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(1.0, 0.5, 0.333, 0.25, 0.2, 0.167, 0.143, 0.125) <span class="keyword">@end</span>code \
-              .. would make a pseudo-sawtooth wave.
+              .. would make <a class="code" href="ugen___play_buf_8ii.html#acf981a770380ca98690ebca553cf9846">a</a> pseudo-sawtooth wave.
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___table_osc_8h_source.html#l00124">124</a> of file <a class="el" href="ugen___table_osc_8h_source.html">ugen_TableOsc.h</a>.</p>
 
@@ -87,8 +87,8 @@ Defines</h2></td></tr>
 </div>
 <div class="memdoc">
 <b>Value:</b><div class="fragment"><pre class="fragment">@param freq   The fundamental frequency of the wave.       \
-     @param initialPhase The phase (0-1) at which the wave should start on creation.  \
-           This may be specified with multiple values using a single  \
+     @param initialPhase The phase (0-1) at which the wave should <a class="code" href="ugen___play_buf_8ii.html#a8f6354b9f48ccd5ff556d3db115ffedc">start</a> on creation.  \
+           This may be specified with multiple values using <a class="code" href="ugen___play_buf_8ii.html#acf981a770380ca98690ebca553cf9846">a</a> single  \
            channel <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> as an array.
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___table_osc_8h_source.html#l00110">110</a> of file <a class="el" href="ugen___table_osc_8h_source.html">ugen_TableOsc.h</a>.</p>
@@ -105,21 +105,21 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment">@param table    The wavetable to use. This should be a single channel <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>   \
-              containing a single cycle of the desired waveform. The size of   \
+<b>Value:</b><div class="fragment"><pre class="fragment">@param table    The wavetable to use. This should be <a class="code" href="ugen___play_buf_8ii.html#acf981a770380ca98690ebca553cf9846">a</a> single channel <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>   \
+              containing <a class="code" href="ugen___play_buf_8ii.html#acf981a770380ca98690ebca553cf9846">a</a> single cycle of the desired waveform. The size of   \
               <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> is not important (athough larger sizes will generallly   \
               result in higher quality) but the <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> should have an     \
-              interpolation sample after the last value. For example, an 8192   \
+              interpolation sample after the last <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a>. For example, an 8192   \
               point <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> (as used with <a class="code" href="class_sin_osc.html" title="A wavetable-based oscillator using an internal 8192-point sine table.">SinOsc</a>) actually has 8193 values but   \
-              <span class="keyword">this</span> is shrunk (<span class="keyword">using</span> <a class="code" href="class_buffer.html#aec8ce25f140ed02d4fd9c4a87b34193a" title="Reduce the apparent size of the Buffer without deallocating the extra memory.">Buffer::shrinkSize</a>()) to a size of 8192 and  \
-              the value at sample [8192] and sample [0] should be the same.
+              <span class="keyword">this</span> is shrunk (<span class="keyword">using</span> <a class="code" href="class_buffer.html#aec8ce25f140ed02d4fd9c4a87b34193a" title="Reduce the apparent size of the Buffer without deallocating the extra memory.">Buffer::shrinkSize</a>()) to <a class="code" href="ugen___play_buf_8ii.html#acf981a770380ca98690ebca553cf9846">a</a> size of 8192 and  \
+              the <a class="code" href="ugen___play_buf_8ii.html#a960ce105570c5c1bdca764f2d8d32a2d">value</a> at sample [8192] and sample [0] should be the same.
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___table_osc_8h_source.html#l00115">115</a> of file <a class="el" href="ugen___table_osc_8h_source.html">ugen_TableOsc.h</a>.</p>
 
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:39 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:36 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

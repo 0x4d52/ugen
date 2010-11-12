@@ -72,12 +72,12 @@
 <a name="l00040"></a>00040 
 <a name="l00041"></a>00041 <span class="preprocessor">#include &quot;<a class="code" href="ugen___trig_process_8h.html">ugen_TrigProcess.h</a>&quot;</span>
 <a name="l00042"></a>00042 
-<a name="l00043"></a><a class="code" href="class_debounce_u_gen_internal.html#a58525a7753adb6ee02948e73ab0eb033">00043</a> <a class="code" href="class_debounce_u_gen_internal.html#a58525a7753adb6ee02948e73ab0eb033">DebounceUGenInternal::DebounceUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; time) <span class="keywordflow">throw</span>()
+<a name="l00043"></a><a class="code" href="class_debounce_u_gen_internal.html#a58525a7753adb6ee02948e73ab0eb033">00043</a> <a class="code" href="class_debounce_u_gen_internal.html#a58525a7753adb6ee02948e73ab0eb033">DebounceUGenInternal::DebounceUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___play_buf_8ii.html#aae026724f73c36340024c657f4f44dab">time</a>) <span class="keywordflow">throw</span>()
 <a name="l00044"></a>00044 : <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>(NumInputs)
 <a name="l00045"></a>00045 {
 <a name="l00046"></a>00046  inputs[Input] = input;
 <a name="l00047"></a>00047  inputs[Time] = time;
-<a name="l00048"></a>00048  count = 0;
+<a name="l00048"></a>00048  <a class="code" href="namespacestd.html#a81511cd7112567fa262b05bb22e69874">count</a> = 0;
 <a name="l00049"></a>00049 }
 <a name="l00050"></a>00050 
 <a name="l00051"></a><a class="code" href="class_debounce_u_gen_internal.html#a4f94880c4ff6871577d057ecda90fc7a">00051</a> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_debounce_u_gen_internal.html#a4f94880c4ff6871577d057ecda90fc7a">DebounceUGenInternal::getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
@@ -93,23 +93,23 @@
 <a name="l00061"></a>00061  <span class="keywordtype">float</span>* <span class="keyword">const</span> inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
 <a name="l00062"></a>00062  <span class="keywordtype">float</span>* <span class="keyword">const</span> timeSamples = inputs[Time].processBlock(shouldDelete, blockID, channel);
 <a name="l00063"></a>00063  
-<a name="l00064"></a>00064  <a class="code" href="ugen___standard_header_8h.html#a9a37472ac55b2fcd8760b2a0db82f035" title="Declares a local variable which is a copy of a member variable.">LOCAL_DECLARE</a>(<span class="keywordtype">int</span>, count);
+<a name="l00064"></a>00064  <a class="code" href="ugen___standard_header_8h.html#a9a37472ac55b2fcd8760b2a0db82f035" title="Declares a local variable which is a copy of a member variable.">LOCAL_DECLARE</a>(<span class="keywordtype">int</span>, <a class="code" href="namespacestd.html#a81511cd7112567fa262b05bb22e69874">count</a>);
 <a name="l00065"></a>00065  
 <a name="l00066"></a>00066  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numSamplesToProcess; i++)
 <a name="l00067"></a>00067  {
 <a name="l00068"></a>00068   <span class="comment">// should un wrap this loop a bit..</span>
 <a name="l00069"></a>00069   
-<a name="l00070"></a>00070   <span class="keywordflow">if</span>(count &gt; 0)
+<a name="l00070"></a>00070   <span class="keywordflow">if</span>(<a class="code" href="namespacestd.html#a81511cd7112567fa262b05bb22e69874">count</a> &gt; 0)
 <a name="l00071"></a>00071   {
 <a name="l00072"></a>00072    outputSamples[i] = 1.f;
-<a name="l00073"></a>00073    count--;
+<a name="l00073"></a>00073    <a class="code" href="namespacestd.html#a81511cd7112567fa262b05bb22e69874">count</a>--;
 <a name="l00074"></a>00074   }
 <a name="l00075"></a>00075   <span class="keywordflow">else</span>
 <a name="l00076"></a>00076   {
 <a name="l00077"></a>00077    <span class="keywordflow">if</span>(inputSamples[i] &gt; 0.f)
 <a name="l00078"></a>00078    {
 <a name="l00079"></a>00079     outputSamples[i] = 1.f;
-<a name="l00080"></a>00080     count = timeSamples[i] * <a class="code" href="class_u_gen.html#afddb4177dad7f4056bbf8b91d07d5224" title="Get the current sample rate.">UGen::getSampleRate</a>();
+<a name="l00080"></a>00080     <a class="code" href="namespacestd.html#a81511cd7112567fa262b05bb22e69874">count</a> = timeSamples[i] * <a class="code" href="class_u_gen.html#afddb4177dad7f4056bbf8b91d07d5224" title="Get the current sample rate.">UGen::getSampleRate</a>();
 <a name="l00081"></a>00081    }
 <a name="l00082"></a>00082    <span class="keywordflow">else</span>
 <a name="l00083"></a>00083    {
@@ -118,23 +118,23 @@
 <a name="l00086"></a>00086   }
 <a name="l00087"></a>00087  }
 <a name="l00088"></a>00088  
-<a name="l00089"></a>00089  <a class="code" href="ugen___standard_header_8h.html#ac1a39f55409398450d8e54bf8200a332" title="Copys the value from a local variable back to its member variable.">LOCAL_COPY</a>(count);
+<a name="l00089"></a>00089  <a class="code" href="ugen___standard_header_8h.html#ac1a39f55409398450d8e54bf8200a332" title="Copys the value from a local variable back to its member variable.">LOCAL_COPY</a>(<a class="code" href="namespacestd.html#a81511cd7112567fa262b05bb22e69874">count</a>);
 <a name="l00090"></a>00090 }
 <a name="l00091"></a>00091 
-<a name="l00092"></a><a class="code" href="class_debounce.html#ae81fda46199493e6854bb115fbfc1a4c">00092</a> <a class="code" href="class_debounce.html#ae81fda46199493e6854bb115fbfc1a4c" title="Base Debounce Constuctor, use the AR() and KR() versions in user code.">Debounce::Debounce</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; time) <span class="keywordflow">throw</span>()
+<a name="l00092"></a><a class="code" href="class_debounce.html#ae81fda46199493e6854bb115fbfc1a4c">00092</a> <a class="code" href="class_debounce.html#ae81fda46199493e6854bb115fbfc1a4c" title="Base Debounce Constuctor, use the AR() and KR() versions in user code.">Debounce::Debounce</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; <a class="code" href="ugen___play_buf_8ii.html#aae026724f73c36340024c657f4f44dab">time</a>) <span class="keywordflow">throw</span>()
 <a name="l00093"></a>00093 {
 <a name="l00094"></a>00094  initInternal(input.getNumChannels());
 <a name="l00095"></a>00095  
 <a name="l00096"></a>00096  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numInternalUGens; i++)
 <a name="l00097"></a>00097  {
-<a name="l00098"></a>00098   internalUGens[i] = <span class="keyword">new</span> <a class="code" href="class_debounce_u_gen_internal.html">DebounceUGenInternal</a>(input, time);
+<a name="l00098"></a>00098   internalUGens[i] = <span class="keyword">new</span> <a class="code" href="class_debounce_u_gen_internal.html">DebounceUGenInternal</a>(input, <a class="code" href="ugen___play_buf_8ii.html#aae026724f73c36340024c657f4f44dab">time</a>);
 <a name="l00099"></a>00099  }
 <a name="l00100"></a>00100 }
 <a name="l00101"></a>00101 
 <a name="l00102"></a>00102 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:35 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:28 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

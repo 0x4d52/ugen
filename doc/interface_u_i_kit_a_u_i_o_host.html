@@ -54,7 +54,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_u_i_kit_a_u_i_o_host.html#aafb0e19f82e00a4b236b37a3c52da654">setPreferredBufferSize:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_u_i_kit_a_u_i_o_host.html#afc2df6595bc881ca6a10682133ab48e0">setFormat</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(int)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_u_i_kit_a_u_i_o_host.html#aa845eb0bbacc6c77d0d66ef5b8f001dc">setupRemoteIO</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(OSStatus)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_u_i_kit_a_u_i_o_host.html#aa8a90dc09df8df7fac1f4beb7293e042">renderCallback:withActionFlags:atTimeStamp:withBuffers:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="ugen___play_buf_8ii.html#a389e8a167a89832edb1c7f2d0302537c">OSStatus</a>)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_u_i_kit_a_u_i_o_host.html#aa8a90dc09df8df7fac1f4beb7293e042">renderCallback:withActionFlags:atTimeStamp:withBuffers:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_u_i_kit_a_u_i_o_host.html#ae148e8b1dba67fd6debce1ad12ab58f2">propertyCallback:withSize:withProperty:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_u_i_kit_a_u_i_o_host.html#a150e2b2b4b1ea4c310c3e37e53a810ec">fixAudioRouteIfSetToReceiver</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_u_i_kit_a_u_i_o_host.html#aed2a2e268cd2553a6a471d3be7e5ceb4">interruptionCallback:</a></td></tr>
@@ -70,16 +70,16 @@ Public Member Functions</h2></td></tr>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">AudioStreamBasicDescription&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_u_i_kit_a_u_i_o_host.html#a88b285c33122b966dc2d38d9612140c0">format</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">AURenderCallbackStruct&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_u_i_kit_a_u_i_o_host.html#ac84e17d50ddb9ed0f3415c730a624947">inputProc</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">Float64&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_u_i_kit_a_u_i_o_host.html#a6dee2bd894a75a319121b7b07457b1eb">hwSampleRate</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="ugen___play_buf_8ii.html#a3f1431cb9f76da10f59246d1d743dc2c">Float64</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_u_i_kit_a_u_i_o_host.html#a6dee2bd894a75a319121b7b07457b1eb">hwSampleRate</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">AudioUnit&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_u_i_kit_a_u_i_o_host.html#a0d08cf999ed5cf5b3fbbe9a0431fce22">rioUnit</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_u_i_kit_a_u_i_o_host.html#a9e2c86e49baf974175a7bd957f7ecc29">rawInput</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_u_i_kit_a_u_i_o_host.html#a8b56c88ac3a93ca377bfbfad4cd67457">postFadeOutput</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen.html">UGen</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_u_i_kit_a_u_i_o_host.html#af441bb1eed898c95b478ab3c37ec277d">preFadeOutput</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_u_i_kit_a_u_i_o_host.html#a1c0537643dbf254bd8d1eb6212d9c5e6">bufferSize</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_u_i_kit_a_u_i_o_host.html#a6e52acf61e62b524b9e49a8a41e9888b">floatBuffer</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">UInt32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_u_i_kit_a_u_i_o_host.html#a5694c56d09ff8e934c4cc59beec7e51a">audioInputIsAvailable</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">UInt32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_u_i_kit_a_u_i_o_host.html#aff2eddf091f61dd8cf46686324ecdaaf">numInputChannels</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">UInt32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_u_i_kit_a_u_i_o_host.html#a466cf95f3f8d3bd506eef5f5fa6ee9fd">numOutputChannels</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_u_i_kit_a_u_i_o_host.html#a5694c56d09ff8e934c4cc59beec7e51a">audioInputIsAvailable</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_u_i_kit_a_u_i_o_host.html#aff2eddf091f61dd8cf46686324ecdaaf">numInputChannels</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_u_i_kit_a_u_i_o_host.html#a466cf95f3f8d3bd506eef5f5fa6ee9fd">numOutputChannels</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_u_i_kit_a_u_i_o_host.html#a832186d988eee3825295363625145aa6">isRunning</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_u_i_kit_a_u_i_o_host.html#a03267b3c0cafe461baa274af9a03b09e">fadeInTime</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_gen_array.html">UGenArray</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_u_i_kit_a_u_i_o_host.html#ae4be0eeb018749e335e196176ef3cd03">others</a></td></tr>
@@ -190,7 +190,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname">- (void) interruptionCallback: </td>
           <td></td>
-          <td class="paramtype">(UInt32)&nbsp;</td>
+          <td class="paramtype">(<a class="el" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a>)&nbsp;</td>
           <td class="paramname"> <em>inInterruption</em></td>
           <td>&nbsp;</td>
           <td></td>
@@ -248,7 +248,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="paramkey">withSize:</td>
           <td></td>
-          <td class="paramtype">(UInt32)&nbsp;</td>
+          <td class="paramtype">(<a class="el" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a>)&nbsp;</td>
           <td class="paramname"> <em>inDataSize</em></td>
         </tr>
         <tr>
@@ -273,9 +273,9 @@ Protected Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (OSStatus) renderCallback: </td>
+          <td class="memname">- (<a class="el" href="ugen___play_buf_8ii.html#a389e8a167a89832edb1c7f2d0302537c">OSStatus</a>) renderCallback: </td>
           <td></td>
-          <td class="paramtype">(UInt32)&nbsp;</td>
+          <td class="paramtype">(<a class="el" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a>)&nbsp;</td>
           <td class="paramname"> <em>inNumberFrames</em></td>
         </tr>
         <tr>
@@ -416,7 +416,7 @@ Protected Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (UInt32) <a class="el" href="interface_u_i_kit_a_u_i_o_host.html#a5694c56d09ff8e934c4cc59beec7e51a">audioInputIsAvailable</a><code> [protected]</code></td>
+          <td class="memname">- (<a class="el" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a>) <a class="el" href="interface_u_i_kit_a_u_i_o_host.html#a5694c56d09ff8e934c4cc59beec7e51a">audioInputIsAvailable</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -506,7 +506,7 @@ Protected Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (Float64) <a class="el" href="interface_u_i_kit_a_u_i_o_host.html#a6dee2bd894a75a319121b7b07457b1eb">hwSampleRate</a><code> [protected]</code></td>
+          <td class="memname">- (<a class="el" href="ugen___play_buf_8ii.html#a3f1431cb9f76da10f59246d1d743dc2c">Float64</a>) <a class="el" href="interface_u_i_kit_a_u_i_o_host.html#a6dee2bd894a75a319121b7b07457b1eb">hwSampleRate</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -566,7 +566,7 @@ Protected Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (UInt32) <a class="el" href="interface_u_i_kit_a_u_i_o_host.html#aff2eddf091f61dd8cf46686324ecdaaf">numInputChannels</a><code> [protected]</code></td>
+          <td class="memname">- (<a class="el" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a>) <a class="el" href="interface_u_i_kit_a_u_i_o_host.html#aff2eddf091f61dd8cf46686324ecdaaf">numInputChannels</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -581,7 +581,7 @@ Protected Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (UInt32) <a class="el" href="interface_u_i_kit_a_u_i_o_host.html#a466cf95f3f8d3bd506eef5f5fa6ee9fd">numOutputChannels</a><code> [protected]</code></td>
+          <td class="memname">- (<a class="el" href="ugen___play_buf_8ii.html#aff6f5ee5b7d4f374428d4a853d976f94">UInt32</a>) <a class="el" href="interface_u_i_kit_a_u_i_o_host.html#a466cf95f3f8d3bd506eef5f5fa6ee9fd">numOutputChannels</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -685,7 +685,7 @@ Protected Attributes</h2></td></tr>
 <li>iphone/<a class="el" href="ugen___u_i_kit_a_u_i_o_host_8h_source.html">ugen_UIKitAUIOHost.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 11 2010 15:56:44 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Nov 12 2010 14:20:45 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
