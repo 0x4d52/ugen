@@ -73,7 +73,6 @@ public:
 	
 private:
 	Button* button_;
-	bool isToggle;
 };
 
 class ButtonValue : public Value 

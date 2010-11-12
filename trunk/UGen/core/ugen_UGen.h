@@ -346,6 +346,10 @@ public:
 	 @param button The Button to use.*/
 	UGen(Button* button) throw();
 	
+	UGen(ToggleButton* button) throw();
+	
+	UGen(TextButton* button) throw();
+	
 	/** Construct a UGen from a Juce Label. 
 	 This registers listeners to the Label and changes the UGen output value accordingly.
 	 The contents of the label will be converted to a float.

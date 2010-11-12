@@ -344,6 +344,33 @@ UGen::UGen(Button* button) throw()
 	internal->setValue((float)value.getValue());
 }
 
+UGen::UGen(ToggleButton* button) throw()
+:	userData(UGen::defaultUserData),
+	numInternalUGens(0),
+	internalUGens(0)						
+{ 	
+	ugen_assert(button != 0);
+	initInternal(1);
+	Value value = ButtonValue(button);
+	ValueUGenInternalK *internal = new ValueUGenInternalK(value);
+	internalUGens[0] = internal;
+	internal->setValue((float)value.getValue());
+}
+
+UGen::UGen(TextButton* button) throw()
+:	userData(UGen::defaultUserData),
+	numInternalUGens(0),
+	internalUGens(0)						
+{ 	
+	ugen_assert(button != 0);
+	initInternal(1);
+	Value value = ButtonValue(button);
+	ValueUGenInternalK *internal = new ValueUGenInternalK(value);
+	internalUGens[0] = internal;
+	internal->setValue((float)value.getValue());
+}
+
+
 UGen::UGen(Label* label) throw()
 :	userData(UGen::defaultUserData),
 	numInternalUGens(0),
