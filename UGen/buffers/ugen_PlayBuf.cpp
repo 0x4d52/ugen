@@ -348,23 +348,25 @@ RecordBuf::RecordBuf(UGen const& input,
 	generateFromProxyOwner(new RecordBufUGenInternal(input, buffer, recLevel, preLevel, loop.mix(), doneAction));
 }
 
-#if 0
 	
 LoopPointsUGenInternal::LoopPointsUGenInternal(Buffer const& buffer, 
 											   UGen const& rate, 
 											   UGen const& start, 
 											   UGen const& end,
 											   UGen const& loop, 
-											   bool startAtZero) throw()
+											   UGen const& startAtZero,
+											   UGen const& playToEnd) throw()
 :	UGenInternal(NumInputs),
 	b(buffer),
-	currentValue(startAtZero ? 0.f : start.getValue() * b.size()),
+	currentValue((startAtZero.getValue() >= 0.5f) ? 0.f : start.getValue() * b.size()),
 	lastLoop(false)
 {
 	inputs[Rate] = rate;
 	inputs[Start] = start;
 	inputs[End] = end;
 	inputs[Loop] = loop;
+	inputs[StartAtZero] = startAtZero;
+	inputs[PlayToEnd] = playToEnd;
 }
 
 void LoopPointsUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
@@ -375,6 +377,8 @@ void LoopPointsUGenInternal::processBlock(bool& shouldDelete, const unsigned int
 	float* startSamples = inputs[Start].processBlock(shouldDelete, blockID, 0);
 	float* endSamples = inputs[End].processBlock(shouldDelete, blockID, 0);
 	float* loopSamples = inputs[Loop].processBlock(shouldDelete, blockID, 0);
+	float* startAtZeroSamples = inputs[StartAtZero].processBlock(shouldDelete, blockID, 0);
+	float* playToEndSamples = inputs[PlayToEnd].processBlock(shouldDelete, blockID, 0);
 	
 	while(numSamplesToProcess--)
 	{
@@ -394,29 +398,44 @@ void LoopPointsUGenInternal::processBlock(bool& shouldDelete, const unsigned int
 		currentValue += rate;
 		
 		if(loop)
-		{			
-			if(currentValue >= end)
+		{            
+			if((rate > 0.f) && (currentValue >= end))
 			{
 				if(lastLoop == false)
 				{
-					currentValue = start;
+					bool fromZero = *startAtZeroSamples >= 0.5f;
+					
+					currentValue = fromZero ? 0.f : start;
 				}
 				else
 				{
 					currentValue -= (end - start);
 				}
 			}
-			else if(currentValue < start)
+			else if((rate < 0.f) && (currentValue < start))
 			{
 				if(lastLoop == false)
 				{
-					currentValue += (end - start);
+					bool fromEnd = *startAtZeroSamples >= 0.5f;
+
+					currentValue = fromEnd ? (b.size()-1) : end;
 				}
 				else
-				{
-					currentValue = end;
+				{            
+					currentValue += (end - start);
 				}
 			}
+		}
+		else if(*playToEndSamples < 0.5f)
+		{
+			if((rate > 0.f) && (currentValue >= end))
+			{
+				currentValue = (float)b.size();
+			}
+			else if((rate < 0.f) && (currentValue < start))
+			{
+				currentValue = -1.f;
+			}			
 		}
 		
 		*outputSamples = currentValue;
@@ -425,6 +444,8 @@ void LoopPointsUGenInternal::processBlock(bool& shouldDelete, const unsigned int
 		startSamples++;
 		endSamples++;
 		loopSamples++;
+		startAtZeroSamples++;
+		playToEndSamples++;
 		outputSamples++;
 		
 		lastLoop = loop;
@@ -436,12 +457,18 @@ LoopPoints::LoopPoints(Buffer const& buffer,
 					   UGen const& start, 
 					   UGen const& end,
 					   UGen const& loop, 
-					   bool startAtZero) throw()
+					   UGen const& startAtZero,
+					   UGen const& playToEnd) throw()
 {
 	initInternal(1);
-	internalUGens[0] = new LoopPointsUGenInternal(buffer, rate.mix(), start.mix(), end.mix(), loop.mix(), startAtZero);
+	internalUGens[0] = new LoopPointsUGenInternal(buffer, 
+												  rate.mix(), 
+												  start.mix(), 
+												  end.mix(), 
+												  loop.mix(), 
+												  startAtZero.mix(), 
+												  playToEnd.mix());
 }
 
-#endif // 0
 
 END_UGEN_NAMESPACE

@@ -73,10 +73,8 @@ ButtonValueInternal::ButtonValueInternal(Button* button) throw()
 	button_(button)
 {		
 	button_->addButtonListener(this);
-	
-	isToggle = dynamic_cast<ToggleButton*> (button) ? true : false;
-	
-	buttonClicked(button);	
+		
+	buttonClicked(button_);	
 }
 
 ButtonValueInternal::~ButtonValueInternal() throw()
@@ -89,6 +87,8 @@ void ButtonValueInternal::buttonClicked(Button* button) throw()
 {
 	if(button != button_) return;
 		
+	bool isToggle = button_->getClickingTogglesState();
+	
 	if(isToggle)
 	{
 		setValue(button_->getToggleState() ? 1.0 : 0.0);
