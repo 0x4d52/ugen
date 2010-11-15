@@ -44,13 +44,14 @@ class FFTEngineInternal;
 class FFTEngine
 {
 public:
-	FFTEngine(const int fftSize) throw();
+	FFTEngine(const int fftSize = 512) throw();
 	FFTEngine(FFTEngine const& copy) throw();
 	FFTEngine& operator= (FFTEngine const& other) throw();
 	
-	void dispose() { }
+//	void dispose() { }
 	
 	int size() const throw();
+	FFTEngineInternal* getInternal() throw() { return internal; }
 	Buffer& getFFTWindow() throw();
 	Buffer& getIFFTWindow() throw();
 	void setFFTWindow(Buffer const& window) throw();

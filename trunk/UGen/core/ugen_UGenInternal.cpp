@@ -365,9 +365,7 @@ ProxyOwnerUGenInternal::ProxyOwnerUGenInternal(const int numInputs, const int nu
 :	UGenInternal(numInputs),
 	numProxies_(numProxies < 0 ? 0 : numProxies), // numProxies_ shouldn't be less than 0 but MixArray was sending -1 when its input was empty
 	proxies(new UGenInternal*[numProxies_+1])
-{
-	//ugen_assert(numProxies >= 0); OK numProxies will be -1 if the array is empty from MixArray
-	
+{	
 	proxies[0] = this;
 	for(int i = 1; i <= numProxies_; i++)
 	{
@@ -452,7 +450,7 @@ float* ProxyOwnerUGenInternal::processBlockInternal(bool& shouldDelete, const un
 		for(int i = 1; i <= numProxies_; i++)
 		{
 			// if the refCount is only 1 its block won't get 
-			// prepared by the normal dsp call chain, check for <=1 just in case
+			// processed by the normal dsp call chain, check for <=1 just in case
 			if(proxies[i]->getRefCount() <= 1)
 				proxies[i]->processBlockInternal(shouldDelete, blockID, channel);
 		}

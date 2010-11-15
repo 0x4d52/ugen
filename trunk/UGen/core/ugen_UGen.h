@@ -945,18 +945,7 @@ public:
 	
 	/** Get the current estimated block size. @return The current estimated block size. */
 	inline static int				getEstimatedBlockSize() throw()				{ return estimatedSamplesPerBlock_;										}
-	
-//	/** Get the current actual block size. @return The current actual block size. */
-//	inline static int				getBlockSize() throw()						{ return blockSize;														}
-	
-//	static void setBlockSize(const int newSize) throw();
 		
-//	/** Get the current slope factor i.e., 1.0 / (block size). @return 1.0 / (block size). */
-//	inline static double			getSlopeFactor() throw()					{ return slopeFactor;													}
-//	
-//	/** Get the current control rate slope factor i.e., 1.0 / (control rate block size). @return 1.0 / (control rate block size). */
-//	inline static double			getControlSlopeFactor() throw()				{ return controlSlopeFactor;											}
-	
 	/** Get a null internal. @return A null internal. */
 	inline static UGenInternal*		getNullInternal() throw()					{ return getNull().getInternalUGen(0);									}
 	

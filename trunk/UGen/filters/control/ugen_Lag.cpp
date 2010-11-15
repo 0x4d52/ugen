@@ -158,7 +158,6 @@ void LagUGenInternalK::processBlock(bool& shouldDelete, const unsigned int block
 			} 
 			else
 			{
-//				float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
 				float valueSlope = (nextValue - value) / (float)UGen::getControlRateBlockSize();
 				
 				while(numSamplesToProcess && numKrSamples)
@@ -202,7 +201,6 @@ void LagUGenInternalK::processBlock(bool& shouldDelete, const unsigned int block
 			} 
 			else
 			{
-//				float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
 				float valueSlope = (nextValue - value) / (float)UGen::getControlRateBlockSize();
 				
 				while(numSamplesToProcess && numKrSamples)
@@ -385,7 +383,6 @@ void LagUDUGenInternalK::processBlock(bool& shouldDelete, const unsigned int blo
 			} 
 			else
 			{
-//				float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
 				float valueSlope = (nextValue - value) / (float)UGen::getControlRateBlockSize();
 				
 				while(numSamplesToProcess && numKrSamples)
@@ -434,7 +431,6 @@ void LagUDUGenInternalK::processBlock(bool& shouldDelete, const unsigned int blo
 			} 
 			else
 			{
-//				float valueSlope = (nextValue - value) * UGen::getControlSlopeFactor();
 				float valueSlope = (nextValue - value) / (float)UGen::getControlRateBlockSize();
 				
 				while(numSamplesToProcess && numKrSamples)

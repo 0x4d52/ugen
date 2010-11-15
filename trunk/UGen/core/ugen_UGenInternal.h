@@ -208,10 +208,15 @@ public:
 	 probably need to set the values in the UGen class as the UGenInternal classes are
 	 created (since they may contain multichannel inputs). */
 	virtual void initValue(const float value) throw();
-	
-	
+
 	/// @} <!-- end Current data and value -->
-	
+
+//	/// @name Memory
+//	/// @{
+//	
+//	virtual int getMemoryUsage() = 0;
+//	
+//	/// @} <!-- end Memory -->
 	
 protected:		
 	virtual UGenInternal* getChannel(const int channel) throw();

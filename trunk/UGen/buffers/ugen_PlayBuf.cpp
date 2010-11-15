@@ -348,6 +348,7 @@ RecordBuf::RecordBuf(UGen const& input,
 	generateFromProxyOwner(new RecordBufUGenInternal(input, buffer, recLevel, preLevel, loop.mix(), doneAction));
 }
 
+#if 0
 	
 LoopPointsUGenInternal::LoopPointsUGenInternal(Buffer const& buffer, 
 											   UGen const& rate, 
@@ -452,6 +453,23 @@ void LoopPointsUGenInternal::processBlock(bool& shouldDelete, const unsigned int
 	}
 }
 
+double LoopPointsUGenInternal::getDuration() const throw()
+{
+	return b.duration();
+}
+
+double LoopPointsUGenInternal::getPosition() const throw()
+{
+	return currentValue * b.duration();
+}
+	
+void LoopPointsUGenInternal::setPosition(const double newPosition) throw()
+{
+	double normalisedPos = newPosition / b.duration();
+	
+	currentValue = ugen::clip(normalisedPos, 0.0, 1.0);
+}
+
 LoopPoints::LoopPoints(Buffer const& buffer, 
 					   UGen const& rate, 
 					   UGen const& start, 
@@ -470,5 +488,6 @@ LoopPoints::LoopPoints(Buffer const& buffer,
 												  playToEnd.mix());
 }
 
+#endif // 0
 
 END_UGEN_NAMESPACE
