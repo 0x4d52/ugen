@@ -47,13 +47,26 @@
 
 BEGIN_UGEN_NAMESPACE
 #include "ugen_Convolution.h"
+#include "../fft/ugen_FFTEngineInternal.h"
 
+
+PartBuffer::PartBuffer() throw()
+:	bufferSize(0),
+	numPartitions(0),
+	startPoint(0),
+	endPoint(0),
+	length(0),
+	fftSizeLog2(0),
+	fftSize(0),
+	fftSizeOver2(0),
+	fftSizeOver4(0)
+{				
+}
 
 PartBuffer::PartBuffer(Buffer const& original, 
 					   long startPointToUse,
 					   long endPointToUse, 
-					   long fftSizelog2ToUse) throw() //, 
-					   //long MaxFFTSizelog2ToUse) throw()
+					   long fftSizelog2ToUse) throw()
 :	Buffer(BufferSpec((endPointToUse ? endPointToUse - startPointToUse : quantiseUp(original.size(), fftSizeFromArg(fftSizelog2ToUse))) * 2,
 		   original.getNumChannels(), 
 		   false)),
@@ -66,9 +79,9 @@ PartBuffer::PartBuffer(Buffer const& original,
 	fftSize(fftSizeFromArg(fftSizelog2ToUse)),
 	fftSizeOver2(fftSize >> 1),
 	fftSizeOver4(fftSizeOver2 >> 1),
-	partTempBuffer(BufferSpec(fftSize + 2, 1, false))
+	partTempBuffer(BufferSpec(fftSize + 2, 1, false)),
+	fftEngine(fftSize)
 {				
-	fftEngine = new FFTEngineInternal(fftSize);
 	partitionImpulse(original);
 }
 
@@ -87,13 +100,13 @@ PartBuffer::PartBuffer(BufferChannelInternal *internalToUse,
 	fftSize(fftSizeFromArg(fftSizelog2ToUse)),
 	fftSizeOver2(fftSize >> 1),
 	fftSizeOver4(fftSizeOver2 >> 1),
-	partTempBuffer(BufferSpec(fftSize + 2, 1, false))
+	partTempBuffer(BufferSpec(fftSize + 2, 1, false)),
+	fftEngine(fftSize)
 {
 }
 
 PartBuffer::~PartBuffer()
 {
-	fftEngine->dispose();
 }
 
 PartBuffer PartBuffer::getChannel(const int channel) const throw()
@@ -184,7 +197,7 @@ void PartBuffer::partitionImpulseChannel(Buffer const& original, const int chann
 		
 		// Do FFT Straight Into Position...
 		
-		fftEngine->fft(bufferTemp2, bufferTemp1);
+		fftEngine.getInternal()->fft(bufferTemp2, bufferTemp1);
 	}
 		
 	this->numPartitions = numPartitions;
@@ -202,6 +215,7 @@ PartConvolveUGenInternal::PartConvolveUGenInternal(UGen const& input,
 	fftSizeLog2(partImpulse.fftSizeLog2),
 	bufferSize(partImpulse.bufferSize),
 	resetAll(1),
+	fftEngine(fftSize),
 	scaleMultD(1.0 / (double) (fftSize * 4)),	
 	scaleMult(vecSplat((float) (scaleMultD))),
 	inputBuffer(BufferSpec((int)(bufferSize * 2), 1, false)),
@@ -218,12 +232,11 @@ PartConvolveUGenInternal::PartConvolveUGenInternal(UGen const& input,
 	fftBuffers[2] = fftBuffers[1] + fftSizeOver4;											
 	fftBuffers[3] = fftBuffers[2] + fftSizeOver4;	
 		
-	fftEngine = new FFTEngineInternal(fftSize);
+//	fftEngine = new FFTEngineInternal(fftSize);
 }
 
 PartConvolveUGenInternal::~PartConvolveUGenInternal() throw()
 {
-	fftEngine->dispose();
 }
 
 UGenInternal* PartConvolveUGenInternal::getChannel(const int channel) throw()
@@ -293,7 +306,7 @@ void PartConvolveUGenInternal::processBlock(bool& shouldDelete, const unsigned i
 	LOCAL_DECLARE(int, validPart);
 	
 	// FFT Stuff	
-	LOCAL_DECLARE(FFTEngineInternal*, fftEngine);
+//	LOCAL_DECLARE(FFTEngineInternal*, fftEngine);
 	
 	LOCAL_DECLARE(vFloat **, fftBuffers);
 	vFloat *tempvPointer1, *tempvPointer2;
@@ -448,7 +461,7 @@ void PartConvolveUGenInternal::processBlock(bool& shouldDelete, const unsigned i
 			
 			// Do the FFT, Process and Convert back with scaling
 			tempvPointer1 = fftBuffers[fftOffset];
-			fftEngine->fft(bufferTemp, (float*)tempvPointer1);
+			fftEngine.getInternal()->fft(bufferTemp, (float*)tempvPointer1);
 						
 			// Process First Partition Here (we need it now!)
 			
@@ -458,7 +471,7 @@ void PartConvolveUGenInternal::processBlock(bool& shouldDelete, const unsigned i
 				bufPosition = Partitions - 1;
 			
 			// Processing Done - Do Inverse FFT
-			fftEngine->ifft((float*)fftBuffers[2], fftTemp);
+			fftEngine.getInternal()->ifft((float*)fftBuffers[2], fftTemp);
 						
 			// Overlap Save the Result
 			loop = fftSize >> 3;
@@ -527,6 +540,17 @@ PartConvolve::PartConvolve(UGen const& input,
 	
 	PartBuffer partImpulse(impulse, startPoint, endPoint, fftSizeLog2);
 	
+	for(int i = 0; i < numChannels; i++)
+	{
+		internalUGens[i] = new PartConvolveUGenInternal(input, partImpulse);
+	}
+}
+
+PartConvolve::PartConvolve(UGen const& input, PartBuffer const& partImpulse) throw()
+{
+	int numChannels = ugen::max(input.getNumChannels(), partImpulse.getNumChannels());
+	initInternal(numChannels);
+		
 	for(int i = 0; i < numChannels; i++)
 	{
 		internalUGens[i] = new PartConvolveUGenInternal(input, partImpulse);

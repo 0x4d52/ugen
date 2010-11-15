@@ -66,31 +66,7 @@ void FloatPtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /
 	float nextValue = (float)*ptr; 
 
 	value_ = nextValue;
-	Neon::splat(value_, outputSamples, numSamplesToProcess);
-	
-//	if(nextValue == value_) 
-//	{ 
-//		Neon::splat(value_, outputSamples, numSamplesToProcess);
-//	} 
-//	else 
-//	{ 
-//		int numKrSamplesToProcess = UGen::getControlRateBlockSize(); 
-//		float valueSlope = (nextValue - value_) * UGen::getControlSlopeFactor(); 
-//		numSamplesToProcess -= numKrSamplesToProcess; 
-//		
-//		while(numKrSamplesToProcess--)
-//		{ 
-//			*outputSamples++ = value_; 
-//			value_ += valueSlope; 
-//		} 
-//		
-//		if(numSamplesToProcess > 0) 
-//		{ 
-//			Neon::splat(nextValue, outputSamples, numSamplesToProcess);
-//		} 
-//		
-//		value_ = nextValue; 
-//	}
+	Neon::splat(value_, outputSamples, numSamplesToProcess);	
 }
 
 void DoublePtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
@@ -101,30 +77,6 @@ void DoublePtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int 
 	
 	value_ = nextValue;
 	Neon::splat(value_, outputSamples, numSamplesToProcess);
-	
-//	if(nextValue == value_) 
-//	{ 
-//		Neon::splat(value_, outputSamples, numSamplesToProcess);
-//	} 
-//	else 
-//	{ 
-//		int numKrSamplesToProcess = UGen::getControlRateBlockSize(); 
-//		float valueSlope = (nextValue - value_) * UGen::getControlSlopeFactor(); 
-//		numSamplesToProcess -= numKrSamplesToProcess; 
-//		
-//		while(numKrSamplesToProcess--)
-//		{ 
-//			*outputSamples++ = value_; 
-//			value_ += valueSlope; 
-//		} 
-//		
-//		if(numSamplesToProcess > 0) 
-//		{ 
-//			Neon::splat(nextValue, outputSamples, numSamplesToProcess);
-//		} 
-//		
-//		value_ = nextValue; 
-//	}
 }
 
 void IntPtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
@@ -134,31 +86,7 @@ void IntPtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*b
 	float nextValue = (float)*ptr; 
 	
 	value_ = nextValue;
-	Neon::splat(value_, outputSamples, numSamplesToProcess);
-	
-//	if(nextValue == value_) 
-//	{ 
-//		Neon::splat(value_, outputSamples, numSamplesToProcess);
-//	} 
-//	else 
-//	{ 
-//		int numKrSamplesToProcess = UGen::getControlRateBlockSize(); 
-//		float valueSlope = (nextValue - value_) * UGen::getControlSlopeFactor(); 
-//		numSamplesToProcess -= numKrSamplesToProcess; 
-//		
-//		while(numKrSamplesToProcess--)
-//		{ 
-//			*outputSamples++ = value_; 
-//			value_ += valueSlope; 
-//		} 
-//		
-//		if(numSamplesToProcess > 0) 
-//		{ 
-//			Neon::splat(nextValue, outputSamples, numSamplesToProcess);
-//		} 
-//		
-//		value_ = nextValue; 
-//	}
+	Neon::splat(value_, outputSamples, numSamplesToProcess);	
 }
 
 void BoolPtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
@@ -168,31 +96,7 @@ void BoolPtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*
 	float nextValue = (float)(*ptr != 0);
 	
 	value_ = nextValue;
-	Neon::splat(value_, outputSamples, numSamplesToProcess);
-	
-//	if(nextValue == value_) 
-//	{ 
-//		Neon::splat(value_, outputSamples, numSamplesToProcess);
-//	} 
-//	else 
-//	{ 
-//		int numKrSamplesToProcess = UGen::getControlRateBlockSize(); 
-//		float valueSlope = (nextValue - value_) * UGen::getControlSlopeFactor(); 
-//		numSamplesToProcess -= numKrSamplesToProcess; 
-//		
-//		while(numKrSamplesToProcess--)
-//		{ 
-//			*outputSamples++ = value_; 
-//			value_ += valueSlope; 
-//		} 
-//		
-//		if(numSamplesToProcess > 0) 
-//		{ 
-//			Neon::splat(nextValue, outputSamples, numSamplesToProcess);
-//		} 
-//		
-//		value_ = nextValue; 
-//	}
+	Neon::splat(value_, outputSamples, numSamplesToProcess);	
 }
 
 void MixUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()

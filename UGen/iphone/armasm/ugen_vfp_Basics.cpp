@@ -67,30 +67,6 @@ void FloatPtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /
 
 	value_ = nextValue;
 	VFP::splat16(value_, outputSamples, numSamplesToProcess);
-	
-//	if(nextValue == value_) 
-//	{ 
-//		VFP::splat16(value_, outputSamples, numSamplesToProcess);
-//	} 
-//	else 
-//	{ 
-//		int numKrSamplesToProcess = UGen::getControlRateBlockSize(); 
-//		float valueSlope = (nextValue - value_) * UGen::getControlSlopeFactor(); 
-//		numSamplesToProcess -= numKrSamplesToProcess; 
-//		
-//		while(numKrSamplesToProcess--)
-//		{ 
-//			*outputSamples++ = value_; 
-//			value_ += valueSlope; 
-//		} 
-//		
-//		if(numSamplesToProcess > 0) 
-//		{ 
-//			VFP::splat16(nextValue, outputSamples, numSamplesToProcess);
-//		} 
-//		
-//		value_ = nextValue; 
-//	}
 }
 
 void DoublePtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
@@ -101,30 +77,6 @@ void DoublePtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int 
 	
 	value_ = nextValue;
 	VFP::splat16(value_, outputSamples, numSamplesToProcess);
-	
-//	if(nextValue == value_) 
-//	{ 
-//		VFP::splat16(value_, outputSamples, numSamplesToProcess);
-//	} 
-//	else 
-//	{ 
-//		int numKrSamplesToProcess = UGen::getControlRateBlockSize(); 
-//		float valueSlope = (nextValue - value_) * UGen::getControlSlopeFactor(); 
-//		numSamplesToProcess -= numKrSamplesToProcess; 
-//		
-//		while(numKrSamplesToProcess--)
-//		{ 
-//			*outputSamples++ = value_; 
-//			value_ += valueSlope; 
-//		} 
-//		
-//		if(numSamplesToProcess > 0) 
-//		{ 
-//			VFP::splat16(nextValue, outputSamples, numSamplesToProcess);
-//		} 
-//		
-//		value_ = nextValue; 
-//	}
 }
 
 void IntPtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
@@ -135,30 +87,6 @@ void IntPtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*b
 	
 	value_ = nextValue;
 	VFP::splat16(value_, outputSamples, numSamplesToProcess);
-	
-//	if(nextValue == value_) 
-//	{ 
-//		VFP::splat16(value_, outputSamples, numSamplesToProcess);
-//	} 
-//	else 
-//	{ 
-//		int numKrSamplesToProcess = UGen::getControlRateBlockSize(); 
-//		float valueSlope = (nextValue - value_) * UGen::getControlSlopeFactor(); 
-//		numSamplesToProcess -= numKrSamplesToProcess; 
-//		
-//		while(numKrSamplesToProcess--)
-//		{ 
-//			*outputSamples++ = value_; 
-//			value_ += valueSlope; 
-//		} 
-//		
-//		if(numSamplesToProcess > 0) 
-//		{ 
-//			VFP::splat16(nextValue, outputSamples, numSamplesToProcess);
-//		} 
-//		
-//		value_ = nextValue; 
-//	}
 }
 
 void BoolPtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
@@ -169,30 +97,6 @@ void BoolPtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*
 	
 	value_ = nextValue;
 	VFP::splat16(value_, outputSamples, numSamplesToProcess);
-	
-//	if(nextValue == value_) 
-//	{ 
-//		VFP::splat16(value_, outputSamples, numSamplesToProcess);
-//	} 
-//	else 
-//	{ 
-//		int numKrSamplesToProcess = UGen::getControlRateBlockSize(); 
-//		float valueSlope = (nextValue - value_) * UGen::getControlSlopeFactor(); 
-//		numSamplesToProcess -= numKrSamplesToProcess; 
-//		
-//		while(numKrSamplesToProcess--)
-//		{ 
-//			*outputSamples++ = value_; 
-//			value_ += valueSlope; 
-//		} 
-//		
-//		if(numSamplesToProcess > 0) 
-//		{ 
-//			VFP::splat16(nextValue, outputSamples, numSamplesToProcess);
-//		} 
-//		
-//		value_ = nextValue; 
-//	}
 }
 
 void MixUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()

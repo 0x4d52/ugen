@@ -189,6 +189,17 @@ public:
 		internal->removeOther(ugen);
 	}
 	
+	/** A conveniece function that replug a plug while lockin the audio thread. 
+	 The 'lock' CriticalSection is locked while the replug takes place.
+	 @param plug		The Plug to replug (must be a Plug UGen)
+	 @param source		The UGen to replug into the Plug.
+	 @param fadeTime	The fade time (deafult 0s). */
+	void replug(UGen& plug, UGen const& source, const float fadeTime = 0.f)
+	{
+		const ScopedLock sl(lock);
+		plug.fadeSourceAndRelease(source, fadeTime);
+	}
+	
 	/** Get the CPU usage.
 	 @return CPU usage as 0.0-1.0. */
 	double getCpuUsage() const

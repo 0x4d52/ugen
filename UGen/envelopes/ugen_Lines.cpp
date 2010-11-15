@@ -161,7 +161,6 @@ void LLineUGenInternalK::processBlock(bool& shouldDelete, const unsigned int blo
 		}
 		else
 		{
-//			float valueSlope = (nextValue - currentValue) * UGen::getControlSlopeFactor();
 			float valueSlope = (nextValue - currentValue) / (float)UGen::getControlRateBlockSize();
 			
 			while(numSamplesToProcess && numKrSamples)

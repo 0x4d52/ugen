@@ -217,7 +217,7 @@ public:
 	/** Create a single channel Buffer containing a geometric series. */
 	static Buffer geom(const int size, const double start, const double grow) throw();
 	
-	static Buffer newClear(const int size = 1, const int numChannels = 1) throw();
+	static Buffer newClear(const int size = 1, const int numChannels = 1, bool zeroData = true) throw();
 	static Buffer withSize(const int size = 1, const int numChannels = 1, bool zeroData = false) throw();
 
 	static Buffer rand(const int size, const double lower, const double upper, const int numChannels = 1) throw();

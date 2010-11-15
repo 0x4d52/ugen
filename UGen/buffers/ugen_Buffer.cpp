@@ -57,18 +57,22 @@ static inline void reportDataPtr(const float* ptr, const int size) throw()
 #endif
 
 BufferChannelInternal::BufferChannelInternal(const unsigned int size, bool zeroData) throw()
-:	size_(size),
+:	data(0),
+	size_(size),
 	allocatedSize(size),
 	currentWriteBlockID(-1),
 	circularHead(-1), previousCircularHead(-1)
 {
-	ugen_assert(size > 0);
+//	ugen_assert(size > 0);
 	
-	data = new float[size_];
-	
-	if(zeroData)
-	{	
-		memset(data, 0, size_ * sizeof(float));
+	if(size_ > 0)
+	{
+		data = new float[size_];
+		
+		if(zeroData)
+		{	
+			memset(data, 0, size_ * sizeof(float));
+		}
 	}
 	
 #ifdef BUFFERTESTMEMORY
@@ -77,7 +81,8 @@ BufferChannelInternal::BufferChannelInternal(const unsigned int size, bool zeroD
 }
 
 BufferChannelInternal::BufferChannelInternal(const unsigned int size, const unsigned int sourceDataSize, const float* sourceData) throw()
-:	size_(size),
+:	data(0),
+	size_(size),
 	allocatedSize(size),
 	currentWriteBlockID(-1),
 	circularHead(-1), previousCircularHead(-1)
@@ -372,9 +377,9 @@ Buffer Buffer::geom(const int size, const double start, const double grow) throw
 	return newBuffer;
 }
 
-Buffer Buffer::newClear(const int size, const int numChannels) throw()
+Buffer Buffer::newClear(const int size, const int numChannels, bool zeroData) throw()
 {
-	return Buffer(BufferSpec(size, numChannels, true));
+	return Buffer(BufferSpec(size, numChannels, zeroData));
 }
 
 Buffer Buffer::withSize(const int size, const int numChannels, bool zeroData) throw()
@@ -511,6 +516,11 @@ double Buffer::initFromJuceFile(const File& audioFile) throw()
 	
 	AudioFormatManager formatManager;
 	formatManager.registerBasicFormats();
+	
+#if JUCE_QUICKTIME
+	formatManager.registerFormat(new QuickTimeAudioFormat(), false);
+#endif
+	
 	AudioFormatReader* audioFormatReader = formatManager.createReaderFor (audioFile);
 	
 	if(audioFormatReader == 0) return 0.0;
@@ -528,8 +538,15 @@ double Buffer::initFromJuceFile(const File& audioFile) throw()
 		bufferData[i] = channels[i]->data;
 	}
 	
-	AudioSampleBuffer audioSampleBuffer(bufferData, numChannels_, size_);
-	audioSampleBuffer.readFromAudioReader(audioFormatReader, 0, size_, 0, true, true);
+	if(size_ > 0)
+	{
+		AudioSampleBuffer audioSampleBuffer(bufferData, numChannels_, size_);
+		audioSampleBuffer.readFromAudioReader(audioFormatReader, 0, size_, 0, true, true);
+	}
+	else
+	{
+		sampleRate = 0.0;
+	}
 	
 	delete audioFormatReader;
 	delete [] bufferData;
