@@ -112,7 +112,7 @@ public:
 	
 	/** Destructor.
 	 Cleans up the internal AudioDeviceManager and calls UGen::shutdown() to clean up UGen++ */
-	~JuceIOHost()
+	virtual ~JuceIOHost()
 	{
 		delete internal;
 	}
@@ -224,6 +224,12 @@ public:
 	 */
 	virtual UGen constructGraph(UGen const& input) = 0;
 	
+	/** Called just before processing an audio block on the audio thread. */
+	virtual void preTick() throw()  { }
+	
+	/** Called just after processing an audio block on the audio thread. */
+	virtual void postTick() throw() { }
+	
 private:
 	JuceIOHostInternal* internal;
 	
@@ -326,6 +332,8 @@ inline void JuceIOHostInternal::audioDeviceIOCallback (const float** inputChanne
 	
 	int blockID = UGen::getNextBlockID(numSamples);
 	
+	owner_->preTick();
+	
 	if(numInputs_ > 0)
 		input_.setInputs(inputChannelData, numSamples, numInputChannels);
 	
@@ -347,6 +355,8 @@ inline void JuceIOHostInternal::audioDeviceIOCallback (const float** inputChanne
 			others[i].prepareAndProcessBlock(numSamples, blockID);
 		}
 	}
+	
+	owner_->postTick();
 }
 
 inline void JuceIOHostInternal::audioDeviceAboutToStart (AudioIODevice* device)
