@@ -55,19 +55,19 @@ PartBuffer::PartBuffer() throw()
 	numPartitions(0),
 	startPoint(0),
 	endPoint(0),
-	length(0),
-	fftSizeLog2(0),
-	fftSize(0),
-	fftSizeOver2(0),
-	fftSizeOver4(0)
+	length(0)//,
+//	fftSizeLog2(0),
+//	fftSize(0),
+//	fftSizeOver2(0),
+//	fftSizeOver4(0)
 {				
 }
 
 PartBuffer::PartBuffer(Buffer const& original, 
 					   long startPointToUse,
 					   long endPointToUse, 
-					   long fftSizelog2ToUse) throw()
-:	Buffer(BufferSpec((endPointToUse ? endPointToUse - startPointToUse : quantiseUp(original.size(), fftSizeFromArg(fftSizelog2ToUse))) * 2,
+					   FFTEngine const& fftEngineToUse) throw()
+:	Buffer(BufferSpec((endPointToUse ? endPointToUse - startPointToUse : quantiseUp(original.size(), fftEngineToUse.size())) * 2,
 		   original.getNumChannels(), 
 		   false)),
 	bufferSize(size_ / 2),
@@ -75,12 +75,12 @@ PartBuffer::PartBuffer(Buffer const& original,
 	startPoint(startPointToUse),
 	endPoint(endPointToUse),
 	length(0),
-	fftSizeLog2(fftSizeLog2FromArg(fftSizelog2ToUse)),
-	fftSize(fftSizeFromArg(fftSizelog2ToUse)),
-	fftSizeOver2(fftSize >> 1),
-	fftSizeOver4(fftSizeOver2 >> 1),
-	partTempBuffer(BufferSpec(fftSize + 2, 1, false)),
-	fftEngine(fftSize)
+//	fftSizeLog2(fftSizeLog2FromArg(fftSizelog2ToUse)),
+//	fftSize(fftSizeFromArg(fftSizelog2ToUse)),
+//	fftSizeOver2(fftEngineToUse.size() >> 1),
+//	fftSizeOver4(fftSizeOver2 >> 1),
+	partTempBuffer(BufferSpec(fftEngineToUse.size() + 2, 1, false)),
+	fftEngine(fftEngineToUse)
 {				
 	partitionImpulse(original);
 }
@@ -89,19 +89,19 @@ PartBuffer::PartBuffer(BufferChannelInternal *internalToUse,
 					   int partitionsInBuffer,
 					   long startPointToUse,
 					   long endPointToUse, 
-					   long fftSizelog2ToUse) throw()
+					   FFTEngine const& fftEngineToUse) throw()
 :	Buffer(internalToUse),
-	bufferSize(size_ / 2),
+	bufferSize(size_ >> 1),
 	numPartitions(partitionsInBuffer),
 	startPoint(startPointToUse),
 	endPoint(endPointToUse),
 	length(0),
-	fftSizeLog2(fftSizeLog2FromArg(fftSizelog2ToUse)),
-	fftSize(fftSizeFromArg(fftSizelog2ToUse)),
-	fftSizeOver2(fftSize >> 1),
-	fftSizeOver4(fftSizeOver2 >> 1),
-	partTempBuffer(BufferSpec(fftSize + 2, 1, false)),
-	fftEngine(fftSize)
+//	fftSizeLog2(fftSizeLog2FromArg(fftSizelog2ToUse)),
+//	fftSize(fftSizeFromArg(fftSizelog2ToUse)),
+//	fftSizeOver2(fftEngineToUse.size() >> 1),
+//	fftSizeOver4(fftSizeOver2 >> 1),
+	partTempBuffer(BufferSpec(fftEngineToUse.size() + 2, 1, false)),
+	fftEngine(fftEngineToUse)
 {
 }
 
@@ -119,7 +119,7 @@ PartBuffer PartBuffer::getChannel(const int channel) const throw()
 	
 	if(numChannels_ == 1) return *this;
 	
-	return PartBuffer(channels[channel], startPoint, endPoint, fftSizeLog2);
+	return PartBuffer(channels[channel], startPoint, endPoint, fftEngine);
 }
 
 void PartBuffer::partitionImpulse(Buffer const& original)
@@ -135,12 +135,11 @@ void PartBuffer::partitionImpulseChannel(Buffer const& original, const int chann
 	const float *bufferSamples;
 	long impulseLength;
 
-	//bufferSamples = original.getDataReadOnly(channel);
 	bufferSamples = original.getData(channel);
 	
 	impulseLength = original.size();
 		
-	long fftSize = this->fftSize;
+	long fftSize = fftEngine.size();
 	long fftSizeHalved = fftSize / 2;
 		
 	long startPoint = this->startPoint;
@@ -161,7 +160,7 @@ void PartBuffer::partitionImpulseChannel(Buffer const& original, const int chann
 	if (numPartitions * fftSizeHalved > this->bufferSize) 
 		numPartitions = this->bufferSize / fftSizeHalved;
 	
-	float *bufferTemp1 = partTempBuffer.getData(); // this->Part_Temp.realp;
+	float *bufferTemp1 = partTempBuffer.getData();
 	float *impulseReal = getDataReal(channel);
 	float *impulseImag = getDataImag(channel);
 		
@@ -179,11 +178,6 @@ void PartBuffer::partitionImpulseChannel(Buffer const& original, const int chann
 		else numSamples = impulseLength - bufferPos;
 		
 #ifdef UGEN_VDSP
-//	#ifdef UGEN_IPHONE
-//		cblas_ccopy(numSamples, (float*)bufferSamples + startPoint + bufferPos, 1, (float*)bufferTemp1, 1);
-//	#else
-//		vScopy(numSamples, bufferSamples + startPoint + bufferPos, bufferTemp1);
-//	#endif	
 		memcpy(bufferTemp1, bufferSamples + startPoint + bufferPos, sizeof(float) * numSamples);
 		vDSP_vclr(bufferTemp1+numSamples, 1, partTempBuffer.size()-numSamples);
 #else
@@ -207,15 +201,15 @@ PartConvolveUGenInternal::PartConvolveUGenInternal(UGen const& input,
 												   PartBuffer const& partImpulse) throw()
 :	UGenInternal(NumInputs),
 	partImpulse_(partImpulse),
-	startPoint(partImpulse.startPoint),
-	endPoint(partImpulse.endPoint),
-	length(partImpulse.length),
-	fftSize(partImpulse.fftSize),
-	fftSizeOver4(partImpulse.fftSizeOver4),
-	fftSizeLog2(partImpulse.fftSizeLog2),
-	bufferSize(partImpulse.bufferSize),
+//	startPoint(partImpulse.getStartPoint()),
+//	endPoint(partImpulse.getEndPoint()),
+//	length(partImpulse.getLength()),
+	fftSize(partImpulse.getFFTSize()),
+	fftSizeOver4(fftSize >> 2),
+	fftSizeLog2(Bits::countTrailingZeros(fftSize)),
+	bufferSize(partImpulse.getBufferSize()),
 	resetAll(1),
-	fftEngine(fftSize),
+	fftEngine(partImpulse.getFFTEngine()),
 	scaleMultD(1.0 / (double) (fftSize * 4)),	
 	scaleMult(vecSplat((float) (scaleMultD))),
 	inputBuffer(BufferSpec((int)(bufferSize * 2), 1, false)),
@@ -272,7 +266,6 @@ void PartConvolveUGenInternal::processBlock(bool& shouldDelete, const unsigned i
 	impulse.realp = partImpulse_.getDataReal(channel);
 	impulse.imagp = partImpulse_.getDataImag(channel);
 	
-	//LOCAL_DECLARE(float* const, fftBuffersMemorySamples);
 	LOCAL_DECLARE(float* const, fftTempBufferSamples);
 	LOCAL_DECLARE(float* const, inputBufferSamples);
 	
@@ -296,7 +289,7 @@ void PartConvolveUGenInternal::processBlock(bool& shouldDelete, const unsigned i
 	fftTemp.realp = fftTempBufferSamples;
 	fftTemp.imagp = fftTemp.realp + fftSizeHalved;
 	
-	const int Partitions = partImpulse_.numPartitions;
+	const int Partitions = partImpulse_.getNumPartitions();
 	LOCAL_DECLARE(int, bufPosition);
 	
 	// Schedule Stuff
@@ -429,12 +422,12 @@ void PartConvolveUGenInternal::processBlock(bool& shouldDelete, const unsigned i
 			else loop = 0;										// No Flip To Do
 			
 			// Do Processing
-			int offset = (partitionsDone + 1) << fftSizeHalvedLog2; // * fftSizeHalved;
+			int offset = (partitionsDone + 1) << fftSizeHalvedLog2;
 			impulseTemp.realp = impulse.realp + offset;
 			impulseTemp.imagp = impulse.imagp + offset;
-			offset = nextPart << fftSizeHalvedLog2; // * fftSizeHalved;
-			bufferTemp.realp = inputBufferSamples + offset; // InputBuffer.realp + Offset;
-			bufferTemp.imagp = bufferTemp.realp + bufferSize; // InputBuffer.imagp + Offset;
+			offset = nextPart << fftSizeHalvedLog2;
+			bufferTemp.realp = inputBufferSamples + offset;
+			bufferTemp.imagp = bufferTemp.realp + bufferSize;
 			
 			partitionsDone += numPartitionsToDo;
 			
@@ -455,9 +448,9 @@ void PartConvolveUGenInternal::processBlock(bool& shouldDelete, const unsigned i
 			
 			// Calculate the position to put the FFT output into
 			impulseTemp = impulse;
-			const int offset = bufPosition << fftSizeHalvedLog2; // * fftSizeHalved;
-			bufferTemp.realp = inputBufferSamples + offset; // InputBuffer.realp + Offset;
-			bufferTemp.imagp = bufferTemp.realp + bufferSize; // InputBuffer.imagp + Offset;
+			const int offset = bufPosition << fftSizeHalvedLog2;
+			bufferTemp.realp = inputBufferSamples + offset;
+			bufferTemp.imagp = bufferTemp.realp + bufferSize;
 			
 			// Do the FFT, Process and Convert back with scaling
 			tempvPointer1 = fftBuffers[fftOffset];
@@ -465,7 +458,7 @@ void PartConvolveUGenInternal::processBlock(bool& shouldDelete, const unsigned i
 						
 			// Process First Partition Here (we need it now!)
 			
-			MultAndAdd(bufferTemp, impulseTemp, fftTemp, fftSizeHalvedOver4);//fftSizeHalved >> 2);
+			MultAndAdd(bufferTemp, impulseTemp, fftTemp, fftSizeHalvedOver4);
 			
 			if (--bufPosition < 0)
 				bufPosition = Partitions - 1;
@@ -533,12 +526,13 @@ void PartConvolveUGenInternal::processBlock(bool& shouldDelete, const unsigned i
 
 PartConvolve::PartConvolve(UGen const& input, 
 						   Buffer const& impulse, 
-						   long startPoint, long endPoint, long fftSizeLog2) throw()
+						   long startPoint, long endPoint, 
+						   FFTEngine const& fftEngine) throw()
 {	
 	int numChannels = ugen::max(input.getNumChannels(), impulse.getNumChannels());
 	initInternal(numChannels);
 	
-	PartBuffer partImpulse(impulse, startPoint, endPoint, fftSizeLog2);
+	PartBuffer partImpulse(impulse, startPoint, endPoint, fftEngine);
 	
 	for(int i = 0; i < numChannels; i++)
 	{

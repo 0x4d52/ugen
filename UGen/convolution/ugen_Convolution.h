@@ -44,7 +44,6 @@
 #include "../basics/ugen_MixUGen.h"
 #include "../fft/ugen_FFTEngine.h"
 
-//#define BUFFERSIZES_DEFAULT (44100 * 30)
 
 /** Stores a "partitioned" FFT buffer. */
 class PartBuffer : public Buffer
@@ -53,15 +52,14 @@ public:
 	PartBuffer() throw();
 	
 	/** Construct a partitioned buffer from a real (audio) buffer 
-	 @param original	The audio buffer to FTT and partition.
+	 @param original	The audio buffer to FFT and partition.
 	 @param startPoint	The sample number at which to start reading within the original.
-	 @param endPoint	The sample number at which to stop reading within the origina.
+	 @param endPoint	The sample number at which to stop reading within the original.
 						If this is 0 all the remain samples in the original will be read.
-	 @param fftSizeLog2	This will control the FFT size of the FFT operations on the partitioning.
-						The FFT size will be @f$ 2^{fftSizeLog2} @f$ if fftSizeLog2 is less than 4 then an
-						FFT size of @f$ 2^{12} = 4096 @f$ is used. */
-	PartBuffer(Buffer const& original, long startPoint = 0, long endPoint = 0, long fftSizeLog2 = 0) throw();
-	PartBuffer(BufferChannelInternal *internalToUse, int Partitions, long StartPoint, long EndPoint, long FFTSizelog2) throw();
+	 @param fftEngine	This will control the FFT for operations on the partitioning. Just pass the 
+						FFT size to create a FFTEngine of the appropriate size - defaults to 4096. */
+	PartBuffer(Buffer const& original, long startPoint = 0, long endPoint = 0, FFTEngine const& fftEngine = 0) throw();
+	PartBuffer(BufferChannelInternal *internalToUse, int Partitions, long StartPoint, long EndPoint, FFTEngine const& fftEngine) throw();
 	
 	/** Destructor. */
 	~PartBuffer();
@@ -80,20 +78,33 @@ public:
 	 @return The number of partitions. */
 	inline int getNumPartitions() const { return numPartitions; }
 	
-	inline int getFFTSize() const { return fftSize; }
+	/** Get the FFT size of the buffer partitions. */
+	inline int getFFTSize() const { return fftEngine.size(); }
 	
-	friend class PartConvolveUGenInternal;
+	/** Get the FFT engine running in this PartBuffer. */
+	inline const FFTEngine getFFTEngine() const { return fftEngine; }
+	
+	/** Get the size of the imag and real buffers.
+	 This will be equivalent to half the total size */
+	inline int getBufferSize() const { return bufferSize; }
+	
+//	inline long getStartPoint() const { return startPoint; }
+//	inline long getEndPoint() const { return endPoint; }
+//	inline long getLength() const { return length; }
+	
+//	friend class PartConvolveUGenInternal;
 	
 private:	
 	
-	static inline long fftSizeLog2FromArg(long fftSizeLog2) throw() { return fftSizeLog2 < 4 ? 12 : fftSizeLog2;	}
-	static inline long fftSizeFromArg(long fftSizeLog2) throw()		{ return 1 << fftSizeLog2FromArg(fftSizeLog2);	}
+//	static inline long fftSizeLog2FromArg(long fftSizeLog2) throw() { return fftSizeLog2 < 4 ? 12 : fftSizeLog2;	}
+//	static inline long fftSizeFromArg(long fftSizeLog2) throw()		{ return 1 << fftSizeLog2FromArg(fftSizeLog2);	}
 	
 	long bufferSize;
 	int numPartitions;
 	long startPoint, endPoint, length;
-	int fftSizeLog2, fftSize;
-	int fftSizeOver2, fftSizeOver4;
+//	int fftSizeLog2;
+//	int fftSize;
+//	int fftSizeOver2, fftSizeOver4;
 	Buffer partTempBuffer;
 	FFTEngine fftEngine;	
 	
@@ -128,13 +139,12 @@ protected:
 	PartBuffer partImpulse_;
 	
 	int bufPosition;
-	long startPoint, endPoint, length;
+//	long startPoint, endPoint, length;
 	
 	// Scheduling Stuff
 	int partitionsDone, scheduleCounter, lastPart, validPart;
 	
 	// FFT Stuff
-	//FFTEngineInternal *fftEngine;
 	vFloat *fftBuffers[4];
 	int tillNextFFT, rwPointer1, rwPointer2, fftOffset, fftSize, fftSizeLog2;
 	int fftSizeOver4;
@@ -169,16 +179,16 @@ public:
 	PartConvolve(UGen const& input, Buffer const& impulse, 
 				 long startPoint = 0, 
 				 long endPoint = 0, 
-				 long fftSizeLog2 = 0) throw();
+				 FFTEngine const& fftEngine = 0) throw();
 	
 	PartConvolve(UGen const& input, PartBuffer const& impulse) throw();
 	
 	static UGen AR(UGen const& input, Buffer const& impulse, 
 				   long startPoint = 0, 
 				   long endPoint = 0, 
-				   long fftSizeLog2 = 0) throw()
+				   FFTEngine const& fftEngine = 0) throw()
 	{
-		return PartConvolve(input, impulse, startPoint, endPoint, fftSizeLog2);
+		return PartConvolve(input, impulse, startPoint, endPoint, fftEngine);
 	}
 	
 	static UGen AR(UGen const& input, PartBuffer const& impulse) throw()
@@ -208,7 +218,7 @@ public:
 							 Buffer const& impulse, 
 							 long startPoint = 0, long endPoint = 0, long fftSizeLog2 = 0) throw();
 	~TimeConvolveUGenInternal() throw();
-	UGenInternal* getChannel(const int channel) throw();									// necessary if there are input ugens which may have more than one channel
+	UGenInternal* getChannel(const int channel) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();	
 	
 	enum Inputs { Input, NumInputs };

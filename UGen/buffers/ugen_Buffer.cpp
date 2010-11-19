@@ -2775,21 +2775,27 @@ BufferSender::BufferSender() throw()
 
 BufferSender::~BufferSender()
 {
+	const int size = receivers.size();
+	for(int i = 0; i < size; i++)
+	{
+		receivers[i]->removeBufferSender(this);
+	}	
 }
 
-void BufferSender::addBufferReceiver(BufferReceiver* const receiver) throw()
+void BufferSender::addBufferReceiver(BufferReceiver* receiver) throw()
 {
 	if(receiver == 0) { ugen_assertfalse; return; }
 	if(receivers.contains(receiver)) return;
 	
-	receivers <<= receiver;
+	receivers.add(receiver);
+	receiver->addBufferSender(this);
 }
 
-void BufferSender::removeBufferReceiver(BufferReceiver* const receiver) throw()
+void BufferSender::removeBufferReceiver(BufferReceiver* receiver) throw()
 {
 	if(receiver == 0) { ugen_assertfalse; return; }
 	
-	receivers = receivers.removeItem(receiver);
+	receivers.removeItem(receiver);
 }
 
 void BufferSender::sendBuffer(Buffer const& buffer, const double value1, const int value2) throw()
@@ -2799,6 +2805,31 @@ void BufferSender::sendBuffer(Buffer const& buffer, const double value1, const i
 	{
 		receivers[i]->handleBuffer(buffer, value1, value2);
 	}
+}
+
+BufferReceiver::BufferReceiver() throw()
+{
+}
+
+BufferReceiver::~BufferReceiver()
+{	
+	const int size = senders.size();
+	for(int i = 0; i < size; i++)
+	{
+		senders[i]->removeBufferReceiver(this);
+	}
+}
+
+void BufferReceiver::addBufferSender(BufferSender* const sender) throw()
+{
+	if(senders.contains(sender)) return;
+	
+	senders.add(sender);
+}
+
+void BufferReceiver::removeBufferSender(BufferSender* const sender) throw()
+{
+	senders.removeItem(sender);
 }
 
 END_UGEN_NAMESPACE

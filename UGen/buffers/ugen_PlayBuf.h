@@ -156,7 +156,7 @@ UGenSublcassDeclaration(RecordBuf, (input, buffer, recLevel, preLevel, loop, don
 						 UGen const& loop = 0.f, 
 						 const UGen::DoneAction doneAction = UGen::DeleteWhenDone), COMMON_UGEN_DOCS);
 
-#if 0
+#if 1
 
 class LoopPointsUGenInternal :	public UGenInternal,
 								public Seekable
