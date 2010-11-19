@@ -55,11 +55,7 @@ PartBuffer::PartBuffer() throw()
 	numPartitions(0),
 	startPoint(0),
 	endPoint(0),
-	length(0)//,
-//	fftSizeLog2(0),
-//	fftSize(0),
-//	fftSizeOver2(0),
-//	fftSizeOver4(0)
+	length(0)
 {				
 }
 
@@ -75,10 +71,6 @@ PartBuffer::PartBuffer(Buffer const& original,
 	startPoint(startPointToUse),
 	endPoint(endPointToUse),
 	length(0),
-//	fftSizeLog2(fftSizeLog2FromArg(fftSizelog2ToUse)),
-//	fftSize(fftSizeFromArg(fftSizelog2ToUse)),
-//	fftSizeOver2(fftEngineToUse.size() >> 1),
-//	fftSizeOver4(fftSizeOver2 >> 1),
 	partTempBuffer(BufferSpec(fftEngineToUse.size() + 2, 1, false)),
 	fftEngine(fftEngineToUse)
 {				
@@ -96,10 +88,6 @@ PartBuffer::PartBuffer(BufferChannelInternal *internalToUse,
 	startPoint(startPointToUse),
 	endPoint(endPointToUse),
 	length(0),
-//	fftSizeLog2(fftSizeLog2FromArg(fftSizelog2ToUse)),
-//	fftSize(fftSizeFromArg(fftSizelog2ToUse)),
-//	fftSizeOver2(fftEngineToUse.size() >> 1),
-//	fftSizeOver4(fftSizeOver2 >> 1),
 	partTempBuffer(BufferSpec(fftEngineToUse.size() + 2, 1, false)),
 	fftEngine(fftEngineToUse)
 {
@@ -190,7 +178,6 @@ void PartBuffer::partitionImpulseChannel(Buffer const& original, const int chann
 #endif
 		
 		// Do FFT Straight Into Position...
-		
 		fftEngine.getInternal()->fft(bufferTemp2, bufferTemp1);
 	}
 		
@@ -201,9 +188,6 @@ PartConvolveUGenInternal::PartConvolveUGenInternal(UGen const& input,
 												   PartBuffer const& partImpulse) throw()
 :	UGenInternal(NumInputs),
 	partImpulse_(partImpulse),
-//	startPoint(partImpulse.getStartPoint()),
-//	endPoint(partImpulse.getEndPoint()),
-//	length(partImpulse.getLength()),
 	fftSize(partImpulse.getFFTSize()),
 	fftSizeOver4(fftSize >> 2),
 	fftSizeLog2(Bits::countTrailingZeros(fftSize)),
@@ -224,9 +208,7 @@ PartConvolveUGenInternal::PartConvolveUGenInternal(UGen const& input,
 	fftBuffers[0] = (vFloat*)fftBuffersMemorySamples;
 	fftBuffers[1] = fftBuffers[0] + fftSizeOver4;											
 	fftBuffers[2] = fftBuffers[1] + fftSizeOver4;											
-	fftBuffers[3] = fftBuffers[2] + fftSizeOver4;	
-		
-//	fftEngine = new FFTEngineInternal(fftSize);
+	fftBuffers[3] = fftBuffers[2] + fftSizeOver4;			
 }
 
 PartConvolveUGenInternal::~PartConvolveUGenInternal() throw()
@@ -358,23 +340,7 @@ void PartConvolveUGenInternal::processBlock(bool& shouldDelete, const unsigned i
 		
 		// Load input into buffer (twice) and output from the output buffer
 		// Put it straight into the right place - using overlap save it would seem....
-		
-		
-//#if 0 //defined(UGEN_VDSP) // not sure why this doesn't work
-//		const int loopX4 = loop<<2;
-//	#ifdef UGEN_IPHONE
-//		cblas_ccopy(loopX4, (float*)inputSamples, 1, (float*)(fftBuffers[0] + rwPointer1), 1);
-//		cblas_ccopy(loopX4, (float*)inputSamples, 1, (float*)(fftBuffers[1] + rwPointer2), 1);
-//		cblas_ccopy(loopX4, (float*)(fftBuffers[3] + rwPointer1), 1, (float*)outputSamples, 1);
-//	#else
-//		vScopy(loopX4, inputSamples, fftBuffers[0] + rwPointer1);
-//		vScopy(loopX4, inputSamples, fftBuffers[1] + rwPointer2);
-//		vScopy(loopX4, fftBuffers[3] + rwPointer1, outputSamples);
-//	#endif	
-//		rwPointer1 += loop;
-//		rwPointer2 += loop;
-//		inputSamples += loop;
-//		outputSamples += loop;
+				
 #if 1 // let's try this...
 		const int loopX4 = loop<<2;
 		memcpy(fftBuffers[0] + rwPointer1, inputSamples, loopX4*sizeof(float));

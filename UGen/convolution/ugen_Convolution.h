@@ -88,23 +88,11 @@ public:
 	 This will be equivalent to half the total size */
 	inline int getBufferSize() const { return bufferSize; }
 	
-//	inline long getStartPoint() const { return startPoint; }
-//	inline long getEndPoint() const { return endPoint; }
-//	inline long getLength() const { return length; }
-	
-//	friend class PartConvolveUGenInternal;
-	
 private:	
-	
-//	static inline long fftSizeLog2FromArg(long fftSizeLog2) throw() { return fftSizeLog2 < 4 ? 12 : fftSizeLog2;	}
-//	static inline long fftSizeFromArg(long fftSizeLog2) throw()		{ return 1 << fftSizeLog2FromArg(fftSizeLog2);	}
-	
+		
 	long bufferSize;
 	int numPartitions;
 	long startPoint, endPoint, length;
-//	int fftSizeLog2;
-//	int fftSize;
-//	int fftSizeOver2, fftSizeOver4;
 	Buffer partTempBuffer;
 	FFTEngine fftEngine;	
 	
@@ -136,10 +124,8 @@ public:
 	
 	
 protected:
-	PartBuffer partImpulse_;
-	
+	PartBuffer partImpulse_;	
 	int bufPosition;
-//	long startPoint, endPoint, length;
 	
 	// Scheduling Stuff
 	int partitionsDone, scheduleCounter, lastPart, validPart;
