@@ -48,7 +48,21 @@ BEGIN_UGEN_NAMESPACE
 
 FFTEngine::FFTEngine(const int fftSize) throw()
 {
-	internal = new FFTEngineInternal(fftSize);
+	if(fftSize <= 0)
+	{
+		// deault to 4096
+		internal = new FFTEngineInternal(4096);
+	}
+	else if(fftSize < 16)
+	{
+		// less than 16 the fftSize is specified as a power of 2
+		internal = new FFTEngineInternal(1 << fftSize);
+	}
+	else
+	{
+		// use fftSize directly, the internal rounds it up to a power of 2 if necessary
+		internal = new FFTEngineInternal(fftSize);
+	}
 }
 
 FFTEngine::FFTEngine(FFTEngine const& copy) throw()

@@ -786,7 +786,10 @@ protected:
 };
 
 class BufferReceiver;
+class BufferSender;
 typedef ObjectArray<BufferReceiver*> BufferReceiverArray;
+typedef ObjectArray<BufferSender*> BufferSenderArray;
+
 
 /** Subclasses of this collect samples into a Buffer and transmit it to BufferReceiver objects.
  This mechanism is used by the ScopeGUI class and the Sender UGen to display time-domain sample data.
@@ -798,8 +801,8 @@ public:
 	BufferSender() throw();
 	virtual ~BufferSender();
 	
-	void addBufferReceiver(BufferReceiver* const receiver) throw();
-	void removeBufferReceiver(BufferReceiver* const receiver) throw();
+	void addBufferReceiver(BufferReceiver* receiver) throw();
+	void removeBufferReceiver(BufferReceiver* receiver) throw();
 	void sendBuffer(Buffer const& buffer, const double value1 = 0.0, const int value2 = 0) throw();
 	
 private:
@@ -811,8 +814,8 @@ class BufferReceiver
 {
 public:
 	
-	BufferReceiver() throw() {}
-	virtual ~BufferReceiver() {}
+	BufferReceiver() throw();
+	virtual ~BufferReceiver();
 	
 	/** This must be implmented.
 	 The two values allow additional data to be sent along with the Buffer. This is commonly
@@ -821,6 +824,14 @@ public:
 	
 	/** This saves having to get the pointer to a BufferReceiver object, it will be casted automatically. */
 	operator BufferReceiver*() throw() { return this; }
+	
+	friend class BufferSender;
+	
+private:
+	void addBufferSender(BufferSender* const sender) throw();
+	void removeBufferSender(BufferSender* const sender) throw();
+
+	BufferSenderArray senders;
 };
 
 

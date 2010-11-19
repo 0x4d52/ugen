@@ -348,7 +348,7 @@ RecordBuf::RecordBuf(UGen const& input,
 	generateFromProxyOwner(new RecordBufUGenInternal(input, buffer, recLevel, preLevel, loop.mix(), doneAction));
 }
 
-#if 0
+#if 1
 	
 LoopPointsUGenInternal::LoopPointsUGenInternal(Buffer const& buffer, 
 											   UGen const& rate, 

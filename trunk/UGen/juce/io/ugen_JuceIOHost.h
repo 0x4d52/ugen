@@ -66,6 +66,7 @@ public:
 	void setOutput(UGen const& ugen) throw();
 	void addOther(UGen const& ugen) throw();
 	void removeOther(UGen const& ugen) throw();
+	void clearOthers() throw();
 	
 	friend class JuceIOHost;
 	
@@ -187,6 +188,11 @@ public:
 	void removeOther(UGen const& ugen) throw()
 	{
 		internal->removeOther(ugen);
+	}
+	
+	void clearOthers() throw()
+	{
+		internal->clearOthers();
 	}
 	
 	/** A conveniece function that replug a plug while lockin the audio thread. 
@@ -383,6 +389,12 @@ inline void JuceIOHostInternal::removeOther(UGen const& ugen) throw()
 {
 	const ScopedLock sl(lock);
 	others.removeItem(ugen);
+}
+
+inline void JuceIOHostInternal::clearOthers() throw()
+{
+	const ScopedLock sl(lock);
+	others.clear(false);
 }
 
 
