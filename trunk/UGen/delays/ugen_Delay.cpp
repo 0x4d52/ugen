@@ -95,7 +95,7 @@ void DelayNUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 		{
 			bufferSamples[bufferWritePos] = *inputSamples++;
 			
-			int bufferReadPos = bufferWritePos - (int)(*delayTimeSamples++ * sampleRate);
+			int bufferReadPos = bufferWritePos - ugen::max(0, (int)(*delayTimeSamples++ * sampleRate));
 			if(bufferReadPos < 0)
 				bufferReadPos += (int)delayBufferSize;
 			
@@ -133,9 +133,7 @@ void DelayNMultiUGenInternal::processBlock(bool& shouldDelete, const unsigned in
 	float* delayTimeSamples = inputs[DelayTime].processBlock(shouldDelete, blockID, 0);
 	LOCAL_DECLARE(float * const, bufferSamples);
 	LOCAL_DECLARE(const double, delayBufferSize);
-	
-	//ugen_assert(*delayTimeSamples >= 0.f); // not foolproof but better than checking every sample
-	
+		
 	int bufferWritePos = this->bufferWritePos;
 	while(numSamplesToProcess > 0)
 	{
@@ -148,7 +146,7 @@ void DelayNMultiUGenInternal::processBlock(bool& shouldDelete, const unsigned in
 		{
 			bufferSamples[bufferWritePos] = *inputSamples++;
 			
-			int bufferReadPos = bufferWritePos - (int)(*delayTimeSamples++ * sampleRate);
+			int bufferReadPos = bufferWritePos - ugen::max(0, (int)(*delayTimeSamples++ * sampleRate));
 			if(bufferReadPos < 0)
 				bufferReadPos += (int)delayBufferSize;
 			
@@ -178,7 +176,7 @@ void DelayNMultiUGenInternal::processBlock(bool& shouldDelete, const unsigned in
 
 			while(numFramesThisTime--)
 			{
-				int bufferReadPos = bufferWritePos - (int)(*delayTimeSamples++ * sampleRate);
+				int bufferReadPos = bufferWritePos - ugen::max(0, (int)(*delayTimeSamples++ * sampleRate));
 				if(bufferReadPos < 0)
 					bufferReadPos += (int)delayBufferSize;
 				
@@ -218,9 +216,7 @@ void DelayLUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 	LOCAL_DECLARE(float * const, bufferSamples);
 	LOCAL_DECLARE(const double, delayBufferSize);
 	LOCAL_DECLARE(int, bufferWritePos);
-	
-	//ugen_assert(*delayTimeSamples >= 0.f); // not foolproof but better than checking every sample
-	
+		
 	while(numSamplesToProcess > 0)
 	{
 		int bufferSamplesRemaining = delayBufferSize - bufferWritePos;
@@ -232,7 +228,7 @@ void DelayLUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 		{
 			bufferSamples[bufferWritePos] = *inputSamples++;
 			
-			float bufferReadPos = (float)bufferWritePos - *delayTimeSamples++ * sampleRate;
+			float bufferReadPos = (float)bufferWritePos - ugen::max(0.f, *delayTimeSamples++ * sampleRate);
 			if(bufferReadPos < 0.f)
 				bufferReadPos += (float)delayBufferSize;
 			
@@ -270,9 +266,7 @@ void DelayLMultiUGenInternal::processBlock(bool& shouldDelete, const unsigned in
 	float* delayTimeSamples = inputs[DelayTime].processBlock(shouldDelete, blockID, 0);
 	LOCAL_DECLARE(float * const, bufferSamples);
 	LOCAL_DECLARE(const double, delayBufferSize);
-	
-	//ugen_assert(*delayTimeSamples >= 0.f); // not foolproof but better than checking every sample
-	
+		
 	int bufferWritePos = this->bufferWritePos;
 	while(numSamplesToProcess > 0)
 	{
@@ -285,7 +279,7 @@ void DelayLMultiUGenInternal::processBlock(bool& shouldDelete, const unsigned in
 		{
 			bufferSamples[bufferWritePos] = *inputSamples++;
 			
-			float bufferReadPos = (float)bufferWritePos - *delayTimeSamples++ * sampleRate;
+			float bufferReadPos = (float)bufferWritePos - ugen::max(0.f, *delayTimeSamples++ * sampleRate);
 			if(bufferReadPos < 0.f)
 				bufferReadPos += (float)delayBufferSize;
 			
@@ -305,9 +299,7 @@ void DelayLMultiUGenInternal::processBlock(bool& shouldDelete, const unsigned in
 		float* outputSamples = proxies[channel]->getSampleData();
 		float* delayTimeSamples = inputs[DelayTime].processBlock(shouldDelete, blockID, channel);
 		int bufferWritePos = this->bufferWritePos; // fresh copy
-		
-		//ugen_assert(*delayTimeSamples >= 0.f); // not foolproof but better than checking every sample
-		
+				
 		while(numSamplesToProcess > 0)
 		{			
 			int bufferSamplesRemaining = delayBufferSize - bufferWritePos;
@@ -317,7 +309,7 @@ void DelayLMultiUGenInternal::processBlock(bool& shouldDelete, const unsigned in
 
 			while(numFramesThisTime--)
 			{
-				float bufferReadPos = (float)bufferWritePos - *delayTimeSamples++ * sampleRate;
+				float bufferReadPos = (float)bufferWritePos - ugen::max(0.f, *delayTimeSamples++ * sampleRate);
 				if(bufferReadPos < 0.f)
 					bufferReadPos += (float)delayBufferSize;
 				
@@ -375,10 +367,7 @@ void CombNUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 	LOCAL_DECLARE(int, bufferWritePos);
 	LOCAL_DECLARE(float, currentDecay);
 	LOCAL_DECLARE(float, feedback);
-	
-	//ugen_assert(*delayTimeSamples >= 0.f); // not foolproof but better than checking every sample
-	//ugen_assert(*decayTimeSamples >= 0.f); // not foolproof but better than checking every sample
-	
+		
 	if(*decayTimeSamples != currentDecay)
 	{
 		currentDecay = *decayTimeSamples;
@@ -396,7 +385,7 @@ void CombNUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 		
 		while(numFramesThisTime--)
 		{
-			int bufferReadPos = bufferWritePos - (int)(*delayTimeSamples++ * sampleRate);
+			int bufferReadPos = bufferWritePos - ugen::max(1, (int)(*delayTimeSamples++ * sampleRate));
 			if(bufferReadPos < 0)
 				bufferReadPos += (int)delayBufferSize;
 			
@@ -446,10 +435,7 @@ void CombLUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 	LOCAL_DECLARE(int, bufferWritePos);
 	LOCAL_DECLARE(float, currentDecay);
 	LOCAL_DECLARE(float, feedback);
-	
-	//ugen_assert(*delayTimeSamples >= 0.f); // not foolproof but better than checking every sample
-	//ugen_assert(*decayTimeSamples >= 0.f); // not foolproof but better than checking every sample
-	
+		
 	if(*decayTimeSamples != currentDecay)
 	{
 		currentDecay = *decayTimeSamples;
@@ -467,7 +453,7 @@ void CombLUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 		
 		while(numSamplesThisTime--)
 		{
-			float bufferReadPos = (float)bufferWritePos - *delayTimeSamples++ * sampleRate;
+			float bufferReadPos = (float)bufferWritePos - ugen::max(1.f, *delayTimeSamples++ * sampleRate);
 			if(bufferReadPos < 0.f)
 				bufferReadPos += (float)delayBufferSize;
 			
@@ -518,10 +504,7 @@ void AllpassNUGenInternal::processBlock(bool& shouldDelete, const unsigned int b
 	LOCAL_DECLARE(float, currentDelay);
 	LOCAL_DECLARE(float, currentDecay);
 	LOCAL_DECLARE(float, feedback);
-	
-	//ugen_assert(*delayTimeSamples >= 0.f); // not foolproof but better than checking every sample
-	//ugen_assert(*decayTimeSamples >= 0.f); // not foolproof but better than checking every sample
-	
+		
 	if(*decayTimeSamples != currentDecay)	
 	{
 		currentDecay = *decayTimeSamples;
@@ -608,10 +591,7 @@ void AllpassLUGenInternal::processBlock(bool& shouldDelete, const unsigned int b
 	LOCAL_DECLARE(float, currentDelay);
 	LOCAL_DECLARE(float, currentDecay);
 	LOCAL_DECLARE(float, feedback);
-	
-	//ugen_assert(*delayTimeSamples >= 0.f); // not foolproof but better than checking every sample
-	//ugen_assert(*decayTimeSamples >= 0.f); // not foolproof but better than checking every sample
-	
+		
 	if(*decayTimeSamples != currentDecay)	
 	{
 		currentDecay = *decayTimeSamples;

@@ -98,6 +98,17 @@ void FFTEngine::fft(Buffer const& outputBuffer,
 	internal->fft(outputBuffer, inputBuffer, applyWindow, outputChannel, inputChannel);
 }
 
+void FFTEngine::fft(Buffer const& outputBuffer, 
+					Buffer const& inputBuffer, 
+					const bool applyWindow,
+					const int outputChannel,
+					const int inputChannel,
+					const int outputOffset,
+					const int inputOffset) throw()
+{
+	internal->fft(outputBuffer, inputBuffer, applyWindow, outputChannel, inputChannel, outputOffset, inputOffset);
+}
+
 void FFTEngine::ifft(Buffer const& outputBuffer, 
 					 Buffer const& inputBuffer, 
 					 const bool applyWindow, 
@@ -106,6 +117,18 @@ void FFTEngine::ifft(Buffer const& outputBuffer,
 					 const int inputChannel) throw()
 {
 	internal->ifft(outputBuffer, inputBuffer, applyWindow, applyScaling, outputChannel, inputChannel);
+}
+
+void FFTEngine::ifft(Buffer const& outputBuffer, 
+					 Buffer const& inputBuffer, 
+					 const bool applyWindow, 
+					 const bool applyScaling,
+					 const int outputChannel,
+					 const int inputChannel,
+					 const int outputOffset,
+					 const int inputOffset) throw()
+{
+	internal->ifft(outputBuffer, inputBuffer, applyWindow, applyScaling, outputChannel, inputChannel, outputOffset, inputOffset);
 }
 
 Buffer FFTEngine::rawToRealImagRawSplit(Buffer const& raw) throw()

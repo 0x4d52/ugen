@@ -61,12 +61,30 @@ public:
 			 const int outputChannel = 0,
 			 const int inputChannel = 0) throw();
 	
+	void fft(Buffer const& outputBuffer, 
+			 Buffer const& inputBuffer, 
+			 const bool applyWindow,
+			 const int outputChannel,
+			 const int inputChannel,
+			 const int outputOffset,
+			 const int inputOffset) throw();
+	
+	
 	void ifft(Buffer const& outputBuffer, 
 			  Buffer const& inputBuffer, 
 			  const bool applyWindow = false, 
 			  const bool applyScaling = false,
 			  const int outputChannel = 0,
 			  const int inputChannel = 0) throw();
+	
+	void ifft(Buffer const& outputBuffer, 
+			  Buffer const& inputBuffer, 
+			  const bool applyWindow, 
+			  const bool applyScaling,
+			  const int outputChannel,
+			  const int inputChannel,
+			  const int outputOffset,
+			  const int inputOffset) throw();
 
 	Buffer rawToRealImagRawSplit(Buffer const& raw) throw();	
 	Buffer rawToRealImagUnpacked(Buffer const& raw) throw();

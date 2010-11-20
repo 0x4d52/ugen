@@ -125,6 +125,21 @@ void FFTEngineInternal::fft(Buffer const& outputBuffer,
 	
 	fft(fftBuffer, inputBuffer.getData(inputChannel), applyWindow);
 }
+
+void FFTEngineInternal::fft(Buffer const& outputBuffer, 
+							Buffer const& inputBuffer, 
+							const bool applyWindow,
+							const int outputChannel,
+							const int inputChannel,
+							const int outputOffset,
+							const int inputOffset) throw()
+{	
+	DSPSplitComplex fftBuffer;
+	fftBuffer.realp = Buffer(outputBuffer).getData(outputChannel) + outputOffset;
+	fftBuffer.imagp = fftBuffer.realp + fftSizeHalved;
+	
+	fft(fftBuffer, inputBuffer.getData(inputChannel) + inputOffset, applyWindow);	
+}
  
 void FFTEngineInternal::fft(DSPSplitComplex& outputBuffer, const float* const inputBuffer, const bool applyWindow) throw()
 {		
@@ -164,6 +179,22 @@ void FFTEngineInternal::ifft(Buffer const& outputBuffer,
 	
 	ifft(Buffer(outputBuffer).getData(outputChannel), fftBuffer, applyWindow, applyScaling);
 }	
+
+void FFTEngineInternal::ifft(Buffer const& outputBuffer, 
+							 Buffer const& inputBuffer, 
+							 const bool applyWindow, 
+							 const bool applyScaling,
+							 const int outputChannel,
+							 const int inputChannel,
+							 const int outputOffset,
+							 const int inputOffset) throw()
+{
+	DSPSplitComplex fftBuffer;
+	fftBuffer.realp = (float*)inputBuffer.getData(inputChannel) + inputOffset;
+	fftBuffer.imagp = fftBuffer.realp + fftSizeHalved;
+	
+	ifft(Buffer(outputBuffer).getData(outputChannel) + outputOffset, fftBuffer, applyWindow, applyScaling);	
+}
 
 void FFTEngineInternal::ifft(float* const outputBuffer, DSPSplitComplex const& inputBuffer, const bool applyWindow, const bool applyScaling) throw()
 {

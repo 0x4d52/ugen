@@ -249,8 +249,10 @@ public:
 	 are used elsewhere in another context e.g., for real-time use.
 	 This graph must be completely separate from any other graphs otherwise
 	 unusual results may be experienced.
-	 @param graph	The audio graph to process to synthesise the audio Buffer.	*/	
-	void synthInPlace(UGen const& graph) throw();
+	 @param graph	The audio graph to process to synthesise the audio Buffer.	
+	 @param offset		The start sample within the Buffer.
+	 @param numSamples	The number of samples to process, 0 means all remaining samples. */	
+	void synthInPlace(UGen const& graph, const int offset = 0, const int numSamples = 0) throw();
 	
 	/** Process this Buffer and send it to a BufferReceiver.
 	 This would be useful when run on a backgrond thread especially if the 
@@ -365,6 +367,9 @@ public:
 		
 		return array;
 	}
+	
+	void copyFrom(Buffer const& source) throw();
+	void copyFrom(Buffer const& source, const int sourceOffset, const int destOffset, const int numSamples) throw();
 	
 	inline float* getData(const int channel = 0) throw()								{ ugen_assert(channel >= 0); return channels[channel % numChannels_]->data; }
 	inline const float* getData(const int channel = 0) const throw()					{ ugen_assert(channel >= 0); return channels[channel % numChannels_]->data; }
@@ -653,9 +658,11 @@ public:
 		UGen filter = BLowPass::AR(audioin, 1000, 1);
 		Buffer filteredBuffer = sound.process(audioin, filter);
 	 @endcode
-	 @param input	An AudioIn UGen which is at the top of the graph.
-	 @param graph	The audio graph to process the audio with input at the top. */
-	Buffer process(UGen const& input, UGen const& graph) const throw();
+	 @param input		An AudioIn UGen which is at the top of the graph.
+	 @param graph		The audio graph to process the audio with input at the top. 
+	 @param offset		The start sample within the Buffer.
+	 @param numSamples	The number of samples to process, 0 means all remaining samples. */
+	Buffer process(UGen const& input, UGen const& graph, const int offset = 0, const int numSamples = 0) const throw();
 	
 	/** Process this Buffer in-place through a UGen graph.
 	 Be very careful that none of the UGens in either the input or graph 
@@ -669,8 +676,10 @@ public:
 		sound.processInPlace(audioin, filter);
 	 @endcode	 
 	 @param input	An AudioIn UGen which is at the top of the graph.
-	 @param graph	The audio graph to process the audio with input at the top. */
-	void processInPlace(UGen const& input, UGen const& graph) throw();
+	 @param graph	The audio graph to process the audio with input at the top.
+	 @param offset		The start sample within the Buffer.
+	 @param numSamples	The number of samples to process, 0 means all remaining samples. */
+	void processInPlace(UGen const& input, UGen const& graph, const int offset = 0, const int numSamples = 0) throw();
 		
 	/** Process this Buffer and send it to a BufferReceiver.
 	 This would be useful when run on a backgrond thread especially if the 
@@ -678,8 +687,15 @@ public:
 	 @param input		An AudioIn UGen which is at the top of the graph.
 	 @param graph		The audio graph to process the audio with input at the top. 
 	 @param receiver	The BufferReceiver to recevie the Buffer when it's done.
-	 @param bufferID	A number to pass to the third argument of handleBuffer() when the Buffer is sent. */
-	void processAndSend(UGen const& input, UGen const& graph, BufferReceiver* receiver, const int bufferID = 0) const throw();
+	 @param bufferID	A number to pass to the third argument of handleBuffer() when the Buffer is sent. 
+	 @param offset		The start sample within the Buffer.
+	 @param numSamples	The number of samples to process, 0 means all remaining samples. */
+	void processAndSend(UGen const& input, 
+						UGen const& graph, 
+						BufferReceiver* receiver, 
+						const int bufferID = 0,
+						const int offset = 0, 
+						const int numSamples = 0) const throw();
 	
 	/// @} <!-- end Data access and manipulation ------------------------------ -->
 	
