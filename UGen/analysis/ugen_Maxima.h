@@ -41,7 +41,7 @@
 
 // A new UGen also needs a UGenInternal which does the actual processing. 
 // UGen and its subclasses are primarily for constructing the UGen graphs.
-// Simle internals should inherit from UGenInternal.
+// Simple internals should inherit from UGenInternal.
 class MaximaUGenInternal : public UGenInternal
 {
 public:

@@ -229,6 +229,14 @@ public:
 			 const int outputChannel = 0,
 			 const int inputChannel = 0) throw();
 	
+	void fft(Buffer const& outputBuffer, 
+			 Buffer const& inputBuffer, 
+			 const bool applyWindow,
+			 const int outputChannel,
+			 const int inputChannel,
+			 const int outputOffset,
+			 const int inputOffset) throw();
+	
 	inline void fft(DSPSplitComplex& outputBuffer, const float* const inputBuffer) throw()
 	{
 		ugen_assert(inputBuffer != 0);
@@ -269,6 +277,15 @@ public:
 			  const bool applyScaling = false,
 			  const int outputChannel = 0,
 			  const int inputChannel = 0) throw();
+	
+	void ifft(Buffer const& outputBuffer, 
+			  Buffer const& inputBuffer, 
+			  const bool applyWindow, 
+			  const bool applyScaling,
+			  const int outputChannel,
+			  const int inputChannel,
+			  const int outputOffset,
+			  const int inputOffset) throw();
 	
 	inline void ifft(float* const outputBuffer, DSPSplitComplex const& inputBuffer) throw()
 	{

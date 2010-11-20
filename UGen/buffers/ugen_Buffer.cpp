@@ -1513,6 +1513,29 @@ Buffer Buffer::deinterleave(const int numInterleavedChannels) throw()
 	return deintervleavedBuffer;	
 }
 
+void Buffer::copyFrom(Buffer const& source) throw()
+{
+	copyFrom(source, 0, 0, ugen::min(size(), source.size()));
+}
+
+void Buffer::copyFrom(Buffer const& source, const int sourceOffset, const int destOffset, const int numSamples) throw()
+{
+	ugen_assert(getNumChannels() > 0);
+	ugen_assert(source.getNumChannels() > 0);
+	ugen_assert(size() > 0);
+	ugen_assert(source.size() > 0);
+	ugen_assert((destOffset+numSamples) <= size());
+	ugen_assert((sourceOffset+numSamples) <= source.size());
+	
+	for(int channel = 0; channel < getNumChannels(); channel++)
+	{
+		float *destData = getData(channel);
+		const float* sourceData = source.getData(channel % source.getNumChannels());
+		
+		memcpy(destData, sourceData, sizeof(float) * numSamples);
+	}
+}
+
 double Buffer::duration() const throw()												
 { 
 	return (double)size_ * UGen::getReciprocalSampleRate(); 
@@ -2380,11 +2403,11 @@ Buffer Buffer::synth(const int size, UGen const& graph_) throw()
 	return result;	
 }
 
-void Buffer::synthInPlace(UGen const& graph_) throw()
+void Buffer::synthInPlace(UGen const& graph_, const int offset, const int numSamples_) throw()
 {
 	UGen graph = graph_;	
 	
-	int numSamples = size();
+	int numSamples = (numSamples_ <= 0) ? size() : numSamples_;
 	ugen_assert(numSamples > 0);
 	
 	int numChannels = ugen::min(getNumChannels(), graph.getNumChannels());
@@ -2392,7 +2415,7 @@ void Buffer::synthInPlace(UGen const& graph_) throw()
 		
 	for(int i = 0; i < numChannels; i++)
 	{
-		graph.setOutput(getData(i), numSamples, i);
+		graph.setOutput(getData(i) + offset, numSamples, i);
 	}
 		
 	graph.prepareAndProcessBlock(numSamples, 0, 0);
@@ -2401,7 +2424,9 @@ void Buffer::synthInPlace(UGen const& graph_) throw()
 	{
 		for(int channel = numChannels; channel < getNumChannels(); channel++)
 		{
-			memcpy(getData(channel), getData(channel % numChannels), sizeof(float) * numSamples);
+			memcpy(getData(channel) + offset, 
+				   getData(channel % numChannels) + offset, 
+				   sizeof(float) * numSamples);
 		}
 	}	
 }
@@ -2519,12 +2544,12 @@ Buffer Buffer::mix() const throw()
 	return newBuffer;
 }
 
-Buffer Buffer::process(UGen const& input_, UGen const& graph_) const throw()
+Buffer Buffer::process(UGen const& input_, UGen const& graph_, const int offset, const int numSamples_) const throw()
 {
 	UGen input = input_;
 	UGen graph = graph_;
 	
-	int numSamples = size();
+	int numSamples = (numSamples_ <= 0) ? size() : numSamples_;
 	ugen_assert(numSamples > 0);
 	
 	int numChannels = ugen::min(getNumChannels(), graph.getNumChannels());
@@ -2534,7 +2559,7 @@ Buffer Buffer::process(UGen const& input_, UGen const& graph_) const throw()
 		
 	for(int i = 0; i < numChannels; i++)
 	{
-		input.setInput(getData(i), numSamples, i);
+		input.setInput(getData(i) + offset, numSamples, i);
 		graph.setOutput(result.getData(i), numSamples, i);
 	}
 	
@@ -2543,12 +2568,12 @@ Buffer Buffer::process(UGen const& input_, UGen const& graph_) const throw()
 	return result;
 }
 
-void Buffer::processInPlace(UGen const& input_, UGen const& graph_) throw()
+void Buffer::processInPlace(UGen const& input_, UGen const& graph_, const int offset, const int numSamples_) throw()
 {
 	UGen input = input_;
 	UGen graph = graph_;
 	
-	int numSamples = size();
+	int numSamples = (numSamples_ <= 0) ? size() : numSamples_;
 	ugen_assert(numSamples > 0);
 	
 	int numChannels = ugen::min(getNumChannels(), graph.getNumChannels());
@@ -2556,8 +2581,8 @@ void Buffer::processInPlace(UGen const& input_, UGen const& graph_) throw()
 		
 	for(int i = 0; i < numChannels; i++)
 	{
-		input.setInput(getData(i), numSamples, i);
-		graph.setOutput(getData(i), numSamples, i);
+		input.setInput(getData(i) + offset, numSamples, i);
+		graph.setOutput(getData(i) + offset, numSamples, i);
 	}
 		
 	graph.prepareAndProcessBlock(numSamples, 0, 0);	
@@ -2566,16 +2591,23 @@ void Buffer::processInPlace(UGen const& input_, UGen const& graph_) throw()
 	{
 		for(int channel = numChannels; channel < getNumChannels(); channel++)
 		{
-			memcpy(getData(channel), getData(channel % numChannels), sizeof(float) * numSamples);
+			memcpy(getData(channel) + offset, 
+				   getData(channel % numChannels) + offset, 
+				   sizeof(float) * numSamples);
 		}
 	}		
 }
 
-void Buffer::processAndSend(UGen const& input, UGen const& graph, BufferReceiver* receiver, const int bufferID) const throw()
+void Buffer::processAndSend(UGen const& input, 
+							UGen const& graph, 
+							BufferReceiver* receiver, 
+							const int bufferID,
+							const int offset, 
+							const int numSamples) const throw()
 {
 	ugen_assert(receiver != 0);
 	
-	Buffer result = process(input, graph);
+	Buffer result = process(input, graph, offset, numSamples);
 	receiver->handleBuffer(result, 0.0, bufferID);
 }
 
