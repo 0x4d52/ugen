@@ -47,7 +47,7 @@ class PlugUGenInternal : public ProxyOwnerUGenInternal
 {
 public:
 	PlugUGenInternal(UGen const& source, bool shouldAllowAutoDelete = true) throw();
-	void prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw();
+	void prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
 	void releaseInternal() throw();

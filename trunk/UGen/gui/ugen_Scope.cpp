@@ -600,6 +600,7 @@ BufferSenderUGenInternal::BufferSenderUGenInternal(UGen const& input, UGen const
 	audioBufferSizeUsed = max(1, (int)(duration.getValue() * UGen::getSampleRate() + 0.5));
 }
 
+
 void BufferSenderUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {
 	float duration = *(inputs[Duration].processBlock(shouldDelete, blockID, 0));	

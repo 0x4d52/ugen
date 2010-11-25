@@ -77,7 +77,7 @@ void SpawnBaseUGenInternal::processBlock(bool& shouldDelete, const unsigned int 
 		bufferData[channel] = proxies[channel]->getSampleData();
 	}
 	
-	mixer.prepareForBlock(numSamplesToProcess, blockID);
+	mixer.prepareForBlock(numSamplesToProcess, blockID, -1);
 	mixer.setOutputs(bufferData, numSamplesToProcess, numChannels);
 	mixer.processBlock(shouldDelete, blockID, -1);
 }
@@ -146,10 +146,10 @@ void SpawnUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 		do
 		{
 			UGen newVoice = spawnEvent(*this, currentEventIndex++);
-			newVoice.prepareForBlock(blockSize, blockID); // prepare for full size (allocates the output buffers)
+			newVoice.prepareForBlock(blockSize, blockID, -1); // prepare for full size (allocates the output buffers)
 			
 //			UGen::setBlockSize(numSamplesToProcess);
-			newVoice.prepareForBlock(numSamplesToProcess, nextTimeSamples); // prepare for sub block
+			newVoice.prepareForBlock(numSamplesToProcess, nextTimeSamples, -1); // prepare for sub block
 			
 			unsigned int nextTimeSamplesDelta = (unsigned int)(nextTime * UGen::getSampleRate());
 			

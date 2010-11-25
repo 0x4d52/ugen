@@ -251,6 +251,30 @@ inline double clip2 (const double value, const double range) throw()	{ return cl
 
 #ifndef UGEN_NOEXTGPL
 
+inline int wrap(int in, int lo, int hi) throw()
+{
+	int range;
+	if (in >= hi) 
+	{
+		range = hi - lo;
+		in -= range;
+		if (in < hi) return in;
+	} 
+	else if (in < lo) 
+	{
+		range = hi - lo;
+		in += range;
+		if (in >= lo) return in;
+	} 
+	else return in;
+	
+	if (hi == lo) return lo;
+	//return in - range * std::floor((in - lo)/range); 
+	
+	return in % range + lo;
+}
+
+
 inline float wrap(float in, float lo, float hi) throw()
 {
 	float range;

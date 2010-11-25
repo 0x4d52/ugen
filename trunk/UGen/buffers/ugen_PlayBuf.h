@@ -65,7 +65,7 @@ public:
 						UGen const& loop, 
 						const UGen::DoneAction doneAction) throw();
 	UGenInternal* getChannel(const int channel) throw();
-	void prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw();
+	void prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
 	double getDuration() const throw();
@@ -129,7 +129,7 @@ public:
 						  UGen const& loop, 
 						  const UGen::DoneAction doneAction) throw();
 	UGenInternal* getChannel(const int channel) throw();
-	void prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw();
+	void prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
 	double getDuration() const throw();

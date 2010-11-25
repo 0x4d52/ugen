@@ -190,7 +190,7 @@ void VoicerUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 					bufferData[channel] = proxies[channel]->getSampleData() + startSample;
 				}
 				
-				mixer.prepareForBlock(numSamples, blockID + startSample);
+				mixer.prepareForBlock(numSamples, blockID + startSample, -1);
 				mixer.setOutputs(bufferData, numSamples, numChannels);
 				mixer.processBlock(shouldDelete, blockID + startSample, -1);				
 			}
@@ -278,7 +278,7 @@ void VoicerUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 				bufferData[channel] = proxies[channel]->getSampleData() + startSample;
 			}
 			
-			mixer.prepareForBlock(numSamples, blockID + startSample);
+			mixer.prepareForBlock(numSamples, blockID + startSample, -1);
 			mixer.setOutputs(bufferData, numSamples, numChannels);
 			mixer.processBlock(shouldDelete, blockID + startSample, -1);
 		}

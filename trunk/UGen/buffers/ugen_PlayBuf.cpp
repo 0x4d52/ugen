@@ -69,7 +69,7 @@ UGenInternal* PlayBufUGenInternal::getChannel(const int channel) throw()
 	return new PlayBufUGenInternal(buffer_.getChannel(channel), inputs[Rate], inputs[Trig], inputs[Offset], inputs[Loop], doneAction_);
 }
 
-void PlayBufUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw()
+void PlayBufUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
 {
 	senderUserData = userData;
 	if(isDone()) sendDoneInternal();
@@ -252,7 +252,7 @@ UGenInternal* RecordBufUGenInternal::getChannel(const int channel) throw()
 									 doneAction_);
 }
 
-void RecordBufUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw()
+void RecordBufUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
 {
 	senderUserData = userData;
 	if(isDone()) sendDoneInternal();

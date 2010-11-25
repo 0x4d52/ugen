@@ -176,7 +176,7 @@ OSStatus DiskInUGenInternal::clearOutputsAndReadData(bool& shouldDelete) throw()
 	
 }
 
-void DiskInUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw()
+void DiskInUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
 {
 	senderUserData = userData;
 	if(isDone()) sendDoneInternal();

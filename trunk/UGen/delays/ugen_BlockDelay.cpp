@@ -53,7 +53,7 @@ UGenInternal* BlockDelayUGenInternal::getChannel(const int channel) throw()
 	return new BlockDelayUGenInternal(inputs[Input].getChannel(channel));
 }
 
-void BlockDelayUGenInternal::prepareForBlockInternal(const int actualBlockSize, const unsigned int blockID) throw()
+void BlockDelayUGenInternal::prepareForBlockInternal(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
 {
 	int previousBlockSize = uGenOutput.getBlockSize();
 	

@@ -41,7 +41,6 @@
  */
 
 #include <juce/juce.h>
-#include "../UGen/UGen.h"
 #include "MainAppWindow.h"
 
 
@@ -93,8 +92,6 @@ class AppClass : public JUCEApplication
 		//==============================================================================
 		void initialise (const String& commandLine)
 		{
-			UGen::initialise();
-			UGen::setDeleter(new JuceTimerDeleter());
 			
 			// This is called automatically when the application is ready to launch.
 			// So far, it just exists in memory as an empty pocket of potential waiting
@@ -140,7 +137,6 @@ class AppClass : public JUCEApplication
 			deleteAndZero (theMainWindow);
 			
 			//Time::waitForMillisecondCounter(Time::getMillisecondCounter()+ 500);
-			UGen::shutdown();
 		}
 		
 		//==============================================================================

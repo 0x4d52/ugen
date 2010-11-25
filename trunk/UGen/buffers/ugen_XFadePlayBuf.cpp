@@ -118,7 +118,7 @@ void XFadeLoopPlayBufUGenInternal::processBlock(bool& shouldDelete, const unsign
 		bufferData[channel] = proxies[channel]->getSampleData();
 	}
 	
-	graph.prepareForBlock(numSamplesToProcess, blockID);
+	graph.prepareForBlock(numSamplesToProcess, blockID, -1);
 	graph.setOutputs(bufferData, numSamplesToProcess, numChannels);
 	graph.processBlock(shouldDelete, blockID, -1);
 }

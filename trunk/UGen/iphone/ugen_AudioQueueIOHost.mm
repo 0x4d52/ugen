@@ -300,7 +300,7 @@ inline void AQOutputBufferCallback(void					*in,
 											channel);
 		}
 		
-		aqc->outputInfo.graph.prepareAndProcessBlock(numFramesToProcess, blockID);
+		aqc->outputInfo.graph.prepareAndProcessBlock(numFramesToProcess, blockID, -1);
 				
 		short* outChannel0 = coreAudioBuffer;
 		float* ugenChannel0 = outputFloatBuffer;

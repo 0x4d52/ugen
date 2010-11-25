@@ -49,7 +49,7 @@ public:
 	UGenInternal* getChannel(const int channel) throw();									// necessary if there are input ugens which may have more than one channel
 	//UGenInternal* getKr() throw();														// necessary if there is an actual control rate version (see below)
 	//void prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw();	// necessary if there are input ugens, these need preparing too
-	void prepareForBlockInternal(const int actualBlockSize, const unsigned int blockID) throw();
+	void prepareForBlockInternal(const int actualBlockSize, const unsigned int blockID, const int channel) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
 	enum Inputs { Input, NumInputs };

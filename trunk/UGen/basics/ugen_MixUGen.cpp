@@ -106,12 +106,12 @@ MixArrayUGenInternal::MixArrayUGenInternal(UGenArray const& array,
 {	
 }
 
-void MixArrayUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw()
+void MixArrayUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
 {
 	const int size = array_.size();
 	for(int i = 0; i < size; i++)
 	{
-		array_[i].prepareForBlock(actualBlockSize, blockID);
+		array_[i].prepareForBlock(actualBlockSize, blockID, -1); //  -1 for ProxyOwners
 	}
 }
 

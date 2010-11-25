@@ -225,12 +225,15 @@ public:
 	virtual UGen constructGraph(UGen const& input) = 0;
 	
 	/** Called just before processing an audio block on the audio thread. */
-	virtual void preTick() throw()  { }
+	virtual void preTick(const int actualBlockSize, const unsigned int blockID) throw()  { }
 	
 	/** Called just after processing an audio block on the audio thread. */
-	virtual void postTick() throw() { }
+	virtual void postTick(const int actualBlockSize, const unsigned int blockID) throw() { }
 	
 private:
+	JuceIOHost (const JuceIOHost&);
+    const JuceIOHost& operator= (const JuceIOHost&);
+
 	JuceIOHostInternal* internal;
 	
 protected:
@@ -332,7 +335,7 @@ inline void JuceIOHostInternal::audioDeviceIOCallback (const float** inputChanne
 	
 	int blockID = UGen::getNextBlockID(numSamples);
 	
-	owner_->preTick();
+	owner_->preTick(numSamples, blockID);
 	
 	if(numInputs_ > 0)
 		input_.setInputs(inputChannelData, numSamples, numInputChannels);
@@ -343,20 +346,20 @@ inline void JuceIOHostInternal::audioDeviceIOCallback (const float** inputChanne
 		
 		for(int i = 0; i < others.size(); i++)
 		{
-			others[i].prepareAndProcessBlock(numSamples, blockID);
+			others[i].prepareAndProcessBlock(numSamples, blockID, -1);
 		}
 		
-		output_.prepareAndProcessBlock(numSamples, blockID);
+		output_.prepareAndProcessBlock(numSamples, blockID, -1);
 	}
 	else
 	{
 		for(int i = 0; i < others.size(); i++)
 		{
-			others[i].prepareAndProcessBlock(numSamples, blockID);
+			others[i].prepareAndProcessBlock(numSamples, blockID, -1);
 		}
 	}
 	
-	owner_->postTick();
+	owner_->postTick(numSamples, blockID);
 }
 
 inline void JuceIOHostInternal::audioDeviceAboutToStart (AudioIODevice* device)

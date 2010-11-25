@@ -95,7 +95,7 @@ public:
 						 bool shouldWrapChannels = true,
 						 const int numChannels = 0) throw();
 		
-	void prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw();
+	void prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	void releaseInternal() throw(); // has non-standard inputs 
 	void stealInternal() throw(); // has non-standard inputs 
