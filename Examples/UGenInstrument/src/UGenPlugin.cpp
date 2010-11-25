@@ -200,7 +200,7 @@ void UGenPlugin::processBlock(AudioSampleBuffer& buffer,
 	}
 	
 	int blockID = UGen::getNextBlockID(numSamples);
-	outputUGen.prepareAndProcessBlock(numSamples, blockID);
+	outputUGen.prepareAndProcessBlock(numSamples, blockID, -1);
 	
 	// quick and dirty metering...
 	channelLevel0 += buffer.getRMSLevel(UGenAudio::Output0, 0, buffer.getNumSamples());

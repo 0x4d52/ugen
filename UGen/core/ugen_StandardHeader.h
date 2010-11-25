@@ -54,6 +54,15 @@
  an Obj-C++ file use .mm as the file extension. */
 BEGIN_UGEN_NAMESPACE
 
+/** To help raise compiler errors when function prototypes change.
+ This can be used as the function return type in place of the original
+ type to force the compiler to identify places in the source tree where the
+ function (normally a virtual) changed in the base class but derived classes 
+ are still using the old version (this may otherwise cause strange behaviour). */
+struct ForceErrorStruct { int dummy; };
+#define FORCE_COMPILER_ERROR_FUNCTION_PROTOTYPE_CHANGED ForceErrorStruct
+
+
 //#define USEMEMSETCPY // bug in the floatptr stuff
 
 #define U UGen

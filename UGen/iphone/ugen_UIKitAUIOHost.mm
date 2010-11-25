@@ -471,11 +471,11 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 	const int numOthers = others.size();
 	for(int i = 0; i < numOthers; i++)
 	{
-		others[i].prepareAndProcessBlock(inNumberFrames, blockID);
+		others[i].prepareAndProcessBlock(inNumberFrames, blockID, -1);
 	}		
 	
-	preFadeOutput.prepareAndProcessBlock(inNumberFrames, blockID);
-	postFadeOutput.prepareAndProcessBlock(inNumberFrames, blockID);
+	preFadeOutput.prepareAndProcessBlock(inNumberFrames, blockID, -1);
+	postFadeOutput.prepareAndProcessBlock(inNumberFrames, blockID, -1);
 	
 	[self unlock];
 	

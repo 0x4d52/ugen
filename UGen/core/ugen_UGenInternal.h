@@ -55,7 +55,7 @@ public:
 		
 		if(externalOutput != 0)
 		{
-			ugen_assert(dynamic_cast<UGenOutput*> (externalOutput) != 0);
+			ugen_assert(dynamic_cast<UGenOutput*> (externalOutput) != 0); 
 			
 			externalOutput->prepareForBlock(actualBlockSize);
 			blockSize = externalOutput->getBlockSize();
@@ -167,8 +167,8 @@ public:
 	/// @name Rendering
 	/// @{
 	
-	virtual void prepareForBlockInternal(const int actualBlockSize, const unsigned int blockID) throw();
-	virtual void prepareForBlock(const int actualBlockSize, const unsigned int blockID)	 throw() { }
+	virtual void prepareForBlockInternal(const int actualBlockSize, const unsigned int blockID, const int channel) throw();
+	virtual void prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel)	 throw() { }
 	
 	virtual float* processBlockInternal(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
@@ -224,7 +224,8 @@ protected:
 	void getInternalChannels(const int channel, UGenInternal** internals) throw();
 	UGenInternal* getInput(const int input, const int channel) throw();
 	
-	const short numInputs_;
+	//const short numInputs_;
+	const unsigned int numInputs_;
 	char rate;
 	const bool ownsInputsPointer:1;
 	bool isScheduledForDeletion:1;
@@ -240,6 +241,15 @@ private:
 	UGenInternal (const UGenInternal&);
     const UGenInternal& operator= (const UGenInternal&);
 	
+	/** This functions now needs a channel index too. Update your code. */
+	virtual FORCE_COMPILER_ERROR_FUNCTION_PROTOTYPE_CHANGED 
+	prepareForBlockInternal(const int actualBlockSize, const unsigned int blockID) 
+	{ return prepareForBlockInternal(actualBlockSize, blockID); }
+	
+	/** This functions now needs a channel index too. Update your code. */
+	virtual FORCE_COMPILER_ERROR_FUNCTION_PROTOTYPE_CHANGED 
+	prepareForBlock(const int actualBlockSize, const unsigned int blockID)
+	{ return prepareForBlockInternal(actualBlockSize, blockID); }
 };
 
 
@@ -267,7 +277,7 @@ public:
 	int getNumProxies() const throw()		{	return numProxies_;		}
 	int getNumChannels() const throw()		{	return numProxies_+1;	}
 	UGenInternal* getProxy(const int index) throw();
-	void prepareForBlockInternal(const int actualBlockSize, const unsigned int blockID) throw();
+	void prepareForBlockInternal(const int actualBlockSize, const unsigned int blockID, const int channel) throw();
 	float* processBlockInternal(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
 protected:
@@ -296,7 +306,7 @@ public:
 	UGenInternal* getOwner() throw()		{	return owner_;						}
 	int getProxyChannel() throw();
 	int getNumChannels() const throw()		{	return owner_->getNumChannels();	}
-	void prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw();
+	void prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
 private:
@@ -375,7 +385,7 @@ public:
 	/// @{
 	
 	ReleasableUGenInternal(const int numInputs) throw();
-	void prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw();
+	void prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw();
 
 	virtual void release() = 0;
 	virtual void steal() = 0;

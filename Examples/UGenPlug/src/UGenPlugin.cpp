@@ -157,7 +157,7 @@ void UGenPlugin::prepareToPlay (double sampleRate, int samplesPerBlock)
 	UGen::prepareToPlay(sampleRate, samplesPerBlock);
 	inputBuffer = Buffer::newClear(samplesPerBlock, getNumInputChannels(), true);
 	
-	inputUGen = AudioIn::AR(getNumInputChannels());	
+	inputUGen = AudioIn::AR(2);//getNumInputChannels());	
 	outputUGen = constructGraph(inputUGen);
 }
 
@@ -224,7 +224,7 @@ void UGenPlugin::processBlock(AudioSampleBuffer& buffer,
 	}
 	
 	int blockID = UGen::getNextBlockID(numSamples);
-	outputUGen.prepareAndProcessBlock(numSamples, blockID);
+	outputUGen.prepareAndProcessBlock(numSamples, blockID, -1);
 	
 	// quick and dirty metering...
 	channelLevel0 += buffer.getRMSLevel(UGenAudio::Output0, 0, buffer.getNumSamples());

@@ -53,7 +53,7 @@ public:
 					   const UGen::DoneAction doneAction = UGen::DeleteWhenDone) throw();
 	~DiskInUGenInternal() throw();
 	OSStatus clearOutputsAndReadData(bool& shouldDelete) throw();
-	void prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw();
+	void prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw();
 		
 	double getDuration() const throw();
 	double getPosition() const throw();

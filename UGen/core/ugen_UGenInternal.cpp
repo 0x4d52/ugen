@@ -262,7 +262,7 @@ const UGen& UGenInternal::getInput(const int index) throw()
 	return inputs[index];
 }
 
-void UGenInternal::prepareForBlockInternal(const int actualBlockSize, const unsigned int blockID) throw()
+void UGenInternal::prepareForBlockInternal(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
 {
 	ugen_assert(actualBlockSize > 0);
 	
@@ -270,12 +270,12 @@ void UGenInternal::prepareForBlockInternal(const int actualBlockSize, const unsi
 	{
 		uGenOutput.prepareForBlock(actualBlockSize);
 		
-		for(int i = 0; i < numInputs_; i++)
+		for(unsigned int i = 0; i < numInputs_; i++)
 		{
-			inputs[i].prepareForBlock(actualBlockSize, blockID);
+			inputs[i].prepareForBlock(actualBlockSize, blockID, channel);
 		}
 		
-		prepareForBlock(actualBlockSize, blockID);
+		prepareForBlock(actualBlockSize, blockID, channel);
 	}
 }
 
@@ -424,20 +424,20 @@ UGenInternal* ProxyOwnerUGenInternal::getProxy(const int index) throw()
 	return proxies[index];
 }
 
-void ProxyOwnerUGenInternal::prepareForBlockInternal(const int actualBlockSize, const unsigned int blockID) throw()
+void ProxyOwnerUGenInternal::prepareForBlockInternal(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
 {
 	ugen_assert(actualBlockSize > 0);
 	
 	if(blockID != lastBlockID)
 	{
-		UGenInternal::prepareForBlockInternal(actualBlockSize, blockID);
+		UGenInternal::prepareForBlockInternal(actualBlockSize, blockID, channel);
 		
 		for(int i = 1; i <= numProxies_; i++)
 		{
 			// if the refCount is only 1 its block won't get 
 			// prepared by the normal dsp call chain, check for <=1 just in case
 			if(proxies[i]->getRefCount() <= 1)
-				proxies[i]->prepareForBlockInternal(actualBlockSize, blockID);
+				proxies[i]->prepareForBlockInternal(actualBlockSize, blockID, channel);
 		}	
 	}
 }
@@ -501,14 +501,14 @@ int ProxyUGenInternal::getProxyChannel() throw()
 	return proxyChannel_;	
 }
 
-void ProxyUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw()
+void ProxyUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
 {
 	ugen_assert(actualBlockSize > 0);
 	
 	if(blockID != lastBlockID)
 	{
 		if(owner_->getRefCount() <= owner_->getNumProxies())
-			owner_->prepareForBlockInternal(actualBlockSize, blockID);
+			owner_->prepareForBlockInternal(actualBlockSize, blockID, channel);
 	}
 }
 
@@ -593,7 +593,7 @@ ReleasableUGenInternal::ReleasableUGenInternal(const int numInputs) throw()
 { 
 }
 
-void ReleasableUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw()
+void ReleasableUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
 {
 	senderUserData = userData;
 	

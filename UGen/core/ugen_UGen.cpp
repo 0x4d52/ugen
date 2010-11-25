@@ -950,35 +950,61 @@ bool UGen::containsIdenticalInternalsAs(UGen const& other, const bool mustBeInTh
 //	}
 //}
 
-float* UGen::prepareAndProcessBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
-{
-//	setBlockSize(actualBlockSize);
 
-	prepareForBlock(actualBlockSize, blockID);
+float* UGen::prepareAndProcessBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
+{		
+	if(channel < 0)
+	{
+		prepareForBlock(actualBlockSize, blockID, -1);
+	}
+	else
+	{
+		for(unsigned int i = 0; i < numInternalUGens; i++)
+		{
+			prepareForBlock(actualBlockSize, blockID, i);
+		}		
+	}
+	
 	bool shouldDelete = false;
 	return processBlock(shouldDelete, blockID, channel);
 }
+
 
 float* UGen::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 { 	
 	ugen_assert(numInternalUGens > 0);
 	ugen_assert(internalUGens != 0);
 	
-	if(channel < 0) {
+	if(channel < 0) 
+	{
 		// process all channels
-		for(int i = 0; i < numInternalUGens; i++)
+		for(unsigned int i = 0; i < numInternalUGens; i++)
+		{
 			internalUGens[i]->processBlockInternal(shouldDelete, blockID, i);
-			
-			return 0;
-	} else {
-		// process one channel and return a pointer to its block
-		int internalChannel = channel % numInternalUGens;
+		}
+		
+		return 0;
+	} 
+	else if(numInternalUGens == 1) 
+	{
+		float* block = internalUGens[0]->processBlockInternal(shouldDelete, blockID, channel);
+		return block;
+	} 
+	else if(numInternalUGens == 2) 
+	{
+		float* block = internalUGens[channel & 1]->processBlockInternal(shouldDelete, blockID, channel);
+		return block;
+	}
+	else 
+	{
+		unsigned int internalChannel = (unsigned int)channel % numInternalUGens;		
 		float* block = internalUGens[internalChannel]->processBlockInternal(shouldDelete, blockID, channel);
 		return block;
 	}
+	
 }
-
-void UGen::prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw()
+ 
+void UGen::prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
 {	
 	ugen_assert(actualBlockSize > 0);
 	ugen_assert(numInternalUGens > 0);
@@ -986,31 +1012,61 @@ void UGen::prepareForBlock(const int actualBlockSize, const unsigned int blockID
 	
 	bool shouldDelete = false;
 	
-	for(int i = 0; i < numInternalUGens; i++) {
-		if(internalUGens[i]->shouldBeDeletedNow(blockID)) {
-			shouldDelete = true;
-			break;
-		}
-	}
-	
-	if(shouldDelete) {
-		for(int i = 0; i < numInternalUGens; i++)
-		{	
-			internalUGens[i]->userData = userData;
-			internalUGens[i]->decrementRefCount();
+	if(channel < 0)
+	{
+		for(unsigned int i = 0; i < numInternalUGens; i++) 
+		{
+			if(internalUGens[i]->shouldBeDeletedNow(blockID)) {
+				shouldDelete = true;
+				break;
+			}
 		}
 		
-		numInternalUGens = 1;
-		internalUGens[0] = getNullInternal();
-		internalUGens[0]->prepareForBlockInternal(actualBlockSize, blockID);		
-	} else {
-		for(int i = 0; i < numInternalUGens; i++)
+		if(shouldDelete) 
 		{
-			internalUGens[i]->userData = userData;
-			internalUGens[i]->prepareForBlockInternal(actualBlockSize, blockID);
+			for(unsigned int i = 0; i < numInternalUGens; i++)
+			{	
+				internalUGens[i]->userData = userData;
+				internalUGens[i]->decrementRefCount();
+			}
+			
+			numInternalUGens = 1;
+			internalUGens[0] = getNullInternal();
+			internalUGens[0]->prepareForBlockInternal(actualBlockSize, blockID, 0);		
+		} 
+		else 
+		{
+			for(unsigned int i = 0; i < numInternalUGens; i++)
+			{
+				internalUGens[i]->userData = userData;
+				internalUGens[i]->prepareForBlockInternal(actualBlockSize, blockID, i);
+			}
 		}
 	}
+	else if((unsigned int)channel < numInternalUGens)
+	{
+		bool shouldDelete = internalUGens[channel]->shouldBeDeletedNow(blockID);
+		
+		if(shouldDelete) 
+		{
+			for(unsigned int i = 0; i < numInternalUGens; i++)
+			{	
+				internalUGens[i]->userData = userData;
+				internalUGens[i]->decrementRefCount();
+			}
+			
+			numInternalUGens = 1;
+			internalUGens[0] = getNullInternal();
+			internalUGens[0]->prepareForBlockInternal(actualBlockSize, blockID, 0);		
+		} 
+		else 
+		{
+			internalUGens[channel]->userData = userData;
+			internalUGens[channel]->prepareForBlockInternal(actualBlockSize, blockID, channel);
+		}		
+	}
 }
+
 
 
 
@@ -1779,12 +1835,12 @@ UGen UGen::kr() const throw()
 	{
 		UGenInternal** newInternals = new UGenInternal*[numInternalUGens];
 		
-		for(int i = 0; i < numInternalUGens; i++)
+		for(unsigned int i = 0; i < numInternalUGens; i++)
 		{
 			newInternals[i] = internalUGens[i]->getKr();
 		}
 		
-		UGen newUGen = UGen(numInternalUGens, newInternals);
+		UGen newUGen = UGen((int)numInternalUGens, newInternals);
 				
 		delete [] newInternals;
 		
@@ -1845,7 +1901,7 @@ UGen UGen::mixScale(bool shouldAllowAutoDelete) const throw()
 	if(numInternalUGens == 1 && shouldAllowAutoDelete == true)
 		return *this;
 	else	
-		return Mix(*this, shouldAllowAutoDelete) / numInternalUGens;
+		return Mix(*this, shouldAllowAutoDelete) * (1.f / (float)numInternalUGens);
 }
 
 UGen UGen::operator- () const throw()

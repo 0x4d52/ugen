@@ -55,7 +55,7 @@ public:
 					   const int numFrames,
 					   const UGen::DoneAction doneAction) throw();
 	~DiskInUGenInternal() throw();
-	void prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw();
+	void prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
 	void changeListenerCallback (void*);

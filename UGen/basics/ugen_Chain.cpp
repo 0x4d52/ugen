@@ -68,12 +68,12 @@ void ChainBaseUGenInternal::processBlock(bool& shouldDelete, const unsigned int 
 	const int sizeMinusOne = size_ - 1;
 	for(int link = 0; link < sizeMinusOne; link++)
 	{
-		chain[link].prepareForBlock(numSamplesToProcess, blockID);
+		chain[link].prepareForBlock(numSamplesToProcess, blockID, -1);
 		chain[link].processBlock(shouldDelete, blockID, -1);
 	}
 	
 	UGen& last = chain.last();
-	last.prepareForBlock(numSamplesToProcess, blockID);
+	last.prepareForBlock(numSamplesToProcess, blockID, -1);
 	last.setOutputs(bufferData, numSamplesToProcess, numChannels);
 	last.processBlock(shouldDelete, blockID, -1);
 }
@@ -104,7 +104,7 @@ void BankBaseUGenInternal::processBlock(bool& shouldDelete, const unsigned int b
 		bufferData[channel] = proxies[channel]->getSampleData();
 	}
 	
-	mixer.prepareForBlock(numSamplesToProcess, blockID);
+	mixer.prepareForBlock(numSamplesToProcess, blockID, -1);
 	mixer.setOutputs(bufferData, numSamplesToProcess, numChannels);
 	mixer.processBlock(shouldDelete, blockID, -1);
 }

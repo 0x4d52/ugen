@@ -78,7 +78,7 @@ DiskInUGenInternal::~DiskInUGenInternal() throw()
 	delete [] bufferData;
 }
 
-void DiskInUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw()
+void DiskInUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
 {
 	senderUserData = userData;
 	if(isDone()) sendDoneInternal();

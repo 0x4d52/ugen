@@ -52,12 +52,12 @@ PlugUGenInternal::PlugUGenInternal(UGen const& source, bool shouldAllowAutoDelet
 	setSource(source, true);
 }
 
-void PlugUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID) throw()
+void PlugUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
 {
 	const int size = sources.size();
 	for(int i = 0; i < size; i++)
 	{
-		sources[i].prepareForBlock(actualBlockSize, blockID);
+		sources[i].prepareForBlock(actualBlockSize, blockID, -1); // -1 for ProxyOwners
 	}
 }
 

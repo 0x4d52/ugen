@@ -517,9 +517,9 @@ double Buffer::initFromJuceFile(const File& audioFile) throw()
 	AudioFormatManager formatManager;
 	formatManager.registerBasicFormats();
 	
-#if JUCE_QUICKTIME
-	formatManager.registerFormat(new QuickTimeAudioFormat(), false);
-#endif
+//#if JUCE_QUICKTIME
+//	formatManager.registerFormat(new QuickTimeAudioFormat(), false);
+//#endif
 	
 	AudioFormatReader* audioFormatReader = formatManager.createReaderFor (audioFile);
 	
