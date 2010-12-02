@@ -157,7 +157,11 @@ void UGenPlugin::prepareToPlay (double sampleRate, int samplesPerBlock)
 	UGen::prepareToPlay(sampleRate, samplesPerBlock);
 	inputBuffer = Buffer::newClear(samplesPerBlock, getNumInputChannels(), true);
 	
-	inputUGen = AudioIn::AR(2);//getNumInputChannels());	
+	int numChannels = getNumInputChannels();
+	
+	DBG(String("numChannels = ")+String(numChannels));
+	
+	inputUGen = AudioIn::AR(numChannels);//getNumInputChannels());	
 	outputUGen = constructGraph(inputUGen);
 }
 

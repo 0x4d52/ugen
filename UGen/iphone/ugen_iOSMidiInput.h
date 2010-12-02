@@ -105,27 +105,27 @@ BEGIN_UGEN_NAMESPACE
 
 // C++ headers here ?
 
-class MIDIInputReceiver
+class MidiInputReceiver
 {
 public:
-	MIDIInputReceiver() throw();
-	virtual ~MIDIInputReceiver();
+	MidiInputReceiver() throw();
+	virtual ~MidiInputReceiver();
 	virtual void handleIncomingMidiMessage (void* source, ByteArray const& message) = 0;
 };
 
-class MIDIInputSender
+class MidiInputSender
 {
 public:
-	static MIDIInputSender& getInstance();
+	static MidiInputSender& getInstance();
 	
-	void addMidiReceiver (MIDIInputReceiver* const receiver) throw();
-	void removeMidiReceiver (MIDIInputReceiver* const receiver) throw();
+	void addMidiReceiver (MidiInputReceiver* const receiver) throw();
+	void removeMidiReceiver (MidiInputReceiver* const receiver) throw();
 	void sendIncomingMidiMessage(void* source, ByteArray const& message) throw();
 	
 private:
-	MIDIInputSender() throw();
+	MidiInputSender() throw();
 
-	ObjectArray<MIDIInputReceiver*> receivers;
+	ObjectArray<MidiInputReceiver*> receivers;
 	void *peer;
 };
 
