@@ -207,6 +207,7 @@ void EnvGenUGenInternal::steal() throw()
 	
 }
 
+#ifndef UGEN_ANDROID
 bool EnvGenUGenInternal::setSegment(const int segment, const double stepsPerSecond) throw()
 {	
 	ugen_assert(stepsPerSecond > 0.0);
@@ -325,6 +326,127 @@ bool EnvGenUGenInternal::setSegment(const int segment, const double stepsPerSeco
 	
 	return false; // ready for next segment
 }
+#else
+// android
+bool EnvGenUGenInternal::setSegment(const int segment, const double stepsPerSecond) throw()
+{	
+	ugen_assert(stepsPerSecond > 0.0);
+	
+	if(segment == env_.getReleaseNode())
+	{	
+		if(shouldRelease() == true)
+		{
+			currentSegment = segment;
+			setIsReleasing();
+		} 
+		else
+		{
+			const int loopNode = env_.getLoopNode();
+			if(loopNode < 0)
+			{
+				currentCurve = EnvCurve(EnvCurve::Empty);
+				stepsUntilTarget = 0x7FFFFFFF; // very large !
+				return false;
+			}
+			else
+			{
+				currentSegment = loopNode;
+				currentValue = env_.getLevels().getSampleUnchecked(currentSegment);
+			}
+		}
+	}
+	else
+	{
+		currentSegment = segment;
+	}
+	
+	const int numSegments = env_.getTimes().size();
+	if(currentSegment >= numSegments) 
+	{ 
+		return true; // env done
+	}
+	
+	double targetTime = env_.getTimes().getSampleUnchecked(currentSegment);
+	double targetValue = env_.getLevels().getSampleUnchecked(currentSegment + 1);
+	
+	if(currentSegment == (numSegments-1))
+	{
+		sendReleasing(targetTime);
+	}	
+	
+	stepsUntilTarget = (int)(stepsPerSecond * targetTime);
+	if(stepsUntilTarget < 1) 
+	{
+		stepsUntilTarget = 1;
+		currentCurve = EnvCurve(EnvCurve::Linear);
+	}
+	else
+		currentCurve = env_.getCurves()[currentSegment];
+	
+	double w, curveValue;
+	switch(currentCurve.getType())
+	{
+		case EnvCurve::Numerical:
+			curveValue = currentCurve.getCurve();
+			if(fabs(curveValue) > 0.001)
+			{
+				double a1 = (targetValue - currentValue) / (1.0 - exp(curveValue));	
+				a2 = currentValue + a1;
+				b1 = a1; 
+				grow = exp(curveValue / (double)stepsUntilTarget);
+				break;
+			}
+			else
+			{	
+				currentCurve = EnvCurve(EnvCurve::Linear);
+				// fall through to the next case..
+			}
+		case EnvCurve::Linear:
+			grow = (targetValue - currentValue) / (double)stepsUntilTarget;
+			break;
+		case EnvCurve::Exponential:
+			grow = pow(targetValue / currentValue, 1.0 / (double)stepsUntilTarget);
+			break;
+		case EnvCurve::Sine:
+			w = pi / (double)stepsUntilTarget;
+			
+			a2 = (targetValue + currentValue) * 0.5;
+			b1 = 2.0 * cos(w);
+			y1 = (targetValue - currentValue) * 0.5;
+			y2 = y1 * sin(piOverTwo - w);
+			currentValue = a2 - y1;
+			
+			break;
+		case EnvCurve::Welch:
+			w = piOverTwo / (double)stepsUntilTarget;
+			
+			b1 = 2.0 * cos(w);
+			
+			if (targetValue >= currentValue) 
+			{
+				a2 = currentValue;
+				y1 = 0.;
+				y2 = -sin(w) * (targetValue - currentValue);
+			} 
+			else 
+			{
+				a2 = targetValue;
+				y1 = currentValue - targetValue;
+				y2 = cos(w) * (currentValue - targetValue);
+			}
+			
+			currentValue = a2 + y1;
+			
+			break;
+		case EnvCurve::Empty:
+		case EnvCurve::Step:
+		default:
+			currentValue = targetValue;
+	}
+	
+	return false; // ready for next segment
+}
+#endif
 
 EnvGenUGenInternalK::EnvGenUGenInternalK (Env const& env, const UGen::DoneAction doneAction) throw() 
 :	EnvGenUGenInternal(env, doneAction)

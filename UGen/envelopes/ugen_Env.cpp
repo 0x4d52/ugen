@@ -191,8 +191,14 @@ float Env::lookup(float time) const throw()
 		else
 		{			
 			float pos = (time-lastTime) / (stageTime-lastTime);
+#ifndef UGEN_ANDROID
 			float denom = 1.f - std::exp(curveValue);
 			float numer = 1.f - std::exp(pos * curveValue);
+#else
+// android
+			float denom = 1.f - expf(curveValue);
+			float numer = 1.f - expf(pos * curveValue);
+#endif
 			return level0 + (level1 - level0) * (numer/denom);
 		}
 	}

@@ -310,6 +310,7 @@ inline float Ran088::coin() throw()
 	return u.f;
 }
 
+#ifndef UGEN_ANDROID
 inline long Ran088::nextLong(long scale) throw()
 {
 	// return an int from 0 to scale - 1
@@ -321,6 +322,20 @@ inline long Ran088::nextBiLong(long scale) throw()
 	// return a int from -scale to +scale
 	return (long)std::floor((2. * scale + 1.) * nextDouble() - scale);
 }
+#else
+// android
+inline long Ran088::nextLong(long scale) throw()
+{
+	// return an int from 0 to scale - 1
+	return (long)floor(scale * nextDouble());
+}
+
+inline long Ran088::nextBiLong(long scale) throw()
+{
+	// return a int from -scale to +scale
+	return (long)floor((2. * scale + 1.) * nextDouble() - scale);
+}
+#endif
 
 inline long Ran088::nextLinearLong(long scale) throw()
 {
@@ -350,6 +365,7 @@ inline double Ran088::nextBiLinearDouble(double scale) throw()
 	return (a - b) * scale;
 }
 
+#ifndef UGEN_ANDROID
 inline double Ran088::nextExpRandRange(double lo, double hi) throw()
 {
 	return lo * std::exp(std::log(hi / lo) * nextDouble());
@@ -361,6 +377,19 @@ inline double Ran088::nextExpRand(double scale) throw()
 	while ((z = nextDouble()) == 0.0) {}
 	return -std::log(z) * scale;
 }
+#else
+inline double Ran088::nextExpRandRange(double lo, double hi) throw()
+{
+	return lo * exp(log(hi / lo) * nextDouble());
+}
+
+inline double Ran088::nextExpRand(double scale) throw()
+{
+	double z;
+	while ((z = nextDouble()) == 0.0) {}
+	return -log(z) * scale;
+}
+#endif
 
 //inline double Ran088::nextBiExpRand(double scale)
 //{

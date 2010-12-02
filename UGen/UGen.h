@@ -77,7 +77,7 @@ BEGIN_UGEN_NAMESPACE
 #endif
 
 #ifdef UGEN_NOEXTGPL
-	#warning UGEN_NOEXTGPL: any linker errors might be due to your use of externally GPL'd code
+	#warning UGEN_NOEXTGPL: any linker errors might be due to your use of externally GPL`d code
 	#ifdef UGEN_JUCE
 		#warning UGEN_NOEXTGPL: NB that Juce is GPL unless you have a closed source license!
 	#endif
@@ -91,7 +91,6 @@ BEGIN_UGEN_NAMESPACE
 #include "core/ugen_Bits.h"
 #include "core/ugen_Value.h"
 #include "core/ugen_Arrays.h"
-#include "core/ugen_Collections.h"
 #include "basics/ugen_ScalarUGens.h"
 #include "basics/ugen_UnaryOpUGens.h"
 #include "basics/ugen_BinaryOpUGens.h"
@@ -108,7 +107,6 @@ BEGIN_UGEN_NAMESPACE
 #include "envelopes/ugen_Lines.h"
 #include "envelopes/ugen_Env.h"
 #include "envelopes/ugen_EnvGen.h"
-#include "envelopes/ugen_ASR.h"
 #include "buffers/ugen_Buffer.h"
 #include "buffers/ugen_PlayBuf.h"
 #include "oscillators/wavetable/ugen_TableOsc.h"
@@ -118,6 +116,7 @@ BEGIN_UGEN_NAMESPACE
 	#include "core/ugen_TextFile.h" // std lib
 
 // just not yet..
+	#include "core/ugen_Collections.h"
 	#include "analysis/ugen_Amplitude.h"
 	#include "analysis/ugen_Maxima.h"
 	#include "analysis/ugen_Poll.h"
@@ -132,6 +131,7 @@ BEGIN_UGEN_NAMESPACE
 	#include "oscillators/simple/ugen_Impulse.h"
 	#include "oscillators/simple/ugen_FSinOsc.h"
 	#include "oscillators/simple/ugen_Triggers.h"
+	#include "envelopes/ugen_ASR.h"
 	#include "filters/ugen_SOS.h"
 	#include "filters/ugen_BEQ.h"
 	#include "filters/ugen_LeakDC.h"
@@ -204,18 +204,12 @@ BEGIN_UGEN_NAMESPACE
 		#include "convolution/ugen_Convolution.h"
 		#include "convolution/ugen_SimpleConvolution.h"
 	#endif
-
 #endif
 
 #ifdef UGEN_IPHONE
 	// include these on the iPhone even if we're using Juce
 	#include "iphone/ugen_NSUtilities.h"
 	#include "iphone/ugen_UIAcceleration.h"
-
-	#ifdef UGEN_IOS_COREMIDI
-		#include "iphone/ugen_iOSMidiInput.h"
-	#endif
-
 #endif
 
 /** A debugging function for reporting the sizes of various objects. */

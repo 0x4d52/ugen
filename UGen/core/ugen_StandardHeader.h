@@ -163,13 +163,13 @@ END_UGEN_NAMESPACE
 #else
 
 	#ifdef UGEN_ANDROID
-		#include <cstdlib>
-		#include <climits>
-		#include <cmath>
-		#include <cwchar>
+		#include <stdlib.h>//<cstdlib>
+		#include <limits.h>//<climits>
+		#include <math.h>//<cmath>
+		#include <wchar.h>//<cwchar>
 		#include <typeinfo>
-		#include <cstring>
-		#include <cstdio>
+		#include <string.h>//<cstring>
+		#include <stdio.h>//<cstdio>
 	#else
 		#include <cstdlib>
 		#include <cstdarg>
@@ -205,12 +205,6 @@ END_UGEN_NAMESPACE
 	#ifdef __OBJC__
 		#import <Foundation/Foundation.h>
 		#import <UIKit/UIKit.h>
-
-		#ifdef UGEN_IOS_COREMIDI
-			#import <CoreMIDI/CoreMIDI.h>
-			#import <CoreMIDI/MIDINetworkSession.h>
-		#endif
-	
 	#endif
 
 	#ifndef UISlider
