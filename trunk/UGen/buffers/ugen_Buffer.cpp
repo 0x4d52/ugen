@@ -2260,6 +2260,7 @@ Buffer Buffer::changeSampleRate(const double oldSampleRate, const double newSamp
 	}
 }
 
+#ifndef UGEN_ANDROID
 Buffer Buffer::rand(const int size, const double lower, const double upper, const int numChannels) throw()
 {
 	Buffer newBuffer(BufferSpec(size, numChannels, false));
@@ -2271,12 +2272,31 @@ Buffer Buffer::rand(const int size, const double lower, const double upper, cons
 	{
 		for(int sample = 0; sample < size; sample++)
 		{
-			newBuffer.setSampleUnchecked(channel, sample, std::rand() * rangeFactor * + lower);
+			newBuffer.setSampleUnchecked(channel, sample, std::rand() * rangeFactor + lower);
 		}
 	}
 	
 	return newBuffer;
 }
+#else
+Buffer Buffer::rand(const int size, const double lower, const double upper, const int numChannels) throw()
+{
+	Buffer newBuffer(BufferSpec(size, numChannels, false));
+	
+	double range = upper-lower;
+	
+	for(int channel = 0; channel < numChannels; channel++)
+	{
+		for(int sample = 0; sample < size; sample++)
+		{
+			newBuffer.setSampleUnchecked(channel, sample, Ran088::defaultGenerator().nextDouble(range) + lower);
+		}
+	}
+	
+	return newBuffer;
+}
+#endif
+
 
 Buffer Buffer::rand2(const int size, const double positive, const int numChannels) throw()
 {
@@ -2287,7 +2307,7 @@ Buffer Buffer::rand2(const int size, const double positive, const int numChannel
 Buffer Buffer::exprand(const int size, const double lower, const double upper, const int numChannels) throw()
 {
 	Buffer newBuffer(BufferSpec(size, numChannels, false));
-	Ran088 random((unsigned long)newBuffer.getData() + 993877L * 4994L + ugen::rand(2876)); // seed
+	Ran088& random(Ran088::defaultGenerator()); //((unsigned long)newBuffer.getData() + 993877L * 4994L + ugen::rand(2876)); // seed
 		
 	for(int channel = 0; channel < numChannels; channel++)
 	{
@@ -2303,7 +2323,7 @@ Buffer Buffer::exprand(const int size, const double lower, const double upper, c
 Buffer Buffer::linrand(const int size, const double lower, const double upper, const int numChannels) throw()
 {
 	Buffer newBuffer(BufferSpec(size, numChannels, false));
-	Ran088 random((unsigned long)newBuffer.getData() + 1122408L * 98823L + ugen::rand(8188123)); // seed
+	Ran088& random(Ran088::defaultGenerator()); //((unsigned long)newBuffer.getData() + 1122408L * 98823L + ugen::rand(8188123)); // seed
 	
 	double range = upper-lower;
 	

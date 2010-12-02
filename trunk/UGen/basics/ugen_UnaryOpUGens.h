@@ -344,8 +344,6 @@ UnaryOpUGenDeclaration(Log10,		log10);
 UnaryOpUGenDeclaration(Exp,			exp);
 UnaryOpUGenDeclaration(MIDICPS,		midicps);
 UnaryOpUGenDeclaration(CPSMIDI,		cpsmidi);
-UnaryOpUGenDeclaration(AmpdB,		ampdb);
-UnaryOpUGenDeclaration(dBAmp,		dbamp);
 UnaryOpUGenDeclaration(Squared,		squared);
 UnaryOpUGenDeclaration(Cubed,		cubed);
 UnaryOpUGenDeclaration(Distort,		distort);

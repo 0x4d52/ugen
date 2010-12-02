@@ -275,6 +275,7 @@ inline int wrap(int in, int lo, int hi) throw()
 }
 
 
+#ifndef UGEN_ANDROID
 inline float wrap(float in, float lo, float hi) throw()
 {
 	float range;
@@ -295,10 +296,34 @@ inline float wrap(float in, float lo, float hi) throw()
 	if (hi == lo) return lo;
 	return in - range * std::floor((in - lo)/range); 
 }
+#else
+// android
+inline float wrap(float in, float lo, float hi) throw()
+{
+	float range;
+	if (in >= hi) 
+	{
+		range = hi - lo;
+		in -= range;
+		if (in < hi) return in;
+	} 
+	else if (in < lo) 
+	{
+		range = hi - lo;
+		in += range;
+		if (in >= lo) return in;
+	} 
+	else return in;
+	
+	if (hi == lo) return lo;
+	return in - range * floorf((in - lo)/range); 
+}
+#endif
 
 inline float wrap(float in, float hi) throw() { return wrap(in, 0.f, hi); }
 inline float wrap2(float in, float hi) throw() { return wrap(in, -hi, hi); }
 
+#ifndef UGEN_ANDROID
 inline double wrap(double in, double lo, double hi) throw() 
 {
 	double range;
@@ -319,10 +344,34 @@ inline double wrap(double in, double lo, double hi) throw()
 	if (hi == lo) return lo;
 	return in - range * std::floor((in - lo)/range); 
 }
+#else
+// android
+inline double wrap(double in, double lo, double hi) throw() 
+{
+	double range;
+	if (in >= hi) 
+	{
+		range = hi - lo;
+		in -= range;
+		if (in < hi) return in;
+	} 
+	else if (in < lo) 
+	{
+		range = hi - lo;
+		in += range;
+		if (in >= lo) return in;
+	} 
+	else return in;
+	
+	if (hi == lo) return lo;
+	return in - range * floor((in - lo)/range); 
+}
+#endif
 
 inline double wrap(double in, double hi) throw() { return wrap(in, 0.0, hi); }
 inline double wrap2(double in, double hi) throw() { return wrap(in, -hi, hi); }
 
+#ifndef UGEN_ANDROID
 inline float fold(float in, float lo, float hi) throw() 
 {
 	float x;
@@ -349,10 +398,40 @@ inline float fold(float in, float lo, float hi) throw()
 	if (c>=range) c = range2 - c;
 	return c + lo;
 }
+#else
+// android
+inline float fold(float in, float lo, float hi) throw() 
+{
+	float x;
+	float c, range, range2;
+	x = in - lo;
+	
+	if (in >= hi) 
+	{
+		in = hi + hi - in;
+		if (in >= lo) return in;
+	} 
+	else if (in < lo) 
+	{
+		in = lo + lo - in;
+		if (in < hi) return in;
+	} 
+	else return in;
+	
+	if (hi == lo) return lo;
+	
+	range = hi - lo;
+	range2 = range + range;
+	c = x - range2 * floorf(x / range2);
+	if (c>=range) c = range2 - c;
+	return c + lo;
+}
+#endif
 
 inline float fold(float in, float hi) throw() { return fold(in, 0.f, hi); }
 inline float fold2(float in, float hi) throw() { return fold(in, -hi, hi); }
 
+#ifndef UGEN_ANDROID
 inline double fold(double in, double lo, double hi) throw() 
 {
 	double x;
@@ -379,6 +458,35 @@ inline double fold(double in, double lo, double hi) throw()
 	if (c>=range) c = range2 - c;
 	return c + lo;
 }
+#else
+// android
+inline double fold(double in, double lo, double hi) throw() 
+{
+	double x;
+	double c, range, range2;
+	x = in - lo;
+	
+	if (in >= hi) 
+	{
+		in = hi + hi - in;
+		if (in >= lo) return in;
+	} 
+	else if (in < lo) 
+	{
+		in = lo + lo - in;
+		if (in < hi) return in;
+	} 
+	else return in;
+	
+	if (hi == lo) return lo;
+	
+	range = hi - lo;
+	range2 = range + range;
+	c = x - range2 * floor(x / range2);
+	if (c>=range) c = range2 - c;
+	return c + lo;
+}
+#endif
 
 inline double fold(double in, double hi) throw() { return fold(in, 0.0, hi); }
 inline double fold2(double in, double hi) throw() { return fold(in, -hi, hi); }
@@ -471,7 +579,11 @@ inline float linsin(const float input,
 	float outRange = outHigh - outLow;
 		
 	float inPhase = (input - inLow) * pi / inRange + pi;
+#ifndef UGEN_ANDROID
 	float cosInPhase = (float)std::cos((double)inPhase) * 0.5f + 0.5f;
+#else
+	float cosInPhase = cosf(inPhase) * 0.5f + 0.5f;
+#endif
 	
 	return cosInPhase * outRange + outLow;	
 }
@@ -484,7 +596,11 @@ inline double linsin(const double input,
 	double outRange = outHigh - outLow;
 	
 	double inPhase = (input - inLow) * pi / inRange + pi;
+#ifndef UGEN_ANDROID
 	double cosInPhase = std::cos(inPhase) * 0.5 + 0.5;
+#else
+	double cosInPhase = cos(inPhase) * 0.5 + 0.5;
+#endif
 	
 	return cosInPhase * outRange + outLow;	
 }
@@ -495,8 +611,11 @@ inline float linsin2(const float input,
 					 const float outLow, const float outRange) throw()
 {	
 	float inPhase = (input - inLow) * pi / inRange + pi;
+#ifndef UGEN_ANDROID
 	float cosInPhase = (float)std::cos((double)inPhase) * 0.5f + 0.5f;
-	
+#else
+	float cosInPhase = cosf(inPhase) * 0.5f + 0.5f;
+#endif
 	return cosInPhase * outRange + outLow;	
 }
 
@@ -537,11 +656,17 @@ inline float linwelch(const float input,
 	float outRange = outHigh - outLow;
 	float inPos = (input - inLow) / inRange;
 
+#ifndef UGEN_ANDROID
 	if (outLow < outHigh)
 		return outLow + outRange * std::sin(piOverTwo * inPos);
 	else
 		return outHigh - outRange * std::sin(piOverTwo - piOverTwo * inPos);
-	
+#else
+	if (outLow < outHigh)
+		return outLow + outRange * sinf(piOverTwo * inPos);
+	else
+		return outHigh - outRange * sinf(piOverTwo - piOverTwo * inPos);	
+#endif
 }
 
 #endif // gpl

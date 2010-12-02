@@ -1981,7 +1981,7 @@ UGen UGen::linexp(UGen const& inLow, UGen const& inHigh, UGen const& outLow, UGe
 	return LinExp::AR(*this, inLow, inHigh, outLow, outHigh);
 }
 
-#endif gpl
+#endif // gpl
 
 
 unsigned long	UGen::nextBlockID					= 0;
