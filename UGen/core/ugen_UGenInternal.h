@@ -54,9 +54,7 @@ public:
 		ugen_assert(actualBlockSize > 0);
 		
 		if(externalOutput != 0)
-		{
-			ugen_assert(dynamic_cast<UGenOutput*> (externalOutput) != 0); 
-			
+		{			
 			externalOutput->prepareForBlock(actualBlockSize);
 			blockSize = externalOutput->getBlockSize();
 			block = externalOutput->getSampleData();
@@ -218,6 +216,14 @@ public:
 //	
 //	/// @} <!-- end Memory -->
 	
+	/// @name Necessary for some RTTI avoidance
+	/// @{
+	
+	virtual bool setSource(UGen const& source, const bool releasePreviousSources = false, const float fadeTime = 0.f) { return false;}
+	
+	/// @} <!-- end Memory -->
+	
+	
 protected:		
 	virtual UGenInternal* getChannel(const int channel) throw();
 	int findMaxInputChannels() const throw();
@@ -309,6 +315,9 @@ public:
 	void prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
+	bool isProxyUGenInternal() const throw() { return true; }
+
+	
 private:
 	ProxyOwnerUGenInternal* const owner_;
 	int proxyChannel_;
@@ -332,6 +341,8 @@ public:
 	inline bool isDoneSent() const throw() { return doneSent; }
 	inline bool isDone() const throw() { return isDone_; }
 	
+	bool isDoneActionSender() const throw() { return true; }
+	
 	int senderUserData;
 	
 private:
@@ -343,11 +354,11 @@ private:
 };
 
 /** Subclasses of this receive UGen done action message. */
-class DoneActionReceiver
+class DoneActionReceiver : public TypeInfo
 {
 public:
 	DoneActionReceiver() throw() {}
-	virtual ~DoneActionReceiver() {}
+	/*virtual*/ ~DoneActionReceiver() {}
 	
 	/** This must be implmented, sent when a UGen has finished. 
 	 It should be sent safely after all processing for a particualr block of
@@ -367,6 +378,9 @@ public:
 	
 	/** This saves having to get the pointer to a DoneActionReceiver object, it will be casted automatically. */
 	operator DoneActionReceiver*() throw() { return this; }
+	
+	bool isDoneActionReceiver() const throw() { return true; }
+
 };
 
 
@@ -435,6 +449,8 @@ public:
 	 For longer sounds as sound files it is likely to be in seconds. 
 	 For wavetables it will 0...1 */		
 	virtual void setPosition(const double newPosition) = 0;
+	
+	bool isSeekable() const throw() { return true; }
 };
 
 

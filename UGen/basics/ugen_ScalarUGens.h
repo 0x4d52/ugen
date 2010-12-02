@@ -77,6 +77,7 @@ public:
 	
 private:
 	NullUGenInternal() throw(); // private so you need to call getInstance()
+//	~NullUGenInternal(); 
 };
 
 UGenSublcassDeclarationNoDefault(NullUGen, (), (), COMMON_UGEN_DOCS Plug_Docs);

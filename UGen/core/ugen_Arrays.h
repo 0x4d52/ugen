@@ -2431,6 +2431,7 @@ public:
 		return ObjectArray<NumericalType>::splitSequence(NumericalArray<NumericalType>(delimitingSequence));
 	}	
 	
+#ifndef UGEN_ANDROID
 	void print(const char *prefix = 0, const bool oneLine = false) const throw()
 	{
 		if(oneLine)
@@ -2454,6 +2455,7 @@ public:
 			}
 		}
 	}
+#endif
 		
 };
 
@@ -2464,6 +2466,7 @@ typedef NumericalArray<short>			ShortArray;
 typedef NumericalArray<int>				IntArray;
 typedef NumericalArray<long>			LongArray;
 typedef NumericalArray<unsigned char>	UnsignedCharArray;
+typedef UnsignedCharArray				ByteArray;
 typedef NumericalArray<unsigned short>	UnsignedShortArray;
 typedef NumericalArray<unsigned int>	UnsignedIntArray;
 typedef NumericalArray<unsigned long>	UnsignedLongArray;
@@ -3084,6 +3087,7 @@ public:
 	{
 	}
 
+#ifndef UGEN_ANDROID
 	void print(const char *prefix = 0, const bool rowsOnOneLine = false) const throw()
 	{
 		if(rowsOnOneLine)
@@ -3112,6 +3116,7 @@ public:
 			}
 		}
 	}
+#endif
 	
 };
 
@@ -3120,6 +3125,7 @@ typedef NumericalArray2D<short>				ShortArray2D;
 typedef NumericalArray2D<int>				IntArray2D;
 typedef NumericalArray2D<long>				LongArray2D;
 typedef NumericalArray2D<unsigned char>		UnsignedCharArray2D;
+typedef NumericalArray2D<unsigned char>		ByteArray2D;
 typedef NumericalArray2D<unsigned short>	UnsignedShortArray2D;
 typedef NumericalArray2D<unsigned int>		UnsignedIntArray2D;
 typedef NumericalArray2D<unsigned long>		UnsignedLongArray2D;

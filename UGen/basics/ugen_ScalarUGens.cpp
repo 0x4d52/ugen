@@ -47,6 +47,10 @@ NullUGenInternal::NullUGenInternal() throw()
 {
 }
 
+//NullUGenInternal()::~NullUGenInternal()
+//{
+//}
+
 UGenInternal* NullUGenInternal::getKr() throw()
 {
 	NullUGenInternal* newNullKr = new NullUGenInternal();
@@ -69,6 +73,7 @@ NullUGenInternal* NullUGenInternal::getInstance() throw()
 	if(firstTime)
 	{
 		firstTime = false;
+		instance->setRefCout(100000); // large !
 	}
 	else
 	{

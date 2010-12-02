@@ -92,7 +92,6 @@ BEGIN_UGEN_NAMESPACE
 #include "core/ugen_Value.h"
 #include "core/ugen_Arrays.h"
 #include "core/ugen_Collections.h"
-#include "core/ugen_TextFile.h"
 #include "basics/ugen_ScalarUGens.h"
 #include "basics/ugen_UnaryOpUGens.h"
 #include "basics/ugen_BinaryOpUGens.h"
@@ -110,49 +109,55 @@ BEGIN_UGEN_NAMESPACE
 #include "envelopes/ugen_Env.h"
 #include "envelopes/ugen_EnvGen.h"
 #include "envelopes/ugen_ASR.h"
-#include "analysis/ugen_Amplitude.h"
-#include "analysis/ugen_Maxima.h"
-#include "analysis/ugen_Poll.h"
-#include "analysis/ugen_Schmidt.h"
-#include "analysis/ugen_Trig.h"
-#include "analysis/ugen_TrigProcess.h"
-#include "analysis/ugen_DataRecorder.h"
-#include "pan/ugen_BasicPan.h"
 #include "buffers/ugen_Buffer.h"
 #include "buffers/ugen_PlayBuf.h"
-#include "buffers/ugen_XFadePlayBuf.h"
-#include "oscillators/ugen_OscillatorUGens.h"
-#include "oscillators/simple/ugen_LFSaw.h"
-#include "oscillators/simple/ugen_LFPulse.h"
-#include "oscillators/simple/ugen_Impulse.h"
-#include "oscillators/simple/ugen_FSinOsc.h"
-#include "oscillators/simple/ugen_Triggers.h"
 #include "oscillators/wavetable/ugen_TableOsc.h"
-#include "noise/ugen_WhiteNoise.h"
-#include "noise/ugen_PinkNoise.h"
-#include "noise/ugen_BrownNoise.h"
-#include "noise/ugen_Dust.h"
-#include "noise/ugen_LFNoise.h"
-#include "filters/ugen_SOS.h"
-#include "filters/ugen_BEQ.h"
-#include "filters/ugen_LeakDC.h"
-#include "filters/simple/ugen_LPF.h"
-#include "filters/simple/ugen_HPF.h"
 #include "filters/control/ugen_Lag.h"
-#include "filters/control/ugen_Decay.h"
-#include "filters/dynamics/ugen_Normaliser.h"
-#include "delays/ugen_Delay.h"
-#include "delays/ugen_BlockDelay.h"
-#include "spawn/ugen_Spawn.h"
-#include "spawn/ugen_TSpawn.h"
-#include "spawn/ugen_VoicerBase.h"
-#include "spawn/ugen_Textures.h"
-#include "gui/ugen_Scope.h"
-#include "fft/ugen_FFTEngine.h"
-#include "fft/ugen_FFTMagnitude.h"
-#include "fft/ugen_FFTMagnitudeSelection.h"
-#include "neuralnet/ugen_NeuralNetwork.h"
-#include "neuralnet/ugen_NeuralNetworkUGen.h"
+
+#ifndef UGEN_ANDROID
+	#include "core/ugen_TextFile.h" // std lib
+
+// just not yet..
+	#include "analysis/ugen_Amplitude.h"
+	#include "analysis/ugen_Maxima.h"
+	#include "analysis/ugen_Poll.h"
+	#include "analysis/ugen_Schmidt.h"
+	#include "analysis/ugen_Trig.h"
+	#include "analysis/ugen_TrigProcess.h"
+	#include "analysis/ugen_DataRecorder.h"
+	#include "pan/ugen_BasicPan.h"
+	#include "oscillators/ugen_OscillatorUGens.h"
+	#include "oscillators/simple/ugen_LFSaw.h"
+	#include "oscillators/simple/ugen_LFPulse.h"
+	#include "oscillators/simple/ugen_Impulse.h"
+	#include "oscillators/simple/ugen_FSinOsc.h"
+	#include "oscillators/simple/ugen_Triggers.h"
+	#include "filters/ugen_SOS.h"
+	#include "filters/ugen_BEQ.h"
+	#include "filters/ugen_LeakDC.h"
+	#include "filters/simple/ugen_LPF.h"
+	#include "filters/simple/ugen_HPF.h"
+	#include "filters/control/ugen_Decay.h"
+	#include "filters/dynamics/ugen_Normaliser.h"
+	#include "delays/ugen_Delay.h"
+	#include "delays/ugen_BlockDelay.h"
+	#include "spawn/ugen_Spawn.h"
+	#include "spawn/ugen_TSpawn.h"
+	#include "spawn/ugen_VoicerBase.h"
+	#include "spawn/ugen_Textures.h"
+	#include "gui/ugen_Scope.h"
+	#include "fft/ugen_FFTEngine.h"
+	#include "fft/ugen_FFTMagnitude.h"
+	#include "fft/ugen_FFTMagnitudeSelection.h"
+	#include "neuralnet/ugen_NeuralNetwork.h"
+	#include "neuralnet/ugen_NeuralNetworkUGen.h"
+	#include "noise/ugen_WhiteNoise.h"
+	#include "noise/ugen_PinkNoise.h"
+	#include "noise/ugen_BrownNoise.h"
+	#include "noise/ugen_Dust.h"
+	#include "noise/ugen_LFNoise.h"
+	#include "buffers/ugen_XFadePlayBuf.h"
+#endif
 
 #ifdef UGEN_JUCE
 	#include "juce/ugen_JuceUtility.h"
@@ -199,12 +204,18 @@ BEGIN_UGEN_NAMESPACE
 		#include "convolution/ugen_Convolution.h"
 		#include "convolution/ugen_SimpleConvolution.h"
 	#endif
+
 #endif
 
 #ifdef UGEN_IPHONE
 	// include these on the iPhone even if we're using Juce
 	#include "iphone/ugen_NSUtilities.h"
 	#include "iphone/ugen_UIAcceleration.h"
+
+	#ifdef UGEN_IOS_COREMIDI
+		#include "iphone/ugen_iOSMidiInput.h"
+	#endif
+
 #endif
 
 /** A debugging function for reporting the sizes of various objects. */

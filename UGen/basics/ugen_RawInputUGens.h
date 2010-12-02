@@ -37,9 +37,7 @@
 #ifndef _UGEN_ugen_RawInputUGens_H_
 #define _UGEN_ugen_RawInputUGens_H_
 
-
 #include "../core/ugen_UGen.h"
-#include "../buffers/ugen_IntBuffer.h"
 
 /** @ingroup UGenInternals */
 class RawInputUGenInternal : public ProxyOwnerUGenInternal
@@ -49,6 +47,7 @@ public:
 	~RawInputUGenInternal() throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	inline void setInput(const float* block, const int channel) throw() { bufferData[channel] = block; }
+	bool isRawInputUGenInternal() const throw() { return true; }
 	
 protected:
 	const float** bufferData;

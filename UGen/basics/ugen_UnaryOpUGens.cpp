@@ -100,6 +100,8 @@ UnaryOpUGenDefinition(Sign,			sign,			sign);
 #ifndef UGEN_NOEXTGPL
 UnaryOpUGenDefinition(MIDICPS,		midicps,		midicps);
 UnaryOpUGenDefinition(CPSMIDI,		cpsmidi,		cpsmidi);
+UnaryOpUGenDefinition(AmpdB,		ampdb,			ampdb);
+UnaryOpUGenDefinition(dBAmp,		dbamp,			dbamp);
 UnaryOpUGenDefinition(Distort,		distort,		distort);
 UnaryOpUGenDefinition(BesselI0,		besselI0,		besselI0);
 UnaryOpUGenDefinition(Zap,			zap,			zap);

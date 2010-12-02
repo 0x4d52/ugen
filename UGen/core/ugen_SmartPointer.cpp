@@ -94,6 +94,26 @@ void SmartPointer::decrementRefCount()  throw()
 		}
 	}
 }
+
+void SmartPointer::setRefCout(const int newCount) throw()
+{
+	if(!active)
+	{
+		ugen_assertfalse;
+		return;
+	}
+		
+	if(newCount < 1)
+	{
+		refCount = 1;
+		decrementRefCount();
+	}
+	else
+	{
+		refCount = newCount;
+	}
+}
+
 //#endif
 
 

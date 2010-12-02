@@ -165,7 +165,7 @@ void PlugUGenInternal::processBlock(bool& shouldDelete, const unsigned int block
 }
 
 
-void PlugUGenInternal::setSource(UGen const& source, const bool releasePreviousSources, const float fadeTime)
+bool PlugUGenInternal::setSource(UGen const& source, const bool releasePreviousSources, const float fadeTime)
 {
 	ugen_assert(fadeTime >= 0.f);
 	
@@ -202,6 +202,8 @@ void PlugUGenInternal::setSource(UGen const& source, const bool releasePreviousS
 		if(releasePreviousSourcesAfterFade == true && fadeTime > 0.f)
 			tempSource = UGenArray(source);
 	}
+	
+	return true;
 }
 
 UGen& PlugUGenInternal::getSource()
