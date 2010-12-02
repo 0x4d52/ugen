@@ -320,7 +320,7 @@ void MIDIInputNotifyProc(const MIDINotification *message, void *refCon)
 			[delegate handleIncomingMidiMessage: messages midiSource: source];
 		}			
 		
-		MIDIInputSender::getInstance().sendIncomingMidiMessage(source, messages);
+		MidiInputSender::getInstance().sendIncomingMidiMessage(source, messages);
 		
         packet = MIDIPacketNext(packet);
     }	
@@ -444,28 +444,40 @@ NSUInteger ListInterfaces(id<MidiInputDelegate> delegate)
 
 BEGIN_UGEN_NAMESPACE
 
-MIDIInputSender::MIDIInputSender() throw()
+MidiInputReceiver::MidiInputReceiver() throw()
+{
+	MidiInputSender& sender = MidiInputSender::getInstance();
+	sender.addMidiReceiver(this);
+}
+
+MidiInputReceiver::~MidiInputReceiver()
+{
+	MidiInputSender::getInstance().removeMidiReceiver(this);
+}
+
+
+MidiInputSender::MidiInputSender() throw()
 {
 	peer = [MidiInput sharedInstance];
 }
 
-MIDIInputSender& MIDIInputSender::getInstance()
+MidiInputSender& MidiInputSender::getInstance()
 {
-	static MIDIInputSender singleton;
+	static MidiInputSender singleton;
 	return singleton;
 }
 
-void MIDIInputSender::addMidiReceiver (MIDIInputReceiver* const receiver) throw()
+void MidiInputSender::addMidiReceiver (MidiInputReceiver* const receiver) throw()
 {
 	receivers.add(receiver);
 }
 
-void MIDIInputSender::removeMidiReceiver (MIDIInputReceiver* const receiver) throw()
+void MidiInputSender::removeMidiReceiver (MidiInputReceiver* const receiver) throw()
 {
 	receivers.removeItem(receiver);
 }
 
-void MIDIInputSender::sendIncomingMidiMessage(void* source, ByteArray const& message) throw()
+void MidiInputSender::sendIncomingMidiMessage(void* source, ByteArray const& message) throw()
 {
 	for(int i = 0; i < receivers.length(); i++)
 	{
