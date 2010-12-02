@@ -50,9 +50,12 @@ BEGIN_UGEN_NAMESPACE
 #include "../basics/ugen_WrapFold.h"
 #include "../basics/ugen_MappingUGens.h"
 #include "../filters/control/ugen_Lag.h"
-#include "../spawn/ugen_VoicerBase.h"
-#include "../spawn/ugen_TSpawn.h"
 #include "../envelopes/ugen_EnvGen.h"
+
+#ifndef UGEN_ANDROID
+	#include "../spawn/ugen_VoicerBase.h"
+	#include "../spawn/ugen_TSpawn.h"
+#endif
 
 
 //UGen::UGen() throw()
@@ -807,16 +810,6 @@ UGen UGen::getChannel(const int channel) const throw()
 	return wrapAt(channel);
 }
 
-//bool UGen::isNull(const int index) const throw()
-//{
-//	if(index < 0)
-//		return numInternalUGens == 1 && (dynamic_cast<NullUGenInternal*> (internalUGens[0])) != 0;
-//	else if(index < numInternalUGens)
-//		return (dynamic_cast<NullUGenInternal*> (internalUGens[index])) != 0;
-//	else
-//		return false;
-//}
-
 bool UGen::isNull(const int index) const throw()
 {
 	if(index < 0)
@@ -839,19 +832,6 @@ bool UGen::isNullKr() const throw()
 	else
 		return false;
 }
-
-//bool UGen::isScalar() const throw()
-//{
-//	// perhaps revisit this..
-//	
-//	for(int i = 0; i < numInternalUGens; i++)
-//	{
-//		if(dynamic_cast<ScalarBaseUGenInternal*> (internalUGens[i]) == 0)
-//			return false;
-//	}
-//	
-//	return true;
-//}
 
 bool UGen::isScalar(const int index) const throw()
 {	
@@ -1142,6 +1122,7 @@ void UGen::setOutputs(float** block, const int blockSize, const int numChannels)
 
 void UGen::setInput(const float* block, const int blockSize, const int channel) throw()
 {
+#ifndef UGEN_ANDROID
 	ugen_assert(block);
 	ugen_assert(blockSize > 0);
 	ugen_assert(channel >= 0);
@@ -1162,6 +1143,7 @@ void UGen::setInput(const float* block, const int blockSize, const int channel) 
 	}
 		
 	rawInputInternal->setInput(block, channel);		
+#endif
 }
 
 void UGen::setInputs(const float** block, const int blockSize, const int numChannels) throw()
@@ -1178,6 +1160,7 @@ void UGen::setInputs(const float** block, const int blockSize, const int numChan
 
 void UGen::setValue(Value const& other) throw()
 {
+#ifndef UGEN_ANDROID
 	for(int i = 0; i < numInternalUGens; i++)
 	{
 		ValueUGenInternal* valueUGen = dynamic_cast<ValueUGenInternal*> (internalUGens[i]);
@@ -1188,7 +1171,24 @@ void UGen::setValue(Value const& other) throw()
 			return;
 		}
 	}
+#endif
 }
+
+//void UGen::setSource(UGen const& source, const bool releasePreviousSources, const float fadeTime) throw()
+//{
+//	ugen_assert(fadeTime >= 0.f);
+//	
+//	for(int i = 0; i < numInternalUGens; i++)
+//	{
+//		PlugUGenInternal* plug = dynamic_cast<PlugUGenInternal*>(internalUGens[i]);
+//		
+//		if(plug != 0)
+//		{
+//			plug->setSource(source, releasePreviousSources, fadeTime);
+//			return;
+//		}
+//	}
+//}
 
 void UGen::setSource(UGen const& source, const bool releasePreviousSources, const float fadeTime) throw()
 {
@@ -1196,26 +1196,23 @@ void UGen::setSource(UGen const& source, const bool releasePreviousSources, cons
 	
 	for(int i = 0; i < numInternalUGens; i++)
 	{
-		PlugUGenInternal* plug = dynamic_cast<PlugUGenInternal*> (internalUGens[i]);
-		
-		if(plug != 0)
-		{
-			plug->setSource(source, releasePreviousSources, fadeTime);
-			return;
-		}
+		if(internalUGens[i]->setSource(source, releasePreviousSources, fadeTime)) return;
 	}
 }
+
 
 UGen UGen::getSource() throw()
 {
 	UGen sourcesUGen;
 	
+#ifndef UGEN_ANDROID
 	for(int i = 0; i < numInternalUGens; i++)
 	{
-		PlugUGenInternal* plug = dynamic_cast<PlugUGenInternal*> (internalUGens[i]);
+		PlugUGenInternal* plug = dynamic_cast<PlugUGenInternal*>(internalUGens[i]);
 		
 		if(plug != 0) sourcesUGen <<= plug->getSource();
 	}
+#endif
 	
 	return sourcesUGen;
 }
@@ -1249,74 +1246,91 @@ void UGen::steal(const bool forcedSteal) throw()
 	}
 }
 
+
 void UGen::sendMidiNote(const int midiChannel, const int midiNote, const int velocity) throw()
 {
+#ifndef UGEN_ANDROID
 	for(int i = 0; i < numInternalUGens; i++)
 	{
+		//isVoicerBaseUGenInternal
 		VoicerBaseUGenInternal* voicer = dynamic_cast<VoicerBaseUGenInternal*> (internalUGens[i]);
 		
 		if(voicer != 0) voicer->sendMidiNote(midiChannel, midiNote, velocity);
 	}
+#endif
 }
 
-
+#ifndef UGEN_ANDROID
 #if defined(JUCE_VERSION) || defined(DOXYGEN)
 #include "../juce/ugen_JuceVoicer.h"
 void UGen::sendMidiBuffer(MidiBuffer const& midiMessages) throw()
 {
 	for(int i = 0; i < numInternalUGens; i++)
 	{
+		//isVoicerUGenInternal
 		VoicerUGenInternal* voicer = dynamic_cast<VoicerUGenInternal*> (internalUGens[i]);
 		
 		if(voicer != 0) voicer->sendMidiBuffer(midiMessages);
 	}
 }
 #endif
+#endif
 
 void UGen::trigger(void* extraArgs) throw()
 {
+#ifndef UGEN_ANDROID
 	for(int i = 0; i < numInternalUGens; i++)
 	{
+		//isTSpawnUGenInternal
 		TSpawnUGenInternal* tspawn = dynamic_cast<TSpawnUGenInternal*> (internalUGens[i]);
 		
 		if(tspawn != 0) tspawn->trigger(extraArgs);
 	}
+#endif
 }
 
 void UGen::stopAllEvents() throw()
 {
+#ifndef UGEN_ANDROID
 	for(int i = 0; i < numInternalUGens; i++)
 	{
+		//isSpawnBaseUGenInternal
 		SpawnBaseUGenInternal* spawn = dynamic_cast<SpawnBaseUGenInternal*> (internalUGens[i]);
 		
 		if(spawn != 0) spawn->stopAllEvents();
 	}
+#endif
 }
 
 UGen& UGen::addBufferReceiver(BufferReceiver* const receiver) throw()
 {
+#ifndef UGEN_ANDROID
 	for(int i = 0; i < numInternalUGens; i++)
 	{
 		BufferSender* sender = dynamic_cast<BufferSender*> (internalUGens[i]);
 		
 		if(sender != 0) sender->addBufferReceiver(receiver);
 	}
+#endif
 	
 	return *this;
 }
 
 void UGen::removeBufferReceiver(BufferReceiver* const receiver) throw()
 {
+#ifndef UGEN_ANDROID
 	for(int i = 0; i < numInternalUGens; i++)
 	{
 		BufferSender* sender = dynamic_cast<BufferSender*> (internalUGens[i]);
 		
 		if(sender != 0) sender->removeBufferReceiver(receiver);
 	}	
+#endif
 }
 
 UGen& UGen::addBufferReceiver(UGen const& receiverUGen) throw()
 {
+#ifndef UGEN_ANDROID
 	for(int src = 0; src < numInternalUGens; src++)
 	{
 		BufferSender* sender = dynamic_cast<BufferSender*> (internalUGens[src]);
@@ -1331,12 +1345,13 @@ UGen& UGen::addBufferReceiver(UGen const& receiverUGen) throw()
 			}
 		}
 	}
-	
+#endif
 	return *this;
 }
 
 void UGen::removeBufferReceiver(UGen const& receiverUGen) throw()
 {
+#ifndef UGEN_ANDROID
 	for(int src = 0; src < numInternalUGens; src++)
 	{
 		BufferSender* sender = dynamic_cast<BufferSender*> (internalUGens[src]);
@@ -1351,32 +1366,38 @@ void UGen::removeBufferReceiver(UGen const& receiverUGen) throw()
 			}
 		}
 	}
+#endif
 }
 
 UGen& UGen::addDoneActionReceiver(DoneActionReceiver* const receiver) throw()
 {
+#ifndef UGEN_ANDROID
 	for(int i = 0; i < numInternalUGens; i++)
 	{
 		DoneActionSender* sender = dynamic_cast<DoneActionSender*> (internalUGens[i]);
 		
 		if(sender != 0) sender->addDoneActionReceiver(receiver);
 	}
+#endif
 	
 	return *this;	
 }
 
 void UGen::removeDoneActionReceiver(DoneActionReceiver* const receiver) throw()
 {
+#ifndef UGEN_ANDROID
 	for(int i = 0; i < numInternalUGens; i++)
 	{
 		DoneActionSender* sender = dynamic_cast<DoneActionSender*> (internalUGens[i]);
 		
 		if(sender != 0) sender->removeDoneActionReceiver(receiver);
-	}		
+	}	
+#endif
 }
 
 UGen& UGen::addDoneActionReceiver(UGen const& receiverUGen) throw()
 {
+#ifndef UGEN_ANDROID
 	for(int src = 0; src < numInternalUGens; src++)
 	{
 		DoneActionSender* sender = dynamic_cast<DoneActionSender*> (internalUGens[src]);
@@ -1391,12 +1412,14 @@ UGen& UGen::addDoneActionReceiver(UGen const& receiverUGen) throw()
 			}
 		}
 	}
+#endif
 	
 	return *this;	
 }
 
 void UGen::removeDoneActionReceiver(UGen const& receiverUGen) throw()
 {
+#ifndef UGEN_ANDROID
 	for(int src = 0; src < numInternalUGens; src++)
 	{
 		DoneActionSender* sender = dynamic_cast<DoneActionSender*> (internalUGens[src]);
@@ -1411,10 +1434,12 @@ void UGen::removeDoneActionReceiver(UGen const& receiverUGen) throw()
 			}
 		}
 	}	
+#endif
 }
 
 double UGen::getDuration() throw()
 {
+#ifndef UGEN_ANDROID
 	for(int i = 0; i < numInternalUGens; i++)
 	{
 		Seekable* seekable = dynamic_cast<Seekable*> (internalUGens[i]);
@@ -1424,12 +1449,14 @@ double UGen::getDuration() throw()
 			return seekable->getDuration();
 		}
 	}
-		
+#endif
+	
 	return -1.0;
 }
 
 double UGen::getPosition() throw()
 {
+#ifndef UGEN_ANDROID
 	for(int i = 0; i < numInternalUGens; i++)
 	{
 		Seekable* seekable = dynamic_cast<Seekable*> (internalUGens[i]);
@@ -1439,12 +1466,14 @@ double UGen::getPosition() throw()
 			return seekable->getPosition();
 		}
 	}
+#endif
 	
 	return -1.0;
 }
 
 void UGen::setPosition(const double newPosition) throw()
 {
+#ifndef UGEN_ANDROID
 	for(int i = 0; i < numInternalUGens; i++)
 	{
 		Seekable* seekable = dynamic_cast<Seekable*> (internalUGens[i]);
@@ -1455,12 +1484,14 @@ void UGen::setPosition(const double newPosition) throw()
 			return;
 		}
 	}
+#endif
 }
 
 DoubleArray UGen::getDurations() throw()
 {
 	DoubleArray result;
 	
+#ifndef UGEN_ANDROID
 	for(int i = 0; i < numInternalUGens; i++)
 	{
 		Seekable* seekable = dynamic_cast<Seekable*> (internalUGens[i]);
@@ -1470,6 +1501,7 @@ DoubleArray UGen::getDurations() throw()
 			result.add(seekable->getDuration());
 		}
 	}	
+#endif
 	
 	return result;
 }
@@ -1478,6 +1510,7 @@ DoubleArray UGen::getPositions() throw()
 {
 	DoubleArray result;
 	
+#ifndef UGEN_ANDROID
 	for(int i = 0; i < numInternalUGens; i++)
 	{
 		Seekable* seekable = dynamic_cast<Seekable*> (internalUGens[i]);
@@ -1487,12 +1520,14 @@ DoubleArray UGen::getPositions() throw()
 			result.add(seekable->getPosition());
 		}
 	}	
+#endif
 	
 	return result;
 }
 
 void UGen::setPositions(DoubleArray const& newPositions) throw()
 {
+#ifndef UGEN_ANDROID
 	ugen_assert(newPositions.length() > 0);
 	
 	int posIndex = 0;
@@ -1506,6 +1541,7 @@ void UGen::setPositions(DoubleArray const& newPositions) throw()
 			seekable->setPosition(newPositions.wrapAt(posIndex++));
 		}
 	}
+#endif
 }
 
 

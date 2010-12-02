@@ -57,6 +57,8 @@ public:
 	
 	/** Set the current value. */
 	virtual void setValue(const double newValue) throw() = 0;
+	
+	virtual bool isConst() const { return false; }
 };
 
 /** An internal value class with a constant value.
@@ -70,6 +72,7 @@ public:
 	/** Return the value. @return The value. */
 	double getValue() throw(); 
 	void setValue(const double newValue) throw();
+	bool isConst() const { return true; }
 
 private:	
 	double value_;
@@ -168,6 +171,14 @@ public:
 	/** Sets the value. */
 	inline void setValue(Value const& other) throw() { *this = other; } 
 	
+	inline bool isConst() const throw() 
+	{ 
+		if(internal) 
+			return internal->isConst();
+		else
+			return true; // will always be zero!
+	}
+	
 	/** A null value (equal to 0.0) */
 	inline static Value& getNull() { static Value null; null = 0.0; return null; }
 	//static Value null;
@@ -178,6 +189,8 @@ public:
 	
 	/// @} <!-- end Values -------------------------------------------------------- -->
 	
+	
+#ifndef UGEN_ANDROID
 	/**
 	 Tests whether this Value contains a particular ValueInternal derived class.
 	 
@@ -196,6 +209,7 @@ public:
 			return typeid(ValueInternalType*) == typeid(internal);
 		}
 	}
+#endif
 	
 	/** @name Unary Ops.
 	 
@@ -641,9 +655,11 @@ public:
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	void setValue(Value const& other) throw();
 	
+	bool isValueUGenInternal() const throw() { return true; }
+
+	
 protected:
 	Value valueObject;
-	bool isConst;
 };
 
 /** A UGenInternal which uses a Value as its source. 

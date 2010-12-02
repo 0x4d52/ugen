@@ -157,6 +157,12 @@ ValueArray Value::fill(const int size) throw()
 	return ValueArray(*this, size);
 }
 
+#ifdef UGEN_ANDROID // no RTTI
+Value Value::operator- () const throw()
+{
+	return UnaryNegValue(*this);
+}
+#else
 Value Value::operator- () const throw()
 {
 	if(internal == 0) 
@@ -166,6 +172,7 @@ Value Value::operator- () const throw()
 	else
 		return UnaryNegValue(*this);
 }
+#endif
 
 Value& Value::operator+= (Value const& other) throw()
 {
@@ -725,8 +732,7 @@ ValueArray ValueArray::operator- () const throw()
 
 ValueUGenInternal::ValueUGenInternal(Value const& value) 
 :	UGenInternal(0), 
-	valueObject(value),
-	isConst(valueObject.containsInternalType<ValueInternal>())
+	valueObject(value)
 {			
 	float val = (float)valueObject.getValue();
 	initValue(val);
@@ -744,7 +750,7 @@ void ValueUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
 	
-	if(!isConst)
+	if(!valueObject.isConst())
 	{
 		while(numSamplesToProcess--)
 		{
@@ -764,7 +770,6 @@ void ValueUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 void ValueUGenInternal::setValue(Value const& other) throw()
 {
 	valueObject = other;
-	isConst = valueObject.containsInternalType<ValueInternal>();
 }
 
 void ValueUGenInternalK::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()

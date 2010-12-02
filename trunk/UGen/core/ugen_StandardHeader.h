@@ -98,6 +98,27 @@ struct ForceErrorStruct { int dummy; };
 #define UGEN_IO_CLIPFUNC(x) x
 #endif
 
+class TypeInfo
+{
+public:
+	virtual ~TypeInfo() { }
+	
+	bool isRawInputUGenInternal() const throw() { return false; }
+	bool isProxyUGenInternal() const throw() { return false; }
+	bool isValueUGenInternal() const throw() { return false; }
+	bool isPlugUGenInternal() const throw() { return false; }
+	//isVoicerBaseUGenInternal
+	//isVoicerUGenInternal
+	//isTSpawnUGenInternal
+	//isSpawnBaseUGenInternal
+	bool isBufferSender() const throw() { return false; }
+	bool isBufferReceiver() const throw() { return false; }
+	bool isDoneActionSender() const throw() { return false; }
+	bool isDoneActionReceiver() const throw() { return false; }
+	bool isSeekable() const throw() { return false; }
+
+};
+
 END_UGEN_NAMESPACE
 
 //#if (defined (_WIN32) || defined (_WIN64))
@@ -140,16 +161,26 @@ END_UGEN_NAMESPACE
 	 */
 	#include <juce/juce.h>
 #else
-	#include <cstdlib>
-	#include <cstdarg>
-	#include <climits>
-	#include <cmath>
-	#include <cwchar>
-	#include <stdexcept>
-	#include <typeinfo>
-	#include <cstring>
-	#include <cstdio>
 
+	#ifdef UGEN_ANDROID
+		#include <cstdlib>
+		#include <climits>
+		#include <cmath>
+		#include <cwchar>
+		#include <typeinfo>
+		#include <cstring>
+		#include <cstdio>
+	#else
+		#include <cstdlib>
+		#include <cstdarg>
+		#include <climits>
+		#include <cmath>
+		#include <cwchar>
+		#include <stdexcept>
+		#include <typeinfo>
+		#include <cstring>
+		#include <cstdio>
+	#endif
 	
 	// in case some of these macros are left in the code..
 	#ifndef T
@@ -160,7 +191,9 @@ END_UGEN_NAMESPACE
 	#endif
 #endif
 
-#include <iostream>
+#ifndef UGEN_ANDROID
+	#include <iostream>
+#endif
 
 #if (defined (_WIN32) || defined (_WIN64))
 	#define snprintf _snprintf
@@ -172,6 +205,12 @@ END_UGEN_NAMESPACE
 	#ifdef __OBJC__
 		#import <Foundation/Foundation.h>
 		#import <UIKit/UIKit.h>
+
+		#ifdef UGEN_IOS_COREMIDI
+			#import <CoreMIDI/CoreMIDI.h>
+			#import <CoreMIDI/MIDINetworkSession.h>
+		#endif
+	
 	#endif
 
 	#ifndef UISlider

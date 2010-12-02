@@ -39,7 +39,7 @@
 
 
 
-class SmartPointer
+class SmartPointer : public TypeInfo
 {
 public:
 	
@@ -47,7 +47,7 @@ public:
 	/// @{
 	
 	SmartPointer() throw();
-	virtual ~SmartPointer();
+	/*virtual*/ ~SmartPointer(); // now already virtual in TypeInfo
 	void incrementRefCount() throw();
 	virtual void decrementRefCount() throw(); 
 	
@@ -60,11 +60,15 @@ public:
 	
 	/// @} <!-- end Miscellaneous -->
 	
+	friend class NullUGenInternal;
+	
 protected:
 	int refCount;
 	bool active : 1;
 	
 private:
+	void setRefCout(const int newCount) throw(); 
+	
 	SmartPointer (const SmartPointer&);
     const SmartPointer& operator= (const SmartPointer&);
 };

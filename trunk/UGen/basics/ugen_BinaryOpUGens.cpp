@@ -323,6 +323,12 @@ Value operator / (const double leftOperand, Value const& rightOperand) throw()
 	return Value(leftOperand) / rightOperand;
 }
 
+#ifdef UGEN_ANDROID // no RTTI
+Value Value::operator / (Value const& rightOperand) const throw()
+{
+	return BinaryDivideValue(*this, rightOperand);
+}
+#else
 Value Value::operator / (Value const& rightOperand) const throw()
 {
 	Value TempValue = *this; // copy away const
@@ -336,6 +342,7 @@ Value Value::operator / (Value const& rightOperand) const throw()
 	else	
 		return BinaryDivideValue(*this, rightOperand); // default
 }
+#endif
 
 ValueArray operator / (const double leftOperand, ValueArray const& rightOperand) throw()
 {

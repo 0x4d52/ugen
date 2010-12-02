@@ -630,6 +630,7 @@ public:
 	inline bool operator== (UGen const& other) const throw() { return containsIdenticalInternalsAs(other); }
 	inline bool operator!= (UGen const& other) const throw() { return !containsIdenticalInternalsAs(other); }
 	
+#ifndef UGEN_ANDROID
 	/** Tests whether this UGen contains a particular UGenInternal derived class.
 	 
 	 Use this with care as many of the UGen constructors wrap UGen instances in other UGen classes. 
@@ -661,6 +662,7 @@ public:
 		else
 			return dynamic_cast<UGenInternalType*> (internalUGens[index]) != 0;
 	}
+#endif
 	
 	/// @} <!-- end Tests ---------------------------------------------------------------------- -->
 	
@@ -902,8 +904,10 @@ public:
 	 @see Voicer */
 	void sendMidiNote(const int midiChannel, const int midiNote, const int velocity) throw();
 	
+#ifndef UGEN_ANDROID
 #if defined(JUCE_VERSION) || defined(DOXYGEN)
 	void sendMidiBuffer(MidiBuffer const& midiMessages) throw();
+#endif
 #endif
 	
 	/** Attempts to send a trigger message to a TSpawn.

@@ -40,7 +40,6 @@ BEGIN_UGEN_NAMESPACE
 #include "../core/ugen_Constants.h"
 #include "ugen_UIAcceleration.h"
 
-
 END_UGEN_NAMESPACE
 
 #ifdef UGEN_NAMESPACE
