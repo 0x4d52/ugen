@@ -210,6 +210,11 @@ BEGIN_UGEN_NAMESPACE
 	// include these on the iPhone even if we're using Juce
 	#include "iphone/ugen_NSUtilities.h"
 	#include "iphone/ugen_UIAcceleration.h"
+
+	#ifdef UGEN_IOS_COREMIDI
+		#include "iphone/ugen_iOSMidiInput.h"
+	#endif
+
 #endif
 
 /** A debugging function for reporting the sizes of various objects. */

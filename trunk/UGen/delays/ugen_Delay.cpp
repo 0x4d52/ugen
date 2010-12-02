@@ -424,6 +424,8 @@ UGenInternal* CombLUGenInternal::getChannel(const int channel) throw()
 
 void CombLUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
+	static float denom = 1e-14; //15?
+	
 	const float sampleRate = UGen::getSampleRate();
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
@@ -459,7 +461,8 @@ void CombLUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 			
 			float value = lookupIndexL(bufferReadPos);
 			
-			bufferSamples[bufferWritePos] = value * feedback + *inputSamples++;
+			bufferSamples[bufferWritePos] = value * feedback + *inputSamples++ + denom;
+			denom *= -1.f;
 			
 			*outputSamples++ = value;
 			
@@ -578,6 +581,8 @@ UGenInternal* AllpassLUGenInternal::getChannel(const int channel) throw()
 
 void AllpassLUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
+	static float denom = 1e-14; //15?
+
 	const float sampleRate = UGen::getSampleRate();
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
@@ -631,7 +636,8 @@ void AllpassLUGenInternal::processBlock(bool& shouldDelete, const unsigned int b
 				bufferReadPos += (float)delayBufferSize;
 			
 			float inValue = lookupIndexL(bufferReadPos);
-			float outValue = inValue * feedback + *inputSamples++;
+			float outValue = inValue * feedback + *inputSamples++ + denom;
+			denom *= -1.f;
 			
 			bufferSamples[bufferWritePos]  = outValue;
 			
