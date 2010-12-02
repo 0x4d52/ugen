@@ -205,6 +205,11 @@ END_UGEN_NAMESPACE
 	#ifdef __OBJC__
 		#import <Foundation/Foundation.h>
 		#import <UIKit/UIKit.h>
+
+		#ifdef UGEN_IOS_COREMIDI
+			#import <CoreMIDI/CoreMIDI.h>
+			#import <CoreMIDI/MIDINetworkSession.h>
+		#endif
 	#endif
 
 	#ifndef UISlider

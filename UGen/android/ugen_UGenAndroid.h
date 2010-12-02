@@ -8,7 +8,7 @@
 #define DEFAULTSR 44100.0
 #define DEFAULTBLOCKSIZE 512
 
-
+#include <pthread.h>
 
 class AndroidIOHost
 {
@@ -19,11 +19,15 @@ public:
 	void init() throw();
 	int processBlock(const int bufferLength, short *shortBuffer) throw();
 	int processBlockOutputOnly(const int bufferLength, short *shortBuffer) throw();
+	
+	void lock() throw();
+	void unlock() throw();
+	bool tryLock() throw();
 
 	virtual UGen constructGraph(UGen const& input) throw();
 	virtual int sendTrigger(const int index) throw() { return 0; }
 	virtual int setParameter(const int index, const float value) throw() { return 0; }
-	virtual int sendBytes(const int index, const int size, const unsigned char* data) throw() { return 0; }
+	virtual int sendBytes(const int index, const int size, const char* data) throw() { return 0; }
 	
 private:
 	const double sampleRate;
@@ -31,6 +35,8 @@ private:
 	const int blockSize;
 	float *floatBuffer;
 	int currentBlockID;
+	
+	pthread_mutex_t mutex;
 	
 	UGen output;
 };

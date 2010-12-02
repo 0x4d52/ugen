@@ -91,9 +91,11 @@
 					@f$ m = 12 \cdot \log_2 \left( \frac{f}{440} \right) + 69 @f$				\n
 					where @f$ f @f$ is freqeuncy and @f$ m @f$ is MIDI note number. 
 					@see midicps */																								\
+	CLASSNAME dbamp() const throw();																							\
+	CLASSNAME ampdb() const throw();																							\
 	CLASSNAME cpsmidi() const throw();																							\
-	CLASSNAME squared() const throw();	\
-	CLASSNAME cubed() const throw();	\
+	CLASSNAME squared() const throw();																							\
+	CLASSNAME cubed() const throw();																							\
 	/** Unary distort. 
 		@return		A new CLASSNAME which applies @f$ \frac{x}{1+|x|} @f$.			*/											\
 	CLASSNAME distort() const throw();																							\
@@ -174,6 +176,13 @@ inline double midicps(const double a) throw()		{	return 440.0 * ::pow(2.0, (a - 
 inline double cpsmidi(const int a) throw()			{	return log2(a * oneOver440) * 12.0 + 69.0;						}
 inline float cpsmidi(const float a) throw()			{	return (float)(log2(a * oneOver440) * 12.0 + 69.0);				}
 inline double cpsmidi(const double a) throw()		{	return log2(a * oneOver440) * 12.0 + 69.0;						}
+
+inline float ampdb(float amp)						{	return (float)::log10(amp) * 20.f;							}
+inline float dbamp(float db)						{	return (float)::pow(10.f, db * .05f);						}
+inline double ampdb(double amp)						{	return ::log10(amp) * 20.;									}
+inline double dbamp(double db)						{	return ::pow(10, db * .05);									}
+inline double ampdb(int amp)						{	return ::log10(amp) * 20.;									}
+inline double dbamp(int db)							{	return ::pow(10, db * .05);									}
 
 
 #ifndef UGEN_NOEXTGPL

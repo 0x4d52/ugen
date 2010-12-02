@@ -45,6 +45,13 @@ AndroidIOHost::AndroidIOHost(const double sampleRateToUse, const int numInputsTo
 	floatBuffer(new float[ugen::max(numInputs, numOutputs) * blockSize]),
 	currentBlockID(-1)
 {
+	pthread_mutexattr_t atts;
+    pthread_mutexattr_init (&atts);
+    pthread_mutexattr_settype (&atts, PTHREAD_MUTEX_RECURSIVE);
+    //pthread_mutexattr_setprotocol (&atts, 1); //PTHREAD_PRIO_INHERIT=1
+    pthread_mutex_init (&mutex, &atts);
+	
+	
 	UGen::initialise();
 	UGen::prepareToPlay(sampleRate, blockSize, ugen::min(blockSize, 64));
 
@@ -56,6 +63,8 @@ AndroidIOHost::~AndroidIOHost()
 	UGen::shutdown();
 
 	delete [] floatBuffer;
+	
+	pthread_mutex_destroy (&mutex);
 }
 
 void AndroidIOHost::init() throw()
@@ -88,14 +97,19 @@ int AndroidIOHost::processBlock(const int bufferLength, short *shortBuffer) thro
 		}
 	}
 	
-	// set inputs...
-	//..
-	// set outputs
-	output.setOutputs(floatBufferData, blockSize, numOutputs);
-	
-	currentBlockID = UGen::getNextBlockID(blockSize);
-	output.prepareAndProcessBlock(blockSize, currentBlockID, -1);
-	
+	lock(); 
+	{
+		// set inputs...
+		//..
+		// set outputs
+		
+		output.setOutputs(floatBufferData, blockSize, numOutputs);
+		
+		currentBlockID = UGen::getNextBlockID(blockSize);
+		output.prepareAndProcessBlock(blockSize, currentBlockID, -1);
+	}
+	unlock(); 
+
 	for(int channel = 0; channel < numOutputs; channel++)
 	{
 		short *shortBufferChannel = shortBuffer + channel;
@@ -124,11 +138,14 @@ int AndroidIOHost::processBlockOutputOnly(const int bufferLength, short *shortBu
 	static const float upScale = 32767.f;
 	static const float downScale = 1.f / upScale;
 	
-	// set outputs
-	output.setOutputs(floatBufferData, blockSize, numOutputs);
-	
-	currentBlockID = UGen::getNextBlockID(blockSize);
-	output.prepareAndProcessBlock(blockSize, currentBlockID, -1);
+	lock(); 
+	{
+		output.setOutputs(floatBufferData, blockSize, numOutputs);
+		
+		currentBlockID = UGen::getNextBlockID(blockSize);
+		output.prepareAndProcessBlock(blockSize, currentBlockID, -1);
+	} 
+	unlock();
 	
 	for(int channel = 0; channel < numOutputs; channel++)
 	{
@@ -149,6 +166,20 @@ int AndroidIOHost::processBlockOutputOnly(const int bufferLength, short *shortBu
 	return 0;
 }
 
+void AndroidIOHost::lock() throw()
+{
+	pthread_mutex_lock (&mutex);
+}
+
+void AndroidIOHost::unlock() throw()
+{
+	pthread_mutex_unlock (&mutex);
+}
+
+bool AndroidIOHost::tryLock() throw()
+{
+	return pthread_mutex_trylock (&mutex) == 0;
+}
 
 UGen AndroidIOHost::constructGraph(UGen const& input) throw()
 {

@@ -14,12 +14,16 @@ MyAndroidAudio::MyAndroidAudio(const double sampleRate, const int numInputs, con
 
 int MyAndroidAudio::setParameter(const int index, const float value) throw()
 {
+	lock();
+	
 	switch(index)
 	{
 		case Freq:	freq = value;			return 0;
 		case Amp:	amp = value;			return 0;
 		case On:	on = (value >= 0.5f);	return 0;
 	}
+	
+	unlock();
 	
 	return -1; // param not found
 }
