@@ -754,7 +754,7 @@ void VoicerUGenInternal::handleIncomingMidiMessage (void* source, ByteArray cons
 		if((type == 0x80) || (type == 0x90))
 		{
 			int velocity = (type == 0x90) ? value2 : 0;
-			
+			 
 			lock();
 			{
 				sendMidiNote(channel, value1, velocity);
