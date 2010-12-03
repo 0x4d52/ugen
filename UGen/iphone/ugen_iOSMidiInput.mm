@@ -312,6 +312,9 @@ void MIDIInputNotifyProc(const MIDINotification *message, void *refCon)
 	const MIDIPacket *packet = &pktlist->packet[0];
     for (int i = 0; i < pktlist->numPackets; ++i)
     {
+//		UInt64 time = packet->timeStamp;
+//		NSLog(@"timeStamp: %lld", time);
+		
 		ByteArray messages(packet->length, (unsigned char*)packet->data, false);
 		
 		NSEnumerator *enumerator = [delegates objectEnumerator];
