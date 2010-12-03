@@ -162,6 +162,7 @@ public:
 	
 protected:
 
+#ifndef UGEN_ANDROID
 	inline float calcFeedback(float delay, float decay)
 	{
 		if (delay == 0.f) {
@@ -174,6 +175,21 @@ protected:
 			return 0.f;
 		}
 	}
+#else
+	//android
+	inline float calcFeedback(float delay, float decay)
+	{
+		if (delay == 0.f) {
+			return 0.f;
+		} else if (decay > 0.f) {
+			return (float)exp(log001 * delay / decay);
+		} else if (decay < 0.f) {
+			return (float)-exp(log001 * delay / -decay);
+		} else {
+			return 0.f;
+		}
+	}	
+#endif
 	
 	float currentDelay;
 	float currentDecay;

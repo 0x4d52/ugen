@@ -57,9 +57,16 @@ FSinOscUGenInternal::FSinOscUGenInternal(UGen const& freq, const float initialPh
 		currentFreq = inputs[Freq].getValue(channel);
 	
 	double w = currentFreq * twoPi * UGen::getReciprocalSampleRate();
+	
+#ifndef UGEN_ANDROID
 	b1 = 2. * std::cos(w);
 	y1 = std::sin(initialPhase);
 	y2 = std::sin(initialPhase-w);
+#else
+	b1 = 2. * cos(w);
+	y1 = sin(initialPhase);
+	y2 = sin(initialPhase-w);	
+#endif
 	
 	initValue(y1);
 }
@@ -74,6 +81,7 @@ UGenInternal* FSinOscUGenInternal::getChannel(const int channel) throw()
 //	return new FSinOscUGenInternalK(inputs[Freq].kr()); 
 //}
 
+#ifndef UGEN_ANDROID
 void FSinOscUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {	
 	float* outputSamples = uGenOutput.getSampleData();
@@ -106,6 +114,7 @@ void FSinOscUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 		}
 
 		double w = currentFreq * twoPi * UGen::getReciprocalSampleRate();
+		
 		b1 = zap(2. * std::cos(w));
 		y1 = zap(std::sin(initialPhase));
 		y2 = zap(std::sin(initialPhase-w));
@@ -126,7 +135,62 @@ void FSinOscUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 	LOCAL_COPY(y1);
 	LOCAL_COPY(y2);
 }
-
+#else
+//Android
+void FSinOscUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+{	
+	float* outputSamples = uGenOutput.getSampleData();
+	float newFreq = *(inputs[Freq].processBlock(shouldDelete, blockID, channel));
+	double y0;
+	
+	LOCAL_DECLARE(double, b1);
+	LOCAL_DECLARE(double, y1);
+	LOCAL_DECLARE(double, y2);
+	
+	if(newFreq != currentFreq)
+	{
+		currentFreq = newFreq;
+		
+		double initialPhase;
+		
+		if((1.0-abs(y1)) < 0.00001)
+		{
+			initialPhase = y1 > 0.0 ? piOverTwo : -piOverTwo;
+		}
+		else
+		{
+			initialPhase = asin(y1);
+			// based on the trajectory predict which solution of asin(y1) is correct..
+			if(y2 >= y1)
+			{
+				double piVersion = y1 > 0.0 ? pi : -pi;			
+				initialPhase = piVersion - initialPhase;
+			}
+		}
+		
+		double w = currentFreq * twoPi * UGen::getReciprocalSampleRate();
+		
+		b1 = zap(2. * cos(w));
+		y1 = zap(sin(initialPhase));
+		y2 = zap(sin(initialPhase-w));
+	}
+	
+	int numSamplesToProcess = uGenOutput.getBlockSize();
+	for(int i = 0; i < numSamplesToProcess; ++i)
+	{
+		y0 = b1 * y1 - y2;
+		outputSamples[i] = y0;// = b1 * y1 - y2; 
+		y2 = y1; 
+		y1 = y0;
+	}
+	
+	y1 = zap(y1);
+	y2 = zap(y2);
+	LOCAL_COPY(b1);
+	LOCAL_COPY(y1);
+	LOCAL_COPY(y2);
+}
+#endif
 //FSinOscUGenInternalK::FSinOscUGenInternalK(FSinOsc_InputsWithTypesOnly) throw()
 //:	FSinOscUGenInternal(FSinOsc_InputsNoTypes),
 //	value(0.f)

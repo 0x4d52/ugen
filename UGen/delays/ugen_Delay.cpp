@@ -424,7 +424,7 @@ UGenInternal* CombLUGenInternal::getChannel(const int channel) throw()
 
 void CombLUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
-	static float denom = 1e-14; //15?
+	//static float denom = 1e-14; //15?
 	
 	const float sampleRate = UGen::getSampleRate();
 	int numSamplesToProcess = uGenOutput.getBlockSize();
@@ -461,8 +461,8 @@ void CombLUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 			
 			float value = lookupIndexL(bufferReadPos);
 			
-			bufferSamples[bufferWritePos] = value * feedback + *inputSamples++ + denom;
-			denom *= -1.f;
+			bufferSamples[bufferWritePos] = value * feedback + *inputSamples++;// + denom;
+			//denom *= -1.f;
 			
 			*outputSamples++ = value;
 			
@@ -531,7 +531,7 @@ void AllpassNUGenInternal::processBlock(bool& shouldDelete, const unsigned int b
 		LOCAL_COPY(feedback);
 	}
 	
-	float currentDelayMax1 = std::max(1.f, currentDelay);
+	float currentDelayMax1 = ugen::max(1.f, currentDelay);
 	
 	while(numSamplesToProcess > 0)
 	{
@@ -581,7 +581,7 @@ UGenInternal* AllpassLUGenInternal::getChannel(const int channel) throw()
 
 void AllpassLUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
-	static float denom = 1e-14; //15?
+	//static float denom = 1e-14; //15?
 
 	const float sampleRate = UGen::getSampleRate();
 	int numSamplesToProcess = uGenOutput.getBlockSize();
@@ -620,7 +620,7 @@ void AllpassLUGenInternal::processBlock(bool& shouldDelete, const unsigned int b
 		LOCAL_COPY(feedback);
 	}
 	
-	float currentDelayMax1 = std::max(1.f, currentDelay);
+	float currentDelayMax1 = ugen::max(1.f, currentDelay);
 	
 	while(numSamplesToProcess > 0)
 	{
@@ -636,8 +636,8 @@ void AllpassLUGenInternal::processBlock(bool& shouldDelete, const unsigned int b
 				bufferReadPos += (float)delayBufferSize;
 			
 			float inValue = lookupIndexL(bufferReadPos);
-			float outValue = inValue * feedback + *inputSamples++ + denom;
-			denom *= -1.f;
+			float outValue = inValue * feedback + *inputSamples++;// + denom;
+			//denom *= -1.f;
 			
 			bufferSamples[bufferWritePos]  = outValue;
 			

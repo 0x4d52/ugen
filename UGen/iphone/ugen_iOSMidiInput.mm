@@ -485,6 +485,167 @@ void MidiInputSender::sendIncomingMidiMessage(void* source, ByteArray const& mes
 	}
 }
 
+MIDIControllerInternal::MIDIControllerInternal(const int midiChannel, const int controllerNumber,
+											   const float minVal, const float maxVal,
+											   const ExternalControlSource::Warp warp, void* port) throw()
+:	ExternalControlSourceInternal(minVal, maxVal, warp),
+	midiChannel_(midiChannel),
+	controllerNumber_(controllerNumber),
+	port_(port)
+{
+}
+
+void MIDIControllerInternal::handleIncomingMidiMessage (void* source, ByteArray const& message) throw()
+{	
+	if(port_ != 0 && port_ != source) return;
+	
+	int head = 0;
+	
+	// no running status in iOS core midi?
+	
+	while(head < message.length())
+	{
+		unsigned char status = message[head++];
+		
+		bool isStatus = status & 0x80;
+		
+		int type = isStatus ? (status & 0xF0) : 0xF0; // default to system since this is partial sysex?		
+		
+		int value1, value2;
+		
+		switch(type)
+		{
+			// system
+			case 0xF0: {
+				
+				while(head < message.length())
+				{
+					if(message[head] & 0xF0)
+					{
+						break;
+					}
+					else
+					{
+						head++;
+					}
+				}
+				
+				continue; // next message...
+				
+			} break;
+				
+			// program and channel pressure
+			case 0xC0: case 0xD0: {
+				value1 = message[head++];
+				value2 = 0;
+			} break;
+				
+			// note off, note on, aftertouch, controller, pitch wheel
+			case 0x80: case 0x90: case 0xA0: case 0xB0: case 0xE0: {
+				value1 = message[head++];
+				value2 = message[head++];
+			} break;
+		}
+		
+		int channel = (status & 0x0F) + 1;
+		
+		if(channel != midiChannel_)		continue; // channel
+		if(type != 0xB0)				continue; // control change
+		if(value1 != controllerNumber_) continue; // controller number
+					
+		setNormalisedValue(value2 / 127.f);
+	}
+}
+
+MIDIController::MIDIController(const int midiChannel, const int controllerNumber,
+							   const float minVal, const float maxVal, 
+							   const ExternalControlSource::Warp warp, 
+							   void* port) throw()
+{
+	internal = new MIDIControllerInternal(midiChannel, controllerNumber, minVal, maxVal, warp, port);
+}
+
+
+MIDIMostRecentNoteInternal::MIDIMostRecentNoteInternal(const int midiChannel,
+													   const float minVal, const float maxVal,
+													   const ExternalControlSource::Warp warp, void* port) throw()
+:	ExternalControlSourceInternal(minVal, maxVal, warp),
+	midiChannel_(midiChannel),
+	port_(port)
+{
+}
+
+void MIDIMostRecentNoteInternal::handleIncomingMidiMessage (void* source, ByteArray const& message) throw()
+{	
+	if(port_ != 0 && port_ != source) return;
+	
+	int head = 0;
+	
+	// no running status in iOS core midi?
+	
+	while(head < message.length())
+	{
+		unsigned char status = message[head++];
+		
+		bool isStatus = status & 0x80;
+		
+		int type = isStatus ? (status & 0xF0) : 0xF0; // default to system since this is partial sysex?		
+		
+		int value1, value2;
+		
+		switch(type)
+		{
+				// system
+			case 0xF0: {
+				
+				while(head < message.length())
+				{
+					if(message[head] & 0xF0)
+					{
+						break;
+					}
+					else
+					{
+						head++;
+					}
+				}
+				
+				continue; // next message...
+				
+			} break;
+				
+				// program and channel pressure
+			case 0xC0: case 0xD0: {
+				value1 = message[head++];
+				value2 = 0;
+			} break;
+				
+				// note off, note on, aftertouch, controller, pitch wheel
+			case 0x80: case 0x90: case 0xA0: case 0xB0: case 0xE0: {
+				value1 = message[head++];
+				value2 = message[head++];
+			} break;
+		}
+		
+		int channel = (status & 0x0F) + 1;
+		
+		if(channel != midiChannel_)		continue; // channel
+		if(type != 0x90)				continue; // note on
+		if(value2 == 0)					continue; // not note off
+		
+		setNormalisedValue(value1 / 127.f);
+	}	
+}
+
+MIDIMostRecentNote::MIDIMostRecentNote(const int midiChannel,
+									   const float minVal, const float maxVal, 
+									   const ExternalControlSource::Warp warp, 
+									   void* port) throw()
+{
+	internal = new MIDIMostRecentNoteInternal(midiChannel, minVal, maxVal, warp, port);
+}
+
+
 
 END_UGEN_NAMESPACE
 
