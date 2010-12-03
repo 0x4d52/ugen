@@ -142,7 +142,7 @@ BEGIN_UGEN_NAMESPACE
 
 
 #ifndef UGEN_ANDROID
-// just not yet..
+// just not yet.. 
 	#include "core/ugen_TextFile.h" // std lib
 	#include "core/ugen_Collections.h"
 	#include "oscillators/ugen_OscillatorUGens.h"
