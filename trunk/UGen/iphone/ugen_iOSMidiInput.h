@@ -38,6 +38,9 @@
 
 #include "ugen_iOSVersionDetection.h"
 #include "../core/ugen_Arrays.h"
+#include "../filters/control/ugen_Lag.h"
+#include "../core/ugen_ExternalControlSource.h"
+
 
 END_UGEN_NAMESPACE
 
@@ -129,6 +132,121 @@ private:
 	void *peer;
 };
 
+
+#define DeclareIOSMIDIDataSourceCommonFunctions(CLASSNAME,														\
+												CONSTRUCTOR_ARGS_CALL,											\
+												CONSTRUCTOR_ARGS_DECLARE,										\
+												LAGTIME_ARG_CALL,												\
+												CONSTRUCTOR_ARGS_DECLARE_UGEN)									\
+	CLASSNAME CONSTRUCTOR_ARGS_DECLARE throw();																	\
+	CLASSNAME init CONSTRUCTOR_ARGS_DECLARE throw()			{ return CLASSNAME CONSTRUCTOR_ARGS_CALL; }			\
+																												\
+	static UGen KR CONSTRUCTOR_ARGS_DECLARE_UGEN throw()														\
+	{																											\
+		return CLASSNAME CONSTRUCTOR_ARGS_CALL.krInternal(LAGTIME_ARG_CALL);									\
+	}																											\
+																												\
+	static UGen AR CONSTRUCTOR_ARGS_DECLARE_UGEN throw()														\
+	{																											\
+		return Lag(CLASSNAME CONSTRUCTOR_ARGS_CALL, LAGTIME_ARG_CALL);											\
+	}																											\
+																												\
+	void handleIncomingMidiMessage (void* source, ByteArray const& message) throw()
+
+
+#define DeclareIOSMIDIDataSourceNoDefault(CLASSNAME,								\
+										  CONSTRUCTOR_ARGS_CALL,					\
+										  CONSTRUCTOR_ARGS_DECLARE,					\
+										  LAGTIME_ARG_CALL,							\
+										  CONSTRUCTOR_ARGS_DECLARE_UGEN)			\
+	class CLASSNAME : public ExternalControlSource																	\
+	{																												\
+	public:																											\
+		DeclareIOSMIDIDataSourceCommonFunctions(CLASSNAME,															\
+												CONSTRUCTOR_ARGS_CALL,												\
+												CONSTRUCTOR_ARGS_DECLARE,											\
+												LAGTIME_ARG_CALL,													\
+												CONSTRUCTOR_ARGS_DECLARE_UGEN);										\
+	}
+
+
+#define DeclareIOSMIDIDataSource(CLASSNAME,											\
+								 CONSTRUCTOR_ARGS_CALL,								\
+								 CONSTRUCTOR_ARGS_DECLARE,							\
+								 LAGTIME_ARG_CALL,									\
+								 CONSTRUCTOR_ARGS_DECLARE_UGEN)						\
+	class CLASSNAME : public ExternalControlSource																	\
+	{																												\
+	public:																											\
+		CLASSNAME () throw() : ExternalControlSource() { }															\
+		DeclareIOSMIDIDataSourceCommonFunctions(CLASSNAME,															\
+												CONSTRUCTOR_ARGS_CALL,												\
+												CONSTRUCTOR_ARGS_DECLARE,											\
+												LAGTIME_ARG_CALL,													\
+												CONSTRUCTOR_ARGS_DECLARE_UGEN);										\
+	}
+
+
+
+class MIDIControllerInternal :  public MidiInputReceiver,
+								public ExternalControlSourceInternal
+{
+public:
+	MIDIControllerInternal(const int midiChannel, const int controllerNumber,
+						   const float minVal, const float maxVal, 
+						   const ExternalControlSource::Warp warp, 
+						   void* port) throw();
+	
+	void handleIncomingMidiMessage (void* source, ByteArray const& message) throw();
+	
+private:
+	int midiChannel_;
+	int controllerNumber_;
+	void* port_;
+};
+
+DeclareIOSMIDIDataSourceNoDefault(MIDIController, 
+								   (midiChannel, controllerNumber, minVal, maxVal, warp, port), 
+								   (const int midiChannel = 1, const int controllerNumber = 1,
+									const float minVal = 0.f, const float maxVal = 127.f, 
+									const ExternalControlSource::Warp warp = ExternalControlSource::Linear, 
+									void* port = 0),
+								   lagTime,
+								   (const int midiChannel = 1, const int controllerNumber = 1,
+									const float minVal = 0.f, const float maxVal = 127.f, 
+									const ExternalControlSource::Warp warp = ExternalControlSource::Linear, 
+									const double lagTime = 0.1,
+									void* port = 0));
+
+
+class MIDIMostRecentNoteInternal :  public MidiInputReceiver,
+									public ExternalControlSourceInternal
+{
+public:
+	MIDIMostRecentNoteInternal(const int midiChannel,
+							   const float minVal, const float maxVal, 
+							   const ExternalControlSource::Warp warp, 
+							   void* port) throw();
+	
+	void handleIncomingMidiMessage (void* source, ByteArray const& message) throw();
+	
+private:
+	int midiChannel_;
+	void* port_;
+};
+
+DeclareIOSMIDIDataSourceNoDefault(MIDIMostRecentNote, 
+								   (midiChannel, minVal, maxVal, warp, port), 
+								   (const int midiChannel = 1,
+									const float minVal = 0.f, const float maxVal = 127.f, 
+									const ExternalControlSource::Warp warp = ExternalControlSource::Linear, 
+									void* port = 0),
+								   lagTime,
+								   (const int midiChannel = 1,
+									const float minVal = 0.f, const float maxVal = 127.f, 
+									const ExternalControlSource::Warp warp = ExternalControlSource::Linear, 
+									const double lagTime = 0.1,
+									void* port = 0));
 
 
 

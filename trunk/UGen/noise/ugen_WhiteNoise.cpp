@@ -74,4 +74,4 @@ WhiteNoise::WhiteNoise() throw()
 
 END_UGEN_NAMESPACE
 
-#endif GPL
+#endif // GPL

@@ -35,23 +35,23 @@
  */
 
 /*
- Current line count (27/9/2010)
+ Current line count (02/12/2010)
 
  cloc --force-lang="Objective C",mm .
  
- 254 text files.
- 254 unique files.                                          
- 760 files ignored.
+ 260 text files.
+ 260 unique files.                                          
+ 779 files ignored.
  
- http://cloc.sourceforge.net v 1.52  T=1.0 s (254.0 files/s, 65680.0 lines/s)
+ http://cloc.sourceforge.net v 1.52  T=2.0 s (130.0 files/s, 34262.0 lines/s)
  -------------------------------------------------------------------------------
  Language                     files          blank        comment           code
  -------------------------------------------------------------------------------
- C++                            108           5989           4106          20297
- C/C++ Header                   138           6640           7537          18067
- Objective C                      8            701            378           1965
+ C++                            110           6238           4023          21420
+ C/C++ Header                   141           6810           7822          18676
+ Objective C                      9            808            420           2307
  -------------------------------------------------------------------------------
- SUM:                           254          13330          12021          40329
+ SUM:                           260          13856          12265          42403
  -------------------------------------------------------------------------------
  */
 
@@ -110,53 +110,53 @@ BEGIN_UGEN_NAMESPACE
 #include "buffers/ugen_Buffer.h"
 #include "buffers/ugen_PlayBuf.h"
 #include "oscillators/wavetable/ugen_TableOsc.h"
+#include "oscillators/simple/ugen_LFSaw.h"
+#include "oscillators/simple/ugen_LFPulse.h"
+#include "oscillators/simple/ugen_Impulse.h"
+#include "oscillators/simple/ugen_FSinOsc.h"
+#include "oscillators/simple/ugen_Triggers.h"
 #include "filters/control/ugen_Lag.h"
+#include "filters/control/ugen_Decay.h"
+#include "filters/ugen_SOS.h"
+#include "filters/ugen_LeakDC.h"
+#include "filters/simple/ugen_LPF.h"
+#include "filters/simple/ugen_HPF.h"
+#include "filters/ugen_BEQ.h"
+#include "spawn/ugen_Spawn.h"
+#include "spawn/ugen_TSpawn.h"
+#include "spawn/ugen_VoicerBase.h"
+#include "spawn/ugen_Textures.h"
+#include "analysis/ugen_Amplitude.h"
+#include "analysis/ugen_Maxima.h"
+#include "analysis/ugen_Poll.h"
+#include "analysis/ugen_Schmidt.h"
+#include "analysis/ugen_Trig.h"
+#include "analysis/ugen_TrigProcess.h"
+#include "noise/ugen_WhiteNoise.h"
+#include "noise/ugen_PinkNoise.h"
+#include "noise/ugen_BrownNoise.h"
+#include "noise/ugen_Dust.h"
+#include "noise/ugen_LFNoise.h"
+#include "delays/ugen_Delay.h"
+#include "pan/ugen_BasicPan.h"
+
 
 #ifndef UGEN_ANDROID
-	#include "core/ugen_TextFile.h" // std lib
-
 // just not yet..
+	#include "core/ugen_TextFile.h" // std lib
 	#include "core/ugen_Collections.h"
-	#include "analysis/ugen_Amplitude.h"
-	#include "analysis/ugen_Maxima.h"
-	#include "analysis/ugen_Poll.h"
-	#include "analysis/ugen_Schmidt.h"
-	#include "analysis/ugen_Trig.h"
-	#include "analysis/ugen_TrigProcess.h"
-	#include "analysis/ugen_DataRecorder.h"
-	#include "pan/ugen_BasicPan.h"
 	#include "oscillators/ugen_OscillatorUGens.h"
-	#include "oscillators/simple/ugen_LFSaw.h"
-	#include "oscillators/simple/ugen_LFPulse.h"
-	#include "oscillators/simple/ugen_Impulse.h"
-	#include "oscillators/simple/ugen_FSinOsc.h"
-	#include "oscillators/simple/ugen_Triggers.h"
 	#include "envelopes/ugen_ASR.h"
-	#include "filters/ugen_SOS.h"
-	#include "filters/ugen_BEQ.h"
-	#include "filters/ugen_LeakDC.h"
-	#include "filters/simple/ugen_LPF.h"
-	#include "filters/simple/ugen_HPF.h"
-	#include "filters/control/ugen_Decay.h"
 	#include "filters/dynamics/ugen_Normaliser.h"
-	#include "delays/ugen_Delay.h"
 	#include "delays/ugen_BlockDelay.h"
-	#include "spawn/ugen_Spawn.h"
-	#include "spawn/ugen_TSpawn.h"
-	#include "spawn/ugen_VoicerBase.h"
-	#include "spawn/ugen_Textures.h"
 	#include "gui/ugen_Scope.h"
 	#include "fft/ugen_FFTEngine.h"
 	#include "fft/ugen_FFTMagnitude.h"
 	#include "fft/ugen_FFTMagnitudeSelection.h"
 	#include "neuralnet/ugen_NeuralNetwork.h"
 	#include "neuralnet/ugen_NeuralNetworkUGen.h"
-	#include "noise/ugen_WhiteNoise.h"
-	#include "noise/ugen_PinkNoise.h"
-	#include "noise/ugen_BrownNoise.h"
-	#include "noise/ugen_Dust.h"
-	#include "noise/ugen_LFNoise.h"
 	#include "buffers/ugen_XFadePlayBuf.h"
+	#include "analysis/ugen_DataRecorder.h"
 #endif
 
 #ifdef UGEN_JUCE

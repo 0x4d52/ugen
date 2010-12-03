@@ -78,13 +78,8 @@ extern "C" void JNICALL Java_uk_co_miajo_UGen_UGenAudio_destroyIOHost(JNIEnv *en
 extern "C" jint JNICALL Java_uk_co_miajo_UGen_UGenAudio_processIOHost(JNIEnv *env, jobject thiz, jshortArray jShorts)
 {	
 	short *shortBuffer = env->GetShortArrayElements(jShorts, NULL);
-	
-//	env->MonitorEnter(thiz);
 	int result = host->processBlock(-1, shortBuffer);
-//	env->MonitorExit(thiz);
-
 	env->ReleaseShortArrayElements(jShorts, shortBuffer, 0);
-	
 	return result;
 }
 
@@ -92,35 +87,22 @@ extern "C" jint JNICALL Java_uk_co_miajo_UGen_UGenAudio_processIOHost(JNIEnv *en
 extern "C" jint JNICALL Java_uk_co_miajo_UGen_UGenAudio_processIOHostOutputOnly(JNIEnv *env, jobject thiz, jshortArray jShorts)
 {	
 	short *shortBuffer = env->GetShortArrayElements(jShorts, NULL);
-	
-//	env->MonitorEnter(thiz);
 	int result = host->processBlock(-1, shortBuffer);
-//	env->MonitorExit(thiz);
-	
 	env->ReleaseShortArrayElements(jShorts, shortBuffer, 0);
-	
 	return result;
 }
 
 extern "C" jint JNICALL Java_uk_co_miajo_UGen_UGenAudio_sendTrigger(JNIEnv *env, jobject thiz, jint index)
 {
 	int result;
-	
-//	env->MonitorEnter(thiz);
 	result = host->sendTrigger(index);
-//	env->MonitorExit(thiz);
-
 	return result;
 }
 
 extern "C" jint JNICALL Java_uk_co_miajo_UGen_UGenAudio_setParameter(JNIEnv *env, jobject thiz, jint index, jfloat value)
 {
 	int result;
-	
-//	env->MonitorEnter(thiz);
 	result = host->setParameter(index, value);
-//	env->MonitorExit(thiz);
-
 	return result;
 }
 
