@@ -182,9 +182,7 @@ void VoicerUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 			const int numSamples = samplePos - startSample;
 		
 			if(numSamples > 0)
-			{
-//				UGen::setBlockSize(numSamples);
-				
+			{				
 				for(int channel = 0; channel < numChannels; channel++)
 				{
 					bufferData[channel] = proxies[channel]->getSampleData() + startSample;
@@ -226,8 +224,6 @@ void VoicerUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 						
 						UGen newEvent = spawnEvent(*this, currentEventIndex++, midiChannel, midiNote, velocity);
 						newEvent.userData = createUserData(midiChannel, midiNote);
-						//events <<= newEvent;
-						//mixer = Mix(&events, false);
 						events.add(newEvent);
 					}
 					else
@@ -270,9 +266,7 @@ void VoicerUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 		const int numSamples = blockSize - startSample;
 		
 		if(numSamples > 0)
-		{
-//			UGen::setBlockSize(numSamples);
-			
+		{			
 			for(int channel = 0; channel < numChannels; channel++)
 			{
 				bufferData[channel] = proxies[channel]->getSampleData() + startSample;
@@ -282,9 +276,7 @@ void VoicerUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 			mixer.setOutputs(bufferData, numSamples, numChannels);
 			mixer.processBlock(shouldDelete, blockID + startSample, -1);
 		}
-		
-//		UGen::setBlockSize(blockSize);
-		
+				
 		midiMessages.clear();
 		events.removeNulls();
 	}	
@@ -297,6 +289,8 @@ void VoicerUGenInternal::handleIncomingMidiMessage (MidiInput* source, const Mid
 		
 	const ScopedLock sl(lock);
 	sendMidiNote(message.getChannel(), message.getNoteNumber(), message.getVelocity());
+	
+	// other types of message?..
 }
 
 void VoicerUGenInternal::sendMidiBuffer(MidiBuffer const& midiMessagesToAdd) throw()
