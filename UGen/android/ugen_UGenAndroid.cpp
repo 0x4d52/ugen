@@ -59,8 +59,8 @@
 #include "../noise/ugen_LFNoise.cpp"
 #include "../delays/ugen_Delay.cpp"
 #include "../pan/ugen_BasicPan.cpp"
-//#include "../fft/ugen_FFTEngine.cpp"
-//#include "../fft/ugen_FFTEngineInternal.cpp"
+#include "../fft/ugen_FFTEngine.cpp"
+#include "../fft/ugen_FFTEngineInternal.cpp"
 
 //BEGIN_UGEN_NAMESPACE
 

@@ -35,9 +35,13 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 /*\\\ INCLUDE FILES \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
 
+#ifndef UGEN_ANDROID
 #include	<cassert>
 #include	<cmath>
-
+#else
+#include	<assert.h>
+#include	<math.h>
+#endif
 
 
 static inline bool	FFTReal_is_pow2 (long x)
