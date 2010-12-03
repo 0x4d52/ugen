@@ -139,6 +139,7 @@ BEGIN_UGEN_NAMESPACE
 #include "noise/ugen_LFNoise.h"
 #include "delays/ugen_Delay.h"
 #include "pan/ugen_BasicPan.h"
+#include "fft/ugen_FFTEngine.h"
 
 
 #ifndef UGEN_ANDROID
@@ -156,7 +157,6 @@ BEGIN_UGEN_NAMESPACE
 	#include "neuralnet/ugen_NeuralNetworkUGen.h"
 	#include "buffers/ugen_XFadePlayBuf.h"
 	#include "analysis/ugen_DataRecorder.h"
-	#include "fft/ugen_FFTEngine.h"
 #endif
 
 #ifdef UGEN_JUCE

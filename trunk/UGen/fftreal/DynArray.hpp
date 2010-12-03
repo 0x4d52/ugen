@@ -35,7 +35,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 /*\\\ INCLUDE FILES \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
 
+#ifndef UGEN_ANDROID
 #include	<cassert>
+#else
+#include	<assert.h>
+#endif
 
 
 
