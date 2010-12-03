@@ -150,13 +150,13 @@ BEGIN_UGEN_NAMESPACE
 	#include "filters/dynamics/ugen_Normaliser.h"
 	#include "delays/ugen_BlockDelay.h"
 	#include "gui/ugen_Scope.h"
-	#include "fft/ugen_FFTEngine.h"
 	#include "fft/ugen_FFTMagnitude.h"
 	#include "fft/ugen_FFTMagnitudeSelection.h"
 	#include "neuralnet/ugen_NeuralNetwork.h"
 	#include "neuralnet/ugen_NeuralNetworkUGen.h"
 	#include "buffers/ugen_XFadePlayBuf.h"
 	#include "analysis/ugen_DataRecorder.h"
+	#include "fft/ugen_FFTEngine.h"
 #endif
 
 #ifdef UGEN_JUCE

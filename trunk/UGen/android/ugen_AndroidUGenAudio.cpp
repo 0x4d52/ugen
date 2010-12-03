@@ -35,11 +35,10 @@
 #include <android/log.h>
 #include <jni.h>
 
-// weird, - paths seem to need to be relative to ./jni
-#include "../../../UGen/UGen.h"
-#include "../../../UGen/android/ugen_UGenAndroid.h"
+#include "../UGen.h"
+#include "../android/ugen_UGenAndroid.h"
 
-// should be able to use  JNIEnv::RegisterNatives() in JNI_OnLoad()
+// should be able to use JNIEnv::RegisterNatives() in JNI_OnLoad()
 // or perhaps Android requires the similar AndroidRuntime::registerNativeMethods()?
 
 static AndroidIOHost* host = 0;

@@ -38,7 +38,7 @@
 
 #if defined(UGEN_CONVOLUTION) && UGEN_CONVOLUTION
 
-#if !defined(WIN32) && !defined(UGEN_IPHONE)
+#if !defined(WIN32) && !defined(UGEN_IPHONE) && !defined(UGEN_ANDROID)
 	#include <Accelerate/Accelerate.h>
 	#include <CoreServices/CoreServices.h>
 #endif
