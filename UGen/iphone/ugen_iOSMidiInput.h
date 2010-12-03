@@ -40,7 +40,9 @@
 #include "../core/ugen_Arrays.h"
 #include "../filters/control/ugen_Lag.h"
 #include "../core/ugen_ExternalControlSource.h"
+#include "../spawn/ugen_VoicerBase.h"
 
+#ifdef __OBJC__
 
 END_UGEN_NAMESPACE
 
@@ -105,13 +107,14 @@ NSUInteger ListInterfaces(id<MidiInputDelegate> delegate);
 
 BEGIN_UGEN_NAMESPACE
 
+#endif // __OBJC__
 
 // C++ headers here ?
 
 class MidiInputReceiver
 {
 public:
-	MidiInputReceiver() throw();
+	MidiInputReceiver(const bool activate = true) throw();
 	virtual ~MidiInputReceiver();
 	virtual void handleIncomingMidiMessage (void* source, ByteArray const& message) = 0;
 };
@@ -248,6 +251,203 @@ DeclareIOSMIDIDataSourceNoDefault(MIDIMostRecentNote,
 									const double lagTime = 0.1,
 									void* port = 0));
 
+
+class VoicerUGenInternal :  public VoicerBaseUGenInternal,
+							public MidiInputReceiver
+{
+public:
+	VoicerUGenInternal(const int numChannels, const int midiChannel, const int numVoices, const bool forcedSteal, const bool direct) throw();
+	~VoicerUGenInternal();
+	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();	
+	void handleIncomingMidiMessage (void* source, ByteArray const& message) throw();
+	void sendMidiBuffer(ByteArray const& midiMessages) throw();
+	
+	void setController(const int index, const float value) throw();
+	float getController(const int index) const throw();
+	const float* getControllerPtr(const int index) const throw();
+	inline UGen getControllerUGen(const int index) const throw() { return getControllerPtr(index); }
+	
+	void setKeyPressure(const int index, const float value) throw();
+	float getKeyPressure(const int index) const throw();
+	const float* getKeyPressurePtr(const int index) const throw();
+	inline UGen getKeyPressureUGen(const int index) const throw() { return getKeyPressurePtr(index); }
+	
+	void setPitchWheel(const float value) throw();
+	float getPitchWheel() const throw();
+	const float* getPitchWheelPtr() const throw();
+	inline UGen getPitchWheelUGen() const throw() { return getPitchWheelPtr(); }
+	
+	void setChannelPressure(const float value) throw();
+	float getChannelPressure() const throw();
+	const float* getChannelPressurePtr() const throw();	
+	inline UGen getChannelPressureUGen() const throw() { return getChannelPressurePtr(); }
+	
+	void setProgram(const int value) throw();
+	int getProgram() const throw();
+	const int* getProgramPtr() const throw();	
+	inline UGen getProgramUGen() const throw() { return getProgramPtr();  }
+	
+	void lock() const throw();
+	void unlock() const throw();
+	bool tryLock() const throw();
+	
+private:
+	void* lockPeer;
+	const int midiChannel_;
+	ByteArray midiMessages;
+	
+	FloatArray controllers;
+	FloatArray keyPressure;
+	float pitchWheel, channelPressure;	
+	int program;
+};
+
+
+EVENT_DOCS_OWNED(Voicer, VoicerEvent)
+template<class OwnerType = void>
+class VoicerEvent : public EventBase<OwnerType>
+{	
+public:	
+	EVENT_OWNEDCONSTRUCTOR(VoicerEvent)
+	VoicerEvent(OwnerType* o) : EventBase<OwnerType> (o) { }
+	
+	PREDOC(VoicerEvent_spawnEvent_Docs)
+	virtual UGen spawnEvent(VoicerUGenInternal& spawn, 
+							const int eventCount,
+							const int midiChannel,
+							const int midiNote,
+							const int velocity)	= 0;
+};
+
+EVENT_DOCS_VOID(Voicer, VoicerEvent)
+template<>
+class VoicerEvent<void> : public EventBase<void>
+{	
+public:		
+	PREDOC(VoicerEvent_spawnEvent_Docs)
+	virtual UGen spawnEvent(VoicerUGenInternal& spawn, 
+							const int eventCount,
+							const int midiChannel,
+							const int midiNote,
+							const int velocity)	= 0;
+};
+
+typedef VoicerEvent<> VoicerEventDefault;
+
+/** @ingroup UGenInternals */
+template <class VoicerEventType, class OwnerType>
+class VoicerEventUGenInternal : public VoicerUGenInternal
+{
+public:
+	VoicerEventUGenInternal(const int numChannels,
+							const int midiChannel,
+							OwnerType* owner,
+							const int numVoices,
+							const bool forcedSteal,
+							const bool direct) throw()
+	:	VoicerUGenInternal(numChannels, midiChannel, numVoices, forcedSteal, direct), 
+		event(owner)
+	{ 
+	}
+	
+	VoicerEventUGenInternal(const int numChannels,
+							const int midiChannel,
+							VoicerEventType const& e,
+							const int numVoices,
+							const bool forcedSteal,
+							const bool direct) throw()
+	:	VoicerUGenInternal(numChannels, midiChannel, numVoices, forcedSteal, direct), 
+		event(e)
+	{ 
+	}
+	
+	UGen spawnEvent(VoicerBaseUGenInternal& spawn, 
+					const int eventCount,
+					const int midiChannel,
+					const int midiNote,
+					const int velocity)
+	{
+		return event.spawnEvent(*this, eventCount, midiChannel, midiNote, velocity);
+	}
+	
+protected:
+	VoicerEventType event;
+};
+
+/** @ingroup UGenInternals */
+template <class VoicerEventType>
+class VoicerEventUGenInternal<VoicerEventType, void> : public VoicerUGenInternal
+{
+public:
+	VoicerEventUGenInternal(const int numChannels,
+							const int midiChannel,
+							void* owner,
+							const int numVoices,
+							const bool forcedSteal,
+							const bool direct) throw()
+	:	VoicerUGenInternal(numChannels, midiChannel, numVoices, forcedSteal, direct)
+	{ 
+	}
+	
+	VoicerEventUGenInternal(const int numChannels,
+							const int midiChannel,
+							VoicerEventType const& e,
+							const int numVoices,
+							const bool forcedSteal,
+							const bool direct) throw()
+	:	VoicerUGenInternal(numChannels, midiChannel, numVoices, forcedSteal, direct), 
+	event(e)
+	{ 
+	}
+	
+	UGen spawnEvent(VoicerBaseUGenInternal& spawn, 
+					const int eventCount,
+					const int midiChannel,
+					const int midiNote,
+					const int velocity)
+	{
+		return event.spawnEvent(*this, eventCount, midiChannel, midiNote, velocity);
+	}
+	
+protected:
+	VoicerEventType event;
+};
+
+
+
+/** Voice events from MIDI events.
+ 
+ This uses Juce or iOS to actually listen to MIDI inputs and generate events based on MIDI note data.
+ 
+ @ingroup AllUGens EventUGens
+ @see VoicerEventBase<OwnerType>, VoicerBase */
+template <class VoicerEventType, class OwnerType = void> POSTDOC(EVENT_TEMPLATE_DOC(Voicer))
+class Voicer : public UGen																													
+{																																				
+public:																																			
+	Voicer (Voicer_OwnerInputsWithTypesAndDefaults) throw()
+	{																																			
+		initInternal(numChannels);
+		generateFromProxyOwner(new VoicerEventUGenInternal<VoicerEventType, OwnerType>
+							   (numChannels, midiChannel, o, numVoices, forcedSteal, direct));
+	}
+	
+	Voicer (Voicer_EventInputsWithTypesAndDefaults) throw()
+	{																																			
+		initInternal(numChannels);
+		generateFromProxyOwner(new VoicerEventUGenInternal<VoicerEventType, OwnerType> 
+							   (numChannels, midiChannel, e, numVoices, forcedSteal, direct));
+	}
+	
+	EventUGenMethodsDeclare(Voicer, 
+							VoicerEventType, 
+							OwnerType, 
+							(Voicer_OwnerInputsNoTypes), 
+							(Voicer_OwnerInputsWithTypesAndDefaults), 
+							(Voicer_EventInputsNoTypes), 
+							(Voicer_EventInputsWithTypesAndDefaults), 
+							EVENT_COMMON_UGEN_DOCS Voicer_Docs);																		
+};
 
 
 #endif // _UGEN_ugen_iOSMidiInput_H_

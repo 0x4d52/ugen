@@ -90,15 +90,6 @@ private:
 	int program;
 };
 
-#define VoicerEvent_spawnEvent_Docs			EVENT_SPAWNFUNCTION_DOCS															\
-											@param midiChannel	The MIDI channel of the calling MIDI note on event.				\
-											@param midiNote		The MIDI note number of the calling MIDI note on event.			\
-											@param velocity		The velocity of the calling MIDI note event. This should		\
-																in the range 1-127 since velocity values of 0 should have		\
-																been filtered out to turn already sounding notes off (if		\
-																the note number matched the note number of an already			\
-																sounding note).
-
 
 EVENT_DOCS_OWNED(Voicer, VoicerEvent)
 template<class OwnerType = void>
@@ -107,7 +98,7 @@ class VoicerEvent : public EventBase<OwnerType>
 public:	
 	EVENT_OWNEDCONSTRUCTOR(VoicerEvent)
 	VoicerEvent(OwnerType* o) : EventBase<OwnerType> (o) { }
-
+	
 	PREDOC(VoicerEvent_spawnEvent_Docs)
 	virtual UGen spawnEvent(VoicerUGenInternal& spawn, 
 							const int eventCount,
@@ -143,7 +134,7 @@ public:
 							const bool forcedSteal,
 							const bool direct) throw()
 	:	VoicerUGenInternal(numChannels, midiChannel, numVoices, forcedSteal, direct), 
-		event(owner)
+	event(owner)
 	{ 
 	}
 	
@@ -154,7 +145,7 @@ public:
 							const bool forcedSteal,
 							const bool direct) throw()
 	:	VoicerUGenInternal(numChannels, midiChannel, numVoices, forcedSteal, direct), 
-		event(e)
+	event(e)
 	{ 
 	}
 	
@@ -166,10 +157,11 @@ public:
 	{
 		return event.spawnEvent(*this, eventCount, midiChannel, midiNote, velocity);
 	}
-
+	
 protected:
 	VoicerEventType event;
 };
+
 
 /** @ingroup UGenInternals */
 template <class VoicerEventType>
@@ -193,7 +185,7 @@ public:
 							const bool forcedSteal,
 							const bool direct) throw()
 	:	VoicerUGenInternal(numChannels, midiChannel, numVoices, forcedSteal, direct), 
-		event(e)
+	event(e)
 	{ 
 	}
 	
@@ -210,33 +202,10 @@ protected:
 	VoicerEventType event;
 };
 
-#define Voicer_OwnerInputsWithTypesAndDefaults	const int numChannels = 1,				\
-												const int midiChannel = 1,				\
-												OwnerType* o = 0,						\
-												const int numVoices = 0,				\
-												const bool forcedSteal = false,			\
-												const bool direct = true
-#define Voicer_OwnerInputsNoTypes				numChannels, midiChannel, o, numVoices, forcedSteal, direct
-#define Voicer_EventInputsWithTypesAndDefaults	VoicerEventType const& e,				\
-												const int numChannels = 1,				\
-												const int midiChannel = 1,				\
-												const int numVoices = 0,				\
-												const bool forcedSteal = false,			\
-												const bool direct = true
-#define Voicer_EventInputsNoTypes				e, numChannels, midiChannel, numVoices, forcedSteal, direct
-
-#define Voicer_Docs						EVENT_TEMPLATE_DOC(Voicer)																		\
-										EVENT_UGEN_OWNEREVENT_DOC																		\
-										EVENT_UGEN_NUMCHANNELS_DOC(Voicer)																\
-										@param	midiChannel		The MIDI channel to listen to (currently listens on all ports).			\
-										VOICERBASE_VOICE_DOCS																			\
-										@param direct	Whether to listen directly to MIDI input or to rely soley on being sent			\
-														timestamped juce::MidiBuffer objects conatining MIDI data using					\
-														UGen::sendMidiBuffer()
 
 /** Voice events from MIDI events.
  
- This uses Juce to actually listen to MIDI inputs and generate events based on MIDI note data.
+ This uses Juce or iOS to actually listen to MIDI inputs and generate events based on MIDI note data.
  
  @ingroup AllUGens EventUGens
  @see VoicerEventBase<OwnerType>, VoicerBase */
@@ -250,14 +219,14 @@ public:
 		generateFromProxyOwner(new VoicerEventUGenInternal<VoicerEventType, OwnerType>
 							   (numChannels, midiChannel, o, numVoices, forcedSteal, direct));
 	}
-
+	
 	Voicer (Voicer_EventInputsWithTypesAndDefaults) throw()
 	{																																			
 		initInternal(numChannels);
 		generateFromProxyOwner(new VoicerEventUGenInternal<VoicerEventType, OwnerType> 
-								(numChannels, midiChannel, e, numVoices, forcedSteal, direct));
+							   (numChannels, midiChannel, e, numVoices, forcedSteal, direct));
 	}
-
+	
 	EventUGenMethodsDeclare(Voicer, 
 							VoicerEventType, 
 							OwnerType, 
@@ -267,8 +236,6 @@ public:
 							(Voicer_EventInputsWithTypesAndDefaults), 
 							EVENT_COMMON_UGEN_DOCS Voicer_Docs);																		
 };
-
-
 
 
 

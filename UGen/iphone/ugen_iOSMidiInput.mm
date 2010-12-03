@@ -40,6 +40,7 @@
 BEGIN_UGEN_NAMESPACE
 
 #include "ugen_iOSMidiInput.h"
+#include "../basics/ugen_MixUGen.h"
 
 END_UGEN_NAMESPACE
 
@@ -444,10 +445,13 @@ NSUInteger ListInterfaces(id<MidiInputDelegate> delegate)
 
 BEGIN_UGEN_NAMESPACE
 
-MidiInputReceiver::MidiInputReceiver() throw()
+MidiInputReceiver::MidiInputReceiver(const bool activate) throw()
 {
-	MidiInputSender& sender = MidiInputSender::getInstance();
-	sender.addMidiReceiver(this);
+	if(activate)
+	{
+		MidiInputSender& sender = MidiInputSender::getInstance();
+		sender.addMidiReceiver(this);
+	}
 }
 
 MidiInputReceiver::~MidiInputReceiver()
@@ -645,6 +649,302 @@ MIDIMostRecentNote::MIDIMostRecentNote(const int midiChannel,
 	internal = new MIDIMostRecentNoteInternal(midiChannel, minVal, maxVal, warp, port);
 }
 
+
+
+VoicerUGenInternal::VoicerUGenInternal(const int numChannels, 
+									   const int midiChannel, 
+									   const int numVoices, 
+									   const bool forcedSteal,
+									   const bool direct) throw()
+:	VoicerBaseUGenInternal(numChannels, numVoices, forcedSteal),
+	MidiInputReceiver(direct),
+	midiChannel_(midiChannel),
+	controllers(FloatArray::newClear(128)),
+	keyPressure(FloatArray::newClear(128)),
+	pitchWheel(0.f),
+	channelPressure(0.f),
+	program(0)
+{
+	controllers[7] = 1.f;
+	controllers[10] = 0.5f;
+	controllers[11] = 1.f;
+	
+	NSLock* nsLock = [[NSLock alloc] init];
+	lockPeer = (void*)nsLock;
+}
+
+VoicerUGenInternal::~VoicerUGenInternal()
+{
+	NSLock* nsLock = (NSLock*)lockPeer;
+	[nsLock release];
+}
+
+void VoicerUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
+{	
+	if(shouldStopAllEvents() == true) initEvents();
+	
+	if(midiMessages.length() > 0)
+	{
+		handleIncomingMidiMessage(0, midiMessages);
+		
+		lock();
+		{
+			midiMessages = ByteArray();
+		}
+		unlock();
+	}
+	
+	lock();
+	{
+		SpawnBaseUGenInternal::processBlock(shouldDelete, blockID, -1);
+	}
+	unlock();
+}
+
+void VoicerUGenInternal::handleIncomingMidiMessage (void* source, ByteArray const& message) throw()
+{	
+	static const float normalise127 = 1.f / 127.f;
+	static const float normalise8192 = 1.f / 8192.f;
+	
+	int head = 0;
+	
+	// no running status in iOS core midi?
+	
+	while(head < message.length())
+	{
+		unsigned char status = message[head++];
+		
+		bool isStatus = status & 0x80;
+		int type = isStatus ? (status & 0xF0) : 0xF0; // default to system since this is partial sysex?		
+		int value1, value2;
+		
+		switch(type)
+		{
+			case 0xF0: { // system
+				while(head < message.length())
+				{
+					if(message[head] & 0xF0)
+					{
+						break;
+					}
+					else
+					{
+						head++;
+					}
+				}
+				
+				continue; // next message...
+			} break;
+				// program and channel pressure
+			case 0xC0: case 0xD0: {
+				value1 = message[head++];
+				value2 = 0;
+			} break;
+				// note off, note on, aftertouch, controller, pitch wheel
+			case 0x80: case 0x90: case 0xA0: case 0xB0: case 0xE0: {
+				value1 = message[head++];
+				value2 = message[head++];
+			} break;
+		}
+		
+		int channel = (status & 0x0F) + 1;
+		
+		if(channel != midiChannel_)	continue; // channel		
+		
+		if((type == 0x80) || (type == 0x90))
+		{
+			int velocity = (type == 0x90) ? value2 : 0;
+			
+			lock();
+			{
+				sendMidiNote(channel, value1, velocity);
+			}
+			unlock();
+		}
+		else if(type == 0xB0)
+		{
+			setController(value1, (float)value2 * normalise127); // locks internally
+		}
+		else if(type == 0xC0)
+		{
+			setProgram(value1); // locks internally
+		}
+		else if(type == 0xD0)
+		{
+			setKeyPressure(value1, (float)value2 * normalise127); // locks internally
+		}
+		else if(type == 0xE0)
+		{
+			int wheel = (value2 << 7) | value1;
+			wheel -= 8192;
+			setPitchWheel((float)wheel * normalise8192); // locks internally
+		}		
+	}	
+}
+
+void VoicerUGenInternal::sendMidiBuffer(ByteArray const& midiMessagesToAdd) throw()
+{	
+	if(midiMessagesToAdd.length() > 0)
+	{			
+		lock();
+		{
+			midiMessages.add(midiMessagesToAdd);
+		}
+		unlock();		
+	}
+}
+
+void VoicerUGenInternal::setController(const int index, const float value) throw()
+{
+	lock();
+	{
+		controllers.put(index, value);
+	}
+	unlock();		
+}
+
+float VoicerUGenInternal::getController(const int index) const throw()
+{
+	float result;
+	lock();
+	{
+		result = controllers[index];
+	}
+	unlock();		
+	
+	return result;
+}
+
+const float* VoicerUGenInternal::getControllerPtr(const int index) const throw()
+{	
+	return controllers.getArray() + index;
+}
+
+void VoicerUGenInternal::setKeyPressure(const int index, const float value) throw()
+{
+	lock();
+	{
+		keyPressure.put(index, value);
+	}
+	unlock();		
+}
+
+float VoicerUGenInternal::getKeyPressure(const int index) const throw()
+{
+	float result;
+	
+	lock();
+	{
+		result = keyPressure[index];
+	}
+	unlock();		
+	
+	return result;
+}
+
+const float* VoicerUGenInternal::getKeyPressurePtr(const int index) const throw()
+{	
+	return keyPressure.getArray() + index;
+}
+
+void VoicerUGenInternal::setPitchWheel(const float value) throw()
+{
+	lock();
+	{
+		pitchWheel = value;
+	}
+	unlock();		
+}
+
+float VoicerUGenInternal::getPitchWheel() const throw()
+{
+	float result;
+	
+	lock();
+	{
+		result = pitchWheel;
+	}
+	unlock();		
+	
+	return result;
+}
+
+const float* VoicerUGenInternal::getPitchWheelPtr() const throw()
+{
+	return &pitchWheel;
+}
+
+void VoicerUGenInternal::setChannelPressure(const float value) throw()
+{
+	lock();
+	{
+		channelPressure = value;
+	}
+	unlock();	
+}
+
+float VoicerUGenInternal::getChannelPressure() const throw()
+{
+	float result;
+	
+	lock();
+	{
+		result = channelPressure;
+	}
+	unlock();		
+	
+	return result;
+}
+
+const float* VoicerUGenInternal::getChannelPressurePtr() const throw()
+{	
+	return &channelPressure;
+}
+
+void VoicerUGenInternal::setProgram(const int value) throw()
+{
+	lock();
+	{
+		program = value;
+	}
+	unlock();		
+}
+
+int VoicerUGenInternal::getProgram() const throw()
+{
+	int result;
+	
+	lock();
+	{
+		result = program;
+	}
+	unlock();		
+	
+	return result;
+}
+
+const int* VoicerUGenInternal::getProgramPtr() const throw()
+{
+	return &program;
+}
+
+void VoicerUGenInternal::lock() const throw()
+{
+	NSLock* nsLock = (NSLock*)lockPeer;
+	[nsLock lock];
+}
+
+void VoicerUGenInternal::unlock() const throw()
+{
+	NSLock* nsLock = (NSLock*)lockPeer;
+	[nsLock unlock];
+}
+
+bool VoicerUGenInternal::tryLock() const throw()
+{
+	NSLock* nsLock = (NSLock*)lockPeer;
+	return [nsLock tryLock];
+}
 
 
 END_UGEN_NAMESPACE
