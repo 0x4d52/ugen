@@ -17,57 +17,107 @@
 package uk.co.miajo.UGen;
 
 import android.app.Activity;
-import android.widget.TextView;
 import android.os.Bundle;
+import android.view.View.OnClickListener;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.SeekBar;
+import android.widget.TextView;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 
-
-public class AndroidUGen extends Activity
-{
+public class AndroidUGen extends Activity implements OnSeekBarChangeListener, OnClickListener {
 	private UGenAudio audioThread;
-	
+	private CheckBox onOff;
+	private SeekBar freqSlider, ampSlider;
+	private TextView freqText, ampText;
+
 	// match the enum in the C++ code
 	static final int Freq = 0;
 	static final int Amp = 1;
 	static final int On = 2;
 
-    /** Called when the activity is first created. */
-    @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-                
-        audioThread = new UGenAudio("/data/data/uk.co.miajo.UGen/lib"); //??
-        
-        audioThread.setParameter(Freq, 500);
-        audioThread.setParameter(Amp, 0.5);
-        audioThread.setParameter(On, 1);
-        
-        audioThread.start();
-        
-        TextView  tv = new TextView(this);
-        tv.setText( "Testing..." );
-        setContentView(tv);
-    }
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+
+		/* widgets setup */
+		
+		// find views
+		freqSlider = (SeekBar) findViewById(R.id.freqslider);
+		ampSlider = (SeekBar) findViewById(R.id.ampslider);
+		onOff = (CheckBox) findViewById(R.id.onOffbutton);
+		freqText = (TextView) findViewById(R.id.freq_label);
+		ampText = (TextView) findViewById(R.id.amp_label);
+
+		// set listeners
+		freqSlider.setOnSeekBarChangeListener(this);
+		ampSlider.setOnSeekBarChangeListener(this);
+		onOff.setOnClickListener(this);
+		
+		// set values
+		freqText.setText("Frequency");
+		ampText.setText("Amplitude");
+		onOff.setChecked(false);
+
+		/* UGen setup */
+		
+		audioThread = new UGenAudio("/data/data/uk.co.miajo.UGen/lib"); // ??
+		
+		// initial values
+		audioThread.setParameter(Freq, 1000);
+		audioThread.setParameter(Amp, 0.45);
+		audioThread.setParameter(On, 0); // didn't realise it would make horrible noises without this!
+
+		audioThread.start();
+	}
 
 	@Override
-    public void onStop()
-    {
+	public void onStop() {
 		super.onStop();
-		
+
 		audioThread.sendQuit();
-		
-		while(!audioThread.isEnded())
-		{
-			try{
+
+		while (!audioThread.isEnded()) {
+			try {
 				Thread.sleep(50L);
-			}
-			catch(InterruptedException err)
-			{
+			} catch (InterruptedException err) {
 				err.printStackTrace();
 				break;
 			}
 		}
-		
+
 		audioThread.destroyIOHost();
-    }
+	}
+
+	@Override
+	public void onProgressChanged(SeekBar seekBar, int sliderVal,
+			boolean fromUser) {
+		if (seekBar == freqSlider) {
+			// set frequency to slider value (scale and shift (200 - 1000Hz)
+			audioThread.setParameter(Freq, ((float) Integer.valueOf(sliderVal) * 0.1) + 200.0);
+		} else if (seekBar == ampSlider) {
+			// set amplitude to slider value (up to 0.9)
+			audioThread.setParameter(Amp,(float) Integer.valueOf(sliderVal) * 0.009);
+		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		if (v == onOff) {
+			// turn audio on/off with checkbox
+			audioThread.setParameter(On, onOff.isChecked() ? 1 : 0);
+		}
+
+	}
+	
+	/* unused methods */
+	@Override
+	public void onStartTrackingTouch(SeekBar seekBar) {
+	}
+
+	@Override
+	public void onStopTrackingTouch(SeekBar seekBar) {
+	}
 }

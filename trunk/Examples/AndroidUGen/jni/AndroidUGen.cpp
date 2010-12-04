@@ -8,13 +8,14 @@ AndroidIOHost* createHost(const double sampleRate, const int numInputs, const in
 }
 
 MyAndroidAudio::MyAndroidAudio(const double sampleRate, const int numInputs, const int numOutputs, const int preferredBufferSize) throw()
-:	AndroidIOHost(sampleRate, numInputs, numOutputs, preferredBufferSize)
+:	AndroidIOHost(sampleRate, numInputs, numOutputs, preferredBufferSize),
+	freq(0), amp(0), on(0)
 {
 }
 
 int MyAndroidAudio::setParameter(const int index, const float value) throw()
 {
-	lock();
+	//lock();
 	
 	switch(index)
 	{
@@ -23,7 +24,7 @@ int MyAndroidAudio::setParameter(const int index, const float value) throw()
 		case On:	on = (value >= 0.5f);	return 0;
 	}
 	
-	unlock();
+	//unlock();
 	
 	return -1; // param not found
 }

@@ -30,37 +30,40 @@
 #include "../envelopes/ugen_EnvGen.cpp"
 #include "../envelopes/ugen_Lines.cpp"
 #include "../filters/control/ugen_Lag.cpp"
-#include "../filters/ugen_BEQ.cpp"
-#include "../filters/control/ugen_Decay.cpp"
-#include "../filters/ugen_SOS.cpp"
-#include "../filters/ugen_LeakDC.cpp"
-#include "../filters/simple/ugen_LPF.cpp"
-#include "../filters/simple/ugen_HPF.cpp"
+
 #include "../oscillators/wavetable/ugen_TableOsc.cpp"
-#include "../oscillators/simple/ugen_LFSaw.cpp"
-#include "../oscillators/simple/ugen_LFPulse.cpp"
-#include "../oscillators/simple/ugen_Impulse.cpp"
-#include "../oscillators/simple/ugen_FSinOsc.cpp"
-#include "../oscillators/simple/ugen_Triggers.cpp"
-#include "../spawn/ugen_Spawn.cpp"
-#include "../spawn/ugen_TSpawn.cpp"
-#include "../spawn/ugen_VoicerBase.cpp"
-#include "../spawn/ugen_Textures.cpp"
-#include "../analysis/ugen_Amplitude.cpp"
-#include "../analysis/ugen_Maxima.cpp"
-#include "../analysis/ugen_Poll.cpp"
-#include "../analysis/ugen_Schmidt.cpp"
-#include "../analysis/ugen_Trig.cpp"
-#include "../analysis/ugen_TrigProcess.cpp"
-#include "../noise/ugen_WhiteNoise.cpp"
-#include "../noise/ugen_PinkNoise.cpp"
-#include "../noise/ugen_BrownNoise.cpp"
-#include "../noise/ugen_Dust.cpp"
-#include "../noise/ugen_LFNoise.cpp"
-#include "../delays/ugen_Delay.cpp"
-#include "../pan/ugen_BasicPan.cpp"
-#include "../fft/ugen_FFTEngine.cpp"
-#include "../fft/ugen_FFTEngineInternal.cpp"
+
+
+//#include "../filters/ugen_BEQ.cpp"
+//#include "../filters/control/ugen_Decay.cpp"
+//#include "../filters/ugen_SOS.cpp"
+//#include "../filters/ugen_LeakDC.cpp"
+//#include "../filters/simple/ugen_LPF.cpp"
+//#include "../filters/simple/ugen_HPF.cpp"
+//#include "../oscillators/simple/ugen_LFSaw.cpp"
+//#include "../oscillators/simple/ugen_LFPulse.cpp"
+//#include "../oscillators/simple/ugen_Impulse.cpp"
+//#include "../oscillators/simple/ugen_FSinOsc.cpp"
+//#include "../oscillators/simple/ugen_Triggers.cpp"
+//#include "../spawn/ugen_Spawn.cpp"
+//#include "../spawn/ugen_TSpawn.cpp"
+//#include "../spawn/ugen_VoicerBase.cpp"
+//#include "../spawn/ugen_Textures.cpp"
+//#include "../analysis/ugen_Amplitude.cpp"
+//#include "../analysis/ugen_Maxima.cpp"
+//#include "../analysis/ugen_Poll.cpp"
+//#include "../analysis/ugen_Schmidt.cpp"
+//#include "../analysis/ugen_Trig.cpp"
+//#include "../analysis/ugen_TrigProcess.cpp"
+//#include "../noise/ugen_WhiteNoise.cpp"
+//#include "../noise/ugen_PinkNoise.cpp"
+//#include "../noise/ugen_BrownNoise.cpp"
+//#include "../noise/ugen_Dust.cpp"
+//#include "../noise/ugen_LFNoise.cpp"
+//#include "../delays/ugen_Delay.cpp"
+//#include "../pan/ugen_BasicPan.cpp"
+//#include "../fft/ugen_FFTEngine.cpp"
+//#include "../fft/ugen_FFTEngineInternal.cpp"
 
 //BEGIN_UGEN_NAMESPACE
 
@@ -75,11 +78,13 @@ AndroidIOHost::AndroidIOHost(const double sampleRateToUse, const int numInputsTo
 	floatBuffer(new float[ugen::max(numInputs, numOutputs) * blockSize]),
 	currentBlockID(-1)
 {
-	pthread_mutexattr_t atts;
-    pthread_mutexattr_init (&atts);
-    pthread_mutexattr_settype (&atts, PTHREAD_MUTEX_RECURSIVE);
-    //pthread_mutexattr_setprotocol (&atts, 1); //PTHREAD_PRIO_INHERIT=1
-    pthread_mutex_init (&mutex, &atts);
+//	pthread_mutexattr_t atts;
+//    pthread_mutexattr_init (&atts);
+//    pthread_mutexattr_settype (&atts, PTHREAD_MUTEX_RECURSIVE);
+//    //pthread_mutexattr_setprotocol (&atts, 1); //PTHREAD_PRIO_INHERIT=1
+//    pthread_mutex_init (&mutex, &atts);
+	
+	pthread_mutex_init(&mutex, 0);
 	
 	
 	UGen::initialise();
