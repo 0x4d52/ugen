@@ -111,7 +111,7 @@ void DiskInUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 	}
 }
 
-void DiskInUGenInternal::changeListenerCallback (void*)
+void DiskInUGenInternal::changeListenerCallback (ChangeBroadcaster*)
 {
 	if(filePlayer.isPlaying() == false)
 	{

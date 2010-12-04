@@ -66,10 +66,9 @@ public class AndroidUGen extends Activity implements OnSeekBarChangeListener, On
 		audioThread = new UGenAudio("/data/data/uk.co.miajo.UGen/lib"); // ??
 		
 		// initial values
-		audioThread.setParameter(Freq, 1000);
-		audioThread.setParameter(Amp, 0.45);
-		audioThread.setParameter(On, 0); // didn't realise it would make horrible noises without this!
-
+		freqSlider.setProgress(2000);
+		ampSlider.setProgress(10);
+		
 		audioThread.start();
 	}
 

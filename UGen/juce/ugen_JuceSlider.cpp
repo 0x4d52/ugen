@@ -51,7 +51,7 @@ slider_(slider)
 
 SliderValueInternal::~SliderValueInternal() throw()
 {
-	if(slider_->isValidComponent())
+	if(slider_)//->isValidComponent())
 		slider_->removeListener(this);
 }
 
@@ -79,7 +79,7 @@ ButtonValueInternal::ButtonValueInternal(Button* button) throw()
 
 ButtonValueInternal::~ButtonValueInternal() throw()
 {
-	if(button_->isValidComponent())
+	if(button_)//->isValidComponent())
 		button_->removeButtonListener(this);
 }
 
@@ -123,7 +123,7 @@ LabelValueInternal::LabelValueInternal(Label* label) throw()
 
 LabelValueInternal::~LabelValueInternal() throw()
 {
-	if(label_->isValidComponent())
+	if(label_)//->isValidComponent())
 		label_->removeListener(this);
 }
 
