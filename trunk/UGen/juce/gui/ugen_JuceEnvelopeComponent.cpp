@@ -273,7 +273,7 @@ void EnvelopeHandleComponent::mouseDown(const MouseEvent& e)
 		
 		resizeLimits.setAdjacentHandleLimits(leftLimit, rightLimit);
 
-		dragger.startDraggingComponent(this, &resizeLimits);
+		dragger.startDraggingComponent(this, e);//&resizeLimits);
 	
 	}
 }
@@ -294,7 +294,7 @@ void EnvelopeHandleComponent::mouseDrag(const MouseEvent& e)
 		
 	} else {
 				
-		dragger.dragComponent(this, e);
+		dragger.dragComponent(this, e, &resizeLimits);
 	}
 	
 	updateLegend();

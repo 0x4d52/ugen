@@ -1443,13 +1443,16 @@ UGen operator, (float leftOperand, UGen const& rightOperand) throw();
 
 #define EVENT_COMMON_UGEN_DOCS	<B>Generic Event-based %UGen argument documentation:</B>										\
 								Event-based UGen instances are created using a template where the first template parameter		\
-								is an "event" class (i.e., a sublclass of EventBase<OwnerType>) and the second template			\
+								is an "event" class (i.e., a subclass of EventBase<OwnerType>) and the second template			\
 								parameter is an "owner" type. This must be the same owner type as the event.					\
 								Generally a event UGen will be constructed in one of two ways: using a pointer to the			\
 								owner which will be used to construct an event of the appropriate type (in turn passing			\
 								the owner pointer); or the event UGen may be constructed by passing in an existing				\
 								event. This is useful if the event is complex and/or has a custom constructor and				\
-								the default constructor(s) are therfore insufficient.											\
+								the default constructor(s) are therfore insufficient. Using this method be sure that your		\
+								event class can be safely copied (e.g., using normal copy constructors) so don`t store			\
+								regular pointers owned by the event class. UGen++ ojects such as Buffer and UGen are fine		\
+								since these enclose reference-counted objects.													\
 								\n\n\
 								COMMON_UGEN_DOCS
 

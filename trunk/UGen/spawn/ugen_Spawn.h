@@ -239,7 +239,7 @@ protected:
  the owner to the base class in this case. Then inside the owner of type MyObject
  @code
  ...
- synth = Spawn<MySpawnEvent>::AR(1, 0.5, 0, this);
+ synth = Spawn<MySpawnEvent,MyObject>::AR(1, 0.5, 0, this);
  @endcode
  
  Within the SpawnEventBase<OwnerType>::spawnEvent() call the event may modify 

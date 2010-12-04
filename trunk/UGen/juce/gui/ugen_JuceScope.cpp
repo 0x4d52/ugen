@@ -106,7 +106,7 @@ void ScopeComponentBase::updateGUI() throw()
 
 bool ScopeComponentBase::isValid() throw()
 {
-	return isValidComponent();
+	return true;//isValidComponent();
 }
 
 void ScopeComponentBase::lock() throw()

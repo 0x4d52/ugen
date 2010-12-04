@@ -13,6 +13,6 @@ public:
 private:
 	float freq;
 	float amp;
-	int on;
+	UGenArray events;
 };
 

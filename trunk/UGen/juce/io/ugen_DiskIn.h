@@ -58,7 +58,7 @@ public:
 	void prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
-	void changeListenerCallback (void*);
+	void changeListenerCallback (ChangeBroadcaster*);
 	
 	double getDuration() const throw();
 	double getPosition() const throw();

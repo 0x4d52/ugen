@@ -54,7 +54,7 @@ MultiSliderUGenInternal::MultiSliderUGenInternal(UGen const& input, MultiSlider 
 	if(values)
 		memset(values, 0, input.getNumChannels() * sizeof(double));
 	
-	if(sliders && sliders->isValidComponent())
+	if(sliders)// && sliders->isValidComponent())
 	{
 		sliders->getInterceptsMouseClicks(oldClick, oldChildClick);
 		sliders->setInterceptsMouseClicks(false, false);
@@ -73,7 +73,7 @@ MultiSliderUGenInternal::~MultiSliderUGenInternal()
 {
 	stopTimer();
 	
-	if(sliders && sliders->isValidComponent())
+	if(sliders)// && sliders->isValidComponent())
 	{
 		sliders->detachFromMultiSliderUGenInternal();
 		sliders->setInterceptsMouseClicks(oldClick, oldChildClick);

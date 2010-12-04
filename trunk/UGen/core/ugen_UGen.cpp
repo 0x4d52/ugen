@@ -317,7 +317,7 @@ UGen::UGen(MultiSlider* sliders) throw()
 	numInternalUGens(0),
 	internalUGens(0)
 {	
-	if(sliders && sliders->isValidComponent())
+	if(sliders)// && sliders->isValidComponent())
 	{
 		initInternal(sliders->getNumSliders());
 		for(int i = 0; i < sliders->getNumSliders(); i++)
