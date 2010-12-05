@@ -41,8 +41,8 @@
 #include "../../basics/ugen_MulAdd.h"
 
 /** @ingroup UGenInternals */
-class LFSawUGenInternal :  public UGenInternal,
-						   public Seekable
+class LFSawUGenInternal :  public UGenInternal//,
+//						   public Seekable
 {
 public:
 	LFSawUGenInternal(UGen const& freq, const float initialPhase) throw();
@@ -52,7 +52,7 @@ public:
 	
 	double getDuration() const throw();
 	double getPosition() const throw();
-	void setPosition(const double newPosition) throw();		
+	bool setPosition(const double newPosition) throw();		
 	
 	enum Inputs { Freq, NumInputs };
 	

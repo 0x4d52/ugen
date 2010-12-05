@@ -39,7 +39,7 @@
 
 
 
-class SmartPointer //: public TypeInfo
+class SmartPointer
 {
 public:
 	
@@ -47,7 +47,7 @@ public:
 	/// @{
 	
 	SmartPointer() throw();
-	virtual ~SmartPointer(); // now already virtual in TypeInfo
+	virtual ~SmartPointer();
 	void incrementRefCount() throw();
 	virtual void decrementRefCount() throw(); 
 	

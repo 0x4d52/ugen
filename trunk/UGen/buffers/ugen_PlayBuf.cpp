@@ -147,9 +147,10 @@ double PlayBufUGenInternal::getPosition() const throw()
 	return bufferPos * UGen::getReciprocalSampleRate();
 }
 
-void PlayBufUGenInternal::setPosition(const double newPosition) throw()
+bool PlayBufUGenInternal::setPosition(const double newPosition) throw()
 {
 	bufferPos = ugen::max(0.0, newPosition) * UGen::getSampleRate();
+	return true;
 }
 
 
@@ -328,9 +329,10 @@ double RecordBufUGenInternal::getPosition() const throw()
 	return bufferPos * UGen::getReciprocalSampleRate();
 }
 
-void RecordBufUGenInternal::setPosition(const double newPosition) throw()
+bool RecordBufUGenInternal::setPosition(const double newPosition) throw()
 {
 	bufferPos = ugen::max(0.0, newPosition) * UGen::getSampleRate();
+	return true;
 }
 
 RecordBuf::RecordBuf(UGen const& input,
@@ -463,11 +465,13 @@ double LoopPointsUGenInternal::getPosition() const throw()
 	return currentValue * b.duration();
 }
 	
-void LoopPointsUGenInternal::setPosition(const double newPosition) throw()
+bool LoopPointsUGenInternal::setPosition(const double newPosition) throw()
 {
 	double normalisedPos = newPosition / b.duration();
 	
 	currentValue = ugen::clip(normalisedPos, 0.0, 1.0);
+	
+	return true;
 }
 
 LoopPoints::LoopPoints(Buffer const& buffer, 

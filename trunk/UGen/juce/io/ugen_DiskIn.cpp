@@ -139,12 +139,14 @@ double DiskInUGenInternal::getPosition() const throw()
 	return filePlayer.getCurrentPosition();
 }
 
-void DiskInUGenInternal::setPosition(const double newPosition) throw()
+bool DiskInUGenInternal::setPosition(const double newPosition) throw()
 {	
 	filePlayer.setPosition(newPosition);
 	
 	if(filePlayer.isPlaying() == false)
 		filePlayer.start();
+	
+	return true;
 }
 
 

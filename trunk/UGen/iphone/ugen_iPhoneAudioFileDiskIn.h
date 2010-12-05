@@ -42,7 +42,7 @@
 
 /** @ingroup UGenInternals */
 class DiskInUGenInternal :	public ProxyOwnerUGenInternal,
-							public Seekable,
+//							public Seekable,
 							public DoneActionSender
 {
 public:
@@ -57,7 +57,7 @@ public:
 		
 	double getDuration() const throw();
 	double getPosition() const throw();
-	void setPosition(const double newPosition) throw();	
+	bool setPosition(const double newPosition) throw();	
 	
 protected:
 	AudioFileID	audioFile_;

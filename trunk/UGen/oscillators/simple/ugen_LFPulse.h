@@ -45,8 +45,8 @@
 #define LFPulse_InputsNoTypes				freq, duty
 
 /** @ingroup UGenInternals */
-class LFPulseUGenInternal : public UGenInternal,
-							public Seekable
+class LFPulseUGenInternal : public UGenInternal//,
+//							public Seekable
 {
 public:
 	LFPulseUGenInternal(LFPulse_InputsWithTypesOnly) throw();
@@ -56,7 +56,7 @@ public:
 	
 	double getDuration() const throw();
 	double getPosition() const throw();
-	void setPosition(const double newPosition) throw();			
+	bool setPosition(const double newPosition) throw();			
 	
 	enum Inputs { Freq, Duty, NumInputs };
 	

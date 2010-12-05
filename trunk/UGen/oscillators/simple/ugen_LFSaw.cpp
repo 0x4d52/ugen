@@ -91,9 +91,10 @@ double LFSawUGenInternal::getPosition() const throw()
 	return (double)(currentPhase * 0.5f + 0.5f);
 }
 
-void LFSawUGenInternal::setPosition(const double newPosition) throw()
+bool LFSawUGenInternal::setPosition(const double newPosition) throw()
 {
 	currentPhase = (float)ugen::clip2(newPosition * 2.0 - 1.0, 1.0);
+	return true;
 }
 
 LFSawUGenInternalK::LFSawUGenInternalK(UGen const& freq, const float initialPhase) throw()

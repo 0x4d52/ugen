@@ -653,10 +653,7 @@ public:
 	ValueUGenInternal(Value const& value);
 	UGenInternal* getKr() throw();	
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
-	void setValue(Value const& other) throw();
-	
-	bool isValueUGenInternal() const throw() { return true; }
-
+	bool setValue(Value const& other) throw();
 	
 protected:
 	Value valueObject;

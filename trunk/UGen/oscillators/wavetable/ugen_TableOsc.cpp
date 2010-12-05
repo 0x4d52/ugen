@@ -100,9 +100,10 @@ double TableOscUGenInternal::getPosition() const throw()
 	return (double)currentPhase / (double)wavetableSize;
 }
 
-void TableOscUGenInternal::setPosition(const double newPosition) throw()
+bool TableOscUGenInternal::setPosition(const double newPosition) throw()
 {
 	currentPhase = (float)ugen::clip(newPosition, 0.0, (double)(wavetableSize-1.f));
+	return true;
 }
 
 TableOscUGenInternalK::TableOscUGenInternalK(UGen const& freq, 

@@ -46,8 +46,7 @@ public:
 	RawInputUGenInternal(const int numChannels) throw();
 	~RawInputUGenInternal() throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
-	inline void setInput(const float* block, const int channel) throw() { bufferData[channel] = block; }
-	bool isRawInputUGenInternal() const throw() { return true; }
+	bool setInput(const float* block, const int channel) throw();
 	
 protected:
 	const float** bufferData;

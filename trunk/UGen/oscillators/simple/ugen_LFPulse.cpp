@@ -98,9 +98,10 @@ double LFPulseUGenInternal::getPosition() const throw()
 	return (double)currentPhase;
 }
 
-void LFPulseUGenInternal::setPosition(const double newPosition) throw()
+bool LFPulseUGenInternal::setPosition(const double newPosition) throw()
 {
 	currentPhase = (float)ugen::clip(newPosition, 0.0, 1.0);
+	return true;
 }
 
 LFPulseUGenInternalK::LFPulseUGenInternalK(UGen const& freq, UGen const& duty) throw()

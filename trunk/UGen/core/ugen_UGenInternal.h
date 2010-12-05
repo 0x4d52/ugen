@@ -40,6 +40,11 @@
 
 #include "ugen_Arrays.h"
 
+#ifdef Value // Juce has a Value class too now!
+#undef Value
+#endif
+
+class Value;
 class UGen;
 
 /** @internal */
@@ -219,10 +224,30 @@ public:
 	/// @name Necessary for some RTTI avoidance
 	/// @{
 	
+	virtual bool setInput(const float* block, const int channel) throw() { return false; }
 	virtual bool setSource(UGen const& source, const bool releasePreviousSources = false, const float fadeTime = 0.f) { return false;}
+	virtual UGen& getSource();
+	virtual bool setValue(Value const& other) throw() { return false; }
 	virtual bool sendMidiNote(const int midiChannel, const int midiNote, const int velocity) throw() { return false; }
 	virtual bool trigger(void* extraArgs = 0) throw() { return false; }
 	virtual bool stopAllEvents() throw() { return false; }
+	
+	/** Get the maximum duration of the seekable.
+	 The units will be dependent on the UGenInternal in question. 
+	 For longer sounds as sound files it is likely to be in seconds. 
+	 For wavetables it will always be 1.0. Returns -1 if this UGen is not seekable. */
+	virtual double getDuration() const { return -1; };
+	/** Get the current position of the seekable.
+	 The units will be dependent on the UGenInternal in question. 
+	 For longer sounds as sound files it is likely to be in seconds. 
+	 For wavetables it will 0...1. Returns -1 if this UGen is not seekable.*/	
+	virtual double getPosition() const { return -1; };
+	/** Set the current position of the seekable.
+	 The units will be dependent on the UGenInternal in question. 
+	 For longer sounds as sound files it is likely to be in seconds. 
+	 For wavetables it will 0...1. Returns false if this UGen is not seekable.*/		
+	virtual bool setPosition(const double newPosition) { return false; };
+		
 	
 	/// @} <!-- end Memory -->
 	
@@ -318,8 +343,7 @@ public:
 	void prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
-	bool isProxyUGenInternal() const throw() { return true; }
-
+	bool setInput(const float* block, const int channel) throw();
 	
 private:
 	ProxyOwnerUGenInternal* const owner_;
@@ -343,9 +367,7 @@ public:
 	void setIsDone() throw();
 	inline bool isDoneSent() const throw() { return doneSent; }
 	inline bool isDone() const throw() { return isDone_; }
-	
-	bool isDoneActionSender() const throw() { return true; }
-	
+		
 	int senderUserData;
 	
 private:
@@ -357,7 +379,7 @@ private:
 };
 
 /** Subclasses of this receive UGen done action message. */
-class DoneActionReceiver //: public TypeInfo
+class DoneActionReceiver
 {
 public:
 	DoneActionReceiver() throw() {}
@@ -381,9 +403,6 @@ public:
 	
 	/** This saves having to get the pointer to a DoneActionReceiver object, it will be casted automatically. */
 	operator DoneActionReceiver*() throw() { return this; }
-	
-	bool isDoneActionReceiver() const throw() { return true; }
-
 };
 
 
@@ -432,29 +451,27 @@ protected:
 };
 
 /** Added to UGenInternal classes that can seek a particular point in time.*/
-class Seekable
-{
-public:
-	Seekable() throw() {}
-	virtual ~Seekable() {}
-	/** Get the maximum duration of the seekable.
-	 The units will be dependent on the UGenInternal in question. 
-	 For longer sounds as sound files it is likely to be in seconds. 
-	 For wavetables it will always be 1.0 */
-	virtual double getDuration() const = 0;
-	/** Get the current position of the seekable.
-	 The units will be dependent on the UGenInternal in question. 
-	 For longer sounds as sound files it is likely to be in seconds. 
-	 For wavetables it will 0...1 */	
-	virtual double getPosition() const = 0;
-	/** Set the current position of the seekable.
-	 The units will be dependent on the UGenInternal in question. 
-	 For longer sounds as sound files it is likely to be in seconds. 
-	 For wavetables it will 0...1 */		
-	virtual void setPosition(const double newPosition) = 0;
-	
-	bool isSeekable() const throw() { return true; }
-};
+//class Seekable
+//{
+//public:
+//	Seekable() throw() {}
+//	virtual ~Seekable() {}
+//	/** Get the maximum duration of the seekable.
+//	 The units will be dependent on the UGenInternal in question. 
+//	 For longer sounds as sound files it is likely to be in seconds. 
+//	 For wavetables it will always be 1.0 */
+//	virtual double getDuration() const = 0;
+//	/** Get the current position of the seekable.
+//	 The units will be dependent on the UGenInternal in question. 
+//	 For longer sounds as sound files it is likely to be in seconds. 
+//	 For wavetables it will 0...1 */	
+//	virtual double getPosition() const = 0;
+//	/** Set the current position of the seekable.
+//	 The units will be dependent on the UGenInternal in question. 
+//	 For longer sounds as sound files it is likely to be in seconds. 
+//	 For wavetables it will 0...1 */		
+//	virtual void setPosition(const double newPosition) = 0;
+//};
 
 
 #endif // UGEN_UGENINTERNAL_H

@@ -71,6 +71,16 @@ void RawInputUGenInternal::processBlock(bool& shouldDelete, const unsigned int b
 	memset(bufferData, 0, numChannels * sizeof(float*));
 }
 
+bool RawInputUGenInternal::setInput(const float* block, const int channel) throw() 
+{ 
+	ugen_assert(channel >= 0);
+	ugen_assert(channel < getNumChannels());
+	ugen_assert(block != 0);
+	
+	bufferData[channel] = block; 
+	return true;
+}
+
 AudioIn::AudioIn(const int numChannels) throw()
 {
 	ugen_assert(numChannels > 0);

@@ -75,9 +75,6 @@ public:
 	
 	UGen& getSource();
 	
-	bool isPlugUGenInternal() const throw() { return true; }
-
-	
 protected:
 	UGenArray sources;
 	int currentSourceIndex;
