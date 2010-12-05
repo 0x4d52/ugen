@@ -41,5 +41,5 @@ int MyAndroidAudio::setParameter(const int index, const float value) throw()
 
 UGen MyAndroidAudio::constructGraph(UGen const& input) throw()
 {
-	return Mix::AR(events, false);
+	return Mix::AR(events, false);	
 }
