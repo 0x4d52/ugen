@@ -49,7 +49,7 @@ public:
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
 	virtual UGen spawnEvent(TSpawnUGenInternal& spawn, const int eventCount, void* extraArgs = 0) = 0;
-	void trigger(void* extraArgs = 0) throw();
+	bool trigger(void* extraArgs = 0) throw();
 	
 	inline UGen& getTrigger() throw() { return inputs[Trig]; }
 	

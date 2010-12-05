@@ -262,30 +262,16 @@ public:
 	void handleIncomingMidiMessage (void* source, ByteArray const& message) throw();
 	void sendMidiBuffer(ByteArray const& midiMessages) throw();
 	
-	void setController(const int index, const float value) throw();
-	float getController(const int index) const throw();
-	const float* getControllerPtr(const int index) const throw();
-	inline UGen getControllerUGen(const int index) const throw() { return getControllerPtr(index); }
-	
-	void setKeyPressure(const int index, const float value) throw();
-	float getKeyPressure(const int index) const throw();
-	const float* getKeyPressurePtr(const int index) const throw();
-	inline UGen getKeyPressureUGen(const int index) const throw() { return getKeyPressurePtr(index); }
-	
-	void setPitchWheel(const float value) throw();
-	float getPitchWheel() const throw();
-	const float* getPitchWheelPtr() const throw();
-	inline UGen getPitchWheelUGen() const throw() { return getPitchWheelPtr(); }
-	
-	void setChannelPressure(const float value) throw();
-	float getChannelPressure() const throw();
-	const float* getChannelPressurePtr() const throw();	
-	inline UGen getChannelPressureUGen() const throw() { return getChannelPressurePtr(); }
-	
-	void setProgram(const int value) throw();
-	int getProgram() const throw();
-	const int* getProgramPtr() const throw();	
-	inline UGen getProgramUGen() const throw() { return getProgramPtr();  }
+	const float& getController(const int index) const throw();
+	const float& getKeyPressure(const int index) const throw();
+	const float& getPitchWheel() const throw();
+	const float& getChannelPressure() const throw();	
+	const int& getProgram() const throw();
+	float& getController(const int index) throw();
+	float& getKeyPressure(const int index) throw();
+	float& getPitchWheel() throw();
+	float& getChannelPressure() throw();	
+	int& getProgram() throw();
 	
 	void lock() const throw();
 	void unlock() const throw();

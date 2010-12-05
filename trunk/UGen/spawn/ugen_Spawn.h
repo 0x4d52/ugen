@@ -52,7 +52,7 @@ public:
 	void releaseInternal() throw();
 	void stealInternal() throw();
 	void initEvents() throw();
-	void stopAllEvents() throw();
+	bool stopAllEvents() throw();
 	bool shouldStopAllEvents() { return stopEvents; }
 	
 	inline UGenArray& getEvents() { return events; }

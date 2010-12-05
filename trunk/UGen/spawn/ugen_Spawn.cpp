@@ -103,9 +103,10 @@ void SpawnBaseUGenInternal::initEvents() throw()
 	stopEvents = false;
 }
 
-void SpawnBaseUGenInternal::stopAllEvents() throw()
+bool SpawnBaseUGenInternal::stopAllEvents() throw()
 {
 	stopEvents = true;
+	return true;
 }
 
 SpawnUGenInternal::SpawnUGenInternal(const int numChannels, const double nextTime_, const int maxRepeats) throw()

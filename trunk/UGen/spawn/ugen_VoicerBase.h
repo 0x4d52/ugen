@@ -66,8 +66,9 @@ public:
 	 @param midiChannel
 	 @param midiNote
 	 @param velocity
+	 @return @c true when this was sent to a VoicerBaseUGenInternal or one if its subclasses.
 	 */
-	void sendMidiNote(const int midiChannel, 
+	bool sendMidiNote(const int midiChannel, 
 					  const int midiNote,
 					  const int velocity) throw();
 

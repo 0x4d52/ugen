@@ -1190,14 +1190,16 @@ void UGen::setValue(Value const& other) throw()
 //	}
 //}
 
-void UGen::setSource(UGen const& source, const bool releasePreviousSources, const float fadeTime) throw()
+bool UGen::setSource(UGen const& source, const bool releasePreviousSources, const float fadeTime) throw()
 {
 	ugen_assert(fadeTime >= 0.f);
 	
 	for(int i = 0; i < numInternalUGens; i++)
 	{
-		if(internalUGens[i]->setSource(source, releasePreviousSources, fadeTime)) return;
+		if(internalUGens[i]->setSource(source, releasePreviousSources, fadeTime)) return true;
 	}
+	
+	return false;
 }
 
 
@@ -1247,27 +1249,37 @@ void UGen::steal(const bool forcedSteal) throw()
 }
 
 
-void UGen::sendMidiNote(const int midiChannel, const int midiNote, const int velocity) throw()
+bool UGen::sendMidiNote(const int midiChannel, const int midiNote, const int velocity) throw()
 {
-#ifndef UGEN_ANDROID
+	bool result = false;
+	
 	for(int i = 0; i < numInternalUGens; i++)
 	{
-		//isVoicerBaseUGenInternal
-		VoicerBaseUGenInternal* voicer = dynamic_cast<VoicerBaseUGenInternal*> (internalUGens[i]);
-		
-		if(voicer != 0) voicer->sendMidiNote(midiChannel, midiNote, velocity);
+		result = internalUGens[i]->sendMidiNote(midiChannel, midiNote, velocity) || result;
 	}
-#endif
+	
+	return result;
 }
 
 #ifndef UGEN_ANDROID
-#if defined(JUCE_VERSION) || defined(DOXYGEN)
+#if defined(JUCE_VERSION)
 #include "../juce/ugen_JuceVoicer.h"
 void UGen::sendMidiBuffer(MidiBuffer const& midiMessages) throw()
 {
 	for(int i = 0; i < numInternalUGens; i++)
 	{
-		//isVoicerUGenInternal
+		VoicerUGenInternal* voicer = dynamic_cast<VoicerUGenInternal*> (internalUGens[i]);
+		
+		if(voicer != 0) voicer->sendMidiBuffer(midiMessages);
+	}
+}
+#endif
+#if defined(UGEN_IPHONE) && defined(UGEN_IOS_COREMIDI)
+#include "../iphone/ugen_iOSMidiInput.h"
+void UGen::sendMidiBuffer(ByteArray const& midiMessages) throw()
+{
+	for(int i = 0; i < numInternalUGens; i++)
+	{
 		VoicerUGenInternal* voicer = dynamic_cast<VoicerUGenInternal*> (internalUGens[i]);
 		
 		if(voicer != 0) voicer->sendMidiBuffer(midiMessages);
@@ -1276,30 +1288,28 @@ void UGen::sendMidiBuffer(MidiBuffer const& midiMessages) throw()
 #endif
 #endif
 
-void UGen::trigger(void* extraArgs) throw()
+bool UGen::trigger(void* extraArgs) throw()
 {
-#ifndef UGEN_ANDROID
+	bool result = false;
+
 	for(int i = 0; i < numInternalUGens; i++)
 	{
-		//isTSpawnUGenInternal
-		TSpawnUGenInternal* tspawn = dynamic_cast<TSpawnUGenInternal*> (internalUGens[i]);
-		
-		if(tspawn != 0) tspawn->trigger(extraArgs);
+		result = internalUGens[i]->trigger(extraArgs) || result;
 	}
-#endif
+	
+	return result;
 }
 
-void UGen::stopAllEvents() throw()
+bool UGen::stopAllEvents() throw()
 {
-#ifndef UGEN_ANDROID
+	bool result = false;
+	
 	for(int i = 0; i < numInternalUGens; i++)
 	{
-		//isSpawnBaseUGenInternal
-		SpawnBaseUGenInternal* spawn = dynamic_cast<SpawnBaseUGenInternal*> (internalUGens[i]);
-		
-		if(spawn != 0) spawn->stopAllEvents();
+		result = internalUGens[i]->stopAllEvents() || result;
 	}
-#endif
+	
+	return result;
 }
 
 UGen& UGen::addBufferReceiver(BufferReceiver* const receiver) throw()
