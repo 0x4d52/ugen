@@ -839,8 +839,9 @@ public:
 										the current source removed completely when it is no longer required
 										(this may not be immediate if a fadeTime greater than 0 is used).
 	 @param		fadeTime				Time in seconds for the crossfade between current and new sources.
+	 @return							@c true if this successfully found a Plug to set @c false otherwise.
 	 @see Plug */
-	void setSource(UGen const& source, const bool releasePreviousSources = false, const float fadeTime = 0.f) throw();
+	bool setSource(UGen const& source, const bool releasePreviousSources = false, const float fadeTime = 0.f) throw();
 	
 	/** Attempts to set the source of a Plug using a cross fade.
 	 
@@ -849,8 +850,9 @@ public:
 	 
 	 @param		source					The new source for the Plug.
 	 @param		fadeTime				Time in seconds for the crossfade between current and new sources.
+	 @return							@c true if this successfully found a Plug to set @c false otherwise.
 	 @see Plug */
-	inline void fadeSource(UGen const& source, const float fadeTime = 0.f) throw() { setSource(source, false, fadeTime); }
+	inline bool fadeSource(UGen const& source, const float fadeTime = 0.f) throw() { return setSource(source, false, fadeTime); }
 	
 	/** Attempts to set the source of a Plug using a cross fade.
 	 
@@ -859,8 +861,9 @@ public:
 	 
 	 @param		source					The new source for the Plug.
 	 @param		fadeTime				Time in seconds for the crossfade between current and new sources.
+	 @return							@c true if this successfully found a Plug to set @c false otherwise.
 	 @see Plug */	
-	inline void fadeSourceAndRelease(UGen const& source, const float fadeTime = 0.f) throw() { setSource(source, true, fadeTime); }
+	inline bool fadeSourceAndRelease(UGen const& source, const float fadeTime = 0.f) throw() { return setSource(source, true, fadeTime); }
 	
 	/** Attempts to get the source of a Plug.
 	 
@@ -902,11 +905,14 @@ public:
 	 @param		velocity		The MIDI note velocity 0 (note off) and 1-127 (note on)
 	 
 	 @see Voicer */
-	void sendMidiNote(const int midiChannel, const int midiNote, const int velocity) throw();
+	bool sendMidiNote(const int midiChannel, const int midiNote, const int velocity) throw();
 	
 #ifndef UGEN_ANDROID
 #if defined(JUCE_VERSION) || defined(DOXYGEN)
 	void sendMidiBuffer(MidiBuffer const& midiMessages) throw();
+#endif
+#if (defined(UGEN_IPHONE) && defined(UGEN_IOS_COREMIDI)) || defined(DOXYGEN)
+	void sendMidiBuffer(ByteArray const& midiMessages) throw();
 #endif
 #endif
 	
@@ -917,11 +923,11 @@ public:
 	 @param extraArgs	User defined.
 	 
 	 @see TSpawn, TrigXFade */
-	void trigger(void* extraArgs = 0) throw();
+	bool trigger(void* extraArgs = 0) throw();
 	
 	/** Attempts to stop any running events in a Spawn-type UGen.
 	 Useful for a panic e.g., "all notes off" type command. */
-	void stopAllEvents() throw();
+	bool stopAllEvents() throw();
 	
 	UGen& addBufferReceiver(BufferReceiver* const receiver) throw();
 	void removeBufferReceiver(BufferReceiver* const receiver) throw();

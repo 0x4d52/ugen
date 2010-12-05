@@ -220,6 +220,9 @@ public:
 	/// @{
 	
 	virtual bool setSource(UGen const& source, const bool releasePreviousSources = false, const float fadeTime = 0.f) { return false;}
+	virtual bool sendMidiNote(const int midiChannel, const int midiNote, const int velocity) throw() { return false; }
+	virtual bool trigger(void* extraArgs = 0) throw() { return false; }
+	virtual bool stopAllEvents() throw() { return false; }
 	
 	/// @} <!-- end Memory -->
 	
@@ -354,11 +357,11 @@ private:
 };
 
 /** Subclasses of this receive UGen done action message. */
-class DoneActionReceiver : public TypeInfo
+class DoneActionReceiver //: public TypeInfo
 {
 public:
 	DoneActionReceiver() throw() {}
-	/*virtual*/ ~DoneActionReceiver() {}
+	virtual ~DoneActionReceiver() {}
 	
 	/** This must be implmented, sent when a UGen has finished. 
 	 It should be sent safely after all processing for a particualr block of

@@ -766,21 +766,21 @@ void VoicerUGenInternal::handleIncomingMidiMessage (void* source, ByteArray cons
 		}
 		else if(type == 0xB0)
 		{
-			setController(value1, (float)value2 * normalise127); // locks internally
+			getController(value1) = ((float)value2 * normalise127);
 		}
 		else if(type == 0xC0)
 		{
-			setProgram(value1); // locks internally
+			getProgram() = (value1); // locks internally
 		}
 		else if(type == 0xD0)
 		{
-			setKeyPressure(value1, (float)value2 * normalise127); // locks internally
+			getKeyPressure(value1) = ((float)value2 * normalise127);
 		}
 		else if(type == 0xE0)
 		{
 			int wheel = (value2 << 7) | value1;
 			wheel -= 8192;
-			setPitchWheel((float)wheel * normalise8192); // locks internally
+			getPitchWheel() = ((float)wheel * normalise8192);
 		}		
 	}	
 }
@@ -797,138 +797,54 @@ void VoicerUGenInternal::sendMidiBuffer(ByteArray const& midiMessagesToAdd) thro
 	}
 }
 
-void VoicerUGenInternal::setController(const int index, const float value) throw()
+const float& VoicerUGenInternal::getController(const int index) const throw()
 {
-	lock();
-	{
-		controllers.put(index, value);
-	}
-	unlock();		
+	return controllers[index];
 }
 
-float VoicerUGenInternal::getController(const int index) const throw()
+const float& VoicerUGenInternal::getKeyPressure(const int index) const throw()
 {
-	float result;
-	lock();
-	{
-		result = controllers[index];
-	}
-	unlock();		
-	
-	return result;
+	return keyPressure[index];
 }
 
-const float* VoicerUGenInternal::getControllerPtr(const int index) const throw()
-{	
-	return controllers.getArray() + index;
-}
-
-void VoicerUGenInternal::setKeyPressure(const int index, const float value) throw()
+const float& VoicerUGenInternal::getPitchWheel() const throw()
 {
-	lock();
-	{
-		keyPressure.put(index, value);
-	}
-	unlock();		
+	return pitchWheel;
 }
 
-float VoicerUGenInternal::getKeyPressure(const int index) const throw()
+const float& VoicerUGenInternal::getChannelPressure() const throw()
 {
-	float result;
-	
-	lock();
-	{
-		result = keyPressure[index];
-	}
-	unlock();		
-	
-	return result;
+	return channelPressure;
 }
 
-const float* VoicerUGenInternal::getKeyPressurePtr(const int index) const throw()
-{	
-	return keyPressure.getArray() + index;
-}
-
-void VoicerUGenInternal::setPitchWheel(const float value) throw()
+const int& VoicerUGenInternal::getProgram() const throw()
 {
-	lock();
-	{
-		pitchWheel = value;
-	}
-	unlock();		
+	return program;
 }
 
-float VoicerUGenInternal::getPitchWheel() const throw()
+float& VoicerUGenInternal::getController(const int index) throw()
 {
-	float result;
-	
-	lock();
-	{
-		result = pitchWheel;
-	}
-	unlock();		
-	
-	return result;
+	return controllers[index];
 }
 
-const float* VoicerUGenInternal::getPitchWheelPtr() const throw()
+float& VoicerUGenInternal::getKeyPressure(const int index) throw()
 {
-	return &pitchWheel;
+	return keyPressure[index];
 }
 
-void VoicerUGenInternal::setChannelPressure(const float value) throw()
+float& VoicerUGenInternal::getPitchWheel() throw()
 {
-	lock();
-	{
-		channelPressure = value;
-	}
-	unlock();	
+	return pitchWheel;
 }
 
-float VoicerUGenInternal::getChannelPressure() const throw()
+float& VoicerUGenInternal::getChannelPressure() throw()
 {
-	float result;
-	
-	lock();
-	{
-		result = channelPressure;
-	}
-	unlock();		
-	
-	return result;
+	return channelPressure;
 }
 
-const float* VoicerUGenInternal::getChannelPressurePtr() const throw()
-{	
-	return &channelPressure;
-}
-
-void VoicerUGenInternal::setProgram(const int value) throw()
+int& VoicerUGenInternal::getProgram() throw()
 {
-	lock();
-	{
-		program = value;
-	}
-	unlock();		
-}
-
-int VoicerUGenInternal::getProgram() const throw()
-{
-	int result;
-	
-	lock();
-	{
-		result = program;
-	}
-	unlock();		
-	
-	return result;
-}
-
-const int* VoicerUGenInternal::getProgramPtr() const throw()
-{
-	return &program;
+	return program;
 }
 
 void VoicerUGenInternal::lock() const throw()

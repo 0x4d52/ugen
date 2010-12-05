@@ -98,26 +98,26 @@ struct ForceErrorStruct { int dummy; };
 #define UGEN_IO_CLIPFUNC(x) x
 #endif
 
-class TypeInfo
-{
-public:
-	virtual ~TypeInfo() { }
-	
-	bool isRawInputUGenInternal() const throw() { return false; }
-	bool isProxyUGenInternal() const throw() { return false; }
-	bool isValueUGenInternal() const throw() { return false; }
-	bool isPlugUGenInternal() const throw() { return false; }
-	//isVoicerBaseUGenInternal
-	//isVoicerUGenInternal
-	//isTSpawnUGenInternal
-	//isSpawnBaseUGenInternal
-	bool isBufferSender() const throw() { return false; }
-	bool isBufferReceiver() const throw() { return false; }
-	bool isDoneActionSender() const throw() { return false; }
-	bool isDoneActionReceiver() const throw() { return false; }
-	bool isSeekable() const throw() { return false; }
-
-};
+//class TypeInfo
+//{
+//public:
+//	virtual ~TypeInfo() { }
+//	
+//	bool isRawInputUGenInternal() const throw() { return false; }
+//	bool isProxyUGenInternal() const throw() { return false; }
+//	bool isValueUGenInternal() const throw() { return false; }
+//	bool isPlugUGenInternal() const throw() { return false; }
+//	//bool isVoicerBaseUGenInternal() const throw() { return false; }
+//	//isVoicerUGenInternal
+//	//isTSpawnUGenInternal
+//	//isSpawnBaseUGenInternal
+//	bool isBufferSender() const throw() { return false; }
+//	bool isBufferReceiver() const throw() { return false; }
+//	bool isDoneActionSender() const throw() { return false; }
+//	bool isDoneActionReceiver() const throw() { return false; }
+//	bool isSeekable() const throw() { return false; }
+//
+//};
 
 END_UGEN_NAMESPACE
 
@@ -140,6 +140,7 @@ END_UGEN_NAMESPACE
 // release: define _NDEBUG=1 NDEBUG=1
 // debug: define _DEBUG=1 DEBUG=1
 
+
 #if !defined(NDEBUG) || defined(_DEBUG)
 	#define UGEN_DEBUG 1
 #endif
@@ -153,6 +154,9 @@ END_UGEN_NAMESPACE
 // UGEN_JUCE should be defined in the target/project's preprocessor macros or
 // replace "#ifdef UGEN_JUCE" with "#if 1" to force dependency on Juce
 #ifdef UGEN_JUCE
+	#if !defined(_NDEBUG) && !defined(NDEBUG) && !defined(_DEBUG) && !defined(DEBUG)
+		#warning You should define appropriate preprocessor macros in Debug (_DEBUG=1 DEBUG=1) and Release (_NDEBUG=1 NDEBUG=1)
+	#endif
 	/* 
 	 If you get an error here make sure the directory which contains 'juce' is
 	 in the search path. In the Mac project this directory should be assigned

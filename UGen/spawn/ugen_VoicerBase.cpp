@@ -56,7 +56,7 @@ VoicerBaseUGenInternal::VoicerBaseUGenInternal(const int numChannels, const int 
 	ugen_assert(numVoices >= 0);
 }
 
-void VoicerBaseUGenInternal::sendMidiNote(const int midiChannel, 
+bool VoicerBaseUGenInternal::sendMidiNote(const int midiChannel, 
 										  const int midiNote,
 										  const int velocity) throw()
 {
@@ -100,6 +100,8 @@ void VoicerBaseUGenInternal::sendMidiNote(const int midiChannel,
 			releasee.release();
 		}
 	}
+	
+	return true;
 }
 
 bool VoicerBaseUGenInternal::stealNote(const int midiChannel, 

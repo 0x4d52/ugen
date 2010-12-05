@@ -234,25 +234,23 @@ void VoicerUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 				}
 				else if(message.isController())
 				{
-					setController(message.getControllerNumber(), 
-								  message.getControllerValue() / 127.f);
+					getController(message.getControllerNumber()) = message.getControllerValue() / 127.f;
 				}
 				else if(message.isPitchWheel())
 				{
-					setPitchWheel(jlimit(-8191, 8191, message.getPitchWheelValue() - 8192) / 8191.f);
+					getPitchWheel() = (jlimit(-8191, 8191, message.getPitchWheelValue() - 8192) / 8191.f);
 				}
 				else if(message.isChannelPressure())
 				{
-					setChannelPressure(message.getChannelPressureValue() / 127.f);
+					getChannelPressure() = (message.getChannelPressureValue() / 127.f);
 				}
 				else if(message.isAftertouch())
 				{
-					setKeyPressure(message.getNoteNumber(), 
-								   message.getAfterTouchValue() / 127.f);
+					getKeyPressure(message.getNoteNumber()) = (message.getAfterTouchValue() / 127.f);
 				}
 				else if(message.isProgramChange())
 				{
-					setProgram(message.getProgramChangeNumber());
+					getProgram() = (message.getProgramChangeNumber());
 				}
 				else if(message.isAllNotesOff())
 				{
@@ -293,25 +291,25 @@ void VoicerUGenInternal::handleIncomingMidiMessage (MidiInput* source, const Mid
 	}
 	else if(message.isController())
 	{
-		setController(message.getControllerNumber(), 
-					  message.getControllerValue() * (1.f / 127.f));
+		getController(message.getControllerNumber()) = 
+					 (message.getControllerValue() * (1.f / 127.f));
 	}
 	else if(message.isPitchWheel())
 	{
-		setPitchWheel(jlimit(-8191, 8191, message.getPitchWheelValue() - 8192) * (1.f / 8191.f));
+		getPitchWheel() = (jlimit(-8191, 8191, message.getPitchWheelValue() - 8192) * (1.f / 8191.f));
 	}
 	else if(message.isChannelPressure())
 	{
-		setChannelPressure(message.getChannelPressureValue() * (1.f / 127.f));
+		getChannelPressure() = (message.getChannelPressureValue() * (1.f / 127.f));
 	}
 	else if(message.isAftertouch())
 	{
-		setKeyPressure(message.getNoteNumber(), 
-					   message.getAfterTouchValue() * (1.f / 127.f));
+		getKeyPressure(message.getNoteNumber()) = 
+					  (message.getAfterTouchValue() * (1.f / 127.f));
 	}
 	else if(message.isProgramChange())
 	{
-		setProgram(message.getProgramChangeNumber());
+		getProgram() = (message.getProgramChangeNumber());
 	}
 	else if(message.isAllNotesOff())
 	{
@@ -329,90 +327,56 @@ void VoicerUGenInternal::sendMidiBuffer(MidiBuffer const& midiMessagesToAdd) thr
 	}
 }
 
-void VoicerUGenInternal::setController(const int index, const float value) throw()
+const float& VoicerUGenInternal::getController(const int index) const throw()
 {
-	const ScopedLock sl(lock);
-	controllers.put(index, value);
-}
-
-float VoicerUGenInternal::getController(const int index) const throw()
-{
-	const ScopedLock sl(lock);
 	return controllers[index];
 }
 
-const float* VoicerUGenInternal::getControllerPtr(const int index) const throw()
+const float& VoicerUGenInternal::getKeyPressure(const int index) const throw()
 {
-	return controllers.getArray() + index;
-}
-
-void VoicerUGenInternal::setKeyPressure(const int index, const float value) throw()
-{
-	const ScopedLock sl(lock);
-	keyPressure.put(index, value);
-}
-
-float VoicerUGenInternal::getKeyPressure(const int index) const throw()
-{
-	const ScopedLock sl(lock);
 	return keyPressure[index];
 }
 
-const float* VoicerUGenInternal::getKeyPressurePtr(const int index) const throw()
+const float& VoicerUGenInternal::getPitchWheel() const throw()
 {
-	return keyPressure.getArray() + index;
-}
-
-void VoicerUGenInternal::setPitchWheel(const float value) throw()
-{
-	const ScopedLock sl(lock);
-	pitchWheel = value;
-}
-
-float VoicerUGenInternal::getPitchWheel() const throw()
-{
-	const ScopedLock sl(lock);
 	return pitchWheel;
 }
 
-const float* VoicerUGenInternal::getPitchWheelPtr() const throw()
+const float& VoicerUGenInternal::getChannelPressure() const throw()
 {
-	return &pitchWheel;
-}
-
-void VoicerUGenInternal::setChannelPressure(const float value) throw()
-{
-	const ScopedLock sl(lock);
-	channelPressure = value;
-}
-
-float VoicerUGenInternal::getChannelPressure() const throw()
-{
-	const ScopedLock sl(lock);
 	return channelPressure;
 }
 
-const float* VoicerUGenInternal::getChannelPressurePtr() const throw()
+const int& VoicerUGenInternal::getProgram() const throw()
 {
-	return &channelPressure;
-}
-
-void VoicerUGenInternal::setProgram(const int value) throw()
-{
-	const ScopedLock sl(lock);
-	program = value;
-}
-
-int VoicerUGenInternal::getProgram() const throw()
-{
-	const ScopedLock sl(lock);
 	return program;
 }
 
-const int* VoicerUGenInternal::getProgramPtr() const throw()
+float& VoicerUGenInternal::getController(const int index) throw()
 {
-	return &program;
+	return controllers[index];
 }
+
+float& VoicerUGenInternal::getKeyPressure(const int index) throw()
+{
+	return keyPressure[index];
+}
+
+float& VoicerUGenInternal::getPitchWheel() throw()
+{
+	return pitchWheel;
+}
+
+float& VoicerUGenInternal::getChannelPressure() throw()
+{
+	return channelPressure;
+}
+
+int& VoicerUGenInternal::getProgram() throw()
+{
+	return program;
+}
+
 
 
 END_UGEN_NAMESPACE

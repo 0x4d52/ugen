@@ -811,11 +811,11 @@ typedef ObjectArray<BufferSender*> BufferSenderArray;
  This mechanism is used by the ScopeGUI class and the Sender UGen to display time-domain sample data.
  The FFTSender UGen collects buffers and sends FFT-transformed buffers (e.g., to a ScopeGUI) for
  dealing with spectral data. But they can be used for other purposes too. */
-class BufferSender : public TypeInfo
+class BufferSender //: public TypeInfo
 {
 public:
 	BufferSender() throw();
-	/*virtual*/ ~BufferSender(); // now already virtual in TypeInfo
+	virtual ~BufferSender(); // now already virtual in TypeInfo
 	
 	void addBufferReceiver(BufferReceiver* receiver) throw();
 	void removeBufferReceiver(BufferReceiver* receiver) throw();
@@ -829,12 +829,12 @@ private:
 };
 
 /** Subclasses of this receive Buffer objects from BufferSender objects. */
-class BufferReceiver : public TypeInfo
+class BufferReceiver //: public TypeInfo
 {
 public:
 	
 	BufferReceiver() throw();
-	/*virtual*/ ~BufferReceiver(); // now already virtual in TypeInfo
+	virtual ~BufferReceiver(); // now already virtual in TypeInfo
 	
 	/** This must be implmented.
 	 The two values allow additional data to be sent along with the Buffer. This is commonly
