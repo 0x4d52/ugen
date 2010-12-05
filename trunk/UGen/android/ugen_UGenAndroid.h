@@ -39,6 +39,7 @@ private:
 	pthread_mutex_t mutex;
 	
 	UGen output;
+	UGen input;
 };
 		
 	

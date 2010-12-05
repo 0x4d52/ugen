@@ -16,7 +16,7 @@ public class UGenAudio extends Thread
 	protected static final String TAG="UGen-Android";
 	
 	/**
-	 * SUPERCOLLIDER AUDIO OUTPUT SETTINGS
+	 * UGen++ AUDIO OUTPUT SETTINGS
 	 * 
 	 * Fairly lo-fi by default, there's still room for optimisation.  A good acceptance
 	 * test is to waggle the notifications bar about while running - does it glitch much?
