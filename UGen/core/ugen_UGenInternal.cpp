@@ -318,6 +318,12 @@ void UGenInternal::getInternalChannels(const int channel, UGenInternal** interna
 		internals[i] = getInput(i, channel);
 	}
 }
+ 
+UGen& UGenInternal::getSource() 
+{ 
+	static UGen dummy;
+	return dummy;
+}
 
 void UGenInternal::initValue(const float value) throw()
 {
@@ -519,6 +525,11 @@ void ProxyUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 		if(owner_->getRefCount() <= owner_->getNumProxies())
 		owner_->processBlockInternal(shouldDelete, blockID, channel);
 	}
+}
+
+bool ProxyUGenInternal::setInput(const float* block, const int channel) throw()
+{
+	return owner_->setInput(block, channel);
 }
 
 DoneActionSender::DoneActionSender() throw()

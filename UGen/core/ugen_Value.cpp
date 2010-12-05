@@ -767,9 +767,10 @@ void ValueUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 	}
 }
 
-void ValueUGenInternal::setValue(Value const& other) throw()
+bool ValueUGenInternal::setValue(Value const& other) throw()
 {
 	valueObject = other;
+	return true;
 }
 
 void ValueUGenInternalK::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()

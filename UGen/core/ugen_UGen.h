@@ -805,7 +805,7 @@ public:
 	 @param	blockSize	The size of the array and block size.
 	 @param	channel		The index of the RawInputUGenInternal. 
 	 @see AudioIn, RawInputUGenInternal */
-	void setInput(const float* block, const int blockSize, const int channel = 0) throw();
+	bool setInput(const float* block, const int blockSize, const int channel = 0) throw();
 	
 	/** Attempts to set the input data sources for the UGen. 
 	 
@@ -817,7 +817,7 @@ public:
 	 @param	blockSize	The size of the arrays of floats and block size.
 	 @param	numChannels	The number of pointers in block.
 	 @see AudioIn, RawInputUGenInternal */
-	void setInputs(const float** block, const int blockSize, const int numChannels) throw();
+	bool setInputs(const float** block, const int blockSize, const int numChannels) throw();
 		
 	/// @} <!-- end Input and output access -------------------------------------------- -->
 	
@@ -825,7 +825,7 @@ public:
 	/// @{
 	
 	/** Attempts to set the Value object of a ValueUGen */
-	void setValue(Value const& other) throw();
+	bool setValue(Value const& other) throw();
 	
 	/** Attempts to set the source of a Plug.
 	 
@@ -947,10 +947,10 @@ public:
 	
 	double getDuration() throw();
 	double getPosition() throw();
-	void setPosition(const double newPosition) throw();
+	bool setPosition(const double newPosition) throw();
 	DoubleArray getDurations() throw();
 	DoubleArray getPositions() throw();
-	void setPositions(DoubleArray const& newPositions) throw();
+	bool setPositions(DoubleArray const& newPositions) throw();
 	
 	
 	

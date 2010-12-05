@@ -2874,6 +2874,7 @@ BufferReceiver::~BufferReceiver()
 
 void BufferReceiver::addBufferSender(BufferSender* const sender) throw()
 {
+	if(sender == 0) return;
 	if(senders.contains(sender)) return;
 	
 	senders.add(sender);

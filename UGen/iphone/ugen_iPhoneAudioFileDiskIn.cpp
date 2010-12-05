@@ -192,9 +192,10 @@ double DiskInUGenInternal::getPosition() const throw()
 	return currentPacket * reciprocalSampleRate;
 }
 
-void DiskInUGenInternal::setPosition(const double newPosition) throw()
+bool DiskInUGenInternal::setPosition(const double newPosition) throw()
 {
 	currentPacket = ugen::max(0.0, newPosition) * fileSampleRate;
+	return true;
 }
 
 DiskInUGenInternalWav16::DiskInUGenInternalWav16(AudioFileID audioFile, 

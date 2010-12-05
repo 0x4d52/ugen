@@ -54,7 +54,7 @@
  @see PlayBuf
  @ingroup UGenInternals */
 class PlayBufUGenInternal :	public ProxyOwnerUGenInternal,
-							public Seekable,
+//							public Seekable,
 							public DoneActionSender	
 {
 public:
@@ -70,7 +70,7 @@ public:
 	
 	double getDuration() const throw();
 	double getPosition() const throw();
-	void setPosition(const double newPosition) throw();	
+	bool setPosition(const double newPosition) throw();	
 	
 	enum Inputs { Rate, Trig, Offset, Loop, NumInputs };
 	
@@ -118,7 +118,7 @@ UGenSublcassDeclaration(BufferValues, (buffer), (Buffer const& buffer), COMMON_U
 
 
 class RecordBufUGenInternal :	public ProxyOwnerUGenInternal,
-								public Seekable,
+//								public Seekable,
 								public DoneActionSender	
 {
 public:
@@ -134,7 +134,7 @@ public:
 	
 	double getDuration() const throw();
 	double getPosition() const throw();
-	void setPosition(const double newPosition) throw();	
+	bool setPosition(const double newPosition) throw();	
 	
 	enum Inputs { Input, RecLevel, PreLevel, Loop, NumInputs };
 	
@@ -158,8 +158,8 @@ UGenSublcassDeclaration(RecordBuf, (input, buffer, recLevel, preLevel, loop, don
 
 #if 1
 
-class LoopPointsUGenInternal :	public UGenInternal,
-								public Seekable
+class LoopPointsUGenInternal :	public UGenInternal//,
+//								public Seekable
 {
 public:
 	LoopPointsUGenInternal(Buffer const& buffer, 
@@ -175,7 +175,7 @@ public:
 	
 	double getDuration() const throw();
 	double getPosition() const throw();
-	void setPosition(const double newPosition) throw();		
+	bool setPosition(const double newPosition) throw();		
 	
 private:
 	Buffer b;

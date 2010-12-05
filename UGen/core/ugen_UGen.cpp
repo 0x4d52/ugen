@@ -1120,58 +1120,37 @@ void UGen::setOutputs(float** block, const int blockSize, const int numChannels)
 	}
 }
 
-void UGen::setInput(const float* block, const int blockSize, const int channel) throw()
-{
-#ifndef UGEN_ANDROID
-	ugen_assert(block);
-	ugen_assert(blockSize > 0);
-	ugen_assert(channel >= 0);
-	ugen_assert(channel < numInternalUGens);
-	
-	if(block == 0 || channel < 0 || channel >= numInternalUGens) return;
-	
-	UGenInternal* internal = internalUGens[channel];
-	RawInputUGenInternal* rawInputInternal = dynamic_cast<RawInputUGenInternal*> (internal);
-	
-	if(rawInputInternal == 0)
-	{
-		ProxyUGenInternal* proxyInternal = dynamic_cast<ProxyUGenInternal*> (internal);
-		if(proxyInternal == 0) return;
-		
-		rawInputInternal = dynamic_cast<RawInputUGenInternal*> (proxyInternal->getOwner());
-		if(rawInputInternal == 0) return;
-	}
-		
-	rawInputInternal->setInput(block, channel);		
-#endif
+bool UGen::setInput(const float* block, const int blockSize, const int channel) throw()
+{	
+	if(block == 0 || channel < 0 || channel >= numInternalUGens) return false;
+			
+	return internalUGens[channel]->setInput(block, channel);		
 }
 
-void UGen::setInputs(const float** block, const int blockSize, const int numChannels) throw()
+bool UGen::setInputs(const float** block, const int blockSize, const int numChannels) throw()
 {
 	ugen_assert(block);
 	ugen_assert(blockSize > 0);
 	ugen_assert(numChannels > 0);
 
+	bool result = false;
+	
 	for(int i = 0; i < numChannels; i++)
 	{
-		setInput(block[i], blockSize, i);
+		result = setInput(block[i], blockSize, i) || result;
 	}
+	
+	return result;
 }
 
-void UGen::setValue(Value const& other) throw()
+bool UGen::setValue(Value const& other) throw()
 {
-#ifndef UGEN_ANDROID
 	for(int i = 0; i < numInternalUGens; i++)
 	{
-		ValueUGenInternal* valueUGen = dynamic_cast<ValueUGenInternal*> (internalUGens[i]);
-		
-		if(valueUGen != 0)
-		{
-			valueUGen->setValue(other);
-			return;
-		}
+		if(internalUGens[i]->setValue(other)) return true;
 	}
-#endif
+	
+	return false;
 }
 
 //void UGen::setSource(UGen const& source, const bool releasePreviousSources, const float fadeTime) throw()
@@ -1207,14 +1186,12 @@ UGen UGen::getSource() throw()
 {
 	UGen sourcesUGen;
 	
-#ifndef UGEN_ANDROID
 	for(int i = 0; i < numInternalUGens; i++)
-	{
-		PlugUGenInternal* plug = dynamic_cast<PlugUGenInternal*>(internalUGens[i]);
+	{		
+		UGen source = internalUGens[i]->getSource();
 		
-		if(plug != 0) sourcesUGen <<= plug->getSource();
+		if(source.isNotNull()) sourcesUGen <<= source;
 	}
-#endif
 	
 	return sourcesUGen;
 }
@@ -1449,69 +1426,48 @@ void UGen::removeDoneActionReceiver(UGen const& receiverUGen) throw()
 
 double UGen::getDuration() throw()
 {
-#ifndef UGEN_ANDROID
 	for(int i = 0; i < numInternalUGens; i++)
-	{
-		Seekable* seekable = dynamic_cast<Seekable*> (internalUGens[i]);
+	{		
+		double duration = internalUGens[i]->getDuration();
 		
-		if(seekable != 0) 
-		{
-			return seekable->getDuration();
-		}
+		if(duration >= 0.0) return duration;
 	}
-#endif
 	
 	return -1.0;
 }
 
 double UGen::getPosition() throw()
 {
-#ifndef UGEN_ANDROID
 	for(int i = 0; i < numInternalUGens; i++)
 	{
-		Seekable* seekable = dynamic_cast<Seekable*> (internalUGens[i]);
+		double position = internalUGens[i]->getPosition();
 		
-		if(seekable != 0) 
-		{
-			return seekable->getPosition();
-		}
+		if(position >= 0.0) return position;
 	}
-#endif
 	
 	return -1.0;
 }
 
-void UGen::setPosition(const double newPosition) throw()
+bool UGen::setPosition(const double newPosition) throw()
 {
-#ifndef UGEN_ANDROID
 	for(int i = 0; i < numInternalUGens; i++)
 	{
-		Seekable* seekable = dynamic_cast<Seekable*> (internalUGens[i]);
-		
-		if(seekable != 0) 
-		{
-			seekable->setPosition(newPosition);
-			return;
-		}
+		if(internalUGens[i]->setPosition(newPosition)) return true;
 	}
-#endif
+	
+	return false;
 }
 
 DoubleArray UGen::getDurations() throw()
 {
 	DoubleArray result;
 	
-#ifndef UGEN_ANDROID
 	for(int i = 0; i < numInternalUGens; i++)
-	{
-		Seekable* seekable = dynamic_cast<Seekable*> (internalUGens[i]);
-		
-		if(seekable != 0) 
-		{
-			result.add(seekable->getDuration());
-		}
+	{		
+		double duration = internalUGens[i]->getDuration();
+
+		if(duration >= 0.0) result.add(duration);
 	}	
-#endif
 	
 	return result;
 }
@@ -1520,38 +1476,29 @@ DoubleArray UGen::getPositions() throw()
 {
 	DoubleArray result;
 	
-#ifndef UGEN_ANDROID
 	for(int i = 0; i < numInternalUGens; i++)
-	{
-		Seekable* seekable = dynamic_cast<Seekable*> (internalUGens[i]);
+	{		
+		double position = internalUGens[i]->getPosition();
 		
-		if(seekable != 0) 
-		{
-			result.add(seekable->getPosition());
-		}
+		if(position >= 0.0) result.add(position);
 	}	
-#endif
 	
 	return result;
 }
 
-void UGen::setPositions(DoubleArray const& newPositions) throw()
+bool UGen::setPositions(DoubleArray const& newPositions) throw()
 {
-#ifndef UGEN_ANDROID
 	ugen_assert(newPositions.length() > 0);
 	
+	bool result = false;
 	int posIndex = 0;
 	
 	for(int i = 0; i < numInternalUGens; i++)
 	{
-		Seekable* seekable = dynamic_cast<Seekable*> (internalUGens[i]);
-		
-		if(seekable != 0) 
-		{
-			seekable->setPosition(newPositions.wrapAt(posIndex++));
-		}
+		result = internalUGens[i]->setPosition(newPositions.wrapAt(posIndex++)) || result;
 	}
-#endif
+	
+	return result;
 }
 
 
