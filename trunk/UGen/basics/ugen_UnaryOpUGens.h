@@ -357,4 +357,61 @@ UnaryOpUGenDeclaration(Sign,		sign);
 UnaryOpUGenDeclaration(Zap,			zap);
 
 
+
+// the start of templatising the macros...
+
+
+
+template<UnaryOpFunction op>
+class UnaryOpUGenInternalT : public UnaryOpUGenInternal
+{
+public:
+	UnaryOpUGenInternalT(UGen const& operand)
+	:	UnaryOpUGenInternal(operand)
+	{
+	}
+	
+	UGenInternal* getChannel(const int channel) throw()
+	{
+		return new UnaryOpUGenInternalT<op>(inputs[Operand].getChannel(channel));
+	}
+	
+	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw() 
+	{ 
+		int numSamplesToProcess = uGenOutput.getBlockSize(); 
+		float* outputSamples = uGenOutput.getSampleData(); 
+		const float* operandSamples = inputs[Operand].processBlock(shouldDelete, blockID, channel); 
+		
+		while(numSamplesToProcess--)
+		{
+			*outputSamples++ = (float)op((float)*operandSamples);
+		}
+	}
+};
+
+template<UnaryOpFunction op>
+class UnaryOpUGenT : public UGen
+{
+public:
+	UnaryOpUGenT(UGen const& operand, UGen const& rightOperand) throw()
+	{
+		initInternal(operand.getNumChannels()); 
+		
+		for(int i = 0; i < numInternalUGens; i++) 
+		{ 
+			internalUGens[i] = new UnaryOpUGenInternalT<op>(operand);
+		}
+		
+	}
+	
+	static UGen AR(UGen const& operand) { return UnaryOpUGenT<op>(operand); }
+};
+
+template<UnaryOpFunction op>
+UGen UGen::unary() throw()
+{
+	return UnaryOpUGenT<op>::AR(*this);
+}
+
+
 #endif // UNARYOPUGENS_H

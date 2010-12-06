@@ -711,6 +711,25 @@ public:
 	UnaryOpMethodsDeclare(Buffer);
 	Buffer reciprocalExceptZero() const throw();
 	
+	template<UnaryOpFunction op>
+	Buffer unary() const throw()																				
+	{																														
+		Buffer newBuffer(BufferSpec(size_, numChannels_, false));															
+		
+		for(int channelIndex = 0; channelIndex < numChannels_; channelIndex++)												
+		{																													
+			int numSamples = size_;																						
+			float* inputSamples = channels[channelIndex]->data;																
+			float* outputSamples = newBuffer.channels[channelIndex]->data;													
+			
+			while(--numSamples >= 0) {																						
+				*outputSamples++ = op(*inputSamples++);												
+			}																											
+		}																													
+		
+		return newBuffer;																									
+	}
+	
 	/// @} <!-- end Unary Ops ------------------------------ -->
 	
 	/** @name Binary Ops. 
@@ -725,6 +744,59 @@ public:
 	 */
 	/// @{
 	BinaryOpMethodsDeclare(Buffer);
+	
+	/** Templated version of the binary operator functions. */
+	template<BinaryOpFunction op>
+	Buffer binary(Buffer rightOperand) throw()
+	{
+		const int newNumChannels = numChannels_ > rightOperand.numChannels_ ? numChannels_ : rightOperand.numChannels_;	
+		const int maxSize = size_ > rightOperand.size_ ? size_ : rightOperand.size_;									
+		const int minSize = size_ < rightOperand.size_ ? size_ : rightOperand.size_;									
+		const int diffSize = maxSize-minSize;																			
+		
+		Buffer newBuffer(BufferSpec(maxSize, newNumChannels, false));													
+		
+		for(int channelIndex = 0; channelIndex < newNumChannels; channelIndex++)										
+		{																												
+			int numSamples;																								
+			float* leftSamples = channels[channelIndex % numChannels_]->data;											
+			float* rightSamples = rightOperand.channels[channelIndex % rightOperand.numChannels_]->data;				
+			float* outputSamples = newBuffer.channels[channelIndex]->data;												
+			
+			if(size_ == 1 && numChannels_ == 1) {																		
+				numSamples = maxSize;																					
+				
+				while(--numSamples >= 0) {																				
+					*outputSamples++ = op(*leftSamples, *rightSamples++);						
+				}																										
+			} else if(rightOperand.size_ == 1 && rightOperand.numChannels_ == 1) {									
+				numSamples = maxSize;																					
+				
+				while(--numSamples >= 0) {																				
+					*outputSamples++ = op(*leftSamples++, *rightSamples);						
+				}																										
+			} else {																									
+				numSamples = minSize;																					
+				while(--numSamples >= 0) {																				
+					*outputSamples++ = op(*leftSamples++, *rightSamples++);						
+				}																										
+				
+				numSamples = diffSize;																					
+				if(size_ > rightOperand.size_) {																		
+					while(--numSamples >= 0) {																			
+						*outputSamples++ = op(*leftSamples++, 0.f);								
+					}																									
+				}																										
+				else if(rightOperand.size_ > size_) {																	
+					while(--numSamples >= 0) {																			
+						*outputSamples++ = op(0.f, *rightSamples++);								
+					}																									
+				}																										
+			}																											
+		}																												
+		
+		return newBuffer;																								
+	}
 	
 	Buffer& operator+= (Buffer const& other) throw();
 	Buffer& operator-= (Buffer const& other) throw();

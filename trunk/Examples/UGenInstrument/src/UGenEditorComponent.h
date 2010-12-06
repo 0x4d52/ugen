@@ -70,7 +70,7 @@ public:
     /** Our demo filter is a ChangeBroadcaster, and will call us back when one of
         its parameters changes.
     */
-    void changeListenerCallback (void* source);
+    void changeListenerCallback (ChangeBroadcaster* source);
 
     void sliderValueChanged (Slider*);
 	void buttonClicked(Button* clickedButton);

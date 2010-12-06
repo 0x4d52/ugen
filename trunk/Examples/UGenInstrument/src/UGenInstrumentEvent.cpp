@@ -57,7 +57,7 @@ UGen UGenInstrumentEvent::spawnEvent(VoicerUGenInternal& voicer,
 	UGen envgen = EnvGen::AR(env);
 	
 	UGen note = midiNote;
-	note += voicer.getPitchWheelUGen() * 2.0; // +-2 semi tone with pitch wheel
+	note += UGen(&voicer.getPitchWheel()) * 2.0; // +-2 semi tone with pitch wheel
 	
 	// convert midi note to frequency
 	UGen freq = midicps(note);
@@ -75,5 +75,5 @@ UGen UGenInstrumentEvent::spawnEvent(VoicerUGenInternal& voicer,
 							 freq*2, freq*12).lag();
 	
 	// apply the filter and use MIDI controller 7 for amplitude control
-	return LPF::AR(wave, cutoff) * Lag::AR(voicer.getControllerUGen(7));
+	return LPF::AR(wave, cutoff) * Lag::AR(&voicer.getController (7));
 }
