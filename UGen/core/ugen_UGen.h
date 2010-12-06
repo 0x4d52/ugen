@@ -1133,6 +1133,9 @@ public:
 	UGen operator- () const throw();
 	UnaryOpMethodsDeclare(UGen);
 	
+	template<UnaryOpFunction op>
+	UGen unary() throw();
+	
 	/// @} <!-- end Unary Ops ------------------------------ -->
 	
 	/** @name Binary Ops. 
@@ -1160,6 +1163,9 @@ public:
 	
 	/// @{
 	BinaryOpMethodsDeclare(UGen);
+	
+	template<BinaryOpFunction op>
+	UGen binary(UGen const& rightOperand) throw();
 	
 	/** Ignore right operator. 
 	 
@@ -1318,6 +1324,7 @@ private:
 	void decrementInternals() const throw();
 	
 };
+
 
 UGenArray operator<< (float leftOperand, UGen const& rightOperand) throw();
 UGen operator, (float leftOperand, UGen const& rightOperand) throw();
@@ -1538,6 +1545,8 @@ class EventBase<void>
 public:
 	virtual ~EventBase() {  }
 };
+
+
 
 #endif // UGEN_UGEN_H
 

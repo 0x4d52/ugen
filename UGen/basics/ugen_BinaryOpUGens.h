@@ -830,6 +830,68 @@ public:
 }; 
 
 
+// the start of templatising the macros...
 
+
+
+template<BinaryOpFunction op>
+class BinaryOpUGenInternalT : public BinaryOpUGenInternal
+{
+public:
+	BinaryOpUGenInternalT(UGen const& leftOperand, UGen const& rightOperand)
+	:	BinaryOpUGenInternal(leftOperand, rightOperand)
+	{
+	}
+	
+	UGenInternal* getChannel(const int channel) throw()
+	{
+		return new BinaryOpUGenInternalT<op>(inputs[LeftOperand].getChannel(channel),
+											 inputs[RightOperand].getChannel(channel));
+	}
+	
+	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw() 
+	{ 
+		int numSamplesToProcess = uGenOutput.getBlockSize(); 
+		float* outputSamples = uGenOutput.getSampleData(); 
+		const float* leftOperandSamples = inputs[LeftOperand].processBlock(shouldDelete, blockID, channel); 
+		const float* rightOperandSamples = inputs[RightOperand].processBlock(shouldDelete, blockID, channel); 
+		
+		while(numSamplesToProcess--)
+		{
+			*outputSamples++ = (float)op((float)*leftOperandSamples++,
+										 (float)*rightOperandSamples++);
+		}
+	}
+};
+
+template<BinaryOpFunction op>
+class BinaryOpUGenT : public UGen
+{
+public:
+	BinaryOpUGenT(UGen const& leftOperand, UGen const& rightOperand) throw()
+	{
+		const int numRightChannels = rightOperand.getNumChannels();
+		const int numLeftChannels = leftOperand.getNumChannels();
+		
+		if(numLeftChannels > numRightChannels) 
+			initInternal(numLeftChannels); 
+		else 
+			initInternal(numRightChannels); 
+		
+		for(int i = 0; i < numInternalUGens; i++) 
+		{ 
+			internalUGens[i] = new BinaryOpUGenInternalT<op>(leftOperand,rightOperand);
+		}
+		
+	}
+	
+	static UGen AR(UGen const& leftOperand, UGen const& rightOperand) { return BinaryOpUGenT<op>(leftOperand, rightOperand); }
+};
+
+template<BinaryOpFunction op>
+UGen UGen::binary(UGen const& rightOperand) throw()
+{
+	return BinaryOpUGenT<op>::AR(rightOperand);
+}
 
 #endif // BINARYOPUGENS_H

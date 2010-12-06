@@ -110,7 +110,7 @@ void UGenPlugin::setParameter (int index, float newValue)
 		
 		// if this is changing a parameter, broadcast a change message which
 		// our editor will pick up.
-		sendChangeMessage(this);
+		sendChangeMessage();
 	}
 }
 
@@ -314,7 +314,7 @@ void UGenPlugin::setStateInformation (const void* data, int sizeInBytes)
 			}
 			menuItem = xmlState->getIntAttribute(T("menuItem"), menuItem);
 			
-            sendChangeMessage (this);
+            sendChangeMessage ();
         }
 
         delete xmlState;

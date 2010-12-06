@@ -1776,10 +1776,11 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"_DEBUG=1",
 					"UGEN_JUCE=1",
 					"$(GCC_PREPROCESSOR_DEFINITIONS_QUOTED_FOR_TARGET_1)",
 					"$(GCC_PREPROCESSOR_DEFINITIONS_QUOTED_FOR_TARGET_2)",
-					"PROJECT_NAME=$(PROJECT_NAME)",
 					"JUCE_ObjCExtraSuffix=$(PROJECT_NAME)",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS_QUOTED_FOR_TARGET_1 = "CFBundleIdentifierDefine=\\\"$(CFBundleIdentifier)\\\"";
@@ -1799,6 +1800,7 @@
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
+					"-Wno-write-strings",
 					"-Wno-four-char-constants",
 					"-Wno-unknown-pragmas",
 					"-Wno-non-virtual-dtor",
@@ -1811,8 +1813,7 @@
 		A9E884AF0874ABE600B2DFE8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				ARCHS = "$(ONLY_ACTIVE_ARCH_PRE_XCODE_3_1)";
 				COPY_PHASE_STRIP = YES;
 				EXPORTED_SYMBOLS_FILE = "";
 				FRAMEWORK_SEARCH_PATHS = "";
@@ -1821,10 +1822,11 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					"NDEBUG=1",
+					"_NDEBUG=1",
 					"UGEN_JUCE=1",
 					"$(GCC_PREPROCESSOR_DEFINITIONS_QUOTED_FOR_TARGET_1)",
 					"$(GCC_PREPROCESSOR_DEFINITIONS_QUOTED_FOR_TARGET_2)",
-					"PROJECT_NAME=$(PROJECT_NAME)",
 					"JUCE_ObjCExtraSuffix=$(PROJECT_NAME)",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS_QUOTED_FOR_TARGET_1 = "CFBundleIdentifierDefine=\\\"$(CFBundleIdentifier)\\\"";
@@ -1840,10 +1842,12 @@
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "/Library/Audio/Plug-Ins/Components/";
+				ONLY_ACTIVE_ARCH_PRE_XCODE_3_1 = "$(NATIVE_ARCH)";
 				OTHER_REZFLAGS = "-d ppc_$ppc -d i386_$i386 -d ppc64_$ppc64 -d x86_64_$x86_64 -I /System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Versions/A/Headers -I \"$(DEVELOPER_DIR)/Extras/CoreAudio/AudioUnits/AUPublic/AUBase\"";
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
+					"-Wno-write-strings",
 					"-Wno-four-char-constants",
 					"-Wno-unknown-pragmas",
 					"-Wno-non-virtual-dtor",

@@ -40,6 +40,9 @@
 //#include "../core/ugen_StandardHeader.h"
 #include "../core/ugen_Constants.h"
 
+typedef float (*UnaryOpFunction)(float);
+
+
 /** A macro for adding the declarations of a standard set of unary operations to a class. 
  @param CLASSNAME	This must be the name of the class within which this decaration is made.
  @see UGen, UGenArray, Value, ValueArray */

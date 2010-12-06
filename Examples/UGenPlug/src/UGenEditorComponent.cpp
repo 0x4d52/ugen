@@ -256,7 +256,7 @@ void UGenEditorComponent::resized()
 }
 
 //==============================================================================
-void UGenEditorComponent::changeListenerCallback (void* source)
+void UGenEditorComponent::changeListenerCallback (ChangeBroadcaster* source)
 {
     // this is the filter telling us that it's changed
     updateParametersFromFilter();

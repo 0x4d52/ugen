@@ -41,6 +41,8 @@
 #include <math.h>
 #include "../core/ugen_Constants.h"
 
+typedef float (*BinaryOpFunction)(float,float);
+
 #define BinaryOpMethodsDeclare(CLASSNAME)													\
 	/** Binary addition. 
 		This CLASSNAME is the left-hand-side of the operation.
