@@ -157,6 +157,7 @@ BEGIN_UGEN_NAMESPACE
 	#include "neuralnet/ugen_NeuralNetworkUGen.h"
 	#include "buffers/ugen_XFadePlayBuf.h"
 	#include "analysis/ugen_DataRecorder.h"
+	#include "pan/ugen_Ambisonic.h"
 #endif
 
 #ifdef UGEN_JUCE
