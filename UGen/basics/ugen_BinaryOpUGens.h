@@ -49,9 +49,7 @@
 #include "../core/ugen_Value.h"
 #include "ugen_InlineBinaryOps.h"
 
-
-
-#define BinaryOpUGenConstructor(INTERNALUGENCLASSNAME, leftOperand_, rightOperand_)										\
+#define BinaryOpSymbolUGenConstructor(INTERNALUGENCLASSNAME, OPSYMBOL_INTERNAL, leftOperand_, rightOperand_)			\
 		if(leftOperand_.getNumChannels() > rightOperand_.getNumChannels())												\
 			initInternal(leftOperand_.getNumChannels());																\
 		else																											\
@@ -60,7 +58,24 @@
 		for(int i = 0; i < numInternalUGens; i++)																		\
 		{																												\
 			internalUGens[i] = new INTERNALUGENCLASSNAME(leftOperand_, rightOperand_);									\
+			internalUGens[i]->initValue(leftOperand_.getValue(i) OPSYMBOL_INTERNAL rightOperand_.getValue(i));			\
 		}
+
+
+#define BinaryOpFunctionUGenConstructor(INTERNALUGENCLASSNAME, OPFUNCTION_INTERNAL, leftOperand_, rightOperand_)		\
+		if(leftOperand_.getNumChannels() > rightOperand_.getNumChannels())												\
+			initInternal(leftOperand_.getNumChannels());																\
+		else																											\
+			initInternal(rightOperand_.getNumChannels());																\
+																														\
+		for(int i = 0; i < numInternalUGens; i++)																		\
+		{																												\
+			internalUGens[i] = new INTERNALUGENCLASSNAME(leftOperand_, rightOperand_);									\
+			internalUGens[i]->initValue(ugen::OPFUNCTION_INTERNAL(leftOperand_.getValue(i),								\
+																  rightOperand_.getValue(i)));							\
+		}
+
+#define BinaryOpUGenConstructor(INTERNALUGENCLASSNAME, leftOperand_, rightOperand_)										\
 
 
 #define BinaryOpSymbolUGenProcessBlock(shouldDelete_, blockID_, channel_, OPSYMBOL_INTERNAL)							\
@@ -117,8 +132,8 @@
 #define BinaryOpFunctionUGenProcessBlock(shouldDelete_, blockID_, channel_, OPFUNCTION_INTERNAL)						\
 		const int numSamplesToProcess = uGenOutput.getBlockSize();														\
 		float* outputSamples = uGenOutput.getSampleData();																\
-		const float* leftOperandSamples = inputs[LeftOperand].processBlock(shouldDelete, blockID_, channel_);			\
-		const float* rightOperandSamples = inputs[RightOperand].processBlock(shouldDelete, blockID_, channel_);			\
+		const float* leftOperandSamples = inputs[LeftOperand].processBlock(shouldDelete_, blockID_, channel_);			\
+		const float* rightOperandSamples = inputs[RightOperand].processBlock(shouldDelete_, blockID_, channel_);			\
 																														\
 		for(int i = 0; i < numSamplesToProcess; ++i) {																	\
 			outputSamples[i] = OPFUNCTION_INTERNAL(leftOperandSamples[i], rightOperandSamples[i]);						\
@@ -130,8 +145,8 @@
 		unsigned int blockPosition = blockID % krBlockSize;																\
 		int numSamplesToProcess = uGenOutput.getBlockSize();															\
 		float* outputSamples = uGenOutput.getSampleData();																\
-		float* leftOperandSamples = inputs[LeftOperand].processBlock(shouldDelete, blockID_, channel_);					\
-		float* rightOperandSamples = inputs[RightOperand].processBlock(shouldDelete, blockID_, channel_);				\
+		float* leftOperandSamples = inputs[LeftOperand].processBlock(shouldDelete_, blockID_, channel_);					\
+		float* rightOperandSamples = inputs[RightOperand].processBlock(shouldDelete_, blockID_, channel_);				\
 																														\
 		int numKrSamples = blockPosition & krBlockSize;																	\
 																														\
@@ -349,7 +364,7 @@
 																														\
 	Binary##OPNAME##UGen::Binary##OPNAME##UGen(UGen const& leftOperand, UGen const& rightOperand) throw()				\
 	{																													\
-		BinaryOpUGenConstructor(Binary##OPNAME##UGenInternal, leftOperand, rightOperand)								\
+		BinaryOpSymbolUGenConstructor(Binary##OPNAME##UGenInternal, OPSYMBOL_INTERNAL, leftOperand, rightOperand)		\
 	}																													\
 																														\
 	float Binary##OPNAME##UGenInternal::getValue(const int channel) const throw()										\
@@ -492,7 +507,7 @@
 																														\
 	Binary##OPNAME##UGen::Binary##OPNAME##UGen(UGen const& leftOperand, UGen const& rightOperand) throw()				\
 	{																													\
-		BinaryOpUGenConstructor(Binary##OPNAME##UGenInternal, leftOperand, rightOperand)								\
+		BinaryOpFunctionUGenConstructor(Binary##OPNAME##UGenInternal, OPFUNCTION_INTERNAL, leftOperand, rightOperand)	\
 	}																													\
 																														\
 	void Binary##OPNAME##UGenInternal::processBlock(bool& shouldDelete,													\
@@ -907,7 +922,7 @@ public:
 		int numKrSamples = blockPosition & krBlockSize;																	
 		
 		while(numSamplesToProcess > 0) {																			
-			float nextValue = this->value;																				
+			float nextValue = value;																				
 			if(numKrSamples == 0)																					
 				nextValue = op(*leftOperandSamples, *rightOperandSamples);							
 			
@@ -969,7 +984,8 @@ public:
 	}
 	
 	static UGen AR(UGen const& leftOperand, UGen const& rightOperand) { return BinaryOpUGenT<op>(leftOperand, rightOperand); }
-	static UGen KR(UGen const& leftOperand, UGen const& rightOperand) { return UGen(BinaryOpUGenT<op>(leftOperand, rightOperand)).kr(); }
+	static UGen KR(UGen const& leftOperand, UGen const& rightOperand) { return UGen(BinaryOpUGenT<op>(leftOperand.kr(), 
+																									  rightOperand.kr())).kr(); }
 };
 
 template<BinaryOpFunction op>
