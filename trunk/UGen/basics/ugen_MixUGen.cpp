@@ -99,8 +99,6 @@ MixArrayUGenInternal::MixArrayUGenInternal(UGenArray const& array,
 										   const int numChannels) throw()
 :	ProxyOwnerUGenInternal(0, (numChannels > 0) ? (numChannels) : (array.findMaxNumChannels() - 1)),
 	array_(array),
-//	arrayPtr(&array_),
-//	arrayRef(*arrayPtr),
 	shouldAllowAutoDelete_(shouldAllowAutoDelete),
 	shouldWrapChannels_(shouldWrapChannels)
 {	

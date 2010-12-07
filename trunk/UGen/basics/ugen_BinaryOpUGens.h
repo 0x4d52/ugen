@@ -325,11 +325,6 @@
 		rate = ControlRate;																								\
 	}																													\
 																														\
-	Binary##OPNAME##UGen::Binary##OPNAME##UGen(UGen const& leftOperand, UGen const& rightOperand) throw()				\
-	{																													\
-		BinaryOpUGenConstructor(Binary##OPNAME##UGenInternal, leftOperand, rightOperand)								\
-	}																													\
-																																	\
 	Binary##OPNAME##ValueInternal::Binary##OPNAME##ValueInternal(Value const& leftOperand, Value const& rightOperand) throw()		\
 	:	BinaryOpValueInternal(leftOperand, rightOperand)																			\
 	{																																\
@@ -351,6 +346,11 @@
 
 #define BinaryOpSymbolUGenDefinitionNoProcessBlock(OPNAME, OPSYMBOL, OPSYMBOL_INTERNAL)									\
 	BinaryOpCommonUGenDefinition(OPNAME)																				\
+																														\
+	Binary##OPNAME##UGen::Binary##OPNAME##UGen(UGen const& leftOperand, UGen const& rightOperand) throw()				\
+	{																													\
+		BinaryOpUGenConstructor(Binary##OPNAME##UGenInternal, leftOperand, rightOperand)								\
+	}																													\
 																														\
 	float Binary##OPNAME##UGenInternal::getValue(const int channel) const throw()										\
 	{																													\
@@ -489,6 +489,11 @@
 	
 #define BinaryOpFunctionUGenDefinition(OPNAME, OPFUNCTION, OPFUNCTION_INTERNAL)											\
 	BinaryOpCommonUGenDefinition(OPNAME)																				\
+																														\
+	Binary##OPNAME##UGen::Binary##OPNAME##UGen(UGen const& leftOperand, UGen const& rightOperand) throw()				\
+	{																													\
+		BinaryOpUGenConstructor(Binary##OPNAME##UGenInternal, leftOperand, rightOperand)								\
+	}																													\
 																														\
 	void Binary##OPNAME##UGenInternal::processBlock(bool& shouldDelete,													\
 													const unsigned int blockID,											\
@@ -832,8 +837,6 @@ public:
 
 // the start of templatising the macros...
 
-
-
 template<BinaryOpFunction op>
 class BinaryOpUGenInternalT : public BinaryOpUGenInternal
 {
@@ -849,6 +852,13 @@ public:
 											 inputs[RightOperand].getChannel(channel));
 	}
 	
+	UGenInternal* getKr() throw();
+	
+	float getValue(const int channel) const throw()										
+	{																													
+		return op(inputs[LeftOperand].getValue(channel), inputs[RightOperand].getValue(channel));		
+	}	
+	
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw() 
 	{ 
 		int numSamplesToProcess = uGenOutput.getBlockSize(); 
@@ -858,11 +868,82 @@ public:
 		
 		while(numSamplesToProcess--)
 		{
-			*outputSamples++ = (float)op((float)*leftOperandSamples++,
-										 (float)*rightOperandSamples++);
+			*outputSamples++ = op(*leftOperandSamples++,
+								  *rightOperandSamples++);
 		}
 	}
 };
+
+template<BinaryOpFunction op>
+class BinaryOpUGenInternalTK : public BinaryOpUGenInternalT<op>
+{
+private:
+	float value;
+	
+public:
+	BinaryOpUGenInternalTK(UGen const& leftOperand, UGen const& rightOperand) throw()
+	:	BinaryOpUGenInternalT<op>(leftOperand, rightOperand), value(0.f)
+	{
+		this->rate = UGenInternal::ControlRate;
+	}
+	
+	UGenInternal* getChannel(const int channel) throw()
+	{
+		return new BinaryOpUGenInternalTK<op>(this->inputs[BinaryOpUGenInternal::LeftOperand].getChannel(channel),
+											  this->inputs[BinaryOpUGenInternal::RightOperand].getChannel(channel));
+	}
+	
+	UGenInternal* getKr() throw() { this->incrementRefCount(); return this; }	
+	
+	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw() 
+	{
+		const unsigned int krBlockSize = UGen::getControlRateBlockSize();														
+		unsigned int blockPosition = blockID % krBlockSize;																
+		int numSamplesToProcess = this->uGenOutput.getBlockSize();															
+		float* outputSamples = this->uGenOutput.getSampleData();																
+		float* leftOperandSamples = this->inputs[BinaryOpUGenInternal::LeftOperand].processBlock(shouldDelete, blockID, channel);					
+		float* rightOperandSamples = this->inputs[BinaryOpUGenInternal::RightOperand].processBlock(shouldDelete, blockID, channel);				
+		
+		int numKrSamples = blockPosition & krBlockSize;																	
+		
+		while(numSamplesToProcess > 0) {																			
+			float nextValue = this->value;																				
+			if(numKrSamples == 0)																					
+				nextValue = op(*leftOperandSamples, *rightOperandSamples);							
+			
+			numKrSamples = krBlockSize - numKrSamples;																
+			
+			blockPosition		+= numKrSamples;																	
+			leftOperandSamples	+= numKrSamples;																	
+			rightOperandSamples	+= numKrSamples;																	
+			\
+			if(nextValue == value) {																				
+				while(numSamplesToProcess && numKrSamples) {														
+					*outputSamples++ = nextValue;																	
+					--numSamplesToProcess;																			
+					--numKrSamples;																					
+				}																									
+			} else {																								
+				float valueSlope = (nextValue - value) / (float)UGen::getControlRateBlockSize();					
+				while(numSamplesToProcess && numKrSamples) {														
+					*outputSamples++ = value;																		
+					value += valueSlope;																			
+					--numSamplesToProcess;																			
+					--numKrSamples;																					
+				}																									
+				value = nextValue;																					
+			}																										
+		}																													
+	}
+};
+
+template<BinaryOpFunction op>
+UGenInternal* BinaryOpUGenInternalT<op>::getKr() throw()
+{
+	return new BinaryOpUGenInternalTK<op>(inputs[LeftOperand].kr(),
+										  inputs[RightOperand].kr());
+}
+
 
 template<BinaryOpFunction op>
 class BinaryOpUGenT : public UGen
@@ -881,11 +962,14 @@ public:
 		for(int i = 0; i < numInternalUGens; i++) 
 		{ 
 			internalUGens[i] = new BinaryOpUGenInternalT<op>(leftOperand,rightOperand);
+			internalUGens[i]->initValue(op(leftOperand.getValue(i),
+										   rightOperand.getValue(i)));
 		}
 		
 	}
 	
 	static UGen AR(UGen const& leftOperand, UGen const& rightOperand) { return BinaryOpUGenT<op>(leftOperand, rightOperand); }
+	static UGen KR(UGen const& leftOperand, UGen const& rightOperand) { return UGen(BinaryOpUGenT<op>(leftOperand, rightOperand)).kr(); }
 };
 
 template<BinaryOpFunction op>
