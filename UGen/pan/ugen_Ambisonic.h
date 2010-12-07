@@ -37,10 +37,23 @@
 #ifndef _UGEN_ugen_Ambisonic_H_
 #define _UGEN_ugen_Ambisonic_H_
 
-// don't forget to add this header file to UGen.h
-
 #include "../core/ugen_UGen.h"
 
+class PanBUGenInternal : public ProxyOwnerUGenInternal
+{
+public:
+	PanBUGenInternal(UGen const& input, UGen const& azimuth, UGen const& elevation, UGen const& distance) throw();
+	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
+	
+	enum Inputs { Input, Azimuth, Elevation, Distance, NumInputs };
+	enum Proxies { W, X, Y, Z };
+	
+protected:
+	float distanceFactor;
+	float wLevel;
+	float xyzLevel;
+	float centreSize;
+};
 
 
 

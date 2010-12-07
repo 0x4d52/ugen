@@ -31,6 +31,9 @@
  Copyright (c) 2002 James McCartney. All rights reserved.
  http://www.audiosynth.com
  
+ Based Dave Malham's Bpan
+ http://www.dmalham.freeserve.co.uk/bpan_help.html
+ 
  ==============================================================================
  */
 
@@ -40,7 +43,66 @@ BEGIN_UGEN_NAMESPACE
 
 #include "ugen_Ambisonic.h"
 
+PanBUGenInternal::PanBUGenInternal(UGen const& input, UGen const& azimuth, UGen const& elevation, UGen const& distance) throw()
+:	ProxyOwnerUGenInternal(NumInputs, 3),
+	distanceFactor(-4.5),
+	wLevel((float)sqrt2OverTwo),
+	xyzLevel(1.f),
+	centreSize(1.f)  // should be no less than 0.001
+{
+	inputs[Input] = input;
+	inputs[Azimuth] = azimuth;
+	inputs[Elevation] = elevation;		
+	inputs[Distance] = distance;
+}
 
+static const float dBFactor = (-6.0/20.0);
+
+void PanBUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+{
+	int numSamplesToProcess = uGenOutput.getBlockSize();
+	float* outputSamplesW = proxies[W]->getSampleData();
+	float* outputSamplesX = proxies[X]->getSampleData();
+	float* outputSamplesY = proxies[Y]->getSampleData();
+	float* outputSamplesZ = proxies[Z]->getSampleData();
+	float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
+	float azimuth = *(inputs[Azimuth].processBlock(shouldDelete, blockID, channel));
+	float elevation = *(inputs[Elevation].processBlock(shouldDelete, blockID, channel));
+	float distance = *(inputs[Distance].processBlock(shouldDelete, blockID, channel));	
+	
+	float x = cos(azimuth) * cos(elevation);
+	float y = sin(azimuth) * cos(elevation);
+	float z = sin(elevation);
+	
+	float wDistance, xyzDistance;
+	
+	if (distance >= centreSize) 
+	{
+ 		float factor = pow(10, (distanceFactor * dBFactor * log(distance / centreSize)) / logTwo); // ?? * oneOverLog2
+ 		wDistance = wLevel * factor;
+ 		xyzDistance =  xyzLevel * factor;
+	} 
+	else 
+	{
+ 		wDistance =  wLevel * (2 - (distance / centreSize));
+ 		xyzDistance =  xyzLevel * (distance / centreSize) ;
+	}
+	
+	float w = wDistance;
+	x *= xyzDistance;
+	y *= xyzDistance;
+	z *= xyzDistance;
+		
+	while(numSamplesToProcess--)
+	{
+		float input = *inputSamples++;
+		
+		*outputSamplesW++ = input * w;
+		*outputSamplesX++ = input * x;
+		*outputSamplesY++ = input * y;
+		*outputSamplesZ++ = input * z;
+	}
+}
 
 
 END_UGEN_NAMESPACE
