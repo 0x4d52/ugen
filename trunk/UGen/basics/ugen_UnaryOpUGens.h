@@ -59,11 +59,12 @@
 
 
 
-#define UnaryOpUGenConstructor(INTERNALUGENCLASSNAME, operand_)																	\
+#define UnaryOpUGenConstructor(INTERNALUGENCLASSNAME, OPFUNCTION_INTERNAL, operand_)											\
 		initInternal(operand_.getNumChannels());																				\
 		for(int i = 0; i < numInternalUGens; i++)																				\
 		{																														\
 			internalUGens[i] = new INTERNALUGENCLASSNAME(operand_);																\
+			internalUGens[i]->initValue(ugen::OPFUNCTION_INTERNAL(operand_.getValue(i)));										\
 		}
 
 #define UnaryOpUGenProcessBlock(shouldDelete_, blockID_, channel_, OPFUNCTION_INTERNAL)											\
@@ -216,7 +217,7 @@
 																																\
 		Unary##OPNAME##UGen::Unary##OPNAME##UGen(UGen const& operand) throw()													\
 		{																														\
-			UnaryOpUGenConstructor(Unary##OPNAME##UGenInternal, operand);														\
+			UnaryOpUGenConstructor(Unary##OPNAME##UGenInternal, OPFUNCTION_INTERNAL, operand);									\
 		}																														\
 																																\
 		UGen OPFUNCTION(UGen const& operand) throw()																			\
@@ -376,6 +377,13 @@ public:
 		return new UnaryOpUGenInternalT<op>(inputs[Operand].getChannel(channel));
 	}
 	
+	UGenInternal* getKr() throw();
+	
+	float getValue(const int channel) const throw()										
+	{																													
+		return op(inputs[Operand].getValue(channel));		
+	}		
+	
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw() 
 	{ 
 		int numSamplesToProcess = uGenOutput.getBlockSize(); 
@@ -390,6 +398,72 @@ public:
 };
 
 template<UnaryOpFunction op>
+class UnaryOpUGenInternalTK : public UnaryOpUGenInternalT<op>
+{
+private:
+	float value;
+	
+public:
+	UnaryOpUGenInternalTK(UGen const& operand) throw()
+	:	UnaryOpUGenInternalT<op>(operand), value(0.f)
+	{
+		this->rate = UGenInternal::ControlRate;
+	}
+	
+	UGenInternal* getChannel(const int channel) throw()
+	{
+		return new UnaryOpUGenInternalTK<op>(this->inputs[UnaryOpUGenInternal::Operand].getChannel(channel));
+	}
+	
+	UGenInternal* getKr() throw() { this->incrementRefCount(); return this; }	
+	
+	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw() 
+	{
+		const int krBlockSize = UGen::getControlRateBlockSize();																
+		unsigned int blockPosition = blockID % krBlockSize;																		
+		int numSamplesToProcess = this->uGenOutput.getBlockSize();																	
+		float* outputSamples = this->uGenOutput.getSampleData();																	
+		float* inputSamples = this->inputs[UnaryOpUGenInternal::Operand].processBlock(shouldDelete, blockID, channel);									
+		
+		int numKrSamples = blockPosition % krBlockSize;																			
+		
+		while(numSamplesToProcess > 0) {																					
+			float nextValue = value;																						
+			if(numKrSamples == 0) nextValue = op(*inputSamples);											
+			
+			numKrSamples = krBlockSize - numKrSamples;																		
+			
+			blockPosition		+= numKrSamples;																			
+			inputSamples		+= numKrSamples;																			
+			
+			if(nextValue == value) {																						
+				while(numSamplesToProcess && numKrSamples) {																
+					*outputSamples++ = nextValue;																			
+					--numSamplesToProcess;																					
+					--numKrSamples;																							
+				}																											
+			} else {																										
+				float valueSlope = (nextValue - value) / (float)UGen::getControlRateBlockSize();							
+				while(numSamplesToProcess && numKrSamples) {																
+					*outputSamples++ = value;																				
+					value += valueSlope;																					
+					--numSamplesToProcess;																					
+					--numKrSamples;																							
+				}																											
+				value = nextValue;																							
+			}																												
+		}																															
+	}
+};
+
+template<UnaryOpFunction op>
+UGenInternal* UnaryOpUGenInternalT<op>::getKr() throw()
+{
+	return new UnaryOpUGenInternalTK<op>(inputs[Operand].kr());
+}
+
+
+template<UnaryOpFunction op>
 class UnaryOpUGenT : public UGen
 {
 public:
@@ -400,11 +474,13 @@ public:
 		for(int i = 0; i < numInternalUGens; i++) 
 		{ 
 			internalUGens[i] = new UnaryOpUGenInternalT<op>(operand);
+			internalUGens[i]->initValue(op(operand.getValue(i)));
 		}
 		
 	}
 	
 	static UGen AR(UGen const& operand) { return UnaryOpUGenT<op>(operand); }
+	static UGen KR(UGen const& operand) { return UGen(UnaryOpUGenT<op>(operand).kr()).kr(); }
 };
 
 template<UnaryOpFunction op>
