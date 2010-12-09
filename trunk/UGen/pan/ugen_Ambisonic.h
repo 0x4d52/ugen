@@ -49,7 +49,7 @@ public:
 				   float& w, float& x, float& y, float& z) throw();
 	
 	enum Inputs { Input, Azimuth, Elevation, Distance, NumInputs };
-	enum BFormat { W, X, Y, Z };
+	enum Outputs { W, X, Y, Z };
 	
 protected:
 	float distanceFactor;
@@ -74,7 +74,7 @@ public:
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
 	enum Inputs { BFormat, NumInputs };
-	enum BFormat { W, X, Y, Z };
+	enum Outputs { W, X, Y, Z };
 
 protected:
 	float cosAzimuth, sinAzimuth, sinElevation;
@@ -84,6 +84,75 @@ UGenSublcassDeclaration(DecodeB, (bFormat, azimuth, elevation),
 					    (UGen const& bFormat, FloatArray const& azimuth, FloatArray const& elevation = 0.f), 
 						COMMON_UGEN_DOCS);
 
+
+class ManipulateBUGenInternal : public ProxyOwnerUGenInternal
+{
+public:
+	ManipulateBUGenInternal(UGen const& bFormat, UGen const& parameter) throw();
+		
+	enum Inputs { BFormat, Parameter, NumInputs };
+	enum Outputs { W, X, Y, Z };
+
+protected:
+	float currentParam, sinParam, cosParam;
+};
+
+class RotateBUGenInternal : public ManipulateBUGenInternal
+{
+public:
+	RotateBUGenInternal(UGen const& bFormat, UGen const& rotate) throw();
+	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
+};
+
+class TiltBUGenInternal : public ManipulateBUGenInternal
+{
+public:
+	TiltBUGenInternal(UGen const& bFormat, UGen const& tilt) throw();
+	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
+};
+
+class TumbleBUGenInternal : public ManipulateBUGenInternal
+{
+public:
+	TumbleBUGenInternal(UGen const& bFormat, UGen const& tumble) throw();
+	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
+};
+
+UGenSublcassDeclaration(RotateB, (bFormat, rotate),
+					    (UGen const& bFormat, UGen const& rotate), 
+						COMMON_UGEN_DOCS);
+UGenSublcassDeclaration(TiltB, (bFormat, tilt),
+					    (UGen const& bFormat, UGen const& tilt), 
+						COMMON_UGEN_DOCS);
+UGenSublcassDeclaration(TumbleB, (bFormat, tumble),
+					    (UGen const& bFormat, UGen const& tumble), 
+						COMMON_UGEN_DOCS);
+
+class ZoomBUGenInternal : public ProxyOwnerUGenInternal
+{
+public:
+	ZoomBUGenInternal(UGen const& bFormat, UGen const& azimuth, UGen const& elevation, UGen const& zoom) throw();
+	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
+	
+	void calculateSinCos(const float azimuth, const float elevation, 
+						 float& cosAzimuthPre, float& sinAzimuthPre, float& cosElevationPre, float& sinElevationPre,
+						 float& cosAzimuthPost, float& sinAzimuthPost, float& cosElevationPost, float& sinElevationPost) throw();
+	
+	void calculateZoom(const float zoom, float& zoomWW, float& zoomXW, float& zoomWX, float& zoomYY, float& zoomZZ) throw();
+	
+	enum Inputs { BFormat, Azimuth, Elevation, Zoom, NumInputs };
+	enum Outputs { W, X, Y, Z };
+	
+protected:
+	float currentAzimuth, currentElevation, currentZoom;
+	float cosAzimuthPre, sinAzimuthPre, cosElevationPre, sinElevationPre;
+	float cosAzimuthPost, sinAzimuthPost, cosElevationPost, sinElevationPost;
+	float zoomWW, zoomXW, zoomWX, zoomYY, zoomZZ;
+};
+
+UGenSublcassDeclaration(ZoomB, (bFormat, azimuth, elevation, zoom),
+					    (UGen const& bFormat, UGen const& azimuth, UGen const& elevation, UGen const& zoom), 
+						COMMON_UGEN_DOCS);
 
 
 #endif // _UGEN_ugen_Ambisonic_H_
