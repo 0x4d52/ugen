@@ -45,15 +45,44 @@ public:
 	PanBUGenInternal(UGen const& input, UGen const& azimuth, UGen const& elevation, UGen const& distance) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
+	void calculate(const float azimuth, const float elevation, const float distance, 
+				   float& w, float& x, float& y, float& z) throw();
+	
 	enum Inputs { Input, Azimuth, Elevation, Distance, NumInputs };
-	enum Proxies { W, X, Y, Z };
+	enum BFormat { W, X, Y, Z };
 	
 protected:
 	float distanceFactor;
 	float wLevel;
 	float xyzLevel;
 	float centreSize;
+	
+	float w, x, y, z;
+	float currentAzimuth, currentElevation, currentDistance;
 };
+
+//could have PanB2 with only w,x,y if elevation is 0
+
+UGenSublcassDeclaration(PanB, (input, azimuth, elevation, distance),
+					    (UGen const& input, UGen const& azimuth, UGen const& elevation = 0.f, UGen const& distance = 1.f), 
+						COMMON_UGEN_DOCS);
+
+class DecodeBUGenInternal : public UGenInternal
+{
+public:
+	DecodeBUGenInternal(UGen const& bFormat, const float azimuth, const float elevation) throw();
+	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
+	
+	enum Inputs { BFormat, NumInputs };
+	enum BFormat { W, X, Y, Z };
+
+protected:
+	float cosAzimuth, sinAzimuth, sinElevation;
+};
+
+UGenSublcassDeclaration(DecodeB, (bFormat, azimuth, elevation),
+					    (UGen const& bFormat, FloatArray const& azimuth, FloatArray const& elevation = 0.f), 
+						COMMON_UGEN_DOCS);
 
 
 
