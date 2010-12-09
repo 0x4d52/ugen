@@ -59,6 +59,7 @@
 	const double sqrt2				= std::sqrt(2.0);
 	const double oneOverSqrt2		= 1.0 / sqrt2;
 	const double sqrt2OverTwo		= sqrt2 * 0.5;
+	const double sqrt2Minus1		= sqrt2 - 1.0;
 	const double logSqrt2			= std::log(sqrt2);
 	const double oneOver440			= 1.0 / 440.0;
 	const double oneOver12			= 1.0 / 12.0;
@@ -81,6 +82,7 @@
 	const double sqrt2				= sqrt(2.0);
 	const double oneOverSqrt2		= 1.0 / sqrt2;
 	const double sqrt2OverTwo		= sqrt2 * 0.5;
+	const double sqrt2Minus1		= sqrt2 - 1.0;
 	const double logSqrt2			= log(sqrt2);
 	const double oneOver440			= 1.0 / 440.0;
 	const double oneOver12			= 1.0 / 12.0;
