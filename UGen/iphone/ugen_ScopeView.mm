@@ -427,6 +427,7 @@ ScopeViewBase::~ScopeViewBase()
 
 void ScopeViewBase::updateGUI() throw()
 {
+	hasDisplayed = false;
 	[peer performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:nil waitUntilDone:NO];
 }
 
@@ -551,6 +552,8 @@ void ScopeView::paint(CGRect const& rect) throw()
 	}
 	
 	unlock();
+	
+	hasDisplayed = true;
 }
 
 void ScopeView::paintBipolar(CGRect const& rect) throw()

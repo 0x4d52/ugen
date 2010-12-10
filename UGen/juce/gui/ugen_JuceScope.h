@@ -41,7 +41,7 @@
 
 
 class ScopeComponentBase :	public ScopeGUI, // swapped these round (ScopeGUI first) as a hack for the scope<->gui connection
-							public Component
+				public Component
 							
 {
 public:
