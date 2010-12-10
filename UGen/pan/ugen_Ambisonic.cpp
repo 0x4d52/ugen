@@ -655,13 +655,12 @@ void ZoomBUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 			float slopeZoomXW = (newZoomXW - zoomXW) * slope;
 			float slopeZoomWX = (newZoomWX - zoomWX) * slope;
 			float slopeZoomYY = (newZoomYY - zoomYY) * slope;
-			float slopeZoomZZ 
-			= (newZoomZZ - zoomZZ) * slope;
+			float slopeZoomZZ = (newZoomZZ - zoomZZ) * slope;
 			
 			while(numSamplesToProcess--)
 			{
 				cosAzimuthPre += slopeCosAzimuthPre;
-				sinAzimuthPre	+= slopeSinAzimuthPre;
+				sinAzimuthPre += slopeSinAzimuthPre;
 				cosElevationPre += slopeCosElevationPre;	
 				sinElevationPre += slopeSinElevationPre;
 				cosAzimuthPost += slopeCosAzimuthPost;

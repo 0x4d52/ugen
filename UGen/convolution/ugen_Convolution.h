@@ -202,7 +202,7 @@ class TimeConvolveUGenInternal : public UGenInternal
 public:
 	TimeConvolveUGenInternal(UGen const& input, 
 							 Buffer const& impulse, 
-							 long startPoint = 0, long endPoint = 0, long fftSizeLog2 = 0) throw();
+							 long startPoint = 0, long endPoint = 0, long dummy = 0) throw();
 	~TimeConvolveUGenInternal() throw();
 	UGenInternal* getChannel(const int channel) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();	
@@ -224,11 +224,11 @@ protected:
 
 /** Real time time domain convolution. 
  @ingroup FFTUGens */
-UGenSublcassDeclaration(TimeConvolve, (input, impulse, startPoint, endPoint, fftSizelog2),
+UGenSublcassDeclaration(TimeConvolve, (input, impulse, startPoint, endPoint, dummy),
 						(UGen const& input, Buffer const& impulse, 
 						 long startPoint = 0, 
 						 long endPoint = 0, 
-						 long fftSizelog2 = 0), COMMON_UGEN_DOCS);
+						 long dummy = 0), COMMON_UGEN_DOCS);
 
 /** Real time zero latency convolution. 
  @ingroup FFTUGens */

@@ -451,11 +451,13 @@ void UGen::constructMultichannel(const int numUGens, const UGen uGenArray[]) thr
 		{
 			for(int internalIndex = 0; internalIndex < uGenArray[uGenIndex].numInternalUGens; internalIndex++)
 			{			
-				internalUGens[channel++] = uGenArray[uGenIndex].getInternalUGen(internalIndex);
+				// was: internalUGens[channel++] = uGenArray[uGenIndex].getInternalUGen(internalIndex);
+				internalUGens[channel++] = uGenArray[uGenIndex].getChannel(internalIndex).getInternalUGen(0);
 			}
 		}
 	}
 }
+
 
 UGen::UGen(UGen const& arg1, UGen const& arg2) throw()
 :	userData(UGen::defaultUserData),

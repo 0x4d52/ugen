@@ -45,6 +45,7 @@ BEGIN_UGEN_NAMESPACE
 
 #include "ugen_FFTEngine.h"
 #include "ugen_FFTEngineInternal.h"
+#include "../core/ugen_Arrays.h"
 
 FFTEngine::FFTEngine(const int fftSize) throw()
 {
@@ -178,6 +179,47 @@ Buffer FFTEngine::rawToMagnitude(Buffer const& raw,
 Buffer FFTEngine::rawToPhase(Buffer const& raw, const int firstBin, const int numBins) throw()
 {
 	return internal->rawToPhase(raw, firstBin, numBins);
+}
+
+Buffer FFTEngine::generatePhaseShiftResponse(FloatArray const& phases) throw()
+{
+	if(phases.length() < 1) return Buffer();
+	
+	const int size = internal->size();
+	const int halfSize = size >> 1;
+
+	Buffer spectrum = Buffer::withSize(size, phases.length());
+	Buffer response = Buffer::withSize(size, phases.length());
+
+	for(int channel = 0; channel < phases.length(); channel++)
+	{
+		float phase = phases[channel];
+		float real = cos(phase);
+		float imag = sin(phase);
+		
+		spectrum.setSampleUnchecked(channel, 0, 0.f); // real DC
+				
+		// real
+		for(int i = 1; i < halfSize; i++)
+		{
+			spectrum.setSampleUnchecked(channel, i, real);
+		}
+		
+		spectrum.setSampleUnchecked(channel, halfSize, 0.f); // real Nyquist
+		
+		// imag
+		for(int i = halfSize+1; i < size; i++)
+		{
+			spectrum.setSampleUnchecked(channel, i, imag);
+		}
+			
+		// calculate
+		ifft(response, spectrum, false, true, channel, channel);
+	}
+	
+	// rotate response by halfSize samples
+	response = response.getRegion(halfSize, size-1).append(response.getRegion(0, halfSize-1));
+	return response;
 }
 
 
