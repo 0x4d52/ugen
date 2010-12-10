@@ -31,6 +31,9 @@
  Copyright (c) 2002 James McCartney. All rights reserved.
  http://www.audiosynth.com
  
+ Based Dave Malham`s code
+ http://www.dmalham.freeserve.co.uk
+
  ==============================================================================
  */
 

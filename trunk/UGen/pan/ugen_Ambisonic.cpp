@@ -63,7 +63,7 @@ PanBUGenInternal::PanBUGenInternal(UGen const& input, UGen const& azimuth, UGen 
 
 
 void PanBUGenInternal::calculate(const float azimuth, const float elevation, const float distance,  
-				     float& w, float& x, float& y, float& z) throw()
+								 float& w, float& x, float& y, float& z) throw()
 {
 	static const float dBFactor = (-6.0/20.0);
 	
@@ -231,7 +231,7 @@ DecodeB::DecodeB(UGen const& bFormat, FloatArray const& azimuth, FloatArray cons
 }
 
 ManipulateBUGenInternal::ManipulateBUGenInternal(UGen const& bFormat, 
-						      UGen const& parameter) throw()
+												 UGen const& parameter) throw()
 :	ProxyOwnerUGenInternal(NumInputs, 3),
 	currentParam(parameter.getValue(0)),
 	sinParam(sin(currentParam)),
@@ -581,10 +581,10 @@ void ZoomBUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 			*outputSamplesZ++ = z;
 		}
 	}
-	else if(zoom == currentZoom)
+	else 
 	{
 		const float slope = 1.f/(float)numSamplesToProcess;
-		
+
 		float newCosAzimuthPre, newSinAzimuthPre, newCosElevationPre, newSinElevationPre;
 		float newCosAzimuthPost, newSinAzimuthPost, newCosElevationPost, newSinElevationPost;
 		calculateSinCos(azimuth, elevation, 
@@ -599,49 +599,119 @@ void ZoomBUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 		float slopeSinAzimuthPost = (newSinAzimuthPost - sinAzimuthPost) * slope;
 		float slopeCosElevationPost = (newCosElevationPost - cosElevationPost) * slope;
 		float slopeSinElevationPost = (newSinElevationPost - sinElevationPost) * slope;
+		
+		if(zoom == currentZoom)
+		{
+			while(numSamplesToProcess--)
+			{
+				cosAzimuthPre += slopeCosAzimuthPre;
+				sinAzimuthPre	+= slopeSinAzimuthPre;
+				cosElevationPre += slopeCosElevationPre;	
+				sinElevationPre += slopeSinElevationPre;
+				cosAzimuthPost += slopeCosAzimuthPost;
+				sinAzimuthPost += slopeSinAzimuthPost;
+				cosElevationPost += slopeCosElevationPost;
+				sinElevationPost += slopeSinElevationPost;
 				
-		while(numSamplesToProcess--)
-		{
-			cosAzimuthPre += slopeCosAzimuthPre;
-			sinAzimuthPre	+= slopeSinAzimuthPre;
-			cosElevationPre += slopeCosElevationPre;	
-			sinElevationPre += slopeSinElevationPre;
-			cosAzimuthPost += slopeCosAzimuthPost;
-			sinAzimuthPost += slopeSinAzimuthPost;
-			cosElevationPost += slopeCosElevationPost;
-			sinElevationPost += slopeSinElevationPost;
+				float w = *inputSamplesW++;
+				float x = *inputSamplesX++;
+				float y = *inputSamplesY++;
+				float z = *inputSamplesZ++;
+				
+				float dw = w;
+				float dy = (x * sinAzimuthPre) + (y * cosAzimuthPre);
+				float dx = (x * cosAzimuthPre) - (y * sinAzimuthPre);
+				
+				x = (dx * cosElevationPre) - (z * sinElevationPre);
+				y = dy;
+				z = (dx * sinElevationPre) + (z * cosElevationPre);
+				
+				dx = x;
+				
+				w = (zoomWW * dw) + (zoomXW * dx);
+				x = dx + (zoomWX * dw);
+				y *= zoomYY;	
+				z *= zoomZZ;	
+				
+				dx = (x * cosElevationPost) - (z * sinElevationPost);
+				z = (x * sinElevationPost) + (z * cosElevationPost);
+				
+				dy = y;
+				y = (dx * sinAzimuthPost) + (dy * cosAzimuthPost);
+				x = (dx * cosAzimuthPost) - (dy * sinAzimuthPost);
+				
+				*outputSamplesW++ = w;
+				*outputSamplesX++ = x;
+				*outputSamplesY++ = y;
+				*outputSamplesZ++ = z;
+			}
+		}
+		else
+		{						
+			float newZoomWW, newZoomXW, newZoomWX, newZoomYY, newZoomZZ;
+			calculateZoom(zoom, newZoomWW, newZoomXW, newZoomWX, newZoomYY, newZoomZZ);
 			
-			float w = *inputSamplesW++;
-			float x = *inputSamplesX++;
-			float y = *inputSamplesY++;
-			float z = *inputSamplesZ++;
+			float slopeZoomWW = (newZoomWW - zoomWW) * slope;
+			float slopeZoomXW = (newZoomXW - zoomXW) * slope;
+			float slopeZoomWX = (newZoomWX - zoomWX) * slope;
+			float slopeZoomYY = (newZoomYY - zoomYY) * slope;
+			float slopeZoomZZ 
+			= (newZoomZZ - zoomZZ) * slope;
 			
-			float dw = w;
-			float dy = (x * sinAzimuthPre) + (y * cosAzimuthPre);
-			float dx = (x * cosAzimuthPre) - (y * sinAzimuthPre);
+			while(numSamplesToProcess--)
+			{
+				cosAzimuthPre += slopeCosAzimuthPre;
+				sinAzimuthPre	+= slopeSinAzimuthPre;
+				cosElevationPre += slopeCosElevationPre;	
+				sinElevationPre += slopeSinElevationPre;
+				cosAzimuthPost += slopeCosAzimuthPost;
+				sinAzimuthPost += slopeSinAzimuthPost;
+				cosElevationPost += slopeCosElevationPost;
+				sinElevationPost += slopeSinElevationPost;
+				zoomWW += slopeZoomWW;
+				zoomXW += slopeZoomXW;
+				zoomWX += slopeZoomWX;
+				zoomYY += slopeZoomYY;
+				zoomZZ += slopeZoomZZ;
+				
+				float w = *inputSamplesW++;
+				float x = *inputSamplesX++;
+				float y = *inputSamplesY++;
+				float z = *inputSamplesZ++;
+				
+				float dw = w;
+				float dy = (x * sinAzimuthPre) + (y * cosAzimuthPre);
+				float dx = (x * cosAzimuthPre) - (y * sinAzimuthPre);
+				
+				x = (dx * cosElevationPre) - (z * sinElevationPre);
+				y = dy;
+				z = (dx * sinElevationPre) + (z * cosElevationPre);
+				
+				dx = x;
+				
+				w = (zoomWW * dw) + (zoomXW * dx);
+				x = dx + (zoomWX * dw);
+				y *= zoomYY;	
+				z *= zoomZZ;	
+				
+				dx = (x * cosElevationPost) - (z * sinElevationPost);
+				z = (x * sinElevationPost) + (z * cosElevationPost);
+				
+				dy = y;
+				y = (dx * sinAzimuthPost) + (dy * cosAzimuthPost);
+				x = (dx * cosAzimuthPost) - (dy * sinAzimuthPost);
+				
+				*outputSamplesW++ = w;
+				*outputSamplesX++ = x;
+				*outputSamplesY++ = y;
+				*outputSamplesZ++ = z;
+			}
 			
-			x = (dx * cosElevationPre) - (z * sinElevationPre);
-			y = dy;
-			z = (dx * sinElevationPre) + (z * cosElevationPre);
-			
-			dx = x;
-			
-			w = (zoomWW * dw) + (zoomXW * dx);
-			x = dx + (zoomWX * dw);
-			y *= zoomYY;	
-			z *= zoomZZ;	
-			
-			dx = (x * cosElevationPost) - (z * sinElevationPost);
-			z = (x * sinElevationPost) + (z * cosElevationPost);
-			
-			dy = y;
-			y = (dx * sinAzimuthPost) + (dy * cosAzimuthPost);
-			x = (dx * cosAzimuthPost) - (dy * sinAzimuthPost);
-			
-			*outputSamplesW++ = w;
-			*outputSamplesX++ = x;
-			*outputSamplesY++ = y;
-			*outputSamplesZ++ = z;
+			this->zoomWW = newZoomWW; 
+			this->zoomXW = newZoomXW; 
+			this->zoomWX = newZoomWX; 
+			this->zoomYY = newZoomYY; 
+			this->zoomZZ = newZoomZZ;
 		}
 		
 		this->cosAzimuthPre = newCosAzimuthPre; 
@@ -654,100 +724,7 @@ void ZoomBUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 		this->sinElevationPost = newSinElevationPost;
 		this->currentAzimuth = azimuth;
 		this->currentElevation = elevation;
-	}
-	else
-	{
-		const float slope = 1.f/(float)numSamplesToProcess;
-		
-		float newCosAzimuthPre, newSinAzimuthPre, newCosElevationPre, newSinElevationPre;
-		float newCosAzimuthPost, newSinAzimuthPost, newCosElevationPost, newSinElevationPost;
-		calculateSinCos(azimuth, elevation, 
-			newCosAzimuthPre, newSinAzimuthPre, newCosElevationPre, newSinElevationPre,
-			newCosAzimuthPost, newSinAzimuthPost, newCosElevationPost, newSinElevationPost);
-		
-		float slopeCosAzimuthPre = (newCosAzimuthPre - cosAzimuthPre) * slope;
-		float slopeSinAzimuthPre = (newSinAzimuthPre - sinAzimuthPre) * slope;
-		float slopeCosElevationPre = (newCosElevationPre - cosElevationPre) * slope;
-		float slopeSinElevationPre = (newSinElevationPre - sinElevationPre) * slope;
-		float slopeCosAzimuthPost = (newCosAzimuthPost - cosAzimuthPost) * slope;
-		float slopeSinAzimuthPost = (newSinAzimuthPost - sinAzimuthPost) * slope;
-		float slopeCosElevationPost = (newCosElevationPost - cosElevationPost) * slope;
-		float slopeSinElevationPost = (newSinElevationPost - sinElevationPost) * slope;
-		
-		float newZoomWW, newZoomXW, newZoomWX, newZoomYY, newZoomZZ;
-		calculateZoom(zoom, newZoomWW, newZoomXW, newZoomWX, newZoomYY, newZoomZZ);
-		
-		float slopeZoomWW = (newZoomWW - zoomWW) * slope;
-		float slopeZoomXW = (newZoomXW - zoomXW) * slope;
-		float slopeZoomWX = (newZoomWX - zoomWX) * slope;
-		float slopeZoomYY = (newZoomYY - zoomYY) * slope;
-		float slopeZoomZZ = (newZoomZZ - zoomZZ) * slope;
-		
-		while(numSamplesToProcess--)
-		{
-			cosAzimuthPre += slopeCosAzimuthPre;
-			sinAzimuthPre	+= slopeSinAzimuthPre;
-			cosElevationPre += slopeCosElevationPre;	
-			sinElevationPre += slopeSinElevationPre;
-			cosAzimuthPost += slopeCosAzimuthPost;
-			sinAzimuthPost += slopeSinAzimuthPost;
-			cosElevationPost += slopeCosElevationPost;
-			sinElevationPost += slopeSinElevationPost;
-			zoomWW += slopeZoomWW;
-			zoomXW += slopeZoomXW;
-			zoomWX += slopeZoomWX;
-			zoomYY += slopeZoomYY;
-			zoomZZ += slopeZoomZZ;
-			
-			float w = *inputSamplesW++;
-			float x = *inputSamplesX++;
-			float y = *inputSamplesY++;
-			float z = *inputSamplesZ++;
-			
-			float dw = w;
-			float dy = (x * sinAzimuthPre) + (y * cosAzimuthPre);
-			float dx = (x * cosAzimuthPre) - (y * sinAzimuthPre);
-			
-			x = (dx * cosElevationPre) - (z * sinElevationPre);
-			y = dy;
-			z = (dx * sinElevationPre) + (z * cosElevationPre);
-			
-			dx = x;
-			
-			w = (zoomWW * dw) + (zoomXW * dx);
-			x = dx + (zoomWX * dw);
-			y *= zoomYY;	
-			z *= zoomZZ;	
-			
-			dx = (x * cosElevationPost) - (z * sinElevationPost);
-			z = (x * sinElevationPost) + (z * cosElevationPost);
-			
-			dy = y;
-			y = (dx * sinAzimuthPost) + (dy * cosAzimuthPost);
-			x = (dx * cosAzimuthPost) - (dy * sinAzimuthPost);
-			
-			*outputSamplesW++ = w;
-			*outputSamplesX++ = x;
-			*outputSamplesY++ = y;
-			*outputSamplesZ++ = z;
-		}
-		
-		this->cosAzimuthPre = newCosAzimuthPre; 
-		this->sinAzimuthPre = newSinAzimuthPre; 
-		this->cosElevationPre = newCosElevationPre; 
-		this->sinElevationPre = newSinElevationPre;
-		this->cosAzimuthPost = newCosAzimuthPost; 
-		this->sinAzimuthPost = newSinAzimuthPost; 
-		this->cosElevationPost = newCosElevationPost; 
-		this->sinElevationPost = newSinElevationPost;
-		this->zoomWW = newZoomWW; 
-		this->zoomXW = newZoomXW; 
-		this->zoomWX = newZoomWX; 
-		this->zoomYY = newZoomYY; 
-		this->zoomZZ = newZoomZZ;
-		this->currentAzimuth = azimuth;
-		this->currentElevation = elevation;
-		this->currentZoom = zoom;
+		this->currentZoom = zoom;		
 	}
 }
 
