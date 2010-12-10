@@ -184,7 +184,8 @@ public:
 	
 	
 protected:
-	bool isBipolar;
+	bool isBipolar:1;
+	bool hasDisplayed:1;
 	float yMaximum;
 	float lowerMargin;
 	

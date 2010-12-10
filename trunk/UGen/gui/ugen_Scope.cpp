@@ -50,6 +50,7 @@ BEGIN_UGEN_NAMESPACE
 
 ScopeGUI::ScopeGUI(const ScopeStyles style)
 :	isBipolar(true),
+	hasDisplayed(true),
 	yMaximum(1.f),
 	lowerMargin(0.f),
 	style_(style),
@@ -205,43 +206,6 @@ void ScopeGUI::setAudioBuffer(Buffer const& audioBufferToUse, const double offse
 				{
 					newBuffer <<= audioBufferToUse.getChannel(i);
 				}
-				
-				
-//				if(coeff > 0.f && coeff < 1.f)
-//				{
-//					newBuffer <<= audioBufferToUse.getChannel(i) * coeff + audioBuffer.getChannel(i) * (1.f-coeff);
-//				}
-//				else if(coeff < 0.f && coeff > -1.f)
-//				{
-//					// peak hold
-//					const int size = audioBufferToUse.size();
-//					Buffer peakHoldBuffer = Buffer::newClear(size, 1, false);
-//					float* peakHoldBufferSamples = peakHoldBuffer.getData();
-//					const float* audioBufferToUseSamples = audioBufferToUse.getData(i);
-//					const float* audioBufferSamples = audioBuffer.getData(i);
-//					const float newCoeff = -coeff;
-//					const float oldCoeff = 1.f-newCoeff;
-//					
-//					for(int sample = 0; sample < size; sample++)
-//					{
-//						if(audioBufferToUseSamples[sample] > audioBufferSamples[sample])
-//						{
-//							peakHoldBufferSamples[sample] = audioBufferToUseSamples[sample];
-//						}
-//						else
-//						{
-//							float newSample = audioBufferToUseSamples[sample] * newCoeff;
-//							float oldSample = audioBufferSamples[sample] * oldCoeff;
-//							peakHoldBufferSamples[sample] = newSample + oldSample;
-//						}
-//					}
-//					
-//					newBuffer <<= peakHoldBuffer;
-//				}
-//				else
-//				{
-//					newBuffer <<= audioBufferToUse.getChannel(i);
-//				}
 			}
 			
 			audioBuffer = newBuffer;
@@ -258,6 +222,8 @@ void ScopeGUI::setAudioBuffer(Buffer const& audioBufferToUse, const double offse
 
 void ScopeGUI::handleBuffer(Buffer const& buffer, const double offset, const int fftSize) throw()
 {
+	if(hasDisplayed == false) return; // just discard...
+		
 	setAudioBuffer(buffer, offset, fftSize);
 }
 

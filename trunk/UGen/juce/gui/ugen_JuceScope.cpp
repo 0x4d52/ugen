@@ -101,6 +101,7 @@ void ScopeComponentBase::handleCommandMessage (int commandId)
 
 void ScopeComponentBase::updateGUI() throw()
 {
+	hasDisplayed = false;
 	postCommandMessage(Repaint);
 }
 
@@ -147,6 +148,8 @@ void ScopeComponent::paint(Graphics& g)
 	}
 	
 	unlock();
+	
+	hasDisplayed = true;
 }
 
 void ScopeComponent::paintBipolar(Graphics& g)
