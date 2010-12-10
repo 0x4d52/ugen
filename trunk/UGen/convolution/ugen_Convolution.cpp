@@ -107,7 +107,7 @@ PartBuffer PartBuffer::getChannel(const int channel) const throw()
 	
 	if(numChannels_ == 1) return *this;
 	
-	return PartBuffer(channels[channel], startPoint, endPoint, fftEngine);
+	return PartBuffer(channels[channel], numPartitions, startPoint, endPoint, fftEngine);
 }
 
 void PartBuffer::partitionImpulse(Buffer const& original)
@@ -194,7 +194,7 @@ PartConvolveUGenInternal::PartConvolveUGenInternal(UGen const& input,
 	bufferSize(partImpulse.getBufferSize()),
 	resetAll(1),
 	fftEngine(partImpulse.getFFTEngine()),
-	scaleMultD(1.0 / (double) (fftSize * 4)),	
+	scaleMultD(1.0 / (double) (fftSize)),// * 4)),	// trying without * 4 not sure the level output is right... yes without the *4 seems correct? not checked with fftw though (FFTReal and vDSP checked I think)
 	scaleMult(vecSplat((float) (scaleMultD))),
 	inputBuffer(BufferSpec((int)(bufferSize * 2), 1, false)),
 	inputBufferSamples(inputBuffer.getData()),
@@ -280,9 +280,7 @@ void PartConvolveUGenInternal::processBlock(bool& shouldDelete, const unsigned i
 	LOCAL_DECLARE(int, lastPart);
 	LOCAL_DECLARE(int, validPart);
 	
-	// FFT Stuff	
-//	LOCAL_DECLARE(FFTEngineInternal*, fftEngine);
-	
+	// FFT Stuff		
 	LOCAL_DECLARE(vFloat **, fftBuffers);
 	vFloat *tempvPointer1, *tempvPointer2;
 	
@@ -522,7 +520,7 @@ TimeConvolveUGenInternal::TimeConvolveUGenInternal(UGen const& input,
 												   Buffer const& impulse, 
 												   long startPoint, 
 												   long endPoint, 
-												   long fftSizelog2) throw()
+												   long dummy) throw()
 :	UGenInternal(NumInputs),
 	ioBuffers(BufferSpec(8192, 2, true)),
 	position(0)

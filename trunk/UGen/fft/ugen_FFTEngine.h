@@ -123,6 +123,8 @@ public:
 		NumScopeModes 
 	};
 	
+	Buffer generatePhaseShiftResponse(FloatArray const& phases) throw();
+	
 private:
 	FFTEngineInternal* internal;
 };
