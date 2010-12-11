@@ -68,8 +68,8 @@ void PanBUGenInternal::calculate(const float azimuth, const float elevation, con
 	static const float dBFactor = (-6.0/20.0);
 	
 	const float cosElevation = cos(elevation);
-	x = cos(azimuth) * cosElevation;
-	y = sin(azimuth) * cosElevation;
+	x = cos(-azimuth) * cosElevation;
+	y = sin(-azimuth) * cosElevation;
 	z = sin(elevation);
 	
 	float wDistance, xyzDistance;
@@ -277,8 +277,8 @@ void RotateBUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 	}
 	else
 	{
-		const float newSinParam = sin(rotate);
-		const float newCosParam = cos(rotate);
+		const float newSinParam = sin(-rotate);
+		const float newCosParam = cos(-rotate);
 		const float slope = 1.f/(float)numSamplesToProcess;
 		const float slopeSin = (newSinParam - sinParam) * slope;
 		const float slopeCos = (newCosParam - cosParam) * slope;
@@ -339,8 +339,8 @@ void TiltBUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 	}
 	else
 	{
-		const float newSinParam = sin(tilt);
-		const float newCosParam = cos(tilt);
+		const float newSinParam = sin(-tilt);
+		const float newCosParam = cos(-tilt);
 		const float slope = 1.f/(float)numSamplesToProcess;
 		const float slopeSin = (newSinParam - sinParam) * slope;
 		const float slopeCos = (newCosParam - cosParam) * slope;
@@ -401,8 +401,8 @@ void TumbleBUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 	}
 	else
 	{
-		const float newSinParam = sin(tumble);
-		const float newCosParam = cos(tumble);
+		const float newSinParam = sin(-tumble);
+		const float newCosParam = cos(-tumble);
 		const float slope = 1.f/(float)numSamplesToProcess;
 		const float slopeSin = (newSinParam - sinParam) * slope;
 		const float slopeCos = (newCosParam - cosParam) * slope;
@@ -532,10 +532,10 @@ void ZoomBUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 	
 	float cosAzimuthPre		= this->cosAzimuthPre; 
 	float sinAzimuthPre		= this->sinAzimuthPre; 
-	float cosElevationPre		= this->cosElevationPre; 
-	float sinElevationPre		= this->sinElevationPre;
-	float cosAzimuthPost		= this->cosAzimuthPost; 
-	float sinAzimuthPost		= this->sinAzimuthPost; 
+	float cosElevationPre	= this->cosElevationPre; 
+	float sinElevationPre	= this->sinElevationPre;
+	float cosAzimuthPost	= this->cosAzimuthPost; 
+	float sinAzimuthPost	= this->sinAzimuthPost; 
 	float cosElevationPost	= this->cosElevationPost; 
 	float sinElevationPost	= this->sinElevationPost;
 	float zoomWW			= this->zoomWW; 

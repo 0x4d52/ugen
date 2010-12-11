@@ -44,6 +44,7 @@
 BEGIN_UGEN_NAMESPACE
 
 #include "ugen_HRTF.h"
+#include "../basics/ugen_InlineUnaryOps.h"
 
 static const short ugen_H_10e000a0c[] = { 
 	5, -8, 20, -30, 34, -54, 64, -83, 80, -87, 97, 7, 4586, 6731, -8758, -4086, 
@@ -8521,7 +8522,13 @@ void HRTF::addResponse(Text const& key, const short* left, const short* right) t
 	database.put(key, Buffer(leftBuffer, rightBuffer));
 }
 
-Buffer HRTF::getResponse(const int azimuth, const int elevation) throw()
+Buffer HRTF::getClosestResponse(const float azimuth, const float elevation) throw()
+{
+	return getClosestResponseDegrees((int)(rad2deg(azimuth) + 0.5f), 
+									 (int)(rad2deg(elevation) + 0.5f));
+}
+
+Buffer HRTF::getClosestResponseDegrees(const int azimuth, const int elevation) throw()
 {
 	int elevationChecked = closestElevation(elevation);
 	
@@ -8546,6 +8553,20 @@ Buffer HRTF::getResponse(const int azimuth, const int elevation) throw()
 		return getInstance().database[buf];
 	}
 }
+
+
+// interpolated version?
+
+//Buffer HRTF::getResponse(const float azimuth, const float elevation) throw()
+//{
+//	return getResponseDegrees((int)(rad2deg(azimuth) + 0.5f), 
+//							  (int)(rad2deg(elevation) + 0.5f));
+//}
+
+
+//static Buffer HRTF::getResponseDegrees(const int azimuth, const int elevation = 0) throw();
+//{
+//}
 
 int HRTF::closestElevation(const int elevation) throw()
 {

@@ -180,13 +180,17 @@ inline double cpsmidi(const int a) throw()			{	return log2(a * oneOver440) * 12.
 inline float cpsmidi(const float a) throw()			{	return (float)(log2(a * oneOver440) * 12.0 + 69.0);				}
 inline double cpsmidi(const double a) throw()		{	return log2(a * oneOver440) * 12.0 + 69.0;						}
 
-inline float ampdb(float amp)						{	return (float)::log10(amp) * 20.f;							}
-inline float dbamp(float db)						{	return (float)::pow(10.f, db * .05f);						}
-inline double ampdb(double amp)						{	return ::log10(amp) * 20.;									}
-inline double dbamp(double db)						{	return ::pow(10, db * .05);									}
-inline double ampdb(int amp)						{	return ::log10(amp) * 20.;									}
-inline double dbamp(int db)							{	return ::pow(10, db * .05);									}
+inline float ampdb(const float amp) throw()			{	return (float)::log10(amp) * 20.f;							}
+inline float dbamp(const float db) throw()			{	return (float)::pow(10.f, db * .05f);						}
+inline double ampdb(const double amp) throw()		{	return ::log10(amp) * 20.;									}
+inline double dbamp(const double db) throw()		{	return ::pow(10, db * .05);									}
+inline double ampdb(const int amp) throw()			{	return ::log10(amp) * 20.;									}
+inline double dbamp(const int db) throw()			{	return ::pow(10, db * .05);									}
 
+inline float deg2rad(const float deg) throw()		{	return deg * (float)oneOver360 * (float)twoPi;				}
+inline double deg2rad(const double deg) throw()		{	return deg * oneOver360 * twoPi;							}
+inline float rad2deg(const float deg) throw()		{	return deg * (float)oneOverTwoPi * 360.0;					}
+inline double rad2deg(const double deg) throw()		{	return deg * oneOverTwoPi * 360.f;							}
 
 #ifndef UGEN_NOEXTGPL
 inline float distort(const float a) throw()			{	return a / (1.f + fabs(a));									}
