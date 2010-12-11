@@ -48,7 +48,10 @@ class HRTF
 public:
 	static HRTF& getInstance();
 	
-	static Buffer getResponse(const int azimuth, const int elevation = 0) throw();
+	static Buffer getClosestResponse(const float azimuth, const float elevation = 0.f) throw();
+	static Buffer getClosestResponseDegrees(const int azimuth, const int elevation = 0) throw();
+//	static Buffer getResponse(const float azimuth, const float elevation = 0.f) throw();
+//	static Buffer getResponseDegrees(const int azimuth, const int elevation = 0) throw();
 	static int closestElevation(const int elevation) throw();
 	static int closestAzimuth(const int elevation, const int azimuth) throw();
 	

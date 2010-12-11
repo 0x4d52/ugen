@@ -45,50 +45,40 @@
  
 #ifndef UGEN_ANDROID
 	const double pi					= std::acos(-1.0);
-	const double piOverTwo			= pi * 0.5;
-	const double piOverFour			= pi * 0.25;
-	const double threePiOverTwo		= pi * 1.5;
-	const double twoPi				= pi * 2.0;
-	const double fourPi				= pi * 4.0;
-	const double oneOverTwoPi		= 1.0 / twoPi;
 	const double log001				= std::log(0.001);
 	const double log01				= std::log(0.01);
 	const double log1				= std::log(0.1);
 	const double logTwo				= std::log(2.0);
 	const double oneOverLog2		= 1.0/std::log(2.0);
 	const double sqrt2				= std::sqrt(2.0);
-	const double oneOverSqrt2		= 1.0 / sqrt2;
-	const double sqrt2OverTwo		= sqrt2 * 0.5;
-	const double sqrt2Minus1		= sqrt2 - 1.0;
 	const double logSqrt2			= std::log(sqrt2);
-	const double oneOver440			= 1.0 / 440.0;
-	const double oneOver12			= 1.0 / 12.0;
-	const double zero				= 0.0;
 	const double e1					= std::exp(1.0);
 #else
 // android
 	const double pi					= acos(-1.0);
-	const double piOverTwo			= pi * 0.5;
-	const double piOverFour			= pi * 0.25;
-	const double threePiOverTwo		= pi * 1.5;
-	const double twoPi				= pi * 2.0;
-	const double fourPi				= pi * 4.0;
-	const double oneOverTwoPi		= 1.0 / twoPi;
 	const double log001				= log(0.001);
 	const double log01				= log(0.01);
 	const double log1				= log(0.1);
 	const double logTwo				= log(2.0);	
 	const double oneOverLog2		= 1.0/log(2.0);
 	const double sqrt2				= sqrt(2.0);
-	const double oneOverSqrt2		= 1.0 / sqrt2;
-	const double sqrt2OverTwo		= sqrt2 * 0.5;
-	const double sqrt2Minus1		= sqrt2 - 1.0;
 	const double logSqrt2			= log(sqrt2);
-	const double oneOver440			= 1.0 / 440.0;
-	const double oneOver12			= 1.0 / 12.0;
-	const double zero				= 0.0;
 	const double e1					= exp(1.0);
 #endif
+
+const double piOverTwo			= pi * 0.5;
+const double piOverFour			= pi * 0.25;
+const double threePiOverTwo		= pi * 1.5;
+const double twoPi				= pi * 2.0;
+const double fourPi				= pi * 4.0;
+const double oneOverTwoPi		= 1.0 / twoPi;
+const double zero				= 0.0;
+const double oneOverSqrt2		= 1.0 / sqrt2;
+const double sqrt2OverTwo		= sqrt2 * 0.5;
+const double sqrt2Minus1		= sqrt2 - 1.0;
+const double oneOver440			= 1.0 / 440.0;
+const double oneOver12			= 1.0 / 12.0;
+const double oneOver360			= 1.0 / 360.0;
 
 //}
 
