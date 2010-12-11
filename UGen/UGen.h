@@ -141,6 +141,9 @@ BEGIN_UGEN_NAMESPACE
 #include "pan/ugen_BasicPan.h"
 #include "fft/ugen_FFTEngine.h"
 
+#ifdef UGEN_HRTF
+#include "convolution/ugen_HRTF.h"
+#endif
 
 #ifndef UGEN_ANDROID
 // just not yet.. 
