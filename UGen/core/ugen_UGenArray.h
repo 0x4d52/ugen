@@ -100,7 +100,7 @@ public:
 		Internal(const int size) throw();
 		~Internal() throw();
 		
-		inline int size() const throw() { return size_; }
+		inline const int& size() const throw() { return size_; }
 		inline const UGen* getArray() const throw() { return array; }
 		inline UGen* getArray() throw() { return array; }
 		
@@ -318,7 +318,11 @@ public:
 	UGen mixEach() const throw();
 	
 	/** Mixes this UGenArray down to a multichannel UGen. */
-	UGen mix() const throw();
+	UGen mix(bool shouldAllowAutoDelete = true) const throw();
+	
+	UGen mixScale(bool shouldAllowAutoDelete = true) const throw();
+	UGen mixScaleDynamic(bool shouldAllowAutoDelete = true) const throw();
+
 	
 	/// @} <!-- end Array manipulation -------------------------------------- -->
 	
