@@ -812,11 +812,28 @@ UGen UGenArray::mixEach() const throw()
 	return mixedArray;
 }
 
-UGen UGenArray::mix() const throw()
+UGen UGenArray::mix(bool shouldAllowAutoDelete) const throw()
 {	
-	if(internal->size() == 0) return UGen::getNull();
-		
-	return Mix(*this);
+	if((shouldAllowAutoDelete == true) && (internal->size() <= 0)) return UGen::getNull();
+	if((shouldAllowAutoDelete == true) && (internal->size() == 1)) return Mix(*this, true);
+	
+	return Mix(*this, shouldAllowAutoDelete);
+}
+
+UGen UGenArray::mixScale(bool shouldAllowAutoDelete) const throw()
+{
+	if((shouldAllowAutoDelete == true) && (internal->size() <= 0)) return UGen::getNull();
+	if((shouldAllowAutoDelete == true) && (internal->size() == 1)) return Mix(*this, true);
+	
+	return Mix(*this, shouldAllowAutoDelete) / internal->size();	
+}
+
+UGen UGenArray::mixScaleDynamic(bool shouldAllowAutoDelete) const throw()
+{
+	if((shouldAllowAutoDelete == true) && (internal->size() <= 0)) return UGen::getNull();
+	if((shouldAllowAutoDelete == true) && (internal->size() == 1)) return Mix(*this, true);
+	
+	return Mix(*this, shouldAllowAutoDelete) / UGen(&internal->size()).lag(0.005);;	
 }
 
 UGenArray UGenArray::operator- () const throw()
