@@ -2352,7 +2352,11 @@ public:
 	NumericalArrayUnaryFunctionDefinition(midicps);
 	NumericalArrayUnaryFunctionDefinition(cpsmidi);
 	NumericalArrayUnaryFunctionDefinition(distort);
+	NumericalArrayUnaryFunctionDefinition(ampdb);
+	NumericalArrayUnaryFunctionDefinition(dbamp);
 #endif
+	NumericalArrayUnaryFunctionDefinition(deg2rad);
+	NumericalArrayUnaryFunctionDefinition(rad2deg);
 	
 	NumericalArray<NumericalType> operator- () throw()
 	{

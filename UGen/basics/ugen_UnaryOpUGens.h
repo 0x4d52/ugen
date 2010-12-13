@@ -347,6 +347,8 @@ UnaryOpUGenDeclaration(MidiCPS,		midicps);
 UnaryOpUGenDeclaration(CPSMidi,		cpsmidi);
 UnaryOpUGenDeclaration(AmpdB,		ampdb);
 UnaryOpUGenDeclaration(dBAmp,		dbamp);
+UnaryOpUGenDeclaration(Deg2Rad,		deg2rad);
+UnaryOpUGenDeclaration(Rad2Deg,		rad2deg);
 UnaryOpUGenDeclaration(Squared,		squared);
 UnaryOpUGenDeclaration(Cubed,		cubed);
 UnaryOpUGenDeclaration(Distort,		distort);

@@ -107,4 +107,7 @@ UnaryOpUGenDefinition(BesselI0,		besselI0,		besselI0);
 UnaryOpUGenDefinition(Zap,			zap,			zap);
 #endif
 
+UnaryOpUGenDefinition(Deg2Rad,		deg2rad,		deg2rad);
+UnaryOpUGenDefinition(Rad2Deg,		rad2deg,		rad2deg);
+
 END_UGEN_NAMESPACE
