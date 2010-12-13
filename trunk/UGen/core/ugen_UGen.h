@@ -1419,6 +1419,10 @@ UGen operator, (float leftOperand, UGen const& rightOperand) throw();
  @defgroup Values			Value classes which evaluate pattern, sequences or random values.	*/
 
 
+#define DOC_SINGLE	This should be a single value or a single channel				\
+					(multichannel UGen instances will be mixed to mono).			\
+
+
 
 /** Wrap some text in a normal "pre" Doxygen comment, before the item to be documented. */
 #define PREDOC(DOCS) /** DOCS */

@@ -94,9 +94,11 @@ typedef float (*UnaryOpFunction)(float);
 					@f$ m = 12 \cdot \log_2 \left( \frac{f}{440} \right) + 69 @f$				\n
 					where @f$ f @f$ is freqeuncy and @f$ m @f$ is MIDI note number. 
 					@see midicps */																								\
+	CLASSNAME cpsmidi() const throw();																							\
 	CLASSNAME dbamp() const throw();																							\
 	CLASSNAME ampdb() const throw();																							\
-	CLASSNAME cpsmidi() const throw();																							\
+	CLASSNAME deg2rad() const throw();																							\
+	CLASSNAME rad2deg() const throw();																							\
 	CLASSNAME squared() const throw();																							\
 	CLASSNAME cubed() const throw();																							\
 	/** Unary distort. 

@@ -66,9 +66,28 @@ protected:
 
 //could have PanB2 with only w,x,y if elevation is 0
 
+
+#define PanB_Doc	@param input		The mono input source. DOC_SINGLE								\
+					@param azimuth		The angle in the horizontal plane in radians.					\
+										0 is front, +ve is clockwise viewed from above.					\
+										DOC_SINGLE														\
+					@param elevation	The angle in the vertical plane in radians. 0 is ear-level,		\
+										@f$\frac{\pi}{2}@f$ is directly above the head and				\
+										@f$-\frac{\pi}{2}@f$ is directly below the head.				\
+										DOC_SINGLE														\
+					@param distance		Arbitrary scale distance parameter. 1 could be considered the	\
+										distance from the centre to the loudspeaker on playback.		\
+										Values less than 1 are closer, larger than 1 further away.		\
+										DOC_SINGLE
+	
+/** Ambisonic panner.
+ Pans a mono sound source into B format (W, X, Y, Z). 
+ This alwasy outputs the four channels in this order.
+ @ingroup AllUGens ControlUGens
+ @see Pan2, LinPan2, DecodeB, RotateB, TiltB, TumbleB, ZoomB */
 UGenSublcassDeclaration(PanB, (input, azimuth, elevation, distance),
 					    (UGen const& input, UGen const& azimuth, UGen const& elevation = 0.f, UGen const& distance = 1.f), 
-						COMMON_UGEN_DOCS);
+						COMMON_UGEN_DOCS PanB_Doc);
 
 class DecodeBUGenInternal : public UGenInternal
 {
