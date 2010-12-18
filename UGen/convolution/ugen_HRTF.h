@@ -1,5 +1,5 @@
-// $Id:$
-// $HeadURL:$
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================
@@ -43,6 +43,21 @@
 #include "../core/ugen_Collections.h"
 #include "../buffers/ugen_Buffer.h"
 
+/** Encapsulates a collection of HRTFs.
+ In fact this stores HRIRs (Head Related Impulse Responses) rather than HRTFs
+ (Head Related Transfer Functions) but since the latter is a more well-known term
+ the name HRTF was chosen for the class. This gives access to the 1994 work by
+ Gardner and Martin by returning an HRIR in a stereo Buffer from a given azimuth
+ and elevation. This can then be used via either TimeConvolve or PartConvolve to
+ perform convolution and thus apply the HRTF to a real-time signal.
+ 
+ See http://sound.media.mit.edu/resources/KEMAR.html
+ 
+ For example:
+ @code
+	Buffer hrir = HRTF::getClosestResponseDegrees(30, 10); // 30 degrees to the right, 10 degrees elevated
+	UGen conv = PartConvolve::AR(input, hrir); // convolve with a signal 'input'
+ @endcode */
 class HRTF
 {
 public:
@@ -51,9 +66,9 @@ public:
 	static Buffer getClosestResponse(const float azimuth, const float elevation = 0.f) throw();
 	static Buffer getClosestResponseDegrees(const int azimuth, const int elevation = 0) throw();
 //	static Buffer getResponse(const float azimuth, const float elevation = 0.f) throw();
-//	static Buffer getResponseDegrees(const int azimuth, const int elevation = 0) throw();
-	static int closestElevation(const int elevation) throw();
-	static int closestAzimuth(const int elevation, const int azimuth) throw();
+//	static Buffer getResponseDegrees(const int azimuth, const int elevation = 0) throw();	
+	static int closestElevation(const int elevationDegrees) throw();
+	static int closestAzimuth(const int elevationDegrees, const int azimuthDegrees) throw();
 	
 	
 private:

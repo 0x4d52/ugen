@@ -1,5 +1,5 @@
-// $Id:$
-// $HeadURL:$
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================
@@ -8581,6 +8581,7 @@ int HRTF::closestElevation(const int elevation) throw()
 	
 	return decade;
 }
+
 
 static int ugen_HRTFclosestAzimuth7(const int azimuth) throw()
 {
