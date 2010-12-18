@@ -42,6 +42,15 @@
 #include "../core/ugen_ExternalControlSource.h"
 #include "../spawn/ugen_VoicerBase.h"
 
+/* to add connect TO a device
+ MIDINetworkSession* session = [MIDINetworkSession defaultSession];
+ MIDINetworkHost *host = [MIDINetworkHost hostWithName:@"bonjourName" address:@"192.168.50.1" port:5004];
+ MIDINetworkConnection *connection = [MIDINetworkConnection connectionWithHost:host];
+ BOOL result = [session addConnection:connection];
+ NSLog(@"what happened %d", result); 
+ */
+
+
 #ifdef __OBJC__
 
 END_UGEN_NAMESPACE

@@ -707,7 +707,7 @@ void VoicerUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 void VoicerUGenInternal::handleIncomingMidiMessage (void* source, ByteArray const& message) throw()
 {	
 	static const float normalise127 = 1.f / 127.f;
-	static const float normalise8192 = 1.f / 8192.f;
+	static const float normalise8191 = 1.f / 8191.f;
 	
 	int head = 0;
 	
@@ -780,7 +780,7 @@ void VoicerUGenInternal::handleIncomingMidiMessage (void* source, ByteArray cons
 		{
 			int wheel = (value2 << 7) | value1;
 			wheel -= 8192;
-			getPitchWheel() = ((float)wheel * normalise8192);
+			getPitchWheel() = ((float)wheel * normalise8191);
 		}		
 	}	
 }

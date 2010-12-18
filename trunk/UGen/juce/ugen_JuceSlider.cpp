@@ -44,14 +44,14 @@ BEGIN_UGEN_NAMESPACE
 
 SliderValueInternal::SliderValueInternal(Slider *slider) throw()
 :	ValueInternal(slider->getValue()),
-slider_(slider)
+	slider_(slider)
 {
 	slider_->addListener(this);
 }
 
 SliderValueInternal::~SliderValueInternal() throw()
 {
-	if(slider_)//->isValidComponent())
+	if(slider_.getComponent())
 		slider_->removeListener(this);
 }
 
@@ -79,7 +79,7 @@ ButtonValueInternal::ButtonValueInternal(Button* button) throw()
 
 ButtonValueInternal::~ButtonValueInternal() throw()
 {
-	if(button_)//->isValidComponent())
+	if(button_.getComponent())
 		button_->removeButtonListener(this);
 }
 
@@ -123,7 +123,7 @@ LabelValueInternal::LabelValueInternal(Label* label) throw()
 
 LabelValueInternal::~LabelValueInternal() throw()
 {
-	if(label_)//->isValidComponent())
+	if(label_.getComponent())
 		label_->removeListener(this);
 }
 

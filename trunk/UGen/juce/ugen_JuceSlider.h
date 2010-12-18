@@ -51,7 +51,7 @@ public:
 	void sliderValueChanged(Slider* slider) throw();
 	
 protected:
-	Slider *slider_;
+	Component::SafePointer<Slider> slider_;
 };
 
 class SliderValue : public Value
@@ -72,7 +72,7 @@ public:
 	void buttonClicked(Button* button) throw();
 	
 private:
-	Button* button_;
+	Component::SafePointer<Button> button_;
 };
 
 class ButtonValue : public Value 
@@ -91,7 +91,7 @@ public:
 	void labelTextChanged(Label* label) throw();
 	
 private:
-	Label* label_;
+	Component::SafePointer<Label> label_;
 };
 
 class LabelValue : public Value 
