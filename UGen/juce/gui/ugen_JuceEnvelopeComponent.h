@@ -52,6 +52,7 @@
 
 class EnvelopeComponent;
 class EnvelopeHandleComponent;
+class EnvelopeLegendComponent;
 
 class EnvelopeHandleComponentConstrainer :	public ComponentBoundsConstrainer
 {
@@ -174,6 +175,7 @@ public:
     void removeListener (EnvelopeComponentListener* const listener);
 	void sendChangeMessage();
 	
+	EnvelopeLegendComponent* getLegend();
 	void setLegendText(Text const& legendText);
 	void setLegendTextToDefault();
 	int getHandleIndex(EnvelopeHandleComponent* handle) const;
@@ -254,6 +256,11 @@ public:
 	void resized();
 	void setText(Text const& legendText);
 	void setText();
+	
+	virtual double mapValue(double value);
+	virtual double mapTime(double time);
+	virtual String getValueUnits() { return String::empty; }
+	virtual String getTimeUnits() { return String::empty; }
 	
 private:
 	Label* text;
