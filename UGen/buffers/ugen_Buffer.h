@@ -134,13 +134,26 @@ public:
 	/// @name Construction and destruction
 	/// @{
 	
+	/** Construct an empty Buffer. */
 	Buffer() throw();
+	
+	/** Construct a Buffer using a BufferSpec. */
 	Buffer(BufferSpec const& spec) throw();
+	
+	/** Constuct a single-channel Buffer containing one integer. */
 	Buffer(int i00) throw();
+	
+	/** Constuct a single-channel Buffer containing two integers. */
 	Buffer(int i00, int i01) throw();
+	
+	/** Constuct a single-channel Buffer containing three integers. */
 	Buffer(int i00, int i01, int i02) throw();
 	
+	/** Constuct a single-channel Buffer containing one value. */
 	Buffer(double i00) throw();
+	
+	/** Constuct a single-channel Buffer containing multiple values. 
+	 For upto 32 values. */
 	Buffer(double i00,
 		   double i01, 
 		   double i02 = INFINITY, 
@@ -174,8 +187,10 @@ public:
 		   double i30 = INFINITY, 
 		   double i31 = INFINITY) throw();
 	
+	/** Constuct a single-channel Buffer from a ValueArray. */
 	Buffer(ValueArray const& array) throw();
 	
+	/** Constuct a single-channel Buffer by copying the data from a NumericalArray (e.g., FloatArray). */
 	template<class NumericalType>
 	Buffer(NumericalArray<NumericalType> const& array) throw()
 	:	numChannels_(1),
@@ -189,6 +204,7 @@ public:
 		}
 	}		
 		
+	/** Constuct a multi-channel Buffer by copying the data from a NumericalArray2D (e.g., FloatArray2D). */
 	template<class NumericalType>
 	Buffer(NumericalArray2D<NumericalType> const& array) throw()
 	:	numChannels_(array.size()),
@@ -217,21 +233,46 @@ public:
 	/** Create a single channel Buffer containing a geometric series. */
 	static Buffer geom(const int size, const double start, const double grow) throw();
 	
+	/** Create a Buffer with a particular size and channel count defaulting to zero data. */
 	static Buffer newClear(const int size = 1, const int numChannels = 1, bool zeroData = true) throw();
+	
+	/** Create a Buffer with a particular size and channel count defaulting to not zeroing the data. */
 	static Buffer withSize(const int size = 1, const int numChannels = 1, bool zeroData = false) throw();
 
+	/** Create a Buffer containing random numbers between lower and upper. */
 	static Buffer rand(const int size, const double lower, const double upper, const int numChannels = 1) throw();
+	
+	/** Create a Buffer containing random numbers between -positive and positive. */
 	static Buffer rand2(const int size, const double positive, const int numChannels = 1) throw();
+	
+	/** Create a Buffer containing random numbers exponentially distributed between lower and upper. */
 	static Buffer exprand(const int size, const double lower, const double upper, const int numChannels = 1) throw();
+	
+	/** Create a Buffer containing random numbers linearly distributed between lower and upper. */
 	static Buffer linrand(const int size, const double lower, const double upper, const int numChannels = 1) throw();
 	
+	/** Create a Buffer containing a certain number of cycles (repeats) of a sine wave (±1). */
 	static Buffer sineTable(const int size, const float repeats = 1.f) throw();
+	
+	/** Create a Buffer containing a certain number of cycles (repeats) of a cosine wave (±1). */
 	static Buffer cosineTable(const int size, const float repeats = 1.f) throw();
+	
+	/** Create a Buffer containing a certain number of cycles (repeats) of a cosine window (0 to 1). */
 	static Buffer cosineWindow(const int size, const float repeats = 1.f) throw();
+	
+	/** Create a Buffer containing a triangle window. */
 	static Buffer triangleWindow(const int size) throw();
+	
+	/** Create a Buffer containing a Bartlett window. */
 	static Buffer bartlettWindow(const int size) throw();
+	
+	/** Create a Buffer containing a von Hann (Hanning) window. */
 	static Buffer hannWindow(const int size) throw();
+	
+	/** Create a Buffer containing a Hamming window. */
 	static Buffer hammingWindow(const int size) throw();
+	
+	/** Create a Buffer containing a Blackman window. */
 	static Buffer blackmanWindow(const int size, const float alpha = 0.16f) throw();
 	//static Buffer kaiserWindow(const int size, const float alpha = 3.0f) throw();
 	
@@ -263,14 +304,28 @@ public:
 	 @param bufferID	A number to pass to the third argument of handleBuffer() when the Buffer is sent. */
 	static void synthAndSend(const int size, UGen const& graph, BufferReceiver* receiver, const int bufferID = 0) throw();
 	
-	
+	/** Constuct a single-channel Buffer from data in a raw float array. */
 	Buffer(const int size, const float* sourceData) throw();
+	
+	/** Constuct a multi-channel Buffer from data in a raw multi-dimensional float array. */
 	Buffer(const int size, const int numChannels, const float** sourceDataArray) throw();
+	
+	/** Constuct a single-channel Buffer from another BufferChannelInternal. */
 	Buffer(BufferChannelInternal *internalToUse) throw();
 	
+	/** Constuct a Buffer from an audio file on disk. 
+	 Formats available are dependent on platform. */
 	Buffer(const char *audioFilePath) throw();
+	
+	/** Constuct a Buffer from an audio file on disk. 
+	 Formats available are dependent on platform. */
 	Buffer(Text const& audioFilePath) throw();
+	
+	/** Constuct a Buffer from an audio file on disk returning the sampleRate to the caller. 
+	 Formats available are dependent on platform. */
 	Buffer(Text const& audioFilePath, double& sampleRate) throw();
+	
+	/** Write a Buffer to an audio file on disk. */
 	bool write(Text const& audioFilePath, bool overwriteExisitingFile = false, int bitDepth = 24) throw();
 	
 #if defined(JUCE_VERSION) || defined(DOXYGEN)
@@ -593,6 +648,16 @@ public:
 	
 	//Buffer addChannels(Buffer const& newChannels) const throw();
 	Buffer getChannel(const int channel) const throw();
+	
+	/** Get a partiuclar region of this Buffer.
+	 @param startSample		The index of sample in this Buffer that will be the first sample in the new Buffer.
+	 @param endSample		The index of sample in this Buffer that will be the last sample in the new Buffer. 
+							If this is -1 the all the samples to the end of the Buffer are used.
+	 @param startChannel	The index of channel in this Buffer that will be the first channel in the new Buffer.
+							-1 for defautl behaviour.
+	 @param endChannel		The index of channel in this Buffer that will be the last channel in the new Buffer.
+							-1 for defautl behaviour (all remaining channels).
+	 @return A new Buffer containing a region of this Buffer in terms of sample positions and channels. */
 	Buffer getRegion(const int startSample, const int endSample = -1, const int startChannel = -1, const int endChannel = -1) const throw();
 	
 	/** Reduce the apparent size of the Buffer without deallocating the extra memory.

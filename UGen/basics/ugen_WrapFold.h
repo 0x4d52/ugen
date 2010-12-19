@@ -44,6 +44,7 @@
 #define WrapFold_InputsNoTypes				input, lower, upper
 #define WrapFold_InputsEnum					Input, Lower, Upper
 
+
 class WrapFoldBaseUGenInternal : public UGenInternal
 {
 public:
@@ -52,6 +53,7 @@ public:
 	enum Inputs { WrapFold_InputsEnum, NumInputs };
 };
 
+/** @ingroup UGenInternals */
 class WrapUGenInternal : public WrapFoldBaseUGenInternal
 {
 public:
@@ -60,6 +62,7 @@ public:
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 };
 
+/** @ingroup UGenInternals */
 class FoldUGenInternal : public WrapFoldBaseUGenInternal
 {
 public:

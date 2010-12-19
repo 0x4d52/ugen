@@ -69,10 +69,7 @@ public:
 	 @param		fadeTime					Time in seconds to crossfade to the new source.
 	 */
 	bool setSource(UGen const& source, const bool releasePreviousSources = false, const float fadeTime = 0.f);
-	
-//	inline void fadeSource(UGen const& source, const float fadeTime = 0.f) { setSource(source, false, fadeTime); }
-//	inline void fadeSourceAndRelease(UGen const& source, const float fadeTime = 0.f) { setSource(source, true, fadeTime); }
-	
+		
 	UGen& getSource();
 	
 protected:

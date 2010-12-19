@@ -41,13 +41,22 @@
 
 class FFTEngineInternal;
 
+/** FFT processing helper class.
+ This relies on a choice of underlying FFT library.  */
 class FFTEngine
 {
 public:
+	/** Construct an FFTEngine with a given FFT size.
+	 If this is 0 or less then a size of 4096 is used.
+	 If this is 16 or greater then this size is used directly for the FFT 
+	 (and rounded up to the next power of 2 if necessary). 
+	 power of 2 if not. If this is less tan 16 this value is taken to the 
+	 power of 2 before being used. */
 	FFTEngine(const int fftSize = 0) throw();
 	FFTEngine(FFTEngine const& copy) throw();
 	FFTEngine& operator= (FFTEngine const& other) throw();
 		
+	/** Get the FFT size. */
 	int size() const throw();
 	FFTEngineInternal* getInternal() throw() { return internal; }
 	Buffer& getFFTWindow() throw();
@@ -55,12 +64,14 @@ public:
 	void setFFTWindow(Buffer const& window) throw();
 	void setIFFTWindow(Buffer const& window) throw();
 	
+	/** Perform an FFT. */
 	void fft(Buffer const& outputBuffer, 
 			 Buffer const& inputBuffer, 
 			 const bool applyWindow = false,
 			 const int outputChannel = 0,
 			 const int inputChannel = 0) throw();
 	
+	/** Perform an FFT at particular offsets within the input/output Buffers. */
 	void fft(Buffer const& outputBuffer, 
 			 Buffer const& inputBuffer, 
 			 const bool applyWindow,
@@ -70,6 +81,7 @@ public:
 			 const int inputOffset) throw();
 	
 	
+	/** Perform an inverse FFT. */
 	void ifft(Buffer const& outputBuffer, 
 			  Buffer const& inputBuffer, 
 			  const bool applyWindow = false, 
@@ -77,6 +89,7 @@ public:
 			  const int outputChannel = 0,
 			  const int inputChannel = 0) throw();
 	
+	/** Perform an inverse FFT at particular offsets within the input/output Buffers. */
 	void ifft(Buffer const& outputBuffer, 
 			  Buffer const& inputBuffer, 
 			  const bool applyWindow, 
@@ -123,6 +136,7 @@ public:
 		NumScopeModes 
 	};
 	
+	/** Generate impulse responses for creating filters for specific phase shifts. */
 	Buffer generatePhaseShiftResponse(FloatArray const& phases) throw();
 	
 private:
