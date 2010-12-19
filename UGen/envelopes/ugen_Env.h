@@ -200,7 +200,7 @@ public:
 	Env blend(Env const& other, const double fraction) const throw();
 	Env simplifyCurves() const throw();
 	
-	/** Get the level of the Env ata given time.
+	/** Get the level of the Env a ta given time.
 	 This ignores loopNode and releaseNode if the are set. */
 	float lookup(float time) const throw();
 	

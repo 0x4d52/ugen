@@ -246,7 +246,7 @@ class EnvelopeLegendComponent : public Component
 {
 public:
 	EnvelopeLegendComponent(Text const& defaultText = Text::empty);
-	~EnvelopeLegendComponent();
+	virtual ~EnvelopeLegendComponent();
 	
 	EnvelopeComponent* getEnvelopeComponent() const;
 	
@@ -273,6 +273,8 @@ public:
 	
 	EnvelopeComponent* getEnvelopeComponent() const		{ return envelope; }
 	EnvelopeLegendComponent* getLegendComponent() const	{ return legend;   }
+	void setLegendComponent(EnvelopeLegendComponent* newLegend);
+	
 	
 	void addListener (EnvelopeComponentListener* const listener) { envelope->addListener(listener); }
     void removeListener (EnvelopeComponentListener* const listener) { envelope->removeListener(listener); }
