@@ -84,7 +84,7 @@ protected:
 
 /** A UGen which can playback a Buffer.
  
- This should have a number of channels equalt to that in the Buffer. 
+ This should have a number of channels equal to that in the Buffer. 
  All other inputs should be a single channel (and will be mixed to mono 
  if they aren't before use).
  

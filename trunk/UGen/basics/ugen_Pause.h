@@ -64,7 +64,7 @@ protected:
 //// uncomment this block if there is an actual control rate version of this UGen
 //UGenInternalControlRateDeclaration(PauseUGenInternal, (Pause_InputsNoTypes), (Pause_InputsWithTypesAndDefaults));
 
-/** A UGen which saves processing power when an amlitude value is zero. 
+/** A UGen which saves processing power when an amplitude value is zero. 
  @ingroup AllUGens ControlUGens */
 UGenSublcassDeclarationNoDefault(Pause, (Pause_InputsNoTypes), (Pause_InputsWithTypesAndDefaults), COMMON_UGEN_DOCS);
 

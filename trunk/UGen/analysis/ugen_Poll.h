@@ -1,5 +1,5 @@
-// $Id:$
-// $HeadURL:$
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================
@@ -40,7 +40,7 @@
 #include "../core/ugen_UGen.h"
 
 
-
+/** @ingroup UGenInternals */
 class PollUGenInternal :	public UGenInternal, 
 							public BufferSender
 {
@@ -53,6 +53,7 @@ public:
 protected:
 	float lastTrig;
 };
+
 
 UGenSublcassDeclarationNoDefault
 (

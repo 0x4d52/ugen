@@ -40,7 +40,7 @@
 #include "../core/ugen_UGen.h"
 #include "../core/ugen_TextFile.h"
 
-
+/** @ingroup UGenInternals */
 class DataRecorderUGenInternal : public ProxyOwnerUGenInternal
 {
 public:
@@ -55,8 +55,8 @@ protected:
 	const bool timeStamp;
 };
 
-
-UGenSublcassDeclaration(DataRecorder, //UGenSublcassDeclarationNoDefault(DataRecorder, 
+/** Record the state of an input UGen at a given trigger into a text file. */
+UGenSublcassDeclaration(DataRecorder,
 								 (input, trig, file, timeStamp), 
 								 (UGen const& input, UGen const& trig, Text const& file, const bool timeStamp = false),
 								 COMMON_UGEN_DOCS);

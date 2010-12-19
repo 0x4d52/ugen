@@ -42,6 +42,7 @@
 
 #include "../core/ugen_UGen.h"
 
+/** @ingroup UGenInternals */
 class PanBUGenInternal : public ProxyOwnerUGenInternal
 {
 public:
@@ -82,13 +83,14 @@ protected:
 	
 /** Ambisonic panner.
  Pans a mono sound source into B format (W, X, Y, Z). 
- This alwasy outputs the four channels in this order.
+ This always outputs the four channels in this order.
  @ingroup AllUGens ControlUGens
  @see Pan2, LinPan2, DecodeB, RotateB, TiltB, TumbleB, ZoomB */
 UGenSublcassDeclaration(PanB, (input, azimuth, elevation, distance),
 					    (UGen const& input, UGen const& azimuth, UGen const& elevation = 0.f, UGen const& distance = 1.f), 
 						COMMON_UGEN_DOCS PanB_Doc);
 
+/** @ingroup UGenInternals */
 class DecodeBUGenInternal : public UGenInternal
 {
 public:
@@ -102,8 +104,32 @@ protected:
 	float cosAzimuth, sinAzimuth, sinElevation;
 };
 
-UGenSublcassDeclaration(DecodeB, (bFormat, azimuth, elevation),
-					    (UGen const& bFormat, FloatArray const& azimuth, FloatArray const& elevation = 0.f), 
+#define BFormat_Doc			The B-Format signal input source. This should be the four channels W, X, Y and Z. \
+							Fewer than four channels will have silent channels added to make up four channels. \
+							Where there are more than four channels only the the first four will be used.
+
+#define DecodeB_Doc	@param bFormat		BFormat_Doc														\
+					@param azimuths		The angle in the horizontal plane in radians.					\
+										0 is front, +ve is clockwise viewed from above.					\
+					@param elevations	The angle in the vertical plane in radians. 0 is ear-level,		\
+										@f$\frac{\pi}{2}@f$ is directly above the head and				\
+										@f$-\frac{\pi}{2}@f$ is directly below the head.
+
+/** Ambisonic decoder.
+ Decodes a B-Format (W, X, Y, Z) signal to one or more loudspeakers. FloatArray arrays
+ can be passed for azimuth and elevation and where these two arrays are of a different
+ length the smaller array will be wrapped (and the number of generated loudspeaker channels
+ will be equal to the length of larger array). E.g.,
+ @code
+	UGen bf = PanB::AR(input, 0); // pan sound straight ahead
+ 
+	// decode to ±30 degrees for stereo playback
+	UGen stereo = DecodeB::AR(bf, FloatArray(deg2rad(-30), deg2rad(30)), 0); // 0 elevation used for both L+R
+ @endcode
+ @ingroup AllUGens ControlUGens
+ @see PanB, RotateB, TiltB, TumbleB, ZoomB */
+UGenSublcassDeclaration(DecodeB, (bFormat, azimuths, elevations),
+					    (UGen const& bFormat, FloatArray const& azimuths, FloatArray const& elevations = 0.f), 
 						COMMON_UGEN_DOCS);
 
 
@@ -119,6 +145,7 @@ protected:
 	float currentParam, sinParam, cosParam;
 };
 
+/** @ingroup UGenInternals */
 class RotateBUGenInternal : public ManipulateBUGenInternal
 {
 public:
@@ -126,6 +153,7 @@ public:
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 };
 
+/** @ingroup UGenInternals */
 class TiltBUGenInternal : public ManipulateBUGenInternal
 {
 public:
@@ -133,6 +161,7 @@ public:
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 };
 
+/** @ingroup UGenInternals */
 class TumbleBUGenInternal : public ManipulateBUGenInternal
 {
 public:
@@ -140,16 +169,42 @@ public:
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 };
 
+
+#define RotateB_Doc	@param bFormat		BFormat_Doc										\
+					@param rotate		The rotation angle (on the horizontal plane) in radians. DOC_SINGLE
+#define TiltB_Doc	@param bFormat		BFormat_Doc										\
+					@param tilt			The tilt angle (leaning left/right when facing forwards) in radians. DOC_SINGLE
+#define TumbleB_Doc	@param bFormat		BFormat_Doc										\
+					@param tumble		The tumble (rolling forwards/backwards) angle in radians. DOC_SINGLE
+
+/** Rotate an ambisonic soundfield.
+ Rotates a B format signal (W, X, Y, Z). 
+ This always outputs the four channels in this order.
+ @ingroup AllUGens ControlUGens
+ @see PanB, DecodeB, TiltB, TumbleB, ZoomB */
 UGenSublcassDeclaration(RotateB, (bFormat, rotate),
 					    (UGen const& bFormat, UGen const& rotate), 
-						COMMON_UGEN_DOCS);
+						COMMON_UGEN_DOCS RotateB_Doc);
+
+/** Tilt an ambisonic soundfield.
+ Tilts a B format signal (W, X, Y, Z). 
+ This always outputs the four channels in this order.
+ @ingroup AllUGens ControlUGens
+ @see PanB, DecodeB, RotateB, TumbleB, ZoomB */
 UGenSublcassDeclaration(TiltB, (bFormat, tilt),
 					    (UGen const& bFormat, UGen const& tilt), 
-						COMMON_UGEN_DOCS);
+						COMMON_UGEN_DOCS TiltB_Doc);
+
+/** Tumble an ambisonic soundfield.
+ Tumbles a B format signal (W, X, Y, Z). 
+ This always outputs the four channels in this order.
+ @ingroup AllUGens ControlUGens
+ @see PanB, DecodeB, TiltB, RotateB, ZoomB */
 UGenSublcassDeclaration(TumbleB, (bFormat, tumble),
 					    (UGen const& bFormat, UGen const& tumble), 
-						COMMON_UGEN_DOCS);
+						COMMON_UGEN_DOCS TumbleB_Doc);
 
+/** @ingroup UGenInternals */
 class ZoomBUGenInternal : public ProxyOwnerUGenInternal
 {
 public:
@@ -172,6 +227,21 @@ protected:
 	float zoomWW, zoomXW, zoomWX, zoomYY, zoomZZ;
 };
 
+#define ZoomB_Doc	@param bFormat		BFormat_Doc														\
+					@param azimuth		The angle in the horizontal plane in radians.					\
+										0 is front, +ve is clockwise viewed from above.					\
+										DOC_SINGLE														\
+					@param elevation	The angle in the vertical plane in radians. 0 is ear-level,		\
+										@f$\frac{\pi}{2}@f$ is directly above the head and				\
+										@f$-\frac{\pi}{2}@f$ is directly below the head.				\
+										DOC_SINGLE														\
+					@param zoom			Zoom factor. DOC_SINGLE
+
+/** Zoom into a particular point in an ambisonic soundfield.
+ Zooms into a partiuclar point at a given azimuth and elevation.
+ This always outputs the four channels in this order.
+ @ingroup AllUGens ControlUGens
+ @see PanB, DecodeB, TiltB, RotateB, TumbleB */
 UGenSublcassDeclaration(ZoomB, (bFormat, azimuth, elevation, zoom),
 					    (UGen const& bFormat, UGen const& azimuth, UGen const& elevation, UGen const& zoom), 
 						COMMON_UGEN_DOCS);

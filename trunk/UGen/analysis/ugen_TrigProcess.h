@@ -1,5 +1,5 @@
-// $Id:$
-// $HeadURL:$
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================
@@ -39,6 +39,7 @@
 
 #include "../core/ugen_UGen.h"
 
+/** @ingroup UGenInternals */
 class DebounceUGenInternal : public UGenInternal
 {
 public:

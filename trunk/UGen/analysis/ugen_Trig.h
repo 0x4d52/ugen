@@ -1,5 +1,5 @@
-// $Id:$
-// $HeadURL:$
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================
@@ -39,6 +39,7 @@
 
 #include "../core/ugen_UGen.h"
 
+/** @ingroup UGenInternals */
 class TrigUGenInternal : public UGenInternal
 {
 public:
@@ -52,6 +53,7 @@ protected:
 	float lastTrig;
 };
 
+/** Outputs 1 when input goes from zero or less to positive, otherwise outputs 0. */
 UGenSublcassDeclarationNoDefault
 (
  Trig,

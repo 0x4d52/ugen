@@ -1,5 +1,5 @@
-// $Id:$
-// $HeadURL:$
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================
@@ -39,6 +39,7 @@
 
 #include "../core/ugen_UGen.h"
 
+/** @ingroup UGenInternals */
 class SchmidtUGenInternal :	public UGenInternal
 {
 public:
@@ -52,6 +53,7 @@ protected:
 	float state;
 };
 
+/** Trigger with hysterisis. */
 UGenSublcassDeclarationNoDefault
 (
  Schmidt,

@@ -931,7 +931,7 @@ public:
 			blockPosition		+= numKrSamples;																	
 			leftOperandSamples	+= numKrSamples;																	
 			rightOperandSamples	+= numKrSamples;																	
-			\
+			
 			if(nextValue == value) {																				
 				while(numSamplesToProcess && numKrSamples) {														
 					*outputSamples++ = nextValue;																	
@@ -959,7 +959,7 @@ UGenInternal* BinaryOpUGenInternalT<op>::getKr() throw()
 										  inputs[RightOperand].kr());
 }
 
-
+/** A binary operator UGen using a template for the processing function. */
 template<BinaryOpFunction op>
 class BinaryOpUGenT : public UGen
 {

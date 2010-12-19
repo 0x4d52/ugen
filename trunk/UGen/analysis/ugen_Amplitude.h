@@ -40,7 +40,7 @@
 
 #include "../core/ugen_UGen.h"
 
-
+/** @ingroup UGenInternals */
 class AmplitudeUGenInternal : public UGenInternal
 {
 public:
@@ -55,7 +55,7 @@ protected:
 	float currentAmplitude;
 };
 
-
+/** Get the amplitude of an input signal. */
 UGenSublcassDeclarationNoDefault(Amplitude, (input), (UGen const& input), COMMON_UGEN_DOCS);
 
 
