@@ -123,14 +123,18 @@ void EnvelopeHandleComponent::updateTimeAndValue()
 }
 
 void EnvelopeHandleComponent::updateLegend()
-{
+{	
+	EnvelopeComponent *env = getParentComponent();
+	EnvelopeLegendComponent* legend = env->getLegend();
+
+	if(legend == 0) return;
+
 	String text;
 	
 	int width = getParentWidth();
 	int places;
 	
 	if(width >= 165) {
-		EnvelopeComponent *env = getParentComponent();
 		
 		if(env && env->isLoopNode(this))
 			text << T("(Loop) ");
@@ -162,9 +166,9 @@ void EnvelopeHandleComponent::updateLegend()
 	
 	text << (getHandleIndex())
 		 << T(": ")
-		 << String(time, places) 
+		 << String(legend->mapTime(time), places) << legend->getTimeUnits()
 		 << T(", ") 
-		 << String(value, places);
+		 << String(legend->mapValue(value), places) << legend->getValueUnits();
 	
 	getParentComponent()->setLegendText(text);
 }
@@ -877,14 +881,19 @@ void EnvelopeComponent::sendChangeMessage()
     }
 }
 
-void EnvelopeComponent::setLegendText(Text const& legendText)
+EnvelopeLegendComponent* EnvelopeComponent::getLegend()
 {
 	EnvelopeContainerComponent* container = 
-		dynamic_cast <EnvelopeContainerComponent*> (getParentComponent());
+	dynamic_cast <EnvelopeContainerComponent*> (getParentComponent());
 	
-	if(container == 0) return;
+	if(container == 0) return 0;
 	
-	EnvelopeLegendComponent* legend = container->getLegendComponent();
+	return container->getLegendComponent();
+}
+
+void EnvelopeComponent::setLegendText(Text const& legendText)
+{	
+	EnvelopeLegendComponent* legend = getLegend();
 	
 	if(legend == 0) return;
 	
@@ -893,12 +902,7 @@ void EnvelopeComponent::setLegendText(Text const& legendText)
 
 void EnvelopeComponent::setLegendTextToDefault()
 {
-	EnvelopeContainerComponent* container = 
-		dynamic_cast <EnvelopeContainerComponent*> (getParentComponent());
-	
-	if(container == 0) return;
-	
-	EnvelopeLegendComponent* legend = container->getLegendComponent();
+	EnvelopeLegendComponent* legend = getLegend();
 	
 	if(legend == 0) return;
 	
@@ -1342,6 +1346,16 @@ void EnvelopeLegendComponent::setText()
 {
 	text->setText(defaultText, false);
 	repaint();
+}
+
+double EnvelopeLegendComponent::mapValue(double value)
+{
+	return value;
+}
+
+double EnvelopeLegendComponent::mapTime(double time)
+{
+	return time;
 }
 
 EnvelopeContainerComponent::EnvelopeContainerComponent(Text const& defaultText)
