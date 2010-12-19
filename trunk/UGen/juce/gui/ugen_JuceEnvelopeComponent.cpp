@@ -972,7 +972,7 @@ EnvelopeHandleComponent* EnvelopeComponent::addHandle(double newDomain, double n
 		handle->setTimeAndValue(newDomain, newValue, 0.0);	
 		handle->setCurve(curve);
 		handles.insert(i, handle);
-		sendChangeMessage();
+	//	sendChangeMessage();
 		return handle;
 	}
 	else return 0;
@@ -1370,6 +1370,11 @@ void EnvelopeContainerComponent::resized()
 					  legend->getHeight());
 }
 
+void EnvelopeContainerComponent::setLegendComponent(EnvelopeLegendComponent* newLegend)
+{
+	deleteAndZero(legend);
+	addAndMakeVisible(legend = newLegend);
+}
 
 EnvelopeCurvePopup::EnvelopeCurvePopup(EnvelopeHandleComponent* handleToEdit)
 :	handle(handleToEdit),

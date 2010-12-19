@@ -671,6 +671,22 @@ inline float linwelch(const float input,
 #endif
 }
 
+inline double explin(double input, double inLow, double inHigh, double outLow, double outHigh)
+{
+    if (input <= inLow) return outLow;
+    if (input >= inHigh) return outHigh;
+    return log(input/inLow) / log(inHigh/inLow) * (outHigh-outLow) + outLow;
+}
+
+inline float explin(float input, float inLow, float inHigh, float outLow, float outHigh)
+{
+    if (input <= inLow) return outLow;
+    if (input >= inHigh) return outHigh;
+    return logf(input/inLow) / logf(inHigh/inLow) * (outHigh-outLow) + outLow;
+}
+
+
+
 #endif // gpl
 
 #endif // UGEN_INLINEBINARYOPS_H
