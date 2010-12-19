@@ -70,7 +70,7 @@ void HPFUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockI
 	float* freqSamples = inputs[Freq].processBlock(shouldDelete, blockID, channel);
 	float y0;
 	float newFreq = *freqSamples;
-	
+		
 	if(newFreq != currentFreq)
 	{
 		float slope = 1.f / numSamplesToProcess;
@@ -91,7 +91,7 @@ void HPFUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockI
 		while(numSamplesToProcess--)
 		{
 			y0 = *inputSamples++ + b1 * y1 + b2 * y2; 
-			*outputSamples++ = a0 * (y0 + 2.f * y1 + y2);
+			*outputSamples++ = a0 * (y0 - 2.f * y1 + y2);
 			y2 = y1; 
 			y1 = y0;			
 			
@@ -105,7 +105,7 @@ void HPFUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockI
 		while(numSamplesToProcess--)
 		{
 			y0 = *inputSamples++ + b1 * y1 + b2 * y2; 
-			*outputSamples++ = a0 * (y0 + 2.f * y1 + y2);
+			*outputSamples++ = a0 * (y0 - 2.f * y1 + y2);
 			y2 = y1; 
 			y1 = y0;			
 		}
