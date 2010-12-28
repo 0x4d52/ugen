@@ -959,7 +959,18 @@ UGenInternal* BinaryOpUGenInternalT<op>::getKr() throw()
 										  inputs[RightOperand].kr());
 }
 
-/** A binary operator UGen using a template for the processing function. */
+/** A binary operator UGen using a template for the processing function. 
+ Any function which has the appropriate declaration can be uses as the 
+ template parameter. E.g.,
+ @code
+	float myfunc(float a, float b)
+	{
+		return a + b; // return the sum of the two inputs
+	}
+ @endcode
+ @tparam op This must be the name of a function that takes two float arguments
+            and returns a float. 
+ @ingroup AllUGens MathsUGens */
 template<BinaryOpFunction op>
 class BinaryOpUGenT : public UGen
 {

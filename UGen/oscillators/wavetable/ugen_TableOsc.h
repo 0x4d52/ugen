@@ -41,8 +41,7 @@
 #include "../../basics/ugen_MulAdd.h"
 
 /** @ingroup UGenInternals */
-class TableOscUGenInternal :	public UGenInternal//,
-//								public Seekable
+class TableOscUGenInternal :	public UGenInternal
 {
 public:
 	TableOscUGenInternal(UGen const& freq, const float initialPhase, Buffer const& table) throw();

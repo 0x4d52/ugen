@@ -41,8 +41,7 @@
 #include "../../basics/ugen_MulAdd.h"
 
 /** @ingroup UGenInternals */
-class LFSawUGenInternal :  public UGenInternal//,
-//						   public Seekable
+class LFSawUGenInternal :  public UGenInternal
 {
 public:
 	LFSawUGenInternal(UGen const& freq, const float initialPhase) throw();

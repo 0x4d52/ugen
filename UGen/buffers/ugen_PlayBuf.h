@@ -54,7 +54,6 @@
  @see PlayBuf
  @ingroup UGenInternals */
 class PlayBufUGenInternal :	public ProxyOwnerUGenInternal,
-//							public Seekable,
 							public DoneActionSender	
 {
 public:
@@ -82,6 +81,20 @@ protected:
 	const bool shouldDeleteValue;	
 };
 
+#define PlayBuf_Docs	@param buffer	The Buffer to play, this number of channels witll determin the					\
+										the number of channels of this PlayBuf.											\
+						@param rate		The rate of playback where 1 is normal speed. The may be set to 0 and			\
+										the @c offset input can be modulated manually instead (e.g., using the			\
+										LoopPoints UGen).																\
+						@param trig		A trigger that will send the playbakc head back to the offset. Just				\
+										use 0 for normal use.															\
+						@param offset	A modulatable offset into the Buffer in samples. Cab be used to driver the		\
+										Buffer playback manually instead of or in addition to the @c rate input			\
+						@param loop		A loop flag to indicate the Buffer should loop (1) or just play one-shot (0).	\
+						@param doneAction If looping oid off and the done action is UGen::DeleteWhenDone then this		\
+										  UGen will fire a delete action when playback reaches the end of the Buffer.	\
+	
+
 /** A UGen which can playback a Buffer.
  
  This should have a number of channels equal to that in the Buffer. 
@@ -96,7 +109,7 @@ UGenSublcassDeclaration(PlayBuf, (buffer, rate, trig, offset, loop, doneAction),
 						 UGen const& trig = 0.f, 
 						 UGen const& offset = 0.f, 
 						 UGen const& loop = 0.f,
-						 const UGen::DoneAction doneAction = UGen::DeleteWhenDone), COMMON_UGEN_DOCS);
+						 const UGen::DoneAction doneAction = UGen::DeleteWhenDone), COMMON_UGEN_DOCS PlayBuf_Docs);
 
 
 
@@ -118,7 +131,6 @@ UGenSublcassDeclaration(BufferValues, (buffer), (Buffer const& buffer), COMMON_U
 
 
 class RecordBufUGenInternal :	public ProxyOwnerUGenInternal,
-//								public Seekable,
 								public DoneActionSender	
 {
 public:
@@ -158,8 +170,7 @@ UGenSublcassDeclaration(RecordBuf, (input, buffer, recLevel, preLevel, loop, don
 
 #if 1
 
-class LoopPointsUGenInternal :	public UGenInternal//,
-//								public Seekable
+class LoopPointsUGenInternal :	public UGenInternal
 {
 public:
 	LoopPointsUGenInternal(Buffer const& buffer, 
@@ -182,6 +193,8 @@ private:
 	float currentValue;
 	bool lastLoop;
 };
+
+
 
 /** A UGen for controlling PlayBuf loop points via its offset input. 
  You need to provide the buffer, the rate of playback (1=normal) then the start

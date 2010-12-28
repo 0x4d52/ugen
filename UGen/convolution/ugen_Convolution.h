@@ -155,13 +155,26 @@ protected:
 
 
 
+#define PartConvolve_Docs	@param input		The input signal to convolve.												\
+							@param impulse		The impulse repsonse to convolve with the @c input.							\
+							@param startPoint	The sample offset into the @c impulse Buffer to use as the first sample		\
+												in the convolution (0 is default).											\
+							@param endPoint		The sample offset into the @c impulse Buffer to use as the last sample		\
+												in the covolution. This is @b exclusive. A value of 0 means all remaining	\
+												samples in the Buffer will be used (0 is default).							\
+							@param fftEngine	The FFTEngine to use to do the processing. An FFT size can be specified		\
+												here to force a particular FFT size of the processing.	The defualt of 0	\
+												will cause PartConvolve to create its own FFTEngine with a size of 4096.	
 
 		
 /** Real time partitioned convolution UGen. 
- @ingroup FFTUGens */
+ The number of channels will be determined by the larger of the number
+ of channels in the impulse Buffer and the input UGen.
+ @ingroup FFTUGens FilterUGens AllUGens */
 class PartConvolve : public UGen
 {
 public:
+	PREDOC(PartConvolve_Docs)
 	PartConvolve(UGen const& input, Buffer const& impulse, 
 				 long startPoint = 0, 
 				 long endPoint = 0, 
@@ -169,6 +182,7 @@ public:
 	
 	PartConvolve(UGen const& input, PartBuffer const& impulse) throw();
 	
+	PREDOC(PartConvolve_Docs)
 	static UGen AR(UGen const& input, Buffer const& impulse, 
 				   long startPoint = 0, 
 				   long endPoint = 0, 
@@ -177,6 +191,7 @@ public:
 		return PartConvolve(input, impulse, startPoint, endPoint, fftEngine);
 	}
 	
+	/** Convolve with a pre-partitioned Buffer. */
 	static UGen AR(UGen const& input, PartBuffer const& impulse) throw()
 	{
 		return PartConvolve(input, impulse);
@@ -221,6 +236,7 @@ protected:
 		OutputBuffer = 1
 	};
 };
+
 
 /** Real time time domain convolution. 
  @ingroup FFTUGens */

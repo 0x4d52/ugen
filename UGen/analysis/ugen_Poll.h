@@ -54,7 +54,10 @@ protected:
 	float lastTrig;
 };
 
-
+/** Grabs the values of one or more channels at a partiuclar instant.
+ These values are then sent as a single channel Buffer to registered BufferReceiver
+ objects. The polling occurs in response to a trigger in the @c trig input. (A 
+ trigger is where a signal goes from zero or less to greater than zero.) */
 UGenSublcassDeclarationNoDefault
 (
  Poll,

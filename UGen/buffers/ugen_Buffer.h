@@ -329,13 +329,25 @@ public:
 	bool write(Text const& audioFilePath, bool overwriteExisitingFile = false, int bitDepth = 24) throw();
 	
 #if defined(JUCE_VERSION) || defined(DOXYGEN)
+	/** Constuct a Buffer from a Juce AudioSampleBuffer. */
 	Buffer(AudioSampleBuffer& audioSampleBuffer) throw();
+	
+	/** Constuct a Buffer from an audio file on disk given by a Juce String path. */
 	Buffer(String const& audioFilePath) throw();
+	
+	/** Constuct a Buffer from an audio file on disk given by a Juce String path returning the sampleRate to the caller. */
 	Buffer(String const& audioFilePath, double& sampleRate) throw();
+	
+	/** Constuct a Buffer from an audio file on disk given by a Juce File path. */
 	Buffer(const File& audioFile) throw();
+	
+	/** Constuct a Buffer from an audio file on disk given by a Juce File path returning the sampleRate to the caller. */
 	Buffer(const File& audioFile, double& sampleRate) throw();
 	
+	/** Write a Buffer to a Juce File on disk. */
 	bool write(const File& audioFile, bool overwriteExisitingFile = false, int bitDepth = 24) throw();
+	
+	/** Write a Buffer to a file in a special location on disk. */
 	bool write(const File::SpecialLocationType directory, bool overwriteExisitingFile = false, int bitDepth = 24) throw();
 	
 protected:
@@ -356,17 +368,42 @@ protected:
 
 public:
 #endif
+	/** Constuct a Buffer from two other buffers by combining the channels. 
+	 Here the result will be the size of the largest input Buffer. The
+	 number of channels will be the sum of the channels in the two input
+	 Buffers.*/
 	Buffer(Buffer const& channels0, Buffer const& channels1) throw();
 	~Buffer() throw();
 	
+	/** Copy constructor.
+	 As this uses reference counted pointers internally this just copies the 
+	 pointer(s) and increments the reference count(s). */
 	Buffer(Buffer const& copy) throw();
+	
+	/** Make a deep copy of this Buffer. */
 	Buffer copy() const throw();
+	
+	/** Assignment. */
 	Buffer& operator= (Buffer const& other) throw();
 
+	/** Returns true if this and the other Buffer refer to identical internal objects.
+	 This does NOT compare the data so. For example:
+	 @code
+		Buffer a = Buffer(0.0, 0.5, 1.0);
+		Buffer b = a;
+		Buffer c = a.copy;
+		bool test1 = (a == b); // will be true
+		bool test2 = (a == c); // will be false
+	 @endcode */
 	bool operator== (Buffer const& other) const throw();
+	
+	/** Returns true if this and the other Buffer do not refer to identical internal objects. */
 	bool operator!= (Buffer const& other) const throw();
 	
+	/** @internal */
 	void incrementInternals() throw();	
+	
+	/** @internal */
 	void decrementInternals() throw();	
 	
 	/// @} <!-- end Construction and destruction ------------------------------------------------------ -->
@@ -375,7 +412,10 @@ public:
 	/// @name Data access and manipulation
 	/// @{
 	
+	/** Returns a single channel Buffer with the channels of this Buffer interleaved. */
 	Buffer interleave() throw();
+	
+	/** Returns a multi-channel Buffer from a channel-interleaved Buffer. */
 	Buffer deinterleave(const int numChannels) throw();
 	
 	/** Convert a buffer to a 2D array of a specified type. */
@@ -396,6 +436,7 @@ public:
 		return array2d;
 	}
 	
+	/** Convert the first channel of the buffer to an array of a specified type */
 	template<class NumericalType>
 	inline operator NumericalArray<NumericalType> () const throw()
 	{
@@ -423,18 +464,54 @@ public:
 		return array;
 	}
 	
+	/** Copy data from a source Buffer into this Buffer.
+	 This does not increase the size of this Buffer so only data up to
+	 this Buffer's size will be copied. The same applies to channels in that
+	 only the number of channels this buffer has will be copied from the source. 
+	 @param source The source Buffer. */
 	void copyFrom(Buffer const& source) throw();
+	
+	/** Copy data from a source Buffer into this Buffer.
+	 This does not increase the size of this Buffer so only data up to
+	 this Buffer's size will be copied. The same applies to channels in that
+	 only the number of channels this buffer has will be copied from the source. 
+	 @param source The source Buffer.
+	 @param sourceOffset The number of samples into the source Buffer to start copying form.
+	 @param destOffset The number of samples into this Buffer to start copying to.
+	 @param numSamples The number of samples to copy. */	
 	void copyFrom(Buffer const& source, const int sourceOffset, const int destOffset, const int numSamples) throw();
 	
+	/** Return a pointer to the floating point data for a particular channel of this Buffer.
+	 Channel indices are wrapped when the number of channels in the Buffer is exceed (so
+	 channel index 2 in a 2-channel buffer would return data for channel 0). */
 	inline float* getData(const int channel = 0) throw()								{ ugen_assert(channel >= 0); return channels[channel % numChannels_]->data; }
+	
+	/** Return a pointer to the floating point data for a particular channel of this Buffer.
+	 Channel indices are wrapped when the number of channels in the Buffer is exceed (so
+	 channel index 2 in a 2-channel buffer would return data for channel 0). */	
 	inline const float* getData(const int channel = 0) const throw()					{ ugen_assert(channel >= 0); return channels[channel % numChannels_]->data; }
+	
+	/** Return a pointer to the floating point data for a particular channel of this Buffer.
+	 Channel indices MUST be in range. */	
 	inline float* getDataUnchecked(const int channel = 0) throw()						{ ugen_assert(channel >= 0); return channels[channel]->data; }
+	
+	/** Return a pointer to the floating point data for a particular channel of this Buffer.
+	 Channel indices MUST be in range. */	
 	inline const float* getDataUnchecked(const int channel = 0) const throw()			{ ugen_assert(channel >= 0); return channels[channel]->data; }
 	
+	/** Return the number of channels in this Buffer. */
 	inline int getNumChannels() const throw()											{ return numChannels_; }
+	
+	/** Return the size in samples of each channel in this Buffer.
+	 i.e., the number of sample 'frames'. */
 	inline int size() const throw()														{ return size_; }
+	
+	/** Return the duration of this Buffer in seconds at the current sample rate. */
 	double duration() const throw();
+	
 	inline int allocatedSize() const throw()											{ return channels[0]->allocatedSize; }
+	
+	/** Set all samples in all channels to zero. */
 	inline void clear() throw()
 	{
 		if(channels != 0)
@@ -644,9 +721,13 @@ public:
 	
 	Buffer operator<< (Buffer const& other) const throw();
 	Buffer operator, (Buffer const& other) const throw();
+	
+	/** Concatenate one Buffer with another and return a new Buffer. */
 	Buffer append(Buffer const& other) const throw();
 	
 	//Buffer addChannels(Buffer const& newChannels) const throw();
+	
+	/** Return a Buffer containing only one channel of this Buffer. */
 	Buffer getChannel(const int channel) const throw();
 	
 	/** Get a partiuclar region of this Buffer.
@@ -654,9 +735,9 @@ public:
 	 @param endSample		The index of sample in this Buffer that will be the last sample in the new Buffer. 
 							If this is -1 the all the samples to the end of the Buffer are used.
 	 @param startChannel	The index of channel in this Buffer that will be the first channel in the new Buffer.
-							-1 for defautl behaviour.
+							-1 for default behaviour.
 	 @param endChannel		The index of channel in this Buffer that will be the last channel in the new Buffer.
-							-1 for defautl behaviour (all remaining channels).
+							-1 for default behaviour (all remaining channels).
 	 @return A new Buffer containing a region of this Buffer in terms of sample positions and channels. */
 	Buffer getRegion(const int startSample, const int endSample = -1, const int startChannel = -1, const int endChannel = -1) const throw();
 	
@@ -673,9 +754,17 @@ public:
 	 @endcode
 	 @see TableOsc */
 	Buffer& shrinkSize(const int amount = 1) throw();
+	
+	/** Return the sum of all samples in a particular channel. */
 	float sum(const int channel) const throw();
+	
+	/** Return the sum of all samples in all channels. */
 	float sum() const throw();
+	
+	/** Return a new Buffer which is this Buffer normalised based on the maximum amplitude across all channels. */
 	Buffer normalise() const throw();
+	
+	/** Return a new Buffer which is this Buffer normalised when each channel is normalised separately. */
 	Buffer normaliseEach() const throw();	
 	float findMaximum(const int channel = -1) const throw();
 	float findMinimum(const int channel = -1) const throw();
@@ -875,18 +964,12 @@ public:
 	/// @{
 	
 	bool isNull() const throw() { return size_ == 0 || numChannels_ == 0; }
-	
-//	static Buffer tableSine512;
-//	static Buffer tableSine8192;
-//	static Buffer tableCosine512;
-//	static Buffer tableCosine8192;
-//	static Buffer tableConstantPan512;
-	
-	static const Buffer& getTableSine512() throw();
-	static const Buffer& getTableSine8192() throw();
-	static const Buffer& getTableCosine512() throw();
-	static const Buffer& getTableCosine8192() throw();
-	static const Buffer& getTableConstantPan512() throw();
+		
+	static const Buffer& getTableSine512() throw();			///< A 512-point sine table.
+	static const Buffer& getTableSine8192() throw();		///< A 8192-point sine table.
+	static const Buffer& getTableCosine512() throw();		///< A 512-point cosine table.
+	static const Buffer& getTableCosine8192() throw();		///< A 8192-point cosine table.
+	static const Buffer& getTableConstantPan512() throw();	///< A 512-point pan table for 2-channel constant-power panning.
 	
 	/// @} <!-- end Miscellaneous ------------------------------------------------------------ -->
 

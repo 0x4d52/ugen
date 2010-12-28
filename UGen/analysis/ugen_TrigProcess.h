@@ -53,6 +53,8 @@ protected:
 	int count;
 };
 
+/** Prevents multiple tiggers within a specified time interval.
+ Similar to debounce circuits in analogue electronics. */
 UGenSublcassDeclarationNoDefault
 (
  Debounce,
