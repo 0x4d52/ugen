@@ -62,8 +62,9 @@ Static Public Member Functions</h2></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>A <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which saves processing power when an amplitude value is zero. </p>
+<p>This controls the level of the input level of the input <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> and can alse prevent the rendering of the input <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> when level is zero (simply outputting a zero output instead). This can be useful if the input is relatively expensive but does add a small overhead so may not be worth it if the input is very simple. </p>
 
-<p>Definition at line <a class="el" href="ugen___pause_8h_source.html#l00069">69</a> of file <a class="el" href="ugen___pause_8h_source.html">ugen_Pause.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___pause_8h_source.html#l00072">72</a> of file <a class="el" href="ugen___pause_8h_source.html">ugen_Pause.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a9424ebfe201ee6424266b21fb18c05b5"></a><!-- doxytag: member="Pause::Pause" ref="a9424ebfe201ee6424266b21fb18c05b5" args="(UGen const &amp;input, UGen const &amp;level=0.f)" -->
 <div class="memitem">
@@ -133,7 +134,7 @@ Static Public Member Functions</h2></td></tr>
  </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_pause.html" title="A UGen which saves processing power when an amplitude value is zero.">Pause</a> . </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___pause_8h_source.html#l00069">69</a> of file <a class="el" href="ugen___pause_8h_source.html">ugen_Pause.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___pause_8h_source.html#l00072">72</a> of file <a class="el" href="ugen___pause_8h_source.html">ugen_Pause.h</a>.</p>
 
 </div>
 </div>
@@ -168,7 +169,7 @@ Static Public Member Functions</h2></td></tr>
  </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The control rate <a class="el" href="class_pause.html" title="A UGen which saves processing power when an amplitude value is zero.">Pause</a> . </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___pause_8h_source.html#l00069">69</a> of file <a class="el" href="ugen___pause_8h_source.html">ugen_Pause.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___pause_8h_source.html#l00072">72</a> of file <a class="el" href="ugen___pause_8h_source.html">ugen_Pause.h</a>.</p>
 
 </div>
 </div>
@@ -177,7 +178,7 @@ Static Public Member Functions</h2></td></tr>
 <li>basics/<a class="el" href="ugen___pause_8cpp_source.html">ugen_Pause.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 19 2010 06:22:23 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 28 2010 12:27:18 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

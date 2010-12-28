@@ -33,7 +33,10 @@
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a>  </div>
   <div class="headertitle">
-<h1>BinaryOpUGenT&lt; op &gt; Class Template Reference</h1>  </div>
+<h1>BinaryOpUGenT&lt; op &gt; Class Template Reference<br/>
+<small>
+[<a class="el" href="group___all_u_gens.html">All UGen classes.</a>,&nbsp;<a class="el" href="group___maths_u_gens.html">Mathemetical UGen classes.</a>]</small>
+</h1>  </div>
 </div>
 <div class="contents">
 <!-- doxytag: class="BinaryOpUGenT" --><!-- doxytag: inherits="UGen" -->
@@ -59,8 +62,19 @@ Static Public Member Functions</h2></td></tr>
  class BinaryOpUGenT&lt; op &gt;</h3>
 
 <p>A binary operator <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> using a template for the processing function. </p>
+<p>Any function which has the appropriate declaration can be uses as the template parameter. E.g., </p>
+<div class="fragment"><pre class="fragment">  <span class="keywordtype">float</span> myfunc(<span class="keywordtype">float</span> a, <span class="keywordtype">float</span> b)
+  {
+    <span class="keywordflow">return</span> a + b; <span class="comment">// return the sum of the two inputs</span>
+  }
+</pre></div> <dl><dt><b>Template Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>op</em>&nbsp;</td><td>This must be the name of a function that takes two float arguments and returns a float. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8h_source.html#l00902">902</a> of file <a class="el" href="ugen___binary_op_u_gens_8h_source.html">ugen_BinaryOpUGens.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8h_source.html#l00913">913</a> of file <a class="el" href="ugen___binary_op_u_gens_8h_source.html">ugen_BinaryOpUGens.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ae155a161aa0e393e837dc6248fe6ac1b"></a><!-- doxytag: member="BinaryOpUGenT::BinaryOpUGenT" ref="ae155a161aa0e393e837dc6248fe6ac1b" args="(UGen const &amp;leftOperand, UGen const &amp;rightOperand)" -->
 <div class="memitem">
@@ -89,9 +103,7 @@ template&lt;BinaryOpFunction op&gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8h_source.html#l00905">905</a> of file <a class="el" href="ugen___binary_op_u_gens_8h_source.html">ugen_BinaryOpUGens.h</a>.</p>
-
-<p>References <a class="el" href="ugen___u_gen_8cpp_source.html#l00810">UGen::getChannel()</a>, and <a class="el" href="ugen___u_gen_internal_8h_source.html#l00267">UGenInternal::inputs</a>.</p>
+<p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8h_source.html#l00916">916</a> of file <a class="el" href="ugen___binary_op_u_gens_8h_source.html">ugen_BinaryOpUGens.h</a>.</p>
 
 </div>
 </div>
@@ -123,7 +135,7 @@ template&lt;BinaryOpFunction op&gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8h_source.html#l00924">924</a> of file <a class="el" href="ugen___binary_op_u_gens_8h_source.html">ugen_BinaryOpUGens.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8h_source.html#l00935">935</a> of file <a class="el" href="ugen___binary_op_u_gens_8h_source.html">ugen_BinaryOpUGens.h</a>.</p>
 
 </div>
 </div>
@@ -154,7 +166,7 @@ template&lt;BinaryOpFunction op&gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8h_source.html#l00925">925</a> of file <a class="el" href="ugen___binary_op_u_gens_8h_source.html">ugen_BinaryOpUGens.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___binary_op_u_gens_8h_source.html#l00936">936</a> of file <a class="el" href="ugen___binary_op_u_gens_8h_source.html">ugen_BinaryOpUGens.h</a>.</p>
 
 </div>
 </div>
@@ -162,7 +174,7 @@ template&lt;BinaryOpFunction op&gt; </div>
 <li>basics/<a class="el" href="ugen___binary_op_u_gens_8h_source.html">ugen_BinaryOpUGens.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 19 2010 06:22:20 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 28 2010 12:27:12 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

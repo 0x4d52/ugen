@@ -30,7 +30,7 @@
 <h1>basics/ugen_InlineBinaryOps.h</h1>  </div>
 </div>
 <div class="contents">
-<a href="ugen___inline_binary_ops_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_InlineBinaryOps.h 226 2010-12-06 17:34:30Z 0x4d52 $</span>
+<a href="ugen___inline_binary_ops_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// $Id: ugen_InlineBinaryOps.h 245 2010-12-19 15:08:06Z 0x4d52 $</span>
 <a name="l00002"></a>00002 <span class="comment">// $HeadURL: https://ugen.googlecode.com/svn/trunk/UGen/basics/ugen_InlineBinaryOps.h $</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">/*</span>
@@ -523,14 +523,14 @@
 <a name="l00581"></a>00581   <span class="keywordtype">float</span> outRange = outHigh - outLow;
 <a name="l00582"></a>00582     
 <a name="l00583"></a>00583   <span class="keywordtype">float</span> inPhase = (input - inLow) * <a class="code" href="ugen___constants_8h.html#a43016d873124d39034edb8cd164794db">pi</a> / inRange + <a class="code" href="ugen___constants_8h.html#a43016d873124d39034edb8cd164794db">pi</a>;
-<a name="l00584"></a>00584 <span class="preprocessor">#ifndef UGEN_ANDROID</span>
+<a name="l00584"></a><a class="code" href="ugen___inline_binary_ops_8h.html#a0e70452165aa0cd952af61cd750a1151">00584</a> <span class="preprocessor">#ifndef UGEN_ANDROID</span>
 <a name="l00585"></a>00585 <span class="preprocessor"></span>  <span class="keywordtype">float</span> cosInPhase = (float)<a class="code" href="ugen___inline_unary_ops_8h.html#aa8f70c6ff79ea20ca30a6034b31568e2">std::cos</a>((<span class="keywordtype">double</span>)inPhase) * 0.5f + 0.5f;
 <a name="l00586"></a>00586 <span class="preprocessor">#else</span>
 <a name="l00587"></a>00587 <span class="preprocessor"></span>  <span class="keywordtype">float</span> cosInPhase = cosf(inPhase) * 0.5f + 0.5f;
 <a name="l00588"></a>00588 <span class="preprocessor">#endif</span>
 <a name="l00589"></a>00589 <span class="preprocessor"></span>  
 <a name="l00590"></a>00590   <span class="keywordflow">return</span> cosInPhase * outRange + outLow;  
-<a name="l00591"></a>00591 }
+<a name="l00591"></a><a class="code" href="ugen___inline_binary_ops_8h.html#a29f62f367df8e852f8e653fb39eaa3db">00591</a> }
 <a name="l00592"></a>00592 
 <a name="l00593"></a>00593 <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code" href="ugen___inline_binary_ops_8h.html#a7f32a90d418a4600947ce0f3e7806be9">linsin</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> input, 
 <a name="l00594"></a>00594            <span class="keyword">const</span> <span class="keywordtype">double</span> inLow, <span class="keyword">const</span> <span class="keywordtype">double</span> inHigh,
@@ -613,13 +613,29 @@
 <a name="l00671"></a>00671 <span class="preprocessor">#endif</span>
 <a name="l00672"></a>00672 <span class="preprocessor"></span>}
 <a name="l00673"></a>00673 
-<a name="l00674"></a>00674 <span class="preprocessor">#endif // gpl</span>
-<a name="l00675"></a>00675 <span class="preprocessor"></span>
-<a name="l00676"></a>00676 <span class="preprocessor">#endif // UGEN_INLINEBINARYOPS_H</span>
-<a name="l00677"></a>00677 <span class="preprocessor"></span>
+<a name="l00674"></a>00674 <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code" href="ugen___inline_binary_ops_8h.html#a0e70452165aa0cd952af61cd750a1151">explin</a>(<span class="keywordtype">double</span> input, <span class="keywordtype">double</span> inLow, <span class="keywordtype">double</span> inHigh, <span class="keywordtype">double</span> outLow, <span class="keywordtype">double</span> outHigh)
+<a name="l00675"></a>00675 {
+<a name="l00676"></a>00676     <span class="keywordflow">if</span> (input &lt;= inLow) <span class="keywordflow">return</span> outLow;
+<a name="l00677"></a>00677     <span class="keywordflow">if</span> (input &gt;= inHigh) <span class="keywordflow">return</span> outHigh;
+<a name="l00678"></a>00678     <span class="keywordflow">return</span> <a class="code" href="ugen___inline_unary_ops_8h.html#a0fc158a0245f0a9b82b9c2157d7bd40b">log</a>(input/inLow) / <a class="code" href="ugen___inline_unary_ops_8h.html#a0fc158a0245f0a9b82b9c2157d7bd40b">log</a>(inHigh/inLow) * (outHigh-outLow) + outLow;
+<a name="l00679"></a>00679 }
+<a name="l00680"></a>00680 
+<a name="l00681"></a>00681 <span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="ugen___inline_binary_ops_8h.html#a0e70452165aa0cd952af61cd750a1151">explin</a>(<span class="keywordtype">float</span> input, <span class="keywordtype">float</span> inLow, <span class="keywordtype">float</span> inHigh, <span class="keywordtype">float</span> outLow, <span class="keywordtype">float</span> outHigh)
+<a name="l00682"></a>00682 {
+<a name="l00683"></a>00683     <span class="keywordflow">if</span> (input &lt;= inLow) <span class="keywordflow">return</span> outLow;
+<a name="l00684"></a>00684     <span class="keywordflow">if</span> (input &gt;= inHigh) <span class="keywordflow">return</span> outHigh;
+<a name="l00685"></a>00685     <span class="keywordflow">return</span> logf(input/inLow) / logf(inHigh/inLow) * (outHigh-outLow) + outLow;
+<a name="l00686"></a>00686 }
+<a name="l00687"></a>00687 
+<a name="l00688"></a>00688 
+<a name="l00689"></a>00689 
+<a name="l00690"></a>00690 <span class="preprocessor">#endif // gpl</span>
+<a name="l00691"></a>00691 <span class="preprocessor"></span>
+<a name="l00692"></a>00692 <span class="preprocessor">#endif // UGEN_INLINEBINARYOPS_H</span>
+<a name="l00693"></a>00693 <span class="preprocessor"></span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 19 2010 06:22:14 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 28 2010 12:27:00 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

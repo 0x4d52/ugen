@@ -212,9 +212,9 @@
 <a name="l00198"></a>00198 <span class="preprocessor">                @param inLow  The lower range of the input value (note this is not clipped so     \</span>
 <a name="l00199"></a>00199 <span class="preprocessor">                        it is the user`s responsibility to make sure the value is in range)   \</span>
 <a name="l00200"></a>00200 <span class="preprocessor">                @param inHigh The upper range of the input value (note this is not clipped so     \</span>
-<a name="l00201"></a>00201 <span class="preprocessor">                        it is the user`s responsibility to make sure the value is in range)   \</span>
+<a name="l00201"></a>00201 <span class="preprocessor">                        it is the user`s responsibility to make sure the value is in range)</span>
 <a name="l00202"></a>00202 <span class="preprocessor"></span>
-<a name="l00203"></a><a class="code" href="ugen___mapping_u_gens_8h.html#a9cc4753c86781d5f5d081b97c7934551">00203</a> <span class="preprocessor"></span><span class="preprocessor">#define MappingBase_Docs    MappingBaseBase_Docs                                  \</span>
+<a name="l00203"></a><a class="code" href="ugen___mapping_u_gens_8h.html#a9cc4753c86781d5f5d081b97c7934551">00203</a> <span class="preprocessor">#define MappingBase_Docs    MappingBaseBase_Docs                                  \</span>
 <a name="l00204"></a>00204 <span class="preprocessor">                @param outLow The lower range of the desired output value.              \</span>
 <a name="l00205"></a>00205 <span class="preprocessor">                @param outHigh  The upper range of the desired output value.</span>
 <a name="l00206"></a>00206 <span class="preprocessor"></span>
@@ -235,11 +235,11 @@
 <a name="l00230"></a>00230 <span class="preprocessor">#endif // gpl</span>
 <a name="l00231"></a>00231 <span class="preprocessor"></span>
 <a name="l00232"></a><a class="code" href="ugen___mapping_u_gens_8h.html#a6e87e3e474d0f9fa5e4ecfeed92ef86f">00232</a> <span class="preprocessor">#define Map_Docs        MappingBaseBase_Docs                                  \</span>
-<a name="l00233"></a>00233 <span class="preprocessor">                @param table  A single channel Buffer used as a lookup table. Here an input     \</span>
+<a name="l00233"></a>00233 <span class="preprocessor">                @param table  A Buffer used as a lookup table. Here an input              \</span>
 <a name="l00234"></a>00234 <span class="preprocessor">                        value of inLow would output the first value in the table, an      \</span>
 <a name="l00235"></a>00235 <span class="preprocessor">                        input value of inHigh would output the last value in the table.     \</span>
 <a name="l00236"></a>00236 <span class="preprocessor">                        An input value half way between inLow and inHigh would output the   \</span>
-<a name="l00237"></a>00237 <span class="preprocessor">                        value in the middle of the table, and so on.</span>
+<a name="l00237"></a>00237 <span class="preprocessor">                        value in the middle of the table, and so on. Values are interpolated.</span>
 <a name="l00238"></a>00238 <span class="preprocessor"></span>          
 <a name="l00239"></a>00239 
 <a name="l00243"></a>00243 <a class="code" href="ugen___mul_add_8h.html#a3c1d2336ae0f1e00bd9ee86f556e4909" title="Declare a UGen with multiply and add inputs.">DirectMulAddUGenDeclaration</a>(<a class="code" href="class_map.html" title="Map uaing a lookup table.">Map</a>, 
@@ -254,7 +254,7 @@
 <a name="l00252"></a>00252 <span class="preprocessor">#endif // _UGEN_ugen_MappingUGens_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 19 2010 06:22:14 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 28 2010 12:27:01 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

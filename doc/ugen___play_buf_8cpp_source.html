@@ -116,7 +116,7 @@
 <a name="l00084"></a>00084   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_proxy_owner_u_gen_internal.html#a43e6fd05ba69f1ef135463c028e656cd">getNumChannels</a>(); channel++)
 <a name="l00085"></a>00085   {
 <a name="l00086"></a>00086     <span class="keywordtype">int</span> numSamplesToProcess = blockSize;
-<a name="l00087"></a>00087     <span class="keyword">const</span> <span class="keywordtype">int</span> bufferSize = <a class="code" href="class_play_buf_u_gen_internal.html#ac03af12c3b75eb96838f094c1a481d7c">buffer_</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>();
+<a name="l00087"></a>00087     <span class="keyword">const</span> <span class="keywordtype">int</span> bufferSize = <a class="code" href="class_play_buf_u_gen_internal.html#ac03af12c3b75eb96838f094c1a481d7c">buffer_</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96" title="Return the size in samples of each channel in this Buffer.">size</a>();
 <a name="l00088"></a>00088     channelBufferPos = <a class="code" href="class_play_buf_u_gen_internal.html#a2bfc802c4bfcb30c94d07fbd13c45099">bufferPos</a>;
 <a name="l00089"></a>00089     <span class="keywordtype">float</span>* outputSamples = <a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">getSampleData</a>();
 <a name="l00090"></a>00090     <span class="keywordtype">float</span>* rateSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Rate].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
@@ -162,7 +162,7 @@
 <a name="l00130"></a>00130   
 <a name="l00131"></a>00131   <a class="code" href="class_play_buf_u_gen_internal.html#a2bfc802c4bfcb30c94d07fbd13c45099">bufferPos</a> = channelBufferPos;
 <a name="l00132"></a>00132   
-<a name="l00133"></a>00133   <span class="keywordflow">if</span>(<a class="code" href="class_play_buf_u_gen_internal.html#a2bfc802c4bfcb30c94d07fbd13c45099">bufferPos</a> &gt;= <a class="code" href="class_play_buf_u_gen_internal.html#ac03af12c3b75eb96838f094c1a481d7c">buffer_</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>())
+<a name="l00133"></a>00133   <span class="keywordflow">if</span>(<a class="code" href="class_play_buf_u_gen_internal.html#a2bfc802c4bfcb30c94d07fbd13c45099">bufferPos</a> &gt;= <a class="code" href="class_play_buf_u_gen_internal.html#ac03af12c3b75eb96838f094c1a481d7c">buffer_</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96" title="Return the size in samples of each channel in this Buffer.">size</a>())
 <a name="l00134"></a>00134   {
 <a name="l00135"></a>00135     shouldDelete = shouldDelete ? <span class="keyword">true</span> : <a class="code" href="class_play_buf_u_gen_internal.html#a44ed4d6f2bc31e95773e4882a30a9419">shouldDeleteValue</a>;
 <a name="l00136"></a>00136     <a class="code" href="class_done_action_sender.html#a6d1992edaa918522f47b7138ba30bd17">setIsDone</a>();
@@ -171,7 +171,7 @@
 <a name="l00139"></a>00139 
 <a name="l00140"></a><a class="code" href="class_play_buf_u_gen_internal.html#a9a88f28474e5141b1cd7199784b30d84">00140</a> <span class="keywordtype">double</span> <a class="code" href="class_play_buf_u_gen_internal.html#a9a88f28474e5141b1cd7199784b30d84">PlayBufUGenInternal::getDuration</a>() <span class="keyword">const</span> throw()
 <a name="l00141"></a>00141 {
-<a name="l00142"></a>00142   <span class="keywordflow">return</span> <a class="code" href="class_play_buf_u_gen_internal.html#ac03af12c3b75eb96838f094c1a481d7c">buffer_</a>.<a class="code" href="class_buffer.html#a0db2e98450da72f708c98136560c4e56">duration</a>();
+<a name="l00142"></a>00142   <span class="keywordflow">return</span> <a class="code" href="class_play_buf_u_gen_internal.html#ac03af12c3b75eb96838f094c1a481d7c">buffer_</a>.<a class="code" href="class_buffer.html#a0db2e98450da72f708c98136560c4e56" title="Return the duration of this Buffer in seconds at the current sample rate.">duration</a>();
 <a name="l00143"></a>00143 }
 <a name="l00144"></a>00144 
 <a name="l00145"></a><a class="code" href="class_play_buf_u_gen_internal.html#a2dadc2daf3214f2cbd700b92eded4871">00145</a> <span class="keywordtype">double</span> <a class="code" href="class_play_buf_u_gen_internal.html#a2dadc2daf3214f2cbd700b92eded4871">PlayBufUGenInternal::getPosition</a>() <span class="keyword">const</span> throw()
@@ -300,14 +300,14 @@
 <a name="l00268"></a>00268   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_proxy_owner_u_gen_internal.html#a43e6fd05ba69f1ef135463c028e656cd">getNumChannels</a>(); channel++)
 <a name="l00269"></a>00269   {
 <a name="l00270"></a>00270     <span class="keywordtype">int</span> numSamplesToProcess = blockSize;
-<a name="l00271"></a>00271     <span class="keyword">const</span> <span class="keywordtype">int</span> bufferSize = <a class="code" href="class_record_buf_u_gen_internal.html#a3b36d6e715d50785418483652fb37b8d">buffer_</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>();
+<a name="l00271"></a>00271     <span class="keyword">const</span> <span class="keywordtype">int</span> bufferSize = <a class="code" href="class_record_buf_u_gen_internal.html#a3b36d6e715d50785418483652fb37b8d">buffer_</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96" title="Return the size in samples of each channel in this Buffer.">size</a>();
 <a name="l00272"></a>00272     channelBufferPos = <a class="code" href="class_record_buf_u_gen_internal.html#a8052fa5c6c9af00762b6e73c4a98b30b">bufferPos</a>;
 <a name="l00273"></a>00273     <span class="keywordtype">float</span>* outputSamples = <a class="code" href="class_proxy_owner_u_gen_internal.html#ac415da5877c3dc97ac812d58c0fbe59d">proxies</a>[channel]-&gt;<a class="code" href="class_u_gen_internal.html#aaf9b03d885dd885b748d4122d7d760a4">getSampleData</a>();
 <a name="l00274"></a>00274     <span class="keywordtype">float</span>* inputSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Input].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, channel);
 <a name="l00275"></a>00275     <span class="keywordtype">float</span>* preLevelSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[PreLevel].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, channel);
 <a name="l00276"></a>00276     <span class="keywordtype">float</span>* recLevelSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[RecLevel].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, channel);
 <a name="l00277"></a>00277     <span class="keywordtype">float</span>* loopSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Loop].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
-<a name="l00278"></a>00278     <span class="keywordtype">float</span>* bufferSamples = <a class="code" href="class_record_buf_u_gen_internal.html#a3b36d6e715d50785418483652fb37b8d">buffer_</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(channel);
+<a name="l00278"></a>00278     <span class="keywordtype">float</span>* bufferSamples = <a class="code" href="class_record_buf_u_gen_internal.html#a3b36d6e715d50785418483652fb37b8d">buffer_</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>(channel);
 <a name="l00279"></a>00279     
 <a name="l00280"></a>00280     <span class="keywordflow">while</span>(numSamplesToProcess) 
 <a name="l00281"></a>00281     {                   
@@ -344,7 +344,7 @@
 <a name="l00312"></a>00312   
 <a name="l00313"></a>00313   <a class="code" href="class_record_buf_u_gen_internal.html#a8052fa5c6c9af00762b6e73c4a98b30b">bufferPos</a> = channelBufferPos;
 <a name="l00314"></a>00314   
-<a name="l00315"></a>00315   <span class="keywordflow">if</span>(<a class="code" href="class_record_buf_u_gen_internal.html#a8052fa5c6c9af00762b6e73c4a98b30b">bufferPos</a> &gt;= <a class="code" href="class_record_buf_u_gen_internal.html#a3b36d6e715d50785418483652fb37b8d">buffer_</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>())
+<a name="l00315"></a>00315   <span class="keywordflow">if</span>(<a class="code" href="class_record_buf_u_gen_internal.html#a8052fa5c6c9af00762b6e73c4a98b30b">bufferPos</a> &gt;= <a class="code" href="class_record_buf_u_gen_internal.html#a3b36d6e715d50785418483652fb37b8d">buffer_</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96" title="Return the size in samples of each channel in this Buffer.">size</a>())
 <a name="l00316"></a>00316   {
 <a name="l00317"></a>00317     shouldDelete = shouldDelete ? <span class="keyword">true</span> : <a class="code" href="class_record_buf_u_gen_internal.html#a2eb7c80eaf5ca3e85659926a1596c66f">shouldDeleteValue</a>;
 <a name="l00318"></a>00318     <a class="code" href="class_done_action_sender.html#a6d1992edaa918522f47b7138ba30bd17">setIsDone</a>();
@@ -353,7 +353,7 @@
 <a name="l00321"></a>00321 
 <a name="l00322"></a><a class="code" href="class_record_buf_u_gen_internal.html#a8e06f584abe024345c610eff91a499e5">00322</a> <span class="keywordtype">double</span> <a class="code" href="class_record_buf_u_gen_internal.html#a8e06f584abe024345c610eff91a499e5">RecordBufUGenInternal::getDuration</a>() <span class="keyword">const</span> throw()
 <a name="l00323"></a>00323 {
-<a name="l00324"></a>00324   <span class="keywordflow">return</span> <a class="code" href="class_record_buf_u_gen_internal.html#a3b36d6e715d50785418483652fb37b8d">buffer_</a>.<a class="code" href="class_buffer.html#a0db2e98450da72f708c98136560c4e56">duration</a>();
+<a name="l00324"></a>00324   <span class="keywordflow">return</span> <a class="code" href="class_record_buf_u_gen_internal.html#a3b36d6e715d50785418483652fb37b8d">buffer_</a>.<a class="code" href="class_buffer.html#a0db2e98450da72f708c98136560c4e56" title="Return the duration of this Buffer in seconds at the current sample rate.">duration</a>();
 <a name="l00325"></a>00325 }
 <a name="l00326"></a>00326 
 <a name="l00327"></a><a class="code" href="class_record_buf_u_gen_internal.html#a35795c787eb0fd621c308fa7d135a4f3">00327</a> <span class="keywordtype">double</span> <a class="code" href="class_record_buf_u_gen_internal.html#a35795c787eb0fd621c308fa7d135a4f3">RecordBufUGenInternal::getPosition</a>() <span class="keyword">const</span> throw()
@@ -489,12 +489,12 @@
 <a name="l00457"></a>00457 
 <a name="l00458"></a><a class="code" href="class_loop_points_u_gen_internal.html#a37048593f38b26f2de1e07e46f367ea5">00458</a> <span class="keywordtype">double</span> <a class="code" href="class_loop_points_u_gen_internal.html#a37048593f38b26f2de1e07e46f367ea5" title="Get the maximum duration of the seekable.">LoopPointsUGenInternal::getDuration</a>() <span class="keyword">const</span> throw()
 <a name="l00459"></a>00459 {
-<a name="l00460"></a>00460   <span class="keywordflow">return</span> <a class="code" href="class_loop_points_u_gen_internal.html#a3edeaf1e62877d51c591b4915aa9d48a">b</a>.<a class="code" href="class_buffer.html#a0db2e98450da72f708c98136560c4e56">duration</a>();
+<a name="l00460"></a>00460   <span class="keywordflow">return</span> <a class="code" href="class_loop_points_u_gen_internal.html#a3edeaf1e62877d51c591b4915aa9d48a">b</a>.<a class="code" href="class_buffer.html#a0db2e98450da72f708c98136560c4e56" title="Return the duration of this Buffer in seconds at the current sample rate.">duration</a>();
 <a name="l00461"></a>00461 }
 <a name="l00462"></a>00462 
 <a name="l00463"></a><a class="code" href="class_loop_points_u_gen_internal.html#a5e26b754adeb18695d021cb3888e9aaa">00463</a> <span class="keywordtype">double</span> <a class="code" href="class_loop_points_u_gen_internal.html#a5e26b754adeb18695d021cb3888e9aaa" title="Get the current position of the seekable.">LoopPointsUGenInternal::getPosition</a>() <span class="keyword">const</span> throw()
 <a name="l00464"></a>00464 {
-<a name="l00465"></a>00465   <span class="keywordflow">return</span> <a class="code" href="class_loop_points_u_gen_internal.html#afa50004c2dfee27fd26dc8e5adfbe3e1">currentValue</a> * <a class="code" href="class_loop_points_u_gen_internal.html#a3edeaf1e62877d51c591b4915aa9d48a">b</a>.<a class="code" href="class_buffer.html#a0db2e98450da72f708c98136560c4e56">duration</a>();
+<a name="l00465"></a>00465   <span class="keywordflow">return</span> <a class="code" href="class_loop_points_u_gen_internal.html#afa50004c2dfee27fd26dc8e5adfbe3e1">currentValue</a> * <a class="code" href="class_loop_points_u_gen_internal.html#a3edeaf1e62877d51c591b4915aa9d48a">b</a>.<a class="code" href="class_buffer.html#a0db2e98450da72f708c98136560c4e56" title="Return the duration of this Buffer in seconds at the current sample rate.">duration</a>();
 <a name="l00466"></a>00466 }
 <a name="l00467"></a>00467   
 <a name="l00468"></a><a class="code" href="class_loop_points_u_gen_internal.html#aea9c7de7ce9b704e842d7863ba6f9b7f">00468</a> <span class="keywordtype">bool</span> <a class="code" href="class_loop_points_u_gen_internal.html#aea9c7de7ce9b704e842d7863ba6f9b7f" title="Set the current position of the seekable.">LoopPointsUGenInternal::setPosition</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> newPosition) <span class="keywordflow">throw</span>()
@@ -529,7 +529,7 @@
 <a name="l00497"></a>00497 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 19 2010 06:22:15 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 28 2010 12:27:01 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -134,7 +134,7 @@
 <a name="l00102"></a>00102                    <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; position, 
 <a name="l00103"></a>00103                    <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; level) <span class="keywordflow">throw</span>()
 <a name="l00104"></a>00104 : <a class="code" href="class_proxy_owner_u_gen_internal.html" title="A UGenInternal base which owns other &amp;quot;proxy&amp;quot; channels (i.e., ProxyUGenInternal objects)...">ProxyOwnerUGenInternal</a>(NumInputs, 1),
-<a name="l00105"></a>00105   panTable(<a class="code" href="class_buffer.html#a17073d4758748887cef08453d5d9b336">Buffer::getTableConstantPan512</a>()),
+<a name="l00105"></a>00105   panTable(<a class="code" href="class_buffer.html#a17073d4758748887cef08453d5d9b336" title="A 512-point pan table for 2-channel constant-power panning.">Buffer::getTableConstantPan512</a>()),
 <a name="l00106"></a>00106   lastPos(position.getValue(0) * 0.5f + 0.5f),
 <a name="l00107"></a>00107   last0(panTable.lookup(0, lastPos)),
 <a name="l00108"></a>00108   last1(panTable.lookup(1, lastPos))
@@ -263,7 +263,7 @@
 <a name="l00231"></a>00231 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 19 2010 06:22:17 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 28 2010 12:27:04 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

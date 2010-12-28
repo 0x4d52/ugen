@@ -365,7 +365,7 @@
 <a name="l00333"></a>00333     
 <a name="l00334"></a>00334   <span class="keywordtype">double</span> inc = (end - start) / (size - 1);
 <a name="l00335"></a>00335   <span class="keywordtype">double</span> currentValue = start;
-<a name="l00336"></a>00336   <span class="keywordtype">float</span> *outputSamples = newBuffer.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(0);
+<a name="l00336"></a>00336   <span class="keywordtype">float</span> *outputSamples = newBuffer.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>(0);
 <a name="l00337"></a>00337   
 <a name="l00338"></a>00338   <span class="keywordtype">int</span> numSamples = size;
 <a name="l00339"></a>00339   <span class="keywordflow">while</span>(--numSamples &gt;= 0)
@@ -381,7 +381,7 @@
 <a name="l00349"></a>00349 {
 <a name="l00350"></a>00350   <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> newBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(size, 1));
 <a name="l00351"></a>00351   <span class="keywordtype">float</span> currentValue = start;
-<a name="l00352"></a>00352   <span class="keywordtype">float</span> *outputSamples = newBuffer.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(0);
+<a name="l00352"></a>00352   <span class="keywordtype">float</span> *outputSamples = newBuffer.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>(0);
 <a name="l00353"></a>00353   
 <a name="l00354"></a>00354   <span class="keywordtype">int</span> numSamples = size;
 <a name="l00355"></a>00355   <span class="keywordflow">while</span>(--numSamples &gt;= 0)
@@ -397,7 +397,7 @@
 <a name="l00365"></a>00365 {
 <a name="l00366"></a>00366   <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> newBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(size, 1));
 <a name="l00367"></a>00367   <span class="keywordtype">float</span> currentValue = start;
-<a name="l00368"></a>00368   <span class="keywordtype">float</span> *outputSamples = newBuffer.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(0);
+<a name="l00368"></a>00368   <span class="keywordtype">float</span> *outputSamples = newBuffer.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>(0);
 <a name="l00369"></a>00369   
 <a name="l00370"></a>00370   <span class="keywordtype">int</span> numSamples = size;
 <a name="l00371"></a>00371   <span class="keywordflow">while</span>(--numSamples &gt;= 0)
@@ -1497,7 +1497,7 @@
 <a name="l01465"></a>01465   }
 <a name="l01466"></a>01466 }
 <a name="l01467"></a>01467 
-<a name="l01468"></a><a class="code" href="class_buffer.html#ac8488a055c66b2776bd0e1b487e6cfbe">01468</a> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#ac8488a055c66b2776bd0e1b487e6cfbe">Buffer::interleave</a>() throw()
+<a name="l01468"></a><a class="code" href="class_buffer.html#ac8488a055c66b2776bd0e1b487e6cfbe">01468</a> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#ac8488a055c66b2776bd0e1b487e6cfbe" title="Returns a single channel Buffer with the channels of this Buffer interleaved.">Buffer::interleave</a>() throw()
 <a name="l01469"></a>01469 {
 <a name="l01470"></a>01470   <span class="keywordflow">if</span>(<a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a> &lt; 1 || numChannels_ &lt; 1) <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#ae7ef2cd201190fde551dcb902627112b" title="Construct an empty Buffer.">Buffer</a>();
 <a name="l01471"></a>01471   
@@ -1506,8 +1506,8 @@
 <a name="l01474"></a>01474   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numChannels_; channel++)
 <a name="l01475"></a>01475   {
 <a name="l01476"></a>01476     <span class="keywordtype">int</span> numSamplesToProcess = <a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>;
-<a name="l01477"></a>01477     <span class="keyword">const</span> <span class="keywordtype">float</span> * srcSamples = <a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(channel);
-<a name="l01478"></a>01478     <span class="keywordtype">float</span>* dstSamples = intervleavedBuffer.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>() + channel;
+<a name="l01477"></a>01477     <span class="keyword">const</span> <span class="keywordtype">float</span> * srcSamples = <a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>(channel);
+<a name="l01478"></a>01478     <span class="keywordtype">float</span>* dstSamples = intervleavedBuffer.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>() + channel;
 <a name="l01479"></a>01479     
 <a name="l01480"></a>01480     <span class="keywordflow">while</span>(numSamplesToProcess--)
 <a name="l01481"></a>01481     {
@@ -1519,7 +1519,7 @@
 <a name="l01487"></a>01487   <span class="keywordflow">return</span> intervleavedBuffer;
 <a name="l01488"></a>01488 }
 <a name="l01489"></a>01489 
-<a name="l01490"></a><a class="code" href="class_buffer.html#a81091cd64a7d5fb8a38e1ff4196016b4">01490</a> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#a81091cd64a7d5fb8a38e1ff4196016b4">Buffer::deinterleave</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> numInterleavedChannels) <span class="keywordflow">throw</span>()
+<a name="l01490"></a><a class="code" href="class_buffer.html#a81091cd64a7d5fb8a38e1ff4196016b4">01490</a> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#a81091cd64a7d5fb8a38e1ff4196016b4" title="Returns a multi-channel Buffer from a channel-interleaved Buffer.">Buffer::deinterleave</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> numInterleavedChannels) <span class="keywordflow">throw</span>()
 <a name="l01491"></a>01491 {
 <a name="l01492"></a>01492   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(numChannels_ == 1);
 <a name="l01493"></a>01493   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>((size_ % numInterleavedChannels) == 0);
@@ -1533,7 +1533,7 @@
 <a name="l01501"></a>01501   {
 <a name="l01502"></a>01502     <span class="keywordtype">int</span> numSamplesToProcess = newSize;
 <a name="l01503"></a>01503     <span class="keyword">const</span> <span class="keywordtype">float</span> * srcSamples = getData() + channel;
-<a name="l01504"></a>01504     <span class="keywordtype">float</span>* dstSamples = deintervleavedBuffer.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(channel);
+<a name="l01504"></a>01504     <span class="keywordtype">float</span>* dstSamples = deintervleavedBuffer.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>(channel);
 <a name="l01505"></a>01505     
 <a name="l01506"></a>01506     <span class="keywordflow">while</span>(numSamplesToProcess--)
 <a name="l01507"></a>01507     {
@@ -1545,12 +1545,12 @@
 <a name="l01513"></a>01513   <span class="keywordflow">return</span> deintervleavedBuffer;  
 <a name="l01514"></a>01514 }
 <a name="l01515"></a>01515 
-<a name="l01516"></a><a class="code" href="class_buffer.html#a7150484ba3485117661d7f7c390fc781">01516</a> <span class="keywordtype">void</span> <a class="code" href="class_buffer.html#a7150484ba3485117661d7f7c390fc781">Buffer::copyFrom</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; source) <span class="keywordflow">throw</span>()
+<a name="l01516"></a><a class="code" href="class_buffer.html#a7150484ba3485117661d7f7c390fc781">01516</a> <span class="keywordtype">void</span> <a class="code" href="class_buffer.html#a7150484ba3485117661d7f7c390fc781" title="Copy data from a source Buffer into this Buffer.">Buffer::copyFrom</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; source) <span class="keywordflow">throw</span>()
 <a name="l01517"></a>01517 {
 <a name="l01518"></a>01518   copyFrom(source, 0, 0, <a class="code" href="ugen___binary_op_u_gens_8cpp.html#afc2720859a4075c66da741d8ad063ba1" title="Global function for the UGen::min() binary operator.">ugen::min</a>(size(), source.size()));
 <a name="l01519"></a>01519 }
 <a name="l01520"></a>01520 
-<a name="l01521"></a><a class="code" href="class_buffer.html#a219b7711de243e0ee705eee610c4ddd5">01521</a> <span class="keywordtype">void</span> <a class="code" href="class_buffer.html#a7150484ba3485117661d7f7c390fc781">Buffer::copyFrom</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; source, <span class="keyword">const</span> <span class="keywordtype">int</span> sourceOffset, <span class="keyword">const</span> <span class="keywordtype">int</span> destOffset, <span class="keyword">const</span> <span class="keywordtype">int</span> numSamples) <span class="keywordflow">throw</span>()
+<a name="l01521"></a><a class="code" href="class_buffer.html#a219b7711de243e0ee705eee610c4ddd5">01521</a> <span class="keywordtype">void</span> <a class="code" href="class_buffer.html#a7150484ba3485117661d7f7c390fc781" title="Copy data from a source Buffer into this Buffer.">Buffer::copyFrom</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; source, <span class="keyword">const</span> <span class="keywordtype">int</span> sourceOffset, <span class="keyword">const</span> <span class="keywordtype">int</span> destOffset, <span class="keyword">const</span> <span class="keywordtype">int</span> numSamples) <span class="keywordflow">throw</span>()
 <a name="l01522"></a>01522 {
 <a name="l01523"></a>01523   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(getNumChannels() &gt; 0);
 <a name="l01524"></a>01524   <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(source.getNumChannels() &gt; 0);
@@ -1568,7 +1568,7 @@
 <a name="l01536"></a>01536   }
 <a name="l01537"></a>01537 }
 <a name="l01538"></a>01538 
-<a name="l01539"></a><a class="code" href="class_buffer.html#a0db2e98450da72f708c98136560c4e56">01539</a> <span class="keywordtype">double</span> <a class="code" href="class_buffer.html#a0db2e98450da72f708c98136560c4e56">Buffer::duration</a>() <span class="keyword">const</span> throw()                       
+<a name="l01539"></a><a class="code" href="class_buffer.html#a0db2e98450da72f708c98136560c4e56">01539</a> <span class="keywordtype">double</span> <a class="code" href="class_buffer.html#a0db2e98450da72f708c98136560c4e56" title="Return the duration of this Buffer in seconds at the current sample rate.">Buffer::duration</a>() <span class="keyword">const</span> throw()                       
 <a name="l01540"></a>01540 { 
 <a name="l01541"></a>01541   <span class="keywordflow">return</span> (<span class="keywordtype">double</span>)<a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a> * <a class="code" href="class_u_gen.html#a2e6ab64a2e5ea263113ab4993603537e" title="Get the recirprocal of the current sample rate.">UGen::getReciprocalSampleRate</a>(); 
 <a name="l01542"></a>01542 }
@@ -1586,7 +1586,7 @@
 <a name="l01554"></a>01554   }
 <a name="l01555"></a>01555 }
 <a name="l01556"></a>01556 
-<a name="l01557"></a><a class="code" href="class_buffer.html#a8908664132a5ffd8e30f591f281c57e9">01557</a> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#a8908664132a5ffd8e30f591f281c57e9">Buffer::copy</a>() <span class="keyword">const</span> throw()
+<a name="l01557"></a><a class="code" href="class_buffer.html#a8908664132a5ffd8e30f591f281c57e9">01557</a> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#a8908664132a5ffd8e30f591f281c57e9" title="Make a deep copy of this Buffer.">Buffer::copy</a>() <span class="keyword">const</span> throw()
 <a name="l01558"></a>01558 {
 <a name="l01559"></a>01559   <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> newBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(<a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a>, numChannels_, <span class="keyword">false</span>));
 <a name="l01560"></a>01560   
@@ -1594,14 +1594,14 @@
 <a name="l01562"></a>01562   {
 <a name="l01563"></a>01563     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numChannels_; i++) 
 <a name="l01564"></a>01564     {
-<a name="l01565"></a>01565       memcpy(newBuffer.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(i), <a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(i), <a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a> * <span class="keyword">sizeof</span>(float));
+<a name="l01565"></a>01565       memcpy(newBuffer.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>(i), <a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>(i), <a class="code" href="class_buffer.html#ac8722d3b8229568ca8ce4a221141c40b">size_</a> * <span class="keyword">sizeof</span>(float));
 <a name="l01566"></a>01566     }
 <a name="l01567"></a>01567   }
 <a name="l01568"></a>01568   
 <a name="l01569"></a>01569   <span class="keywordflow">return</span> newBuffer;
 <a name="l01570"></a>01570 }
 <a name="l01571"></a>01571 
-<a name="l01572"></a><a class="code" href="class_buffer.html#a53ef4dbac3035c74b1f89384b1cf05c5">01572</a> <span class="keywordtype">bool</span> <a class="code" href="class_buffer.html#a53ef4dbac3035c74b1f89384b1cf05c5">Buffer::operator== </a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; other) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l01572"></a><a class="code" href="class_buffer.html#a53ef4dbac3035c74b1f89384b1cf05c5">01572</a> <span class="keywordtype">bool</span> <a class="code" href="class_buffer.html#a53ef4dbac3035c74b1f89384b1cf05c5" title="Returns true if this and the other Buffer refer to identical internal objects.">Buffer::operator== </a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; other) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l01573"></a>01573 {
 <a name="l01574"></a>01574   <span class="keywordflow">if</span>(size_ != other.size_) <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l01575"></a>01575   <span class="keywordflow">if</span>(numChannels_ != other.numChannels_) <span class="keywordflow">return</span> <span class="keyword">false</span>;
@@ -1614,12 +1614,12 @@
 <a name="l01582"></a>01582   <span class="keywordflow">return</span> <span class="keyword">true</span>;
 <a name="l01583"></a>01583 }
 <a name="l01584"></a>01584 
-<a name="l01585"></a><a class="code" href="class_buffer.html#aa408e0002ddf617cd39ec277dd2e97f1">01585</a> <span class="keywordtype">bool</span> <a class="code" href="class_buffer.html#aa408e0002ddf617cd39ec277dd2e97f1">Buffer::operator!= </a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; other) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l01585"></a><a class="code" href="class_buffer.html#aa408e0002ddf617cd39ec277dd2e97f1">01585</a> <span class="keywordtype">bool</span> <a class="code" href="class_buffer.html#aa408e0002ddf617cd39ec277dd2e97f1" title="Returns true if this and the other Buffer do not refer to identical internal objects.">Buffer::operator!= </a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; other) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l01586"></a>01586 {
 <a name="l01587"></a>01587   <span class="keywordflow">return</span> !operator== (other);
 <a name="l01588"></a>01588 }
 <a name="l01589"></a>01589 
-<a name="l01590"></a><a class="code" href="class_buffer.html#af5236195cd5cb175c7c6e265ef8f264a">01590</a> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp; <a class="code" href="class_buffer.html#af5236195cd5cb175c7c6e265ef8f264a">Buffer::operator= </a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; _other) <span class="keywordflow">throw</span>()
+<a name="l01590"></a><a class="code" href="class_buffer.html#af5236195cd5cb175c7c6e265ef8f264a">01590</a> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp; <a class="code" href="class_buffer.html#af5236195cd5cb175c7c6e265ef8f264a" title="Assignment.">Buffer::operator= </a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; _other) <span class="keywordflow">throw</span>()
 <a name="l01591"></a>01591 {
 <a name="l01592"></a>01592   <span class="keywordflow">if</span> (<span class="keyword">this</span> != &amp;_other)
 <a name="l01593"></a>01593     {   
@@ -1692,7 +1692,7 @@
 <a name="l01660"></a>01660 }
 <a name="l01661"></a>01661 
 <a name="l01662"></a>01662 
-<a name="l01663"></a><a class="code" href="class_buffer.html#af982db155488044c790f0fe3791e835b">01663</a> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#af982db155488044c790f0fe3791e835b">Buffer::append</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; other) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l01663"></a><a class="code" href="class_buffer.html#af982db155488044c790f0fe3791e835b">01663</a> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#af982db155488044c790f0fe3791e835b" title="Concatenate one Buffer with another and return a new Buffer.">Buffer::append</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; other) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l01664"></a>01664 {
 <a name="l01665"></a>01665   <span class="keyword">const</span> <span class="keywordtype">int</span> newNumChannels = numChannels_ &gt; other.<a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a> ? numChannels_ : other.numChannels_;
 <a name="l01666"></a>01666   <span class="keyword">const</span> <span class="keywordtype">int</span> newSize = size_ + other.size_;
@@ -1789,7 +1789,7 @@
 <a name="l01757"></a>01757 <span class="comment">//  return Buffer(*this, newChannels);</span>
 <a name="l01758"></a>01758 <span class="comment">//}</span>
 <a name="l01759"></a>01759 
-<a name="l01760"></a><a class="code" href="class_buffer.html#a86b7313b672df28a74b34429699a462d">01760</a> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#a86b7313b672df28a74b34429699a462d">Buffer::getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l01760"></a><a class="code" href="class_buffer.html#a86b7313b672df28a74b34429699a462d">01760</a> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#a86b7313b672df28a74b34429699a462d" title="Return a Buffer containing only one channel of this Buffer.">Buffer::getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l01761"></a>01761 {
 <a name="l01762"></a>01762   <span class="keywordflow">if</span>(channel &lt; 0 || channel &gt;= numChannels_) 
 <a name="l01763"></a>01763   {
@@ -1848,7 +1848,7 @@
 <a name="l01816"></a>01816   {
 <a name="l01817"></a>01817     <span class="keyword">const</span> <span class="keywordtype">float</span> *inputSamples = getData(currentChannel) + startSample;
 <a name="l01818"></a>01818     
-<a name="l01819"></a>01819     <span class="keywordtype">float</span> *outputSamples = newBuffer.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(newChannelIndex);
+<a name="l01819"></a>01819     <span class="keywordtype">float</span> *outputSamples = newBuffer.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>(newChannelIndex);
 <a name="l01820"></a>01820     <span class="keywordtype">int</span> numSamples = newSize;
 <a name="l01821"></a>01821     
 <a name="l01822"></a>01822     <span class="keywordflow">while</span>(numSamples--)
@@ -1876,7 +1876,7 @@
 <a name="l01844"></a>01844   <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l01845"></a>01845 }
 <a name="l01846"></a>01846 
-<a name="l01847"></a><a class="code" href="class_buffer.html#a304aef7473d7d9dbfae6018b2b5d164b">01847</a> <span class="keywordtype">float</span> <a class="code" href="class_buffer.html#a4bea6016f9dc395551d429db750a1438">Buffer::sum</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l01847"></a><a class="code" href="class_buffer.html#a304aef7473d7d9dbfae6018b2b5d164b">01847</a> <span class="keywordtype">float</span> <a class="code" href="class_buffer.html#a4bea6016f9dc395551d429db750a1438" title="Return the sum of all samples in all channels.">Buffer::sum</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l01848"></a>01848 {
 <a name="l01849"></a>01849   <span class="keywordflow">if</span>(numChannels_ == 0 || channel &lt; 0 || channel &gt;= numChannels_) 
 <a name="l01850"></a>01850   {
@@ -1895,7 +1895,7 @@
 <a name="l01863"></a>01863   <span class="keywordflow">return</span> total;
 <a name="l01864"></a>01864 }
 <a name="l01865"></a>01865 
-<a name="l01866"></a><a class="code" href="class_buffer.html#a4bea6016f9dc395551d429db750a1438">01866</a> <span class="keywordtype">float</span> <a class="code" href="class_buffer.html#a4bea6016f9dc395551d429db750a1438">Buffer::sum</a>() <span class="keyword">const</span> throw()
+<a name="l01866"></a><a class="code" href="class_buffer.html#a4bea6016f9dc395551d429db750a1438">01866</a> <span class="keywordtype">float</span> <a class="code" href="class_buffer.html#a4bea6016f9dc395551d429db750a1438" title="Return the sum of all samples in all channels.">Buffer::sum</a>() <span class="keyword">const</span> throw()
 <a name="l01867"></a>01867 {
 <a name="l01868"></a>01868   <span class="keywordflow">if</span>(numChannels_ == 0) 
 <a name="l01869"></a>01869   {
@@ -1907,13 +1907,13 @@
 <a name="l01875"></a>01875   
 <a name="l01876"></a>01876   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numChannels_; channel++)
 <a name="l01877"></a>01877   {
-<a name="l01878"></a>01878     total += <a class="code" href="class_buffer.html#a4bea6016f9dc395551d429db750a1438">sum</a>(channel);
+<a name="l01878"></a>01878     total += <a class="code" href="class_buffer.html#a4bea6016f9dc395551d429db750a1438" title="Return the sum of all samples in all channels.">sum</a>(channel);
 <a name="l01879"></a>01879   }
 <a name="l01880"></a>01880   
 <a name="l01881"></a>01881   <span class="keywordflow">return</span> total;
 <a name="l01882"></a>01882 }
 <a name="l01883"></a>01883 
-<a name="l01884"></a><a class="code" href="class_buffer.html#a3062f87c831d35846581e6882acd928c">01884</a> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#a3062f87c831d35846581e6882acd928c">Buffer::normalise</a>() <span class="keyword">const</span> throw()
+<a name="l01884"></a><a class="code" href="class_buffer.html#a3062f87c831d35846581e6882acd928c">01884</a> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#a3062f87c831d35846581e6882acd928c" title="Return a new Buffer which is this Buffer normalised based on the maximum amplitude across all channel...">Buffer::normalise</a>() <span class="keyword">const</span> throw()
 <a name="l01885"></a>01885 {
 <a name="l01886"></a>01886   <span class="keywordtype">float</span> peak = <a class="code" href="class_buffer.html#a0c674519abf2506123705eb0bf9b71f3">findPeak</a>();
 <a name="l01887"></a>01887   
@@ -1923,7 +1923,7 @@
 <a name="l01891"></a>01891     <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l01892"></a>01892 }
 <a name="l01893"></a>01893 
-<a name="l01894"></a><a class="code" href="class_buffer.html#a6156165994ad3a37b4d591de33aede2e">01894</a> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#a6156165994ad3a37b4d591de33aede2e">Buffer::normaliseEach</a>() <span class="keyword">const</span> throw()
+<a name="l01894"></a><a class="code" href="class_buffer.html#a6156165994ad3a37b4d591de33aede2e">01894</a> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_buffer.html#a6156165994ad3a37b4d591de33aede2e" title="Return a new Buffer which is this Buffer normalised when each channel is normalised separately...">Buffer::normaliseEach</a>() <span class="keyword">const</span> throw()
 <a name="l01895"></a>01895 {
 <a name="l01896"></a>01896   <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> newBuffer;
 <a name="l01897"></a>01897   
@@ -1931,7 +1931,7 @@
 <a name="l01899"></a>01899   {
 <a name="l01900"></a>01900     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numChannels_; channel++)
 <a name="l01901"></a>01901     {
-<a name="l01902"></a>01902       newBuffer &lt;&lt;= <a class="code" href="class_buffer.html#a86b7313b672df28a74b34429699a462d">getChannel</a>(channel).<a class="code" href="class_buffer.html#a3062f87c831d35846581e6882acd928c">normalise</a>();
+<a name="l01902"></a>01902       newBuffer &lt;&lt;= <a class="code" href="class_buffer.html#a86b7313b672df28a74b34429699a462d" title="Return a Buffer containing only one channel of this Buffer.">getChannel</a>(channel).<a class="code" href="class_buffer.html#a3062f87c831d35846581e6882acd928c" title="Return a new Buffer which is this Buffer normalised based on the maximum amplitude across all channel...">normalise</a>();
 <a name="l01903"></a>01903     }
 <a name="l01904"></a>01904   }
 <a name="l01905"></a>01905   
@@ -2222,7 +2222,7 @@
 <a name="l02190"></a>02190   <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> newBuffer(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(newSize, numChannels_, <span class="keyword">false</span>));
 <a name="l02191"></a>02191   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; numChannels_; channel++)
 <a name="l02192"></a>02192   {
-<a name="l02193"></a>02193     <span class="keywordtype">float</span> *outputSamples = newBuffer.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(channel);
+<a name="l02193"></a>02193     <span class="keywordtype">float</span> *outputSamples = newBuffer.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>(channel);
 <a name="l02194"></a>02194     <span class="comment">//memcpy(outputSamples, getDataReadOnly(channel), newSize * sizeof(float));</span>
 <a name="l02195"></a>02195     memcpy(outputSamples, getData(channel), newSize * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l02196"></a>02196     
@@ -2447,7 +2447,7 @@
 <a name="l02415"></a>02415   
 <a name="l02416"></a>02416   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numChannels; i++)
 <a name="l02417"></a>02417   {
-<a name="l02418"></a>02418     graph.<a class="code" href="class_u_gen.html#a047718b5323768ba56f2cab5bc429d89" title="Set the output for a particular UGenInternal.">setOutput</a>(result.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(i), size, i);
+<a name="l02418"></a>02418     graph.<a class="code" href="class_u_gen.html#a047718b5323768ba56f2cab5bc429d89" title="Set the output for a particular UGenInternal.">setOutput</a>(result.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>(i), size, i);
 <a name="l02419"></a>02419   }
 <a name="l02420"></a>02420   
 <a name="l02421"></a>02421   graph.<a class="code" href="class_u_gen.html#a377a0263e2781eed260018620f782386" title="Prepares for a block then processes it.">prepareAndProcessBlock</a>(size, 0, 0);
@@ -2612,7 +2612,7 @@
 <a name="l02580"></a>02580   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; numChannels; i++)
 <a name="l02581"></a>02581   {
 <a name="l02582"></a>02582     input.<a class="code" href="class_u_gen.html#a99997198ded209859b4e23921a6ddf06" title="Attempts to set the input data source of a particular UGenInternal.">setInput</a>(getData(i) + offset, numSamples, i);
-<a name="l02583"></a>02583     graph.<a class="code" href="class_u_gen.html#a047718b5323768ba56f2cab5bc429d89" title="Set the output for a particular UGenInternal.">setOutput</a>(result.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(i), numSamples, i);
+<a name="l02583"></a>02583     graph.<a class="code" href="class_u_gen.html#a047718b5323768ba56f2cab5bc429d89" title="Set the output for a particular UGenInternal.">setOutput</a>(result.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>(i), numSamples, i);
 <a name="l02584"></a>02584   }
 <a name="l02585"></a>02585   
 <a name="l02586"></a>02586   graph.<a class="code" href="class_u_gen.html#a377a0263e2781eed260018620f782386" title="Prepares for a block then processes it.">prepareAndProcessBlock</a>(numSamples, 0, 0);
@@ -2681,25 +2681,25 @@
 <a name="l02649"></a>02649   <span class="keywordflow">return</span> newBuffer;
 <a name="l02650"></a>02650 }
 <a name="l02651"></a>02651 
-<a name="l02652"></a><a class="code" href="class_buffer.html#ad47185fb964500cacaa9da2bcc6b25e0">02652</a> <span class="keyword">const</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp; <a class="code" href="class_buffer.html#ad47185fb964500cacaa9da2bcc6b25e0">Buffer::getTableSine512</a>() throw()
+<a name="l02652"></a><a class="code" href="class_buffer.html#ad47185fb964500cacaa9da2bcc6b25e0">02652</a> <span class="keyword">const</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp; <a class="code" href="class_buffer.html#ad47185fb964500cacaa9da2bcc6b25e0" title="A 512-point sine table.">Buffer::getTableSine512</a>() throw()
 <a name="l02653"></a>02653 {
 <a name="l02654"></a>02654   <span class="keyword">static</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> table = <a class="code" href="class_buffer.html#a571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(513, 0.0, 2.0 * <a class="code" href="ugen___constants_8h.html#a43016d873124d39034edb8cd164794db">pi</a>).<a class="code" href="class_buffer.html#a7e5f6fb28836e76ee6bb4605ac2cc63d" title="Unary sine.">sin</a>().<a class="code" href="class_buffer.html#aec8ce25f140ed02d4fd9c4a87b34193a" title="Reduce the apparent size of the Buffer without deallocating the extra memory.">shrinkSize</a>();
 <a name="l02655"></a>02655   <span class="keywordflow">return</span> table;
 <a name="l02656"></a>02656 }
 <a name="l02657"></a>02657 
-<a name="l02658"></a><a class="code" href="class_buffer.html#a2b97468cb8247dfef12757501dd5cd67">02658</a> <span class="keyword">const</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp; <a class="code" href="class_buffer.html#a2b97468cb8247dfef12757501dd5cd67">Buffer::getTableSine8192</a>() throw()
+<a name="l02658"></a><a class="code" href="class_buffer.html#a2b97468cb8247dfef12757501dd5cd67">02658</a> <span class="keyword">const</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp; <a class="code" href="class_buffer.html#a2b97468cb8247dfef12757501dd5cd67" title="A 8192-point sine table.">Buffer::getTableSine8192</a>() throw()
 <a name="l02659"></a>02659 {
 <a name="l02660"></a>02660   <span class="keyword">static</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> table = <a class="code" href="class_buffer.html#a571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(8193, 0.0, 2.0 * <a class="code" href="ugen___constants_8h.html#a43016d873124d39034edb8cd164794db">pi</a>).<a class="code" href="class_buffer.html#a7e5f6fb28836e76ee6bb4605ac2cc63d" title="Unary sine.">sin</a>().<a class="code" href="class_buffer.html#aec8ce25f140ed02d4fd9c4a87b34193a" title="Reduce the apparent size of the Buffer without deallocating the extra memory.">shrinkSize</a>();
 <a name="l02661"></a>02661   <span class="keywordflow">return</span> table; 
 <a name="l02662"></a>02662 }
 <a name="l02663"></a>02663 
-<a name="l02664"></a><a class="code" href="class_buffer.html#a932d0e8405607540eaefc96b05c71b65">02664</a> <span class="keyword">const</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp; <a class="code" href="class_buffer.html#a932d0e8405607540eaefc96b05c71b65">Buffer::getTableCosine512</a>() throw()
+<a name="l02664"></a><a class="code" href="class_buffer.html#a932d0e8405607540eaefc96b05c71b65">02664</a> <span class="keyword">const</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp; <a class="code" href="class_buffer.html#a932d0e8405607540eaefc96b05c71b65" title="A 512-point cosine table.">Buffer::getTableCosine512</a>() throw()
 <a name="l02665"></a>02665 {
 <a name="l02666"></a>02666   <span class="keyword">static</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> table = <a class="code" href="class_buffer.html#a571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(513, 0.0, 2.0 * <a class="code" href="ugen___constants_8h.html#a43016d873124d39034edb8cd164794db">pi</a>).<a class="code" href="class_buffer.html#aa1b947accbf151eabfd345b1784f9348" title="Unary cosine.">cos</a>().<a class="code" href="class_buffer.html#aec8ce25f140ed02d4fd9c4a87b34193a" title="Reduce the apparent size of the Buffer without deallocating the extra memory.">shrinkSize</a>();
 <a name="l02667"></a>02667   <span class="keywordflow">return</span> table;
 <a name="l02668"></a>02668 }
 <a name="l02669"></a>02669 
-<a name="l02670"></a><a class="code" href="class_buffer.html#a02c29a5992e81dc9bd1dc71e6fc4f73f">02670</a> <span class="keyword">const</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp; <a class="code" href="class_buffer.html#a02c29a5992e81dc9bd1dc71e6fc4f73f">Buffer::getTableCosine8192</a>() throw()
+<a name="l02670"></a><a class="code" href="class_buffer.html#a02c29a5992e81dc9bd1dc71e6fc4f73f">02670</a> <span class="keyword">const</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp; <a class="code" href="class_buffer.html#a02c29a5992e81dc9bd1dc71e6fc4f73f" title="A 8192-point cosine table.">Buffer::getTableCosine8192</a>() throw()
 <a name="l02671"></a>02671 {
 <a name="l02672"></a>02672   <span class="keyword">static</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> table = <a class="code" href="class_buffer.html#a571494e90730556105e767939681494f" title="Create a single channel Buffer ramping from start to end.">Buffer::line</a>(8193, 0.0, 2.0 * <a class="code" href="ugen___constants_8h.html#a43016d873124d39034edb8cd164794db">pi</a>).<a class="code" href="class_buffer.html#aa1b947accbf151eabfd345b1784f9348" title="Unary cosine.">cos</a>().<a class="code" href="class_buffer.html#aec8ce25f140ed02d4fd9c4a87b34193a" title="Reduce the apparent size of the Buffer without deallocating the extra memory.">shrinkSize</a>();
 <a name="l02673"></a>02673   <span class="keywordflow">return</span> table;
@@ -2712,7 +2712,7 @@
 <a name="l02680"></a>02680   <span class="keywordflow">return</span> (constantPanTemp.<a class="code" href="class_buffer.html#aa1b947accbf151eabfd345b1784f9348" title="Unary cosine.">cos</a>() - constantPanTemp.<a class="code" href="class_buffer.html#a7e5f6fb28836e76ee6bb4605ac2cc63d" title="Unary sine.">sin</a>()) * <a class="code" href="ugen___constants_8h.html#ac5144327b363f48ae75110ad01268e5e">sqrt2OverTwo</a>;
 <a name="l02681"></a>02681 }
 <a name="l02682"></a>02682 
-<a name="l02683"></a><a class="code" href="class_buffer.html#a17073d4758748887cef08453d5d9b336">02683</a> <span class="keyword">const</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp; <a class="code" href="class_buffer.html#a17073d4758748887cef08453d5d9b336">Buffer::getTableConstantPan512</a>() throw()
+<a name="l02683"></a><a class="code" href="class_buffer.html#a17073d4758748887cef08453d5d9b336">02683</a> <span class="keyword">const</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>&amp; <a class="code" href="class_buffer.html#a17073d4758748887cef08453d5d9b336" title="A 512-point pan table for 2-channel constant-power panning.">Buffer::getTableConstantPan512</a>() throw()
 <a name="l02684"></a>02684 {
 <a name="l02685"></a>02685   <span class="keyword">static</span> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> table = <a class="code" href="ugen___buffer_8cpp.html#af6ad367e94721d7ca6f173e46779b3e0">ugen_calculatePanTable512</a>();
 <a name="l02686"></a>02686   <span class="keywordflow">return</span> table;
@@ -2920,7 +2920,7 @@
 <a name="l02888"></a>02888 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 19 2010 06:22:14 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 28 2010 12:27:01 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

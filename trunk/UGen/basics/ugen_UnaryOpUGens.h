@@ -465,6 +465,18 @@ UGenInternal* UnaryOpUGenInternalT<op>::getKr() throw()
 }
 
 
+/** A unary operator UGen using a template for the processing function. 
+ Any function which has the appropriate declaration can be uses as the 
+ template parameter. E.g.,
+ @code
+	float myfunc(float a)
+	{
+		return -a; // return the negative if the input
+	}
+ @endcode
+ @tparam op This must be the name of a function that takes a float argument
+            and returns a float. 
+ @ingroup AllUGens MathsUGens */
 template<UnaryOpFunction op>
 class UnaryOpUGenT : public UGen
 {

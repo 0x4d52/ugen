@@ -198,7 +198,7 @@ UGenInternalControlRateDeclaration(MapTableScalarUGenInternal,
 								@param inLow	The lower range of the input value (note this is not clipped so			\
 												it is the user`s responsibility to make sure the value is in range)		\
 								@param inHigh	The upper range of the input value (note this is not clipped so			\
-												it is the user`s responsibility to make sure the value is in range)		\
+												it is the user`s responsibility to make sure the value is in range)
 
 #define MappingBase_Docs		MappingBaseBase_Docs																	\
 								@param outLow	The lower range of the desired output value.							\
@@ -230,11 +230,11 @@ UGenSublcassDeclaration(LinSin, (MappingBase_InputsNoTypes),
 #endif // gpl
 
 #define Map_Docs				MappingBaseBase_Docs																	\
-								@param table	A single channel Buffer used as a lookup table. Here an input			\
+								@param table	A Buffer used as a lookup table. Here an input							\
 												value of inLow would output the first value in the table, an			\
 												input value of inHigh would output the last value in the table.			\
 												An input value half way between inLow and inHigh would output the		\
-												value in the middle of the table, and so on.
+												value in the middle of the table, and so on. Values are interpolated.
 					
 
 /** Map uaing a lookup table.

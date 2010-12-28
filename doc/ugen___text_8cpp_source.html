@@ -123,12 +123,12 @@
 <a name="l00091"></a>00091     <a class="code" href="ugen___constants_8h.html#a554f7b66b1ba49443447eb746978c268">zero</a>();
 <a name="l00092"></a>00092 }
 <a name="l00093"></a>00093 
-<a name="l00094"></a><a class="code" href="class_text.html#aff424fbf995e268141efcb453c5959bf">00094</a> <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <a class="code" href="class_text.html#aff424fbf995e268141efcb453c5959bf">Text::withSize</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, <span class="keyword">const</span> <span class="keywordtype">bool</span> zeroData) <span class="keywordflow">throw</span>()
+<a name="l00094"></a><a class="code" href="class_text.html#aff424fbf995e268141efcb453c5959bf">00094</a> <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <a class="code" href="class_text.html#aff424fbf995e268141efcb453c5959bf" title="Creates a NumericalArray with a given size (length).">Text::withSize</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size, <span class="keyword">const</span> <span class="keywordtype">bool</span> zeroData) <span class="keywordflow">throw</span>()
 <a name="l00095"></a>00095 {
 <a name="l00096"></a>00096   <span class="keywordflow">return</span> <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a>(<a class="code" href="class_numerical_array_spec.html">NumericalArraySpec</a>(size, zeroData));
 <a name="l00097"></a>00097 }
 <a name="l00098"></a>00098 
-<a name="l00099"></a><a class="code" href="class_text.html#afa3c84f9ac6aaa4c88a5fa2736849e53">00099</a> <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <a class="code" href="class_text.html#afa3c84f9ac6aaa4c88a5fa2736849e53">Text::newClear</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size) <span class="keywordflow">throw</span>()
+<a name="l00099"></a><a class="code" href="class_text.html#afa3c84f9ac6aaa4c88a5fa2736849e53">00099</a> <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> <a class="code" href="class_text.html#afa3c84f9ac6aaa4c88a5fa2736849e53" title="Creates a NumericalArray with a given size (length) with all items set to zero.">Text::newClear</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> size) <span class="keywordflow">throw</span>()
 <a name="l00100"></a>00100 {
 <a name="l00101"></a>00101   <span class="keywordflow">return</span> <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a>(<a class="code" href="class_numerical_array_spec.html">NumericalArraySpec</a>(size, <span class="keyword">true</span>));
 <a name="l00102"></a>00102 }
@@ -188,7 +188,7 @@
 <a name="l00156"></a>00156   
 <a name="l00157"></a>00157   <span class="keywordflow">if</span>(thisArray == 0 || size &lt;= 0) <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00158"></a>00158   
-<a name="l00159"></a>00159   <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> newText = <a class="code" href="class_text.html#aff424fbf995e268141efcb453c5959bf">Text::withSize</a>(size, <span class="keyword">false</span>);
+<a name="l00159"></a>00159   <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> newText = <a class="code" href="class_text.html#aff424fbf995e268141efcb453c5959bf" title="Creates a NumericalArray with a given size (length).">Text::withSize</a>(size, <span class="keyword">false</span>);
 <a name="l00160"></a>00160   <span class="keywordtype">char</span> *newArray = newText.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>();    
 <a name="l00161"></a>00161   
 <a name="l00162"></a>00162   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++)
@@ -211,7 +211,7 @@
 <a name="l00179"></a>00179   
 <a name="l00180"></a>00180   <span class="keywordflow">if</span>(thisArray == 0 || size &lt;= 0) <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00181"></a>00181   
-<a name="l00182"></a>00182   <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> newText = <a class="code" href="class_text.html#aff424fbf995e268141efcb453c5959bf">Text::withSize</a>(size, <span class="keyword">false</span>);
+<a name="l00182"></a>00182   <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> newText = <a class="code" href="class_text.html#aff424fbf995e268141efcb453c5959bf" title="Creates a NumericalArray with a given size (length).">Text::withSize</a>(size, <span class="keyword">false</span>);
 <a name="l00183"></a>00183   <span class="keywordtype">char</span> *newArray = newText.<a class="code" href="class_object_array.html#a49f3b9719cdeefc07c0ac52f1735d93d" title="Returns a pointer to the raw array.">getArray</a>();    
 <a name="l00184"></a>00184   
 <a name="l00185"></a>00185   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++)
@@ -280,7 +280,7 @@
 <a name="l00248"></a>00248 
 <a name="l00249"></a><a class="code" href="class_text.html#a6055aad336b152fb30db326e13813175">00249</a> <span class="keyword">const</span> <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a>&amp; <a class="code" href="class_text.html#a6055aad336b152fb30db326e13813175">Text::getPrintable</a>() throw()
 <a name="l00250"></a>00250 {
-<a name="l00251"></a>00251   <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> t = <a class="code" href="class_numerical_array.html#a59b2257afb948d77ebb88255ef6e6167">Text::series</a>(128-32-1, 32, 1);
+<a name="l00251"></a>00251   <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="class_text.html" title="A class for storing and manipulating text strings.">Text</a> t = <a class="code" href="class_numerical_array.html#a59b2257afb948d77ebb88255ef6e6167" title="Creates a NumericalArray with a given size (length) using a series.">Text::series</a>(128-32-1, 32, 1);
 <a name="l00252"></a>00252   <span class="keywordflow">return</span> t;
 <a name="l00253"></a>00253 }
 <a name="l00254"></a>00254 
@@ -382,7 +382,7 @@
 <a name="l00350"></a>00350 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 19 2010 06:22:15 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 28 2010 12:27:02 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

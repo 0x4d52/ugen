@@ -61,10 +61,13 @@ protected:
 	float prevLevel;
 };
 
-//// uncomment this block if there is an actual control rate version of this UGen
-//UGenInternalControlRateDeclaration(PauseUGenInternal, (Pause_InputsNoTypes), (Pause_InputsWithTypesAndDefaults));
 
 /** A UGen which saves processing power when an amplitude value is zero. 
+ This controls the level of the input level of the input UGen and can alse
+ prevent the rendering of the input UGen when level is zero (simply
+ outputting a zero output instead). This can be useful if the input is
+ relatively expensive but does add a small overhead so may not be worth it
+ if the input is very simple.
  @ingroup AllUGens ControlUGens */
 UGenSublcassDeclarationNoDefault(Pause, (Pause_InputsNoTypes), (Pause_InputsWithTypesAndDefaults), COMMON_UGEN_DOCS);
 

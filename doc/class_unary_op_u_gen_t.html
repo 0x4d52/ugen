@@ -33,10 +33,16 @@
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a>  </div>
   <div class="headertitle">
-<h1>UnaryOpUGenT&lt; op &gt; Class Template Reference</h1>  </div>
+<h1>UnaryOpUGenT&lt; op &gt; Class Template Reference<br/>
+<small>
+[<a class="el" href="group___all_u_gens.html">All UGen classes.</a>,&nbsp;<a class="el" href="group___maths_u_gens.html">Mathemetical UGen classes.</a>]</small>
+</h1>  </div>
 </div>
 <div class="contents">
 <!-- doxytag: class="UnaryOpUGenT" --><!-- doxytag: inherits="UGen" -->
+<p>A unary operator <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> using a template for the processing function.  
+<a href="#_details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="ugen___unary_op_u_gens_8h_source.html">ugen_UnaryOpUGens.h</a>&gt;</code></p>
 
 <p>Inherits <a class="el" href="class_u_gen.html">UGen</a>.</p>
@@ -55,8 +61,20 @@ Static Public Member Functions</h2></td></tr>
 <h3>template&lt;UnaryOpFunction op&gt;<br/>
  class UnaryOpUGenT&lt; op &gt;</h3>
 
+<p>A unary operator <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> using a template for the processing function. </p>
+<p>Any function which has the appropriate declaration can be uses as the template parameter. E.g., </p>
+<div class="fragment"><pre class="fragment">  <span class="keywordtype">float</span> myfunc(<span class="keywordtype">float</span> a)
+  {
+    <span class="keywordflow">return</span> -a; <span class="comment">// return the negative if the input</span>
+  }
+</pre></div> <dl><dt><b>Template Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>op</em>&nbsp;</td><td>This must be the name of a function that takes a float argument and returns a float. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8h_source.html#l00458">458</a> of file <a class="el" href="ugen___unary_op_u_gens_8h_source.html">ugen_UnaryOpUGens.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8h_source.html#l00470">470</a> of file <a class="el" href="ugen___unary_op_u_gens_8h_source.html">ugen_UnaryOpUGens.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ab6096c51f14d717e75f8fa396e02c890"></a><!-- doxytag: member="UnaryOpUGenT::UnaryOpUGenT" ref="ab6096c51f14d717e75f8fa396e02c890" args="(UGen const &amp;operand, UGen const &amp;rightOperand)" -->
 <div class="memitem">
@@ -85,7 +103,7 @@ template&lt;UnaryOpFunction op&gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8h_source.html#l00461">461</a> of file <a class="el" href="ugen___unary_op_u_gens_8h_source.html">ugen_UnaryOpUGens.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8h_source.html#l00473">473</a> of file <a class="el" href="ugen___unary_op_u_gens_8h_source.html">ugen_UnaryOpUGens.h</a>.</p>
 
 </div>
 </div>
@@ -108,7 +126,7 @@ template&lt;UnaryOpFunction op&gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8h_source.html#l00473">473</a> of file <a class="el" href="ugen___unary_op_u_gens_8h_source.html">ugen_UnaryOpUGens.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8h_source.html#l00485">485</a> of file <a class="el" href="ugen___unary_op_u_gens_8h_source.html">ugen_UnaryOpUGens.h</a>.</p>
 
 </div>
 </div>
@@ -130,7 +148,7 @@ template&lt;UnaryOpFunction op&gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8h_source.html#l00474">474</a> of file <a class="el" href="ugen___unary_op_u_gens_8h_source.html">ugen_UnaryOpUGens.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___unary_op_u_gens_8h_source.html#l00486">486</a> of file <a class="el" href="ugen___unary_op_u_gens_8h_source.html">ugen_UnaryOpUGens.h</a>.</p>
 
 </div>
 </div>
@@ -138,7 +156,7 @@ template&lt;UnaryOpFunction op&gt; </div>
 <li>basics/<a class="el" href="ugen___unary_op_u_gens_8h_source.html">ugen_UnaryOpUGens.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 19 2010 06:22:25 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 28 2010 12:27:23 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

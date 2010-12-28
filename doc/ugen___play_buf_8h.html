@@ -28,7 +28,8 @@
 </div>
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Defines</a>  </div>
   <div class="headertitle">
 <h1>buffers/ugen_PlayBuf.h File Reference</h1>  </div>
 </div>
@@ -52,9 +53,40 @@ Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_loop_points_u_gen_internal.html">LoopPointsUGenInternal</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_loop_points.html">LoopPoints</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> for controlling <a class="el" href="class_play_buf.html" title="A UGen which can playback a Buffer.">PlayBuf</a> loop points via its offset input.  <a href="class_loop_points.html#_details">More...</a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="define-members"></a>
+Defines</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="ugen___play_buf_8h.html#a3bd4719954d138d8f47f2c4d394e1f16">PlayBuf_Docs</a></td></tr>
 </table>
+<hr/><h2>Define Documentation</h2>
+<a class="anchor" id="a3bd4719954d138d8f47f2c4d394e1f16"></a><!-- doxytag: member="ugen_PlayBuf.h::PlayBuf_Docs" ref="a3bd4719954d138d8f47f2c4d394e1f16" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PlayBuf_Docs</td>
+        </tr>
+      </table>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 19 2010 06:22:18 for ugen by&nbsp;
+<div class="memdoc">
+<b>Value:</b><div class="fragment"><pre class="fragment">@param buffer The <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> to play, <span class="keyword">this</span> number of channels witll determin the          \
+                    the number of channels of <span class="keyword">this</span> <a class="code" href="class_play_buf.html" title="A UGen which can playback a Buffer.">PlayBuf</a>.                     \
+            @param rate   The rate of playback where 1 is normal speed. The may be <span class="keyword">set</span> to 0 and     \
+                    the @c offset input can be modulated manually instead (e.g., <span class="keyword">using</span> the      \
+                    <a class="code" href="class_loop_points.html" title="A UGen for controlling PlayBuf loop points via its offset input.">LoopPoints</a> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>).                               \
+            @param trig   <a class="code" href="ugen___value_8h.html#a70993d52766e31cb0157958a18aa499a">A</a> trigger that will send the playbakc head back to the offset. Just       \
+                    use 0 <span class="keywordflow">for</span> normal use.                             \
+            @param offset <a class="code" href="ugen___value_8h.html#a70993d52766e31cb0157958a18aa499a">A</a> modulatable offset into the <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> in samples. Cab be used to driver the    \
+                    <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> playback manually instead of or in addition to the @c rate input     \
+            @param loop   <a class="code" href="ugen___value_8h.html#a70993d52766e31cb0157958a18aa499a">A</a> loop flag to indicate the <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> should loop (1) or just play one-shot (0). \
+            @param doneAction If looping oid off and the done action is <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>::DeleteWhenDone then this    \
+                      <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> will fire a delete action when playback reaches the end of the <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>. \
+</pre></div>
+<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00084">84</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
+
+</div>
+</div>
+</div>
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 28 2010 12:27:06 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -28,7 +28,8 @@
 </div>
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Defines</a>  </div>
   <div class="headertitle">
 <h1>convolution/ugen_Convolution.h File Reference</h1>  </div>
 </div>
@@ -55,9 +56,38 @@ Classes</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Real time zero latency convolution.  <a href="class_zero_latency_convolve.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_true_stereo_convolve.html">TrueStereoConvolve</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">True stereo, real time, zero latency convolution !  <a href="class_true_stereo_convolve.html#_details">More...</a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="define-members"></a>
+Defines</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="ugen___convolution_8h.html#a6afb50bf183a490a9dd1b5bbc13903d8">PartConvolve_Docs</a></td></tr>
 </table>
+<hr/><h2>Define Documentation</h2>
+<a class="anchor" id="a6afb50bf183a490a9dd1b5bbc13903d8"></a><!-- doxytag: member="ugen_Convolution.h::PartConvolve_Docs" ref="a6afb50bf183a490a9dd1b5bbc13903d8" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PartConvolve_Docs</td>
+        </tr>
+      </table>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 19 2010 06:22:18 for ugen by&nbsp;
+<div class="memdoc">
+<b>Value:</b><div class="fragment"><pre class="fragment">@param input    The input signal to convolve.                       \
+              @param impulse    The impulse repsonse to convolve with the @c input.             \
+              @param startPoint The sample offset into the @c impulse <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> to use as the first sample   \
+                        in the convolution (0 is <span class="keywordflow">default</span>).                      \
+              @param endPoint   The sample offset into the @c impulse <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> to use as the last sample    \
+                        in the covolution. This is @b exclusive. <a class="code" href="ugen___value_8h.html#a70993d52766e31cb0157958a18aa499a">A</a> value of 0 means all remaining \
+                        samples in the <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> will be used (0 is <span class="keywordflow">default</span>).              \
+              @param fftEngine  The <a class="code" href="class_f_f_t_engine.html" title="FFT processing helper class.">FFTEngine</a> to use to <span class="keywordflow">do</span> the processing. An FFT size can be specified   \
+                        here to force a particular FFT size of the processing.  The defualt of 0  \
+                        will cause <a class="code" href="class_part_convolve.html" title="Real time partitioned convolution UGen.">PartConvolve</a> to create its own <a class="code" href="class_f_f_t_engine.html" title="FFT processing helper class.">FFTEngine</a> with a size of 4096.
+</pre></div>
+<p>Definition at line <a class="el" href="ugen___convolution_8h_source.html#l00158">158</a> of file <a class="el" href="ugen___convolution_8h_source.html">ugen_Convolution.h</a>.</p>
+
+</div>
+</div>
+</div>
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 28 2010 12:27:06 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

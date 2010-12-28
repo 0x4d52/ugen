@@ -477,7 +477,7 @@
 <a name="l00445"></a>00445            <span class="keyword">const</span> <span class="keywordtype">bool</span> sendUpdateMessage = <span class="keyword">true</span>,
 <a name="l00446"></a>00446            <span class="keyword">const</span> <span class="keywordtype">bool</span> sendMessageSynchronously = <span class="keyword">false</span>)
 <a name="l00447"></a>00447   {
-<a name="l00448"></a>00448     <span class="keyword">const</span> <span class="keywordtype">int</span> size = jmin(values.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>(), <a class="code" href="class_multi_slider_base.html#adb2282642b13d544b3d5cb6d1e7d1609">sliders</a>.size());
+<a name="l00448"></a>00448     <span class="keyword">const</span> <span class="keywordtype">int</span> size = jmin(values.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96" title="Return the size in samples of each channel in this Buffer.">size</a>(), <a class="code" href="class_multi_slider_base.html#adb2282642b13d544b3d5cb6d1e7d1609">sliders</a>.size());
 <a name="l00449"></a>00449     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++)
 <a name="l00450"></a>00450     {
 <a name="l00451"></a>00451       <a class="code" href="class_multi_slider_base.html#adb2282642b13d544b3d5cb6d1e7d1609">sliders</a>[i]-&gt;setValue((<span class="keywordtype">double</span>)values.<a class="code" href="class_buffer.html#a54e55fffada89fdd7ea22569c83aa337">getSampleUnchecked</a>(i), sendUpdateMessage, sendMessageSynchronously);
@@ -524,7 +524,7 @@
 <a name="l00492"></a>00492       {
 <a name="l00493"></a>00493         <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> copy = <a class="code" href="class_multi_slider.html#ac818ffa674ed7fd353789d951db0fcee">values</a>;
 <a name="l00494"></a>00494         <a class="code" href="class_multi_slider.html#a52f047e9573687e58a086a3722d67537">lock</a>.exit();
-<a name="l00495"></a>00495         <a class="code" href="class_multi_slider_base.html#a8c44b89385bf1c3f9cbe81f92dd2ee8e">setNumSliders</a>(copy.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>());
+<a name="l00495"></a>00495         <a class="code" href="class_multi_slider_base.html#a8c44b89385bf1c3f9cbe81f92dd2ee8e">setNumSliders</a>(copy.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96" title="Return the size in samples of each channel in this Buffer.">size</a>());
 <a name="l00496"></a>00496         <a class="code" href="class_multi_slider.html#a4fed107655aaba44414d9beb54935670">setValues</a>(copy);
 <a name="l00497"></a>00497       }
 <a name="l00498"></a>00498     }
@@ -577,7 +577,7 @@
 <a name="l00545"></a>00545 <span class="preprocessor">#endif // _UGEN_ugen_JuceMultiSlider_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 19 2010 06:22:17 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 28 2010 12:27:04 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

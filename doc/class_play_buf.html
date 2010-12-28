@@ -66,7 +66,7 @@ Static Public Member Functions</h2></td></tr>
 <p>This should have a number of channels equal to that in the <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>. All other inputs should be a single channel (and will be mixed to mono if they aren't before use).</p>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_play_buf_u_gen_internal.html" title="A UGenInternal which can playback a Buffer.">PlayBufUGenInternal</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00099">99</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00112">112</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a526f3dc14758ac4d18f874b623d4ae2e"></a><!-- doxytag: member="PlayBuf::PlayBuf" ref="a526f3dc14758ac4d18f874b623d4ae2e" args="()" -->
 <div class="memitem">
@@ -83,7 +83,7 @@ Static Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00099">99</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00112">112</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
 
 </div>
 </div>
@@ -140,6 +140,17 @@ Static Public Member Functions</h2></td></tr>
 <p><b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br/>
  <br/>
  </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>buffer</em>&nbsp;</td><td>The <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> to play, this number of channels witll determin the the number of channels of this <a class="el" href="class_play_buf.html" title="A UGen which can playback a Buffer.">PlayBuf</a>. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>rate</em>&nbsp;</td><td>The rate of playback where 1 is normal speed. The may be set to 0 and the <code>offset</code> input can be modulated manually instead (e.g., using the <a class="el" href="class_loop_points.html" title="A UGen for controlling PlayBuf loop points via its offset input.">LoopPoints</a> <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a>). </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>trig</em>&nbsp;</td><td>A trigger that will send the playbakc head back to the offset. Just use 0 for normal use. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>offset</em>&nbsp;</td><td>A modulatable offset into the <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> in samples. Cab be used to driver the <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> playback manually instead of or in addition to the <code>rate</code> input </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>loop</em>&nbsp;</td><td>A loop flag to indicate the <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> should loop (1) or just play one-shot (0). </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>doneAction</em>&nbsp;</td><td>If looping oid off and the done action is <a class="el" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1caa0fbefeaf163b11d9f88375fdb8f3eaac" title="When the event ends it signals a delete message which should delete an entire UGen graph...">UGen::DeleteWhenDone</a> then this <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> will fire a delete action when playback reaches the end of the <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="ugen___play_buf_8cpp_source.html#l00157">157</a> of file <a class="el" href="ugen___play_buf_8cpp_source.html">ugen_PlayBuf.cpp</a>.</p>
 
@@ -201,9 +212,20 @@ Static Public Member Functions</h2></td></tr>
 <p><b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br/>
  <br/>
  </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>buffer</em>&nbsp;</td><td>The <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> to play, this number of channels witll determin the the number of channels of this <a class="el" href="class_play_buf.html" title="A UGen which can playback a Buffer.">PlayBuf</a>. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>rate</em>&nbsp;</td><td>The rate of playback where 1 is normal speed. The may be set to 0 and the <code>offset</code> input can be modulated manually instead (e.g., using the <a class="el" href="class_loop_points.html" title="A UGen for controlling PlayBuf loop points via its offset input.">LoopPoints</a> <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a>). </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>trig</em>&nbsp;</td><td>A trigger that will send the playbakc head back to the offset. Just use 0 for normal use. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>offset</em>&nbsp;</td><td>A modulatable offset into the <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> in samples. Cab be used to driver the <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> playback manually instead of or in addition to the <code>rate</code> input </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>loop</em>&nbsp;</td><td>A loop flag to indicate the <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> should loop (1) or just play one-shot (0). </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>doneAction</em>&nbsp;</td><td>If looping oid off and the done action is <a class="el" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1caa0fbefeaf163b11d9f88375fdb8f3eaac" title="When the event ends it signals a delete message which should delete an entire UGen graph...">UGen::DeleteWhenDone</a> then this <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> will fire a delete action when playback reaches the end of the <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The audio rate <a class="el" href="class_play_buf.html" title="A UGen which can playback a Buffer.">PlayBuf</a> . </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00099">99</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00112">112</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
 
 <p>Referenced by <a class="el" href="ugen___x_fade_play_buf_8cpp_source.html#l00073">XFadeLoopPlayBufUGenInternal::OnsetLoopXFade::spawnEvent()</a>.</p>
 
@@ -262,9 +284,20 @@ Static Public Member Functions</h2></td></tr>
 <p><b>Generic UGen argument documentation:</b> Arguments which are <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> type can be continuously controlled and these may generally be multichannel (although there are some exceptions). Arguments which are constant/literal values (e.g., float or int) are clearly not continuously controllable and not multichannel (therefore will generallly be applied identically to each channel should the <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> being created is made multichannel via other arguments. Arguments which are <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> type may require a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> for some specific purpose (e.g, <a class="el" href="class_table_osc.html" title="A general purpose wavetable-based oscillator.">TableOsc</a> uses a buffer for its wavetable) but single channel <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> objects are also used to specify an array of literal values (e.g., <a class="el" href="class_l_line.html" title="Performs a linear line from start to end over a given duration.">LLine</a>) <br/>
  <br/>
  </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>buffer</em>&nbsp;</td><td>The <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> to play, this number of channels witll determin the the number of channels of this <a class="el" href="class_play_buf.html" title="A UGen which can playback a Buffer.">PlayBuf</a>. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>rate</em>&nbsp;</td><td>The rate of playback where 1 is normal speed. The may be set to 0 and the <code>offset</code> input can be modulated manually instead (e.g., using the <a class="el" href="class_loop_points.html" title="A UGen for controlling PlayBuf loop points via its offset input.">LoopPoints</a> <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a>). </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>trig</em>&nbsp;</td><td>A trigger that will send the playbakc head back to the offset. Just use 0 for normal use. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>offset</em>&nbsp;</td><td>A modulatable offset into the <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> in samples. Cab be used to driver the <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> playback manually instead of or in addition to the <code>rate</code> input </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>loop</em>&nbsp;</td><td>A loop flag to indicate the <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> should loop (1) or just play one-shot (0). </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>doneAction</em>&nbsp;</td><td>If looping oid off and the done action is <a class="el" href="class_u_gen.html#a3bf427e5381f9a952b8fa1fb4587b1caa0fbefeaf163b11d9f88375fdb8f3eaac" title="When the event ends it signals a delete message which should delete an entire UGen graph...">UGen::DeleteWhenDone</a> then this <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> will fire a delete action when playback reaches the end of the <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The control rate <a class="el" href="class_play_buf.html" title="A UGen which can playback a Buffer.">PlayBuf</a> . </dd></dl>
 
-<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00099">99</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___play_buf_8h_source.html#l00112">112</a> of file <a class="el" href="ugen___play_buf_8h_source.html">ugen_PlayBuf.h</a>.</p>
 
 </div>
 </div>
@@ -273,7 +306,7 @@ Static Public Member Functions</h2></td></tr>
 <li>buffers/<a class="el" href="ugen___play_buf_8cpp_source.html">ugen_PlayBuf.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 19 2010 06:22:23 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 28 2010 12:27:18 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

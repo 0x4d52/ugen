@@ -450,28 +450,6 @@ protected:
 	bool isStealing_ : 1;
 };
 
-/** Added to UGenInternal classes that can seek a particular point in time.*/
-//class Seekable
-//{
-//public:
-//	Seekable() throw() {}
-//	virtual ~Seekable() {}
-//	/** Get the maximum duration of the seekable.
-//	 The units will be dependent on the UGenInternal in question. 
-//	 For longer sounds as sound files it is likely to be in seconds. 
-//	 For wavetables it will always be 1.0 */
-//	virtual double getDuration() const = 0;
-//	/** Get the current position of the seekable.
-//	 The units will be dependent on the UGenInternal in question. 
-//	 For longer sounds as sound files it is likely to be in seconds. 
-//	 For wavetables it will 0...1 */	
-//	virtual double getPosition() const = 0;
-//	/** Set the current position of the seekable.
-//	 The units will be dependent on the UGenInternal in question. 
-//	 For longer sounds as sound files it is likely to be in seconds. 
-//	 For wavetables it will 0...1 */		
-//	virtual void setPosition(const double newPosition) = 0;
-//};
 
 
 #endif // UGEN_UGENINTERNAL_H

@@ -45,8 +45,7 @@
 #define LFPulse_InputsNoTypes				freq, duty
 
 /** @ingroup UGenInternals */
-class LFPulseUGenInternal : public UGenInternal//,
-//							public Seekable
+class LFPulseUGenInternal : public UGenInternal
 {
 public:
 	LFPulseUGenInternal(LFPulse_InputsWithTypesOnly) throw();

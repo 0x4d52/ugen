@@ -87,7 +87,7 @@
 <a name="l00063"></a>00063   
 <a name="l00065"></a>00065   <a class="code" href="class_part_buffer.html#a92241493e9bfb38c418f618a96c82369" title="Destructor.">~PartBuffer</a>();
 <a name="l00066"></a>00066   
-<a name="l00067"></a>00067   <a class="code" href="class_part_buffer.html" title="Stores a &amp;quot;partitioned&amp;quot; FFT buffer.">PartBuffer</a> <a class="code" href="class_part_buffer.html#ad13b7c2769f82f593756c13e75c93c2c">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keyword">const</span> <span class="keywordflow">throw</span>();
+<a name="l00067"></a>00067   <a class="code" href="class_part_buffer.html" title="Stores a &amp;quot;partitioned&amp;quot; FFT buffer.">PartBuffer</a> <a class="code" href="class_part_buffer.html#ad13b7c2769f82f593756c13e75c93c2c" title="Return a Buffer containing only one channel of this Buffer.">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keyword">const</span> <span class="keywordflow">throw</span>();
 <a name="l00068"></a>00068     
 <a name="l00071"></a><a class="code" href="class_part_buffer.html#a5bea2658d23baa2d6107dfe514fedcf0">00071</a>   <span class="keyword">inline</span> <span class="keywordtype">float</span>* <a class="code" href="class_part_buffer.html#a5bea2658d23baa2d6107dfe514fedcf0" title="Get a pointer to the real samples.">getDataReal</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()  { <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a4d8cb3226251d4ab95385cd2019500fa">channels</a>[channel % <a class="code" href="class_buffer.html#a3cb0fd5b8ed92ca89d44979b07ff8524">numChannels_</a>]-&gt;<a class="code" href="class_buffer_channel_internal.html#a5ac00cc6d7ff9d61e833f7199b6b7e96">data</a>; }
 <a name="l00072"></a>00072   
@@ -165,97 +165,110 @@
 <a name="l00155"></a>00155 
 <a name="l00156"></a>00156 
 <a name="l00157"></a>00157 
-<a name="l00158"></a>00158 
-<a name="l00159"></a>00159     
-<a name="l00162"></a><a class="code" href="class_part_convolve.html">00162</a> <span class="keyword">class </span><a class="code" href="class_part_convolve.html" title="Real time partitioned convolution UGen.">PartConvolve</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>
-<a name="l00163"></a>00163 {
-<a name="l00164"></a>00164 <span class="keyword">public</span>:
-<a name="l00165"></a>00165   <a class="code" href="class_part_convolve.html#a7571027de955344051ab098f553ed4d4">PartConvolve</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; impulse, 
-<a name="l00166"></a>00166          <span class="keywordtype">long</span> startPoint = 0, 
-<a name="l00167"></a>00167          <span class="keywordtype">long</span> endPoint = 0, 
-<a name="l00168"></a>00168          <a class="code" href="class_f_f_t_engine.html" title="FFT processing helper class.">FFTEngine</a> <span class="keyword">const</span>&amp; fftEngine = 0) <span class="keywordflow">throw</span>();
-<a name="l00169"></a>00169   
-<a name="l00170"></a>00170   <a class="code" href="class_part_convolve.html#a7571027de955344051ab098f553ed4d4">PartConvolve</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_part_buffer.html" title="Stores a &amp;quot;partitioned&amp;quot; FFT buffer.">PartBuffer</a> <span class="keyword">const</span>&amp; impulse) <span class="keywordflow">throw</span>();
-<a name="l00171"></a>00171   
-<a name="l00172"></a><a class="code" href="class_part_convolve.html#a470500a2c03dcb6649abebdd7394e871">00172</a>   <span class="keyword">static</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_part_convolve.html#a470500a2c03dcb6649abebdd7394e871">AR</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; impulse, 
-<a name="l00173"></a>00173            <span class="keywordtype">long</span> startPoint = 0, 
-<a name="l00174"></a>00174            <span class="keywordtype">long</span> endPoint = 0, 
-<a name="l00175"></a>00175            <a class="code" href="class_f_f_t_engine.html" title="FFT processing helper class.">FFTEngine</a> <span class="keyword">const</span>&amp; fftEngine = 0) throw()
-<a name="l00176"></a>00176   {
-<a name="l00177"></a>00177     <span class="keywordflow">return</span> <a class="code" href="class_part_convolve.html#a7571027de955344051ab098f553ed4d4">PartConvolve</a>(input, impulse, startPoint, endPoint, fftEngine);
-<a name="l00178"></a>00178   }
-<a name="l00179"></a>00179   
-<a name="l00180"></a><a class="code" href="class_part_convolve.html#a560b03c6292c383bbd54b321d19b6270">00180</a>   <span class="keyword">static</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_part_convolve.html#a470500a2c03dcb6649abebdd7394e871">AR</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_part_buffer.html" title="Stores a &amp;quot;partitioned&amp;quot; FFT buffer.">PartBuffer</a> <span class="keyword">const</span>&amp; impulse) <span class="keywordflow">throw</span>()
-<a name="l00181"></a>00181   {
-<a name="l00182"></a>00182     <span class="keywordflow">return</span> <a class="code" href="class_part_convolve.html#a7571027de955344051ab098f553ed4d4">PartConvolve</a>(input, impulse);
-<a name="l00183"></a>00183   }
-<a name="l00184"></a>00184 };
-<a name="l00185"></a>00185 
-<a name="l00186"></a>00186 
-<a name="l00187"></a>00187 <span class="preprocessor">#if defined(UGEN_FFTW) || defined(UGEN_FFTREAL)</span>
-<a name="l00188"></a>00188 <span class="preprocessor"></span><a class="code" href="ugen___u_gen_8h.html#a254ceb88c7d6c3c576dd70991c53b332" title="Macro for declaring a custom UGen by combining other UGens.">DefineCustomUGen</a>(<a class="code" href="class_zero_latency_convolve.html" title="Real time zero latency convolution.">ZeroLatencyConvolve</a>,
-<a name="l00189"></a>00189          (<a class="code" href="class_mix.html" title="Mix channels.">Mix</a>(<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>(<a class="code" href="class_part_convolve.html" title="Real time partitioned convolution UGen.">PartConvolve</a>(input, impulse, 8192, 0, 14)) &lt;&lt;
-<a name="l00190"></a>00190            <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>(<a class="code" href="class_part_convolve.html" title="Real time partitioned convolution UGen.">PartConvolve</a>(input, impulse, 2048, 8192, 12)) &lt;&lt;
-<a name="l00191"></a>00191            <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>(<a class="code" href="class_part_convolve.html" title="Real time partitioned convolution UGen.">PartConvolve</a>(input, impulse, 512, 2048, 10)) &lt;&lt;
-<a name="l00192"></a>00192            <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>(<a class="code" href="class_part_convolve.html" title="Real time partitioned convolution UGen.">PartConvolve</a>(input, impulse, 128, 512, 8)) &lt;&lt;
-<a name="l00193"></a>00193            <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>(<a class="code" href="class_part_convolve.html" title="Real time partitioned convolution UGen.">PartConvolve</a>(input, impulse, 0, 128, 6)))),      <span class="comment">// No TimeConvolve yet on Windows</span>
-<a name="l00194"></a>00194          (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; impulse), <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>);
-<a name="l00195"></a>00195 
-<a name="l00196"></a>00196 <span class="preprocessor">#else // assume we have the Mac vDSP interfaces</span>
-<a name="l00197"></a>00197 <span class="preprocessor"></span>
-<a name="l00200"></a><a class="code" href="class_time_convolve_u_gen_internal.html">00200</a> <span class="keyword">class </span><a class="code" href="class_time_convolve_u_gen_internal.html" title="A UGenInternal which performs time domain convolution.">TimeConvolveUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>
-<a name="l00201"></a>00201 {
-<a name="l00202"></a>00202 <span class="keyword">public</span>:
-<a name="l00203"></a>00203   <a class="code" href="class_time_convolve_u_gen_internal.html#ae8e585006d5eae51c8ed768816474e5f">TimeConvolveUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, 
-<a name="l00204"></a>00204                <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; impulse, 
-<a name="l00205"></a>00205                <span class="keywordtype">long</span> startPoint = 0, <span class="keywordtype">long</span> endPoint = 0, <span class="keywordtype">long</span> dummy = 0) <span class="keywordflow">throw</span>();
-<a name="l00206"></a>00206   <a class="code" href="class_time_convolve_u_gen_internal.html#ae8f836811d1357bf0499ae5a7b6891b1">~TimeConvolveUGenInternal</a>() <span class="keywordflow">throw</span>();
-<a name="l00207"></a>00207   <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_time_convolve_u_gen_internal.html#a326e2b104d99eddb235c4dfa1ccad217">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
-<a name="l00208"></a>00208   <span class="keywordtype">void</span> <a class="code" href="class_time_convolve_u_gen_internal.html#a9bb341295cc63dc8773d0944a47688ca" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>(); 
-<a name="l00209"></a>00209   
-<a name="l00210"></a><a class="code" href="class_time_convolve_u_gen_internal.html#a45b6dfa5012dfdc1084ba235765b1c99a9f36c7623ea2f0648c379146daa68630">00210</a>   <span class="keyword">enum</span> <a class="code" href="class_time_convolve_u_gen_internal.html#a45b6dfa5012dfdc1084ba235765b1c99">Inputs</a> { Input, <a class="code" href="class_time_convolve_u_gen_internal.html#a45b6dfa5012dfdc1084ba235765b1c99a9f36c7623ea2f0648c379146daa68630">NumInputs</a> };
-<a name="l00211"></a>00211   
-<a name="l00212"></a>00212 <span class="keyword">protected</span>:
-<a name="l00213"></a><a class="code" href="class_time_convolve_u_gen_internal.html#aaa2d83e157c4280b51f3b9f4b0e641ce">00213</a>   <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_time_convolve_u_gen_internal.html#aaa2d83e157c4280b51f3b9f4b0e641ce">filters</a>;
-<a name="l00214"></a><a class="code" href="class_time_convolve_u_gen_internal.html#abff33b2dbe9da01d0cd506dc0f91e327">00214</a>   <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_time_convolve_u_gen_internal.html#abff33b2dbe9da01d0cd506dc0f91e327">ioBuffers</a>;
-<a name="l00215"></a>00215   
-<a name="l00216"></a><a class="code" href="class_time_convolve_u_gen_internal.html#a6b33d088559a3a66f65ca8a024b2f9f5">00216</a>   <span class="keywordtype">long</span> <a class="code" href="class_time_convolve_u_gen_internal.html#a6b33d088559a3a66f65ca8a024b2f9f5">position</a>;
-<a name="l00217"></a>00217   
-<a name="l00218"></a><a class="code" href="class_time_convolve_u_gen_internal.html#a6705699989af8c8b0be93b14a8683c3d">00218</a>   <span class="keyword">enum</span> <a class="code" href="class_time_convolve_u_gen_internal.html#a6705699989af8c8b0be93b14a8683c3d">io</a>
-<a name="l00219"></a>00219   {
-<a name="l00220"></a><a class="code" href="class_time_convolve_u_gen_internal.html#a6705699989af8c8b0be93b14a8683c3dae4425352816eafe128929e1121277d4d">00220</a>     <a class="code" href="class_time_convolve_u_gen_internal.html#a6705699989af8c8b0be93b14a8683c3dae4425352816eafe128929e1121277d4d">InputBuffer</a> = 0,
-<a name="l00221"></a><a class="code" href="class_time_convolve_u_gen_internal.html#a6705699989af8c8b0be93b14a8683c3dad8832bca8551b2a69f478c96bad370a2">00221</a>     <a class="code" href="class_time_convolve_u_gen_internal.html#a6705699989af8c8b0be93b14a8683c3dad8832bca8551b2a69f478c96bad370a2">OutputBuffer</a> = 1
-<a name="l00222"></a>00222   };
-<a name="l00223"></a>00223 };
-<a name="l00224"></a>00224 
-<a name="l00227"></a>00227 <a class="code" href="ugen___u_gen_8h.html#a7db186e77855232bec685ee47ef99496" title="Macro for declaring a simple UGen.">UGenSublcassDeclaration</a>(<a class="code" href="class_time_convolve.html" title="Real time time domain convolution.">TimeConvolve</a>, (input, impulse, startPoint, endPoint, dummy),
-<a name="l00228"></a>00228             (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; impulse, 
-<a name="l00229"></a>00229              <span class="keywordtype">long</span> startPoint = 0, 
-<a name="l00230"></a>00230              <span class="keywordtype">long</span> endPoint = 0, 
-<a name="l00231"></a><a class="code" href="class_time_convolve.html#aa1a656e6c9ffbf4292fa79eb3f50618c">00231</a>              <span class="keywordtype">long</span> dummy = 0), <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>);
-<a name="l00232"></a>00232 
-<a name="l00235"></a>00235 <a class="code" href="ugen___u_gen_8h.html#a254ceb88c7d6c3c576dd70991c53b332" title="Macro for declaring a custom UGen by combining other UGens.">DefineCustomUGen</a>(<a class="code" href="class_zero_latency_convolve.html" title="Real time zero latency convolution.">ZeroLatencyConvolve</a>,
-<a name="l00236"></a>00236          (<a class="code" href="class_mix.html" title="Mix channels.">Mix</a>(<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>(<a class="code" href="class_part_convolve.html" title="Real time partitioned convolution UGen.">PartConvolve</a>(input, impulse, 8192, 0, 14)) &lt;&lt;
-<a name="l00237"></a>00237            <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>(<a class="code" href="class_part_convolve.html" title="Real time partitioned convolution UGen.">PartConvolve</a>(input, impulse, 2048, 8192, 12)) &lt;&lt;
-<a name="l00238"></a>00238            <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>(<a class="code" href="class_part_convolve.html" title="Real time partitioned convolution UGen.">PartConvolve</a>(input, impulse, 512, 2048, 10)) &lt;&lt;
-<a name="l00239"></a>00239            <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>(<a class="code" href="class_part_convolve.html" title="Real time partitioned convolution UGen.">PartConvolve</a>(input, impulse, 128, 512, 8)) &lt;&lt;
-<a name="l00240"></a>00240            <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>(<a class="code" href="class_time_convolve.html" title="Real time time domain convolution.">TimeConvolve</a>(input, impulse, 0, 128)))),
-<a name="l00241"></a>00241          (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; impulse),
-<a name="l00242"></a><a class="code" href="class_zero_latency_convolve.html#a5e3c3ce6366220544df90c3393f1ff88">00242</a>          <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>);
-<a name="l00243"></a>00243 
-<a name="l00244"></a>00244 <span class="preprocessor">#endif // assumed we have the Mac vDSP interfaces</span>
-<a name="l00245"></a>00245 <span class="preprocessor"></span>
-<a name="l00248"></a>00248 <a class="code" href="ugen___u_gen_8h.html#a254ceb88c7d6c3c576dd70991c53b332" title="Macro for declaring a custom UGen by combining other UGens.">DefineCustomUGen</a>(<a class="code" href="class_true_stereo_convolve.html" title="True stereo, real time, zero latency convolution !">TrueStereoConvolve</a>,
-<a name="l00249"></a>00249          (<a class="code" href="class_zero_latency_convolve.html" title="Real time zero latency convolution.">ZeroLatencyConvolve</a>(input, impulseLeft)+<a class="code" href="class_zero_latency_convolve.html" title="Real time zero latency convolution.">ZeroLatencyConvolve</a>(input, impulseRight)),
-<a name="l00250"></a>00250          (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; impulseLeft, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; impulseRight),
-<a name="l00251"></a><a class="code" href="class_true_stereo_convolve.html#a3a4805b34af5743f10f4afbb4c9f3d53">00251</a>          <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>);
-<a name="l00252"></a>00252 
-<a name="l00253"></a>00253 
-<a name="l00254"></a>00254 
-<a name="l00255"></a>00255 <span class="preprocessor">#endif // _UGEN_ugen_Convolution_H_</span>
+<a name="l00158"></a><a class="code" href="ugen___convolution_8h.html#a6afb50bf183a490a9dd1b5bbc13903d8">00158</a> <span class="preprocessor">#define PartConvolve_Docs @param input    The input signal to convolve.                       \</span>
+<a name="l00159"></a>00159 <span class="preprocessor">              @param impulse    The impulse repsonse to convolve with the @c input.             \</span>
+<a name="l00160"></a>00160 <span class="preprocessor">              @param startPoint The sample offset into the @c impulse Buffer to use as the first sample   \</span>
+<a name="l00161"></a>00161 <span class="preprocessor">                        in the convolution (0 is default).                      \</span>
+<a name="l00162"></a>00162 <span class="preprocessor">              @param endPoint   The sample offset into the @c impulse Buffer to use as the last sample    \</span>
+<a name="l00163"></a>00163 <span class="preprocessor">                        in the covolution. This is @b exclusive. A value of 0 means all remaining \</span>
+<a name="l00164"></a>00164 <span class="preprocessor">                        samples in the Buffer will be used (0 is default).              \</span>
+<a name="l00165"></a>00165 <span class="preprocessor">              @param fftEngine  The FFTEngine to use to do the processing. An FFT size can be specified   \</span>
+<a name="l00166"></a>00166 <span class="preprocessor">                        here to force a particular FFT size of the processing.  The defualt of 0  \</span>
+<a name="l00167"></a>00167 <span class="preprocessor">                        will cause PartConvolve to create its own FFTEngine with a size of 4096.  </span>
+<a name="l00168"></a>00168 <span class="preprocessor"></span>
+<a name="l00169"></a>00169     
+<a name="l00174"></a><a class="code" href="class_part_convolve.html">00174</a> <span class="keyword">class </span><a class="code" href="class_part_convolve.html" title="Real time partitioned convolution UGen.">PartConvolve</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>
+<a name="l00175"></a>00175 {
+<a name="l00176"></a>00176 <span class="keyword">public</span>:
+<a name="l00177"></a>00177   <a class="code" href="ugen___u_gen_8h.html#a5aff373d1ededbeca2cd49274a2f6e96" title="Wrap some text in a normal &amp;quot;pre&amp;quot; Doxygen comment, before the item to be documented...">PREDOC</a>(<a class="code" href="ugen___convolution_8h.html#a6afb50bf183a490a9dd1b5bbc13903d8">PartConvolve_Docs</a>)
+<a name="l00178"></a>00178   <a class="code" href="class_part_convolve.html#a7571027de955344051ab098f553ed4d4">PartConvolve</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; impulse, 
+<a name="l00179"></a>00179          <span class="keywordtype">long</span> startPoint = 0, 
+<a name="l00180"></a>00180          <span class="keywordtype">long</span> endPoint = 0, 
+<a name="l00181"></a>00181          <a class="code" href="class_f_f_t_engine.html" title="FFT processing helper class.">FFTEngine</a> <span class="keyword">const</span>&amp; fftEngine = 0) <span class="keywordflow">throw</span>();
+<a name="l00182"></a>00182   
+<a name="l00183"></a>00183   <a class="code" href="class_part_convolve.html#a7571027de955344051ab098f553ed4d4">PartConvolve</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_part_buffer.html" title="Stores a &amp;quot;partitioned&amp;quot; FFT buffer.">PartBuffer</a> <span class="keyword">const</span>&amp; impulse) <span class="keywordflow">throw</span>();
+<a name="l00184"></a>00184   
+<a name="l00185"></a>00185   <a class="code" href="ugen___u_gen_8h.html#a5aff373d1ededbeca2cd49274a2f6e96" title="Wrap some text in a normal &amp;quot;pre&amp;quot; Doxygen comment, before the item to be documented...">PREDOC</a>(<a class="code" href="ugen___convolution_8h.html#a6afb50bf183a490a9dd1b5bbc13903d8">PartConvolve_Docs</a>)
+<a name="l00186"></a><a class="code" href="class_part_convolve.html#a470500a2c03dcb6649abebdd7394e871">00186</a>   static <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_part_convolve.html#a470500a2c03dcb6649abebdd7394e871">AR</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> const&amp; input, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> const&amp; impulse, 
+<a name="l00187"></a>00187            <span class="keywordtype">long</span> startPoint = 0, 
+<a name="l00188"></a>00188            <span class="keywordtype">long</span> endPoint = 0, 
+<a name="l00189"></a>00189            <a class="code" href="class_f_f_t_engine.html" title="FFT processing helper class.">FFTEngine</a> const&amp; fftEngine = 0) throw()
+<a name="l00190"></a>00190   {
+<a name="l00191"></a>00191     <span class="keywordflow">return</span> <a class="code" href="class_part_convolve.html#a7571027de955344051ab098f553ed4d4">PartConvolve</a>(input, impulse, startPoint, endPoint, fftEngine);
+<a name="l00192"></a>00192   }
+<a name="l00193"></a>00193   
+<a name="l00195"></a><a class="code" href="class_part_convolve.html#a560b03c6292c383bbd54b321d19b6270">00195</a>   <span class="keyword">static</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_part_convolve.html#a470500a2c03dcb6649abebdd7394e871">AR</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_part_buffer.html" title="Stores a &amp;quot;partitioned&amp;quot; FFT buffer.">PartBuffer</a> <span class="keyword">const</span>&amp; impulse) <span class="keywordflow">throw</span>()
+<a name="l00196"></a>00196   {
+<a name="l00197"></a>00197     <span class="keywordflow">return</span> <a class="code" href="class_part_convolve.html#a7571027de955344051ab098f553ed4d4">PartConvolve</a>(input, impulse);
+<a name="l00198"></a>00198   }
+<a name="l00199"></a>00199 };
+<a name="l00200"></a>00200 
+<a name="l00201"></a>00201 
+<a name="l00202"></a>00202 <span class="preprocessor">#if defined(UGEN_FFTW) || defined(UGEN_FFTREAL)</span>
+<a name="l00203"></a>00203 <span class="preprocessor"></span><a class="code" href="ugen___u_gen_8h.html#a254ceb88c7d6c3c576dd70991c53b332" title="Macro for declaring a custom UGen by combining other UGens.">DefineCustomUGen</a>(<a class="code" href="class_zero_latency_convolve.html" title="Real time zero latency convolution.">ZeroLatencyConvolve</a>,
+<a name="l00204"></a>00204          (<a class="code" href="class_mix.html" title="Mix channels.">Mix</a>(<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>(<a class="code" href="class_part_convolve.html" title="Real time partitioned convolution UGen.">PartConvolve</a>(input, impulse, 8192, 0, 14)) &lt;&lt;
+<a name="l00205"></a>00205            <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>(<a class="code" href="class_part_convolve.html" title="Real time partitioned convolution UGen.">PartConvolve</a>(input, impulse, 2048, 8192, 12)) &lt;&lt;
+<a name="l00206"></a>00206            <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>(<a class="code" href="class_part_convolve.html" title="Real time partitioned convolution UGen.">PartConvolve</a>(input, impulse, 512, 2048, 10)) &lt;&lt;
+<a name="l00207"></a>00207            <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>(<a class="code" href="class_part_convolve.html" title="Real time partitioned convolution UGen.">PartConvolve</a>(input, impulse, 128, 512, 8)) &lt;&lt;
+<a name="l00208"></a>00208            <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>(<a class="code" href="class_part_convolve.html" title="Real time partitioned convolution UGen.">PartConvolve</a>(input, impulse, 0, 128, 6)))),      <span class="comment">// No TimeConvolve yet on Windows</span>
+<a name="l00209"></a>00209          (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; impulse), <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>);
+<a name="l00210"></a>00210 
+<a name="l00211"></a>00211 <span class="preprocessor">#else // assume we have the Mac vDSP interfaces</span>
+<a name="l00212"></a>00212 <span class="preprocessor"></span>
+<a name="l00215"></a><a class="code" href="class_time_convolve_u_gen_internal.html">00215</a> <span class="keyword">class </span><a class="code" href="class_time_convolve_u_gen_internal.html" title="A UGenInternal which performs time domain convolution.">TimeConvolveUGenInternal</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>
+<a name="l00216"></a>00216 {
+<a name="l00217"></a>00217 <span class="keyword">public</span>:
+<a name="l00218"></a>00218   <a class="code" href="class_time_convolve_u_gen_internal.html#ae8e585006d5eae51c8ed768816474e5f">TimeConvolveUGenInternal</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, 
+<a name="l00219"></a>00219                <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; impulse, 
+<a name="l00220"></a>00220                <span class="keywordtype">long</span> startPoint = 0, <span class="keywordtype">long</span> endPoint = 0, <span class="keywordtype">long</span> dummy = 0) <span class="keywordflow">throw</span>();
+<a name="l00221"></a>00221   <a class="code" href="class_time_convolve_u_gen_internal.html#ae8f836811d1357bf0499ae5a7b6891b1">~TimeConvolveUGenInternal</a>() <span class="keywordflow">throw</span>();
+<a name="l00222"></a>00222   <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_time_convolve_u_gen_internal.html#a326e2b104d99eddb235c4dfa1ccad217">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>();
+<a name="l00223"></a>00223   <span class="keywordtype">void</span> <a class="code" href="class_time_convolve_u_gen_internal.html#a9bb341295cc63dc8773d0944a47688ca" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>(); 
+<a name="l00224"></a>00224   
+<a name="l00225"></a><a class="code" href="class_time_convolve_u_gen_internal.html#a45b6dfa5012dfdc1084ba235765b1c99a9f36c7623ea2f0648c379146daa68630">00225</a>   <span class="keyword">enum</span> <a class="code" href="class_time_convolve_u_gen_internal.html#a45b6dfa5012dfdc1084ba235765b1c99">Inputs</a> { Input, <a class="code" href="class_time_convolve_u_gen_internal.html#a45b6dfa5012dfdc1084ba235765b1c99a9f36c7623ea2f0648c379146daa68630">NumInputs</a> };
+<a name="l00226"></a>00226   
+<a name="l00227"></a>00227 <span class="keyword">protected</span>:
+<a name="l00228"></a><a class="code" href="class_time_convolve_u_gen_internal.html#aaa2d83e157c4280b51f3b9f4b0e641ce">00228</a>   <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_time_convolve_u_gen_internal.html#aaa2d83e157c4280b51f3b9f4b0e641ce">filters</a>;
+<a name="l00229"></a><a class="code" href="class_time_convolve_u_gen_internal.html#abff33b2dbe9da01d0cd506dc0f91e327">00229</a>   <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <a class="code" href="class_time_convolve_u_gen_internal.html#abff33b2dbe9da01d0cd506dc0f91e327">ioBuffers</a>;
+<a name="l00230"></a>00230   
+<a name="l00231"></a><a class="code" href="class_time_convolve_u_gen_internal.html#a6b33d088559a3a66f65ca8a024b2f9f5">00231</a>   <span class="keywordtype">long</span> <a class="code" href="class_time_convolve_u_gen_internal.html#a6b33d088559a3a66f65ca8a024b2f9f5">position</a>;
+<a name="l00232"></a>00232   
+<a name="l00233"></a><a class="code" href="class_time_convolve_u_gen_internal.html#a6705699989af8c8b0be93b14a8683c3d">00233</a>   <span class="keyword">enum</span> <a class="code" href="class_time_convolve_u_gen_internal.html#a6705699989af8c8b0be93b14a8683c3d">io</a>
+<a name="l00234"></a>00234   {
+<a name="l00235"></a><a class="code" href="class_time_convolve_u_gen_internal.html#a6705699989af8c8b0be93b14a8683c3dae4425352816eafe128929e1121277d4d">00235</a>     <a class="code" href="class_time_convolve_u_gen_internal.html#a6705699989af8c8b0be93b14a8683c3dae4425352816eafe128929e1121277d4d">InputBuffer</a> = 0,
+<a name="l00236"></a><a class="code" href="class_time_convolve_u_gen_internal.html#a6705699989af8c8b0be93b14a8683c3dad8832bca8551b2a69f478c96bad370a2">00236</a>     <a class="code" href="class_time_convolve_u_gen_internal.html#a6705699989af8c8b0be93b14a8683c3dad8832bca8551b2a69f478c96bad370a2">OutputBuffer</a> = 1
+<a name="l00237"></a>00237   };
+<a name="l00238"></a>00238 };
+<a name="l00239"></a>00239 
+<a name="l00240"></a>00240 
+<a name="l00243"></a>00243 <a class="code" href="ugen___u_gen_8h.html#a7db186e77855232bec685ee47ef99496" title="Macro for declaring a simple UGen.">UGenSublcassDeclaration</a>(<a class="code" href="class_time_convolve.html" title="Real time time domain convolution.">TimeConvolve</a>, (input, impulse, startPoint, endPoint, dummy),
+<a name="l00244"></a>00244             (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; impulse, 
+<a name="l00245"></a>00245              <span class="keywordtype">long</span> startPoint = 0, 
+<a name="l00246"></a>00246              <span class="keywordtype">long</span> endPoint = 0, 
+<a name="l00247"></a><a class="code" href="class_time_convolve.html#aa1a656e6c9ffbf4292fa79eb3f50618c">00247</a>              <span class="keywordtype">long</span> dummy = 0), <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>);
+<a name="l00248"></a>00248 
+<a name="l00251"></a>00251 <a class="code" href="ugen___u_gen_8h.html#a254ceb88c7d6c3c576dd70991c53b332" title="Macro for declaring a custom UGen by combining other UGens.">DefineCustomUGen</a>(<a class="code" href="class_zero_latency_convolve.html" title="Real time zero latency convolution.">ZeroLatencyConvolve</a>,
+<a name="l00252"></a>00252          (<a class="code" href="class_mix.html" title="Mix channels.">Mix</a>(<a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>(<a class="code" href="class_part_convolve.html" title="Real time partitioned convolution UGen.">PartConvolve</a>(input, impulse, 8192, 0, 14)) &lt;&lt;
+<a name="l00253"></a>00253            <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>(<a class="code" href="class_part_convolve.html" title="Real time partitioned convolution UGen.">PartConvolve</a>(input, impulse, 2048, 8192, 12)) &lt;&lt;
+<a name="l00254"></a>00254            <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>(<a class="code" href="class_part_convolve.html" title="Real time partitioned convolution UGen.">PartConvolve</a>(input, impulse, 512, 2048, 10)) &lt;&lt;
+<a name="l00255"></a>00255            <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>(<a class="code" href="class_part_convolve.html" title="Real time partitioned convolution UGen.">PartConvolve</a>(input, impulse, 128, 512, 8)) &lt;&lt;
+<a name="l00256"></a>00256            <a class="code" href="class_u_gen_array.html" title="Store and manipulate arrays of UGen instances.">UGenArray</a>(<a class="code" href="class_time_convolve.html" title="Real time time domain convolution.">TimeConvolve</a>(input, impulse, 0, 128)))),
+<a name="l00257"></a>00257          (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; impulse),
+<a name="l00258"></a><a class="code" href="class_zero_latency_convolve.html#a5e3c3ce6366220544df90c3393f1ff88">00258</a>          <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>);
+<a name="l00259"></a>00259 
+<a name="l00260"></a>00260 <span class="preprocessor">#endif // assumed we have the Mac vDSP interfaces</span>
+<a name="l00261"></a>00261 <span class="preprocessor"></span>
+<a name="l00264"></a>00264 <a class="code" href="ugen___u_gen_8h.html#a254ceb88c7d6c3c576dd70991c53b332" title="Macro for declaring a custom UGen by combining other UGens.">DefineCustomUGen</a>(<a class="code" href="class_true_stereo_convolve.html" title="True stereo, real time, zero latency convolution !">TrueStereoConvolve</a>,
+<a name="l00265"></a>00265          (<a class="code" href="class_zero_latency_convolve.html" title="Real time zero latency convolution.">ZeroLatencyConvolve</a>(input, impulseLeft)+<a class="code" href="class_zero_latency_convolve.html" title="Real time zero latency convolution.">ZeroLatencyConvolve</a>(input, impulseRight)),
+<a name="l00266"></a>00266          (<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; input, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; impulseLeft, <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; impulseRight),
+<a name="l00267"></a><a class="code" href="class_true_stereo_convolve.html#a3a4805b34af5743f10f4afbb4c9f3d53">00267</a>          <a class="code" href="ugen___u_gen_8h.html#ab83628897ff6ab5b2748b6cb6b1e98e7">COMMON_UGEN_DOCS</a>);
+<a name="l00268"></a>00268 
+<a name="l00269"></a>00269 
+<a name="l00270"></a>00270 
+<a name="l00271"></a>00271 <span class="preprocessor">#endif // _UGEN_ugen_Convolution_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 19 2010 06:22:15 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 28 2010 12:27:01 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -80,7 +80,7 @@
    <span class="keywordtype">float</span> modDepth = 0.001;
    
    <span class="keyword">const</span> <span class="keywordtype">int</span> numDelays = 8;
-   <a class="code" href="class_numerical_array.html">FloatArray</a> delayRates = <a class="code" href="class_numerical_array.html#ab98a6073517a23189d9f8ca7c64b1cef">FloatArray::rand</a>(numDelays, 0.05, 0.15);
+   <a class="code" href="class_numerical_array.html">FloatArray</a> delayRates = <a class="code" href="class_numerical_array.html#ab98a6073517a23189d9f8ca7c64b1cef" title="Creates a NumericalArray with a given size (length) randomly distributed.">FloatArray::rand</a>(numDelays, 0.05, 0.15);
    
    <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> mod = <a class="code" href="class_l_f_noise1.html#a4a37c4507fae43d83ee471908e61bfb6" title="Construct and return an audio rate LFNoise1 adding &amp;quot;mul&amp;quot; and/or &amp;quot;add&amp;quot; operations ...">LFNoise1::AR</a>(delayRates, modDepth, modDepth);
    <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> delay  = <a class="code" href="class_delay_l.html#a0d34d4d1675554fc2dc4b5d303bfc7c0" title="Construct and return an audio rate DelayL .">DelayL::AR</a>(mix, maximumDelay, mod);
@@ -120,7 +120,7 @@
    <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> mix = input.<a class="code" href="class_u_gen.html#a07e019d9243c9fdebeb225fd9c2182ff" title="Wraps the UGen in a Mix UGen.">mix</a>();
    
    <span class="keyword">const</span> <span class="keywordtype">int</span> numCombs = 4;
-   <a class="code" href="class_numerical_array.html">FloatArray</a> delayTimes = <a class="code" href="class_numerical_array.html#a91f325eeff8bd44e9774cf92b1bb438e">FloatArray::exprand</a>(numCombs, 0.01, maximumDelay);
+   <a class="code" href="class_numerical_array.html">FloatArray</a> delayTimes = <a class="code" href="class_numerical_array.html#a91f325eeff8bd44e9774cf92b1bb438e" title="Creates a NumericalArray with a given size (length) with an exponential random distribution.">FloatArray::exprand</a>(numCombs, 0.01, maximumDelay);
    <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> combs = <a class="code" href="class_comb_l.html#a5dabf5d20c02f4464f9f6b0027c8f419" title="Construct and return an audio rate CombL .">CombL::AR</a>(input, maximumDelay, delayTimes, decayTime);
    
    <span class="keywordflow">return</span> combs.<a class="code" href="class_u_gen.html#a886eedd555e6b07cf6130c21429f8989">mixScale</a>();
@@ -141,7 +141,7 @@
    
    <span class="keywordflow">return</span> reverb; 
 </pre></div> </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 19 2010 06:22:19 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 28 2010 12:27:08 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -236,14 +236,14 @@
 <a name="l00213"></a><a class="code" href="class_f_f_t_engine_internal.html#a17ce5c2f923d70dfb1a6df7164c560d0">00213</a>   <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_f_f_t_engine_internal.html#a17ce5c2f923d70dfb1a6df7164c560d0">setFFTWindow</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; window) <span class="keywordflow">throw</span>() 
 <a name="l00214"></a>00214   { 
 <a name="l00215"></a>00215     <a class="code" href="class_f_f_t_engine_internal.html#a71ad7491d6d959b48f8f819aabe98b57">fftWindow</a> = window.<a class="code" href="class_buffer.html#a7d226fbb07c2c9e2a82dde08fae33f72">resample</a>(fftSize); 
-<a name="l00216"></a>00216     <a class="code" href="class_f_f_t_engine_internal.html#a67e7e846c266dd447533496b73bf2937">fftWindowSamples</a> = <a class="code" href="class_f_f_t_engine_internal.html#a71ad7491d6d959b48f8f819aabe98b57">fftWindow</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>();
-<a name="l00217"></a>00217     <a class="code" href="class_f_f_t_engine_internal.html#a6dfab3fd33a28303a3ceb71990cf3549">fftWindowFactor</a> = <a class="code" href="class_f_f_t_engine_internal.html#a71ad7491d6d959b48f8f819aabe98b57">fftWindow</a>.<a class="code" href="class_buffer.html#a304aef7473d7d9dbfae6018b2b5d164b">sum</a>(0) / fftSize;
+<a name="l00216"></a>00216     <a class="code" href="class_f_f_t_engine_internal.html#a67e7e846c266dd447533496b73bf2937">fftWindowSamples</a> = <a class="code" href="class_f_f_t_engine_internal.html#a71ad7491d6d959b48f8f819aabe98b57">fftWindow</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>();
+<a name="l00217"></a>00217     <a class="code" href="class_f_f_t_engine_internal.html#a6dfab3fd33a28303a3ceb71990cf3549">fftWindowFactor</a> = <a class="code" href="class_f_f_t_engine_internal.html#a71ad7491d6d959b48f8f819aabe98b57">fftWindow</a>.<a class="code" href="class_buffer.html#a304aef7473d7d9dbfae6018b2b5d164b" title="Return the sum of all samples in a particular channel.">sum</a>(0) / fftSize;
 <a name="l00218"></a>00218   }
 <a name="l00219"></a>00219   
 <a name="l00220"></a><a class="code" href="class_f_f_t_engine_internal.html#a025af96447548781a489729de475d7b7">00220</a>   <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_f_f_t_engine_internal.html#a025af96447548781a489729de475d7b7">setIFFTWindow</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; window) <span class="keywordflow">throw</span>() 
 <a name="l00221"></a>00221   { 
 <a name="l00222"></a>00222     <a class="code" href="class_f_f_t_engine_internal.html#ae3df9cee96ab24ea0663d3cf22af4fe0">ifftWindow</a> = window.<a class="code" href="class_buffer.html#a7d226fbb07c2c9e2a82dde08fae33f72">resample</a>(fftSize); 
-<a name="l00223"></a>00223     <a class="code" href="class_f_f_t_engine_internal.html#ab3ce7a8e0f3d40e30046299e632c76d7">ifftWindowSamples</a> = <a class="code" href="class_f_f_t_engine_internal.html#ae3df9cee96ab24ea0663d3cf22af4fe0">ifftWindow</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>();
+<a name="l00223"></a>00223     <a class="code" href="class_f_f_t_engine_internal.html#ab3ce7a8e0f3d40e30046299e632c76d7">ifftWindowSamples</a> = <a class="code" href="class_f_f_t_engine_internal.html#ae3df9cee96ab24ea0663d3cf22af4fe0">ifftWindow</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>();
 <a name="l00224"></a>00224   }
 <a name="l00225"></a>00225   
 <a name="l00226"></a>00226   <span class="keywordtype">void</span> <a class="code" href="class_f_f_t_engine_internal.html#a3d7b411ad7369239afea9ecc902bc1c5">fft</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; outputBuffer, 
@@ -468,7 +468,7 @@
 <a name="l00445"></a>00445 <span class="preprocessor">#endif // _UGEN_ugen_FFTEngineInternal_H_</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 19 2010 06:22:16 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 28 2010 12:27:03 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

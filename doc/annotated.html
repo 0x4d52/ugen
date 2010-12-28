@@ -280,7 +280,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:<ta
   <tr><td class="indexkey"><a class="el" href="class_envelope_curve_popup_1_1_curve_slider.html">EnvelopeCurvePopup::CurveSlider</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="class_data_recorder.html">DataRecorder</a></td><td class="indexvalue">Record the state of an input <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> at a given trigger into a text file </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_data_recorder_u_gen_internal.html">DataRecorderUGenInternal</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="class_debounce.html">Debounce</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_debounce.html">Debounce</a></td><td class="indexvalue">Prevents multiple tiggers within a specified time interval </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_debounce_u_gen_internal.html">DebounceUGenInternal</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="class_decay.html">Decay</a></td><td class="indexvalue">Exponential decay <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_decay_u_gen_internal.html">DecayUGenInternal</a></td><td class="indexvalue"></td></tr>
@@ -528,7 +528,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:<ta
   <tr><td class="indexkey"><a class="el" href="class_play_buf_u_gen_internal.html">PlayBufUGenInternal</a></td><td class="indexvalue">A <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> which can playback a <a class="el" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_plug.html">Plug</a></td><td class="indexvalue">A <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> which allows repatching </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_plug_u_gen_internal.html">PlugUGenInternal</a></td><td class="indexvalue">A <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> which allows repatching </td></tr>
-  <tr><td class="indexkey"><a class="el" href="class_poll.html">Poll</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_poll.html">Poll</a></td><td class="indexvalue">Grabs the values of one or more channels at a partiuclar instant </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_poll_u_gen_internal.html">PollUGenInternal</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="class_popup_component.html">PopupComponent</a></td><td class="indexvalue">A little Juce class used as a pop-up editor </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_proxy_owner_u_gen_internal.html">ProxyOwnerUGenInternal</a></td><td class="indexvalue">A <a class="el" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a> base which owns other "proxy" channels (i.e., <a class="el" href="class_proxy_u_gen_internal.html" title="A UGenInternal base is owned by a &quot;proxy owner&quot; (i.e., a ProxyOwnerUGenInternal object)...">ProxyUGenInternal</a> objects) </td></tr>
@@ -755,7 +755,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:<ta
   <tr><td class="indexkey"><a class="el" href="class_unary_op_u_gen_internal.html">UnaryOpUGenInternal</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="class_unary_op_u_gen_internal_t.html">UnaryOpUGenInternalT&lt; op &gt;</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="class_unary_op_u_gen_internal_t_k.html">UnaryOpUGenInternalTK&lt; op &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="class_unary_op_u_gen_t.html">UnaryOpUGenT&lt; op &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_unary_op_u_gen_t.html">UnaryOpUGenT&lt; op &gt;</a></td><td class="indexvalue">A unary operator <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> using a template for the processing function </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_unary_op_value_internal.html">UnaryOpValueInternal</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="class_unary_rad2_deg_u_gen.html">UnaryRad2DegUGen</a></td><td class="indexvalue">A UnaryOpUGen usually created using the function <a class="el" href="class_u_gen.html#ace9197586e3121e2c6b3c434f6ab91d8">rad2deg()</a> when applied to other <a class="el" href="class_u_gen.html" title="The UGen class!">UGen</a> instances </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_unary_rad2_deg_u_gen_internal.html">UnaryRad2DegUGenInternal</a></td><td class="indexvalue">Internal for <a class="el" href="class_unary_rad2_deg_u_gen.html" title="A UnaryOpUGen usually created using the function rad2deg() when applied to other UGen instances...">UnaryRad2DegUGen</a> </td></tr>
@@ -854,7 +854,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:<ta
   <tr><td class="indexkey"><a class="el" href="class_zoom_b_u_gen_internal.html">ZoomBUGenInternal</a></td><td class="indexvalue"></td></tr>
 </table>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 19 2010 06:22:19 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 28 2010 12:27:08 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

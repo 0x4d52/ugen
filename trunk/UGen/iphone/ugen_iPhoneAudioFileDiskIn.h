@@ -42,7 +42,6 @@
 
 /** @ingroup UGenInternals */
 class DiskInUGenInternal :	public ProxyOwnerUGenInternal,
-//							public Seekable,
 							public DoneActionSender
 {
 public:

@@ -94,11 +94,11 @@ Defines</h2></td></tr>
 </div>
 <div class="memdoc">
 <b>Value:</b><div class="fragment"><pre class="fragment"><a class="code" href="ugen___mapping_u_gens_8h.html#a87aa3a1e1b8ae00c1e69cc2556f83ecd">MappingBaseBase_Docs</a>                                  \
-                @param table  <a class="code" href="ugen___value_8h.html#a70993d52766e31cb0157958a18aa499a">A</a> single channel <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> used as a lookup table. Here an input     \
+                @param table  <a class="code" href="ugen___value_8h.html#a70993d52766e31cb0157958a18aa499a">A</a> <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> used as a lookup table. Here an input              \
                         value of inLow would output the first value in the table, an      \
                         input value of inHigh would output the last value in the table.     \
                         An input value half way between inLow and inHigh would output the   \
-                        value in the middle of the table, and so on.
+                        value in the middle of the table, and so on. Values are interpolated.
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___mapping_u_gens_8h_source.html#l00232">232</a> of file <a class="el" href="ugen___mapping_u_gens_8h_source.html">ugen_MappingUGens.h</a>.</p>
 
@@ -198,7 +198,7 @@ Defines</h2></td></tr>
                 @param inLow  The lower range of the input value (note <span class="keyword">this</span> is not clipped so     \
                         it is the user`s responsibility to make sure the value is in range)   \
                 @param inHigh The upper range of the input value (note <span class="keyword">this</span> is not clipped so     \
-                        it is the user`s responsibility to make sure the value is in range)   \
+                        it is the user`s responsibility to make sure the value is in range)
 </pre></div>
 <p>Definition at line <a class="el" href="ugen___mapping_u_gens_8h_source.html#l00197">197</a> of file <a class="el" href="ugen___mapping_u_gens_8h_source.html">ugen_MappingUGens.h</a>.</p>
 
@@ -267,7 +267,7 @@ Defines</h2></td></tr>
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 19 2010 06:22:18 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 28 2010 12:27:06 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

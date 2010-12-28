@@ -129,7 +129,7 @@
 <a name="l00097"></a>00097 {
 <a name="l00098"></a>00098 }
 <a name="l00099"></a>00099 
-<a name="l00100"></a>00100 <a class="code" href="class_part_buffer.html" title="Stores a &amp;quot;partitioned&amp;quot; FFT buffer.">PartBuffer</a> <a class="code" href="class_part_buffer.html#ad13b7c2769f82f593756c13e75c93c2c">PartBuffer::getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l00100"></a>00100 <a class="code" href="class_part_buffer.html" title="Stores a &amp;quot;partitioned&amp;quot; FFT buffer.">PartBuffer</a> <a class="code" href="class_part_buffer.html#ad13b7c2769f82f593756c13e75c93c2c" title="Return a Buffer containing only one channel of this Buffer.">PartBuffer::getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00101"></a>00101 {
 <a name="l00102"></a>00102   <span class="keywordflow">if</span>(channel &lt; 0 || channel &gt;= numChannels_) 
 <a name="l00103"></a>00103   {
@@ -144,7 +144,7 @@
 <a name="l00112"></a>00112 
 <a name="l00113"></a>00113 <span class="keywordtype">void</span> <a class="code" href="class_part_buffer.html#a5cf934ca767468adae6a2550a9a1c5df">PartBuffer::partitionImpulse</a>(<a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> <span class="keyword">const</span>&amp; original)
 <a name="l00114"></a>00114 {
-<a name="l00115"></a>00115   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; original.<a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba">getNumChannels</a>(); i++)
+<a name="l00115"></a>00115   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; original.<a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba" title="Return the number of channels in this Buffer.">getNumChannels</a>(); i++)
 <a name="l00116"></a>00116   {
 <a name="l00117"></a>00117     <a class="code" href="class_part_buffer.html#a71f947fcbff12e5bdaf56b76e789686e">partitionImpulseChannel</a>(original, i);
 <a name="l00118"></a>00118   }
@@ -155,9 +155,9 @@
 <a name="l00123"></a>00123   <span class="keyword">const</span> <span class="keywordtype">float</span> *bufferSamples;
 <a name="l00124"></a>00124   <span class="keywordtype">long</span> impulseLength;
 <a name="l00125"></a>00125 
-<a name="l00126"></a>00126   bufferSamples = original.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(channel);
+<a name="l00126"></a>00126   bufferSamples = original.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>(channel);
 <a name="l00127"></a>00127   
-<a name="l00128"></a>00128   impulseLength = original.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>();
+<a name="l00128"></a>00128   impulseLength = original.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96" title="Return the size in samples of each channel in this Buffer.">size</a>();
 <a name="l00129"></a>00129     
 <a name="l00130"></a>00130   <span class="keywordtype">long</span> fftSize = <a class="code" href="class_part_buffer.html#aaab44d227d7f59fd319ab182520ab4ea">fftEngine</a>.<a class="code" href="class_f_f_t_engine.html#a90fc318a8d47f847879038d01bc76583" title="Get the FFT size.">size</a>();
 <a name="l00131"></a>00131   <span class="keywordtype">long</span> fftSizeHalved = fftSize / 2;
@@ -180,7 +180,7 @@
 <a name="l00148"></a>00148   <span class="keywordflow">if</span> (numPartitions * fftSizeHalved &gt; this-&gt;<a class="code" href="class_part_buffer.html#afa16950bbee3044e13fa06df2d30a1c0">bufferSize</a>) 
 <a name="l00149"></a>00149     numPartitions = this-&gt;<a class="code" href="class_part_buffer.html#afa16950bbee3044e13fa06df2d30a1c0">bufferSize</a> / fftSizeHalved;
 <a name="l00150"></a>00150   
-<a name="l00151"></a>00151   <span class="keywordtype">float</span> *bufferTemp1 = <a class="code" href="class_part_buffer.html#aa5e800d2610cc2e50a401d9baebfc225">partTempBuffer</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>();
+<a name="l00151"></a>00151   <span class="keywordtype">float</span> *bufferTemp1 = <a class="code" href="class_part_buffer.html#aa5e800d2610cc2e50a401d9baebfc225">partTempBuffer</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>();
 <a name="l00152"></a>00152   <span class="keywordtype">float</span> *impulseReal = <a class="code" href="class_part_buffer.html#a5bea2658d23baa2d6107dfe514fedcf0" title="Get a pointer to the real samples.">getDataReal</a>(channel);
 <a name="l00153"></a>00153   <span class="keywordtype">float</span> *impulseImag = <a class="code" href="class_part_buffer.html#a26901b9dcd7c31e9137c7373c42791c5" title="Get a pointer to the imaginary samples.">getDataImag</a>(channel);
 <a name="l00154"></a>00154     
@@ -199,13 +199,13 @@
 <a name="l00167"></a>00167     
 <a name="l00168"></a>00168 <span class="preprocessor">#ifdef UGEN_VDSP</span>
 <a name="l00169"></a>00169 <span class="preprocessor"></span>    memcpy(bufferTemp1, bufferSamples + startPoint + bufferPos, <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>) * numSamples);
-<a name="l00170"></a>00170     vDSP_vclr(bufferTemp1+numSamples, 1, <a class="code" href="class_part_buffer.html#aa5e800d2610cc2e50a401d9baebfc225">partTempBuffer</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>()-numSamples);
+<a name="l00170"></a>00170     vDSP_vclr(bufferTemp1+numSamples, 1, <a class="code" href="class_part_buffer.html#aa5e800d2610cc2e50a401d9baebfc225">partTempBuffer</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96" title="Return the size in samples of each channel in this Buffer.">size</a>()-numSamples);
 <a name="l00171"></a>00171 <span class="preprocessor">#else</span>
 <a name="l00172"></a>00172 <span class="preprocessor"></span>    <span class="comment">// copy real time domain samples to Buffer_Temp1</span>
 <a name="l00173"></a>00173     memcpy(bufferTemp1, bufferSamples + startPoint + bufferPos, <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>) * numSamples);
 <a name="l00174"></a>00174     
 <a name="l00175"></a>00175     <span class="comment">// zero pad the rest of Buffer_Temp1</span>
-<a name="l00176"></a>00176     <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = numSamples; j &lt; <a class="code" href="class_part_buffer.html#aa5e800d2610cc2e50a401d9baebfc225">partTempBuffer</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>(); j++)
+<a name="l00176"></a>00176     <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = numSamples; j &lt; <a class="code" href="class_part_buffer.html#aa5e800d2610cc2e50a401d9baebfc225">partTempBuffer</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96" title="Return the size in samples of each channel in this Buffer.">size</a>(); j++)
 <a name="l00177"></a>00177       bufferTemp1[j] = 0;
 <a name="l00178"></a>00178 <span class="preprocessor">#endif</span>
 <a name="l00179"></a>00179 <span class="preprocessor"></span>    
@@ -651,7 +651,7 @@
 <a name="l00619"></a>00619 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 19 2010 06:22:15 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 28 2010 12:27:01 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

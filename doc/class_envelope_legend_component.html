@@ -44,12 +44,16 @@
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_legend_component.html#a971b8aeaa2ecac05275d3ad7c9ca3596">EnvelopeLegendComponent</a> (<a class="el" href="class_text.html">Text</a> const &amp;<a class="el" href="class_envelope_legend_component.html#add036896ab4d2f984b42ebde05e4f26d">defaultText</a>=<a class="el" href="class_text.html#a14ad9708569f2fa41a39403a210fc89a">Text::empty</a>)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_legend_component.html#a65abf5a25287a8f034bec7e4bf15de4a">~EnvelopeLegendComponent</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_legend_component.html#a6b782a9ec0bc89a431d972aa7f7bc7cb">~EnvelopeLegendComponent</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_envelope_component.html">EnvelopeComponent</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_legend_component.html#a65b95011a45e5cc98eaa7be68f8d7680">getEnvelopeComponent</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_legend_component.html#a66c787f383cb69f4457a9a986f2c10e8">paint</a> (Graphics &amp;g)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_legend_component.html#a6a2cffcffd6e9e19421f3e526fc862e5">resized</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_legend_component.html#a14c26e44789a3502beccc82876baa342">setText</a> (<a class="el" href="class_text.html">Text</a> const &amp;legendText)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_legend_component.html#a96927fe1d56303b9e407e3fcf9957401">setText</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_legend_component.html#ae1292ea9930ec7efa069a16cd151f610">mapValue</a> (double value)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_legend_component.html#ab09c72a2a9f8b13ba9ae4494c54b6f52">mapTime</a> (double time)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual String&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_legend_component.html#a7431df1ccd9b940d5daaff4a08631352">getValueUnits</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual String&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_legend_component.html#a339310c11e37590212cab5746c3fa2d2">getTimeUnits</a> ()</td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">Label *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_envelope_legend_component.html#ae217e355bffbc93ebbe05bb6a01259ef">text</a></td></tr>
@@ -57,7 +61,7 @@ Private Attributes</h2></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 
-<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00245">245</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00247">247</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a971b8aeaa2ecac05275d3ad7c9ca3596"></a><!-- doxytag: member="EnvelopeLegendComponent::EnvelopeLegendComponent" ref="a971b8aeaa2ecac05275d3ad7c9ca3596" args="(Text const &amp;defaultText=Text::empty)" -->
 <div class="memitem">
@@ -77,16 +81,16 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a65abf5a25287a8f034bec7e4bf15de4a"></a><!-- doxytag: member="EnvelopeLegendComponent::~EnvelopeLegendComponent" ref="a65abf5a25287a8f034bec7e4bf15de4a" args="()" -->
+<a class="anchor" id="a6b782a9ec0bc89a431d972aa7f7bc7cb"></a><!-- doxytag: member="EnvelopeLegendComponent::~EnvelopeLegendComponent" ref="a6b782a9ec0bc89a431d972aa7f7bc7cb" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">EnvelopeLegendComponent::~EnvelopeLegendComponent </td>
+          <td class="memname">virtual EnvelopeLegendComponent::~EnvelopeLegendComponent </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -105,6 +109,80 @@ Private Attributes</h2></td></tr>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
           <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a339310c11e37590212cab5746c3fa2d2"></a><!-- doxytag: member="EnvelopeLegendComponent::getTimeUnits" ref="a339310c11e37590212cab5746c3fa2d2" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual String EnvelopeLegendComponent::getTimeUnits </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00263">263</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7431df1ccd9b940d5daaff4a08631352"></a><!-- doxytag: member="EnvelopeLegendComponent::getValueUnits" ref="a7431df1ccd9b940d5daaff4a08631352" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual String EnvelopeLegendComponent::getValueUnits </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00262">262</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab09c72a2a9f8b13ba9ae4494c54b6f52"></a><!-- doxytag: member="EnvelopeLegendComponent::mapTime" ref="ab09c72a2a9f8b13ba9ae4494c54b6f52" args="(double time)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual double EnvelopeLegendComponent::mapTime </td>
+          <td>(</td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>time</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae1292ea9930ec7efa069a16cd151f610"></a><!-- doxytag: member="EnvelopeLegendComponent::mapValue" ref="ae1292ea9930ec7efa069a16cd151f610" args="(double value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual double EnvelopeLegendComponent::mapValue </td>
+          <td>(</td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>value</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -194,7 +272,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00260">260</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00267">267</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
 
 </div>
 </div>
@@ -209,7 +287,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00259">259</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
+<p>Definition at line <a class="el" href="ugen___juce_envelope_component_8h_source.html#l00266">266</a> of file <a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a>.</p>
 
 </div>
 </div>
@@ -217,7 +295,7 @@ Private Attributes</h2></td></tr>
 <li>juce/gui/<a class="el" href="ugen___juce_envelope_component_8h_source.html">ugen_JuceEnvelopeComponent.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 19 2010 06:22:21 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 28 2010 12:27:15 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

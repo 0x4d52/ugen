@@ -1583,7 +1583,8 @@ public:
 
 #define END InitialNumber()
 
-/** Stores arrays of simple numerical values. */
+/** Stores arrays of simple numerical values. 
+ @tparam NumericalType This should be a simple numerical type e.g., float, int. */
 template<class NumericalType>
 class NumericalArray : public ObjectArray<NumericalType>
 {
@@ -1634,6 +1635,7 @@ private:
 	}	
 	
 public:
+	/** Construct a NumericalArray by copying a NumericalArray of a different type. */
 	template<class CopyType>
 	NumericalArray(NumericalArray<CopyType> const& copy) throw()
 	:	ObjectArray<NumericalType>(copy.size(), copy.isNullTerminated())
@@ -1651,6 +1653,8 @@ public:
 		}		
 	}
 	
+	/** Construct a NumericalArray by copying a ObjectArray of a different type.
+	 This would need to be a numerical type. */
 	template<class CopyType>
 	NumericalArray(ObjectArray<CopyType> const& copy) throw()
 	:	ObjectArray<NumericalType>(copy.size(), copy.isNullTerminated())
@@ -1668,7 +1672,7 @@ public:
 		}		
 	}
 	
-		
+	/** Concatenate two arrays into one. */
 	NumericalArray(NumericalArray<NumericalType> const& array0, 
 				   NumericalArray<NumericalType> const& array1) throw()
 	:	ObjectArray<NumericalType>(array0, array1)
@@ -1677,35 +1681,49 @@ public:
 	
 	ObjectArrayConcatOperatorsDefine(NumericalArray, NumericalType);
 		
-		
+	/** Constructa a NumericalArray using a NumericalArraySpec.
+	 A better idiom for most usages would be to use withSize() or newClear(). */
 	NumericalArray(NumericalArraySpec const& spec) throw()
 	:	ObjectArray<NumericalType>(spec.size_, false)
 	{
 		if(spec.zeroData_) zero();
 	}
 	
+	/** Constructa a NumericalArray using a NumericalArraySpec with optional null termination.
+	 A better idiom for most usages would be to use withSize() or newClear(). 
+	 Null termination only really makes sense with integer types. */
 	NumericalArray(NumericalArraySpec const& spec, const bool needsNullTermination) throw()
 	:	ObjectArray<NumericalType>(spec.size_, needsNullTermination)
 	{
 		if(spec.zeroData_) zero();
 	}
 	
+	/** Construct a NumericalArray that refers to some other data.
+	 It is very important to note that the data is not copies so must continue
+	 to exist for the lifetime of this object. 
+	 @param size The size of the source data to use.
+	 @param dataToUse A pointer to the data. 
+	 @param needsNullTermination Whether the data is null terminated ot not. 
+	 @see withArrayNoCopy */
 	NumericalArray(const int size, NumericalType* dataToUse, const bool needsNullTermination) throw()
 	:	ObjectArray<NumericalType>(size, dataToUse, needsNullTermination)
 	{
 		ugen_assert(size > 0);
 	}
 	
+	/** Creates a NumericalArray with a given size (length). */
 	static NumericalArray<NumericalType> withSize(const int size, const bool zeroData = false) throw()
 	{
 		return NumericalArray<NumericalType>(NumericalArraySpec(size, zeroData));
 	}
 	
+	/** Creates a NumericalArray with a given size (length) with all items set to zero. */
 	static NumericalArray<NumericalType> newClear(const int size) throw()
 	{
 		return NumericalArray<NumericalType>(NumericalArraySpec(size, true));
 	}
 		
+	/** Creates a NumericalArray with a given size (length) ramping from one value to another. */
 	static NumericalArray<NumericalType> line(const int size, const NumericalType start, const NumericalType end) throw()
 	{
 		ugen_assert(size >= 2);
@@ -1727,6 +1745,7 @@ public:
 		return newArray;
 	}
 	
+	/** Creates a NumericalArray with a given size (length) using a series. */
 	static NumericalArray<NumericalType> series(const int size, 
 												const NumericalType start, 
 												const NumericalType grow) throw()
@@ -1750,6 +1769,7 @@ public:
 		
 	}
 	
+	/** Creates a NumericalArray with a given size (length) using a geometric series. */
 	static NumericalArray<NumericalType> geom(const int size, 
 											  const NumericalType start, 
 											  const NumericalType grow) throw()
@@ -1772,7 +1792,7 @@ public:
 		return newArray;		
 	}
 	
-	
+	/** Creates a NumericalArray with a given size (length) randomly distributed. */
 	static NumericalArray<NumericalType> rand(const int size, 
 											  const NumericalType lower, 
 											  const NumericalType upper) throw()
@@ -1795,6 +1815,7 @@ public:
 		return newArray;
 	}
 	
+	/** Creates a NumericalArray with a given size (length) randomly distributed. */
 	static NumericalArray<NumericalType> rand2(const int size, 
 											   const NumericalType positive) throw()
 	{
@@ -1802,6 +1823,7 @@ public:
 	}
 	
 #ifndef UGEN_NOEXTGPL
+	/** Creates a NumericalArray with a given size (length) with an exponential random distribution. */
 	static NumericalArray<NumericalType> exprand(const int size, 
 												 const NumericalType lower, 
 												 const NumericalType upper) throw()
@@ -1821,6 +1843,7 @@ public:
 		return newArray;		
 	}
 	
+	/** Creates a NumericalArray with a given size (length) with a linear random distribution. */
 	static NumericalArray<NumericalType> linrand(const int size, 
 												 const NumericalType lower, 
 												 const NumericalType upper) throw()
@@ -1841,6 +1864,7 @@ public:
 	}
 #endif // gpl
 	
+	/** Creates a NumericalArray with a given size (length) containing one or more sine tables. */
 	static NumericalArray<NumericalType> sineTable(const int size, 
 												   const float repeats = 1.f, 
 												   const NumericalType peak = 1) throw()
@@ -1849,6 +1873,7 @@ public:
 		return NumericalArray<double>::line(size, 0.0, twoPi * repeats).sin() * peak;
 	}
 	
+	/** Creates a NumericalArray with a given size (length) containing one or more cosine tables. */
 	static NumericalArray<NumericalType> cosineTable(const int size, 
 													 const float repeats = 1.f, 
 													 const NumericalType peak = 1) throw()
@@ -1857,6 +1882,7 @@ public:
 		return NumericalArray<double>::line(size, 0.0, twoPi * repeats).cos() * peak;
 	}
 	
+	/** Creates a NumericalArray with a given size (length) containing one or more cosine window. */
 	static NumericalArray<NumericalType> cosineWindow(const int size, 
 													  const float repeats = 1.f, 
 													  const NumericalType peak = 1) throw()
@@ -1865,6 +1891,7 @@ public:
 		return NumericalArray<double>::line(size, 0.0, pi * repeats).sin() * peak;
 	}
 	
+	/** Creates a NumericalArray with a given size (length) containing one or more triangle windows. */
 	static NumericalArray<NumericalType> triangleWindow(const int size, 
 														const NumericalType peak = 1) throw()
 	{
@@ -1872,24 +1899,28 @@ public:
 		return bartlett.range(1, size+1);
 	}
 	
+	/** Creates a NumericalArray with a given size (length) containing one or more Bartlett windows. */
 	static NumericalArray<NumericalType> bartlettWindow(const int size, 
 														const NumericalType peak = 1) throw()
 	{
 		return -NumericalArray<NumericalType>::line(size, -peak, peak).abs() + NumericalArray<NumericalType>(peak);
 	}
 	
+	/** Creates a NumericalArray with a given size (length) containing one or more von Hann (Hanning) windows. */
 	static NumericalArray<NumericalType> hannWindow(const int size, 
 													const NumericalType peak = 1) throw()
 	{
 		return (-NumericalArray<double>::cosineTable(size) + 1.f) * 0.5f * peak;
 	}
 	
+	/** Creates a NumericalArray with a given size (length) containing one or more Hamming windows. */
 	static NumericalArray<NumericalType> hammingWindow(const int size, 
 													   const NumericalType peak = 1) throw()
 	{
 		return (-NumericalArray<double>::cosineTable(size) * 0.46f + 0.54f) * peak;
 	}
 	
+	/** Creates a NumericalArray with a given size (length) containing one or more Blackman windows. */
 	static NumericalArray<NumericalType> blackmanWindow(const int size, 
 														const float alpha = 0.16f, 
 														const NumericalType peak = 1) throw()
@@ -1918,6 +1949,8 @@ public:
 		return sourceLength(nullTerminatedSourceArray) + 1;
 	}
 	
+	
+	/** Construct a NumericalArray from a null terminated source array. */
 	NumericalArray(const NumericalType* nullTerminatedSourceArray) throw()
 	:	ObjectArray<NumericalType>(sourceSize(nullTerminatedSourceArray), true)
 	{
@@ -1935,6 +1968,7 @@ public:
 		}
 	}
 	
+	/** Creates an array by copying data from another source. */
 	static NumericalArray<NumericalType> withArray(const int size, 
 												   const NumericalType* sourceArray, 
 												   const bool needsNullTermination = false) throw()
@@ -1969,6 +2003,9 @@ public:
 		return result;
 	}
 	
+	/** Creates an array by using data from another source. 
+	 It is very important to note that the data is not copies so must continue
+	 to exist for the lifetime of this object. */
 	static NumericalArray<NumericalType> withArrayNoCopy(const int size, 
 														 NumericalType* sourceArray, 
 														 const bool needsNullTermination = false) throw()
@@ -1977,6 +2014,7 @@ public:
 		return NumericalArray<NumericalType>(size, sourceArray, needsNullTermination);
 	}
 	
+	/** Construct an array with a single value. */
 	NumericalArray(NumericalType value) throw()
 	:	ObjectArray<NumericalType>(value)
 	{

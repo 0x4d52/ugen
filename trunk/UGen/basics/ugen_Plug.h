@@ -82,10 +82,6 @@ protected:
 	bool shouldAllowAutoDelete_;
 };
 
-//// uncomment this block if there is an actual control rate version of this UGen
-//UGenInternalControlRateDeclaration(PlugUGenInternal, (/* inputs list WITHOUT types - comma separated */),
-//								  (/* inputs list WITH types - comma separated  */));
-
 
 #define Plug_Docs	@param source	The initial source of the Plug. The number of channels this Plug can			\
 									support is governed by the number of channels in this original source			\

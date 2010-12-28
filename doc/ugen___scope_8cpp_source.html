@@ -201,10 +201,10 @@
 <a name="l00169"></a>00169 {
 <a name="l00170"></a>00170   <span class="keyword">const</span> <span class="keywordtype">int</span> drawBufferSize = <a class="code" href="class_scope_g_u_i.html#a7e8b7a2e2237560c1ac2caaf985a3f3f">getDisplayBufferSize</a>();
 <a name="l00171"></a>00171   
-<a name="l00172"></a>00172   <span class="keywordflow">if</span>(drawBufferSize &gt; 0 &amp;&amp; <a class="code" href="class_scope_g_u_i.html#a9661127b15f16b7e01de74d787a7d243">audioBuffer</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>() &gt; 0)
+<a name="l00172"></a>00172   <span class="keywordflow">if</span>(drawBufferSize &gt; 0 &amp;&amp; <a class="code" href="class_scope_g_u_i.html#a9661127b15f16b7e01de74d787a7d243">audioBuffer</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96" title="Return the size in samples of each channel in this Buffer.">size</a>() &gt; 0)
 <a name="l00173"></a>00173   {
-<a name="l00174"></a>00174     <a class="code" href="class_scope_g_u_i.html#a040f3aa4ef308dc320a73d4b5a174bb5">minDrawBuffer</a> = <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(drawBufferSize, <a class="code" href="class_scope_g_u_i.html#a9661127b15f16b7e01de74d787a7d243">audioBuffer</a>.<a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba">getNumChannels</a>(), <span class="keyword">true</span>));
-<a name="l00175"></a>00175     <a class="code" href="class_scope_g_u_i.html#a3d7692c02a7e1463f125795d2fed672b">maxDrawBuffer</a> = <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(drawBufferSize, <a class="code" href="class_scope_g_u_i.html#a9661127b15f16b7e01de74d787a7d243">audioBuffer</a>.<a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba">getNumChannels</a>(), <span class="keyword">true</span>));
+<a name="l00174"></a>00174     <a class="code" href="class_scope_g_u_i.html#a040f3aa4ef308dc320a73d4b5a174bb5">minDrawBuffer</a> = <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(drawBufferSize, <a class="code" href="class_scope_g_u_i.html#a9661127b15f16b7e01de74d787a7d243">audioBuffer</a>.<a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba" title="Return the number of channels in this Buffer.">getNumChannels</a>(), <span class="keyword">true</span>));
+<a name="l00175"></a>00175     <a class="code" href="class_scope_g_u_i.html#a3d7692c02a7e1463f125795d2fed672b">maxDrawBuffer</a> = <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a>(<a class="code" href="class_buffer_spec.html">BufferSpec</a>(drawBufferSize, <a class="code" href="class_scope_g_u_i.html#a9661127b15f16b7e01de74d787a7d243">audioBuffer</a>.<a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba" title="Return the number of channels in this Buffer.">getNumChannels</a>(), <span class="keyword">true</span>));
 <a name="l00176"></a>00176   }
 <a name="l00177"></a>00177 }
 <a name="l00178"></a>00178 
@@ -232,18 +232,18 @@
 <a name="l00200"></a>00200         
 <a name="l00201"></a>00201         <span class="keywordflow">if</span>(coeff &gt; -1.f &amp;&amp; coeff &lt; 1.f)
 <a name="l00202"></a>00202         {
-<a name="l00203"></a>00203           newBuffer &lt;&lt;= audioBuffer.<a class="code" href="class_buffer.html#a86b7313b672df28a74b34429699a462d">getChannel</a>(i).<a class="code" href="class_buffer.html#a2fb125f0112e57a2bcffd8513b81766a" title="Blends this buffer with another.">blend</a>(audioBufferToUse.getChannel(i), coeff);
+<a name="l00203"></a>00203           newBuffer &lt;&lt;= audioBuffer.<a class="code" href="class_buffer.html#a86b7313b672df28a74b34429699a462d" title="Return a Buffer containing only one channel of this Buffer.">getChannel</a>(i).<a class="code" href="class_buffer.html#a2fb125f0112e57a2bcffd8513b81766a" title="Blends this buffer with another.">blend</a>(audioBufferToUse.getChannel(i), coeff);
 <a name="l00204"></a>00204         }
 <a name="l00205"></a>00205         <span class="keywordflow">else</span>
 <a name="l00206"></a>00206         {
-<a name="l00207"></a>00207           newBuffer &lt;&lt;= audioBufferToUse.<a class="code" href="class_buffer.html#a86b7313b672df28a74b34429699a462d">getChannel</a>(i);
+<a name="l00207"></a>00207           newBuffer &lt;&lt;= audioBufferToUse.<a class="code" href="class_buffer.html#a86b7313b672df28a74b34429699a462d" title="Return a Buffer containing only one channel of this Buffer.">getChannel</a>(i);
 <a name="l00208"></a>00208         }
 <a name="l00209"></a>00209       }
 <a name="l00210"></a>00210       
 <a name="l00211"></a>00211       audioBuffer = newBuffer;
 <a name="l00212"></a>00212     }
 <a name="l00213"></a>00213     <span class="keywordflow">else</span>
-<a name="l00214"></a>00214       audioBuffer = audioBufferToUse.<a class="code" href="class_buffer.html#a8908664132a5ffd8e30f591f281c57e9">copy</a>();
+<a name="l00214"></a>00214       audioBuffer = audioBufferToUse.<a class="code" href="class_buffer.html#a8908664132a5ffd8e30f591f281c57e9" title="Make a deep copy of this Buffer.">copy</a>();
 <a name="l00215"></a>00215     
 <a name="l00216"></a>00216     initBuffers();
 <a name="l00217"></a>00217     unlock();
@@ -415,18 +415,18 @@
 <a name="l00383"></a>00383 { 
 <a name="l00384"></a>00384   <span class="keywordflow">if</span>(<a class="code" href="class_lock.html#a8872ca309d449200668459e8f68f2c84">tryLock</a>() == <span class="keyword">true</span>)
 <a name="l00385"></a>00385   {
-<a name="l00386"></a>00386     <span class="keyword">const</span> <span class="keywordtype">int</span> audioBufferSize = <a class="code" href="class_scope_g_u_i.html#a9661127b15f16b7e01de74d787a7d243">audioBuffer</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>();
+<a name="l00386"></a>00386     <span class="keyword">const</span> <span class="keywordtype">int</span> audioBufferSize = <a class="code" href="class_scope_g_u_i.html#a9661127b15f16b7e01de74d787a7d243">audioBuffer</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96" title="Return the size in samples of each channel in this Buffer.">size</a>();
 <a name="l00387"></a>00387     <span class="keyword">const</span> <span class="keywordtype">int</span> drawBufferSize = <a class="code" href="class_scope_g_u_i.html#a7e8b7a2e2237560c1ac2caaf985a3f3f">getDisplayBufferSize</a>();
 <a name="l00388"></a>00388     
-<a name="l00389"></a>00389     <span class="keywordflow">if</span>(audioBufferSize &gt; 0 &amp;&amp; <a class="code" href="class_scope_g_u_i.html#a040f3aa4ef308dc320a73d4b5a174bb5">minDrawBuffer</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>() &gt; 0 &amp;&amp; <a class="code" href="class_scope_g_u_i.html#a3d7692c02a7e1463f125795d2fed672b">maxDrawBuffer</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>() &gt; 0)
+<a name="l00389"></a>00389     <span class="keywordflow">if</span>(audioBufferSize &gt; 0 &amp;&amp; <a class="code" href="class_scope_g_u_i.html#a040f3aa4ef308dc320a73d4b5a174bb5">minDrawBuffer</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96" title="Return the size in samples of each channel in this Buffer.">size</a>() &gt; 0 &amp;&amp; <a class="code" href="class_scope_g_u_i.html#a3d7692c02a7e1463f125795d2fed672b">maxDrawBuffer</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96" title="Return the size in samples of each channel in this Buffer.">size</a>() &gt; 0)
 <a name="l00390"></a>00390     {
-<a name="l00391"></a>00391       <a class="code" href="class_scope_g_u_i.html#a040f3aa4ef308dc320a73d4b5a174bb5">minDrawBuffer</a>.<a class="code" href="class_buffer.html#af8ec6ec556d0227cbcb57d40e2d2fb06">clear</a>();
-<a name="l00392"></a>00392       <a class="code" href="class_scope_g_u_i.html#a3d7692c02a7e1463f125795d2fed672b">maxDrawBuffer</a>.<a class="code" href="class_buffer.html#af8ec6ec556d0227cbcb57d40e2d2fb06">clear</a>();
+<a name="l00391"></a>00391       <a class="code" href="class_scope_g_u_i.html#a040f3aa4ef308dc320a73d4b5a174bb5">minDrawBuffer</a>.<a class="code" href="class_buffer.html#af8ec6ec556d0227cbcb57d40e2d2fb06" title="Set all samples in all channels to zero.">clear</a>();
+<a name="l00392"></a>00392       <a class="code" href="class_scope_g_u_i.html#a3d7692c02a7e1463f125795d2fed672b">maxDrawBuffer</a>.<a class="code" href="class_buffer.html#af8ec6ec556d0227cbcb57d40e2d2fb06" title="Set all samples in all channels to zero.">clear</a>();
 <a name="l00393"></a>00393       
 <a name="l00394"></a>00394       <span class="keyword">const</span> <span class="keywordtype">double</span> drawIndexInc = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#afc2720859a4075c66da741d8ad063ba1" title="Global function for the UGen::min() binary operator.">min</a>(1.0, (<span class="keywordtype">double</span>)drawBufferSize / (<span class="keywordtype">double</span>)audioBufferSize);
 <a name="l00395"></a>00395       <span class="keyword">const</span> <span class="keywordtype">double</span> audioIndexInc = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#afc2720859a4075c66da741d8ad063ba1" title="Global function for the UGen::min() binary operator.">min</a>(1.0, (<span class="keywordtype">double</span>)audioBufferSize / (<span class="keywordtype">double</span>)drawBufferSize);
 <a name="l00396"></a>00396       
-<a name="l00397"></a>00397       <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_scope_g_u_i.html#a9661127b15f16b7e01de74d787a7d243">audioBuffer</a>.<a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba">getNumChannels</a>(); channel++)
+<a name="l00397"></a>00397       <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_scope_g_u_i.html#a9661127b15f16b7e01de74d787a7d243">audioBuffer</a>.<a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba" title="Return the number of channels in this Buffer.">getNumChannels</a>(); channel++)
 <a name="l00398"></a>00398       {   
 <a name="l00399"></a>00399         <span class="keywordflow">if</span>(drawIndexInc &lt; 1.0)
 <a name="l00400"></a>00400         {
@@ -479,7 +479,7 @@
 <a name="l00447"></a>00447 { 
 <a name="l00448"></a>00448   <a class="code" href="class_scope_g_u_i.html#a287da343d5bcbf502656469d60cf90d4">initBuffers</a>();
 <a name="l00449"></a>00449   
-<a name="l00450"></a>00450   <span class="keywordflow">if</span>(<a class="code" href="class_scope_g_u_i.html#a9661127b15f16b7e01de74d787a7d243">audioBuffer</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>() &gt; 0)
+<a name="l00450"></a>00450   <span class="keywordflow">if</span>(<a class="code" href="class_scope_g_u_i.html#a9661127b15f16b7e01de74d787a7d243">audioBuffer</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96" title="Return the size in samples of each channel in this Buffer.">size</a>() &gt; 0)
 <a name="l00451"></a>00451   {
 <a name="l00452"></a>00452     <a class="code" href="class_scope_g_u_i.html#a7c0987135d275390c390d1c82a4af927">calculateBuffers</a>();
 <a name="l00453"></a>00453   }
@@ -512,7 +512,7 @@
 <a name="l00480"></a>00480       <a class="code" href="ugen___standard_header_8h.html#af63627a4c32066f7e5eb0019aab8a58e">ugen_assert</a>(duration &gt; 0.f);
 <a name="l00481"></a>00481       
 <a name="l00482"></a>00482       <span class="keywordtype">int</span> audioBufferSizeRequired = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">max</a>(1, (<span class="keywordtype">int</span>)(duration * <a class="code" href="class_u_gen.html#afddb4177dad7f4056bbf8b91d07d5224" title="Get the current sample rate.">UGen::getSampleRate</a>() + 0.5));
-<a name="l00483"></a>00483       <span class="keywordtype">int</span> audioBufferAllocatedSize = <a class="code" href="class_scope_u_gen_internal.html#ad62f3ab3fdfa125add7b7c453565adf6">audioBuffer</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>();        
+<a name="l00483"></a>00483       <span class="keywordtype">int</span> audioBufferAllocatedSize = <a class="code" href="class_scope_u_gen_internal.html#ad62f3ab3fdfa125add7b7c453565adf6">audioBuffer</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96" title="Return the size in samples of each channel in this Buffer.">size</a>();        
 <a name="l00484"></a>00484       
 <a name="l00485"></a>00485       <span class="keywordflow">if</span>(audioBufferSizeRequired &gt; audioBufferAllocatedSize)
 <a name="l00486"></a>00486       {
@@ -542,11 +542,11 @@
 <a name="l00510"></a>00510       
 <a name="l00511"></a>00511       <span class="keywordtype">int</span> channelBufferIndex;
 <a name="l00512"></a>00512       
-<a name="l00513"></a>00513       <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_scope_u_gen_internal.html#ad62f3ab3fdfa125add7b7c453565adf6">audioBuffer</a>.<a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba">getNumChannels</a>(); channel++)
+<a name="l00513"></a>00513       <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_scope_u_gen_internal.html#ad62f3ab3fdfa125add7b7c453565adf6">audioBuffer</a>.<a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba" title="Return the number of channels in this Buffer.">getNumChannels</a>(); channel++)
 <a name="l00514"></a>00514       {
 <a name="l00515"></a>00515         <span class="keywordtype">int</span> numSamplesToProcess = <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a118a3566a4758eb4719c57843c25bd57">getBlockSize</a>();
 <a name="l00516"></a>00516         <span class="keywordtype">float</span>* inputSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Input].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, channel);
-<a name="l00517"></a>00517         <span class="keywordtype">float</span>* bufferSamples = <a class="code" href="class_scope_u_gen_internal.html#ad62f3ab3fdfa125add7b7c453565adf6">audioBuffer</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(channel);
+<a name="l00517"></a>00517         <span class="keywordtype">float</span>* bufferSamples = <a class="code" href="class_scope_u_gen_internal.html#ad62f3ab3fdfa125add7b7c453565adf6">audioBuffer</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>(channel);
 <a name="l00518"></a>00518         channelBufferIndex = <a class="code" href="class_scope_u_gen_internal.html#a9144fbc4b9220fbed568a97d7afb4669">bufferIndex</a>; <span class="comment">// need a copy of this so it&#39;s the same at the start of processing each channel</span>
 <a name="l00519"></a>00519         
 <a name="l00520"></a>00520         <span class="keywordtype">int</span> bufferSamplesToProcess = <a class="code" href="class_scope_u_gen_internal.html#aaf7d77092b87c09cddbb03a37b3769a9">audioBufferSizeUsed</a> - channelBufferIndex;
@@ -603,7 +603,7 @@
 <a name="l00571"></a>00571 {
 <a name="l00572"></a>00572   <span class="keywordtype">float</span> duration = *(<a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Duration].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0));  
 <a name="l00573"></a>00573   <span class="keywordtype">int</span> audioBufferSizeRequired = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#ae85c58b3094f39e39b7d743335feca97" title="Global function for the UGen::max() binary operator.">max</a>(1, (<span class="keywordtype">int</span>)(duration * <a class="code" href="class_u_gen.html#afddb4177dad7f4056bbf8b91d07d5224" title="Get the current sample rate.">UGen::getSampleRate</a>() + 0.5));
-<a name="l00574"></a>00574   <span class="keywordtype">int</span> audioBufferAllocatedSize = <a class="code" href="class_buffer_sender_u_gen_internal.html#a34496f90bdbb2228c54c3b60c139bafa">audioBuffer</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96">size</a>();        
+<a name="l00574"></a>00574   <span class="keywordtype">int</span> audioBufferAllocatedSize = <a class="code" href="class_buffer_sender_u_gen_internal.html#a34496f90bdbb2228c54c3b60c139bafa">audioBuffer</a>.<a class="code" href="class_buffer.html#a4215e8b20079c26ddf2335c1a6083a96" title="Return the size in samples of each channel in this Buffer.">size</a>();        
 <a name="l00575"></a>00575   
 <a name="l00576"></a>00576   <span class="keywordflow">if</span>(audioBufferSizeRequired &gt; audioBufferAllocatedSize)
 <a name="l00577"></a>00577   {
@@ -635,11 +635,11 @@
 <a name="l00603"></a>00603     <span class="keyword">const</span> <span class="keywordtype">int</span> bufferSamplesToProcess = <a class="code" href="class_buffer_sender_u_gen_internal.html#ad1435857c37567bdb4052a2064188cf3">audioBufferSizeUsed</a> - <a class="code" href="class_buffer_sender_u_gen_internal.html#a6927251bbd24ea1c439fd10f6e4ce54a">bufferIndex</a>;
 <a name="l00604"></a>00604     <span class="keyword">const</span> <span class="keywordtype">int</span> numSamplesThisTime = <a class="code" href="ugen___binary_op_u_gens_8cpp.html#afc2720859a4075c66da741d8ad063ba1" title="Global function for the UGen::min() binary operator.">min</a>(bufferSamplesToProcess, numSamplesRemaining);
 <a name="l00605"></a>00605     
-<a name="l00606"></a>00606     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_buffer_sender_u_gen_internal.html#a34496f90bdbb2228c54c3b60c139bafa">audioBuffer</a>.<a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba">getNumChannels</a>(); channel++)
+<a name="l00606"></a>00606     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_buffer_sender_u_gen_internal.html#a34496f90bdbb2228c54c3b60c139bafa">audioBuffer</a>.<a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba" title="Return the number of channels in this Buffer.">getNumChannels</a>(); channel++)
 <a name="l00607"></a>00607     {
 <a name="l00608"></a>00608       <span class="keywordtype">int</span> numSamplesToProcess = numSamplesThisTime;
 <a name="l00609"></a>00609       <span class="keyword">const</span> <span class="keywordtype">float</span>* inputSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Input].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, channel) + offset;
-<a name="l00610"></a>00610       <span class="keywordtype">float</span>* bufferSamples = <a class="code" href="class_buffer_sender_u_gen_internal.html#a34496f90bdbb2228c54c3b60c139bafa">audioBuffer</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(channel) + bufferIndex;
+<a name="l00610"></a>00610       <span class="keywordtype">float</span>* bufferSamples = <a class="code" href="class_buffer_sender_u_gen_internal.html#a34496f90bdbb2228c54c3b60c139bafa">audioBuffer</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>(channel) + bufferIndex;
 <a name="l00611"></a>00611           
 <a name="l00612"></a>00612       <span class="keywordflow">while</span>(numSamplesToProcess--)
 <a name="l00613"></a>00613         *bufferSamples++ = *inputSamples++;
@@ -704,11 +704,11 @@
 <a name="l00672"></a>00672     <span class="keywordtype">int</span> channelBufferIndex;
 <a name="l00673"></a>00673     
 <a name="l00674"></a>00674     <span class="comment">// keep filling the buffer until it has enough samples...</span>
-<a name="l00675"></a>00675     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_spectral_scope_u_gen_internal.html#a4912bc4a4f0d9e78483ee6da6d907769">inputBuffer</a>.<a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba">getNumChannels</a>(); channel++)
+<a name="l00675"></a>00675     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_spectral_scope_u_gen_internal.html#a4912bc4a4f0d9e78483ee6da6d907769">inputBuffer</a>.<a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba" title="Return the number of channels in this Buffer.">getNumChannels</a>(); channel++)
 <a name="l00676"></a>00676     {
 <a name="l00677"></a>00677       <span class="keywordtype">int</span> numSamplesToProcess = <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a118a3566a4758eb4719c57843c25bd57">getBlockSize</a>();
 <a name="l00678"></a>00678       <span class="keywordtype">float</span>* inputSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Input].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, channel);
-<a name="l00679"></a>00679       <span class="keywordtype">float</span>* bufferSamples = <a class="code" href="class_spectral_scope_u_gen_internal.html#a4912bc4a4f0d9e78483ee6da6d907769">inputBuffer</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(channel);
+<a name="l00679"></a>00679       <span class="keywordtype">float</span>* bufferSamples = <a class="code" href="class_spectral_scope_u_gen_internal.html#a4912bc4a4f0d9e78483ee6da6d907769">inputBuffer</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>(channel);
 <a name="l00680"></a>00680       channelBufferIndex = <a class="code" href="class_spectral_scope_u_gen_internal.html#ad17542e2422829c338273272768e7e18">bufferIndex</a>; <span class="comment">// need a copy of this so it&#39;s the same at the start of processing each channel</span>
 <a name="l00681"></a>00681       
 <a name="l00682"></a>00682       <span class="keywordtype">int</span> bufferSamplesToProcess = <a class="code" href="class_spectral_scope_u_gen_internal.html#a73c01099b6bf88d77d26eb4cb6fee85f">fftSize</a> - channelBufferIndex;
@@ -733,7 +733,7 @@
 <a name="l00701"></a>00701     <span class="keywordflow">if</span>(<a class="code" href="class_spectral_scope_u_gen_internal.html#ad17542e2422829c338273272768e7e18">bufferIndex</a> == 0)
 <a name="l00702"></a>00702     {
 <a name="l00703"></a>00703       <span class="comment">// do fft and send</span>
-<a name="l00704"></a>00704       <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_spectral_scope_u_gen_internal.html#a4912bc4a4f0d9e78483ee6da6d907769">inputBuffer</a>.<a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba">getNumChannels</a>(); channel++)
+<a name="l00704"></a>00704       <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_spectral_scope_u_gen_internal.html#a4912bc4a4f0d9e78483ee6da6d907769">inputBuffer</a>.<a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba" title="Return the number of channels in this Buffer.">getNumChannels</a>(); channel++)
 <a name="l00705"></a>00705       {       
 <a name="l00706"></a>00706         <a class="code" href="class_spectral_scope_u_gen_internal.html#a434aee3c71defebfee58d23a0298b431">fftEngine</a>.<a class="code" href="class_f_f_t_engine.html#a50262393bb12ca78779652557bc12eda" title="Perform an FFT.">fft</a>(<a class="code" href="class_spectral_scope_u_gen_internal.html#af463d29b027625a16768dae8f4067c77">outputBuffer</a>, <a class="code" href="class_spectral_scope_u_gen_internal.html#a4912bc4a4f0d9e78483ee6da6d907769">inputBuffer</a>, <span class="keyword">true</span>, channel, channel);
 <a name="l00707"></a>00707       }
@@ -792,9 +792,9 @@
 <a name="l00760"></a>00760         <span class="keyword">const</span> <span class="keywordtype">int</span> hopSize = <a class="code" href="class_spectral_scope_u_gen_internal.html#a73c01099b6bf88d77d26eb4cb6fee85f">fftSize</a> / <a class="code" href="class_spectral_scope_u_gen_internal.html#af112775d879d4c902fa4233e6dfdcab5">overlap_</a>;
 <a name="l00761"></a>00761         <span class="keyword">const</span> <span class="keywordtype">int</span> copySize = <a class="code" href="class_spectral_scope_u_gen_internal.html#a73c01099b6bf88d77d26eb4cb6fee85f">fftSize</a> - hopSize;
 <a name="l00762"></a>00762         
-<a name="l00763"></a>00763         <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_spectral_scope_u_gen_internal.html#a4912bc4a4f0d9e78483ee6da6d907769">inputBuffer</a>.<a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba">getNumChannels</a>(); channel++)
+<a name="l00763"></a>00763         <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_spectral_scope_u_gen_internal.html#a4912bc4a4f0d9e78483ee6da6d907769">inputBuffer</a>.<a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba" title="Return the number of channels in this Buffer.">getNumChannels</a>(); channel++)
 <a name="l00764"></a>00764         {
-<a name="l00765"></a>00765           <span class="keywordtype">float</span> *bufferSamples = <a class="code" href="class_spectral_scope_u_gen_internal.html#a4912bc4a4f0d9e78483ee6da6d907769">inputBuffer</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(channel);
+<a name="l00765"></a>00765           <span class="keywordtype">float</span> *bufferSamples = <a class="code" href="class_spectral_scope_u_gen_internal.html#a4912bc4a4f0d9e78483ee6da6d907769">inputBuffer</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>(channel);
 <a name="l00766"></a>00766           memcpy(bufferSamples, bufferSamples + hopSize, copySize * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l00767"></a>00767         }
 <a name="l00768"></a>00768         
@@ -847,11 +847,11 @@
 <a name="l00815"></a>00815   <span class="keywordtype">int</span> channelBufferIndex;
 <a name="l00816"></a>00816 
 <a name="l00817"></a>00817   <span class="comment">// keep filling the buffer until it has enough samples...</span>
-<a name="l00818"></a>00818   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_f_f_t_sender_u_gen_internal.html#a38a2354cf49f6e58b1f3ed5c4efd1e71">inputBuffer</a>.<a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba">getNumChannels</a>(); channel++)
+<a name="l00818"></a>00818   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_f_f_t_sender_u_gen_internal.html#a38a2354cf49f6e58b1f3ed5c4efd1e71">inputBuffer</a>.<a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba" title="Return the number of channels in this Buffer.">getNumChannels</a>(); channel++)
 <a name="l00819"></a>00819   {
 <a name="l00820"></a>00820     <span class="keywordtype">int</span> numSamplesToProcess = <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a118a3566a4758eb4719c57843c25bd57">getBlockSize</a>();
 <a name="l00821"></a>00821     <span class="keywordtype">float</span>* inputSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Input].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, channel);
-<a name="l00822"></a>00822     <span class="keywordtype">float</span>* bufferSamples = <a class="code" href="class_f_f_t_sender_u_gen_internal.html#a38a2354cf49f6e58b1f3ed5c4efd1e71">inputBuffer</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(channel);
+<a name="l00822"></a>00822     <span class="keywordtype">float</span>* bufferSamples = <a class="code" href="class_f_f_t_sender_u_gen_internal.html#a38a2354cf49f6e58b1f3ed5c4efd1e71">inputBuffer</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>(channel);
 <a name="l00823"></a>00823     channelBufferIndex = <a class="code" href="class_f_f_t_sender_u_gen_internal.html#a49bf46b2a24ddb9767ef422768bef2a6">bufferIndex</a>; <span class="comment">// need a copy of this so it&#39;s the same at the start of processing each channel</span>
 <a name="l00824"></a>00824     
 <a name="l00825"></a>00825     <span class="keywordtype">int</span> bufferSamplesToProcess = <a class="code" href="class_f_f_t_sender_u_gen_internal.html#a8d1b4f5ad057f51e871e8306daa52c79">fftSize</a> - channelBufferIndex;
@@ -876,7 +876,7 @@
 <a name="l00844"></a>00844   <span class="keywordflow">if</span>(<a class="code" href="class_f_f_t_sender_u_gen_internal.html#a49bf46b2a24ddb9767ef422768bef2a6">bufferIndex</a> == 0)
 <a name="l00845"></a>00845   {
 <a name="l00846"></a>00846     <span class="comment">// do fft and send</span>
-<a name="l00847"></a>00847     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_f_f_t_sender_u_gen_internal.html#a38a2354cf49f6e58b1f3ed5c4efd1e71">inputBuffer</a>.<a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba">getNumChannels</a>(); channel++)
+<a name="l00847"></a>00847     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_f_f_t_sender_u_gen_internal.html#a38a2354cf49f6e58b1f3ed5c4efd1e71">inputBuffer</a>.<a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba" title="Return the number of channels in this Buffer.">getNumChannels</a>(); channel++)
 <a name="l00848"></a>00848     {       
 <a name="l00849"></a>00849       <a class="code" href="class_f_f_t_sender_u_gen_internal.html#ae7c3f69d9af6c38b6ca095c0ec363ef7">fftEngine</a>.<a class="code" href="class_f_f_t_engine.html#a50262393bb12ca78779652557bc12eda" title="Perform an FFT.">fft</a>(<a class="code" href="class_f_f_t_sender_u_gen_internal.html#a6a0445a0931f2ab9514a2985c1c5f72d">outputBuffer</a>, <a class="code" href="class_f_f_t_sender_u_gen_internal.html#a38a2354cf49f6e58b1f3ed5c4efd1e71">inputBuffer</a>, <span class="keyword">true</span>, channel, channel);
 <a name="l00850"></a>00850     }
@@ -925,9 +925,9 @@
 <a name="l00893"></a>00893       <span class="keyword">const</span> <span class="keywordtype">int</span> hopSize = <a class="code" href="class_f_f_t_sender_u_gen_internal.html#a8d1b4f5ad057f51e871e8306daa52c79">fftSize</a> / <a class="code" href="class_f_f_t_sender_u_gen_internal.html#a1e8d201578e4c6e4ec85a675076ffe2a">overlap_</a>;
 <a name="l00894"></a>00894       <span class="keyword">const</span> <span class="keywordtype">int</span> copySize = <a class="code" href="class_f_f_t_sender_u_gen_internal.html#a8d1b4f5ad057f51e871e8306daa52c79">fftSize</a> - hopSize;
 <a name="l00895"></a>00895       
-<a name="l00896"></a>00896       <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_f_f_t_sender_u_gen_internal.html#a38a2354cf49f6e58b1f3ed5c4efd1e71">inputBuffer</a>.<a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba">getNumChannels</a>(); channel++)
+<a name="l00896"></a>00896       <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_f_f_t_sender_u_gen_internal.html#a38a2354cf49f6e58b1f3ed5c4efd1e71">inputBuffer</a>.<a class="code" href="class_buffer.html#a2b1f538a0096a7a78f7fa5312d533cba" title="Return the number of channels in this Buffer.">getNumChannels</a>(); channel++)
 <a name="l00897"></a>00897       {
-<a name="l00898"></a>00898         <span class="keywordtype">float</span> *bufferSamples = <a class="code" href="class_f_f_t_sender_u_gen_internal.html#a38a2354cf49f6e58b1f3ed5c4efd1e71">inputBuffer</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(channel);
+<a name="l00898"></a>00898         <span class="keywordtype">float</span> *bufferSamples = <a class="code" href="class_f_f_t_sender_u_gen_internal.html#a38a2354cf49f6e58b1f3ed5c4efd1e71">inputBuffer</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>(channel);
 <a name="l00899"></a>00899         memcpy(bufferSamples, bufferSamples + hopSize, copySize * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));
 <a name="l00900"></a>00900       }
 <a name="l00901"></a>00901       
@@ -951,7 +951,7 @@
 <a name="l00919"></a>00919 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 19 2010 06:22:16 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 28 2010 12:27:03 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

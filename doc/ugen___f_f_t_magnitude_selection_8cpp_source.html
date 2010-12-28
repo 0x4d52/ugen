@@ -122,7 +122,7 @@
 <a name="l00090"></a>00090   <span class="keyword">const</span> <span class="keywordtype">int</span> blockSize = <a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a118a3566a4758eb4719c57843c25bd57">getBlockSize</a>();
 <a name="l00091"></a>00091   <span class="keywordtype">int</span> numSamplesToProcess = blockSize;
 <a name="l00092"></a>00092   <span class="keywordtype">float</span>* inputSamples = <a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[Input].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, 0);
-<a name="l00093"></a>00093   <span class="keywordtype">float</span>* bufferSamples = <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#aab8493b00457f498484cf8ae81b78014">inputBuffer</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>();
+<a name="l00093"></a>00093   <span class="keywordtype">float</span>* bufferSamples = <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#aab8493b00457f498484cf8ae81b78014">inputBuffer</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>();
 <a name="l00094"></a>00094   
 <a name="l00095"></a>00095   <span class="comment">// get output pointers</span>
 <a name="l00096"></a>00096   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> channel = 0; channel &lt; <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a6d796b73a9b9f854c41646d9fbb96970">bins</a>.<a class="code" href="class_object_array.html#a6eb3d6ad48798a021d3dc9f23e9c5260" title="Length is the number of real elements of storage available.">length</a>(); channel++)
@@ -161,7 +161,7 @@
 <a name="l00129"></a>00129       
 <a name="l00130"></a>00130       <span class="keywordflow">if</span>(<a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#aa636c23a75966165f5a88e7ab38b4113">overlap_</a> &gt; 1)
 <a name="l00131"></a>00131       {
-<a name="l00132"></a>00132         memcpy(<a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#aab8493b00457f498484cf8ae81b78014">inputBuffer</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>(), <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#aab8493b00457f498484cf8ae81b78014">inputBuffer</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>() + <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a995d2cb629f211408b6b14ac0b1b32e8">hopSize</a>, <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a04270bdb379e6ce8596dcbe1a2ac6181">overlapSize</a> * <span class="keyword">sizeof</span>(float));
+<a name="l00132"></a>00132         memcpy(<a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#aab8493b00457f498484cf8ae81b78014">inputBuffer</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>(), <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#aab8493b00457f498484cf8ae81b78014">inputBuffer</a>.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>() + <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a995d2cb629f211408b6b14ac0b1b32e8">hopSize</a>, <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a04270bdb379e6ce8596dcbe1a2ac6181">overlapSize</a> * <span class="keyword">sizeof</span>(float));
 <a name="l00133"></a>00133         bufferIndex = <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a34d882c6f660d111cbe77352be3bd095">fftSize</a> - <a class="code" href="class_f_f_t_magnitude_selection_u_gen_internal.html#a995d2cb629f211408b6b14ac0b1b32e8">hopSize</a>;
 <a name="l00134"></a>00134       }
 <a name="l00135"></a>00135       <span class="keywordflow">else</span>
@@ -206,7 +206,7 @@
 <a name="l00174"></a>00174 <a class="code" href="ugen___standard_header_8h.html#ac007e7ce67de381dd33b3167a2392ada">END_UGEN_NAMESPACE</a>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 19 2010 06:22:16 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 28 2010 12:27:03 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

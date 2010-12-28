@@ -822,21 +822,21 @@
 <a name="l00899"></a>00899   <a class="code" href="class_binary_op_u_gen_internal_t_k.html">BinaryOpUGenInternalTK</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; leftOperand, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; rightOperand) <span class="keywordflow">throw</span>()
 <a name="l00900"></a>00900   : <a class="code" href="class_binary_op_u_gen_internal_t.html">BinaryOpUGenInternalT&lt;op&gt;</a>(leftOperand, rightOperand), value(0.f)
 <a name="l00901"></a>00901   {
-<a name="l00902"></a><a class="code" href="class_binary_op_u_gen_t.html">00902</a>     this-&gt;<a class="code" href="class_u_gen_internal.html#a7d2d4b436a5a80c7ebc23c84901c9e63">rate</a> = UGenInternal::ControlRate;
+<a name="l00902"></a>00902     this-&gt;<a class="code" href="class_u_gen_internal.html#a7d2d4b436a5a80c7ebc23c84901c9e63">rate</a> = UGenInternal::ControlRate;
 <a name="l00903"></a>00903   }
 <a name="l00904"></a>00904   
-<a name="l00905"></a><a class="code" href="class_binary_op_u_gen_t.html#ae155a161aa0e393e837dc6248fe6ac1b">00905</a>   <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_binary_divide_u_gen_internal.html#a6b297fae500bcd0ad64a99c2c0c983b0">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
+<a name="l00905"></a>00905   <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_binary_divide_u_gen_internal.html#a6b297fae500bcd0ad64a99c2c0c983b0">getChannel</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>()
 <a name="l00906"></a>00906   {
 <a name="l00907"></a>00907     <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_binary_op_u_gen_internal_t_k.html">BinaryOpUGenInternalTK&lt;op&gt;</a>(this-&gt;<a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[BinaryOpUGenInternal::LeftOperand].<a class="code" href="class_u_gen.html#aa40eece5fb9521324d55fb6167531e44" title="Create a UGen which contains on a particular channel.">getChannel</a>(channel),
 <a name="l00908"></a>00908                         this-&gt;<a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[BinaryOpUGenInternal::RightOperand].<a class="code" href="class_u_gen.html#aa40eece5fb9521324d55fb6167531e44" title="Create a UGen which contains on a particular channel.">getChannel</a>(channel));
 <a name="l00909"></a>00909   }
 <a name="l00910"></a>00910   
-<a name="l00911"></a>00911   <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_binary_divide_u_gen_internal.html#a2c57982f66a9711963eb510407b5445e">getKr</a>() throw() { this-&gt;<a class="code" href="class_smart_pointer.html#ad9196fe14d4e4d9b1c28982738436544">incrementRefCount</a>(); <span class="keywordflow">return</span> <span class="keyword">this</span>; } 
+<a name="l00911"></a>00911   <a class="code" href="class_u_gen_internal.html" title="Subclasses of this do almost all of the processing during audio rendering.">UGenInternal</a>* <a class="code" href="class_binary_divide_u_gen_internal.html#a2c57982f66a9711963eb510407b5445e">getKr</a>() <span class="keywordflow">throw</span>() { this-&gt;<a class="code" href="class_smart_pointer.html#ad9196fe14d4e4d9b1c28982738436544">incrementRefCount</a>(); <span class="keywordflow">return</span> <span class="keyword">this</span>; } 
 <a name="l00912"></a>00912   
-<a name="l00913"></a>00913   <span class="keywordtype">void</span> <a class="code" href="class_binary_divide_u_gen_internal.html#a52bf4bbbd64d02c30a7e5eed5b775cd4" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>() 
+<a name="l00913"></a><a class="code" href="class_binary_op_u_gen_t.html">00913</a>   <span class="keywordtype">void</span> <a class="code" href="class_binary_divide_u_gen_internal.html#a52bf4bbbd64d02c30a7e5eed5b775cd4" title="Process a block of samples for this blockID and channel.">processBlock</a>(<span class="keywordtype">bool</span>&amp; shouldDelete, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockID, <span class="keyword">const</span> <span class="keywordtype">int</span> channel) <span class="keywordflow">throw</span>() 
 <a name="l00914"></a>00914   {
 <a name="l00915"></a>00915     <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> krBlockSize = <a class="code" href="class_u_gen.html#a2c362eee1cdf755de0eed14727494235" title="Get the current control rate block size.">UGen::getControlRateBlockSize</a>();                           
-<a name="l00916"></a>00916     <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockPosition = blockID % krBlockSize;                               
+<a name="l00916"></a><a class="code" href="class_binary_op_u_gen_t.html#ae155a161aa0e393e837dc6248fe6ac1b">00916</a>     <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> blockPosition = blockID % krBlockSize;                               
 <a name="l00917"></a>00917     <span class="keywordtype">int</span> numSamplesToProcess = this-&gt;<a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a118a3566a4758eb4719c57843c25bd57">getBlockSize</a>();                              
 <a name="l00918"></a>00918     <span class="keywordtype">float</span>* outputSamples = this-&gt;<a class="code" href="class_u_gen_internal.html#a66381a118969b7cf776266e524baf8d3">uGenOutput</a>.<a class="code" href="class_u_gen_output.html#a2f81d76a08bdae1136fb9eb94c34aa14">getSampleData</a>();                                
 <a name="l00919"></a>00919     <span class="keywordtype">float</span>* leftOperandSamples = this-&gt;<a class="code" href="class_u_gen_internal.html#aac20a172024c8b6d5fd37a2e899cfe3a">inputs</a>[BinaryOpUGenInternal::LeftOperand].<a class="code" href="class_u_gen.html#a326ac2a8f76b3a7a48d6780f6f1b07cf" title="Processes one or more channels in this UGen.">processBlock</a>(shouldDelete, blockID, channel);         
@@ -844,24 +844,24 @@
 <a name="l00921"></a>00921     
 <a name="l00922"></a>00922     <span class="keywordtype">int</span> numKrSamples = blockPosition &amp; krBlockSize;                                 
 <a name="l00923"></a>00923     
-<a name="l00924"></a><a class="code" href="class_binary_op_u_gen_t.html#af6f630ce7d0b6a5162183b980ad9d353">00924</a>     <span class="keywordflow">while</span>(numSamplesToProcess &gt; 0) {                                      
-<a name="l00925"></a><a class="code" href="class_binary_op_u_gen_t.html#aa542c8cd75fdcd728d27311e1f8e949b">00925</a>       <span class="keywordtype">float</span> nextValue = value;                                        
+<a name="l00924"></a>00924     <span class="keywordflow">while</span>(numSamplesToProcess &gt; 0) {                                      
+<a name="l00925"></a>00925       <span class="keywordtype">float</span> nextValue = value;                                        
 <a name="l00926"></a>00926       <span class="keywordflow">if</span>(numKrSamples == 0)                                         
 <a name="l00927"></a>00927         nextValue = op(*leftOperandSamples, *rightOperandSamples);              
 <a name="l00928"></a>00928       
 <a name="l00929"></a>00929       numKrSamples = krBlockSize - numKrSamples;                                
-<a name="l00930"></a><a class="code" href="class_u_gen.html#ac9a6d5fa023aeb58793be45521f5219d">00930</a>       
+<a name="l00930"></a>00930       
 <a name="l00931"></a>00931       blockPosition   += numKrSamples;                                  
 <a name="l00932"></a>00932       leftOperandSamples  += numKrSamples;                                  
 <a name="l00933"></a>00933       rightOperandSamples += numKrSamples;                                  
 <a name="l00934"></a>00934       
-<a name="l00935"></a>00935       <span class="keywordflow">if</span>(nextValue == value) {                                        
-<a name="l00936"></a>00936         <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples) {                            
+<a name="l00935"></a><a class="code" href="class_binary_op_u_gen_t.html#af6f630ce7d0b6a5162183b980ad9d353">00935</a>       <span class="keywordflow">if</span>(nextValue == value) {                                        
+<a name="l00936"></a><a class="code" href="class_binary_op_u_gen_t.html#aa542c8cd75fdcd728d27311e1f8e949b">00936</a>         <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples) {                            
 <a name="l00937"></a>00937           *outputSamples++ = nextValue;                                 
 <a name="l00938"></a>00938           --numSamplesToProcess;                                      
 <a name="l00939"></a>00939           --numKrSamples;                                         
 <a name="l00940"></a>00940         }                                                 
-<a name="l00941"></a>00941       } <span class="keywordflow">else</span> {                                                
+<a name="l00941"></a><a class="code" href="class_u_gen.html#ac9a6d5fa023aeb58793be45521f5219d">00941</a>       } <span class="keywordflow">else</span> {                                                
 <a name="l00942"></a>00942         <span class="keywordtype">float</span> valueSlope = (nextValue - value) / (<span class="keywordtype">float</span>)<a class="code" href="class_u_gen.html#a2c362eee1cdf755de0eed14727494235" title="Get the current control rate block size.">UGen::getControlRateBlockSize</a>();          
 <a name="l00943"></a>00943         <span class="keywordflow">while</span>(numSamplesToProcess &amp;&amp; numKrSamples) {                            
 <a name="l00944"></a>00944           *outputSamples++ = value;                                   
@@ -882,44 +882,44 @@
 <a name="l00959"></a>00959                       inputs[RightOperand].kr());
 <a name="l00960"></a>00960 }
 <a name="l00961"></a>00961 
-<a name="l00963"></a>00963 <span class="keyword">template</span>&lt;BinaryOpFunction op&gt;
-<a name="l00964"></a>00964 <span class="keyword">class </span><a class="code" href="class_binary_op_u_gen_t.html" title="A binary operator UGen using a template for the processing function.">BinaryOpUGenT</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>
-<a name="l00965"></a>00965 {
-<a name="l00966"></a>00966 <span class="keyword">public</span>:
-<a name="l00967"></a>00967   <a class="code" href="class_binary_op_u_gen_t.html#ae155a161aa0e393e837dc6248fe6ac1b">BinaryOpUGenT</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; leftOperand, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; rightOperand) <span class="keywordflow">throw</span>()
-<a name="l00968"></a>00968   {
-<a name="l00969"></a>00969     <span class="keyword">const</span> <span class="keywordtype">int</span> numRightChannels = rightOperand.<a class="code" href="class_u_gen.html#a996ea2091a1af960134353f9780f2ae9" title="Get the number of channels (i.e., number of internals).">getNumChannels</a>();
-<a name="l00970"></a>00970     <span class="keyword">const</span> <span class="keywordtype">int</span> numLeftChannels = leftOperand.<a class="code" href="class_u_gen.html#a996ea2091a1af960134353f9780f2ae9" title="Get the number of channels (i.e., number of internals).">getNumChannels</a>();
-<a name="l00971"></a>00971     
-<a name="l00972"></a>00972     <span class="keywordflow">if</span>(numLeftChannels &gt; numRightChannels) 
-<a name="l00973"></a>00973       <a class="code" href="class_u_gen.html#a0d18108fe75e774a48e51382b091671f">initInternal</a>(numLeftChannels); 
-<a name="l00974"></a>00974     <span class="keywordflow">else</span> 
-<a name="l00975"></a>00975       <a class="code" href="class_u_gen.html#a0d18108fe75e774a48e51382b091671f">initInternal</a>(numRightChannels); 
-<a name="l00976"></a>00976     
-<a name="l00977"></a>00977     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_u_gen.html#ac22e4d83005cc875a513ec9019d7e96e">numInternalUGens</a>; i++) 
-<a name="l00978"></a>00978     { 
-<a name="l00979"></a>00979       <a class="code" href="class_u_gen.html#ad9e8ba9e81ce7f3909ac9f3c3b69ab45">internalUGens</a>[i] = <span class="keyword">new</span> <a class="code" href="class_binary_op_u_gen_internal_t.html">BinaryOpUGenInternalT&lt;op&gt;</a>(leftOperand,rightOperand);
-<a name="l00980"></a>00980       <a class="code" href="class_u_gen.html#ad9e8ba9e81ce7f3909ac9f3c3b69ab45">internalUGens</a>[i]-&gt;<a class="code" href="class_u_gen_internal.html#a3b9de200fa163a233dab85b3388fd469" title="Initialise the UGen output value.">initValue</a>(op(leftOperand.<a class="code" href="class_binary_op_u_gen_internal_t.html#a9653e776185ce71529968809da82510a">getValue</a>(i),
-<a name="l00981"></a>00981                        rightOperand.<a class="code" href="class_u_gen.html#a7d8d5a661cd52dd001cfefc5fa51022d" title="Get the value of one of the channels.">getValue</a>(i)));
-<a name="l00982"></a>00982     }
-<a name="l00983"></a>00983     
-<a name="l00984"></a>00984   }
-<a name="l00985"></a>00985   
-<a name="l00986"></a>00986   <span class="keyword">static</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_binary_op_u_gen_t.html#af6f630ce7d0b6a5162183b980ad9d353">AR</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; leftOperand, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; rightOperand) { <span class="keywordflow">return</span> <a class="code" href="class_binary_op_u_gen_t.html" title="A binary operator UGen using a template for the processing function.">BinaryOpUGenT&lt;op&gt;</a>(leftOperand, rightOperand); }
-<a name="l00987"></a>00987   <span class="keyword">static</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_binary_op_u_gen_t.html#aa542c8cd75fdcd728d27311e1f8e949b">KR</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; leftOperand, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; rightOperand) { <span class="keywordflow">return</span> <a class="code" href="class_u_gen.html#a7a8f0faa0b080b5d4be969b259a7075d" title="Default constructor.">UGen</a>(<a class="code" href="class_binary_op_u_gen_t.html" title="A binary operator UGen using a template for the processing function.">BinaryOpUGenT&lt;op&gt;</a>(leftOperand.<a class="code" href="class_u_gen.html#a05778e35ac2ee92c1311a691fd43c57e" title="SC compatability.">kr</a>(), 
-<a name="l00988"></a>00988                                                     rightOperand.<a class="code" href="class_u_gen.html#a05778e35ac2ee92c1311a691fd43c57e" title="SC compatability.">kr</a>())).kr(); }
-<a name="l00989"></a>00989 };
-<a name="l00990"></a>00990 
-<a name="l00991"></a>00991 <span class="keyword">template</span>&lt;BinaryOpFunction op&gt;
-<a name="l00992"></a>00992 <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_u_gen.html#ac9a6d5fa023aeb58793be45521f5219d">UGen::binary</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; rightOperand) <span class="keywordflow">throw</span>()
-<a name="l00993"></a>00993 {
-<a name="l00994"></a>00994   <span class="keywordflow">return</span> <a class="code" href="class_binary_op_u_gen_t.html#af6f630ce7d0b6a5162183b980ad9d353">BinaryOpUGenT&lt;op&gt;::AR</a>(rightOperand);
-<a name="l00995"></a>00995 }
-<a name="l00996"></a>00996 
-<a name="l00997"></a>00997 <span class="preprocessor">#endif // BINARYOPUGENS_H</span>
+<a name="l00974"></a>00974 <span class="keyword">template</span>&lt;BinaryOpFunction op&gt;
+<a name="l00975"></a>00975 <span class="keyword">class </span><a class="code" href="class_binary_op_u_gen_t.html" title="A binary operator UGen using a template for the processing function.">BinaryOpUGenT</a> : <span class="keyword">public</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a>
+<a name="l00976"></a>00976 {
+<a name="l00977"></a>00977 <span class="keyword">public</span>:
+<a name="l00978"></a>00978   <a class="code" href="class_binary_op_u_gen_t.html#ae155a161aa0e393e837dc6248fe6ac1b">BinaryOpUGenT</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; leftOperand, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; rightOperand) <span class="keywordflow">throw</span>()
+<a name="l00979"></a>00979   {
+<a name="l00980"></a>00980     <span class="keyword">const</span> <span class="keywordtype">int</span> numRightChannels = rightOperand.<a class="code" href="class_u_gen.html#a996ea2091a1af960134353f9780f2ae9" title="Get the number of channels (i.e., number of internals).">getNumChannels</a>();
+<a name="l00981"></a>00981     <span class="keyword">const</span> <span class="keywordtype">int</span> numLeftChannels = leftOperand.<a class="code" href="class_u_gen.html#a996ea2091a1af960134353f9780f2ae9" title="Get the number of channels (i.e., number of internals).">getNumChannels</a>();
+<a name="l00982"></a>00982     
+<a name="l00983"></a>00983     <span class="keywordflow">if</span>(numLeftChannels &gt; numRightChannels) 
+<a name="l00984"></a>00984       <a class="code" href="class_u_gen.html#a0d18108fe75e774a48e51382b091671f">initInternal</a>(numLeftChannels); 
+<a name="l00985"></a>00985     <span class="keywordflow">else</span> 
+<a name="l00986"></a>00986       <a class="code" href="class_u_gen.html#a0d18108fe75e774a48e51382b091671f">initInternal</a>(numRightChannels); 
+<a name="l00987"></a>00987     
+<a name="l00988"></a>00988     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_u_gen.html#ac22e4d83005cc875a513ec9019d7e96e">numInternalUGens</a>; i++) 
+<a name="l00989"></a>00989     { 
+<a name="l00990"></a>00990       <a class="code" href="class_u_gen.html#ad9e8ba9e81ce7f3909ac9f3c3b69ab45">internalUGens</a>[i] = <span class="keyword">new</span> <a class="code" href="class_binary_op_u_gen_internal_t.html">BinaryOpUGenInternalT&lt;op&gt;</a>(leftOperand,rightOperand);
+<a name="l00991"></a>00991       <a class="code" href="class_u_gen.html#ad9e8ba9e81ce7f3909ac9f3c3b69ab45">internalUGens</a>[i]-&gt;<a class="code" href="class_u_gen_internal.html#a3b9de200fa163a233dab85b3388fd469" title="Initialise the UGen output value.">initValue</a>(op(leftOperand.<a class="code" href="class_binary_op_u_gen_internal_t.html#a9653e776185ce71529968809da82510a">getValue</a>(i),
+<a name="l00992"></a>00992                        rightOperand.<a class="code" href="class_u_gen.html#a7d8d5a661cd52dd001cfefc5fa51022d" title="Get the value of one of the channels.">getValue</a>(i)));
+<a name="l00993"></a>00993     }
+<a name="l00994"></a>00994     
+<a name="l00995"></a>00995   }
+<a name="l00996"></a>00996   
+<a name="l00997"></a>00997   <span class="keyword">static</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_binary_op_u_gen_t.html#af6f630ce7d0b6a5162183b980ad9d353">AR</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; leftOperand, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; rightOperand) { <span class="keywordflow">return</span> <a class="code" href="class_binary_op_u_gen_t.html" title="A binary operator UGen using a template for the processing function.">BinaryOpUGenT&lt;op&gt;</a>(leftOperand, rightOperand); }
+<a name="l00998"></a>00998   <span class="keyword">static</span> <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_binary_op_u_gen_t.html#aa542c8cd75fdcd728d27311e1f8e949b">KR</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; leftOperand, <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; rightOperand) { <span class="keywordflow">return</span> <a class="code" href="class_u_gen.html#a7a8f0faa0b080b5d4be969b259a7075d" title="Default constructor.">UGen</a>(<a class="code" href="class_binary_op_u_gen_t.html" title="A binary operator UGen using a template for the processing function.">BinaryOpUGenT&lt;op&gt;</a>(leftOperand.<a class="code" href="class_u_gen.html#a05778e35ac2ee92c1311a691fd43c57e" title="SC compatability.">kr</a>(), 
+<a name="l00999"></a>00999                                                     rightOperand.<a class="code" href="class_u_gen.html#a05778e35ac2ee92c1311a691fd43c57e" title="SC compatability.">kr</a>())).kr(); }
+<a name="l01000"></a>01000 };
+<a name="l01001"></a>01001 
+<a name="l01002"></a>01002 <span class="keyword">template</span>&lt;BinaryOpFunction op&gt;
+<a name="l01003"></a>01003 <a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <a class="code" href="class_u_gen.html#ac9a6d5fa023aeb58793be45521f5219d">UGen::binary</a>(<a class="code" href="class_u_gen.html" title="The UGen class!">UGen</a> <span class="keyword">const</span>&amp; rightOperand) <span class="keywordflow">throw</span>()
+<a name="l01004"></a>01004 {
+<a name="l01005"></a>01005   <span class="keywordflow">return</span> <a class="code" href="class_binary_op_u_gen_t.html#af6f630ce7d0b6a5162183b980ad9d353">BinaryOpUGenT&lt;op&gt;::AR</a>(rightOperand);
+<a name="l01006"></a>01006 }
+<a name="l01007"></a>01007 
+<a name="l01008"></a>01008 <span class="preprocessor">#endif // BINARYOPUGENS_H</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 19 2010 06:22:14 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 28 2010 12:27:00 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

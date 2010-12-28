@@ -175,7 +175,7 @@
 <a name="l00143"></a>00143   <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00144"></a>00144 }
 <a name="l00145"></a>00145 
-<a name="l00146"></a><a class="code" href="class_env.html#a28e59c389804b40d062b130ce3ff0c69">00146</a> <span class="keywordtype">float</span> <a class="code" href="class_env.html#a28e59c389804b40d062b130ce3ff0c69" title="Get the level of the Env ata given time.">Env::lookup</a>(<span class="keywordtype">float</span> time) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
+<a name="l00146"></a><a class="code" href="class_env.html#a28e59c389804b40d062b130ce3ff0c69">00146</a> <span class="keywordtype">float</span> <a class="code" href="class_env.html#a28e59c389804b40d062b130ce3ff0c69" title="Get the level of the Env a ta given time.">Env::lookup</a>(<span class="keywordtype">float</span> time) <span class="keyword">const</span> <span class="keywordflow">throw</span>()
 <a name="l00147"></a>00147 {
 <a name="l00148"></a>00148   <span class="keyword">const</span> <span class="keywordtype">int</span> numTimes = getTimes().size();
 <a name="l00149"></a>00149   <span class="keyword">const</span> <span class="keywordtype">int</span> numLevels = getLevels().size();
@@ -255,15 +255,15 @@
 <a name="l00223"></a>00223 
 <a name="l00224"></a><a class="code" href="class_env.html#a40ebb638ba6e26de013f2b290bc91a9e">00224</a> <a class="code" href="class_env.html#a40ebb638ba6e26de013f2b290bc91a9e" title="Turn the Env into a table in a Buffer.">Env::operator Buffer </a>() <span class="keyword">const</span> throw()
 <a name="l00225"></a>00225 {
-<a name="l00226"></a>00226   <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_env.html#a922dc017ef4aeb8100a166316b4195a7" title="Returns the sum the time values in the envelope.">duration</a> = <a class="code" href="class_env.html#af3debacc2950ba0f04cf8d0990992a0c">getTimes</a>().<a class="code" href="class_buffer.html#a304aef7473d7d9dbfae6018b2b5d164b">sum</a>();
+<a name="l00226"></a>00226   <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_env.html#a922dc017ef4aeb8100a166316b4195a7" title="Returns the sum the time values in the envelope.">duration</a> = <a class="code" href="class_env.html#af3debacc2950ba0f04cf8d0990992a0c">getTimes</a>().<a class="code" href="class_buffer.html#a304aef7473d7d9dbfae6018b2b5d164b" title="Return the sum of all samples in a particular channel.">sum</a>();
 <a name="l00227"></a>00227   <span class="keyword">const</span> <span class="keywordtype">int</span> size = <a class="code" href="class_u_gen.html#afddb4177dad7f4056bbf8b91d07d5224" title="Get the current sample rate.">UGen::getSampleRate</a>() * duration;
 <a name="l00228"></a>00228   <a class="code" href="class_buffer.html" title="Buffer stores one or more arrays of floats.">Buffer</a> buffer = <a class="code" href="class_buffer_spec.html">BufferSpec</a>(size, 1, <span class="keyword">false</span>);
-<a name="l00229"></a>00229   <span class="keywordtype">float</span> *bufferSamples = buffer.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777">getData</a>();
+<a name="l00229"></a>00229   <span class="keywordtype">float</span> *bufferSamples = buffer.<a class="code" href="class_buffer.html#af00bb945c19cd82f9acc3bd38f177777" title="Return a pointer to the floating point data for a particular channel of this Buffer.">getData</a>();
 <a name="l00230"></a>00230   
 <a name="l00231"></a>00231   <span class="keywordtype">double</span> time = 0.0;
 <a name="l00232"></a>00232   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++, time += <a class="code" href="class_u_gen.html#a2e6ab64a2e5ea263113ab4993603537e" title="Get the recirprocal of the current sample rate.">UGen::getReciprocalSampleRate</a>())
 <a name="l00233"></a>00233   {
-<a name="l00234"></a>00234     *bufferSamples++ = <a class="code" href="class_env.html#a28e59c389804b40d062b130ce3ff0c69" title="Get the level of the Env ata given time.">lookup</a>(time);
+<a name="l00234"></a>00234     *bufferSamples++ = <a class="code" href="class_env.html#a28e59c389804b40d062b130ce3ff0c69" title="Get the level of the Env a ta given time.">lookup</a>(time);
 <a name="l00235"></a>00235   }
 <a name="l00236"></a>00236   
 <a name="l00237"></a>00237   <span class="keywordflow">return</span> buffer;
@@ -384,7 +384,7 @@
 <a name="l00352"></a>00352 <span class="preprocessor">#endif // gpl</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 19 2010 06:22:16 for ugen by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 28 2010 12:27:03 for ugen by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
