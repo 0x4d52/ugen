@@ -1,3 +1,5 @@
+#ifdef UGEN_ANDROID
+
 #include "../UGen.h"
 #include "../core/ugen_StandardHeader.h"
 #include "../basics/ugen_BinaryOpUGens.cpp"
@@ -219,7 +221,7 @@ UGen AndroidIOHost::constructGraph(UGen const& input) throw()
 
 //END_UGEN_NAMESPACE
 
-
+#endif // UGEN_ANDROID
 
 
 
