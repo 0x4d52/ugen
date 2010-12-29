@@ -525,7 +525,7 @@ public:
 	 @return the new UGen will the number of channels requested. */
 	UGen withNumChannels(const int numChannels, const bool addedChannelsWrap = true) const throw();
 	
-	/** Create a UGen which contains on a particular channel.
+	/** Create a UGen which contains a particular channel.
 	 @param channel The channel number to access, this is wrapped to ensure it is always in range.
 	 @return the single channel UGen at the index requested.
 	 @see wrapAt(), UGen::operator[], at()

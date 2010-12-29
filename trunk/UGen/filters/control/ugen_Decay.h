@@ -50,6 +50,12 @@ public:
 	UGenInternal* getKr() throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	void initValue(const float value) throw();	
+	void initb1(const float time, const int blockSize) throw();
+	
+	static inline float calculateb1(const float time, const int blockSize) throw()
+	{
+		return (time == 0.f) ? 0.f : (float)exp(log001 * blockSize / (time * UGen::getSampleRate()));
+	}
 
 	enum Inputs { Input, DecayTime, NumInputs };
 	

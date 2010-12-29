@@ -79,9 +79,7 @@ void LagUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockI
 	if(newLagTime != currentLagTime)
 	{
 		float next_b1 = newLagTime == 0.f ? 0.f : (float)exp(log001 / (newLagTime * UGen::getSampleRate()));
-//		float b1_slope = (next_b1 - b1) * UGen::getSlopeFactor();
 		float b1_slope = (next_b1 - b1) / (float)numSamplesToProcess;
-		currentLagTime = newLagTime;
 		
 		while(numSamplesToProcess--)
 		{
@@ -91,6 +89,7 @@ void LagUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockI
 		}
 		
 		b1 = next_b1;
+		currentLagTime = newLagTime;
 	}
 	else
 	{
@@ -128,7 +127,6 @@ void LagUGenInternalK::processBlock(bool& shouldDelete, const unsigned int block
 	if(newLagTime != currentLagTime)
 	{
 		float next_b1 = newLagTime == 0.f ? 0.f : (float)exp(log001 * krBlockSize / (newLagTime * UGen::getSampleRate()));
-//		float b1_slope = (next_b1 - b1) * UGen::getSlopeFactor() * krBlockSize;
 		float b1_slope = (next_b1 - b1) * krBlockSize / (float)numSamplesToProcess;
 		currentLagTime = newLagTime; 
 				

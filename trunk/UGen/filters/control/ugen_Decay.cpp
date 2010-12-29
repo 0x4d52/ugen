@@ -57,13 +57,23 @@ DecayUGenInternal::DecayUGenInternal(UGen const& input, UGen const& decayTime) t
 
 UGenInternal* DecayUGenInternal::getKr() throw()
 {
-	return new DecayUGenInternalK(inputs[Input].kr(), inputs[DecayTime].kr()); 
+	DecayUGenInternalK* internal = new DecayUGenInternalK(inputs[Input].kr(), 
+														  inputs[DecayTime].kr()); 
+	internal->b1 = b1;
+	internal->y1 = y1;
+	internal->currentDecayTime = currentDecayTime;
+	
+	return internal;
 }
 
 UGenInternal* DecayUGenInternal::getChannel(const int channel) throw()
 {
-	return new DecayUGenInternal(inputs[Input].getChannel(channel), 
-								 inputs[DecayTime].getChannel(channel));
+	UGen input = inputs[Input].getChannel(channel);
+	UGen decayTime = inputs[DecayTime].getChannel(channel);
+	DecayUGenInternal* internal = new DecayUGenInternal(input, decayTime);
+	internal->initValue(input.getValue(0));
+	internal->initb1(input.getValue(0), 1);
+	return internal;
 }
 
 void DecayUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
@@ -78,10 +88,8 @@ void DecayUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 	
 	if(newDecayTime != currentDecayTime)
 	{
-		float next_b1 = newDecayTime == 0.f ? 0.f : (float)exp(log001 / (newDecayTime * UGen::getSampleRate()));
-//		float b1_slope = (next_b1 - b1) * UGen::getSlopeFactor();
+		float next_b1 = calculateb1(newDecayTime, 1);
 		float b1_slope = (next_b1 - b1) / (float)numSamplesToProcess;
-		currentDecayTime = newDecayTime;
 		
 		while(numSamplesToProcess--)
 		{
@@ -89,6 +97,9 @@ void DecayUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 			*outputSamples++ = y1 = y0 + b1 * y1;
 			b1 += b1_slope;
 		}
+		
+		b1 = next_b1;
+		currentDecayTime = newDecayTime;
 	}
 	else
 	{
@@ -109,6 +120,12 @@ void DecayUGenInternal::initValue(const float value) throw()
 	y1 = checkedValue;
 }
 
+void DecayUGenInternal::initb1(const float time, const int blockSize) throw()
+{
+	currentDecayTime = time;
+	b1 = calculateb1(time, blockSize);
+}
+
 void DecayUGenInternalK::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
 	const int krBlockSize = UGen::getControlRateBlockSize();
@@ -125,10 +142,8 @@ void DecayUGenInternalK::processBlock(bool& shouldDelete, const unsigned int blo
 	
 	if(newDecayTime != currentDecayTime)
 	{
-		float next_b1 = newDecayTime == 0.f ? 0.f : (float)exp(log001 * krBlockSize / (newDecayTime * UGen::getSampleRate()));
-//		float b1_slope = (next_b1 - b1) * UGen::getSlopeFactor() * krBlockSize;
+		float next_b1 = calculateb1(newDecayTime, krBlockSize);
 		float b1_slope = (next_b1 - b1) * krBlockSize / (float)numSamplesToProcess;
-		currentDecayTime = newDecayTime;
 				
 		while(numSamplesToProcess > 0)
 		{
@@ -171,7 +186,7 @@ void DecayUGenInternalK::processBlock(bool& shouldDelete, const unsigned int blo
 		}
 		
 		b1 = next_b1;
-		
+		currentDecayTime = newDecayTime;
 	}
 	else
 	{
@@ -226,8 +241,10 @@ Decay::Decay(UGen const& input, UGen const& decayTime) throw()
 	
 	for(int i = 0; i < numInternalUGens; i++)
 	{
-		internalUGens[i] = new DecayUGenInternal(input, decayTime);
-		internalUGens[i]->initValue(input.getValue(i));
+		DecayUGenInternal* internal = new DecayUGenInternal(input, decayTime);
+		internal->initValue(input.getValue(i));
+		internal->initb1(decayTime.getValue(i), 1);
+		internalUGens[i] = internal;
 	}
 }
 

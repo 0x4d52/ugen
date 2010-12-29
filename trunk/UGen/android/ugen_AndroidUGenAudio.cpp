@@ -31,6 +31,8 @@
  ==============================================================================
  */
 
+#ifdef UGEN_ANDROID
+
 #include <string.h>
 #include <android/log.h>
 #include <jni.h>
@@ -116,6 +118,6 @@ extern "C" jint JNICALL Java_uk_co_miajo_UGen_UGenAudio_sendBytes(JNIEnv *env, j
 	return result;
 }
 
-
+#endif // UGEN_ANDROID
 
 

@@ -41,7 +41,7 @@ BEGIN_UGEN_NAMESPACE
 #include "ugen_Amplitude.h"
 
 
-AmplitudeUGenInternal::AmplitudeUGenInternal(UGen const& input) throw()
+AmplitudeBaseUGenInternal::AmplitudeBaseUGenInternal(UGen const& input) throw()
 :	UGenInternal(NumInputs)
 {
 	inputs[Input] = input;
@@ -53,7 +53,7 @@ AmplitudeUGenInternal::AmplitudeUGenInternal(UGen const& input) throw()
 	currentAmplitude = 0.f;
 }
 
-void AmplitudeUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void AmplitudeBaseUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
@@ -84,6 +84,11 @@ void AmplitudeUGenInternal::processBlock(bool& shouldDelete, const unsigned int 
 	}
 }
 
+AmplitudeUGenInternal::AmplitudeUGenInternal(UGen const& input) throw()
+:	AmplitudeBaseUGenInternal(input)
+{
+}
+
 Amplitude::Amplitude(UGen const& input) throw()
 {
 	initInternal(input.getNumChannels());
@@ -93,5 +98,36 @@ Amplitude::Amplitude(UGen const& input) throw()
 		internalUGens[i] = new AmplitudeUGenInternal(input);
 	}
 }
+
+DetectSilenceUGenInternal::DetectSilenceUGenInternal(UGen const& input) throw()
+:	AmplitudeBaseUGenInternal(input),
+	started(false)
+{
+}
+
+void DetectSilenceUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+{
+	AmplitudeBaseUGenInternal::processBlock(shouldDelete, blockID, channel);
+	
+	if(currentAmplitude > 0.f)
+	{
+		started = true;
+	}
+	else if(started)
+	{
+		shouldDelete = true;
+	}
+}
+
+DetectSilence::DetectSilence(UGen const& input) throw()
+{
+	initInternal(input.getNumChannels());
+	
+	for(int i = 0; i < numInternalUGens; i++)
+	{
+		internalUGens[i] = new DetectSilenceUGenInternal(input);
+	}
+}
+
 
 END_UGEN_NAMESPACE
