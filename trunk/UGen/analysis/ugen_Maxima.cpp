@@ -50,7 +50,10 @@ MaximaUGenInternal::MaximaUGenInternal(UGen const& input) throw()
 
 UGenInternal* MaximaUGenInternal::getChannel(const int channel) throw()
 {
-	return new MaximaUGenInternal(inputs[Input].getChannel(channel));
+	MaximaUGenInternal* internal = new MaximaUGenInternal(inputs[Input].getChannel(channel));
+	internal->didIncreaseLastTime = didIncreaseLastTime;
+	internal->lastValue = lastValue;
+	return internal;
 }
 
 void MaximaUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()

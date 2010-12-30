@@ -1,5 +1,5 @@
-// $Id:$
-// $HeadURL:$
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================
@@ -50,8 +50,10 @@ DebounceUGenInternal::DebounceUGenInternal(UGen const& input, UGen const& time) 
 
 UGenInternal* DebounceUGenInternal::getChannel(const int channel) throw()
 {
-	return new DebounceUGenInternal(inputs[Input].getChannel(channel),
-									inputs[Time].getChannel(channel));
+	DebounceUGenInternal* internal = new DebounceUGenInternal(inputs[Input].getChannel(channel),
+															  inputs[Time].getChannel(channel));
+	internal->count = count;
+	return internal;
 }
 
 void DebounceUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()

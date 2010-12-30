@@ -51,6 +51,8 @@ class PauseUGenInternal : public UGenInternal
 {
 public:
 	PauseUGenInternal(Pause_InputsWithTypesAndDefaults) throw();
+	void initValue(const float value) throw();
+	
 	UGenInternal* getChannel(const int channel) throw();									// necessary if there are input ugens which may have more than one channel
 	//UGenInternal* getKr() throw();														// necessary if there is an actual control rate version (see below)
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
