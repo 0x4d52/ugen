@@ -59,7 +59,8 @@ UGenInternal* DecayUGenInternal::getKr() throw()
 {
 	DecayUGenInternalK* internal = new DecayUGenInternalK(inputs[Input].kr(), 
 														  inputs[DecayTime].kr()); 
-	internal->b1 = b1;
+	
+	internal->b1 = calculateb1(currentDecayTime, UGen::getControlRateBlockSize());
 	internal->y1 = y1;
 	internal->currentDecayTime = currentDecayTime;
 	
@@ -68,11 +69,12 @@ UGenInternal* DecayUGenInternal::getKr() throw()
 
 UGenInternal* DecayUGenInternal::getChannel(const int channel) throw()
 {
-	UGen input = inputs[Input].getChannel(channel);
-	UGen decayTime = inputs[DecayTime].getChannel(channel);
-	DecayUGenInternal* internal = new DecayUGenInternal(input, decayTime);
-	internal->initValue(input.getValue(0));
-	internal->initb1(input.getValue(0), 1);
+	DecayUGenInternal* internal = new DecayUGenInternal(inputs[Input].getChannel(channel), 
+														inputs[DecayTime].getChannel(channel));	
+	internal->b1 = b1;
+	internal->y1 = y1;
+	internal->currentDecayTime = currentDecayTime;
+	
 	return internal;
 }
 

@@ -1,5 +1,5 @@
-// $Id:$
-// $HeadURL:$
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================
@@ -51,7 +51,9 @@ TrigUGenInternal::TrigUGenInternal(UGen const& input) throw()
 
 UGenInternal* TrigUGenInternal::getChannel(const int channel) throw()
 {
-	return new TrigUGenInternal(inputs[Input].getChannel(channel));
+	TrigUGenInternal* internal = new TrigUGenInternal(inputs[Input].getChannel(channel));
+	internal->lastTrig = lastTrig;
+	return internal;
 }
 
 void TrigUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()

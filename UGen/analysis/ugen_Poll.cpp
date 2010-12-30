@@ -1,5 +1,5 @@
-// $Id:$
-// $HeadURL:$
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================
@@ -46,6 +46,15 @@ PollUGenInternal::PollUGenInternal(UGen const& input, UGen const& trig) throw()
 	inputs[Input] = input;
 	inputs[Trig] = trig;
 	lastTrig = 0.f;
+}
+
+UGenInternal* PollUGenInternal::getChannel(const int channel) throw()
+{
+	PollUGenInternal* internal = new PollUGenInternal(inputs[Input].getChannel(channel),
+													  inputs[Trig].getChannel(channel));
+	internal->lastTrig = lastTrig;
+	internal->receivers = receivers;
+	return internal;
 }
 
 void PollUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()

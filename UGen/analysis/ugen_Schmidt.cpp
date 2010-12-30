@@ -1,5 +1,5 @@
-// $Id:$
-// $HeadURL:$
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================
@@ -53,9 +53,11 @@ SchmidtUGenInternal::SchmidtUGenInternal(UGen const& input, UGen const& lo, UGen
 
 UGenInternal* SchmidtUGenInternal::getChannel(const int channel) throw()
 {
-	return new SchmidtUGenInternal(inputs[Input].getChannel(channel), 
-								   inputs[Lo].getChannel(channel),
-								   inputs[Hi].getChannel(channel));
+	SchmidtUGenInternal* internal = new SchmidtUGenInternal(inputs[Input].getChannel(channel), 
+															inputs[Lo].getChannel(channel),
+															inputs[Hi].getChannel(channel));
+	internal->state = state;
+	return internal;
 }
 
 

@@ -54,10 +54,18 @@ PauseUGenInternal::PauseUGenInternal(Pause_InputsWithTypesOnly) throw()
 	inputs[Level] = level;
 }
 
+void PauseUGenInternal::initValue(const float value) throw()
+{
+	UGenInternal::initValue(value);
+	prevLevel = value;
+}
+
 UGenInternal* PauseUGenInternal::getChannel(const int channel) throw()
 {
-	return new PauseUGenInternal(inputs[Input].getChannel(channel),
-								 inputs[Level].getChannel(channel));
+	PauseUGenInternal* internal = new PauseUGenInternal(inputs[Input].getChannel(channel),
+														inputs[Level].getChannel(channel));
+	internal->prevLevel = prevLevel;
+	return internal;
 }
 
 void PauseUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()

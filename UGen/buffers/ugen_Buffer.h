@@ -1041,7 +1041,7 @@ public:
 	void removeBufferReceiver(BufferReceiver* receiver) throw();
 	void sendBuffer(Buffer const& buffer, const double value1 = 0.0, const int value2 = 0) throw();
 	
-private:
+protected:
 	BufferReceiverArray receivers;
 };
 
@@ -1063,7 +1063,7 @@ public:
 		
 	friend class BufferSender;
 	
-private:
+protected:
 	void addBufferSender(BufferSender* const sender) throw();
 	void removeBufferSender(BufferSender* const sender) throw();
 

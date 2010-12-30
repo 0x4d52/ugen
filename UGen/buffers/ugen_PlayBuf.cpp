@@ -66,7 +66,15 @@ PlayBufUGenInternal::PlayBufUGenInternal(Buffer const& buffer,
 // don't do this? no need?
 UGenInternal* PlayBufUGenInternal::getChannel(const int channel) throw()
 {	
-	return new PlayBufUGenInternal(buffer_.getChannel(channel), inputs[Rate], inputs[Trig], inputs[Offset], inputs[Loop], doneAction_);
+	PlayBufUGenInternal* internal = new PlayBufUGenInternal(buffer_.getChannel(channel), 
+															inputs[Rate], 
+															inputs[Trig], 
+															inputs[Offset], 
+															inputs[Loop], 
+															doneAction_);
+	internal->bufferPos = bufferPos;
+	internal->lastTrig = lastTrig;
+	return internal;
 }
 
 void PlayBufUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
