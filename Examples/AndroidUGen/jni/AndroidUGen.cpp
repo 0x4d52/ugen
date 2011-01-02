@@ -23,7 +23,7 @@ int MyAndroidAudio::setParameter(const int index, const float value) throw()
 		{
 			if(value >= 0.5)
 			{
-				Env env = Env::linen(0.2, 4, 0.5, amp); Env::asr()
+				Env env = Env::linen(0.2, 4, 0.5, amp);
 				UGen envgen = EnvGen::AR(env);
 				UGen sine = SinOsc::AR(freq, 0, envgen);
 					
