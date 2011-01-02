@@ -72,7 +72,7 @@ ButtonValueInternal::ButtonValueInternal(Button* button) throw()
 :	ValueInternal(0.0),
 	button_(button)
 {		
-	button_->addButtonListener(this);
+	button_->addListener(this);
 		
 	buttonClicked(button_);	
 }
@@ -80,7 +80,7 @@ ButtonValueInternal::ButtonValueInternal(Button* button) throw()
 ButtonValueInternal::~ButtonValueInternal() throw()
 {
 	if(button_.getComponent())
-		button_->removeButtonListener(this);
+		button_->removeListener(this);
 }
 
 void ButtonValueInternal::buttonClicked(Button* button) throw()

@@ -1525,8 +1525,8 @@ EnvelopeNodePopup::EnvelopeNodePopup(EnvelopeHandleComponent* handleToEdit)
 	
 	addChildComponent(setLoopButton = new TextButton(T("Set Y to Loop")));
 	addChildComponent(setReleaseButton = new TextButton(T("Set Y to Release")));
-	setLoopButton->addButtonListener(this);
-	setReleaseButton->addButtonListener(this);
+	setLoopButton->addListener(this);
+	setReleaseButton->addListener(this);
 	
 	addAndMakeVisible(combo = new ComboBox(T("combo")));	
 	combo->addItem(T("Normal"),			idOffset + (int)Normal);
