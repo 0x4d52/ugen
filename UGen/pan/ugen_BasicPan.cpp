@@ -57,20 +57,41 @@ void LinPan2UGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples0 = proxies[0]->getSampleData();
 	float* outputSamples1 = proxies[1]->getSampleData();
-	float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
 	float* positionSamples = inputs[Position].processBlock(shouldDelete, blockID, channel);
 	float* levelSamples = inputs[Level].processBlock(shouldDelete, blockID, channel);
 	
 	ugen_assert(*positionSamples >= -1.f && *positionSamples <= 1.f);
 	
-	while(numSamplesToProcess--)
+	if(inputs[Input].getNumChannels() <= 1)
 	{
-		float pos1 = *positionSamples++ * 0.5f + 0.5f;
-		float pos0 = 1.f - pos1;
-		float inputValue = *inputSamples++ * *levelSamples++;
+		float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, 0);
+
+		while(numSamplesToProcess--)
+		{
+			float pos1 = *positionSamples++ * 0.5f + 0.5f;
+			float pos0 = 1.f - pos1;
+			float inputValue = *inputSamples++ * *levelSamples++;
+			
+			*outputSamples0++ = inputValue * pos0;
+			*outputSamples1++ = inputValue * pos1;
+		}
+	}
+	else
+	{
+		float* inputSamples0 = inputs[Input].processBlock(shouldDelete, blockID, 0);
+		float* inputSamples1 = inputs[Input].processBlock(shouldDelete, blockID, 1);
 		
-		*outputSamples0++ = inputValue * pos0;
-		*outputSamples1++ = inputValue * pos1;
+		while(numSamplesToProcess--)
+		{
+			float pos1 = *positionSamples++ * 0.5f + 0.5f;
+			float pos0 = 1.f - pos1;
+			float level = *levelSamples++;
+			float inputValue0 = *inputSamples0++ * level;
+			float inputValue1 = *inputSamples1++ * level;
+			
+			*outputSamples0++ = inputValue0 * pos0;
+			*outputSamples1++ = inputValue1 * pos1;
+		}		
 	}
 }
 
@@ -79,20 +100,30 @@ LinPan2::LinPan2(UGen const& input, UGen const& position, UGen const& level) thr
 {	
 	initInternal(2);
 	
-	UGen inputChecked = input.mix();
 	UGen positionChecked = position.mix();
 	UGen levelChecked = level.mix();	
 	
-	LinPan2UGenInternal*  internal = new LinPan2UGenInternal(inputChecked, positionChecked, levelChecked);
+	LinPan2UGenInternal*  internal = new LinPan2UGenInternal(input, positionChecked, levelChecked);
 	internalUGens[0] = internal;
 	internalUGens[1] = internal->getProxy(1);
 	
 	float pos1 = positionChecked.getValue(0) * 0.5f + 0.5f;
 	float pos0 = 1.f - pos1;
-	float inputValue = inputChecked.getValue(0) * level.getValue(0);
 	
-	internalUGens[0]->initValue(inputValue * pos0);
-	internalUGens[1]->initValue(inputValue * pos1);
+	if(input.getNumChannels() <= 1)
+	{
+		float inputValue = input.getValue(0) * levelChecked.getValue(0);
+		internalUGens[0]->initValue(inputValue * pos0);
+		internalUGens[1]->initValue(inputValue * pos1);	
+	}
+	else
+	{
+		float inputValue0 = input.getValue(0) * levelChecked.getValue(0);
+		float inputValue1 = input.getValue(1) * levelChecked.getValue(0);
+		internalUGens[0]->initValue(inputValue0 * pos0);
+		internalUGens[1]->initValue(inputValue1 * pos1);	
+	}
+	
 }
 
 

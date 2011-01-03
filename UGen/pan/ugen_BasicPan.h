@@ -62,6 +62,8 @@ protected:
 										mixed to mono).
 
 /** A linear panner UGen across two channels. 
+ A mono source will be panned left/right, a two-channel source will be balanced
+ left/right. Any channels in the input above two will be ignored.
  @ingroup AllUGens ControlUGens
  @see Pan2, PanB */
 UGenSublcassDeclaration(LinPan2, (input, position, level),
