@@ -34,9 +34,9 @@
 #define UGenPluginID			PROJECT_NAME
 
 // define the class names for the component and plugin
-#define UGenPlugin				UGenAppendNames(UGenPlugin, UGenPluginID)
-#define UGenEditorComponent		UGenAppendNames(UGenEditorComponent, UGenPluginID)
-#define UGenInterface			UGenAppendNames(UGenInterface, UGenPluginID)
+//#define UGenPlugin				UGenAppendNames(UGenPlugin, UGenPluginID)
+//#define UGenEditorComponent		UGenAppendNames(UGenEditorComponent, UGenPluginID)
+//#define UGenInterface			UGenAppendNames(UGenInterface, UGenPluginID)
 
 
 

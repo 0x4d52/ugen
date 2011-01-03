@@ -68,6 +68,7 @@ UGenPlugin::UGenPlugin()
 	numMeasurements = 0;
 	
 	menuItem = 0;
+	blockID = 0;
 }
 
 UGenPlugin::~UGenPlugin()
@@ -141,7 +142,7 @@ bool UGenPlugin::isInputChannelStereoPair (int index) const
 
 bool UGenPlugin::isOutputChannelStereoPair (int index) const
 {
-    return false;
+    return true;
 }
 
 bool UGenPlugin::acceptsMidi() const
@@ -151,7 +152,7 @@ bool UGenPlugin::acceptsMidi() const
 
 bool UGenPlugin::producesMidi() const
 {
-    return true;
+    return false;
 }
 
 //==============================================================================
@@ -199,7 +200,7 @@ void UGenPlugin::processBlock(AudioSampleBuffer& buffer,
 		outputUGen.setOutput(buffer.getSampleData(i), numSamples, i);
 	}
 	
-	int blockID = UGen::getNextBlockID(numSamples);
+	//int blockID = UGen::getNextBlockID(numSamples);
 	outputUGen.prepareAndProcessBlock(numSamples, blockID, -1);
 	
 	// quick and dirty metering...
@@ -216,6 +217,8 @@ void UGenPlugin::processBlock(AudioSampleBuffer& buffer,
     }
 	
 	midiMessages.clear();
+	
+	blockID += numSamples;
 }
 
 

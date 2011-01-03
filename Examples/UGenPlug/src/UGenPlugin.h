@@ -119,6 +119,8 @@ private:
 	UGen inputUGen;
 	UGen outputUGen;
 	Buffer inputBuffer;
+	
+	int blockID;
 };
 
 

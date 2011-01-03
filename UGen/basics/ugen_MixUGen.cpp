@@ -56,6 +56,11 @@ MixUGenInternal::MixUGenInternal(UGen const& array, bool shouldAllowAutoDelete) 
 	initValue(value);
 }
 
+void MixUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
+{
+	inputs[0].prepareForBlock(actualBlockSize, blockID, -1);
+}
+
 #if !defined(UGEN_VFP) && !defined(UGEN_NEON) && !defined(UGEN_VDSP)
 void MixUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {
