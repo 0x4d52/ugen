@@ -340,6 +340,7 @@ public:
 	UGenInternal* getOwner() throw()		{	return owner_;						}
 	int getProxyChannel() throw();
 	int getNumChannels() const throw()		{	return owner_->getNumChannels();	}
+	void prepareForBlockInternal(const int actualBlockSize, const unsigned int blockID, const int channel) throw();
 	void prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	

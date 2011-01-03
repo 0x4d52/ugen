@@ -56,6 +56,8 @@ public:
 									(and itself) from being deleted by DoneActions. */
 	MixUGenInternal(UGen const& array, bool shouldAllowAutoDelete = true) throw();
 		
+	void prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw();
+	
 	/** Render a block of audio. */
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	

@@ -113,6 +113,7 @@ void LPFUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockI
 	
 	y1 = zap(y1);
 	y2 = zap(y2);
+	
 	currentFreq = newFreq;
 }
 

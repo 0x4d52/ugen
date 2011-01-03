@@ -120,6 +120,7 @@ private:
 
 	UGen voicerUGen;
 	UGen outputUGen;
+	int blockID;
 	
 };
 

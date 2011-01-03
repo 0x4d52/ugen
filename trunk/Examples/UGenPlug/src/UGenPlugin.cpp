@@ -67,6 +67,7 @@ UGenPlugin::UGenPlugin()
 	numMeasurements = 0;
 	
 	menuItem = 0;
+	blockID = 0;
 }
 
 UGenPlugin::~UGenPlugin()
@@ -130,22 +131,22 @@ const String UGenPlugin::getOutputChannelName (const int channelIndex) const
 
 bool UGenPlugin::isInputChannelStereoPair (int index) const
 {
-    return false;
+    return true;
 }
 
 bool UGenPlugin::isOutputChannelStereoPair (int index) const
 {
-    return false;
+    return true;
 }
 
 bool UGenPlugin::acceptsMidi() const
 {
-    return true;
+    return false;
 }
 
 bool UGenPlugin::producesMidi() const
 {
-    return true;
+    return false;
 }
 
 //==============================================================================
@@ -195,7 +196,8 @@ UGen UGenPlugin::constructGraph(UGen const& input)
 	linearPan = Pause::AR(linearPan, Invert::AR(panSelector));
 	
 	// mix the pans for the output
-	return constantPan + linearPan;
+	UGen mix = constantPan + linearPan;
+	return mix;
 }
 
 void UGenPlugin::releaseResources()
@@ -227,7 +229,7 @@ void UGenPlugin::processBlock(AudioSampleBuffer& buffer,
 		outputUGen.setOutput(buffer.getSampleData(i), numSamples, i);
 	}
 	
-	int blockID = UGen::getNextBlockID(numSamples);
+	//int blockID = UGen::getNextBlockID(numSamples);
 	outputUGen.prepareAndProcessBlock(numSamples, blockID, -1);
 	
 	// quick and dirty metering...
@@ -242,6 +244,13 @@ void UGenPlugin::processBlock(AudioSampleBuffer& buffer,
 		channelLevel0 = channelLevel1 = 0.f;
 		numMeasurements = 0;
     }
+	
+	blockID += numSamples;
+	
+//	for(int i = 0; i < numOutputChannels; i++)
+//	{
+//		*(buffer.getSampleData(i)) *= 2.f;
+//	}
 }
 
 void UGenPlugin::clearExtraChannels(AudioSampleBuffer& buffer)

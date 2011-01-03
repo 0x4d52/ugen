@@ -149,7 +149,7 @@ UGenEditorComponent::UGenEditorComponent (UGenPlugin* const ownerFilter)
 			TextButton* button;
 			addAndMakeVisible(button = new TextButton(name));
 			button->setTooltip(name); // just in case there are lots of buttons, we'll see the entire name via a tooltip
-			button->addButtonListener(this);
+			button->addListener(this);
 			buttons.add(button);				  
 		}
 		

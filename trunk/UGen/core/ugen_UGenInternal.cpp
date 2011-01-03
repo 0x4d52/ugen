@@ -436,7 +436,14 @@ void ProxyOwnerUGenInternal::prepareForBlockInternal(const int actualBlockSize, 
 	
 	if(blockID != lastBlockID)
 	{
-		UGenInternal::prepareForBlockInternal(actualBlockSize, blockID, channel);
+		uGenOutput.prepareForBlock(actualBlockSize);
+		
+		for(unsigned int i = 0; i < numInputs_; i++)
+		{
+			inputs[i].prepareForBlock(actualBlockSize, blockID, -1);
+		}
+		
+		prepareForBlock(actualBlockSize, blockID, channel);		
 		
 		for(int i = 1; i <= numProxies_; i++)
 		{
@@ -505,6 +512,17 @@ void ProxyUGenInternal::decrementRefCount() throw()
 int ProxyUGenInternal::getProxyChannel() throw()					
 { 
 	return proxyChannel_;	
+}
+
+void ProxyUGenInternal::prepareForBlockInternal(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
+{
+	ugen_assert(actualBlockSize > 0);
+	
+	if(blockID != lastBlockID)
+	{
+		uGenOutput.prepareForBlock(actualBlockSize);
+		prepareForBlock(actualBlockSize, blockID, channel);
+	}
 }
 
 void ProxyUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
