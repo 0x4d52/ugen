@@ -693,7 +693,6 @@ public:
 	 @param channel				The channel index to process or -1 ro process all channels.
 	 @return	A pointer to the array of processed samples for a single channel process or 0 if this 
 				is processing all channels. */
-	//inline 
 	float* processBlock(bool& shouldDelete, const unsigned int blockID, const int channel = -1) throw();
 	
 	/** Prepares for a block then processes it.
@@ -707,12 +706,6 @@ public:
 				is processing all channels. 
 	 @see		processBlock(), prepareForBlock() */
 	float* prepareAndProcessBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw();
-//	inline float* prepareAndProcessBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
-//	{		
-//		prepareForBlock(actualBlockSize, blockID);
-//		bool shouldDelete = false;
-//		return processBlock(shouldDelete, blockID, channel);
-//	}
 	
 	/** Prepares a UGen for processing. 
 	 
@@ -723,39 +716,6 @@ public:
 	 @param blockID				The sample block ID of the block to prepare. 
 	 @param channel				The channel index to process or -1 ro process all channels. */
 	void prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw();
-//	inline void prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
-//	{	
-//		ugen_assert(actualBlockSize > 0);
-//		ugen_assert(numInternalUGens > 0);
-//		ugen_assert(internalUGens != 0);
-//		
-//		bool shouldDelete = false;
-//		
-//		for(unsigned int i = 0; i < numInternalUGens; i++) {
-//			if(internalUGens[i]->shouldBeDeletedNow(blockID)) {
-//				shouldDelete = true;
-//				break;
-//			}
-//		}
-//		
-//		if(shouldDelete) {
-//			for(unsigned int i = 0; i < numInternalUGens; i++)
-//			{	
-//				internalUGens[i]->userData = userData;
-//				internalUGens[i]->decrementRefCount();
-//			}
-//			
-//			numInternalUGens = 1;
-//			internalUGens[0] = getNullInternal();
-//			internalUGens[0]->prepareForBlockInternal(actualBlockSize, blockID);		
-//		} else {
-//			for(unsigned int i = 0; i < numInternalUGens; i++)
-//			{
-//				internalUGens[i]->userData = userData;
-//				internalUGens[i]->prepareForBlockInternal(actualBlockSize, blockID);
-//			}
-//		}
-//	}
 	
 	/// @} <!-- end Rendering --------------------------------------------------- -->
 	

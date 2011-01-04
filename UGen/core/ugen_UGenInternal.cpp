@@ -373,7 +373,7 @@ ProxyOwnerUGenInternal::ProxyOwnerUGenInternal(const int numInputs, const int nu
 	proxies(new UGenInternal*[numProxies_+1])
 {	
 	proxies[0] = this;
-	for(int i = 1; i <= numProxies_; i++)
+	for(unsigned int i = 1; i <= numProxies_; i++)
 	{
 		proxies[i] = new ProxyUGenInternal(this, i);
 	}
@@ -403,12 +403,12 @@ void ProxyOwnerUGenInternal::deleteIfOnlyMutualReferencesRemain() throw()
 {
 	if(getRefCount() > numProxies_) return; 
 	
-	for(int i = 1 ; i <= numProxies_; i++)
+	for(unsigned int i = 1 ; i <= numProxies_; i++)
 	{
 		if(proxies[i]->getRefCount() > 1) return;
 	}
 	
-	for(int i = 1 ; i <= numProxies_; i++)
+	for(unsigned int i = 1 ; i <= numProxies_; i++)
 	{
 		UGen::getDeleter()->deleteInternal(proxies[i]);
 	}
@@ -445,7 +445,7 @@ void ProxyOwnerUGenInternal::prepareForBlockInternal(const int actualBlockSize, 
 		
 		prepareForBlock(actualBlockSize, blockID, channel);		
 		
-		for(int i = 1; i <= numProxies_; i++)
+		for(unsigned int i = 1; i <= numProxies_; i++)
 		{
 			// if the refCount is only 1 its block won't get 
 			// prepared by the normal dsp call chain, check for <=1 just in case
@@ -460,7 +460,7 @@ float* ProxyOwnerUGenInternal::processBlockInternal(bool& shouldDelete, const un
 {
 	if(blockID != lastBlockID)
 	{
-		for(int i = 1; i <= numProxies_; i++)
+		for(unsigned int i = 1; i <= numProxies_; i++)
 		{
 			// if the refCount is only 1 its block won't get 
 			// processed by the normal dsp call chain, check for <=1 just in case

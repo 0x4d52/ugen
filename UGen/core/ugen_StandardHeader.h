@@ -75,9 +75,6 @@ struct ForceErrorStruct { int dummy; };
 #define IO IntBuffer
 #define O IntBuffer
 
-//#ifndef PI
-//#define PI 3.14159265358979323846264338327950288
-//#endif
 
 /** Enable/Disble LOCAL_DECLARE and LOCAL_COPY macros. */
 #define UGEN_LOCAL_COPIES 1
