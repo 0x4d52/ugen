@@ -315,7 +315,7 @@ public:
 	float* processBlockInternal(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
 protected:
-	const int numProxies_;
+	const unsigned int numProxies_;
 	UGenInternal** const proxies; // UGenInternal** proxies;  ??
 };
 

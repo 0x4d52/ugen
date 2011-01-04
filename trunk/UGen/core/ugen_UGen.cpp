@@ -906,32 +906,6 @@ bool UGen::containsIdenticalInternalsAs(UGen const& other, const bool mustBeInTh
 	return true;
 }
 
-//int UGen::getNextBlockID(const int blockSize) throw()
-//{	
-//	return nextBlockID += blockSize;
-//}
-
-//float* UGen::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
-//{ 	
-//	if(channel < 0)
-//	{
-//		// process all channels
-//		for(int i = 0; i < numInternalUGens; i++)
-//		{
-//			internalUGens[i]->processBlockInternal(shouldDelete, blockID, i);
-//		}
-//		
-//		return 0;
-//	}
-//	else 
-//	{
-//		// process one channel and return a pointer to its block
-//		int internalChannel = channel % numInternalUGens;
-//		float* block = internalUGens[internalChannel]->processBlockInternal(shouldDelete, blockID, channel);
-//		return block;
-//	}
-//}
-
 
 float* UGen::prepareAndProcessBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
 {		
@@ -1048,22 +1022,6 @@ void UGen::prepareForBlock(const int actualBlockSize, const unsigned int blockID
 		}		
 	}
 }
-
-
-
-
-//void UGen::setBlockSize(const int newSize) throw()
-//{
-//	ugen_assert(newSize > 0);
-//	
-//	if(newSize != blockSize)
-//	{
-//		blockSize = newSize;
-//		slopeFactor = 1.0 / blockSize;
-//		controlSlopeFactor = 1.0 / (double)controlRateBlockSize;
-//	}
-//}
-
 
 
 void UGen::purgeInternalMemory() throw()
