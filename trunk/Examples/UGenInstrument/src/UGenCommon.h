@@ -32,7 +32,7 @@
 #define UGenAppendNames(a, b) UGenAppendNamesInternal(a, b)
 
 // define the class names ID
-#define UGenPluginID			PROJECT_NAMEs
+#define UGenPluginID			PROJECT_NAME
 
 // define the class names for the component and plugin
 //#define UGenPlugin				UGenAppendNames(UGenPlugin, UGenPluginID)
