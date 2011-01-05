@@ -200,7 +200,6 @@ void UGenPlugin::processBlock(AudioSampleBuffer& buffer,
 		outputUGen.setOutput(buffer.getSampleData(i), numSamples, i);
 	}
 	
-	//int blockID = UGen::getNextBlockID(numSamples);
 	outputUGen.prepareAndProcessBlock(numSamples, blockID, -1);
 	
 	// quick and dirty metering...

@@ -194,7 +194,7 @@ UGen UGenPlugin::constructGraph(UGen const& input)
 	// wrap the pans in a Pause to make sure only one uses cpu
 	constantPan = Pause::AR(constantPan, panSelector);
 	linearPan = Pause::AR(linearPan, Invert::AR(panSelector));
-	
+		
 	// mix the pans for the output
 	UGen mix = constantPan + linearPan;
 	return mix;
@@ -229,7 +229,6 @@ void UGenPlugin::processBlock(AudioSampleBuffer& buffer,
 		outputUGen.setOutput(buffer.getSampleData(i), numSamples, i);
 	}
 	
-	//int blockID = UGen::getNextBlockID(numSamples);
 	outputUGen.prepareAndProcessBlock(numSamples, blockID, -1);
 	
 	// quick and dirty metering...
@@ -246,11 +245,6 @@ void UGenPlugin::processBlock(AudioSampleBuffer& buffer,
     }
 	
 	blockID += numSamples;
-	
-//	for(int i = 0; i < numOutputChannels; i++)
-//	{
-//		*(buffer.getSampleData(i)) *= 2.f;
-//	}
 }
 
 void UGenPlugin::clearExtraChannels(AudioSampleBuffer& buffer)
@@ -258,8 +252,11 @@ void UGenPlugin::clearExtraChannels(AudioSampleBuffer& buffer)
 	// in case we have more outputs than inputs, we'll clear any output
     // channels that didn't contain input data, (because these aren't
     // guaranteed to be empty - they may contain garbage).
+	// in addition, the output UGen might have fewer channels than the number of 
+	// outputs the plug-in has
 	
-	for (int i = getNumInputChannels(); i < getNumOutputChannels(); ++i)
+	const int numOutputChannels = jmin(getNumOutputChannels(), outputUGen.getNumChannels());
+	for (int i = getNumInputChannels(); i < numOutputChannels; ++i)
     {
         buffer.clear (i, 0, buffer.getNumSamples());
     }
