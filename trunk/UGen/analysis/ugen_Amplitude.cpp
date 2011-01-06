@@ -46,6 +46,8 @@ AmplitudeBaseUGenInternal::AmplitudeBaseUGenInternal(UGen const& input,
 :	UGenInternal(NumInputs),
 	duration(durationToUse)
 {
+	ugen_assert(durationToUse > 0.f);
+	
 	inputs[Input] = input;
 	
 	measureLength = ugen::max(1, (int)(UGen::getSampleRate() * duration));
