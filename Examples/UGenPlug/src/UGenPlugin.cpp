@@ -177,12 +177,17 @@ UGen UGenPlugin::constructGraph(UGen const& input)
 	
 	// map the 0-1 range to exponential for the frequency
 	UGen cutoff = LinExp::AR(cutoffLinear, 0, 1, 50, 18000);
+	cutoff = cutoff.lag();
 	
 	// filter the input signal
 	UGen filter = LPF::AR(input, cutoff);
 	
 	// map the 0-1 control to -1...+1
 	UGen panControl = UGen(pan) * 2 - 1; // or you could use LinLin
+	panControl = panControl.lag();
+	
+	UGen gainControl = gain;
+	gainControl = gainControl.lag();
 	
 	// create the two pans
 	UGen constantPan = Pan2::AR(filter, panControl, gain);

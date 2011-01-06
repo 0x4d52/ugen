@@ -311,8 +311,10 @@ public:
 	int getNumProxies() const throw()		{	return numProxies_;		}
 	int getNumChannels() const throw()		{	return numProxies_+1;	}
 	UGenInternal* getProxy(const int index) throw();
+	
+	void prepareInputs(const int actualBlockSize, const unsigned int blockID, const int channel) throw();	
 	void prepareForBlockInternal(const int actualBlockSize, const unsigned int blockID, const int channel) throw();
-	float* processBlockInternal(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
+//	float* processBlockInternal(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
 protected:
 	const unsigned int numProxies_;
