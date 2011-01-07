@@ -464,25 +464,6 @@ void ProxyOwnerUGenInternal::prepareForBlockInternal(const int actualBlockSize, 
 }
 
 
-//float* ProxyOwnerUGenInternal::processBlockInternal(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
-//{
-//	if(blockID != lastBlockID)
-//	{
-//		// IS THIS REALLY NECESSARY? - proxy processing doesn't actually do anything! so what if it doesn't get processed!
-////		for(unsigned int i = 1; i <= numProxies_; i++)
-////		{
-////			// if the refCount is only 1 its block won't get 
-////			// processed by the normal dsp call chain, check for <=1 just in case
-////			if(proxies[i]->getRefCount() <= 1)
-////				proxies[i]->processBlockInternal(shouldDelete, blockID, channel);
-////		}
-//
-//		UGenInternal::processBlockInternal(shouldDelete, blockID, channel);
-//	}
-//	
-//	return uGenOutput.getSampleData();
-//}
-
 //=========================== ProxyUGenInternal ==================================
 
 ProxyUGenInternal::ProxyUGenInternal(ProxyOwnerUGenInternal* owner, const int proxyChannel)	 throw()
@@ -550,7 +531,7 @@ void ProxyUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 	if(blockID != lastBlockID)
 	{
 		if(owner_->getRefCount() <= owner_->getNumProxies())
-		owner_->processBlockInternal(shouldDelete, blockID, channel);
+			owner_->processBlockInternal(shouldDelete, blockID, channel);
 	}
 }
 

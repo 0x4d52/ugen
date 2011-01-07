@@ -314,7 +314,6 @@ public:
 	
 	void prepareInputs(const int actualBlockSize, const unsigned int blockID, const int channel) throw();	
 	void prepareForBlockInternal(const int actualBlockSize, const unsigned int blockID, const int channel) throw();
-//	float* processBlockInternal(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
 protected:
 	const unsigned int numProxies_;

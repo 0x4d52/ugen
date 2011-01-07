@@ -57,7 +57,7 @@ UGen UGenInstrumentEvent::spawnEvent(VoicerUGenInternal& voicer,
 	UGen envgen = EnvGen::AR(env);
 	
 	UGen note = midiNote;
-	note += UGen(&voicer.getPitchWheel()) * 2.0; // +-2 semi tone with pitch wheel
+	note += Lag::AR(&voicer.getPitchWheel()) * 2.0; // +-2 semi tone with pitch wheel
 	
 	// convert midi note to frequency
 	UGen freq = midicps(note);
