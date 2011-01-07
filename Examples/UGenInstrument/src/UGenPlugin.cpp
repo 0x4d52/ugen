@@ -164,19 +164,21 @@ void UGenPlugin::prepareToPlay (double sampleRate, int samplesPerBlock)
 
 UGen UGenPlugin::constructGraph()
 {	
-	// get pointers to the params and use these as UGens
-	float *gain = parameters + UGenInterface::Parameters::Gain;
-	float *pan = parameters + UGenInterface::Parameters::Pan;
+//	// get pointers to the params and use these as UGens
+//	float *gain = parameters + UGenInterface::Parameters::Gain;
+//	float *pan = parameters + UGenInterface::Parameters::Pan;
+//	
+//	// assign a Voicer to voicerUGen - this spawns events for MIDI notes
+//	voicerUGen = Voicer<UGenInstrumentEvent>(eventGenerator, 
+//											 getNumOutputChannels(), 
+//											 1,			// MIDI channel
+//											 0,			// no limit on number of voices
+//											 false,		// do not force stolen notes (n/a since previous arg is 0)
+//											 false);	// do not listen directly to MIDI ports, we're providing buffers of MIDI
+//	
+//	return Pan2::AR(voicerUGen, Lag::AR(pan) * 2 - 1, Lag::AR(gain));
 	
-	// assign a Voicer to voicerUGen - this spawns events for MIDI notes
-	voicerUGen = Voicer<UGenInstrumentEvent>(eventGenerator, 
-											 getNumOutputChannels(), 
-											 1,			// MIDI channel
-											 0,			// no limit on number of voices
-											 false,		// do not force stolen notes (n/a since previous arg is 0)
-											 false);	// do not listen directly to MIDI ports, we're providing buffers of MIDI
-	
-	return Pan2::AR(voicerUGen, Lag::AR(pan) * 2 - 1, Lag::AR(gain));
+	return UGen::emptyChannels(getNumOutputChannels());
 }
 
 void UGenPlugin::releaseResources()

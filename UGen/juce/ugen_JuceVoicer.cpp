@@ -219,8 +219,8 @@ void VoicerUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 							}
 						}
 						
-						// stop double notes, AU lab was sending two ons but one off 
-						stealNote(midiChannel, midiNote, false, true); 
+						// stop double notes, AU lab was sending two ons but one off - seems fixed in Au Lab 2.2
+						//stealNote(midiChannel, midiNote, false, true); 
 						
 						UGen newEvent = spawnEvent(*this, currentEventIndex++, midiChannel, midiNote, velocity);
 						newEvent.userData = createUserData(midiChannel, midiNote);

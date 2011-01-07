@@ -43,6 +43,14 @@
 #include "../basics/ugen_InlineUnaryOps.h"
 #include "../basics/ugen_InlineBinaryOps.h"
 #include "../buffers/ugen_Buffer.h"
+//#include "ugen_Arrays.h"
+//
+///** Store and manipulate an array of Value objects.
+// Note that if you have the same value in an array and evaluate each copy in the array it may
+// return a different numerical value each time (if it is a RandomValue, SeriesValue or GeomValue
+// for example). 
+// @ingroup Values */
+//typedef ObjectArray<Value> ValueArray;
 
 class ValueArray;
 

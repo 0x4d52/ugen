@@ -120,7 +120,7 @@ public:
 							const bool forcedSteal,
 							const bool direct) throw()
 	:	VoicerUGenInternal(numChannels, midiChannel, numVoices, forcedSteal, direct), 
-	event(owner)
+		event(owner)
 	{ 
 	}
 	
@@ -171,7 +171,7 @@ public:
 							const bool forcedSteal,
 							const bool direct) throw()
 	:	VoicerUGenInternal(numChannels, midiChannel, numVoices, forcedSteal, direct), 
-	event(e)
+		event(e)
 	{ 
 	}
 	

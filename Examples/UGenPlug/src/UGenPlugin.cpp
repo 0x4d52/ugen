@@ -168,7 +168,7 @@ void UGenPlugin::prepareToPlay (double sampleRate, int samplesPerBlock)
 
 UGen UGenPlugin::constructGraph(UGen const& input)
 {
-	// for most things you'll just need to edit this function!
+	// for most things you'll just need to edit this function and the UGenCommon.h file
 	
 	// get pointers to the params
 	float *gain = parameters + UGenInterface::Parameters::Gain;
@@ -190,8 +190,8 @@ UGen UGenPlugin::constructGraph(UGen const& input)
 	gainControl = gainControl.lag();
 	
 	// create the two pans
-	UGen constantPan = Pan2::AR(filter, panControl, gain);
-	UGen linearPan = LinPan2::AR(filter, panControl, gain);
+	UGen constantPan = Pan2::AR(filter, panControl, gainControl);
+	UGen linearPan = LinPan2::AR(filter, panControl, gainControl);
 	
 	// use the menu as control
 	UGen panSelector = &menuItem;

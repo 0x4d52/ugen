@@ -2426,6 +2426,22 @@ public:
 		return ObjectArray<NumericalType>::contains(NumericalArray<NumericalType>(items));
 	}
 	
+	int indexOf (NumericalType const& itemToSearchFor, const int startIndex = 0) const throw()
+	{
+		return ObjectArray<NumericalType>::indexOf(itemToSearchFor, startIndex);
+	}
+	
+	int indexOf (NumericalArray<NumericalType> const& itemsToSearchFor, const int startIndex = 0) const throw()
+	{
+		return ObjectArray<NumericalType>::indexOf(itemsToSearchFor, startIndex);
+	}
+	
+	int indexOfAny (NumericalArray<NumericalType> const& itemsToSearchFor, const int startIndex = 0) const throw()
+	{
+		return ObjectArray<NumericalType>::indexOfAny(itemsToSearchFor, startIndex);
+	}
+	
+	
 	/** Search for a particular sub sequence withing the array. */
 	int indexOf (const NumericalType* items, const int startIndex = 0) const throw()
 	{
