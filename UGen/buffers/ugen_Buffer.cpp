@@ -80,10 +80,13 @@ BufferChannelInternal::BufferChannelInternal(const unsigned int size, bool zeroD
 #endif
 }
 
-BufferChannelInternal::BufferChannelInternal(const unsigned int size, const unsigned int sourceDataSize, const float* sourceData) throw()
+BufferChannelInternal::BufferChannelInternal(const unsigned int size, 
+											 const unsigned int sourceDataSize, 
+											 float* sourceData,
+											 const bool copyTheData) throw()
 :	data(0),
 	size_(size),
-	allocatedSize(size),
+	allocatedSize(0),
 	currentWriteBlockID(-1),
 	circularHead(-1), previousCircularHead(-1)
 {
@@ -91,16 +94,25 @@ BufferChannelInternal::BufferChannelInternal(const unsigned int size, const unsi
 	ugen_assert(sourceDataSize > 0);
 	ugen_assert(sourceData != 0);
 	
-	data = new float[size_];
-	
-	if(size > sourceDataSize)
+	if(copyTheData)
 	{
-		memcpy(data, sourceData, sourceDataSize * sizeof(float));
-		memset(data + sourceDataSize, 0, (size - sourceDataSize) * sizeof(float));
+		allocatedSize = size_;
+		data = new float[allocatedSize];
+		
+		if(size > sourceDataSize)
+		{
+			memcpy(data, sourceData, sourceDataSize * sizeof(float));
+			memset(data + sourceDataSize, 0, (size - sourceDataSize) * sizeof(float));
+		}
+		else
+		{
+			memcpy(data, sourceData, size * sizeof(float));
+		}
 	}
 	else
 	{
-		memcpy(data, sourceData, size * sizeof(float));
+		allocatedSize = 0;
+		data = sourceData;
 	}
 
 #ifdef BUFFERTESTMEMORY
@@ -135,7 +147,9 @@ BufferChannelInternal::BufferChannelInternal(const unsigned int size, const doub
 
 BufferChannelInternal::~BufferChannelInternal() throw()
 {
-	delete [] data;
+	if(allocatedSize > 0)
+		delete [] data;
+	
 	data = 0;
 	size_= 0;
 	allocatedSize = 0;
@@ -151,12 +165,11 @@ Buffer::Buffer() throw()
 {
 }
 
-//Buffer::Buffer(const int size, const int numChannels, bool zeroData) throw()
 Buffer::Buffer(BufferSpec const& spec) throw()
 :	numChannels_(spec.numChannels_),
 	size_(spec.size_)
 {
-	bool zeroData = spec.zeroData_;
+	const bool zeroData = spec.zeroData_;
 	
 	channels = new BufferChannelInternal*[numChannels_];
 	
@@ -387,22 +400,22 @@ Buffer Buffer::withSize(const int size, const int numChannels, bool zeroData) th
 	return Buffer(BufferSpec(size, numChannels, zeroData));
 }
 
-Buffer::Buffer(const int size, const float* sourceData) throw()
+Buffer::Buffer(const int size, float* sourceData, const bool copyTheData) throw()
 :	numChannels_(1),
 	size_(size)
 {
 	channels = new BufferChannelInternal*[numChannels_]; //	numChannels_ = 1 always in this case
-	channels[0] = new BufferChannelInternal(size_, size_, sourceData);
+	channels[0] = new BufferChannelInternal(size_, size_, sourceData, copyTheData);
 }
 
-Buffer::Buffer(const int size, const int numChannels, const float** sourceDataArray) throw()
+Buffer::Buffer(const int size, const int numChannels, float** sourceDataArray, const bool copyTheData) throw()
 :	numChannels_(numChannels),
 	size_(size)
 {
 	channels = new BufferChannelInternal*[numChannels_];
 	for(int i = 0; i < numChannels_; i++)
 	{
-		channels[i] = new BufferChannelInternal(size_, size_, sourceDataArray[i]);
+		channels[i] = new BufferChannelInternal(size_, size_, sourceDataArray[i], copyTheData);
 	}
 }
 
@@ -418,14 +431,14 @@ Buffer::Buffer(BufferChannelInternal *internalToUse) throw()
 
 #if defined(UGEN_JUCE)
 #include "../juce/ugen_JuceUtility.h"
-Buffer::Buffer(AudioSampleBuffer& audioSampleBuffer) throw()
+Buffer::Buffer(AudioSampleBuffer& audioSampleBuffer, const bool copyTheData) throw()
 :	numChannels_(audioSampleBuffer.getNumChannels()),
 	size_(audioSampleBuffer.getNumSamples())
 {
 	channels = numChannels_ <= 0 ? 0 : new BufferChannelInternal*[numChannels_];
 	for(int i = 0; i < numChannels_; i++)
 	{
-		channels[i] = new BufferChannelInternal(size_, size_, audioSampleBuffer.getSampleData(i));
+		channels[i] = new BufferChannelInternal(size_, size_, audioSampleBuffer.getSampleData(i), copyTheData);
 	}
 }
 
@@ -1469,7 +1482,7 @@ Buffer Buffer::interleave() throw()
 {
 	if(size_ < 1 || numChannels_ < 1) return Buffer();
 	
-	Buffer intervleavedBuffer = BufferSpec(size_ * numChannels_, 1, false);
+	Buffer intervleavedBuffer = Buffer::withSize(size_ * numChannels_, 1, false);
 	
 	for(int channel = 0; channel < numChannels_; channel++)
 	{
@@ -1493,9 +1506,9 @@ Buffer Buffer::deinterleave(const int numInterleavedChannels) throw()
 	ugen_assert((size_ % numInterleavedChannels) == 0);
 	
 	const int newSize = size_ / numInterleavedChannels;
-	Buffer deintervleavedBuffer = BufferSpec(newSize, 
-											 numInterleavedChannels, 
-											 false);
+	Buffer deintervleavedBuffer = Buffer::withSize(newSize, 
+												   numInterleavedChannels, 
+												   false);
 	
 	for(int channel = 0; channel < numInterleavedChannels; channel++)
 	{
@@ -1556,7 +1569,7 @@ Buffer::Buffer(Buffer const& copy) throw()
 
 Buffer Buffer::copy() const throw()
 {
-	Buffer newBuffer(BufferSpec(size_, numChannels_, false));
+	Buffer newBuffer = Buffer::withSize(size_, numChannels_, false);
 	
 	if(size_ > 0 && numChannels_ > 0) 
 	{
@@ -1665,7 +1678,7 @@ Buffer Buffer::append(Buffer const& other) const throw()
 	const int newNumChannels = numChannels_ > other.numChannels_ ? numChannels_ : other.numChannels_;
 	const int newSize = size_ + other.size_;
 	
-	Buffer newBuffer(BufferSpec(newSize, newNumChannels, false));
+	Buffer newBuffer = Buffer::withSize(newSize, newNumChannels, false);
 	
 	for(int i = 0; i < numChannels_; i++)
 	{
@@ -1703,7 +1716,8 @@ Buffer::Buffer(Buffer const& channels0, Buffer const& channels1) throw()
 		{
 			channels[newIndex] = new BufferChannelInternal(size_, 
 														   channels1.size_, 
-														   channels1.channels[i]->data);
+														   channels1.channels[i]->data,
+														   true);
 		}
 	}
 	else if(channels0.size_ < channels1.size_)
@@ -1714,7 +1728,8 @@ Buffer::Buffer(Buffer const& channels0, Buffer const& channels1) throw()
 		{
 			channels[newIndex] = new BufferChannelInternal(size_, 
 														   channels0.size_, 
-														   channels0.channels[i]->data);
+														   channels0.channels[i]->data,
+														   true);
 		}
 		
 		for(int i = 0; i < channels1.numChannels_; i++, newIndex++)
@@ -1810,7 +1825,7 @@ Buffer Buffer::getRegion(const int startSample,
 		}
 	}
 	
-	Buffer newBuffer(BufferSpec(newSize, newNumChannels, false));
+	Buffer newBuffer = Buffer::withSize(newSize, newNumChannels, false);
 	
 	for(int newChannelIndex = 0; newChannelIndex < newNumChannels; newChannelIndex++, currentChannel += channelStep)
 	{
@@ -2012,7 +2027,7 @@ Buffer Buffer::blend(Buffer const& other, double dfraction) const throw()
 	const int maxSize = ugen::max(size_, other.size_);
 	const int minSize = ugen::min(size_, other.size_);
 
-	Buffer newBuffer(BufferSpec(maxSize, newNumChannels, false));
+	Buffer newBuffer = Buffer::withSize(maxSize, newNumChannels, false);
 	
 	if(dfraction >= 0.0)
 	{		
@@ -2187,14 +2202,12 @@ Buffer Buffer::loopFade(const float fadeTime,
 	
 	const int newSize = size_ - fadeSize;
 	
-	Buffer newBuffer(BufferSpec(newSize, numChannels_, false));
+	Buffer newBuffer = Buffer::withSize(newSize, numChannels_, false);
 	for(int channel = 0; channel < numChannels_; channel++)
 	{
 		float *outputSamples = newBuffer.getData(channel);
-		//memcpy(outputSamples, getDataReadOnly(channel), newSize * sizeof(float));
 		memcpy(outputSamples, getData(channel), newSize * sizeof(float));
 		
-		//const float* inputSamples = getDataReadOnly(channel) + newSize;
 		const float* inputSamples = getData(channel) + newSize;
 		
 		int numSamplesToProcess = fadeSize;
@@ -2229,7 +2242,7 @@ Buffer Buffer::resample(const int newSize) const throw()
 	}
 	else
 	{
-		Buffer newBuffer(BufferSpec(newSize, numChannels_, false));
+		Buffer newBuffer = Buffer::withSize(newSize, numChannels_, false);
 		
 		double reciprocalNewSize = 1.0 / (double)(newSize-1);
 		
@@ -2263,7 +2276,7 @@ Buffer Buffer::changeSampleRate(const double oldSampleRate, const double newSamp
 #ifndef UGEN_ANDROID
 Buffer Buffer::rand(const int size, const double lower, const double upper, const int numChannels) throw()
 {
-	Buffer newBuffer(BufferSpec(size, numChannels, false));
+	Buffer newBuffer = Buffer::withSize(size, numChannels, false);
 	
 	double range = upper-lower;
 	double rangeFactor = range / RAND_MAX;
@@ -2281,7 +2294,7 @@ Buffer Buffer::rand(const int size, const double lower, const double upper, cons
 #else
 Buffer Buffer::rand(const int size, const double lower, const double upper, const int numChannels) throw()
 {
-	Buffer newBuffer(BufferSpec(size, numChannels, false));
+	Buffer newBuffer = Buffer::withSize(size, numChannels, false));
 	
 	double range = upper-lower;
 	
@@ -2306,7 +2319,7 @@ Buffer Buffer::rand2(const int size, const double positive, const int numChannel
 #ifndef UGEN_NOEXTGPL
 Buffer Buffer::exprand(const int size, const double lower, const double upper, const int numChannels) throw()
 {
-	Buffer newBuffer(BufferSpec(size, numChannels, false));
+	Buffer newBuffer = Buffer::withSize(size, numChannels, false);
 	Ran088& random(Ran088::defaultGenerator()); //((unsigned long)newBuffer.getData() + 993877L * 4994L + ugen::rand(2876)); // seed
 		
 	for(int channel = 0; channel < numChannels; channel++)
@@ -2322,7 +2335,7 @@ Buffer Buffer::exprand(const int size, const double lower, const double upper, c
 
 Buffer Buffer::linrand(const int size, const double lower, const double upper, const int numChannels) throw()
 {
-	Buffer newBuffer(BufferSpec(size, numChannels, false));
+	Buffer newBuffer = Buffer::withSize(size, numChannels, false);
 	Ran088& random(Ran088::defaultGenerator()); //((unsigned long)newBuffer.getData() + 1122408L * 98823L + ugen::rand(8188123)); // seed
 	
 	double range = upper-lower;
@@ -2459,51 +2472,9 @@ void Buffer::synthAndSend(const int size, UGen const& graph, BufferReceiver* rec
 	receiver->handleBuffer(result, 0.0, bufferID);	
 }
 
-//Buffer Buffer::normalise() const
-//{
-//	Buffer newBuffer(size_, numChannels_, false);
-//	
-//	for(int channelIndex = 0; channelIndex < numChannels_; channelIndex++)
-//	{
-//	float sumOver1 = 1.f / sum(channelIndex);
-//	
-//	for(int channelIndex = 0; channelIndex < numChannels_; channelIndex++)
-//	{
-//		
-//		int numSamples = size_;
-//		float* inputSamples = channels[channelIndex]->data;
-//		float* outputSamples = newBuffer.channels[channelIndex]->data;
-//		
-//		while(--numSamples >= 0) {
-//			*outputSamples++ = *inputSamples++ * sumOver1;
-//		}
-//	}
-//	
-//	return newBuffer;
-//}
-
-//Buffer Buffer::normaliseEach() const
-//{
-//	Buffer newBuffer(size_, numChannels_, false);
-//	
-//	for(int channelIndex = 0; channelIndex < numChannels_; channelIndex++)
-//	{
-//		float sumOver1 = 1.f / sum(channelIndex);
-//		int numSamples = size_;
-//		float* inputSamples = channels[channelIndex]->data;
-//		float* outputSamples = newBuffer.channels[channelIndex]->data;
-//		
-//		while(--numSamples >= 0) {
-//			*outputSamples++ = *inputSamples++ * sumOver1;
-//		}
-//	}
-//	
-//	return newBuffer;
-//}
-
 Buffer Buffer::reciprocalExceptZero() const throw()
 {
-	Buffer newBuffer(BufferSpec(size_, numChannels_, false));
+	Buffer newBuffer = Buffer::withSize(size_, numChannels_, false);
 	
 	for(int channelIndex = 0; channelIndex < numChannels_; channelIndex++)
 	{
@@ -2525,7 +2496,7 @@ Buffer Buffer::reciprocalExceptZero() const throw()
 
 Buffer Buffer::reverse() const throw()
 {
-	Buffer newBuffer(BufferSpec(size_, numChannels_, false));
+	Buffer newBuffer = Buffer::withSize(size_, numChannels_, false);
 	
 	for(int channelIndex = 0; channelIndex < numChannels_; channelIndex++)
 	{

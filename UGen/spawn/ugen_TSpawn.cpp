@@ -46,7 +46,7 @@ BEGIN_UGEN_NAMESPACE
 
 TSpawnUGenInternal::TSpawnUGenInternal(const int numChannels, UGen const& trig, const int maxRepeats) throw()
 :	SpawnBaseUGenInternal(NumInputs, numChannels, maxRepeats),
-	lastTrig(0.f)
+	currentTrig(0.f), lastTrig(0.f)
 {
 	inputs[Trig] = trig;  // should have already been ensured to be a single channel
 }
@@ -72,7 +72,7 @@ void TSpawnUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 		
 		while(numSamplesToProcess)
 		{
-			float currentTrig = *trigSamples++;
+			currentTrig = *trigSamples++;
 						
 			if(lastTrig <= 0.f && currentTrig > 0.f)
 			{
@@ -120,9 +120,10 @@ void TSpawnUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 
 
 bool TSpawnUGenInternal::trigger(void* extraArgs) throw()
-{
+{	
 	if(reachedMaxRepeats() == false)
 	{
+		currentTrig = 1.f;
 		UGen newVoice = spawnEvent(*this, currentEventIndex++, extraArgs);
 		events.add(newVoice);
 	}

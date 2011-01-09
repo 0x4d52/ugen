@@ -263,6 +263,10 @@ private:
 	unsigned int samplesProcessed;
 };
 
+/** Collects samples and sends them as a Buffer to one or more receivers.
+ This can be used to send data to a oscilloscope (e.g., ScopeComponent) or
+ for other purposes (e.g., analysis). 
+ @see FFTSender */
 UGenSublcassDeclarationNoDefault(Sender, 
 								 (input, duration), 
 								 (UGen const& input, UGen const& duration = 0.1), COMMON_UGEN_DOCS);
@@ -326,6 +330,23 @@ private:
 	int bufferIndex;
 };
 
+/** Collects samples and performs and FFT before sending to one or more receivers.
+ @param input	The audio input to apply the FFT to.
+ @param mode	The data can be cooked in various ways using one of the FFTModes before it's sent. 
+				E.g., FFTEngine::Magnitude will just calculate the bin magnitudes. Using mode 
+				FFTEngine::RealImagRaw will use less allocation on the audio thread so you could
+				do the transformation.
+ @param fft		The FFT size.
+ @param overlap	The overlap factor for successive FFT frames.
+ @param firstBin	The first bin reported in the cooked data sent (not used for modes
+					FFTEngine::RealImagRaw or FFTEngine::RealImagRawSplit). Default is 1
+					where bin 0 is the DC bin.
+ @param numBins		The number of bins reported in the cooked data sent (not used for modes
+					FFTEngine::RealImagRaw or FFTEngine::RealImagRawSplit). If firstBin is
+					0 then the maximum number of bins is one greater than half the FFT size.
+					Here the final bin would be the Nyquist bin. Default is 0 which means
+					all bins from firstBin upwards will be sent.
+ @see Sender, FFTEngine */
 UGenSublcassDeclarationNoDefault(FFTSender, 
 								 (input, mode, fft, overlap, firstBin, numBins), 
 								 (UGen const& input, 

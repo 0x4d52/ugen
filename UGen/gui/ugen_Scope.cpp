@@ -836,8 +836,8 @@ FFTSenderUGenInternal::FFTSenderUGenInternal(UGen const& input,
 	firstBin_(firstBin < fftSizeHalved ? firstBin : fftSizeHalved),
 	maxNumBins(fftSizeHalved - firstBin_ + 1),
 	numBins_(numBins ? (numBins < maxNumBins ? numBins : maxNumBins) : maxNumBins),
-	inputBuffer(BufferSpec(fftSize, input.getNumChannels(), true)),
-	outputBuffer(BufferSpec(fftSize, input.getNumChannels(), true)),
+	inputBuffer(Buffer::newClear(fftSize, input.getNumChannels(), true)),
+	outputBuffer(Buffer::newClear(fftSize, input.getNumChannels(), true)),
 	bufferIndex(0)
 {
 	ugen_assert(overlap == overlap_);	// should be > 0

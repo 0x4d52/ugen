@@ -52,11 +52,12 @@ public:
 	bool trigger(void* extraArgs = 0) throw();
 	
 	inline UGen& getTrigger() throw() { return inputs[Trig]; }
+	inline float getCurrentTrig() const throw() { return currentTrig; }
 	
 	enum Inputs { Trig, NumInputs };
 	
 protected:
-	float lastTrig;
+	float currentTrig, lastTrig;
 	
 };
 
