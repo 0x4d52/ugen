@@ -2320,7 +2320,7 @@ Buffer Buffer::rand2(const int size, const double positive, const int numChannel
 Buffer Buffer::exprand(const int size, const double lower, const double upper, const int numChannels) throw()
 {
 	Buffer newBuffer = Buffer::withSize(size, numChannels, false);
-	Ran088& random(Ran088::defaultGenerator()); //((unsigned long)newBuffer.getData() + 993877L * 4994L + ugen::rand(2876)); // seed
+	Ran088& random(Ran088::defaultGenerator());
 		
 	for(int channel = 0; channel < numChannels; channel++)
 	{
@@ -2336,7 +2336,7 @@ Buffer Buffer::exprand(const int size, const double lower, const double upper, c
 Buffer Buffer::linrand(const int size, const double lower, const double upper, const int numChannels) throw()
 {
 	Buffer newBuffer = Buffer::withSize(size, numChannels, false);
-	Ran088& random(Ran088::defaultGenerator()); //((unsigned long)newBuffer.getData() + 1122408L * 98823L + ugen::rand(8188123)); // seed
+	Ran088& random(Ran088::defaultGenerator());
 	
 	double range = upper-lower;
 	
@@ -2416,9 +2416,28 @@ Buffer Buffer::blackmanWindow(const int size, const float alpha) throw()
 //	return window;
 //}
 
-Buffer Buffer::synth(const int size, UGen const& graph_) throw()
+//Buffer Buffer::synth(const int size, UGen const& graph_) throw()
+//{
+//	UGen graph = graph_;	
+//	ugen_assert(size > 0);
+//	
+//	int numChannels = graph.getNumChannels();
+//	ugen_assert(numChannels > 0);
+//	
+//	Buffer result = Buffer::withSize(size, numChannels);
+//	
+//	for(int i = 0; i < numChannels; i++)
+//	{
+//		graph.setOutput(result.getData(i), size, i);
+//	}
+//	
+//	graph.prepareAndProcessBlock(size, 0, 0);
+//	
+//	return result;	
+//}
+
+Buffer Buffer::synth(const int size, UGen const& graph, const bool allAtOnce) throw()
 {
-	UGen graph = graph_;	
 	ugen_assert(size > 0);
 	
 	int numChannels = graph.getNumChannels();
@@ -2426,17 +2445,13 @@ Buffer Buffer::synth(const int size, UGen const& graph_) throw()
 	
 	Buffer result = Buffer::withSize(size, numChannels);
 	
-	for(int i = 0; i < numChannels; i++)
-	{
-		graph.setOutput(result.getData(i), size, i);
-	}
-	
-	graph.prepareAndProcessBlock(size, 0, 0);
+	result.synthInPlace(graph, 0, size, allAtOnce);	
 	
 	return result;	
 }
 
-void Buffer::synthInPlace(UGen const& graph_, const int offset, const int numSamples_) throw()
+
+void Buffer::synthInPlace(UGen const& graph_, const int offset, const int numSamples_, const bool allAtOnce) throw()
 {
 	UGen graph = graph_;	
 	
@@ -2450,8 +2465,34 @@ void Buffer::synthInPlace(UGen const& graph_, const int offset, const int numSam
 	{
 		graph.setOutput(getData(i) + offset, numSamples, i);
 	}
+			
+	if(allAtOnce)
+	{
+		graph.prepareAndProcessBlock(numSamples, 0, -1);	
+	}
+	else
+	{
+		int numSamplesRemaining = numSamples;
+		int blockSize = UGen::getEstimatedBlockSize();
+		if(blockSize <= 0) blockSize = 512;
 		
-	graph.prepareAndProcessBlock(numSamples, 0, 0);
+		int blockID = 0;
+		
+		while(numSamplesRemaining > 0)
+		{
+			if(numSamplesRemaining < blockSize)
+				blockSize = numSamplesRemaining;
+			
+			graph.prepareAndProcessBlock(blockSize, blockID, -1);	
+			
+			numSamplesRemaining -= blockSize;
+			blockID += blockSize;
+			
+#ifdef UGEN_JUCE
+			Thread::yield();
+#endif
+		}
+	}
 	
 	if(numChannels < getNumChannels())
 	{
@@ -2468,7 +2509,7 @@ void Buffer::synthAndSend(const int size, UGen const& graph, BufferReceiver* rec
 {
 	ugen_assert(receiver != 0);
 	
-	Buffer result = synth(size, graph);
+	Buffer result = synth(size, graph, false);
 	receiver->handleBuffer(result, 0.0, bufferID);	
 }
 
@@ -2535,11 +2576,52 @@ Buffer Buffer::mix() const throw()
 	return newBuffer;
 }
 
-Buffer Buffer::process(UGen const& input_, UGen const& graph_, const int offset, const int numSamples_) const throw()
-{
-	UGen input = input_;
-	UGen graph = graph_;
-	
+//Buffer Buffer::process(UGen const& input_, UGen const& graph_, const int offset, const int numSamples_) const throw()
+//{
+//	UGen input = input_;
+//	UGen graph = graph_;
+//	
+//	int numSamples = (numSamples_ <= 0) ? size() : numSamples_;
+//	ugen_assert(numSamples > 0);
+//	
+//	int numChannels = ugen::min(getNumChannels(), graph.getNumChannels());
+//	ugen_assert(numChannels > 0);
+//		
+//	Buffer result = Buffer::withSize(numSamples, numChannels);
+//		
+//	for(int i = 0; i < numChannels; i++)
+//	{
+//		input.setInput(getData(i) + offset, numSamples, i);
+//		graph.setOutput(result.getData(i), numSamples, i);
+//	}
+//		
+//	int numSamplesRemaining = numSamples;
+//	int blockSize = UGen::getEstimatedBlockSize();
+//	if(blockSize <= 0) blockSize = 512;
+//	
+//	int blockID = 0;
+//	
+//	while(numSamplesRemaining > 0)
+//	{
+//		if(numSamplesRemaining < blockSize)
+//			blockSize = numSamplesRemaining;
+//		
+//		graph.prepareAndProcessBlock(blockSize, blockID, -1);	
+//		
+//		numSamplesRemaining -= blockSize;
+//		blockID += blockSize;
+//		
+//#ifdef UGEN_JUCE
+//		Thread::yield();
+//#endif
+//	}
+//	
+//	
+//	return result;
+//}
+
+Buffer Buffer::process(UGen const& input, UGen const& graph, const int offset, const int numSamples_, const bool allAtOnce) const throw()
+{	
 	int numSamples = (numSamples_ <= 0) ? size() : numSamples_;
 	ugen_assert(numSamples > 0);
 	
@@ -2547,19 +2629,13 @@ Buffer Buffer::process(UGen const& input_, UGen const& graph_, const int offset,
 	ugen_assert(numChannels > 0);
 		
 	Buffer result = Buffer::withSize(numSamples, numChannels);
-		
-	for(int i = 0; i < numChannels; i++)
-	{
-		input.setInput(getData(i) + offset, numSamples, i);
-		graph.setOutput(result.getData(i), numSamples, i);
-	}
 	
-	graph.prepareAndProcessBlock(numSamples, 0, 0);
+	result.processInPlace(input, graph, offset, numSamples, allAtOnce);
 	
 	return result;
 }
 
-void Buffer::processInPlace(UGen const& input_, UGen const& graph_, const int offset, const int numSamples_) throw()
+void Buffer::processInPlace(UGen const& input_, UGen const& graph_, const int offset, const int numSamples_, const bool allAtOnce) throw()
 {
 	UGen input = input_;
 	UGen graph = graph_;
@@ -2576,7 +2652,33 @@ void Buffer::processInPlace(UGen const& input_, UGen const& graph_, const int of
 		graph.setOutput(getData(i) + offset, numSamples, i);
 	}
 		
-	graph.prepareAndProcessBlock(numSamples, 0, 0);	
+	if(allAtOnce)
+	{
+		graph.prepareAndProcessBlock(numSamples, 0, -1);	
+	}
+	else
+	{
+		int numSamplesRemaining = numSamples;
+		int blockSize = UGen::getEstimatedBlockSize();
+		if(blockSize <= 0) blockSize = 512;
+		
+		int blockID = 0;
+		
+		while(numSamplesRemaining > 0)
+		{
+			if(numSamplesRemaining < blockSize)
+				blockSize = numSamplesRemaining;
+
+			graph.prepareAndProcessBlock(blockSize, blockID, -1);	
+			
+			numSamplesRemaining -= blockSize;
+			blockID += blockSize;
+			
+#ifdef UGEN_JUCE
+			Thread::yield();
+#endif
+		}
+	}
 	
 	if(numChannels < getNumChannels())
 	{
@@ -2598,7 +2700,7 @@ void Buffer::processAndSend(UGen const& input,
 {
 	ugen_assert(receiver != 0);
 	
-	Buffer result = process(input, graph, offset, numSamples);
+	Buffer result = process(input, graph, offset, numSamples, false);
 	receiver->handleBuffer(result, 0.0, bufferID);
 }
 
