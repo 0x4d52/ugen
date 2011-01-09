@@ -281,19 +281,26 @@ public:
 	 are used elsewhere in another context e.g., for real-time use.
 	 This graph must be completely separate from any other graphs otherwise
 	 unusual results may be experienced.
-	 @param size	The number of samples to generate.
-	 @param graph	The audio graph to process to synthesise the audio Buffer.	*/
-	static Buffer synth(const int size, UGen const& graph) throw();
+	 @param size		The number of samples to generate.
+	 @param graph		The audio graph to process to synthesise the audio Buffer. 
+	 @param allAtOnce	If true the processing is done all in one go, if false it may yield the current thread. 	*/
+	static Buffer synth(const int size, 
+						UGen const& graph, 
+						const bool allAtOnce = true) throw();
 	
 	/** Synthesise into an exisiting Buffer using a UGen graph. 
 	 Be very careful that none of the UGens in the graph 
 	 are used elsewhere in another context e.g., for real-time use.
 	 This graph must be completely separate from any other graphs otherwise
 	 unusual results may be experienced.
-	 @param graph	The audio graph to process to synthesise the audio Buffer.	
+	 @param graph		The audio graph to process to synthesise the audio Buffer.	
 	 @param offset		The start sample within the Buffer.
-	 @param numSamples	The number of samples to process, 0 means all remaining samples. */	
-	void synthInPlace(UGen const& graph, const int offset = 0, const int numSamples = 0) throw();
+	 @param numSamples	The number of samples to process, 0 means all remaining samples. 
+	 @param allAtOnce	If true the processing is done all in one go, if false it may yield the current thread.  */	
+	void synthInPlace(UGen const& graph, 
+					  const int offset = 0, 
+					  const int numSamples = 0, 
+					  const bool allAtOnce = true) throw();
 	
 	/** Process this Buffer and send it to a BufferReceiver.
 	 This would be useful when run on a backgrond thread especially if the 
@@ -815,8 +822,13 @@ public:
 	 @param input		An AudioIn UGen which is at the top of the graph.
 	 @param graph		The audio graph to process the audio with input at the top. 
 	 @param offset		The start sample within the Buffer.
-	 @param numSamples	The number of samples to process, 0 means all remaining samples. */
-	Buffer process(UGen const& input, UGen const& graph, const int offset = 0, const int numSamples = 0) const throw();
+	 @param numSamples	The number of samples to process, 0 means all remaining samples. 
+	 @param allAtOnce	If true the processing is done all in one go, if false it may yield the current thread. */
+	Buffer process(UGen const& input, 
+				   UGen const& graph, 
+				   const int offset = 0, 
+				   const int numSamples = 0, 
+				   const bool allAtOnce = true) const throw();
 	
 	/** Process this Buffer in-place through a UGen graph.
 	 Be very careful that none of the UGens in either the input or graph 
@@ -832,8 +844,13 @@ public:
 	 @param input	An AudioIn UGen which is at the top of the graph.
 	 @param graph	The audio graph to process the audio with input at the top.
 	 @param offset		The start sample within the Buffer.
-	 @param numSamples	The number of samples to process, 0 means all remaining samples. */
-	void processInPlace(UGen const& input, UGen const& graph, const int offset = 0, const int numSamples = 0) throw();
+	 @param numSamples	The number of samples to process, 0 means all remaining samples. 
+	 @param allAtOnce	If true the processing is done all in one go, if false it may yield the current thread.  */
+	void processInPlace(UGen const& input, 
+						UGen const& graph, 
+						const int offset = 0, 
+						const int numSamples = 0, 
+						const bool allAtOnce = true) throw();
 		
 	/** Process this Buffer and send it to a BufferReceiver.
 	 This would be useful when run on a backgrond thread especially if the 
