@@ -50,12 +50,12 @@ SmartPointer::SmartPointer() throw()
 :	refCount(1),
 	active(true)
 {		
-	//printf("+++++++, %p, %d\n", this, ++allocationCount);
+//	printf("+++++++, %p, %d\n", this, ++allocationCount);
 }
 
 SmartPointer::~SmartPointer()
 {
-	//printf("-------, %p, %d\n", this, --allocationCount);
+//	printf("-------, %p, %d\n", this, --allocationCount);
 	ugen_assert(refCount >= 0);
 }
 
