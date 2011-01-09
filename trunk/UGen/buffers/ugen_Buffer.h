@@ -48,7 +48,7 @@ class BufferChannelInternal : public SmartPointer
 {
 public:
 	BufferChannelInternal(const unsigned int size, bool zeroData = false) throw();
-	BufferChannelInternal(const unsigned int size, const unsigned int sourceDataSize, const float* sourceData) throw();
+	BufferChannelInternal(const unsigned int size, const unsigned int sourceDataSize, float* sourceData, const bool copyTheData) throw();
 	BufferChannelInternal(const unsigned int size, const double start, const double end) throw();
 	~BufferChannelInternal() throw();
 	
@@ -305,10 +305,10 @@ public:
 	static void synthAndSend(const int size, UGen const& graph, BufferReceiver* receiver, const int bufferID = 0) throw();
 	
 	/** Constuct a single-channel Buffer from data in a raw float array. */
-	Buffer(const int size, const float* sourceData) throw();
+	Buffer(const int size, float* sourceData, const bool copyTheData = true) throw();
 	
 	/** Constuct a multi-channel Buffer from data in a raw multi-dimensional float array. */
-	Buffer(const int size, const int numChannels, const float** sourceDataArray) throw();
+	Buffer(const int size, const int numChannels, float** sourceDataArray, const bool copyTheData = true) throw();
 	
 	/** Constuct a single-channel Buffer from another BufferChannelInternal. */
 	Buffer(BufferChannelInternal *internalToUse) throw();
@@ -330,7 +330,7 @@ public:
 	
 #if defined(JUCE_VERSION) || defined(DOXYGEN)
 	/** Constuct a Buffer from a Juce AudioSampleBuffer. */
-	Buffer(AudioSampleBuffer& audioSampleBuffer) throw();
+	Buffer(AudioSampleBuffer& audioSampleBuffer, const bool copyTheData = true) throw();
 	
 	/** Constuct a Buffer from an audio file on disk given by a Juce String path. */
 	Buffer(String const& audioFilePath) throw();
@@ -391,7 +391,7 @@ public:
 	 @code
 		Buffer a = Buffer(0.0, 0.5, 1.0);
 		Buffer b = a;
-		Buffer c = a.copy;
+		Buffer c = a.copy();
 		bool test1 = (a == b); // will be true
 		bool test2 = (a == c); // will be false
 	 @endcode */
