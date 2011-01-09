@@ -171,8 +171,17 @@ void ScopeGUI::initBuffers() throw()
 	
 	if(drawBufferSize > 0 && audioBuffer.size() > 0)
 	{
-		minDrawBuffer = Buffer(BufferSpec(drawBufferSize, audioBuffer.getNumChannels(), true));
-		maxDrawBuffer = Buffer(BufferSpec(drawBufferSize, audioBuffer.getNumChannels(), true));
+		if((minDrawBuffer.size() != drawBufferSize) ||
+		   (minDrawBuffer.getNumChannels() != audioBuffer.getNumChannels()))
+		{
+			minDrawBuffer = Buffer::newClear(drawBufferSize, audioBuffer.getNumChannels(), true);
+		}
+		
+		if((maxDrawBuffer.size() != drawBufferSize) ||
+		   (maxDrawBuffer.getNumChannels() != audioBuffer.getNumChannels()))
+		{			
+			maxDrawBuffer = Buffer::newClear(drawBufferSize, audioBuffer.getNumChannels(), true);
+		}
 	}
 }
 
@@ -210,8 +219,15 @@ void ScopeGUI::setAudioBuffer(Buffer const& audioBufferToUse, const double offse
 			
 			audioBuffer = newBuffer;
 		}
+		else if((audioBuffer.size() == audioBufferToUse.size()) && 
+				(audioBuffer.getNumChannels() == audioBufferToUse.getNumChannels()))
+		{
+			audioBuffer.copyFrom(audioBufferToUse);
+		}
 		else
+		{
 			audioBuffer = audioBufferToUse.copy();
+		}
 		
 		initBuffers();
 		unlock();
@@ -555,7 +571,7 @@ Scope::Scope(ScopeGUIPtrPtr scopeGUI, UGen const& input, UGen const& duration) t
 
 BufferSenderUGenInternal::BufferSenderUGenInternal(UGen const& input, UGen const& duration) throw()
 :	UGenInternal(NumInputs),
-	audioBuffer(BufferSpec((int)(UGen::getSampleRate()), input.getNumChannels(), true)),
+	audioBuffer(Buffer::withSize((int)(UGen::getSampleRate()), input.getNumChannels(), true)),
 	bufferIndex(0),
 	audioBufferSizeUsed(0),
 	samplesProcessed(0)
@@ -580,7 +596,8 @@ void BufferSenderUGenInternal::processBlock(bool& shouldDelete, const unsigned i
 			sendBuffer(audioBuffer.getRegion(0, audioBufferAllocatedSize-1), samplesProcessed);
 		}
 		
-		audioBuffer = Buffer(audioBufferSizeRequired, inputs[Input].getNumChannels(), false);
+		audioBufferAllocatedSize = audioBufferSizeRequired;
+		audioBuffer = Buffer::withSize(audioBufferAllocatedSize, inputs[Input].getNumChannels(), false);
 		audioBufferSizeUsed = audioBufferSizeRequired;
 		bufferIndex = 0;
 	}
@@ -590,7 +607,17 @@ void BufferSenderUGenInternal::processBlock(bool& shouldDelete, const unsigned i
 		
 		if(bufferIndex >= audioBufferSizeUsed)
 		{
-			sendBuffer(audioBuffer.getRegion(0, audioBufferSizeUsed-1), samplesProcessed);
+			if(audioBufferSizeUsed == audioBuffer.size())
+			{
+				sendBuffer(audioBuffer, samplesProcessed);
+			}
+			else
+			{
+				sendBuffer(audioBuffer.getRegion(0, audioBufferSizeUsed-1), samplesProcessed);
+				audioBufferAllocatedSize = audioBufferSizeRequired;
+				audioBuffer = Buffer::withSize(audioBufferAllocatedSize, inputs[Input].getNumChannels(), false);
+			}
+			
 			bufferIndex = 0;
 		}
 	}
@@ -620,7 +647,17 @@ void BufferSenderUGenInternal::processBlock(bool& shouldDelete, const unsigned i
 		
 		if(bufferIndex >= audioBufferSizeUsed)
 		{
-			sendBuffer(audioBuffer.getRegion(0, audioBufferSizeUsed-1), samplesProcessed);
+			if(audioBufferSizeUsed == audioBuffer.size())
+			{
+				sendBuffer(audioBuffer, samplesProcessed);
+			}
+			else
+			{
+				sendBuffer(audioBuffer.getRegion(0, audioBufferSizeUsed-1), samplesProcessed);
+				audioBufferAllocatedSize = audioBufferSizeRequired;
+				audioBuffer = Buffer::withSize(audioBufferAllocatedSize, inputs[Input].getNumChannels(), false);
+			}			
+			
 			bufferIndex = 0;
 		}	
 	}	
