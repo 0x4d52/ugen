@@ -59,6 +59,9 @@ UGen UGenInstrumentEvent::spawnEvent(VoicerUGenInternal& voicer,
 	UGen note = midiNote;
 	note += Lag::AR(&voicer.getPitchWheel()) * 2.0; // +-2 semi tone with pitch wheel
 	
+	// vibrato
+	note += SinOsc::AR(7, 0, 0.1); // 7Hz LFO depth 0.1 semitone
+	
 	// convert midi note to frequency
 	UGen freq = midicps(note);
 	

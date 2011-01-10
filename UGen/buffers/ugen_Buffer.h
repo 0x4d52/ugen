@@ -194,7 +194,7 @@ public:
 	template<class NumericalType>
 	Buffer(NumericalArray<NumericalType> const& array) throw()
 	:	numChannels_(1),
-		size_(array.size())
+		size_(array.length())
 	{
 		channels = new BufferChannelInternal*[numChannels_];
 		channels[0] = new BufferChannelInternal(size_, false);
@@ -202,12 +202,23 @@ public:
 		{
 			channels[0]->data[i] = (float)array[i];
 		}
+	}	
+	
+	/** Constuct a single-channel Buffer by using the data from a NumericalArray<float> (i.e., FloatArray). 
+	 Here there's an option to copy the data or just use the data from the original array directly. In the
+	 latter case you must ensure that the original array exists for the same duration as this Buffer.*/	
+	Buffer(NumericalArray<float>& array, const bool copyTheData = true) throw()
+	:	numChannels_(1),
+		size_(array.length())
+	{
+		channels = new BufferChannelInternal*[numChannels_];
+		channels[0] = new BufferChannelInternal(size_, size_, array.getArray(), copyTheData);
 	}		
 		
 	/** Constuct a multi-channel Buffer by copying the data from a NumericalArray2D (e.g., FloatArray2D). */
 	template<class NumericalType>
 	Buffer(NumericalArray2D<NumericalType> const& array) throw()
-	:	numChannels_(array.size()),
+	:	numChannels_(array.length()),
 		size_(array.numColumns())
 	{
 		channels = new BufferChannelInternal*[numChannels_];
@@ -223,6 +234,24 @@ public:
 			}
 		}
 	}		
+	
+	/** Constuct a multi-channel Buffer using the data from a NumericalArray2D<float> (i.e., FloatArray2D).
+	 Here there's an option to copy the data or just use the data from the original array directly. In the
+	 latter case you must ensure that the original array exists for the same duration as this Buffer. */
+	Buffer(NumericalArray2D<float>& array, const bool copyTheData = true) throw()
+	:	numChannels_(array.length()),
+		size_(array.numColumns())
+	{
+		channels = new BufferChannelInternal*[numChannels_];
+		
+		for(int channel = 0; channel < numChannels_; channel++)
+		{
+			channels[channel] = new BufferChannelInternal(size_, size_, 
+														  array[channel].getArray(), 
+														  copyTheData);
+		}
+	}		
+	
 	
 	/** Create a single channel Buffer ramping from start to end. */
 	static Buffer line(const int size, const double start, const double end) throw();
@@ -311,10 +340,14 @@ public:
 	 @param bufferID	A number to pass to the third argument of handleBuffer() when the Buffer is sent. */
 	static void synthAndSend(const int size, UGen const& graph, BufferReceiver* receiver, const int bufferID = 0) throw();
 	
-	/** Constuct a single-channel Buffer from data in a raw float array. */
+	/** Constuct a single-channel Buffer from data in a raw float array. 
+	 Here there's an option to copy the data or just use the data from the original array directly. In the
+	 latter case you must ensure that the original array exists for the same duration as this Buffer. */
 	Buffer(const int size, float* sourceData, const bool copyTheData = true) throw();
 	
-	/** Constuct a multi-channel Buffer from data in a raw multi-dimensional float array. */
+	/** Constuct a multi-channel Buffer from data in a raw multi-dimensional float array. 
+	 Here there's an option to copy the data or just use the data from the original array directly. In the
+	 latter case you must ensure that the original array exists for the same duration as this Buffer. */
 	Buffer(const int size, const int numChannels, float** sourceDataArray, const bool copyTheData = true) throw();
 	
 	/** Constuct a single-channel Buffer from another BufferChannelInternal. */
@@ -336,7 +369,9 @@ public:
 	bool write(Text const& audioFilePath, bool overwriteExisitingFile = false, int bitDepth = 24) throw();
 	
 #if defined(JUCE_VERSION) || defined(DOXYGEN)
-	/** Constuct a Buffer from a Juce AudioSampleBuffer. */
+	/** Constuct a Buffer from a Juce AudioSampleBuffer. 
+	 Here there's an option to copy the data or just use the data from the AudioSampleBuffer directly. In the
+	 latter case you must ensure that the AudioSampleBuffer object exists for the same duration as this Buffer.*/	
 	Buffer(AudioSampleBuffer& audioSampleBuffer, const bool copyTheData = true) throw();
 	
 	/** Constuct a Buffer from an audio file on disk given by a Juce String path. */
@@ -387,7 +422,9 @@ public:
 	 pointer(s) and increments the reference count(s). */
 	Buffer(Buffer const& copy) throw();
 	
-	/** Make a deep copy of this Buffer. */
+	/** Make a deep copy of this Buffer. 
+	 This always makes a deep copy of the raw data to which the Buffer refers.
+	 This also applies to data which refers to another source. */
 	Buffer copy() const throw();
 	
 	/** Assignment. */
