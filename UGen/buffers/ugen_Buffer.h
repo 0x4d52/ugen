@@ -429,7 +429,19 @@ public:
 	
 	/** Assignment. */
 	Buffer& operator= (Buffer const& other) throw();
+	
+	/** Make this Buffer refer to other data.
+	 With a sourceSize of 0 the current size of the Buffer will be retained */
+	void referTo(const int channel, float* data, const int sourceSize = 0) throw();
+	
+	/** Make this Buffer refer to other data.
+	 With a sourceSize of 0 the current size of the Buffer will be retained */
+	void referTo(const int numChannels, float** channelData, const int sourceSize = 0) throw();
 
+	/** Make this Buffer refer to another Buffer. */
+	void referTo(Buffer const& other, const int offset = 0, const int numSamples = 0) throw();
+	
+	
 	/** Returns true if this and the other Buffer refer to identical internal objects.
 	 This does NOT compare the data so. For example:
 	 @code
@@ -1126,3 +1138,4 @@ protected:
 
 
 #endif // _UGEN_ugen_Buffer_H_
+	

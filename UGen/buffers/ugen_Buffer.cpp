@@ -1595,6 +1595,64 @@ bool Buffer::operator== (Buffer const& other) const throw()
 	return true;
 }
 
+void Buffer::referTo(const int channel, float* data, const int sourceSize) throw()
+{	
+	if((channel < 0) || (channel >= numChannels_)) { ugen_assertfalse; return; }
+	
+	BufferChannelInternal* internal = channels[channel];
+	
+	if(internal->allocatedSize > 0)
+	{
+		delete [] data;
+		internal->allocatedSize = 0;
+	}
+	
+	internal->data = data;
+	
+	if(sourceSize > 0)
+	{
+		internal->size_ = sourceSize;
+		size_ = sourceSize;
+	}
+	
+	if(internal->circularHead > 0)
+	{
+		internal->circularHead = 0;
+		internal->previousCircularHead = -1;
+	}
+}
+
+void Buffer::referTo(const int numChannels, float** channelData, const int sourceSize) throw()
+{
+	ugen_assert(channelData != 0)
+	
+	for(int channel = 0; channel < numChannels; channel++)
+	{
+		referTo(channel, channelData[channel], sourceSize);
+	}
+}
+
+void Buffer::referTo(Buffer const& other, const int offset, const int numSamples) throw()
+{
+	ugen_assert(offset >= 0);
+	ugen_assert(offset < (other.size_-1));
+	
+	int sourceSize = numSamples;
+	if(sourceSize <= 0)
+	{
+		sourceSize = other.size_ - offset;
+	}
+	
+	ugen_assert(sourceSize != 0);
+	ugen_assert((offset+sourceSize) < other.size_);
+	
+	for(int channel = 0; channel < other.numChannels_; channel++)
+	{
+		referTo(channel, other.channels[channel]->data+offset, sourceSize);
+	}
+	
+}
+
 bool Buffer::operator!= (Buffer const& other) const throw()
 {
 	return !operator== (other);
