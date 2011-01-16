@@ -42,7 +42,7 @@ public:
 		
 		addAndMakeVisible (audioSettingsButton = new TextButton (T("show audio settings..."),
 																 T("click here to change the audio device settings")));
-		audioSettingsButton->addButtonListener (this);
+		audioSettingsButton->addListener (this);
 		
 		
 		addAndMakeVisible(cpuUsageLabel = new Label(T("CPU usage"), T("0.00 %")));
@@ -71,9 +71,9 @@ public:
 		inputFileChooser->addListener(this);
 		
 		addAndMakeVisible(inputFilePlayButton = new TextButton(T("Play Input File")));
-		inputFilePlayButton->addButtonListener(this);
+		inputFilePlayButton->addListener(this);
 		addAndMakeVisible(inputFileStopButton = new TextButton(T("Stop Input File")));
-		inputFileStopButton->addButtonListener(this);
+		inputFileStopButton->addListener(this);
 		
 		addAndMakeVisible(fileGainSlider = new Slider(T("fileGainSlider")));
 		fileGainSlider->setRange(0.0, 1.0, 0.0);
