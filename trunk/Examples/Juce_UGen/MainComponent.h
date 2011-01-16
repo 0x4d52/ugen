@@ -33,6 +33,7 @@ class MainComponent  :  public Component,
 	float freqValue1, freqValue2, ampValue1, ampValue2;
 	
 	UGen delayTime;
+	UGen sender;
 							
 public:
 	//==============================================================================
@@ -45,7 +46,7 @@ public:
 		
 		addAndMakeVisible (audioSettingsButton = new TextButton (T("show audio settings..."),
 																 T("click here to change the audio device settings")));
-		audioSettingsButton->addButtonListener (this);
+		audioSettingsButton->addListener (this);
 		
 		
 		addAndMakeVisible(cpuUsageLabel = new Label(T("CPU usage"), T("0.00 %")));
@@ -74,14 +75,14 @@ public:
 		ampSlider2->setValue(0.5, true, true);
 		
 		addAndMakeVisible(testButton1 = new TextButton(T("Test Button 1")));
-		testButton1->addButtonListener(this);
+		testButton1->addListener(this);
 		addAndMakeVisible(testButton2 = new TextButton(T("Test Button 2")));
-		testButton2->addButtonListener(this);
+		testButton2->addListener(this);
 		
 		addAndMakeVisible(toggle1 = new ToggleButton(T("Toggle 1")));
-		toggle1->addButtonListener(this);
+		toggle1->addListener(this);
 		addAndMakeVisible(toggle2 = new ToggleButton(T("Toggle 2")));
-		toggle2->addButtonListener(this);
+		toggle2->addListener(this);
 		
 		addAndMakeVisible(sliders1 = new MultiSlider(4));
 		addAndMakeVisible(sliders2 = new MultiSlider(4));
@@ -96,9 +97,9 @@ public:
 		envComponent->setEnv(env);
 		
 		// add scope to the main out
-		UGen scope = Sender::AR(getOutput(), U(ampSlider2) / 10);
-		scope.addBufferReceiver(scopeComponent);
-		addOther(scope);
+		sender = Sender::AR(getOutput(), U(ampSlider2) / 10);
+		sender.addBufferReceiver(scopeComponent);
+		addOther(sender);
 		
 		// for CPU usage label
 		startTimer(40);
@@ -107,6 +108,9 @@ public:
 	~MainComponent()
 	{
 		stopTimer();
+		
+		sender.removeBufferReceiver(scopeComponent);
+		
 		deleteAllChildren();
 	}
 	
@@ -176,7 +180,7 @@ public:
 				
 			if(toggle2->getToggleState())
 			{
-				float start = UGen::getBlockSize() * UGen::getReciprocalSampleRate();
+				float start = UGen::getEstimatedBlockSize() * UGen::getReciprocalSampleRate();
 				float end = 8;
 				UGen newDelay = LLine::AR(start, end, end-start, UGen::DoNothing);
 										  
