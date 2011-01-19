@@ -1608,7 +1608,6 @@ public:
 	{
 	}	
 	
-private:
 	static void roundCopy(const double inValue, char& outValue) throw()
 	{
 		outValue = char(inValue+0.5);
