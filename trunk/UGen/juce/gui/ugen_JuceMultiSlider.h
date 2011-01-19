@@ -229,8 +229,17 @@ private:
 	bool constrain;
 };
 
+class MultiSliderBase;
 
-class MultiSliderBase : public Component
+class MultiSliderBaseListener
+{
+public:
+	~MultiSliderBaseListener() {}
+	virtual void sliderValueChanged(MultiSliderBase* sliders, const int index) = 0;
+};
+
+class MultiSliderBase :		public Component,
+							public SliderListener
 {
 public:
 	MultiSliderBase(const int numSliders = 1, 
@@ -282,6 +291,7 @@ public:
 				slider->setSliderStyle(horizontal ? Slider::LinearHorizontal : Slider::LinearVertical);
 				slider->setTextBoxStyle(Slider::NoTextBox, 0,0,0);
 				slider->setRange(sliderMinimum, sliderMaximum, 0.0);
+				slider->addListener(this);
 				addAndMakeVisible(slider);
 				sliders.add(slider);
 			}
@@ -395,10 +405,42 @@ public:
 		}
 	}
 	
+	void addListener (MultiSliderBaseListener* const listener)
+	{
+		if (listener != 0)
+			listeners.add (listener);
+	}
+	
+	void removeListener (MultiSliderBaseListener* const listener)
+	{
+		listeners.removeValue(listener);
+	}
+	
+	void sendChangeMessage(const int index)
+	{
+		for (int i = listeners.size(); --i >= 0;)
+		{
+			((MultiSliderBaseListener*) listeners.getUnchecked (i))->sliderValueChanged (this, index);
+			i = jmin (i, listeners.size());
+		}
+	}
+	
+	void sliderValueChanged(Slider* slider)
+	{
+		int index = sliders.indexOf(slider);
+		
+		if(index >= 0)
+		{
+			sendChangeMessage(index);
+		}
+	}
+	
+	
 protected:
 	Array<Slider*> sliders;
 	Interceptor *interceptor;
 	bool horizontal;
+	SortedSet <void*> listeners;
 };
 
 class MultiSlider : public MultiSliderBase,
@@ -509,6 +551,7 @@ public:
 		
 		return result;
 	}
+		
 	
 private:
 	bool attachedToMultiSliderUGenInternal;
