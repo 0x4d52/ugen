@@ -688,9 +688,8 @@ void EnvelopeComponent::paint(Graphics& g)
 				const float releaseX = (releaseHandle->getX() + releaseHandle->getRight()) * 0.5f;
 				
 				float dashes[] = { 5, 3 };
-				g.drawDashedLine(loopX, releaseY, 
-								 loopX, loopY, 
-								 dashes, numElementsInArray(dashes), 0.5f);
+				juce::Line<float> line(loopX, releaseY, loopX, loopY);
+				g.drawDashedLine(line, dashes, numElementsInArray(dashes), 0.5f);
 				
 				const int arrowLength = HANDLESIZE*2;
 				
