@@ -180,7 +180,7 @@ TableOsc::TableOsc(Buffer const& table, UGen const& freq, Buffer const& initialP
 	
 	initInternal(numChannels);
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new TableOscUGenInternal(freq, initialPhase.wrapAt(i), table);
 	}
@@ -201,7 +201,7 @@ HarmonicOsc::HarmonicOsc(Buffer const& harmonicWeights, UGen const& freq, Buffer
 	}
 	
 	table = table.shrinkSize();
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new TableOscUGenInternal(freq, initialPhase.wrapAt(i), table);
 	}
@@ -213,7 +213,7 @@ SinOsc::SinOsc(UGen const& freq, Buffer const& initialPhase) throw()
 	
 	initInternal(numChannels);
 		
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new TableOscUGenInternal(freq, initialPhase.wrapAt(i), Buffer::getTableSine8192());
 	}

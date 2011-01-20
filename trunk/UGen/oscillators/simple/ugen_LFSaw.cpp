@@ -167,7 +167,7 @@ LFSaw::LFSaw(UGen const& freq, Buffer const& initialPhase) throw()
 	
 	initInternal(numChannels);
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new LFSawUGenInternal(freq, initialPhase.wrapAt(i));
 	}

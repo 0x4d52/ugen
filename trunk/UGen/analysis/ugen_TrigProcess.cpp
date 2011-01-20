@@ -95,7 +95,7 @@ Debounce::Debounce(UGen const& input, UGen const& time) throw()
 {
 	initInternal(input.getNumChannels());
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new DebounceUGenInternal(input, time);
 	}

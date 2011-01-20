@@ -255,7 +255,7 @@ BLowPass::BLowPass(UGen const& input, UGen const& freq, UGen const& rq) throw()
 	const int numInputChannels = findMaxInputChannels(numElementsInArray(inputs), inputs);
 	initInternal(numInputChannels);
 			
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		BEQBaseUGenInternal* filter = new BLowPassUGenInternal(input, freq, rq);
 		filter->calculateCoeffs(freq.getValue(i), rq.getValue(i), 1.f);
@@ -270,7 +270,7 @@ BLowPass4::BLowPass4(UGen const& input, UGen const& freq, UGen const& rq) throw(
 	const int numInputChannels = findMaxInputChannels(numElementsInArray(inputs), inputs);
 	initInternal(numInputChannels);
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		BEQBaseUGenInternal* filter = new BLowPassUGenInternal(BLowPass::AR(input, freq, rq), 
 															   freq, 
@@ -315,7 +315,7 @@ BHiPass::BHiPass(UGen const& input, UGen const& freq, UGen const& rq) throw()
 	const int numInputChannels = findMaxInputChannels(numElementsInArray(inputs), inputs);
 	initInternal(numInputChannels);
 		
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		BEQBaseUGenInternal* filter = new BHiPassUGenInternal(input, freq, rq);
 		filter->calculateCoeffs(freq.getValue(i), rq.getValue(i), 1.f);
@@ -330,7 +330,7 @@ BHiPass4::BHiPass4(UGen const& input, UGen const& freq, UGen const& rq) throw()
 	const int numInputChannels = findMaxInputChannels(numElementsInArray(inputs), inputs);
 	initInternal(numInputChannels);
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		BEQBaseUGenInternal* filter = new BHiPassUGenInternal(BHiPass::AR(input, freq, rq), 
 												   freq, 
@@ -374,7 +374,7 @@ BBandPass::BBandPass(UGen const& input, UGen const& freq, UGen const& bw) throw(
 	const int numInputChannels = findMaxInputChannels(numElementsInArray(inputs), inputs);
 	initInternal(numInputChannels);
 		
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		BEQBaseUGenInternal* filter = new BBandPassUGenInternal(input, freq, bw);
 		filter->calculateCoeffs(freq.getValue(i), bw.getValue(i), 1.f);
@@ -416,7 +416,7 @@ BBandStop::BBandStop(UGen const& input, UGen const& freq, UGen const& bw) throw(
 	const int numInputChannels = findMaxInputChannels(numElementsInArray(inputs), inputs);
 	initInternal(numInputChannels);
 		
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		BEQBaseUGenInternal* filter = new BBandStopUGenInternal(input, freq, bw);
 		filter->calculateCoeffs(freq.getValue(i), bw.getValue(i), 1.f);
@@ -459,7 +459,7 @@ BPeakEQ::BPeakEQ(UGen const& input, UGen const& freq, UGen const& rq, UGen const
 	const int numInputChannels = findMaxInputChannels(numElementsInArray(inputs), inputs);	
 	initInternal(numInputChannels);
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		BEQBaseUGenInternal* filter = new BPeakEQUGenInternal(input, freq, rq, gain);
 		filter->calculateCoeffs(freq.getValue(i), rq.getValue(i), gain.getValue(i));
@@ -509,7 +509,7 @@ BLowShelf::BLowShelf(UGen const& input, UGen const& freq, UGen const& rs, UGen c
 	const int numInputChannels = findMaxInputChannels(numElementsInArray(inputs), inputs);	
 	initInternal(numInputChannels);
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		BEQBaseUGenInternal* filter = new BLowShelfUGenInternal(input, freq, rs, gain);
 		filter->calculateCoeffs(freq.getValue(i), rs.getValue(i), gain.getValue(i));
@@ -559,7 +559,7 @@ BHiShelf::BHiShelf(UGen const& input, UGen const& freq, UGen const& rs, UGen con
 	const int numInputChannels = findMaxInputChannels(numElementsInArray(inputs), inputs);	
 	initInternal(numInputChannels);
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		BEQBaseUGenInternal* filter = new BHiShelfUGenInternal(input, freq, rs, gain);
 		filter->calculateCoeffs(freq.getValue(i), rs.getValue(i), gain.getValue(i));
@@ -600,7 +600,7 @@ BAllPass::BAllPass(UGen const& input, UGen const& freq, UGen const& rq) throw()
 	const int numInputChannels = findMaxInputChannels(numElementsInArray(inputs), inputs);
 	initInternal(numInputChannels);
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		BEQBaseUGenInternal* filter = new BAllPassUGenInternal(input, freq, rq);
 		filter->calculateCoeffs(freq.getValue(i), rq.getValue(i), 1.f);

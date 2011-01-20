@@ -192,7 +192,7 @@ Phasor::Phasor(Phasor_InputsWithTypesOnly) throw()
 	const int numInputChannels = findMaxInputChannels(numElementsInArray(inputs), inputs);
 	initInternal(numInputChannels);
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new PhasorUGenInternal(Phasor_InputsNoTypes);
 	}

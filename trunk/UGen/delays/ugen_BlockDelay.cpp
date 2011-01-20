@@ -90,7 +90,7 @@ BlockDelay::BlockDelay(UGen const& input) throw()
 {
 	int numChannels = input.getNumChannels();
 	initInternal(numChannels);
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new BlockDelayUGenInternal(input);
 	}

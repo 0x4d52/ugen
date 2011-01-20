@@ -186,7 +186,7 @@ LLine::LLine(Buffer const& start,
 	const int numInputChannels = findMaxInputSizes(numElementsInArray(inputs), inputs);
 	initInternal(numInputChannels);
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		ugen_assert(duration.wrapAt(i) > 0.f);
 		
@@ -208,7 +208,7 @@ XLine::XLine(Buffer const& startBuffer,
 	const int numInputChannels = findMaxInputSizes(numElementsInArray(inputs), inputs);
 	initInternal(numInputChannels);
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{		
 		const float start = startBuffer.wrapAt(i);
 		const float end = endBuffer.wrapAt(i);

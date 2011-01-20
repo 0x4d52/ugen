@@ -826,7 +826,7 @@ void ValueUGenInternalK::processBlock(bool& shouldDelete, const unsigned int blo
 ValueUGen::ValueUGen(ValueArray const& values) throw()
 {
 	initInternal(values.size());
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new ValueUGenInternal(values[i]);
 	}

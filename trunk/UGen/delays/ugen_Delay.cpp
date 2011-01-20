@@ -698,7 +698,7 @@ DelayN::DelayN(UGen const& input, const float maximumDelayTime, UGen const& dela
 	{
 		initInternal(ugen::max(numInputChannels, numDelayTimeChannels));
 		
-		for(int i = 0; i < numInternalUGens; i++)
+		for(unsigned int i = 0; i < numInternalUGens; i++)
 		{
 			Buffer delayBuffer(BufferSpec(int(UGen::getSampleRate() * maximumDelayTime) + 1, 1, true));
 			internalUGens[i] = new DelayNUGenInternal(input, delayTime, delayBuffer);
@@ -751,7 +751,7 @@ DelayL::DelayL(UGen const& input, const float maximumDelayTime, UGen const& dela
 	{
 		initInternal(ugen::max(numInputChannels, numDelayTimeChannels));
 		
-		for(int i = 0; i < numInternalUGens; i++)
+		for(unsigned int i = 0; i < numInternalUGens; i++)
 		{
 			Buffer delayBuffer(BufferSpec(int(UGen::getSampleRate() * maximumDelayTime) + 1, 1, true));
 			internalUGens[i] = new DelayLUGenInternal(input, delayTime, delayBuffer);
@@ -767,7 +767,7 @@ CombN::CombN(UGen const& input, const float maximumDelayTime, UGen const& delayT
 	const int numInputChannels = findMaxInputChannels(numElementsInArray(inputs), inputs);
 	initInternal(numInputChannels);	
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new CombNUGenInternal(input, 
 												 delayTime,//Clip(delayTime, 0.f, maximumDelayTime),
@@ -784,7 +784,7 @@ CombL::CombL(UGen const& input, const float maximumDelayTime, UGen const& delayT
 	const int numInputChannels = findMaxInputChannels(numElementsInArray(inputs), inputs);
 	initInternal(numInputChannels);	
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new CombLUGenInternal(input, 
 												 delayTime,//Clip(delayTime, 0.f, maximumDelayTime),
@@ -801,7 +801,7 @@ AllpassN::AllpassN(UGen const& input, const float maximumDelayTime, UGen const& 
 	const int numInputChannels = findMaxInputChannels(numElementsInArray(inputs), inputs);
 	initInternal(numInputChannels);	
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new AllpassNUGenInternal(input, 
 													delayTime,//Clip(delayTime, 0.f, maximumDelayTime),
@@ -818,7 +818,7 @@ AllpassL::AllpassL(UGen const& input, const float maximumDelayTime, UGen const& 
 	const int numInputChannels = findMaxInputChannels(numElementsInArray(inputs), inputs);
 	initInternal(numInputChannels);	
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new AllpassLUGenInternal(input, 
 													delayTime,//Clip(delayTime, 0.f, maximumDelayTime),

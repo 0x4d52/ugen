@@ -892,7 +892,7 @@ LinExp::LinExp(MappingBase_InputsWithTypesOnly) throw()
 			
 	if(hasScalarRanges == true)
 	{
-		for(int i = 0; i < numInternalUGens; i++)
+		for(unsigned int i = 0; i < numInternalUGens; i++)
 		{
 			internalUGens[i] = new LinExpScalarUGenInternal(MappingBase_InputsNoTypes);
 			internalUGens[i]->initValue(ugen::linexp(input.getValue(i),
@@ -902,7 +902,7 @@ LinExp::LinExp(MappingBase_InputsWithTypesOnly) throw()
 	}
 	else
 	{
-		for(int i = 0; i < numInternalUGens; i++)
+		for(unsigned int i = 0; i < numInternalUGens; i++)
 		{
 			internalUGens[i] = new LinExpSignalUGenInternal(MappingBase_InputsNoTypes);
 			internalUGens[i]->initValue(ugen::linexp(input.getValue(i),
@@ -925,7 +925,7 @@ LinLin::LinLin(MappingBase_InputsWithTypesOnly) throw()
 	
 	if(hasScalarRanges == true)
 	{
-		for(int i = 0; i < numInternalUGens; i++)
+		for(unsigned int i = 0; i < numInternalUGens; i++)
 		{
 			internalUGens[i] = new LinLinScalarUGenInternal(MappingBase_InputsNoTypes);
 			internalUGens[i]->initValue(ugen::linlin(input.getValue(i),
@@ -936,7 +936,7 @@ LinLin::LinLin(MappingBase_InputsWithTypesOnly) throw()
 	}
 	else
 	{
-		for(int i = 0; i < numInternalUGens; i++)
+		for(unsigned int i = 0; i < numInternalUGens; i++)
 		{
 			internalUGens[i] = new LinLinSignalUGenInternal(MappingBase_InputsNoTypes);
 			internalUGens[i]->initValue(ugen::linlin(input.getValue(i),
@@ -960,7 +960,7 @@ LinSin::LinSin(MappingBase_InputsWithTypesOnly) throw()
 	
 	if(hasScalarRanges == true)
 	{
-		for(int i = 0; i < numInternalUGens; i++)
+		for(unsigned int i = 0; i < numInternalUGens; i++)
 		{
 			internalUGens[i] = new LinSinScalarUGenInternal(MappingBase_InputsNoTypes);
 			internalUGens[i]->initValue(ugen::linsin(input.getValue(i),
@@ -970,7 +970,7 @@ LinSin::LinSin(MappingBase_InputsWithTypesOnly) throw()
 	}
 	else
 	{
-		for(int i = 0; i < numInternalUGens; i++)
+		for(unsigned int i = 0; i < numInternalUGens; i++)
 		{
 			internalUGens[i] = new LinSinSignalUGenInternal(MappingBase_InputsNoTypes);
 			internalUGens[i]->initValue(ugen::linsin(input.getValue(i),
@@ -996,7 +996,7 @@ Map::Map(MapTableBase_InputsWithTypesAndDefaults) throw()
 	
 	if(hasScalarRanges == true)
 	{
-		for(int i = 0; i < numInternalUGens; i++)
+		for(unsigned int i = 0; i < numInternalUGens; i++)
 		{
 			internalUGens[i] = new MapTableScalarUGenInternal(MapTableBase_InputsNoTypes);
 			
@@ -1009,7 +1009,7 @@ Map::Map(MapTableBase_InputsWithTypesAndDefaults) throw()
 	}
 	else
 	{
-		for(int i = 0; i < numInternalUGens; i++)
+		for(unsigned int i = 0; i < numInternalUGens; i++)
 		{
 			internalUGens[i] = new MapTableSignalUGenInternal(MapTableBase_InputsNoTypes);
 			

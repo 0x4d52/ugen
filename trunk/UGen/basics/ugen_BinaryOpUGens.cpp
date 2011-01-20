@@ -155,7 +155,7 @@ BinaryDivideUGen::BinaryDivideUGen(UGen const& leftOperand, UGen const& rightOpe
 	else 
 		initInternal(numRightChannels); 
 	
-	for(int i = 0; i < numInternalUGens; i++) 
+	for(unsigned int i = 0; i < numInternalUGens; i++) 
 	{ 
 		const int rightIndex = i % numRightChannels;
 		if(rightOperand.isConst(rightIndex))
@@ -405,7 +405,7 @@ void IngoreRightOperandUGenInternal::processBlock(bool& shouldDelete, const unsi
 IngoreRightOperandUGen::IngoreRightOperandUGen(UGen const& leftOperand, UGen const& rightOperand) throw()
 {
 	initInternal(leftOperand.getNumChannels()); 
-	for(int i = 0; i < numInternalUGens; i++) 
+	for(unsigned int i = 0; i < numInternalUGens; i++) 
 	{ 
 		internalUGens[i] = new IngoreRightOperandUGenInternal(leftOperand, rightOperand); 
 	}	
