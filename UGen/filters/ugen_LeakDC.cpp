@@ -186,7 +186,7 @@ LeakDC::LeakDC(UGen const& input, UGen const& coeff) throw()
 	const int numInputChannels = findMaxInputChannels(numElementsInArray(inputs), inputs);		
 	initInternal(numInputChannels);
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new LeakDCUGenInternal(input, coeff);
 		internalUGens[i]->initValue(input.getValue(i));

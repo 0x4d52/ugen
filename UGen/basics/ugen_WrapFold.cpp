@@ -111,7 +111,7 @@ Wrap::Wrap(WrapFold_InputsWithTypesOnly) throw()
 		UGen inputs[] = { input, rightOperand };
 		const int numInputChannels = findMaxInputChannels(numElementsInArray(inputs), inputs);
 		initInternal(numInputChannels);
-		for(int i = 0; i < numInternalUGens; i++)
+		for(unsigned int i = 0; i < numInternalUGens; i++)
 		{
 			internalUGens[i] = new BinaryWrapUGenInternal(input, rightOperand);
 			internalUGens[i]->initValue(ugen::wrap(input.getValue(i), rightOperand.getValue(i)));
@@ -122,7 +122,7 @@ Wrap::Wrap(WrapFold_InputsWithTypesOnly) throw()
 		UGen inputs[] = { WrapFold_InputsNoTypes };
 		const int numInputChannels = findMaxInputChannels(numElementsInArray(inputs), inputs);
 		initInternal(numInputChannels);
-		for(int i = 0; i < numInternalUGens; i++)
+		for(unsigned int i = 0; i < numInternalUGens; i++)
 		{
 			internalUGens[i] = new WrapUGenInternal(WrapFold_InputsNoTypes);
 			internalUGens[i]->initValue(ugen::wrap(input.getValue(i), 
@@ -140,7 +140,7 @@ Fold::Fold(WrapFold_InputsWithTypesOnly) throw()
 		UGen inputs[] = { input, rightOperand };
 		const int numInputChannels = findMaxInputChannels(numElementsInArray(inputs), inputs);
 		initInternal(numInputChannels);
-		for(int i = 0; i < numInternalUGens; i++)
+		for(unsigned int i = 0; i < numInternalUGens; i++)
 		{
 			internalUGens[i] = new BinaryFoldUGenInternal(input, rightOperand);
 			internalUGens[i]->initValue(ugen::fold(input.getValue(i), rightOperand.getValue(i)));
@@ -151,7 +151,7 @@ Fold::Fold(WrapFold_InputsWithTypesOnly) throw()
 		UGen inputs[] = { WrapFold_InputsNoTypes };
 		const int numInputChannels = findMaxInputChannels(numElementsInArray(inputs), inputs);
 		initInternal(numInputChannels);
-		for(int i = 0; i < numInternalUGens; i++)
+		for(unsigned int i = 0; i < numInternalUGens; i++)
 		{
 			internalUGens[i] = new FoldUGenInternal(WrapFold_InputsNoTypes);
 			internalUGens[i]->initValue(ugen::fold(input.getValue(i), 

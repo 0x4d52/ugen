@@ -105,7 +105,7 @@ SOS::SOS(SOS_InputsWithTypesOnly) throw()
 	const int numInputChannels = findMaxInputChannels(numElementsInArray(inputs), inputs);		
 	initInternal(numInputChannels);
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new SOSUGenInternal(SOS_InputsNoTypes);
 		internalUGens[i]->initValue(input.getValue(i) * a0.getValue(i)); // a0 is gain

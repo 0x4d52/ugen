@@ -223,7 +223,7 @@ Lag::Lag(UGen const& input, UGen const& lagTime) throw()
 	const int numInputChannels = findMaxInputChannels(numElementsInArray(inputs), inputs);		
 	initInternal(numInputChannels);
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new LagUGenInternal(input, lagTime);
 		internalUGens[i]->initValue(input.getValue(i));
@@ -453,7 +453,7 @@ LagUD::LagUD(UGen const& input, UGen const& lagTimeUp, UGen const& lagTimeDown) 
 	const int numInputChannels = findMaxInputChannels(numElementsInArray(inputs), inputs);		
 	initInternal(numInputChannels);
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new LagUDUGenInternal(input, lagTimeUp, lagTimeDown);
 		internalUGens[i]->initValue(input.getValue(i));

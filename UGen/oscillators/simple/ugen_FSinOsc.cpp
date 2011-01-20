@@ -244,7 +244,7 @@ void FSinOscUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 FSinOsc::FSinOsc(UGen const& freq) throw()
 {	
 	initInternal(freq.getNumChannels());
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new FSinOscUGenInternal(freq, 0.f, i);
 	}

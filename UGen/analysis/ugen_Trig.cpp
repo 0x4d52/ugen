@@ -83,7 +83,7 @@ Trig::Trig(UGen const& input) throw()
 {
 	initInternal(input.getNumChannels());
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new TrigUGenInternal(input);
 	}

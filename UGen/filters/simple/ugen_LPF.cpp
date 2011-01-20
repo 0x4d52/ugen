@@ -126,7 +126,7 @@ LPF::LPF(UGen const& input, UGen const& freq) throw()
 	
 	initInternal(numChannels);
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new LPFUGenInternal(input, freq);
 	}

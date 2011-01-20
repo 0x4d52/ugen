@@ -253,7 +253,7 @@ float* UGenInternal::processBlockInternal(bool& shouldDelete, const unsigned int
 
 const UGen& UGenInternal::getInput(const int index) throw()
 {
-	if(index < 0 || index >= numInputs_) 
+	if(index < 0 || (unsigned int)index >= numInputs_) 
 	{
 		ugen_assertfalse;
 		return UGen::getNull();
@@ -281,7 +281,7 @@ void UGenInternal::prepareForBlockInternal(const int actualBlockSize, const unsi
 
 void UGenInternal::releaseInternal() throw()
 {
-	for(int i = 0; i < numInputs_; i++)
+	for(unsigned int i = 0; i < numInputs_; i++)
 	{
 		inputs[i].release();
 	}
@@ -289,7 +289,7 @@ void UGenInternal::releaseInternal() throw()
 
 void UGenInternal::stealInternal() throw()
 {
-	for(int i = 0; i < numInputs_; i++)
+	for(unsigned int i = 0; i < numInputs_; i++)
 	{
 		inputs[i].steal(false);
 	}
@@ -299,7 +299,7 @@ int UGenInternal::findMaxInputChannels() const throw()
 {
 	int numChannels = 0;
 	
-	for(int i = 0; i < numInputs_; i++)
+	for(unsigned int i = 0; i < numInputs_; i++)
 	{
 		int inputChannels = inputs[i].getNumChannels();
 		if(inputChannels > numChannels)
@@ -313,7 +313,7 @@ void UGenInternal::getInternalChannels(const int channel, UGenInternal** interna
 {
 	ugen_assert(internals != 0);
 	
-	for(int i = 0; i < numInputs_; i++)
+	for(unsigned int i = 0; i < numInputs_; i++)
 	{
 		internals[i] = getInput(i, channel);
 	}
@@ -353,7 +353,7 @@ UGenInternal* UGenInternal::getInput(const int inputIndex, const int channel) th
 {
 	ugen_assert(channel >= 0);
 	
-	if(inputIndex < 0 || inputIndex >= numInputs_) 
+	if(inputIndex < 0 || (unsigned int)inputIndex >= numInputs_) 
 	{
 		ugen_assertfalse;
 		return 0;
@@ -401,7 +401,7 @@ void ProxyOwnerUGenInternal::decrementRefCount()  throw()
 
 void ProxyOwnerUGenInternal::deleteIfOnlyMutualReferencesRemain() throw()
 {
-	if(getRefCount() > numProxies_) return; 
+	if((unsigned int)getRefCount() > numProxies_) return; 
 	
 	for(unsigned int i = 1 ; i <= numProxies_; i++)
 	{
@@ -420,7 +420,7 @@ void ProxyOwnerUGenInternal::deleteIfOnlyMutualReferencesRemain() throw()
 UGenInternal* ProxyOwnerUGenInternal::getProxy(const int index) throw()
 {
 	// indices are between 0 and numProxies_ (0 is the owner)
-	if(index < 0 || index > numProxies_) 
+	if(index < 0 || (unsigned int)index > numProxies_) 
 	{
 		ugen_assertfalse;
 		return 0;

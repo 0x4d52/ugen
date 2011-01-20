@@ -109,7 +109,7 @@ Amplitude::Amplitude(UGen const& input, const float duration) throw()
 {
 	initInternal(input.getNumChannels());
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new AmplitudeUGenInternal(input, duration);
 		internalUGens[i]->initValue(input.getValue(i));
@@ -153,7 +153,7 @@ DetectSilence::DetectSilence(UGen const& input, const float duration) throw()
 {
 	initInternal(input.getNumChannels());
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new DetectSilenceUGenInternal(input, duration);
 		internalUGens[i]->initValue(input.getValue(i));

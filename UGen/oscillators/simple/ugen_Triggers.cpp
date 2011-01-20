@@ -83,7 +83,7 @@ SAH::SAH(UGen const& input, UGen const& trig) throw()
 	const int numInputChannels = findMaxInputChannels(numElementsInArray(inputs), inputs);
 	initInternal(numInputChannels);
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new SAHUGenInternal(input, trig);
 		if(trig.getValue(i) <= 0.f)
@@ -127,7 +127,7 @@ void ToggleFFUGenInternal::processBlock(bool& shouldDelete, const unsigned int b
 ToggleFF::ToggleFF(UGen const& trig) throw()
 {
 	initInternal(trig.getNumChannels());	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new ToggleFFUGenInternal(trig);		
 	}

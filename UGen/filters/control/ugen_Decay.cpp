@@ -241,7 +241,7 @@ Decay::Decay(UGen const& input, UGen const& decayTime) throw()
 	const int numInputChannels = findMaxInputChannels(numElementsInArray(inputs), inputs);		
 	initInternal(numInputChannels);
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		DecayUGenInternal* internal = new DecayUGenInternal(input, decayTime);
 		internal->initValue(input.getValue(i));

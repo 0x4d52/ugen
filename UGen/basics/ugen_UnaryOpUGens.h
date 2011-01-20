@@ -61,7 +61,7 @@
 
 #define UnaryOpUGenConstructor(INTERNALUGENCLASSNAME, OPFUNCTION_INTERNAL, operand_)											\
 		initInternal(operand_.getNumChannels());																				\
-		for(int i = 0; i < numInternalUGens; i++)																				\
+		for(unsigned int i = 0; i < numInternalUGens; i++)																				\
 		{																														\
 			internalUGens[i] = new INTERNALUGENCLASSNAME(operand_);																\
 			internalUGens[i]->initValue(ugen::OPFUNCTION_INTERNAL(operand_.getValue(i)));										\
@@ -485,7 +485,7 @@ public:
 	{
 		initInternal(operand.getNumChannels()); 
 		
-		for(int i = 0; i < numInternalUGens; i++) 
+		for(unsigned int i = 0; i < numInternalUGens; i++) 
 		{ 
 			internalUGens[i] = new UnaryOpUGenInternalT<op>(operand);
 			internalUGens[i]->initValue(op(operand.getValue(i)));

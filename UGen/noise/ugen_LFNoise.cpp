@@ -199,21 +199,21 @@ void LFNoise2UGenInternal::processBlock(bool& shouldDelete, const unsigned int b
 LFNoise0::LFNoise0(UGen const& freq) throw()
 {
 	initInternal(freq.getNumChannels());
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 		internalUGens[i] = new LFNoise0UGenInternal(freq);
 }
 
 LFNoise1::LFNoise1(UGen const& freq) throw()
 {
 	initInternal(freq.getNumChannels());
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 		internalUGens[i] = new LFNoise1UGenInternal(freq);
 }
 
 LFNoise2::LFNoise2(UGen const& freq) throw()
 {
 	initInternal(freq.getNumChannels());
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 		internalUGens[i] = new LFNoise2UGenInternal(freq);
 }
 

@@ -1474,8 +1474,8 @@ EnvelopeCurvePopup::~EnvelopeCurvePopup()
 
 void EnvelopeCurvePopup::resized()
 {
-	combo->setBoundsRelative(0.05, 0.1, 0.9, 0.4);
-	slider->setBoundsRelative(0.05, 0.50, 0.9, 0.4);
+	combo->setBoundsRelative(0.05f, 0.1f, 0.9f, 0.4f);
+	slider->setBoundsRelative(0.05f, 0.50f, 0.9f, 0.4f);
 }
 
 void EnvelopeCurvePopup::sliderValueChanged(Slider* sliderThatChanged)
@@ -1583,11 +1583,11 @@ EnvelopeNodePopup::~EnvelopeNodePopup()
 
 void EnvelopeNodePopup::resized()
 {
-	combo->setBoundsRelative(0.05, 0.1, 0.9, 0.4);
+	combo->setBoundsRelative(0.05f, 0.1f, 0.9f, 0.4f);
 	
 	// the same pos but we should see only one at a time
-	setLoopButton->setBoundsRelative(0.05, 0.50, 0.9, 0.4);
-	setReleaseButton->setBoundsRelative(0.05, 0.50, 0.9, 0.4);
+	setLoopButton->setBoundsRelative(0.05f, 0.50f, 0.9f, 0.4f);
+	setReleaseButton->setBoundsRelative(0.05f, 0.50f, 0.9f, 0.4f);
 }
 
 void EnvelopeNodePopup::comboBoxChanged (ComboBox* comboBoxThatHasChanged)

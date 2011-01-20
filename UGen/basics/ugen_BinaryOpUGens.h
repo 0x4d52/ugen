@@ -55,7 +55,7 @@
 		else																											\
 			initInternal(rightOperand_.getNumChannels());																\
 																														\
-		for(int i = 0; i < numInternalUGens; i++)																		\
+		for(unsigned int i = 0; i < numInternalUGens; i++)																		\
 		{																												\
 			internalUGens[i] = new INTERNALUGENCLASSNAME(leftOperand_, rightOperand_);									\
 			internalUGens[i]->initValue(leftOperand_.getValue(i) OPSYMBOL_INTERNAL rightOperand_.getValue(i));			\
@@ -68,7 +68,7 @@
 		else																											\
 			initInternal(rightOperand_.getNumChannels());																\
 																														\
-		for(int i = 0; i < numInternalUGens; i++)																		\
+		for(unsigned int i = 0; i < numInternalUGens; i++)																		\
 		{																												\
 			internalUGens[i] = new INTERNALUGENCLASSNAME(leftOperand_, rightOperand_);									\
 			internalUGens[i]->initValue(ugen::OPFUNCTION_INTERNAL(leftOperand_.getValue(i),								\
@@ -985,7 +985,7 @@ public:
 		else 
 			initInternal(numRightChannels); 
 		
-		for(int i = 0; i < numInternalUGens; i++) 
+		for(unsigned int i = 0; i < numInternalUGens; i++) 
 		{ 
 			internalUGens[i] = new BinaryOpUGenInternalT<op>(leftOperand,rightOperand);
 			internalUGens[i]->initValue(op(leftOperand.getValue(i),

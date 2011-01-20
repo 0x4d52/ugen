@@ -146,7 +146,7 @@ Normaliser::Normaliser(UGen const& input, UGen const& level, const float duratio
 {
 	initInternal(ugen::max(input.getNumChannels(), level.getNumChannels()));
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new NormaliserUGenInternal(input, level, duration);
 	}

@@ -138,7 +138,7 @@ MulAdd::MulAdd(UGen const& input, UGen const& mul, UGen const& add) throw()
 	ugen_assert(numInputChannels > 0);
 	
 	initInternal(numInputChannels);
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new MulAddUGenInternal(input, mul, add);
 		internalUGens[i]->initValue(input.getValue(i) * mul.getValue(i) + add.getValue(i));

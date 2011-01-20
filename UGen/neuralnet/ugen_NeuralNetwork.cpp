@@ -40,8 +40,8 @@ BEGIN_UGEN_NAMESPACE
 
 #include "ugen_NeuralNetwork.h"
 
-const float NeuralNetworkSimpleInternal::defaultLearnRate = 0.25;
-const float NeuralNetworkSimpleInternal::defaultActFuncOffset = 0.01;
+const float NeuralNetworkSimpleInternal::defaultLearnRate = 0.25f;
+const float NeuralNetworkSimpleInternal::defaultActFuncOffset = 0.01f;
 
 NeuralNetworkSimpleInternal::NeuralNetworkSimpleInternal(IntArray const& numNodes, 
 														 const float _learnRate, 

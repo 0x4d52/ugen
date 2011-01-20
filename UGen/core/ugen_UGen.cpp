@@ -118,7 +118,7 @@ UGen::UGen(const int numInternalUGensToUse, UGenInternal** internalUGensToUse) t
 	{
 		initInternal(numInternalUGensToUse);
 		
-		for(int i = 0; i < numInternalUGens; i++)
+		for(unsigned int i = 0; i < numInternalUGens; i++)
 		{
 			internalUGens[i] = internalUGensToUse[i];
 		}
@@ -132,7 +132,7 @@ UGen::UGen(UGen const& copy) throw()
 {
 	initInternal(copy.numInternalUGens);
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{		
 		internalUGens[i] = copy.getInternalUGen(i);
 	}
@@ -146,7 +146,8 @@ UGen& UGen::operator= (UGen const& other) throw()
 		other.incrementInternals();
 		initInternal(other.numInternalUGens);
 		
-		for(int i = 0; i < numInternalUGens; i++) {
+		for(unsigned int i = 0; i < numInternalUGens; i++) 
+		{
 			internalUGens[i] = other.internalUGens[i]; //other.getInternalUGen(i);// add the increment above instead
 		}
     }
@@ -243,9 +244,9 @@ UGen::UGen(Buffer const& buffer) throw()
 	ugen_assert(buffer.size() != 0);
 	
 	initInternal(buffer.size());
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
-		internalUGens[i] = new ScalarUGenInternal(buffer.getSampleUnchecked(0, i));	
+		internalUGens[i] = new ScalarUGenInternal(buffer.getSampleUnchecked(0, (int)i));	
 	}
 }
 
@@ -257,7 +258,7 @@ UGen::UGen(ValueArray const& array) throw()
 	ugen_assert(array.size() != 0);
 	
 	initInternal(array.size());
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new ValueUGenInternal(array[i]);	
 	}
@@ -449,7 +450,7 @@ void UGen::constructMultichannel(const int numUGens, const UGen uGenArray[]) thr
 		
 		for(int uGenIndex = 0; uGenIndex < numUGens; uGenIndex++)
 		{
-			for(int internalIndex = 0; internalIndex < uGenArray[uGenIndex].numInternalUGens; internalIndex++)
+			for(unsigned int internalIndex = 0; internalIndex < uGenArray[uGenIndex].numInternalUGens; internalIndex++)
 			{			
 				// was: internalUGens[channel++] = uGenArray[uGenIndex].getInternalUGen(internalIndex);
 				internalUGens[channel++] = uGenArray[uGenIndex].getChannel(internalIndex).getInternalUGen(0);
@@ -610,7 +611,7 @@ UGen UGen::expand() const throw()
 {
 	UGen newUGen;
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(int i = 0; i < (int)numInternalUGens; i++)
 	{
 		newUGen <<= UGen(getInternalUGen(i), i);
 	}
@@ -632,7 +633,7 @@ UGen UGen::operator[] (IntArray const& indices) const throw()
 
 UGen UGen::at(const int index) const throw()
 {	
-	if(index < 0 || index >= numInternalUGens)
+	if(index < 0 || (unsigned int)index >= numInternalUGens)
 	{
 		ugen_assertfalse;
 		return getNull();
@@ -658,7 +659,7 @@ UGen UGen::at(IntArray const& indices) const throw()
 		{
 			const int index = indices[channel];
 			
-			if(index < 0 || index >= numInternalUGens) 
+			if(index < 0 || (unsigned int)index >= numInternalUGens) 
 				newInternals[channel] = getNullInternal();
 			else
 				newInternals[channel] = getInternalUGen(index);
@@ -705,7 +706,7 @@ UGen UGen::wrapAt(IntArray const& indices) const throw()
 UGen UGen::range(const int startIndex, const int endIndex) const throw()
 {
 	ugen_assert(startIndex >= 0);
-	ugen_assert(endIndex < numInternalUGens);
+	ugen_assert((unsigned int)endIndex < numInternalUGens);
 	ugen_assert(startIndex < endIndex);
 	
 	const int startIndexChecked = clip(startIndex, 0, numInternalUGens);
@@ -766,7 +767,7 @@ void UGen::initInternal(const int numInternalUGensToInit) throw()
 
 void UGen::incrementInternals() const throw()
 {	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i]->incrementRefCount();
 	}
@@ -774,7 +775,7 @@ void UGen::incrementInternals() const throw()
 
 void UGen::decrementInternals() const throw()
 {	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i]->decrementRefCount();
 	}
@@ -784,7 +785,7 @@ UGen UGen::withNumChannels(const int numChannels, const bool addedChannelsWrap) 
 {
 	UGenInternal** newInternals = new UGenInternal*[numChannels];
 	
-	if(addedChannelsWrap || (numChannels <= numInternalUGens))
+	if(addedChannelsWrap || ((unsigned int)numChannels <= numInternalUGens))
 	{
 		for(int i = 0; i < numChannels; i++)
 		{
@@ -793,7 +794,7 @@ UGen UGen::withNumChannels(const int numChannels, const bool addedChannelsWrap) 
 	}
 	else
 	{
-		for(int i = 0; i < numInternalUGens; i++)
+		for(unsigned int i = 0; i < numInternalUGens; i++)
 		{
 			newInternals[i] = getInternalUGen(i);
 		}
@@ -816,7 +817,7 @@ bool UGen::isNull(const int index) const throw()
 {
 	if(index < 0)
 		return numInternalUGens == 1 && internalUGens[0]->isNull();
-	else if(index < numInternalUGens)
+	else if((unsigned int)index < numInternalUGens)
 		return internalUGens[index]->isNull();
 	else
 		return false;
@@ -839,14 +840,14 @@ bool UGen::isScalar(const int index) const throw()
 {	
 	if(index < 0)
 	{
-		for(int i = 0; i < numInternalUGens; i++)
+		for(unsigned int i = 0; i < numInternalUGens; i++)
 		{
 			if(internalUGens[i]->isScalar() == false)
 				return false;
 		}
 		return true;
 	}
-	else if(index < numInternalUGens)
+	else if((unsigned int)index < numInternalUGens)
 		return internalUGens[index]->isScalar();
 	else
 		return false;
@@ -856,14 +857,14 @@ bool UGen::isConst(const int index) const throw()
 {	
 	if(index < 0)
 	{
-		for(int i = 0; i < numInternalUGens; i++)
+		for(unsigned int i = 0; i < numInternalUGens; i++)
 		{
 			if(internalUGens[i]->isConst() == false)
 				return false;
 		}
 		return true;
 	}
-	else if(index < numInternalUGens)
+	else if((unsigned int)index < numInternalUGens)
 		return internalUGens[index]->isConst();
 	else
 		return false;
@@ -877,7 +878,7 @@ bool UGen::containsIdenticalInternalsAs(UGen const& other, const bool mustBeInTh
 	
 	if(mustBeInTheSameSequence == true)
 	{
-		for(int i = 0; i < numInternalUGens; i++)
+		for(unsigned int i = 0; i < numInternalUGens; i++)
 		{
 			if(internalUGens[i] != other.internalUGens[i])
 				return false;
@@ -885,11 +886,11 @@ bool UGen::containsIdenticalInternalsAs(UGen const& other, const bool mustBeInTh
 	}
 	else
 	{
-		for(int i = 0; i < numInternalUGens; i++)
+		for(unsigned int i = 0; i < numInternalUGens; i++)
 		{
 			bool foundMatch = false;
 			
-			for(int j = 0; j < other.numInternalUGens; j++)
+			for(unsigned int j = 0; j < other.numInternalUGens; j++)
 			{
 				if(internalUGens[i] == other.internalUGens[j])
 				{
@@ -1037,7 +1038,7 @@ void UGen::purgeInternalMemory() throw()
 
 const UGen& UGen::getInput(const int input, const int channel) throw()
 {
-	if(channel < 0 || channel >= numInternalUGens)
+	if(channel < 0 || (unsigned int)channel >= numInternalUGens)
 	{
 		ugen_assertfalse;
 		return getNull();
@@ -1048,7 +1049,7 @@ const UGen& UGen::getInput(const int input, const int channel) throw()
 
 UGenOutput* UGen::getOutput(const int channel) const throw()						
 { 
-	if(channel < 0 || channel >= numInternalUGens)
+	if(channel < 0 || (unsigned int)channel >= numInternalUGens)
 	{
 		ugen_assertfalse;
 		return 0;
@@ -1059,7 +1060,7 @@ UGenOutput* UGen::getOutput(const int channel) const throw()
 
 void UGen::setOutput(float* block, const int blockSize, const int channel) throw()		
 { 
-	if(block == 0 || channel < 0 || channel >= numInternalUGens)
+	if(block == 0 || channel < 0 || (unsigned int)channel >= numInternalUGens)
 	{
 		ugen_assertfalse;
 		return;
@@ -1082,7 +1083,7 @@ void UGen::setOutputs(float** block, const int blockSize, const int numChannels)
 
 bool UGen::setInput(const float* block, const int blockSize, const int channel) throw()
 {	
-	if(block == 0 || channel < 0 || channel >= numInternalUGens) return false;
+	if(block == 0 || channel < 0 || (unsigned int)channel >= numInternalUGens) return false;
 			
 	return internalUGens[channel]->setInput(block, channel);		
 }
@@ -1105,7 +1106,7 @@ bool UGen::setInputs(const float** block, const int blockSize, const int numChan
 
 bool UGen::setValue(Value const& other) throw()
 {
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		if(internalUGens[i]->setValue(other)) return true;
 	}
@@ -1133,7 +1134,7 @@ bool UGen::setSource(UGen const& source, const bool releasePreviousSources, cons
 {
 	ugen_assert(fadeTime >= 0.f);
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		if(internalUGens[i]->setSource(source, releasePreviousSources, fadeTime)) return true;
 	}
@@ -1146,7 +1147,7 @@ UGen UGen::getSource() throw()
 {
 	UGen sourcesUGen;
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{		
 		UGen source = internalUGens[i]->getSource();
 		
@@ -1158,7 +1159,7 @@ UGen UGen::getSource() throw()
 
 void UGen::release() throw()
 {
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i]->releaseInternal();
 	}
@@ -1169,7 +1170,7 @@ void UGen::steal(const bool forcedSteal) throw()
 	if(forcedSteal == true)
 	{
 		// just dispose the current UGens and set them to null
-		for(int i = 0; i < numInternalUGens; i++)
+		for(unsigned int i = 0; i < numInternalUGens; i++)
 		{
 			internalUGens[i]->decrementRefCount();
 			internalUGens[i] = getNullInternal();
@@ -1178,7 +1179,7 @@ void UGen::steal(const bool forcedSteal) throw()
 	else
 	{
 		// allow the UGens to handle stealing more gracefully
-		for(int i = 0; i < numInternalUGens; i++)
+		for(unsigned int i = 0; i < numInternalUGens; i++)
 		{
 			internalUGens[i]->stealInternal();
 		}		
@@ -1190,7 +1191,7 @@ bool UGen::sendMidiNote(const int midiChannel, const int midiNote, const int vel
 {
 	bool result = false;
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		result = internalUGens[i]->sendMidiNote(midiChannel, midiNote, velocity) || result;
 	}
@@ -1203,7 +1204,7 @@ bool UGen::sendMidiNote(const int midiChannel, const int midiNote, const int vel
 #include "../juce/ugen_JuceVoicer.h"
 void UGen::sendMidiBuffer(MidiBuffer const& midiMessages) throw()
 {
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		VoicerUGenInternal* voicer = dynamic_cast<VoicerUGenInternal*> (internalUGens[i]);
 		
@@ -1229,7 +1230,7 @@ bool UGen::trigger(void* extraArgs) throw()
 {
 	bool result = false;
 
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		result = internalUGens[i]->trigger(extraArgs) || result;
 	}
@@ -1241,7 +1242,7 @@ bool UGen::stopAllEvents() throw()
 {
 	bool result = false;
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		result = internalUGens[i]->stopAllEvents() || result;
 	}
@@ -1252,7 +1253,7 @@ bool UGen::stopAllEvents() throw()
 UGen& UGen::addBufferReceiver(BufferReceiver* const receiver) throw()
 {
 #ifndef UGEN_ANDROID
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		BufferSender* sender = dynamic_cast<BufferSender*> (internalUGens[i]);
 		
@@ -1266,7 +1267,7 @@ UGen& UGen::addBufferReceiver(BufferReceiver* const receiver) throw()
 void UGen::removeBufferReceiver(BufferReceiver* const receiver) throw()
 {
 #ifndef UGEN_ANDROID
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		BufferSender* sender = dynamic_cast<BufferSender*> (internalUGens[i]);
 		
@@ -1278,13 +1279,13 @@ void UGen::removeBufferReceiver(BufferReceiver* const receiver) throw()
 UGen& UGen::addBufferReceiver(UGen const& receiverUGen) throw()
 {
 #ifndef UGEN_ANDROID
-	for(int src = 0; src < numInternalUGens; src++)
+	for(unsigned int src = 0; src < numInternalUGens; src++)
 	{
 		BufferSender* sender = dynamic_cast<BufferSender*> (internalUGens[src]);
 		
 		if(sender != 0) 
 		{
-			for(int dst = 0; dst < receiverUGen.numInternalUGens; dst++)
+			for(unsigned int dst = 0; dst < receiverUGen.numInternalUGens; dst++)
 			{
 				BufferReceiver* receiver = dynamic_cast<BufferReceiver*> (receiverUGen.internalUGens[dst]);
 				
@@ -1299,13 +1300,13 @@ UGen& UGen::addBufferReceiver(UGen const& receiverUGen) throw()
 void UGen::removeBufferReceiver(UGen const& receiverUGen) throw()
 {
 #ifndef UGEN_ANDROID
-	for(int src = 0; src < numInternalUGens; src++)
+	for(unsigned int src = 0; src < numInternalUGens; src++)
 	{
 		BufferSender* sender = dynamic_cast<BufferSender*> (internalUGens[src]);
 		
 		if(sender != 0) 
 		{
-			for(int dst = 0; dst < receiverUGen.numInternalUGens; dst++)
+			for(unsigned int dst = 0; dst < receiverUGen.numInternalUGens; dst++)
 			{
 				BufferReceiver* receiver = dynamic_cast<BufferReceiver*> (receiverUGen.internalUGens[dst]);
 				
@@ -1319,7 +1320,7 @@ void UGen::removeBufferReceiver(UGen const& receiverUGen) throw()
 UGen& UGen::addDoneActionReceiver(DoneActionReceiver* const receiver) throw()
 {
 #ifndef UGEN_ANDROID
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		DoneActionSender* sender = dynamic_cast<DoneActionSender*> (internalUGens[i]);
 		
@@ -1333,7 +1334,7 @@ UGen& UGen::addDoneActionReceiver(DoneActionReceiver* const receiver) throw()
 void UGen::removeDoneActionReceiver(DoneActionReceiver* const receiver) throw()
 {
 #ifndef UGEN_ANDROID
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		DoneActionSender* sender = dynamic_cast<DoneActionSender*> (internalUGens[i]);
 		
@@ -1345,13 +1346,13 @@ void UGen::removeDoneActionReceiver(DoneActionReceiver* const receiver) throw()
 UGen& UGen::addDoneActionReceiver(UGen const& receiverUGen) throw()
 {
 #ifndef UGEN_ANDROID
-	for(int src = 0; src < numInternalUGens; src++)
+	for(unsigned int src = 0; src < numInternalUGens; src++)
 	{
 		DoneActionSender* sender = dynamic_cast<DoneActionSender*> (internalUGens[src]);
 		
 		if(sender != 0) 
 		{
-			for(int dst = 0; dst < receiverUGen.numInternalUGens; dst++)
+			for(unsigned int dst = 0; dst < receiverUGen.numInternalUGens; dst++)
 			{
 				DoneActionReceiver* receiver = dynamic_cast<DoneActionReceiver*> (receiverUGen.internalUGens[dst]);
 				
@@ -1367,13 +1368,13 @@ UGen& UGen::addDoneActionReceiver(UGen const& receiverUGen) throw()
 void UGen::removeDoneActionReceiver(UGen const& receiverUGen) throw()
 {
 #ifndef UGEN_ANDROID
-	for(int src = 0; src < numInternalUGens; src++)
+	for(unsigned int src = 0; src < numInternalUGens; src++)
 	{
 		DoneActionSender* sender = dynamic_cast<DoneActionSender*> (internalUGens[src]);
 		
 		if(sender != 0) 
 		{
-			for(int dst = 0; dst < receiverUGen.numInternalUGens; dst++)
+			for(unsigned int dst = 0; dst < receiverUGen.numInternalUGens; dst++)
 			{
 				DoneActionReceiver* receiver = dynamic_cast<DoneActionReceiver*> (receiverUGen.internalUGens[dst]);
 				
@@ -1386,7 +1387,7 @@ void UGen::removeDoneActionReceiver(UGen const& receiverUGen) throw()
 
 double UGen::getDuration() throw()
 {
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{		
 		double duration = internalUGens[i]->getDuration();
 		
@@ -1398,7 +1399,7 @@ double UGen::getDuration() throw()
 
 double UGen::getPosition() throw()
 {
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		double position = internalUGens[i]->getPosition();
 		
@@ -1410,7 +1411,7 @@ double UGen::getPosition() throw()
 
 bool UGen::setPosition(const double newPosition) throw()
 {
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		if(internalUGens[i]->setPosition(newPosition)) return true;
 	}
@@ -1422,7 +1423,7 @@ DoubleArray UGen::getDurations() throw()
 {
 	DoubleArray result;
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{		
 		double duration = internalUGens[i]->getDuration();
 
@@ -1436,7 +1437,7 @@ DoubleArray UGen::getPositions() throw()
 {
 	DoubleArray result;
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{		
 		double position = internalUGens[i]->getPosition();
 		
@@ -1453,7 +1454,7 @@ bool UGen::setPositions(DoubleArray const& newPositions) throw()
 	bool result = false;
 	int posIndex = 0;
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		result = internalUGens[i]->setPosition(newPositions.wrapAt(posIndex++)) || result;
 	}
@@ -1548,7 +1549,7 @@ void UGen::generateFromProxyOwner(ProxyOwnerUGenInternal* proxyOwner) throw()
 	
 	internalUGens[0] = proxyOwner;
 	
-	for(int i = 1; i < numInternalUGens; i++)
+	for(unsigned int i = 1; i < numInternalUGens; i++)
 		internalUGens[i] = proxyOwner->getProxy(i);	
 }
 
@@ -1567,7 +1568,7 @@ UGenArray UGen::group(const int size) const throw()
 	{
 		UGen item;
 		
-		for(int i = 0; i < size && inputIndex < numInternalUGens; i++, inputIndex++)
+		for(int i = 0; i < size && inputIndex < (int)numInternalUGens; i++, inputIndex++)
 		{
 			item <<= operator[] (inputIndex);
 		}
@@ -1588,7 +1589,7 @@ UGenArray UGen::interleave(const int size) const throw()
 	{
 		UGen item;
 		
-		for(int inputIndex = outputIndex; inputIndex < numInternalUGens; inputIndex += size)
+		for(unsigned int inputIndex = outputIndex; inputIndex < numInternalUGens; inputIndex += size)
 		{
 			item <<= operator[] (inputIndex);
 		}
@@ -1603,7 +1604,7 @@ UGenArray UGen::toArray() const throw()
 {
 	UGenArray array(numInternalUGens);
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{		
 		array.put(i, operator[] (i));
 	}
