@@ -42,7 +42,7 @@ public:
 	{
 		int blockID = UGen::getNextBlockID(numSamples);
 		synth.setOutputs(outputChannelData, numSamples, numOutputChannels);
-		synth.prepareAndProcessBlock(numSamples, blockID);
+		synth.prepareAndProcessBlock(numSamples, blockID, -1);
 	}
 	
 	void audioDeviceAboutToStart (AudioIODevice* device)
