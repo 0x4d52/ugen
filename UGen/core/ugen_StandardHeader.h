@@ -305,7 +305,7 @@ static union MSVC_EVIL_FLOAT_HACK INFINITY_HACK = {{0x00, 0x00, 0x80, 0x7F}};
 #include <Accelerate/Accelerate.h>
 #define UGEN_ALIGN __attribute__ ((aligned))
 typedef union 
-{
+{ 
 	float	flt[4];
 	vFloat	vec;
 } VecSplat;
