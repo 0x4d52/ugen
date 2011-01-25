@@ -42,6 +42,7 @@
 
 #include "../core/ugen_UGen.h"
 #include "../basics/ugen_MixUGen.h"
+#include "../fft/ugen_FFTEngineInternal.h"
 #include "../fft/ugen_FFTEngine.h"
 
 

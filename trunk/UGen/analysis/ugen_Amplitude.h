@@ -63,7 +63,8 @@ public:
 	UGenInternal* getChannel(const int channel) throw();
 };
 
-/** Get the amplitude of an input signal. */
+/** Get the amplitude of an input signal. 
+ @ingroup AllUGens ControlUGens*/
 UGenSublcassDeclarationNoDefault(Amplitude, (input, duration), 
 											(UGen const& input, const float duration = 0.01), 
 											COMMON_UGEN_DOCS);
@@ -79,7 +80,8 @@ protected:
 	bool started;
 };
 
-/** Send a delete action when silence is detected. */
+/** Send a delete action when silence is detected. 
+ @ingroup AllUGens ControlUGens*/
 UGenSublcassDeclarationNoDefault(DetectSilence, (input, duration), 
 												(UGen const& input, const float duration = 0.01), 
 												COMMON_UGEN_DOCS);

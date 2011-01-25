@@ -239,7 +239,7 @@ protected:
 
 /** Zoom into a particular point in an ambisonic soundfield.
  Zooms into a partiuclar point at a given azimuth and elevation.
- This always outputs the four channels in this order.
+ This always outputs the four B format (W, X, Y, Z) channels in this order.
  @ingroup AllUGens ControlUGens
  @see PanB, DecodeB, TiltB, RotateB, TumbleB */
 UGenSublcassDeclaration(ZoomB, (bFormat, azimuth, elevation, zoom),
