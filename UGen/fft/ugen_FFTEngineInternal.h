@@ -49,7 +49,7 @@
 //#define UGEN_FFTW 1		// best for windows
 							// otherwise use vDSP on the Mac (fastest of all)
 
-#if (defined (_WIN32) || defined (_WIN64) || defined(UGEN_IPHONE) || defined(UGEN_ANDROID)) //|| !defined(vFloat) // make this so it is "not mac" rather than "is windows"...
+#if (defined (_WIN32) || defined (_WIN64) || defined(UGEN_IPHONE) || defined(UGEN_ANDROID)) // make this so it is "not mac" rather than "is windows"...
 	#ifndef UGEN_NEON
 		typedef struct _vFloat {
 			float f[4];

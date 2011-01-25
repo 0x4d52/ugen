@@ -41,21 +41,28 @@ BEGIN_UGEN_NAMESPACE
 #include "ugen_UGen.h"
 #include "ugen_SmartPointer.h"
 
+#define DEBUG_SmartPointer 0
 
 //=========================== SmartPointer ==================================
 
-//static int allocationCount = 0;
+#if DEBUG_SmartPointer
+static int allocationCount = 0;
+#endif
 
 SmartPointer::SmartPointer() throw()
 :	refCount(1),
 	active(true)
 {		
-//	printf("+++++++, %p, %d\n", this, ++allocationCount);
+#if DEBUG_SmartPointer	
+	printf("+++++++, %p, %d\n", this, ++allocationCount);
+#endif
 }
 
 SmartPointer::~SmartPointer()
 {
-//	printf("-------, %p, %d\n", this, --allocationCount);
+#if DEBUG_SmartPointer
+	printf("-------, %p, %d\n", this, --allocationCount);
+#endif
 	ugen_assert(refCount >= 0);
 }
 
