@@ -63,6 +63,7 @@ public:
 						UGen const& offset, 
 						UGen const& loop, 
 						const UGen::DoneAction doneAction) throw();
+	~PlayBufUGenInternal();
 	UGenInternal* getChannel(const int channel) throw();
 	void prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();

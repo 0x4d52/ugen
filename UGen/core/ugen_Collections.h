@@ -238,14 +238,14 @@ public:
 	 If the key is not found then a "null" version of the value is returned. */
 	ValueType remove(KeyType const& key) throw()
 	{
-		ObjectArray<ValueType>& values = getValues();
-		ObjectArray<KeyType>& keys = getKeys();
+		ObjectArray<ValueType>& values = this->getInternal()->getValues();
+		ObjectArray<KeyType>& keys = this->getInternal()->getKeys();
 		
 		int index = keys.indexOf(key);
 		
 		if(index >= 0)
 		{
-			ValueType& removed = values[index];
+			ValueType removed = values[index];
 			keys.remove(index);
 			values.remove(index);
 			return removed;
@@ -294,9 +294,8 @@ public:
 	int length() const throw()
 	{
 		ObjectArray<ValueType> const& values = getValues();
-		ObjectArray<KeyType> const& keys = getKeys();
 		
-		ugen_assert(values.length() == keys.length()); // these should be the same length!
+		ugen_assert(values.length() == getKeys().length()); // these should be the same length!
 		
 		return values.length();
 	}
