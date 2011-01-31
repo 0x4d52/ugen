@@ -54,17 +54,29 @@ public:
 	
 	inline float getSampleUnchecked(const int index) const throw() { return data[index]; }
 	inline float getSampleUnchecked(const double index) const throw() { return getSampleUnchecked((float)index); }
-	inline float getSampleUnchecked(const float index) const throw() 
-	{ 
-		const int iIndex0 = (int)index;
-		unsigned int iIndex1 = iIndex0+1;
-		if(iIndex1 >= size_)
-			iIndex1 = 0;
-		const float frac1 = (float)index - (float)iIndex0;
-		const float frac0 = 1.f - frac1;
-		
-		return data[iIndex0] * frac0 + data[iIndex1] * frac1; // need to optimise this at some point		
+//	inline float getSampleUnchecked(const float index) const throw() 
+//	{ 
+//		const int iIndex0 = (int)index;
+//		unsigned int iIndex1 = iIndex0+1;
+//		if(iIndex1 >= size_)
+//			iIndex1 = 0;
+//		const float frac1 = (float)index - (float)iIndex0;
+//		const float frac0 = 1.f - frac1;
+//		
+//		return data[iIndex0] * frac0 + data[iIndex1] * frac1; // need to optimise this at some point		
+//	}
+	
+	inline float getSampleUnchecked(const float fIndex) const throw()
+	{
+		const int iIndex0 = (int)fIndex;
+		const int iIndex1 = iIndex0+1;
+		const float* pValue0 = data + iIndex0;
+		const float* pValue1 = (iIndex1 >= size_) ? data : pValue0+1;
+		const float value0 = *pValue0;
+		const float value1 = *pValue1;
+		return value0 + (fIndex - iIndex0) * (value1 - value0);
 	}
+	
 	
 	friend class Buffer;
 	friend class PartBuffer;
