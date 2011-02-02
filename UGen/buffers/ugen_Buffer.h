@@ -71,7 +71,7 @@ public:
 		const int iIndex0 = (int)fIndex;
 		const int iIndex1 = iIndex0+1;
 		const float* pValue0 = data + iIndex0;
-		const float* pValue1 = (iIndex1 >= size_) ? data : pValue0+1;
+		const float* pValue1 = (iIndex1 >= (int)size_) ? data : pValue0+1;
 		const float value0 = *pValue0;
 		const float value1 = *pValue1;
 		return value0 + (fIndex - iIndex0) * (value1 - value0);

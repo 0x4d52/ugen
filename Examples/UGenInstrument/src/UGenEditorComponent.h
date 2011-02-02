@@ -105,7 +105,7 @@ public:
 		void paint(Graphics& g)
 		{
 			lock.enter();
-			float currentValue = *value;
+			float currentValue = jlimit(0.f, 1.f, zap(*value));
 			lock.exit();
 			
 			g.fillAll(Colours::black);
