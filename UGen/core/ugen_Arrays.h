@@ -115,6 +115,8 @@ public:
 		if(ownsTheData)
 			delete [] array;
 		
+		ownsTheData = true;
+		
 		size_ = newSize;
 		array = newArray;
 	}
@@ -150,6 +152,8 @@ public:
 			
 			if(ownsTheData)
 				delete [] array;
+			
+			ownsTheData = true;
 			
 			size_ = newSize;
 			array = newArray;

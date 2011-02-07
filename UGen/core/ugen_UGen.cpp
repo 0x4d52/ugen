@@ -747,11 +747,11 @@ UGen UGen::to(const int endIndex) const throw()
 	return range(0, endIndex);
 }
 
+// could optimise here if the new size is less than the current size and not realloc...?
 void UGen::initInternal(const int numInternalUGensToInit) throw()
 {
-	// could optimise here if the new size is less than the current size and not realloc...?
-	
-	ugen_assert(numInternalUGensToInit > 0);
+	/* it's possible here that you passed an uninitialised variable to a UGen input. */
+	ugen_assert(numInternalUGensToInit > 0); 
 	
 	if((numInternalUGens > 0) && (internalUGens != 0))
 	{

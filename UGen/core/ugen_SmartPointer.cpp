@@ -41,7 +41,7 @@ BEGIN_UGEN_NAMESPACE
 #include "ugen_UGen.h"
 #include "ugen_SmartPointer.h"
 
-#define DEBUG_SmartPointer 0
+#define DEBUG_SmartPointer 1
 
 //=========================== SmartPointer ==================================
 
