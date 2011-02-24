@@ -115,6 +115,78 @@ void UGenPlugin::setParameter (int index, float newValue)
 	}
 }
 
+float UGenPlugin::getMappedParameter(int index)
+{
+	if(getParameterWarp(index))
+	{
+		return linexp(getParameter(index), 
+					  0.f, 1.f, 
+					  getParameterMin(index), getParameterMax(index));
+	}
+	else
+	{
+		return linlin(getParameter(index), 
+					  0.f, 1.f, 
+					  getParameterMin(index), getParameterMax(index));		
+	}	
+}
+
+void UGenPlugin::setMappedParameterNotifyingHost(int index, float newValue)
+{
+	float normalisedValue;
+	
+	if(getParameterWarp(index))
+	{
+		normalisedValue = explin(newValue, 
+								 getParameterMin(index), getParameterMax(index),
+								 0.f, 1.f);
+	}
+	else
+	{
+		normalisedValue = linlin(newValue, 
+								 getParameterMin(index), getParameterMax(index),
+								 0.f, 1.f);
+	}	
+	
+	setParameterNotifyingHost(index, normalisedValue);
+}
+
+UGen UGenPlugin::getMappedParameterControl(int index) const
+{
+	if(getParameterWarp(index))
+	{
+		return LinExp::AR(getParameterPtr(index), 
+						  0, 1, 
+						  getParameterMin(index), getParameterMax(index));
+	}
+	else
+	{
+		return LinLin::AR(getParameterPtr(index), 
+						  0, 1, 
+						  getParameterMin(index), getParameterMax(index));	
+	}
+}
+
+float UGenPlugin::getParameterMin(int index) const
+{
+	return (float)UGenInterface::Parameters::Ranges[index].minimum;
+}
+
+float UGenPlugin::getParameterMax(int index) const
+{
+	return (float)UGenInterface::Parameters::Ranges[index].maximum;
+}
+
+bool UGenPlugin::getParameterWarp(int index) const
+{
+	return UGenInterface::Parameters::Ranges[index].warp;
+}
+
+const String UGenPlugin::getParameterUnits(int index) const
+{
+	return UGenInterface::Parameters::Ranges[index].units;
+}
+
 const String UGenPlugin::getParameterName (int index)
 {
 	return String(UGenInterface::Parameters::Names[index]);
@@ -164,9 +236,9 @@ void UGenPlugin::prepareToPlay (double sampleRate, int samplesPerBlock)
 
 UGen UGenPlugin::constructGraph()
 {	
-	// get pointers to the params and use these as UGens
-	float *gain = parameters + UGenInterface::Parameters::Gain;
-	float *pan = parameters + UGenInterface::Parameters::Pan;
+	// get the params and use these as UGens	
+	UGen gain = getMappedParameterControl(UGenInterface::Parameters::Gain).lag();
+	UGen pan = getMappedParameterControl(UGenInterface::Parameters::Pan).lag();		
 	
 	// assign a Voicer to voicerUGen - this spawns events for MIDI notes
 	voicerUGen = Voicer<UGenInstrumentEvent>::AR(eventGenerator, 
@@ -176,7 +248,7 @@ UGen UGenPlugin::constructGraph()
 												 false,		// do not force stolen notes (n/a since previous arg is 0)
 												 false);	// do not listen directly to MIDI ports, we're providing buffers of MIDI
 	
-	return Pan2::AR(voicerUGen, Lag::AR(pan) * 2 - 1, Lag::AR(gain));
+	return Pan2::AR(voicerUGen, pan, gain);
 }
 
 void UGenPlugin::releaseResources()
@@ -232,17 +304,17 @@ void UGenPlugin::buttonClicked(int buttonIndex)
 	switch(buttonIndex)
 	{
 		case UGenInterface::Buttons::Swap:
-			setParameterNotifyingHost(UGenInterface::Parameters::Pan, 
-									  1.f-getParameter(UGenInterface::Parameters::Pan));
+			setMappedParameterNotifyingHost(UGenInterface::Parameters::Pan, 
+											neg(getMappedParameter(UGenInterface::Parameters::Pan)));
 			break;
 		case UGenInterface::Buttons::Centre:
-			setParameterNotifyingHost(UGenInterface::Parameters::Pan, 0.5f);
+			setMappedParameterNotifyingHost(UGenInterface::Parameters::Pan, 0);
 			break;
 		case UGenInterface::Buttons::Left:
-			setParameterNotifyingHost(UGenInterface::Parameters::Pan, 0.f);
+			setMappedParameterNotifyingHost(UGenInterface::Parameters::Pan, -1);
 			break;
 		case UGenInterface::Buttons::Right:
-			setParameterNotifyingHost(UGenInterface::Parameters::Pan, 1.f);
+			setMappedParameterNotifyingHost(UGenInterface::Parameters::Pan, 1);
 			break;
 	}
 }

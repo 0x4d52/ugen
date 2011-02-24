@@ -36,6 +36,26 @@
 #include "UGenPlugin.h"
 
 
+class UGenSlider : public Slider
+{
+public:
+	UGenSlider(const String& componentName = String::empty,
+			   double minimum = 0.0, 
+			   double maximum = 1.0, 
+			   bool isExponential = false,
+			   String const& units = String::empty) throw();
+	
+	double getValueFromText (const String& text);
+	const String getTextFromValue (double value);
+	
+	
+private:
+	double minimum, maximum;
+	bool isExponential;
+	String units;
+};
+
+
 //==============================================================================
 /**
     This is the Component that our filter will use as its UI.
@@ -146,7 +166,7 @@ public:
 	
 private:
     //==============================================================================
-    Array<Slider*> sliders;
+    Array<UGenSlider*> sliders;
 	Array<Label*> sliderLabels;
 	
 	Array<MeterComponent*> meters;

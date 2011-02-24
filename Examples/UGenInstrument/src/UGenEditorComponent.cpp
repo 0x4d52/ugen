@@ -35,6 +35,63 @@
 #include "UGenEditorComponent.h"
 
 
+UGenSlider::UGenSlider(const String& componentName,
+					   double minimumToUse, 
+					   double maximumToUse, 
+					   bool isExponentialToUse,
+					   String const& unitsToUse) throw()
+:	Slider(componentName),
+	minimum(minimumToUse),
+	maximum(maximumToUse),
+	isExponential(isExponentialToUse),
+	units(unitsToUse)
+{
+	// with exponential, the range can't cross zero
+	ugen_assert(isExponential && (minimum <= 0.0) && (maximum >= 0.0));
+	ugen_assert(isExponential && (minimum >= 0.0) && (maximum <= 0.0));
+	
+	setRange (0.0, 1.0);
+	setTextValueSuffix(units);
+}
+
+double UGenSlider::getValueFromText (const String& text)
+{
+	double realValue = Slider::getValueFromText(text);
+	
+	if(isExponential)
+	{
+		return explin(realValue, minimum, maximum, 0.0, 1.0);
+	}
+	else
+	{
+		return linlin(realValue, minimum, maximum, 0.0, 1.0);
+	}
+}
+
+const String UGenSlider::getTextFromValue (double normalisedValue)
+{
+	double realValue = 0.0;
+	
+	if(isExponential)
+	{
+		realValue = linexp(normalisedValue, 0.0, 1.0, minimum, maximum);
+	}
+	else
+	{
+		realValue = linlin(normalisedValue, 0.0, 1.0, minimum, maximum);
+	}
+	
+	int intValue = (int)realValue;
+	int digits = 0;	
+	int step = 1;	
+	while (step <= intValue) 
+	{		
+		digits++;		
+		step *= 10;	
+	}	
+	
+	return String(realValue, 8 - units.length() - jmax(1, digits)) + units;
+}
 
 
 //==============================================================================
@@ -89,12 +146,15 @@ UGenEditorComponent::UGenEditorComponent (UGenPlugin* const ownerFilter)
 		{
 			// get the parameter name, which is used several times here
 			String name = String(getPlugin()->getParameterName(index));
-			
+			float minimum = getPlugin()->getParameterMin(index);
+			float maximum = getPlugin()->getParameterMax(index);
+			bool warp = getPlugin()->getParameterWarp(index);			
+			const String units = getPlugin()->getParameterUnits(index);
+
 			// create the slider...
-			Slider* slider;
-			addAndMakeVisible(slider = new Slider(name));
+			UGenSlider* slider = new UGenSlider(name, minimum, maximum, warp, units);
+			addAndMakeVisible(slider);
 			slider->addListener (this);
-			slider->setRange (0.0, 1.0, 0.000001);
 			slider->setValue(getPlugin()->getParameter(index), false);
 			sliders.add(slider);
 			
@@ -266,7 +326,7 @@ void UGenEditorComponent::changeListenerCallback (ChangeBroadcaster* source)
 void UGenEditorComponent::sliderValueChanged (Slider* changedSlider)
 {
 	// find the slider index
-    int index = sliders.indexOf(changedSlider);
+    int index = sliders.indexOf(static_cast<UGenSlider*>(changedSlider));
 	
 	// set the value in the plugin and notify the host of the change
 	getPlugin()->setParameterNotifyingHost (index, (float) changedSlider->getValue());
