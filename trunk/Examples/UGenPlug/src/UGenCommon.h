@@ -38,7 +38,16 @@
 //#define UGenEditorComponent		UGenAppendNames(UGenEditorComponent, UGenPluginID)
 //#define UGenInterface			UGenAppendNames(UGenInterface, UGenPluginID)
 
+#define LINEAR false
+#define EXPONENTIAL true
 
+struct UGenRange
+{
+	double minimum;
+	double maximum;
+	bool warp;		// true for exponential, false for linear
+	char units[64];	// use 0 for no units, e.g., "Hz" for freqency
+};
 
 /**
  Some convenient enums and name arrays for paramteres, buttons etc.
@@ -51,6 +60,12 @@ namespace UGenInterface
 			"Gain", 
 			"Pan",
 			"Cut-off" 
+		};
+		
+		static const UGenRange Ranges[] = {
+			{0, 1, LINEAR, 0},
+			{-1, 1, LINEAR, 0},
+			{50, 18000, EXPONENTIAL, "Hz"}
 		};
 				
 		enum { 

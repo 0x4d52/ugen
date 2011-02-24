@@ -92,6 +92,11 @@ int UGenPlugin::getNumParameters()
     return UGenInterface::Parameters::Count;
 }
 
+const float* UGenPlugin::getParameterPtr (int index) const
+{
+	return parameters + index;
+}
+
 float UGenPlugin::getParameter (int index)
 {
     return parameters[index];
@@ -107,6 +112,78 @@ void UGenPlugin::setParameter (int index, float newValue)
 		// our editor will pick up.
 		sendChangeMessage();
 	}
+}
+
+float UGenPlugin::getMappedParameter(int index)
+{
+	if(getParameterWarp(index))
+	{
+		return linexp(getParameter(index), 
+					  0.f, 1.f, 
+					  getParameterMin(index), getParameterMax(index));
+	}
+	else
+	{
+		return linlin(getParameter(index), 
+					  0.f, 1.f, 
+					  getParameterMin(index), getParameterMax(index));		
+	}	
+}
+
+void UGenPlugin::setMappedParameterNotifyingHost(int index, float newValue)
+{
+	float normalisedValue;
+	
+	if(getParameterWarp(index))
+	{
+		normalisedValue = explin(newValue, 
+								 getParameterMin(index), getParameterMax(index),
+								 0.f, 1.f);
+	}
+	else
+	{
+		normalisedValue = linlin(newValue, 
+								 getParameterMin(index), getParameterMax(index),
+								 0.f, 1.f);
+	}	
+	
+	setParameterNotifyingHost(index, normalisedValue);
+}
+
+UGen UGenPlugin::getMappedParameterControl(int index) const
+{
+	if(getParameterWarp(index))
+	{
+		return LinExp::AR(getParameterPtr(index), 
+						  0, 1, 
+						  getParameterMin(index), getParameterMax(index));
+	}
+	else
+	{
+		return LinLin::AR(getParameterPtr(index), 
+						  0, 1, 
+						  getParameterMin(index), getParameterMax(index));	
+	}
+}
+
+float UGenPlugin::getParameterMin(int index) const
+{
+	return (float)UGenInterface::Parameters::Ranges[index].minimum;
+}
+
+float UGenPlugin::getParameterMax(int index) const
+{
+	return (float)UGenInterface::Parameters::Ranges[index].maximum;
+}
+
+bool UGenPlugin::getParameterWarp(int index) const
+{
+	return UGenInterface::Parameters::Ranges[index].warp;
+}
+
+const String UGenPlugin::getParameterUnits(int index) const
+{
+	return UGenInterface::Parameters::Ranges[index].units;
 }
 
 const String UGenPlugin::getParameterName (int index)
@@ -170,28 +247,16 @@ UGen UGenPlugin::constructGraph(UGen const& input)
 {
 	// for most things you'll just need to edit this function and the UGenCommon.h file
 	
-	// get pointers to the params
-	float *gain = parameters + UGenInterface::Parameters::Gain;
-	float *pan = parameters + UGenInterface::Parameters::Pan;
-	float *cutoffLinear = parameters + UGenInterface::Parameters::Cutoff;
-	
-	// map the 0-1 range to exponential for the frequency
-	UGen cutoff = LinExp::AR(cutoffLinear, 0, 1, 50, 18000);
-	cutoff = cutoff.lag();
+	UGen gain = getMappedParameterControl(UGenInterface::Parameters::Gain).lag();
+	UGen pan = getMappedParameterControl(UGenInterface::Parameters::Pan).lag();		
+	UGen cutoff = getMappedParameterControl(UGenInterface::Parameters::Cutoff).lag();
 	
 	// filter the input signal
 	UGen filter = LPF::AR(input, cutoff);
 	
-	// map the 0-1 control to -1...+1
-	UGen panControl = UGen(pan) * 2 - 1; // or you could use LinLin
-	panControl = panControl.lag();
-	
-	UGen gainControl = gain;
-	gainControl = gainControl.lag();
-	
 	// create the two pans
-	UGen constantPan = Pan2::AR(filter, panControl, gainControl);
-	UGen linearPan = LinPan2::AR(filter, panControl, gainControl);
+	UGen constantPan = Pan2::AR(filter, pan, gain);
+	UGen linearPan = LinPan2::AR(filter, pan, gain);
 	
 	// use the menu as control
 	UGen panSelector = &menuItem;
@@ -278,17 +343,17 @@ void UGenPlugin::buttonClicked(int buttonIndex)
 	switch(buttonIndex)
 	{
 		case UGenInterface::Buttons::Swap:
-			setParameterNotifyingHost(UGenInterface::Parameters::Pan, 
-									  1.f-getParameter(UGenInterface::Parameters::Pan));
+			setMappedParameterNotifyingHost(UGenInterface::Parameters::Pan, 
+											neg(getMappedParameter(UGenInterface::Parameters::Pan)));
 			break;
 		case UGenInterface::Buttons::Centre:
-			setParameterNotifyingHost(UGenInterface::Parameters::Pan, 0.5f);
+			setMappedParameterNotifyingHost(UGenInterface::Parameters::Pan, 0);
 			break;
 		case UGenInterface::Buttons::Left:
-			setParameterNotifyingHost(UGenInterface::Parameters::Pan, 0.f);
+			setMappedParameterNotifyingHost(UGenInterface::Parameters::Pan, -1);
 			break;
 		case UGenInterface::Buttons::Right:
-			setParameterNotifyingHost(UGenInterface::Parameters::Pan, 1.f);
+			setMappedParameterNotifyingHost(UGenInterface::Parameters::Pan, 1);
 			break;
 	}
 }

@@ -70,11 +70,21 @@ public:
 
     int getNumParameters();
 
+	const float* getParameterPtr (int index) const;
     float getParameter (int index);
     void setParameter (int index, float newValue);
+	
+	float getMappedParameter(int index);
+	void setMappedParameterNotifyingHost(int index, float newValue);
+	UGen getMappedParameterControl(int index) const;
 
+	float getParameterMin(int index) const;
+	float getParameterMax(int index) const;
+	bool getParameterWarp(int index) const;
+	const String getParameterUnits(int index) const;
+	
     const String getParameterName (int index);
-    const String getParameterText (int index);
+    const String getParameterText (int index);	
 
     const String getInputChannelName (const int channelIndex) const;
     const String getOutputChannelName (const int channelIndex) const;

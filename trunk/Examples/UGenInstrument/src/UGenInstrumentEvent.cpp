@@ -65,7 +65,6 @@ UGen UGenInstrumentEvent::spawnEvent(VoicerUGenInternal& voicer,
 	// convert midi note to frequency
 	UGen freq = midicps(note);
 	
-	
 	// the wave source with the envelope used as amplitude control
 	UGen wave = LFSaw::AR(freq, 0.0, envgen);
 	
@@ -75,7 +74,8 @@ UGen UGenInstrumentEvent::spawnEvent(VoicerUGenInternal& voicer,
 	// map the linear cutoff to a useful frequency range and use the envlope to vary it too
 	UGen cutoff = LinExp::AR(linearCutoff * envgen, 
 							 0, 1, 
-							 freq*2, freq*12).lag();
+							 freq * getOwner()->getParameterMin(UGenInterface::Parameters::Cutoff), 
+							 freq * getOwner()->getParameterMax(UGenInterface::Parameters::Cutoff)).lag();
 	
 	// apply the filter and use MIDI controller 7 for amplitude control
 	return LPF::AR(wave, cutoff) * Lag::AR(&voicer.getController (7));
