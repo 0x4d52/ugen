@@ -101,6 +101,24 @@ public:
 };
 
 
+class PluginSlider : public Slider
+{
+public:
+	PluginSlider(const String& componentName = String::empty,
+				 double minimum = 0.0, 
+				 double maximum = 1.0, 
+				 bool isExponential = false,
+				 String const& units = String::empty) throw();
+	
+	double getValueFromText (const String& text);
+	const String getTextFromValue (double value);
+	
+	
+private:
+	double minimum, maximum;
+	bool isExponential;
+};
+
 
 
 

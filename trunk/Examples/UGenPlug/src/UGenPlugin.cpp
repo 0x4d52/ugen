@@ -193,7 +193,7 @@ const String UGenPlugin::getParameterName (int index)
 
 const String UGenPlugin::getParameterText (int index)
 {
-	return String (parameters[index], 2);
+	return String (getMappedParameter(index), 2);
 }
 
 const String UGenPlugin::getInputChannelName (const int channelIndex) const

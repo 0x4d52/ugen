@@ -39,12 +39,7 @@
 #include "../../../UGen/UGen.h"
 #include "UGenCommon.h"
 
-//==============================================================================
-/**
-    A simple plugin filter that just applies a gain change to the audio
-    passing through it.
 
-*/
 class UGenPlugin  :	public AudioProcessor,
 					public ChangeBroadcaster
 {
