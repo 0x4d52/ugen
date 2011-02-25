@@ -36,25 +36,6 @@
 #include "UGenPlugin.h"
 
 
-class UGenSlider : public Slider
-{
-public:
-	UGenSlider(const String& componentName = String::empty,
-			   double minimum = 0.0, 
-			   double maximum = 1.0, 
-			   bool isExponential = false,
-			   String const& units = String::empty) throw();
-	
-	double getValueFromText (const String& text);
-	const String getTextFromValue (double value);
-	
-	
-private:
-	double minimum, maximum;
-	bool isExponential;
-	String units;
-};
-
 
 //==============================================================================
 /**
@@ -103,70 +84,10 @@ public:
     /** Standard Juce resize callback. */
     void resized();
 
-
-	class MeterComponent :	public Component,
-							public Timer
-	{
-	public:
-		MeterComponent(String& name, float* valueToUse, const CriticalSection& lockToUse)
-		:	Component(name),
-			value(valueToUse),
-			lastDisplayValue(0.f),
-			lock(lockToUse)
-		{
-			startTimer((int)(METER_UPDATE_TIME * 1000));
-		}
-		
-		~MeterComponent()
-		{
-			stopTimer();
-		}
-		
-		void paint(Graphics& g)
-		{
-			lock.enter();
-			float currentValue = jlimit(0.f, 1.f, zap(*value));
-			lock.exit();
-			
-			g.fillAll(Colours::black);
-			g.setColour(Colour(0xFF00FF00));
-			
-			if(getWidth() > getHeight())
-			{
-				// horizontal meter
-				g.fillRect(0, 0, (int)(getWidth() * currentValue), getHeight());
-			}
-			else
-			{
-				// vertical meter
-				g.fillRect(0, getHeight() - (int)(getHeight() * currentValue), 
-						   getWidth(), (int)(getHeight() * currentValue));
-			}
-		}
-		
-		void timerCallback()
-		{
-			lock.enter();
-			float currentValue = *value;
-			lock.exit();
-			
-			if(lastDisplayValue != currentValue)
-			{	
-				lastDisplayValue = currentValue;
-				repaint();
-			}
-		}
-		
-		
-	private:
-		float* value;
-		float lastDisplayValue;
-		const CriticalSection& lock;
-	};
 	
 private:
     //==============================================================================
-    Array<UGenSlider*> sliders;
+    Array<PluginSlider*> sliders;
 	Array<Label*> sliderLabels;
 	
 	Array<MeterComponent*> meters;

@@ -139,6 +139,63 @@ LabelValue::LabelValue(Label* label) throw()
 {
 }
 
+PluginSlider::PluginSlider(const String& componentName,
+						   double minimumToUse, 
+						   double maximumToUse, 
+						   bool isExponentialToUse,
+						   String const& units) throw()
+:	Slider(componentName),
+	minimum(minimumToUse),
+	maximum(maximumToUse),
+	isExponential(isExponentialToUse)
+{
+	// with exponential, the range can't cross zero
+	ugen_assert(isExponential && (minimum <= 0.0) && (maximum >= 0.0));
+	ugen_assert(isExponential && (minimum >= 0.0) && (maximum <= 0.0));
+	
+	setRange (0.0, 1.0);
+	setTextValueSuffix(units);
+}
+
+double PluginSlider::getValueFromText (const String& text)
+{
+	double realValue = Slider::getValueFromText(text);
+	
+	if(isExponential)
+	{
+		return explin(realValue, minimum, maximum, 0.0, 1.0);
+	}
+	else
+	{
+		return linlin(realValue, minimum, maximum, 0.0, 1.0);
+	}
+}
+
+const String PluginSlider::getTextFromValue (double normalisedValue)
+{
+	double realValue = 0.0;
+	
+	if(isExponential)
+	{
+		realValue = linexp(normalisedValue, 0.0, 1.0, minimum, maximum);
+	}
+	else
+	{
+		realValue = linlin(normalisedValue, 0.0, 1.0, minimum, maximum);
+	}
+	
+	int intValue = (int)realValue;
+	int digits = 0;	
+	int step = 1;	
+	while (step <= intValue) 
+	{		
+		digits++;		
+		step *= 10;	
+	}	
+	
+	String units = getTextValueSuffix();
+	return String(realValue, 8 - units.length() - jmax(1, digits)) + units;
+}
 
 END_UGEN_NAMESPACE
 
