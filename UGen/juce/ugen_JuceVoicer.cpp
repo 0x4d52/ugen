@@ -291,6 +291,12 @@ void VoicerUGenInternal::handleIncomingMidiMessage (MidiInput* source, const Mid
 	}
 	else if(message.isController())
 	{
+		if((message.getControllerNumber() == 123) && (message.getControllerValue() == 0))
+		{
+			const ScopedLock sl(lock);
+			initEvents();
+		}
+			
 		getController(message.getControllerNumber()) = 
 					 (message.getControllerValue() * (1.f / 127.f));
 	}

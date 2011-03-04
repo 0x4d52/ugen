@@ -44,14 +44,14 @@
 
 struct UGenRange
 {
-	double minimum;
-	double maximum;
-	bool warp;
-	char units[64];	// use 0 for no units, e.g., "Hz" for freqency
+	const double minimum;
+	const double maximum;
+	const bool warp;
+	const char units[64];	// use "" for no units, e.g., "Hz" for freqency
 };
 
 /**
- Some convenient enums and name arrays for paramteres, buttons etc.
+ Some convenient enums and name arrays for parameters, buttons etc.
  */
 namespace UGenInterface
 {
@@ -64,9 +64,9 @@ namespace UGenInterface
 		};
 		
 		static const UGenRange Ranges[] = {
-			{0, 1, LINEAR, 0},
-			{-1, 1, LINEAR, 0},
-			{2, 12, EXPONENTIAL, "x"}
+			{0, 1, LINEAR, ""},
+			{-1, 1, LINEAR, ""},
+			{2, 12, EXPONENTIAL, " x"}
 		};		
 				
 		enum { 

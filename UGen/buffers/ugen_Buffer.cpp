@@ -173,9 +173,9 @@ Buffer::Buffer(BufferSpec const& spec) throw()
 	
 	channels = new BufferChannelInternal*[numChannels_];
 	
-	for(int i = 0; i < numChannels_; i++)
+	for(int channel = 0; channel < numChannels_; channel++)
 	{
-		channels[i] = new BufferChannelInternal(size_, zeroData);
+		channels[channel] = new BufferChannelInternal(size_, zeroData);
 	}
 }
 
@@ -334,9 +334,9 @@ Buffer::Buffer(ValueArray const& array) throw()
 {
 	channels = new BufferChannelInternal*[numChannels_]; //	numChannels_ = 1 always in this case
 	channels[0] = new BufferChannelInternal(size_, false);
-	for(int i = 0; i < size_; i++)
+	for(int channel = 0; channel < size_; channel++)
 	{
-		channels[0]->data[i] = array[i].getValue();
+		channels[0]->data[channel] = array[channel].getValue();
 	}
 }
 
@@ -413,9 +413,9 @@ Buffer::Buffer(const int size, const int numChannels, float** sourceDataArray, c
 	size_(size)
 {
 	channels = new BufferChannelInternal*[numChannels_];
-	for(int i = 0; i < numChannels_; i++)
+	for(int channel = 0; channel < numChannels_; channel++)
 	{
-		channels[i] = new BufferChannelInternal(size_, size_, sourceDataArray[i], copyTheData);
+		channels[channel] = new BufferChannelInternal(size_, size_, sourceDataArray[channel], copyTheData);
 	}
 }
 
@@ -436,9 +436,9 @@ Buffer::Buffer(AudioSampleBuffer& audioSampleBuffer, const bool copyTheData) thr
 	size_(audioSampleBuffer.getNumSamples())
 {
 	channels = numChannels_ <= 0 ? 0 : new BufferChannelInternal*[numChannels_];
-	for(int i = 0; i < numChannels_; i++)
+	for(int channel = 0; channel < numChannels_; channel++)
 	{
-		channels[i] = new BufferChannelInternal(size_, size_, audioSampleBuffer.getSampleData(i), copyTheData);
+		channels[channel] = new BufferChannelInternal(size_, size_, audioSampleBuffer.getSampleData(channel), copyTheData);
 	}
 }
 
@@ -519,6 +519,53 @@ Buffer::Buffer(const File& audioFile, double& sampleRate) throw()
 	sampleRate = initFromJuceFile(audioFile);
 }
 
+//double Buffer::initFromJuceFile(const File& audioFile) throw()
+//{
+//	if((audioFile == File::nonexistent) || (audioFile.exists() == false))
+//	{
+//		ugen_assertfalse;
+//		return 0.0;
+//	}
+//	
+//	AudioFormatManager formatManager;
+//	formatManager.registerBasicFormats();
+//	
+////#if JUCE_QUICKTIME
+////	formatManager.registerFormat(new QuickTimeAudioFormat(), false);
+////#endif
+//	
+//	AudioFormatReader* audioFormatReader = formatManager.createReaderFor (audioFile);
+//	
+//	if(audioFormatReader == 0) return 0.0;
+//	
+//	double sampleRate = audioFormatReader->sampleRate;
+//	numChannels_ = audioFormatReader->numChannels;
+//	size_ = (int)audioFormatReader->lengthInSamples;
+//	channels = new BufferChannelInternal*[numChannels_];
+//	
+//	float** bufferData = new float*[numChannels_];
+//	
+//	for(int i = 0; i < numChannels_; i++)
+//	{
+//		channels[i] = new BufferChannelInternal(size_, false);
+//		bufferData[i] = channels[i]->data;
+//	}
+//	
+//	if(size_ > 0)
+//	{
+//		AudioSampleBuffer audioSampleBuffer(bufferData, numChannels_, size_);
+//		audioSampleBuffer.readFromAudioReader(audioFormatReader, 0, size_, 0, true, true);
+//	}
+//	else
+//	{
+//		sampleRate = 0.0;
+//	}
+//	
+//	delete audioFormatReader;
+//	delete [] bufferData;
+//	return sampleRate;
+//}
+
 double Buffer::initFromJuceFile(const File& audioFile) throw()
 {
 	if((audioFile == File::nonexistent) || (audioFile.exists() == false))
@@ -529,11 +576,6 @@ double Buffer::initFromJuceFile(const File& audioFile) throw()
 	
 	AudioFormatManager formatManager;
 	formatManager.registerBasicFormats();
-	
-//#if JUCE_QUICKTIME
-//	formatManager.registerFormat(new QuickTimeAudioFormat(), false);
-//#endif
-	
 	AudioFormatReader* audioFormatReader = formatManager.createReaderFor (audioFile);
 	
 	if(audioFormatReader == 0) return 0.0;
@@ -543,18 +585,35 @@ double Buffer::initFromJuceFile(const File& audioFile) throw()
 	size_ = (int)audioFormatReader->lengthInSamples;
 	channels = new BufferChannelInternal*[numChannels_];
 	
-	float** bufferData = new float*[numChannels_];
+	int** bufferData = new int*[numChannels_ + 1];
 	
-	for(int i = 0; i < numChannels_; i++)
+	for(int channel = 0; channel < numChannels_; channel++)
 	{
-		channels[i] = new BufferChannelInternal(size_, false);
-		bufferData[i] = channels[i]->data;
+		channels[channel] = new BufferChannelInternal(size_, false);
+		bufferData[channel] = reinterpret_cast<int*>(channels[channel]->data);
 	}
 	
+	bufferData[numChannels_] = 0; // null terminate the array of pointers
+	
 	if(size_ > 0)
-	{
-		AudioSampleBuffer audioSampleBuffer(bufferData, numChannels_, size_);
-		audioSampleBuffer.readFromAudioReader(audioFormatReader, 0, size_, 0, true, true);
+	{		
+		audioFormatReader->read(bufferData, numChannels_, 0, size_, false);
+		
+		if(!audioFormatReader->usesFloatingPointData)
+        {
+            for(int channel = 0; channel < numChannels_; channel++)
+            {
+                float* const data = channels[channel]->data;
+				
+                if(data != 0)
+                {
+                    static const float factor = 1.f / 0x7fffffff;
+					
+                    for (int sample = 0; sample < size_; sample++)
+                        data[sample] = *reinterpret_cast<int*> (data + sample) * factor;
+                }
+            }
+        }
 	}
 	else
 	{
@@ -565,6 +624,7 @@ double Buffer::initFromJuceFile(const File& audioFile) throw()
 	delete [] bufferData;
 	return sampleRate;
 }
+
 
 bool Buffer::write(Text const& audioFilePath, 
 				   bool overwriteExisitingFile, 
@@ -637,9 +697,9 @@ bool Buffer::initFromJuceFile(const File& audioFile,
 	float **bufferData = new float*[getNumChannels()];
 	memset(bufferData, 0, getNumChannels() * sizeof(float*));
 	
-	for(int i = 0; i < getNumChannels(); i++)
+	for(int channel = 0; channel < getNumChannels(); channel++)
 	{
-		bufferData[i] = getData(i);
+		bufferData[channel] = getData(channel);
 	}
 	
 	AudioSampleBuffer audioSampleBuffer(bufferData, getNumChannels(), size());
@@ -756,9 +816,9 @@ double Buffer::initFromAudioFile(const char* audioFilePath) throw()
 		size_ = packetsRead;
 		channels = new BufferChannelInternal*[numChannels_];
 		
-		for(int i = 0; i < numChannels_; i++)
+		for(int channel = 0; channel < numChannels_; channel++)
 		{
-			channels[i] = new BufferChannelInternal(size_, false);
+			channels[channel] = new BufferChannelInternal(size_, false);
 		}
 		
 		if(format.mFormatID != kAudioFormatLinearPCM)
@@ -1460,9 +1520,9 @@ void Buffer::incrementInternals() throw()
 {
 	if(channels != 0)
 	{
-		for(int i = 0; i < numChannels_; i++)
+		for(int channel = 0; channel < numChannels_; channel++)
 		{
-			channels[i]->incrementRefCount();
+			channels[channel]->incrementRefCount();
 		}
 	}
 }
@@ -1471,9 +1531,9 @@ void Buffer::decrementInternals() throw()
 {
 	if(channels != 0)
 	{
-		for(int i = 0; i < numChannels_; i++)
+		for(int channel = 0; channel < numChannels_; channel++)
 		{
-			channels[i]->decrementRefCount();
+			channels[channel]->decrementRefCount();
 		}
 	}
 }
@@ -1560,10 +1620,10 @@ Buffer::Buffer(Buffer const& copy) throw()
 {
 	channels = new BufferChannelInternal*[numChannels_];
 	
-	for(int i = 0; i < numChannels_; i++)
+	for(int channel = 0; channel < numChannels_; channel++)
 	{
-		copy.channels[i]->incrementRefCount();
-		channels[i] = copy.channels[i];
+		copy.channels[channel]->incrementRefCount();
+		channels[channel] = copy.channels[channel];
 	}
 }
 
@@ -1573,9 +1633,9 @@ Buffer Buffer::copy() const throw()
 	
 	if(size_ > 0 && numChannels_ > 0) 
 	{
-		for(int i = 0; i < numChannels_; i++) 
+		for(int channel = 0; channel < numChannels_; channel++) 
 		{
-			memcpy(newBuffer.getData(i), getData(i), size_ * sizeof(float));
+			memcpy(newBuffer.getData(channel), getData(channel), size_ * sizeof(float));
 		}
 	}
 	
@@ -1587,9 +1647,9 @@ bool Buffer::operator== (Buffer const& other) const throw()
 	if(size_ != other.size_) return false;
 	if(numChannels_ != other.numChannels_) return false;
 	
-	for(int i = 0; i < numChannels_; i++)
+	for(int channel = 0; channel < numChannels_; channel++)
 	{
-		if(channels[i] != other.channels[i]) return false;
+		if(channels[channel] != other.channels[channel]) return false;
 	}
 	
 	return true;
@@ -1671,9 +1731,9 @@ Buffer& Buffer::operator= (Buffer const& _other) throw()
 		size_ = other.size_;
 		channels = new BufferChannelInternal*[numChannels_];
 		
-		for(int i = 0; i < numChannels_; i++)
+		for(int channel = 0; channel < numChannels_; channel++)
 		{
-			channels[i] = other.channels[i];
+			channels[channel] = other.channels[channel];
 		}
     }
 	
@@ -1738,17 +1798,17 @@ Buffer Buffer::append(Buffer const& other) const throw()
 	
 	Buffer newBuffer = Buffer::withSize(newSize, newNumChannels, false);
 	
-	for(int i = 0; i < numChannels_; i++)
+	for(int channel = 0; channel < numChannels_; channel++)
 	{
-		memcpy(newBuffer.channels[i]->data, 
-			   channels[i % newNumChannels]->data, 
+		memcpy(newBuffer.channels[channel]->data, 
+			   channels[channel % newNumChannels]->data, 
 			   size_ * sizeof(float));
 	}
 	
-	for(int i = 0; i < other.numChannels_; i++)
+	for(int channel = 0; channel < other.numChannels_; channel++)
 	{
-		memcpy(newBuffer.channels[i]->data + size_, 
-			   other.channels[i % other.numChannels_]->data, 
+		memcpy(newBuffer.channels[channel]->data + size_, 
+			   other.channels[channel % other.numChannels_]->data, 
 			   other.size_ * sizeof(float));
 	}
 	
@@ -1764,17 +1824,17 @@ Buffer::Buffer(Buffer const& channels0, Buffer const& channels1) throw()
 	{
 		size_ = channels0.size_;
 		int newIndex = 0;
-		for(int i = 0; i < channels0.numChannels_; i++, newIndex++)
+		for(int channel = 0; channel < channels0.numChannels_; channel++, newIndex++)
 		{
-			channels0.channels[i]->incrementRefCount();
-			channels[newIndex] = channels0.channels[i];
+			channels0.channels[channel]->incrementRefCount();
+			channels[newIndex] = channels0.channels[channel];
 		}
 		
-		for(int i = 0; i < channels1.numChannels_; i++, newIndex++)
+		for(int channel = 0; channel < channels1.numChannels_; channel++, newIndex++)
 		{
 			channels[newIndex] = new BufferChannelInternal(size_, 
 														   channels1.size_, 
-														   channels1.channels[i]->data,
+														   channels1.channels[channel]->data,
 														   true);
 		}
 	}
@@ -1782,34 +1842,34 @@ Buffer::Buffer(Buffer const& channels0, Buffer const& channels1) throw()
 	{
 		size_ = channels1.size_;
 		int newIndex = 0;
-		for(int i = 0; i < channels0.numChannels_; i++, newIndex++)
+		for(int channel = 0; channel < channels0.numChannels_; channel++, newIndex++)
 		{
 			channels[newIndex] = new BufferChannelInternal(size_, 
 														   channels0.size_, 
-														   channels0.channels[i]->data,
+														   channels0.channels[channel]->data,
 														   true);
 		}
 		
-		for(int i = 0; i < channels1.numChannels_; i++, newIndex++)
+		for(int channel = 0; channel < channels1.numChannels_; channel++, newIndex++)
 		{
-			channels1.channels[i]->incrementRefCount();
-			channels[newIndex] = channels1.channels[i];
+			channels1.channels[channel]->incrementRefCount();
+			channels[newIndex] = channels1.channels[channel];
 		}
 	}
 	else
 	{
 		size_ = channels0.size_;
 		int newIndex = 0;
-		for(int i = 0; i < channels0.numChannels_; i++, newIndex++)
+		for(int channel = 0; channel < channels0.numChannels_; channel++, newIndex++)
 		{
-			channels0.channels[i]->incrementRefCount();
-			channels[newIndex] = channels0.channels[i];
+			channels0.channels[channel]->incrementRefCount();
+			channels[newIndex] = channels0.channels[channel];
 		}
 		
-		for(int i = 0; i < channels1.numChannels_; i++, newIndex++)
+		for(int channel = 0; channel < channels1.numChannels_; channel++, newIndex++)
 		{
-			channels1.channels[i]->incrementRefCount();
-			channels[newIndex] = channels1.channels[i];
+			channels1.channels[channel]->incrementRefCount();
+			channels[newIndex] = channels1.channels[channel];
 		}
 	}
 }
@@ -1906,9 +1966,9 @@ Buffer& Buffer::shrinkSize(const int amount) throw()
 {
 	if(amount > 0)
 	{
-		for(int i = 0; i < numChannels_; i++)
+		for(int channel = 0; channel < numChannels_; channel++)
 		{
-			channels[i]->size_ -= amount;
+			channels[channel]->size_ -= amount;
 		}
 		
 		size_ -= amount;
@@ -1992,18 +2052,18 @@ float Buffer::findMaximum(const int channel) const throw()
 	if(channel >= 0)
 	{
 		value = getSampleUnchecked(channel, 0);
-		for(int i = 0; i < size_; i++)
+		for(int channel = 0; channel < size_; channel++)
 		{
-			float newValue = getSampleUnchecked(channel, i);
+			float newValue = getSampleUnchecked(channel, channel);
 			value = newValue > value ? newValue : value;
 		}
 	}
 	else
 	{
 		value = getSampleUnchecked(0, 0);
-		for(int i = 0; i < numChannels_; i++)
+		for(int channel = 0; channel < numChannels_; channel++)
 		{
-			float newValue = findMaximum(i);
+			float newValue = findMaximum(channel);
 			value = newValue > value ? newValue : value;
 		}
 	}
@@ -2024,18 +2084,18 @@ float Buffer::findMinimum(const int channel) const throw()
 	if(channel >= 0)
 	{
 		value = getSampleUnchecked(channel, 0);
-		for(int i = 0; i < size_; i++)
+		for(int channel = 0; channel < size_; channel++)
 		{
-			float newValue = getSampleUnchecked(channel, i);
+			float newValue = getSampleUnchecked(channel, channel);
 			value = newValue < value ? newValue : value;
 		}
 	}
 	else
 	{
 		value = getSampleUnchecked(0, 0);
-		for(int i = 0; i < numChannels_; i++)
+		for(int channel = 0; channel < numChannels_; channel++)
 		{
-			float newValue = findMinimum(i);
+			float newValue = findMinimum(channel);
 			value = newValue < value ? newValue : value;
 		}
 	}
@@ -2056,18 +2116,18 @@ float Buffer::findPeak(const int channel) const throw()
 	if(channel >= 0)
 	{
 		value = getSampleUnchecked(channel, 0);
-		for(int i = 0; i < size_; i++)
+		for(int channel = 0; channel < size_; channel++)
 		{
-			float newValue = ugen::abs(getSampleUnchecked(channel, i));
+			float newValue = ugen::abs(getSampleUnchecked(channel, channel));
 			value = newValue > value ? newValue : value;
 		}
 	}
 	else
 	{
 		value = getSampleUnchecked(0, 0);
-		for(int i = 0; i < numChannels_; i++)
+		for(int channel = 0; channel < numChannels_; channel++)
 		{
-			float newValue = findPeak(i);
+			float newValue = findPeak(channel);
 			value = newValue > value ? newValue : value;
 		}
 	}
@@ -2519,9 +2579,9 @@ void Buffer::synthInPlace(UGen const& graph_, const int offset, const int numSam
 	int numChannels = ugen::min(getNumChannels(), graph.getNumChannels());
 	ugen_assert(numChannels > 0);
 		
-	for(int i = 0; i < numChannels; i++)
+	for(int channel = 0; channel < numChannels; channel++)
 	{
-		graph.setOutput(getData(i) + offset, numSamples, i);
+		graph.setOutput(getData(channel) + offset, numSamples, channel);
 	}
 			
 	if(allAtOnce)
@@ -2704,10 +2764,10 @@ void Buffer::processInPlace(UGen const& input_, UGen const& graph_, const int of
 	int numChannels = ugen::min(getNumChannels(), graph.getNumChannels());
 	ugen_assert(numChannels > 0);
 		
-	for(int i = 0; i < numChannels; i++)
+	for(int channel = 0; channel < numChannels; channel++)
 	{
-		input.setInput(getData(i) + offset, numSamples, i);
-		graph.setOutput(getData(i) + offset, numSamples, i);
+		input.setInput(getData(channel) + offset, numSamples, channel);
+		graph.setOutput(getData(channel) + offset, numSamples, channel);
 	}
 		
 	if(allAtOnce)
@@ -2959,9 +3019,9 @@ BufferSender::BufferSender() throw()
 BufferSender::~BufferSender()
 {
 	const int size = receivers.size();
-	for(int i = 0; i < size; i++)
+	for(int channel = 0; channel < size; channel++)
 	{
-		receivers[i]->removeBufferSender(this);
+		receivers[channel]->removeBufferSender(this);
 	}	
 }
 
@@ -2984,9 +3044,9 @@ void BufferSender::removeBufferReceiver(BufferReceiver* receiver) throw()
 void BufferSender::sendBuffer(Buffer const& buffer, const double value1, const int value2) throw()
 {
 	const int size = receivers.size();
-	for(int i = 0; i < size; i++)
+	for(int channel = 0; channel < size; channel++)
 	{
-		receivers[i]->handleBuffer(buffer, value1, value2);
+		receivers[channel]->handleBuffer(buffer, value1, value2);
 	}
 }
 
@@ -2997,9 +3057,9 @@ BufferReceiver::BufferReceiver() throw()
 BufferReceiver::~BufferReceiver()
 {	
 	const int size = senders.size();
-	for(int i = 0; i < size; i++)
+	for(int channel = 0; channel < size; channel++)
 	{
-		senders[i]->removeBufferReceiver(this);
+		senders[channel]->removeBufferReceiver(this);
 	}
 }
 

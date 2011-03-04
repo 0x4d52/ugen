@@ -150,8 +150,8 @@ PluginSlider::PluginSlider(const String& componentName,
 	isExponential(isExponentialToUse)
 {
 	// with exponential, the range can't cross zero
-	ugen_assert(isExponential && (minimum <= 0.0) && (maximum >= 0.0));
-	ugen_assert(isExponential && (minimum >= 0.0) && (maximum <= 0.0));
+//	ugen_assert(!isExponential || ((minimum <= 0.0) && (maximum >= 0.0)));
+//	ugen_assert(!isExponential || ((minimum >= 0.0) && (maximum <= 0.0)));
 	
 	setRange (0.0, 1.0);
 	setTextValueSuffix(units);
