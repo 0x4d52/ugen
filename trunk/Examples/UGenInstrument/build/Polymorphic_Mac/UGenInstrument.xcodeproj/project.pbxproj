@@ -82,8 +82,8 @@
 		A89338A111F43303009E96FA /* AUSilentTimeout.h in Headers */ = {isa = PBXBuildFile; fileRef = A893386F11F43303009E96FA /* AUSilentTimeout.h */; };
 		A89338A211F43303009E96FA /* AUTimestampGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = A893387011F43303009E96FA /* AUTimestampGenerator.h */; };
 		A8B410800EE1A5010007228B /* UGenCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8B4107F0EE1A5010007228B /* UGenCommon.cpp */; };
+		A8BB9BF3131A5428005EDDDF /* UGenAUPatch.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8BB9BF2131A5428005EDDDF /* UGenAUPatch.mm */; };
 		A8D44E6E0F2F8C3100D746FF /* juce_AU_Resources.r in Rez */ = {isa = PBXBuildFile; fileRef = A8D44E6C0F2F8C3100D746FF /* juce_AU_Resources.r */; };
-		A8D44E6F0F2F8C3100D746FF /* juce_AU_Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8D44E6D0F2F8C3100D746FF /* juce_AU_Wrapper.mm */; };
 		A8D44F890F2FBF5A00D746FF /* juce_VST_Wrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8D44F870F2FBF5A00D746FF /* juce_VST_Wrapper.cpp */; };
 		A8D44F8A0F2FBF5A00D746FF /* juce_VST_Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8D44F880F2FBF5A00D746FF /* juce_VST_Wrapper.mm */; };
 		A8D8AA8E12CF92EA00670750 /* ugen_Amplitude.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8D8A96B12CF92EA00670750 /* ugen_Amplitude.cpp */; };
@@ -430,6 +430,7 @@
 		A893386F11F43303009E96FA /* AUSilentTimeout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AUSilentTimeout.h; path = Extras/CoreAudio/AudioUnits/AUPublic/Utility/AUSilentTimeout.h; sourceTree = SYSTEM_DEVELOPER_DIR; };
 		A893387011F43303009E96FA /* AUTimestampGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AUTimestampGenerator.h; path = Extras/CoreAudio/AudioUnits/AUPublic/Utility/AUTimestampGenerator.h; sourceTree = SYSTEM_DEVELOPER_DIR; };
 		A8B4107F0EE1A5010007228B /* UGenCommon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UGenCommon.cpp; path = ../../src/UGenCommon.cpp; sourceTree = SOURCE_ROOT; };
+		A8BB9BF2131A5428005EDDDF /* UGenAUPatch.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = UGenAUPatch.mm; path = ../../src/UGenAUPatch.mm; sourceTree = SOURCE_ROOT; };
 		A8D44E6C0F2F8C3100D746FF /* juce_AU_Resources.r */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.rez; name = juce_AU_Resources.r; path = "juce/extras/audio plugins/wrapper/AU/juce_AU_Resources.r"; sourceTree = JUCE_SOURCE; };
 		A8D44E6D0F2F8C3100D746FF /* juce_AU_Wrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = juce_AU_Wrapper.mm; path = "juce/extras/audio plugins/wrapper/AU/juce_AU_Wrapper.mm"; sourceTree = JUCE_SOURCE; };
 		A8D44F870F2FBF5A00D746FF /* juce_VST_Wrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = juce_VST_Wrapper.cpp; path = "juce/extras/audio plugins/wrapper/VST/juce_VST_Wrapper.cpp"; sourceTree = JUCE_SOURCE; };
@@ -761,6 +762,7 @@
 				84C09D290DE2C52600606895 /* includes.h */,
 				A84E04D51067ADAC00A2B756 /* juce_amalgamated.mm */,
 				A8B4107F0EE1A5010007228B /* UGenCommon.cpp */,
+				A8BB9BF2131A5428005EDDDF /* UGenAUPatch.mm */,
 			);
 			name = general;
 			sourceTree = "<group>";
@@ -1700,7 +1702,6 @@
 				84F055010906E9EA00AEC8DB /* UGenEditorComponent.cpp in Sources */,
 				84F055030906E9EA00AEC8DB /* UGenPlugin.cpp in Sources */,
 				A8B410800EE1A5010007228B /* UGenCommon.cpp in Sources */,
-				A8D44E6F0F2F8C3100D746FF /* juce_AU_Wrapper.mm in Sources */,
 				A8D44F890F2FBF5A00D746FF /* juce_VST_Wrapper.cpp in Sources */,
 				A8D44F8A0F2FBF5A00D746FF /* juce_VST_Wrapper.mm in Sources */,
 				A84E04D61067ADAC00A2B756 /* juce_amalgamated.mm in Sources */,
@@ -1848,6 +1849,7 @@
 				A8D8AB9312CF92EA00670750 /* ugen_vdsp_Basics.cpp in Sources */,
 				A8D8AB9412CF92EA00670750 /* ugen_vdsp_BinaryOpUGens.cpp in Sources */,
 				A8D8AB9512CF92EA00670750 /* ugen_vdsp_UnaryOpUGens.cpp in Sources */,
+				A8BB9BF3131A5428005EDDDF /* UGenAUPatch.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

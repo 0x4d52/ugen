@@ -41,7 +41,7 @@
     This function must be implemented to create a new instance of your
     plugin object.
 */
-AudioProcessor* JUCE_CALLTYPE createPluginFilter()
+UGenPlugin* JUCE_CALLTYPE createPluginFilter()
 {
     return new UGenPlugin();
 }
@@ -129,6 +129,26 @@ float UGenPlugin::getMappedParameter(int index)
 					  0.f, 1.f, 
 					  getParameterMin(index), getParameterMax(index));		
 	}	
+}
+
+void UGenPlugin::setMappedParameter(int index, float newValue)
+{	
+	float normalisedValue;
+	
+	if(getParameterWarp(index))
+	{
+		normalisedValue = explin(newValue, 
+								 getParameterMin(index), getParameterMax(index),
+								 0.f, 1.f);
+	}
+	else
+	{
+		normalisedValue = linlin(newValue, 
+								 getParameterMin(index), getParameterMax(index),
+								 0.f, 1.f);
+	}	
+	
+	setParameter(index, normalisedValue);
 }
 
 void UGenPlugin::setMappedParameterNotifyingHost(int index, float newValue)

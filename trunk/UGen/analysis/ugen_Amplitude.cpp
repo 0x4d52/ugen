@@ -139,7 +139,7 @@ void DetectSilenceUGenInternal::processBlock(bool& shouldDelete, const unsigned 
 {
 	AmplitudeBaseUGenInternal::processBlock(shouldDelete, blockID, channel);
 	
-	if(currentAmplitude > 0.f)
+	if(currentAmplitude > 0.0001f)
 	{
 		started = true;
 	}

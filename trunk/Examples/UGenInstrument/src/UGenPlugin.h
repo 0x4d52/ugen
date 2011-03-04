@@ -40,12 +40,7 @@
 #include "UGenCommon.h"
 #include "UGenInstrumentEvent.h"
 
-//==============================================================================
-/**
-    A simple plugin filter that just applies a gain change to the audio
-    passing through it.
 
-*/
 class UGenPlugin  :	public AudioProcessor,
 					public ChangeBroadcaster
 {
@@ -74,6 +69,7 @@ public:
     void setParameter (int index, float newValue);
 
 	float getMappedParameter(int index);
+    void setMappedParameter(int index, float newValue);
 	void setMappedParameterNotifyingHost(int index, float newValue);
 	UGen getMappedParameterControl(int index) const;
 	
