@@ -622,7 +622,7 @@ double Buffer::initFromJuceFile(const File& audioFile, CuePointArray* cuePoints)
 	
 	if(cuePoints)
 	{
-		*cuePoints = AudioIOHelper::getWavCuePoints(audioFormatReader->input);
+		*cuePoints = AudioIOHelper::getCuePoints(audioFormatReader);
 	}
 	
 	delete audioFormatReader;

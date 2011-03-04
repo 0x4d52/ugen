@@ -117,9 +117,16 @@ public:
 	
 	static inline int chunkName (const char* const name)   { return (int) ByteOrder::littleEndianInt (name); }
 	
-	static int64 getWavChunkPosition(InputStream* input, const char* name);
+	static int64 getChunkPosition(AudioFormatReader* reader, const char* name);
+	static CuePointArray getCuePoints(AudioFormatReader* reader);
+
 	
+private:
+	static int64 getWavChunkPosition(InputStream* input, const char* name);
 	static CuePointArray getWavCuePoints(InputStream* input);
+	static int64 getAiffChunkPosition(InputStream* input, const char* name);
+	static CuePointArray getAiffCuePoints(InputStream* input);
+
 };
 
 
