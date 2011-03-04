@@ -178,7 +178,149 @@ void BufferProcess::run() throw()
 	}
 }
 
+int64 AudioIOHelper::getWavChunkPosition(InputStream* input, const char* name)
+{		
+	const int64 originalPosition = input->getPosition();
+	int64 currentPosition = 0;
+	input->setPosition(currentPosition);
+	
+	int64 chunkPosition = -1;
+	
+	if (input->readInt() == chunkName ("RIFF"))
+	{
+		if(chunkName(name) == chunkName ("RIFF"))
+		{
+			chunkPosition = currentPosition;
+			goto exit;
+		}
+		
+		const uint32 len = (uint32) input->readInt();
+		const int64 end = input->getPosition() + len;
+		
+		currentPosition = input->getPosition();
+		
+		if (input->readInt() == chunkName ("WAVE"))
+		{
+			if(chunkName(name) == chunkName ("WAVE"))
+			{
+				chunkPosition = currentPosition;
+				goto exit;
+			}
+			
+			currentPosition = input->getPosition();
+			
+			while (currentPosition < end && !input->isExhausted())
+			{
+				const int chunkType = input->readInt();
+				const char* chunkTypeCharPtr = (const char*)&chunkType;
+				const char chunkTypeStr[] = { chunkTypeCharPtr[0], chunkTypeCharPtr[1], chunkTypeCharPtr[2], chunkTypeCharPtr[3], 0 };
+				
+				if (chunkType == chunkName(name))
+				{
+					chunkPosition = currentPosition;
+					goto exit;
+				}
+				
+				uint32 length = (uint32) input->readInt();
+				const int64 chunkEnd = input->getPosition() + length + (length & 1);
 
+				input->setPosition (chunkEnd);
+				currentPosition = chunkEnd;
+			}
+		}
+	}
+    
+	
+exit:
+	input->setPosition(originalPosition);
+	return chunkPosition;
+}
+
+CuePointArray AudioIOHelper::getWavCuePoints(InputStream* input)
+{
+	int64 cueChunk = AudioIOHelper::getWavChunkPosition(input, "cue ");
+	int64 listChunk = AudioIOHelper::getWavChunkPosition(input, "LIST");
+
+	int chunkType;
+	
+	input->setPosition(cueChunk);
+
+	chunkType = input->readInt();
+	/*const uint32 cueChunkLength = (uint32)*/ input->readInt();
+	const int numCuePoints = input->readInt();
+	
+	CuePointArray cuePoints;
+	
+	for(int cueIndex = 0; cueIndex < numCuePoints; cueIndex++)
+	{
+		CuePoint cuePoint;
+		
+		cuePoint.cueID = input->readInt();
+		cuePoint.position = input->readInt();
+		cuePoint.dataChunkID = input->readInt();
+		cuePoint.chunkStart = input->readInt();
+		cuePoint.blockStart = input->readInt();
+		cuePoint.sampleOffset = input->readInt();
+				
+		cuePoints.add(cuePoint);
+	}
+	
+	input->setPosition(listChunk);
+	
+	chunkType = input->readInt();
+	const uint32 listChunkLength = (uint32) input->readInt();
+	uint32 listChunkRemaining = listChunkLength;
+	const int typeID = input->readInt(); 
+	listChunkRemaining -= 4;
+	
+	ugen_assert(typeID == chunkName("adtl"));
+	
+	while(listChunkRemaining > 0)
+	{
+		chunkType = input->readInt();
+		listChunkRemaining -= 4;
+		
+		if (chunkType == chunkName ("labl"))
+		{
+			/*const uint32 labelChunkLength = (uint32) */input->readInt();
+			listChunkRemaining -= 4;
+			
+			int cueID = input->readInt();
+			listChunkRemaining -= 4;
+
+			Text label;
+			char c[2];
+			
+			do
+			{
+				c[0] = input->readByte();
+				c[1] = input->readByte();
+				listChunkRemaining -= 2;
+				
+				if(c[0]) 
+				{
+					label.add(c[0]);
+					
+					if(c[1])
+					{
+						label.add(c[1]);
+					}
+				}
+			} while(c[0] && c[1]);
+			
+			
+			cuePoints[cueID].label = label;
+			
+		}
+	}
+	
+//	for(int cueIndex = 0; cueIndex < numCuePoints; cueIndex++)
+//	{
+//		cuePoints[cueIndex].post();
+//	}
+	
+	return cuePoints;
+}
 
 END_UGEN_NAMESPACE
 

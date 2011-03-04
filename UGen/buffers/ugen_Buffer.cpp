@@ -455,13 +455,13 @@ Buffer::Buffer(String const& audioFilePath) throw()
 		operator= (changeSampleRate(sampleRate, currentSampleRate));		
 }
 
-Buffer::Buffer(String const& audioFilePath, double& sampleRate) throw()
+Buffer::Buffer(String const& audioFilePath, double& sampleRate, CuePointArray* cuePoints) throw()
 :	numChannels_(0),
 	size_(0),
 	channels(0)
 {
 	File audioFile (audioFilePath);
-	sampleRate = initFromJuceFile(audioFile);
+	sampleRate = initFromJuceFile(audioFile, cuePoints);
 }
 
 Buffer::Buffer(const char *audioFilePath) throw()
@@ -511,12 +511,12 @@ Buffer::Buffer(const File& audioFile) throw()
 		operator= (changeSampleRate(sampleRate, currentSampleRate));
 }
 
-Buffer::Buffer(const File& audioFile, double& sampleRate) throw()
+Buffer::Buffer(const File& audioFile, double& sampleRate, CuePointArray* cuePoints) throw()
 :	numChannels_(0),
 	size_(0),
 	channels(0)
 {
-	sampleRate = initFromJuceFile(audioFile);
+	sampleRate = initFromJuceFile(audioFile, cuePoints);
 }
 
 //double Buffer::initFromJuceFile(const File& audioFile) throw()
@@ -566,7 +566,7 @@ Buffer::Buffer(const File& audioFile, double& sampleRate) throw()
 //	return sampleRate;
 //}
 
-double Buffer::initFromJuceFile(const File& audioFile) throw()
+double Buffer::initFromJuceFile(const File& audioFile, CuePointArray* cuePoints) throw()
 {
 	if((audioFile == File::nonexistent) || (audioFile.exists() == false))
 	{
@@ -618,6 +618,11 @@ double Buffer::initFromJuceFile(const File& audioFile) throw()
 	else
 	{
 		sampleRate = 0.0;
+	}
+	
+	if(cuePoints)
+	{
+		*cuePoints = AudioIOHelper::getWavCuePoints(audioFormatReader->input);
 	}
 	
 	delete audioFormatReader;
@@ -710,6 +715,42 @@ bool Buffer::initFromJuceFile(const File& audioFile,
 	
 	return true;
 }
+
+/* writer code to modify...
+bool AudioFormatWriter::writeFromAudioSampleBuffer (const AudioSampleBuffer& source, int startSample, int numSamples)
+{
+    jassert (startSample >= 0 && startSample + numSamples <= source.getNumSamples() && source.getNumChannels() > 0);
+	
+    if (numSamples <= 0)
+        return true;
+	
+    HeapBlock<int> tempBuffer;
+    HeapBlock<int*> chans (numChannels + 1);
+    chans [numChannels] = 0;
+	
+    if (isFloatingPoint())
+    {
+        for (int i = numChannels; --i >= 0;)
+            chans[i] = reinterpret_cast<int*> (source.getSampleData (i, startSample));
+    }
+    else
+    {
+        tempBuffer.malloc (numSamples * numChannels);
+		
+        for (unsigned int i = 0; i < numChannels; ++i)
+        {
+            typedef AudioData::Pointer <AudioData::Int32, AudioData::NativeEndian, AudioData::NonInterleaved, AudioData::NonConst> DestSampleType;
+            typedef AudioData::Pointer <AudioData::Float32, AudioData::NativeEndian, AudioData::NonInterleaved, AudioData::Const> SourceSampleType;
+			
+            DestSampleType destData (chans[i] = tempBuffer + i * numSamples);
+            SourceSampleType sourceData (source.getSampleData (i, startSample));
+            destData.convertSamples (sourceData, numSamples);
+        }
+    }
+	
+    return write ((const int**) chans.getData(), numSamples);
+}
+*/
 
 #elif defined(UGEN_IPHONE) // else if so we don't use these if using Juce on the iPhone
 
