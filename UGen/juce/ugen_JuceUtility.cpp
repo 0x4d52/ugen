@@ -178,6 +178,38 @@ void BufferProcess::run() throw()
 	}
 }
 
+int64 AudioIOHelper::getChunkPosition(AudioFormatReader* reader, const char* name)
+{
+	String format = reader->getFormatName();
+	
+	if(format == "WAV file")
+	{
+		return getWavChunkPosition(reader->input, name);
+	}
+	else if(format == "AIFF file")
+	{
+		return getAiffChunkPosition(reader->input, name);
+	}
+	
+	return -1;
+}
+
+CuePointArray AudioIOHelper::getCuePoints(AudioFormatReader* reader)
+{
+	String format = reader->getFormatName();
+	
+	if(format == "WAV file")
+	{
+		return getWavCuePoints(reader->input);
+	}
+	else if(format == "AIFF file")
+	{
+		return getAiffCuePoints(reader->input);
+	}	
+	
+	return CuePointArray();
+}
+
 int64 AudioIOHelper::getWavChunkPosition(InputStream* input, const char* name)
 {		
 	const int64 originalPosition = input->getPosition();
@@ -212,8 +244,6 @@ int64 AudioIOHelper::getWavChunkPosition(InputStream* input, const char* name)
 			while (currentPosition < end && !input->isExhausted())
 			{
 				const int chunkType = input->readInt();
-				const char* chunkTypeCharPtr = (const char*)&chunkType;
-				const char chunkTypeStr[] = { chunkTypeCharPtr[0], chunkTypeCharPtr[1], chunkTypeCharPtr[2], chunkTypeCharPtr[3], 0 };
 				
 				if (chunkType == chunkName(name))
 				{
@@ -255,12 +285,12 @@ CuePointArray AudioIOHelper::getWavCuePoints(InputStream* input)
 	{
 		CuePoint cuePoint;
 		
-		cuePoint.cueID = input->readInt();
-		cuePoint.position = input->readInt();
-		cuePoint.dataChunkID = input->readInt();
-		cuePoint.chunkStart = input->readInt();
-		cuePoint.blockStart = input->readInt();
-		cuePoint.sampleOffset = input->readInt();
+		cuePoint.getID() = input->readInt();
+		input->readInt(); // position
+		input->readInt(); // dataChunkID
+		input->readInt(); // chunkStart
+		input->readInt(); // blockStart
+		cuePoint.getSampleOffset() = input->readInt();
 				
 		cuePoints.add(cuePoint);
 	}
@@ -309,15 +339,102 @@ CuePointArray AudioIOHelper::getWavCuePoints(InputStream* input)
 			} while(c[0] && c[1]);
 			
 			
-			cuePoints[cueID].label = label;
+			cuePoints[cueID].getLabel() = label;
 			
 		}
 	}
+		
+	return cuePoints;
+}
+
+int64 AudioIOHelper::getAiffChunkPosition(InputStream* input, const char* name)
+{
+	const int64 originalPosition = input->getPosition();
+	int64 currentPosition = 0;
+	input->setPosition(currentPosition);
 	
-//	for(int cueIndex = 0; cueIndex < numCuePoints; cueIndex++)
-//	{
-//		cuePoints[cueIndex].post();
-//	}
+	int64 chunkPosition = -1;
+	
+	if (input->readInt() == chunkName ("FORM"))
+	{
+		if(chunkName(name) == chunkName ("FORM"))
+		{
+			chunkPosition = currentPosition;
+			goto exit;
+		}
+		
+		const int len = input->readIntBigEndian();
+		const int64 end = input->getPosition() + len;
+		
+		currentPosition = input->getPosition();
+
+		const int nextType = input->readInt();
+		if (nextType == chunkName ("AIFF") || nextType == chunkName ("AIFC"))
+		{
+			if(chunkName(name) == nextType)
+			{
+				chunkPosition = currentPosition;
+				goto exit;
+			}
+			
+			currentPosition = input->getPosition();
+						
+			while (currentPosition < end && !input->isExhausted())
+			{
+				const int type = input->readInt();
+				
+				if (type == chunkName(name))
+				{
+					chunkPosition = currentPosition;
+					goto exit;
+				}				
+				
+				const uint32 length = (uint32) input->readIntBigEndian();
+				const int64 chunkEnd = input->getPosition() + length;
+				
+				input->setPosition (chunkEnd);
+				currentPosition = chunkEnd;
+			}
+		}
+	}
+
+exit:
+	input->setPosition(originalPosition);
+	return chunkPosition;	
+}
+
+CuePointArray AudioIOHelper::getAiffCuePoints(InputStream* input)
+{
+	int64 markChunk = AudioIOHelper::getAiffChunkPosition(input, "MARK");
+	
+	int chunkType;
+	
+	input->setPosition(markChunk);
+	chunkType = input->readInt();
+	/*const uint32 markChunkLength = (uint32)*/ input->readIntBigEndian();
+	const int numCuePoints = (int)input->readShortBigEndian();
+	
+	CuePointArray cuePoints;
+	
+	for (int cueIndex = 0; cueIndex < numCuePoints; cueIndex++)
+	{
+		CuePoint cuePoint;
+		
+		cuePoint.getID() = (int)input->readShortBigEndian();
+		cuePoint.getSampleOffset() = (int)input->readIntBigEndian();
+		
+		const char stringLen = input->readByte();
+				
+		for(int charIndex = 0; charIndex < stringLen; charIndex++)
+		{
+			char c = input->readByte();
+			cuePoint.getLabel().add(c);
+		}
+		
+		if((stringLen & 1) == 0) input->readByte();
+		
+		cuePoints.add(cuePoint);
+	}
 	
 	return cuePoints;
 }

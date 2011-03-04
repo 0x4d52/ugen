@@ -45,18 +45,38 @@
 #include "../core/ugen_Text.h"
 
 // MUST replace this with and internal/external version...
-class CuePoint
+class CuePointInternal : public SmartPointer
 {
 public:
-	
-	Text label;
-	int cueID, position, dataChunkID, chunkStart, blockStart, sampleOffset;
-	
-	void post()
+	CuePointInternal()
+	:	cueID(-1), sampleOffset(-1)
 	{
-		printf("cue label[%s] id[%d] pos[%d] cid[%d] start[%d] block[%d] sample[%d]\n", 
-			   label.getArray(), cueID, position, dataChunkID, chunkStart, blockStart, sampleOffset);
 	}
+	
+	friend class CuePoint;
+	
+private:
+	Text label;
+	int cueID, sampleOffset;
+};
+
+class CuePoint : SmartPointerContainer<CuePointInternal>
+{
+public:
+	CuePoint() 
+	:	SmartPointerContainer<CuePointInternal> (new CuePointInternal())
+	{
+	}
+	
+	/** Human readable label for the marker. */
+	Text& getLabel() { return getInternal()->label; }
+	
+	/** ID for the marker.
+	 Can be zero for the WAV format but must be positive and non-zero for AIFF. */
+	int& getID() { return getInternal()->cueID; }
+	
+	/** The sample offset into the file of the marker. */
+	int& getSampleOffset() { return getInternal()->sampleOffset; }
 };
 
 typedef ObjectArray<CuePoint> CuePointArray;
