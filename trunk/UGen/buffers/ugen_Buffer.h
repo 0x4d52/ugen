@@ -44,6 +44,24 @@
 #include "../core/ugen_Arrays.h"
 #include "../core/ugen_Text.h"
 
+// MUST replace this with and internal/external version...
+class CuePoint
+{
+public:
+	
+	Text label;
+	int cueID, position, dataChunkID, chunkStart, blockStart, sampleOffset;
+	
+	void post()
+	{
+		printf("cue label[%s] id[%d] pos[%d] cid[%d] start[%d] block[%d] sample[%d]\n", 
+			   label.getArray(), cueID, position, dataChunkID, chunkStart, blockStart, sampleOffset);
+	}
+};
+
+typedef ObjectArray<CuePoint> CuePointArray;
+
+
 class BufferChannelInternal : public SmartPointer
 {
 public:
@@ -390,13 +408,13 @@ public:
 	Buffer(String const& audioFilePath) throw();
 	
 	/** Constuct a Buffer from an audio file on disk given by a Juce String path returning the sampleRate to the caller. */
-	Buffer(String const& audioFilePath, double& sampleRate) throw();
+	Buffer(String const& audioFilePath, double& sampleRate, CuePointArray* cuePoints = 0) throw();
 	
 	/** Constuct a Buffer from an audio file on disk given by a Juce File path. */
 	Buffer(const File& audioFile) throw();
 	
 	/** Constuct a Buffer from an audio file on disk given by a Juce File path returning the sampleRate to the caller. */
-	Buffer(const File& audioFile, double& sampleRate) throw();
+	Buffer(const File& audioFile, double& sampleRate, CuePointArray* cuePoints = 0) throw();
 	
 	/** Write a Buffer to a Juce File on disk. */
 	bool write(const File& audioFile, bool overwriteExisitingFile = false, int bitDepth = 24) throw();
@@ -405,7 +423,7 @@ public:
 	bool write(const File::SpecialLocationType directory, bool overwriteExisitingFile = false, int bitDepth = 24) throw();
 	
 protected:
-	double initFromJuceFile(const File& audioFile) throw();
+	double initFromJuceFile(const File& audioFile, CuePointArray* cuePoints = 0) throw();
 	bool initFromJuceFile(const File& audioFile, bool overwriteExisitingFile, int bitDepth) throw();
 public:
 #endif

@@ -111,4 +111,17 @@ private:
 
 
 
+class AudioIOHelper
+{
+public:
+	
+	static inline int chunkName (const char* const name)   { return (int) ByteOrder::littleEndianInt (name); }
+	
+	static int64 getWavChunkPosition(InputStream* input, const char* name);
+	
+	static CuePointArray getWavCuePoints(InputStream* input);
+};
+
+
+
 #endif // _UGEN_ugen_JuceUtility_H_
