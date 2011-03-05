@@ -326,6 +326,7 @@ CuePointArray AudioIOHelper::getWavCuePoints(InputStream* input)
 		const uint32 listChunkLength = (uint32) input->readInt();
 		uint32 listChunkRemaining = listChunkLength;
 		const int typeID = input->readInt(); 
+		(void)typeID;
 		listChunkRemaining -= 4;
 		
 		ugen_assert(typeID == chunkName("adtl"));
