@@ -103,6 +103,10 @@ Text NSUtilities::pathInDirectory(Locations location, const char *filename) thro
 	
 }
 
+Text NSUtilities::stringToText(CFStringRef string) throw()
+{
+	return Text([(NSString*)string UTF8String]);
+}
 
 END_UGEN_NAMESPACE
 

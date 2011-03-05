@@ -54,6 +54,9 @@ public:
 	 empty Text is returned. This may be used for creating paths to files in the application's
 	 /Documents or /tmp directories for reading and/or writing. */
 	static Text pathInDirectory(Locations location, const char *filename) throw();
+	
+	static Text stringToText(CFStringRef string) throw();
+
 };
 
 
