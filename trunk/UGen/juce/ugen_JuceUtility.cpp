@@ -211,17 +211,18 @@ CuePointArray AudioIOHelper::getCuePoints(AudioFormatReader* reader)
 }
 
 
-void AudioIOHelper::writeCuePoints(AudioFormatWriter* writer, OutputStream* output, CuePointArray const& cues)
+void AudioIOHelper::writeCuePoints(AudioFormatWriter* &writer, FileOutputStream* output, CuePointArray const& cues)
 {
 	String format = writer->getFormatName();
 	
 	if(format == "WAV file")
 	{
-		writeWavCuePoints(output, cues);
+		writeWavCuePoints(writer, output, cues);
+		
 	}
 	else if(format == "AIFF file")
 	{
-		writeAiffCuePoints(output, cues);
+		writeAiffCuePoints(writer, output, cues);
 	}		
 }
 
@@ -283,79 +284,89 @@ exit:
 
 CuePointArray AudioIOHelper::getWavCuePoints(InputStream* input)
 {
-	int64 cueChunk = AudioIOHelper::getWavChunkPosition(input, "cue ");
-	int64 listChunk = AudioIOHelper::getWavChunkPosition(input, "LIST");
-
-	int chunkType;
-	
-	input->setPosition(cueChunk);
-
-	chunkType = input->readInt();
-	/*const uint32 cueChunkLength = (uint32)*/ input->readInt();
-	const int numCuePoints = input->readInt();
-	
 	CuePointArray cuePoints;
-	
-	for(int cueIndex = 0; cueIndex < numCuePoints; cueIndex++)
-	{
-		CuePoint cuePoint;
+	int chunkType;
+
+	int64 cueChunk = AudioIOHelper::getWavChunkPosition(input, "cue ");
+
+	if(cueChunk >= 0)
+	{		
+		// get cue points
 		
-		cuePoint.getID() = input->readInt();
-		input->readInt(); // position
-		input->readInt(); // dataChunkID
-		input->readInt(); // chunkStart
-		input->readInt(); // blockStart
-		cuePoint.getSampleOffset() = input->readInt();
-				
-		cuePoints.add(cuePoint);
+		input->setPosition(cueChunk);
+
+		chunkType = input->readInt();
+		/*const uint32 cueChunkLength = (uint32)*/ input->readInt();
+		const int numCuePoints = input->readInt();
+			
+		for(int cueIndex = 0; cueIndex < numCuePoints; cueIndex++)
+		{
+			CuePoint cuePoint;
+			
+			cuePoint.getID() = input->readInt();
+			input->readInt(); // position
+			input->readInt(); // dataChunkID
+			input->readInt(); // chunkStart
+			input->readInt(); // blockStart
+			cuePoint.getSampleOffset() = input->readInt();
+					
+			cuePoints.add(cuePoint);
+		}
 	}
 	
-	input->setPosition(listChunk);
-	
-	chunkType = input->readInt();
-	const uint32 listChunkLength = (uint32) input->readInt();
-	uint32 listChunkRemaining = listChunkLength;
-	const int typeID = input->readInt(); 
-	listChunkRemaining -= 4;
-	
-	ugen_assert(typeID == chunkName("adtl"));
-	
-	while(listChunkRemaining > 0)
+	int64 listChunk = AudioIOHelper::getWavChunkPosition(input, "LIST");
+
+	if(listChunk >= 0)
 	{
+		// get names for cue points if these are there
+		
+		input->setPosition(listChunk);
+		
 		chunkType = input->readInt();
+		const uint32 listChunkLength = (uint32) input->readInt();
+		uint32 listChunkRemaining = listChunkLength;
+		const int typeID = input->readInt(); 
 		listChunkRemaining -= 4;
 		
-		if (chunkType == chunkName ("labl"))
+		ugen_assert(typeID == chunkName("adtl"));
+		
+		while(listChunkRemaining > 0)
 		{
-			/*const uint32 labelChunkLength = (uint32) */input->readInt();
+			chunkType = input->readInt();
 			listChunkRemaining -= 4;
 			
-			int cueID = input->readInt();
-			listChunkRemaining -= 4;
-
-			Text label;
-			char c[2];
-			
-			do
+			if (chunkType == chunkName ("labl"))
 			{
-				c[0] = input->readByte();
-				c[1] = input->readByte();
-				listChunkRemaining -= 2;
+				/*const uint32 labelChunkLength = (uint32) */input->readInt();
+				listChunkRemaining -= 4;
 				
-				if(c[0]) 
+				int cueID = input->readInt();
+				listChunkRemaining -= 4;
+
+				Text label;
+				char c[2];
+				
+				do
 				{
-					label.add(c[0]);
+					c[0] = input->readByte();
+					c[1] = input->readByte();
+					listChunkRemaining -= 2;
 					
-					if(c[1])
+					if(c[0]) 
 					{
-						label.add(c[1]);
+						label.add(c[0]);
+						
+						if(c[1])
+						{
+							label.add(c[1]);
+						}
 					}
-				}
-			} while(c[0] && c[1]);
-			
-			
-			cuePoints[cueID].getLabel() = label;
-			
+				} while(c[0] && c[1]);
+				
+				
+				cuePoints[cueID].getLabel() = label;
+				
+			}
 		}
 	}
 		
@@ -397,6 +408,7 @@ int64 AudioIOHelper::getAiffChunkPosition(InputStream* input, const char* name)
 			while (currentPosition < end && !input->isExhausted())
 			{
 				const int type = input->readInt();
+				const char* typeStr = (const char*)&type;
 				
 				if (type == chunkName(name))
 				{
@@ -420,98 +432,206 @@ exit:
 
 CuePointArray AudioIOHelper::getAiffCuePoints(InputStream* input)
 {
+	CuePointArray cuePoints;
+
 	int64 markChunk = AudioIOHelper::getAiffChunkPosition(input, "MARK");
 	
-	int chunkType;
-	
-	input->setPosition(markChunk);
-	chunkType = input->readInt();
-	/*const uint32 markChunkLength = (uint32)*/ input->readIntBigEndian();
-	const int numCuePoints = (int)input->readShortBigEndian();
-	
-	CuePointArray cuePoints;
-	
-	for (int cueIndex = 0; cueIndex < numCuePoints; cueIndex++)
-	{
-		CuePoint cuePoint;
+	if(markChunk >= 0)
+	{	
+		int chunkType;
 		
-		cuePoint.getID() = (int)input->readShortBigEndian();
-		cuePoint.getSampleOffset() = (int)input->readIntBigEndian();
-		
-		const char stringLen = input->readByte();
-				
-		for(int charIndex = 0; charIndex < stringLen; charIndex++)
+		input->setPosition(markChunk);
+		chunkType = input->readInt();
+		/*const uint32 markChunkLength = (uint32)*/ input->readIntBigEndian();
+		const int numCuePoints = (int)input->readShortBigEndian();
+			
+		for (int cueIndex = 0; cueIndex < numCuePoints; cueIndex++)
 		{
-			char c = input->readByte();
-			cuePoint.getLabel().add(c);
+			CuePoint cuePoint;
+			
+			cuePoint.getID() = (int)input->readShortBigEndian();
+			cuePoint.getSampleOffset() = (int)input->readIntBigEndian();
+			
+			const char stringLen = input->readByte();
+					
+			for(int charIndex = 0; charIndex < stringLen; charIndex++)
+			{
+				char c = input->readByte();
+				cuePoint.getLabel().add(c);
+			}
+			
+			if((stringLen & 1) == 0) input->readByte();
+			
+			cuePoints.add(cuePoint);
 		}
-		
-		if((stringLen & 1) == 0) input->readByte();
-		
-		cuePoints.add(cuePoint);
 	}
 	
 	return cuePoints;
 }
 
 
-void AudioIOHelper::writeWavCuePoints(OutputStream* output, CuePointArray const& cues)
+void AudioIOHelper::writeWavCuePoints(AudioFormatWriter* &writer, FileOutputStream* output, CuePointArray const& cues)
 {
-	output->writeInt(chunkName("cue "));
-	
-	const int numCues = cues.length();
-	const uint32 cueChunkLength = numCues * 24 + 4;
-	output->writeInt(cueChunkLength);
-	output->writeInt(numCues);
-	
-	// measure how many bytes our LIST chunk needs
-	uint32 listSize = 4; // account for the 'adtl' entry
-	
-	for(int cueIndex = 0; cueIndex < numCues; cueIndex++)
-	{
-		// ignore ID.. use i
-		output->writeInt(cueIndex);
-		output->writeInt(0);
-		output->writeInt(chunkName("data"));
-		output->writeInt(0);
-		output->writeInt(0);
-		output->writeInt(cues[cueIndex].getSampleOffset());
+	uint32 sizeWritten = 0;
+	const int numCuePoints = cues.length();
+
+	if(numCuePoints > 0)
+	{		
+		output->writeInt(chunkName("cue ")); 
+		sizeWritten += 4;
 		
-		listSize += 12; // minimum size for each 'labl' chunk
+		const uint32 cueChunkLength = numCuePoints * 24 + 4;
+		output->writeInt(cueChunkLength);
+		output->writeInt(numCuePoints);
+				
+		// measure how many bytes our LIST chunk needs
+		uint32 listSize = 4; // account for the 'adtl' entry
 		
-		int labelSize = cues[cueIndex].getLabel().size();
-		
-		if(labelSize & 1) labelSize++; // round to even
-		
-		listSize += labelSize;
-	}
-	
-	output->writeInt(chunkName("LIST"));
-	output->writeInt(listSize);
-	output->writeInt(chunkName("adtl"));
-	
-	for(int cueIndex = 0; cueIndex < numCues; cueIndex++)
-	{
-		output->writeInt(chunkName("labl"));
-		int labelSize = cues[cueIndex].getLabel().size() + 4;
-		output->writeInt(labelSize);
-		output->writeInt(cueIndex);
-		
-		Text label = cues[cueIndex].getLabel();
-		char* str = label.getArray();
-		
-		for(int i = 0; i < label.size(); i++)
+		for(int cueIndex = 0; cueIndex < numCuePoints; cueIndex++)
 		{
-			output->writeByte(str[i]);
+			// ignore ID.. use cueIndex
+			output->writeInt(cueIndex);
+			output->writeInt(0);
+			output->writeInt(chunkName("data"));
+			output->writeInt(0);
+			output->writeInt(0);
+			output->writeInt(cues[cueIndex].getSampleOffset());
+			
+			listSize += 12; // minimum size for each 'labl' chunk
+			
+			int labelSize = cues[cueIndex].getLabel().size();
+			
+			if(labelSize & 1) labelSize++; // round to even
+			
+			listSize += labelSize;
 		}
 		
-		if(labelSize & 1) output->writeByte(0); // pad
+		sizeWritten += cueChunkLength;
+		
+		output->writeInt(chunkName("LIST"));
+		output->writeInt(listSize);
+		
+		sizeWritten += 8;
+		
+		output->writeInt(chunkName("adtl"));
+		for(int cueIndex = 0; cueIndex < numCuePoints; cueIndex++)
+		{
+			output->writeInt(chunkName("labl"));
+			int labelSize = cues[cueIndex].getLabel().size() + 4;
+			output->writeInt(labelSize);
+			output->writeInt(cueIndex);
+			
+			Text label = cues[cueIndex].getLabel();
+			char* str = label.getArray();
+			
+			for(int i = 0; i < label.size(); i++)
+			{
+				output->writeByte(str[i]);
+			}
+			
+			if(labelSize & 1) output->writeByte(0); // pad
+		}
+		
+		sizeWritten += listSize;
+	}
+	
+	if(sizeWritten > 0)
+	{
+		File file = output->getFile();
+		delete writer; // force the file to close and write the (incorrect) header
+		writer = 0; // zero the caller's writer
+		
+		// find the current size it wrote to the header
+		FileInputStream* input = file.createInputStream();
+		input->setPosition(4);
+		uint32 originalSize = input->readInt();
+		delete input;
+		
+		output = file.createOutputStream();
+		ugen_assert(output);
+		
+		// write the new header adding on our additional content
+		output->setPosition(4);
+		output->writeInt(originalSize + sizeWritten);
+		
+		delete output;
 	}
 }
 
-void AudioIOHelper::writeAiffCuePoints(OutputStream* output, CuePointArray const& cues)
+void AudioIOHelper::writeAiffCuePoints(AudioFormatWriter* &writer, FileOutputStream* output, CuePointArray const& cues)
 {
+	uint32 sizeWritten = 0;
+	const int numCuePoints = cues.length();
+	
+	if(numCuePoints > 0)
+	{
+		output->writeInt(chunkName("MARK"));
+		sizeWritten += 4;
+		
+		// measure the data size
+		uint32 listSize = 2; // num cue points
+		for (int cueIndex = 0; cueIndex < numCuePoints; cueIndex++)
+		{
+			listSize += 2; // ID
+			listSize += 4; // sample offset
+			
+			char stringLen = cues[cueIndex].getLabel().length();
+			listSize++; // size char
+			listSize += stringLen; // content chars
+			
+			if((stringLen & 1) == 0) listSize++; // pad
+		}
+		
+		output->writeIntBigEndian((int)listSize);
+		sizeWritten += 4;
+		
+		output->writeShortBigEndian((short)numCuePoints);
+		
+		for (int cueIndex = 0; cueIndex < numCuePoints; cueIndex++)
+		{			
+			output->writeShortBigEndian((short)(cueIndex + 1)); // renumber IDs
+			output->writeIntBigEndian((int)cues[cueIndex].getSampleOffset());
+			
+			Text label = cues[cueIndex].getLabel();
+			char* str = label.getArray();
+
+			char stringLen = label.length();
+			output->writeByte(stringLen);
+			
+			for(int charIndex = 0; charIndex < stringLen; charIndex++)
+			{
+				output->writeByte(str[charIndex]);
+			}
+			
+			if((stringLen & 1) == 0) output->writeByte(0); //pad
+		}
+		
+		sizeWritten += listSize;
+	}
+	
+	if(sizeWritten > 0)
+	{
+		File file = output->getFile();
+		delete writer; // force the file to close and write the (incorrect) header
+		writer = 0; // zero the caller's writer
+		
+		// find the current size it wrote to the header
+		FileInputStream* input = file.createInputStream();
+		input->setPosition(4);
+		uint32 originalSize = input->readIntBigEndian();
+		delete input;
+		
+		output = file.createOutputStream();
+		ugen_assert(output);
+		
+		// write the new header adding on our additional content
+		output->setPosition(4);
+		output->writeIntBigEndian(originalSize + sizeWritten);
+		
+		delete output;
+	}
 }
+
 
 
 END_UGEN_NAMESPACE

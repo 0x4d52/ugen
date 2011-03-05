@@ -44,7 +44,6 @@
 #include "../core/ugen_Arrays.h"
 #include "../core/ugen_Text.h"
 
-// MUST replace this with and internal/external version...
 class CuePointInternal : public SmartPointer
 {
 public:
@@ -60,6 +59,7 @@ private:
 	int cueID, sampleOffset;
 };
 
+/** Stores cue points or markers for audio files. */
 class CuePoint : SmartPointerContainer<CuePointInternal>
 {
 public:
