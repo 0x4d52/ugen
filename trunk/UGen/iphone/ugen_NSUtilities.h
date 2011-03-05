@@ -56,6 +56,7 @@ public:
 	static Text pathInDirectory(Locations location, const char *filename) throw();
 	
 	static Text stringToText(CFStringRef string) throw();
+	static CFStringRef textToString(Text const& text) throw();
 
 };
 

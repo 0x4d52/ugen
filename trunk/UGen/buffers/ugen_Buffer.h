@@ -421,7 +421,7 @@ public:
 	
 	/** Constuct a Buffer from an audio file on disk. 
 	 Formats available are dependent on platform. */
-	Buffer(const char *audioFilePath) throw();
+	Buffer(const char *audioFilePath, int *bits = 0, double* sampleRate = 0, BufferMetaData* metaData = 0) throw();
 	
 //	/** Constuct a Buffer from an audio file on disk. 
 //	 Formats available are dependent on platform. */
@@ -432,7 +432,10 @@ public:
 	Buffer(Text const& audioFilePath, int *bits = 0, double* sampleRate = 0, BufferMetaData* metaData = 0) throw();
 	
 	/** Write a Buffer to an audio file on disk. */
-	bool write(Text const& audioFilePath, bool overwriteExisitingFile = false, int bitDepth = 24) throw();
+	bool write(Text const& audioFilePath, 
+			   bool overwriteExisitingFile = false,
+			   int bitDepth = 24,
+			   BufferMetaData const& metaData = BufferMetaData()) throw();
 	
 #if defined(JUCE_VERSION) || defined(DOXYGEN)
 	/** Constuct a Buffer from a Juce AudioSampleBuffer. 
@@ -475,12 +478,12 @@ public:
 #if defined(UGEN_IPHONE) || defined(DOXYGEN)
 protected:
 	double initFromAudioFile(const char* audioFilePath, int *bits = 0, BufferMetaData* metaData = 0) throw();
-	bool initFromAudioFileWav16(const char* audioFilePath, bool overwriteExisitingFile) throw();
-	bool initFromAudioFileAiff16(const char* audioFilePath, bool overwriteExisitingFile) throw();
-	bool initFromAudioFileWav24(const char* audioFilePath, bool overwriteExisitingFile) throw();
-	bool initFromAudioFileAiff24(const char* audioFilePath, bool overwriteExisitingFile) throw();
-	bool initFromAudioFileWav32(const char* audioFilePath, bool overwriteExisitingFile) throw();
-	bool initFromAudioFileAiff32(const char* audioFilePath, bool overwriteExisitingFile) throw();
+	bool initFromAudioFileWav16(const char* audioFilePath, bool overwriteExisitingFile, BufferMetaData const& metaData = BufferMetaData()) throw();
+	bool initFromAudioFileAiff16(const char* audioFilePath, bool overwriteExisitingFile, BufferMetaData const& metaData = BufferMetaData()) throw();
+	bool initFromAudioFileWav24(const char* audioFilePath, bool overwriteExisitingFile, BufferMetaData const& metaData = BufferMetaData()) throw();
+	bool initFromAudioFileAiff24(const char* audioFilePath, bool overwriteExisitingFile, BufferMetaData const& metaData = BufferMetaData()) throw();
+	bool initFromAudioFileWav32(const char* audioFilePath, bool overwriteExisitingFile, BufferMetaData const& metaData = BufferMetaData()) throw();
+	bool initFromAudioFileAiff32(const char* audioFilePath, bool overwriteExisitingFile, BufferMetaData const& metaData = BufferMetaData()) throw();
 
 
 public:
