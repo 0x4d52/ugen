@@ -119,6 +119,7 @@ public:
 	
 	static int64 getChunkPosition(AudioFormatReader* reader, const char* name);
 	static CuePointArray getCuePoints(AudioFormatReader* reader);
+	static void writeCuePoints(AudioFormatWriter* writer, OutputStream* output, CuePointArray const& cues);
 
 	
 private:
@@ -126,7 +127,8 @@ private:
 	static CuePointArray getWavCuePoints(InputStream* input);
 	static int64 getAiffChunkPosition(InputStream* input, const char* name);
 	static CuePointArray getAiffCuePoints(InputStream* input);
-
+	static void writeWavCuePoints(OutputStream* output, CuePointArray const& cues);
+	static void writeAiffCuePoints(OutputStream* output, CuePointArray const& cues);
 };
 
 

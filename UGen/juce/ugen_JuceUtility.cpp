@@ -148,23 +148,23 @@ void BufferProcess::run() throw()
 		int count = buffers.length();
 		bool needClear = false;
 		
-		for(int i = 0; i < count; i++)
+		for(int cueIndex = 0; cueIndex < count; cueIndex++)
 		{
 			if(threadShouldExit() == true) break;
 			
 			needClear = true;
 			
-			Buffer buffer = buffers[i];
+			Buffer buffer = buffers[cueIndex];
 			
-			if(inputs[i].isNull())
+			if(inputs[cueIndex].isNull())
 			{
-				buffer.synthInPlace(graphs[i]);
-				sendBuffer(buffer, 0.0, ids[i]);
+				buffer.synthInPlace(graphs[cueIndex]);
+				sendBuffer(buffer, 0.0, ids[cueIndex]);
 			}
 			else
 			{
-				Buffer result = buffer.process(inputs[i], graphs[i]);
-				sendBuffer(result, 0.0, ids[i]);
+				Buffer result = buffer.process(inputs[cueIndex], graphs[cueIndex]);
+				sendBuffer(result, 0.0, ids[cueIndex]);
 			}
 		}
 		
@@ -208,6 +208,21 @@ CuePointArray AudioIOHelper::getCuePoints(AudioFormatReader* reader)
 	}	
 	
 	return CuePointArray();
+}
+
+
+void AudioIOHelper::writeCuePoints(AudioFormatWriter* writer, OutputStream* output, CuePointArray const& cues)
+{
+	String format = writer->getFormatName();
+	
+	if(format == "WAV file")
+	{
+		writeWavCuePoints(output, cues);
+	}
+	else if(format == "AIFF file")
+	{
+		writeAiffCuePoints(output, cues);
+	}		
 }
 
 int64 AudioIOHelper::getWavChunkPosition(InputStream* input, const char* name)
@@ -438,6 +453,66 @@ CuePointArray AudioIOHelper::getAiffCuePoints(InputStream* input)
 	
 	return cuePoints;
 }
+
+
+void AudioIOHelper::writeWavCuePoints(OutputStream* output, CuePointArray const& cues)
+{
+	output->writeInt(chunkName("cue "));
+	
+	const int numCues = cues.length();
+	const uint32 cueChunkLength = numCues * 24 + 4;
+	output->writeInt(cueChunkLength);
+	output->writeInt(numCues);
+	
+	// measure how many bytes our LIST chunk needs
+	uint32 listSize = 4; // account for the 'adtl' entry
+	
+	for(int cueIndex = 0; cueIndex < numCues; cueIndex++)
+	{
+		// ignore ID.. use i
+		output->writeInt(cueIndex);
+		output->writeInt(0);
+		output->writeInt(chunkName("data"));
+		output->writeInt(0);
+		output->writeInt(0);
+		output->writeInt(cues[cueIndex].getSampleOffset());
+		
+		listSize += 12; // minimum size for each 'labl' chunk
+		
+		int labelSize = cues[cueIndex].getLabel().size();
+		
+		if(labelSize & 1) labelSize++; // round to even
+		
+		listSize += labelSize;
+	}
+	
+	output->writeInt(chunkName("LIST"));
+	output->writeInt(listSize);
+	output->writeInt(chunkName("adtl"));
+	
+	for(int cueIndex = 0; cueIndex < numCues; cueIndex++)
+	{
+		output->writeInt(chunkName("labl"));
+		int labelSize = cues[cueIndex].getLabel().size() + 4;
+		output->writeInt(labelSize);
+		output->writeInt(cueIndex);
+		
+		Text label = cues[cueIndex].getLabel();
+		char* str = label.getArray();
+		
+		for(int i = 0; i < label.size(); i++)
+		{
+			output->writeByte(str[i]);
+		}
+		
+		if(labelSize & 1) output->writeByte(0); // pad
+	}
+}
+
+void AudioIOHelper::writeAiffCuePoints(OutputStream* output, CuePointArray const& cues)
+{
+}
+
 
 END_UGEN_NAMESPACE
 

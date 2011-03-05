@@ -71,12 +71,22 @@ public:
 	/** Human readable label for the marker. */
 	Text& getLabel() { return getInternal()->label; }
 	
+	/** Human readable label for the marker. */
+	const Text& getLabel() const { return getInternal()->label; }
+	
 	/** ID for the marker.
 	 Can be zero for the WAV format but must be positive and non-zero for AIFF. */
 	int& getID() { return getInternal()->cueID; }
 	
+	/** ID for the marker.
+	 Can be zero for the WAV format but must be positive and non-zero for AIFF. */
+	int getID() const { return getInternal()->cueID; }	
+	
 	/** The sample offset into the file of the marker. */
 	int& getSampleOffset() { return getInternal()->sampleOffset; }
+	
+	/** The sample offset into the file of the marker. */
+	int getSampleOffset() const { return getInternal()->sampleOffset; }
 };
 
 typedef ObjectArray<CuePoint> CuePointArray;
@@ -437,14 +447,23 @@ public:
 	Buffer(const File& audioFile, double& sampleRate, CuePointArray* cuePoints = 0) throw();
 	
 	/** Write a Buffer to a Juce File on disk. */
-	bool write(const File& audioFile, bool overwriteExisitingFile = false, int bitDepth = 24) throw();
+	bool write(const File& audioFile, 
+			   bool overwriteExisitingFile = false, 
+			   int bitDepth = 24, 
+			   CuePointArray const& cues = CuePointArray()) throw();
 	
 	/** Write a Buffer to a file in a special location on disk. */
-	bool write(const File::SpecialLocationType directory, bool overwriteExisitingFile = false, int bitDepth = 24) throw();
+	bool write(const File::SpecialLocationType directory, 
+			   bool overwriteExisitingFile = false, 
+			   int bitDepth = 24,
+			   CuePointArray const& cues = CuePointArray()) throw();
 	
 protected:
 	double initFromJuceFile(const File& audioFile, CuePointArray* cuePoints = 0) throw();
-	bool initFromJuceFile(const File& audioFile, bool overwriteExisitingFile, int bitDepth) throw();
+	bool initFromJuceFile(const File& audioFile, 
+						  bool overwriteExisitingFile, 
+						  int bitDepth,
+						  CuePointArray const& cues) throw();
 public:
 #endif
 #if defined(UGEN_IPHONE) || defined(DOXYGEN)
