@@ -408,7 +408,6 @@ int64 AudioIOHelper::getAiffChunkPosition(InputStream* input, const char* name)
 			while (currentPosition < end && !input->isExhausted())
 			{
 				const int type = input->readInt();
-				const char* typeStr = (const char*)&type;
 				
 				if (type == chunkName(name))
 				{

@@ -91,6 +91,12 @@ public:
 
 typedef ObjectArray<CuePoint> CuePointArray;
 
+class BufferMetaData
+{
+public:
+	CuePointArray cuePoints;
+};
+
 
 class BufferChannelInternal : public SmartPointer
 {
@@ -434,36 +440,36 @@ public:
 	 latter case you must ensure that the AudioSampleBuffer object exists for the same duration as this Buffer.*/	
 	Buffer(AudioSampleBuffer& audioSampleBuffer, const bool copyTheData = true) throw();
 	
-	/** Constuct a Buffer from an audio file on disk given by a Juce String path. */
-	Buffer(String const& audioFilePath) throw();
+//	/** Constuct a Buffer from an audio file on disk given by a Juce String path. */
+//	Buffer(String const& audioFilePath) throw();
 	
-	/** Constuct a Buffer from an audio file on disk given by a Juce String path returning the sampleRate to the caller. */
-	Buffer(String const& audioFilePath, double& sampleRate, CuePointArray* cuePoints = 0) throw();
+	/** Constuct a Buffer from an audio file on disk given by a Juce String path optionally returning the sample rate, bit depth and meta data to the caller. */
+	Buffer(String const& audioFilePath, double* sampleRate = 0, int* bits = 0, BufferMetaData* metaData = 0) throw();
 	
-	/** Constuct a Buffer from an audio file on disk given by a Juce File path. */
-	Buffer(const File& audioFile) throw();
+//	/** Constuct a Buffer from an audio file on disk given by a Juce File path. */
+//	Buffer(const File& audioFile) throw();
 	
-	/** Constuct a Buffer from an audio file on disk given by a Juce File path returning the sampleRate to the caller. */
-	Buffer(const File& audioFile, double& sampleRate, CuePointArray* cuePoints = 0) throw();
+	/** Constuct a Buffer from an audio file on disk given by a Juce File optionally returning the sample rate, bit depth and meta data to the caller. */
+	Buffer(const File& audioFile, double* sampleRate = 0, int* bits = 0, BufferMetaData* metaData = 0) throw();
 	
 	/** Write a Buffer to a Juce File on disk. */
 	bool write(const File& audioFile, 
 			   bool overwriteExisitingFile = false, 
 			   int bitDepth = 24, 
-			   CuePointArray const& cues = CuePointArray()) throw();
+			   BufferMetaData const& metaData = BufferMetaData()) throw();
 	
 	/** Write a Buffer to a file in a special location on disk. */
 	bool write(const File::SpecialLocationType directory, 
 			   bool overwriteExisitingFile = false, 
 			   int bitDepth = 24,
-			   CuePointArray const& cues = CuePointArray()) throw();
+			   BufferMetaData const& metaData = BufferMetaData()) throw();
 	
 protected:
-	double initFromJuceFile(const File& audioFile, CuePointArray* cuePoints = 0) throw();
+	double initFromJuceFile(const File& audioFile, int *bits = 0, BufferMetaData* metaData = 0) throw();
 	bool initFromJuceFile(const File& audioFile, 
 						  bool overwriteExisitingFile, 
 						  int bitDepth,
-						  CuePointArray const& cues) throw();
+						  BufferMetaData const& metaData) throw();
 public:
 #endif
 #if defined(UGEN_IPHONE) || defined(DOXYGEN)
