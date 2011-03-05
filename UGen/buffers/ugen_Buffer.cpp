@@ -510,7 +510,7 @@ Buffer::Buffer(const char *audioFilePath, int *bits, double* sampleRate, BufferM
 //		operator= (changeSampleRate(sampleRate, currentSampleRate));	
 //}
 
-Buffer::Buffer(Text const& audioFilePath, int *bits, double* sampleRate) throw()
+Buffer::Buffer(Text const& audioFilePath, int *bits, double* sampleRate, BufferMetaData* metaData) throw()
 :	numChannels_(0),
 	size_(0),
 	channels(0)
@@ -519,7 +519,7 @@ Buffer::Buffer(Text const& audioFilePath, int *bits, double* sampleRate) throw()
 
 	if(!sampleRate)
 	{
-		double fileSampleRate = initFromJuceFile(audioFile, bits);
+		double fileSampleRate = initFromJuceFile(audioFile, bits, metaData);
 		double currentSampleRate = UGen::getSampleRate();
 		
 		if((fileSampleRate != 0.0) && (fileSampleRate != currentSampleRate))
@@ -527,7 +527,7 @@ Buffer::Buffer(Text const& audioFilePath, int *bits, double* sampleRate) throw()
 	}
 	else
 	{
-		*sampleRate = initFromJuceFile(audioFile, bits);
+		*sampleRate = initFromJuceFile(audioFile, bits, metaData);
 	}
 }
 
@@ -633,10 +633,11 @@ double Buffer::initFromJuceFile(const File& audioFile, int *bits, BufferMetaData
 
 bool Buffer::write(Text const& audioFilePath, 
 				   bool overwriteExisitingFile, 
-				   int bitDepth) throw()
+				   int bitDepth,
+				   BufferMetaData const& metaData) throw()
 {
 	File audioFile(audioFilePath.getArray());
-	return initFromJuceFile(audioFile, overwriteExisitingFile, bitDepth, BufferMetaData());
+	return initFromJuceFile(audioFile, overwriteExisitingFile, bitDepth, metaData);
 }
 
 bool Buffer::write(const File& audioFile, 
