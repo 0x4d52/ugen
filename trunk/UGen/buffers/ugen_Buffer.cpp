@@ -489,26 +489,38 @@ Buffer::Buffer(const char *audioFilePath) throw()
 		operator= (changeSampleRate(sampleRate, currentSampleRate));		
 }
 
-Buffer::Buffer(Text const& audioFilePath) throw()
-:	numChannels_(0),
-	size_(0),
-	channels(0)
-{
-	File audioFile (audioFilePath.getArray());
-	double sampleRate = initFromJuceFile(audioFile);
-	double currentSampleRate = UGen::getSampleRate();
-	
-	if((sampleRate != 0.0) && (sampleRate != currentSampleRate))
-		operator= (changeSampleRate(sampleRate, currentSampleRate));	
-}
+//Buffer::Buffer(Text const& audioFilePath) throw()
+//:	numChannels_(0),
+//	size_(0),
+//	channels(0)
+//{
+//	File audioFile (audioFilePath.getArray());
+//	double sampleRate = initFromJuceFile(audioFile);
+//	double currentSampleRate = UGen::getSampleRate();
+//	
+//	if((sampleRate != 0.0) && (sampleRate != currentSampleRate))
+//		operator= (changeSampleRate(sampleRate, currentSampleRate));	
+//}
 
-Buffer::Buffer(Text const& audioFilePath, double& sampleRate) throw()
+Buffer::Buffer(Text const& audioFilePath, int *bits, double* sampleRate) throw()
 :	numChannels_(0),
 	size_(0),
 	channels(0)
 {
 	File audioFile (audioFilePath.getArray());
-	sampleRate = initFromJuceFile(audioFile);
+
+	if(!sampleRate)
+	{
+		double fileSampleRate = initFromJuceFile(audioFile, bits);
+		double currentSampleRate = UGen::getSampleRate();
+		
+		if((fileSampleRate != 0.0) && (fileSampleRate != currentSampleRate))
+			operator= (changeSampleRate(fileSampleRate, currentSampleRate));			
+	}
+	else
+	{
+		*sampleRate = initFromJuceFile(audioFile, bits);
+	}
 }
 
 //Buffer::Buffer(const File& audioFile) throw()
@@ -719,25 +731,39 @@ Buffer::Buffer(const char *audioFilePath) throw()
 		operator= (changeSampleRate(sampleRate, currentSampleRate));	
 }
 
-Buffer::Buffer(Text const& audioFilePath) throw()
-:	numChannels_(0),
-	size_(0),
-	channels(0)
-{
-	double sampleRate = initFromAudioFile(audioFilePath.getArray());
-	double currentSampleRate = UGen::getSampleRate();
+//Buffer::Buffer(Text const& audioFilePath) throw()
+//:	numChannels_(0),
+//	size_(0),
+//	channels(0)
+//{
+//	double sampleRate = initFromAudioFile(audioFilePath.getArray());
+//	double currentSampleRate = UGen::getSampleRate();
+//	
+//	if((sampleRate != 0.0) && (sampleRate != currentSampleRate))
+//		operator= (changeSampleRate(sampleRate, currentSampleRate));	
+//}
+
+Buffer::Buffer(Text const& audioFilePath, int *bits, double* sampleRate) throw()
+{	
+	if(!sampleRate)
+	{
+		double fileSampleRate = initFromAudioFile(audioFilePath.getArray(), bits);
+		double currentSampleRate = UGen::getSampleRate();
+		
+		if((fileSampleRate != 0.0) && (fileSampleRate != currentSampleRate))
+			operator= (changeSampleRate(fileSampleRate, currentSampleRate));			
+	}
+	else
+	{
+		*sampleRate = initFromAudioFile(audioFilePath.getArray(), bits);
+	}
 	
-	if((sampleRate != 0.0) && (sampleRate != currentSampleRate))
-		operator= (changeSampleRate(sampleRate, currentSampleRate));	
 }
 
-Buffer::Buffer(Text const& audioFilePath, double& sampleRate) throw()
+double Buffer::initFromAudioFile(const char* audioFilePath, int *bits) throw()
 {
-	sampleRate = initFromAudioFile(audioFilePath.getArray());
-}
-
-double Buffer::initFromAudioFile(const char* audioFilePath) throw()
-{
+	void* audioData = 0;
+	
 	Text path; // this needs to be here so it doesn't get garbage collected too early
 	
 	if(audioFilePath[0] != '/')
@@ -749,7 +775,7 @@ double Buffer::initFromAudioFile(const char* audioFilePath) throw()
 	if (audioFilePath == 0 || audioFilePath[0] == 0) 
 	{
 		printf("Buffer: File path is null (perhaps it doesn't exist?\n");
-		return 0.0;
+		goto exit;
 	}
 	
 	OSStatus result;
@@ -767,7 +793,7 @@ double Buffer::initFromAudioFile(const char* audioFilePath) throw()
 	if (result != noErr) 
 	{
 		printf("Buffer: Could not open file: %s err=%d\n", audioFilePath, (int)result);
-		return 0.0;
+		goto exit;
 	}
 	
 	SInt64 packetCount;
@@ -777,7 +803,7 @@ double Buffer::initFromAudioFile(const char* audioFilePath) throw()
 	{
 		printf("Buffer: Could not get packet count: %s err=%d\n", audioFilePath, (int)result);
 		AudioFileClose(audioFile);
-		return 0.0;
+		goto exit;
 	}
 	
 	AudioStreamBasicDescription format;
@@ -787,10 +813,10 @@ double Buffer::initFromAudioFile(const char* audioFilePath) throw()
 	{
 		printf("Buffer: Could not get data format: %s err=%d\n", audioFilePath, (int)result);
 		AudioFileClose(audioFile);
-		return 0.0;
+		goto exit;
 	}
 	
-	void* audioData = malloc(format.mBytesPerFrame * packetCount);
+	audioData = malloc(format.mBytesPerFrame * packetCount);
 	
 	if(audioData)
 	{
@@ -803,7 +829,7 @@ double Buffer::initFromAudioFile(const char* audioFilePath) throw()
 			printf("Buffer: Could not read audio packets: %s err=%d\n", audioFilePath, (int)result);
 			free(audioData);
 			AudioFileClose(audioFile);
-			return 0.0;
+			goto exit;
 		}
 		
 		numChannels_ = format.mChannelsPerFrame;
@@ -983,7 +1009,14 @@ double Buffer::initFromAudioFile(const char* audioFilePath) throw()
 	free(audioData);
 	AudioFileClose(audioFile);
 	
+	if(bits) *bits = format.mBitsPerChannel;
+	
 	return format.mSampleRate;
+	
+exit:
+	if(bits) *bits = 0;
+		
+	return 0.0;
 }
 
 bool Buffer::write(Text const& audioFilePath, 
