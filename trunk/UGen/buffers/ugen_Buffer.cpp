@@ -636,26 +636,29 @@ bool Buffer::write(Text const& audioFilePath,
 				   int bitDepth) throw()
 {
 	File audioFile(audioFilePath.getArray());
-	return initFromJuceFile(audioFile, overwriteExisitingFile, bitDepth);
+	return initFromJuceFile(audioFile, overwriteExisitingFile, bitDepth, CuePointArray());
 }
 
 bool Buffer::write(const File& audioFile, 
 				   bool overwriteExisitingFile, 
-				   int bitDepth) throw()
+				   int bitDepth,
+				   CuePointArray const& cues) throw()
 {
-	return initFromJuceFile(audioFile, overwriteExisitingFile, bitDepth);
+	return initFromJuceFile(audioFile, overwriteExisitingFile, bitDepth, cues);
 }
 
 bool Buffer::write(const File::SpecialLocationType directory, 
 				   bool overwriteExisitingFile, 
-				   int bitDepth) throw()
+				   int bitDepth,
+				   CuePointArray const& cues) throw()
 {
-	return initFromJuceFile(File::getSpecialLocation(directory), overwriteExisitingFile, bitDepth);
+	return initFromJuceFile(File::getSpecialLocation(directory), overwriteExisitingFile, bitDepth, cues);
 }
 
 bool Buffer::initFromJuceFile(const File& audioFile, 
 							  bool overwriteExisitingFile, 
-							  int bitDepth) throw()
+							  int bitDepth,
+							  CuePointArray const& cues) throw()
 {	
 	File outputFile;
 	
@@ -673,11 +676,12 @@ bool Buffer::initFromJuceFile(const File& audioFile,
 		return false;
 	
 	AudioFormatWriter* audioFormatWriter;
+	FileOutputStream* fileOutputStream;
 	
 	if(outputFile.hasFileExtension(".wav"))
 	{
 		WavAudioFormat wavAudioFormat;
-		FileOutputStream* fileOutputStream = outputFile.createOutputStream();
+		fileOutputStream = outputFile.createOutputStream();
 		
 		if(!fileOutputStream) return false;
 		
@@ -689,7 +693,7 @@ bool Buffer::initFromJuceFile(const File& audioFile,
 	else if(outputFile.hasFileExtension(".aif") || outputFile.hasFileExtension(".aiff"))
 	{
 		AiffAudioFormat aiffAudioFormat;
-		FileOutputStream* fileOutputStream = outputFile.createOutputStream();
+		fileOutputStream = outputFile.createOutputStream();
 		
 		if(!fileOutputStream) return false;
 		
@@ -710,47 +714,16 @@ bool Buffer::initFromJuceFile(const File& audioFile,
 	AudioSampleBuffer audioSampleBuffer(bufferData, getNumChannels(), size());
 	audioSampleBuffer.writeToAudioWriter(audioFormatWriter, 0, size());
 	
+	if(cues.length() > 0)
+	{
+		AudioIOHelper::writeCuePoints(audioFormatWriter, fileOutputStream, cues);
+	}
+	
 	delete audioFormatWriter;
 	delete [] bufferData;
 	
 	return true;
 }
-
-/* writer code to modify...
-bool AudioFormatWriter::writeFromAudioSampleBuffer (const AudioSampleBuffer& source, int startSample, int numSamples)
-{
-    jassert (startSample >= 0 && startSample + numSamples <= source.getNumSamples() && source.getNumChannels() > 0);
-	
-    if (numSamples <= 0)
-        return true;
-	
-    HeapBlock<int> tempBuffer;
-    HeapBlock<int*> chans (numChannels + 1);
-    chans [numChannels] = 0;
-	
-    if (isFloatingPoint())
-    {
-        for (int i = numChannels; --i >= 0;)
-            chans[i] = reinterpret_cast<int*> (source.getSampleData (i, startSample));
-    }
-    else
-    {
-        tempBuffer.malloc (numSamples * numChannels);
-		
-        for (unsigned int i = 0; i < numChannels; ++i)
-        {
-            typedef AudioData::Pointer <AudioData::Int32, AudioData::NativeEndian, AudioData::NonInterleaved, AudioData::NonConst> DestSampleType;
-            typedef AudioData::Pointer <AudioData::Float32, AudioData::NativeEndian, AudioData::NonInterleaved, AudioData::Const> SourceSampleType;
-			
-            DestSampleType destData (chans[i] = tempBuffer + i * numSamples);
-            SourceSampleType sourceData (source.getSampleData (i, startSample));
-            destData.convertSamples (sourceData, numSamples);
-        }
-    }
-	
-    return write ((const int**) chans.getData(), numSamples);
-}
-*/
 
 #elif defined(UGEN_IPHONE) // else if so we don't use these if using Juce on the iPhone
 
