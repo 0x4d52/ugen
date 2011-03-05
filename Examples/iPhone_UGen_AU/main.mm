@@ -37,7 +37,7 @@
 }
 
 - (UGen)constructGraph:(UGen)input
-{
+{	
 	return SinOsc::AR(1000, 0, 0.1);
 }
 

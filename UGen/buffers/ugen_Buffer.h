@@ -423,13 +423,13 @@ public:
 	 Formats available are dependent on platform. */
 	Buffer(const char *audioFilePath) throw();
 	
-	/** Constuct a Buffer from an audio file on disk. 
-	 Formats available are dependent on platform. */
-	Buffer(Text const& audioFilePath) throw();
+//	/** Constuct a Buffer from an audio file on disk. 
+//	 Formats available are dependent on platform. */
+//	Buffer(Text const& audioFilePath) throw();
 	
 	/** Constuct a Buffer from an audio file on disk returning the sampleRate to the caller. 
 	 Formats available are dependent on platform. */
-	Buffer(Text const& audioFilePath, double& sampleRate) throw();
+	Buffer(Text const& audioFilePath, int *bits = 0, double* sampleRate = 0) throw();
 	
 	/** Write a Buffer to an audio file on disk. */
 	bool write(Text const& audioFilePath, bool overwriteExisitingFile = false, int bitDepth = 24) throw();
@@ -474,7 +474,7 @@ public:
 #endif
 #if defined(UGEN_IPHONE) || defined(DOXYGEN)
 protected:
-	double initFromAudioFile(const char* audioFilePath) throw();
+	double initFromAudioFile(const char* audioFilePath, int *bits = 0) throw();
 	bool initFromAudioFileWav16(const char* audioFilePath, bool overwriteExisitingFile) throw();
 	bool initFromAudioFileAiff16(const char* audioFilePath, bool overwriteExisitingFile) throw();
 	bool initFromAudioFileWav24(const char* audioFilePath, bool overwriteExisitingFile) throw();
