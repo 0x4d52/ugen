@@ -108,6 +108,12 @@ Text NSUtilities::stringToText(CFStringRef string) throw()
 	return Text([(NSString*)string UTF8String]);
 }
 
+
+CFStringRef NSUtilities::textToString(Text const& text) throw()
+{
+	return (CFStringRef)[NSString stringWithUTF8String: text.getArray()];
+}
+
 END_UGEN_NAMESPACE
 
 #endif // UGEN_IPHONE

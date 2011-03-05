@@ -476,17 +476,25 @@ Buffer::Buffer(String const& audioFilePath, double* sampleRate, int* bits, Buffe
 	}
 }
 
-Buffer::Buffer(const char *audioFilePath) throw()
+Buffer::Buffer(const char *audioFilePath, int *bits, double* sampleRate, BufferMetaData* metaData) throw()
 :	numChannels_(0),
 	size_(0),
 	channels(0)
 {
 	File audioFile (audioFilePath);
-	double sampleRate = initFromJuceFile(audioFile);
-	double currentSampleRate = UGen::getSampleRate();
 	
-	if((sampleRate != 0.0) && (sampleRate != currentSampleRate))
-		operator= (changeSampleRate(sampleRate, currentSampleRate));		
+	if(!sampleRate)
+	{
+		double fileSampleRate = initFromJuceFile(audioFile, bits, metaData);
+		double currentSampleRate = UGen::getSampleRate();
+		
+		if((fileSampleRate != 0.0) && (fileSampleRate != currentSampleRate))
+			operator= (changeSampleRate(fileSampleRate, currentSampleRate));
+	}
+	else
+	{
+		*sampleRate = initFromJuceFile(audioFile, bits, metaData);
+	}
 }
 
 //Buffer::Buffer(Text const& audioFilePath) throw()
@@ -722,16 +730,23 @@ bool Buffer::initFromJuceFile(const File& audioFile,
 
 #elif defined(UGEN_IPHONE) // else if so we don't use these if using Juce on the iPhone
 
-Buffer::Buffer(const char *audioFilePath) throw()
+Buffer::Buffer(const char *audioFilePath, int *bits, double* sampleRate, BufferMetaData* metaData) throw()
 :	numChannels_(0),
 	size_(0),
 	channels(0)
 {
-	double sampleRate = initFromAudioFile(audioFilePath);
-	double currentSampleRate = UGen::getSampleRate();
-	
-	if((sampleRate != 0.0) && (sampleRate != currentSampleRate))
-		operator= (changeSampleRate(sampleRate, currentSampleRate));	
+	if(!sampleRate)
+	{
+		double fileSampleRate = initFromAudioFile(audioFilePath, bits, metaData);
+		double currentSampleRate = UGen::getSampleRate();
+		
+		if((fileSampleRate != 0.0) && (fileSampleRate != currentSampleRate))
+			operator= (changeSampleRate(fileSampleRate, currentSampleRate));
+	}
+	else
+	{
+		*sampleRate = initFromAudioFile(audioFilePath, bits, metaData);
+	}
 }
 
 //Buffer::Buffer(Text const& audioFilePath) throw()
@@ -1050,7 +1065,8 @@ exit:
 
 bool Buffer::write(Text const& audioFilePath, 
 				   bool overwriteExisitingFile, 
-				   int bitDepth) throw()
+				   int bitDepth,
+				   BufferMetaData const& metaData) throw()
 {
 	ugen_assert(bitDepth >= 16);
 	
@@ -1083,35 +1099,67 @@ bool Buffer::write(Text const& audioFilePath,
 	if(type == AIFF)
 	{
 		if(bitDepth == 24)
-			return initFromAudioFileAiff24(pathChecked.getArray(), overwriteExisitingFile);
+			return initFromAudioFileAiff24(pathChecked.getArray(), overwriteExisitingFile, metaData);
 		else if(bitDepth == 32)
-			return initFromAudioFileAiff32(pathChecked.getArray(), overwriteExisitingFile);
+			return initFromAudioFileAiff32(pathChecked.getArray(), overwriteExisitingFile, metaData);
 		else
 		{
 			if(bitDepth != 16)
 				printf("Buffer: warning: bit depth of %d not supported, using 16\n", bitDepth);
-			return initFromAudioFileAiff16(pathChecked.getArray(), overwriteExisitingFile);
+			return initFromAudioFileAiff16(pathChecked.getArray(), overwriteExisitingFile, metaData);
 		}
 	}
 	else if(type == WAV)
 	{
 		if(bitDepth == 24)
-			return initFromAudioFileWav24(pathChecked.getArray(), overwriteExisitingFile);
+			return initFromAudioFileWav24(pathChecked.getArray(), overwriteExisitingFile, metaData);
 		else if(bitDepth == 32)
-			return initFromAudioFileWav32(pathChecked.getArray(), overwriteExisitingFile);
+			return initFromAudioFileWav32(pathChecked.getArray(), overwriteExisitingFile, metaData);
 		else
 		{
 			if(bitDepth != 16)
 				printf("Buffer: warning: bit depth of %d not supported, using 16\n", bitDepth);
-			return initFromAudioFileWav16(pathChecked.getArray(), overwriteExisitingFile);
+			return initFromAudioFileWav16(pathChecked.getArray(), overwriteExisitingFile, metaData);
 		}
 	}
 	
 	return false;
 }
 
+static void writeMetaDataToAudioFile(AudioFileID audioFile, BufferMetaData const& metaData) throw()
+{
+	const int numCues = metaData.cuePoints.length();
+	if(numCues > 0)
+	{
+		UInt32 dataSize = NumAudioFileMarkersToNumBytes(numCues);
+		AudioFileMarkerList* markerList = (AudioFileMarkerList*)malloc(dataSize);
+
+		markerList->mSMPTE_TimeType = 0;
+		markerList->mNumberMarkers = numCues;
+		
+		for(int i = 0; i < numCues; i++)
+		{
+			AudioFileMarker* marker = &markerList->mMarkers[i];
+			memset(marker, 0, sizeof(AudioFileMarker));
+			
+			marker->mFramePosition = metaData.cuePoints[i].getSampleOffset();
+			marker->mMarkerID = metaData.cuePoints[i].getID();
+			marker->mName = NSUtilities::textToString(metaData.cuePoints[i].getLabel());
+		}
+		
+		OSStatus result = AudioFileSetProperty(audioFile, kAudioFilePropertyMarkerList, dataSize, markerList);
+		if(result != noErr)
+		{
+			printf("Buffer: warning failed to add meta data to audio file\n");
+		}
+		
+		free(markerList);
+	}
+}
+
 bool Buffer::initFromAudioFileWav16(const char* audioFilePath, 
-									bool overwriteExisitingFile) throw()
+									bool overwriteExisitingFile, 
+									BufferMetaData const& metaData) throw()
 {	
 	ugen_assert(audioFilePath != 0);
 	
@@ -1180,12 +1228,14 @@ bool Buffer::initFromAudioFileWav16(const char* audioFilePath,
 		}
 	}
 	
+	writeMetaDataToAudioFile(audioFile, metaData);
 	AudioFileClose(audioFile);
 	return true;
 }
 
 bool Buffer::initFromAudioFileAiff16(const char* audioFilePath, 
-									 bool overwriteExisitingFile) throw()
+									 bool overwriteExisitingFile, 
+									 BufferMetaData const& metaData) throw()
 {
 	ugen_assert(audioFilePath != 0);
 	
@@ -1255,12 +1305,14 @@ bool Buffer::initFromAudioFileAiff16(const char* audioFilePath,
 		}
 	}
 	
+	writeMetaDataToAudioFile(audioFile, metaData);
 	AudioFileClose(audioFile);
 	return true;
 }
 
 bool Buffer::initFromAudioFileWav24(const char* audioFilePath, 
-									bool overwriteExisitingFile) throw()
+									bool overwriteExisitingFile, 
+									BufferMetaData const& metaData) throw()
 {	
 	ugen_assert(audioFilePath != 0);
 	
@@ -1330,12 +1382,14 @@ bool Buffer::initFromAudioFileWav24(const char* audioFilePath,
 		}
 	}
 	
+	writeMetaDataToAudioFile(audioFile, metaData);
 	AudioFileClose(audioFile);
 	return true;
 }
 
 bool Buffer::initFromAudioFileAiff24(const char* audioFilePath, 
-									 bool overwriteExisitingFile) throw()
+									 bool overwriteExisitingFile, 
+									 BufferMetaData const& metaData) throw()
 {
 	ugen_assert(audioFilePath != 0);
 	
@@ -1409,12 +1463,14 @@ bool Buffer::initFromAudioFileAiff24(const char* audioFilePath,
 		}
 	}
 	
+	writeMetaDataToAudioFile(audioFile, metaData);
 	AudioFileClose(audioFile);
 	return true;
 }
 
 bool Buffer::initFromAudioFileWav32(const char* audioFilePath, 
-									bool overwriteExisitingFile) throw()
+									bool overwriteExisitingFile, 
+									BufferMetaData const& metaData) throw()
 {	
 	ugen_assert(audioFilePath != 0);
 	
@@ -1483,12 +1539,14 @@ bool Buffer::initFromAudioFileWav32(const char* audioFilePath,
 		}
 	}
 	
+	writeMetaDataToAudioFile(audioFile, metaData);
 	AudioFileClose(audioFile);
 	return true;
 }
 
 bool Buffer::initFromAudioFileAiff32(const char* audioFilePath, 
-									 bool overwriteExisitingFile) throw()
+									 bool overwriteExisitingFile, 
+									 BufferMetaData const& metaData) throw()
 {
 	ugen_assert(audioFilePath != 0);
 	
@@ -1558,6 +1616,7 @@ bool Buffer::initFromAudioFileAiff32(const char* audioFilePath,
 		}
 	}
 	
+	writeMetaDataToAudioFile(audioFile, metaData);
 	AudioFileClose(audioFile);
 	return true;
 }
