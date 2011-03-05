@@ -652,6 +652,9 @@ bool Buffer::initFromJuceFile(const File& audioFile,
 							  int bitDepth,
 							  BufferMetaData const& metaData) throw()
 {	
+	if(numChannels_ < 1) return false;
+	if(size_ < 1) return false;
+	
 	File outputFile;
 	
 	if(audioFile.isDirectory()) 
@@ -743,11 +746,11 @@ Buffer::Buffer(const char *audioFilePath) throw()
 //		operator= (changeSampleRate(sampleRate, currentSampleRate));	
 //}
 
-Buffer::Buffer(Text const& audioFilePath, int *bits, double* sampleRate) throw()
+Buffer::Buffer(Text const& audioFilePath, int *bits, double* sampleRate, BufferMetaData* metaData) throw()
 {	
 	if(!sampleRate)
 	{
-		double fileSampleRate = initFromAudioFile(audioFilePath.getArray(), bits);
+		double fileSampleRate = initFromAudioFile(audioFilePath.getArray(), bits, metaData);
 		double currentSampleRate = UGen::getSampleRate();
 		
 		if((fileSampleRate != 0.0) && (fileSampleRate != currentSampleRate))
@@ -755,12 +758,12 @@ Buffer::Buffer(Text const& audioFilePath, int *bits, double* sampleRate) throw()
 	}
 	else
 	{
-		*sampleRate = initFromAudioFile(audioFilePath.getArray(), bits);
+		*sampleRate = initFromAudioFile(audioFilePath.getArray(), bits, metaData);
 	}
 	
 }
 
-double Buffer::initFromAudioFile(const char* audioFilePath, int *bits) throw()
+double Buffer::initFromAudioFile(const char* audioFilePath, int *bits, BufferMetaData* metaData) throw()
 {
 	void* audioData = 0;
 	
@@ -998,6 +1001,32 @@ double Buffer::initFromAudioFile(const char* audioFilePath, int *bits) throw()
 			{
 				printf("Buffer: Sound file format not yet supported.");
 				clear();
+			}
+		}
+		
+		if(metaData)
+		{
+			UInt32 isWritable;
+			result = AudioFileGetPropertyInfo(audioFile, kAudioFilePropertyMarkerList, &dataSize, &isWritable);
+			if (result == noErr) 
+			{
+				AudioFileMarkerList* markerList = (AudioFileMarkerList*)malloc(dataSize);
+				result = AudioFileGetProperty(audioFile, kAudioFilePropertyMarkerList, &dataSize, markerList);
+				if (result == noErr) 
+				{
+					for(UInt32 i = 0; i < markerList->mNumberMarkers; i++)
+					{
+						CuePoint cuePoint;
+						cuePoint.getID() = markerList->mMarkers[i].mMarkerID;
+						cuePoint.getSampleOffset() = (int)markerList->mMarkers[i].mFramePosition;
+						cuePoint.getLabel() = NSUtilities::stringToText(markerList->mMarkers[i].mName);
+						CFRelease(markerList->mMarkers[i].mName);
+						
+						metaData->cuePoints.add(cuePoint);
+					}
+				}
+				
+				free(markerList);
 			}
 		}
 	}
