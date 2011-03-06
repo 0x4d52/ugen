@@ -45,30 +45,30 @@
 #undef Trig
 #endif
 
-class BufferMetaDataReceiver;
-typedef ObjectArray<BufferMetaDataReceiver*> BufferMetaDataReceiverArray;
+class MetaDataReceiver;
+typedef ObjectArray<MetaDataReceiver*> MetaDataReceiverArray;
 
-class BufferMetaDataSender
+class MetaDataSender
 {
 public:
-	BufferMetaDataSender() throw();
-	virtual ~BufferMetaDataSender();
+	MetaDataSender() throw();
+	virtual ~MetaDataSender();
 	
-	void addBufferMetaDataReceiver(BufferMetaDataReceiver* const receiver) throw();
-	void removeBufferMetaDataReceiver(BufferMetaDataReceiver* const receiver) throw();
+	void addMetaDataReceiver(MetaDataReceiver* const receiver) throw();
+	void removeMetaDataReceiver(MetaDataReceiver* const receiver) throw();
 	
-	void sendMetaData(Buffer const& buffer, BufferMetaData const& metaData, BufferMetaData::Type type, int index);
+	void sendMetaData(Buffer const& buffer, MetaData const& metaData, MetaData::Type type, int index);
 
 private:
-	BufferMetaDataReceiverArray receivers;
+	MetaDataReceiverArray receivers;
 };
 
-class BufferMetaDataReceiver
+class MetaDataReceiver
 {
 public:
-	BufferMetaDataReceiver() {}
-	virtual ~BufferMetaDataReceiver() {}
-	virtual void handleMetaData(Buffer const& buffer, BufferMetaData const& metaData, BufferMetaData::Type type, int index) = 0;
+	MetaDataReceiver() {}
+	virtual ~MetaDataReceiver() {}
+	virtual void handleMetaData(Buffer const& buffer, MetaData const& metaData, MetaData::Type type, int index) = 0;
 };
 
 /** A UGenInternal which can playback a Buffer.
@@ -81,7 +81,7 @@ public:
  @ingroup UGenInternals */
 class PlayBufUGenInternal :	public ProxyOwnerUGenInternal,
 							public DoneActionSender,
-							public BufferMetaDataSender
+							public MetaDataSender
 {
 public:
 	PlayBufUGenInternal(Buffer const& buffer, 
