@@ -94,6 +94,15 @@ typedef ObjectArray<CuePoint> CuePointArray;
 class BufferMetaData
 {
 public:
+	enum Type 
+	{
+		CuePointInfo,
+		LoopPointInfo,
+		RegionInfo,
+		
+		Count
+	};
+	
 	CuePointArray cuePoints;
 };
 
@@ -423,10 +432,6 @@ public:
 	 Formats available are dependent on platform. */
 	Buffer(const char *audioFilePath, int *bits = 0, double* sampleRate = 0, BufferMetaData* metaData = 0) throw();
 	
-//	/** Constuct a Buffer from an audio file on disk. 
-//	 Formats available are dependent on platform. */
-//	Buffer(Text const& audioFilePath) throw();
-	
 	/** Constuct a Buffer from an audio file on disk returning the sampleRate to the caller. 
 	 Formats available are dependent on platform. */
 	Buffer(Text const& audioFilePath, int *bits = 0, double* sampleRate = 0, BufferMetaData* metaData = 0) throw();
@@ -442,16 +447,10 @@ public:
 	 Here there's an option to copy the data or just use the data from the AudioSampleBuffer directly. In the
 	 latter case you must ensure that the AudioSampleBuffer object exists for the same duration as this Buffer.*/	
 	Buffer(AudioSampleBuffer& audioSampleBuffer, const bool copyTheData = true) throw();
-	
-//	/** Constuct a Buffer from an audio file on disk given by a Juce String path. */
-//	Buffer(String const& audioFilePath) throw();
-	
+		
 	/** Constuct a Buffer from an audio file on disk given by a Juce String path optionally returning the sample rate, bit depth and meta data to the caller. */
 	Buffer(String const& audioFilePath, double* sampleRate = 0, int* bits = 0, BufferMetaData* metaData = 0) throw();
-	
-//	/** Constuct a Buffer from an audio file on disk given by a Juce File path. */
-//	Buffer(const File& audioFile) throw();
-	
+		
 	/** Constuct a Buffer from an audio file on disk given by a Juce File optionally returning the sample rate, bit depth and meta data to the caller. */
 	Buffer(const File& audioFile, double* sampleRate = 0, int* bits = 0, BufferMetaData* metaData = 0) throw();
 	

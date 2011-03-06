@@ -43,6 +43,37 @@ BEGIN_UGEN_NAMESPACE
 
 #include "ugen_PlayBuf.h"
 
+BufferMetaDataSender::BufferMetaDataSender() throw()
+{
+}
+
+BufferMetaDataSender::~BufferMetaDataSender()
+{
+}
+
+void BufferMetaDataSender::addBufferMetaDataReceiver(BufferMetaDataReceiver* const receiver) throw()
+{
+	if(receiver == 0) { ugen_assertfalse; return; }
+	if(receivers.contains(receiver)) return;
+	
+	receivers.add(receiver);		
+}
+
+void BufferMetaDataSender::removeBufferMetaDataReceiver(BufferMetaDataReceiver* const receiver) throw()
+{
+	if(receiver == 0) { ugen_assertfalse; return; }
+	
+	receivers = receivers.removeItem(receiver);		
+}
+
+void BufferMetaDataSender::sendMetaData(Buffer const& buffer, BufferMetaData const& metaData, BufferMetaData::Type type, int index)
+{
+	const int size = receivers.size();
+	for(int i = 0; i < size; i++)
+	{
+		receivers[i]->handleMetaData(buffer, metaData, type, index);
+	}			
+}
 
 PlayBufUGenInternal::PlayBufUGenInternal(Buffer const& buffer, 
 										 UGen const& rate, 
@@ -80,6 +111,8 @@ UGenInternal* PlayBufUGenInternal::getChannel(const int channel) throw()
 	internal->bufferPos = bufferPos;
 	internal->lastTrig = lastTrig;
 	return internal;
+	
+	// what about MetaDataSender?
 }
 
 void PlayBufUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()

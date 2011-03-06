@@ -210,6 +210,7 @@ class ExternalControlSource;
 class MultiSlider;
 class Env;
 class RawInputUGenInternal;
+class BufferMetaDataReceiver;
 
 /**	The UGen class!
 
@@ -903,6 +904,11 @@ public:
 	void removeDoneActionReceiver(DoneActionReceiver* const receiver) throw();
 	UGen& addDoneActionReceiver(UGen const& receiver) throw();
 	void removeDoneActionReceiver(UGen const& receiver) throw();
+	
+	UGen& addBufferMetaDataReceiver(BufferMetaDataReceiver* const receiver) throw();
+	void removeBufferMetaDataReceiver(BufferMetaDataReceiver* const receiver) throw();
+	UGen& addBufferMetaDataReceiver(UGen const& receiver) throw();
+	void removeBufferMetaDataReceiver(UGen const& receiver) throw();
 	
 	
 	double getDuration() throw();
