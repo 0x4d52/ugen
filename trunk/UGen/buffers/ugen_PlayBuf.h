@@ -207,9 +207,9 @@ UGenSublcassDeclaration(RecordBuf, (input, buffer, recLevel, preLevel, loop, don
 						 UGen const& loop = 0.f, 
 						 const UGen::DoneAction doneAction = UGen::DeleteWhenDone), COMMON_UGEN_DOCS);
 
-#if 1
 
-class LoopPointsUGenInternal :	public UGenInternal
+class LoopPointsUGenInternal :	public UGenInternal,
+								public MetaDataSender
 {
 public:
 	LoopPointsUGenInternal(Buffer const& buffer, 
@@ -218,7 +218,8 @@ public:
 						   UGen const& end, 
 						   UGen const& loop,
 						   UGen const& startAtZero,
-						   UGen const& playToEnd) throw();
+						   UGen const& playToEnd,
+						   MetaData const& metaData) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
 	enum Inputs { Rate, Start, End, Loop, StartAtZero, PlayToEnd, NumInputs };
@@ -227,10 +228,17 @@ public:
 	double getPosition() const throw();
 	bool setPosition(const double newPosition) throw();		
 	
+	void checkMetaDataCuePoints(const float currentPosition, 
+								const float previousPosition, 
+								const int numCuePoints,
+								const bool forwards) throw();	
+	
 private:
 	Buffer b;
 	float currentValue;
 	bool lastLoop;
+	MetaData metaData;
+	float prevValue;
 };
 
 
@@ -239,17 +247,17 @@ private:
  You need to provide the buffer, the rate of playback (1=normal) then the start
  and end loop points as a fraction 0.0-1.0 */
 UGenSublcassDeclaration(LoopPoints, 
-						(buffer, rate, start, end, loop, startAtZero, playToEnd), 
+						(buffer, rate, start, end, loop, startAtZero, playToEnd, metaData), 
 						(Buffer const& buffer, 
 						 UGen const& rate, 
 						 UGen const& start, 
 						 UGen const& end, 
 						 UGen const& loop = 1.f, 
 						 UGen const& startAtZero = 0.f,
-						 UGen const& playToEnd = 1.f), 
+						 UGen const& playToEnd = 1.f,
+						 MetaData const& metaData = MetaData()), 
 						COMMON_UGEN_DOCS);
 
-#endif // 0
 
 
 #endif // _UGEN_ugen_PlayBuf_H_
