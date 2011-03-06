@@ -1386,46 +1386,46 @@ void UGen::removeDoneActionReceiver(UGen const& receiverUGen) throw()
 #endif
 }
 
-UGen& UGen::addBufferMetaDataReceiver(BufferMetaDataReceiver* const receiver) throw()
+UGen& UGen::addMetaDataReceiver(MetaDataReceiver* const receiver) throw()
 {
 #ifndef UGEN_ANDROID
 	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
-		BufferMetaDataSender* sender = dynamic_cast<BufferMetaDataSender*> (internalUGens[i]);
+		MetaDataSender* sender = dynamic_cast<MetaDataSender*> (internalUGens[i]);
 		
-		if(sender != 0) sender->addBufferMetaDataReceiver(receiver);
+		if(sender != 0) sender->addMetaDataReceiver(receiver);
 	}
 #endif
 	
 	return *this;		
 }
 
-void UGen::removeBufferMetaDataReceiver(BufferMetaDataReceiver* const receiver) throw()
+void UGen::removeMetaDataReceiver(MetaDataReceiver* const receiver) throw()
 {
 #ifndef UGEN_ANDROID
 	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
-		BufferMetaDataSender* sender = dynamic_cast<BufferMetaDataSender*> (internalUGens[i]);
+		MetaDataSender* sender = dynamic_cast<MetaDataSender*> (internalUGens[i]);
 		
-		if(sender != 0) sender->removeBufferMetaDataReceiver(receiver);
+		if(sender != 0) sender->removeMetaDataReceiver(receiver);
 	}	
 #endif	
 }
 
-UGen& UGen::addBufferMetaDataReceiver(UGen const& receiverUGen) throw()
+UGen& UGen::addMetaDataReceiver(UGen const& receiverUGen) throw()
 {
 #ifndef UGEN_ANDROID
 	for(unsigned int src = 0; src < numInternalUGens; src++)
 	{
-		BufferMetaDataSender* sender = dynamic_cast<BufferMetaDataSender*> (internalUGens[src]);
+		MetaDataSender* sender = dynamic_cast<MetaDataSender*> (internalUGens[src]);
 		
 		if(sender != 0) 
 		{
 			for(unsigned int dst = 0; dst < receiverUGen.numInternalUGens; dst++)
 			{
-				BufferMetaDataReceiver* receiver = dynamic_cast<BufferMetaDataReceiver*> (receiverUGen.internalUGens[dst]);
+				MetaDataReceiver* receiver = dynamic_cast<MetaDataReceiver*> (receiverUGen.internalUGens[dst]);
 				
-				if(receiver != 0) sender->addBufferMetaDataReceiver(receiver);
+				if(receiver != 0) sender->addMetaDataReceiver(receiver);
 			}
 		}
 	}
@@ -1434,20 +1434,20 @@ UGen& UGen::addBufferMetaDataReceiver(UGen const& receiverUGen) throw()
 	return *this;		
 }
 
-void UGen::removeBufferMetaDataReceiver(UGen const& receiverUGen) throw()
+void UGen::removeMetaDataReceiver(UGen const& receiverUGen) throw()
 {
 #ifndef UGEN_ANDROID
 	for(unsigned int src = 0; src < numInternalUGens; src++)
 	{
-		BufferMetaDataSender* sender = dynamic_cast<BufferMetaDataSender*> (internalUGens[src]);
+		MetaDataSender* sender = dynamic_cast<MetaDataSender*> (internalUGens[src]);
 		
 		if(sender != 0) 
 		{
 			for(unsigned int dst = 0; dst < receiverUGen.numInternalUGens; dst++)
 			{
-				BufferMetaDataReceiver* receiver = dynamic_cast<BufferMetaDataReceiver*> (receiverUGen.internalUGens[dst]);
+				MetaDataReceiver* receiver = dynamic_cast<MetaDataReceiver*> (receiverUGen.internalUGens[dst]);
 				
-				if(receiver != 0) sender->removeBufferMetaDataReceiver(receiver);
+				if(receiver != 0) sender->removeMetaDataReceiver(receiver);
 			}
 		}
 	}	

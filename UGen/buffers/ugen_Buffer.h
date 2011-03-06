@@ -91,7 +91,7 @@ public:
 
 typedef ObjectArray<CuePoint> CuePointArray;
 
-class BufferMetaData
+class MetaData
 {
 public:
 	enum Type 
@@ -430,17 +430,17 @@ public:
 	
 	/** Constuct a Buffer from an audio file on disk. 
 	 Formats available are dependent on platform. */
-	Buffer(const char *audioFilePath, int *bits = 0, double* sampleRate = 0, BufferMetaData* metaData = 0) throw();
+	Buffer(const char *audioFilePath, int *bits = 0, double* sampleRate = 0, MetaData* metaData = 0) throw();
 	
 	/** Constuct a Buffer from an audio file on disk returning the sampleRate to the caller. 
 	 Formats available are dependent on platform. */
-	Buffer(Text const& audioFilePath, int *bits = 0, double* sampleRate = 0, BufferMetaData* metaData = 0) throw();
+	Buffer(Text const& audioFilePath, int *bits = 0, double* sampleRate = 0, MetaData* metaData = 0) throw();
 	
 	/** Write a Buffer to an audio file on disk. */
 	bool write(Text const& audioFilePath, 
 			   bool overwriteExisitingFile = false,
 			   int bitDepth = 24,
-			   BufferMetaData const& metaData = BufferMetaData()) throw();
+			   MetaData const& metaData = MetaData()) throw();
 	
 #if defined(JUCE_VERSION) || defined(DOXYGEN)
 	/** Constuct a Buffer from a Juce AudioSampleBuffer. 
@@ -449,40 +449,40 @@ public:
 	Buffer(AudioSampleBuffer& audioSampleBuffer, const bool copyTheData = true) throw();
 		
 	/** Constuct a Buffer from an audio file on disk given by a Juce String path optionally returning the sample rate, bit depth and meta data to the caller. */
-	Buffer(String const& audioFilePath, double* sampleRate = 0, int* bits = 0, BufferMetaData* metaData = 0) throw();
+	Buffer(String const& audioFilePath, double* sampleRate = 0, int* bits = 0, MetaData* metaData = 0) throw();
 		
 	/** Constuct a Buffer from an audio file on disk given by a Juce File optionally returning the sample rate, bit depth and meta data to the caller. */
-	Buffer(const File& audioFile, double* sampleRate = 0, int* bits = 0, BufferMetaData* metaData = 0) throw();
+	Buffer(const File& audioFile, double* sampleRate = 0, int* bits = 0, MetaData* metaData = 0) throw();
 	
 	/** Write a Buffer to a Juce File on disk. */
 	bool write(const File& audioFile, 
 			   bool overwriteExisitingFile = false, 
 			   int bitDepth = 24, 
-			   BufferMetaData const& metaData = BufferMetaData()) throw();
+			   MetaData const& metaData = MetaData()) throw();
 	
 	/** Write a Buffer to a file in a special location on disk. */
 	bool write(const File::SpecialLocationType directory, 
 			   bool overwriteExisitingFile = false, 
 			   int bitDepth = 24,
-			   BufferMetaData const& metaData = BufferMetaData()) throw();
+			   MetaData const& metaData = MetaData()) throw();
 	
 protected:
-	double initFromJuceFile(const File& audioFile, int *bits = 0, BufferMetaData* metaData = 0) throw();
+	double initFromJuceFile(const File& audioFile, int *bits = 0, MetaData* metaData = 0) throw();
 	bool initFromJuceFile(const File& audioFile, 
 						  bool overwriteExisitingFile, 
 						  int bitDepth,
-						  BufferMetaData const& metaData) throw();
+						  MetaData const& metaData) throw();
 public:
 #endif
 #if defined(UGEN_IPHONE) || defined(DOXYGEN)
 protected:
-	double initFromAudioFile(const char* audioFilePath, int *bits = 0, BufferMetaData* metaData = 0) throw();
-	bool initFromAudioFileWav16(const char* audioFilePath, bool overwriteExisitingFile, BufferMetaData const& metaData = BufferMetaData()) throw();
-	bool initFromAudioFileAiff16(const char* audioFilePath, bool overwriteExisitingFile, BufferMetaData const& metaData = BufferMetaData()) throw();
-	bool initFromAudioFileWav24(const char* audioFilePath, bool overwriteExisitingFile, BufferMetaData const& metaData = BufferMetaData()) throw();
-	bool initFromAudioFileAiff24(const char* audioFilePath, bool overwriteExisitingFile, BufferMetaData const& metaData = BufferMetaData()) throw();
-	bool initFromAudioFileWav32(const char* audioFilePath, bool overwriteExisitingFile, BufferMetaData const& metaData = BufferMetaData()) throw();
-	bool initFromAudioFileAiff32(const char* audioFilePath, bool overwriteExisitingFile, BufferMetaData const& metaData = BufferMetaData()) throw();
+	double initFromAudioFile(const char* audioFilePath, int *bits = 0, MetaData* metaData = 0) throw();
+	bool initFromAudioFileWav16(const char* audioFilePath, bool overwriteExisitingFile, MetaData const& metaData = MetaData()) throw();
+	bool initFromAudioFileAiff16(const char* audioFilePath, bool overwriteExisitingFile, MetaData const& metaData = MetaData()) throw();
+	bool initFromAudioFileWav24(const char* audioFilePath, bool overwriteExisitingFile, MetaData const& metaData = MetaData()) throw();
+	bool initFromAudioFileAiff24(const char* audioFilePath, bool overwriteExisitingFile, MetaData const& metaData = MetaData()) throw();
+	bool initFromAudioFileWav32(const char* audioFilePath, bool overwriteExisitingFile, MetaData const& metaData = MetaData()) throw();
+	bool initFromAudioFileAiff32(const char* audioFilePath, bool overwriteExisitingFile, MetaData const& metaData = MetaData()) throw();
 
 
 public:

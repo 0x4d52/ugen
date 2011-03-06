@@ -43,15 +43,15 @@ BEGIN_UGEN_NAMESPACE
 
 #include "ugen_PlayBuf.h"
 
-BufferMetaDataSender::BufferMetaDataSender() throw()
+MetaDataSender::MetaDataSender() throw()
 {
 }
 
-BufferMetaDataSender::~BufferMetaDataSender()
+MetaDataSender::~MetaDataSender()
 {
 }
 
-void BufferMetaDataSender::addBufferMetaDataReceiver(BufferMetaDataReceiver* const receiver) throw()
+void MetaDataSender::addMetaDataReceiver(MetaDataReceiver* const receiver) throw()
 {
 	if(receiver == 0) { ugen_assertfalse; return; }
 	if(receivers.contains(receiver)) return;
@@ -59,14 +59,14 @@ void BufferMetaDataSender::addBufferMetaDataReceiver(BufferMetaDataReceiver* con
 	receivers.add(receiver);		
 }
 
-void BufferMetaDataSender::removeBufferMetaDataReceiver(BufferMetaDataReceiver* const receiver) throw()
+void MetaDataSender::removeMetaDataReceiver(MetaDataReceiver* const receiver) throw()
 {
 	if(receiver == 0) { ugen_assertfalse; return; }
 	
 	receivers = receivers.removeItem(receiver);		
 }
 
-void BufferMetaDataSender::sendMetaData(Buffer const& buffer, BufferMetaData const& metaData, BufferMetaData::Type type, int index)
+void MetaDataSender::sendMetaData(Buffer const& buffer, MetaData const& metaData, MetaData::Type type, int index)
 {
 	const int size = receivers.size();
 	for(int i = 0; i < size; i++)
