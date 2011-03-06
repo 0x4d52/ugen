@@ -486,8 +486,6 @@ RecordBuf::RecordBuf(UGen const& input,
 	initInternal(numChannels);
 	generateFromProxyOwner(new RecordBufUGenInternal(input, buffer, recLevel, preLevel, loop.mix(), doneAction));
 }
-
-#if 1
 	
 LoopPointsUGenInternal::LoopPointsUGenInternal(Buffer const& buffer, 
 											   UGen const& rate, 
@@ -495,11 +493,14 @@ LoopPointsUGenInternal::LoopPointsUGenInternal(Buffer const& buffer,
 											   UGen const& end,
 											   UGen const& loop, 
 											   UGen const& startAtZero,
-											   UGen const& playToEnd) throw()
+											   UGen const& playToEnd,
+											   MetaData const& metaDataToUse) throw()
 :	UGenInternal(NumInputs),
 	b(buffer),
 	currentValue((startAtZero.getValue() >= 0.5f) ? 0.f : start.getValue() * b.size()),
-	lastLoop(false)
+	lastLoop(false),
+	metaData(metaDataToUse),
+	prevValue((rate.getValue() >= 0.f) ? currentValue - 1.f : b.size())
 {
 	inputs[Rate] = rate;
 	inputs[Start] = start;
@@ -511,6 +512,8 @@ LoopPointsUGenInternal::LoopPointsUGenInternal(Buffer const& buffer,
 
 void LoopPointsUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
+	const int numCuesPoints = metaData.cuePoints.length();
+
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
 	float* rateSamples = inputs[Rate].processBlock(shouldDelete, blockID, 0);
@@ -551,6 +554,8 @@ void LoopPointsUGenInternal::processBlock(bool& shouldDelete, const unsigned int
 				{
 					currentValue -= (end - start);
 				}
+				
+				prevValue = currentValue-1.f;
 			}
 			else if((rate < 0.f) && (currentValue < start))
 			{
@@ -564,6 +569,8 @@ void LoopPointsUGenInternal::processBlock(bool& shouldDelete, const unsigned int
 				{            
 					currentValue += (end - start);
 				}
+				
+				prevValue = currentValue+1.f;
 			}
 		}
 		else if(*playToEndSamples < 0.5f)
@@ -580,6 +587,10 @@ void LoopPointsUGenInternal::processBlock(bool& shouldDelete, const unsigned int
 		
 		*outputSamples = currentValue;
 		
+		if(numCuesPoints) checkMetaDataCuePoints(currentValue, prevValue, numCuesPoints, rate >= 0.f);
+		
+		prevValue = currentValue;
+		
 		rateSamples++;
 		startSamples++;
 		endSamples++;
@@ -591,6 +602,41 @@ void LoopPointsUGenInternal::processBlock(bool& shouldDelete, const unsigned int
 		lastLoop = loop;
 	}
 }
+
+void LoopPointsUGenInternal::checkMetaDataCuePoints(const float currentPosition, 
+													const float previousPosition, 
+													const int numCuePoints,
+													const bool forwards) throw()
+{	
+	CuePointArray& cuePoints = metaData.cuePoints;
+	CuePoint* cuePointArray = cuePoints.getArray();
+	
+	if(forwards)
+	{
+		for(int i = 0; i < numCuePoints; i++)
+		{
+			float cuePosition = cuePointArray[i].getSampleOffset();
+			
+			if((previousPosition < cuePosition) && (currentPosition >= cuePosition))
+			{
+				sendMetaData(b, metaData, MetaData::CuePointInfo, -1, i);		
+			}
+		}
+	}
+	else
+	{
+		for(int i = 0; i < numCuePoints; i++)
+		{
+			float cuePosition = cuePointArray[i].getSampleOffset();
+			
+			if((previousPosition > cuePosition) && (currentPosition <= cuePosition))
+			{
+				sendMetaData(b, metaData, MetaData::CuePointInfo, -1, i);		
+			}
+		}		
+	}
+}
+
 
 double LoopPointsUGenInternal::getDuration() const throw()
 {
@@ -617,7 +663,8 @@ LoopPoints::LoopPoints(Buffer const& buffer,
 					   UGen const& end,
 					   UGen const& loop, 
 					   UGen const& startAtZero,
-					   UGen const& playToEnd) throw()
+					   UGen const& playToEnd,
+					   MetaData const& metaData) throw()
 {
 	initInternal(1);
 	internalUGens[0] = new LoopPointsUGenInternal(buffer, 
@@ -626,9 +673,8 @@ LoopPoints::LoopPoints(Buffer const& buffer,
 												  end.mix(), 
 												  loop.mix(), 
 												  startAtZero.mix(), 
-												  playToEnd.mix());
+												  playToEnd.mix(),
+												  metaData);
 }
-
-#endif // 0
 
 END_UGEN_NAMESPACE
