@@ -45,6 +45,32 @@
 #undef Trig
 #endif
 
+class BufferMetaDataReceiver;
+typedef ObjectArray<BufferMetaDataReceiver*> BufferMetaDataReceiverArray;
+
+class BufferMetaDataSender
+{
+public:
+	BufferMetaDataSender() throw();
+	virtual ~BufferMetaDataSender();
+	
+	void addBufferMetaDataReceiver(BufferMetaDataReceiver* const receiver) throw();
+	void removeBufferMetaDataReceiver(BufferMetaDataReceiver* const receiver) throw();
+	
+	void sendMetaData(Buffer const& buffer, BufferMetaData const& metaData, BufferMetaData::Type type, int index);
+
+private:
+	BufferMetaDataReceiverArray receivers;
+};
+
+class BufferMetaDataReceiver
+{
+public:
+	BufferMetaDataReceiver() {}
+	virtual ~BufferMetaDataReceiver() {}
+	virtual void handleMetaData(Buffer const& buffer, BufferMetaData const& metaData, BufferMetaData::Type type, int index) = 0;
+};
+
 /** A UGenInternal which can playback a Buffer.
  
  This is a ProxyOwnerUGenInternal so creates a number of proxy outputs
@@ -54,7 +80,8 @@
  @see PlayBuf
  @ingroup UGenInternals */
 class PlayBufUGenInternal :	public ProxyOwnerUGenInternal,
-							public DoneActionSender	
+							public DoneActionSender,
+							public BufferMetaDataSender
 {
 public:
 	PlayBufUGenInternal(Buffer const& buffer, 
@@ -212,5 +239,6 @@ UGenSublcassDeclaration(LoopPoints,
 						COMMON_UGEN_DOCS);
 
 #endif // 0
+
 
 #endif // _UGEN_ugen_PlayBuf_H_

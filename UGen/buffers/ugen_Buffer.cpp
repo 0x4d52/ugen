@@ -442,19 +442,6 @@ Buffer::Buffer(AudioSampleBuffer& audioSampleBuffer, const bool copyTheData) thr
 	}
 }
 
-//Buffer::Buffer(String const& audioFilePath) throw()
-//:	numChannels_(0),
-//	size_(0),
-//	channels(0)
-//{
-//	File audioFile (audioFilePath);
-//	double sampleRate = initFromJuceFile(audioFile);
-//	double currentSampleRate = UGen::getSampleRate();
-//	
-//	if((sampleRate != 0.0) && (sampleRate != currentSampleRate))
-//		operator= (changeSampleRate(sampleRate, currentSampleRate));		
-//}
-
 Buffer::Buffer(String const& audioFilePath, double* sampleRate, int* bits, BufferMetaData* metaData) throw()
 :	numChannels_(0),
 	size_(0),
@@ -497,19 +484,6 @@ Buffer::Buffer(const char *audioFilePath, int *bits, double* sampleRate, BufferM
 	}
 }
 
-//Buffer::Buffer(Text const& audioFilePath) throw()
-//:	numChannels_(0),
-//	size_(0),
-//	channels(0)
-//{
-//	File audioFile (audioFilePath.getArray());
-//	double sampleRate = initFromJuceFile(audioFile);
-//	double currentSampleRate = UGen::getSampleRate();
-//	
-//	if((sampleRate != 0.0) && (sampleRate != currentSampleRate))
-//		operator= (changeSampleRate(sampleRate, currentSampleRate));	
-//}
-
 Buffer::Buffer(Text const& audioFilePath, int *bits, double* sampleRate, BufferMetaData* metaData) throw()
 :	numChannels_(0),
 	size_(0),
@@ -530,18 +504,6 @@ Buffer::Buffer(Text const& audioFilePath, int *bits, double* sampleRate, BufferM
 		*sampleRate = initFromJuceFile(audioFile, bits, metaData);
 	}
 }
-
-//Buffer::Buffer(const File& audioFile) throw()
-//:	numChannels_(0),
-//	size_(0),
-//	channels(0)
-//{
-//	double sampleRate = initFromJuceFile(audioFile);
-//	double currentSampleRate = UGen::getSampleRate();
-//	
-//	if((sampleRate != 0.0) && (sampleRate != currentSampleRate))
-//		operator= (changeSampleRate(sampleRate, currentSampleRate));
-//}
 
 Buffer::Buffer(const File& audioFile, double* sampleRate, int *bits, BufferMetaData* metaData) throw()
 :	numChannels_(0),
@@ -749,18 +711,6 @@ Buffer::Buffer(const char *audioFilePath, int *bits, double* sampleRate, BufferM
 		*sampleRate = initFromAudioFile(audioFilePath, bits, metaData);
 	}
 }
-
-//Buffer::Buffer(Text const& audioFilePath) throw()
-//:	numChannels_(0),
-//	size_(0),
-//	channels(0)
-//{
-//	double sampleRate = initFromAudioFile(audioFilePath.getArray());
-//	double currentSampleRate = UGen::getSampleRate();
-//	
-//	if((sampleRate != 0.0) && (sampleRate != currentSampleRate))
-//		operator= (changeSampleRate(sampleRate, currentSampleRate));	
-//}
 
 Buffer::Buffer(Text const& audioFilePath, int *bits, double* sampleRate, BufferMetaData* metaData) throw()
 {	

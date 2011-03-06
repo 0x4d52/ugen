@@ -561,7 +561,7 @@ void DoneActionSender::addDoneActionReceiver(DoneActionReceiver* const receiver)
 	if(receiver == 0) { ugen_assertfalse; return; }
 	if(receivers.contains(receiver)) return;
 	
-	receivers <<= receiver;	
+	receivers.add(receiver);	
 }
 
 void DoneActionSender::removeDoneActionReceiver(DoneActionReceiver* const receiver) throw()
