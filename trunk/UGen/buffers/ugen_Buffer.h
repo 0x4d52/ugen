@@ -96,6 +96,8 @@ class MetaData
 public:
 	enum Type 
 	{
+		ReachedStart,
+		ReachedEnd,
 		CuePointInfo,
 		LoopPointInfo,
 		RegionInfo,

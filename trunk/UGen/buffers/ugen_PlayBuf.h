@@ -57,7 +57,7 @@ public:
 	void addMetaDataReceiver(MetaDataReceiver* const receiver) throw();
 	void removeMetaDataReceiver(MetaDataReceiver* const receiver) throw();
 	
-	void sendMetaData(Buffer const& buffer, MetaData const& metaData, MetaData::Type type, int index);
+	void sendMetaData(Buffer const& buffer, MetaData const& metaData, MetaData::Type type, int channel = -1, int index = -1);
 
 private:
 	MetaDataReceiverArray receivers;
@@ -68,7 +68,7 @@ class MetaDataReceiver
 public:
 	MetaDataReceiver() {}
 	virtual ~MetaDataReceiver() {}
-	virtual void handleMetaData(Buffer const& buffer, MetaData const& metaData, MetaData::Type type, int index) = 0;
+	virtual void handleMetaData(Buffer const& buffer, MetaData const& metaData, MetaData::Type type, int channel, int index) = 0;
 };
 
 /** A UGenInternal which can playback a Buffer.
@@ -89,7 +89,8 @@ public:
 						UGen const& trig, 
 						UGen const& offset, 
 						UGen const& loop, 
-						const UGen::DoneAction doneAction) throw();
+						const UGen::DoneAction doneAction,
+						MetaData const& metaData) throw();
 	~PlayBufUGenInternal();
 	UGenInternal* getChannel(const int channel) throw();
 	void prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw();
@@ -107,6 +108,7 @@ protected:
 	float lastTrig;
 	const UGen::DoneAction doneAction_;
 	const bool shouldDeleteValue;	
+	MetaData metaData;
 };
 
 #define PlayBuf_Docs	@param buffer	The Buffer to play, this number of channels witll determin the					\
@@ -119,8 +121,9 @@ protected:
 						@param offset	A modulatable offset into the Buffer in samples. Cab be used to driver the		\
 										Buffer playback manually instead of or in addition to the @c rate input			\
 						@param loop		A loop flag to indicate the Buffer should loop (1) or just play one-shot (0).	\
-						@param doneAction If looping oid off and the done action is UGen::DeleteWhenDone then this		\
+						@param doneAction If looping is off and the done action is UGen::DeleteWhenDone then this		\
 										  UGen will fire a delete action when playback reaches the end of the Buffer.	\
+						@param metaData An optional collection of metaData associated with the Buffer			
 	
 
 /** A UGen which can playback a Buffer.
@@ -131,13 +134,14 @@ protected:
  
  @ingroup AllUGens SoundFileUGens
  @see PlayBufUGenInternal */
-UGenSublcassDeclaration(PlayBuf, (buffer, rate, trig, offset, loop, doneAction),
+UGenSublcassDeclaration(PlayBuf, (buffer, rate, trig, offset, loop, doneAction, metaData),
 						(Buffer const& buffer, 
 						 UGen const& rate = 1.f, 
 						 UGen const& trig = 0.f, 
 						 UGen const& offset = 0.f, 
 						 UGen const& loop = 0.f,
-						 const UGen::DoneAction doneAction = UGen::DeleteWhenDone), COMMON_UGEN_DOCS PlayBuf_Docs);
+						 const UGen::DoneAction doneAction = UGen::DeleteWhenDone,
+						 MetaData const& metaData = MetaData()), COMMON_UGEN_DOCS PlayBuf_Docs);
 
 
 

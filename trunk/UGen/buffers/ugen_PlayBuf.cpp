@@ -66,12 +66,12 @@ void MetaDataSender::removeMetaDataReceiver(MetaDataReceiver* const receiver) th
 	receivers = receivers.removeItem(receiver);		
 }
 
-void MetaDataSender::sendMetaData(Buffer const& buffer, MetaData const& metaData, MetaData::Type type, int index)
+void MetaDataSender::sendMetaData(Buffer const& buffer, MetaData const& metaData, MetaData::Type type, int channel, int index)
 {
 	const int size = receivers.size();
 	for(int i = 0; i < size; i++)
 	{
-		receivers[i]->handleMetaData(buffer, metaData, type, index);
+		receivers[i]->handleMetaData(buffer, metaData, type, channel, index);
 	}			
 }
 
@@ -80,13 +80,15 @@ PlayBufUGenInternal::PlayBufUGenInternal(Buffer const& buffer,
 										 UGen const& trig, 
 										 UGen const& offset, 
 										 UGen const& loop, 
-										 const UGen::DoneAction doneAction) throw()
+										 const UGen::DoneAction doneAction,
+										 MetaData const& metaDataToUse) throw()
 :	ProxyOwnerUGenInternal(NumInputs, buffer.getNumChannels() - 1),
 	buffer_(buffer),
 	bufferPos(0.0),
 	lastTrig(0.f),
 	doneAction_(doneAction),
-	shouldDeleteValue(doneAction_ == UGen::DeleteWhenDone)
+	shouldDeleteValue(doneAction_ == UGen::DeleteWhenDone),
+	metaData(metaDataToUse)
 {
 	inputs[Rate] = rate;
 	inputs[Trig] = trig;
@@ -107,7 +109,8 @@ UGenInternal* PlayBufUGenInternal::getChannel(const int channel) throw()
 															inputs[Trig], 
 															inputs[Offset], 
 															inputs[Loop], 
-															doneAction_);
+															doneAction_,
+															metaData);
 	internal->bufferPos = bufferPos;
 	internal->lastTrig = lastTrig;
 	return internal;
@@ -152,17 +155,33 @@ void PlayBufUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 			if(*loopSamples++ >= 0.5f) 
 			{
 				if(position >= bufferSize)
+				{
+					sendMetaData(buffer_, metaData, MetaData::ReachedEnd, channel);
 					position -= bufferSize;
+					sendMetaData(buffer_, metaData, MetaData::ReachedStart, channel);
+				} 
 				else if(channelBufferPos < 0)
+				{
+					sendMetaData(buffer_, metaData, MetaData::ReachedStart, channel);
 					position += bufferSize;
+					sendMetaData(buffer_, metaData, MetaData::ReachedEnd, channel);
+				}
 				
 				*outputSamples++ = buffer_.getSample(channel, position);
 				channelBufferPos += *rateSamples++;
 			
 				if(channelBufferPos >= bufferSize)
+				{
+					sendMetaData(buffer_, metaData, MetaData::ReachedEnd, channel);
 					channelBufferPos -= bufferSize;
+					sendMetaData(buffer_, metaData, MetaData::ReachedStart, channel);
+				}
 				else if(channelBufferPos < 0)
+				{
+					sendMetaData(buffer_, metaData, MetaData::ReachedEnd, channel);
 					channelBufferPos += bufferSize;
+					sendMetaData(buffer_, metaData, MetaData::ReachedStart, channel);
+				}
 			}
 			else
 			{
@@ -189,6 +208,13 @@ void PlayBufUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 	{
 		shouldDelete = shouldDelete ? true : shouldDeleteValue;
 		setIsDone();
+		sendMetaData(buffer_, metaData, MetaData::ReachedEnd);
+	}
+	else if(bufferPos < 0)
+	{
+		shouldDelete = shouldDelete ? true : shouldDeleteValue;
+		setIsDone();
+		sendMetaData(buffer_, metaData, MetaData::ReachedStart);		
 	}
 }
 
@@ -214,7 +240,8 @@ PlayBuf::PlayBuf(Buffer const& buffer,
 				 UGen const& trigger, 
 				 UGen const& startPos, 
 				 UGen const& loop, 
-				 const UGen::DoneAction doneAction) throw()
+				 const UGen::DoneAction doneAction,
+				 MetaData const& metaData) throw()
 {	
 	// just mix the input ugens, they should be mono
 	// mix() will just return the original UGen if it has only one channel anyway
@@ -231,7 +258,8 @@ PlayBuf::PlayBuf(Buffer const& buffer,
 													   trigger.mix(), 
 													   startPosChecked, 
 													   loop.mix(), 
-													   doneAction));
+													   doneAction,
+													   metaData));
 
 		for(int i = 0; i < numChannels; i++)
 		{
@@ -239,7 +267,8 @@ PlayBuf::PlayBuf(Buffer const& buffer,
 		}
 	}	
 	else
-	{
+	{ 
+		//?? what was I thinking here?
 	}
 }
 
