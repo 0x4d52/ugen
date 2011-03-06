@@ -1030,7 +1030,7 @@ bool Buffer::write(Text const& audioFilePath,
 	Text pathChecked; 
 	if(splitLength <= 1)
 	{
-		pathChecked = audioFilePath << ".wav";
+		pathChecked = audioFilePath.add(".wav");
 		type = WAV;
 	}
 	else
