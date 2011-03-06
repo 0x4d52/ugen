@@ -100,6 +100,12 @@ public:
 	double getPosition() const throw();
 	bool setPosition(const double newPosition) throw();	
 	
+	void checkMetaDataCuePoints(const double currentPosition, 
+								const double previousPosition, 
+								const int channel, 
+								const int numCuePoints,
+								const bool forwards) throw();
+	
 	enum Inputs { Rate, Trig, Offset, Loop, NumInputs };
 	
 protected:
@@ -109,6 +115,7 @@ protected:
 	const UGen::DoneAction doneAction_;
 	const bool shouldDeleteValue;	
 	MetaData metaData;
+	DoubleArray prevPosArray;
 };
 
 #define PlayBuf_Docs	@param buffer	The Buffer to play, this number of channels witll determin the					\

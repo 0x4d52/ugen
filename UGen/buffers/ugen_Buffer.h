@@ -99,8 +99,8 @@ public:
 		ReachedStart,
 		ReachedEnd,
 		CuePointInfo,
-		LoopPointInfo,
-		RegionInfo,
+//		LoopPointInfo,
+//		RegionInfo,
 		
 		Count
 	};

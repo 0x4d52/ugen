@@ -88,12 +88,13 @@ PlayBufUGenInternal::PlayBufUGenInternal(Buffer const& buffer,
 	lastTrig(0.f),
 	doneAction_(doneAction),
 	shouldDeleteValue(doneAction_ == UGen::DeleteWhenDone),
-	metaData(metaDataToUse)
+	metaData(metaDataToUse),
+	prevPosArray(DoubleArray::series(buffer_.getNumChannels(), -1.0, 0.0)) // fill with -1
 {
 	inputs[Rate] = rate;
 	inputs[Trig] = trig;
 	inputs[Offset] = offset;
-	inputs[Loop] = loop;
+	inputs[Loop] = loop;	
 }
 
 PlayBufUGenInternal::~PlayBufUGenInternal()
@@ -126,6 +127,8 @@ void PlayBufUGenInternal::prepareForBlock(const int actualBlockSize, const unsig
 
 void PlayBufUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {	
+	const int numCuesPoints = metaData.cuePoints.length();
+
 	const int blockSize = uGenOutput.getBlockSize();
 	const int bufferSize = buffer_.size();
 	const double lastBufferPosition = bufferSize-1;
@@ -141,7 +144,9 @@ void PlayBufUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 		float* trigSamples = inputs[Trig].processBlock(shouldDelete, blockID, 0);
 		float* offsetSamples = inputs[Offset].processBlock(shouldDelete, blockID, 0);
 		float* loopSamples = inputs[Loop].processBlock(shouldDelete, blockID, 0);
-				
+						
+		double prevPos = prevPosArray[channel];
+		
 		while(numSamplesToProcess) 
 		{				
 			float thisTrig = *trigSamples++;
@@ -156,15 +161,11 @@ void PlayBufUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 			{
 				if(position >= bufferSize)
 				{
-					sendMetaData(buffer_, metaData, MetaData::ReachedEnd, channel);
 					position -= bufferSize;
-					sendMetaData(buffer_, metaData, MetaData::ReachedStart, channel);
 				} 
-				else if(channelBufferPos < 0)
+				else if(position < 0)
 				{
-					sendMetaData(buffer_, metaData, MetaData::ReachedStart, channel);
 					position += bufferSize;
-					sendMetaData(buffer_, metaData, MetaData::ReachedEnd, channel);
 				}
 				
 				*outputSamples++ = buffer_.getSample(channel, position);
@@ -175,16 +176,28 @@ void PlayBufUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 					sendMetaData(buffer_, metaData, MetaData::ReachedEnd, channel);
 					channelBufferPos -= bufferSize;
 					sendMetaData(buffer_, metaData, MetaData::ReachedStart, channel);
+					if(numCuesPoints > 0) checkMetaDataCuePoints(channelBufferPos, -1.0, channel, numCuesPoints, true);
+					prevPos = channelBufferPos;
 				}
 				else if(channelBufferPos < 0)
 				{
 					sendMetaData(buffer_, metaData, MetaData::ReachedEnd, channel);
 					channelBufferPos += bufferSize;
 					sendMetaData(buffer_, metaData, MetaData::ReachedStart, channel);
+					if(numCuesPoints > 0) checkMetaDataCuePoints(channelBufferPos, bufferSize, channel, numCuesPoints, false);
+					prevPos = channelBufferPos;
+				}
+				else if(numCuesPoints > 0) 
+				{
+					checkMetaDataCuePoints(channelBufferPos, prevPos, channel, numCuesPoints, prevPos <= channelBufferPos);
+					prevPos = channelBufferPos;
 				}
 			}
 			else
 			{
+				if(numCuesPoints > 0) checkMetaDataCuePoints(channelBufferPos, prevPos, channel, numCuesPoints, prevPos <= channelBufferPos);
+				prevPos = channelBufferPos;
+
 				if((position <= 0.0) || (position > lastBufferPosition))
 				{	
 					*outputSamples++ = 0.0;
@@ -196,10 +209,12 @@ void PlayBufUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 				
 				channelBufferPos += *rateSamples++;
 			}
-			
+					
 			--numSamplesToProcess;
 			lastTrig = thisTrig;
 		}		
+		
+		prevPosArray[channel] = prevPos;
 	}
 	
 	bufferPos = channelBufferPos;
@@ -215,6 +230,41 @@ void PlayBufUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 		shouldDelete = shouldDelete ? true : shouldDeleteValue;
 		setIsDone();
 		sendMetaData(buffer_, metaData, MetaData::ReachedStart);		
+	}
+}
+
+void PlayBufUGenInternal::checkMetaDataCuePoints(const double currentPosition, 
+												 const double previousPosition, 
+												 const int channel, 
+												 const int numCuePoints,
+												 const bool forwards) throw()
+{	
+	CuePointArray& cuePoints = metaData.cuePoints;
+	CuePoint* cuePointArray = cuePoints.getArray();
+	
+	if(forwards)
+	{
+		for(int i = 0; i < numCuePoints; i++)
+		{
+			double cuePosition = cuePointArray[i].getSampleOffset();
+			
+			if((previousPosition < cuePosition) && (currentPosition >= cuePosition))
+			{
+				sendMetaData(buffer_, metaData, MetaData::CuePointInfo, channel, i);		
+			}
+		}
+	}
+	else
+	{
+		for(int i = 0; i < numCuePoints; i++)
+		{
+			double cuePosition = cuePointArray[i].getSampleOffset();
+			
+			if((previousPosition > cuePosition) && (currentPosition <= cuePosition))
+			{
+				sendMetaData(buffer_, metaData, MetaData::CuePointInfo, channel, i);		
+			}
+		}		
 	}
 }
 
