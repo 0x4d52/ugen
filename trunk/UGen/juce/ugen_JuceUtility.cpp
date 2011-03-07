@@ -336,38 +336,50 @@ CuePointArray AudioIOHelper::getWavCuePoints(InputStream* input)
 			chunkType = input->readInt();
 			listChunkRemaining -= 4;
 			
-			if (chunkType == chunkName ("labl"))
+			const uint32 chunkLength = (uint32) input->readInt();
+			listChunkRemaining -= 4;
+			const uint32 paddedChunkLength = chunkLength + (chunkLength & 1);
+			
+			Text text;
+			int cueID = -1;
+			
+			// must rewrite this to skip other chunks e.g. 'ltxt'
+			
+			if ((chunkType == chunkName("labl")) || (chunkType == chunkName("note")))
 			{
-				/*const uint32 labelChunkLength = (uint32) */input->readInt();
-				listChunkRemaining -= 4;
-				
-				int cueID = input->readInt();
-				listChunkRemaining -= 4;
+				cueID = input->readInt();
+//				listChunkRemaining -= 4;
 
-				Text label;
 				char c[2];
 				
 				do
 				{
 					c[0] = input->readByte();
 					c[1] = input->readByte();
-					listChunkRemaining -= 2;
+//					listChunkRemaining -= 2;
 					
 					if(c[0]) 
 					{
-						label.add(c[0]);
+						text.add(c[0]);
 						
 						if(c[1])
 						{
-							label.add(c[1]);
+							text.add(c[1]);
 						}
 					}
 				} while(c[0] && c[1]);
-				
-				
-				cuePoints[cueID].getLabel() = label;
-				
 			}
+			
+			if (chunkType == chunkName("labl"))
+			{
+				cuePoints[cueID].getLabel() = text;
+			}
+			else if (chunkType == chunkName("note"))
+			{
+				cuePoints[cueID].getComment() = text;
+			}
+			
+			listChunkRemaining -= paddedChunkLength;
 		}
 	}
 		
@@ -409,7 +421,7 @@ int64 AudioIOHelper::getAiffChunkPosition(InputStream* input, const char* name)
 			while (currentPosition < end && !input->isExhausted())
 			{
 				const int type = input->readInt();
-				
+								
 				if (type == chunkName(name))
 				{
 					chunkPosition = currentPosition;
@@ -465,6 +477,23 @@ CuePointArray AudioIOHelper::getAiffCuePoints(InputStream* input)
 			cuePoints.add(cuePoint);
 		}
 	}
+
+	// could get comments here...
+	int64 commentChunk = AudioIOHelper::getAiffChunkPosition(input, "COMT");
+	
+	if(commentChunk >= 0)
+	{	
+//		int chunkType;
+//		
+//		input->setPosition(commentChunk);
+//		chunkType = input->readInt();
+//		/*const uint32 commentChunkLength = (uint32)*/ input->readIntBigEndian();
+//		const int numComments = (int)input->readShortBigEndian();
+		
+		//etc
+	}
+	
+	
 	
 	return cuePoints;
 }
@@ -504,6 +533,16 @@ void AudioIOHelper::writeWavCuePoints(AudioFormatWriter* &writer, FileOutputStre
 			if(labelSize & 1) labelSize++; // round to even
 			
 			listSize += labelSize;
+			
+			if(cues[cueIndex].getComment().length() > 0)
+			{
+				listSize += 12; // minimum size for each 'note' chunk
+				
+				int commentSize = cues[cueIndex].getComment().size();
+				if(commentSize & 1) commentSize++; // round to even
+
+				listSize += commentSize;
+			}			
 		}
 		
 		sizeWritten += cueChunkLength;
@@ -530,6 +569,25 @@ void AudioIOHelper::writeWavCuePoints(AudioFormatWriter* &writer, FileOutputStre
 			}
 			
 			if(labelSize & 1) output->writeByte(0); // pad
+			
+			Text comment = cues[cueIndex].getComment();
+			
+			if(comment.length() > 0)
+			{
+				output->writeInt(chunkName("note"));
+				int commentSize = comment.size() + 4;
+				output->writeInt(labelSize);
+				output->writeInt(cueIndex);
+				
+				char* str = comment.getArray();
+				
+				for(int i = 0; i < comment.size(); i++)
+				{
+					output->writeByte(str[i]);
+				}
+				
+				if(commentSize & 1) output->writeByte(0); // pad
+			}
 		}
 		
 		sizeWritten += listSize;

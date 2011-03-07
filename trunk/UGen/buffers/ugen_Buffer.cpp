@@ -516,7 +516,10 @@ Buffer::Buffer(const File& audioFile, double* sampleRate, int *bits, MetaData* m
 		double currentSampleRate = UGen::getSampleRate();
 		
 		if((fileSampleRate != 0.0) && (fileSampleRate != currentSampleRate))
+		{
+			ugen_assert(metaData == 0); // meta data markers will be incorrect at the new sample rate
 			operator= (changeSampleRate(fileSampleRate, currentSampleRate));		
+		}
 	}
 	else
 	{
@@ -581,7 +584,7 @@ double Buffer::initFromJuceFile(const File& audioFile, int *bits, MetaData* meta
 	{
 		sampleRate = 0.0;
 	}
-	
+		
 	if(metaData)
 	{
 		metaData->cuePoints = AudioIOHelper::getCuePoints(audioFormatReader);
@@ -720,7 +723,10 @@ Buffer::Buffer(Text const& audioFilePath, int *bits, double* sampleRate, MetaDat
 		double currentSampleRate = UGen::getSampleRate();
 		
 		if((fileSampleRate != 0.0) && (fileSampleRate != currentSampleRate))
+		{
+			ugen_assert(metaData == 0); // meta data markers will be incorrect at the new sample rate
 			operator= (changeSampleRate(fileSampleRate, currentSampleRate));			
+		}
 	}
 	else
 	{

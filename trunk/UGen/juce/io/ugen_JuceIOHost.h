@@ -343,7 +343,8 @@ inline void JuceIOHostInternal::audioDeviceIOCallback (const float** inputChanne
 	if(numOutputs_ > 0)
 	{
 		output_.setOutputs(outputChannelData, numSamples, numOutputChannels);
-		
+//		output_.prepareAndProcessBlock(numSamples, blockID, -1);
+
 		for(int i = 0; i < others.size(); i++)
 		{
 			others[i].prepareAndProcessBlock(numSamples, blockID, -1);
