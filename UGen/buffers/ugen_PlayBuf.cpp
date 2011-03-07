@@ -89,7 +89,7 @@ PlayBufUGenInternal::PlayBufUGenInternal(Buffer const& buffer,
 	doneAction_(doneAction),
 	shouldDeleteValue(doneAction_ == UGen::DeleteWhenDone),
 	metaData(metaDataToUse),
-	prevPosArray(DoubleArray::series(buffer_.getNumChannels(), -1.0, 0.0)) // fill with -1
+	prevPosArray(buffer_.getNumChannels() > 1 ? DoubleArray::series(buffer_.getNumChannels(), -1.0, 0.0) : DoubleArray(-1)) // fill with -1
 {
 	inputs[Rate] = rate;
 	inputs[Trig] = trig;

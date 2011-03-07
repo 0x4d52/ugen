@@ -309,9 +309,9 @@ UGen::UGen(Slider* slider) throw()
 	ugen_assert(slider != 0);
 	initInternal(1);
 	Value value = SliderValue(slider);
-	ValueUGenInternalK *internal = new ValueUGenInternalK(value);
+	ValueUGenInternal *internal = new ValueUGenInternal(value);
 	internalUGens[0] = internal;
-	internal->setValue((float)value.getValue());
+//	internal->initValue((float)value.getValue());
 }
 
 UGen::UGen(MultiSlider* sliders) throw()
@@ -325,9 +325,9 @@ UGen::UGen(MultiSlider* sliders) throw()
 		for(int i = 0; i < sliders->getNumSliders(); i++)
 		{
 			Value value = SliderValue(sliders->getSlider(i));
-			ValueUGenInternalK *internal = new ValueUGenInternalK(value);
+			ValueUGenInternal *internal = new ValueUGenInternal(value);
 			internalUGens[i] = internal;
-			internal->setValue((float)value.getValue());
+//			internal->initValue((float)value.getValue());
 		}
 	}
 	else
@@ -344,9 +344,9 @@ UGen::UGen(Button* button) throw()
 	ugen_assert(button != 0);
 	initInternal(1);
 	Value value = ButtonValue(button);
-	ValueUGenInternalK *internal = new ValueUGenInternalK(value);
+	ValueUGenInternal *internal = new ValueUGenInternal(value);
 	internalUGens[0] = internal;
-	internal->setValue((float)value.getValue());
+//	internal->initValue((float)value.getValue());
 }
 
 UGen::UGen(ToggleButton* button) throw()
@@ -357,9 +357,9 @@ UGen::UGen(ToggleButton* button) throw()
 	ugen_assert(button != 0);
 	initInternal(1);
 	Value value = ButtonValue(button);
-	ValueUGenInternalK *internal = new ValueUGenInternalK(value);
+	ValueUGenInternal *internal = new ValueUGenInternal(value);
 	internalUGens[0] = internal;
-	internal->setValue((float)value.getValue());
+//	internal->initValue((float)value.getValue());
 }
 
 UGen::UGen(TextButton* button) throw()
@@ -370,9 +370,9 @@ UGen::UGen(TextButton* button) throw()
 	ugen_assert(button != 0);
 	initInternal(1);
 	Value value = ButtonValue(button);
-	ValueUGenInternalK *internal = new ValueUGenInternalK(value);
+	ValueUGenInternal *internal = new ValueUGenInternal(value);
 	internalUGens[0] = internal;
-	internal->setValue((float)value.getValue());
+//	internal->initValue((float)value.getValue());
 }
 
 
@@ -384,9 +384,9 @@ UGen::UGen(Label* label) throw()
 	ugen_assert(label != 0);
 	initInternal(1);
 	Value value = LabelValue(label);
-	ValueUGenInternalK *internal = new ValueUGenInternalK(value);
+	ValueUGenInternal *internal = new ValueUGenInternal(value);
 	internalUGens[0] = internal;
-	internal->setValue((float)value.getValue());
+//	internal->initValue((float)value.getValue());
 }
 #endif
 
@@ -400,9 +400,9 @@ UGen::UGen(UISlider *slider) throw()
 	ugen_assert(slider != 0);
 	initInternal(1);
 	Value value = UISliderValue(slider);
-	ValueUGenInternalK *internal = new ValueUGenInternalK(value);
+	ValueUGenInternal *internal = new ValueUGenInternal(value);
 	internalUGens[0] = internal;
-	internal->setValue((float)value.getValue());
+//	internal->initValue((float)value.getValue());
 }
 
 UGen::UGen(signed char *valuePtr) throw()

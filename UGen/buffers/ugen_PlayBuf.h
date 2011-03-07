@@ -63,6 +63,12 @@ private:
 	MetaDataReceiverArray receivers;
 };
 
+/** These receive meta data from MetaDataSender objects during playback. 
+ @param buffer		The buffer to which this meta data relates.
+ @param metaData	The entire meta data being used (use type and index to determine further).
+ @param type		The type of meta data.
+ @param channel		The channel to which this refers (-1 for no particular channel).
+ @param index		The index of the meta data where there is an array (e.g., CuePoint). */
 class MetaDataReceiver
 {
 public:

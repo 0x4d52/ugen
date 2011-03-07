@@ -55,7 +55,7 @@ public:
 	friend class CuePoint;
 	
 private:
-	Text label;
+	Text label, comment;
 	int cueID, sampleOffset;
 };
 
@@ -74,6 +74,12 @@ public:
 	/** Human readable label for the marker. */
 	const Text& getLabel() const { return getInternal()->label; }
 	
+	/** Human readable comment for the marker. */
+	Text& getComment() { return getInternal()->comment; }
+	
+	/** Human readable comment for the marker. */
+	const Text& getComment() const { return getInternal()->comment; }
+	
 	/** ID for the marker.
 	 Can be zero for the WAV format but must be positive and non-zero for AIFF. */
 	int& getID() { return getInternal()->cueID; }
@@ -91,6 +97,12 @@ public:
 
 typedef ObjectArray<CuePoint> CuePointArray;
 
+/** Meta data for audio files.
+ This stores a collection of meta data for audio files including a list of
+ cue points. This can be generated programmatically or extracted from or exported
+ to audio files. This is also used in the MetaDataSender and MetaDataReceiver
+ to report these cue point and other actions during audio playback (e.g.,
+ a loop has occurred). */
 class MetaData
 {
 public:

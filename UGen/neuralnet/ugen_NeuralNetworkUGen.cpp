@@ -100,7 +100,8 @@ void NeuralNetworkUGenUGenInternal::processBlock(bool& shouldDelete, const unsig
 		{
 			for(int input = 0; input < network.getNumInputs(); input++)
 			{
-				inputVector[input] = inputSampleData[input][sample];
+				float inputValue = inputSampleData[input][sample];
+				inputVector[input] = inputValue;
 			}
 			
 			outputVector = network.propogate(inputVector);
@@ -110,7 +111,8 @@ void NeuralNetworkUGenUGenInternal::processBlock(bool& shouldDelete, const unsig
 		{
 			for(int input = 0; input < network.getNumInputs(); input++)
 			{
-				inputVector[input] = inputSampleData[input][sample];
+				float inputValue = inputSampleData[input][sample];
+				inputVector[input] = inputValue;
 			}
 			
 			for(int output = 0; output < network.getNumOutputs(); output++)
