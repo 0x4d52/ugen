@@ -126,12 +126,12 @@ public:
 	{
 		memcpy(getFloatArray(), CGColorGetComponents(colourRef), 4 * sizeof(float));		
 	}
-	//	
-	//	RGBAColour(UIColor* col)
-	//	:	r(0.f), g(0.f), b(0.f), a(0.f)
-	//	{
-	//		memcpy(getFloatArray(), CGColorGetComponents(colourRef), 4 * sizeof(float));		
-	//	}	
+	
+//	RGBAColour(UIColor* col)
+//	:	r(0.f), g(0.f), b(0.f), a(0.f)
+//	{
+//		memcpy(getFloatArray(), CGColorGetComponents(colourRef), 4 * sizeof(float));		
+//	}	
 #endif	
 	
 	inline float red() throw()		{ return r; }

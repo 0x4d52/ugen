@@ -298,9 +298,6 @@ void ScopeComponent::paintUnipolar(Graphics& g)
 	}
 }
 
-
-
-
 void ScopeComponent::paintXScale(Graphics& g, const int y)
 {
 	g.setColour(Colour(colours[ZeroLine].get32bitColour()));
@@ -449,6 +446,190 @@ void ScopeComponent::paintChannelLabel(Graphics& g, Text const& label, const int
 	}
 }
 
+ScopeCuePointComponent::ScopeCuePointComponent(ScopeControlComponent* o, ScopeRegionComponent* r)
+:	owner(o),
+	region(r),
+	offsetSamples(0.0)
+{
+	setMouseCursor(MouseCursor::LeftRightResizeCursor);
+	constrain.setMinimumOnscreenAmounts(0xffffff, 0, 0xffffff, 0);
+}
+
+void ScopeCuePointComponent::setHeight(const int height)
+{
+	setSize(3, height);
+	checkPosition();
+}
+
+void ScopeCuePointComponent::checkPosition()
+{	
+	double bufferOffsetSamples = owner->getSampleOffset();
+	const double audioBufferSize = owner->getAudioBuffer().size();
+	const double pixelsPerSample = owner->getDisplayBufferSize() / audioBufferSize;
+
+	int x = (offsetSamples - bufferOffsetSamples) * pixelsPerSample + 0.5; 
+	
+	setTopLeftPosition(x-1, 0);
+}
+
+void ScopeCuePointComponent::paint(Graphics& g)
+{	
+	g.setColour(Colour(owner->getColour(ScopeControlComponent::CuePointColour).get32bitColour())); // could use a virtual function to get this...
+	g.drawVerticalLine(1, 0, getHeight());
+}
+
+void ScopeCuePointComponent::setSampleOffset(const double newOffsetSamples)
+{
+	offsetSamples = newOffsetSamples;
+	checkPosition();
+}
+
+void ScopeCuePointComponent::mouseDown (const MouseEvent& e)
+{
+	// temp - need to do this manually probably
+	dragger.startDraggingComponent (this, e);
+}
+
+void ScopeCuePointComponent::mouseDrag (const MouseEvent& e)
+{
+	// temp - need to do this manually probably
+	dragger.dragComponent (this, e, &constrain);
+}
+
+void ScopeCuePointComponent::moved()
+{
+	if(region)
+	{
+		region->checkPosition();
+	}
+}
+
+ScopeRegionComponent::ScopeRegionComponent(ScopeControlComponent* o)
+:	owner(o)
+{
+	setInterceptsMouseClicks(false, false);
+	owner->addAndMakeVisible(startPoint = new ScopeCuePointComponent(owner, this));
+	owner->addAndMakeVisible(endPoint = new ScopeCuePointComponent(owner, this));
+}
+
+ScopeRegionComponent::~ScopeRegionComponent()
+{
+	deleteAllChildren();
+}
+
+void ScopeRegionComponent::setRegionOffsets(const double start, const double end)
+{
+	startPoint->setSampleOffset(start);
+	endPoint->setSampleOffset(end);
+	checkPosition();
+}
+
+void ScopeRegionComponent::checkPosition()
+{
+	Range<int> position = getRegionPosition();
+	setBounds(position.getStart(), 0, position.getLength()+1, getParentHeight());
+}
+
+void ScopeRegionComponent::setHeight(const int height)
+{
+	startPoint->setHeight(height);
+	endPoint->setHeight(height);
+	checkPosition();
+}
+
+void ScopeRegionComponent::paint(Graphics& g)
+{	
+	if(getRegionPosition().isEmpty()) return;
+	
+	g.setColour(Colour(owner->getColour(ScopeControlComponent::RegionFillColour).get32bitColour())); // could use a virtual function to get this...
+	g.fillRect(1, 0, getWidth()-2, getHeight());
+}
+
+ScopeControlComponent::ScopeControlComponent(ScopeStyles style, DisplayOptions optionsToUse)
+:	ScopeComponent(style),
+	options(optionsToUse),
+	scopeInsert(0),
+	scopeSelection(0)
+{
+	controlColours[CuePointColour]			= RGBAColour(1.0, 1.0, 0.0, 1.0);
+	controlColours[CuePointTextColour]		= RGBAColour(1.0, 1.0, 0.0, 1.0);
+	controlColours[LoopPointStartColour]	= RGBAColour(1.0, 0.0, 0.0, 1.0);
+	controlColours[LoopPointEndColour]		= RGBAColour(0.0, 1.0, 0.0, 1.0);
+	controlColours[LoopFillColour]			= RGBAColour(0.5, 0.5, 1.0, 0.5);
+	controlColours[LoopTextColour]			= RGBAColour(0.5, 0.5, 1.0, 1.0);
+	controlColours[RegionStartColour]		= controlColours[LoopPointStartColour];
+	controlColours[RegionEndColour]			= controlColours[LoopPointEndColour];
+	controlColours[RegionFillColour]		= RGBAColour(1.0, 1.0, 0.5, 0.5);
+	controlColours[RegionTextColour]		= RGBAColour(1.0, 1.0, 0.5, 1.0);
+	controlColours[InsertPointColour]		= RGBAColour(1.0, 1.0, 1.0, 1.0);
+	controlColours[InsertTextColour]		= RGBAColour(1.0, 1.0, 1.0, 1.0);
+	controlColours[SelectionStartColour]	= controlColours[LoopPointStartColour];
+	controlColours[SelectionEndColour]		= controlColours[LoopPointEndColour];
+	controlColours[SelectionFillColour]		= RGBAColour(1.0, 1.0, 1.0, 0.5);
+	controlColours[SelectionTextColour]		= RGBAColour(1.0, 1.0, 1.0, 1.0);
+	
+	if(options & Insert)
+	{
+		addAndMakeVisible(scopeInsert = new ScopeInsertComponent(this, 0));
+	}
+	
+	if(options & Selection)
+	{
+		addAndMakeVisible(scopeSelection = new ScopeSelectionComponent(this));
+	}
+}
+
+ScopeControlComponent::~ScopeControlComponent()
+{
+	deleteAllChildren();
+}
+
+RGBAColour& ScopeControlComponent::getColour(ControlColours colour)
+{
+	return controlColours[colour];
+}
+
+void ScopeControlComponent::setMetaData(MetaData const& newMetaData)
+{
+//	lock();
+//	metaData = newMetaData;
+//	unlock();
+//	
+//	updateGUI();
+}
+
+void ScopeControlComponent::resized()
+{
+	resizedGUI();
+
+	int height = getHeight();
+	
+	if(scopeInsert) 
+	{
+		scopeInsert->setHeight(height);
+	}
+		
+	if(scopeSelection) 
+	{
+		scopeSelection->setHeight(height);
+	}
+}
+
+void ScopeControlComponent::setInsertOffset(const double offset)
+{
+	if(scopeInsert) 
+	{
+		scopeInsert->setSampleOffset(offset);
+	}	
+}
+
+void ScopeControlComponent::setSelection(const double start, const double end)
+{
+	if(scopeSelection)
+	{
+		scopeSelection->setRegionOffsets(start, end);
+	}
+}
 
 RadialScopeComponent::RadialScopeComponent(ScopeStyles style)
 :	ScopeComponentBase(style),
@@ -708,6 +889,56 @@ int RadialScopeComponent::getCentreX() const throw()
 int RadialScopeComponent::getCentreY() const throw()
 {
 	return getHeight() / 2;
+}
+
+
+MeterComponent::MeterComponent(String& name, float* valueToUse, const CriticalSection& lockToUse)
+:	Component(name),
+	value(valueToUse),
+	lastDisplayValue(0.f),
+	lock(lockToUse)
+{
+	startTimer((int)(0.020 * 1000));
+}
+
+MeterComponent::~MeterComponent()
+{
+	stopTimer();
+}
+
+void MeterComponent::paint(Graphics& g)
+{
+	lock.enter();
+	float currentValue = jlimit(0.f, 1.f, zap(*value));
+	lock.exit();
+	
+	g.fillAll(Colours::black);
+	g.setColour(Colour(0xFF00FF00));
+	
+	if(getWidth() > getHeight())
+	{
+		// horizontal meter
+		g.fillRect(0, 0, (int)(getWidth() * currentValue), getHeight());
+	}
+	else
+	{
+		// vertical meter
+		g.fillRect(0, getHeight() - (int)(getHeight() * currentValue), 
+				   getWidth(), (int)(getHeight() * currentValue));
+	}
+}
+
+void MeterComponent::timerCallback()
+{
+	lock.enter();
+	float currentValue = *value;
+	lock.exit();
+	
+	if(lastDisplayValue != currentValue)
+	{	
+		lastDisplayValue = currentValue;
+		repaint();
+	}
 }
 
 
