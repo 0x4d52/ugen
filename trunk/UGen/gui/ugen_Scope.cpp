@@ -246,7 +246,6 @@ void ScopeGUI::handleBuffer(Buffer const& buffer, const double offset, const int
 void ScopeGUI::setWrap(const double amount) throw()
 {
 	lock();
-//	bufferWrap = ugen::wrap(amount, 0.0, 1.0);
 	
 	double wrappedAmount = amount;
 	
@@ -469,105 +468,105 @@ void ScopeGUI::resizedGUI()
 	}
 }
 
-ScopeUGenInternal::ScopeUGenInternal(ScopeGUIPtrPtr scopeGUI, UGen const& input, UGen const& duration) throw()
-:	UGenInternal(NumInputs),
-	scopeGUIref(scopeGUI),
-	audioBuffer(BufferSpec((int)(UGen::getSampleRate()), input.getNumChannels(), true)),
-	bufferIndex(0),
-	audioBufferSizeUsed(0),
-	samplesProcessed(0)
-{	
-	inputs[Input] = input;
-	inputs[Duration] = duration;
-	
-	audioBufferSizeUsed = max(1, (int)(duration.getValue() * UGen::getSampleRate() + 0.5));
-}
-
-void ScopeUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
-{
-	if(scopeGUIref != 0)
-	{
-		// only works if ScopeGUI is the first in the in list of base classes!
-		ScopeGUI *scopeGUI = *( static_cast<ScopeGUI**> (scopeGUIref) ); 
-				
-		if(scopeGUI && scopeGUI->isValid())
-		{
-			float duration = *(inputs[Duration].processBlock(shouldDelete, blockID, 0));
-			ugen_assert(duration > 0.f);
-			
-			int audioBufferSizeRequired = max(1, (int)(duration * UGen::getSampleRate() + 0.5));
-			int audioBufferAllocatedSize = audioBuffer.size();			  
-			
-			if(audioBufferSizeRequired > audioBufferAllocatedSize)
-			{
-				if((audioBufferAllocatedSize > 1) && (bufferIndex >= audioBufferAllocatedSize))
-				{
-					scopeGUI->setAudioBuffer(audioBuffer.getRegion(0, audioBufferAllocatedSize-1), 
-											 samplesProcessed);
-					//samplesProcessed += audioBufferAllocatedSize;
-				}
-				
-				audioBuffer = Buffer(audioBufferSizeRequired, inputs[Input].getNumChannels(), false);
-				audioBufferSizeUsed = audioBufferSizeRequired;
-				bufferIndex = 0;
-			}
-			else if(audioBufferSizeRequired < audioBufferAllocatedSize)
-			{
-				audioBufferSizeUsed = audioBufferSizeRequired;
-				
-				if(bufferIndex >= audioBufferSizeUsed)
-				{
-					scopeGUI->setAudioBuffer(audioBuffer.getRegion(0, audioBufferSizeUsed-1),
-											 samplesProcessed);
-					//samplesProcessed += audioBufferSizeUsed;
-					bufferIndex = 0;
-				}
-			}
-			
-			int channelBufferIndex;
-			
-			for(int channel = 0; channel < audioBuffer.getNumChannels(); channel++)
-			{
-				int numSamplesToProcess = uGenOutput.getBlockSize();
-				float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
-				float* bufferSamples = audioBuffer.getData(channel);
-				channelBufferIndex = bufferIndex; // need a copy of this so it's the same at the start of processing each channel
-				
-				int bufferSamplesToProcess = audioBufferSizeUsed - channelBufferIndex;
-				
-				if(bufferSamplesToProcess > numSamplesToProcess)
-				{				
-					while(numSamplesToProcess--)
-						bufferSamples[channelBufferIndex++] = *inputSamples++;
-				}
-				else
-				{
-					while(bufferSamplesToProcess--)
-						bufferSamples[channelBufferIndex++] = *inputSamples++;
-					
-					channelBufferIndex = 0;
-				}
-			}
-			
-			bufferIndex = channelBufferIndex; // store for next block
-			
-			if(bufferIndex == 0)
-			{
-				scopeGUI->setAudioBuffer(audioBuffer.getRegion(0, audioBufferSizeUsed-1),
-										 samplesProcessed);
-				//samplesProcessed += audioBufferSizeUsed;
-			}
-		}
-	}
-	
-	samplesProcessed += uGenOutput.getBlockSize(); // make sure we increment the sample counter for EVERY block! even if we skip "frames"
-}
-
-Scope::Scope(ScopeGUIPtrPtr scopeGUI, UGen const& input, UGen const& duration) throw()
-{
-	initInternal(1);
-	internalUGens[0] = new ScopeUGenInternal(scopeGUI, input, duration.mix());
-}
+//ScopeUGenInternal::ScopeUGenInternal(ScopeGUIPtrPtr scopeGUI, UGen const& input, UGen const& duration) throw()
+//:	UGenInternal(NumInputs),
+//	scopeGUIref(scopeGUI),
+//	audioBuffer(BufferSpec((int)(UGen::getSampleRate()), input.getNumChannels(), true)),
+//	bufferIndex(0),
+//	audioBufferSizeUsed(0),
+//	samplesProcessed(0)
+//{	
+//	inputs[Input] = input;
+//	inputs[Duration] = duration;
+//	
+//	audioBufferSizeUsed = max(1, (int)(duration.getValue() * UGen::getSampleRate() + 0.5));
+//}
+//
+//void ScopeUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
+//{
+//	if(scopeGUIref != 0)
+//	{
+//		// only works if ScopeGUI is the first in the in list of base classes!
+//		ScopeGUI *scopeGUI = *( static_cast<ScopeGUI**> (scopeGUIref) ); 
+//				
+//		if(scopeGUI && scopeGUI->isValid())
+//		{
+//			float duration = *(inputs[Duration].processBlock(shouldDelete, blockID, 0));
+//			ugen_assert(duration > 0.f);
+//			
+//			int audioBufferSizeRequired = max(1, (int)(duration * UGen::getSampleRate() + 0.5));
+//			int audioBufferAllocatedSize = audioBuffer.size();			  
+//			
+//			if(audioBufferSizeRequired > audioBufferAllocatedSize)
+//			{
+//				if((audioBufferAllocatedSize > 1) && (bufferIndex >= audioBufferAllocatedSize))
+//				{
+//					scopeGUI->setAudioBuffer(audioBuffer.getRegion(0, audioBufferAllocatedSize-1), 
+//											 samplesProcessed);
+//					//samplesProcessed += audioBufferAllocatedSize;
+//				}
+//				
+//				audioBuffer = Buffer(audioBufferSizeRequired, inputs[Input].getNumChannels(), false);
+//				audioBufferSizeUsed = audioBufferSizeRequired;
+//				bufferIndex = 0;
+//			}
+//			else if(audioBufferSizeRequired < audioBufferAllocatedSize)
+//			{
+//				audioBufferSizeUsed = audioBufferSizeRequired;
+//				
+//				if(bufferIndex >= audioBufferSizeUsed)
+//				{
+//					scopeGUI->setAudioBuffer(audioBuffer.getRegion(0, audioBufferSizeUsed-1),
+//											 samplesProcessed);
+//					//samplesProcessed += audioBufferSizeUsed;
+//					bufferIndex = 0;
+//				}
+//			}
+//			
+//			int channelBufferIndex;
+//			
+//			for(int channel = 0; channel < audioBuffer.getNumChannels(); channel++)
+//			{
+//				int numSamplesToProcess = uGenOutput.getBlockSize();
+//				float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
+//				float* bufferSamples = audioBuffer.getData(channel);
+//				channelBufferIndex = bufferIndex; // need a copy of this so it's the same at the start of processing each channel
+//				
+//				int bufferSamplesToProcess = audioBufferSizeUsed - channelBufferIndex;
+//				
+//				if(bufferSamplesToProcess > numSamplesToProcess)
+//				{				
+//					while(numSamplesToProcess--)
+//						bufferSamples[channelBufferIndex++] = *inputSamples++;
+//				}
+//				else
+//				{
+//					while(bufferSamplesToProcess--)
+//						bufferSamples[channelBufferIndex++] = *inputSamples++;
+//					
+//					channelBufferIndex = 0;
+//				}
+//			}
+//			
+//			bufferIndex = channelBufferIndex; // store for next block
+//			
+//			if(bufferIndex == 0)
+//			{
+//				scopeGUI->setAudioBuffer(audioBuffer.getRegion(0, audioBufferSizeUsed-1),
+//										 samplesProcessed);
+//				//samplesProcessed += audioBufferSizeUsed;
+//			}
+//		}
+//	}
+//	
+//	samplesProcessed += uGenOutput.getBlockSize(); // make sure we increment the sample counter for EVERY block! even if we skip "frames"
+//}
+//
+//Scope::Scope(ScopeGUIPtrPtr scopeGUI, UGen const& input, UGen const& duration) throw()
+//{
+//	initInternal(1);
+//	internalUGens[0] = new ScopeUGenInternal(scopeGUI, input, duration.mix());
+//}
 
 BufferSenderUGenInternal::BufferSenderUGenInternal(UGen const& input, UGen const& duration) throw()
 :	UGenInternal(NumInputs),
@@ -669,157 +668,157 @@ Sender::Sender(UGen const& input, UGen const& duration) throw()
 	internalUGens[0] = new BufferSenderUGenInternal(input, duration.mix());
 }
 
-SpectralScopeUGenInternal::SpectralScopeUGenInternal(ScopeGUIPtrPtr scopeGUI, 
-													 UGen const& input, 
-													 FFTEngine::FFTModes mode,
-													 FFTEngine const& fft, 
-													 const int overlap,
-													 const int firstBin,
-													 const int numBins) throw()
-:	UGenInternal(NumInputs),	
-	scopeGUIref(scopeGUI),
-	mode_(mode),
-	fftEngine(fft),
-	fftSize(fftEngine.size()),
-	fftSizeHalved(fftSize / 2),
-	overlap_(overlap < 1 ? 1 : overlap),
-	firstBin_(firstBin < fftSizeHalved ? firstBin : fftSizeHalved),
-	maxNumBins(fftSizeHalved - firstBin_ + 1),
-	numBins_(numBins ? (numBins < maxNumBins ? numBins : maxNumBins) : maxNumBins),
-	inputBuffer(BufferSpec(fftSize, input.getNumChannels(), true)),
-	outputBuffer(BufferSpec(fftSize, input.getNumChannels(), true)),
-	bufferIndex(0)
-{
-	ugen_assert(overlap == overlap_);	// should be > 0
-	ugen_assert(firstBin == firstBin_);	// should be in range
-//	ugen_assert(numBins == numBins_);	// should be in range	
-	
-	inputs[Input] = input;	
-}
-
-void SpectralScopeUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
-{
-	if(scopeGUIref == 0) return;
-	
-	// only works if ScopeGUI is the first in the in list of base classes!
-	ScopeGUI *scopeGUI = *( static_cast<ScopeGUI**> (scopeGUIref) ); 
-	
-	if(scopeGUI && scopeGUI->isValid())
-	{
-		int channelBufferIndex;
-		
-		// keep filling the buffer until it has enough samples...
-		for(int channel = 0; channel < inputBuffer.getNumChannels(); channel++)
-		{
-			int numSamplesToProcess = uGenOutput.getBlockSize();
-			float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
-			float* bufferSamples = inputBuffer.getData(channel);
-			channelBufferIndex = bufferIndex; // need a copy of this so it's the same at the start of processing each channel
-			
-			int bufferSamplesToProcess = fftSize - channelBufferIndex;
-			
-			if(bufferSamplesToProcess > numSamplesToProcess)
-			{				
-				while(numSamplesToProcess--)
-					bufferSamples[channelBufferIndex++] = *inputSamples++;
-			}
-			else
-			{
-				while(bufferSamplesToProcess--)
-					bufferSamples[channelBufferIndex++] = *inputSamples++;
-				
-				channelBufferIndex = 0;
-			}
-		}
-		
-		bufferIndex = channelBufferIndex; // store for next block
-		
-		// was the buffer filled ?
-		if(bufferIndex == 0)
-		{
-			// do fft and send
-			for(int channel = 0; channel < inputBuffer.getNumChannels(); channel++)
-			{				
-				fftEngine.fft(outputBuffer, inputBuffer, true, channel, channel);
-			}
-						
-			switch(mode_)
-			{
-				case FFTEngine::RealImagRaw:
-					scopeGUI->setAudioBuffer(outputBuffer, 
-											 0, 
-											 fftSize);
-					break;
-				case FFTEngine::RealImagRawSplit:
-					scopeGUI->setAudioBuffer(fftEngine.rawToRealImagRawSplit(outputBuffer),
-											 0,
-											 fftSize);
-					break;
-				case FFTEngine::RealImagUnpacked:
-					scopeGUI->setAudioBuffer(fftEngine.rawToRealImagUnpacked(outputBuffer, firstBin_, numBins_),
-											 firstBin_,
-											 fftSize);
-					break;
-				case FFTEngine::RealImagUnpackedSplit:
-					scopeGUI->setAudioBuffer(fftEngine.rawToRealImagUnpackedSplit(outputBuffer, firstBin_, numBins_),
-											 firstBin_,
-											 fftSize);
-					break;
-				case FFTEngine::MagnitudePhase:
-					scopeGUI->setAudioBuffer(fftEngine.rawToMagnitudePhase(outputBuffer, firstBin_, numBins_),
-											 firstBin_,
-											 fftSize);
-					break;
-				case FFTEngine::MagnitudePhaseSplit:
-					scopeGUI->setAudioBuffer(fftEngine.rawToMagnitudePhaseSplit(outputBuffer, firstBin_, numBins_),
-											 firstBin_,
-											 fftSize);
-					break;					
-				case FFTEngine::Magnitude: 
-					scopeGUI->setAudioBuffer(fftEngine.rawToMagnitude(outputBuffer, firstBin_, numBins_),
-											 firstBin_,
-											 fftSize);
-					break;
-				case FFTEngine::Phase: 
-					scopeGUI->setAudioBuffer(fftEngine.rawToPhase(outputBuffer, firstBin_, numBins_),
-											 firstBin_,
-											 fftSize);
-					break;
-				default:
-					scopeGUI->setAudioBuffer(fftEngine.rawToMagnitude(outputBuffer, firstBin_, numBins_),
-											 firstBin_,
-											 fftSize);
-			}
-			
-			// keep overlapping samples for next FFT
-			if((overlap_ > 1) && (uGenOutput.getBlockSize() < fftSize))
-			{
-				const int hopSize = fftSize / overlap_;
-				const int copySize = fftSize - hopSize;
-				
-				for(int channel = 0; channel < inputBuffer.getNumChannels(); channel++)
-				{
-					float *bufferSamples = inputBuffer.getData(channel);
-					memcpy(bufferSamples, bufferSamples + hopSize, copySize * sizeof(float));
-				}
-				
-				bufferIndex = copySize;
-			}
-		}
-	}
-}
-
-SpectralScope::SpectralScope(ScopeGUIPtrPtr scopeGUI, 
-							 UGen const& input, 
-							 FFTEngine::FFTModes mode,
-							 FFTEngine const& fft, 
-							 const int overlap,
-							 const int firstBin,
-							 const int numBins) throw()
-{
-	initInternal(1);
-	internalUGens[0] = new SpectralScopeUGenInternal(scopeGUI, input, mode, fft, overlap, firstBin, numBins);
-}
+//SpectralScopeUGenInternal::SpectralScopeUGenInternal(ScopeGUIPtrPtr scopeGUI, 
+//													 UGen const& input, 
+//													 FFTEngine::FFTModes mode,
+//													 FFTEngine const& fft, 
+//													 const int overlap,
+//													 const int firstBin,
+//													 const int numBins) throw()
+//:	UGenInternal(NumInputs),	
+//	scopeGUIref(scopeGUI),
+//	mode_(mode),
+//	fftEngine(fft),
+//	fftSize(fftEngine.size()),
+//	fftSizeHalved(fftSize / 2),
+//	overlap_(overlap < 1 ? 1 : overlap),
+//	firstBin_(firstBin < fftSizeHalved ? firstBin : fftSizeHalved),
+//	maxNumBins(fftSizeHalved - firstBin_ + 1),
+//	numBins_(numBins ? (numBins < maxNumBins ? numBins : maxNumBins) : maxNumBins),
+//	inputBuffer(BufferSpec(fftSize, input.getNumChannels(), true)),
+//	outputBuffer(BufferSpec(fftSize, input.getNumChannels(), true)),
+//	bufferIndex(0)
+//{
+//	ugen_assert(overlap == overlap_);	// should be > 0
+//	ugen_assert(firstBin == firstBin_);	// should be in range
+////	ugen_assert(numBins == numBins_);	// should be in range	
+//	
+//	inputs[Input] = input;	
+//}
+//
+//void SpectralScopeUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
+//{
+//	if(scopeGUIref == 0) return;
+//	
+//	// only works if ScopeGUI is the first in the in list of base classes!
+//	ScopeGUI *scopeGUI = *( static_cast<ScopeGUI**> (scopeGUIref) ); 
+//	
+//	if(scopeGUI && scopeGUI->isValid())
+//	{
+//		int channelBufferIndex;
+//		
+//		// keep filling the buffer until it has enough samples...
+//		for(int channel = 0; channel < inputBuffer.getNumChannels(); channel++)
+//		{
+//			int numSamplesToProcess = uGenOutput.getBlockSize();
+//			float* inputSamples = inputs[Input].processBlock(shouldDelete, blockID, channel);
+//			float* bufferSamples = inputBuffer.getData(channel);
+//			channelBufferIndex = bufferIndex; // need a copy of this so it's the same at the start of processing each channel
+//			
+//			int bufferSamplesToProcess = fftSize - channelBufferIndex;
+//			
+//			if(bufferSamplesToProcess > numSamplesToProcess)
+//			{				
+//				while(numSamplesToProcess--)
+//					bufferSamples[channelBufferIndex++] = *inputSamples++;
+//			}
+//			else
+//			{
+//				while(bufferSamplesToProcess--)
+//					bufferSamples[channelBufferIndex++] = *inputSamples++;
+//				
+//				channelBufferIndex = 0;
+//			}
+//		}
+//		
+//		bufferIndex = channelBufferIndex; // store for next block
+//		
+//		// was the buffer filled ?
+//		if(bufferIndex == 0)
+//		{
+//			// do fft and send
+//			for(int channel = 0; channel < inputBuffer.getNumChannels(); channel++)
+//			{				
+//				fftEngine.fft(outputBuffer, inputBuffer, true, channel, channel);
+//			}
+//						
+//			switch(mode_)
+//			{
+//				case FFTEngine::RealImagRaw:
+//					scopeGUI->setAudioBuffer(outputBuffer, 
+//											 0, 
+//											 fftSize);
+//					break;
+//				case FFTEngine::RealImagRawSplit:
+//					scopeGUI->setAudioBuffer(fftEngine.rawToRealImagRawSplit(outputBuffer),
+//											 0,
+//											 fftSize);
+//					break;
+//				case FFTEngine::RealImagUnpacked:
+//					scopeGUI->setAudioBuffer(fftEngine.rawToRealImagUnpacked(outputBuffer, firstBin_, numBins_),
+//											 firstBin_,
+//											 fftSize);
+//					break;
+//				case FFTEngine::RealImagUnpackedSplit:
+//					scopeGUI->setAudioBuffer(fftEngine.rawToRealImagUnpackedSplit(outputBuffer, firstBin_, numBins_),
+//											 firstBin_,
+//											 fftSize);
+//					break;
+//				case FFTEngine::MagnitudePhase:
+//					scopeGUI->setAudioBuffer(fftEngine.rawToMagnitudePhase(outputBuffer, firstBin_, numBins_),
+//											 firstBin_,
+//											 fftSize);
+//					break;
+//				case FFTEngine::MagnitudePhaseSplit:
+//					scopeGUI->setAudioBuffer(fftEngine.rawToMagnitudePhaseSplit(outputBuffer, firstBin_, numBins_),
+//											 firstBin_,
+//											 fftSize);
+//					break;					
+//				case FFTEngine::Magnitude: 
+//					scopeGUI->setAudioBuffer(fftEngine.rawToMagnitude(outputBuffer, firstBin_, numBins_),
+//											 firstBin_,
+//											 fftSize);
+//					break;
+//				case FFTEngine::Phase: 
+//					scopeGUI->setAudioBuffer(fftEngine.rawToPhase(outputBuffer, firstBin_, numBins_),
+//											 firstBin_,
+//											 fftSize);
+//					break;
+//				default:
+//					scopeGUI->setAudioBuffer(fftEngine.rawToMagnitude(outputBuffer, firstBin_, numBins_),
+//											 firstBin_,
+//											 fftSize);
+//			}
+//			
+//			// keep overlapping samples for next FFT
+//			if((overlap_ > 1) && (uGenOutput.getBlockSize() < fftSize))
+//			{
+//				const int hopSize = fftSize / overlap_;
+//				const int copySize = fftSize - hopSize;
+//				
+//				for(int channel = 0; channel < inputBuffer.getNumChannels(); channel++)
+//				{
+//					float *bufferSamples = inputBuffer.getData(channel);
+//					memcpy(bufferSamples, bufferSamples + hopSize, copySize * sizeof(float));
+//				}
+//				
+//				bufferIndex = copySize;
+//			}
+//		}
+//	}
+//}
+//
+//SpectralScope::SpectralScope(ScopeGUIPtrPtr scopeGUI, 
+//							 UGen const& input, 
+//							 FFTEngine::FFTModes mode,
+//							 FFTEngine const& fft, 
+//							 const int overlap,
+//							 const int firstBin,
+//							 const int numBins) throw()
+//{
+//	initInternal(1);
+//	internalUGens[0] = new SpectralScopeUGenInternal(scopeGUI, input, mode, fft, overlap, firstBin, numBins);
+//}
 
 FFTSenderUGenInternal::FFTSenderUGenInternal(UGen const& input, 
 											 FFTEngine::FFTModes mode,

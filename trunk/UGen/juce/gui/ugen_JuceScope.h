@@ -40,8 +40,8 @@
 #include "../../gui/ugen_Scope.h"
 
 
-class ScopeComponentBase :	public ScopeGUI, // swapped these round (ScopeGUI first) as a hack for the scope<->gui connection
-				public Component
+class ScopeComponentBase :	public ScopeGUI,
+							public Component
 							
 {
 public:
@@ -84,6 +84,110 @@ public:
 private:
 };
 
+class ScopeControlComponent;
+class ScopeRegionComponent;
+
+class ScopeCuePointComponent : public Component
+{
+public:
+	ScopeCuePointComponent(ScopeControlComponent* owner, ScopeRegionComponent* region);
+	inline int getCuePosition() { return getX()+1; }
+	void setHeight(const int height);
+	void checkPosition();
+	void paint(Graphics& g);
+	
+	void setSampleOffset(const double offsetSamples);
+	
+	void mouseDown (const MouseEvent& e);	
+	void mouseDrag (const MouseEvent& e);
+	void moved();
+	
+private:
+	Component::SafePointer<ScopeControlComponent> owner;
+	Component::SafePointer<ScopeRegionComponent> region;
+	double offsetSamples;
+	RGBAColour lineColour, textColour;
+	ComponentDragger dragger;
+	ComponentBoundsConstrainer constrain;
+};
+
+typedef ScopeCuePointComponent ScopeInsertComponent;
+
+class ScopeRegionComponent : public Component
+{
+public:
+	ScopeRegionComponent(ScopeControlComponent* owner);
+	~ScopeRegionComponent();
+	
+	Range<int> getRegionPosition() 
+	{ 
+		return Range<int>(startPoint->getCuePosition(), 
+						  endPoint->getCuePosition()); 
+	}
+	
+	void setRegionOffsets(const double start, const double end);
+	void checkPosition();
+	
+	void setHeight(const int height);
+	void paint(Graphics& g);
+	
+private:
+	Component::SafePointer<ScopeControlComponent> owner;
+	ScopeCuePointComponent* startPoint;
+	ScopeCuePointComponent* endPoint;
+	RGBAColour fillColour, textColour; 
+};
+
+typedef ScopeRegionComponent ScopeSelectionComponent;
+
+class ScopeLoopComponent : public ScopeRegionComponent
+{
+public:
+private:
+	// mode?
+};
+
+class ScopeControlComponent : public ScopeComponent
+{
+public:
+	enum DisplayOptions
+	{
+		CuePoints	= 1,
+		LoopPoints	= 2,
+		Regions		= 4,
+		Insert		= 8,
+		Selection	= 16,
+		All			= 0x7fff
+	};
+	
+	enum ControlColours { 
+		CuePointColour, CuePointTextColour,
+		LoopPointStartColour, LoopPointEndColour, LoopFillColour, LoopTextColour,
+		RegionStartColour, RegionEndColour, RegionFillColour, RegionTextColour,
+		InsertPointColour, InsertTextColour,
+		SelectionStartColour, SelectionEndColour, SelectionFillColour, SelectionTextColour,
+		NumControlColours
+	};
+	
+	ScopeControlComponent(ScopeStyles style = Lines, DisplayOptions options = All);
+	~ScopeControlComponent();
+	RGBAColour& getColour(ControlColours colour);
+	void setMetaData(MetaData const& metaData);
+	void resized();
+	void setInsertOffset(const double offset);
+	void setSelection(const double start, const double end);
+	
+private:
+	DisplayOptions options;
+	MetaData metaData;
+	RGBAColour controlColours[NumControlColours];
+//	Array<ScopeCuePointComponent*> scopeCuePoints;
+//	Array<ScopeRegionComponent*> scopeRegions;
+//	Array<ScopeLoopComponent*> scopeLoops;
+	ScopeInsertComponent* scopeInsert;
+	ScopeSelectionComponent* scopeSelection;
+};
+
 
 
 class RadialScopeComponent : public ScopeComponentBase
@@ -116,55 +220,10 @@ class MeterComponent :	public Component,
 						public Timer
 {
 public:
-	MeterComponent(String& name, float* valueToUse, const CriticalSection& lockToUse)
-	:	Component(name),
-		value(valueToUse),
-		lastDisplayValue(0.f),
-		lock(lockToUse)
-	{
-		startTimer((int)(0.020 * 1000));
-	}
-	
-	~MeterComponent()
-	{
-		stopTimer();
-	}
-	
-	void paint(Graphics& g)
-	{
-		lock.enter();
-		float currentValue = jlimit(0.f, 1.f, zap(*value));
-		lock.exit();
-		
-		g.fillAll(Colours::black);
-		g.setColour(Colour(0xFF00FF00));
-		
-		if(getWidth() > getHeight())
-		{
-			// horizontal meter
-			g.fillRect(0, 0, (int)(getWidth() * currentValue), getHeight());
-		}
-		else
-		{
-			// vertical meter
-			g.fillRect(0, getHeight() - (int)(getHeight() * currentValue), 
-					   getWidth(), (int)(getHeight() * currentValue));
-		}
-	}
-	
-	void timerCallback()
-	{
-		lock.enter();
-		float currentValue = *value;
-		lock.exit();
-		
-		if(lastDisplayValue != currentValue)
-		{	
-			lastDisplayValue = currentValue;
-			repaint();
-		}
-	}
-	
+	MeterComponent(String& name, float* value, const CriticalSection& lock);
+	~MeterComponent();
+	void paint(Graphics& g);
+	void timerCallback();
 	
 private:
 	float* value;

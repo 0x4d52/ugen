@@ -182,6 +182,7 @@ public:
 	virtual void updateGUI() = 0;
 	virtual bool isValid() = 0;
 	
+	inline double getSampleOffset() throw() { return offsetSamples; }
 	
 protected:
 	bool isBipolar:1;
@@ -221,30 +222,38 @@ protected:
 	void resizedGUI();
 };
 
-#define ScopeGUIPtrPtr void*
+//class ScopeMetaDataGUI
+//{
+//public:
+//	
+//private:
+//	
+//};
 
-/** @ingroup UGenInternals GUITools */
-class ScopeUGenInternal :	public UGenInternal
-{
-public:
-	ScopeUGenInternal(ScopeGUIPtrPtr scopeGUI, UGen const& input, UGen const& duration) throw();	
-	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
-	
-	enum Inputs { Input, Duration, NumInputs };
-	
-private:
-	ScopeGUIPtrPtr scopeGUIref;
-	Buffer audioBuffer;
-	int bufferIndex;
-	int audioBufferSizeUsed;
-	unsigned int samplesProcessed;
-};
+//#define ScopeGUIPtrPtr void*
 
-/** Scope UGen for use with a ScopeGUI.
- @ingroup GUITools */
-UGenSublcassDeclarationNoDefault(Scope, 
-								 (scopeGUI, input, duration), 
-								 (ScopeGUIPtrPtr scopeGUI, UGen const& input, UGen const& duration = 0.1), COMMON_UGEN_DOCS);
+///** @ingroup UGenInternals GUITools */
+//class ScopeUGenInternal :	public UGenInternal
+//{
+//public:
+//	ScopeUGenInternal(ScopeGUIPtrPtr scopeGUI, UGen const& input, UGen const& duration) throw();	
+//	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
+//	
+//	enum Inputs { Input, Duration, NumInputs };
+//	
+//private:
+//	ScopeGUIPtrPtr scopeGUIref;
+//	Buffer audioBuffer;
+//	int bufferIndex;
+//	int audioBufferSizeUsed;
+//	unsigned int samplesProcessed;
+//};
+//
+///** Scope UGen for use with a ScopeGUI.
+// @ingroup GUITools */
+//UGenSublcassDeclarationNoDefault(Scope, 
+//								 (scopeGUI, input, duration), 
+//								 (ScopeGUIPtrPtr scopeGUI, UGen const& input, UGen const& duration = 0.1), COMMON_UGEN_DOCS);
 
 
 class BufferSenderUGenInternal :	public UGenInternal,
@@ -271,41 +280,41 @@ UGenSublcassDeclarationNoDefault(Sender,
 								 (input, duration), 
 								 (UGen const& input, UGen const& duration = 0.1), COMMON_UGEN_DOCS);
 
-/** @ingroup UGenInternals GUITools */
-class SpectralScopeUGenInternal :	public UGenInternal // this SHOULDN'T be a ProxyOwner so that
-{														// the number channels can be dynamic!
-public:
-	SpectralScopeUGenInternal(ScopeGUIPtrPtr scopeGUI, 
-							  UGen const& input, 
-							  FFTEngine::FFTModes mode,
-							  FFTEngine const& fft,
-							  const int overlap,
-							  const int firstBin,
-							  const int numBins) throw();	
-	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
-	
-	enum Inputs { Input, NumInputs };
-	
-private:
-	ScopeGUIPtrPtr scopeGUIref;
-	FFTEngine::FFTModes mode_;
-	FFTEngine fftEngine;
-	const int fftSize, fftSizeHalved, overlap_, firstBin_, maxNumBins, numBins_;
-	Buffer inputBuffer, outputBuffer;
-	int bufferIndex;
-};
-
-/** Spectral scope UGen for use with a ScopeGUI.
- @ingroup GUITools FFTUGens*/
-UGenSublcassDeclarationNoDefault(SpectralScope, 
-								 (scopeGUI, input, mode, fft, overlap, firstBin, numBins), 
-								 (ScopeGUIPtrPtr scopeGUI, 
-								  UGen const& input, 
-								  FFTEngine::FFTModes mode,
-								  FFTEngine const& fft = 1024, 
-								  const int overlap = 1,
-								  const int firstBin = 1,
-								  const int numBins = 0), COMMON_UGEN_DOCS);
+///** @ingroup UGenInternals GUITools */
+//class SpectralScopeUGenInternal :	public UGenInternal // this SHOULDN'T be a ProxyOwner so that
+//{														// the number channels can be dynamic!
+//public:
+//	SpectralScopeUGenInternal(ScopeGUIPtrPtr scopeGUI, 
+//							  UGen const& input, 
+//							  FFTEngine::FFTModes mode,
+//							  FFTEngine const& fft,
+//							  const int overlap,
+//							  const int firstBin,
+//							  const int numBins) throw();	
+//	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
+//	
+//	enum Inputs { Input, NumInputs };
+//	
+//private:
+//	ScopeGUIPtrPtr scopeGUIref;
+//	FFTEngine::FFTModes mode_;
+//	FFTEngine fftEngine;
+//	const int fftSize, fftSizeHalved, overlap_, firstBin_, maxNumBins, numBins_;
+//	Buffer inputBuffer, outputBuffer;
+//	int bufferIndex;
+//};
+//
+///** Spectral scope UGen for use with a ScopeGUI.
+// @ingroup GUITools FFTUGens*/
+//UGenSublcassDeclarationNoDefault(SpectralScope, 
+//								 (scopeGUI, input, mode, fft, overlap, firstBin, numBins), 
+//								 (ScopeGUIPtrPtr scopeGUI, 
+//								  UGen const& input, 
+//								  FFTEngine::FFTModes mode,
+//								  FFTEngine const& fft = 1024, 
+//								  const int overlap = 1,
+//								  const int firstBin = 1,
+//								  const int numBins = 0), COMMON_UGEN_DOCS);
 
 
 class FFTSenderUGenInternal :	public UGenInternal, // this SHOULDN'T be a ProxyOwner so that
