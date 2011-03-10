@@ -100,8 +100,10 @@ public:
 	
 	void mouseDown (const MouseEvent& e);	
 	void mouseDrag (const MouseEvent& e);
+	void mouseUp (const MouseEvent& e);
+
 	void moved();
-	
+		
 private:
 	Component::SafePointer<ScopeControlComponent> owner;
 	Component::SafePointer<ScopeRegionComponent> region;
@@ -109,6 +111,7 @@ private:
 	RGBAColour lineColour, textColour;
 	ComponentDragger dragger;
 	ComponentBoundsConstrainer constrain;
+	bool beingDragged;
 };
 
 typedef ScopeCuePointComponent ScopeInsertComponent;
@@ -119,11 +122,7 @@ public:
 	ScopeRegionComponent(ScopeControlComponent* owner);
 	~ScopeRegionComponent();
 	
-	Range<int> getRegionPosition() 
-	{ 
-		return Range<int>(startPoint->getCuePosition(), 
-						  endPoint->getCuePosition()); 
-	}
+	void getRegionPosition(int& start, int& end);
 	
 	void setRegionOffsets(const double start, const double end);
 	void checkPosition();
@@ -136,6 +135,7 @@ private:
 	ScopeCuePointComponent* startPoint;
 	ScopeCuePointComponent* endPoint;
 	RGBAColour fillColour, textColour; 
+	bool changingBoth;
 };
 
 typedef ScopeRegionComponent ScopeSelectionComponent;

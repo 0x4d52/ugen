@@ -449,7 +449,8 @@ void ScopeComponent::paintChannelLabel(Graphics& g, Text const& label, const int
 ScopeCuePointComponent::ScopeCuePointComponent(ScopeControlComponent* o, ScopeRegionComponent* r)
 :	owner(o),
 	region(r),
-	offsetSamples(0.0)
+	offsetSamples(0.0),
+	beingDragged(false)
 {
 	setMouseCursor(MouseCursor::LeftRightResizeCursor);
 	constrain.setMinimumOnscreenAmounts(0xffffff, 0, 0xffffff, 0);
@@ -488,6 +489,7 @@ void ScopeCuePointComponent::mouseDown (const MouseEvent& e)
 {
 	// temp - need to do this manually probably
 	dragger.startDraggingComponent (this, e);
+	beingDragged = true;
 }
 
 void ScopeCuePointComponent::mouseDrag (const MouseEvent& e)
@@ -496,16 +498,35 @@ void ScopeCuePointComponent::mouseDrag (const MouseEvent& e)
 	dragger.dragComponent (this, e, &constrain);
 }
 
+void ScopeCuePointComponent::mouseUp (const MouseEvent& e)
+{
+	beingDragged = false;
+}
+
 void ScopeCuePointComponent::moved()
 {
+	// check if this is begin dragged and if so..
+	if(beingDragged)
+	{
+		double bufferOffsetSamples = owner->getSampleOffset();
+		const double audioBufferSize = owner->getAudioBuffer().size();
+		const double samplesPerPixel = audioBufferSize / owner->getDisplayBufferSize();
+		int x = getX()+1;
+		
+		offsetSamples = x * samplesPerPixel + bufferOffsetSamples; // rounding?
+	}
+	
+	
 	if(region)
 	{
+		// perhaps do thi with a listener instead ??
 		region->checkPosition();
 	}
 }
 
 ScopeRegionComponent::ScopeRegionComponent(ScopeControlComponent* o)
-:	owner(o)
+:	owner(o),
+	changingBoth(false)
 {
 	setInterceptsMouseClicks(false, false);
 	owner->addAndMakeVisible(startPoint = new ScopeCuePointComponent(owner, this));
@@ -517,17 +538,39 @@ ScopeRegionComponent::~ScopeRegionComponent()
 	deleteAllChildren();
 }
 
+void ScopeRegionComponent::getRegionPosition(int& start, int& end)
+{ 
+	start = startPoint->getCuePosition();
+	end = endPoint->getCuePosition();
+	
+	if(start > end)
+	{
+		ScopeCuePointComponent* tempPoint = startPoint;
+		int temp = start;
+		startPoint = endPoint;
+		start = end;
+		endPoint = tempPoint;
+		end = temp;
+	}
+}
+
 void ScopeRegionComponent::setRegionOffsets(const double start, const double end)
 {
-	startPoint->setSampleOffset(start);
-	endPoint->setSampleOffset(end);
+	changingBoth = true;
+	startPoint->setSampleOffset(jmin(start, end));
+	endPoint->setSampleOffset(jmax(start, end));
+	changingBoth = false;
 	checkPosition();
 }
 
 void ScopeRegionComponent::checkPosition()
 {
-	Range<int> position = getRegionPosition();
-	setBounds(position.getStart(), 0, position.getLength()+1, getParentHeight());
+	if(!changingBoth)
+	{
+		int start, end;
+		getRegionPosition(start, end);
+		setBounds(start, 0, end-start+1, getParentHeight());
+	}
 }
 
 void ScopeRegionComponent::setHeight(const int height)
@@ -539,7 +582,7 @@ void ScopeRegionComponent::setHeight(const int height)
 
 void ScopeRegionComponent::paint(Graphics& g)
 {	
-	if(getRegionPosition().isEmpty()) return;
+//	if(getRegionPosition().isEmpty()) return;
 	
 	g.setColour(Colour(owner->getColour(ScopeControlComponent::RegionFillColour).get32bitColour())); // could use a virtual function to get this...
 	g.fillRect(1, 0, getWidth()-2, getHeight());
