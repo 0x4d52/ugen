@@ -87,16 +87,24 @@ private:
 class ScopeControlComponent;
 class ScopeRegionComponent;
 
+class ScopeControlLabel : public Label
+{
+public:
+	ScopeControlLabel(String const& text = String::empty);
+	TextEditor* createEditorComponent();
+};
+
 struct CuePointData
 {
 	RGBAColour lineColour, textColour;
-	Component::SafePointer<Label> label;
+	Component::SafePointer<ScopeControlLabel> label;
 };
 
-class ScopeCuePointComponent : public Component
+class ScopeCuePointComponent :	public Component,
+								public Label::Listener
 {
 public:
-	ScopeCuePointComponent(ScopeControlComponent* owner, ScopeRegionComponent* region);
+	ScopeCuePointComponent(ScopeControlComponent* owner, ScopeRegionComponent* region, const double initialOffset = 0.0);
 	~ScopeCuePointComponent();
 	inline int getCuePosition() { return getX()+1; }
 	void setHeight(const int height);
@@ -114,6 +122,7 @@ public:
 	void setLabelPosition();
 	Text getLabel() const;
 	void setLabel(Text const& text);
+	void labelTextChanged (Label* labelThatHasChanged);
 	
 	void setColours(RGBAColour const& lineColour, RGBAColour const& textColour);
 	
@@ -131,12 +140,19 @@ private:
 	CuePointData cueData; // anything that needs to be transferred if two cues are swapped
 };
 
-typedef ScopeCuePointComponent ScopeInsertComponent;
+//typedef ScopeCuePointComponent ScopeInsertComponent;
+
+class ScopeInsertComponent : public ScopeCuePointComponent
+{
+public:
+	ScopeInsertComponent(ScopeControlComponent* owner, ScopeRegionComponent* region);
+};
+
 
 class ScopeRegionComponent : public Component
 {
 public:
-	ScopeRegionComponent(ScopeControlComponent* owner);
+	ScopeRegionComponent(ScopeControlComponent* owner, const double initialStart = 0.0, const double initialEnd = 0.0);
 	~ScopeRegionComponent();
 	
 	void getRegionPosition(int& start, int& end);
@@ -193,7 +209,7 @@ public:
 		CuePointColour, CuePointTextColour,
 		LoopPointStartColour, LoopPointEndColour, LoopFillColour, LoopTextColour,
 		RegionStartColour, RegionEndColour, RegionFillColour, RegionTextColour,
-		InsertPointColour, InsertTextColour,
+		InsertPointColour, InsertPointTextColour,
 		SelectionStartColour, SelectionEndColour, SelectionFillColour, SelectionTextColour,
 		NumControlColours
 	};
@@ -203,16 +219,26 @@ public:
 	RGBAColour& getColour(ControlColours colour);
 	void setMetaData(MetaData const& metaData);
 	void resized();
+	
+	void addPointLabel(ScopeControlLabel* label);
+	void removePointLabel(ScopeControlLabel* label);
+	void avoidPointLabelCollisions();
+	
 	void setInsertOffset(const double offset);
 	void setSelection(const double start, const double end);
+	void setCuePoint(const int index, const double offset);
+	void addCuePoint(const double offset, Text const& label);
+	void removeCuePoint(const int index);
+	void clearCuePoints();
 	
 private:
 	DisplayOptions options;
 	MetaData metaData;
 	RGBAColour controlColours[NumControlColours];
-//	Array<ScopeCuePointComponent*> scopeCuePoints;
-//	Array<ScopeRegionComponent*> scopeRegions;
-//	Array<ScopeLoopComponent*> scopeLoops;
+	Array<ScopeControlLabel*> pointLabels;
+	Array<ScopeCuePointComponent*> scopeCuePoints;
+	Array<ScopeRegionComponent*> scopeRegions;
+	Array<ScopeLoopComponent*> scopeLoops;
 	ScopeInsertComponent* scopeInsert;
 	ScopeSelectionComponent* scopeSelection;
 };

@@ -446,10 +446,26 @@ void ScopeComponent::paintChannelLabel(Graphics& g, Text const& label, const int
 	}
 }
 
-ScopeCuePointComponent::ScopeCuePointComponent(ScopeControlComponent* o, ScopeRegionComponent* r)
+ScopeControlLabel::ScopeControlLabel(String const& text)
+:	Label("ScopeControlLabel", text)
+{
+	setFont(11);
+	setEditable(false, true, true);
+}
+
+TextEditor* ScopeControlLabel::createEditorComponent()
+{
+	TextEditor* editor = Label::createEditorComponent();
+	editor->setColour(TextEditor::textColourId, findColour(Label::textColourId));
+	return editor;
+}
+
+ScopeCuePointComponent::ScopeCuePointComponent(ScopeControlComponent* o, 
+											   ScopeRegionComponent* r,
+											   const double initialOffset)
 :	owner(o),
 	region(r),
-	offsetSamples(0.0),
+	offsetSamples(initialOffset),
 	beingDragged(false)
 {
 	setMouseCursor(MouseCursor::LeftRightResizeCursor);
@@ -457,17 +473,16 @@ ScopeCuePointComponent::ScopeCuePointComponent(ScopeControlComponent* o, ScopeRe
 	cueData.textColour = owner->getColour(ScopeControlComponent::CuePointTextColour);
 	cueData.lineColour = owner->getColour(ScopeControlComponent::CuePointColour);
 	
-	owner->addAndMakeVisible(cueData.label = new Label("CueLabel",""));
-	cueData.label->setFont(10);
-	
+	owner->addPointLabel(cueData.label = new ScopeControlLabel());
 	cueData.label->setColour(Label::textColourId, Colour(cueData.textColour.get32bitColour()));
+	cueData.label->addListener(this);
 }
 
 ScopeCuePointComponent::~ScopeCuePointComponent()
 {
 	if(owner != 0)
 	{
-		owner->removeChildComponent(cueData.label);
+		owner->removePointLabel(cueData.label);
 	}
 		
 	cueData.label.deleteAndZero();
@@ -543,6 +558,8 @@ void ScopeCuePointComponent::moved()
 	}
 	
 	setLabelPosition();
+	owner->avoidPointLabelCollisions();
+
 }
 
 void ScopeCuePointComponent::setLabelPosition()
@@ -562,9 +579,21 @@ void ScopeCuePointComponent::setLabel(Text const& text)
 {
 	if(cueData.label != 0)
 	{
-		cueData.label->setSize(text.length() * 10,  // need to measure really... and do it in a listener if we can edit the labels
-							   cueData.label->getFont().getHeight());
-		cueData.label->setText((const char*)text, true);
+		const Font& font = cueData.label->getFont();
+		
+		int w = font.getStringWidth((const char*)text) + 10;
+		int h = font.getHeight();
+		
+		cueData.label->setSize(w,h);
+		cueData.label->setText((const char*)text, false);
+	}
+}
+
+void ScopeCuePointComponent::labelTextChanged (Label* labelThatHasChanged)
+{
+	if(labelThatHasChanged == cueData.label)
+	{
+		setLabel(cueData.label->getText());
 	}
 }
 
@@ -597,7 +626,19 @@ void ScopeCuePointComponent::swapCuePoints(Component::SafePointer<ScopeCuePointC
 	cue2->repaint();
 }
 
-ScopeRegionComponent::ScopeRegionComponent(ScopeControlComponent* o)
+ScopeInsertComponent::ScopeInsertComponent(ScopeControlComponent* owner, 
+										   ScopeRegionComponent* region)
+:	ScopeCuePointComponent(owner, region)
+{
+	RGBAColour textColour = owner->getColour(ScopeControlComponent::InsertPointTextColour);
+	RGBAColour lineColour = owner->getColour(ScopeControlComponent::InsertPointColour);
+
+	setColours(lineColour, textColour);
+}
+
+ScopeRegionComponent::ScopeRegionComponent(ScopeControlComponent* o, 
+										   const double initialStart, 
+										   const double initialEnd)
 :	owner(o),
 	fillColour(owner->getColour(ScopeControlComponent::RegionFillColour)),
 	changingBoth(false)
@@ -608,11 +649,11 @@ ScopeRegionComponent::ScopeRegionComponent(ScopeControlComponent* o)
 	RGBAColour endColour = owner->getColour(ScopeControlComponent::RegionEndColour);
 	RGBAColour textColour = owner->getColour(ScopeControlComponent::RegionTextColour);
 
-	owner->addAndMakeVisible(startPoint = new ScopeCuePointComponent(owner, this));
+	owner->addAndMakeVisible(startPoint = new ScopeCuePointComponent(owner, this, initialStart));
 	startPoint->setLabel("start");
 	startPoint->setColours(startColour, textColour);
 	
-	owner->addAndMakeVisible(endPoint = new ScopeCuePointComponent(owner, this));
+	owner->addAndMakeVisible(endPoint = new ScopeCuePointComponent(owner, this, initialEnd));
 	endPoint->setLabel("end");
 	endPoint->setColours(endColour, textColour);
 }
@@ -727,7 +768,7 @@ ScopeControlComponent::ScopeControlComponent(ScopeStyles style, DisplayOptions o
 	controlColours[RegionFillColour]		= RGBAColour(1.0, 1.0, 0.5, 0.5);
 	controlColours[RegionTextColour]		= RGBAColour(1.0, 1.0, 0.5, 1.0);
 	controlColours[InsertPointColour]		= RGBAColour(1.0, 1.0, 1.0, 1.0);
-	controlColours[InsertTextColour]		= RGBAColour(1.0, 1.0, 1.0, 1.0);
+	controlColours[InsertPointTextColour]	= RGBAColour(1.0, 1.0, 1.0, 1.0);
 	controlColours[SelectionStartColour]	= controlColours[LoopPointStartColour];
 	controlColours[SelectionEndColour]		= controlColours[LoopPointEndColour];
 	controlColours[SelectionFillColour]		= RGBAColour(1.0, 1.0, 1.0, 0.5);
@@ -778,6 +819,68 @@ void ScopeControlComponent::resized()
 	{
 		scopeSelection->setHeight(height);
 	}
+	
+	for(int i = 0; i < scopeCuePoints.size(); i++)
+	{
+		scopeCuePoints[i]->setHeight(height);
+	}
+	
+	for(int i = 0; i < scopeRegions.size(); i++)
+	{
+		scopeRegions[i]->setHeight(height);
+	}
+	
+	for(int i = 0; i < scopeLoops.size(); i++)
+	{
+		scopeLoops[i]->setHeight(height);
+	}
+}
+
+void ScopeControlComponent::addPointLabel(ScopeControlLabel* label)
+{
+	pointLabels.add(label);
+	addAndMakeVisible(label);
+}
+
+void ScopeControlComponent::removePointLabel(ScopeControlLabel* label)
+{
+	pointLabels.removeValue(label);
+	removeChildComponent(label);
+}
+
+void ScopeControlComponent::avoidPointLabelCollisions()
+{
+	// put them all at the top
+	for(int i = 0; i < pointLabels.size(); i++)
+	{
+		ScopeControlLabel* label = pointLabels[i];
+		label->setTopLeftPosition(label->getX(), 0);
+	}
+	
+	for(int i = 0; i < pointLabels.size(); i++)
+	{
+		ScopeControlLabel* labeli = pointLabels[i];
+		
+		for(int j = 0; j < pointLabels.size(); j++)
+		{
+			ScopeControlLabel* labelj = pointLabels[j];
+			
+			if(labeli == labelj) continue;
+			
+			Rectangle<int> boundsi = labeli->getBounds();
+			Rectangle<int> boundsj = labelj->getBounds();
+
+			Rectangle<int> instersection = boundsi.getIntersection(boundsj);
+			int height = instersection.getHeight();
+			
+			if(height > 0)
+			{
+				boundsi += Point<int>(0, height);
+				labeli->setBounds(boundsi);
+				j = 0;
+			}
+		}
+	}
 }
 
 void ScopeControlComponent::setInsertOffset(const double offset)
@@ -793,6 +896,47 @@ void ScopeControlComponent::setSelection(const double start, const double end)
 	if(scopeSelection != 0)
 	{
 		scopeSelection->setRegionOffsets(start, end);
+	}
+}
+
+void ScopeControlComponent::setCuePoint(const int index, const double offset)
+{
+	ScopeCuePointComponent* cuePoint = scopeCuePoints[index];
+	
+	if(cuePoint != 0)
+	{
+		scopeInsert->setSampleOffset(offset);
+	}
+}
+
+void ScopeControlComponent::addCuePoint(const double offset, Text const& label)
+{
+	ScopeCuePointComponent* cuePoint;
+	addAndMakeVisible(cuePoint = new ScopeCuePointComponent(this, 0, offset));
+	if(label.length() > 0) cuePoint->setLabel(label);
+	scopeCuePoints.add(cuePoint);
+	cuePoint->setHeight(getHeight());
+}
+
+void ScopeControlComponent::removeCuePoint(const int index)
+{
+	ScopeCuePointComponent* cuePoint = scopeCuePoints[index];
+	
+	if(cuePoint != 0)
+	{
+		scopeCuePoints.removeValue(cuePoint);
+		removeChildComponent(cuePoint);
+		deleteAndZero(cuePoint);
+	}	
+}
+
+void ScopeControlComponent::clearCuePoints()
+{
+	int index = scopeCuePoints.size();
+	
+	while(index--)
+	{
+		removeCuePoint(index);
 	}
 }
 
