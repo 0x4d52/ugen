@@ -497,12 +497,7 @@ void ScopeCuePointComponent::setHeight(const int height)
 
 void ScopeCuePointComponent::checkPosition()
 {	
-	double bufferOffsetSamples = owner->getSampleOffset();
-	const double audioBufferSize = owner->getAudioBuffer().size();
-	const double pixelsPerSample = owner->getDisplayBufferSize() / audioBufferSize;
-
-	int x = (offsetSamples - bufferOffsetSamples) * pixelsPerSample + 0.5; 
-	
+	int x = owner->samplesToPixels(offsetSamples);
 	setTopLeftPosition(x-1, 0);
 }
 
@@ -539,17 +534,11 @@ void ScopeCuePointComponent::mouseUp (const MouseEvent& e)
 
 void ScopeCuePointComponent::moved()
 {
-	// check if this is begin dragged and if so..
 	if(beingDragged)
 	{
-		double bufferOffsetSamples = owner->getSampleOffset();
-		const double audioBufferSize = owner->getAudioBuffer().size();
-		const double samplesPerPixel = audioBufferSize / owner->getDisplayBufferSize();
-		int x = getX()+1;
-		
-		offsetSamples = x * samplesPerPixel + bufferOffsetSamples; // rounding?
+		int x = getX()+1;		
+		offsetSamples = owner->pixelsToSamples(x);
 	}
-	
 	
 	if(region != 0)
 	{
@@ -566,7 +555,7 @@ void ScopeCuePointComponent::setLabelPosition()
 {
 	if(cueData.label != 0)
 	{
-		cueData.label->setTopLeftPosition(getX(), getY());
+		cueData.label->setTopLeftPosition(getX()-2, getY());
 	}	
 }
 
@@ -755,7 +744,8 @@ ScopeControlComponent::ScopeControlComponent(ScopeStyles style, DisplayOptions o
 :	ScopeComponent(style),
 	options(optionsToUse),
 	scopeInsert(0),
-	scopeSelection(0)
+	scopeSelection(0),
+	draggingCuePoint(0)
 {
 	controlColours[CuePointColour]			= RGBAColour(1.0, 1.0, 0.0, 1.0);
 	controlColours[CuePointTextColour]		= RGBAColour(1.0, 1.0, 0.0, 1.0);
@@ -777,6 +767,7 @@ ScopeControlComponent::ScopeControlComponent(ScopeStyles style, DisplayOptions o
 	if(options & Insert)
 	{
 		addAndMakeVisible(scopeInsert = new ScopeInsertComponent(this, 0));
+		scopeInsert->setLabel("play");
 	}
 	
 	if(options & Selection)
@@ -836,6 +827,65 @@ void ScopeControlComponent::resized()
 	}
 }
 
+void ScopeControlComponent::mouseDown(const MouseEvent& e)
+{
+	int offset = pixelsToSamples(e.x);
+	
+	setInsertOffset(offset);
+	setSelection(offset, offset);
+	
+	if(scopeSelection != 0)
+	{
+		draggingCuePoint = scopeSelection->getEndPoint();
+	}
+	else if(scopeInsert != 0)
+	{
+		draggingCuePoint = scopeInsert;
+	}
+	
+	if(draggingCuePoint != 0)
+	{
+		draggingCuePoint->mouseEnter(e.getEventRelativeTo(draggingCuePoint));
+		draggingCuePoint->mouseDown(e.getEventRelativeTo(draggingCuePoint));
+	}
+}
+
+void ScopeControlComponent::mouseDrag(const MouseEvent& e)
+{
+	if(draggingCuePoint != 0)
+	{
+		draggingCuePoint->mouseDrag(e.getEventRelativeTo(draggingCuePoint));
+	}
+}
+
+void ScopeControlComponent::mouseUp(const MouseEvent& e)
+{
+	if(draggingCuePoint != 0)
+	{
+		draggingCuePoint->mouseUp(e.getEventRelativeTo(draggingCuePoint));
+		draggingCuePoint->mouseExit(e.getEventRelativeTo(draggingCuePoint));
+		draggingCuePoint = 0;
+	}	
+}
+
+int ScopeControlComponent::pixelsToSamples(const int pixels)
+{
+	double bufferOffsetSamples = getSampleOffset();
+	const double audioBufferSize = getAudioBuffer().size();
+	const double samplesPerPixel = audioBufferSize / getDisplayBufferSize();
+	
+	return pixels * samplesPerPixel + bufferOffsetSamples + 0.5;
+}
+
+int ScopeControlComponent::samplesToPixels(const int samples)
+{
+	double bufferOffsetSamples = getSampleOffset();
+	const double audioBufferSize = getAudioBuffer().size();
+	const double pixelsPerSample = getDisplayBufferSize() / audioBufferSize;
+	
+	return (samples - bufferOffsetSamples) * pixelsPerSample + 0.5; 
+}
+
 void ScopeControlComponent::addPointLabel(ScopeControlLabel* label)
 {
 	pointLabels.add(label);
@@ -857,29 +907,39 @@ void ScopeControlComponent::avoidPointLabelCollisions()
 		label->setTopLeftPosition(label->getX(), 0);
 	}
 	
-	for(int i = 0; i < pointLabels.size(); i++)
+	// then try to avoid them overlapping
+	
+	bool noCollisions = true;
+	
+	for(int n = 0; n < pointLabels.size(); n++)
 	{
-		ScopeControlLabel* labeli = pointLabels[i];
-		
-		for(int j = 0; j < pointLabels.size(); j++)
+		for(int i = 0; i < pointLabels.size(); i++)
 		{
-			ScopeControlLabel* labelj = pointLabels[j];
+			ScopeControlLabel* labeli = pointLabels[i];
 			
-			if(labeli == labelj) continue;
-			
-			Rectangle<int> boundsi = labeli->getBounds();
-			Rectangle<int> boundsj = labelj->getBounds();
-
-			Rectangle<int> instersection = boundsi.getIntersection(boundsj);
-			int height = instersection.getHeight();
-			
-			if(height > 0)
+			for(int j = 0; j < pointLabels.size(); j++)
 			{
-				boundsi += Point<int>(0, height);
-				labeli->setBounds(boundsi);
-				j = 0;
+				ScopeControlLabel* labelj = pointLabels[j];
+				
+				if(labeli == labelj) continue;
+				
+				Rectangle<int> boundsi = labeli->getBounds();
+				Rectangle<int> boundsj = labelj->getBounds();
+
+				Rectangle<int> instersection = boundsi.getIntersection(boundsj);
+				int height = instersection.getHeight();
+				
+				if(height > 0)
+				{
+					noCollisions = false;
+					boundsi += Point<int>(0, height);
+					labeli->setBounds(boundsi);
+					j = 0;
+				}
 			}
 		}
+		
+		if(noCollisions) break;
 	}
 }
 

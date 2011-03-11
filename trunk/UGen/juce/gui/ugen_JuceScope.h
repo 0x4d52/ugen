@@ -155,6 +155,9 @@ public:
 	ScopeRegionComponent(ScopeControlComponent* owner, const double initialStart = 0.0, const double initialEnd = 0.0);
 	~ScopeRegionComponent();
 	
+	ScopeCuePointComponent* getStartPoint() { return startPoint; }
+	ScopeCuePointComponent* getEndPoint() { return endPoint; }
+	
 	void getRegionPosition(int& start, int& end);
 	
 	void setRegionOffsets(const double start, const double end);
@@ -220,6 +223,13 @@ public:
 	void setMetaData(MetaData const& metaData);
 	void resized();
 	
+	void mouseDown (const MouseEvent& e);	
+	void mouseDrag (const MouseEvent& e);
+	void mouseUp (const MouseEvent& e);
+	
+	int pixelsToSamples(const int pixels);
+	int samplesToPixels(const int samples);
+	
 	void addPointLabel(ScopeControlLabel* label);
 	void removePointLabel(ScopeControlLabel* label);
 	void avoidPointLabelCollisions();
@@ -241,6 +251,7 @@ private:
 	Array<ScopeLoopComponent*> scopeLoops;
 	ScopeInsertComponent* scopeInsert;
 	ScopeSelectionComponent* scopeSelection;
+	ScopeCuePointComponent* draggingCuePoint;
 };
 
 
