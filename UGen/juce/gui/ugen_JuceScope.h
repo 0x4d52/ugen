@@ -87,10 +87,17 @@ private:
 class ScopeControlComponent;
 class ScopeRegionComponent;
 
+struct CuePointData
+{
+	RGBAColour lineColour, textColour;
+	Component::SafePointer<Label> label;
+};
+
 class ScopeCuePointComponent : public Component
 {
 public:
 	ScopeCuePointComponent(ScopeControlComponent* owner, ScopeRegionComponent* region);
+	~ScopeCuePointComponent();
 	inline int getCuePosition() { return getX()+1; }
 	void setHeight(const int height);
 	void checkPosition();
@@ -103,15 +110,25 @@ public:
 	void mouseUp (const MouseEvent& e);
 
 	void moved();
+	
+	void setLabelPosition();
+	Text getLabel() const;
+	void setLabel(Text const& text);
+	
+	void setColours(RGBAColour const& lineColour, RGBAColour const& textColour);
+	
+	static void swapCuePoints(Component::SafePointer<ScopeCuePointComponent> &cue1, 
+							  Component::SafePointer<ScopeCuePointComponent> &cue2);
 		
 private:
 	Component::SafePointer<ScopeControlComponent> owner;
 	Component::SafePointer<ScopeRegionComponent> region;
 	double offsetSamples;
-	RGBAColour lineColour, textColour;
 	ComponentDragger dragger;
 	ComponentBoundsConstrainer constrain;
 	bool beingDragged;
+	
+	CuePointData cueData; // anything that needs to be transferred if two cues are swapped
 };
 
 typedef ScopeCuePointComponent ScopeInsertComponent;
@@ -130,19 +147,31 @@ public:
 	void setHeight(const int height);
 	void paint(Graphics& g);
 	
+	void setColours(RGBAColour const& startColour, 
+					RGBAColour const& endColour, 
+					RGBAColour const& textColour, 
+					RGBAColour const& fillColour);
+	
 private:
 	Component::SafePointer<ScopeControlComponent> owner;
-	ScopeCuePointComponent* startPoint;
-	ScopeCuePointComponent* endPoint;
-	RGBAColour fillColour, textColour; 
+	Component::SafePointer<ScopeCuePointComponent> startPoint;
+	Component::SafePointer<ScopeCuePointComponent> endPoint;
+	RGBAColour fillColour; 
 	bool changingBoth;
 };
 
-typedef ScopeRegionComponent ScopeSelectionComponent;
+//typedef ScopeRegionComponent ScopeSelectionComponent;
+
+class ScopeSelectionComponent : public ScopeRegionComponent
+{
+public:
+	ScopeSelectionComponent(ScopeControlComponent* owner);
+};
 
 class ScopeLoopComponent : public ScopeRegionComponent
 {
 public:
+	ScopeLoopComponent(ScopeControlComponent* owner);
 private:
 	// mode?
 };

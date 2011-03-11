@@ -453,13 +453,31 @@ ScopeCuePointComponent::ScopeCuePointComponent(ScopeControlComponent* o, ScopeRe
 	beingDragged(false)
 {
 	setMouseCursor(MouseCursor::LeftRightResizeCursor);
-	constrain.setMinimumOnscreenAmounts(0xffffff, 0, 0xffffff, 0);
+	
+	cueData.textColour = owner->getColour(ScopeControlComponent::CuePointTextColour);
+	cueData.lineColour = owner->getColour(ScopeControlComponent::CuePointColour);
+	
+	owner->addAndMakeVisible(cueData.label = new Label("CueLabel",""));
+	cueData.label->setFont(10);
+	
+	cueData.label->setColour(Label::textColourId, Colour(cueData.textColour.get32bitColour()));
+}
+
+ScopeCuePointComponent::~ScopeCuePointComponent()
+{
+	if(owner != 0)
+	{
+		owner->removeChildComponent(cueData.label);
+	}
+		
+	cueData.label.deleteAndZero();
 }
 
 void ScopeCuePointComponent::setHeight(const int height)
 {
 	setSize(3, height);
 	checkPosition();
+	setLabelPosition();
 }
 
 void ScopeCuePointComponent::checkPosition()
@@ -475,7 +493,7 @@ void ScopeCuePointComponent::checkPosition()
 
 void ScopeCuePointComponent::paint(Graphics& g)
 {	
-	g.setColour(Colour(owner->getColour(ScopeControlComponent::CuePointColour).get32bitColour())); // could use a virtual function to get this...
+	g.setColour(Colour(cueData.lineColour.get32bitColour())); // could use a virtual function to get this...
 	g.drawVerticalLine(1, 0, getHeight());
 }
 
@@ -495,6 +513,7 @@ void ScopeCuePointComponent::mouseDown (const MouseEvent& e)
 void ScopeCuePointComponent::mouseDrag (const MouseEvent& e)
 {
 	// temp - need to do this manually probably
+	constrain.setMinimumOnscreenAmounts(0xffffff, 0, 0xffffff, 0);
 	dragger.dragComponent (this, e, &constrain);
 }
 
@@ -517,25 +536,97 @@ void ScopeCuePointComponent::moved()
 	}
 	
 	
-	if(region)
+	if(region != 0)
 	{
 		// perhaps do thi with a listener instead ??
 		region->checkPosition();
 	}
+	
+	setLabelPosition();
+}
+
+void ScopeCuePointComponent::setLabelPosition()
+{
+	if(cueData.label != 0)
+	{
+		cueData.label->setTopLeftPosition(getX(), getY());
+	}	
+}
+
+Text ScopeCuePointComponent::getLabel() const
+{
+	return cueData.label->getText(false);
+}
+
+void ScopeCuePointComponent::setLabel(Text const& text)
+{
+	if(cueData.label != 0)
+	{
+		cueData.label->setSize(text.length() * 10,  // need to measure really... and do it in a listener if we can edit the labels
+							   cueData.label->getFont().getHeight());
+		cueData.label->setText((const char*)text, true);
+	}
+}
+
+void ScopeCuePointComponent::setColours(RGBAColour const& lineColour, RGBAColour const& textColour)
+{
+	cueData.lineColour = lineColour;
+	cueData.textColour = textColour;
+	
+	if(cueData.label != 0)
+	{
+		cueData.label->setColour(Label::textColourId, Colour(cueData.textColour.get32bitColour()));
+	}
+
+	repaint();
+}
+
+void ScopeCuePointComponent::swapCuePoints(Component::SafePointer<ScopeCuePointComponent> &cue1, 
+										   Component::SafePointer<ScopeCuePointComponent> &cue2)
+{	
+	// swap data
+	swapVariables(cue1->cueData, cue2->cueData);
+	swapVariables(cue1, cue2);
+	
+	// check labels
+	cue1->setLabelPosition();
+	cue2->setLabelPosition();
+	
+	// check cue colour is correct
+	cue1->repaint();
+	cue2->repaint();
 }
 
 ScopeRegionComponent::ScopeRegionComponent(ScopeControlComponent* o)
 :	owner(o),
+	fillColour(owner->getColour(ScopeControlComponent::RegionFillColour)),
 	changingBoth(false)
 {
 	setInterceptsMouseClicks(false, false);
+	
+	RGBAColour startColour = owner->getColour(ScopeControlComponent::RegionStartColour);
+	RGBAColour endColour = owner->getColour(ScopeControlComponent::RegionEndColour);
+	RGBAColour textColour = owner->getColour(ScopeControlComponent::RegionTextColour);
+
 	owner->addAndMakeVisible(startPoint = new ScopeCuePointComponent(owner, this));
+	startPoint->setLabel("start");
+	startPoint->setColours(startColour, textColour);
+	
 	owner->addAndMakeVisible(endPoint = new ScopeCuePointComponent(owner, this));
+	endPoint->setLabel("end");
+	endPoint->setColours(endColour, textColour);
 }
 
 ScopeRegionComponent::~ScopeRegionComponent()
 {
-	deleteAllChildren();
+	if(owner != 0) 
+	{
+		owner->removeChildComponent(startPoint);
+		owner->removeChildComponent(endPoint);
+	}
+	
+	startPoint.deleteAndZero();
+	endPoint.deleteAndZero();
 }
 
 void ScopeRegionComponent::getRegionPosition(int& start, int& end)
@@ -545,12 +636,9 @@ void ScopeRegionComponent::getRegionPosition(int& start, int& end)
 	
 	if(start > end)
 	{
-		ScopeCuePointComponent* tempPoint = startPoint;
-		int temp = start;
-		startPoint = endPoint;
-		start = end;
-		endPoint = tempPoint;
-		end = temp;
+		ScopeCuePointComponent::swapCuePoints(startPoint, endPoint);
+		start = startPoint->getCuePosition();
+		end = endPoint->getCuePosition();
 	}
 }
 
@@ -575,18 +663,52 @@ void ScopeRegionComponent::checkPosition()
 
 void ScopeRegionComponent::setHeight(const int height)
 {
+	changingBoth = true;
 	startPoint->setHeight(height);
 	endPoint->setHeight(height);
+	changingBoth = false;
 	checkPosition();
 }
 
 void ScopeRegionComponent::paint(Graphics& g)
-{	
-//	if(getRegionPosition().isEmpty()) return;
-	
-	g.setColour(Colour(owner->getColour(ScopeControlComponent::RegionFillColour).get32bitColour())); // could use a virtual function to get this...
+{		
+	g.setColour(Colour(fillColour.get32bitColour()));
 	g.fillRect(1, 0, getWidth()-2, getHeight());
 }
+
+void ScopeRegionComponent::setColours(RGBAColour const& startColour, 
+									  RGBAColour const& endColour, 
+									  RGBAColour const& textColour, 
+									  RGBAColour const& newFillColour)
+{
+	startPoint->setColours(startColour, textColour);
+	endPoint->setColours(endColour, textColour);
+	fillColour = newFillColour;
+	repaint();
+}
+
+ScopeSelectionComponent::ScopeSelectionComponent(ScopeControlComponent* owner)
+:	ScopeRegionComponent(owner)
+{
+	RGBAColour startColour = owner->getColour(ScopeControlComponent::SelectionStartColour);
+	RGBAColour endColour = owner->getColour(ScopeControlComponent::SelectionEndColour);
+	RGBAColour fillColour = owner->getColour(ScopeControlComponent::SelectionFillColour);
+	RGBAColour textColour = owner->getColour(ScopeControlComponent::SelectionTextColour);
+
+	setColours(startColour, endColour, textColour, fillColour);
+}
+
+ScopeLoopComponent::ScopeLoopComponent(ScopeControlComponent* owner)
+:	ScopeRegionComponent(owner)
+{
+	RGBAColour startColour = owner->getColour(ScopeControlComponent::LoopPointStartColour);
+	RGBAColour endColour = owner->getColour(ScopeControlComponent::LoopPointEndColour);
+	RGBAColour fillColour = owner->getColour(ScopeControlComponent::LoopFillColour);
+	RGBAColour textColour = owner->getColour(ScopeControlComponent::LoopTextColour);
+	
+	setColours(startColour, endColour, textColour, fillColour);
+}
+
 
 ScopeControlComponent::ScopeControlComponent(ScopeStyles style, DisplayOptions optionsToUse)
 :	ScopeComponent(style),
@@ -596,8 +718,8 @@ ScopeControlComponent::ScopeControlComponent(ScopeStyles style, DisplayOptions o
 {
 	controlColours[CuePointColour]			= RGBAColour(1.0, 1.0, 0.0, 1.0);
 	controlColours[CuePointTextColour]		= RGBAColour(1.0, 1.0, 0.0, 1.0);
-	controlColours[LoopPointStartColour]	= RGBAColour(1.0, 0.0, 0.0, 1.0);
-	controlColours[LoopPointEndColour]		= RGBAColour(0.0, 1.0, 0.0, 1.0);
+	controlColours[LoopPointStartColour]	= RGBAColour(0.0, 1.0, 0.0, 1.0);
+	controlColours[LoopPointEndColour]		= RGBAColour(1.0, 0.0, 0.0, 1.0);
 	controlColours[LoopFillColour]			= RGBAColour(0.5, 0.5, 1.0, 0.5);
 	controlColours[LoopTextColour]			= RGBAColour(0.5, 0.5, 1.0, 1.0);
 	controlColours[RegionStartColour]		= controlColours[LoopPointStartColour];
@@ -647,12 +769,12 @@ void ScopeControlComponent::resized()
 
 	int height = getHeight();
 	
-	if(scopeInsert) 
+	if(scopeInsert != 0) 
 	{
 		scopeInsert->setHeight(height);
 	}
 		
-	if(scopeSelection) 
+	if(scopeSelection != 0) 
 	{
 		scopeSelection->setHeight(height);
 	}
@@ -660,7 +782,7 @@ void ScopeControlComponent::resized()
 
 void ScopeControlComponent::setInsertOffset(const double offset)
 {
-	if(scopeInsert) 
+	if(scopeInsert != 0) 
 	{
 		scopeInsert->setSampleOffset(offset);
 	}	
@@ -668,7 +790,7 @@ void ScopeControlComponent::setInsertOffset(const double offset)
 
 void ScopeControlComponent::setSelection(const double start, const double end)
 {
-	if(scopeSelection)
+	if(scopeSelection != 0)
 	{
 		scopeSelection->setRegionOffsets(start, end);
 	}
