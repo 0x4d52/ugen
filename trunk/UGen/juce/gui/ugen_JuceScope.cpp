@@ -454,16 +454,16 @@ ScopeCuePointLabel::ScopeCuePointLabel(ScopeCuePointComponent *o,
 	setMouseCursor(MouseCursor::PointingHandCursor);
 	setFont(11);
 	setEditable(false, true, true);
-	
-	//setColour(Label::backgroundColourId, Colour(0.5f,0.5f,0.5f,0.5f));
+	setBorderSize(2, 2);	
 }
 
 TextEditor* ScopeCuePointLabel::createEditorComponent()
 {
-	TextEditor* editor = Label::createEditorComponent();
-	editor->setColour(TextEditor::textColourId, findColour(Label::textColourId));
-	editor->setColour(TextEditor::highlightedTextColourId, findColour(Label::textColourId));
-	return editor;
+	TextEditor* editorComponent = Label::createEditorComponent();
+	editorComponent->setColour(TextEditor::textColourId, findColour(Label::textColourId));
+	editorComponent->setColour(TextEditor::highlightedTextColourId, findColour(Label::textColourId));
+	editorComponent->setSize(jmin(getWidth(), 100), getHeight() + 2);
+	return editorComponent;
 }
 
 void ScopeCuePointLabel::mouseDown(const MouseEvent& e)
@@ -492,6 +492,19 @@ void ScopeCuePointLabel::mouseUp(const MouseEvent& e)
 	}	
 }
 
+void ScopeCuePointLabel::editorShown (TextEditor* editorComponent)
+{
+	oldWidth = getWidth();
+	oldHeight = getHeight();
+	setSize(jmin(oldWidth, 100), oldHeight + 2);
+	editorComponent->setSize(jmin(oldWidth, 100), oldHeight + 2);
+}
+
+void ScopeCuePointLabel::editorAboutToBeHidden (TextEditor* editorComponent)
+{
+	setSize(getWidth(), oldHeight);
+}
+
 int ScopeCuePointLabel::getCuePosition()
 {
 	if(owner != 0)
@@ -506,7 +519,7 @@ int ScopeCuePointLabel::getCuePosition()
 
 void ScopeCuePointLabel::checkPosition()
 {
-	const int moveCloser = 3;
+	const int moveCloser = 0;
 	int labelWidth = getWidth();
 	int position = getCuePosition();		
 	int width = getParentWidth();
@@ -547,12 +560,11 @@ bool ScopeCuePointLabel::doesPreferToAttachOnLeft() const
 
 ScopeCuePointComponent::ScopeCuePointComponent(ScopeControlComponent* o, 
 											   ScopeRegionComponent* r,
-											   CuePoint const& cuePointToUse, //const double initialOffset,
+											   CuePoint const& cuePointToUse,
 											   const bool createdFromMouseClick,
 											   const bool labelPrefersToAttachOnLeft)
 :	owner(o),
 	region(r),
-	//offsetSamples(initialOffset),
 	beingDragged(createdFromMouseClick)
 {
 	setMouseCursor(MouseCursor::LeftRightResizeCursor);
@@ -564,6 +576,8 @@ ScopeCuePointComponent::ScopeCuePointComponent(ScopeControlComponent* o,
 	
 	owner->addPointLabel(cueData.label = new ScopeCuePointLabel(this));
 	cueData.label->setColour(Label::textColourId, Colour(cueData.textColour.get32bitColour()));
+	cueData.label->setColour(Label::backgroundColourId, Colour(cueData.textColour.get32bitColour()).withAlpha(0.5f));
+
 	cueData.label->addListener(this);
 }
 
@@ -593,7 +607,7 @@ void ScopeCuePointComponent::checkPosition()
 
 void ScopeCuePointComponent::paint(Graphics& g)
 {	
-	g.setColour(Colour(cueData.lineColour.get32bitColour())); // could use a virtual function to get this...
+	g.setColour(Colour(cueData.lineColour.get32bitColour())); 
 	g.drawVerticalLine(1, 0, getHeight());
 }
 
@@ -728,6 +742,7 @@ void ScopeCuePointComponent::setColours(RGBAColour const& lineColour, RGBAColour
 	if(cueData.label != 0)
 	{
 		cueData.label->setColour(Label::textColourId, Colour(cueData.textColour.get32bitColour()));
+		cueData.label->setColour(Label::backgroundColourId, Colour(cueData.textColour.get32bitColour()).withAlpha(0.5f));
 	}
 
 	repaint();
@@ -737,18 +752,18 @@ void ScopeCuePointComponent::swapCuePoints(Component::SafePointer<ScopeCuePointC
 										   Component::SafePointer<ScopeCuePointComponent> &cue2)
 {	
 	// swap data
-	swapVariables(cue1->cueData, cue2->cueData);
 	swapVariables(cue1, cue2);
-	
+	swapVariables(cue1->cueData, cue2->cueData);
+
 	// check labels
 	cue1->setLabelPosition();
 	cue2->setLabelPosition();
 	
 	// force update label text after swap
-	Text label1 = cue1->getLabel();
-	Text label2 = cue2->getLabel();
-	cue1->setLabel(label2);
-	cue2->setLabel(label1);
+//	Text label1 = cue1->getLabel();
+//	Text label2 = cue2->getLabel();
+//	cue1->setLabel(label2);
+//	cue2->setLabel(label1);
 	
 	// check cue colour is correct
 	cue1->repaint();
