@@ -92,6 +92,7 @@ public:
 	static Text withSize(const int size, const bool zeroData = false) throw();	
 	static Text newClear(const int size) throw();
 	static Text fromValue(const int num) throw();
+	static Text fromValue(const float num) throw();
 
 	Text& operator= (CharArray const& other) throw();
 	
@@ -125,6 +126,10 @@ public:
 	
 		
 };
+
+Text operator+ (const char* text1, Text const& text2) throw();
+Text operator+ (const wchar_t* text1, Text const& text2) throw();
+
 
 //typedef NumericalArray<wchar_t>			UnicodeArray;
 //typedef UnicodeArray UnicodeText;

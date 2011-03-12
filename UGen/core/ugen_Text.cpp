@@ -111,6 +111,16 @@ Text Text::fromValue(const int num) throw()
 	return buf;
 }
 
+Text Text::fromValue(const float num) throw()
+{
+	const int size = 64;
+	char buf[size];
+	
+	snprintf(buf, size, "%f", num);
+	
+	return buf;
+}
+
 Text& Text::operator= (CharArray const& other) throw()
 {
 	return operator= (static_cast<Text const&> (other) );
@@ -119,6 +129,16 @@ Text& Text::operator= (CharArray const& other) throw()
 Text Text::operator+ (Text const& rightOperand) const throw()
 {
 	return operator<< (rightOperand);
+}
+
+Text operator+ (const char* text1, Text const& text2) throw()
+{
+	return Text(text1) + text2;
+}
+
+Text operator+ (const wchar_t* text1, Text const& text2) throw()
+{
+	return Text(text1) + text2;
 }
 
 Text Text::offset(Text const& rightOperand) const throw()

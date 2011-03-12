@@ -446,9 +446,8 @@ void ScopeComponent::paintChannelLabel(Graphics& g, Text const& label, const int
 	}
 }
 
-ScopeCuePointLabel::ScopeCuePointLabel(ScopeCuePointComponent *o, 
-									   String const& text)
-:	Label("ScopeControlLabel", text),
+ScopeCuePointLabel::ScopeCuePointLabel(ScopeCuePointComponent *o)
+:	Label("ScopeControlLabel"),
 	owner(o)
 {
 	setMouseCursor(MouseCursor::PointingHandCursor);
@@ -574,11 +573,13 @@ ScopeCuePointComponent::ScopeCuePointComponent(ScopeControlComponent* o,
 	cueData.textColour = owner->getColour(ScopeControlComponent::CuePointTextColour);
 	cueData.lineColour = owner->getColour(ScopeControlComponent::CuePointColour);
 	
-	owner->addPointLabel(cueData.label = new ScopeCuePointLabel(this));
-	cueData.label->setColour(Label::textColourId, Colour(cueData.textColour.get32bitColour()));
-	cueData.label->setColour(Label::backgroundColourId, Colour(cueData.textColour.get32bitColour()).withAlpha(0.5f));
+	owner->addPointLabel(label = new ScopeCuePointLabel(this));
+	setLabel(cueData.cuePoint.getLabel());
+	
+	label->setColour(Label::textColourId, Colour(cueData.textColour.get32bitColour()));
+	label->setColour(Label::backgroundColourId, Colour(cueData.textColour.get32bitColour()).withAlpha(0.5f));
 
-	cueData.label->addListener(this);
+	label->addListener(this);
 }
 
 ScopeCuePointComponent::~ScopeCuePointComponent()
@@ -586,10 +587,10 @@ ScopeCuePointComponent::~ScopeCuePointComponent()
 	if(owner != 0)
 	{
 		owner->removeCuePoint(cueData.cuePoint);
-		owner->removePointLabel(cueData.label);
+		owner->removePointLabel(label);
 	}
 		
-	cueData.label.deleteAndZero();
+	label.deleteAndZero();
 }
 
 void ScopeCuePointComponent::setHeight(const int height)
@@ -628,17 +629,14 @@ void ScopeCuePointComponent::mouseDown (const MouseEvent& e)
 	
 	if(!beingDragged && e.mods.isPopupMenu())
 	{
-		if(cueData.label != 0)
+		const Text& text = cueData.cuePoint.getLabel();
+		
+		if(text.length() < 1)
 		{
-			Text label = getLabel();
-			
-			if(label.length() < 1)
-			{
-				setLabel(" ");
-			}
-			
-			cueData.label->showEditor();
+			setLabel(" ");
 		}
+		
+		label->showEditor();
 	}
 	else if(e.mods.isAltDown())
 	{
@@ -697,11 +695,12 @@ void ScopeCuePointComponent::moved()
 	owner->avoidPointLabelCollisions();
 }
 
-void ScopeCuePointComponent::setLabelPosition()
+void ScopeCuePointComponent::setLabelPosition(const bool checkLabel)
 {
-	if(cueData.label != 0 && owner != 0)
+	if(label != 0 && owner != 0)
 	{
-		cueData.label->checkPosition();
+		label->checkPosition();
+		if(checkLabel) label->setText(getLabel(), false);
 	}	
 }
 
@@ -712,15 +711,15 @@ const Text& ScopeCuePointComponent::getLabel() const
 
 void ScopeCuePointComponent::setLabel(Text const& text)
 {
-	if(cueData.label != 0)
+	if(label != 0)
 	{
-		const Font& font = cueData.label->getFont();
+		const Font& font = label->getFont();
 		
 		int w = font.getStringWidth((const char*)text) + 10;
 		int h = font.getHeight();
 		
-		cueData.label->setSize(w,h);
-		cueData.label->setText((const char*)text, false);
+		label->setSize(w,h);
+		label->setText((const char*)text, false);
 	}
 	
 	cueData.cuePoint.getLabel() = text;
@@ -728,9 +727,9 @@ void ScopeCuePointComponent::setLabel(Text const& text)
 
 void ScopeCuePointComponent::labelTextChanged (Label* labelThatHasChanged)
 {
-	if(labelThatHasChanged == cueData.label)
+	if(labelThatHasChanged == label)
 	{
-		setLabel(cueData.label->getText().trim());
+		setLabel(label->getText().trim());
 	}
 }
 
@@ -739,10 +738,10 @@ void ScopeCuePointComponent::setColours(RGBAColour const& lineColour, RGBAColour
 	cueData.lineColour = lineColour;
 	cueData.textColour = textColour;
 	
-	if(cueData.label != 0)
+	if(label != 0)
 	{
-		cueData.label->setColour(Label::textColourId, Colour(cueData.textColour.get32bitColour()));
-		cueData.label->setColour(Label::backgroundColourId, Colour(cueData.textColour.get32bitColour()).withAlpha(0.5f));
+		label->setColour(Label::textColourId, Colour(cueData.textColour.get32bitColour()));
+		label->setColour(Label::backgroundColourId, Colour(cueData.textColour.get32bitColour()).withAlpha(0.5f));
 	}
 
 	repaint();
@@ -755,16 +754,10 @@ void ScopeCuePointComponent::swapCuePoints(Component::SafePointer<ScopeCuePointC
 	swapVariables(cue1, cue2);
 	swapVariables(cue1->cueData, cue2->cueData);
 
-	// check labels
-	cue1->setLabelPosition();
-	cue2->setLabelPosition();
-	
-	// force update label text after swap
-//	Text label1 = cue1->getLabel();
-//	Text label2 = cue2->getLabel();
-//	cue1->setLabel(label2);
-//	cue2->setLabel(label1);
-	
+	// check label position and update text
+	cue1->setLabelPosition(true);
+	cue2->setLabelPosition(true);
+		
 	// check cue colour is correct
 	cue1->repaint();
 	cue2->repaint();
@@ -911,7 +904,9 @@ ScopeControlComponent::ScopeControlComponent(ScopeStyles style, DisplayOptions o
 	scopeInsert(0),
 	scopeSelection(0),
 	draggingCuePoint(0),
-	maxSize(0)
+	maxSize(0),
+	defaultCueLabel("Marker"),
+	defaultCueLabelNumber(1)
 {
 	controlColours[CuePointColour]			= RGBAColour(1.0, 1.0, 0.0, 1.0);
 	controlColours[CuePointTextColour]		= RGBAColour(1.0, 1.0, 0.0, 1.0);
@@ -961,7 +956,10 @@ RGBAColour& ScopeControlComponent::getColour(ControlColours colour)
 
 void ScopeControlComponent::setMetaData(MetaData const& newMetaData)
 {
+	// clear current meta data
 	clearCuePoints();
+	
+	// now iterate through all the metadata adding the part we display
 	
 	const CuePointArray& cuePoints = newMetaData.cuePoints;
 	
@@ -969,8 +967,13 @@ void ScopeControlComponent::setMetaData(MetaData const& newMetaData)
 	{
 		const CuePoint& cuePoint = cuePoints[i];
 		
-		addCuePoint(cuePoint);//cuePoint.getSampleOffset(), cuePoint.getLabel());
+		addCuePoint(cuePoint, false);
 	}
+	
+	// then take a reference of the source meta data
+	metaData = newMetaData;
+	
+	// this should then stay in sync with the displayed data
 }
 
 void ScopeControlComponent::resized()
@@ -1042,6 +1045,7 @@ void ScopeControlComponent::mouseDown(const MouseEvent& e)
 	{
 		CuePoint cuePoint;
 		cuePoint.getSampleOffset() = offset;
+		cuePoint.getLabel() = defaultCueLabel + " " + Text::fromValue(defaultCueLabelNumber++);
 		draggingCuePoint = addCuePoint(cuePoint);
 	}
 	else
@@ -1232,13 +1236,18 @@ void ScopeControlComponent::setCuePoint(const int index, const int offset)
 	}
 }
 
-ScopeCuePointComponent* ScopeControlComponent::addCuePoint(CuePoint const& cuePoint)//const double offset, Text const& label)
+ScopeCuePointComponent* ScopeControlComponent::addCuePoint(CuePoint const& cuePoint, const bool addToMetaData)
 {
 	ScopeCuePointComponent* cuePointComponent;
 	addAndMakeVisible(cuePointComponent = new ScopeCuePointComponent(this, 0, cuePoint, true));
-	if(cuePoint.getLabel().length() > 0) cuePointComponent->setLabel(cuePoint.getLabel());
 	scopeCuePoints.add(cuePointComponent);
 	cuePointComponent->setHeight(getHeight());
+	
+	if(addToMetaData) 
+	{
+		metaData.cuePoints.add(cuePoint);
+	}
+	
 	return cuePointComponent;
 }
 
