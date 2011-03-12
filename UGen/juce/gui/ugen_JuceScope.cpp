@@ -446,13 +446,16 @@ void ScopeComponent::paintChannelLabel(Graphics& g, Text const& label, const int
 	}
 }
 
-ScopeCuePointLabel::ScopeCuePointLabel(ScopeCuePointComponent *o, String const& text)
+ScopeCuePointLabel::ScopeCuePointLabel(ScopeCuePointComponent *o, 
+									   String const& text)
 :	Label("ScopeControlLabel", text),
 	owner(o)
 {
 	setMouseCursor(MouseCursor::PointingHandCursor);
 	setFont(11);
 	setEditable(false, true, true);
+	
+	//setColour(Label::backgroundColourId, Colour(0.5f,0.5f,0.5f,0.5f));
 }
 
 TextEditor* ScopeCuePointLabel::createEditorComponent()
@@ -501,17 +504,61 @@ int ScopeCuePointLabel::getCuePosition()
 	}
 }
 
+void ScopeCuePointLabel::checkPosition()
+{
+	const int moveCloser = 3;
+	int labelWidth = getWidth();
+	int position = getCuePosition();		
+	int width = getParentWidth();
+	
+	if(doesPreferToAttachOnLeft())
+	{
+		if((position + labelWidth - 2) > width)
+		{
+			setTopRightPosition(position+moveCloser, 0);
+		}
+		else
+		{
+			setTopLeftPosition(position-moveCloser, 0);
+		}
+	}
+	else
+	{
+		if((position - labelWidth + 2) >= 0)
+		{
+			setTopRightPosition(position+moveCloser, 0);
+		}
+		else
+		{
+			setTopLeftPosition(position-moveCloser, 0);
+		}			
+	}	
+}
+
+bool ScopeCuePointLabel::doesPreferToAttachOnLeft() const
+{
+	if(owner != 0)
+	{
+		return owner->doesLabelPreferToAttachOnLeft();
+	}
+	
+	return true;
+}
+
 ScopeCuePointComponent::ScopeCuePointComponent(ScopeControlComponent* o, 
 											   ScopeRegionComponent* r,
-											   const double initialOffset,
-											   const bool createdFromMouseClick)
+											   CuePoint const& cuePointToUse, //const double initialOffset,
+											   const bool createdFromMouseClick,
+											   const bool labelPrefersToAttachOnLeft)
 :	owner(o),
 	region(r),
-	offsetSamples(initialOffset),
+	//offsetSamples(initialOffset),
 	beingDragged(createdFromMouseClick)
 {
 	setMouseCursor(MouseCursor::LeftRightResizeCursor);
 	
+	cueData.cuePoint = cuePointToUse;
+	cueData.labelPrefersToAttachOnLeft = labelPrefersToAttachOnLeft;
 	cueData.textColour = owner->getColour(ScopeControlComponent::CuePointTextColour);
 	cueData.lineColour = owner->getColour(ScopeControlComponent::CuePointColour);
 	
@@ -524,6 +571,7 @@ ScopeCuePointComponent::~ScopeCuePointComponent()
 {
 	if(owner != 0)
 	{
+		owner->removeCuePoint(cueData.cuePoint);
 		owner->removePointLabel(cueData.label);
 	}
 		
@@ -539,7 +587,7 @@ void ScopeCuePointComponent::setHeight(const int height)
 
 void ScopeCuePointComponent::checkPosition()
 {	
-	int x = owner->samplesToPixels(offsetSamples);
+	int x = owner->samplesToPixels(cueData.cuePoint.getSampleOffset());
 	setTopLeftPosition(x-1, 0);
 }
 
@@ -549,15 +597,15 @@ void ScopeCuePointComponent::paint(Graphics& g)
 	g.drawVerticalLine(1, 0, getHeight());
 }
 
-void ScopeCuePointComponent::setSampleOffset(const double newOffsetSamples)
+void ScopeCuePointComponent::setSampleOffset(const int newOffsetSamples)
 {
-	offsetSamples = newOffsetSamples;
+	cueData.cuePoint.getSampleOffset() = newOffsetSamples;
 	checkPosition();
 }
 
-double ScopeCuePointComponent::getSampleOffset()
+const int& ScopeCuePointComponent::getSampleOffset()
 {
-	return offsetSamples;
+	return cueData.cuePoint.getSampleOffset();
 }
 
 void ScopeCuePointComponent::mouseDown (const MouseEvent& e)
@@ -577,6 +625,18 @@ void ScopeCuePointComponent::mouseDown (const MouseEvent& e)
 			
 			cueData.label->showEditor();
 		}
+	}
+	else if(e.mods.isAltDown())
+	{
+		if(region == 0)
+		{
+			owner->removeCuePoint(this);
+		}
+//		else 
+//		{
+//			owner->removeRegion(region);
+//		}
+
 	}
 	else
 	{
@@ -627,27 +687,13 @@ void ScopeCuePointComponent::setLabelPosition()
 {
 	if(cueData.label != 0 && owner != 0)
 	{
-		int labelWidth = cueData.label->getWidth();
-		int position = getCuePosition();		
-		int width = owner->getWidth();
-		
-		if((position + labelWidth - 2) > width)
-		{
-			cueData.label->setTopRightPosition(position+2, 0);
-		}
-		else
-		{
-			cueData.label->setTopLeftPosition(position-2, 0);
-		}
+		cueData.label->checkPosition();
 	}	
 }
 
-Text ScopeCuePointComponent::getLabel() const
+const Text& ScopeCuePointComponent::getLabel() const
 {
-	if(cueData.label != 0)
-		return cueData.label->getText(false);
-	else
-		return Text::empty;
+	return cueData.cuePoint.getLabel();
 }
 
 void ScopeCuePointComponent::setLabel(Text const& text)
@@ -662,6 +708,8 @@ void ScopeCuePointComponent::setLabel(Text const& text)
 		cueData.label->setSize(w,h);
 		cueData.label->setText((const char*)text, false);
 	}
+	
+	cueData.cuePoint.getLabel() = text;
 }
 
 void ScopeCuePointComponent::labelTextChanged (Label* labelThatHasChanged)
@@ -696,6 +744,12 @@ void ScopeCuePointComponent::swapCuePoints(Component::SafePointer<ScopeCuePointC
 	cue1->setLabelPosition();
 	cue2->setLabelPosition();
 	
+	// force update label text after swap
+	Text label1 = cue1->getLabel();
+	Text label2 = cue2->getLabel();
+	cue1->setLabel(label2);
+	cue2->setLabel(label1);
+	
 	// check cue colour is correct
 	cue1->repaint();
 	cue2->repaint();
@@ -703,7 +757,7 @@ void ScopeCuePointComponent::swapCuePoints(Component::SafePointer<ScopeCuePointC
 
 ScopeInsertComponent::ScopeInsertComponent(ScopeControlComponent* owner, 
 										   ScopeRegionComponent* region)
-:	ScopeCuePointComponent(owner, region)
+:	ScopeCuePointComponent(owner, region, CuePoint())
 {
 	RGBAColour textColour = owner->getColour(ScopeControlComponent::InsertPointTextColour);
 	RGBAColour lineColour = owner->getColour(ScopeControlComponent::InsertPointColour);
@@ -712,8 +766,8 @@ ScopeInsertComponent::ScopeInsertComponent(ScopeControlComponent* owner,
 }
 
 ScopeRegionComponent::ScopeRegionComponent(ScopeControlComponent* o, 
-										   const double initialStart, 
-										   const double initialEnd)
+										   const int initialStart, 
+										   const int initialEnd)
 :	owner(o),
 	fillColour(owner->getColour(ScopeControlComponent::RegionFillColour)),
 	changingBoth(false)
@@ -724,11 +778,15 @@ ScopeRegionComponent::ScopeRegionComponent(ScopeControlComponent* o,
 	RGBAColour endColour = owner->getColour(ScopeControlComponent::RegionEndColour);
 	RGBAColour textColour = owner->getColour(ScopeControlComponent::RegionTextColour);
 
-	owner->addAndMakeVisible(startPoint = new ScopeCuePointComponent(owner, this, initialStart));
+	CuePoint startCue, endCue;
+	startCue.getSampleOffset() = initialStart;
+	endCue.getSampleOffset() = initialEnd;
+	
+	owner->addAndMakeVisible(startPoint = new ScopeCuePointComponent(owner, this, startCue, false, true));
 	startPoint->setLabel("start");
 	startPoint->setColours(startColour, textColour);
 	
-	owner->addAndMakeVisible(endPoint = new ScopeCuePointComponent(owner, this, initialEnd));
+	owner->addAndMakeVisible(endPoint = new ScopeCuePointComponent(owner, this, endCue, false, false));
 	endPoint->setLabel("end");
 	endPoint->setColours(endColour, textColour);
 }
@@ -758,7 +816,7 @@ void ScopeRegionComponent::getRegionPosition(int& start, int& end)
 	}
 }
 
-void ScopeRegionComponent::setRegionOffsets(const double start, const double end)
+void ScopeRegionComponent::setRegionOffsets(const int start, const int end)
 {
 	changingBoth = true;
 	startPoint->setSampleOffset(jmin(start, end));
@@ -767,7 +825,7 @@ void ScopeRegionComponent::setRegionOffsets(const double start, const double end
 	checkPosition();
 }
 
-void ScopeRegionComponent::getRegionOffsets(double& start, double& end)
+void ScopeRegionComponent::getRegionOffsets(int& start, int& end)
 {
 	start = startPoint->getSampleOffset();
 	end = endPoint->getSampleOffset();
@@ -871,6 +929,7 @@ ScopeControlComponent::ScopeControlComponent(ScopeStyles style, DisplayOptions o
 
 ScopeControlComponent::~ScopeControlComponent()
 {
+	clearCuePoints();
 	deleteAllChildren();
 }
 
@@ -887,11 +946,16 @@ RGBAColour& ScopeControlComponent::getColour(ControlColours colour)
 
 void ScopeControlComponent::setMetaData(MetaData const& newMetaData)
 {
-//	lock();
-//	metaData = newMetaData;
-//	unlock();
-//	
-//	updateGUI();
+	clearCuePoints();
+	
+	const CuePointArray& cuePoints = newMetaData.cuePoints;
+	
+	for(int i = 0; i < cuePoints.length(); i++)
+	{
+		const CuePoint& cuePoint = cuePoints[i];
+		
+		addCuePoint(cuePoint);//cuePoint.getSampleOffset(), cuePoint.getLabel());
+	}
 }
 
 void ScopeControlComponent::resized()
@@ -930,17 +994,17 @@ void ScopeControlComponent::resized()
 
 void ScopeControlComponent::mouseDown(const MouseEvent& e)
 {
-	double offset = pixelsToSamples(e.x);
+	int offset = pixelsToSamples(e.x);
 	
 	if(e.mods.isShiftDown())
 	{
 		if(scopeSelection != 0)
 		{
-			double startOffset, endOffset;
+			int startOffset, endOffset;
 			getSelection(startOffset, endOffset);
 			
-			double startDistance = abs(startOffset - offset);
-			double endDistance = abs(endOffset - offset);
+			int startDistance = abs(startOffset - offset);
+			int endDistance = abs(endOffset - offset);
 			
 			if(startDistance < endDistance)
 			{
@@ -961,7 +1025,9 @@ void ScopeControlComponent::mouseDown(const MouseEvent& e)
 	}
 	else if(e.mods.isPopupMenu())
 	{
-		draggingCuePoint = addCuePoint(offset);
+		CuePoint cuePoint;
+		cuePoint.getSampleOffset() = offset;
+		draggingCuePoint = addCuePoint(cuePoint);
 	}
 	else
 	{
@@ -1051,19 +1117,7 @@ void ScopeControlComponent::avoidPointLabelCollisions()
 	for(int i = 0; i < pointLabels.size(); i++)
 	{
 		ScopeCuePointLabel* label = pointLabels[i];
-		
-		int labelWidth = label->getWidth();
-		int position = label->getCuePosition();		
-		int width = getWidth();
-		
-		if((position + labelWidth - 2) > width)
-		{
-			label->setTopRightPosition(position+2, 0);
-		}
-		else
-		{
-			label->setTopLeftPosition(position-2, 0);
-		}
+		label->checkPosition();
 	}
 	
 	int maxY = getHeight();
@@ -1112,7 +1166,7 @@ void ScopeControlComponent::avoidPointLabelCollisions()
 	}
 }
 
-void ScopeControlComponent::setInsertOffset(const double offset)
+void ScopeControlComponent::setInsertOffset(const int offset)
 {
 	if(scopeInsert != 0) 
 	{
@@ -1120,17 +1174,19 @@ void ScopeControlComponent::setInsertOffset(const double offset)
 	}	
 }
 
-double ScopeControlComponent::getInsertOffset()
+const int& ScopeControlComponent::getInsertOffset()
 {
+	static int minusOne = -1;
+	
 	if(scopeInsert != 0) 
 	{
 		return scopeInsert->getSampleOffset();
 	}		
 	
-	return -1.0;
+	return minusOne;
 }
 
-void ScopeControlComponent::setSelection(const double start, const double end)
+void ScopeControlComponent::setSelection(const int start, const int end)
 {
 	if(scopeSelection != 0)
 	{
@@ -1138,7 +1194,7 @@ void ScopeControlComponent::setSelection(const double start, const double end)
 	}
 }
 
-void ScopeControlComponent::getSelection(double& start, double& end)
+void ScopeControlComponent::getSelection(int& start, int& end)
 {
 	if(scopeSelection != 0)
 	{
@@ -1151,7 +1207,7 @@ void ScopeControlComponent::getSelection(double& start, double& end)
 	}
 }
 
-void ScopeControlComponent::setCuePoint(const int index, const double offset)
+void ScopeControlComponent::setCuePoint(const int index, const int offset)
 {
 	ScopeCuePointComponent* cuePoint = scopeCuePoints[index];
 	
@@ -1161,26 +1217,48 @@ void ScopeControlComponent::setCuePoint(const int index, const double offset)
 	}
 }
 
-ScopeCuePointComponent* ScopeControlComponent::addCuePoint(const double offset, Text const& label)
+ScopeCuePointComponent* ScopeControlComponent::addCuePoint(CuePoint const& cuePoint)//const double offset, Text const& label)
 {
-	ScopeCuePointComponent* cuePoint;
-	addAndMakeVisible(cuePoint = new ScopeCuePointComponent(this, 0, offset, true));
-	if(label.length() > 0) cuePoint->setLabel(label);
-	scopeCuePoints.add(cuePoint);
-	cuePoint->setHeight(getHeight());
-	return cuePoint;
+	ScopeCuePointComponent* cuePointComponent;
+	addAndMakeVisible(cuePointComponent = new ScopeCuePointComponent(this, 0, cuePoint, true));
+	if(cuePoint.getLabel().length() > 0) cuePointComponent->setLabel(cuePoint.getLabel());
+	scopeCuePoints.add(cuePointComponent);
+	cuePointComponent->setHeight(getHeight());
+	return cuePointComponent;
 }
 
 void ScopeControlComponent::removeCuePoint(const int index)
 {
-	ScopeCuePointComponent* cuePoint = scopeCuePoints[index];
+	ScopeCuePointComponent* cuePointComponent = scopeCuePoints[index];
+	removeCuePoint(cuePointComponent);
+}
+
+void ScopeControlComponent::removeCuePoint(CuePoint const& cuePoint)
+{
+	if(metaData.cuePoints.contains(cuePoint))
+	{	
+		metaData.cuePoints.removeItem(cuePoint);
+	}
 	
-	if(cuePoint != 0)
+	for(int i = 0; i < scopeCuePoints.size(); i++)
 	{
-		scopeCuePoints.removeValue(cuePoint);
-		removeChildComponent(cuePoint);
-		deleteAndZero(cuePoint);
+		ScopeCuePointComponent* cuePointComponent = scopeCuePoints[i];
+		
+		if(cuePointComponent->getCuePoint() == cuePoint)
+		{
+			removeCuePoint(cuePointComponent);
+		}
 	}	
+}
+
+void ScopeControlComponent::removeCuePoint(ScopeCuePointComponent* cuePointComponent)
+{
+	if(cuePointComponent != 0)
+	{
+		scopeCuePoints.removeValue(cuePointComponent);
+		removeChildComponent(cuePointComponent);
+		deleteAndZero(cuePointComponent);
+	}
 }
 
 void ScopeControlComponent::clearCuePoints()
@@ -1189,7 +1267,7 @@ void ScopeControlComponent::clearCuePoints()
 	
 	while(index--)
 	{
-		removeCuePoint(index);
+		removeCuePoint(scopeCuePoints[index]);
 	}
 }
 

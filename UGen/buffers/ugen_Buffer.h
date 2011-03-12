@@ -93,6 +93,9 @@ public:
 	
 	/** The sample offset into the file of the marker. */
 	int getSampleOffset() const { return getInternal()->sampleOffset; }
+	
+	bool operator== (CuePoint const& other) const throw() { return getInternal() == other.getInternal(); }
+	bool operator!= (CuePoint const& other) const throw() { return getInternal() != other.getInternal(); }
 };
 
 typedef ObjectArray<CuePoint> CuePointArray;

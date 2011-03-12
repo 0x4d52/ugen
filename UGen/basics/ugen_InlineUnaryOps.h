@@ -124,8 +124,10 @@ inline float log2 (const float a) throw()			{	return (float)::log2(a);							}
 inline double log2 (const double a) throw()			{	return ::log2(a);									}
 #endif
 
+inline int neg (const int a) throw()				{	return -a;									}
 inline float neg (const float a) throw()			{	return -a;									}
 inline double neg (const double a) throw()			{	return -a;									}
+inline int abs (const int a) throw()				{	return (a < 0) ? -a : a;					}
 inline float abs (const float a) throw()			{	return fabs(a);								}
 inline double abs (const double a) throw()			{	return ::abs(a);							}
 inline float reciprocal (const float a) throw()		{	return 1.f	/ a;							}
@@ -154,8 +156,10 @@ inline float log10 (const float a) throw()			{	return (float)::log10(a);					}
 inline float exp (const float a) throw()			{	return (float)::exp(a);						}
 //inline double exp (const double a) throw()			{	return ::exp(a);							}
 
+inline int squared(const int a) throw()				{	return a*a;													}
 inline float squared(const float a) throw()			{	return a*a;													}
 inline double squared(const double a) throw()		{	return a*a;													}
+inline int cubed(const int a) throw()				{	return a*a*a;												}
 inline float cubed(const float a) throw()			{	return a*a*a;												}
 inline double cubed(const double a) throw()			{	return a*a*a;												}
 
