@@ -715,7 +715,9 @@ void ScopeCuePointComponent::setLabel(Text const& text)
 	{
 		const Font& font = label->getFont();
 		
-		int w = font.getStringWidth((const char*)text) + 10;
+		int w = font.getStringWidth((const char*)text);
+		if(w > 0) w += 5;
+		
 		int h = font.getHeight();
 		
 		label->setSize(w,h);
@@ -875,8 +877,10 @@ void ScopeRegionComponent::setColours(RGBAColour const& startColour,
 	repaint();
 }
 
-ScopeSelectionComponent::ScopeSelectionComponent(ScopeControlComponent* owner)
-:	ScopeRegionComponent(owner)
+ScopeSelectionComponent::ScopeSelectionComponent(ScopeControlComponent* owner,
+												 const int initialStart, 
+												 const int initialEnd)
+:	ScopeRegionComponent(owner, initialStart, initialEnd)
 {
 	RGBAColour startColour = owner->getColour(ScopeControlComponent::SelectionStartColour);
 	RGBAColour endColour = owner->getColour(ScopeControlComponent::SelectionEndColour);
@@ -886,8 +890,10 @@ ScopeSelectionComponent::ScopeSelectionComponent(ScopeControlComponent* owner)
 	setColours(startColour, endColour, textColour, fillColour);
 }
 
-ScopeLoopComponent::ScopeLoopComponent(ScopeControlComponent* owner)
-:	ScopeRegionComponent(owner)
+ScopeLoopComponent::ScopeLoopComponent(ScopeControlComponent* owner,
+									   const int initialStart, 
+									   const int initialEnd)
+:	ScopeRegionComponent(owner, initialStart, initialEnd)
 {
 	RGBAColour startColour = owner->getColour(ScopeControlComponent::LoopPointStartColour);
 	RGBAColour endColour = owner->getColour(ScopeControlComponent::LoopPointEndColour);
@@ -961,7 +967,7 @@ void ScopeControlComponent::setMetaData(MetaData const& newMetaData)
 	
 	// now iterate through all the metadata adding the part we display
 	
-	const CuePointArray& cuePoints = newMetaData.cuePoints;
+	const CuePointArray& cuePoints = newMetaData.getCuePoints();
 	
 	for(int i = 0; i < cuePoints.length(); i++)
 	{
@@ -1245,7 +1251,7 @@ ScopeCuePointComponent* ScopeControlComponent::addCuePoint(CuePoint const& cuePo
 	
 	if(addToMetaData) 
 	{
-		metaData.cuePoints.add(cuePoint);
+		metaData.getCuePoints().add(cuePoint);
 	}
 	
 	return cuePointComponent;
@@ -1259,9 +1265,9 @@ void ScopeControlComponent::removeCuePoint(const int index)
 
 void ScopeControlComponent::removeCuePoint(CuePoint const& cuePoint)
 {
-	if(metaData.cuePoints.contains(cuePoint))
+	if(metaData.getCuePoints().contains(cuePoint))
 	{	
-		metaData.cuePoints.removeItem(cuePoint);
+		metaData.getCuePoints().removeItem(cuePoint);
 	}
 	
 	for(int i = 0; i < scopeCuePoints.size(); i++)
@@ -1293,6 +1299,31 @@ void ScopeControlComponent::clearCuePoints()
 	{
 		removeCuePoint(scopeCuePoints[index]);
 	}
+}
+
+void ScopeControlComponent::setLoopPoint(const int index, const int start, const int end)
+{
+}
+
+ScopeLoopComponent* ScopeControlComponent::addLoopPoint(LoopPoint const& cuePoint, const bool addToMetaData)
+{
+	return 0;
+}
+
+void ScopeControlComponent::removeLoopPoint(const int index)
+{
+}
+
+void ScopeControlComponent::removeLoopPoint(LoopPoint const& cuePoint)
+{
+}
+
+void ScopeControlComponent::removeLoopPoint(ScopeLoopComponent* loopComponent)
+{
+}
+
+void ScopeControlComponent::clearLoopPoints()
+{
 }
 
 RadialScopeComponent::RadialScopeComponent(ScopeStyles style)

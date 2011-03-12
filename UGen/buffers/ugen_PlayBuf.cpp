@@ -127,7 +127,7 @@ void PlayBufUGenInternal::prepareForBlock(const int actualBlockSize, const unsig
 
 void PlayBufUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {	
-	const int numCuesPoints = metaData.cuePoints.length();
+	const int numCuesPoints = metaData.getNumCuePoints();
 
 	const int blockSize = uGenOutput.getBlockSize();
 	const int bufferSize = buffer_.size();
@@ -239,7 +239,7 @@ void PlayBufUGenInternal::checkMetaDataCuePoints(const double currentPosition,
 												 const int numCuePoints,
 												 const bool forwards) throw()
 {	
-	CuePointArray& cuePoints = metaData.cuePoints;
+	CuePointArray& cuePoints = metaData.getCuePoints();
 	CuePoint* cuePointArray = cuePoints.getArray();
 	
 	if(forwards)
@@ -512,7 +512,7 @@ LoopPointsUGenInternal::LoopPointsUGenInternal(Buffer const& buffer,
 
 void LoopPointsUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
-	const int numCuesPoints = metaData.cuePoints.length();
+	const int numCuesPoints = metaData.getNumCuePoints();
 
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
@@ -608,7 +608,7 @@ void LoopPointsUGenInternal::checkMetaDataCuePoints(const float currentPosition,
 													const int numCuePoints,
 													const bool forwards) throw()
 {	
-	CuePointArray& cuePoints = metaData.cuePoints;
+	CuePointArray& cuePoints = metaData.getCuePoints();
 	CuePoint* cuePointArray = cuePoints.getArray();
 	
 	if(forwards)

@@ -587,7 +587,7 @@ double Buffer::initFromJuceFile(const File& audioFile, int *bits, MetaData* meta
 		
 	if(metaData)
 	{
-		metaData->cuePoints = AudioIOHelper::getCuePoints(audioFormatReader);
+		metaData->getCuePoints() = AudioIOHelper::getCuePoints(audioFormatReader);
 	}
 	
 	delete audioFormatReader;
@@ -683,9 +683,9 @@ bool Buffer::initFromJuceFile(const File& audioFile,
 	AudioSampleBuffer audioSampleBuffer(bufferData, getNumChannels(), size());
 	audioSampleBuffer.writeToAudioWriter(audioFormatWriter, 0, size());
 	
-	if(metaData.cuePoints.length() > 0)
+	if(metaData.getCuePoints().length() > 0)
 	{
-		AudioIOHelper::writeCuePoints(audioFormatWriter, fileOutputStream, metaData.cuePoints);
+		AudioIOHelper::writeCuePoints(audioFormatWriter, fileOutputStream, metaData.getCuePoints());
 	}
 	
 	delete audioFormatWriter;

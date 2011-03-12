@@ -60,7 +60,7 @@ private:
 };
 
 /** Stores cue points or markers for audio files. */
-class CuePoint : SmartPointerContainer<CuePointInternal>
+class CuePoint : public SmartPointerContainer<CuePointInternal>
 {
 public:
 	CuePoint() 
@@ -94,11 +94,124 @@ public:
 	/** The sample offset into the file of the marker. */
 	int getSampleOffset() const { return getInternal()->sampleOffset; }
 	
-	bool operator== (CuePoint const& other) const throw() { return getInternal() == other.getInternal(); }
-	bool operator!= (CuePoint const& other) const throw() { return getInternal() != other.getInternal(); }
+//	bool operator== (CuePoint const& other) const throw() { return getInternal() == other.getInternal(); }
+//	bool operator!= (CuePoint const& other) const throw() { return getInternal() != other.getInternal(); }
 };
 
 typedef ObjectArray<CuePoint> CuePointArray;
+
+class LoopPointInternal : public SmartPointer
+{
+public:
+	LoopPointInternal()
+	:	loopID(-1), type(-1)
+	{
+	}
+	
+	friend class LoopPoint;
+	
+private:
+	CuePoint startPoint, endPoint;
+	int loopID; // probably the same as the startPoint ID
+	int type;
+};
+
+class LoopPoint : public SmartPointerContainer<LoopPointInternal>
+{
+public:
+	LoopPoint() 
+	:	SmartPointerContainer<LoopPointInternal> (new LoopPointInternal())
+	{
+	}
+	
+	/** ID for the loop. */
+	int& getID() { return getInternal()->loopID; }
+	
+	/** ID for the loop. */
+	int getID() const { return getInternal()->loopID; }	
+	
+	CuePoint& getStartPoint() { return getInternal()->startPoint; }
+	const CuePoint& getStart() const { return getInternal()->startPoint; }
+	CuePoint& getEndPoint() { return getInternal()->endPoint; }
+	const CuePoint& getEndPoint() const { return getInternal()->endPoint; }
+	
+	enum LoopType
+	{
+		NoLoop,		// AIFF(0)
+		Forward,	// WAV(0), AIFF(1)
+		PingPong,	// WAV(1), AIFF(2)
+		Reverse		// WAV(2)
+	};
+	
+	int& getType() { return getInternal()->type; }
+	int getType() const { return getInternal()->type; }
+	
+//	bool operator== (LoopPoint const& other) const throw() { return getInternal() == other.getInternal(); }
+//	bool operator!= (LoopPoint const& other) const throw() { return getInternal() != other.getInternal(); }
+};
+
+typedef ObjectArray<LoopPoint> LoopPointArray;
+
+class RegionInternal : public SmartPointer
+{
+public:
+	RegionInternal()
+	:	regionID(-1), repeats(-1)
+	{
+	}
+	
+	friend class Region;
+	
+private:
+	CuePoint startPoint, endPoint;
+	int regionID; // probably the same as the startPoint ID
+	int repeats;  //
+};
+
+class Region : public SmartPointerContainer<RegionInternal>
+{
+public:
+	Region() 
+	:	SmartPointerContainer<RegionInternal> (new RegionInternal())
+	{
+	}
+	
+	/** ID for the loop. */
+	int& getID() { return getInternal()->regionID; }
+	
+	/** ID for the loop. */
+	int getID() const { return getInternal()->regionID; }	
+	
+	CuePoint& getStartPoint() { return getInternal()->startPoint; }
+	const CuePoint& getStart() const { return getInternal()->startPoint; }
+	CuePoint& getEndPoint() { return getInternal()->endPoint; }
+	const CuePoint& getEndPoint() const { return getInternal()->endPoint; }
+	
+	
+	int& getRepeats() { return getInternal()->repeats; }
+	int getRepeats() const { return getInternal()->repeats; }
+	
+//	bool operator== (Region const& other) const throw() { return getInternal() == other.getInternal(); }
+//	bool operator!= (Region const& other) const throw() { return getInternal() != other.getInternal(); }
+};
+
+typedef ObjectArray<Region> RegionArray;
+
+class MetaDataInternal : public SmartPointer
+{
+public:
+	MetaDataInternal()
+	{
+	}
+	
+	friend class MetaData;
+	
+private:
+	CuePointArray cuePoints;
+	LoopPointArray loopPoints; // NB maximum size 2 for AIFF
+	RegionArray regions;	
+};
+
 
 /** Meta data for audio files.
  This stores a collection of meta data for audio files including a list of
@@ -106,21 +219,43 @@ typedef ObjectArray<CuePoint> CuePointArray;
  to audio files. This is also used in the MetaDataSender and MetaDataReceiver
  to report these cue point and other actions during audio playback (e.g.,
  a loop has occurred). */
-class MetaData
+class MetaData : public SmartPointerContainer<MetaDataInternal>
 {
 public:
+	MetaData() 
+	:	SmartPointerContainer<MetaDataInternal> (new MetaDataInternal())
+	{
+	}
+	
 	enum Type 
 	{
 		ReachedStart,
 		ReachedEnd,
 		CuePointInfo,
-//		LoopPointInfo,
-//		RegionInfo,
+		LoopPointInfo,
+		RegionInfo,
 		
 		Count
 	};
 	
-	CuePointArray cuePoints;
+	int getNumCuePoints() const { return getInternal()->cuePoints.length(); }
+	CuePointArray& getCuePoints() { return getInternal()->cuePoints; }
+	const CuePointArray& getCuePoints() const { return getInternal()->cuePoints; }
+	CuePoint& getCuePoint(const int index) { return getInternal()->cuePoints[index]; }
+	const CuePoint& getCuePoint(const int index) const { return getInternal()->cuePoints[index]; }
+	
+	int getNumLoopPoints() const { return getInternal()->loopPoints.length(); }
+	LoopPointArray& getLoopPoints() { return getInternal()->loopPoints; }
+	const LoopPointArray& getLoopPoints() const { return getInternal()->loopPoints; }
+	LoopPoint& getLoopPoint(const int index) { return getInternal()->loopPoints[index]; }
+	const LoopPoint& getLoopPoint(const int index) const { return getInternal()->loopPoints[index]; }
+
+	int getNumRegions() const { return getInternal()->regions.length(); }
+	RegionArray& getRegions() { return getInternal()->regions; }		
+	const RegionArray& getRegions() const { return getInternal()->regions; }		
+	Region& getRegion(const int index) { return getInternal()->regions[index]; }		
+	const Region& getRegion(const int index) const { return getInternal()->regions[index]; }		
+
 };
 
 
