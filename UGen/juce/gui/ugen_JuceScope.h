@@ -88,11 +88,11 @@ class ScopeControlComponent;
 class ScopeRegionComponent;
 class ScopeCuePointComponent;
 
-class ScopeControlLabel : public Label
+class ScopeCuePointLabel : public Label
 {
 public:
-	ScopeControlLabel(ScopeCuePointComponent *owner,
-					  String const& text = String::empty);
+	ScopeCuePointLabel(ScopeCuePointComponent *owner,
+					   String const& text = String::empty);
 	TextEditor* createEditorComponent();
 	void mouseDown (const MouseEvent& e);	
 	void mouseDrag (const MouseEvent& e);
@@ -105,7 +105,7 @@ private:
 struct CuePointData
 {
 	RGBAColour lineColour, textColour;
-	Component::SafePointer<ScopeControlLabel> label;
+	Component::SafePointer<ScopeCuePointLabel> label;
 };
 
 class ScopeCuePointComponent :	public Component,
@@ -249,8 +249,8 @@ public:
 	int pixelsToSamples(const int pixels);
 	int samplesToPixels(const int samples);
 	
-	void addPointLabel(ScopeControlLabel* label);
-	void removePointLabel(ScopeControlLabel* label);
+	void addPointLabel(ScopeCuePointLabel* label);
+	void removePointLabel(ScopeCuePointLabel* label);
 	void avoidPointLabelCollisions();
 	
 	void setInsertOffset(const double offset);
@@ -268,7 +268,7 @@ private:
 	DisplayOptions options;
 	MetaData metaData;
 	RGBAColour controlColours[NumControlColours];
-	Array<ScopeControlLabel*> pointLabels;
+	Array<ScopeCuePointLabel*> pointLabels;
 	Array<ScopeCuePointComponent*> scopeCuePoints;
 	Array<ScopeRegionComponent*> scopeRegions;
 	Array<ScopeLoopComponent*> scopeLoops;
