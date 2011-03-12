@@ -97,11 +97,16 @@ public:
 	void mouseDown (const MouseEvent& e);	
 	void mouseDrag (const MouseEvent& e);
 	void mouseUp (const MouseEvent& e);
+	
+	void editorShown (TextEditor* editorComponent);
+    void editorAboutToBeHidden (TextEditor* editorComponent);
+	
 	int getCuePosition();
 	void checkPosition();
 	bool doesPreferToAttachOnLeft() const;
 private:
 	Component::SafePointer<ScopeCuePointComponent> owner;
+	int oldWidth, oldHeight;
 };
 
 struct CuePointData
@@ -118,7 +123,7 @@ class ScopeCuePointComponent :	public Component,
 public:
 	ScopeCuePointComponent(ScopeControlComponent* owner, 
 						   ScopeRegionComponent* region, 
-						   CuePoint const& cuePoint, //const double initialOffset = 0.0,
+						   CuePoint const& cuePoint,
 						   const bool createdFromMouseClick = false,
 						   const bool labelPrefersToAttachOnLeft = true);
 	~ScopeCuePointComponent();
@@ -267,7 +272,7 @@ public:
 	void getSelection(int& start, int& end);
 
 	void setCuePoint(const int index, const int offset);
-	ScopeCuePointComponent* addCuePoint(CuePoint const& cuePoint);//const double offset, Text const& label = Text::empty);
+	ScopeCuePointComponent* addCuePoint(CuePoint const& cuePoint);
 	void removeCuePoint(const int index);
 	void removeCuePoint(CuePoint const& cuePoint);
 	void removeCuePoint(ScopeCuePointComponent* cuePointComponent);
