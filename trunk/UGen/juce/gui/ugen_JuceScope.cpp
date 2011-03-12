@@ -446,9 +446,11 @@ void ScopeComponent::paintChannelLabel(Graphics& g, Text const& label, const int
 	}
 }
 
-ScopeControlLabel::ScopeControlLabel(String const& text)
-:	Label("ScopeControlLabel", text)
+ScopeControlLabel::ScopeControlLabel(ScopeCuePointComponent *o, String const& text)
+:	Label("ScopeControlLabel", text),
+	owner(o)
 {
+	setMouseCursor(MouseCursor::PointingHandCursor);
 	setFont(11);
 	setEditable(false, true, true);
 }
@@ -457,23 +459,63 @@ TextEditor* ScopeControlLabel::createEditorComponent()
 {
 	TextEditor* editor = Label::createEditorComponent();
 	editor->setColour(TextEditor::textColourId, findColour(Label::textColourId));
+	editor->setColour(TextEditor::highlightedTextColourId, findColour(Label::textColourId));
 	return editor;
+}
+
+void ScopeControlLabel::mouseDown(const MouseEvent& e)
+{
+	if(owner != 0)
+	{
+		owner->mouseEnter(e.getEventRelativeTo(owner));
+		owner->mouseDown(e.getEventRelativeTo(owner));
+	}
+}
+
+void ScopeControlLabel::mouseDrag(const MouseEvent& e)
+{
+	if(owner != 0)
+	{
+		owner->mouseDrag(e.getEventRelativeTo(owner));
+	}	
+}
+
+void ScopeControlLabel::mouseUp(const MouseEvent& e)
+{
+	if(owner != 0)
+	{
+		owner->mouseUp(e.getEventRelativeTo(owner));
+		owner->mouseExit(e.getEventRelativeTo(owner));
+	}	
+}
+
+int ScopeControlLabel::getCuePosition()
+{
+	if(owner != 0)
+	{
+		return owner->getCuePosition();
+	}	
+	else
+	{
+		return -1;
+	}
 }
 
 ScopeCuePointComponent::ScopeCuePointComponent(ScopeControlComponent* o, 
 											   ScopeRegionComponent* r,
-											   const double initialOffset)
+											   const double initialOffset,
+											   const bool createdFromMouseClick)
 :	owner(o),
 	region(r),
 	offsetSamples(initialOffset),
-	beingDragged(false)
+	beingDragged(createdFromMouseClick)
 {
 	setMouseCursor(MouseCursor::LeftRightResizeCursor);
 	
 	cueData.textColour = owner->getColour(ScopeControlComponent::CuePointTextColour);
 	cueData.lineColour = owner->getColour(ScopeControlComponent::CuePointColour);
 	
-	owner->addPointLabel(cueData.label = new ScopeControlLabel());
+	owner->addPointLabel(cueData.label = new ScopeControlLabel(this));
 	cueData.label->setColour(Label::textColourId, Colour(cueData.textColour.get32bitColour()));
 	cueData.label->addListener(this);
 }
@@ -513,18 +555,45 @@ void ScopeCuePointComponent::setSampleOffset(const double newOffsetSamples)
 	checkPosition();
 }
 
+double ScopeCuePointComponent::getSampleOffset()
+{
+	return offsetSamples;
+}
+
 void ScopeCuePointComponent::mouseDown (const MouseEvent& e)
 {
 	// temp - need to do this manually probably
-	dragger.startDraggingComponent (this, e);
-	beingDragged = true;
+	
+	if(!beingDragged && e.mods.isPopupMenu())
+	{
+		if(cueData.label != 0)
+		{
+			Text label = getLabel();
+			
+			if(label.length() < 1)
+			{
+				setLabel(" ");
+			}
+			
+			cueData.label->showEditor();
+		}
+	}
+	else
+	{
+		dragger.startDraggingComponent (this, e);
+		beingDragged = true;
+	}
 }
 
 void ScopeCuePointComponent::mouseDrag (const MouseEvent& e)
 {
 	// temp - need to do this manually probably
-	constrain.setMinimumOnscreenAmounts(0xffffff, 0, 0xffffff, 0);
-	dragger.dragComponent (this, e, &constrain);
+	
+	if(beingDragged)
+	{
+		constrain.setMinimumOnscreenAmounts(0xffffff, 0, 0xffffff, 0);
+		dragger.dragComponent (this, e, &constrain);
+	}
 }
 
 void ScopeCuePointComponent::mouseUp (const MouseEvent& e)
@@ -537,7 +606,11 @@ void ScopeCuePointComponent::moved()
 	if(beingDragged)
 	{
 		int x = getX()+1;		
-		offsetSamples = owner->pixelsToSamples(x);
+		
+		int maxSize = owner->getMaxSize() - 1;
+		if(maxSize <= 0) maxSize = 0x7fffffff;
+		
+		setSampleOffset(jlimit(0, maxSize, owner->pixelsToSamples(x)));
 	}
 	
 	if(region != 0)
@@ -548,20 +621,33 @@ void ScopeCuePointComponent::moved()
 	
 	setLabelPosition();
 	owner->avoidPointLabelCollisions();
-
 }
 
 void ScopeCuePointComponent::setLabelPosition()
 {
-	if(cueData.label != 0)
+	if(cueData.label != 0 && owner != 0)
 	{
-		cueData.label->setTopLeftPosition(getX()-2, getY());
+		int labelWidth = cueData.label->getWidth();
+		int position = getCuePosition();		
+		int width = owner->getWidth();
+		
+		if((position + labelWidth - 2) > width)
+		{
+			cueData.label->setTopRightPosition(position+2, 0);
+		}
+		else
+		{
+			cueData.label->setTopLeftPosition(position-2, 0);
+		}
 	}	
 }
 
 Text ScopeCuePointComponent::getLabel() const
 {
-	return cueData.label->getText(false);
+	if(cueData.label != 0)
+		return cueData.label->getText(false);
+	else
+		return Text::empty;
 }
 
 void ScopeCuePointComponent::setLabel(Text const& text)
@@ -582,7 +668,7 @@ void ScopeCuePointComponent::labelTextChanged (Label* labelThatHasChanged)
 {
 	if(labelThatHasChanged == cueData.label)
 	{
-		setLabel(cueData.label->getText());
+		setLabel(cueData.label->getText().trim());
 	}
 }
 
@@ -681,6 +767,12 @@ void ScopeRegionComponent::setRegionOffsets(const double start, const double end
 	checkPosition();
 }
 
+void ScopeRegionComponent::getRegionOffsets(double& start, double& end)
+{
+	start = startPoint->getSampleOffset();
+	end = endPoint->getSampleOffset();
+}
+
 void ScopeRegionComponent::checkPosition()
 {
 	if(!changingBoth)
@@ -745,7 +837,8 @@ ScopeControlComponent::ScopeControlComponent(ScopeStyles style, DisplayOptions o
 	options(optionsToUse),
 	scopeInsert(0),
 	scopeSelection(0),
-	draggingCuePoint(0)
+	draggingCuePoint(0),
+	maxSize(0)
 {
 	controlColours[CuePointColour]			= RGBAColour(1.0, 1.0, 0.0, 1.0);
 	controlColours[CuePointTextColour]		= RGBAColour(1.0, 1.0, 0.0, 1.0);
@@ -779,6 +872,12 @@ ScopeControlComponent::ScopeControlComponent(ScopeStyles style, DisplayOptions o
 ScopeControlComponent::~ScopeControlComponent()
 {
 	deleteAllChildren();
+}
+
+void ScopeControlComponent::setAudioBuffer(Buffer const& audioBufferToUse, const double offset, const int fftSizeOfSource)
+{
+	ScopeComponent::setAudioBuffer(audioBufferToUse, offset, fftSizeOfSource);
+	resized();
 }
 
 RGBAColour& ScopeControlComponent::getColour(ControlColours colour)
@@ -825,22 +924,58 @@ void ScopeControlComponent::resized()
 	{
 		scopeLoops[i]->setHeight(height);
 	}
+	
+	avoidPointLabelCollisions();
 }
 
 void ScopeControlComponent::mouseDown(const MouseEvent& e)
 {
-	int offset = pixelsToSamples(e.x);
+	double offset = pixelsToSamples(e.x);
 	
-	setInsertOffset(offset);
-	setSelection(offset, offset);
-	
-	if(scopeSelection != 0)
+	if(e.mods.isShiftDown())
 	{
-		draggingCuePoint = scopeSelection->getEndPoint();
+		if(scopeSelection != 0)
+		{
+			double startOffset, endOffset;
+			getSelection(startOffset, endOffset);
+			
+			double startDistance = abs(startOffset - offset);
+			double endDistance = abs(endOffset - offset);
+			
+			if(startDistance < endDistance)
+			{
+				setSelection(offset, endOffset);
+				draggingCuePoint = scopeSelection->getStartPoint();
+			}
+			else
+			{
+				setSelection(startOffset, offset);
+				draggingCuePoint = scopeSelection->getEndPoint();
+			}
+		}
+		else if(scopeInsert != 0)
+		{
+			setInsertOffset(offset);
+			draggingCuePoint = scopeInsert;
+		}
 	}
-	else if(scopeInsert != 0)
+	else if(e.mods.isPopupMenu())
 	{
-		draggingCuePoint = scopeInsert;
+		draggingCuePoint = addCuePoint(offset);
+	}
+	else
+	{
+		setInsertOffset(offset);
+		setSelection(offset, offset);
+		
+		if(scopeSelection != 0)
+		{
+			draggingCuePoint = scopeSelection->getEndPoint();
+		}
+		else if(scopeInsert != 0)
+		{
+			draggingCuePoint = scopeInsert;
+		}
 	}
 	
 	if(draggingCuePoint != 0)
@@ -866,6 +1001,18 @@ void ScopeControlComponent::mouseUp(const MouseEvent& e)
 		draggingCuePoint->mouseExit(e.getEventRelativeTo(draggingCuePoint));
 		draggingCuePoint = 0;
 	}	
+}
+
+void ScopeControlComponent::setMaxSize(const int newSize)
+{
+	maxSize = newSize;
+	
+	/// check if any elements are outside this limit?
+}
+
+int ScopeControlComponent::getMaxSize()
+{
+	return maxSize;
 }
 
 int ScopeControlComponent::pixelsToSamples(const int pixels)
@@ -904,8 +1051,22 @@ void ScopeControlComponent::avoidPointLabelCollisions()
 	for(int i = 0; i < pointLabels.size(); i++)
 	{
 		ScopeControlLabel* label = pointLabels[i];
-		label->setTopLeftPosition(label->getX(), 0);
+		
+		int labelWidth = label->getWidth();
+		int position = label->getCuePosition();		
+		int width = getWidth();
+		
+		if((position + labelWidth - 2) > width)
+		{
+			label->setTopRightPosition(position+2, 0);
+		}
+		else
+		{
+			label->setTopLeftPosition(position-2, 0);
+		}
 	}
+	
+	int maxY = getHeight();
 	
 	// then try to avoid them overlapping
 	
@@ -933,8 +1094,16 @@ void ScopeControlComponent::avoidPointLabelCollisions()
 				{
 					noCollisions = false;
 					boundsi += Point<int>(0, height);
-					labeli->setBounds(boundsi);
-					j = 0;
+					
+					if(boundsi.getBottom() < maxY)
+					{
+						labeli->setBounds(boundsi);
+						j = 0;
+					}
+					else
+					{
+						break;
+					}
 				}
 			}
 		}
@@ -951,11 +1120,34 @@ void ScopeControlComponent::setInsertOffset(const double offset)
 	}	
 }
 
+double ScopeControlComponent::getInsertOffset()
+{
+	if(scopeInsert != 0) 
+	{
+		return scopeInsert->getSampleOffset();
+	}		
+	
+	return -1.0;
+}
+
 void ScopeControlComponent::setSelection(const double start, const double end)
 {
 	if(scopeSelection != 0)
 	{
 		scopeSelection->setRegionOffsets(start, end);
+	}
+}
+
+void ScopeControlComponent::getSelection(double& start, double& end)
+{
+	if(scopeSelection != 0)
+	{
+		scopeSelection->getRegionOffsets(start, end);
+	}
+	else
+	{
+		start = -1.0;
+		end = -1.0;
 	}
 }
 
@@ -969,13 +1161,14 @@ void ScopeControlComponent::setCuePoint(const int index, const double offset)
 	}
 }
 
-void ScopeControlComponent::addCuePoint(const double offset, Text const& label)
+ScopeCuePointComponent* ScopeControlComponent::addCuePoint(const double offset, Text const& label)
 {
 	ScopeCuePointComponent* cuePoint;
-	addAndMakeVisible(cuePoint = new ScopeCuePointComponent(this, 0, offset));
+	addAndMakeVisible(cuePoint = new ScopeCuePointComponent(this, 0, offset, true));
 	if(label.length() > 0) cuePoint->setLabel(label);
 	scopeCuePoints.add(cuePoint);
 	cuePoint->setHeight(getHeight());
+	return cuePoint;
 }
 
 void ScopeControlComponent::removeCuePoint(const int index)
