@@ -86,12 +86,20 @@ private:
 
 class ScopeControlComponent;
 class ScopeRegionComponent;
+class ScopeCuePointComponent;
 
 class ScopeControlLabel : public Label
 {
 public:
-	ScopeControlLabel(String const& text = String::empty);
+	ScopeControlLabel(ScopeCuePointComponent *owner,
+					  String const& text = String::empty);
 	TextEditor* createEditorComponent();
+	void mouseDown (const MouseEvent& e);	
+	void mouseDrag (const MouseEvent& e);
+	void mouseUp (const MouseEvent& e);
+	int getCuePosition();
+private:
+	Component::SafePointer<ScopeCuePointComponent> owner;
 };
 
 struct CuePointData
@@ -104,7 +112,10 @@ class ScopeCuePointComponent :	public Component,
 								public Label::Listener
 {
 public:
-	ScopeCuePointComponent(ScopeControlComponent* owner, ScopeRegionComponent* region, const double initialOffset = 0.0);
+	ScopeCuePointComponent(ScopeControlComponent* owner, 
+						   ScopeRegionComponent* region, 
+						   const double initialOffset = 0.0,
+						   const bool createdFromMouseClick = false);
 	~ScopeCuePointComponent();
 	inline int getCuePosition() { return getX()+1; }
 	void setHeight(const int height);
@@ -112,6 +123,7 @@ public:
 	void paint(Graphics& g);
 	
 	void setSampleOffset(const double offsetSamples);
+	double getSampleOffset();
 	
 	void mouseDown (const MouseEvent& e);	
 	void mouseDrag (const MouseEvent& e);
@@ -159,8 +171,9 @@ public:
 	ScopeCuePointComponent* getEndPoint() { return endPoint; }
 	
 	void getRegionPosition(int& start, int& end);
-	
 	void setRegionOffsets(const double start, const double end);
+	void getRegionOffsets(double& start, double& end);
+	
 	void checkPosition();
 	
 	void setHeight(const int height);
@@ -219,6 +232,9 @@ public:
 	
 	ScopeControlComponent(ScopeStyles style = Lines, DisplayOptions options = All);
 	~ScopeControlComponent();
+	
+	void setAudioBuffer(Buffer const& audioBufferToUse, const double offset = 0.0, const int fftSize = -1);
+	
 	RGBAColour& getColour(ControlColours colour);
 	void setMetaData(MetaData const& metaData);
 	void resized();
@@ -226,6 +242,9 @@ public:
 	void mouseDown (const MouseEvent& e);	
 	void mouseDrag (const MouseEvent& e);
 	void mouseUp (const MouseEvent& e);
+	
+	void setMaxSize(const int newSize);
+	int getMaxSize();
 	
 	int pixelsToSamples(const int pixels);
 	int samplesToPixels(const int samples);
@@ -235,9 +254,13 @@ public:
 	void avoidPointLabelCollisions();
 	
 	void setInsertOffset(const double offset);
+	double getInsertOffset();
+
 	void setSelection(const double start, const double end);
+	void getSelection(double& start, double& end);
+
 	void setCuePoint(const int index, const double offset);
-	void addCuePoint(const double offset, Text const& label);
+	ScopeCuePointComponent* addCuePoint(const double offset, Text const& label = Text::empty);
 	void removeCuePoint(const int index);
 	void clearCuePoints();
 	
@@ -252,6 +275,7 @@ private:
 	ScopeInsertComponent* scopeInsert;
 	ScopeSelectionComponent* scopeSelection;
 	ScopeCuePointComponent* draggingCuePoint;
+	int maxSize;
 };
 
 
