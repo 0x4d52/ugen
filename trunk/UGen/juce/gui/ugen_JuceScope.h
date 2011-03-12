@@ -209,13 +209,17 @@ private:
 class ScopeSelectionComponent : public ScopeRegionComponent
 {
 public:
-	ScopeSelectionComponent(ScopeControlComponent* owner);
+	ScopeSelectionComponent(ScopeControlComponent* owner,
+							const int initialStart = 0, 
+							const int initialEnd = 0);
 };
 
 class ScopeLoopComponent : public ScopeRegionComponent
 {
 public:
-	ScopeLoopComponent(ScopeControlComponent* owner);
+	ScopeLoopComponent(ScopeControlComponent* owner,
+					   const int initialStart = 0, 
+					   const int initialEnd = 0);
 private:
 	// mode?
 };
@@ -277,6 +281,14 @@ public:
 	void removeCuePoint(CuePoint const& cuePoint);
 	void removeCuePoint(ScopeCuePointComponent* cuePointComponent);
 	void clearCuePoints();
+	
+	void setLoopPoint(const int index, const int start, const int end);
+	ScopeLoopComponent* addLoopPoint(LoopPoint const& cuePoint, const bool addToMetaData = true);
+	void removeLoopPoint(const int index);
+	void removeLoopPoint(LoopPoint const& cuePoint);
+	void removeLoopPoint(ScopeLoopComponent* loopComponent);
+	void clearLoopPoints();
+	
 	
 private:
 	DisplayOptions options;
