@@ -91,8 +91,7 @@ class ScopeCuePointComponent;
 class ScopeCuePointLabel : public Label
 {
 public:
-	ScopeCuePointLabel(ScopeCuePointComponent *owner,
-					   String const& text = String::empty);
+	ScopeCuePointLabel(ScopeCuePointComponent *owner);
 	TextEditor* createEditorComponent();
 	void mouseDown (const MouseEvent& e);	
 	void mouseDrag (const MouseEvent& e);
@@ -112,7 +111,6 @@ private:
 struct CuePointData
 {
 	RGBAColour lineColour, textColour;
-	Component::SafePointer<ScopeCuePointLabel> label;
 	CuePoint cuePoint;
 	bool labelPrefersToAttachOnLeft;
 };
@@ -142,7 +140,7 @@ public:
 
 	void moved();
 	
-	void setLabelPosition();
+	void setLabelPosition(const bool checkLabel = false);
 	const Text& getLabel() const;
 	void setLabel(Text const& text);
 	void labelTextChanged (Label* labelThatHasChanged);
@@ -156,6 +154,8 @@ public:
 private:
 	Component::SafePointer<ScopeControlComponent> owner;
 	Component::SafePointer<ScopeRegionComponent> region;
+	Component::SafePointer<ScopeCuePointLabel> label;
+
 	//double offsetSamples;
 	ComponentDragger dragger;
 	ComponentBoundsConstrainer constrain;
@@ -272,7 +272,7 @@ public:
 	void getSelection(int& start, int& end);
 
 	void setCuePoint(const int index, const int offset);
-	ScopeCuePointComponent* addCuePoint(CuePoint const& cuePoint);
+	ScopeCuePointComponent* addCuePoint(CuePoint const& cuePoint, const bool addToMetaData = true);
 	void removeCuePoint(const int index);
 	void removeCuePoint(CuePoint const& cuePoint);
 	void removeCuePoint(ScopeCuePointComponent* cuePointComponent);
@@ -290,6 +290,8 @@ private:
 	ScopeSelectionComponent* scopeSelection;
 	ScopeCuePointComponent* draggingCuePoint;
 	int maxSize;
+	Text defaultCueLabel;
+	int defaultCueLabelNumber;
 };
 
 
