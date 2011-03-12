@@ -98,6 +98,8 @@ public:
 	void mouseDrag (const MouseEvent& e);
 	void mouseUp (const MouseEvent& e);
 	int getCuePosition();
+	void checkPosition();
+	bool doesPreferToAttachOnLeft() const;
 private:
 	Component::SafePointer<ScopeCuePointComponent> owner;
 };
@@ -106,6 +108,8 @@ struct CuePointData
 {
 	RGBAColour lineColour, textColour;
 	Component::SafePointer<ScopeCuePointLabel> label;
+	CuePoint cuePoint;
+	bool labelPrefersToAttachOnLeft;
 };
 
 class ScopeCuePointComponent :	public Component,
@@ -114,16 +118,18 @@ class ScopeCuePointComponent :	public Component,
 public:
 	ScopeCuePointComponent(ScopeControlComponent* owner, 
 						   ScopeRegionComponent* region, 
-						   const double initialOffset = 0.0,
-						   const bool createdFromMouseClick = false);
+						   CuePoint const& cuePoint, //const double initialOffset = 0.0,
+						   const bool createdFromMouseClick = false,
+						   const bool labelPrefersToAttachOnLeft = true);
 	~ScopeCuePointComponent();
 	inline int getCuePosition() { return getX()+1; }
 	void setHeight(const int height);
 	void checkPosition();
 	void paint(Graphics& g);
 	
-	void setSampleOffset(const double offsetSamples);
-	double getSampleOffset();
+	const CuePoint& getCuePoint() const { return cueData.cuePoint; }
+	void setSampleOffset(const int offsetSamples);
+	const int& getSampleOffset();
 	
 	void mouseDown (const MouseEvent& e);	
 	void mouseDrag (const MouseEvent& e);
@@ -132,10 +138,11 @@ public:
 	void moved();
 	
 	void setLabelPosition();
-	Text getLabel() const;
+	const Text& getLabel() const;
 	void setLabel(Text const& text);
 	void labelTextChanged (Label* labelThatHasChanged);
-	
+	inline bool doesLabelPreferToAttachOnLeft() const { return cueData.labelPrefersToAttachOnLeft; }
+
 	void setColours(RGBAColour const& lineColour, RGBAColour const& textColour);
 	
 	static void swapCuePoints(Component::SafePointer<ScopeCuePointComponent> &cue1, 
@@ -144,7 +151,7 @@ public:
 private:
 	Component::SafePointer<ScopeControlComponent> owner;
 	Component::SafePointer<ScopeRegionComponent> region;
-	double offsetSamples;
+	//double offsetSamples;
 	ComponentDragger dragger;
 	ComponentBoundsConstrainer constrain;
 	bool beingDragged;
@@ -164,15 +171,15 @@ public:
 class ScopeRegionComponent : public Component
 {
 public:
-	ScopeRegionComponent(ScopeControlComponent* owner, const double initialStart = 0.0, const double initialEnd = 0.0);
+	ScopeRegionComponent(ScopeControlComponent* owner, const int initialStart = 0, const int initialEnd = 0);
 	~ScopeRegionComponent();
 	
 	ScopeCuePointComponent* getStartPoint() { return startPoint; }
 	ScopeCuePointComponent* getEndPoint() { return endPoint; }
 	
 	void getRegionPosition(int& start, int& end);
-	void setRegionOffsets(const double start, const double end);
-	void getRegionOffsets(double& start, double& end);
+	void setRegionOffsets(const int start, const int end);
+	void getRegionOffsets(int& start, int& end);
 	
 	void checkPosition();
 	
@@ -253,15 +260,17 @@ public:
 	void removePointLabel(ScopeCuePointLabel* label);
 	void avoidPointLabelCollisions();
 	
-	void setInsertOffset(const double offset);
-	double getInsertOffset();
+	void setInsertOffset(const int offset);
+	const int& getInsertOffset();
 
-	void setSelection(const double start, const double end);
-	void getSelection(double& start, double& end);
+	void setSelection(const int start, const int end);
+	void getSelection(int& start, int& end);
 
-	void setCuePoint(const int index, const double offset);
-	ScopeCuePointComponent* addCuePoint(const double offset, Text const& label = Text::empty);
+	void setCuePoint(const int index, const int offset);
+	ScopeCuePointComponent* addCuePoint(CuePoint const& cuePoint);//const double offset, Text const& label = Text::empty);
 	void removeCuePoint(const int index);
+	void removeCuePoint(CuePoint const& cuePoint);
+	void removeCuePoint(ScopeCuePointComponent* cuePointComponent);
 	void clearCuePoints();
 	
 private:
