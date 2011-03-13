@@ -129,8 +129,8 @@ public:
 						   const bool labelPrefersToAttachOnLeft = true);
 	~ScopeCuePointComponent();
 	
-	void choosePopupMenu();
-	virtual void showPopupMenu();
+	void choosePopupMenu(const int offset);
+	virtual void showPopupMenu(const int offset);
 	
 	inline int getCuePosition() { return getX()+1; }
 	void setHeight(const int height);
@@ -178,7 +178,7 @@ class ScopeInsertComponent : public ScopeCuePointComponent
 {
 public:
 	ScopeInsertComponent(ScopeControlComponent* owner, ScopeRegionComponent* region);
-	void showPopupMenu();
+	void showPopupMenu(const int offset);
 };
 
 
@@ -196,8 +196,11 @@ public:
 	
 	~ScopeRegionComponent();
 	
-	void choosePopupMenu();
-	virtual void showPopupMenu();
+	bool hitTest (int x, int y);
+	void mouseDown (const MouseEvent& e);	
+	
+	void choosePopupMenu(const int offset);
+	virtual void showPopupMenu(const int offset);
 	
 	ScopeCuePointComponent* getStartPoint() { return startPoint; }
 	ScopeCuePointComponent* getEndPoint() { return endPoint; }
@@ -241,7 +244,7 @@ public:
 							const int initialStart = 0, 
 							const int initialEnd = 0);
 	
-	void showPopupMenu();
+	void showPopupMenu(const int offset);
 
 };
 
@@ -253,7 +256,7 @@ public:
 					   const bool createdFromMouseClick = false);
 	~ScopeLoopComponent();
 
-	void showPopupMenu();
+	void showPopupMenu(const int offset);
 
 	LoopPoint& getLoopPoint() { return loopPoint; }
 	
@@ -284,7 +287,7 @@ public:
 		NumControlColours
 	};
 	
-	ScopeControlComponent(ScopeStyles style = Lines, DisplayOptions options = All);
+	ScopeControlComponent(CriticalSection& criticalSection, ScopeStyles style = Lines, DisplayOptions options = All);
 	~ScopeControlComponent();
 	
 	const Font getPopupMenuFont();
@@ -328,6 +331,7 @@ public:
 	void removeCuePoint(CuePoint const& cuePoint);
 	void removeCuePoint(ScopeCuePointComponent* cuePointComponent);
 	void clearCuePoints();
+	void clearCuePointsBetween(const int start, const int end);
 	
 	void setLoopPoint(const int index, const int start, const int end);
 	ScopeCuePointComponent* addLoopPoint(LoopPoint const& loopPoint, 
@@ -340,6 +344,7 @@ public:
 	void removeLoopPoint(LoopPoint const& loopPoint);
 	void removeLoopPoint(ScopeLoopComponent* loopComponent);
 	void clearLoopPoints();
+	void clearLoopPointsBetween(const int start, const int end);
 	
 	void setRegion(const int index, const int start, const int end);
 	ScopeCuePointComponent* addRegion(Region const& region, 
@@ -352,9 +357,11 @@ public:
 	void removeRegion(Region const& region);
 	void removeRegion(ScopeRegionComponent* regionComponent);
 	void clearRegions();
+	void clearRegionsBetween(const int start, const int end);
 	
 	
 private:
+	CriticalSection& metaDataLock;
 	DisplayOptions options;
 	MetaData metaData;
 	RGBAColour controlColours[NumControlColours];

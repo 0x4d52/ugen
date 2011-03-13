@@ -126,9 +126,24 @@ Text& Text::operator= (CharArray const& other) throw()
 	return operator= (static_cast<Text const&> (other) );
 }	
 
+Text& Text::operator= (const char* other) throw()
+{
+	return operator= (Text(other));
+}
+
+Text& Text::operator= (const wchar_t* other) throw()
+{
+	return operator= (Text(other));
+}
+
 Text Text::operator+ (Text const& rightOperand) const throw()
 {
-	return operator<< (rightOperand);
+	return Text(*this, rightOperand);
+}
+
+Text Text::operator+= (Text const& rightOperand) throw()
+{
+	return operator= (Text(*this, rightOperand));
 }
 
 Text operator+ (const char* text1, Text const& text2) throw()

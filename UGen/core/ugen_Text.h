@@ -95,8 +95,12 @@ public:
 	static Text fromValue(const float num) throw();
 
 	Text& operator= (CharArray const& other) throw();
+	Text& operator= (const char* other) throw();
+	Text& operator= (const wchar_t* other) throw();
 	
 	Text operator+ (Text const& rightOperand) const throw();
+	Text operator+= (Text const& rightOperand) throw();
+
 	Text offset(Text const& rightOperand) const throw();
 	Text& add(Text const& other) throw();
 	
