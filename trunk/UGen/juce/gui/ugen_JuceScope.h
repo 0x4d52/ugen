@@ -178,11 +178,12 @@ class ScopeRegionComponent : public Component
 public:
 	ScopeRegionComponent(ScopeControlComponent* owner, 
 						 CuePoint const& startPoint = CuePoint(), 
-						 CuePoint const& endPoint = CuePoint());
+						 CuePoint const& endPoint = CuePoint(),
+						 const bool createdFromMouseClick = false);
+	
 	ScopeRegionComponent(ScopeControlComponent* owner, 
-						 Region const& region);	
-	
-	
+						 Region const& region,
+						 const bool createdFromMouseClick = false);	
 	
 	~ScopeRegionComponent();
 	
@@ -206,7 +207,9 @@ public:
 					RGBAColour const& fillColour);
 	
 private:
-	void init(CuePoint const& startCue, CuePoint const& endCue);
+	void init(CuePoint const& startCue, 
+			  CuePoint const& endCue, 
+			  const bool createdFromMouseClick);
 	
 	Component::SafePointer<ScopeControlComponent> owner;
 	Component::SafePointer<ScopeCuePointComponent> startPoint;
@@ -230,7 +233,8 @@ class ScopeLoopComponent : public ScopeRegionComponent
 {
 public:
 	ScopeLoopComponent(ScopeControlComponent* owner,
-					   LoopPoint const& loopPoint);
+					   LoopPoint const& loopPoint,
+					   const bool createdFromMouseClick = false);
 	
 	LoopPoint getLoopPoint() { return loopPoint; }
 	
@@ -290,18 +294,31 @@ public:
 	void getSelection(int& start, int& end);
 
 	void setCuePoint(const int index, const int offset);
-	ScopeCuePointComponent* addCuePoint(CuePoint const& cuePoint, const bool addToMetaData = true);
+	ScopeCuePointComponent* addCuePoint(CuePoint const& cuePoint, 
+										const bool addToMetaData = true, 
+										const bool createdFromMousClick = false);
 	void removeCuePoint(const int index);
 	void removeCuePoint(CuePoint const& cuePoint);
 	void removeCuePoint(ScopeCuePointComponent* cuePointComponent);
 	void clearCuePoints();
 	
 	void setLoopPoint(const int index, const int start, const int end);
-	ScopeCuePointComponent* addLoopPoint(LoopPoint const& loopPoint, const bool addToMetaData = true);
+	ScopeCuePointComponent* addLoopPoint(LoopPoint const& loopPoint, 
+										 const bool addToMetaData = true, 
+										 const bool createdFromMousClick = false);
 	void removeLoopPoint(const int index);
 	void removeLoopPoint(LoopPoint const& loopPoint);
 	void removeLoopPoint(ScopeLoopComponent* loopComponent);
 	void clearLoopPoints();
+	
+	void setRegion(const int index, const int start, const int end);
+	ScopeCuePointComponent* addRegion(Region const& region, 
+									  const bool addToMetaData = true, 
+									  const bool createdFromMousClick = false);
+	void removeRegion(const int index);
+	void removeRegion(Region const& region);
+	void removeRegion(ScopeRegionComponent* regionComponent);
+	void clearRegions();
 	
 	
 private:
