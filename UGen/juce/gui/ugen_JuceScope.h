@@ -176,7 +176,14 @@ public:
 class ScopeRegionComponent : public Component
 {
 public:
-	ScopeRegionComponent(ScopeControlComponent* owner, const int initialStart = 0, const int initialEnd = 0);
+	ScopeRegionComponent(ScopeControlComponent* owner, 
+						 CuePoint const& startPoint = CuePoint(), 
+						 CuePoint const& endPoint = CuePoint());
+	ScopeRegionComponent(ScopeControlComponent* owner, 
+						 Region const& region);	
+	
+	
+	
 	~ScopeRegionComponent();
 	
 	ScopeCuePointComponent* getStartPoint() { return startPoint; }
@@ -185,6 +192,8 @@ public:
 	void getRegionPosition(int& start, int& end);
 	void setRegionOffsets(const int start, const int end);
 	void getRegionOffsets(int& start, int& end);
+	Region getRegion() { return region; }
+	
 	
 	void checkPosition();
 	
@@ -197,11 +206,14 @@ public:
 					RGBAColour const& fillColour);
 	
 private:
+	void init(CuePoint const& startCue, CuePoint const& endCue);
+	
 	Component::SafePointer<ScopeControlComponent> owner;
 	Component::SafePointer<ScopeCuePointComponent> startPoint;
 	Component::SafePointer<ScopeCuePointComponent> endPoint;
 	RGBAColour fillColour; 
 	bool changingBoth;
+	Region region;
 };
 
 //typedef ScopeRegionComponent ScopeSelectionComponent;
@@ -218,10 +230,12 @@ class ScopeLoopComponent : public ScopeRegionComponent
 {
 public:
 	ScopeLoopComponent(ScopeControlComponent* owner,
-					   const int initialStart = 0, 
-					   const int initialEnd = 0);
+					   LoopPoint const& loopPoint);
+	
+	LoopPoint getLoopPoint() { return loopPoint; }
+	
 private:
-	// mode?
+	LoopPoint loopPoint;
 };
 
 class ScopeControlComponent : public ScopeComponent
@@ -283,9 +297,9 @@ public:
 	void clearCuePoints();
 	
 	void setLoopPoint(const int index, const int start, const int end);
-	ScopeLoopComponent* addLoopPoint(LoopPoint const& cuePoint, const bool addToMetaData = true);
+	ScopeCuePointComponent* addLoopPoint(LoopPoint const& loopPoint, const bool addToMetaData = true);
 	void removeLoopPoint(const int index);
-	void removeLoopPoint(LoopPoint const& cuePoint);
+	void removeLoopPoint(LoopPoint const& loopPoint);
 	void removeLoopPoint(ScopeLoopComponent* loopComponent);
 	void clearLoopPoints();
 	

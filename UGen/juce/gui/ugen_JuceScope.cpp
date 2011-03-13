@@ -776,21 +776,34 @@ ScopeInsertComponent::ScopeInsertComponent(ScopeControlComponent* owner,
 }
 
 ScopeRegionComponent::ScopeRegionComponent(ScopeControlComponent* o, 
-										   const int initialStart, 
-										   const int initialEnd)
+										   CuePoint const& startCue, 
+										   CuePoint const& endCue)
 :	owner(o),
 	fillColour(owner->getColour(ScopeControlComponent::RegionFillColour)),
 	changingBoth(false)
+{
+	init(startCue, endCue);
+}
+
+ScopeRegionComponent::ScopeRegionComponent(ScopeControlComponent* o, 
+										   Region const& regionToUse)
+:	owner(o),
+	fillColour(owner->getColour(ScopeControlComponent::RegionFillColour)),
+	changingBoth(false),
+	region(regionToUse)
+{
+	init(region.getStartPoint(), region.getEndPoint());
+}
+
+void ScopeRegionComponent::init(CuePoint const& startCue, CuePoint const& endCue)
 {
 	setInterceptsMouseClicks(false, false);
 	
 	RGBAColour startColour = owner->getColour(ScopeControlComponent::RegionStartColour);
 	RGBAColour endColour = owner->getColour(ScopeControlComponent::RegionEndColour);
 	RGBAColour textColour = owner->getColour(ScopeControlComponent::RegionTextColour);
-
-	CuePoint startCue, endCue;
-	startCue.getSampleOffset() = initialStart;
-	endCue.getSampleOffset() = initialEnd;
+	
+	// set cues to 0 if they are -1?
 	
 	owner->addAndMakeVisible(startPoint = new ScopeCuePointComponent(owner, this, startCue, false, true));
 	startPoint->setLabel("start");
@@ -798,7 +811,7 @@ ScopeRegionComponent::ScopeRegionComponent(ScopeControlComponent* o,
 	
 	owner->addAndMakeVisible(endPoint = new ScopeCuePointComponent(owner, this, endCue, false, false));
 	endPoint->setLabel("end");
-	endPoint->setColours(endColour, textColour);
+	endPoint->setColours(endColour, textColour);	
 }
 
 ScopeRegionComponent::~ScopeRegionComponent()
@@ -880,7 +893,7 @@ void ScopeRegionComponent::setColours(RGBAColour const& startColour,
 ScopeSelectionComponent::ScopeSelectionComponent(ScopeControlComponent* owner,
 												 const int initialStart, 
 												 const int initialEnd)
-:	ScopeRegionComponent(owner, initialStart, initialEnd)
+:	ScopeRegionComponent(owner, CuePoint(initialStart), CuePoint(initialEnd))
 {
 	RGBAColour startColour = owner->getColour(ScopeControlComponent::SelectionStartColour);
 	RGBAColour endColour = owner->getColour(ScopeControlComponent::SelectionEndColour);
@@ -891,9 +904,9 @@ ScopeSelectionComponent::ScopeSelectionComponent(ScopeControlComponent* owner,
 }
 
 ScopeLoopComponent::ScopeLoopComponent(ScopeControlComponent* owner,
-									   const int initialStart, 
-									   const int initialEnd)
-:	ScopeRegionComponent(owner, initialStart, initialEnd)
+									   LoopPoint const& loopPointToUse)
+:	ScopeRegionComponent(owner, loopPointToUse.getStartPoint(), loopPointToUse.getEndPoint()),
+	loopPoint(loopPointToUse)
 {
 	RGBAColour startColour = owner->getColour(ScopeControlComponent::LoopPointStartColour);
 	RGBAColour endColour = owner->getColour(ScopeControlComponent::LoopPointEndColour);
@@ -1046,6 +1059,17 @@ void ScopeControlComponent::mouseDown(const MouseEvent& e)
 			setInsertOffset(offset);
 			draggingCuePoint = scopeInsert;
 		}
+	}
+	else if(e.mods.isCtrlDown() && e.mods.isAltDown())
+	{
+		// add loop point
+		LoopPoint loopPoint;
+		loopPoint.getStartPoint().getSampleOffset() = offset;
+		loopPoint.getEndPoint().getSampleOffset() = offset;
+		
+		//.. label??
+		
+		draggingCuePoint = addLoopPoint(loopPoint);
 	}
 	else if(e.mods.isPopupMenu())
 	{
@@ -1238,7 +1262,7 @@ void ScopeControlComponent::setCuePoint(const int index, const int offset)
 	
 	if(cuePoint != 0)
 	{
-		scopeInsert->setSampleOffset(offset);
+		cuePoint->setSampleOffset(offset);
 	}
 }
 
@@ -1303,27 +1327,71 @@ void ScopeControlComponent::clearCuePoints()
 
 void ScopeControlComponent::setLoopPoint(const int index, const int start, const int end)
 {
+	ScopeLoopComponent* loopPoint = scopeLoops[index];
+	
+	if(loopPoint != 0)
+	{
+		loopPoint->setRegionOffsets(start, end);
+	}	
 }
 
-ScopeLoopComponent* ScopeControlComponent::addLoopPoint(LoopPoint const& cuePoint, const bool addToMetaData)
+ScopeCuePointComponent* ScopeControlComponent::addLoopPoint(LoopPoint const& loopPoint, const bool addToMetaData)
 {
-	return 0;
+	ScopeLoopComponent* loopComponent;
+	addAndMakeVisible(loopComponent = new ScopeLoopComponent(this, loopPoint));
+	scopeLoops.add(loopComponent);
+	loopComponent->setHeight(getHeight());
+	
+	if(addToMetaData) 
+	{
+		metaData.getLoopPoints().add(loopPoint);
+	}
+	
+	return loopComponent->getEndPoint();
 }
 
 void ScopeControlComponent::removeLoopPoint(const int index)
 {
+	ScopeLoopComponent* loopComponent = scopeLoops[index];
+	removeLoopPoint(loopComponent);
 }
 
-void ScopeControlComponent::removeLoopPoint(LoopPoint const& cuePoint)
+void ScopeControlComponent::removeLoopPoint(LoopPoint const& loopPoint)
 {
+	if(metaData.getLoopPoints().contains(loopPoint))
+	{	
+		metaData.getLoopPoints().removeItem(loopPoint);
+	}
+	
+	for(int i = 0; i < scopeLoops.size(); i++)
+	{
+		ScopeLoopComponent* loopComponent = scopeLoops[i];
+		
+		if(loopComponent->getLoopPoint() == loopPoint)
+		{
+			removeLoopPoint(loopComponent);
+		}
+	}		
 }
 
 void ScopeControlComponent::removeLoopPoint(ScopeLoopComponent* loopComponent)
 {
+	if(loopComponent != 0)
+	{
+		scopeLoops.removeValue(loopComponent);
+		removeChildComponent(loopComponent);
+		deleteAndZero(loopComponent);
+	}	
 }
 
 void ScopeControlComponent::clearLoopPoints()
 {
+	int index = scopeLoops.size();
+	
+	while(index--)
+	{
+		removeLoopPoint(scopeLoops[index]);
+	}	
 }
 
 RadialScopeComponent::RadialScopeComponent(ScopeStyles style)
