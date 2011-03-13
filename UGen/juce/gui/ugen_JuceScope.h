@@ -92,6 +92,9 @@ class ScopeCuePointLabel : public Label
 {
 public:
 	ScopeCuePointLabel(ScopeCuePointComponent *owner);
+	
+	void showPopupMenu();
+	
 	TextEditor* createEditorComponent();
 	void mouseDown (const MouseEvent& e);	
 	void mouseDrag (const MouseEvent& e);
@@ -318,7 +321,9 @@ public:
 	ScopeCuePointComponent* addCuePoint(CuePoint const& cuePoint, 
 										const bool addToMetaData = true, 
 										const bool createdFromMousClick = false);
-	void addNextCuePointAt(const int offset);
+	ScopeCuePointComponent* addNextCuePointAt(const int offset, 
+											  const bool addToMetaData = true, 
+											  const bool createdFromMousClick = false);
 	void removeCuePoint(const int index);
 	void removeCuePoint(CuePoint const& cuePoint);
 	void removeCuePoint(ScopeCuePointComponent* cuePointComponent);
@@ -328,7 +333,9 @@ public:
 	ScopeCuePointComponent* addLoopPoint(LoopPoint const& loopPoint, 
 										 const bool addToMetaData = true, 
 										 const bool createdFromMousClick = false);
-	void addNextLoopPointAt(const int start, const int end);
+	ScopeCuePointComponent* addNextLoopPointAt(const int start, const int end, 
+											   const bool addToMetaData = true, 
+											   const bool createdFromMousClick = false);
 	void removeLoopPoint(const int index);
 	void removeLoopPoint(LoopPoint const& loopPoint);
 	void removeLoopPoint(ScopeLoopComponent* loopComponent);
@@ -338,7 +345,9 @@ public:
 	ScopeCuePointComponent* addRegion(Region const& region, 
 									  const bool addToMetaData = true, 
 									  const bool createdFromMousClick = false);
-	void addNextRegionAt(const int start, const int end);
+	ScopeCuePointComponent* addNextRegionAt(const int start, const int end, 
+											const bool addToMetaData = true, 
+											const bool createdFromMousClick = false);
 	void removeRegion(const int index);
 	void removeRegion(Region const& region);
 	void removeRegion(ScopeRegionComponent* regionComponent);
