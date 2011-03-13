@@ -593,6 +593,49 @@ ScopeCuePointComponent::~ScopeCuePointComponent()
 	label.deleteAndZero();
 }
 
+void ScopeCuePointComponent::choosePopupMenu()
+{
+	if(region == 0)
+	{
+		showPopupMenu();
+	}
+	else 
+	{
+		region->showPopupMenu();
+	}	
+}
+
+void ScopeCuePointComponent::showPopupMenu()
+{
+	PopupMenu m;
+	m.setLookAndFeel(owner);
+		
+	m.addItem (1, "Edit Cue Point Label");
+	m.addItem (2, "Delete Cue Point");
+	m.addItem (3, "Set to Zero");
+	m.addItem (4, "Set to End");
+//	m.addItem (5, "Move to zero crossing");
+	
+	const int result = m.show();
+	
+	if(result == 1)
+	{
+		editLabel();
+	}
+	else if(result == 2)
+	{
+		owner->removeCuePoint(this);
+	}
+	else if(result == 3)
+	{
+		setSampleOffset(0);
+	}
+	else if(result == 4)
+	{
+		setSampleOffset(owner->getMaxSize());
+	}
+}
+
 void ScopeCuePointComponent::setHeight(const int height)
 {
 	setSize(3, height);
@@ -629,25 +672,29 @@ void ScopeCuePointComponent::mouseDown (const MouseEvent& e)
 	
 	if(!beingDragged && e.mods.isPopupMenu())
 	{
-		const Text& text = cueData.cuePoint.getLabel();
 		
-		if(text.length() < 1)
-		{
-			setLabel(" ");
-		}
+		choosePopupMenu();
 		
-		label->showEditor();
 	}
-	else if(e.mods.isAltDown())
+	else if(!beingDragged && e.mods.isAltDown())
 	{
 		if(region == 0)
 		{
 			owner->removeCuePoint(this);
 		}
-//		else 
-//		{
-//			owner->removeRegion(region);
-//		}
+		else 
+		{
+			ScopeLoopComponent* loop = dynamic_cast<ScopeLoopComponent*> (region.getComponent());
+			
+			if(loop != 0)
+			{
+				owner->removeLoopPoint(loop);
+			}
+			else
+			{
+				owner->removeRegion(region);
+			}
+		}
 
 	}
 	else
@@ -727,6 +774,18 @@ void ScopeCuePointComponent::setLabel(Text const& text)
 	cueData.cuePoint.getLabel() = text;
 }
 
+void ScopeCuePointComponent::editLabel()
+{
+	const Text& text = cueData.cuePoint.getLabel();
+	
+	if(text.length() < 1)
+	{
+		setLabel(" ");
+	}
+	
+	label->showEditor();	
+}
+
 void ScopeCuePointComponent::labelTextChanged (Label* labelThatHasChanged)
 {
 	if(labelThatHasChanged == label)
@@ -773,6 +832,27 @@ ScopeInsertComponent::ScopeInsertComponent(ScopeControlComponent* owner,
 	RGBAColour lineColour = owner->getColour(ScopeControlComponent::InsertPointColour);
 
 	setColours(lineColour, textColour);
+}
+
+void ScopeInsertComponent::showPopupMenu()
+{
+	PopupMenu m;
+	m.setLookAndFeel(owner);
+	
+	m.addItem (3, "Set to Zero");
+	m.addItem (4, "Set to End");
+	//	m.addItem (5, "Move to zero crossing");
+	
+	const int result = m.show();
+	
+	if(result == 3)
+	{
+		setSampleOffset(0);
+	}
+	else if(result == 4)
+	{
+		setSampleOffset(owner->getMaxSize());
+	}
 }
 
 ScopeRegionComponent::ScopeRegionComponent(ScopeControlComponent* o, 
@@ -822,12 +902,43 @@ ScopeRegionComponent::~ScopeRegionComponent()
 {
 	if(owner != 0) 
 	{
+		owner->removeRegion(region);
 		owner->removeChildComponent(startPoint);
 		owner->removeChildComponent(endPoint);
 	}
 	
 	startPoint.deleteAndZero();
 	endPoint.deleteAndZero();
+}
+
+void ScopeRegionComponent::choosePopupMenu()
+{
+	showPopupMenu();	
+}
+
+void ScopeRegionComponent::showPopupMenu()
+{
+	PopupMenu m;
+	m.setLookAndFeel(owner);
+	
+	m.addItem (1, "Edit Start Label");
+	m.addItem (2, "Edit End Label");
+	m.addItem (3, "Delete Region");
+	
+	const int result = m.show();
+	
+	if (result == 1)
+	{
+		startPoint->editLabel();
+	}
+	else if (result == 2)
+	{
+		endPoint->editLabel();
+	}
+	else if (result == 3)
+	{
+		owner->removeRegion(this);
+	}
 }
 
 void ScopeRegionComponent::getRegionPosition(int& start, int& end)
@@ -907,6 +1018,47 @@ ScopeSelectionComponent::ScopeSelectionComponent(ScopeControlComponent* owner,
 	setColours(startColour, endColour, textColour, fillColour);
 }
 
+void ScopeSelectionComponent::showPopupMenu()
+{
+	PopupMenu m;
+	m.setLookAndFeel(owner);
+	
+	m.addItem (3, "Set to Zero");
+	m.addItem (4, "Set to End");
+	//	m.addItem (5, "Move to zero crossing");
+	m.addItem (6, "Select All");
+	m.addItem (7, "Create Loop from Selection");
+	m.addItem (8, "Create Region from Selection");
+	
+	const int result = m.show();
+	
+	if(result == 3)
+	{
+		setRegionOffsets(0, 0);
+	}
+	else if(result == 4)
+	{
+		setRegionOffsets(owner->getMaxSize(), owner->getMaxSize());
+	}
+	else if(result == 6)
+	{
+		setRegionOffsets(0, owner->getMaxSize());
+	}
+	else if(result == 7)
+	{
+		owner->addNextLoopPointAt(startPoint->getSampleOffset(), 
+								  endPoint->getSampleOffset());
+//		owner->setSelection(0,0);
+	}
+	else if(result == 8)
+	{
+		owner->addNextRegionAt(startPoint->getSampleOffset(), 
+							   endPoint->getSampleOffset());
+//		owner->setSelection(0,0);
+	}
+}
+
+
 ScopeLoopComponent::ScopeLoopComponent(ScopeControlComponent* owner,
 									   LoopPoint const& loopPointToUse,
 									   const bool createdFromMouseClick)
@@ -924,6 +1076,39 @@ ScopeLoopComponent::ScopeLoopComponent(ScopeControlComponent* owner,
 	setColours(startColour, endColour, textColour, fillColour);
 }
 
+ScopeLoopComponent::~ScopeLoopComponent()
+{
+	if(owner != 0) 
+	{
+		owner->removeLoopPoint(loopPoint);
+	}	
+}
+
+void ScopeLoopComponent::showPopupMenu()
+{
+	PopupMenu m;
+	m.setLookAndFeel(owner);
+	
+	m.addItem (1, "Edit Start Label");
+	m.addItem (2, "Edit End Label");
+	m.addItem (3, "Delete Loop");
+	// submenu to set loop type
+	
+	const int result = m.show();
+	
+	if (result == 1)
+	{
+		startPoint->editLabel();
+	}
+	else if (result == 2)
+	{
+		endPoint->editLabel();
+	}
+	else if (result == 3)
+	{
+		owner->removeLoopPoint(this);
+	}
+}
 
 ScopeControlComponent::ScopeControlComponent(ScopeStyles style, DisplayOptions optionsToUse)
 :	ScopeComponent(style),
@@ -933,7 +1118,11 @@ ScopeControlComponent::ScopeControlComponent(ScopeStyles style, DisplayOptions o
 	draggingCuePoint(0),
 	maxSize(0),
 	defaultCueLabel("Marker"),
-	defaultCueLabelNumber(1)
+	defaultCueLabelNumber(1),
+	defaultLoopLabel("Loop"),
+	defaultLoopLabelNumber(1),
+	defaultRegionLabel("Region"),
+	defaultRegionLabelNumber(1)
 {
 	controlColours[CuePointColour]			= RGBAColour(1.0, 1.0, 0.0, 1.0);
 	controlColours[CuePointTextColour]		= RGBAColour(1.0, 1.0, 0.0, 1.0);
@@ -967,7 +1156,34 @@ ScopeControlComponent::ScopeControlComponent(ScopeStyles style, DisplayOptions o
 ScopeControlComponent::~ScopeControlComponent()
 {
 	clearCuePoints();
+	clearLoopPoints();
+	clearRegions();
 	deleteAllChildren();
+}
+
+const Font ScopeControlComponent::getPopupMenuFont()
+{
+	return 12;
+}
+
+void ScopeControlComponent::choosePopupMenu(const int offset)
+{
+	showPopupMenu(offset);
+}
+
+void ScopeControlComponent::showPopupMenu(const int offset)
+{
+	PopupMenu m;
+	m.setLookAndFeel(this);
+	
+	m.addItem (1, "Add Cue Point");
+	
+	const int result = m.show();
+
+	if(result == 1)
+	{
+		addNextCuePointAt(offset);
+	}
 }
 
 void ScopeControlComponent::setAudioBuffer(Buffer const& audioBufferToUse, const double offset, const int fftSizeOfSource)
@@ -1067,37 +1283,41 @@ void ScopeControlComponent::mouseDown(const MouseEvent& e)
 	}
 	else if(e.mods.isShiftDown())
 	{
-		if(scopeSelection != 0)
+		if(e.mods.isCtrlDown())
 		{
-			int startOffset, endOffset;
-			getSelection(startOffset, endOffset);
-			
-			int startDistance = abs(startOffset - offset);
-			int endDistance = abs(endOffset - offset);
-			
-			if(startDistance < endDistance)
-			{
-				setSelection(offset, endOffset);
-				draggingCuePoint = scopeSelection->getStartPoint();
-			}
-			else
-			{
-				setSelection(startOffset, offset);
-				draggingCuePoint = scopeSelection->getEndPoint();
-			}
+			addNextCuePointAt(offset);
 		}
-		else if(scopeInsert != 0)
+		else
 		{
-			setInsertOffset(offset);
-			draggingCuePoint = scopeInsert;
+			if(scopeSelection != 0)
+			{
+				int startOffset, endOffset;
+				getSelection(startOffset, endOffset);
+				
+				int startDistance = abs(startOffset - offset);
+				int endDistance = abs(endOffset - offset);
+				
+				if(startDistance < endDistance)
+				{
+					setSelection(offset, endOffset);
+					draggingCuePoint = scopeSelection->getStartPoint();
+				}
+				else
+				{
+					setSelection(startOffset, offset);
+					draggingCuePoint = scopeSelection->getEndPoint();
+				}
+			}
+			else if(scopeInsert != 0)
+			{
+				setInsertOffset(offset);
+				draggingCuePoint = scopeInsert;
+			}
 		}
 	}
 	else if(e.mods.isPopupMenu())
 	{
-		CuePoint cuePoint;
-		cuePoint.getSampleOffset() = offset;
-		cuePoint.getLabel() = defaultCueLabel + " " + Text::fromValue(defaultCueLabelNumber++);
-		draggingCuePoint = addCuePoint(cuePoint, true, true);
+		choosePopupMenu(offset);
 	}
 	else
 	{
@@ -1304,6 +1524,14 @@ ScopeCuePointComponent* ScopeControlComponent::addCuePoint(CuePoint const& cuePo
 	return cuePointComponent;
 }
 
+void ScopeControlComponent::addNextCuePointAt(const int offset)
+{
+	CuePoint cuePoint;
+	cuePoint.getSampleOffset() = offset;
+	cuePoint.getLabel() = defaultCueLabel + " " + Text::fromValue(defaultCueLabelNumber++);
+	addCuePoint(cuePoint, true, false);			
+}
+
 void ScopeControlComponent::removeCuePoint(const int index)
 {
 	ScopeCuePointComponent* cuePointComponent = scopeCuePoints[index];
@@ -1375,6 +1603,19 @@ ScopeCuePointComponent* ScopeControlComponent::addLoopPoint(LoopPoint const& loo
 	return loopComponent->getEndPoint();
 }
 
+void ScopeControlComponent::addNextLoopPointAt(const int start, const int end)
+{
+	LoopPoint loopPoint;
+	loopPoint.getStartPoint().getSampleOffset() = start;
+	loopPoint.getEndPoint().getSampleOffset() = end;
+	
+	Text prefix = defaultLoopLabel + " " + Text::fromValue(defaultLoopLabelNumber++);
+	loopPoint.getStartPoint().getLabel() = prefix + " Start";
+	loopPoint.getEndPoint().getLabel() = prefix + " End";
+	
+	addLoopPoint(loopPoint, true, false);	
+}
+
 void ScopeControlComponent::removeLoopPoint(const int index)
 {
 	ScopeLoopComponent* loopComponent = scopeLoops[index];
@@ -1444,6 +1685,19 @@ ScopeCuePointComponent* ScopeControlComponent::addRegion(Region const& region,
 	}
 	
 	return regionComponent->getEndPoint();	
+}
+
+void ScopeControlComponent::addNextRegionAt(const int start, const int end)
+{
+	Region region;
+	region.getStartPoint().getSampleOffset() = start;
+	region.getEndPoint().getSampleOffset() = end;
+	
+	Text prefix = defaultRegionLabel + " " + Text::fromValue(defaultRegionLabelNumber++);
+	region.getStartPoint().getLabel() = prefix + " Start";
+	region.getEndPoint().getLabel() = prefix + " End";
+	
+	addRegion(region, true, false);	
 }
 
 void ScopeControlComponent::removeRegion(const int index)
