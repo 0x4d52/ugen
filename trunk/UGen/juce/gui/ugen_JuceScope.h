@@ -311,7 +311,8 @@ public:
 	void setMaxSize(const int newSize);
 	int getMaxSize();
 	
-	void zoomToOffsets(const int start, const int end);
+	void zoomToOffsets(int start, int end);
+	void zoomAround(const int offset, const float factor);
 	void zoomOutFully();
 	
 	int pixelsToSamples(const int pixels);

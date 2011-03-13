@@ -1403,15 +1403,27 @@ void ScopeControlComponent::showPopupMenu(const int offset)
 	
 	m.addItem (1, "Add Cue Point");
 	m.addSeparator();
-	m.addItem (2, "Zoom Out Fully");
+	m.addItem (2, "Zoom In");
+	m.addItem (3, "Zoom Out");
+	m.addItem (4, "Zoom Out Fully");
 	
 	const int result = m.show();
+	
+	const float zoomFactor = 8;
 
 	if(result == 1)
 	{
 		addNextCuePointAt(offset, true, false);
 	}
 	else if(result == 2)
+	{
+		zoomAround(offset < 0 ? maxSize/2 : offset, -1.f/zoomFactor);
+	}
+	else if(result == 3)
+	{
+		zoomAround(offset < 0 ? maxSize/2 : offset, 1.f/zoomFactor);
+	}
+	else if(result == 4)
 	{
 		zoomOutFully();
 	}
@@ -1593,7 +1605,7 @@ int ScopeControlComponent::getMaxSize()
 	return maxSize;
 }
 
-void ScopeControlComponent::zoomToOffsets(const int start, const int end)
+void ScopeControlComponent::zoomToOffsets(int start, int end)
 {
 	if(start >= end)
 	{
@@ -1601,14 +1613,33 @@ void ScopeControlComponent::zoomToOffsets(const int start, const int end)
 		return;
 	}
 	
-	ugen_assert(start >= originalBufferOffset);
-	ugen_assert(end <= maxSize);
+//	ugen_assert(start >= originalBufferOffset);
+//	ugen_assert(end <= maxSize);
+	
+	if(start < originalBufferOffset) start = originalBufferOffset;
+	if(end > maxSize) end = maxSize;
 	
 	Buffer zoomedBuffer = Buffer::withSize(1, originalBuffer.getNumChannels());
 	zoomedBuffer.referTo(originalBuffer, start - originalBufferOffset, end - start);
 	
 	ScopeComponent::setAudioBuffer(zoomedBuffer, start, -1);
 	resized();
+}
+
+void ScopeControlComponent::zoomAround(const int offset, const float amount)
+{
+	if(amount == 0.f) return;
+	
+	const int numSamples = getAudioBuffer().size() * amount;
+	const int numSamplesHalved = numSamples / 2;
+	
+	int start = getSampleOffset() - numSamplesHalved;
+	int end = getSampleOffset() + getAudioBuffer().size() + numSamplesHalved;
+	int mid = (start + end) / 2;
+	
+	// need to do some more work on the arithmentic here...
+	
+	zoomToOffsets(offset-mid, offset+mid);
 }
 
 void ScopeControlComponent::zoomOutFully()
