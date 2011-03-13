@@ -125,6 +125,10 @@ public:
 						   const bool createdFromMouseClick = false,
 						   const bool labelPrefersToAttachOnLeft = true);
 	~ScopeCuePointComponent();
+	
+	void choosePopupMenu();
+	virtual void showPopupMenu();
+	
 	inline int getCuePosition() { return getX()+1; }
 	void setHeight(const int height);
 	void checkPosition();
@@ -143,6 +147,7 @@ public:
 	void setLabelPosition(const bool checkLabel = false);
 	const Text& getLabel() const;
 	void setLabel(Text const& text);
+	void editLabel();
 	void labelTextChanged (Label* labelThatHasChanged);
 	inline bool doesLabelPreferToAttachOnLeft() const { return cueData.labelPrefersToAttachOnLeft; }
 
@@ -151,7 +156,7 @@ public:
 	static void swapCuePoints(Component::SafePointer<ScopeCuePointComponent> &cue1, 
 							  Component::SafePointer<ScopeCuePointComponent> &cue2);
 		
-private:
+protected:
 	Component::SafePointer<ScopeControlComponent> owner;
 	Component::SafePointer<ScopeRegionComponent> region;
 	Component::SafePointer<ScopeCuePointLabel> label;
@@ -170,6 +175,7 @@ class ScopeInsertComponent : public ScopeCuePointComponent
 {
 public:
 	ScopeInsertComponent(ScopeControlComponent* owner, ScopeRegionComponent* region);
+	void showPopupMenu();
 };
 
 
@@ -187,13 +193,16 @@ public:
 	
 	~ScopeRegionComponent();
 	
+	void choosePopupMenu();
+	virtual void showPopupMenu();
+	
 	ScopeCuePointComponent* getStartPoint() { return startPoint; }
 	ScopeCuePointComponent* getEndPoint() { return endPoint; }
 	
 	void getRegionPosition(int& start, int& end);
 	void setRegionOffsets(const int start, const int end);
 	void getRegionOffsets(int& start, int& end);
-	Region getRegion() { return region; }
+	Region& getRegion() { return region; }
 	
 	
 	void checkPosition();
@@ -211,6 +220,7 @@ private:
 			  CuePoint const& endCue, 
 			  const bool createdFromMouseClick);
 	
+protected:
 	Component::SafePointer<ScopeControlComponent> owner;
 	Component::SafePointer<ScopeCuePointComponent> startPoint;
 	Component::SafePointer<ScopeCuePointComponent> endPoint;
@@ -227,6 +237,9 @@ public:
 	ScopeSelectionComponent(ScopeControlComponent* owner,
 							const int initialStart = 0, 
 							const int initialEnd = 0);
+	
+	void showPopupMenu();
+
 };
 
 class ScopeLoopComponent : public ScopeRegionComponent
@@ -235,14 +248,18 @@ public:
 	ScopeLoopComponent(ScopeControlComponent* owner,
 					   LoopPoint const& loopPoint,
 					   const bool createdFromMouseClick = false);
-	
-	LoopPoint getLoopPoint() { return loopPoint; }
+	~ScopeLoopComponent();
+
+	void showPopupMenu();
+
+	LoopPoint& getLoopPoint() { return loopPoint; }
 	
 private:
 	LoopPoint loopPoint;
 };
 
-class ScopeControlComponent : public ScopeComponent
+class ScopeControlComponent :	public ScopeComponent,
+								public LookAndFeel
 {
 public:
 	enum DisplayOptions
@@ -266,6 +283,10 @@ public:
 	
 	ScopeControlComponent(ScopeStyles style = Lines, DisplayOptions options = All);
 	~ScopeControlComponent();
+	
+	const Font getPopupMenuFont();
+	void choosePopupMenu(const int offset);
+	void showPopupMenu(const int offset);
 	
 	void setAudioBuffer(Buffer const& audioBufferToUse, const double offset = 0.0, const int fftSize = -1);
 	
@@ -297,6 +318,7 @@ public:
 	ScopeCuePointComponent* addCuePoint(CuePoint const& cuePoint, 
 										const bool addToMetaData = true, 
 										const bool createdFromMousClick = false);
+	void addNextCuePointAt(const int offset);
 	void removeCuePoint(const int index);
 	void removeCuePoint(CuePoint const& cuePoint);
 	void removeCuePoint(ScopeCuePointComponent* cuePointComponent);
@@ -306,6 +328,7 @@ public:
 	ScopeCuePointComponent* addLoopPoint(LoopPoint const& loopPoint, 
 										 const bool addToMetaData = true, 
 										 const bool createdFromMousClick = false);
+	void addNextLoopPointAt(const int start, const int end);
 	void removeLoopPoint(const int index);
 	void removeLoopPoint(LoopPoint const& loopPoint);
 	void removeLoopPoint(ScopeLoopComponent* loopComponent);
@@ -315,6 +338,7 @@ public:
 	ScopeCuePointComponent* addRegion(Region const& region, 
 									  const bool addToMetaData = true, 
 									  const bool createdFromMousClick = false);
+	void addNextRegionAt(const int start, const int end);
 	void removeRegion(const int index);
 	void removeRegion(Region const& region);
 	void removeRegion(ScopeRegionComponent* regionComponent);
@@ -335,6 +359,10 @@ private:
 	int maxSize;
 	Text defaultCueLabel;
 	int defaultCueLabelNumber;
+	Text defaultLoopLabel;
+	int defaultLoopLabelNumber;
+	Text defaultRegionLabel;
+	int defaultRegionLabelNumber;
 };
 
 
