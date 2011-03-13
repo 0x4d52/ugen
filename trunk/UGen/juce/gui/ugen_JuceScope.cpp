@@ -1108,6 +1108,10 @@ ScopeSelectionComponent::ScopeSelectionComponent(ScopeControlComponent* owner,
 
 void ScopeSelectionComponent::showPopupMenu(const int offset)
 {
+	int start, end;
+	owner->getSelection(start, end);
+	bool nonZeroSelectionLength = end > start;
+	
 	PopupMenu m;
 	m.setLookAndFeel(owner);
 	
@@ -1117,8 +1121,8 @@ void ScopeSelectionComponent::showPopupMenu(const int offset)
 	m.addItem (4, "Set to End");
 	//	m.addItem (5, "Move to zero crossing");
 	m.addItem (6, "Select All");
-	m.addItem (7, "Create Loop from Selection");
-	m.addItem (8, "Create Region from Selection");
+	m.addItem (7, "Create Loop from Selection", nonZeroSelectionLength);
+	m.addItem (8, "Create Region from Selection", nonZeroSelectionLength);
 	
 	m.addSeparator();
 	
@@ -1127,10 +1131,14 @@ void ScopeSelectionComponent::showPopupMenu(const int offset)
 		m.addItem (9, "Add Cue Point");
 	}
 	
-	m.addItem (10, "Delete Cue Points in Selection");
-	m.addItem (11, "Delete Loop Points in Selection");
-	m.addItem (12, "Delete Regions in Selection");
-	m.addItem (13, "Delete Cue/Loop Points and Regions in Selection");
+	m.addItem (10, "Delete Cue Points in Selection", nonZeroSelectionLength);
+	m.addItem (11, "Delete Loop Points in Selection", nonZeroSelectionLength);
+	m.addItem (12, "Delete Regions in Selection", nonZeroSelectionLength);
+	m.addItem (13, "Delete Cue/Loop Points and Regions in Selection", nonZeroSelectionLength);
+	
+	m.addSeparator();
+	m.addItem (14, "Zoom to Selection", nonZeroSelectionLength);
+	m.addItem (15, "Zoom Out Fuly");
 	
 	const int result = m.show();
 	
@@ -1166,32 +1174,61 @@ void ScopeSelectionComponent::showPopupMenu(const int offset)
 	}
 	else if(result == 10)
 	{
-		int start, end;
-		owner->getSelection(start, end);
 		owner->clearCuePointsBetween(start, end);
 	}
 	else if(result == 11)
 	{
-		int start, end;
-		owner->getSelection(start, end);
 		owner->clearLoopPointsBetween(start, end);
 	}
 	else if(result == 12)
 	{
-		int start, end;
-		owner->getSelection(start, end);
 		owner->clearRegionsBetween(start, end);
 	}
 	else if(result == 13)
 	{
-		int start, end;
-		owner->getSelection(start, end);
 		owner->clearCuePointsBetween(start, end);
 		owner->clearLoopPointsBetween(start, end);
 		owner->clearRegionsBetween(start, end);
 	}
+	else if(result == 14)
+	{
+		owner->zoomToOffsets(start, end);
+	}
+	else if(result == 15)
+	{
+		owner->zoomOutFully();
+	}
 }
 
+void ScopeSelectionComponent::mouseDown (const MouseEvent& e)
+{
+	if(e.mods.isPopupMenu())
+	{
+		ScopeRegionComponent::mouseDown(e);
+	}
+	else if(owner != 0)
+	{
+		owner->mouseEnter(e.getEventRelativeTo(owner));
+		owner->mouseDown(e.getEventRelativeTo(owner));
+	}
+}
+
+void ScopeSelectionComponent::mouseDrag (const MouseEvent& e)
+{
+	if(owner != 0)
+	{
+		owner->mouseDrag(e.getEventRelativeTo(owner));
+	}
+}
+
+void ScopeSelectionComponent::mouseUp (const MouseEvent& e)
+{
+	if(owner != 0)
+	{
+		owner->mouseUp(e.getEventRelativeTo(owner));
+		owner->mouseExit(e.getEventRelativeTo(owner));
+	}
+}
 
 ScopeLoopComponent::ScopeLoopComponent(ScopeControlComponent* owner,
 									   LoopPoint const& loopPointToUse,
@@ -1365,6 +1402,8 @@ void ScopeControlComponent::showPopupMenu(const int offset)
 	m.setLookAndFeel(this);
 	
 	m.addItem (1, "Add Cue Point");
+	m.addSeparator();
+	m.addItem (2, "Zoom Out Fully");
 	
 	const int result = m.show();
 
@@ -1372,11 +1411,19 @@ void ScopeControlComponent::showPopupMenu(const int offset)
 	{
 		addNextCuePointAt(offset, true, false);
 	}
+	else if(result == 2)
+	{
+		zoomOutFully();
+	}
 }
 
-void ScopeControlComponent::setAudioBuffer(Buffer const& audioBufferToUse, const double offset, const int fftSizeOfSource)
+void ScopeControlComponent::setAudioBuffer(Buffer const& buffer, const double offset, const int fftSizeOfSource)
 {
-	ScopeComponent::setAudioBuffer(audioBufferToUse, offset, fftSizeOfSource);
+	ugen_assert(fftSizeOfSource <= 0); // just to check for now...
+	
+	ScopeComponent::setAudioBuffer(buffer, offset, fftSizeOfSource);
+	originalBuffer = buffer;
+	originalBufferOffset = offset;
 	resized();
 }
 
@@ -1445,7 +1492,7 @@ void ScopeControlComponent::mouseDown(const MouseEvent& e)
 {
 	int offset = pixelsToSamples(e.x);
 	
-	if(e.mods.isCtrlDown() && e.mods.isAltDown())
+	if(e.mods.isPopupMenu() && e.mods.isAltDown())
 	{
 		if(e.mods.isShiftDown())
 		{
@@ -1458,7 +1505,7 @@ void ScopeControlComponent::mouseDown(const MouseEvent& e)
 	}
 	else if(e.mods.isShiftDown())
 	{
-		if(e.mods.isCtrlDown())
+		if(e.mods.isPopupMenu())
 		{
 			draggingCuePoint = addNextCuePointAt(offset, true, true);
 		}
@@ -1544,6 +1591,30 @@ void ScopeControlComponent::setMaxSize(const int newSize)
 int ScopeControlComponent::getMaxSize()
 {
 	return maxSize;
+}
+
+void ScopeControlComponent::zoomToOffsets(const int start, const int end)
+{
+	if(start >= end)
+	{
+		ugen_assertfalse;
+		return;
+	}
+	
+	ugen_assert(start >= originalBufferOffset);
+	ugen_assert(end <= maxSize);
+	
+	Buffer zoomedBuffer = Buffer::withSize(1, originalBuffer.getNumChannels());
+	zoomedBuffer.referTo(originalBuffer, start - originalBufferOffset, end - start);
+	
+	ScopeComponent::setAudioBuffer(zoomedBuffer, start, -1);
+	resized();
+}
+
+void ScopeControlComponent::zoomOutFully()
+{
+	ScopeComponent::setAudioBuffer(originalBuffer, originalBufferOffset, -1);
+	resized();
 }
 
 int ScopeControlComponent::pixelsToSamples(const int pixels)

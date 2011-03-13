@@ -246,6 +246,10 @@ public:
 	
 	void showPopupMenu(const int offset);
 
+	void mouseDown (const MouseEvent& e);	
+	void mouseDrag (const MouseEvent& e);
+	void mouseUp (const MouseEvent& e);
+	
 };
 
 class ScopeLoopComponent : public ScopeRegionComponent
@@ -306,6 +310,9 @@ public:
 	
 	void setMaxSize(const int newSize);
 	int getMaxSize();
+	
+	void zoomToOffsets(const int start, const int end);
+	void zoomOutFully();
 	
 	int pixelsToSamples(const int pixels);
 	int samplesToPixels(const int samples);
@@ -379,6 +386,8 @@ private:
 	int defaultLoopLabelNumber;
 	Text defaultRegionLabel;
 	int defaultRegionLabelNumber;
+	Buffer originalBuffer;
+	int originalBufferOffset;
 };
 
 

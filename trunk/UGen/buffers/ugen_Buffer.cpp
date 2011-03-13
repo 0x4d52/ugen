@@ -1735,7 +1735,7 @@ void Buffer::referTo(const int channel, float* data, const int sourceSize) throw
 	
 	if(internal->allocatedSize > 0)
 	{
-		delete [] data;
+		delete [] internal->data;
 		internal->allocatedSize = 0;
 	}
 	
