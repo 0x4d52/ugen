@@ -777,25 +777,29 @@ ScopeInsertComponent::ScopeInsertComponent(ScopeControlComponent* owner,
 
 ScopeRegionComponent::ScopeRegionComponent(ScopeControlComponent* o, 
 										   CuePoint const& startCue, 
-										   CuePoint const& endCue)
+										   CuePoint const& endCue,
+										   const bool createdFromMouseClick)
 :	owner(o),
 	fillColour(owner->getColour(ScopeControlComponent::RegionFillColour)),
 	changingBoth(false)
 {
-	init(startCue, endCue);
+	init(startCue, endCue, createdFromMouseClick);
 }
 
 ScopeRegionComponent::ScopeRegionComponent(ScopeControlComponent* o, 
-										   Region const& regionToUse)
+										   Region const& regionToUse,
+										   const bool createdFromMouseClick)
 :	owner(o),
 	fillColour(owner->getColour(ScopeControlComponent::RegionFillColour)),
 	changingBoth(false),
 	region(regionToUse)
 {
-	init(region.getStartPoint(), region.getEndPoint());
+	init(region.getStartPoint(), region.getEndPoint(), createdFromMouseClick);
 }
 
-void ScopeRegionComponent::init(CuePoint const& startCue, CuePoint const& endCue)
+void ScopeRegionComponent::init(CuePoint const& startCue, 
+								CuePoint const& endCue,
+								const bool createdFromMouseClick)
 {
 	setInterceptsMouseClicks(false, false);
 	
@@ -809,7 +813,7 @@ void ScopeRegionComponent::init(CuePoint const& startCue, CuePoint const& endCue
 	startPoint->setLabel("start");
 	startPoint->setColours(startColour, textColour);
 	
-	owner->addAndMakeVisible(endPoint = new ScopeCuePointComponent(owner, this, endCue, false, false));
+	owner->addAndMakeVisible(endPoint = new ScopeCuePointComponent(owner, this, endCue, createdFromMouseClick, false));
 	endPoint->setLabel("end");
 	endPoint->setColours(endColour, textColour);	
 }
@@ -904,8 +908,12 @@ ScopeSelectionComponent::ScopeSelectionComponent(ScopeControlComponent* owner,
 }
 
 ScopeLoopComponent::ScopeLoopComponent(ScopeControlComponent* owner,
-									   LoopPoint const& loopPointToUse)
-:	ScopeRegionComponent(owner, loopPointToUse.getStartPoint(), loopPointToUse.getEndPoint()),
+									   LoopPoint const& loopPointToUse,
+									   const bool createdFromMouseClick)
+:	ScopeRegionComponent(owner, 
+						 loopPointToUse.getStartPoint(), 
+						 loopPointToUse.getEndPoint(), 
+						 createdFromMouseClick),
 	loopPoint(loopPointToUse)
 {
 	RGBAColour startColour = owner->getColour(ScopeControlComponent::LoopPointStartColour);
@@ -1033,7 +1041,31 @@ void ScopeControlComponent::mouseDown(const MouseEvent& e)
 {
 	int offset = pixelsToSamples(e.x);
 	
-	if(e.mods.isShiftDown())
+	if(e.mods.isCtrlDown() && e.mods.isAltDown())
+	{
+		if(e.mods.isShiftDown())
+		{
+			Region region;
+			region.getStartPoint().getSampleOffset() = offset;
+			region.getEndPoint().getSampleOffset() = offset;
+			
+			//.. label??
+			
+			draggingCuePoint = addRegion(region, true, true);
+		}
+		else
+		{
+			// add loop point
+			LoopPoint loopPoint;
+			loopPoint.getStartPoint().getSampleOffset() = offset;
+			loopPoint.getEndPoint().getSampleOffset() = offset;
+			
+			//.. label??
+			
+			draggingCuePoint = addLoopPoint(loopPoint, true, true);
+		}
+	}
+	else if(e.mods.isShiftDown())
 	{
 		if(scopeSelection != 0)
 		{
@@ -1060,23 +1092,12 @@ void ScopeControlComponent::mouseDown(const MouseEvent& e)
 			draggingCuePoint = scopeInsert;
 		}
 	}
-	else if(e.mods.isCtrlDown() && e.mods.isAltDown())
-	{
-		// add loop point
-		LoopPoint loopPoint;
-		loopPoint.getStartPoint().getSampleOffset() = offset;
-		loopPoint.getEndPoint().getSampleOffset() = offset;
-		
-		//.. label??
-		
-		draggingCuePoint = addLoopPoint(loopPoint);
-	}
 	else if(e.mods.isPopupMenu())
 	{
 		CuePoint cuePoint;
 		cuePoint.getSampleOffset() = offset;
 		cuePoint.getLabel() = defaultCueLabel + " " + Text::fromValue(defaultCueLabelNumber++);
-		draggingCuePoint = addCuePoint(cuePoint);
+		draggingCuePoint = addCuePoint(cuePoint, true, true);
 	}
 	else
 	{
@@ -1266,10 +1287,12 @@ void ScopeControlComponent::setCuePoint(const int index, const int offset)
 	}
 }
 
-ScopeCuePointComponent* ScopeControlComponent::addCuePoint(CuePoint const& cuePoint, const bool addToMetaData)
+ScopeCuePointComponent* ScopeControlComponent::addCuePoint(CuePoint const& cuePoint, 
+														   const bool addToMetaData,
+														   const bool createdFromMousClick)
 {
 	ScopeCuePointComponent* cuePointComponent;
-	addAndMakeVisible(cuePointComponent = new ScopeCuePointComponent(this, 0, cuePoint, true));
+	addAndMakeVisible(cuePointComponent = new ScopeCuePointComponent(this, 0, cuePoint, createdFromMousClick));
 	scopeCuePoints.add(cuePointComponent);
 	cuePointComponent->setHeight(getHeight());
 	
@@ -1335,10 +1358,12 @@ void ScopeControlComponent::setLoopPoint(const int index, const int start, const
 	}	
 }
 
-ScopeCuePointComponent* ScopeControlComponent::addLoopPoint(LoopPoint const& loopPoint, const bool addToMetaData)
+ScopeCuePointComponent* ScopeControlComponent::addLoopPoint(LoopPoint const& loopPoint, 
+															const bool addToMetaData,
+															const bool createdFromMousClick)
 {
 	ScopeLoopComponent* loopComponent;
-	addAndMakeVisible(loopComponent = new ScopeLoopComponent(this, loopPoint));
+	addAndMakeVisible(loopComponent = new ScopeLoopComponent(this, loopPoint, createdFromMousClick));
 	scopeLoops.add(loopComponent);
 	loopComponent->setHeight(getHeight());
 	
@@ -1392,6 +1417,77 @@ void ScopeControlComponent::clearLoopPoints()
 	{
 		removeLoopPoint(scopeLoops[index]);
 	}	
+}
+
+void ScopeControlComponent::setRegion(const int index, const int start, const int end)
+{
+	ScopeRegionComponent* region = scopeRegions[index];
+	
+	if(region != 0)
+	{
+		region->setRegionOffsets(start, end);
+	}		
+}
+
+ScopeCuePointComponent* ScopeControlComponent::addRegion(Region const& region, 
+														 const bool addToMetaData, 
+														 const bool createdFromMousClick)
+{
+	ScopeRegionComponent* regionComponent;
+	addAndMakeVisible(regionComponent = new ScopeRegionComponent(this, region, createdFromMousClick));
+	scopeRegions.add(regionComponent);
+	regionComponent->setHeight(getHeight());
+	
+	if(addToMetaData) 
+	{
+		metaData.getRegions().add(region);
+	}
+	
+	return regionComponent->getEndPoint();	
+}
+
+void ScopeControlComponent::removeRegion(const int index)
+{
+	ScopeRegionComponent* regionComponent = scopeRegions[index];
+	removeRegion(regionComponent);
+}
+
+void ScopeControlComponent::removeRegion(Region const& region)
+{
+	if(metaData.getRegions().contains(region))
+	{	
+		metaData.getRegions().removeItem(region);
+	}
+	
+	for(int i = 0; i < scopeRegions.size(); i++)
+	{
+		ScopeRegionComponent* regionComponent = scopeRegions[i];
+		
+		if(regionComponent->getRegion() == region)
+		{
+			removeRegion(regionComponent);
+		}
+	}			
+}
+
+void ScopeControlComponent::removeRegion(ScopeRegionComponent* regionComponent)
+{
+	if(regionComponent != 0)
+	{
+		scopeRegions.removeValue(regionComponent);
+		removeChildComponent(regionComponent);
+		deleteAndZero(regionComponent);
+	}		
+}
+
+void ScopeControlComponent::clearRegions()
+{
+	int index = scopeRegions.size();
+	
+	while(index--)
+	{
+		removeRegion(scopeRegions[index]);
+	}		
 }
 
 RadialScopeComponent::RadialScopeComponent(ScopeStyles style)
