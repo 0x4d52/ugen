@@ -38,6 +38,7 @@
 #define _UGEN_ugen_JuceScope_H_
 
 #include "../../gui/ugen_Scope.h"
+#include "ugen_Collections.h"
 
 
 class ScopeComponentBase :	public ScopeGUI,
@@ -268,6 +269,7 @@ private:
 	LoopPoint loopPoint;
 };
 
+
 class ScopeControlComponent :	public ScopeComponent,
 								public LookAndFeel
 {
@@ -367,8 +369,43 @@ public:
 	void clearRegions();
 	void clearRegionsBetween(const int start, const int end);
 	
+	enum ScopeControlCommand
+	{
+		UserCancelled,
+		AddCuePoint = 1000,
+		CreateLoopFromSelection,			
+		CreateRegionFromSelection,		
+		EditCuePointLabel,				
+		EditStartLabel,					
+		EditEndLabel,						
+		DeleteCuePoint,					
+		DeleteRegion,						
+		DeleteLoop,						
+		DeleteCuePointsInSelection,		
+		DeleteLoopPointsInSelection,		
+		DeleteCuseLoopsRegionsInSelection,
+		SelectAll,						
+		SelectRegion,						
+		SelectLoop,						
+		SetToZero,						
+		SetToEnd,							
+		LoopTypeNoLoop,					
+		LoopTypeForward,					
+		LoopTypePingPong,					
+		LoopTypeReverse,					
+		MoveToZeroCrossings,				
+		ZoomIn,							
+		ZoomOut,							
+		ZoomToSelection,					
+		ZoomToWindow,						
+	};
+	
+	typedef Dictionary<Text,ScopeControlComponent::ScopeControlCommand> CommandDictonary;
+	static const char* getCommand(ScopeControlCommand commandID); 
 	
 private:
+	static const CommandDictonary& buildCommandDictionary();
+
 	CriticalSection& metaDataLock;
 	DisplayOptions options;
 	MetaData metaData;

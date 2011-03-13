@@ -45,7 +45,6 @@ BEGIN_UGEN_NAMESPACE
 
 #include "ugen_JuceScope.h"
 
-
 static inline const String timeToTimecodeString (const double seconds)
 {
     const double absSecs = fabs (seconds);
@@ -1138,7 +1137,7 @@ void ScopeSelectionComponent::showPopupMenu(const int offset)
 	
 	m.addSeparator();
 	m.addItem (14, "Zoom to Selection", nonZeroSelectionLength);
-	m.addItem (15, "Zoom Out Fuly");
+	m.addItem (15, "Zoom to Window");
 	
 	const int result = m.show();
 	
@@ -1405,7 +1404,7 @@ void ScopeControlComponent::showPopupMenu(const int offset)
 	m.addSeparator();
 	m.addItem (2, "Zoom In");
 	m.addItem (3, "Zoom Out");
-	m.addItem (4, "Zoom Out Fully");
+	m.addItem (4, "Zoom to Window");
 	
 	const int result = m.show();
 	
@@ -1626,21 +1625,66 @@ void ScopeControlComponent::zoomToOffsets(int start, int end)
 	resized();
 }
 
+//void ScopeControlComponent::zoomAround(const int offset, const float amount)
+//{
+//	if(amount == 0.f) return;
+//	
+//	const int numSamples = getAudioBuffer().size() * amount;
+//	const int numSamplesHalved = numSamples / 2;
+//	
+//	int lastOffset = getSampleOffset() + getAudioBuffer().size();
+//	
+//	int start = getSampleOffset() - numSamplesHalved;
+//	int end = lastOffset + numSamplesHalved;
+//	int mid = (start + end) / 2;
+//		
+//	start = offset-mid;
+//	end = offset+mid;
+//	
+////	if(start < originalBufferOffset)
+////	{
+////		int diff = originalBufferOffset - start;
+////		start += diff;
+////		end += diff;
+////	}
+////	else if(end > maxSize)
+////	{
+////		int diff = end - maxSize;
+////		start -= diff;
+////		end -= diff;
+////	}
+//	
+//	zoomToOffsets(start, end);
+//}
+
 void ScopeControlComponent::zoomAround(const int offset, const float amount)
 {
-	if(amount == 0.f) return;
+	const float factor = amount + 1.f;
 	
-	const int numSamples = getAudioBuffer().size() * amount;
-	const int numSamplesHalved = numSamples / 2;
+	const int newSize = getAudioBuffer().size() * factor + 0.5f;
+	const int halfSize = newSize / 2;
 	
-	int start = getSampleOffset() - numSamplesHalved;
-	int end = getSampleOffset() + getAudioBuffer().size() + numSamplesHalved;
-	int mid = (start + end) / 2;
+	int start = offset - halfSize;
+	int end = offset + halfSize;
 	
-	// need to do some more work on the arithmentic here...
+	int lastOriginal = originalBufferOffset + originalBuffer.size();
 	
-	zoomToOffsets(offset-mid, offset+mid);
+	if(end > lastOriginal)
+	{
+		int diff = end - lastOriginal;
+		start -= diff;
+		end -= diff;
+	}
+	else if(start < originalBufferOffset)
+	{
+		int diff = originalBufferOffset - start;
+		start += diff;
+		end += diff;		
+	}
+			
+	zoomToOffsets(start, end);
 }
+
 
 void ScopeControlComponent::zoomOutFully()
 {
@@ -2088,6 +2132,54 @@ void ScopeControlComponent::clearRegionsBetween(const int start, const int end)
 		if(inRange(regionStart, start, end) && inRange(regionEnd, start, end))
 			removeRegion(region);
 	}			
+}
+
+const ScopeControlComponent::CommandDictonary& ScopeControlComponent::buildCommandDictionary()
+{
+	static ScopeControlComponent::CommandDictonary c;
+		
+	c.put(AddCuePoint,						"Add Cue Point");
+	c.put(CreateLoopFromSelection,			"Create Loop from Selection");
+	c.put(CreateRegionFromSelection,		"Create Region from Selection");
+	
+	c.put(EditCuePointLabel,				"Edit Cue Point Label");
+	c.put(EditStartLabel,					"Edit Start Label");
+	c.put(EditEndLabel,						"Edit End Label");
+
+	c.put(DeleteCuePoint,					"Delete Cue Point");
+	c.put(DeleteRegion,						"Delete Region");
+	c.put(DeleteLoop,						"Delete Loop");
+	
+	c.put(DeleteCuePointsInSelection,		"Delete Cue Points in Selection");
+	c.put(DeleteLoopPointsInSelection,		"Delete Loop Points in Selection");
+	c.put(DeleteCuseLoopsRegionsInSelection,"Delete Cue/Loop Points and Regions in Selection");
+	
+	c.put(SelectAll,						"Select All");
+	c.put(SelectRegion,						"Select Region");
+	c.put(SelectLoop,						"Select Loop");
+	
+	c.put(SetToZero,						"Set to Zero");
+	c.put(SetToEnd,							"Set to End");
+	
+	c.put(LoopTypeNoLoop,					"No Loop");
+	c.put(LoopTypeForward,					"Forward");
+	c.put(LoopTypePingPong,					"Ping-Pong");
+	c.put(LoopTypeReverse,					"Reverse");
+	
+	c.put(MoveToZeroCrossings,				"Move to Zero Crossings");
+	
+	c.put(ZoomIn,							"Zoom In");
+	c.put(ZoomOut,							"Zoom Out");
+	c.put(ZoomToSelection,					"Zoom to Selection");
+	c.put(ZoomToWindow,						"Zoom to Window");
+	
+	return c;
+}
+
+const char* ScopeControlComponent::getCommand(ScopeControlCommand commandID)
+{
+	static const ScopeControlComponent::CommandDictonary& commands = buildCommandDictionary();
+	return (const char*)commands[commandID];
 }
 
 RadialScopeComponent::RadialScopeComponent(ScopeStyles style)
