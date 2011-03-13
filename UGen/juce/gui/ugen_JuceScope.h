@@ -369,7 +369,7 @@ public:
 	void clearRegions();
 	void clearRegionsBetween(const int start, const int end);
 	
-	enum ScopeControlCommand
+	enum Command
 	{
 		UserCancelled,
 		AddCuePoint = 1000,
@@ -382,8 +382,9 @@ public:
 		DeleteRegion,						
 		DeleteLoop,						
 		DeleteCuePointsInSelection,		
-		DeleteLoopPointsInSelection,		
-		DeleteCuseLoopsRegionsInSelection,
+		DeleteLoopPointsInSelection,
+		DeleteRegionsInSelection,
+		DeleteCuesLoopsRegionsInSelection,
 		SelectAll,						
 		SelectRegion,						
 		SelectLoop,						
@@ -400,8 +401,8 @@ public:
 		ZoomToWindow,						
 	};
 	
-	typedef Dictionary<Text,ScopeControlComponent::ScopeControlCommand> CommandDictonary;
-	static const char* getCommand(ScopeControlCommand commandID); 
+	typedef Dictionary<Text,ScopeControlComponent::Command> CommandDictonary;
+	static const char* getCommand(Command commandID); 
 	
 private:
 	static const CommandDictonary& buildCommandDictionary();

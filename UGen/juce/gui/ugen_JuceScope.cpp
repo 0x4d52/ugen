@@ -445,6 +445,14 @@ void ScopeComponent::paintChannelLabel(Graphics& g, Text const& label, const int
 	}
 }
 
+static void addCommandToMenu(PopupMenu& m, 
+							 ScopeControlComponent::Command command, 
+							 bool isActive = true, 
+							 bool isTicked = false)
+{
+	m.addItem(command, ScopeControlComponent::getCommand(command), isActive, isTicked);
+}
+
 ScopeCuePointLabel::ScopeCuePointLabel(ScopeCuePointComponent *o)
 :	Label("ScopeControlLabel"),
 	owner(o)
@@ -629,30 +637,22 @@ void ScopeCuePointComponent::showPopupMenu(const int offset)
 	}
 	
 	m.addItem(-1, (const char*)heading, false);	
-		
-	m.addItem (1, "Edit Cue Point Label");
-	m.addItem (2, "Delete Cue Point");
-	m.addItem (3, "Set to Zero");
-	m.addItem (4, "Set to End");
-//	m.addItem (5, "Move to zero crossing");
+	m.addSeparator();	
+	
+	addCommandToMenu(m, ScopeControlComponent::EditCuePointLabel);
+	addCommandToMenu(m, ScopeControlComponent::DeleteCuePoint);
+	addCommandToMenu(m, ScopeControlComponent::SetToZero);
+	addCommandToMenu(m, ScopeControlComponent::SetToEnd);
+//	addCommandToMenu(m, ScopeControlComponent::MoveToZeroCrossings);
 	
 	const int result = m.show();
 	
-	if(result == 1)
+	switch (result)
 	{
-		editLabel();
-	}
-	else if(result == 2)
-	{
-		owner->removeCuePoint(this);
-	}
-	else if(result == 3)
-	{
-		setSampleOffset(0);
-	}
-	else if(result == 4)
-	{
-		setSampleOffset(owner->getMaxSize());
+		case ScopeControlComponent::EditCuePointLabel:	editLabel();							break;
+		case ScopeControlComponent::DeleteCuePoint:		owner->removeCuePoint(this);			break;
+		case ScopeControlComponent::SetToZero:			setSampleOffset(0);						break;
+		case ScopeControlComponent::SetToEnd:			setSampleOffset(owner->getMaxSize());	break;
 	}
 }
 
@@ -860,20 +860,17 @@ void ScopeInsertComponent::showPopupMenu(const int offset)
 	m.setLookAndFeel(owner);
 	
 	m.addItem(-1, "Insert/play Point:", false);	
+	m.addSeparator();
 	
-	m.addItem (3, "Set to Zero");
-	m.addItem (4, "Set to End");
-	//	m.addItem (5, "Move to zero crossing");
+	addCommandToMenu(m, ScopeControlComponent::SetToZero);
+	addCommandToMenu(m, ScopeControlComponent::SetToEnd);
 	
 	const int result = m.show();
 	
-	if(result == 3)
+	switch (result)
 	{
-		setSampleOffset(0);
-	}
-	else if(result == 4)
-	{
-		setSampleOffset(owner->getMaxSize());
+		case ScopeControlComponent::SetToZero:			setSampleOffset(0);						break;
+		case ScopeControlComponent::SetToEnd:			setSampleOffset(owner->getMaxSize());	break;
 	}
 }
 
@@ -988,41 +985,32 @@ void ScopeRegionComponent::showPopupMenu(const int offset)
 	}
 	
 	m.addItem(-1, (const char*)heading, false);	
+	m.addSeparator();
 	
-	m.addItem (1, "Edit Start Label");
-	m.addItem (2, "Edit End Label");
-	m.addItem (3, "Delete Region");
-	m.addItem (4, "Select Region");	
+	addCommandToMenu(m, ScopeControlComponent::EditStartLabel);
+	addCommandToMenu(m, ScopeControlComponent::EditEndLabel);
+	addCommandToMenu(m, ScopeControlComponent::DeleteRegion);
+	addCommandToMenu(m, ScopeControlComponent::SelectRegion);
 	
 	if(offset >= 0)
 	{
 		m.addSeparator();
-		m.addItem (6, "Add Cue Point");
+		addCommandToMenu(m, ScopeControlComponent::AddCuePoint);
 	}
 	
 	const int result = m.show();
 	
-	if(result == 1)
+	switch (result)
 	{
-		startPoint->editLabel();
-	}
-	else if(result == 2)
-	{
-		endPoint->editLabel();
-	}
-	else if(result == 3)
-	{
-		owner->removeRegion(this);
-	}
-	else if(result == 4)
-	{
-		int start, end;
-		getRegionOffsets(start, end);
-		owner->setSelection(start, end);
-	}
-	else if(result == 6)
-	{
-		owner->addNextCuePointAt(offset, true, false);
+		case ScopeControlComponent::EditStartLabel:		startPoint->editLabel();						break;
+		case ScopeControlComponent::EditEndLabel:		endPoint->editLabel();							break;
+		case ScopeControlComponent::DeleteRegion:		owner->removeRegion(this);						break;
+		case ScopeControlComponent::AddCuePoint:		owner->addNextCuePointAt(offset, true, false);	break;
+		case ScopeControlComponent::SelectRegion: {
+			int start, end;
+			getRegionOffsets(start, end);
+			owner->setSelection(start, end);			
+		} break;
 	}
 }
 
@@ -1115,88 +1103,68 @@ void ScopeSelectionComponent::showPopupMenu(const int offset)
 	m.setLookAndFeel(owner);
 	
 	m.addItem(-1, "Selection:", false);	
+	m.addSeparator();
 	
-	m.addItem (3, "Set to Zero");
-	m.addItem (4, "Set to End");
-	//	m.addItem (5, "Move to zero crossing");
-	m.addItem (6, "Select All");
-	m.addItem (7, "Create Loop from Selection", nonZeroSelectionLength);
-	m.addItem (8, "Create Region from Selection", nonZeroSelectionLength);
-	
+	addCommandToMenu(m, ScopeControlComponent::SetToZero);
+	addCommandToMenu(m, ScopeControlComponent::SetToEnd);
+//	addCommandToMenu(m, ScopeControlComponent::MoveToZeroCrossings);
+
+	addCommandToMenu(m, ScopeControlComponent::SelectAll);
+	addCommandToMenu(m, ScopeControlComponent::CreateLoopFromSelection, nonZeroSelectionLength);
+	addCommandToMenu(m, ScopeControlComponent::CreateRegionFromSelection, nonZeroSelectionLength);
+		
 	m.addSeparator();
 	
 	if(offset >= 0)
 	{
-		m.addItem (9, "Add Cue Point");
+		addCommandToMenu(m, ScopeControlComponent::AddCuePoint);
 	}
 	
-	m.addItem (10, "Delete Cue Points in Selection", nonZeroSelectionLength);
-	m.addItem (11, "Delete Loop Points in Selection", nonZeroSelectionLength);
-	m.addItem (12, "Delete Regions in Selection", nonZeroSelectionLength);
-	m.addItem (13, "Delete Cue/Loop Points and Regions in Selection", nonZeroSelectionLength);
-	
+	addCommandToMenu(m, ScopeControlComponent::DeleteCuePointsInSelection, nonZeroSelectionLength);
+	addCommandToMenu(m, ScopeControlComponent::DeleteLoopPointsInSelection, nonZeroSelectionLength);
+	addCommandToMenu(m, ScopeControlComponent::DeleteRegionsInSelection, nonZeroSelectionLength);
+	addCommandToMenu(m, ScopeControlComponent::DeleteCuesLoopsRegionsInSelection, nonZeroSelectionLength);
+
 	m.addSeparator();
-	m.addItem (14, "Zoom to Selection", nonZeroSelectionLength);
-	m.addItem (15, "Zoom to Window");
+	
+	addCommandToMenu(m, ScopeControlComponent::ZoomIn);
+	addCommandToMenu(m, ScopeControlComponent::ZoomOut);
+	addCommandToMenu(m, ScopeControlComponent::ZoomToSelection, nonZeroSelectionLength);
+	addCommandToMenu(m, ScopeControlComponent::ZoomToWindow);
 	
 	const int result = m.show();
 	
-	if(result == 3)
+	const float zoomFactor = 8.f;
+
+	switch (result)
 	{
-		setRegionOffsets(0, 0);
-	}
-	else if(result == 4)
-	{
-		setRegionOffsets(owner->getMaxSize(), owner->getMaxSize());
-	}
-	else if(result == 6)
-	{
-		setRegionOffsets(0, owner->getMaxSize());
-	}
-	else if(result == 7)
-	{
-		owner->addNextLoopPointAt(startPoint->getSampleOffset(), 
-								  endPoint->getSampleOffset(), 
-								  true, false);
-//		owner->setSelection(0,0);
-	}
-	else if(result == 8)
-	{
-		owner->addNextRegionAt(startPoint->getSampleOffset(), 
-							   endPoint->getSampleOffset(),
-							   true, false);
-//		owner->setSelection(0,0);
-	}
-	else if(result == 9)
-	{
-		owner->addNextCuePointAt(offset, true, false);
-	}
-	else if(result == 10)
-	{
-		owner->clearCuePointsBetween(start, end);
-	}
-	else if(result == 11)
-	{
-		owner->clearLoopPointsBetween(start, end);
-	}
-	else if(result == 12)
-	{
-		owner->clearRegionsBetween(start, end);
-	}
-	else if(result == 13)
-	{
-		owner->clearCuePointsBetween(start, end);
-		owner->clearLoopPointsBetween(start, end);
-		owner->clearRegionsBetween(start, end);
-	}
-	else if(result == 14)
-	{
-		owner->zoomToOffsets(start, end);
-	}
-	else if(result == 15)
-	{
-		owner->zoomOutFully();
-	}
+		case ScopeControlComponent::SetToZero:							setRegionOffsets(0, 0);											break;
+		case ScopeControlComponent::SetToEnd:							setRegionOffsets(owner->getMaxSize(), owner->getMaxSize());		break;
+		case ScopeControlComponent::SelectAll:							setRegionOffsets(0, owner->getMaxSize());						break;
+		case ScopeControlComponent::CreateLoopFromSelection:			owner->addNextLoopPointAt(startPoint->getSampleOffset(), 
+																								  endPoint->getSampleOffset(), 
+																								  true, false);							break;
+		case ScopeControlComponent::CreateRegionFromSelection:			owner->addNextRegionAt(startPoint->getSampleOffset(), 
+																							   endPoint->getSampleOffset(),
+																							   true, false);							break;
+		case ScopeControlComponent::AddCuePoint:						owner->addNextCuePointAt(offset, true, false);					break;
+		case ScopeControlComponent::DeleteCuePointsInSelection:			owner->clearCuePointsBetween(start, end);						break;
+		case ScopeControlComponent::DeleteLoopPointsInSelection:		owner->clearLoopPointsBetween(start, end);						break;
+		case ScopeControlComponent::DeleteRegionsInSelection:			owner->clearRegionsBetween(start, end);							break;
+		case ScopeControlComponent::DeleteCuesLoopsRegionsInSelection:	owner->clearCuePointsBetween(start, end);
+																		owner->clearLoopPointsBetween(start, end);
+																		owner->clearRegionsBetween(start, end);							break;
+		case ScopeControlComponent::ZoomToSelection:					owner->zoomToOffsets(start, end);								break;
+		case ScopeControlComponent::ZoomToWindow:						owner->zoomOutFully();											break;
+
+		case ScopeControlComponent::ZoomIn:	{
+			owner->zoomAround(offset < 0 ? owner->getMaxSize()/2 : offset, -1.f/zoomFactor);
+		} break;
+			
+		case ScopeControlComponent::ZoomOut: {
+			owner->zoomAround(offset < 0 ? owner->getMaxSize()/2 : offset, 1.f/zoomFactor);
+		} break;
+	}			
 }
 
 void ScopeSelectionComponent::mouseDown (const MouseEvent& e)
@@ -1285,52 +1253,50 @@ void ScopeLoopComponent::showPopupMenu(const int offset)
 	}
 	
 	m.addItem(-1, (const char*)heading, false);	
+	m.addSeparator();
 	
-	m.addItem (1, "Edit Start Label");
-	m.addItem (2, "Edit End Label");
-	m.addItem (3, "Delete Loop");
-	m.addItem (4, "Select Loop");
-		
+	addCommandToMenu(m, ScopeControlComponent::EditStartLabel);
+	addCommandToMenu(m, ScopeControlComponent::EditEndLabel);
+	addCommandToMenu(m, ScopeControlComponent::DeleteLoop);
+	addCommandToMenu(m, ScopeControlComponent::SelectLoop);
+			
 	int loopType = loopPoint.getType();
 	
 	PopupMenu sub;
 	sub.setLookAndFeel(owner);
-	sub.addItem(101, "No Loop", true, loopType == LoopPoint::NoLoop);
-	sub.addItem(102, "Forward", true, loopType == LoopPoint::Forward);
-	sub.addItem(103, "Ping-Pong", true, loopType == LoopPoint::PingPong);
-	sub.addItem(104, "Reverse", true, loopType == LoopPoint::Reverse);
+	
+	addCommandToMenu(sub, ScopeControlComponent::LoopTypeNoLoop, true, loopType == LoopPoint::NoLoop);
+	addCommandToMenu(sub, ScopeControlComponent::LoopTypeForward, true, loopType == LoopPoint::Forward);
+	addCommandToMenu(sub, ScopeControlComponent::LoopTypePingPong, true, loopType == LoopPoint::PingPong);
+	addCommandToMenu(sub, ScopeControlComponent::LoopTypeReverse, true, loopType == LoopPoint::Reverse);
+	
 	m.addSubMenu("Loop Type", sub);
 	
 	if(offset >= 0)
 	{
 		m.addSeparator();
-		m.addItem (6, "Add Cue Point");
+		addCommandToMenu(m, ScopeControlComponent::AddCuePoint);
 	}
 	
 	const int result = m.show();
 	
-	if (result == 1)
+	switch (result)
 	{
-		startPoint->editLabel();
-	}
-	else if (result == 2)
-	{
-		endPoint->editLabel();
-	}
-	else if (result == 3)
-	{
-		owner->removeLoopPoint(this);
-	}
-	else if(result == 4)
-	{
-		int start, end;
-		getRegionOffsets(start, end);
-		owner->setSelection(start, end);
-	}	
-	else if(result == 6)
-	{
-		owner->addNextCuePointAt(offset, true, false);
-	}
+		case ScopeControlComponent::EditStartLabel:		startPoint->editLabel();							break;
+		case ScopeControlComponent::EditEndLabel:		endPoint->editLabel();								break;
+		case ScopeControlComponent::DeleteLoop:			owner->removeLoopPoint(this);						break;
+		case ScopeControlComponent::AddCuePoint:		owner->addNextCuePointAt(offset, true, false);		break;	
+		case ScopeControlComponent::SelectLoop:	{
+			int start, end;
+			getRegionOffsets(start, end);
+			owner->setSelection(start, end);			
+		} break;
+			
+		case ScopeControlComponent::LoopTypeNoLoop:				printf("no loop\n");						break;
+		case ScopeControlComponent::LoopTypeForward:			printf("forward\n");						break;
+		case ScopeControlComponent::LoopTypePingPong:			printf("ping pong\n");						break;
+		case ScopeControlComponent::LoopTypeReverse:			printf("reverse\n");						break;
+	}			
 }
 
 ScopeControlComponent::ScopeControlComponent(CriticalSection& criticalSection, ScopeStyles style, DisplayOptions optionsToUse)
@@ -1400,32 +1366,30 @@ void ScopeControlComponent::showPopupMenu(const int offset)
 	PopupMenu m;
 	m.setLookAndFeel(this);
 	
-	m.addItem (1, "Add Cue Point");
+	addCommandToMenu(m, ScopeControlComponent::AddCuePoint);
 	m.addSeparator();
-	m.addItem (2, "Zoom In");
-	m.addItem (3, "Zoom Out");
-	m.addItem (4, "Zoom to Window");
-	
+	addCommandToMenu(m, ScopeControlComponent::ZoomIn);
+	addCommandToMenu(m, ScopeControlComponent::ZoomOut);
+	addCommandToMenu(m, ScopeControlComponent::ZoomToWindow);
+		
 	const int result = m.show();
 	
 	const float zoomFactor = 8;
 
-	if(result == 1)
+	switch (result)
 	{
-		addNextCuePointAt(offset, true, false);
-	}
-	else if(result == 2)
-	{
-		zoomAround(offset < 0 ? maxSize/2 : offset, -1.f/zoomFactor);
-	}
-	else if(result == 3)
-	{
-		zoomAround(offset < 0 ? maxSize/2 : offset, 1.f/zoomFactor);
-	}
-	else if(result == 4)
-	{
-		zoomOutFully();
-	}
+		case ScopeControlComponent::AddCuePoint:		addNextCuePointAt(offset, true, false);		break;
+		case ScopeControlComponent::ZoomToWindow:		zoomOutFully();								break;
+			
+		case ScopeControlComponent::ZoomIn:	{
+			zoomAround(offset < 0 ? maxSize/2 : offset, -1.f/zoomFactor);
+		} break;
+			
+		case ScopeControlComponent::ZoomOut: {
+			zoomAround(offset < 0 ? maxSize/2 : offset, 1.f/zoomFactor);
+		} break;
+
+	}			
 }
 
 void ScopeControlComponent::setAudioBuffer(Buffer const& buffer, const double offset, const int fftSizeOfSource)
@@ -2152,7 +2116,8 @@ const ScopeControlComponent::CommandDictonary& ScopeControlComponent::buildComma
 	
 	c.put(DeleteCuePointsInSelection,		"Delete Cue Points in Selection");
 	c.put(DeleteLoopPointsInSelection,		"Delete Loop Points in Selection");
-	c.put(DeleteCuseLoopsRegionsInSelection,"Delete Cue/Loop Points and Regions in Selection");
+	c.put(DeleteRegionsInSelection,			"Delete Regions in Selection");
+	c.put(DeleteCuesLoopsRegionsInSelection,"Delete Cue/Loop Points and Regions in Selection");
 	
 	c.put(SelectAll,						"Select All");
 	c.put(SelectRegion,						"Select Region");
@@ -2176,7 +2141,7 @@ const ScopeControlComponent::CommandDictonary& ScopeControlComponent::buildComma
 	return c;
 }
 
-const char* ScopeControlComponent::getCommand(ScopeControlCommand commandID)
+const char* ScopeControlComponent::getCommand(Command commandID)
 {
 	static const ScopeControlComponent::CommandDictonary& commands = buildCommandDictionary();
 	return (const char*)commands[commandID];
