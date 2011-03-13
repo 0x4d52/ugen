@@ -1776,7 +1776,7 @@ void Buffer::referTo(Buffer const& other, const int offset, const int numSamples
 	}
 	
 	ugen_assert(sourceSize != 0);
-	ugen_assert((offset+sourceSize) < other.size_);
+	ugen_assert((offset+sourceSize) <= other.size_);
 	
 	for(int channel = 0; channel < other.numChannels_; channel++)
 	{
