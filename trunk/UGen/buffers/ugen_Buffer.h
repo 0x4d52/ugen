@@ -68,6 +68,12 @@ public:
 	{
 	}
 	
+	CuePoint(const int initialOffset) 
+	:	SmartPointerContainer<CuePointInternal> (new CuePointInternal())
+	{
+		getInternal()->sampleOffset = initialOffset;
+	}	
+	
 	/** Human readable label for the marker. */
 	Text& getLabel() { return getInternal()->label; }
 	
@@ -131,7 +137,7 @@ public:
 	int getID() const { return getInternal()->loopID; }	
 	
 	CuePoint& getStartPoint() { return getInternal()->startPoint; }
-	const CuePoint& getStart() const { return getInternal()->startPoint; }
+	const CuePoint& getStartPoint() const { return getInternal()->startPoint; }
 	CuePoint& getEndPoint() { return getInternal()->endPoint; }
 	const CuePoint& getEndPoint() const { return getInternal()->endPoint; }
 	
@@ -183,7 +189,7 @@ public:
 	int getID() const { return getInternal()->regionID; }	
 	
 	CuePoint& getStartPoint() { return getInternal()->startPoint; }
-	const CuePoint& getStart() const { return getInternal()->startPoint; }
+	const CuePoint& getStartPoint() const { return getInternal()->startPoint; }
 	CuePoint& getEndPoint() { return getInternal()->endPoint; }
 	const CuePoint& getEndPoint() const { return getInternal()->endPoint; }
 	
