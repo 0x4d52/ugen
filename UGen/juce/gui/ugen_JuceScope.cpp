@@ -1134,7 +1134,7 @@ void ScopeSelectionComponent::showPopupMenu(const int offset)
 	
 	const int result = m.show();
 	
-	const float zoomFactor = 8.f;
+	const float zoomFactor = 16.f;
 
 	switch (result)
 	{
@@ -1292,10 +1292,10 @@ void ScopeLoopComponent::showPopupMenu(const int offset)
 			owner->setSelection(start, end);			
 		} break;
 			
-		case ScopeControlComponent::LoopTypeNoLoop:				printf("no loop\n");						break;
-		case ScopeControlComponent::LoopTypeForward:			printf("forward\n");						break;
-		case ScopeControlComponent::LoopTypePingPong:			printf("ping pong\n");						break;
-		case ScopeControlComponent::LoopTypeReverse:			printf("reverse\n");						break;
+		case ScopeControlComponent::LoopTypeNoLoop:		loopPoint.getType() = LoopPoint::NoLoop;				break;
+		case ScopeControlComponent::LoopTypeForward:	loopPoint.getType() = LoopPoint::Forward;			break;
+		case ScopeControlComponent::LoopTypePingPong:	loopPoint.getType() = LoopPoint::PingPong;			break;
+		case ScopeControlComponent::LoopTypeReverse:	loopPoint.getType() = LoopPoint::Reverse;			break;
 	}			
 }
 
@@ -1331,16 +1331,14 @@ ScopeControlComponent::ScopeControlComponent(CriticalSection& criticalSection, S
 	controlColours[SelectionFillColour]		= RGBAColour(1.0, 1.0, 1.0, 0.5);
 	controlColours[SelectionTextColour]		= RGBAColour(1.0, 1.0, 1.0, 1.0);
 	
-	if(options & Insert)
-	{
-		addAndMakeVisible(scopeInsert = new ScopeInsertComponent(this, 0));
-		scopeInsert->setLabel("play");
-	}
-	
-	if(options & Selection)
-	{
-		addAndMakeVisible(scopeSelection = new ScopeSelectionComponent(this));
-	}
+	addChildComponent(scopeInsert = new ScopeInsertComponent(this, 0));
+	if(options & Insert) scopeInsert->setVisible(true);
+	scopeInsert->setLabel("play");
+
+	addChildComponent(scopeSelection = new ScopeSelectionComponent(this), 0);
+	if(options & Selection) scopeSelection->setVisible(true);
+	scopeSelection->getStartPoint()->setLabel("<");
+	scopeSelection->getEndPoint()->setLabel(">");
 }
 
 ScopeControlComponent::~ScopeControlComponent()
@@ -1374,7 +1372,7 @@ void ScopeControlComponent::showPopupMenu(const int offset)
 		
 	const int result = m.show();
 	
-	const float zoomFactor = 8;
+	const float zoomFactor = 16;
 
 	switch (result)
 	{
@@ -1575,10 +1573,7 @@ void ScopeControlComponent::zoomToOffsets(int start, int end)
 		ugen_assertfalse;
 		return;
 	}
-	
-//	ugen_assert(start >= originalBufferOffset);
-//	ugen_assert(end <= maxSize);
-	
+		
 	if(start < originalBufferOffset) start = originalBufferOffset;
 	if(end > maxSize) end = maxSize;
 	
@@ -1588,38 +1583,6 @@ void ScopeControlComponent::zoomToOffsets(int start, int end)
 	ScopeComponent::setAudioBuffer(zoomedBuffer, start, -1);
 	resized();
 }
-
-//void ScopeControlComponent::zoomAround(const int offset, const float amount)
-//{
-//	if(amount == 0.f) return;
-//	
-//	const int numSamples = getAudioBuffer().size() * amount;
-//	const int numSamplesHalved = numSamples / 2;
-//	
-//	int lastOffset = getSampleOffset() + getAudioBuffer().size();
-//	
-//	int start = getSampleOffset() - numSamplesHalved;
-//	int end = lastOffset + numSamplesHalved;
-//	int mid = (start + end) / 2;
-//		
-//	start = offset-mid;
-//	end = offset+mid;
-//	
-////	if(start < originalBufferOffset)
-////	{
-////		int diff = originalBufferOffset - start;
-////		start += diff;
-////		end += diff;
-////	}
-////	else if(end > maxSize)
-////	{
-////		int diff = end - maxSize;
-////		start -= diff;
-////		end -= diff;
-////	}
-//	
-//	zoomToOffsets(start, end);
-//}
 
 void ScopeControlComponent::zoomAround(const int offset, const float amount)
 {
@@ -1648,7 +1611,6 @@ void ScopeControlComponent::zoomAround(const int offset, const float amount)
 			
 	zoomToOffsets(start, end);
 }
-
 
 void ScopeControlComponent::zoomOutFully()
 {
@@ -1779,8 +1741,8 @@ void ScopeControlComponent::getSelection(int& start, int& end)
 	}
 	else
 	{
-		start = -1.0;
-		end = -1.0;
+		start = -1;
+		end = -1;
 	}
 }
 
@@ -1903,7 +1865,7 @@ ScopeCuePointComponent* ScopeControlComponent::addLoopPoint(LoopPoint const& loo
 															const bool createdFromMousClick)
 {
 	ScopeLoopComponent* loopComponent;
-	addAndMakeVisible(loopComponent = new ScopeLoopComponent(this, loopPoint, createdFromMousClick));
+	addAndMakeVisible(loopComponent = new ScopeLoopComponent(this, loopPoint, createdFromMousClick), 0);
 	scopeLoops.add(loopComponent);
 	loopComponent->setHeight(getHeight());
 	
@@ -1927,6 +1889,8 @@ ScopeCuePointComponent* ScopeControlComponent::addNextLoopPointAt(const int star
 	Text prefix = defaultLoopLabel + " " + Text::fromValue(defaultLoopLabelNumber++);
 	loopPoint.getStartPoint().getLabel() = prefix + " Start";
 	loopPoint.getEndPoint().getLabel() = prefix + " End";
+	
+	loopPoint.getType() = LoopPoint::Forward;
 	
 	return addLoopPoint(loopPoint, addToMetaData, createdFromMousClick);	
 }
@@ -2008,7 +1972,7 @@ ScopeCuePointComponent* ScopeControlComponent::addRegion(Region const& region,
 														 const bool createdFromMousClick)
 {
 	ScopeRegionComponent* regionComponent;
-	addAndMakeVisible(regionComponent = new ScopeRegionComponent(this, region, createdFromMousClick));
+	addAndMakeVisible(regionComponent = new ScopeRegionComponent(this, region, createdFromMousClick), 0);
 	scopeRegions.add(regionComponent);
 	regionComponent->setHeight(getHeight());
 	
