@@ -268,6 +268,9 @@ int64 AudioIOHelper::getWavChunkPosition(InputStream* input, const char* name)
 				}
 				
 				uint32 length = (uint32) input->readInt();
+				
+//				if(!length) continue;
+				
 				const int64 chunkEnd = input->getPosition() + length + (length & 1);
 
 				input->setPosition (chunkEnd);
@@ -342,6 +345,9 @@ CuePointArray AudioIOHelper::getWavCuePoints(InputStream* input)
 				
 				const uint32 chunkLength = (uint32) input->readInt();
 				listChunkRemaining -= 4;
+				
+//				if(!chunkLength) continue;
+				
 				const uint32 paddedChunkLength = chunkLength + (chunkLength & 1);
 				const uint32 chunkEnd = input->getPosition() + paddedChunkLength;
 				
