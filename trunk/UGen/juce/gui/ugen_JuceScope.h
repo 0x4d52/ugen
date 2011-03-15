@@ -313,6 +313,8 @@ public:
 	void setMaxSize(const int newSize);
 	int getMaxSize();
 	
+	void getCurrentLimits(int& start, int& end);
+	void offsetBy(const int offset);
 	void zoomToOffsets(int start, int end);
 	void zoomAround(const int offset, const float factor);
 	void zoomOutFully();
@@ -427,6 +429,9 @@ private:
 	int defaultRegionLabelNumber;
 	Buffer originalBuffer;
 	int originalBufferOffset;
+	
+	bool dragScroll:1, dragZoomX:1, dragZoomY:1;
+	int lastDragX, lastDragY;
 };
 
 

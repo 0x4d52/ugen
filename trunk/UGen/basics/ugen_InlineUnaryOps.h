@@ -165,18 +165,48 @@ inline double cubed(const double a) throw()			{	return a*a*a;												}
 
 // from music-dsp list
 #ifndef UGEN_ANDROID
-inline float zap(const float x) throw()
-{
-	float absx = std::abs(x);
-	return (absx > (float)1e-15 && absx < (float)1e15) ? x : 0.f;
-}
+	#if DEBUG || _DEBUG
+	inline float zap(const float x) throw()
+	{
+		const float absx = fabs(x);
+		const bool bigEnough = absx > (float)1e-15;
+		const bool smallEnough = absx < (float)1e15;
+		
+		if(bigEnough && smallEnough)
+		{
+			return x;
+		}
+		else if(absx == 0.f)
+		{
+			return 0.f;
+		}
+		else if(!bigEnough)
+		{
+			return 0.f; // too small or NaN?
+		}
+		else if(!smallEnough)
+		{
+			return 0.f; // i.e., +INF or -INF
+		}
+		else
+		{
+			return 0.f;
+		}
+	}
+	#else
+	inline float zap(const float x) throw()
+	{
+		const float absx = std::abs(x);
+		return (absx > (float)1e-15 && absx < (float)1e15) ? x : 0.f;
+	}
+	#endif
 #else
-// android
-inline float zap(const float x) throw()
-{
-	float absx = fabs(x);
-	return (absx > (float)1e-15 && absx < (float)1e15) ? x : 0.f;
-}
+	// android
+	inline float zap(const float x) throw()
+	{
+		const float absx = fabs(x);
+		return (absx > (float)1e-15 && absx < (float)1e15) ? x : 0.f;
+	}
 #endif
 
 inline double midicps(const int a) throw()			{	return 440.0 * ::pow(2.0, (a - 69.0) * oneOver12);				}
