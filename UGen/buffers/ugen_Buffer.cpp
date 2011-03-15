@@ -3110,7 +3110,11 @@ void BufferSender::removeBufferReceiver(BufferReceiver* receiver) throw()
 {
 	if(receiver == 0) { ugen_assertfalse; return; }
 	
-	receivers.removeItem(receiver);
+	if(receivers.contains(receiver))
+	{
+		receivers.removeItem(receiver);
+		receiver->removeBufferSender(this);
+	}
 }
 
 void BufferSender::sendBuffer(Buffer const& buffer, const double value1, const int value2) throw()

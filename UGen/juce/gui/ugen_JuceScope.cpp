@@ -221,7 +221,7 @@ void ScopeComponent::paintBipolar(Graphics& g)
 				oldMaximum = maximum - 0.5f;
 			}
 			
-			paintChannelLabel(g, channelLabels.wrapAt(channel), channel, top);
+			paintChannelLabel(g, channelLabels.wrapAt(channel), channel, bottom-textSizeChannel-6);
 		}		
 	}
 }
@@ -292,7 +292,7 @@ void ScopeComponent::paintUnipolar(Graphics& g)
 				oldMaximum = maximum - 0.5f;
 			}
 					
-			paintChannelLabel(g, channelLabels.wrapAt(channel), channel, top);
+			paintChannelLabel(g, channelLabels.wrapAt(channel), channel, bottom-textSizeChannel-6);
 		}		
 	}
 }
@@ -1312,7 +1312,10 @@ ScopeControlComponent::ScopeControlComponent(CriticalSection& criticalSection, S
 	defaultLoopLabel("Loop"),
 	defaultLoopLabelNumber(1),
 	defaultRegionLabel("Region"),
-	defaultRegionLabelNumber(1)
+	defaultRegionLabelNumber(1),
+	dragScroll(false),
+	dragZoomX(false),
+	dragZoomY(false)
 {
 	controlColours[CuePointColour]			= RGBAColour(1.0, 1.0, 0.0, 1.0);
 	controlColours[CuePointTextColour]		= RGBAColour(1.0, 1.0, 0.0, 1.0);
@@ -1465,7 +1468,23 @@ void ScopeControlComponent::mouseDown(const MouseEvent& e)
 {
 	int offset = pixelsToSamples(e.x);
 	
-	if(e.mods.isPopupMenu() && e.mods.isAltDown())
+	if(e.mods.isCommandDown())
+	{
+		printf("scroll...start clicked=%d\n", e.mouseWasClicked());
+		
+		if(e.mods.isAltDown())
+		{
+			dragScroll = false;
+			dragZoomX = dragZoomY = true; // we decide which in mouseDrag
+		}
+		else 
+		{
+			dragScroll = true;
+			dragZoomX = dragZoomY = false;
+			lastDragX = e.x;
+		}
+	}
+	else if(e.mods.isPopupMenu() && e.mods.isAltDown())
 	{
 		if(e.mods.isShiftDown())
 		{
@@ -1538,20 +1557,57 @@ void ScopeControlComponent::mouseDown(const MouseEvent& e)
 
 void ScopeControlComponent::mouseDrag(const MouseEvent& e)
 {
-	if(draggingCuePoint != 0)
+	if(e.mods.isCommandDown())
 	{
-		draggingCuePoint->mouseDrag(e.getEventRelativeTo(draggingCuePoint));
+		printf("scroll...drag clicked=%d\n", e.mouseWasClicked());
+		
+		if(dragScroll)
+		{
+			int amount = lastDragX - e.x;
+			offsetBy(amount *  getAudioBuffer().size() / getDisplayBufferSize());
+			lastDragX = e.x;
+		}
+		else if(dragZoomX && dragZoomY)
+		{
+			if(!e.mouseWasClicked())
+			{
+				// decide which direction here
+				//..
+			}
+		}
+		else if(dragZoomX)
+		{
+		}
+		else if(dragZoomY)
+		{
+		}
+	}
+	else
+	{
+		// finsihed scrolling if we were since the command key is now up
+		//..
+		
+		if(draggingCuePoint != 0)
+		{
+			draggingCuePoint->mouseDrag(e.getEventRelativeTo(draggingCuePoint));
+		}
 	}
 }
 
 void ScopeControlComponent::mouseUp(const MouseEvent& e)
 {
-	if(draggingCuePoint != 0)
+	if(e.mods.isCommandDown())
+	{
+		printf("scroll...finsihed clicked=%d\n", e.mouseWasClicked());
+	}
+	else if(draggingCuePoint != 0)
 	{
 		draggingCuePoint->mouseUp(e.getEventRelativeTo(draggingCuePoint));
 		draggingCuePoint->mouseExit(e.getEventRelativeTo(draggingCuePoint));
 		draggingCuePoint = 0;
 	}	
+	
+	dragScroll = dragZoomX = dragZoomY = false;
 }
 
 void ScopeControlComponent::setMaxSize(const int newSize)
@@ -1566,6 +1622,19 @@ int ScopeControlComponent::getMaxSize()
 	return maxSize;
 }
 
+void ScopeControlComponent::getCurrentLimits(int& start, int& end)
+{	
+	start = getSampleOffset();
+	end = start + getAudioBuffer().size();
+}
+
+void ScopeControlComponent::offsetBy(const int offset)
+{
+	int start, end;
+	getCurrentLimits(start, end);
+	zoomToOffsets(start + offset, end + offset);
+}
+
 void ScopeControlComponent::zoomToOffsets(int start, int end)
 {
 	if(start >= end)
@@ -1573,15 +1642,33 @@ void ScopeControlComponent::zoomToOffsets(int start, int end)
 		ugen_assertfalse;
 		return;
 	}
+			
+	if((start < originalBufferOffset) && (end > maxSize))
+	{
+		ScopeComponent::setAudioBuffer(originalBuffer, originalBufferOffset, -1);
+		resized();
+	}
+	else
+	{
+		int newSize = end - start;
+
+		if(start < originalBufferOffset)
+		{
+			start = originalBufferOffset;
+			end  = start + newSize;
+		}
+		else if(end > maxSize)  // should be originalBufferSize?
+		{
+			end = maxSize;
+			start = maxSize - newSize;
+		}
 		
-	if(start < originalBufferOffset) start = originalBufferOffset;
-	if(end > maxSize) end = maxSize;
-	
-	Buffer zoomedBuffer = Buffer::withSize(1, originalBuffer.getNumChannels());
-	zoomedBuffer.referTo(originalBuffer, start - originalBufferOffset, end - start);
-	
-	ScopeComponent::setAudioBuffer(zoomedBuffer, start, -1);
-	resized();
+		Buffer zoomedBuffer = Buffer::withSize(1, originalBuffer.getNumChannels());
+		zoomedBuffer.referTo(originalBuffer, start - originalBufferOffset, newSize);
+		
+		ScopeComponent::setAudioBuffer(zoomedBuffer, start, -1);
+		resized();
+	}
 }
 
 void ScopeControlComponent::zoomAround(const int offset, const float amount)
