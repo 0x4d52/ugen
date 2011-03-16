@@ -59,13 +59,28 @@ PartBuffer::PartBuffer() throw()
 {				
 }
 
+static int calculatePartBufferSize(int originalSize, int startPoint, int endPoint, int fftSize) throw()
+{
+	int size = fftSize;
+	
+	if(endPoint <= 0)
+	{
+		size = originalSize;
+	}
+	else if((startPoint >= 0) && (startPoint < endPoint))
+	{
+		size = endPoint - startPoint; 
+	}
+	
+	return quantiseUp(size, fftSize);
+}
+
 PartBuffer::PartBuffer(Buffer const& original, 
 					   long startPointToUse,
 					   long endPointToUse, 
 					   FFTEngine const& fftEngineToUse) throw()
-:	Buffer(BufferSpec((endPointToUse ? endPointToUse - startPointToUse : quantiseUp(original.size(), fftEngineToUse.size())) * 2,
-		   original.getNumChannels(), 
-		   false)),
+:	Buffer(Buffer::newClear(calculatePartBufferSize(original.size(), startPointToUse, endPointToUse, fftEngineToUse.size()) * 2,
+							original.getNumChannels())),
 	bufferSize(size_ / 2),
 	numPartitions(0),
 	startPoint(startPointToUse),
