@@ -754,7 +754,6 @@ void ScopeCuePointComponent::moved()
 	
 	if(region != 0)
 	{
-		// perhaps do thi with a listener instead ??
 		region->checkPosition();
 	}
 	
@@ -1016,22 +1015,28 @@ void ScopeRegionComponent::showPopupMenu(const int offset)
 
 void ScopeRegionComponent::getRegionPosition(int& start, int& end)
 { 
-	start = startPoint->getCuePosition();
-	end = endPoint->getCuePosition();
-	
-	if(start > end)
+	if(startPoint != 0 && endPoint != 0)
 	{
-		ScopeCuePointComponent::swapCuePoints(startPoint, endPoint);
 		start = startPoint->getCuePosition();
 		end = endPoint->getCuePosition();
+		
+		if(start > end)
+		{
+			ScopeCuePointComponent::swapCuePoints(startPoint, endPoint);
+			start = startPoint->getCuePosition();
+			end = endPoint->getCuePosition();
+		}
 	}
 }
 
 void ScopeRegionComponent::setRegionOffsets(const int start, const int end)
 {
 	changingBoth = true;
-	startPoint->setSampleOffset(jmin(start, end));
-	endPoint->setSampleOffset(jmax(start, end));
+	if(startPoint != 0 && endPoint != 0)
+	{
+		startPoint->setSampleOffset(jmin(start, end));
+		endPoint->setSampleOffset(jmax(start, end));
+	}
 	changingBoth = false;
 	checkPosition();
 }
@@ -1564,15 +1569,46 @@ void ScopeControlComponent::mouseDrag(const MouseEvent& e)
 		if(dragScroll)
 		{
 			int amount = lastDragX - e.x;
-			offsetBy(amount *  getAudioBuffer().size() / getDisplayBufferSize());
-			lastDragX = e.x;
+			
+			double samplesPerPixel = (double)getAudioBuffer().size() / (double)getDisplayBufferSize();
+			int width = getWidth();
+			
+			if(e.x < 0)
+			{
+				beginDragAutoRepeat(50);
+				amount = -e.x * samplesPerPixel + 0.5;
+			}
+			else if(e.x >= width)
+			{
+				beginDragAutoRepeat(50);
+				amount = -(e.x - width) * samplesPerPixel + 0.5;
+			}
+			else
+			{
+				beginDragAutoRepeat(0);
+				amount = amount * samplesPerPixel + 0.5;
+			}
+
+			if(amount != 0)
+			{
+				offsetBy(amount);
+				lastDragX = e.x;
+			}
+			
+			//beginDragAutoRepeat(50);//??
 		}
 		else if(dragZoomX && dragZoomY)
 		{
 			if(!e.mouseWasClicked())
 			{
-				// decide which direction here
-				//..
+				if(e.getDistanceFromDragStartX() > e.getDistanceFromDragStartY())
+				{
+					dragZoomY = false;
+				}
+				else 
+				{
+					dragZoomX = false;
+				}
 			}
 		}
 		else if(dragZoomX)
@@ -1643,7 +1679,10 @@ void ScopeControlComponent::zoomToOffsets(int start, int end)
 		return;
 	}
 			
-	if((start < originalBufferOffset) && (end > maxSize))
+	int originalBufferSize = originalBuffer.size();
+	int originalBufferEnd = originalBufferOffset + originalBuffer.size();
+	
+	if((start < originalBufferOffset) && (end > originalBufferEnd))
 	{
 		ScopeComponent::setAudioBuffer(originalBuffer, originalBufferOffset, -1);
 		resized();
@@ -1651,16 +1690,19 @@ void ScopeControlComponent::zoomToOffsets(int start, int end)
 	else
 	{
 		int newSize = end - start;
+		
+		if(newSize > originalBufferSize) 
+			newSize = originalBufferSize;
 
 		if(start < originalBufferOffset)
 		{
 			start = originalBufferOffset;
 			end  = start + newSize;
 		}
-		else if(end > maxSize)  // should be originalBufferSize?
+		else if(end > originalBufferEnd)
 		{
-			end = maxSize;
-			start = maxSize - newSize;
+			end = originalBufferEnd;
+			start = originalBufferEnd - newSize;
 		}
 		
 		Buffer zoomedBuffer = Buffer::withSize(1, originalBuffer.getNumChannels());
