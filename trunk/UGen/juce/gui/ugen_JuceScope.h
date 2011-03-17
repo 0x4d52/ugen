@@ -60,7 +60,7 @@ private:
 	CriticalSection juceLock;
 	
 	enum CommandIDs { Repaint, NumCommandIDs };
-	void handleCommandMessage (int commandId);
+	void handleCommandMessage (const int commandId);
 };
 
 
@@ -132,7 +132,8 @@ public:
 	
 	void choosePopupMenu(const int offset);
 	virtual void showPopupMenu(const int offset);
-	
+	void doCommand(const int commandID);
+
 	inline int getCuePosition() { return getX()+1; }
 	void setHeight(const int height);
 	void checkPosition();
@@ -180,6 +181,7 @@ class ScopeInsertComponent : public ScopeCuePointComponent
 public:
 	ScopeInsertComponent(ScopeControlComponent* owner, ScopeRegionComponent* region);
 	void showPopupMenu(const int offset);
+	void doCommand(const int commandID);
 };
 
 
@@ -202,7 +204,8 @@ public:
 	
 	void choosePopupMenu(const int offset);
 	virtual void showPopupMenu(const int offset);
-	
+	void doCommand(const int commandID, const int offset);
+
 	ScopeCuePointComponent* getStartPoint() { return startPoint; }
 	ScopeCuePointComponent* getEndPoint() { return endPoint; }
 	
@@ -246,6 +249,7 @@ public:
 							const int initialEnd = 0);
 	
 	void showPopupMenu(const int offset);
+	void doCommand(const int commandID, const int offset);
 
 	void mouseDown (const MouseEvent& e);	
 	void mouseDrag (const MouseEvent& e);
@@ -262,6 +266,7 @@ public:
 	~ScopeLoopComponent();
 
 	void showPopupMenu(const int offset);
+	void doCommand(const int commandID, const int offset);
 
 	LoopPoint& getLoopPoint() { return loopPoint; }
 	
@@ -299,6 +304,7 @@ public:
 	const Font getPopupMenuFont();
 	void choosePopupMenu(const int offset);
 	void showPopupMenu(const int offset);
+	void doCommand(const int commandID, const int offset);
 	
 	void setAudioBuffer(Buffer const& audioBufferToUse, const double offset = 0.0, const int fftSize = -1);
 	
@@ -404,7 +410,8 @@ public:
 	};
 	
 	typedef Dictionary<Text,ScopeControlComponent::Command> CommandDictonary;
-	static const char* getCommand(Command commandID); 
+	static const char* getCommand(Command commandID); 	
+
 	
 private:
 	static const CommandDictonary& buildCommandDictionary();
