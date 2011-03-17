@@ -322,7 +322,7 @@ Env Env::adsr(const double attackTime,
 	ugen_assert(sustainLevel >= 0.0);
 	ugen_assert(releaseTime >= 0.0);
 	ugen_assert(level > 0.0);
-	ugen_assert((attackTime + decayTime + releaseTime) > 0.0);
+//	ugen_assert((attackTime + decayTime + releaseTime) > 0.0);
 	
 	return Env(Buffer(0.0, level, (level * sustainLevel), 0.0), 
 			   Buffer(attackTime, decayTime, releaseTime),
@@ -339,7 +339,7 @@ Env Env::asr(const double attackTime,
 	ugen_assert(sustainLevel >= 0.0);
 	ugen_assert(releaseTime >= 0.0);
 	ugen_assert(level > 0.0);
-	ugen_assert((attackTime + releaseTime) > 0.0);
+//	ugen_assert((attackTime + releaseTime) > 0.0);
 	
 	return Env(Buffer(0.0, (level * sustainLevel), 0.0), 
 			   Buffer(attackTime, releaseTime),

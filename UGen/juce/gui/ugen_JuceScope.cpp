@@ -646,14 +646,18 @@ void ScopeCuePointComponent::showPopupMenu(const int offset)
 //	addCommandToMenu(m, ScopeControlComponent::MoveToZeroCrossings);
 	
 	const int result = m.show();
-	
-	switch (result)
+	if(result != 0) doCommand(result);
+}
+
+void ScopeCuePointComponent::doCommand(const int commandID)
+{
+	switch (commandID)
 	{
 		case ScopeControlComponent::EditCuePointLabel:	editLabel();							break;
 		case ScopeControlComponent::DeleteCuePoint:		owner->removeCuePoint(this);			break;
 		case ScopeControlComponent::SetToZero:			setSampleOffset(0);						break;
 		case ScopeControlComponent::SetToEnd:			setSampleOffset(owner->getMaxSize());	break;
-	}
+	}	
 }
 
 void ScopeCuePointComponent::setHeight(const int height)
@@ -732,6 +736,33 @@ void ScopeCuePointComponent::mouseDrag (const MouseEvent& e)
 	{
 		constrain.setMinimumOnscreenAmounts(0xffffff, 0, 0xffffff, 0);
 		dragger.dragComponent (this, e, &constrain);
+		
+		if(owner != 0)
+		{
+			int x = e.getEventRelativeTo(owner).x;
+			double samplesPerPixel = (double)owner->getAudioBuffer().size() / (double)owner->getDisplayBufferSize();
+
+			if(x < 0)
+			{
+				beginDragAutoRepeat(50);
+				owner->offsetBy(x*samplesPerPixel+0.5);
+			}
+			else 
+			{
+				int w = owner->getWidth();
+				
+				if(x > w)
+				{
+					beginDragAutoRepeat(50);
+					owner->offsetBy((x-w)*samplesPerPixel+0.5);
+				}
+				else 
+				{
+					beginDragAutoRepeat(0);
+				}
+			}
+			
+		}
 	}
 }
 
@@ -865,12 +896,16 @@ void ScopeInsertComponent::showPopupMenu(const int offset)
 	addCommandToMenu(m, ScopeControlComponent::SetToEnd);
 	
 	const int result = m.show();
-	
-	switch (result)
+	if(result != 0) doCommand(result);		
+}
+
+void ScopeInsertComponent::doCommand(const int commandID)
+{
+	switch (commandID)
 	{
 		case ScopeControlComponent::SetToZero:			setSampleOffset(0);						break;
 		case ScopeControlComponent::SetToEnd:			setSampleOffset(owner->getMaxSize());	break;
-	}
+	}	
 }
 
 ScopeRegionComponent::ScopeRegionComponent(ScopeControlComponent* o, 
@@ -998,8 +1033,12 @@ void ScopeRegionComponent::showPopupMenu(const int offset)
 	}
 	
 	const int result = m.show();
-	
-	switch (result)
+	if(result != 0) doCommand(result, offset);
+}
+
+void ScopeRegionComponent::doCommand(const int commandID, int offset)
+{
+	switch (commandID)
 	{
 		case ScopeControlComponent::EditStartLabel:		startPoint->editLabel();						break;
 		case ScopeControlComponent::EditEndLabel:		endPoint->editLabel();							break;
@@ -1010,7 +1049,7 @@ void ScopeRegionComponent::showPopupMenu(const int offset)
 			getRegionOffsets(start, end);
 			owner->setSelection(start, end);			
 		} break;
-	}
+	}	
 }
 
 void ScopeRegionComponent::getRegionPosition(int& start, int& end)
@@ -1138,10 +1177,17 @@ void ScopeSelectionComponent::showPopupMenu(const int offset)
 	addCommandToMenu(m, ScopeControlComponent::ZoomToWindow);
 	
 	const int result = m.show();
-	
-	const float zoomFactor = 16.f;
+	if(result != 0) doCommand(result, offset);
+}
 
-	switch (result)
+void ScopeSelectionComponent::doCommand(const int commandID, const int offset)
+{
+	const float zoomFactor = 16.f;
+	
+	int start, end;
+	owner->getSelection(start, end);
+
+	switch (commandID)
 	{
 		case ScopeControlComponent::SetToZero:							setRegionOffsets(0, 0);											break;
 		case ScopeControlComponent::SetToEnd:							setRegionOffsets(owner->getMaxSize(), owner->getMaxSize());		break;
@@ -1157,11 +1203,11 @@ void ScopeSelectionComponent::showPopupMenu(const int offset)
 		case ScopeControlComponent::DeleteLoopPointsInSelection:		owner->clearLoopPointsBetween(start, end);						break;
 		case ScopeControlComponent::DeleteRegionsInSelection:			owner->clearRegionsBetween(start, end);							break;
 		case ScopeControlComponent::DeleteCuesLoopsRegionsInSelection:	owner->clearCuePointsBetween(start, end);
-																		owner->clearLoopPointsBetween(start, end);
-																		owner->clearRegionsBetween(start, end);							break;
+			owner->clearLoopPointsBetween(start, end);
+			owner->clearRegionsBetween(start, end);							break;
 		case ScopeControlComponent::ZoomToSelection:					owner->zoomToOffsets(start, end);								break;
 		case ScopeControlComponent::ZoomToWindow:						owner->zoomOutFully();											break;
-
+			
 		case ScopeControlComponent::ZoomIn:	{
 			owner->zoomAround(offset < 0 ? owner->getMaxSize()/2 : offset, -1.f/zoomFactor);
 		} break;
@@ -1169,7 +1215,7 @@ void ScopeSelectionComponent::showPopupMenu(const int offset)
 		case ScopeControlComponent::ZoomOut: {
 			owner->zoomAround(offset < 0 ? owner->getMaxSize()/2 : offset, 1.f/zoomFactor);
 		} break;
-	}			
+	}				
 }
 
 void ScopeSelectionComponent::mouseDown (const MouseEvent& e)
@@ -1284,8 +1330,12 @@ void ScopeLoopComponent::showPopupMenu(const int offset)
 	}
 	
 	const int result = m.show();
-	
-	switch (result)
+	if(result != 0) doCommand(result, offset);
+}
+
+void ScopeLoopComponent::doCommand(const int commandID, const int offset)
+{
+	switch (commandID)
 	{
 		case ScopeControlComponent::EditStartLabel:		startPoint->editLabel();							break;
 		case ScopeControlComponent::EditEndLabel:		endPoint->editLabel();								break;
@@ -1301,7 +1351,7 @@ void ScopeLoopComponent::showPopupMenu(const int offset)
 		case ScopeControlComponent::LoopTypeForward:	loopPoint.getType() = LoopPoint::Forward;			break;
 		case ScopeControlComponent::LoopTypePingPong:	loopPoint.getType() = LoopPoint::PingPong;			break;
 		case ScopeControlComponent::LoopTypeReverse:	loopPoint.getType() = LoopPoint::Reverse;			break;
-	}			
+	}				
 }
 
 ScopeControlComponent::ScopeControlComponent(CriticalSection& criticalSection, ScopeStyles style, DisplayOptions optionsToUse)
@@ -1380,9 +1430,14 @@ void ScopeControlComponent::showPopupMenu(const int offset)
 		
 	const int result = m.show();
 	
+	if(result != 0) doCommand(result, offset);
+}
+
+void ScopeControlComponent::doCommand(const int commandID, const int offset)
+{
 	const float zoomFactor = 16;
 
-	switch (result)
+	switch (commandID)
 	{
 		case ScopeControlComponent::AddCuePoint:		addNextCuePointAt(offset, true, false);		break;
 		case ScopeControlComponent::ZoomToWindow:		zoomOutFully();								break;
@@ -1394,8 +1449,8 @@ void ScopeControlComponent::showPopupMenu(const int offset)
 		case ScopeControlComponent::ZoomOut: {
 			zoomAround(offset < 0 ? maxSize/2 : offset, 1.f/zoomFactor);
 		} break;
-
-	}			
+			
+	}				
 }
 
 void ScopeControlComponent::setAudioBuffer(Buffer const& buffer, const double offset, const int fftSizeOfSource)
@@ -1593,9 +1648,7 @@ void ScopeControlComponent::mouseDrag(const MouseEvent& e)
 			{
 				offsetBy(amount);
 				lastDragX = e.x;
-			}
-			
-			//beginDragAutoRepeat(50);//??
+			}			
 		}
 		else if(dragZoomX && dragZoomY)
 		{
