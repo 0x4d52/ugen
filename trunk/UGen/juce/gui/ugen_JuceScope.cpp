@@ -2299,7 +2299,8 @@ void ScopeControlComponent::openPreferences()
 	ScopeControlPreferences prefs(this);
 	
 	showModalPrefs("Scope Preferences", &prefs, this,
-				   Colour::greyLevel(0.9f).withAlpha(0.9f), true, true, false);
+				   Colour::greyLevel(0.9f).withAlpha(0.9f), 
+				   true, true, false);
 	
 	printf("closed Scope Preferences\n");
 }
@@ -2361,36 +2362,74 @@ ScopeControlPreferences::ScopeControlPreferences(ScopeControlComponent* scopeToE
 	const int margin = 10;
 	int height = margin;
 
-	int displayHeight = addScopeDisplayProperties();
-	int controlHeight = addScopeControlProperties();
-	
-	height += displayHeight;
-	height += controlHeight;
-	
+	addScopeDisplayProperties(height);
+	addScopeControlProperties(height);
+		
 	height += margin;
 	
-	setSize(300, 300);//height);
+	setSize(300, height);
 }
 
 ScopeControlPreferences::~ScopeControlPreferences()
 {
+	deleteAllChildren();
 }
 
-int ScopeControlPreferences::addScopeDisplayProperties()
+static Label* createLabelPref(ScopeControlPreferences* owner, 
+							  String const& prefName, 
+							  String const& prefValue,
+							  int &height)
 {
-	int height = 0;
+	const int margin = 10;
+	
+	Label* pref;
+	owner->addAndMakeVisible(pref = new Label(prefName, prefValue));
+	pref->addListener(owner);
+	pref->setEditable(true, true, false);
+	
+	Label* label = new Label(prefName+"Label", prefName);
+	label->attachToComponent(pref, true);
+	
+	pref->setBounds(100, height, 200, 20);
+	height += pref->getHeight();
+	height += margin;
+	
+	return pref;
+}
+
+static const int floatDecimalPlacesPref = 10;
+
+void ScopeControlPreferences::addScopeDisplayProperties(int& height)
+{			
+	
+	yMaximumPref = createLabelPref(this, "Y Maximium", String(scope->getYMaximum(), floatDecimalPlacesPref), height);
 		
-	return height;
 }
 
-int ScopeControlPreferences::addScopeControlProperties()
+void ScopeControlPreferences::addScopeControlProperties(int& height)
 {
-	return 0;
+
 }
 
 void ScopeControlPreferences::paint(Graphics& g)
 {
 	//g.fillAll(Colours::red);
+}
+
+void ScopeControlPreferences::labelTextChanged (Label* labelThatHasChanged)
+{
+	prefChanged(labelThatHasChanged);
+}
+
+void ScopeControlPreferences::prefChanged(Component* pref)
+{
+	if(pref == yMaximumPref)
+	{
+		Label* label = static_cast<Label*>(pref);
+		float value = label->getText().getFloatValue();
+		label->setText(String(value, floatDecimalPlacesPref), false);
+		scope->setYMaximum(value);
+	}
 }
 
 RadialScopeComponent::RadialScopeComponent(ScopeStyles style)
