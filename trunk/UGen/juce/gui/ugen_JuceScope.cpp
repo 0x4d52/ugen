@@ -479,11 +479,6 @@ TextEditor* ScopeCuePointLabel::createEditorComponent()
 
 void ScopeCuePointLabel::mouseDown(const MouseEvent& e)
 {
-//	if(e.mods.isPopupMenu())
-//	{
-//		//
-//	}
-//	else 
 	if(owner != 0)
 	{
 		owner->mouseEnter(e.getEventRelativeTo(owner));
@@ -704,17 +699,19 @@ void ScopeCuePointComponent::mouseDown (const MouseEvent& e)
 	{
 		if(region == 0)
 		{
-			owner->removeCuePoint(this);
+			ScopeInsertComponent* insert = dynamic_cast<ScopeInsertComponent*> (this);
+			if(insert == 0) owner->removeCuePoint(this);
 		}
 		else 
 		{
 			ScopeLoopComponent* loop = dynamic_cast<ScopeLoopComponent*> (region.getComponent());
+			ScopeSelectionComponent* select = dynamic_cast<ScopeSelectionComponent*> (region.getComponent());
 			
 			if(loop != 0)
 			{
 				owner->removeLoopPoint(loop);
 			}
-			else
+			else if(select == 0)
 			{
 				owner->removeRegion(region);
 			}
@@ -745,7 +742,7 @@ void ScopeCuePointComponent::mouseDrag (const MouseEvent& e)
 			if(x < 0)
 			{
 				beginDragAutoRepeat(50);
-				owner->offsetBy(x*samplesPerPixel+0.5);
+				owner->offsetBy(x*samplesPerPixel*0.5+0.5);
 			}
 			else 
 			{
@@ -754,7 +751,7 @@ void ScopeCuePointComponent::mouseDrag (const MouseEvent& e)
 				if(x > w)
 				{
 					beginDragAutoRepeat(50);
-					owner->offsetBy((x-w)*samplesPerPixel+0.5);
+					owner->offsetBy((x-w)*samplesPerPixel*0.5+0.5);
 				}
 				else 
 				{
@@ -908,6 +905,16 @@ void ScopeInsertComponent::doCommand(const int commandID)
 	}	
 }
 
+//void ScopeInsertComponent::mouseDown (const MouseEvent& e)
+//{
+//	int offset = owner ? owner->pixelsToSamples(e.getEventRelativeTo(owner).x) : -1;
+//	
+//	if(!beingDragged && e.mods.isPopupMenu())
+//	{
+//		choosePopupMenu(offset);
+//	}	
+//}
+//
 ScopeRegionComponent::ScopeRegionComponent(ScopeControlComponent* o, 
 										   CuePoint const& startCue, 
 										   CuePoint const& endCue,
@@ -1092,7 +1099,7 @@ void ScopeRegionComponent::checkPosition()
 	{
 		int start, end;
 		getRegionPosition(start, end);
-		setBounds(start, 0, end-start+1, getParentHeight());
+		setBounds(start, 0, end-start+1, owner->getHeight());
 	}
 }
 
@@ -1593,7 +1600,7 @@ void ScopeControlComponent::mouseDown(const MouseEvent& e)
 	{
 		choosePopupMenu(offset);
 	}
-	else
+	else if(e.mods.isLeftButtonDown())
 	{
 		setInsertOffset(offset);
 		setSelection(offset, offset);
@@ -1618,9 +1625,7 @@ void ScopeControlComponent::mouseDown(const MouseEvent& e)
 void ScopeControlComponent::mouseDrag(const MouseEvent& e)
 {
 	if(e.mods.isCommandDown())
-	{
-		printf("scroll...drag clicked=%d\n", e.mouseWasClicked());
-		
+	{		
 		if(dragScroll)
 		{
 			int amount = lastDragX - e.x;
@@ -1646,7 +1651,7 @@ void ScopeControlComponent::mouseDrag(const MouseEvent& e)
 
 			if(amount != 0)
 			{
-				offsetBy(amount);
+				offsetBy(amount * 0.5);
 				lastDragX = e.x;
 			}			
 		}
@@ -2291,6 +2296,35 @@ const char* ScopeControlComponent::getCommand(Command commandID)
 {
 	static const ScopeControlComponent::CommandDictonary& commands = buildCommandDictionary();
 	return (const char*)commands[commandID];
+}
+
+ScopeControlPreferences::ScopeControlPreferences(ScopeControlComponent* scopeToEdit)
+:	scope(scopeToEdit)
+{
+	const int margin = 10;
+	int height = margin;
+
+	int displayHeight = addScopeDisplayProperties();
+	int controlHeight = addScopeControlProperties();
+	
+	height += displayHeight;
+	height += controlHeight;
+}
+
+ScopeControlPreferences::~ScopeControlPreferences()
+{
+}
+
+int ScopeControlPreferences::addScopeDisplayProperties()
+{
+	int height = 0;
+		
+	return height;
+}
+
+int ScopeControlPreferences::addScopeControlProperties()
+{
+	return 0;
 }
 
 RadialScopeComponent::RadialScopeComponent(ScopeStyles style)

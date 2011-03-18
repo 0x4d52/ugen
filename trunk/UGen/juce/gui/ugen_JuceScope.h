@@ -182,6 +182,7 @@ public:
 	ScopeInsertComponent(ScopeControlComponent* owner, ScopeRegionComponent* region);
 	void showPopupMenu(const int offset);
 	void doCommand(const int commandID);
+//	void mouseDown (const MouseEvent& e);
 };
 
 
@@ -441,6 +442,19 @@ private:
 	int lastDragX, lastDragY;
 };
 
+
+class ScopeControlPreferences :		public Component
+{
+public:
+	ScopeControlPreferences(ScopeControlComponent* scope);
+	~ScopeControlPreferences();
+	
+	int addScopeDisplayProperties();
+	int addScopeControlProperties();
+		
+private:
+	ScopeControlComponent* scope;
+};
 
 
 class RadialScopeComponent : public ScopeComponentBase
