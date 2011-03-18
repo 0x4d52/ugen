@@ -453,6 +453,12 @@ static void addCommandToMenu(PopupMenu& m,
 	m.addItem(command, ScopeControlComponent::getCommand(command), isActive, isTicked);
 }
 
+static void addPrefsCommandToMenu(PopupMenu& m)
+{
+	m.addSeparator();
+	addCommandToMenu(m, ScopeControlComponent::OpenPreferences);
+}
+
 ScopeCuePointLabel::ScopeCuePointLabel(ScopeCuePointComponent *o)
 :	Label("ScopeControlLabel"),
 	owner(o)
@@ -1434,6 +1440,8 @@ void ScopeControlComponent::showPopupMenu(const int offset)
 	addCommandToMenu(m, ScopeControlComponent::ZoomIn);
 	addCommandToMenu(m, ScopeControlComponent::ZoomOut);
 	addCommandToMenu(m, ScopeControlComponent::ZoomToWindow);
+	
+	addPrefsCommandToMenu(m);
 		
 	const int result = m.show();
 	
@@ -1457,6 +1465,7 @@ void ScopeControlComponent::doCommand(const int commandID, const int offset)
 			zoomAround(offset < 0 ? maxSize/2 : offset, 1.f/zoomFactor);
 		} break;
 			
+		case ScopeControlComponent::OpenPreferences:	openPreferences();							break;
 	}				
 }
 
@@ -2249,6 +2258,52 @@ void ScopeControlComponent::clearRegionsBetween(const int start, const int end)
 	}			
 }
 
+class PrefsDialogWindow : public DialogWindow
+{
+public:
+    PrefsDialogWindow (const String& title, const Colour& colour, const bool escapeCloses)
+	: DialogWindow (title, colour, escapeCloses, true)
+    {
+		setTitleBarHeight(22);
+        if (! JUCEApplication::isStandaloneApp())
+            setAlwaysOnTop (true);
+    }
+	
+    void closeButtonPressed()
+    {
+        setVisible (false);
+    }
+};
+
+
+//==============================================================================
+static int showModalPrefs (const String& dialogTitle,
+						   Component* contentComponent,
+						   Component* componentToCentreAround,
+						   const Colour& colour,
+						   const bool escapeKeyTriggersCloseButton,
+						   const bool shouldBeResizable,
+						   const bool useBottomRightCornerResizer)
+{
+    PrefsDialogWindow dw (dialogTitle, colour, escapeKeyTriggersCloseButton);
+    dw.setContentComponent (contentComponent, true, true);
+    dw.centreAroundComponent (componentToCentreAround, dw.getWidth(), dw.getHeight());
+    dw.setResizable (shouldBeResizable, useBottomRightCornerResizer);
+    const int result = dw.runModalLoop();
+    dw.setContentComponent (0, false);
+    return result;
+}
+
+void ScopeControlComponent::openPreferences()
+{
+	ScopeControlPreferences prefs(this);
+	
+	showModalPrefs("Scope Preferences", &prefs, this,
+				   Colour::greyLevel(0.9f).withAlpha(0.9f), true, true, false);
+	
+	printf("closed Scope Preferences\n");
+}
+
 const ScopeControlComponent::CommandDictonary& ScopeControlComponent::buildCommandDictionary()
 {
 	static ScopeControlComponent::CommandDictonary c;
@@ -2289,6 +2344,8 @@ const ScopeControlComponent::CommandDictonary& ScopeControlComponent::buildComma
 	c.put(ZoomToSelection,					"Zoom to Selection");
 	c.put(ZoomToWindow,						"Zoom to Window");
 	
+	c.put(OpenPreferences,					"Preferences...");
+	
 	return c;
 }
 
@@ -2309,6 +2366,10 @@ ScopeControlPreferences::ScopeControlPreferences(ScopeControlComponent* scopeToE
 	
 	height += displayHeight;
 	height += controlHeight;
+	
+	height += margin;
+	
+	setSize(300, 300);//height);
 }
 
 ScopeControlPreferences::~ScopeControlPreferences()
@@ -2325,6 +2386,11 @@ int ScopeControlPreferences::addScopeDisplayProperties()
 int ScopeControlPreferences::addScopeControlProperties()
 {
 	return 0;
+}
+
+void ScopeControlPreferences::paint(Graphics& g)
+{
+	//g.fillAll(Colours::red);
 }
 
 RadialScopeComponent::RadialScopeComponent(ScopeStyles style)

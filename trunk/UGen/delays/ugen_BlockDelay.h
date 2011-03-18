@@ -52,6 +52,9 @@ public:
 	void prepareForBlockInternal(const int actualBlockSize, const unsigned int blockID, const int channel) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
+	void releaseInternal() throw();
+	void stealInternal() throw();
+	
 	enum Inputs { Input, NumInputs };
 	
 protected:
