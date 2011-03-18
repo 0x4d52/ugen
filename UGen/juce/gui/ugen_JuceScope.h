@@ -446,19 +446,24 @@ private:
 };
 
 
-class ScopeControlPreferences :		public Component
+class ScopeControlPreferences :		public Component,
+									public Label::Listener
 {
 public:
 	ScopeControlPreferences(ScopeControlComponent* scope);
 	~ScopeControlPreferences();
 	
-	int addScopeDisplayProperties();
-	int addScopeControlProperties();
+	void addScopeDisplayProperties(int& height);
+	void addScopeControlProperties(int& height);
 	
 	void paint(Graphics& g);
-		
+	
+	void labelTextChanged (Label* labelThatHasChanged);
+	void prefChanged(Component* pref);	
+	
 private:
 	ScopeControlComponent* scope;
+	Component* yMaximumPref;
 };
 
 
