@@ -86,6 +86,16 @@ void BlockDelayUGenInternal::processBlock(bool& shouldDelete, const unsigned int
 		memcpy(delayBufferSamples, inputSamples, numSamplesToProcess * sizeof(float));
 }
 
+void BlockDelayUGenInternal::releaseInternal() throw()
+{
+	// break the potential infinte loop in a release action
+}
+
+void BlockDelayUGenInternal::stealInternal() throw()
+{
+	// break the potential infinte loop in a steal action
+}
+
 BlockDelay::BlockDelay(UGen const& input) throw()
 {
 	int numChannels = input.getNumChannels();

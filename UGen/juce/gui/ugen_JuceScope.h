@@ -378,6 +378,8 @@ public:
 	void clearRegions();
 	void clearRegionsBetween(const int start, const int end);
 	
+	void openPreferences();
+	
 	enum Command
 	{
 		UserCancelled,
@@ -407,7 +409,8 @@ public:
 		ZoomIn,							
 		ZoomOut,							
 		ZoomToSelection,					
-		ZoomToWindow,						
+		ZoomToWindow,	
+		OpenPreferences
 	};
 	
 	typedef Dictionary<Text,ScopeControlComponent::Command> CommandDictonary;
@@ -451,6 +454,8 @@ public:
 	
 	int addScopeDisplayProperties();
 	int addScopeControlProperties();
+	
+	void paint(Graphics& g);
 		
 private:
 	ScopeControlComponent* scope;
