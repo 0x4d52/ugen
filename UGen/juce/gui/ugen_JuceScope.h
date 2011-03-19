@@ -447,7 +447,8 @@ private:
 
 
 class ScopeControlPreferences :		public Component,
-									public Label::Listener
+									public Label::Listener,
+									public ComboBox::Listener
 {
 public:
 	ScopeControlPreferences(ScopeControlComponent* scope);
@@ -458,12 +459,53 @@ public:
 	
 	void paint(Graphics& g);
 	
+	class LabelItem : public Label // placeholder
+	{
+	public:
+		LabelItem(const String& componentName = String::empty,
+				  const String& labelText = String::empty);
+	};
+	
+	typedef Dictionary<String,String> ItemDictionary;
+	
+	class ListItem : public ComboBox
+	{
+	public:
+		ListItem(const String& componentName,
+				 ItemDictionary const& itemDictionary,
+				 String const& prefValue);
+		const String& getSelectedValue();
+	private:
+		ItemDictionary itemDictionary;
+	};
+	
 	void labelTextChanged (Label* labelThatHasChanged);
+	void comboBoxChanged (ComboBox* comboBoxThatHasChanged);
 	void prefChanged(Component* pref);	
 	
+	static void initPref(Component* pref, String const& prefName, int &height);
+	
+	static LabelItem* createLabelPref(ScopeControlPreferences* owner, 
+									  String const& prefName, 
+									  String const& prefValue,
+									  int &height);
+	static float getLabelFloatValue(Component* labelPref);
+	static double getLabelDoubleValue(Component* labelPref);
+	static int getLabelIntValue(Component* labelPref);
+
+	static ListItem* createListPref(ScopeControlPreferences* owner, 
+									String const& prefName, 
+									ItemDictionary const& itemDictionary,
+									String const& prefValue,
+									int &height);
+	static int getListIntValue(Component* labelPref);
+	
 private:
+	static int labelDecimalPlaces;
+
 	ScopeControlComponent* scope;
 	Component* yMaximumPref;
+	Component* yMarkTypePref;
 };
 
 
