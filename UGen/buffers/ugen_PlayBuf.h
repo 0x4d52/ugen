@@ -215,6 +215,7 @@ UGenSublcassDeclaration(RecordBuf, (input, buffer, recLevel, preLevel, loop, don
 
 
 class LoopPointsUGenInternal :	public UGenInternal,
+								public DoneActionSender,
 								public MetaDataSender
 {
 public:
@@ -225,6 +226,7 @@ public:
 						   UGen const& loop,
 						   UGen const& startAtZero,
 						   UGen const& playToEnd,
+						   const UGen::DoneAction doneAction,
 						   MetaData const& metaData) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
@@ -243,6 +245,8 @@ private:
 	Buffer b;
 	float currentValue;
 	bool lastLoop;
+	const UGen::DoneAction doneAction_;
+	const bool shouldDeleteValue;	
 	MetaData metaData;
 	float prevValue;
 };
@@ -253,7 +257,7 @@ private:
  You need to provide the buffer, the rate of playback (1=normal) then the start
  and end loop points as a fraction 0.0-1.0 */
 UGenSublcassDeclaration(LoopPoints, 
-						(buffer, rate, start, end, loop, startAtZero, playToEnd, metaData), 
+						(buffer, rate, start, end, loop, startAtZero, playToEnd, doneAction, metaData), 
 						(Buffer const& buffer, 
 						 UGen const& rate, 
 						 UGen const& start, 
@@ -261,6 +265,7 @@ UGenSublcassDeclaration(LoopPoints,
 						 UGen const& loop = 1.f, 
 						 UGen const& startAtZero = 0.f,
 						 UGen const& playToEnd = 1.f,
+						 const UGen::DoneAction doneAction = UGen::DoNothing,
 						 MetaData const& metaData = MetaData()), 
 						COMMON_UGEN_DOCS);
 
