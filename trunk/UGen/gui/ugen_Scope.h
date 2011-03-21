@@ -112,6 +112,9 @@ public:
 							origin where the two axes meet).*/
 	void setScaleX(Scales scale, const double markSpacing = -1, const int labelHop = -1, const bool labelFirst = true) throw();
 	Scales getScaleX() const throw() { return scaleX; }
+	double getMarkSpacingX() const throw() { return markSpacingX; }
+	int getLabelHopX() const throw() { return labelHopX; }
+	bool getLabelFirstX() const throw() { return labelFirstX; }
 	
 	/** Set the labelling of the scale on the x axis.
 	 @param scale			LabelYNone, LabelYMarks, LabelYAmplitude or LabelYDecibels
@@ -123,6 +126,9 @@ public:
 							origin where the two axes meet).*/	
 	void setScaleY(Scales scale, const double markSpacing = -1, const int labelHop = -1, const int decimalPlaces = -1) throw();
 	Scales getScaleY() const throw() { return scaleY; }
+	double getMarkSpacingY() const throw() { return markSpacingY; }
+	int getLabelHopY() const throw() { return labelHopY; }
+	int getDecimalPlacesY() const throw() { return decimalPlacesY; }
 	
 	void initBuffers() throw();
 	
