@@ -494,11 +494,14 @@ LoopPointsUGenInternal::LoopPointsUGenInternal(Buffer const& buffer,
 											   UGen const& loop, 
 											   UGen const& startAtZero,
 											   UGen const& playToEnd,
+											   const UGen::DoneAction doneAction,
 											   MetaData const& metaDataToUse) throw()
 :	UGenInternal(NumInputs),
 	b(buffer),
 	currentValue((startAtZero.getValue() >= 0.5f) ? 0.f : start.getValue() * b.size()),
 	lastLoop(false),
+	doneAction_(doneAction),
+	shouldDeleteValue(doneAction_ == UGen::DeleteWhenDone),
 	metaData(metaDataToUse),
 	prevValue((rate.getValue() >= 0.f) ? currentValue - 1.f : b.size())
 {
@@ -578,11 +581,28 @@ void LoopPointsUGenInternal::processBlock(bool& shouldDelete, const unsigned int
 			if((rate > 0.f) && (currentValue >= end))
 			{
 				currentValue = (float)b.size();
+				shouldDelete = shouldDelete ? true : shouldDeleteValue;
+				setIsDone();
 			}
 			else if((rate < 0.f) && (currentValue < start))
 			{
 				currentValue = -1.f;
+				shouldDelete = shouldDelete ? true : shouldDeleteValue;
+				setIsDone();
 			}			
+		}
+		else
+		{
+			if((rate > 0.f) && (currentValue >= (float)b.size()))
+			{
+				shouldDelete = shouldDelete ? true : shouldDeleteValue;
+				setIsDone();
+			}
+			else if((rate < 0.f) && (currentValue < 0.f))
+			{
+				shouldDelete = shouldDelete ? true : shouldDeleteValue;
+				setIsDone();
+			}						
 		}
 		
 		*outputSamples = currentValue;
@@ -664,6 +684,7 @@ LoopPoints::LoopPoints(Buffer const& buffer,
 					   UGen const& loop, 
 					   UGen const& startAtZero,
 					   UGen const& playToEnd,
+					   const UGen::DoneAction doneAction,
 					   MetaData const& metaData) throw()
 {
 	initInternal(1);
@@ -674,6 +695,7 @@ LoopPoints::LoopPoints(Buffer const& buffer,
 												  loop.mix(), 
 												  startAtZero.mix(), 
 												  playToEnd.mix(),
+												  doneAction,
 												  metaData);
 }
 
