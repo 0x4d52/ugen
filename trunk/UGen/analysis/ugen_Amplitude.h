@@ -69,21 +69,28 @@ UGenSublcassDeclarationNoDefault(Amplitude, (input, duration),
 											(UGen const& input, const float duration = 0.01), 
 											COMMON_UGEN_DOCS);
 
-class DetectSilenceUGenInternal : public AmplitudeBaseUGenInternal
+class DetectSilenceUGenInternal :	public AmplitudeBaseUGenInternal,
+									public DoneActionSender
 {
 public:
-	DetectSilenceUGenInternal(UGen const& input, const float duration) throw();
+	DetectSilenceUGenInternal(UGen const& input, 
+							  const float duration, 
+							  const UGen::DoneAction doneAction) throw();
 	UGenInternal* getChannel(const int channel) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
 protected:
 	bool started;
+	const UGen::DoneAction doneAction_;
+	const bool shouldDeleteValue;	
 };
 
 /** Send a delete action when silence is detected. 
  @ingroup AllUGens ControlUGens*/
-UGenSublcassDeclarationNoDefault(DetectSilence, (input, duration), 
-												(UGen const& input, const float duration = 0.01), 
+UGenSublcassDeclarationNoDefault(DetectSilence, (input, duration, doneAction), 
+												(UGen const& input, 
+												 const float duration = 0.01,
+												 const UGen::DoneAction doneAction = UGen::DeleteWhenDone), 
 												COMMON_UGEN_DOCS);
 
 

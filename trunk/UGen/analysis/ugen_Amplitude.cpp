@@ -117,16 +117,20 @@ Amplitude::Amplitude(UGen const& input, const float duration) throw()
 }
 
 DetectSilenceUGenInternal::DetectSilenceUGenInternal(UGen const& input, 
-													 const float duration) throw()
+													 const float duration,
+													 const UGen::DoneAction doneAction) throw()
 :	AmplitudeBaseUGenInternal(input, duration),
-	started(false)
+	started(false),
+	doneAction_(doneAction),
+	shouldDeleteValue(doneAction_ == UGen::DeleteWhenDone)
 {
 }
 
 UGenInternal* DetectSilenceUGenInternal::getChannel(const int channel) throw()
 {
 	DetectSilenceUGenInternal* internal = new DetectSilenceUGenInternal(inputs[Input].getChannel(channel), 
-																		duration);
+																		duration,
+																		doneAction_);
 	internal->measuredItems = measuredItems;
 	internal->maximum = maximum;
 	internal->oldMaximum = oldMaximum;
@@ -145,17 +149,19 @@ void DetectSilenceUGenInternal::processBlock(bool& shouldDelete, const unsigned 
 	}
 	else if(started)
 	{
-		shouldDelete = true;
+		shouldDelete = shouldDelete ? true : shouldDeleteValue;
+		setIsDone();
+		sendDoneInternal();
 	}
 }
 
-DetectSilence::DetectSilence(UGen const& input, const float duration) throw()
+DetectSilence::DetectSilence(UGen const& input, const float duration, const UGen::DoneAction doneAction) throw()
 {
 	initInternal(input.getNumChannels());
 	
 	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
-		internalUGens[i] = new DetectSilenceUGenInternal(input, duration);
+		internalUGens[i] = new DetectSilenceUGenInternal(input, duration, doneAction);
 		internalUGens[i]->initValue(input.getValue(i));
 	}
 }

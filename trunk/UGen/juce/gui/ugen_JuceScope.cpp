@@ -2296,11 +2296,11 @@ static int showModalPrefs (const String& dialogTitle,
 
 void ScopeControlComponent::openPreferences()
 {
-	ScopeControlPreferences prefs(this);
-	
-	showModalPrefs("Scope Preferences", &prefs, this,
-				   Colour::greyLevel(0.9f).withAlpha(0.9f), 
-				   true, true, false);	
+//	ScopeControlPreferences prefs(this);
+//	
+//	showModalPrefs("Scope Preferences", &prefs, this,
+//				   Colour::greyLevel(0.9f).withAlpha(0.9f), 
+//				   true, true, false);	
 }
 
 const ScopeControlComponent::CommandDictonary& ScopeControlComponent::buildCommandDictionary()
@@ -2354,175 +2354,175 @@ const char* ScopeControlComponent::getCommand(Command commandID)
 	return (const char*)commands[commandID];
 }
 
-ScopeControlPreferences::LabelItem::LabelItem(const String& componentName,
-											  const String& labelText)
-:	Label(componentName, labelText)
-{
-	setEditable(true, true, false);
-}
-
-ScopeControlPreferences::ListItem::ListItem(const String& componentName,
-											ItemDictionary const& items,
-											String const& prefValue)
-:	ComboBox(componentName),
-	itemDictionary(items)
-{
-	ugen_assert(itemDictionary.length() > 0);
-		
-	ObjectArray<String> itemLabels = itemDictionary.getKeys();
-	
-	for(int i = 0; i < itemLabels.length(); i++)
-	{
-		addItem(itemLabels[i], 1000+i);
-	}
-	
-	const String& item = items.keyForValue(prefValue);
-	setText(item, true);
-}
-
-const String& ScopeControlPreferences::ListItem::getSelectedValue()
-{
-	String itemName = getText();
-	return itemDictionary[itemName];
-}
-
-int ScopeControlPreferences::labelDecimalPlaces = 0;
-
-ScopeControlPreferences::ScopeControlPreferences(ScopeControlComponent* scopeToEdit)
-:	scope(scopeToEdit)
-{
-	const int margin = 5;
-	int height = margin;
-
-	addScopeDisplayProperties(height);
-	addScopeControlProperties(height);
-		
-	height += margin;
-	
-	setSize(320, height);
-}
-
-ScopeControlPreferences::~ScopeControlPreferences()
-{
-	deleteAllChildren();
-}
- 
-void ScopeControlPreferences::initPref(Component* pref, String const& prefName, int &height)
-{
-	const int margin = 5;
-
-	Label* label = new Label(prefName+"Label", prefName);
-	label->attachToComponent(pref, true);
-	
-	pref->setBounds(100, height, 200, 20);
-	height += pref->getHeight();
-	height += margin;	
-}
-
-ScopeControlPreferences::LabelItem* 
-ScopeControlPreferences::createLabelPref(ScopeControlPreferences* owner, 
-										 String const& prefName, 
-										 String const& prefValue,
-										 int &height)
-{	
-	LabelItem* pref;
-	owner->addAndMakeVisible(pref = new LabelItem(prefName, prefValue));
-	pref->addListener(owner);
-	
-	initPref(pref, prefName, height);
-	return pref;
-}
-
-float ScopeControlPreferences::getLabelFloatValue(Component* pref)
-{
-	LabelItem* labelPref = static_cast<LabelItem*>(pref);
-	float value = labelPref->getText().getFloatValue();
-	labelPref->setText(String(value, labelDecimalPlaces), false);	
-	return value;
-}
-
-double ScopeControlPreferences::getLabelDoubleValue(Component* pref)
-{
-	LabelItem* labelPref = static_cast<LabelItem*>(pref);
-	double value = labelPref->getText().getDoubleValue();
-	labelPref->setText(String(value, labelDecimalPlaces), false);	
-	return value;
-}
-
-int ScopeControlPreferences::getLabelIntValue(Component* pref)
-{
-	LabelItem* labelPref = static_cast<LabelItem*>(pref);
-	int value = labelPref->getText().getIntValue();
-	labelPref->setText(String(value), false);	
-	return value;
-}
-
-ScopeControlPreferences::ListItem* 
-ScopeControlPreferences::createListPref(ScopeControlPreferences* owner, 
-										String const& prefName, 
-										ItemDictionary const& itemDictionary,
-										String const& prefValue,
-										int &height)
-{
-	ListItem* pref;
-	owner->addAndMakeVisible(pref = new ListItem(prefName, 
-												 itemDictionary, 
-												 prefValue));
-	pref->addListener(owner);	
-	initPref(pref, prefName, height);
-	return pref;
-}
-
-int ScopeControlPreferences::getListIntValue(Component* pref)
-{
-	ListItem* itemPref = static_cast<ListItem*>(pref);
-	int value = itemPref->getSelectedValue().getIntValue();
-	return value;	
-}
-
-void ScopeControlPreferences::addScopeDisplayProperties(int& height)
-{			
-	yMaximumPref = createLabelPref(this, "Y Maximium", String(scope->getYMaximum(), labelDecimalPlaces), height);
-		
-	ItemDictionary yMarkType;
-	yMarkType.put("None", String(ScopeGUI::LabelYNone));
-	yMarkType.put("Marks", String(ScopeGUI::LabelYMarks));
-	yMarkType.put("Amplitude", String(ScopeGUI::LabelYAmplitude));
-	yMarkType.put("Decibels", String(ScopeGUI::LabelYDecibels));
-	yMarkTypePref = createListPref(this, "Y Mark Type", yMarkType, String(scope->getScaleY()), height);
-}
-
-void ScopeControlPreferences::addScopeControlProperties(int& height)
-{
-
-}
-
-void ScopeControlPreferences::paint(Graphics& g)
-{
-	//g.fillAll(Colours::red);
-}
-
-void ScopeControlPreferences::labelTextChanged (Label* labelThatHasChanged)
-{
-	prefChanged(labelThatHasChanged);
-}
-
-void ScopeControlPreferences::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
-{
-	prefChanged(comboBoxThatHasChanged);
-}
-
-void ScopeControlPreferences::prefChanged(Component* pref)
-{
-	if(pref == yMaximumPref)
-	{
-		scope->setYMaximum(getLabelFloatValue(pref));
-	}
-	else if(pref == yMarkTypePref)
-	{
-		scope->setScaleY((ScopeGUI::Scales)getListIntValue(pref));
-	}
-}
+//ScopeControlPreferences::LabelItem::LabelItem(const String& componentName,
+//											  const String& labelText)
+//:	Label(componentName, labelText)
+//{
+//	setEditable(true, true, false);
+//}
+//
+//ScopeControlPreferences::ListItem::ListItem(const String& componentName,
+//											ItemDictionary const& items,
+//											String const& prefValue)
+//:	ComboBox(componentName),
+//	itemDictionary(items)
+//{
+//	ugen_assert(itemDictionary.length() > 0);
+//		
+//	ObjectArray<String> itemLabels = itemDictionary.getKeys();
+//	
+//	for(int i = 0; i < itemLabels.length(); i++)
+//	{
+//		addItem(itemLabels[i], 1000+i);
+//	}
+//	
+//	const String& item = items.keyForValue(prefValue);
+//	setText(item, true);
+//}
+//
+//const String& ScopeControlPreferences::ListItem::getSelectedValue()
+//{
+//	String itemName = getText();
+//	return itemDictionary[itemName];
+//}
+//
+////int ScopeControlPreferences::labelDecimalPlaces = 0;
+////
+////ScopeControlPreferences::ScopeControlPreferences(ScopeControlComponent* scopeToEdit)
+////:	scope(scopeToEdit)
+////{
+////	const int margin = 5;
+////	int height = margin;
+////
+////	addScopeDisplayProperties(height);
+////	addScopeControlProperties(height);
+////		
+////	height += margin;
+////	
+////	setSize(320, height);
+////}
+////
+////ScopeControlPreferences::~ScopeControlPreferences()
+////{
+////	deleteAllChildren();
+////}
+//// 
+////void ScopeControlPreferences::initPref(Component* pref, String const& prefName, int &height)
+////{
+////	const int margin = 5;
+////
+////	Label* label = new Label(prefName+"Label", prefName);
+////	label->attachToComponent(pref, true);
+////	
+////	pref->setBounds(100, height, 200, 20);
+////	height += pref->getHeight();
+////	height += margin;	
+////}
+////
+////ScopeControlPreferences::LabelItem* 
+////ScopeControlPreferences::createLabelPref(ScopeControlPreferences* owner, 
+////										 String const& prefName, 
+////										 String const& prefValue,
+////										 int &height)
+////{	
+////	LabelItem* pref;
+////	owner->addAndMakeVisible(pref = new LabelItem(prefName, prefValue));
+////	pref->addListener(owner);
+////	
+////	initPref(pref, prefName, height);
+////	return pref;
+////}
+////
+////float ScopeControlPreferences::getLabelFloatValue(Component* pref)
+////{
+////	LabelItem* labelPref = static_cast<LabelItem*>(pref);
+////	float value = labelPref->getText().getFloatValue();
+////	labelPref->setText(String(value, labelDecimalPlaces), false);	
+////	return value;
+////}
+////
+////double ScopeControlPreferences::getLabelDoubleValue(Component* pref)
+////{
+////	LabelItem* labelPref = static_cast<LabelItem*>(pref);
+////	double value = labelPref->getText().getDoubleValue();
+////	labelPref->setText(String(value, labelDecimalPlaces), false);	
+////	return value;
+////}
+////
+////int ScopeControlPreferences::getLabelIntValue(Component* pref)
+////{
+////	LabelItem* labelPref = static_cast<LabelItem*>(pref);
+////	int value = labelPref->getText().getIntValue();
+////	labelPref->setText(String(value), false);	
+////	return value;
+////}
+////
+////ScopeControlPreferences::ListItem* 
+////ScopeControlPreferences::createListPref(ScopeControlPreferences* owner, 
+////										String const& prefName, 
+////										ItemDictionary const& itemDictionary,
+////										String const& prefValue,
+////										int &height)
+////{
+////	ListItem* pref;
+////	owner->addAndMakeVisible(pref = new ListItem(prefName, 
+////												 itemDictionary, 
+////												 prefValue));
+////	pref->addListener(owner);	
+////	initPref(pref, prefName, height);
+////	return pref;
+////}
+////
+////int ScopeControlPreferences::getListIntValue(Component* pref)
+////{
+////	ListItem* itemPref = static_cast<ListItem*>(pref);
+////	int value = itemPref->getSelectedValue().getIntValue();
+////	return value;	
+////}
+////
+////void ScopeControlPreferences::addScopeDisplayProperties(int& height)
+////{			
+////	yMaximumPref = createLabelPref(this, "Y Maximium", String(scope->getYMaximum(), labelDecimalPlaces), height);
+////		
+////	ItemDictionary yMarkType;
+////	yMarkType.put("None", String(ScopeGUI::LabelYNone));
+////	yMarkType.put("Marks", String(ScopeGUI::LabelYMarks));
+////	yMarkType.put("Amplitude", String(ScopeGUI::LabelYAmplitude));
+////	yMarkType.put("Decibels", String(ScopeGUI::LabelYDecibels));
+////	yMarkTypePref = createListPref(this, "Y Mark Type", yMarkType, String(scope->getScaleY()), height);
+////}
+////
+////void ScopeControlPreferences::addScopeControlProperties(int& height)
+////{
+////	PropertyComponent
+////}
+////
+////void ScopeControlPreferences::paint(Graphics& g)
+////{
+////	//g.fillAll(Colours::red);
+////}
+////
+////void ScopeControlPreferences::labelTextChanged (Label* labelThatHasChanged)
+////{
+////	prefChanged(labelThatHasChanged);
+////}
+////
+////void ScopeControlPreferences::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
+////{
+////	prefChanged(comboBoxThatHasChanged);
+////}
+////
+////void ScopeControlPreferences::prefChanged(Component* pref)
+////{
+////	if(pref == yMaximumPref)
+////	{
+////		scope->setYMaximum(getLabelFloatValue(pref));
+////	}
+////	else if(pref == yMarkTypePref)
+////	{
+////		scope->setScaleY((ScopeGUI::Scales)getListIntValue(pref));
+////	}
+////}
 
 RadialScopeComponent::RadialScopeComponent(ScopeStyles style)
 :	ScopeComponentBase(style),

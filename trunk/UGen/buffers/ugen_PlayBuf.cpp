@@ -583,12 +583,14 @@ void LoopPointsUGenInternal::processBlock(bool& shouldDelete, const unsigned int
 				currentValue = (float)b.size();
 				shouldDelete = shouldDelete ? true : shouldDeleteValue;
 				setIsDone();
+				sendDoneInternal();
 			}
 			else if((rate < 0.f) && (currentValue < start))
 			{
 				currentValue = -1.f;
 				shouldDelete = shouldDelete ? true : shouldDeleteValue;
 				setIsDone();
+				sendDoneInternal();
 			}			
 		}
 		else
@@ -597,11 +599,13 @@ void LoopPointsUGenInternal::processBlock(bool& shouldDelete, const unsigned int
 			{
 				shouldDelete = shouldDelete ? true : shouldDeleteValue;
 				setIsDone();
+				sendDoneInternal();
 			}
 			else if((rate < 0.f) && (currentValue < 0.f))
 			{
 				shouldDelete = shouldDelete ? true : shouldDeleteValue;
 				setIsDone();
+				sendDoneInternal();
 			}						
 		}
 		
