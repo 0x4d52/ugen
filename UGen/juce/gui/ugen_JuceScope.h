@@ -378,7 +378,7 @@ public:
 	void clearRegions();
 	void clearRegionsBetween(const int start, const int end);
 	
-	void openPreferences();
+	void openProperties();
 	
 	enum Command
 	{
@@ -410,7 +410,7 @@ public:
 		ZoomOut,							
 		ZoomToSelection,					
 		ZoomToWindow,	
-		OpenPreferences
+		OpenProperties
 	};
 	
 	typedef Dictionary<Text,ScopeControlComponent::Command> CommandDictonary;
@@ -508,6 +508,13 @@ private:
 //	Component* yMarkTypePref;
 //};
 
+
+class ScopeControlProperties : public PropertyPanel
+{
+public:
+	ScopeControlProperties();
+	~ScopeControlProperties();
+};
 
 class RadialScopeComponent : public ScopeComponentBase
 {

@@ -994,7 +994,7 @@ double Buffer::initFromAudioFile(const char* audioFilePath, int *bits, MetaData*
 						cuePoint.getLabel() = NSUtilities::stringToText(markerList->mMarkers[i].mName);
 						CFRelease(markerList->mMarkers[i].mName);
 						
-						metaData->cuePoints.add(cuePoint);
+						metaData->getCuePoints().add(cuePoint);
 					}
 				}
 				
@@ -1036,7 +1036,7 @@ bool Buffer::write(Text const& audioFilePath,
 	Text pathChecked; 
 	if(splitLength <= 1)
 	{
-		pathChecked = audioFilePath.add(".wav");
+		pathChecked = audioFilePath + ".wav";
 		type = WAV;
 	}
 	else
@@ -1085,7 +1085,7 @@ bool Buffer::write(Text const& audioFilePath,
 
 static void writeMetaDataToAudioFile(AudioFileID audioFile, MetaData const& metaData) throw()
 {
-	const int numCues = metaData.cuePoints.length();
+	const int numCues = metaData.getCuePoints().length();
 	if(numCues > 0)
 	{
 		UInt32 dataSize = NumAudioFileMarkersToNumBytes(numCues);
@@ -1099,9 +1099,9 @@ static void writeMetaDataToAudioFile(AudioFileID audioFile, MetaData const& meta
 			AudioFileMarker* marker = &markerList->mMarkers[i];
 			memset(marker, 0, sizeof(AudioFileMarker));
 			
-			marker->mFramePosition = metaData.cuePoints[i].getSampleOffset();
-			marker->mMarkerID = metaData.cuePoints[i].getID();
-			marker->mName = NSUtilities::textToString(metaData.cuePoints[i].getLabel());
+			marker->mFramePosition = metaData.getCuePoints()[i].getSampleOffset();
+			marker->mMarkerID = metaData.getCuePoints()[i].getID();
+			marker->mName = NSUtilities::textToString(metaData.getCuePoints()[i].getLabel());
 		}
 		
 		OSStatus result = AudioFileSetProperty(audioFile, kAudioFilePropertyMarkerList, dataSize, markerList);

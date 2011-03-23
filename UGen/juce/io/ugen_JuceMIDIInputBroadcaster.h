@@ -93,6 +93,9 @@ public:
 	JuceMIDIInputListener(const bool activate = true) throw();
 	virtual ~JuceMIDIInputListener();// throw();
 	virtual void handleIncomingMidiMessage (MidiInput* source, const MidiMessage& message) = 0;
+	
+private:
+	const bool active;
 };
 
 /** Broadcasts received MIDI data to its listeners.

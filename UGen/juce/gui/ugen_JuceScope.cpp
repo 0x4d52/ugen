@@ -44,6 +44,8 @@
 BEGIN_UGEN_NAMESPACE
 
 #include "ugen_JuceScope.h"
+#include "ugen_JuceScopeProperties.h"
+
 
 static inline const String timeToTimecodeString (const double seconds)
 {
@@ -456,7 +458,7 @@ static void addCommandToMenu(PopupMenu& m,
 static void addPrefsCommandToMenu(PopupMenu& m)
 {
 	m.addSeparator();
-	addCommandToMenu(m, ScopeControlComponent::OpenPreferences);
+	addCommandToMenu(m, ScopeControlComponent::OpenProperties);
 }
 
 ScopeCuePointLabel::ScopeCuePointLabel(ScopeCuePointComponent *o)
@@ -1465,7 +1467,7 @@ void ScopeControlComponent::doCommand(const int commandID, const int offset)
 			zoomAround(offset < 0 ? maxSize/2 : offset, 1.f/zoomFactor);
 		} break;
 			
-		case ScopeControlComponent::OpenPreferences:	openPreferences();							break;
+		case ScopeControlComponent::OpenProperties:	openProperties();							break;
 	}				
 }
 
@@ -2294,14 +2296,29 @@ static int showModalPrefs (const String& dialogTitle,
     return result;
 }
 
-void ScopeControlComponent::openPreferences()
-{
+
+
+
+//void ScopeControlComponent::openPreferences()
+//{
 //	ScopeControlPreferences prefs(this);
 //	
 //	showModalPrefs("Scope Preferences", &prefs, this,
 //				   Colour::greyLevel(0.9f).withAlpha(0.9f), 
 //				   true, true, false);	
+//}
+
+void ScopeControlComponent::openProperties()
+{
+	ScopeControlProperties props;
+	
+	props.setSize(200, 200);
+	
+	showModalPrefs("Scope Properties", &props, this,
+				   Colour::greyLevel(0.9f).withAlpha(0.9f), 
+				   true, true, false);	
 }
+
 
 const ScopeControlComponent::CommandDictonary& ScopeControlComponent::buildCommandDictionary()
 {
@@ -2343,7 +2360,7 @@ const ScopeControlComponent::CommandDictonary& ScopeControlComponent::buildComma
 	c.put(ZoomToSelection,					"Zoom to Selection");
 	c.put(ZoomToWindow,						"Zoom to Window");
 	
-	c.put(OpenPreferences,					"Preferences...");
+	c.put(OpenProperties,					"Properties...");
 	
 	return c;
 }
@@ -2353,6 +2370,16 @@ const char* ScopeControlComponent::getCommand(Command commandID)
 	static const ScopeControlComponent::CommandDictonary& commands = buildCommandDictionary();
 	return (const char*)commands[commandID];
 }
+
+
+ScopeControlProperties::ScopeControlProperties()
+{
+}
+
+ScopeControlProperties::~ScopeControlProperties()
+{
+}
+
 
 //ScopeControlPreferences::LabelItem::LabelItem(const String& componentName,
 //											  const String& labelText)

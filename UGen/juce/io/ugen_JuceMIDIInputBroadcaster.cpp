@@ -35,8 +35,9 @@ BEGIN_UGEN_NAMESPACE
 #include "ugen_JuceMIDIInputBroadcaster.h"
 
 JuceMIDIInputListener::JuceMIDIInputListener(const bool activate) throw()
+:	active(activate)
 {
-	if(activate)
+	if(active)
 	{
 		JuceMIDIInputBroadcaster *broadcaster = JuceMIDIInputBroadcaster::getInstance();
 		broadcaster->addListener(dynamic_cast<JuceMIDIInputListener*> (this));
@@ -45,7 +46,10 @@ JuceMIDIInputListener::JuceMIDIInputListener(const bool activate) throw()
 
 JuceMIDIInputListener::~JuceMIDIInputListener() //throw()
 {
-	JuceMIDIInputBroadcaster::getInstance()->removeListener(dynamic_cast<JuceMIDIInputListener*> (this));
+	if(active)
+	{
+		JuceMIDIInputBroadcaster::getInstance()->removeListener(dynamic_cast<JuceMIDIInputListener*> (this));
+	}
 }
 
 JuceMIDIInputBroadcaster::JuceMIDIInputBroadcaster() throw()
