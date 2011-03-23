@@ -38,7 +38,7 @@
 #define _UGEN_ugen_JuceScope_H_
 
 #include "../../gui/ugen_Scope.h"
-#include "ugen_Collections.h"
+#include "../../core/ugen_Collections.h"
 
 
 class ScopeComponentBase :	public ScopeGUI,
