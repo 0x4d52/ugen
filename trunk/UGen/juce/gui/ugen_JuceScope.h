@@ -512,7 +512,7 @@ private:
 class ScopeControlProperties : public PropertyPanel
 {
 public:
-	ScopeControlProperties();
+	ScopeControlProperties(ScopeControlComponent* target);
 	~ScopeControlProperties();
 };
 
