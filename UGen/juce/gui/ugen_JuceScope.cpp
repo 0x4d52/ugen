@@ -2310,9 +2310,9 @@ static int showModalPrefs (const String& dialogTitle,
 
 void ScopeControlComponent::openProperties()
 {
-	ScopeControlProperties props;
+	ScopeControlProperties props(this);
 	
-	props.setSize(200, 200);
+	props.setSize(300, 300);
 	
 	showModalPrefs("Scope Properties", &props, this,
 				   Colour::greyLevel(0.9f).withAlpha(0.9f), 
@@ -2372,8 +2372,13 @@ const char* ScopeControlComponent::getCommand(Command commandID)
 }
 
 
-ScopeControlProperties::ScopeControlProperties()
+ScopeControlProperties::ScopeControlProperties(ScopeControlComponent* target)
 {
+	Array<PropertyComponent*> displayProps;
+	displayProps.add(new ScopeComponentYMaximumProperty(target));
+	displayProps.add(new ScopeComponentIsBipolarProperty(target));
+	
+	addSection("Scope display", displayProps);
 }
 
 ScopeControlProperties::~ScopeControlProperties()
