@@ -5,6 +5,35 @@
 
 static const int labelDecimalPlaces = 10;
 
+/** A base class for boolean properties */
+class BooleanValuePropertyComponent :		public BooleanPropertyComponent,
+											public juce::Value::Listener
+{
+public:
+	BooleanValuePropertyComponent(const String& propertyName, 
+								  const String& buttonText, 
+								  juce::Value initValue = juce::Value())
+	:	BooleanPropertyComponent(initValue, propertyName, buttonText),
+		value(initValue)
+	{
+		value.addListener(this);
+	}
+	
+	void valueChanged (juce::Value& changedValue)
+	{
+		if(changedValue.refersToSameSourceAs(value))
+		{
+			stateChanged(changedValue.getValue());
+		}
+	}	
+	
+	virtual void stateChanged(const bool state) = 0;
+	
+private:
+	juce::Value value;
+};
+
+
 class ScopeComponentYMaximumProperty : public TextPropertyComponent
 {
 public:
@@ -28,21 +57,21 @@ private:
 	ScopeControlComponent* scope;
 };
 
-class ScopeComponentIsBipolarProperty :		public BooleanPropertyComponent,
-											public juce::Value::Listener
+
+
+class ScopeComponentIsBipolarProperty :		public BooleanValuePropertyComponent
 {
 public:
-	ScopeComponentIsBipolarProperty(ScopeControlComponent* targetScope, juce::Value value = juce::Value())
-	:	BooleanPropertyComponent(value, "Polarity", "is bipolar"),
+	ScopeComponentIsBipolarProperty(ScopeControlComponent* targetScope)
+	:	BooleanValuePropertyComponent("Polarity", "is bipolar"),
 		scope(targetScope)
 	{
-		value.setValue(scope->getPolarity());
-		value.addListener(this);
+		setState(scope->getPolarity());
 	}
 	
-	void valueChanged (juce::Value& value)
+	void stateChanged(const bool state)
 	{
-		scope->setPolarity(value.getValue());
+		scope->setPolarity(state);
 	}
 	
 private:
