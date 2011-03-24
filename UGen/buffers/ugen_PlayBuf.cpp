@@ -513,6 +513,12 @@ LoopPointsUGenInternal::LoopPointsUGenInternal(Buffer const& buffer,
 	inputs[PlayToEnd] = playToEnd;
 }
 
+void LoopPointsUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
+{
+	senderUserData = userData;
+	if(isDone()) sendDoneInternal();
+}
+
 void LoopPointsUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
 	const int numCuesPoints = metaData.getNumCuePoints();
@@ -525,7 +531,7 @@ void LoopPointsUGenInternal::processBlock(bool& shouldDelete, const unsigned int
 	float* loopSamples = inputs[Loop].processBlock(shouldDelete, blockID, 0);
 	float* startAtZeroSamples = inputs[StartAtZero].processBlock(shouldDelete, blockID, 0);
 	float* playToEndSamples = inputs[PlayToEnd].processBlock(shouldDelete, blockID, 0);
-	
+		
 	while(numSamplesToProcess--)
 	{
 		float rate = *rateSamples;
@@ -583,14 +589,13 @@ void LoopPointsUGenInternal::processBlock(bool& shouldDelete, const unsigned int
 				currentValue = (float)b.size();
 				shouldDelete = shouldDelete ? true : shouldDeleteValue;
 				setIsDone();
-				sendDoneInternal();
+				
 			}
 			else if((rate < 0.f) && (currentValue < start))
 			{
 				currentValue = -1.f;
 				shouldDelete = shouldDelete ? true : shouldDeleteValue;
 				setIsDone();
-				sendDoneInternal();
 			}			
 		}
 		else
@@ -599,13 +604,11 @@ void LoopPointsUGenInternal::processBlock(bool& shouldDelete, const unsigned int
 			{
 				shouldDelete = shouldDelete ? true : shouldDeleteValue;
 				setIsDone();
-				sendDoneInternal();
 			}
 			else if((rate < 0.f) && (currentValue < 0.f))
 			{
 				shouldDelete = shouldDelete ? true : shouldDeleteValue;
 				setIsDone();
-				sendDoneInternal();
 			}						
 		}
 		

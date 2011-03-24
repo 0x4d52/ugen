@@ -228,6 +228,7 @@ public:
 						   UGen const& playToEnd,
 						   const UGen::DoneAction doneAction,
 						   MetaData const& metaData) throw();
+	void prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw();
 	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
 	enum Inputs { Rate, Start, End, Loop, StartAtZero, PlayToEnd, NumInputs };
