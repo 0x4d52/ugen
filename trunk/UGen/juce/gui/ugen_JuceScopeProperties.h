@@ -286,6 +286,121 @@ public:
 private:
 	ScopeControlComponent* scope;
 };
+
+/** ScopeGUI : Scale Y Units */
+class ScopeComponentScaleYProperty : public ChoicePropertyComponent
+{
+public:
+	ScopeComponentScaleYProperty(ScopeControlComponent* targetScope)
+	:	ChoicePropertyComponent("Scale Y Units"),
+		scope(targetScope) 
+	{
+		choices.add("None");
+		choices.add("Marks");
+		choices.add("Amplitude");
+		choices.add("Percent");
+		choices.add("Decibels");
+	}
+	
+	void setIndex (int newIndex)
+	{
+		const String& choice = getChoices()[newIndex];
+				
+		if(choice == "None")			scope->setScaleY(ScopeGUI::LabelYNone, -1, -1, -1);
+		else if(choice == "Marks")		scope->setScaleY(ScopeGUI::LabelYMarks, -1, -1, -1);
+		else if(choice == "Amplitude")	scope->setScaleY(ScopeGUI::LabelYAmplitude, -1, -1, -1);
+		else if(choice == "Percent")	scope->setScaleY(ScopeGUI::LabelYPercent, -1, -1, -1);
+		else if(choice == "Decibels")	scope->setScaleY(ScopeGUI::LabelYDecibels, -1, -1, -1);
+	}
+	
+	int getIndex() const
+	{
+		const StringArray& choices = getChoices();
+		
+		switch(scope->getScaleY())
+		{
+			case ScopeGUI::LabelYNone:			return choices.indexOf("None");
+			case ScopeGUI::LabelYMarks:			return choices.indexOf("Marks");
+			case ScopeGUI::LabelYAmplitude:		return choices.indexOf("Amplitude");
+			case ScopeGUI::LabelYPercent:		return choices.indexOf("Percent");
+			case ScopeGUI::LabelYDecibels:		return choices.indexOf("Decibels");
+			default: return -1;
+		}
+	}
+	
+private:
+	ScopeControlComponent* scope;
+};
+
+/** ScopeGUI : Scale Y Mark Spacing Property */
+class ScopeComponentMarkSpacingYProperty : public TextPropertyComponent
+{
+public:
+	ScopeComponentMarkSpacingYProperty(ScopeControlComponent* targetScope)
+	:	TextPropertyComponent("Mark Spacing Y", labelDecimalPlaces, false),
+		scope(targetScope) { }
+	
+	void setText (const String& newText)
+	{
+		scope->setScaleY(ScopeGUI::LabelInvalid, jmax(0.00000001, newText.getDoubleValue()), -1, -1);
+		refresh();
+	}
+	
+	const String getText() const
+	{
+		return String(scope->getMarkSpacingY(), labelDecimalPlaces);
+	}
+	
+private:
+	ScopeControlComponent* scope;
+};
+
+/** ScopeGUI : Scale Y Label Hop Property */
+class ScopeComponentLabelHopYProperty : public TextPropertyComponent
+{
+public:
+	ScopeComponentLabelHopYProperty(ScopeControlComponent* targetScope)
+	:	TextPropertyComponent("Label Hop Y", labelDecimalPlaces, false),
+		scope(targetScope) { }
+	
+	void setText (const String& newText)
+	{
+		scope->setScaleY(ScopeGUI::LabelInvalid, -1, jmax(0, newText.getIntValue()), -1);
+		refresh();
+	}
+	
+	const String getText() const
+	{
+		return String(scope->getLabelHopY());
+	}
+	
+private:
+	ScopeControlComponent* scope;
+};
+
+/** ScopeGUI : Scale Y Decimal Places Property */
+class ScopeComponentDecimalPlacesYProperty : public TextPropertyComponent
+{
+public:
+	ScopeComponentDecimalPlacesYProperty(ScopeControlComponent* targetScope)
+	:	TextPropertyComponent("Decimal Places Y", labelDecimalPlaces, false),
+		scope(targetScope) { }
+	
+	void setText (const String& newText)
+	{
+		scope->setScaleY(ScopeGUI::LabelInvalid, -1, -1, jmax(0, newText.getIntValue()));
+		refresh();
+	}
+	
+	const String getText() const
+	{
+		int places = scope->getDecimalPlacesY();
+		return places == 0 ? "Scientific" :String(places);
+	}
+	
+private:
+	ScopeControlComponent* scope;
+};
 			
 /** ScopeGUI : Colour Property */
 class ScopeComponentColourProperty : public ColourPropertyComponent
@@ -328,10 +443,11 @@ class ScopeControlProperties : public PropertyPanel
 public:
 	ScopeControlProperties(ScopeControlComponent* target)
 	{
-		addDisplayProps(target);
+		addLayoutProps(target);
+		addColoursProps(target);
 	}
 	
-	void addDisplayProps(ScopeControlComponent* target)
+	void addLayoutProps(ScopeControlComponent* target)
 	{
 		Array<PropertyComponent*> props;
 		props.add(new ScopeComponentIsBipolarProperty(target));
@@ -343,6 +459,18 @@ public:
 		props.add(new ScopeComponentLabelHopXProperty(target));
 		props.add(new ScopeComponentLabelFirstXProperty(target));
 		
+		props.add(new ScopeComponentScaleYProperty(target));
+		props.add(new ScopeComponentMarkSpacingYProperty(target));
+		props.add(new ScopeComponentLabelHopYProperty(target));
+		props.add(new ScopeComponentDecimalPlacesYProperty(target));
+		
+		addSection("Layout", props, false);				
+	}
+	
+	void addColoursProps(ScopeControlComponent* target)
+	{
+		Array<PropertyComponent*> props;
+
 		props.add(new ScopeComponentColourProperty(target, "Background Colour", ScopeGUI::Background));
 		props.add(new ScopeComponentColourProperty(target, "Top Line Colour", ScopeGUI::TopLine));
 		props.add(new ScopeComponentColourProperty(target, "Zero Line Colour", ScopeGUI::ZeroLine));
@@ -350,9 +478,10 @@ public:
 		props.add(new ScopeComponentColourProperty(target, "Text X Colour", ScopeGUI::TextX));
 		props.add(new ScopeComponentColourProperty(target, "Text Y Colour", ScopeGUI::TextY));
 		props.add(new ScopeComponentColourProperty(target, "Text Channel Colour", ScopeGUI::TextChannel));
-		props.add(new ScopeComponentColourProperty(target, "Trace Colour", ScopeGUI::Trace));
+		props.add(new ScopeComponentColourProperty(target, "Trace Colour", ScopeGUI::Trace));		
 		
-		addSection("Scope display", props);				
+		addSection("Colours", props, false);				
+
 	}
 };
 
