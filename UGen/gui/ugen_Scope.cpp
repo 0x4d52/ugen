@@ -146,6 +146,8 @@ void ScopeGUI::setScaleY(Scales scale, const double markSpacing, const int label
 		case LabelYNone:
 		case LabelYMarks:
 		case LabelYAmplitude:
+		case LabelYPercent:
+		case LabelYDecibels:
 			scaleY = scale;
 			break;
 		default:

@@ -404,7 +404,20 @@ void ScopeComponent::paintYScale(Graphics& g, const int zero, const int maximum)
 				if(scaleY != ScopeGUI::LabelYMarks)
 				{
 					g.setColour(Colour(colours[TextY].get32bitColour()));
-					g.drawSingleLineText(String(sign * level, decimalPlaces), labelOffsetX, y + labelOffsetY);
+										
+					if(scaleY == ScopeGUI::LabelYAmplitude)
+					{
+						g.drawSingleLineText(String(sign * level, decimalPlaces), labelOffsetX, y + labelOffsetY);
+					}
+					if(scaleY == ScopeGUI::LabelYPercent)
+					{
+						g.drawSingleLineText(String(sign * level * 100.0, decimalPlaces)+"%", labelOffsetX, y + labelOffsetY);
+					}
+					else if(scaleY == ScopeGUI::LabelYDecibels)
+					{
+						g.drawSingleLineText(String(sign * ampdb(level), decimalPlaces)+"dB", labelOffsetX, y + labelOffsetY);
+					}
+					
 					g.setColour(Colour(colours[LabelMarks].get32bitColour()));
 				}
 			}
