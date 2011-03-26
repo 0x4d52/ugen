@@ -70,7 +70,7 @@ public:
 		
 		void showColourComponent()
 		{
-			colourSelector.setSize (200, 200);
+			colourSelector.setSize (240, 320);
 			colourSelector.setCurrentColour(Colour::fromString(owner->getText()));
 			
 			CallOutBox callOut (colourSelector, *owner, 0);
@@ -302,7 +302,14 @@ public:
 	
 	void setText (const String& newText)
 	{
-		scope->setScopeColour(cid, Colour::fromString(newText));
+		String text = newText;
+		
+		while(text.length() < 8)
+		{
+			text << "0";
+		}
+		
+		scope->setScopeColour(cid, Colour::fromString(text.substring(0, 8)));
 		refresh();
 	}	
 	
@@ -321,24 +328,31 @@ class ScopeControlProperties : public PropertyPanel
 public:
 	ScopeControlProperties(ScopeControlComponent* target)
 	{
-		Array<PropertyComponent*> displayProps;
-		displayProps.add(new ScopeComponentIsBipolarProperty(target));
-		displayProps.add(new ScopeComponentYMaximumProperty(target));
-		displayProps.add(new ScopeComponentLowerMarginProperty(target));
-		displayProps.add(new ScopeComponentScaleXProperty(target));
-		displayProps.add(new ScopeComponentMarkSpacingXProperty(target));
-		displayProps.add(new ScopeComponentLabelHopXProperty(target));
-		displayProps.add(new ScopeComponentLabelFirstXProperty(target));
-		displayProps.add(new ScopeComponentColourProperty(target, "Background Colour", ScopeGUI::Background));
-		displayProps.add(new ScopeComponentColourProperty(target, "Top Line Colour", ScopeGUI::TopLine));
-		displayProps.add(new ScopeComponentColourProperty(target, "Zero Line Colour", ScopeGUI::ZeroLine));
-		displayProps.add(new ScopeComponentColourProperty(target, "Label Marks Colour", ScopeGUI::LabelMarks));
-		displayProps.add(new ScopeComponentColourProperty(target, "Text X Colour", ScopeGUI::TextX));
-		displayProps.add(new ScopeComponentColourProperty(target, "Text Y Colour", ScopeGUI::TextY));
-		displayProps.add(new ScopeComponentColourProperty(target, "Text Channel Colour", ScopeGUI::TextChannel));
-		displayProps.add(new ScopeComponentColourProperty(target, "Trace Colour", ScopeGUI::Trace));
+		addDisplayProps(target);
+	}
+	
+	void addDisplayProps(ScopeControlComponent* target)
+	{
+		Array<PropertyComponent*> props;
+		props.add(new ScopeComponentIsBipolarProperty(target));
+		props.add(new ScopeComponentYMaximumProperty(target));
+		props.add(new ScopeComponentLowerMarginProperty(target));
 		
-		addSection("Scope display", displayProps);		
+		props.add(new ScopeComponentScaleXProperty(target));
+		props.add(new ScopeComponentMarkSpacingXProperty(target));
+		props.add(new ScopeComponentLabelHopXProperty(target));
+		props.add(new ScopeComponentLabelFirstXProperty(target));
+		
+		props.add(new ScopeComponentColourProperty(target, "Background Colour", ScopeGUI::Background));
+		props.add(new ScopeComponentColourProperty(target, "Top Line Colour", ScopeGUI::TopLine));
+		props.add(new ScopeComponentColourProperty(target, "Zero Line Colour", ScopeGUI::ZeroLine));
+		props.add(new ScopeComponentColourProperty(target, "Label Marks Colour", ScopeGUI::LabelMarks));
+		props.add(new ScopeComponentColourProperty(target, "Text X Colour", ScopeGUI::TextX));
+		props.add(new ScopeComponentColourProperty(target, "Text Y Colour", ScopeGUI::TextY));
+		props.add(new ScopeComponentColourProperty(target, "Text Channel Colour", ScopeGUI::TextChannel));
+		props.add(new ScopeComponentColourProperty(target, "Trace Colour", ScopeGUI::Trace));
+		
+		addSection("Scope display", props);				
 	}
 };
 
