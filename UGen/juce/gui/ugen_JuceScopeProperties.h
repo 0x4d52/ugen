@@ -671,12 +671,10 @@ class ScopeControlComponentColourProperty : public ColourPropertyComponent
 public:
 	ScopeControlComponentColourProperty(ScopeControlComponent* targetScope, 
 										String const& name, 
-										ScopeControlComponent::ControlColours colourID,
-										Component* componentToRepaint = 0)
+										ScopeControlComponent::ControlColours colourID)
 	:	ColourPropertyComponent(name),
 		scope(targetScope),
-		cid(colourID),
-		comp(componentToRepaint)
+		cid(colourID)
 	{
 	}
 	
@@ -689,13 +687,7 @@ public:
 			text << "0";
 		}
 		
-		scope->getColour(cid) = Colour::fromString(text.substring(0, 8));
-		
-		if(comp != 0)
-		{
-			comp->repaint();
-		}
-		
+		scope->getColour(cid) = Colour::fromString(text.substring(0, 8));		
 		refresh();
 	}	
 	
@@ -707,9 +699,311 @@ public:
 private:
 	ScopeControlComponent* scope;
 	ScopeControlComponent::ControlColours cid;
-	Component::SafePointer<Component> comp;
 };
 
+
+class ScopeControlCuePointLineColourProperty : public ColourPropertyComponent
+{
+public:
+	ScopeControlCuePointLineColourProperty(ScopeCuePointComponent* targetPoint, String const& name)
+	:	ColourPropertyComponent(name),
+		point(targetPoint)
+	{
+	}
+	
+	void setText (const String& newText)
+	{
+		String text = newText;
+		
+		while(text.length() < 8)
+		{
+			text << "0";
+		}
+				
+		point->setColours(Colour::fromString(text.substring(0, 8)), point->getTextColour());
+		refresh();
+	}	
+	
+	const String getText() const
+	{
+		return Colour(point->getLineColour().get32bitColour()).toString();
+	}
+	
+private:
+	ScopeCuePointComponent* point;
+};
+
+class ScopeControlCuePointTextColourProperty : public ColourPropertyComponent
+{
+public:
+	ScopeControlCuePointTextColourProperty(ScopeCuePointComponent* targetPoint, String const& name)
+	:	ColourPropertyComponent(name),
+		point(targetPoint)
+	{
+	}
+	
+	void setText (const String& newText)
+	{
+		String text = newText;
+		
+		while(text.length() < 8)
+		{
+			text << "0";
+		}
+		
+		point->setColours(point->getLineColour(), Colour::fromString(text.substring(0, 8)));
+		refresh();
+	}	
+	
+	const String getText() const
+	{
+		return Colour(point->getTextColour().get32bitColour()).toString();
+	}
+	
+private:
+	ScopeCuePointComponent* point;
+};
+
+class ScopeCuePointComponentLabelProperty : public TextPropertyComponent
+{
+public:
+	ScopeCuePointComponentLabelProperty(ScopeCuePointComponent* targetPoint, String const& name)
+	:	TextPropertyComponent(name, labelDecimalPlaces, false),
+		point(targetPoint) { }
+	
+	void setText (const String& newText)
+	{
+		point->setLabel(newText.toCString());
+		refresh();
+	}
+	
+	const String getText() const
+	{
+		return String((const char*)point->getLabel());
+	}
+	
+private:
+	ScopeCuePointComponent* point;
+};
+
+class ScopeCuePointComponentOffsetProperty : public TextPropertyComponent
+{
+public:
+	ScopeCuePointComponentOffsetProperty(ScopeCuePointComponent* targetPoint, String const& name)
+	:	TextPropertyComponent(name, labelDecimalPlaces, false),
+		point(targetPoint) { }
+	
+	void setText (const String& newText)
+	{
+		point->setSampleOffset(newText.getIntValue());
+		refresh();
+	}
+	
+	const String getText() const
+	{
+		return String(point->getSampleOffset());
+	}
+	
+private:
+	ScopeCuePointComponent* point;
+};
+
+class ScopeControlRegionStartColourProperty : public ColourPropertyComponent
+{
+public:
+	ScopeControlRegionStartColourProperty(ScopeRegionComponent* targetRegion, String const& name)
+	:	ColourPropertyComponent(name),
+		region(targetRegion)
+	{
+	}
+	
+	void setText (const String& newText)
+	{
+		String text = newText;
+		
+		while(text.length() < 8)
+		{
+			text << "0";
+		}
+		
+		region->setColours(Colour::fromString(text.substring(0, 8)), 
+						   region->getEndColour(),
+						   region->getTextColour(),
+						   region->getFillColour());
+		refresh();
+	}	
+	
+	const String getText() const
+	{
+		return Colour(region->getStartColour().get32bitColour()).toString();
+	}
+	
+private:
+	ScopeRegionComponent* region;
+};
+
+class ScopeControlRegionEndColourProperty : public ColourPropertyComponent
+{
+public:
+	ScopeControlRegionEndColourProperty(ScopeRegionComponent* targetRegion, String const& name)
+	:	ColourPropertyComponent(name),
+		region(targetRegion)
+	{
+	}
+	
+	void setText (const String& newText)
+	{
+		String text = newText;
+		
+		while(text.length() < 8)
+		{
+			text << "0";
+		}
+		
+		region->setColours(region->getStartColour(),
+						   Colour::fromString(text.substring(0, 8)),
+						   region->getTextColour(),
+						   region->getFillColour());
+		refresh();
+	}	
+	
+	const String getText() const
+	{
+		return Colour(region->getEndColour().get32bitColour()).toString();
+	}
+	
+private:
+	ScopeRegionComponent* region;
+};
+
+class ScopeControlRegionTextColourProperty : public ColourPropertyComponent
+{
+public:
+	ScopeControlRegionTextColourProperty(ScopeRegionComponent* targetRegion, String const& name)
+	:	ColourPropertyComponent(name),
+		region(targetRegion)
+	{
+	}
+	
+	void setText (const String& newText)
+	{
+		String text = newText;
+		
+		while(text.length() < 8)
+		{
+			text << "0";
+		}
+		
+		region->setColours(region->getStartColour(),
+						   region->getEndColour(),
+						   Colour::fromString(text.substring(0, 8)),
+						   region->getFillColour());
+		refresh();
+	}	
+	
+	const String getText() const
+	{
+		return Colour(region->getTextColour().get32bitColour()).toString();
+	}
+	
+private:
+	ScopeRegionComponent* region;
+};
+
+class ScopeControlRegionFillColourProperty : public ColourPropertyComponent
+{
+public:
+	ScopeControlRegionFillColourProperty(ScopeRegionComponent* targetRegion, String const& name)
+	:	ColourPropertyComponent(name),
+		region(targetRegion)
+	{
+	}
+	
+	void setText (const String& newText)
+	{
+		String text = newText;
+		
+		while(text.length() < 8)
+		{
+			text << "0";
+		}
+		
+		region->setColours(region->getStartColour(), 
+						   region->getEndColour(),
+						   region->getTextColour(),
+						   Colour::fromString(text.substring(0, 8)));
+		refresh();
+	}	
+	
+	const String getText() const
+	{
+		return Colour(region->getFillColour().get32bitColour()).toString();
+	}
+	
+private:
+	ScopeRegionComponent* region;
+};
+
+enum ControlPropertyType
+{
+	ColourTypes = 1,
+	LabelTypes = 2,
+	PositionTypes = 4,
+	AllTypes = 0xffffff
+};
+
+class ScopeCuePointProperties : public PropertyPanel
+{
+public:
+	static Array<PropertyComponent*> get(ScopeCuePointComponent* target, 
+										 String const& name,
+										 int types = AllTypes)
+	{
+		Array<PropertyComponent*> props;
+		
+		if((types & ColourTypes) != 0)
+		{
+			props.add(new ScopeControlCuePointLineColourProperty(target, name + " Line Colour"));
+			props.add(new ScopeControlCuePointTextColourProperty(target, name + " Text Colour"));
+		}
+		
+		if((types & LabelTypes) != 0)
+		{
+			props.add(new ScopeCuePointComponentLabelProperty(target, name + " Label"));
+		}
+		
+		if((types & PositionTypes) != 0)
+		{
+			props.add(new ScopeCuePointComponentOffsetProperty(target, name + " Position"));
+		}
+		
+		return props;
+	}	
+};
+
+class ScopeRegionProperties : public PropertyPanel
+{
+public:
+	static Array<PropertyComponent*> get(ScopeRegionComponent* target,
+										 String const& name,
+										 int types = AllTypes)
+	{
+		Array<PropertyComponent*> props;
+		
+		props.addArray(ScopeCuePointProperties::get(target->getStartPoint(), name + " Start", types & ~(ColourTypes)));
+		props.addArray(ScopeCuePointProperties::get(target->getEndPoint(), name + " End", types & ~(ColourTypes)));
+		
+		if((types & ColourTypes) != 0)
+		{
+			props.add(new ScopeControlRegionStartColourProperty(target, name + " Start Colour"));
+			props.add(new ScopeControlRegionEndColourProperty(target, name + " End Colour"));
+			props.add(new ScopeControlRegionTextColourProperty(target, name + " Text Colour"));
+			props.add(new ScopeControlRegionFillColourProperty(target, name + " Fill Colour"));
+		}
+		
+		return props;		
+	}
+};	
 
 class ScopeControlProperties : public PropertyPanel
 {
@@ -718,8 +1012,8 @@ public:
 	{
 		addLayoutProps(target);
 		addColoursProps(target);
-		addControlColoursProps(target);
 		addControlProps(target);
+		addControlColoursProps(target);
 	}
 	
 	void addLayoutProps(ScopeControlComponent* target)
@@ -749,7 +1043,7 @@ public:
 		props.add(new ScopeComponentChannelLabelsProperty(target));
 		props.add(new ScopeComponentChannelLabelOffsetProperty(target));
 		
-		addSection("Scope Layout", props, false);				
+		addSection("Scope Layout", props, true);				
 	}
 	
 	void addColoursProps(ScopeControlComponent* target)
@@ -765,7 +1059,7 @@ public:
 		props.add(new ScopeComponentColourProperty(target, "Text Channel Colour", ScopeGUI::TextChannel));
 		props.add(new ScopeComponentColourProperty(target, "Trace Colour", ScopeGUI::Trace));		
 		
-		addSection("Scope Colours", props, false);				
+		addSection("Scope Colours", props, true);				
 	}
 	
 	void addControlColoursProps(ScopeControlComponent* target)
@@ -785,13 +1079,13 @@ public:
 		props.add(new ScopeControlComponentColourProperty(target, "Region Fill Colour", ScopeControlComponent::RegionFillColour));
 		props.add(new ScopeControlComponentColourProperty(target, "Region Text Colour", ScopeControlComponent::RegionTextColour));
 		
-		props.add(new ScopeControlComponentColourProperty(target, "Insert Point Colour", ScopeControlComponent::InsertPointColour, target->getInsert()));
-		props.add(new ScopeControlComponentColourProperty(target, "Insert Point Text Colour", ScopeControlComponent::InsertPointTextColour, target->getInsert()->getLabelComponent()));
-
-		props.add(new ScopeControlComponentColourProperty(target, "Selection Start Colour", ScopeControlComponent::SelectionStartColour, target->getSelection()->getStartPoint()));
-		props.add(new ScopeControlComponentColourProperty(target, "Selection End Colour", ScopeControlComponent::SelectionEndColour, target->getSelection()->getEndPoint()));
-		props.add(new ScopeControlComponentColourProperty(target, "Selection Fill Colour", ScopeControlComponent::SelectionFillColour, target->getSelection()));
-		props.add(new ScopeControlComponentColourProperty(target, "Selection Text Colour", ScopeControlComponent::SelectionTextColour));
+//		props.add(new ScopeControlComponentColourProperty(target, "Insert Point Colour", ScopeControlComponent::InsertPointColour));
+//		props.add(new ScopeControlComponentColourProperty(target, "Insert Point Text Colour", ScopeControlComponent::InsertPointTextColour));
+//
+//		props.add(new ScopeControlComponentColourProperty(target, "Selection Start Colour", ScopeControlComponent::SelectionStartColour));
+//		props.add(new ScopeControlComponentColourProperty(target, "Selection End Colour", ScopeControlComponent::SelectionEndColour));
+//		props.add(new ScopeControlComponentColourProperty(target, "Selection Fill Colour", ScopeControlComponent::SelectionFillColour));
+//		props.add(new ScopeControlComponentColourProperty(target, "Selection Text Colour", ScopeControlComponent::SelectionTextColour));
 		
 		addSection("Default Scope Control Colours", props, false);				
 	}
@@ -801,9 +1095,12 @@ public:
 	{
 		Array<PropertyComponent*> props;
 		
+		props.addArray(ScopeCuePointProperties::get(target->getInsert(), "Insert", (ColourTypes|LabelTypes)));
+		props.addArray(ScopeRegionProperties::get(target->getSelection(), "Selection", (ColourTypes|LabelTypes)));
 		
-		addSection("Scope Controls", props, false);						
+		addSection("Scope Controls", props, true);						
 	}
+	
 };
 
 
