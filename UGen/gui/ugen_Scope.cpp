@@ -394,6 +394,8 @@ void ScopeGUI::setChannelLabels(TextArray const& labels, const int offset) throw
 	channelLabels = labels;
 	channelLabelOffset = offset;
 	unlock();
+	
+	updateGUI();
 }
 
 void ScopeGUI::calculateBuffers()

@@ -851,7 +851,7 @@ void Interceptor::mouseDrag (const MouseEvent& e)
 		double x = lastDragX;
 		double y = lastDragY;
 		
-		while(steps--)
+		while(steps-- > 0)
 		{
 			MouseEvent eventCopy = e.withNewPosition(Point<int>(constrain ? jlimit(1, getWidth()-2, (int)x) : (int)x, 
 																constrain ? jlimit(1, getHeight()-2, (int)y) : (int)y));
