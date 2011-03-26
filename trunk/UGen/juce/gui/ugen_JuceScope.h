@@ -155,7 +155,8 @@ public:
 	void editLabel();
 	void labelTextChanged (Label* labelThatHasChanged);
 	inline bool doesLabelPreferToAttachOnLeft() const { return cueData.labelPrefersToAttachOnLeft; }
-
+	Label* getLabelComponent() { return label; }
+	
 	void setColours(RGBAColour const& lineColour, RGBAColour const& textColour);
 	
 	static void swapCuePoints(Component::SafePointer<ScopeCuePointComponent> &cue1, 
@@ -333,9 +334,11 @@ public:
 	void removePointLabel(ScopeCuePointLabel* label);
 	void avoidPointLabelCollisions();
 	
+	ScopeInsertComponent* getInsert() { return scopeInsert; }
 	void setInsertOffset(const int offset);
 	const int& getInsertOffset();
 
+	ScopeSelectionComponent* getSelection() { return scopeSelection; }  
 	void setSelection(const int start, const int end);
 	void getSelection(int& start, int& end);
 
