@@ -76,8 +76,8 @@ public:
 		LabelYNone,			///< No labelling of the y axis.
 		LabelYMarks,		///< Only marks are drawn on the y axis.
 		LabelYAmplitude,	///< The y axis is labelled with marks and units in amplitude.
-		LabelYPercent,		///< The y axis is labelled with marks and units as a percentage amplitude 1.0
-		LabelYDecibels		///< not yet...
+		LabelYPercent,		///< The y axis is labelled with marks and units as a percentage of amplitude 1.0
+		LabelYDecibels		///< The y axis is labelled with marks and units dB
 	};
 	
 	/** Sets whether the scope is unipolar or bipolar.

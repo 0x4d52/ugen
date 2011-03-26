@@ -242,6 +242,52 @@ public:
 private:
 	ScopeControlComponent* scope;
 };
+
+/** ScopeGUI : Mark X Height Property */
+class ScopeComponentMarkXHeightProperty : public TextPropertyComponent
+{
+public:
+	ScopeComponentMarkXHeightProperty(ScopeControlComponent* targetScope)
+	:	TextPropertyComponent("Mark X Height", labelDecimalPlaces, false),
+		scope(targetScope) { }
+	
+	void setText (const String& newText)
+	{
+		scope->setMarkXHeight(jmax(0, newText.getIntValue()));
+		refresh();
+	}
+	
+	const String getText() const
+	{
+		return String(scope->getMarkXHeight());
+	}
+	
+private:
+	ScopeControlComponent* scope;
+};
+
+/** ScopeGUI : Text Size X Property */
+class ScopeComponentTextSizeXProperty : public TextPropertyComponent
+{
+public:
+	ScopeComponentTextSizeXProperty(ScopeControlComponent* targetScope)
+	:	TextPropertyComponent("Text Size X", labelDecimalPlaces, false),
+		scope(targetScope) { }
+	
+	void setText (const String& newText)
+	{
+		scope->setTextSizeX(jmax(0.f, newText.getFloatValue()));
+		refresh();
+	}
+	
+	const String getText() const
+	{
+		return String(scope->getTextSizeX(), labelDecimalPlaces);
+	}
+	
+private:
+	ScopeControlComponent* scope;
+};
 		
 /** ScopeGUI : Scale X Label Hop Property */
 class ScopeComponentLabelHopXProperty : public TextPropertyComponent
@@ -355,6 +401,52 @@ private:
 	ScopeControlComponent* scope;
 };
 
+/** ScopeGUI : Mark Y Width Property */
+class ScopeComponentMarkYWidthProperty : public TextPropertyComponent
+{
+public:
+	ScopeComponentMarkYWidthProperty(ScopeControlComponent* targetScope)
+	:	TextPropertyComponent("Mark Y Width", labelDecimalPlaces, false),
+		scope(targetScope) { }
+	
+	void setText (const String& newText)
+	{
+		scope->setMarkYWidth(jmax(0, newText.getIntValue()));
+		refresh();
+	}
+	
+	const String getText() const
+	{
+		return String(scope->getMarkYWidth());
+	}
+	
+private:
+	ScopeControlComponent* scope;
+};
+
+/** ScopeGUI : Text Size Y Property */
+class ScopeComponentTextSizeYProperty : public TextPropertyComponent
+{
+public:
+	ScopeComponentTextSizeYProperty(ScopeControlComponent* targetScope)
+	:	TextPropertyComponent("Text Size Y", labelDecimalPlaces, false),
+		scope(targetScope) { }
+	
+	void setText (const String& newText)
+	{
+		scope->setTextSizeY(jmax(0.f, newText.getFloatValue()));
+		refresh();
+	}
+	
+	const String getText() const
+	{
+		return String(scope->getTextSizeY(), labelDecimalPlaces);
+	}
+	
+private:
+	ScopeControlComponent* scope;
+};
+
 /** ScopeGUI : Scale Y Label Hop Property */
 class ScopeComponentLabelHopYProperty : public TextPropertyComponent
 {
@@ -456,15 +548,19 @@ public:
 		
 		props.add(new ScopeComponentScaleXProperty(target));
 		props.add(new ScopeComponentMarkSpacingXProperty(target));
+		props.add(new ScopeComponentMarkXHeightProperty(target));
+		props.add(new ScopeComponentTextSizeXProperty(target));
 		props.add(new ScopeComponentLabelHopXProperty(target));
 		props.add(new ScopeComponentLabelFirstXProperty(target));
 		
 		props.add(new ScopeComponentScaleYProperty(target));
 		props.add(new ScopeComponentMarkSpacingYProperty(target));
+		props.add(new ScopeComponentMarkYWidthProperty(target));
+		props.add(new ScopeComponentTextSizeYProperty(target));
 		props.add(new ScopeComponentLabelHopYProperty(target));
 		props.add(new ScopeComponentDecimalPlacesYProperty(target));
 		
-		addSection("Layout", props, false);				
+		addSection("Scope Layout", props, false);				
 	}
 	
 	void addColoursProps(ScopeControlComponent* target)
@@ -480,7 +576,7 @@ public:
 		props.add(new ScopeComponentColourProperty(target, "Text Channel Colour", ScopeGUI::TextChannel));
 		props.add(new ScopeComponentColourProperty(target, "Trace Colour", ScopeGUI::Trace));		
 		
-		addSection("Colours", props, false);				
+		addSection("Scope Colours", props, false);				
 
 	}
 };

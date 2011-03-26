@@ -179,9 +179,9 @@ void ScopeComponent::paintBipolar(Graphics& g)
 				g.drawLine(0, top - 0.5f, getWidth(), top - 0.5f, 1.f);
 			}
 			
-			paintXScale(g, middle);
-			paintYScale(g, middle, top);
-			paintYScale(g, middle, bottom);
+//			paintXScale(g, middle);
+//			paintYScale(g, middle, top);
+//			paintYScale(g, middle, bottom);
 			
 			float oldMinimum = clip2(minDrawBuffer.getSampleUnchecked(channel, 0), yMaximum) * halfChannelHeightOverYMaximum - 0.5f;
 			float oldMaximum = clip2(maxDrawBuffer.getSampleUnchecked(channel, 0), yMaximum) * halfChannelHeightOverYMaximum + 0.5f;
@@ -224,6 +224,9 @@ void ScopeComponent::paintBipolar(Graphics& g)
 			}
 			
 			paintChannelLabel(g, channelLabels.wrapAt(channel), channel, bottom-textSizeChannel-6);
+			paintXScale(g, middle);
+			paintYScale(g, middle, top);
+			paintYScale(g, middle, bottom);			
 		}		
 	}
 }
@@ -251,8 +254,8 @@ void ScopeComponent::paintUnipolar(Graphics& g)
 				g.drawLine(0, top - 0.5f, getWidth(), top - 0.5f, 1.f);
 			}
 			
-			paintXScale(g, bottom);
-			paintYScale(g, bottom, top);
+//			paintXScale(g, bottom);
+//			paintYScale(g, bottom, top);
 			
 			float oldMinimum = clip(minDrawBuffer.getSampleUnchecked(channel, 0), 0.f, yMaximum) * channelHeightOverYMaximum - 0.5f;
 			float oldMaximum = clip(maxDrawBuffer.getSampleUnchecked(channel, 0), 0.f, yMaximum) * channelHeightOverYMaximum + 0.5f;
@@ -295,6 +298,8 @@ void ScopeComponent::paintUnipolar(Graphics& g)
 			}
 					
 			paintChannelLabel(g, channelLabels.wrapAt(channel), channel, bottom-textSizeChannel-6);
+			paintXScale(g, bottom);
+			paintYScale(g, bottom, top);
 		}		
 	}
 }
@@ -2328,7 +2333,7 @@ void ScopeControlComponent::openProperties()
 {
 	ScopeControlProperties props(this);
 	
-	props.setSize(300, 300);
+	props.setSize(400, 600);
 	
 	showModalPrefs("Scope Properties", &props, this,
 				   Colour::greyLevel(0.9f).withAlpha(0.9f), 
