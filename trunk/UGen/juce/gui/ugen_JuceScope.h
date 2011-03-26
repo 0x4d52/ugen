@@ -158,6 +158,8 @@ public:
 	Label* getLabelComponent() { return label; }
 	
 	void setColours(RGBAColour const& lineColour, RGBAColour const& textColour);
+	const RGBAColour& getLineColour() const { return cueData.lineColour; } 
+	const RGBAColour& getTextColour() const { return cueData.textColour; } 
 	
 	static void swapCuePoints(Component::SafePointer<ScopeCuePointComponent> &cue1, 
 							  Component::SafePointer<ScopeCuePointComponent> &cue2);
@@ -226,6 +228,11 @@ public:
 					RGBAColour const& endColour, 
 					RGBAColour const& textColour, 
 					RGBAColour const& fillColour);
+	
+	const RGBAColour& getStartColour() const { return startPoint->getLineColour(); }
+	const RGBAColour& getEndColour() const { return endPoint->getLineColour(); }
+	const RGBAColour& getTextColour() const { return startPoint->getTextColour(); }
+	const RGBAColour& getFillColour() const { return fillColour; }
 	
 private:
 	void init(CuePoint const& startCue, 
