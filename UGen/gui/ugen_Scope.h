@@ -67,7 +67,8 @@ public:
 	/** An enum for x/y label scales in various formats. */
 	enum Scales
 	{
-		LabelXNone,			///< No labelling of the x axis.
+		LabelInvalid = -1,
+		LabelXNone = 0,			///< No labelling of the x axis.
 		LabelXMarks,		///< Only marks are drawn on the x axis.
 		LabelXSamples,		///< The x axis is labelled with marks and units in samples.
 		LabelXTime,			///< The x axis is labelled with marks and units in hours, mins, secs and ms

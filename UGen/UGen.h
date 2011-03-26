@@ -169,6 +169,7 @@ BEGIN_UGEN_NAMESPACE
 	#include "juce/ugen_JuceTimerDeleter.h"
 	#include "juce/ugen_JuceVoicer.h"
 	#include "juce/gui/ugen_JuceScope.h"
+	#include "juce/gui/ugen_JuceScopeProperties.h"
 	#include "juce/gui/ugen_JuceMultiSlider.h"
 	#include "juce/gui/ugen_JuceEnvelopeComponent.h"
 	#include "juce/io/ugen_DiskIn.h"
