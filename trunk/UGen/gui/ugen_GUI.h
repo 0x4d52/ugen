@@ -134,17 +134,17 @@ public:
 //	}	
 #endif	
 	
-	inline float red() throw()		{ return r; }
-	inline float green() throw()	{ return g; }
-	inline float blue() throw()		{ return b; }
-	inline float alpha() throw()	{ return a; }
+	inline float red() const throw()		{ return r; }
+	inline float green() const throw()	{ return g; }
+	inline float blue() const throw()		{ return b; }
+	inline float alpha() const throw()	{ return a; }
 	
-	inline unsigned long redInt() throw()		{ unsigned long ret = (unsigned long)(r*255.f); return ret; }
-	inline unsigned long greenInt() throw()		{ unsigned long ret = (unsigned long)(g*255.f); return ret; }
-	inline unsigned long blueInt() throw()		{ unsigned long ret = (unsigned long)(b*255.f); return ret; }
-	inline unsigned long alphaInt() throw()		{ unsigned long ret = (unsigned long)(a*255.f); return ret; }
+	inline unsigned long redInt() const throw()		{ unsigned long ret = (unsigned long)(r*255.f); return ret; }
+	inline unsigned long greenInt() const throw()		{ unsigned long ret = (unsigned long)(g*255.f); return ret; }
+	inline unsigned long blueInt() const throw()		{ unsigned long ret = (unsigned long)(b*255.f); return ret; }
+	inline unsigned long alphaInt() const throw()		{ unsigned long ret = (unsigned long)(a*255.f); return ret; }
 	
-	inline unsigned long get32bitColour() throw() 
+	inline unsigned long get32bitColour() const throw() 
 	{ 
 		unsigned long ret = ((alphaInt() << 24) | (redInt() << 16) | (greenInt() << 8) | blueInt()); 
 		return ret;

@@ -132,5 +132,38 @@ private:
 };
 
 
+class ScopedIgnoreMouse
+{
+public:
+	ScopedIgnoreMouse(Component *c);
+	~ScopedIgnoreMouse();
+	
+private:
+	Component *comp;
+};
+
+
+class Interceptor : public Component
+{
+public:
+	Interceptor(Component* _owner, const bool _constrain = false);	
+	void mouseEnter (const MouseEvent& e);	
+	void mouseExit (const MouseEvent& e);	
+	void mouseMove (const MouseEvent& e);	
+	void mouseDown (const MouseEvent& e);
+	void mouseUp (const MouseEvent& e);
+	void mouseDrag (const MouseEvent& e);
+	
+	inline Component* getOwner() { return owner; }
+	
+private:
+	Component* owner;
+	Component* mouseIsOver;
+	Component* mouseIsDownOn;
+	int lastDragX, lastDragY;
+	bool constrain;
+};
+
+
 
 #endif // _UGEN_ugen_JuceUtility_H_

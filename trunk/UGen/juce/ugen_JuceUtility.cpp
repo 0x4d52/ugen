@@ -715,6 +715,181 @@ void AudioIOHelper::writeAiffCuePoints(AudioFormatWriter* &writer, FileOutputStr
 }
 
 
+ScopedIgnoreMouse::ScopedIgnoreMouse(Component *c) 
+:	comp(c)
+{
+	comp->setInterceptsMouseClicks(false, false);
+}
+
+ScopedIgnoreMouse::~ScopedIgnoreMouse()
+{
+	comp->setInterceptsMouseClicks(true, true);
+}
+
+
+Interceptor::Interceptor(Component* _owner, const bool _constrain) 
+:	owner(_owner),
+	mouseIsOver(0),
+	mouseIsDownOn(0),
+	constrain(_constrain)
+{ 
+	setInterceptsMouseClicks(true, true);
+}
+
+void Interceptor::mouseEnter (const MouseEvent& e)
+{
+	ScopedIgnoreMouse m(this);
+	mouseMove(e);
+}
+
+void Interceptor::mouseExit (const MouseEvent& e)
+{
+	ScopedIgnoreMouse m(this);
+	
+	if(mouseIsDownOn)
+		mouseIsDownOn->mouseUp(e.getEventRelativeTo(mouseIsDownOn));
+	
+	mouseIsDownOn = 0;
+	
+	if(mouseIsOver)
+		mouseIsOver->mouseExit(e.getEventRelativeTo(mouseIsOver));
+	
+	mouseIsOver = 0;
+}
+
+void Interceptor::mouseMove (const MouseEvent& e)
+{
+	ScopedIgnoreMouse m(this);
+	
+	Component *comp = owner->getComponentAt(e.x, e.y);
+	
+	if(comp == mouseIsOver)
+	{
+		if(mouseIsOver)
+			mouseIsOver->mouseMove(e.getEventRelativeTo(mouseIsOver));
+	}
+	else
+	{
+		if(mouseIsOver)
+			mouseIsOver->mouseExit(e.getEventRelativeTo(mouseIsOver));
+		
+		mouseIsOver = comp;
+		
+		if(mouseIsOver)
+			mouseIsOver->mouseEnter(e.getEventRelativeTo(mouseIsOver));
+	}
+}
+
+void Interceptor::mouseDown (const MouseEvent& e)
+{
+	ScopedIgnoreMouse m(this);
+	
+	if(mouseIsOver)
+	{
+		mouseIsDownOn = mouseIsOver;
+		mouseIsDownOn->mouseDown(e.getEventRelativeTo(mouseIsDownOn));
+		
+		lastDragX = e.x;
+		lastDragY = e.y;
+	}
+}
+
+void Interceptor::mouseUp (const MouseEvent& e)
+{
+	ScopedIgnoreMouse m(this);
+	
+	if(mouseIsDownOn)
+	{
+		mouseIsDownOn->mouseUp(e.getEventRelativeTo(mouseIsDownOn));
+		mouseIsDownOn = 0;
+	}
+}
+
+void Interceptor::mouseDrag (const MouseEvent& e)
+{
+	ScopedIgnoreMouse m(this);
+	
+	Component *comp = owner->getComponentAt(e.x, e.y);
+	
+	if(comp == mouseIsDownOn)
+	{
+		if(mouseIsDownOn)
+			mouseIsDownOn->mouseDrag(e.getEventRelativeTo(mouseIsDownOn));
+	}
+	else
+	{
+		int deltaX = e.x - lastDragX;
+		int deltaY = e.y - lastDragY;
+		double incX, incY;
+		int steps;
+		
+		if(deltaX == 0)
+		{
+			incX = 0;
+			incY = e.y > lastDragY ? 1.0 : -1.0;
+			steps = std::abs(deltaY);
+		}
+		else if(deltaY == 0)
+		{
+			incX = e.x > lastDragX ? 1.0 : -1.0;
+			incY = 0;
+			steps = std::abs(deltaX);
+		}
+		else if(std::abs(deltaX) > std::abs(deltaY))
+		{
+			incX = e.x > lastDragX ? 1.0 : -1.0;;
+			incY = (double)deltaY / std::abs(deltaX);
+			steps = std::abs(deltaX);
+		}
+		else
+		{
+			incX = (double)deltaX / std::abs(deltaY);
+			incY = e.y > lastDragY ? 1.0 : -1.0;
+			steps = std::abs(deltaY);
+		}
+		
+		double x = lastDragX;
+		double y = lastDragY;
+		
+		while(steps--)
+		{
+			MouseEvent eventCopy = e.withNewPosition(Point<int>(constrain ? jlimit(1, getWidth()-2, (int)x) : (int)x, 
+																constrain ? jlimit(1, getHeight()-2, (int)y) : (int)y));
+			
+			Component *comp = owner->getComponentAt(eventCopy.x, eventCopy.y);
+			if(comp == mouseIsDownOn)
+			{
+				if(mouseIsDownOn)
+					mouseIsDownOn->mouseDrag(eventCopy.getEventRelativeTo(mouseIsDownOn));
+			}
+			else
+			{
+				if(mouseIsDownOn)
+				{
+					mouseIsDownOn->mouseUp(eventCopy.getEventRelativeTo(mouseIsDownOn));
+					mouseIsDownOn->mouseExit(eventCopy.getEventRelativeTo(mouseIsDownOn));
+				}
+				
+				mouseIsDownOn = comp;
+				
+				if(mouseIsDownOn)
+				{
+					mouseIsDownOn->mouseEnter(eventCopy.getEventRelativeTo(mouseIsDownOn));
+					mouseIsDownOn->mouseDown(eventCopy.getEventRelativeTo(mouseIsDownOn));
+				}
+			}
+			
+			x += incX;
+			y += incY;
+		}
+	}
+	
+	lastDragX = e.x;
+	lastDragY = e.y;
+}	
+
+
+
 
 END_UGEN_NAMESPACE
 

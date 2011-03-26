@@ -313,14 +313,17 @@ void ScopeComponent::paintXScale(Graphics& g, const int y)
 		const int markSpacing = markSpacingX;
 		const unsigned int labelHop = labelHopX;
 
-		unsigned int mark = 0;
+		unsigned int mark = offsetSamples / markSpacing; // was 0
 		const int labelOffsetX = 3;
 		const int labelOffsetY = markXHeight > 5 ? 4 : markXHeight + 1;
+		bool isFirstMark = true;
 		
 		g.setFont(textSizeX);
 		g.setColour(Colour(colours[LabelMarks].get32bitColour()));
 		
-		for(int audioIndex = 0; audioIndex < audioBufferSize; audioIndex += markSpacing)
+		const int inititalIndex = markSpacing - int(offsetSamples+0.5) % markSpacing; // was 0
+		
+		for(int audioIndex = inititalIndex; audioIndex < audioBufferSize; audioIndex += markSpacing)
 		{			
 			const int x = audioIndex * samplesPerPixel + 0.5;
 			
@@ -328,9 +331,8 @@ void ScopeComponent::paintXScale(Graphics& g, const int y)
 			{
 				g.drawVerticalLine(x, y - markXHeight * 1.5, y);
 				
-				
 				if(scaleX != ScopeGUI::LabelXMarks && 
-				   (((mark == 0) && (labelFirstX == false)) == false)
+				   (((isFirstMark == true) && (labelFirstX == false)) == false)
 				) {
 					String label;
 					if(scaleX == ScopeGUI::LabelXTime)
@@ -362,6 +364,7 @@ void ScopeComponent::paintXScale(Graphics& g, const int y)
 				g.drawVerticalLine(x, y-markXHeight, y);
 			}
 			
+			isFirstMark = false;
 			mark++;
 		}
 		
@@ -2372,18 +2375,18 @@ const char* ScopeControlComponent::getCommand(Command commandID)
 }
 
 
-ScopeControlProperties::ScopeControlProperties(ScopeControlComponent* target)
-{
-	Array<PropertyComponent*> displayProps;
-	displayProps.add(new ScopeComponentYMaximumProperty(target));
-	displayProps.add(new ScopeComponentIsBipolarProperty(target));
-	
-	addSection("Scope display", displayProps);
-}
-
-ScopeControlProperties::~ScopeControlProperties()
-{
-}
+//ScopeControlProperties::ScopeControlProperties(ScopeControlComponent* target)
+//{
+//	Array<PropertyComponent*> displayProps;
+//	displayProps.add(new ScopeComponentIsBipolarProperty(target));
+//	displayProps.add(new ScopeComponentYMaximumProperty(target));
+//	
+//	addSection("Scope display", displayProps);
+//}
+//
+//ScopeControlProperties::~ScopeControlProperties()
+//{
+//}
 
 
 //ScopeControlPreferences::LabelItem::LabelItem(const String& componentName,
