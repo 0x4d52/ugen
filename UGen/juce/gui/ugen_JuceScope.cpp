@@ -79,6 +79,39 @@ static inline const String timeToTimecodeString (const double seconds)
 	return String(buf);
 }
 
+class PrefsDialogWindow : public DialogWindow
+{
+public:
+    PrefsDialogWindow (const String& title, const Colour& colour, const bool escapeCloses)
+	: DialogWindow (title, colour, escapeCloses, true)
+    {
+		setTitleBarHeight(22);
+        if (! JUCEApplication::isStandaloneApp())
+            setAlwaysOnTop (true);
+    }
+	
+    void closeButtonPressed()
+    {
+        setVisible (false);
+    }
+};
+
+static int showModalPrefs (const String& dialogTitle,
+						   Component* contentComponent,
+						   Component* componentToCentreAround,
+						   const Colour& colour,
+						   const bool escapeKeyTriggersCloseButton,
+						   const bool shouldBeResizable,
+						   const bool useBottomRightCornerResizer)
+{
+    PrefsDialogWindow dw (dialogTitle, colour, escapeKeyTriggersCloseButton);
+    dw.setContentComponent (contentComponent, true, true);
+    dw.centreAroundComponent (componentToCentreAround, dw.getWidth(), dw.getHeight());
+    dw.setResizable (shouldBeResizable, useBottomRightCornerResizer);
+    const int result = dw.runModalLoop();
+    dw.setContentComponent (0, false);
+    return result;
+}
 
 ScopeComponentBase::ScopeComponentBase(ScopeGUI::ScopeStyles style)
 :	ScopeGUI(style)
@@ -668,6 +701,8 @@ void ScopeCuePointComponent::showPopupMenu(const int offset)
 	addCommandToMenu(m, ScopeControlComponent::SetToZero);
 	addCommandToMenu(m, ScopeControlComponent::SetToEnd);
 //	addCommandToMenu(m, ScopeControlComponent::MoveToZeroCrossings);
+	m.addSeparator();	
+	addCommandToMenu(m, ScopeControlComponent::OpenProperties);
 	
 	const int result = m.show();
 	if(result != 0) doCommand(result);
@@ -681,6 +716,7 @@ void ScopeCuePointComponent::doCommand(const int commandID)
 		case ScopeControlComponent::DeleteCuePoint:		owner->removeCuePoint(this);			break;
 		case ScopeControlComponent::SetToZero:			setSampleOffset(0);						break;
 		case ScopeControlComponent::SetToEnd:			setSampleOffset(owner->getMaxSize());	break;
+		case ScopeControlComponent::OpenProperties:		openProperties();						break;
 	}	
 }
 
@@ -818,6 +854,13 @@ void ScopeCuePointComponent::moved()
 	owner->avoidPointLabelCollisions();
 }
 
+void ScopeCuePointComponent::visibilityChanged()
+{
+	bool visbility = isVisible();
+	
+	if(label != 0) label->setVisible(visbility);	
+}
+
 void ScopeCuePointComponent::setLabelPosition(const bool checkLabel)
 {
 	if(label != 0 && owner != 0)
@@ -900,6 +943,22 @@ void ScopeCuePointComponent::swapCuePoints(Component::SafePointer<ScopeCuePointC
 	cue2->repaint();
 }
 
+String ScopeCuePointComponent::getPropertiesName()
+{
+	return "Cue Point";
+}
+
+void ScopeCuePointComponent::openProperties()
+{
+	ScopeCuePointProperties props(this, getPropertiesName());
+	
+	props.setSize(600, 140);
+	
+	showModalPrefs(getPropertiesName()+ " Properties", &props, this,
+				   Colour::greyLevel(0.9f).withAlpha(0.9f), 
+				   true, true, false);		
+}
+
 ScopeInsertComponent::ScopeInsertComponent(ScopeControlComponent* owner, 
 										   ScopeRegionComponent* region)
 :	ScopeCuePointComponent(owner, region, CuePoint())
@@ -921,6 +980,9 @@ void ScopeInsertComponent::showPopupMenu(const int offset)
 	addCommandToMenu(m, ScopeControlComponent::SetToZero);
 	addCommandToMenu(m, ScopeControlComponent::SetToEnd);
 	
+	m.addSeparator();	
+	addCommandToMenu(m, ScopeControlComponent::OpenProperties);
+	
 	const int result = m.show();
 	if(result != 0) doCommand(result);		
 }
@@ -931,6 +993,7 @@ void ScopeInsertComponent::doCommand(const int commandID)
 	{
 		case ScopeControlComponent::SetToZero:			setSampleOffset(0);						break;
 		case ScopeControlComponent::SetToEnd:			setSampleOffset(owner->getMaxSize());	break;
+		case ScopeControlComponent::OpenProperties:		openProperties();						break;
 	}	
 }
 
@@ -978,10 +1041,10 @@ void ScopeRegionComponent::init(CuePoint const& startCue,
 	
 	// set cues to 0 if they are -1?
 	
-	owner->addAndMakeVisible(startPoint = new ScopeCuePointComponent(owner, this, startCue, false, true));
+	owner->addChildComponent(startPoint = new ScopeCuePointComponent(owner, this, startCue, false, true));
 	startPoint->setColours(startColour, textColour);
 	
-	owner->addAndMakeVisible(endPoint = new ScopeCuePointComponent(owner, this, endCue, createdFromMouseClick, false));
+	owner->addChildComponent(endPoint = new ScopeCuePointComponent(owner, this, endCue, createdFromMouseClick, false));
 	endPoint->setColours(endColour, textColour);	
 }
 
@@ -1017,6 +1080,14 @@ void ScopeRegionComponent::mouseDown (const MouseEvent& e)
 	{
 		choosePopupMenu(offset);
 	}
+}
+
+void ScopeRegionComponent::visibilityChanged()
+{
+	bool visbility = isVisible();
+	
+	if(startPoint != 0) startPoint->setVisible(visbility);	
+	if(endPoint != 0)	endPoint->setVisible(visbility);	
 }
 
 void ScopeRegionComponent::choosePopupMenu(const int offset)
@@ -1068,6 +1139,9 @@ void ScopeRegionComponent::showPopupMenu(const int offset)
 		addCommandToMenu(m, ScopeControlComponent::AddCuePoint);
 	}
 	
+	m.addSeparator();	
+	addCommandToMenu(m, ScopeControlComponent::OpenProperties);
+	
 	const int result = m.show();
 	if(result != 0) doCommand(result, offset);
 }
@@ -1085,6 +1159,8 @@ void ScopeRegionComponent::doCommand(const int commandID, int offset)
 			getRegionOffsets(start, end);
 			owner->setSelection(start, end);			
 		} break;
+			
+		case ScopeControlComponent::OpenProperties:		openProperties();								break;
 	}	
 }
 
@@ -1158,6 +1234,22 @@ void ScopeRegionComponent::setColours(RGBAColour const& startColour,
 	repaint();
 }
 
+String ScopeRegionComponent::getPropertiesName()
+{
+	return "Region";
+}
+
+void ScopeRegionComponent::openProperties()
+{
+	ScopeRegionProperties props(this, getPropertiesName());
+	
+	props.setSize(600, 230);
+	
+	showModalPrefs(getPropertiesName()+ " Properties", &props, this,
+				   Colour::greyLevel(0.9f).withAlpha(0.9f), 
+				   true, true, false);	
+}
+
 ScopeSelectionComponent::ScopeSelectionComponent(ScopeControlComponent* owner,
 												 const int initialStart, 
 												 const int initialEnd)
@@ -1212,6 +1304,9 @@ void ScopeSelectionComponent::showPopupMenu(const int offset)
 	addCommandToMenu(m, ScopeControlComponent::ZoomToSelection, nonZeroSelectionLength);
 	addCommandToMenu(m, ScopeControlComponent::ZoomToWindow);
 	
+	m.addSeparator();	
+	addCommandToMenu(m, ScopeControlComponent::OpenProperties);
+	
 	const int result = m.show();
 	if(result != 0) doCommand(result, offset);
 }
@@ -1251,6 +1346,8 @@ void ScopeSelectionComponent::doCommand(const int commandID, const int offset)
 		case ScopeControlComponent::ZoomOut: {
 			owner->zoomAround(offset < 0 ? owner->getMaxSize()/2 : offset, 1.f/zoomFactor);
 		} break;
+			
+		case ScopeControlComponent::OpenProperties:		openProperties();	break;
 	}				
 }
 
@@ -1365,6 +1462,9 @@ void ScopeLoopComponent::showPopupMenu(const int offset)
 		addCommandToMenu(m, ScopeControlComponent::AddCuePoint);
 	}
 	
+	m.addSeparator();	
+	addCommandToMenu(m, ScopeControlComponent::OpenProperties);
+	
 	const int result = m.show();
 	if(result != 0) doCommand(result, offset);
 }
@@ -1383,10 +1483,12 @@ void ScopeLoopComponent::doCommand(const int commandID, const int offset)
 			owner->setSelection(start, end);			
 		} break;
 			
-		case ScopeControlComponent::LoopTypeNoLoop:		loopPoint.getType() = LoopPoint::NoLoop;				break;
+		case ScopeControlComponent::LoopTypeNoLoop:		loopPoint.getType() = LoopPoint::NoLoop;			break;
 		case ScopeControlComponent::LoopTypeForward:	loopPoint.getType() = LoopPoint::Forward;			break;
 		case ScopeControlComponent::LoopTypePingPong:	loopPoint.getType() = LoopPoint::PingPong;			break;
 		case ScopeControlComponent::LoopTypeReverse:	loopPoint.getType() = LoopPoint::Reverse;			break;
+			
+		case ScopeControlComponent::OpenProperties:		openProperties();									break;
 	}				
 }
 
@@ -1426,11 +1528,11 @@ ScopeControlComponent::ScopeControlComponent(CriticalSection& criticalSection, S
 	controlColours[SelectionTextColour]		= RGBAColour(1.0, 1.0, 1.0, 1.0);
 	
 	addChildComponent(scopeInsert = new ScopeInsertComponent(this, 0));
-	if(options & Insert) scopeInsert->setVisible(true);
+	scopeInsert->setVisible(options & DisplayInsert);
 	scopeInsert->setLabel("play");
 
 	addChildComponent(scopeSelection = new ScopeSelectionComponent(this), 0);
-	if(options & Selection) scopeSelection->setVisible(true);
+	scopeSelection->setVisible(options & DisplaySelection);
 	scopeSelection->getStartPoint()->setLabel("<");
 	scopeSelection->getEndPoint()->setLabel(">");
 }
@@ -1568,9 +1670,7 @@ void ScopeControlComponent::mouseDown(const MouseEvent& e)
 	int offset = pixelsToSamples(e.x);
 	
 	if(e.mods.isCommandDown())
-	{
-		printf("scroll...start clicked=%d\n", e.mouseWasClicked());
-		
+	{		
 		if(e.mods.isAltDown())
 		{
 			dragScroll = false;
@@ -1634,14 +1734,14 @@ void ScopeControlComponent::mouseDown(const MouseEvent& e)
 	}
 	else if(e.mods.isLeftButtonDown())
 	{
-		setInsertOffset(offset);
-		setSelection(offset, offset);
+		if(options & DisplayInsert)		setInsertOffset(offset);
+		if(options & DisplaySelection)	setSelection(offset, offset);
 		
-		if(scopeSelection != 0)
+		if((options & DisplaySelection) && (scopeSelection != 0))
 		{
 			draggingCuePoint = scopeSelection->getEndPoint();
 		}
-		else if(scopeInsert != 0)
+		else if((options & DisplayInsert) && (scopeInsert != 0))
 		{
 			draggingCuePoint = scopeInsert;
 		}
@@ -1724,7 +1824,7 @@ void ScopeControlComponent::mouseUp(const MouseEvent& e)
 {
 	if(e.mods.isCommandDown())
 	{
-		printf("scroll...finsihed clicked=%d\n", e.mouseWasClicked());
+		//..
 	}
 	else if(draggingCuePoint != 0)
 	{
@@ -1734,6 +1834,46 @@ void ScopeControlComponent::mouseUp(const MouseEvent& e)
 	}	
 	
 	dragScroll = dragZoomX = dragZoomY = false;
+}
+
+void ScopeControlComponent::setDisplayOptions(int newOptions)
+{
+	if((options & DisplayCuePoints) != (newOptions & DisplayCuePoints))
+	{
+		for(int i = 0; i < scopeCuePoints.size(); i++)
+		{
+			scopeCuePoints[i]->setVisible(newOptions & DisplayCuePoints);
+		}
+	}
+	
+	if((options & DisplayLoopPoints) != (newOptions & DisplayLoopPoints))
+	{
+		for(int i = 0; i < scopeLoops.size(); i++)
+		{
+			scopeLoops[i]->setVisible(newOptions & DisplayLoopPoints);
+		}
+	}
+	
+	if((options & DisplayRegions) != (newOptions & DisplayRegions))
+	{
+		for(int i = 0; i < scopeRegions.size(); i++)
+		{
+			scopeRegions[i]->setVisible(newOptions & DisplayRegions);
+		}
+	}
+	
+	if((options & DisplayInsert) != (newOptions & DisplayInsert))
+	{
+		scopeInsert->setVisible(newOptions & DisplayInsert);
+	}
+	
+	if((options & DisplaySelection) != (newOptions & DisplaySelection))
+	{
+		scopeSelection->setVisible(newOptions & DisplaySelection);
+	}
+	
+	options = newOptions;
+	avoidPointLabelCollisions();
 }
 
 void ScopeControlComponent::setMaxSize(const int newSize)
@@ -1858,7 +1998,7 @@ int ScopeControlComponent::samplesToPixels(const int samples)
 void ScopeControlComponent::addPointLabel(ScopeCuePointLabel* label)
 {
 	pointLabels.add(label);
-	addAndMakeVisible(label);
+	addChildComponent(label);
 }
 
 void ScopeControlComponent::removePointLabel(ScopeCuePointLabel* label)
@@ -1887,6 +2027,7 @@ void ScopeControlComponent::avoidPointLabelCollisions()
 		for(int i = 0; i < pointLabels.size(); i++)
 		{
 			ScopeCuePointLabel* labeli = pointLabels[i];
+			if(!labeli->isVisible()) continue;
 			if(labeli->getText(false).trim().length() < 1) continue;
 			
 			for(int j = 0; j < pointLabels.size(); j++)
@@ -1894,6 +2035,7 @@ void ScopeControlComponent::avoidPointLabelCollisions()
 				ScopeCuePointLabel* labelj = pointLabels[j];
 			
 				if(labeli == labelj) continue;
+				if(!labelj->isVisible()) continue;
 				if(labelj->getText(false).trim().length() < 1) continue;
 				
 				Rectangle<int> boundsi = labeli->getBounds();
@@ -1980,7 +2122,8 @@ ScopeCuePointComponent* ScopeControlComponent::addCuePoint(CuePoint const& cuePo
 														   const bool createdFromMousClick)
 {
 	ScopeCuePointComponent* cuePointComponent;
-	addAndMakeVisible(cuePointComponent = new ScopeCuePointComponent(this, 0, cuePoint, createdFromMousClick));
+	addChildComponent(cuePointComponent = new ScopeCuePointComponent(this, 0, cuePoint, createdFromMousClick));
+	cuePointComponent->setVisible(options & DisplayCuePoints);
 	scopeCuePoints.add(cuePointComponent);
 	cuePointComponent->setHeight(getHeight());
 	
@@ -2084,7 +2227,8 @@ ScopeCuePointComponent* ScopeControlComponent::addLoopPoint(LoopPoint const& loo
 															const bool createdFromMousClick)
 {
 	ScopeLoopComponent* loopComponent;
-	addAndMakeVisible(loopComponent = new ScopeLoopComponent(this, loopPoint, createdFromMousClick), 0);
+	addChildComponent(loopComponent = new ScopeLoopComponent(this, loopPoint, createdFromMousClick), 0);
+	loopComponent->setVisible(options & DisplayLoopPoints);
 	scopeLoops.add(loopComponent);
 	loopComponent->setHeight(getHeight());
 	
@@ -2191,7 +2335,8 @@ ScopeCuePointComponent* ScopeControlComponent::addRegion(Region const& region,
 														 const bool createdFromMousClick)
 {
 	ScopeRegionComponent* regionComponent;
-	addAndMakeVisible(regionComponent = new ScopeRegionComponent(this, region, createdFromMousClick), 0);
+	addChildComponent(regionComponent = new ScopeRegionComponent(this, region, createdFromMousClick), 0);
+	regionComponent->setVisible(options & DisplayRegions);
 	scopeRegions.add(regionComponent);
 	regionComponent->setHeight(getHeight());
 	
@@ -2281,65 +2426,23 @@ void ScopeControlComponent::clearRegionsBetween(const int start, const int end)
 	}			
 }
 
-class PrefsDialogWindow : public DialogWindow
-{
-public:
-    PrefsDialogWindow (const String& title, const Colour& colour, const bool escapeCloses)
-	: DialogWindow (title, colour, escapeCloses, true)
-    {
-		setTitleBarHeight(22);
-        if (! JUCEApplication::isStandaloneApp())
-            setAlwaysOnTop (true);
-    }
-	
-    void closeButtonPressed()
-    {
-        setVisible (false);
-    }
-};
-
-
-//==============================================================================
-static int showModalPrefs (const String& dialogTitle,
-						   Component* contentComponent,
-						   Component* componentToCentreAround,
-						   const Colour& colour,
-						   const bool escapeKeyTriggersCloseButton,
-						   const bool shouldBeResizable,
-						   const bool useBottomRightCornerResizer)
-{
-    PrefsDialogWindow dw (dialogTitle, colour, escapeKeyTriggersCloseButton);
-    dw.setContentComponent (contentComponent, true, true);
-    dw.centreAroundComponent (componentToCentreAround, dw.getWidth(), dw.getHeight());
-    dw.setResizable (shouldBeResizable, useBottomRightCornerResizer);
-    const int result = dw.runModalLoop();
-    dw.setContentComponent (0, false);
-    return result;
-}
-
-
-
-
-//void ScopeControlComponent::openPreferences()
-//{
-//	ScopeControlPreferences prefs(this);
-//	
-//	showModalPrefs("Scope Preferences", &prefs, this,
-//				   Colour::greyLevel(0.9f).withAlpha(0.9f), 
-//				   true, true, false);	
-//}
-
 void ScopeControlComponent::openProperties()
 {
 	ScopeControlProperties props(this);
 	
 	props.setSize(400, 600);
 	
+	if(propertyOpenness != 0)
+	{
+		props.restoreOpennessState(*propertyOpenness);
+	}
+	
 	showModalPrefs("Scope Properties", &props, this,
 				   Colour::greyLevel(0.9f).withAlpha(0.9f), 
 				   true, true, false);	
+		
+	propertyOpenness = props.getOpennessState();
 }
-
 
 const ScopeControlComponent::CommandDictonary& ScopeControlComponent::buildCommandDictionary()
 {
@@ -2391,191 +2494,6 @@ const char* ScopeControlComponent::getCommand(Command commandID)
 	static const ScopeControlComponent::CommandDictonary& commands = buildCommandDictionary();
 	return (const char*)commands[commandID];
 }
-
-
-//ScopeControlProperties::ScopeControlProperties(ScopeControlComponent* target)
-//{
-//	Array<PropertyComponent*> displayProps;
-//	displayProps.add(new ScopeComponentIsBipolarProperty(target));
-//	displayProps.add(new ScopeComponentYMaximumProperty(target));
-//	
-//	addSection("Scope display", displayProps);
-//}
-//
-//ScopeControlProperties::~ScopeControlProperties()
-//{
-//}
-
-
-//ScopeControlPreferences::LabelItem::LabelItem(const String& componentName,
-//											  const String& labelText)
-//:	Label(componentName, labelText)
-//{
-//	setEditable(true, true, false);
-//}
-//
-//ScopeControlPreferences::ListItem::ListItem(const String& componentName,
-//											ItemDictionary const& items,
-//											String const& prefValue)
-//:	ComboBox(componentName),
-//	itemDictionary(items)
-//{
-//	ugen_assert(itemDictionary.length() > 0);
-//		
-//	ObjectArray<String> itemLabels = itemDictionary.getKeys();
-//	
-//	for(int i = 0; i < itemLabels.length(); i++)
-//	{
-//		addItem(itemLabels[i], 1000+i);
-//	}
-//	
-//	const String& item = items.keyForValue(prefValue);
-//	setText(item, true);
-//}
-//
-//const String& ScopeControlPreferences::ListItem::getSelectedValue()
-//{
-//	String itemName = getText();
-//	return itemDictionary[itemName];
-//}
-//
-////int ScopeControlPreferences::labelDecimalPlaces = 0;
-////
-////ScopeControlPreferences::ScopeControlPreferences(ScopeControlComponent* scopeToEdit)
-////:	scope(scopeToEdit)
-////{
-////	const int margin = 5;
-////	int height = margin;
-////
-////	addScopeDisplayProperties(height);
-////	addScopeControlProperties(height);
-////		
-////	height += margin;
-////	
-////	setSize(320, height);
-////}
-////
-////ScopeControlPreferences::~ScopeControlPreferences()
-////{
-////	deleteAllChildren();
-////}
-//// 
-////void ScopeControlPreferences::initPref(Component* pref, String const& prefName, int &height)
-////{
-////	const int margin = 5;
-////
-////	Label* label = new Label(prefName+"Label", prefName);
-////	label->attachToComponent(pref, true);
-////	
-////	pref->setBounds(100, height, 200, 20);
-////	height += pref->getHeight();
-////	height += margin;	
-////}
-////
-////ScopeControlPreferences::LabelItem* 
-////ScopeControlPreferences::createLabelPref(ScopeControlPreferences* owner, 
-////										 String const& prefName, 
-////										 String const& prefValue,
-////										 int &height)
-////{	
-////	LabelItem* pref;
-////	owner->addAndMakeVisible(pref = new LabelItem(prefName, prefValue));
-////	pref->addListener(owner);
-////	
-////	initPref(pref, prefName, height);
-////	return pref;
-////}
-////
-////float ScopeControlPreferences::getLabelFloatValue(Component* pref)
-////{
-////	LabelItem* labelPref = static_cast<LabelItem*>(pref);
-////	float value = labelPref->getText().getFloatValue();
-////	labelPref->setText(String(value, labelDecimalPlaces), false);	
-////	return value;
-////}
-////
-////double ScopeControlPreferences::getLabelDoubleValue(Component* pref)
-////{
-////	LabelItem* labelPref = static_cast<LabelItem*>(pref);
-////	double value = labelPref->getText().getDoubleValue();
-////	labelPref->setText(String(value, labelDecimalPlaces), false);	
-////	return value;
-////}
-////
-////int ScopeControlPreferences::getLabelIntValue(Component* pref)
-////{
-////	LabelItem* labelPref = static_cast<LabelItem*>(pref);
-////	int value = labelPref->getText().getIntValue();
-////	labelPref->setText(String(value), false);	
-////	return value;
-////}
-////
-////ScopeControlPreferences::ListItem* 
-////ScopeControlPreferences::createListPref(ScopeControlPreferences* owner, 
-////										String const& prefName, 
-////										ItemDictionary const& itemDictionary,
-////										String const& prefValue,
-////										int &height)
-////{
-////	ListItem* pref;
-////	owner->addAndMakeVisible(pref = new ListItem(prefName, 
-////												 itemDictionary, 
-////												 prefValue));
-////	pref->addListener(owner);	
-////	initPref(pref, prefName, height);
-////	return pref;
-////}
-////
-////int ScopeControlPreferences::getListIntValue(Component* pref)
-////{
-////	ListItem* itemPref = static_cast<ListItem*>(pref);
-////	int value = itemPref->getSelectedValue().getIntValue();
-////	return value;	
-////}
-////
-////void ScopeControlPreferences::addScopeDisplayProperties(int& height)
-////{			
-////	yMaximumPref = createLabelPref(this, "Y Maximium", String(scope->getYMaximum(), labelDecimalPlaces), height);
-////		
-////	ItemDictionary yMarkType;
-////	yMarkType.put("None", String(ScopeGUI::LabelYNone));
-////	yMarkType.put("Marks", String(ScopeGUI::LabelYMarks));
-////	yMarkType.put("Amplitude", String(ScopeGUI::LabelYAmplitude));
-////	yMarkType.put("Decibels", String(ScopeGUI::LabelYDecibels));
-////	yMarkTypePref = createListPref(this, "Y Mark Type", yMarkType, String(scope->getScaleY()), height);
-////}
-////
-////void ScopeControlPreferences::addScopeControlProperties(int& height)
-////{
-////	PropertyComponent
-////}
-////
-////void ScopeControlPreferences::paint(Graphics& g)
-////{
-////	//g.fillAll(Colours::red);
-////}
-////
-////void ScopeControlPreferences::labelTextChanged (Label* labelThatHasChanged)
-////{
-////	prefChanged(labelThatHasChanged);
-////}
-////
-////void ScopeControlPreferences::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
-////{
-////	prefChanged(comboBoxThatHasChanged);
-////}
-////
-////void ScopeControlPreferences::prefChanged(Component* pref)
-////{
-////	if(pref == yMaximumPref)
-////	{
-////		scope->setYMaximum(getLabelFloatValue(pref));
-////	}
-////	else if(pref == yMarkTypePref)
-////	{
-////		scope->setScaleY((ScopeGUI::Scales)getListIntValue(pref));
-////	}
-////}
 
 RadialScopeComponent::RadialScopeComponent(ScopeStyles style)
 :	ScopeComponentBase(style),

@@ -148,6 +148,7 @@ public:
 	void mouseUp (const MouseEvent& e);
 
 	void moved();
+	void visibilityChanged();
 	
 	void setLabelPosition(const bool checkLabel = false);
 	const Text& getLabel() const;
@@ -164,6 +165,9 @@ public:
 	static void swapCuePoints(Component::SafePointer<ScopeCuePointComponent> &cue1, 
 							  Component::SafePointer<ScopeCuePointComponent> &cue2);
 		
+	virtual String getPropertiesName();
+	void openProperties();
+	
 protected:
 	Component::SafePointer<ScopeControlComponent> owner;
 	Component::SafePointer<ScopeRegionComponent> region;
@@ -186,6 +190,7 @@ public:
 	void showPopupMenu(const int offset);
 	void doCommand(const int commandID);
 //	void mouseDown (const MouseEvent& e);
+	String getPropertiesName() { return "Insert"; }
 };
 
 
@@ -205,6 +210,8 @@ public:
 	
 	bool hitTest (int x, int y);
 	void mouseDown (const MouseEvent& e);	
+	
+	void visibilityChanged();
 	
 	void choosePopupMenu(const int offset);
 	virtual void showPopupMenu(const int offset);
@@ -233,6 +240,9 @@ public:
 	const RGBAColour& getEndColour() const { return endPoint->getLineColour(); }
 	const RGBAColour& getTextColour() const { return startPoint->getTextColour(); }
 	const RGBAColour& getFillColour() const { return fillColour; }
+	
+	virtual String getPropertiesName();
+	void openProperties();
 	
 private:
 	void init(CuePoint const& startCue, 
@@ -264,6 +274,7 @@ public:
 	void mouseDrag (const MouseEvent& e);
 	void mouseUp (const MouseEvent& e);
 	
+	String getPropertiesName() { return "Selection"; }
 };
 
 class ScopeLoopComponent : public ScopeRegionComponent
@@ -279,6 +290,8 @@ public:
 
 	LoopPoint& getLoopPoint() { return loopPoint; }
 	
+	String getPropertiesName() { return "Loop"; }
+	
 private:
 	LoopPoint loopPoint;
 };
@@ -290,12 +303,12 @@ class ScopeControlComponent :	public ScopeComponent,
 public:
 	enum DisplayOptions
 	{
-		CuePoints	= 1,
-		LoopPoints	= 2,
-		Regions		= 4,
-		Insert		= 8,
-		Selection	= 16,
-		All			= 0x7fff
+		DisplayCuePoints	= 1,
+		DisplayLoopPoints	= 2,
+		DisplayRegions		= 4,
+		DisplayInsert		= 8,
+		DisplaySelection	= 16,
+		DisplayAll			= 0x7fffffff
 	};
 	
 	enum ControlColours { 
@@ -307,7 +320,7 @@ public:
 		NumControlColours
 	};
 	
-	ScopeControlComponent(CriticalSection& criticalSection, ScopeStyles style = Lines, DisplayOptions options = All);
+	ScopeControlComponent(CriticalSection& criticalSection, ScopeStyles style = Lines, DisplayOptions options = DisplayAll);
 	~ScopeControlComponent();
 	
 	const Font getPopupMenuFont();
@@ -324,6 +337,9 @@ public:
 	void mouseDown (const MouseEvent& e);	
 	void mouseDrag (const MouseEvent& e);
 	void mouseUp (const MouseEvent& e);
+	
+	void setDisplayOptions(int options);
+	int getDisplayOptions() const { return options; } 
 	
 	void setMaxSize(const int newSize);
 	int getMaxSize();
@@ -431,7 +447,7 @@ private:
 	static const CommandDictonary& buildCommandDictionary();
 
 	CriticalSection& metaDataLock;
-	DisplayOptions options;
+	int options;
 	MetaData metaData;
 	RGBAColour controlColours[NumControlColours];
 	Array<ScopeCuePointLabel*> pointLabels;
@@ -453,6 +469,8 @@ private:
 	
 	bool dragScroll:1, dragZoomX:1, dragZoomY:1;
 	int lastDragX, lastDragY;
+	
+	ScopedPointer<XmlElement> propertyOpenness;
 };
 
 

@@ -2,6 +2,7 @@
 #define UGEN_JUCESCOPEPROPERTIES
 
 #include "../ugen_JuceUtility.h"
+#include "../../core/ugen_Bits.h"
 
 // this files is designed only to be included by ugen_JuceScope.cpp
 
@@ -701,6 +702,46 @@ private:
 	ScopeControlComponent::ControlColours cid;
 };
 
+/** ScopeControlComponent :  Display Options Properties */
+class ScopeComponentDisplayOptionProperty :	public BooleanValuePropertyComponent
+{
+public:
+	ScopeComponentDisplayOptionProperty(ScopeControlComponent* targetScope, 
+										String const& name, 
+										int option)
+	:	BooleanValuePropertyComponent(name, "on/off"),
+		scope(targetScope),
+		thisOption(option),
+		otherOptions(~thisOption)
+	{
+		ugen_assert(Bits::countOnes(thisOption) == 1);
+		
+		setState(scope->getDisplayOptions() & thisOption);
+	}
+	
+	void stateChanged(const bool state)
+	{
+		int currentOptions = scope->getDisplayOptions();
+		
+		if(state)
+		{
+			scope->setDisplayOptions((currentOptions & otherOptions) | thisOption);
+		}
+		else
+		{
+			scope->setDisplayOptions((currentOptions & otherOptions));
+		}
+	}
+	
+private:
+	ScopeControlComponent* scope;
+	const int thisOption;
+	const int otherOptions;
+};
+
+
+
+
 
 class ScopeControlCuePointLineColourProperty : public ColourPropertyComponent
 {
@@ -768,7 +809,7 @@ class ScopeCuePointComponentLabelProperty : public TextPropertyComponent
 {
 public:
 	ScopeCuePointComponentLabelProperty(ScopeCuePointComponent* targetPoint, String const& name)
-	:	TextPropertyComponent(name, labelDecimalPlaces, false),
+	:	TextPropertyComponent(name, 0, false),
 		point(targetPoint) { }
 	
 	void setText (const String& newText)
@@ -955,6 +996,13 @@ enum ControlPropertyType
 class ScopeCuePointProperties : public PropertyPanel
 {
 public:
+	ScopeCuePointProperties(ScopeCuePointComponent* target, String const& name)
+	{
+		Array<PropertyComponent*> props;
+		props.addArray(get(target, name, AllTypes));
+		addSection(name, props, true);
+	}
+	
 	static Array<PropertyComponent*> get(ScopeCuePointComponent* target, 
 										 String const& name,
 										 int types = AllTypes)
@@ -984,6 +1032,13 @@ public:
 class ScopeRegionProperties : public PropertyPanel
 {
 public:
+	ScopeRegionProperties(ScopeRegionComponent* target, String const& name)
+	{
+		Array<PropertyComponent*> props;
+		props.addArray(get(target, name, AllTypes));
+		addSection(name, props, true);
+	}
+	
 	static Array<PropertyComponent*> get(ScopeRegionComponent* target,
 										 String const& name,
 										 int types = AllTypes)
@@ -1098,6 +1153,12 @@ public:
 		props.addArray(ScopeCuePointProperties::get(target->getInsert(), "Insert", (ColourTypes|LabelTypes)));
 		props.addArray(ScopeRegionProperties::get(target->getSelection(), "Selection", (ColourTypes|LabelTypes)));
 		
+		props.add(new ScopeComponentDisplayOptionProperty(target, "Show Cue Points",	ScopeControlComponent::DisplayCuePoints));
+		props.add(new ScopeComponentDisplayOptionProperty(target, "Show Loop Points",	ScopeControlComponent::DisplayLoopPoints));
+		props.add(new ScopeComponentDisplayOptionProperty(target, "Show Regions",		ScopeControlComponent::DisplayRegions));
+		props.add(new ScopeComponentDisplayOptionProperty(target, "Show Insert Point",	ScopeControlComponent::DisplayInsert));
+		props.add(new ScopeComponentDisplayOptionProperty(target, "Show Selection",		ScopeControlComponent::DisplaySelection));
+				  
 		addSection("Scope Controls", props, true);						
 	}
 	
