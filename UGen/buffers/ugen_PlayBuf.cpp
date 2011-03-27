@@ -670,19 +670,32 @@ double LoopPointsUGenInternal::getDuration() const throw()
 	return b.duration();
 }
 
+//double LoopPointsUGenInternal::getPosition() const throw()
+//{
+//	return currentValue * b.duration();
+//}
+//	
+//bool LoopPointsUGenInternal::setPosition(const double newPosition) throw()
+//{
+//	double normalisedPos = newPosition / b.duration();
+//	
+//	currentValue = ugen::clip(normalisedPos, 0.0, 1.0);
+//	
+//	return true;
+//}
+
 double LoopPointsUGenInternal::getPosition() const throw()
 {
-	return currentValue * b.duration();
+	return currentValue;
 }
-	
+
 bool LoopPointsUGenInternal::setPosition(const double newPosition) throw()
-{
-	double normalisedPos = newPosition / b.duration();
-	
-	currentValue = ugen::clip(normalisedPos, 0.0, 1.0);
+{	
+	currentValue = ugen::clip(newPosition, -1.0, (double)b.size());
 	
 	return true;
 }
+
 
 LoopPoints::LoopPoints(Buffer const& buffer, 
 					   UGen const& rate, 
