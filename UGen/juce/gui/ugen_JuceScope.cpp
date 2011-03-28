@@ -913,6 +913,16 @@ void ScopeCuePointComponent::labelTextChanged (Label* labelThatHasChanged)
 	}
 }
 
+const Text& ScopeCuePointComponent::getComment() const
+{
+	return cueData.cuePoint.getComment();
+}
+
+void ScopeCuePointComponent::setComment(Text const& text)
+{
+	cueData.cuePoint.getComment() = text;
+}
+
 void ScopeCuePointComponent::setColours(RGBAColour const& lineColour, RGBAColour const& textColour)
 {
 	cueData.lineColour = lineColour;
@@ -952,7 +962,7 @@ void ScopeCuePointComponent::openProperties()
 {
 	ScopeCuePointProperties props(this, getPropertiesName());
 	
-	props.setSize(600, 140);
+	props.setSize(600, 242);
 	
 	showModalPrefs(getPropertiesName()+ " Properties", &props, this,
 				   Colour::greyLevel(0.9f).withAlpha(0.9f), 
@@ -1667,6 +1677,8 @@ void ScopeControlComponent::resized()
 
 void ScopeControlComponent::mouseDown(const MouseEvent& e)
 {
+	yMaxOrig = yMaximum;
+		
 	int offset = pixelsToSamples(e.x);
 	
 	if(e.mods.isCommandDown())
@@ -1791,7 +1803,10 @@ void ScopeControlComponent::mouseDrag(const MouseEvent& e)
 		{
 			if(!e.mouseWasClicked())
 			{
-				if(e.getDistanceFromDragStartX() > e.getDistanceFromDragStartY())
+				int dx = e.getDistanceFromDragStartX();
+				int dy = e.getDistanceFromDragStartY();
+				
+				if(abs(dx) > abs(dy))
 				{
 					dragZoomY = false;
 				}
@@ -1806,6 +1821,10 @@ void ScopeControlComponent::mouseDrag(const MouseEvent& e)
 		}
 		else if(dragZoomY)
 		{
+			float diff = e.y - e.getMouseDownY();
+			float factor = powf(2.f, diff/50.f) * yMaxOrig;
+						
+			setYMaximum(jmax(0.00000001f, factor));
 		}
 	}
 	else
