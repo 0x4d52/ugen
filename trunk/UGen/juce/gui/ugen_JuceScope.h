@@ -158,12 +158,17 @@ public:
 	inline bool doesLabelPreferToAttachOnLeft() const { return cueData.labelPrefersToAttachOnLeft; }
 	Label* getLabelComponent() { return label; }
 	
+	const Text& getComment() const;
+	void setComment(Text const& text);
+	
 	void setColours(RGBAColour const& lineColour, RGBAColour const& textColour);
 	const RGBAColour& getLineColour() const { return cueData.lineColour; } 
 	const RGBAColour& getTextColour() const { return cueData.textColour; } 
 	
 	static void swapCuePoints(Component::SafePointer<ScopeCuePointComponent> &cue1, 
 							  Component::SafePointer<ScopeCuePointComponent> &cue2);
+	
+	bool belongsToRegion() const { return region != 0; }
 		
 	virtual String getPropertiesName();
 	void openProperties();
@@ -469,6 +474,7 @@ private:
 	
 	bool dragScroll:1, dragZoomX:1, dragZoomY:1;
 	int lastDragX, lastDragY;
+	float yMaxOrig;
 	
 	ScopedPointer<XmlElement> propertyOpenness;
 };

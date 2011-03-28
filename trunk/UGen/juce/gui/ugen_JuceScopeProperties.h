@@ -827,6 +827,29 @@ private:
 	ScopeCuePointComponent* point;
 };
 
+class ScopeCuePointComponentCommentProperty : public TextPropertyComponent
+{
+public:
+	ScopeCuePointComponentCommentProperty(ScopeCuePointComponent* targetPoint, String const& name)
+	:	TextPropertyComponent(name, 0, true),
+		point(targetPoint) { }
+	
+	void setText (const String& newText)
+	{
+		point->setComment(newText.toCString());
+		refresh();
+	}
+	
+	const String getText() const
+	{
+		return String((const char*)point->getComment());
+	}
+	
+private:
+	ScopeCuePointComponent* point;
+};
+
+
 class ScopeCuePointComponentOffsetProperty : public TextPropertyComponent
 {
 public:
@@ -1008,13 +1031,7 @@ public:
 										 int types = AllTypes)
 	{
 		Array<PropertyComponent*> props;
-		
-		if((types & ColourTypes) != 0)
-		{
-			props.add(new ScopeControlCuePointLineColourProperty(target, name + " Line Colour"));
-			props.add(new ScopeControlCuePointTextColourProperty(target, name + " Text Colour"));
-		}
-		
+				
 		if((types & LabelTypes) != 0)
 		{
 			props.add(new ScopeCuePointComponentLabelProperty(target, name + " Label"));
@@ -1023,6 +1040,20 @@ public:
 		if((types & PositionTypes) != 0)
 		{
 			props.add(new ScopeCuePointComponentOffsetProperty(target, name + " Position"));
+		}
+		
+		if((types & ColourTypes) != 0)
+		{
+			props.add(new ScopeControlCuePointLineColourProperty(target, name + " Line Colour"));
+			props.add(new ScopeControlCuePointTextColourProperty(target, name + " Text Colour"));
+		}
+		
+		if(target->belongsToRegion() == false)
+		{
+			if((types & LabelTypes) != 0)
+			{
+				props.add(new ScopeCuePointComponentCommentProperty(target, name + " Comment"));
+			}
 		}
 		
 		return props;
