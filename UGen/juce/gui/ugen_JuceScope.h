@@ -475,6 +475,9 @@ private:
 	bool dragScroll:1, dragZoomX:1, dragZoomY:1;
 	int lastDragX, lastDragY;
 	float yMaxOrig;
+	int origStart, origEnd;
+	double origMouseDownSamples;
+	double origMouseDownProportion;
 	
 	ScopedPointer<XmlElement> propertyOpenness;
 };

@@ -1051,11 +1051,11 @@ void ScopeRegionComponent::init(CuePoint const& startCue,
 	
 	// set cues to 0 if they are -1?
 	
+	owner->addChildComponent(endPoint = new ScopeCuePointComponent(owner, this, endCue, createdFromMouseClick, false));
+	endPoint->setColours(endColour, textColour);
+	
 	owner->addChildComponent(startPoint = new ScopeCuePointComponent(owner, this, startCue, false, true));
 	startPoint->setColours(startColour, textColour);
-	
-	owner->addChildComponent(endPoint = new ScopeCuePointComponent(owner, this, endCue, createdFromMouseClick, false));
-	endPoint->setColours(endColour, textColour);	
 }
 
 ScopeRegionComponent::~ScopeRegionComponent()
@@ -1184,6 +1184,9 @@ void ScopeRegionComponent::getRegionPosition(int& start, int& end)
 		if(start > end)
 		{
 			ScopeCuePointComponent::swapCuePoints(startPoint, endPoint);
+			
+			endPoint->toBehind(startPoint);
+			
 			start = startPoint->getCuePosition();
 			end = endPoint->getCuePosition();
 		}
@@ -1678,8 +1681,11 @@ void ScopeControlComponent::resized()
 void ScopeControlComponent::mouseDown(const MouseEvent& e)
 {
 	yMaxOrig = yMaximum;
-		
+	getCurrentLimits(origStart, origEnd);
+
 	int offset = pixelsToSamples(e.x);
+	origMouseDownSamples = offset;
+	origMouseDownProportion = (double)e.x / (double)getWidth();
 	
 	if(e.mods.isCommandDown())
 	{		
@@ -1818,6 +1824,22 @@ void ScopeControlComponent::mouseDrag(const MouseEvent& e)
 		}
 		else if(dragZoomX)
 		{
+			double length = origEnd-origStart;			
+			double diff = e.getMouseDownX()-e.x;
+			double newLength = powf(2.f, diff/50.f) * length;
+						
+			int newStart = origMouseDownSamples - newLength * origMouseDownProportion + 0.5;
+			int newEnd = origMouseDownSamples + newLength * (1.0-origMouseDownProportion) + 0.5;
+			
+			if(newStart < newEnd)
+			{
+				zoomToOffsets(newStart, newEnd);
+			}
+			else
+			{
+				zoomToOffsets(origMouseDownSamples-0.5, 
+							  origMouseDownSamples+0.5);
+			}
 		}
 		else if(dragZoomY)
 		{
@@ -2071,7 +2093,7 @@ void ScopeControlComponent::avoidPointLabelCollisions()
 					if(boundsi.getBottom() < maxY)
 					{
 						labeli->setBounds(boundsi);
-						j = 0;
+						j = 0; //?
 					}
 					else
 					{
