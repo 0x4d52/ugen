@@ -12,7 +12,10 @@
 @interface UGenIPhoneDemo : UIViewController
 {	
 	UIView *contentView;
+	UILabel *labelView;
+	NSTimer *timer;
 }
+-(void)updateCpuLabel: (NSTimer*)theTimer;
 @end
 
 // app delegate
@@ -61,6 +64,11 @@
 	contentView = [[UIView alloc] initWithFrame: [[UIScreen mainScreen] applicationFrame]];
 	
 	//... and subviews e.g., sliders etc
+	
+	labelView = [[UILabel alloc] initWithFrame: CGRectMake(10, 10, 150, 20)];
+	labelView.text = @"0.00%";
+	[contentView addSubview: labelView];
+	
 		
 	// Provide support for auto-rotation and resizing
 	contentView.autoresizesSubviews = YES;
@@ -68,7 +76,21 @@
 
 	// Assign the view to the view controller
 	self.view = contentView;
-    [contentView release];	
+//    [contentView release];	
+	
+	timer = [NSTimer scheduledTimerWithTimeInterval:0.1 
+											 target:self 
+										   selector:@selector(updateCpuLabel:) 
+										   userInfo:nil 
+											repeats:YES];
+	
+}
+
+-(void)updateCpuLabel: (NSTimer*)theTimer
+{
+	UGenAppDelegate* app = (UGenAppDelegate*)[[UIApplication sharedApplication] delegate];
+	float cpu = [app.host getCpuUsage] * 100.f;
+	labelView.text = [NSString stringWithFormat: @"%.2f%%", cpu]; 
 }
 
 // Allow the view to respond to iPhone Orientation changes
@@ -81,6 +103,7 @@
 {	
 	// add any further clean-up here
 	[contentView release];
+	[labelView release];
 	[super dealloc];
 }
 

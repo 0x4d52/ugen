@@ -56,8 +56,8 @@ void BinaryAddUGenInternal::processBlock(bool& shouldDelete, const unsigned int 
 static void Workaround_vsub(const float *a, int aStride, const float *b, int bStride, float *c, int cStride, int size )
 {
     const float minusOne = -1.0f;
-    vsmul(a, aStride, &minusOne, c, cStride, size);
-    vadd( c, cStride, b, bStride, c, cStride, size );	
+    vDSP_vsmul(a, aStride, &minusOne, c, cStride, size);
+    vDSP_vadd( c, cStride, b, bStride, c, cStride, size );	
 }
 
 void BinarySubtractUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw() 

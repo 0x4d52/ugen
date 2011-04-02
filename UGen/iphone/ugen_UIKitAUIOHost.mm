@@ -72,11 +72,14 @@ static OSStatus	Render(void							*inRefCon,
 					   UInt32 						inNumberFrames, 
 					   AudioBufferList				*ioData)
 {	
+	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init]; 
 	UIKitAUIOHost *host = (UIKitAUIOHost *)inRefCon;
-	return [host renderCallback:inNumberFrames 
-				withActionFlags:ioActionFlags 
-					atTimeStamp:inTimeStamp
-					withBuffers:ioData];
+	OSStatus result =  [host renderCallback:inNumberFrames 
+							withActionFlags:ioActionFlags 
+								atTimeStamp:inTimeStamp
+								withBuffers:ioData];
+	[pool release]; 
+	return result;
 	
 }
 
@@ -112,7 +115,8 @@ void InterruptionListener(void *inClientData, UInt32 inInterruption)
 		nsLock = [[NSLock alloc] init];
 		fadeInTime = 0.5;
 		preferredBufferSize = 1024;
-		hwSampleRate = 0.0;
+		hwSampleRate = 0.0; // let the hardware choose
+		cpuUsage = 0.0;
 	}
 	return self;
 }
@@ -160,6 +164,8 @@ void InterruptionListener(void *inClientData, UInt32 inInterruption)
 	
 	return 0;	
 }
+
+#pragma mark float<->short conversion routines
 
 #ifdef UGEN_VFP
 static inline void audioFloatToShort(float *src, short* dst, unsigned int length)
@@ -433,6 +439,7 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 }
 #endif
 
+#pragma mark callbacks
 
 - (OSStatus)renderCallback:(UInt32)inNumberFrames 
 		   withActionFlags:(AudioUnitRenderActionFlags*)ioActionFlags
@@ -440,6 +447,8 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 			   withBuffers:(AudioBufferList*)ioData
 {
 	OSStatus err = 0;
+	
+	double renderTime = [[NSDate date] timeIntervalSince1970];
 	
 	if(inNumberFrames > bufferSize)
 	{
@@ -486,6 +495,11 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 	
 	audioFloatToShortChannels(floatBufferData, ioData, inNumberFrames, ioData->mNumberBuffers);
 			
+	renderTime = [[NSDate date] timeIntervalSince1970] - renderTime;
+	
+	const float timeRatio = renderTime * reciprocalBufferDuration;
+	cpuUsage += 0.2f * (timeRatio - cpuUsage); 
+	
 	return err;	
 }	
 
@@ -583,6 +597,8 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 //    }	
 }
 
+#pragma mark other functions
+
 - (id)initAudio
 {	
 	//[self lock];
@@ -613,7 +629,7 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 		AudioSessionGetProperty(kAudioSessionProperty_CurrentHardwareSampleRate, &size, &hwSampleRate);
 //	}
 	
-	Float32 bufferDuration = preferredBufferSize / hwSampleRate;
+	bufferDuration = preferredBufferSize / hwSampleRate;
 	AudioSessionSetProperty(kAudioSessionProperty_PreferredHardwareIOBufferDuration, sizeof(bufferDuration), &bufferDuration);
 	
 	size = sizeof(UInt32);
@@ -645,6 +661,8 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 	
 	size = sizeof(bufferDuration);
 	AudioSessionGetProperty(kAudioSessionProperty_CurrentHardwareIOBufferDuration, &size, &bufferDuration);
+	
+	reciprocalBufferDuration = 1.f / bufferDuration; 
 	
 	bufferSize = (int)(hwSampleRate*bufferDuration+0.5);
 	floatBuffer = new float[bufferSize * NUM_CHANNELS];
@@ -691,6 +709,11 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 	[self lock];
 	others <<= ugen;
 	[self unlock];
+}
+
+- (float)getCpuUsage
+{
+	return cpuUsage;
 }
 
 - (void)lock
