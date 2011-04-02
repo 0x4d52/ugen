@@ -80,6 +80,8 @@ using namespace UGEN_NAMESPACE;
 	UGen						postFadeOutput;
 	UGen						preFadeOutput;
 	int							bufferSize;
+	float						bufferDuration;
+	float						reciprocalBufferDuration;
 	float						*floatBuffer;
 	UInt32						audioInputIsAvailable;
 	UInt32						numInputChannels;
@@ -90,6 +92,7 @@ using namespace UGEN_NAMESPACE;
 	NSLock*						nsLock;
 	NSDeleter*					deleter;
 	int							preferredBufferSize;
+	float						cpuUsage;
 }
 
 /** Initialises the AudioUnit framework and structures.
@@ -120,8 +123,8 @@ using namespace UGEN_NAMESPACE;
  @param input	The input UGen which will contain audio data from the host.
  @return		the UGen graph which will be performed */
 - (UGen)constructGraph:(UGen)input;
-
 - (void)addOther:(UGen)ugen;
+- (float)getCpuUsage;
 
 - (void)lock;
 - (void)unlock;
