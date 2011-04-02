@@ -72,13 +72,13 @@ static OSStatus	Render(void							*inRefCon,
 					   UInt32 						inNumberFrames, 
 					   AudioBufferList				*ioData)
 {	
-	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init]; 
+	//NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init]; 
 	UIKitAUIOHost *host = (UIKitAUIOHost *)inRefCon;
-	OSStatus result =  [host renderCallback:inNumberFrames 
-							withActionFlags:ioActionFlags 
-								atTimeStamp:inTimeStamp
-								withBuffers:ioData];
-	[pool release]; 
+	const OSStatus result =  [host renderCallback:inNumberFrames 
+								  withActionFlags:ioActionFlags 
+									  atTimeStamp:inTimeStamp
+									  withBuffers:ioData];
+	//[pool release]; 
 	return result;
 	
 }
@@ -156,10 +156,7 @@ void InterruptionListener(void *inClientData, UInt32 inInterruption)
 	
 	AudioUnitSetProperty(rioUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Input, 0, &format, sizeof(format));
 	AudioUnitSetProperty(rioUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, 1, &format, sizeof(format));
-	
-//	Float64 sr = 22050.0;
-//	AudioUnitSetProperty(rioUnit, kAudioUnitProperty_SampleRate, kAudioUnitScope_Global, 0, &sr, sizeof(Float64));
-	
+		
 	AudioUnitInitialize(rioUnit);
 	
 	return 0;	
@@ -441,14 +438,23 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 
 #pragma mark callbacks
 
+//static SInt64 getTicks()
+//{
+//	timespec t;
+//    clock_gettime (CLOCK_MONOTONIC, &t);
+//	
+//    return (t.tv_sec * (SInt64) 1000000) + (t.tv_nsec / (SInt64) 1000);
+//}
+
 - (OSStatus)renderCallback:(UInt32)inNumberFrames 
 		   withActionFlags:(AudioUnitRenderActionFlags*)ioActionFlags
 			   atTimeStamp:(const AudioTimeStamp*)inTimeStamp 
 			   withBuffers:(AudioBufferList*)ioData
 {
 	OSStatus err = 0;
-	
-	double renderTime = [[NSDate date] timeIntervalSince1970];
+		
+	//double renderTime = [[NSDate date] timeIntervalSince1970];
+	double renderTime = CFAbsoluteTimeGetCurrent();
 	
 	if(inNumberFrames > bufferSize)
 	{
@@ -495,7 +501,8 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 	
 	audioFloatToShortChannels(floatBufferData, ioData, inNumberFrames, ioData->mNumberBuffers);
 			
-	renderTime = [[NSDate date] timeIntervalSince1970] - renderTime;
+	//renderTime = [[NSDate date] timeIntervalSince1970] - renderTime;
+	renderTime = CFAbsoluteTimeGetCurrent() - renderTime;
 	
 	const float timeRatio = renderTime * reciprocalBufferDuration;
 	cpuUsage += 0.2f * (timeRatio - cpuUsage); 
