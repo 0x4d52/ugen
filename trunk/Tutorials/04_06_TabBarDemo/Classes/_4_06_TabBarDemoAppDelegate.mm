@@ -39,7 +39,10 @@
     // Add the tab bar controller's current view as a subview of the window
     [window addSubview:tabBarController.view];
 	
-	audio = [[[UGenTabBarAudioDemo alloc] init] initAudio];
+	audio = [[UGenTabBarAudioDemo alloc] init];
+	[audio setPreferredBufferSize: 2048];
+	[audio setPreferredSampleRate: 22050];
+	[audio initAudio];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application 

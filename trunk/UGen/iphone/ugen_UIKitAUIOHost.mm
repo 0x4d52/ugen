@@ -112,6 +112,7 @@ void InterruptionListener(void *inClientData, UInt32 inInterruption)
 		nsLock = [[NSLock alloc] init];
 		fadeInTime = 0.5;
 		preferredBufferSize = 1024;
+		hwSampleRate = 0.0;
 	}
 	return self;
 }
@@ -119,6 +120,7 @@ void InterruptionListener(void *inClientData, UInt32 inInterruption)
 - (void)setFormat
 {
 	memset(&format, 0, sizeof(AudioStreamBasicDescription));
+	format.mSampleRate = hwSampleRate;
 	format.mFormatID = kAudioFormatLinearPCM;
 	int sampleSize = sizeof(AudioSampleType);
 	format.mFormatFlags = kAudioFormatFlagsCanonical;
@@ -150,6 +152,9 @@ void InterruptionListener(void *inClientData, UInt32 inInterruption)
 	
 	AudioUnitSetProperty(rioUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Input, 0, &format, sizeof(format));
 	AudioUnitSetProperty(rioUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, 1, &format, sizeof(format));
+	
+//	Float64 sr = 22050.0;
+//	AudioUnitSetProperty(rioUnit, kAudioUnitProperty_SampleRate, kAudioUnitScope_Global, 0, &sr, sizeof(Float64));
 	
 	AudioUnitInitialize(rioUnit);
 	
@@ -586,6 +591,9 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 	inputProc.inputProc = Render;
 	inputProc.inputProcRefCon = self;
 	
+	UInt32 size = sizeof(hwSampleRate);
+//	printf("UIKitAUIOHost: SR=%f\n", hwSampleRate);
+	
 	// session
 	AudioSessionInitialize(NULL, NULL, InterruptionListener, self);
 	AudioSessionSetActive(true);
@@ -596,10 +604,15 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 	
 	[self fixAudioRouteIfSetToReceiver];
 	
-	UInt32 size = sizeof(hwSampleRate);
-	AudioSessionGetProperty(kAudioSessionProperty_CurrentHardwareSampleRate, &size, &hwSampleRate);
+	if(hwSampleRate > 0.0)
+	{
+		AudioSessionSetProperty(kAudioSessionProperty_PreferredHardwareSampleRate, size, &hwSampleRate);
+	}		
+//	else
+//	{
+		AudioSessionGetProperty(kAudioSessionProperty_CurrentHardwareSampleRate, &size, &hwSampleRate);
+//	}
 	
-	//Float32 bufferDuration = DEFAULT_BUFFERSIZE / hwSampleRate;
 	Float32 bufferDuration = preferredBufferSize / hwSampleRate;
 	AudioSessionSetProperty(kAudioSessionProperty_PreferredHardwareIOBufferDuration, sizeof(bufferDuration), &bufferDuration);
 	
@@ -607,7 +620,7 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 	AudioSessionGetProperty(kAudioSessionProperty_CurrentHardwareInputNumberChannels, &size, &numInputChannels);
 	AudioSessionGetProperty(kAudioSessionProperty_CurrentHardwareOutputNumberChannels, &size, &numOutputChannels);
 	AudioSessionGetProperty(kAudioSessionProperty_AudioInputAvailable, &size, &audioInputIsAvailable);
-	
+			
 	UGen::initialise();
 	deleter = new NSDeleter();
 	UGen::setDeleter(deleter);
@@ -616,7 +629,6 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 	Ran088::defaultGenerator().setSeed((int)[[NSDate date] timeIntervalSince1970]);
 #endif
 	
-	//UGen::prepareToPlay(hwSampleRate, DEFAULT_BUFFERSIZE);
 	UGen::prepareToPlay(hwSampleRate, preferredBufferSize);
 	
 	rawInput = Plug::AR(UGen::emptyChannels(NUM_CHANNELS));
@@ -631,7 +643,6 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 	size = sizeof(format);
 	AudioUnitGetProperty(rioUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, 1, &format, &size);
 	
-	//Float32 bufferDuration;
 	size = sizeof(bufferDuration);
 	AudioSessionGetProperty(kAudioSessionProperty_CurrentHardwareIOBufferDuration, &size, &bufferDuration);
 	
@@ -650,6 +661,9 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 #else
 	printf("UIKitAUIOHost: using standard floating point ops (non-vfp) \n");
 #endif
+	
+	printf("UIKitAUIOHost: SR=%f buffer=%fs\n", hwSampleRate, bufferDuration);
+
 	//[self unlock];
 	
 	return self;
@@ -659,6 +673,12 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 {
 	ugen_assert(size > 0);
 	preferredBufferSize = size;
+}
+
+- (void)setPreferredSampleRate:(double)newSampleRate
+{
+	ugen_assert(newSampleRate > 0.0);
+	hwSampleRate = newSampleRate;
 }
 
 - (UGen)constructGraph:(UGen)input

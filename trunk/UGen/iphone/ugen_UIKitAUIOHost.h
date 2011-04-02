@@ -99,6 +99,7 @@ using namespace UGEN_NAMESPACE;
  Allowing it to be called manually gives greater flexibility. */
 - (id)initAudio;
 - (void)setPreferredBufferSize:(int)size;
+- (void)setPreferredSampleRate:(double)newSampleRate;
 - (void)setFormat;
 - (int)setupRemoteIO;
 - (OSStatus)renderCallback:(UInt32)inNumberFrames 
