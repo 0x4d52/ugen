@@ -72,13 +72,11 @@ static OSStatus	Render(void							*inRefCon,
 					   UInt32 						inNumberFrames, 
 					   AudioBufferList				*ioData)
 {	
-	//NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init]; 
 	UIKitAUIOHost *host = (UIKitAUIOHost *)inRefCon;
 	const OSStatus result =  [host renderCallback:inNumberFrames 
 								  withActionFlags:ioActionFlags 
 									  atTimeStamp:inTimeStamp
 									  withBuffers:ioData];
-	//[pool release]; 
 	return result;
 	
 }
@@ -438,14 +436,6 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 
 #pragma mark callbacks
 
-//static SInt64 getTicks()
-//{
-//	timespec t;
-//    clock_gettime (CLOCK_MONOTONIC, &t);
-//	
-//    return (t.tv_sec * (SInt64) 1000000) + (t.tv_nsec / (SInt64) 1000);
-//}
-
 - (OSStatus)renderCallback:(UInt32)inNumberFrames 
 		   withActionFlags:(AudioUnitRenderActionFlags*)ioActionFlags
 			   atTimeStamp:(const AudioTimeStamp*)inTimeStamp 
@@ -453,7 +443,6 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 {
 	OSStatus err = 0;
 		
-	//double renderTime = [[NSDate date] timeIntervalSince1970];
 	double renderTime = CFAbsoluteTimeGetCurrent();
 	
 	if(inNumberFrames > bufferSize)
@@ -501,7 +490,6 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 	
 	audioFloatToShortChannels(floatBufferData, ioData, inNumberFrames, ioData->mNumberBuffers);
 			
-	//renderTime = [[NSDate date] timeIntervalSince1970] - renderTime;
 	renderTime = CFAbsoluteTimeGetCurrent() - renderTime;
 	
 	const float timeRatio = renderTime * reciprocalBufferDuration;
