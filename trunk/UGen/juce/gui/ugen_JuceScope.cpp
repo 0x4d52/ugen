@@ -105,12 +105,24 @@ static int showModalPrefs (const String& dialogTitle,
 						   const bool useBottomRightCornerResizer)
 {
     PrefsDialogWindow dw (dialogTitle, colour, escapeKeyTriggersCloseButton);
+	
+	// JUCE_VERSION >= 79169
+	
+#if JUCE_VERSION >= 79169
+	dw.setContentNonOwned (contentComponent, true);
+#else
     dw.setContentComponent (contentComponent, true, true);
+#endif
+	
     dw.centreAroundComponent (componentToCentreAround, dw.getWidth(), dw.getHeight());
     dw.setResizable (shouldBeResizable, useBottomRightCornerResizer);
     const int result = dw.runModalLoop();
+	
+#if JUCE_VERSION < 79169
     dw.setContentComponent (0, false);
-    return result;
+#endif
+	
+	return result;
 }
 
 ScopeComponentBase::ScopeComponentBase(ScopeGUI::ScopeStyles style)
