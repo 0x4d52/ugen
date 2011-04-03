@@ -606,7 +606,7 @@ public:
 			
 			for(int i = 0; i < items.size(); i++)
 			{
-				labels.add(items[i].trim().toCString());
+				labels.add((const char*)items[i].trim().toUTF8());
 			}
 		}
 		
@@ -814,7 +814,7 @@ public:
 	
 	void setText (const String& newText)
 	{
-		point->setLabel(newText.toCString());
+		point->setLabel((const char*)newText.toUTF8());
 		refresh();
 	}
 	
@@ -836,7 +836,7 @@ public:
 	
 	void setText (const String& newText)
 	{
-		point->setComment(newText.toCString());
+		point->setComment((const char*)newText.toUTF8());
 		refresh();
 	}
 	
