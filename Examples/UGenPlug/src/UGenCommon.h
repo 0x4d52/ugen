@@ -34,9 +34,9 @@
 #define UGenPluginID			PROJECT_NAME
 
 // define the class names for the component and plugin
-//#define UGenPlugin				UGenAppendNames(UGenPlugin, UGenPluginID)
-//#define UGenEditorComponent		UGenAppendNames(UGenEditorComponent, UGenPluginID)
-//#define UGenInterface			UGenAppendNames(UGenInterface, UGenPluginID)
+#define UGenPlugin				UGenAppendNames(UGenPlugin, UGenPluginID)
+#define UGenEditorComponent		UGenAppendNames(UGenEditorComponent, UGenPluginID)
+#define UGenInterface			UGenAppendNames(UGenInterface, UGenPluginID)
 
 #define LINEAR false
 #define EXPONENTIAL true
@@ -63,8 +63,8 @@ namespace UGenInterface
 		};
 		
 		static const UGenRange Ranges[] = {
-			{0, 1, LINEAR, 0},
-			{-1, 1, LINEAR, 0},
+			{0, 1, LINEAR, ""},
+			{-1, 1, LINEAR, ""},
 			{50, 18000, EXPONENTIAL, "Hz"}
 		};
 				

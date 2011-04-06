@@ -56,7 +56,7 @@ Text::Text(const char c) throw()
 
 #if defined(JUCE_VERSION) || defined(DOXYGEN)
 Text::Text(String const& string) throw()
-:	CharArray(string.toUTF8())
+:	CharArray((const char*)string.toUTF8())
 {
 }
 

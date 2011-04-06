@@ -1967,7 +1967,7 @@ void ScopeControlComponent::zoomToOffsets(int start, int end)
 	
 	if((start < originalBufferOffset) && (end > originalBufferEnd))
 	{
-		ScopeComponent::setAudioBuffer(originalBuffer, originalBufferOffset, -1);
+		ScopeComponent::setAudioBuffer(originalBuffer, originalBufferOffset, fftSize);
 		resized();
 	}
 	else
@@ -1991,7 +1991,7 @@ void ScopeControlComponent::zoomToOffsets(int start, int end)
 		Buffer zoomedBuffer = Buffer::withSize(1, originalBuffer.getNumChannels());
 		zoomedBuffer.referTo(originalBuffer, start - originalBufferOffset, newSize);
 		
-		ScopeComponent::setAudioBuffer(zoomedBuffer, start, -1);
+		ScopeComponent::setAudioBuffer(zoomedBuffer, start, fftSize);
 		resized();
 	}
 }
@@ -2026,7 +2026,7 @@ void ScopeControlComponent::zoomAround(const int offset, const float amount)
 
 void ScopeControlComponent::zoomOutFully()
 {
-	ScopeComponent::setAudioBuffer(originalBuffer, originalBufferOffset, -1);
+	ScopeComponent::setAudioBuffer(originalBuffer, originalBufferOffset, fftSize);
 	resized();
 }
 
