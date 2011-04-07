@@ -70,6 +70,7 @@ public:
     void setParameter (int index, float newValue);
 	
 	float getMappedParameter(int index);
+	void setMappedParameter(int index, float newValue);
 	void setMappedParameterNotifyingHost(int index, float newValue);
 	UGen getMappedParameterControl(int index) const;
 
