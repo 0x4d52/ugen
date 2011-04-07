@@ -130,6 +130,26 @@ float UGenPlugin::getMappedParameter(int index)
 	}	
 }
 
+void UGenPlugin::setMappedParameter(int index, float newValue)
+{	
+	float normalisedValue;
+	
+	if(getParameterWarp(index))
+	{
+		normalisedValue = explin(newValue, 
+								 getParameterMin(index), getParameterMax(index),
+								 0.f, 1.f);
+	}
+	else
+	{
+		normalisedValue = linlin(newValue, 
+								 getParameterMin(index), getParameterMax(index),
+								 0.f, 1.f);
+	}	
+	
+	setParameter(index, normalisedValue);
+}
+
 void UGenPlugin::setMappedParameterNotifyingHost(int index, float newValue)
 {
 	float normalisedValue;

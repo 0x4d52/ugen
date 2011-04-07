@@ -32,6 +32,10 @@
 #ifndef __JUCE_PLUGIN_CHARACTERISTICS_H__
 #define __JUCE_PLUGIN_CHARACTERISTICS_H__
 
+#define PluginAppendNamesInternal(a, b) a ## b
+#define PluginAppendNames(a, b) PluginAppendNamesInternal(a, b)
+
+
 
 //==============================================================================
 /*  All of the following settings need to be defined for your plugin.
@@ -258,7 +262,7 @@
  same class name, the obj-C linker will almost certainly connect the wrong modules together
  and cause total meltdown.
  */
-#define JucePlugin_AUCocoaViewClassName     UGenInstrumentV1
+#define JucePlugin_AUCocoaViewClassName     PluginAppendNames(PROJECT_NAME, _Instrument)
 
 //==============================================================================
 /*                                RTAS settings                               */

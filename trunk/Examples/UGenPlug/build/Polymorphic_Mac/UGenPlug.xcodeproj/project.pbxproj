@@ -333,8 +333,8 @@
 		A89337EB11F42E6B009E96FA /* AUSilentTimeout.h in Headers */ = {isa = PBXBuildFile; fileRef = A89337B911F42E6B009E96FA /* AUSilentTimeout.h */; };
 		A89337EC11F42E6B009E96FA /* AUTimestampGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = A89337BA11F42E6B009E96FA /* AUTimestampGenerator.h */; };
 		A8B410800EE1A5010007228B /* UGenCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8B4107F0EE1A5010007228B /* UGenCommon.cpp */; };
+		A8BAE9ED134DD78300DA9810 /* UGenAUPatch.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8BAE9EC134DD78300DA9810 /* UGenAUPatch.mm */; };
 		A8D44E6E0F2F8C3100D746FF /* juce_AU_Resources.r in Rez */ = {isa = PBXBuildFile; fileRef = A8D44E6C0F2F8C3100D746FF /* juce_AU_Resources.r */; };
-		A8D44E6F0F2F8C3100D746FF /* juce_AU_Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8D44E6D0F2F8C3100D746FF /* juce_AU_Wrapper.mm */; };
 		A8D44F890F2FBF5A00D746FF /* juce_VST_Wrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8D44F870F2FBF5A00D746FF /* juce_VST_Wrapper.cpp */; };
 		A8D44F8A0F2FBF5A00D746FF /* juce_VST_Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8D44F880F2FBF5A00D746FF /* juce_VST_Wrapper.mm */; };
 /* End PBXBuildFile section */
@@ -668,6 +668,7 @@
 		A89337B911F42E6B009E96FA /* AUSilentTimeout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AUSilentTimeout.h; path = Extras/CoreAudio/AudioUnits/AUPublic/Utility/AUSilentTimeout.h; sourceTree = SYSTEM_DEVELOPER_DIR; };
 		A89337BA11F42E6B009E96FA /* AUTimestampGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AUTimestampGenerator.h; path = Extras/CoreAudio/AudioUnits/AUPublic/Utility/AUTimestampGenerator.h; sourceTree = SYSTEM_DEVELOPER_DIR; };
 		A8B4107F0EE1A5010007228B /* UGenCommon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UGenCommon.cpp; path = ../../src/UGenCommon.cpp; sourceTree = SOURCE_ROOT; };
+		A8BAE9EC134DD78300DA9810 /* UGenAUPatch.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = UGenAUPatch.mm; path = ../../src/UGenAUPatch.mm; sourceTree = SOURCE_ROOT; };
 		A8D44E6C0F2F8C3100D746FF /* juce_AU_Resources.r */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.rez; name = juce_AU_Resources.r; path = "juce/extras/audio plugins/wrapper/AU/juce_AU_Resources.r"; sourceTree = JUCE_SOURCE; };
 		A8D44E6D0F2F8C3100D746FF /* juce_AU_Wrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = juce_AU_Wrapper.mm; path = "juce/extras/audio plugins/wrapper/AU/juce_AU_Wrapper.mm"; sourceTree = JUCE_SOURCE; };
 		A8D44F870F2FBF5A00D746FF /* juce_VST_Wrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = juce_VST_Wrapper.cpp; path = "juce/extras/audio plugins/wrapper/VST/juce_VST_Wrapper.cpp"; sourceTree = JUCE_SOURCE; };
@@ -736,6 +737,7 @@
 				84C09D290DE2C52600606895 /* includes.h */,
 				A84E04D51067ADAC00A2B756 /* juce_amalgamated.mm */,
 				A8B4107F0EE1A5010007228B /* UGenCommon.cpp */,
+				A8BAE9EC134DD78300DA9810 /* UGenAUPatch.mm */,
 			);
 			name = general;
 			sourceTree = "<group>";
@@ -1619,7 +1621,6 @@
 				84F055010906E9EA00AEC8DB /* UGenEditorComponent.cpp in Sources */,
 				84F055030906E9EA00AEC8DB /* UGenPlugin.cpp in Sources */,
 				A8B410800EE1A5010007228B /* UGenCommon.cpp in Sources */,
-				A8D44E6F0F2F8C3100D746FF /* juce_AU_Wrapper.mm in Sources */,
 				A8D44F890F2FBF5A00D746FF /* juce_VST_Wrapper.cpp in Sources */,
 				A8D44F8A0F2FBF5A00D746FF /* juce_VST_Wrapper.mm in Sources */,
 				A84E04D61067ADAC00A2B756 /* juce_amalgamated.mm in Sources */,
@@ -1760,6 +1761,7 @@
 				A89337E411F42E6B009E96FA /* AUEffectBase.cpp in Sources */,
 				A89337E611F42E6B009E96FA /* AUBuffer.cpp in Sources */,
 				A89337E811F42E6B009E96FA /* AUDebugDispatcher.cpp in Sources */,
+				A8BAE9ED134DD78300DA9810 /* UGenAUPatch.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1781,6 +1783,7 @@
 					"DEBUG=1",
 					"_DEBUG=1",
 					"UGEN_JUCE=1",
+					"PROJECT_NAME=$(PROJECT_NAME)",
 					"$(GCC_PREPROCESSOR_DEFINITIONS_QUOTED_FOR_TARGET_1)",
 					"$(GCC_PREPROCESSOR_DEFINITIONS_QUOTED_FOR_TARGET_2)",
 					"JUCE_ObjCExtraSuffix=$(PROJECT_NAME)",
@@ -1829,6 +1832,7 @@
 					"NDEBUG=1",
 					"_NDEBUG=1",
 					"UGEN_JUCE=1",
+					"PROJECT_NAME=$(PROJECT_NAME)",
 					"$(GCC_PREPROCESSOR_DEFINITIONS_QUOTED_FOR_TARGET_1)",
 					"$(GCC_PREPROCESSOR_DEFINITIONS_QUOTED_FOR_TARGET_2)",
 					"JUCE_ObjCExtraSuffix=$(PROJECT_NAME)",
