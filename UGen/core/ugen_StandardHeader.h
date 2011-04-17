@@ -134,13 +134,18 @@ END_UGEN_NAMESPACE
 	#if !defined(_NDEBUG) && !defined(NDEBUG) && !defined(_DEBUG) && !defined(DEBUG)
 		#warning You should define appropriate preprocessor macros in Debug (_DEBUG=1 DEBUG=1) and Release (_NDEBUG=1 NDEBUG=1)
 	#endif
-	/* 
-	 If you get an error here make sure the directory which contains 'juce' is
-	 in the search path. In the Mac project this directory should be assigned
-	 to JUCE_SOURCE in the Xcode -> Preferences.. -> Source Trees (just make
-	 "JUCE_SOURCE" the setting name and display name).
-	 */
-	#include <juce/juce.h>
+
+	#ifdef UGEN_INTROJUCER
+		#include "JuceHeader.h"
+	#else
+		/* 
+		 If you get an error here make sure the directory which contains 'juce' is
+		 in the search path. In the Mac project this directory should be assigned
+		 to JUCE_SOURCE in the Xcode -> Preferences.. -> Source Trees (just make
+		 "JUCE_SOURCE" the setting name and display name).
+		 */
+		#include <juce/juce.h>
+	#endif
 #else
 
 	#ifdef UGEN_ANDROID

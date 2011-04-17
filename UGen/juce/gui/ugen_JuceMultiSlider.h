@@ -46,7 +46,7 @@ class MultiSliderBase;
 class MultiSliderBaseListener
 {
 public:
-	~MultiSliderBaseListener() {}
+	virtual ~MultiSliderBaseListener() {}
 	virtual void sliderValueChanged(MultiSliderBase* sliders, const int index) = 0;
 };
 
