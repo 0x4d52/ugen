@@ -126,8 +126,8 @@
 		
 	// initialise the audio host class and the audio (audio could be initialised later if required)
 	host = [[UGenIPhoneDemoHost alloc] init];
-	[host setPreferredBufferSize: 2048];
-	[host setPreferredSampleRate: 44100];
+//	[host setPreferredBufferSize: 2048];
+//	[host setPreferredSampleRate: 44100];
 	[host initAudio];
 } 
 
