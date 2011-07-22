@@ -1,11 +1,12 @@
-// $Id:$
-// $HeadURL:$
+// $Id$
+// $HeadURL$
 
 /*
  ==============================================================================
  
  This file is part of the UGEN++ library
- Copyright 2008-10 by Martin Robinson www.miajo.co.uk
+ Copyright 2008-11 The University of the West of England.
+ by Martin Robinson
  
  ------------------------------------------------------------------------------
  

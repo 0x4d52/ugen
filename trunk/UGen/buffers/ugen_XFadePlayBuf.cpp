@@ -2,7 +2,8 @@
  ==============================================================================
  
  This file is part of the UGEN++ library
- Copyright 2008-9 by Martin Robinson www.miajo.co.uk
+ Copyright 2008-11 The University of the West of England.
+ by Martin Robinson
  
  ------------------------------------------------------------------------------
  
@@ -30,6 +31,7 @@
  
  ==============================================================================
  */
+
 
 #ifndef UGEN_NOEXTGPL
 

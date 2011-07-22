@@ -5,7 +5,8 @@
  ==============================================================================
  
  This file is part of the UGEN++ library
- Copyright 2008-10 by Martin Robinson www.miajo.co.uk
+ Copyright 2008-11 The University of the West of England.
+ by Martin Robinson
  
  ------------------------------------------------------------------------------
  
@@ -52,16 +53,6 @@ PhasorUGenInternal::PhasorUGenInternal(Phasor_InputsWithTypesOnly, const float i
 	}
 }
 
-//UGenInternal* PhasorUGenInternal::getChannel(const int channel) throw()
-//{	
-//	UGenInternal* internals[NumInputs];
-//	getInternalChannels(channel, internals);
-//	
-//	return new PhasorUGenInternal(UGen(internals[Freq], channel),
-//								  UGen(internals[Phase], channel),
-//								  currentPhase);
-//}	
-
 UGenInternal* PhasorUGenInternal::getChannel(const int channel) throw()
 {		
 	return new PhasorUGenInternal(inputs[Freq].getChannel(channel),
@@ -100,48 +91,6 @@ void PhasorUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 	}
 }
 
-//void PhasorUGenInternalK::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
-//{
-//	const int krBlockSize = UGen::getControlRateBlockSize();
-//	unsigned int blockPosition = blockID % krBlockSize;
-//	double krBlockSizeOverSampleRate = UGen::getReciprocalSampleRate() * krBlockSize;
-//	int numSamplesToProcess = uGenOutput.getBlockSize();
-//	float* outputSamples = uGenOutput.getSampleData();
-//	float* freqSamples = inputs[Freq].processBlock(shouldDelete, blockID, channel);
-//	float* phaseSamples = inputs[Phase].processBlock(shouldDelete, blockID, channel);
-//	
-//	int numKrSamples = blockPosition % krBlockSize;
-//	
-//	while(numSamplesToProcess > 0)
-//	{
-//		if(numKrSamples == 0)
-//		{
-//			if(currentPhase >= 1.0)			currentPhase -= 1.0;
-//			else if(currentPhase < 0.0)		currentPhase += 1.0;
-//			
-//			double outputPhase = currentPhase + *phaseSamples;
-//			currentPhase += *freqSamples * krBlockSizeOverSampleRate;
-//			
-//			if(outputPhase > 1.0)			outputPhase -= 1.0;
-//			else if(outputPhase < 0.0)		outputPhase += 1.0;
-//			
-//			value = outputPhase;
-//		}
-//		
-//		numKrSamples = krBlockSize - numKrSamples;
-//		
-//		blockPosition		+= numKrSamples;
-//		freqSamples			+= numKrSamples;
-//		phaseSamples		+= numKrSamples;
-//		
-//		while(numSamplesToProcess && numKrSamples)
-//		{
-//			*outputSamples++ = value;
-//			--numSamplesToProcess;
-//			--numKrSamples;
-//		}
-//	}
-//}
 
 void PhasorUGenInternalK::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {

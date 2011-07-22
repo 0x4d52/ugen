@@ -5,7 +5,8 @@
  ==============================================================================
  
  This file is part of the UGEN++ library
- Copyright 2008-10 by Martin Robinson www.miajo.co.uk
+ Copyright 2008-11 The University of the West of England.
+ by Martin Robinson
  
  ------------------------------------------------------------------------------
  
@@ -24,7 +25,7 @@
  Boston, MA 02111-1307 USA
  
  The idea for this project and code in the UGen implementations is
- devived from SuperCollider which is also released under the 
+ derived from SuperCollider which is also released under the 
  GNU General Public License:
  
  SuperCollider real time audio synthesis system

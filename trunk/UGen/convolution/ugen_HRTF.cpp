@@ -5,7 +5,8 @@
  ==============================================================================
  
  This file is part of the UGEN++ library
- Copyright 2008-10 by Martin Robinson www.miajo.co.uk
+ Copyright 2008-11 The University of the West of England.
+ by Martin Robinson
  
  ------------------------------------------------------------------------------
  
@@ -30,6 +31,7 @@
  SuperCollider real time audio synthesis system
  Copyright (c) 2002 James McCartney. All rights reserved.
  http://www.audiosynth.com
+ 
   
  HRTF data from the work at MIT by Bill Gardner and Keith Martin
  http://sound.media.mit.edu/resources/KEMAR.html

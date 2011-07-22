@@ -5,7 +5,8 @@
  ==============================================================================
  
  This file is part of the UGEN++ library
- Copyright 2008-10 by Martin Robinson www.miajo.co.uk
+ Copyright 2008-11 The University of the West of England.
+ by Martin Robinson
  
  ------------------------------------------------------------------------------
  
@@ -532,8 +533,12 @@ ScopeCuePointLabel::ScopeCuePointLabel(ScopeCuePointComponent *o)
 	owner(o)
 {
 	setMouseCursor(MouseCursor::PointingHandCursor);
+#if JUCE_IOS
+	setFont(18);
+#else
 	setFont(11);
-	setEditable(false, true, true);
+#endif
+	
 	setBorderSize(2, 2);	
 }
 
@@ -553,6 +558,8 @@ TextEditor* ScopeCuePointLabel::createEditorComponent()
 
 void ScopeCuePointLabel::mouseDown(const MouseEvent& e)
 {
+	//if(e.source.getIndex() > 0) return;
+		
 	if(owner != 0)
 	{
 		owner->mouseEnter(e.getEventRelativeTo(owner));
@@ -562,6 +569,8 @@ void ScopeCuePointLabel::mouseDown(const MouseEvent& e)
 
 void ScopeCuePointLabel::mouseDrag(const MouseEvent& e)
 {
+	//if(e.source.getIndex() > 0) return;
+	
 	if(owner != 0)
 	{
 		owner->mouseDrag(e.getEventRelativeTo(owner));
@@ -570,6 +579,8 @@ void ScopeCuePointLabel::mouseDrag(const MouseEvent& e)
 
 void ScopeCuePointLabel::mouseUp(const MouseEvent& e)
 {
+	//if(e.source.getIndex() > 0) return;
+	
 	if(owner != 0)
 	{
 		owner->mouseUp(e.getEventRelativeTo(owner));
@@ -605,6 +616,8 @@ int ScopeCuePointLabel::getCuePosition()
 void ScopeCuePointLabel::checkPosition()
 {
 	const int moveCloser = 0;
+	const int offset = 0;//owner->getClickMargin() - 1;
+
 	int labelWidth = getWidth();
 	int position = getCuePosition();		
 	int width = getParentWidth();
@@ -613,22 +626,22 @@ void ScopeCuePointLabel::checkPosition()
 	{
 		if((position + labelWidth - 2) > width)
 		{
-			setTopRightPosition(position+moveCloser, 0);
+			setTopRightPosition(position+moveCloser+offset, 0);
 		}
 		else
 		{
-			setTopLeftPosition(position-moveCloser, 0);
+			setTopLeftPosition(position-moveCloser+offset, 0);
 		}
 	}
 	else
 	{
 		if((position - labelWidth + 2) >= 0)
 		{
-			setTopRightPosition(position+moveCloser, 0);
+			setTopRightPosition(position+moveCloser+offset, 0);
 		}
 		else
 		{
-			setTopLeftPosition(position-moveCloser, 0);
+			setTopLeftPosition(position-moveCloser+offset, 0);
 		}			
 	}	
 }
@@ -648,7 +661,15 @@ ScopeCuePointComponent::ScopeCuePointComponent(ScopeControlComponent* o,
 											   CuePoint const& cuePointToUse,
 											   const bool createdFromMouseClick,
 											   const bool labelPrefersToAttachOnLeft)
-:	owner(o),
+:	
+#if JUCE_IOS
+	clickMargin(7),
+	displayClickMargin(true),
+#else
+	clickMargin(1),
+	displayClickMargin(false),
+#endif
+	owner(o),
 	region(r),
 	beingDragged(createdFromMouseClick)
 {
@@ -734,7 +755,7 @@ void ScopeCuePointComponent::doCommand(const int commandID)
 
 void ScopeCuePointComponent::setHeight(const int height)
 {
-	setSize(3, height);
+	setSize(clickMargin + clickMargin + 1, height);
 	checkPosition();
 	setLabelPosition();
 }
@@ -742,13 +763,20 @@ void ScopeCuePointComponent::setHeight(const int height)
 void ScopeCuePointComponent::checkPosition()
 {	
 	int x = owner->samplesToPixels(cueData.cuePoint.getSampleOffset());
-	setTopLeftPosition(x-1, 0);
+	setTopLeftPosition(x - clickMargin, 0);
 }
 
 void ScopeCuePointComponent::paint(Graphics& g)
 {	
+	if(displayClickMargin)
+	{
+		g.fillAll(Colour(cueData.lineColour.get32bitColour()).withAlpha(0.15f));
+		g.setColour(Colour(cueData.lineColour.get32bitColour()).withAlpha(0.3f)); 
+		g.drawRect(0, 0, getWidth(), getHeight(), 1);
+	}
+	
 	g.setColour(Colour(cueData.lineColour.get32bitColour())); 
-	g.drawVerticalLine(1, 0, getHeight());
+	g.drawVerticalLine(clickMargin, 0, getHeight());
 }
 
 void ScopeCuePointComponent::setSampleOffset(const int newOffsetSamples)
@@ -764,7 +792,7 @@ const int& ScopeCuePointComponent::getSampleOffset()
 
 void ScopeCuePointComponent::mouseDown (const MouseEvent& e)
 {
-	// temp - need to do this manually probably
+	//if(e.source.getIndex() > 0) return;
 	
 	int offset = owner ? owner->pixelsToSamples(e.getEventRelativeTo(owner).x) : -1;
 	
@@ -804,7 +832,7 @@ void ScopeCuePointComponent::mouseDown (const MouseEvent& e)
 
 void ScopeCuePointComponent::mouseDrag (const MouseEvent& e)
 {
-	// temp - need to do this manually probably
+	//if(e.source.getIndex() > 0) return;
 	
 	if(beingDragged)
 	{
@@ -842,15 +870,25 @@ void ScopeCuePointComponent::mouseDrag (const MouseEvent& e)
 
 void ScopeCuePointComponent::mouseUp (const MouseEvent& e)
 {
+	//if(e.source.getIndex() > 0) return;
+	
 	beingDragged = false;
+	
+	if(e.source.isTouch())
+	{
+		if(e.getLengthOfMousePress() < 250)
+		{
+			int offset = owner ? owner->pixelsToSamples(e.getEventRelativeTo(owner).x) : -1;
+			choosePopupMenu(offset);
+		}
+	}
 }
 
 void ScopeCuePointComponent::moved()
 {
 	if(beingDragged)
 	{
-		int x = getX()+1;		
-		
+		int x = getX() + clickMargin;
 		int maxSize = owner->getMaxSize() - 1;
 		if(maxSize <= 0) maxSize = 0x7fffffff;
 		
@@ -1096,6 +1134,8 @@ bool ScopeRegionComponent::hitTest (int x, int y)
 
 void ScopeRegionComponent::mouseDown (const MouseEvent& e)
 {
+	//if(e.source.getIndex() > 0) return;
+	
 	int offset = owner ? owner->pixelsToSamples(e.getEventRelativeTo(owner).x) : -1;
 	
 	if(e.mods.isPopupMenu())
@@ -1229,7 +1269,7 @@ void ScopeRegionComponent::checkPosition()
 	{
 		int start, end;
 		getRegionPosition(start, end);
-		setBounds(start, 0, end-start+1, owner->getHeight());
+		setBounds(start, 0, end - start, owner->getHeight());
 	}
 }
 
@@ -1245,7 +1285,7 @@ void ScopeRegionComponent::setHeight(const int height)
 void ScopeRegionComponent::paint(Graphics& g)
 {		
 	g.setColour(Colour(fillColour.get32bitColour()));
-	g.fillRect(1, 0, getWidth()-2, getHeight());
+	g.fillRect(1, 0, getWidth()-1, getHeight());
 }
 
 void ScopeRegionComponent::setColours(RGBAColour const& startColour, 
@@ -1378,6 +1418,8 @@ void ScopeSelectionComponent::doCommand(const int commandID, const int offset)
 
 void ScopeSelectionComponent::mouseDown (const MouseEvent& e)
 {
+	//if(e.source.getIndex() > 0) return;
+	
 	if(e.mods.isPopupMenu())
 	{
 		ScopeRegionComponent::mouseDown(e);
@@ -1391,6 +1433,8 @@ void ScopeSelectionComponent::mouseDown (const MouseEvent& e)
 
 void ScopeSelectionComponent::mouseDrag (const MouseEvent& e)
 {
+	//if(e.source.getIndex() > 0) return;
+	
 	if(owner != 0)
 	{
 		owner->mouseDrag(e.getEventRelativeTo(owner));
@@ -1399,6 +1443,8 @@ void ScopeSelectionComponent::mouseDrag (const MouseEvent& e)
 
 void ScopeSelectionComponent::mouseUp (const MouseEvent& e)
 {
+	//if(e.source.getIndex() > 0) return;
+	
 	if(owner != 0)
 	{
 		owner->mouseUp(e.getEventRelativeTo(owner));
@@ -1692,6 +1738,8 @@ void ScopeControlComponent::resized()
 
 void ScopeControlComponent::mouseDown(const MouseEvent& e)
 {
+	//if(e.source.getIndex() > 0) return;
+	
 	yMaxOrig = yMaximum;
 	getCurrentLimits(origStart, origEnd);
 
@@ -1786,6 +1834,8 @@ void ScopeControlComponent::mouseDown(const MouseEvent& e)
 
 void ScopeControlComponent::mouseDrag(const MouseEvent& e)
 {
+	//if(e.source.getIndex() > 0) return;
+	
 	if(e.mods.isCommandDown())
 	{		
 		if(dragScroll)
@@ -1875,6 +1925,8 @@ void ScopeControlComponent::mouseDrag(const MouseEvent& e)
 
 void ScopeControlComponent::mouseUp(const MouseEvent& e)
 {
+	//if(e.source.getIndex() > 0) return;
+	
 	if(e.mods.isCommandDown())
 	{
 		//..
