@@ -4,7 +4,6 @@ VFP math library for the iPhone / iPod touch
 Copyright (c) 2007-2008 Wolfgang Engel and Matthias Grundmann
 http://code.google.com/p/vfpmathlibrary/
 
- MODIFIED / CORRECT by Martin Robinson
  
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising

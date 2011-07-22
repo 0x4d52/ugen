@@ -15,7 +15,8 @@
                documentExtensions="" extraDefs="UGEN_VDSP=1" extraLinkerFlags="-framework Accelerate"/>
     <XCODE_IPHONE targetFolder="Builds/iOS" vstFolder="~/SDKs/vstsdk2.4" rtasFolder="~/SDKs/PT_80_SDK"
                   objCExtraSuffix="kODOBk" juceFolder="../../../../juce_code/juce"
-                  extraDefs="UGEN_IPHONE=1 UGEN_VDSP=1" extraLinkerFlags="-framework Accelerate"/>
+                  extraDefs="UGEN_IPHONE=1 UGEN_VDSP=1" extraLinkerFlags="-framework Accelerate -framework CoreText"
+                  UIFileSharingEnabled="1"/>
     <MSVC6 targetFolder="Builds/MSVC6" vstFolder="c:\SDKs\vstsdk2.4" rtasFolder="c:\SDKs\PT_80_SDK"
            libraryType="1" juceFolder="../../../../juce_code/juce"/>
     <VS2005 targetFolder="Builds/VisualStudio2005" vstFolder="c:\SDKs\vstsdk2.4"
@@ -29,7 +30,7 @@
     <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="IntrojucerUGen"
                    osxSDK="default" osxCompatibility="default" osxArchitecture="default"/>
     <CONFIGURATION name="Release" isDebug="0" optimisation="2" targetName="IntrojucerUGen"
-                   osxSDK="default" osxCompatibility="default" osxArchitecture="32BitUniversal"/>
+                   osxSDK="default" osxCompatibility="default" osxArchitecture="default"/>
   </CONFIGURATIONS>
   <MAINGROUP id="Qv5QHj" name="IntrojucerUGen">
     <GROUP id="lKwhF" name="Source">

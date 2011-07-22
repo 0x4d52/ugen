@@ -5,7 +5,8 @@
  ==============================================================================
  
  This file is part of the UGEN++ library
- Copyright 2008-10 by Martin Robinson www.miajo.co.uk
+ Copyright 2008-11 The University of the West of England.
+ by Martin Robinson
  
  ------------------------------------------------------------------------------
  
@@ -24,7 +25,7 @@
  Boston, MA 02111-1307 USA
  
  The idea for this project and code in the UGen implementations is
- devived from SuperCollider which is also released under the 
+ derived from SuperCollider which is also released under the 
  GNU General Public License:
  
  SuperCollider real time audio synthesis system
@@ -39,12 +40,10 @@
 
 #include "ugen_Arrays.h"
 
-//typedef CharArray Text;
-
 /** A class for storing and manipulating text strings.
  Similar to std:string and juce::String this is UGen++'s default text format. 
  Internally Text is just a null terminated C string (array of chars) and is just
- a specialised versio of CharArray or NumericalArra<char>. */
+ a specialised versio of CharArray or NumericalArray<char>. */
 class Text : public CharArray
 {
 public:

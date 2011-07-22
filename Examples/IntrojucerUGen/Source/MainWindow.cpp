@@ -19,7 +19,7 @@ MainAppWindow::MainAppWindow()
 {
     setContentOwned(new MainComponent(), false);
 
-	centreWithSize (500, 400);
+	centreWithSize (200, 200);
     setVisible (true);	
 }
 

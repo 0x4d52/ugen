@@ -5,7 +5,8 @@
  ==============================================================================
  
  This file is part of the UGEN++ library
- Copyright 2008-10 by Martin Robinson www.miajo.co.uk
+ Copyright 2008-11 The University of the West of England.
+ by Martin Robinson
  
  ------------------------------------------------------------------------------
  
@@ -31,10 +32,9 @@
  Copyright (c) 2002 James McCartney. All rights reserved.
  http://www.audiosynth.com
  
- This Convolution code is thanks to Alex Harker.
- 
  ==============================================================================
  */
+
 
 #if defined(UGEN_CONVOLUTION) && UGEN_CONVOLUTION
 

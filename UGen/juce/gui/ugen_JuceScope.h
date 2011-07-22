@@ -5,7 +5,8 @@
  ==============================================================================
  
  This file is part of the UGEN++ library
- Copyright 2008-10 by Martin Robinson www.miajo.co.uk
+ Copyright 2008-11 The University of the West of England.
+ by Martin Robinson
  
  ------------------------------------------------------------------------------
  
@@ -134,7 +135,7 @@ public:
 	virtual void showPopupMenu(const int offset);
 	void doCommand(const int commandID);
 
-	inline int getCuePosition() { return getX()+1; }
+	inline int getCuePosition() const { return getX() + clickMargin; }
 	void setHeight(const int height);
 	void checkPosition();
 	void paint(Graphics& g);
@@ -172,6 +173,12 @@ public:
 		
 	virtual String getPropertiesName();
 	void openProperties();
+	
+	int getClickMargin() const { return clickMargin; }
+	
+private:
+	const int clickMargin;
+	const bool displayClickMargin;
 	
 protected:
 	Component::SafePointer<ScopeControlComponent> owner;
