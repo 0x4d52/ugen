@@ -15,6 +15,7 @@
 		8D0C4E920486CD37000505A6 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20286C33FDCF999611CA2CEA /* Carbon.framework */; };
 		A80AFA110E8E157B006B49BD /* libjuce.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A80AFA100E8E14EF006B49BD /* libjuce.a */; };
 		A81994480FC457AE008F1D98 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A81994470FC457AE008F1D98 /* Accelerate.framework */; };
+		A8426B69143DF6F90051B8C1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8426B68143DF6F90051B8C1 /* AudioToolbox.framework */; };
 		A85724E40EC3115E007D5B17 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9504C8FFE6A3BC11CA0CBA /* ApplicationServices.framework */; };
 		A85724E50EC3115F007D5B17 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9504CAFFE6A41611CA0CBA /* CoreServices.framework */; };
 		A85DB1C70DCB0D99005D552A /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A85DB1C60DCB0D99005D552A /* CoreMIDI.framework */; };
@@ -164,9 +165,10 @@
 		84F30CEC08FEAD7A0087E26C /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		84FAD6190C7C3CCB00AF3028 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		8D0C4E960486CD37000505A6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8D0C4E970486CD37000505A6 /* 01_04_MoreExamples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 01_04_MoreExamples.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D0C4E970486CD37000505A6 /* 01_02_UsingJuceIOHost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 01_02_UsingJuceIOHost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A80AFA080E8E14EF006B49BD /* Juce.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Juce.xcodeproj; path = juce/builds/macosx/Juce.xcodeproj; sourceTree = JUCE_SOURCE; };
-		A81994470FC457AE008F1D98 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = /System/Library/Frameworks/Accelerate.framework; sourceTree = "<absolute>"; };
+		A81994470FC457AE008F1D98 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		A8426B68143DF6F90051B8C1 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A85DB1C60DCB0D99005D552A /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 		A86E06B90EC39D140013D893 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		A88A90140DF46B4700DF4080 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
@@ -457,6 +459,7 @@
 				A86E06BA0EC39D140013D893 /* QTKit.framework in Frameworks */,
 				A81994480FC457AE008F1D98 /* Accelerate.framework in Frameworks */,
 				A8A2623C10036EFC00E93330 /* QuartzCore.framework in Frameworks */,
+				A8426B69143DF6F90051B8C1 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,7 +469,7 @@
 		195DF8CFFE9D517E11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D0C4E970486CD37000505A6 /* 01_04_MoreExamples.app */,
+				8D0C4E970486CD37000505A6 /* 01_02_UsingJuceIOHost.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -525,6 +528,7 @@
 				84FAD6190C7C3CCB00AF3028 /* IOKit.framework */,
 				8411369F0D0480DE0054B790 /* OpenGL.framework */,
 				A88A901C0DF46B8A00DF4080 /* WebKit.framework */,
+				A8426B68143DF6F90051B8C1 /* AudioToolbox.framework */,
 			);
 			name = "External Frameworks and Libraries";
 			sourceTree = "<group>";
@@ -1039,7 +1043,7 @@
 			name = "Target App";
 			productInstallPath = "$(HOME)/Applications";
 			productName = juce_application;
-			productReference = 8D0C4E970486CD37000505A6 /* 01_04_MoreExamples.app */;
+			productReference = 8D0C4E970486CD37000505A6 /* 01_02_UsingJuceIOHost.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1047,7 +1051,7 @@
 /* Begin PBXProject section */
 		20286C28FDCF999611CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 84F30CC308FEAA620087E26C /* Build configuration list for PBXProject "01_04_MoreExamples" */;
+			buildConfigurationList = 84F30CC308FEAA620087E26C /* Build configuration list for PBXProject "01_02_UsingJuceIOHost" */;
 			compatibilityVersion = "Xcode 2.4";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -1311,7 +1315,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		84F30CC308FEAA620087E26C /* Build configuration list for PBXProject "01_04_MoreExamples" */ = {
+		84F30CC308FEAA620087E26C /* Build configuration list for PBXProject "01_02_UsingJuceIOHost" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84F30CC408FEAA620087E26C /* Debug */,
