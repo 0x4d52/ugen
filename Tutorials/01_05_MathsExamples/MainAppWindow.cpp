@@ -16,7 +16,7 @@ DocumentWindow (
 	
     MainComponent* contentComponent = new MainComponent ();
 	
-    setContentComponent (contentComponent);
+    setContentOwned (contentComponent, false);
 }
 
 MainAppWindow::~MainAppWindow()

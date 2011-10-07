@@ -17,6 +17,7 @@
 		A80AFA110E8E157B006B49BD /* libjuce.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A80AFA100E8E14EF006B49BD /* libjuce.a */; };
 		A835C0710F8417DC001E376A /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A835C0700F8417DC001E376A /* Accelerate.framework */; };
 		A8416F70102870D5000DBD5F /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = A8416F6F102870D5000DBD5F /* Icon.icns */; };
+		A8426C81143DFAB10051B8C1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8426C80143DFAB10051B8C1 /* AudioToolbox.framework */; };
 		A85DB1C70DCB0D99005D552A /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A85DB1C60DCB0D99005D552A /* CoreMIDI.framework */; };
 		A87ED55E0E8FD6CD00083532 /* ApplicationStartup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87ED55D0E8FD6CD00083532 /* ApplicationStartup.cpp */; };
 		A87ED5610E8FD6F300083532 /* MainAppWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87ED5600E8FD6F300083532 /* MainAppWindow.cpp */; };
@@ -165,8 +166,9 @@
 		8D0C4E970486CD37000505A6 /* UGen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UGen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A803BBBA0FF3A90500006D2A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A80AFA080E8E14EF006B49BD /* Juce.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Juce.xcodeproj; path = juce/builds/macosx/Juce.xcodeproj; sourceTree = JUCE_SOURCE; };
-		A835C0700F8417DC001E376A /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = /System/Library/Frameworks/Accelerate.framework; sourceTree = "<absolute>"; };
+		A835C0700F8417DC001E376A /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		A8416F6F102870D5000DBD5F /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
+		A8426C80143DFAB10051B8C1 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A85DB1C60DCB0D99005D552A /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 		A87ED55D0E8FD6CD00083532 /* ApplicationStartup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApplicationStartup.cpp; sourceTree = "<group>"; };
 		A87ED55F0E8FD6F300083532 /* MainAppWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainAppWindow.h; sourceTree = "<group>"; };
@@ -452,6 +454,7 @@
 				A8BACD4B0EDB63D100576E68 /* QTKit.framework in Frameworks */,
 				A835C0710F8417DC001E376A /* Accelerate.framework in Frameworks */,
 				A803BBBB0FF3A90500006D2A /* QuartzCore.framework in Frameworks */,
+				A8426C81143DFAB10051B8C1 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,6 +524,7 @@
 				84FAD6190C7C3CCB00AF3028 /* IOKit.framework */,
 				8411369F0D0480DE0054B790 /* OpenGL.framework */,
 				A88A901C0DF46B8A00DF4080 /* WebKit.framework */,
+				A8426C80143DFAB10051B8C1 /* AudioToolbox.framework */,
 			);
 			name = "External Frameworks and Libraries";
 			sourceTree = "<group>";
