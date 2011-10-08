@@ -463,7 +463,12 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 	if(audioInputIsAvailable)
 	{
 		err = AudioUnitRender(rioUnit, ioActionFlags, inTimeStamp, 1, inNumberFrames, ioData);
-		if (err) { printf("renderCallback: error %d\n", (int)err); return err; }
+		
+        if (err) 
+        { 
+            printf("renderCallback: error %d %s\n", (int)err, (err == -10863) ? "(harmless)" : ""); 
+            return err; 
+        }
 		
 		audioShortToFloatChannels(ioData, floatBufferData, inNumberFrames, numInputChannels);
 				

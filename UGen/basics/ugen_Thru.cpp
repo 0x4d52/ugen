@@ -59,7 +59,7 @@ void ThruUGenInternal::processBlock(bool& shouldDelete, const unsigned int block
 Thru::Thru(Thru_InputsWithTypesOnly) throw()
 {
 	initInternal(input.getNumChannels());
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new ThruUGenInternal(Thru_InputsNoTypes);
 		internalUGens[i]->initValue(input.getValue(i));
