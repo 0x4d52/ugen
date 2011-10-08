@@ -34,7 +34,7 @@
 {
 	if (self = [super init])
 	{
-		
+		// other initialisation... none needed here
 	}
 	return self;
 }
