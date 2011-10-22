@@ -2485,7 +2485,7 @@ Buffer Buffer::rand(const int size, const double lower, const double upper, cons
 #else
 Buffer Buffer::rand(const int size, const double lower, const double upper, const int numChannels) throw()
 {
-	Buffer newBuffer = Buffer::withSize(size, numChannels, false));
+	Buffer newBuffer = Buffer::withSize(size, numChannels, false);
 	
 	double range = upper-lower;
 	

@@ -180,7 +180,7 @@ BEGIN_UGEN_NAMESPACE
 	#include "juce/io/ugen_JuceMIDIInputBroadcaster.h"
 	#include "juce/io/ugen_JuceIOHost.h"
 	#ifdef UGEN_CONVOLUTION
-		#ifndef WIN32
+		#if !defined(WIN32) && !defined(UGEN_ANDROID)
 		END_UGEN_NAMESPACE
 			#include <Accelerate/Accelerate.h>
 		BEGIN_UGEN_NAMESPACE

@@ -324,7 +324,7 @@ Value operator / (const double leftOperand, Value const& rightOperand) throw()
 	return Value(leftOperand) / rightOperand;
 }
 
-#ifdef UGEN_ANDROID // no RTTI
+#if defined(UGEN_ANDROID) && !defined(UGEN_JUCE)// no RTTI
 Value Value::operator / (Value const& rightOperand) const throw()
 {
 	return BinaryDivideValue(*this, rightOperand);

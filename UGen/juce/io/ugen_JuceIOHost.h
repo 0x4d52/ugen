@@ -289,10 +289,11 @@ inline void JuceIOHostInternal::timerCallback()
 	
 	if (error.isNotEmpty())
 	{
+#ifndef UGEN_ANDROID // no modal
 		AlertWindow::showMessageBox (AlertWindow::WarningIcon, 
 									 T("JuceIOHostInternal"), 
 									 T("AudioDeviceManager init failed \n\n") + error);
-		
+#endif
 		return;
 	}
 	
@@ -311,10 +312,11 @@ inline void JuceIOHostInternal::timerCallback()
 	
 	if (error.isNotEmpty())
 	{
+#ifndef UGEN_ANDROID // no modal
 		AlertWindow::showMessageBox (AlertWindow::WarningIcon, 
 									 T("JuceIOHostInternal"), 
 									 T("AudioDeviceManager setup failed \n\n") + error);
-		
+#endif
 		return;
 	}
 	
