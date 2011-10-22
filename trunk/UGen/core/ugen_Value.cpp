@@ -158,7 +158,7 @@ ValueArray Value::fill(const int size) throw()
 	return ValueArray(*this, size);
 }
 
-#ifdef UGEN_ANDROID // no RTTI
+#if defined(UGEN_ANDROID) && !defined(UGEN_JUCE) // no RTTI
 Value Value::operator- () const throw()
 {
 	return UnaryNegValue(*this);

@@ -1201,7 +1201,6 @@ bool UGen::sendMidiNote(const int midiChannel, const int midiNote, const int vel
 	return result;
 }
 
-#ifndef UGEN_ANDROID
 #if defined(JUCE_VERSION)
 #include "../juce/ugen_JuceVoicer.h"
 void UGen::sendMidiBuffer(MidiBuffer const& midiMessages) throw()
@@ -1214,6 +1213,7 @@ void UGen::sendMidiBuffer(MidiBuffer const& midiMessages) throw()
 	}
 }
 #endif
+
 #if defined(UGEN_IPHONE) && defined(UGEN_IOS_COREMIDI)
 #include "../iphone/ugen_iOSMidiInput.h"
 void UGen::sendMidiBuffer(ByteArray const& midiMessages) throw()
@@ -1225,7 +1225,6 @@ void UGen::sendMidiBuffer(ByteArray const& midiMessages) throw()
 		if(voicer != 0) voicer->sendMidiBuffer(midiMessages);
 	}
 }
-#endif
 #endif
 
 bool UGen::trigger(void* extraArgs) throw()
@@ -1254,7 +1253,7 @@ bool UGen::stopAllEvents() throw()
 
 UGen& UGen::addBufferReceiver(BufferReceiver* const receiver) throw()
 {
-#ifndef UGEN_ANDROID
+#if !defined(UGEN_ANDROID) || defined(UGEN_JUCE)
 	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		BufferSender* sender = dynamic_cast<BufferSender*> (internalUGens[i]);
@@ -1268,7 +1267,7 @@ UGen& UGen::addBufferReceiver(BufferReceiver* const receiver) throw()
 
 void UGen::removeBufferReceiver(BufferReceiver* const receiver) throw()
 {
-#ifndef UGEN_ANDROID
+#if !defined(UGEN_ANDROID) || defined(UGEN_JUCE)
 	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		BufferSender* sender = dynamic_cast<BufferSender*> (internalUGens[i]);
@@ -1280,7 +1279,7 @@ void UGen::removeBufferReceiver(BufferReceiver* const receiver) throw()
 
 UGen& UGen::addBufferReceiver(UGen const& receiverUGen) throw()
 {
-#ifndef UGEN_ANDROID
+#if !defined(UGEN_ANDROID) || defined(UGEN_JUCE)
 	for(unsigned int src = 0; src < numInternalUGens; src++)
 	{
 		BufferSender* sender = dynamic_cast<BufferSender*> (internalUGens[src]);
@@ -1301,7 +1300,7 @@ UGen& UGen::addBufferReceiver(UGen const& receiverUGen) throw()
 
 void UGen::removeBufferReceiver(UGen const& receiverUGen) throw()
 {
-#ifndef UGEN_ANDROID
+#if !defined(UGEN_ANDROID) || defined(UGEN_JUCE)
 	for(unsigned int src = 0; src < numInternalUGens; src++)
 	{
 		BufferSender* sender = dynamic_cast<BufferSender*> (internalUGens[src]);
@@ -1321,7 +1320,7 @@ void UGen::removeBufferReceiver(UGen const& receiverUGen) throw()
 
 UGen& UGen::addDoneActionReceiver(DoneActionReceiver* const receiver) throw()
 {
-#ifndef UGEN_ANDROID
+#if !defined(UGEN_ANDROID) || defined(UGEN_JUCE)
 	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		DoneActionSender* sender = dynamic_cast<DoneActionSender*> (internalUGens[i]);
@@ -1335,7 +1334,7 @@ UGen& UGen::addDoneActionReceiver(DoneActionReceiver* const receiver) throw()
 
 void UGen::removeDoneActionReceiver(DoneActionReceiver* const receiver) throw()
 {
-#ifndef UGEN_ANDROID
+#if !defined(UGEN_ANDROID) || defined(UGEN_JUCE)
 	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		DoneActionSender* sender = dynamic_cast<DoneActionSender*> (internalUGens[i]);
@@ -1347,7 +1346,7 @@ void UGen::removeDoneActionReceiver(DoneActionReceiver* const receiver) throw()
 
 UGen& UGen::addDoneActionReceiver(UGen const& receiverUGen) throw()
 {
-#ifndef UGEN_ANDROID
+#if !defined(UGEN_ANDROID) || defined(UGEN_JUCE)
 	for(unsigned int src = 0; src < numInternalUGens; src++)
 	{
 		DoneActionSender* sender = dynamic_cast<DoneActionSender*> (internalUGens[src]);
@@ -1369,7 +1368,7 @@ UGen& UGen::addDoneActionReceiver(UGen const& receiverUGen) throw()
 
 void UGen::removeDoneActionReceiver(UGen const& receiverUGen) throw()
 {
-#ifndef UGEN_ANDROID
+#if !defined(UGEN_ANDROID) || defined(UGEN_JUCE)
 	for(unsigned int src = 0; src < numInternalUGens; src++)
 	{
 		DoneActionSender* sender = dynamic_cast<DoneActionSender*> (internalUGens[src]);
@@ -1389,7 +1388,7 @@ void UGen::removeDoneActionReceiver(UGen const& receiverUGen) throw()
 
 UGen& UGen::addMetaDataReceiver(MetaDataReceiver* const receiver) throw()
 {
-#ifndef UGEN_ANDROID
+#if !defined(UGEN_ANDROID) || defined(UGEN_JUCE)
 	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		MetaDataSender* sender = dynamic_cast<MetaDataSender*> (internalUGens[i]);
@@ -1403,7 +1402,7 @@ UGen& UGen::addMetaDataReceiver(MetaDataReceiver* const receiver) throw()
 
 void UGen::removeMetaDataReceiver(MetaDataReceiver* const receiver) throw()
 {
-#ifndef UGEN_ANDROID
+#if !defined(UGEN_ANDROID) || defined(UGEN_JUCE)
 	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		MetaDataSender* sender = dynamic_cast<MetaDataSender*> (internalUGens[i]);
@@ -1415,7 +1414,7 @@ void UGen::removeMetaDataReceiver(MetaDataReceiver* const receiver) throw()
 
 UGen& UGen::addMetaDataReceiver(UGen const& receiverUGen) throw()
 {
-#ifndef UGEN_ANDROID
+#if !defined(UGEN_ANDROID) || defined(UGEN_JUCE)
 	for(unsigned int src = 0; src < numInternalUGens; src++)
 	{
 		MetaDataSender* sender = dynamic_cast<MetaDataSender*> (internalUGens[src]);
@@ -1437,7 +1436,7 @@ UGen& UGen::addMetaDataReceiver(UGen const& receiverUGen) throw()
 
 void UGen::removeMetaDataReceiver(UGen const& receiverUGen) throw()
 {
-#ifndef UGEN_ANDROID
+#if !defined(UGEN_ANDROID) || defined(UGEN_JUCE)
 	for(unsigned int src = 0; src < numInternalUGens; src++)
 	{
 		MetaDataSender* sender = dynamic_cast<MetaDataSender*> (internalUGens[src]);

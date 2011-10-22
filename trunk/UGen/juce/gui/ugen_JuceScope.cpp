@@ -42,6 +42,8 @@
 
 #ifdef JUCE_VERSION
 
+#ifndef UGEN_ANDROID // fixme
+
 BEGIN_UGEN_NAMESPACE
 
 #include "ugen_JuceScope.h"
@@ -2915,5 +2917,7 @@ void MeterComponent::timerCallback()
 
 
 END_UGEN_NAMESPACE
+
+#endif
 
 #endif

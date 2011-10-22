@@ -1,6 +1,8 @@
 #ifndef UGEN_JUCESCOPEPROPERTIES
 #define UGEN_JUCESCOPEPROPERTIES
 
+#ifndef UGEN_ANDROID // fixme
+
 #include "../ugen_JuceUtility.h"
 #include "../../core/ugen_Bits.h"
 
@@ -1195,6 +1197,7 @@ public:
 	
 };
 
+#endif
 
 #endif // UGEN_JUCESCOPEPROPERTIES
 

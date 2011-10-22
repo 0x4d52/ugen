@@ -627,7 +627,7 @@ public:
 	inline bool operator== (UGen const& other) const throw() { return containsIdenticalInternalsAs(other); }
 	inline bool operator!= (UGen const& other) const throw() { return !containsIdenticalInternalsAs(other); }
 	
-#ifndef UGEN_ANDROID
+#if !defined(UGEN_ANDROID) || defined(UGEN_JUCE)
 	/** Tests whether this UGen contains a particular UGenInternal derived class.
 	 
 	 Use this with care as many of the UGen constructors wrap UGen instances in other UGen classes. 
@@ -864,13 +864,12 @@ public:
 	 @see Voicer */
 	bool sendMidiNote(const int midiChannel, const int midiNote, const int velocity) throw();
 	
-#ifndef UGEN_ANDROID
 #if defined(JUCE_VERSION) || defined(DOXYGEN)
 	void sendMidiBuffer(MidiBuffer const& midiMessages) throw();
 #endif
+    
 #if (defined(UGEN_IPHONE) && defined(UGEN_IOS_COREMIDI)) || defined(DOXYGEN)
 	void sendMidiBuffer(ByteArray const& midiMessages) throw();
-#endif
 #endif
 	
 	/** Attempts to send a trigger message to a TSpawn.

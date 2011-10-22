@@ -15,7 +15,7 @@ public:
 		
 	UGen constructGraph(UGen const& input)
 	{
-		return SinOsc::AR(440, 0, 0.1);
+		return SinOsc::AR(1000, 0, 0.1);
 	}
 };
 

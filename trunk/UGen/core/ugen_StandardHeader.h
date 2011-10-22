@@ -137,7 +137,11 @@ END_UGEN_NAMESPACE
 	#endif
 
 	#ifdef UGEN_INTROJUCER
-		#include "JuceHeader.h"
+        #ifdef UGEN_ANDROID
+            #include "../../../JuceLibraryCode/JuceHeader.h"
+        #else
+            #include "JuceHeader.h"
+        #endif
 	#else
 		/* 
 		 If you get an error here make sure the directory which contains 'juce' is

@@ -199,7 +199,7 @@ public:
 	/// @} <!-- end Values -------------------------------------------------------- -->
 	
 	
-#ifndef UGEN_ANDROID
+#if !defined(UGEN_ANDROID) || defined(UGEN_JUCE)
 	/**
 	 Tests whether this Value contains a particular ValueInternal derived class.
 	 
