@@ -112,6 +112,8 @@ MixArrayUGenInternal::MixArrayUGenInternal(UGenArray const& array,
 
 void MixArrayUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
 {
+    array_.removeNulls();
+
 	const int size = array_.size();
 	for(int i = 0; i < size; i++)
 	{
@@ -158,7 +160,7 @@ float MixArrayUGenInternal::getValue(const int channel) const throw()
 
 #if !defined(UGEN_VFP) && !defined(UGEN_NEON) && !defined(UGEN_VDSP)
 void MixArrayUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
-{	
+{	    
 	bool shouldDeleteLocal;
 	bool& shouldDeleteToPass = shouldAllowAutoDelete_ ? shouldDelete : shouldDeleteLocal;	
 	const int numOutputChannels = getNumChannels();

@@ -87,9 +87,14 @@ bool VoicerBaseUGenInternal::sendMidiNote(const int midiChannel,
 		// stealNote(midiChannel, midiNote, false, true);  // let's only do this in the Juce version..
 		
 		UGen newEvent = spawnEvent(*this, currentEventIndex++, midiChannel, midiNote, velocity);
-		newEvent.userData = userData;
-		events.add(newEvent);
-		events.removeNulls();
+        
+        if(newEvent.isNotNull())
+        {
+            newEvent.userData = userData;
+            events.add(newEvent);
+        }
+        
+//		events.removeNulls();
 	}
 	else
 	{

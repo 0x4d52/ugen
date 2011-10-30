@@ -117,6 +117,7 @@ void InterruptionListener(void *inClientData, UInt32 inInterruption)
 		hwSampleRate = 0.0; // let the hardware choose
 		cpuUsage = 0.0;
 	}
+    
 	return self;
 }
 
@@ -708,7 +709,7 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 - (void)addOther:(UGen)ugen
 {
 	[self lock];
-	others <<= ugen;
+	others.add (ugen);
 	[self unlock];
 }
 
@@ -768,6 +769,12 @@ static inline void audioShortToFloatChannels(AudioBufferList* src, float* dst[],
 	const double pause = 0.25;
 	postFadeOutput.fadeSourceAndRelease(UGen::emptyChannels(NUM_CHANNELS), fadeTime);
 	[NSThread sleepForTimeInterval: fadeTime+pause];
+    
+    if (rioUnit)
+    {
+        AudioComponentInstanceDispose(rioUnit);
+        rioUnit = NULL;
+    }
 	
 	// shutdown when the fade has finished (hopefully!)
 	UGen::shutdown();

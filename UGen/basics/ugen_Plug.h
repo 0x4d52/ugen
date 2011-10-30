@@ -44,7 +44,8 @@
 /** A UGenInternal which allows repatching.
  This allows its source UGen to be changed after construction optionally with a crossfade. 
  @ingroup UGenInternals */
-class PlugUGenInternal : public ProxyOwnerUGenInternal
+class PlugUGenInternal : public ProxyOwnerUGenInternal,
+                         public DoneActionSender
 {
 public:
 	PlugUGenInternal(UGen const& source, bool shouldAllowAutoDelete = true) throw();
@@ -77,7 +78,7 @@ protected:
 	UGenArray sources;
 	int currentSourceIndex;
 	int fadeSourceIndex;
-	float currentSourceFadeLevel, fadeSourceFadeLevel, deltaFade;
+	float currentSourceFadeLevel, fadeSourceFadeLevel, fadeTime, deltaFade;
 	bool releasePreviousSourcesAfterFade;
 	UGenArray tempSource;
 	bool shouldAllowAutoDelete_;

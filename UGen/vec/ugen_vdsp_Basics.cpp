@@ -108,13 +108,7 @@ void MixUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockI
 	const int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* const outputSamples = uGenOutput.getSampleData();
 	const float* const channelSamples = inputs->processBlock(shouldDeleteToPass, blockID, channel);
-		
-//#ifdef UGEN_IPHONE
-//	cblas_ccopy(numSamplesToProcess, channelSamples, 1, outputSamples, 1);
-//#else
-//	vScopy(numSamplesToProcess, (const vFloat*)channelSamples, (vFloat*)outputSamples); // might not be x4
-//#endif	
-	
+			
 	memcpy(outputSamples, channelSamples, numSamplesToProcess*sizeof(float));
 	
 	channel++;
@@ -133,7 +127,7 @@ void MixUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockI
 
 
 void MixArrayUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
-{	
+{	    
 	bool shouldDeleteLocal;
 	bool& shouldDeleteToPass = shouldAllowAutoDelete_ ? shouldDelete : shouldDeleteLocal;	
 	const int numOutputChannels = getNumChannels();

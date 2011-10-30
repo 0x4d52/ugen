@@ -79,9 +79,7 @@ private:
  @code { (A+C+E), (B+D+F) }@endcode
  i.e., each left channel combined with the others and each right channel
  combined with the others.
- 
- @todo (Perhaps there could be an argument to force a particular number of channels?)
- 
+  
  @see Mix, MixUGenInternal, MixFill
  @ingroup UGenInternals */
 class MixArrayUGenInternal : public ProxyOwnerUGenInternal
@@ -106,8 +104,6 @@ public:
 	
 private:
 	UGenArray array_;
-	//UGenArray* arrayPtr;
-	//UGenArray& arrayRef;
 	bool shouldAllowAutoDelete_;
 	bool shouldWrapChannels_;
 };
@@ -158,6 +154,8 @@ public:
 		
 		
 	/** %Mix a UGenArray to a multichannel UGen using a reference to a UGenArray.
+     It is important to note that null UGen instances will be removed from the array regularly.
+     This is to allow expired events to be removed from the mix automatically.
 	 @param array					The UGenArray to be mixed.
 	 @param shouldAllowAutoDelete	If true this behaves like most other UGenInternal objects
 									i.e., it may be deleted by a DoneAction (e.g., an envelope

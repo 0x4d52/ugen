@@ -373,6 +373,10 @@ public:
 		
 	int senderUserData;
 	
+protected:
+    void reset() throw();
+
+    
 private:
 	void sendDone() throw();
 	

@@ -53,7 +53,9 @@ public:
 	
 	UGen constructGraph(UGen const& input)
 	{
-		return SinOsc::AR(Lag::AR(&slider), 0, 0.2);
+		//return SinOsc::AR(Lag::AR(&slider), 0, 0.2);
+        
+        return DiskIn::AR("/sdcard/beat.wav", true);
 	}
 };
 
