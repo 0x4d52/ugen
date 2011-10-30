@@ -69,7 +69,7 @@ void SpawnBaseUGenInternal::processBlock(bool& shouldDelete, const unsigned int 
 	
 	if(shouldStopAllEvents() == true) initEvents();
 	
-	events.removeNulls(); //
+//	events.removeNulls(); // done by Mix now anyway??
 	
 	const int numSamplesToProcess = uGenOutput.getBlockSize();	
 	const int numChannels = getNumChannels();
@@ -97,10 +97,8 @@ void SpawnBaseUGenInternal::stealInternal() throw()
 
 void SpawnBaseUGenInternal::initEvents() throw()
 {
-//	events = UGen::emptyChannels(numChannels);
-//	mixer = Mix(&events, false);
 	events.clear();
-	events.add(UGen::emptyChannels(numChannels));
+//	events.add(UGen::emptyChannels(numChannels)); // can be now be empty?
 	stopEvents = false;
 }
 
@@ -148,9 +146,7 @@ void SpawnUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 		do
 		{
 			UGen newVoice = spawnEvent(*this, currentEventIndex++);
-			newVoice.prepareForBlock(blockSize, blockID, -1); // prepare for full size (allocates the output buffers)
-			
-//			UGen::setBlockSize(numSamplesToProcess);
+			newVoice.prepareForBlock(blockSize, blockID, -1); // prepare for full size (allocates the output buffers)			
 			newVoice.prepareForBlock(numSamplesToProcess, nextTimeSamples, -1); // prepare for sub block
 			
 			unsigned int nextTimeSamplesDelta = (unsigned int)(nextTime * UGen::getSampleRate());
@@ -163,7 +159,6 @@ void SpawnUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 				bufferData[channel] += nextTimeSamplesDelta;
 			}
 			
-			//events <<= newVoice;
 			events.add(newVoice);
 
 			numSamplesToProcess -= nextTimeSamplesDelta;
@@ -171,10 +166,7 @@ void SpawnUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 		} 
 		while(nextTimeSamples <	nextBlockID && reachedMaxRepeats() == false);
 		
-//		UGen::setBlockSize(blockSize); // reset
-		
-		//mixer = Mix(&events, false);		
-		events.removeNulls();
+//		events.removeNulls(); // keep this one in case the events are very short e.g., granular??
 	}
 }
 

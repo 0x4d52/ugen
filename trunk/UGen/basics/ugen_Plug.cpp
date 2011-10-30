@@ -94,6 +94,12 @@ void PlugUGenInternal::processBlock(bool& shouldDelete, const unsigned int block
 		{
 			if(fadeSourceIndex != -1)
 			{
+                if(releasePreviousSourcesAfterFade && this->fadeSourceFadeLevel == 1.f)
+                {
+                    senderUserData = sources[fadeSourceIndex].userData;
+                    sendReleasing((double)fadeTime);
+                }
+                
 				float fadeSourceFadeLevel = 0.f, currentSourceFadeLevel = 0.f;
 				const int numChannels = getNumChannels();
 				
@@ -125,15 +131,21 @@ void PlugUGenInternal::processBlock(bool& shouldDelete, const unsigned int block
 				
 				if(fadeSourceFadeLevel <= 0.f)
 				{
-					fadeSourceIndex = -1;
 					if(releasePreviousSourcesAfterFade)
 					{
+                        setIsDone();
+                        senderUserData = sources[fadeSourceIndex].userData;
+                        sendDoneInternal();
+                        reset();
+                        
 						sources.clear();
 						UGenArray localTemp = sources;
 						sources = tempSource;
 						currentSourceIndex = 0;
 						tempSource = localTemp;
 					}
+                    
+					fadeSourceIndex = -1;
 				}
 				else
 				{
@@ -169,6 +181,7 @@ void PlugUGenInternal::processBlock(bool& shouldDelete, const unsigned int block
 bool PlugUGenInternal::setSource(UGen const& source, const bool releasePreviousSources, const float fadeTime)
 {
 	ugen_assert(fadeTime >= 0.f);
+    this->fadeTime = fadeTime;
 	
 	if(releasePreviousSources == true && fadeTime <= 0.f)
 	{
@@ -192,7 +205,6 @@ bool PlugUGenInternal::setSource(UGen const& source, const bool releasePreviousS
 		
 		if(indexOfExistingSource == -1)
 		{
-			//sources = UGenArray(sources, source, false);
 			sources.add(source);
 			currentSourceIndex++;
 		}

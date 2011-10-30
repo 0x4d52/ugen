@@ -115,7 +115,7 @@ void TSpawnUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 		mixer.setOutputs(bufferData, numSamples, numChannels);
 		mixer.processBlock(shouldDelete, blockID + startSample, -1);
 		
-		events.removeNulls();
+//		events.removeNulls();
 	}
 }
 

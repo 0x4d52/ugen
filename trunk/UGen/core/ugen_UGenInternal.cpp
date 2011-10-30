@@ -542,10 +542,8 @@ bool ProxyUGenInternal::setInput(const float* block, const int channel) throw()
 }
 
 DoneActionSender::DoneActionSender() throw()
-:	senderUserData(0),
-	isDone_(false),
-	doneSent(false)
 {
+    reset();
 }
 
 DoneActionSender::~DoneActionSender()
@@ -575,6 +573,13 @@ void DoneActionSender::removeDoneActionReceiver(DoneActionReceiver* const receiv
 void DoneActionSender::setIsDone() throw()					
 { 
 	isDone_ = true;
+}
+
+void DoneActionSender::reset() throw()
+{
+    senderUserData = 0;
+	isDone_ = false;
+    doneSent = false;
 }
 
 void DoneActionSender::sendDoneInternal() throw()
