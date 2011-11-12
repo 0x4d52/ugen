@@ -92,9 +92,7 @@ bool VoicerBaseUGenInternal::sendMidiNote(const int midiChannel,
         {
             newEvent.userData = userData;
             events.add(newEvent);
-        }
-        
-//		events.removeNulls();
+        }        
 	}
 	else
 	{

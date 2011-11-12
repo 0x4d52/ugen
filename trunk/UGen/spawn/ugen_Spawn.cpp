@@ -68,9 +68,7 @@ void SpawnBaseUGenInternal::processBlock(bool& shouldDelete, const unsigned int 
 	if(reachedMaxRepeats() == true && events.sizeNotNull() == 0) shouldDelete = true;
 	
 	if(shouldStopAllEvents() == true) initEvents();
-	
-//	events.removeNulls(); // done by Mix now anyway??
-	
+		
 	const int numSamplesToProcess = uGenOutput.getBlockSize();	
 	const int numChannels = getNumChannels();
 	for(int channel = 0; channel < numChannels; channel++)
@@ -98,7 +96,6 @@ void SpawnBaseUGenInternal::stealInternal() throw()
 void SpawnBaseUGenInternal::initEvents() throw()
 {
 	events.clear();
-//	events.add(UGen::emptyChannels(numChannels)); // can be now be empty?
 	stopEvents = false;
 }
 
@@ -164,9 +161,7 @@ void SpawnUGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 			numSamplesToProcess -= nextTimeSamplesDelta;
 			nextTimeSamples += nextTimeSamplesDelta;
 		} 
-		while(nextTimeSamples <	nextBlockID && reachedMaxRepeats() == false);
-		
-//		events.removeNulls(); // keep this one in case the events are very short e.g., granular??
+		while(nextTimeSamples <	nextBlockID && reachedMaxRepeats() == false);		
 	}
 }
 
