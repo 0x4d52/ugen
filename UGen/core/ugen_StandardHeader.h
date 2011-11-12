@@ -201,15 +201,15 @@ END_UGEN_NAMESPACE
 			#import <CoreMIDI/CoreMIDI.h>
 			#import <CoreMIDI/MIDINetworkSession.h>
 		#endif
-	#endif
+	#else
+        #ifndef UISlider
+            class UISlider;
+        #endif
 
-	#ifndef UISlider
-		class UISlider;
-	#endif
-
-	#ifndef UIButton
-		class UIButton;
-	#endif
+        #ifndef UIButton
+            class UIButton;
+        #endif
+    #endif
 
 	//class UIScopeView;
 	

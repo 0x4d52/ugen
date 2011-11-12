@@ -1504,6 +1504,7 @@ public:
 			const unsigned int rightSize = rightOperand.size();												\
 			if(rightSize == 0) return *this;																\
 			const bool eitherNullTerminated = this->isNullTerminated() || rightOperand.isNullTerminated();	\
+            (void)eitherNullTerminated;                                                                     \
 			const unsigned int leftLength = this->length();													\
 			const unsigned int rightLength = rightOperand.length();											\
 			const unsigned int newLength = leftLength > rightLength ? leftLength : rightLength;				\
@@ -1914,14 +1915,14 @@ public:
 	static NumericalArray<NumericalType> hannWindow(const int size, 
 													const NumericalType peak = 1) throw()
 	{
-		return (-NumericalArray<double>::cosineTable(size) + 1.f) * 0.5f * peak;
+		return (-NumericalArray<double>::cosineTable(size) + NumericalArray<double>(1.0)) * 0.5 * double(peak);
 	}
 	
 	/** Creates a NumericalArray with a given size (length) containing one or more Hamming windows. */
 	static NumericalArray<NumericalType> hammingWindow(const int size, 
 													   const NumericalType peak = 1) throw()
 	{
-		return (-NumericalArray<double>::cosineTable(size) * 0.46f + 0.54f) * peak;
+		return (-NumericalArray<double>::cosineTable(size) * NumericalArray<double>(0.46) + NumericalArray<double>(0.54)) * double(peak);
 	}
 	
 	/** Creates a NumericalArray with a given size (length) containing one or more Blackman windows. */
@@ -1929,11 +1930,11 @@ public:
 														const float alpha = 0.16f, 
 														const NumericalType peak = 1) throw()
 	{
-		float a0 = (1.f-alpha) * 0.5f;
-		float a1 = 0.5f;
-		float a2 = alpha * 0.5f;
+		double a0 = (1.0-alpha) * 0.5;
+		double a1 = 0.5;
+		double a2 = alpha * 0.5;
 		
-		return (-NumericalArray<double>::cosineTable(size) * a1 + NumericalArray<double>::cosineTable(size, 2.f) * a2 + a0) * peak;
+		return (-NumericalArray<double>::cosineTable(size) * a1 + NumericalArray<double>::cosineTable(size, 2.0) * a2 + NumericalArray<double>(a0)) * peak;
 	}
 	
 	static int sourceLength(const NumericalType* nullTerminatedSourceArray) throw()
