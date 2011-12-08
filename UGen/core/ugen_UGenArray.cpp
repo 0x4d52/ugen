@@ -775,6 +775,24 @@ void UGenArray::release(const int userDataToSearchFor) throw()
 	}
 }
 
+void UGenArray::steal() throw()
+{	
+	for(int i = 0; i < internal->size(); i++)
+	{
+		internal->getArray()[i].steal(false);
+	}
+}
+
+void UGenArray::steal(const int userDataToSearchFor) throw()
+{	
+	for(int i = 0; i < internal->size(); i++)
+	{
+		const UGen& item = internal->getArray()[i];
+		if(item.userData == userDataToSearchFor)
+			internal->getArray()[i].steal(false);
+	}
+}
+
 UGenArray UGenArray::interleave() const throw()
 {
 	// need to check this

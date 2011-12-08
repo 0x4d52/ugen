@@ -6,11 +6,12 @@
 //  Copyright __MyCompanyName__ 2010. All rights reserved.
 //
 
-#import "FirstViewController.h"
+#import "SecondViewController.h"
 #import "TabBarDemoAppDelegate.h"
 #import "UGenTabBarAudioDemo.h"
 
-@implementation FirstViewController
+@implementation SecondViewController
+
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
@@ -26,7 +27,6 @@
     [self updateParameters];
 }
 
-
 -(void)updateNotify
 {
     [self performSelectorOnMainThread:@selector(updateParameters) 
@@ -39,9 +39,8 @@
     // update the view from the audio settings
     TabBarDemoAppDelegate* app = (TabBarDemoAppDelegate*)[[UIApplication sharedApplication] delegate];
     UGenTabBarAudioDemo* audio = app.audio;
-    freqSlider.value = audio.freq;
+    ampSlider.value = audio.amp;
 }
-
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -49,6 +48,7 @@
 	
 	// Release any cached data, images, etc that aren't in use.
 }
+
 
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.

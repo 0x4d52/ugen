@@ -1,37 +1,19 @@
 //
-//  _4_06_TabBarDemoAppDelegate.m
+//  TabBarDemoAppDelegate.m
 //  04_06_TabBarDemo
 //
 //  Created by Martin Robinson on 28/01/2010.
 //  Copyright __MyCompanyName__ 2010. All rights reserved.
 //
 
-#import "_4_06_TabBarDemoAppDelegate.h"
+#import "TabBarDemoAppDelegate.h"
+#import "UGenTabBarAudioDemo.h"
 
-
-@implementation UGenTabBarAudioDemo
-
-@synthesize freq, amp;
-
-- (UGen)constructGraph:(UGen)input
-{
-	freq = 1000;
-	amp = 0.1;
-	
-	UGen freqControl = Lag::AR(&freq, 0.1);
-	UGen ampControl = Lag::AR(&amp, 0.1);
-	
-	return SinOsc::AR(freqControl, 0, ampControl);
-}
-
-@end
-
-
-
-@implementation _4_06_TabBarDemoAppDelegate
+@implementation TabBarDemoAppDelegate
 
 @synthesize window;
 @synthesize tabBarController;
+@synthesize audio;
 
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {

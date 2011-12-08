@@ -1,5 +1,5 @@
 //
-//  FirstViewController.h
+//  SecondViewController.h
 //  04_06_TabBarDemo
 //
 //  Created by Martin Robinson on 28/01/2010.
@@ -9,11 +9,10 @@
 #import <UIKit/UIKit.h>
 
 
-@interface FirstViewController : UIViewController {
-    IBOutlet UISlider* freqSlider;
+@interface SecondViewController : UIViewController {
+    IBOutlet UISlider* ampSlider;
 }
 
--(void)updateNotify;
 -(void)updateParameters;
 
 @end

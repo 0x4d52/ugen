@@ -371,6 +371,11 @@ public:
 	void release() throw();	
 	/** Attempts to release all UGen instances with the specified user data in the UGenArray using UGen::release(). */
 	void release(const int userDataToSearchFor) throw();
+    
+    void steal() throw();	
+	void steal(const int userDataToSearchFor) throw();
+
+    
 	/// @} <!-- end Miscellaneous -------------------------------- -->
 	
 private:
