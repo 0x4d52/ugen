@@ -10,7 +10,10 @@
 
 
 @interface FirstViewController : UIViewController {
-
+    IBOutlet UISlider* freqSlider;
 }
+
+-(void)updateNotify;
+-(void)updateParameters;
 
 @end

@@ -1,5 +1,5 @@
 //
-//  _4_06_TabBarDemoAppDelegate.h
+//  TabBarDemoAppDelegate.h
 //  04_06_TabBarDemo
 //
 //  Created by Martin Robinson on 28/01/2010.
@@ -7,20 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#include "../../../UGen/UGen.h"
 
-@interface UGenTabBarAudioDemo : UIKitAUIOHost
-{
-	float freq, amp;
-}
+@class UGenTabBarAudioDemo;
 
-@property (nonatomic) float freq;
-@property (nonatomic) float amp;
-
-@end
-
-
-@interface _4_06_TabBarDemoAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> 
+@interface TabBarDemoAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> 
 {
     UIWindow *window;
     UITabBarController *tabBarController;
@@ -29,5 +19,11 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
+@property (nonatomic, readonly) UGenTabBarAudioDemo* audio;
+
+
+-(IBAction)freqChanged:(UISlider*)slider;
+-(IBAction)ampChanged:(UISlider*)slider;
+
 
 @end

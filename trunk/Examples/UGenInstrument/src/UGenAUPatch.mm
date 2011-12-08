@@ -40,7 +40,8 @@
     well as ones that can open a cocoa view. If this is enabled, you'll need to also add the AUCarbonBase
     files to your project.
 */
-#ifndef #if ! (defined (BUILD_AU_CARBON_UI) || JUCE_64BIT)
+//#ifndef #if ! (defined (BUILD_AU_CARBON_UI) || JUCE_64BIT)
+#ifndef BUILD_AU_CARBON_UI
  #define BUILD_AU_CARBON_UI 1
 #endif
 
