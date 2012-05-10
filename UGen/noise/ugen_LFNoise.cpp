@@ -67,7 +67,7 @@ void LFNoise0UGenInternal::processBlock(bool& shouldDelete, const unsigned int b
 	float* outputSamples = uGenOutput.getSampleData();
 	float currentFreq = *(inputs[Freq].processBlock(shouldDelete, blockID, channel));
 	
-	unsigned long s1, s2, s3;
+	unsigned int s1, s2, s3;
 	random.get(s1, s2, s3);
 	
 	do {
@@ -114,7 +114,7 @@ void LFNoise1UGenInternal::processBlock(bool& shouldDelete, const unsigned int b
 	float* outputSamples = uGenOutput.getSampleData();
 	float currentFreq = *(inputs[Freq].processBlock(shouldDelete, blockID, channel));
 	
-	unsigned long s1, s2, s3;
+	unsigned int s1, s2, s3;
 	random.get(s1, s2, s3);
 	
 	do {
@@ -166,7 +166,7 @@ void LFNoise2UGenInternal::processBlock(bool& shouldDelete, const unsigned int b
 	float* outputSamples = uGenOutput.getSampleData();
 	float currentFreq = *(inputs[Freq].processBlock(shouldDelete, blockID, channel));
 	
-	unsigned long s1, s2, s3;
+	unsigned int s1, s2, s3;
 	random.get(s1, s2, s3);
 	
 	do {

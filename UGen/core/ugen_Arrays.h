@@ -1813,7 +1813,7 @@ public:
 		
 		for(int i = 0; i < numValues; i++)
 		{
-			NumericalType randomValue = rand() * randFactor;
+			NumericalType randomValue = ugen::rand(1.0) * randFactor;
 			outputValues[i] = randomValue * diff + lower;
 		}
 		
@@ -1842,7 +1842,8 @@ public:
 		
 		for(int i = 0; i < numValues; i++)
 		{
-			outputValues[i] = Ran088::defaultGenerator().nextExp(lower, upper);
+            const NumericalType temp = Ran088::defaultGenerator().nextExp(lower, upper);
+			outputValues[i] = temp;
 		}
 		
 		return newArray;		

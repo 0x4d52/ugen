@@ -555,7 +555,7 @@ TimeConvolveUGenInternal::TimeConvolveUGenInternal(UGen const& input,
 		if(endPoint-startPoint > 2044)
 			endPoint = startPoint + 2044;
 		
-		filters = impulse.getRegion(endPoint-1, startPoint); // get samples in reverse
+		filters = impulse.getRegion(endPoint-1, startPoint); // get samples in reverse  
 	}
 }
 

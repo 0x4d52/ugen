@@ -49,12 +49,12 @@ PinkNoiseUGenInternal::PinkNoiseUGenInternal() throw()
 	//random((unsigned int)this * 123463463UL + 423815L + rand(19469146))
 	random(rand(0x7fffffff))
 {	
-	unsigned long s1, s2, s3;
+	unsigned int s1, s2, s3;
 	random.get(s1, s2, s3);
 	
 	for (int i = 0; i < 16; ++i) 
 	{
-		unsigned long r = Ran088::next(s1, s2, s3) >> 13;
+		unsigned int r = Ran088::next(s1, s2, s3) >> 13;
 		total += r;
 		dice[i] = r;
 	}	
@@ -69,15 +69,15 @@ void PinkNoiseUGenInternal::processBlock(bool& shouldDelete, const unsigned int 
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
 	
-	unsigned long s1, s2, s3;
+	unsigned int s1, s2, s3;
 	random.get(s1, s2, s3);
 	
 	while(numSamplesToProcess--)
 	{
-		unsigned long counter = Ran088::next(s1, s2, s3);
-		unsigned long newrand = counter >> 13;
+		unsigned int counter = Ran088::next(s1, s2, s3);
+		unsigned int newrand = counter >> 13;
 		int k = Bits::countTrailingZeros(counter) & 15; 
-		unsigned long prevrand = dice[k]; 
+		unsigned int prevrand = dice[k]; 
 		dice[k] = newrand; 
 		total += (newrand - prevrand); 
 		newrand = Ran088::next(s1,s2,s3) >> 13;

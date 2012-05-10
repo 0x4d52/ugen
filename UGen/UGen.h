@@ -129,6 +129,7 @@ BEGIN_UGEN_NAMESPACE
 #include "spawn/ugen_Textures.h"
 #include "analysis/ugen_Amplitude.h"
 #include "analysis/ugen_Maxima.h"
+#include "analysis/ugen_Minima.h"
 #include "analysis/ugen_Poll.h"
 #include "analysis/ugen_Schmidt.h"
 #include "analysis/ugen_Trig.h"
@@ -186,7 +187,8 @@ BEGIN_UGEN_NAMESPACE
 		BEGIN_UGEN_NAMESPACE
 		#endif
 		#include "convolution/ugen_Convolution.h"
-		#include "convolution/ugen_SimpleConvolution.h"
+        #include "convolution/ugen_Correlation.h"
+        #include "convolution/ugen_SimpleConvolution.h"
 	#endif // UGEN_CONVOLUTION
 
 	#define Value ugen::Value

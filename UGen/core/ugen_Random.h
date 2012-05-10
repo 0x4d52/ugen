@@ -50,7 +50,7 @@ public:
 	/// @name Construction and destruction
 	/// @{
 	
-	Ran088(unsigned long seed) throw();
+	Ran088(unsigned int seed) throw();
 	static Ran088& defaultGenerator() throw()
 	{
 		static Ran088 r(0);
@@ -64,29 +64,29 @@ public:
 	/// @name Random values from external states
 	/// @{
 	
-	void setSeed(unsigned long seed) throw();
+	void setSeed(unsigned int seed) throw();
 	
-	void get(unsigned long& s1, unsigned long& s2, unsigned long& s3) throw();
-	void set(unsigned long s1, unsigned long s2, unsigned long s3) throw();
+	void get(unsigned int& s1, unsigned int& s2, unsigned int& s3) throw();
+	void set(unsigned int s1, unsigned int s2, unsigned int s3) throw();
 	
-	static unsigned long next( unsigned long& s1, unsigned long& s2, unsigned long& s3 ) throw();
-	static double nextDouble( unsigned long& s1, unsigned long& s2, unsigned long& s3 ) throw();
-	static float nextFloat( unsigned long& s1, unsigned long& s2, unsigned long& s3 ) throw();
-	static float nextFloat0( unsigned long& s1, unsigned long& s2, unsigned long& s3 ) throw();
-	static float nextBiFloat( unsigned long& s1, unsigned long& s2, unsigned long& s3 ) throw();
-	static float nextFloat8( unsigned long& s1, unsigned long& s2, unsigned long& s3 ) throw();
-	static float coin( unsigned long& s1, unsigned long& s2, unsigned long& s3 ) throw();
+	static unsigned int next( unsigned int& s1, unsigned int& s2, unsigned int& s3 ) throw();
+	static double nextDouble( unsigned int& s1, unsigned int& s2, unsigned int& s3 ) throw();
+	static float nextFloat( unsigned int& s1, unsigned int& s2, unsigned int& s3 ) throw();
+	static float nextFloat0( unsigned int& s1, unsigned int& s2, unsigned int& s3 ) throw();
+	static float nextBiFloat( unsigned int& s1, unsigned int& s2, unsigned int& s3 ) throw();
+	static float nextFloat8( unsigned int& s1, unsigned int& s2, unsigned int& s3 ) throw();
+	static float coin( unsigned int& s1, unsigned int& s2, unsigned int& s3 ) throw();
 	
 	/// @} <!-- end Random values from external states ------------------------------ -->
 	
 	/// @name Random values from internal state
 	/// @{
 	
-	unsigned long next() throw();
-	long nextLong(long scale) throw();
-	long nextBiLong(long scale) throw();
-	long nextLinearLong(long scale) throw();
-	long nextBiLinearLong(long scale) throw();
+	unsigned int next() throw();
+	int nextInt(int scale) throw();
+	int nextBiInt(int scale) throw();
+	int nextLinearInt(int scale) throw();
+	int nextBiLinearInt(int scale) throw();
 	
 	float coin() throw();
 	float nextFloat() throw();
@@ -106,7 +106,7 @@ public:
 	inline double operator() (double scale)  throw() { return nextDouble(scale); }
 	inline double operator() (double lo, double hi) throw() { return nextDouble(hi-lo)+lo; }
 	
-	inline int next(int lo, int hi) throw() { return nextLong(hi-lo)+lo; }
+	inline int next(int lo, int hi) throw() { return nextInt(hi-lo)+lo; }
 	inline float next(float lo, float hi) throw() { return nextFloat() * (hi-lo) + lo; }
 	inline double next(double lo, double hi) throw() { return nextDouble() * (hi-lo) + lo; }
 	
@@ -114,7 +114,7 @@ public:
 	inline float nextExp(float lo, float hi) throw() { return (float)nextExpRandRange((double)lo, (double)hi); }
 	inline double nextExp(double lo, double hi) throw() { return nextExpRandRange(lo, hi); }
 	
-	inline int nextLin(int lo, int hi) throw() { return nextLinearLong(hi-lo)+lo; }
+	inline int nextLin(int lo, int hi) throw() { return nextLinearInt(hi-lo)+lo; }
 	inline float nextLin(float lo, float hi) throw() { return (float)nextLinearDouble((double)(hi-lo)) + lo; }
 	inline double nextLin(double lo, double hi) throw() { return nextLinearDouble(hi-lo) + lo;  }
 	
@@ -124,7 +124,7 @@ public:
 	
 	
 private:
-	unsigned long s1, s2, s3;		// random generator state
+	unsigned int s1, s2, s3;		// random generator state
 	
 	// using the copy and assignment operators might lead to unexpected results, 
 	// especially copying the default generator,
@@ -179,17 +179,17 @@ inline float exprand(float lo, float hi) throw()
 
 inline int rand(int scale) throw()
 {
-	return (int)(Ran088::defaultGenerator().nextLong(scale));
+	return (int)(Ran088::defaultGenerator().nextInt(scale));
 }
 
 inline int rand(int lo, int hi) throw()
 {
-	return (int)(Ran088::defaultGenerator().nextLong(hi-lo)+lo);
+	return (int)(Ran088::defaultGenerator().nextInt(hi-lo)+lo);
 }
 
 inline int rand2(int scale) throw()
 {
-	return (int)(Ran088::defaultGenerator().nextBiLong(scale));
+	return (int)(Ran088::defaultGenerator().nextBiInt(scale));
 }
 
 inline double exprand(int lo, int hi) throw()
@@ -198,12 +198,12 @@ inline double exprand(int lo, int hi) throw()
 }
 
 
-inline Ran088::Ran088(unsigned long seed) throw()
+inline Ran088::Ran088(unsigned int seed) throw()
 {		
 	setSeed(seed);
 }
 
-inline void Ran088::setSeed(unsigned long seed) throw()
+inline void Ran088::setSeed(unsigned int seed) throw()
 {
 	int* seedPtr = 0;
 	
@@ -211,7 +211,7 @@ inline void Ran088::setSeed(unsigned long seed) throw()
 	{
 		// use the addess of an allocated pointer as the seed
 		seedPtr = new int;
-		seed = (unsigned long)seedPtr;
+		seed = (unsigned int)(unsigned long)seedPtr;
 		seed *= 39458953U;
 		seed += 18479161U;
 	}
@@ -225,21 +225,21 @@ inline void Ran088::setSeed(unsigned long seed) throw()
 	delete seedPtr;	
 }
 
-inline void Ran088::get(unsigned long& s1, unsigned long& s2, unsigned long& s3) throw()
+inline void Ran088::get(unsigned int& s1, unsigned int& s2, unsigned int& s3) throw()
 {
 	s1 = this->s1;
 	s2 = this->s2;
 	s3 = this->s3;
 }
 
-inline void Ran088::set(unsigned long s1, unsigned long s2, unsigned long s3) throw()
+inline void Ran088::set(unsigned int s1, unsigned int s2, unsigned int s3) throw()
 {
 	this->s1 = s1;
 	this->s2 = s2;
 	this->s3 = s3;
 }
 
-inline unsigned long Ran088::next() throw()
+inline unsigned int Ran088::next() throw()
 {
 	// generate a random 32 bit number
 	s1 = ((s1 &  -2) << 12) ^ (((s1 << 13) ^  s1) >> 19);
@@ -252,9 +252,9 @@ inline double Ran088::nextDouble() throw()
 {
 	// return a double from 0.0 to 0.999...
 #if BYTE_ORDER == BIG_ENDIAN
-	union { struct { unsigned long hi, lo; } i; double f; } du;
+	union { struct { unsigned int hi, lo; } i; double f; } du;
 #else
-	union { struct { unsigned long lo, hi; } i; double f; } du;
+	union { struct { unsigned int lo, hi; } i; double f; } du;
 #endif
 	du.i.hi = 0x41300000; 
 	du.i.lo = next();
@@ -274,7 +274,7 @@ inline double Ran088::nextBiDouble(double scale) throw()
 inline float Ran088::nextFloat() throw()
 {
 	// return a float from 0.0 to 0.999...
-	union { unsigned long i; float f; } u;		// union for floating point conversion of result
+	union { unsigned int i; float f; } u;		// union for floating point conversion of result
 	u.i = 0x3F800000 | (next() >> 9);
 	return u.f - 1.f;
 }
@@ -282,7 +282,7 @@ inline float Ran088::nextFloat() throw()
 inline float Ran088::nextFloat0() throw()
 {
 	// return a float from +1.0 to +1.999...
-	union { unsigned long i; float f; } u;		// union for floating point conversion of result
+	union { unsigned int i; float f; } u;		// union for floating point conversion of result
 	u.i = 0x3F800000 | (next() >> 9);
 	return u.f;
 }
@@ -290,7 +290,7 @@ inline float Ran088::nextFloat0() throw()
 inline float Ran088::nextBiFloat() throw()
 {
 	// return a float from -1.0 to +0.999...
-	union { unsigned long i; float f; } u;		// union for floating point conversion of result
+	union { unsigned int i; float f; } u;		// union for floating point conversion of result
 	u.i = 0x40000000 | (next() >> 9);
 	return u.f - 3.f;
 }
@@ -298,7 +298,7 @@ inline float Ran088::nextBiFloat() throw()
 inline float Ran088::nextFloat8() throw()
 {
 	// return a float from -0.125 to +0.124999...
-	union { unsigned long i; float f; } u;		// union for floating point conversion of result
+	union { unsigned int i; float f; } u;		// union for floating point conversion of result
 	u.i = 0x3E800000 | (next() >> 9);
 	return u.f - 0.375f;
 }
@@ -306,42 +306,42 @@ inline float Ran088::nextFloat8() throw()
 inline float Ran088::coin() throw()
 {
 	// only return one of the two values -1.0 or +1.0
-	union { unsigned long i; float f; } u;		// union for floating point conversion of result
+	union { unsigned int i; float f; } u;		// union for floating point conversion of result
 	u.i = 0x3F800000 | (0x80000000 & next());
 	return u.f;
 }
 
 #ifndef UGEN_ANDROID
-inline long Ran088::nextLong(long scale) throw()
+inline int Ran088::nextInt(int scale) throw()
 {
 	// return an int from 0 to scale - 1
-	return (long)std::floor(scale * nextDouble());
+	return (int)std::floor(scale * nextDouble());
 }
 
-inline long Ran088::nextBiLong(long scale) throw()
+inline int Ran088::nextBiInt(int scale) throw()
 {
 	// return a int from -scale to +scale
-	return (long)std::floor((2. * scale + 1.) * nextDouble() - scale);
+	return (int)std::floor((2. * scale + 1.) * nextDouble() - scale);
 }
 #else
 // android
-inline long Ran088::nextLong(long scale) throw()
+inline int Ran088::nextInt(int scale) throw()
 {
 	// return an int from 0 to scale - 1
-	return (long)floor(scale * nextDouble());
+	return (int)floor(scale * nextDouble());
 }
 
-inline long Ran088::nextBiLong(long scale) throw()
+inline int Ran088::nextBiInt(int scale) throw()
 {
 	// return a int from -scale to +scale
-	return (long)floor((2. * scale + 1.) * nextDouble() - scale);
+	return (int)floor((2. * scale + 1.) * nextDouble() - scale);
 }
 #endif
 
-inline long Ran088::nextLinearLong(long scale) throw()
+inline int Ran088::nextLinearInt(int scale) throw()
 {
-	long a = nextLong(scale);
-	long b = nextLong(scale);
+	int a = nextInt(scale);
+	int b = nextInt(scale);
 	return min(a,b);
 }
 
@@ -352,10 +352,10 @@ inline double Ran088::nextLinearDouble(double scale) throw()
 	return min(a,b) * scale;
 }
 
-inline long Ran088::nextBiLinearLong(long scale) throw()
+inline int Ran088::nextBiLinearInt(int scale) throw()
 {
-	long a = nextLong(scale);
-	long b = nextLong(scale);
+	int a = nextInt(scale);
+	int b = nextInt(scale);
 	return a - b;
 }
 
@@ -407,7 +407,7 @@ inline double Ran088::nextGaussianApprox(double scale) throw()
 	return (nextDouble() + nextDouble() + nextDouble() - 1.5) * 0.666666667 * scale;
 }
 
-inline unsigned long Ran088::next( unsigned long& s1, unsigned long& s2, unsigned long& s3 ) throw()
+inline unsigned int Ran088::next( unsigned int& s1, unsigned int& s2, unsigned int& s3 ) throw()
 {
 	s1 = ((s1 &  -2) << 12) ^ (((s1 << 13) ^  s1) >> 19);
 	s2 = ((s2 &  -8) <<  4) ^ (((s2 <<  2) ^  s2) >> 25);
@@ -415,50 +415,50 @@ inline unsigned long Ran088::next( unsigned long& s1, unsigned long& s2, unsigne
 	return s1 ^ s2 ^ s3;
 }
 
-inline double Ran088::nextDouble( unsigned long& s1, unsigned long& s2, unsigned long& s3 ) throw()
+inline double Ran088::nextDouble( unsigned int& s1, unsigned int& s2, unsigned int& s3 ) throw()
 {
-	union { struct { unsigned long hi, lo; } i; double f; } u;
+	union { struct { unsigned int hi, lo; } i; double f; } u;
 	u.i.hi = 0x41300000; 
 	u.i.lo = next(s1,s2,s3);
 	return u.f - 1048576.;
 }
 
-inline float Ran088::nextFloat( unsigned long& s1, unsigned long& s2, unsigned long& s3 ) throw()
+inline float Ran088::nextFloat( unsigned int& s1, unsigned int& s2, unsigned int& s3 ) throw()
 {
 	// return a float from 0.0 to 0.999...
-	union { unsigned long i; float f; } u;
+	union { unsigned int i; float f; } u;
 	u.i = 0x3F800000 | (next(s1,s2,s3) >> 9);
 	return u.f - 1.f;
 }
 
-inline float Ran088::nextFloat0( unsigned long& s1, unsigned long& s2, unsigned long& s3 ) throw()
+inline float Ran088::nextFloat0( unsigned int& s1, unsigned int& s2, unsigned int& s3 ) throw()
 {
 	// return a float from +1.0 to +1.999...
-	union { unsigned long i; float f; } u;
+	union { unsigned int i; float f; } u;
 	u.i = 0x3F800000 | (next(s1,s2,s3) >> 9);
 	return u.f;
 }
 
-inline float Ran088::nextBiFloat( unsigned long& s1, unsigned long& s2, unsigned long& s3 ) throw()
+inline float Ran088::nextBiFloat( unsigned int& s1, unsigned int& s2, unsigned int& s3 ) throw()
 {
 	// return a float from -1.0 to +0.999...
-	union { unsigned long i; float f; } u;
+	union { unsigned int i; float f; } u;
 	u.i = 0x40000000 | (next(s1,s2,s3) >> 9);
 	return u.f - 3.f;
 }
 
-inline float Ran088::nextFloat8( unsigned long& s1, unsigned long& s2, unsigned long& s3 ) throw()
+inline float Ran088::nextFloat8( unsigned int& s1, unsigned int& s2, unsigned int& s3 ) throw()
 {
 	// return a float from -0.125 to +0.124999...
-	union { unsigned long i; float f; } u;
+	union { unsigned int i; float f; } u;
 	u.i = 0x3E800000 | (next(s1,s2,s3) >> 9);
 	return u.f - 0.375f;
 }
 
-inline float Ran088::coin( unsigned long& s1, unsigned long& s2, unsigned long& s3 ) throw()
+inline float Ran088::coin( unsigned int& s1, unsigned int& s2, unsigned int& s3 ) throw()
 {
 	// only return one of the two values -1.0 or +1.0
-	union { unsigned long i; float f; } u;
+	union { unsigned int i; float f; } u;
 	u.i = 0x3F800000 | (0x80000000 & next(s1,s2,s3));
 	return u.f;
 }
