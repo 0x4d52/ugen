@@ -245,7 +245,7 @@ RandomIntRangeValueInternal::RandomIntRangeValueInternal(const int lo, const int
 
 double RandomIntRangeValueInternal::getValue() throw()
 {
-	return random.nextLong(range) + lo_;
+	return random.nextInt(range) + lo_;
 }
 
 RandomValue::RandomValue(const double scale) throw()

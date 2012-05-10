@@ -13,7 +13,7 @@
 		84F30CED08FEAD7A0087E26C /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84F30CEC08FEAD7A0087E26C /* CoreAudio.framework */; };
 		84FAD61A0C7C3CCB00AF3028 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84FAD6190C7C3CCB00AF3028 /* IOKit.framework */; };
 		8D0C4E920486CD37000505A6 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20286C33FDCF999611CA2CEA /* Carbon.framework */; };
-		A80AFA110E8E157B006B49BD /* libjuce.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A80AFA100E8E14EF006B49BD /* libjuce.a */; };
+		A80AFA110E8E157B006B49BD /* libjucedebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A80AFA100E8E14EF006B49BD /* libjucedebug.a */; };
 		A81994480FC457AE008F1D98 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A81994470FC457AE008F1D98 /* Accelerate.framework */; };
 		A8426B69143DF6F90051B8C1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8426B68143DF6F90051B8C1 /* AudioToolbox.framework */; };
 		A85724E40EC3115E007D5B17 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9504C8FFE6A3BC11CA0CBA /* ApplicationServices.framework */; };
@@ -143,6 +143,7 @@
 		A8951ABB0EB1EC2800F4CA45 /* MainAppWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8951AB90EB1EC2800F4CA45 /* MainAppWindow.cpp */; };
 		A8951ABC0EB1EC2800F4CA45 /* ApplicationStartup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8951ABA0EB1EC2800F4CA45 /* ApplicationStartup.cpp */; };
 		A8A2623C10036EFC00E93330 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8A2623B10036EFC00E93330 /* QuartzCore.framework */; };
+		A8CA46931510A4C500469913 /* ugen_Minima.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8CA46911510A4C500469913 /* ugen_Minima.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -434,6 +435,8 @@
 		A8951ABA0EB1EC2800F4CA45 /* ApplicationStartup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApplicationStartup.cpp; sourceTree = "<group>"; };
 		A8A2623B10036EFC00E93330 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A8B652CD0FCFB5B7006DE0C3 /* TutorialDoc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TutorialDoc.h; path = ../doc/TutorialDoc.h; sourceTree = SOURCE_ROOT; };
+		A8CA46911510A4C500469913 /* ugen_Minima.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ugen_Minima.cpp; sourceTree = "<group>"; };
+		A8CA46921510A4C500469913 /* ugen_Minima.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ugen_Minima.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -441,7 +444,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A80AFA110E8E157B006B49BD /* libjuce.a in Frameworks */,
+				A80AFA110E8E157B006B49BD /* libjucedebug.a in Frameworks */,
 				8D0C4E920486CD37000505A6 /* Carbon.framework in Frameworks */,
 				84F30CED08FEAD7A0087E26C /* CoreAudio.framework in Frameworks */,
 				84078F3E09E6B42E004E7BCD /* AGL.framework in Frameworks */,
@@ -536,7 +539,7 @@
 		A80AFA090E8E14EF006B49BD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A80AFA100E8E14EF006B49BD /* libjuce.a */,
+				A80AFA100E8E14EF006B49BD /* libjucedebug.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -576,6 +579,8 @@
 				A8932EE611F26984009E96FA /* ugen_Amplitude.h */,
 				A8932EE711F26984009E96FA /* ugen_DataRecorder.cpp */,
 				A8932EE811F26984009E96FA /* ugen_DataRecorder.h */,
+				A8CA46911510A4C500469913 /* ugen_Minima.cpp */,
+				A8CA46921510A4C500469913 /* ugen_Minima.h */,
 				A8932EE911F26984009E96FA /* ugen_Maxima.cpp */,
 				A8932EEA11F26984009E96FA /* ugen_Maxima.h */,
 				A8932EEB11F26984009E96FA /* ugen_Poll.cpp */,
@@ -1077,10 +1082,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		A80AFA100E8E14EF006B49BD /* libjuce.a */ = {
+		A80AFA100E8E14EF006B49BD /* libjucedebug.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libjuce.a;
+			path = libjucedebug.a;
 			remoteRef = A80AFA0F0E8E14EF006B49BD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1218,6 +1223,7 @@
 				A893306B11F26985009E96FA /* ugen_vdsp_Basics.cpp in Sources */,
 				A893306C11F26985009E96FA /* ugen_vdsp_BinaryOpUGens.cpp in Sources */,
 				A893306D11F26985009E96FA /* ugen_vdsp_UnaryOpUGens.cpp in Sources */,
+				A8CA46931510A4C500469913 /* ugen_Minima.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -57,7 +57,7 @@ void BrownNoiseUGenInternal::processBlock(bool& shouldDelete, const unsigned int
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
 	
-	unsigned long s1, s2, s3;
+	unsigned int s1, s2, s3;
 	random.get(s1, s2, s3);
 	
 	while(numSamplesToProcess--)

@@ -65,7 +65,7 @@ void DustUGenInternal::processBlock(bool& shouldDelete, const unsigned int block
 	float* outputSamples = uGenOutput.getSampleData();
 	float currentDensity = *(inputs[Density].processBlock(shouldDelete, blockID, channel));
 	
-	unsigned long s1, s2, s3;
+	unsigned int s1, s2, s3;
 	random.get(s1, s2, s3);
 	
 	if (currentDensity != prevDensity) {
@@ -102,7 +102,7 @@ void Dust2UGenInternal::processBlock(bool& shouldDelete, const unsigned int bloc
 	float* outputSamples = uGenOutput.getSampleData();
 	float currentDensity = *(inputs[Density].processBlock(shouldDelete, blockID, channel));
 	
-	unsigned long s1, s2, s3;
+	unsigned int s1, s2, s3;
 	random.get(s1, s2, s3);
 	
 	if (currentDensity != prevDensity) {
