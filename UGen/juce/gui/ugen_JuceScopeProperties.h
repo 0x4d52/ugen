@@ -6,7 +6,7 @@
 #include "../ugen_JuceUtility.h"
 #include "../../core/ugen_Bits.h"
 
-// this files is designed only to be included by ugen_JuceScope.cpp
+// this file is designed only to be included by ugen_JuceScope.cpp
 
 static const int labelDecimalPlaces = 10;
 
@@ -156,7 +156,10 @@ public:
 		refresh();
 	}
 	
-	const String getText() const
+#if JUCE_MAJOR_VERSION < 2
+    const
+#endif
+    String getText() const
 	{
 		return String(scope->getYMaximum(), labelDecimalPlaces);
 	}
@@ -179,7 +182,10 @@ public:
 		refresh();
 	}
 	
-	const String getText() const
+#if JUCE_MAJOR_VERSION < 2
+    const
+#endif
+    String getText() const
 	{
 		return String(scope->getLowerMargin(), labelDecimalPlaces);
 	}
@@ -250,7 +256,10 @@ public:
 		refresh();
 	}
 	
-	const String getText() const
+#if JUCE_MAJOR_VERSION < 2
+    const
+#endif
+	String getText() const
 	{
 		return String(scope->getMarkSpacingX(), labelDecimalPlaces);
 	}
@@ -273,7 +282,10 @@ public:
 		refresh();
 	}
 	
-	const String getText() const
+#if JUCE_MAJOR_VERSION < 2
+    const
+#endif
+	String getText() const
 	{
 		return String(scope->getMarkXHeight());
 	}
@@ -296,7 +308,10 @@ public:
 		refresh();
 	}
 	
-	const String getText() const
+#if JUCE_MAJOR_VERSION < 2
+    const
+#endif
+	String getText() const
 	{
 		return String(scope->getTextSizeX(), labelDecimalPlaces);
 	}
@@ -320,7 +335,10 @@ public:
 		refresh();
 	}
 	
-	const String getText() const
+#if JUCE_MAJOR_VERSION < 2
+    const
+#endif
+	String getText() const
 	{
 		return String(scope->getLabelHopX());
 	}
@@ -408,7 +426,10 @@ public:
 		refresh();
 	}
 	
-	const String getText() const
+#if JUCE_MAJOR_VERSION < 2
+    const
+#endif
+    String getText() const
 	{
 		return String(scope->getMarkSpacingY(), labelDecimalPlaces);
 	}
@@ -431,7 +452,10 @@ public:
 		refresh();
 	}
 	
-	const String getText() const
+#if JUCE_MAJOR_VERSION < 2
+    const
+#endif
+    String getText() const
 	{
 		return String(scope->getMarkYWidth());
 	}
@@ -454,7 +478,10 @@ public:
 		refresh();
 	}
 	
-	const String getText() const
+#if JUCE_MAJOR_VERSION < 2
+    const
+#endif
+	String getText() const
 	{
 		return String(scope->getTextSizeY(), labelDecimalPlaces);
 	}
@@ -477,7 +504,10 @@ public:
 		refresh();
 	}
 	
-	const String getText() const
+#if JUCE_MAJOR_VERSION < 2
+    const
+#endif
+    String getText() const
 	{
 		return String(scope->getLabelHopY());
 	}
@@ -500,7 +530,10 @@ public:
 		refresh();
 	}
 	
-	const String getText() const
+#if JUCE_MAJOR_VERSION < 2
+    const
+#endif
+	String getText() const
 	{
 		int places = scope->getDecimalPlacesY();
 		return places == 0 ? "Scientific" :String(places);
@@ -536,7 +569,10 @@ public:
 		refresh();
 	}	
 	
-	const String getText() const
+#if JUCE_MAJOR_VERSION < 2
+    const
+#endif
+	String getText() const
 	{
 		return Colour(scope->getScopeColour(cid).get32bitColour()).toString();
 	}
@@ -560,7 +596,10 @@ public:
 		refresh();
 	}
 	
-	const String getText() const
+#if JUCE_MAJOR_VERSION < 2
+    const
+#endif
+    String getText() const
 	{
 		return String(scope->getTextSizeChannel(), labelDecimalPlaces);
 	}
@@ -616,7 +655,10 @@ public:
 		refresh();
 	}
 	
-	const String getText() const
+#if JUCE_MAJOR_VERSION < 2
+    const
+#endif
+	String getText() const
 	{		
 		const TextArray& labels = scope->getChannelLabels();
 		
@@ -659,7 +701,10 @@ public:
 		refresh();
 	}
 	
-	const String getText() const
+#if JUCE_MAJOR_VERSION < 2
+    const
+#endif
+	String getText() const
 	{
 		return String(scope->getChannelLabelOffset());
 	}
@@ -694,7 +739,10 @@ public:
 		refresh();
 	}	
 	
-	const String getText() const
+#if JUCE_MAJOR_VERSION < 2
+    const
+#endif
+    String getText() const
 	{
 		return Colour(scope->getColour(cid).get32bitColour()).toString();
 	}
@@ -767,7 +815,10 @@ public:
 		refresh();
 	}	
 	
-	const String getText() const
+#if JUCE_MAJOR_VERSION < 2
+    const
+#endif
+	String getText() const
 	{
 		return Colour(point->getLineColour().get32bitColour()).toString();
 	}
@@ -796,9 +847,12 @@ public:
 		
 		point->setColours(point->getLineColour(), Colour::fromString(text.substring(0, 8)));
 		refresh();
-	}	
+	}
 	
-	const String getText() const
+#if JUCE_MAJOR_VERSION < 2
+    const
+#endif
+	String getText() const
 	{
 		return Colour(point->getTextColour().get32bitColour()).toString();
 	}
@@ -820,7 +874,10 @@ public:
 		refresh();
 	}
 	
-	const String getText() const
+#if JUCE_MAJOR_VERSION < 2
+    const
+#endif
+	String getText() const
 	{
 		return String((const char*)point->getLabel());
 	}
@@ -842,7 +899,10 @@ public:
 		refresh();
 	}
 	
-	const String getText() const
+#if JUCE_MAJOR_VERSION < 2
+    const
+#endif
+	String getText() const
 	{
 		return String((const char*)point->getComment());
 	}
@@ -865,7 +925,10 @@ public:
 		refresh();
 	}
 	
-	const String getText() const
+#if JUCE_MAJOR_VERSION < 2
+    const
+#endif
+	String getText() const
 	{
 		return String(point->getSampleOffset());
 	}
@@ -897,9 +960,12 @@ public:
 						   region->getTextColour(),
 						   region->getFillColour());
 		refresh();
-	}	
+	}
 	
-	const String getText() const
+#if JUCE_MAJOR_VERSION < 2
+    const
+#endif
+	String getText() const
 	{
 		return Colour(region->getStartColour().get32bitColour()).toString();
 	}
@@ -933,7 +999,10 @@ public:
 		refresh();
 	}	
 	
-	const String getText() const
+#if JUCE_MAJOR_VERSION < 2
+    const
+#endif
+	String getText() const
 	{
 		return Colour(region->getEndColour().get32bitColour()).toString();
 	}
@@ -965,9 +1034,12 @@ public:
 						   Colour::fromString(text.substring(0, 8)),
 						   region->getFillColour());
 		refresh();
-	}	
+	}
 	
-	const String getText() const
+#if JUCE_MAJOR_VERSION < 2
+    const
+#endif
+	String getText() const
 	{
 		return Colour(region->getTextColour().get32bitColour()).toString();
 	}
@@ -1001,7 +1073,10 @@ public:
 		refresh();
 	}	
 	
-	const String getText() const
+#if JUCE_MAJOR_VERSION < 2
+    const
+#endif
+	String getText() const
 	{
 		return Colour(region->getFillColour().get32bitColour()).toString();
 	}

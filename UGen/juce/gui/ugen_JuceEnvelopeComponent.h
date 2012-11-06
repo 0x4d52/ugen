@@ -344,8 +344,12 @@ private:
 	class CurveSlider : public Slider
 	{
 	public:
-		CurveSlider() : Slider(T("CurveSlider")) { }
-		const String getTextFromValue (double value)
+		CurveSlider() : Slider("CurveSlider") { }
+        
+#if JUCE_MAJOR_VERSION < 2
+        const
+#endif
+        String getTextFromValue (double value)
 		{
 			value = cubed(value);
 			value = linlin(value, -1.0, 1.0, -50.0, 50.0);

@@ -138,37 +138,37 @@ void EnvelopeHandleComponent::updateLegend()
 	if(width >= 165) {
 		
 		if(env && env->isLoopNode(this))
-			text << T("(Loop) ");
+			text << "(Loop) ";
 		else if(env && env->isReleaseNode(this))
-			text << T("(Release) ");
+			text << "(Release) ";
 		else
-			text << T("Point ");
+			text << "Point ";
 		
 		places = 3;
 	}
 	else if(width >= 140) {
-		text << T("Point ");
+		text << "Point ";
 		places = 3;
 	} else if(width >= 115) {
-		text << T("Pt ");
+		text << "Pt ";
 		places = 3;
 	} else if(width >= 100) {
-		text << T("Pt ");
+		text << "Pt ";
 		places = 2;
 	} else if(width >= 85) {
-		text << T("Pt ");
+		text << "Pt ";
 		places = 1;
 	} else if(width >= 65) {
-		text << T("P ");
+		text << "P ";
 		places = 1;
 	} else {
 		places = 1;
 	}
 	
 	text << (getHandleIndex())
-		 << T(": ")
+		 << ": "
 		 << String(legend->mapTime(time), places) << legend->getTimeUnits()
-		 << T(", ") 
+		 << ", "
 		 << String(legend->mapValue(value), places) << legend->getValueUnits();
 	
 	getParentComponent()->setLegendText(text);
@@ -1004,7 +1004,7 @@ void EnvelopeComponent::removeHandle(EnvelopeHandleComponent* thisHandle)
 				loopNode--;
 		}
 		
-		handles.removeValue(thisHandle);
+		handles.removeFirstMatchingValue(thisHandle);
 		removeChildComponent(thisHandle);
 		delete thisHandle;
 		sendChangeMessage();
@@ -1301,7 +1301,7 @@ const RGBAColour& EnvelopeComponent::getEnvColour(const EnvColours which) const 
 EnvelopeLegendComponent::EnvelopeLegendComponent(Text const& _defaultText)
 :	defaultText(_defaultText)
 {
-	addAndMakeVisible(text = new Label(T("legend"), defaultText));
+	addAndMakeVisible(text = new Label("legend", defaultText));
 	setBounds(0, 0, 100, 16); // the critical thing is the height which should stay constant
 }
 
@@ -1407,11 +1407,11 @@ EnvelopeCurvePopup::EnvelopeCurvePopup(EnvelopeHandleComponent* handleToEdit)
 	slider->setValue(curveValue, false);
 	
 	
-	addAndMakeVisible(combo = new ComboBox(T("combo")));	
-	combo->addItem(T("Empty"),			idOffset + (int)EnvCurve::Empty);
-	combo->addItem(T("Numerical..."),	idOffset + (int)EnvCurve::Numerical);
-	combo->addItem(T("Step"),			idOffset + (int)EnvCurve::Step);
-	combo->addItem(T("Linear"),			idOffset + (int)EnvCurve::Linear);
+	addAndMakeVisible(combo = new ComboBox("combo"));	
+	combo->addItem("Empty",			idOffset + (int)EnvCurve::Empty);
+	combo->addItem("Numerical...",	idOffset + (int)EnvCurve::Numerical);
+	combo->addItem("Step",			idOffset + (int)EnvCurve::Step);
+	combo->addItem("Linear",		idOffset + (int)EnvCurve::Linear);
 	
 	EnvelopeComponent *parent = handleToEdit->getParentComponent();
 	double min, max;
@@ -1420,11 +1420,11 @@ EnvelopeCurvePopup::EnvelopeCurvePopup(EnvelopeHandleComponent* handleToEdit)
 	if(((min > 0.0) && (max > 0.0)) || ((min < 0.0) && (min < 0.0)))
 	{
 		// exponential can't cross zero
-		combo->addItem(T("Exponential"),	idOffset + (int)EnvCurve::Exponential);
+		combo->addItem("Exponential",	idOffset + (int)EnvCurve::Exponential);
 	}
 	
-	combo->addItem(T("Sine"),			idOffset + (int)EnvCurve::Sine);
-	combo->addItem(T("Welch"),			idOffset + (int)EnvCurve::Welch);
+	combo->addItem("Sine",			idOffset + (int)EnvCurve::Sine);
+	combo->addItem("Welch",			idOffset + (int)EnvCurve::Welch);
 	
 	combo->addListener(this);
 	
@@ -1523,16 +1523,16 @@ EnvelopeNodePopup::EnvelopeNodePopup(EnvelopeHandleComponent* handleToEdit)
 {
 	resetCounter();
 	
-	addChildComponent(setLoopButton = new TextButton(T("Set Y to Loop")));
-	addChildComponent(setReleaseButton = new TextButton(T("Set Y to Release")));
+	addChildComponent(setLoopButton = new TextButton("Set Y to Loop"));
+	addChildComponent(setReleaseButton = new TextButton("Set Y to Release"));
 	setLoopButton->addListener(this);
 	setReleaseButton->addListener(this);
 	
-	addAndMakeVisible(combo = new ComboBox(T("combo")));	
-	combo->addItem(T("Normal"),			idOffset + (int)Normal);
-	combo->addItem(T("Release"),		idOffset + (int)Release);
-	combo->addItem(T("Loop"),			idOffset + (int)Loop);
-	combo->addItem(T("Release & Loop"),	idOffset + (int)ReleaseAndLoop);
+	addAndMakeVisible(combo = new ComboBox("combo"));
+	combo->addItem("Normal",            idOffset + (int)Normal);
+	combo->addItem("Release",           idOffset + (int)Release);
+	combo->addItem("Loop",              idOffset + (int)Loop);
+	combo->addItem("Release & Loop",	idOffset + (int)ReleaseAndLoop);
 	combo->addListener(this);
 	
 	EnvelopeComponent* env = handle->getParentComponent();

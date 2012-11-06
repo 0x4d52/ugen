@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="rqeOXs" name="UGenIR" projectType="audioplug" version="0.1.0"
+              buildVST="1" buildAU="1" pluginName="UGen++ IR" pluginDesc="UGen++ Impulse Response Convolution Plug-In"
+              pluginManufacturer="miajo" pluginManufacturerCode="Miaj" pluginCode="UGir"
+              pluginChannelConfigs="{2, 2}" pluginIsSynth="0" pluginWantsMidiIn="0"
+              pluginProducesMidiOut="0" pluginSilenceInIsSilenceOut="0" pluginTailLength="0"
+              pluginEditorRequiresKeys="0" pluginAUExportPrefix="ModulesUGenPlugAU"
+              pluginAUViewClass="ModulesUGenPlugAU_V1" pluginRTASCategory=""
+              bundleIdentifier="uk.co.miajo.UGenIR" aaxIdentifier="com.yourcompany.ModulesUGenPlug"
+              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="3.0.0"
+              defines="UGEN_INTROJUCER=1 UGEN_CONVOLUTION=1 UGEN_VDSP=1" companyName="miajo">
+  <MAINGROUP id="vmg41D" name="UGenIR">
+    <GROUP id="{9D982FBD-C253-99D0-A0A4-5C6D8226955C}" name="Source">
+      <GROUP id="{BAAF5711-D7DD-364D-91BD-18F0BE00F45A}" name="UGen">
+        <GROUP id="{0A20A77E-8915-2C55-42F8-A68895E9EBFA}" name="analysis">
+          <FILE id="RkXrc8" name="ugen_Amplitude.cpp" compile="1" resource="0"
+                file="../../UGen/analysis/ugen_Amplitude.cpp"/>
+          <FILE id="kjBnMv" name="ugen_Amplitude.h" compile="0" resource="0"
+                file="../../UGen/analysis/ugen_Amplitude.h"/>
+          <FILE id="LqFwZC" name="ugen_DataRecorder.cpp" compile="1" resource="0"
+                file="../../UGen/analysis/ugen_DataRecorder.cpp"/>
+          <FILE id="bGeLwJ" name="ugen_DataRecorder.h" compile="0" resource="0"
+                file="../../UGen/analysis/ugen_DataRecorder.h"/>
+          <FILE id="NaB2mT" name="ugen_Maxima.cpp" compile="1" resource="0" file="../../UGen/analysis/ugen_Maxima.cpp"/>
+          <FILE id="WHZTcZ" name="ugen_Maxima.h" compile="0" resource="0" file="../../UGen/analysis/ugen_Maxima.h"/>
+          <FILE id="YB1rWA" name="ugen_Minima.cpp" compile="1" resource="0" file="../../UGen/analysis/ugen_Minima.cpp"/>
+          <FILE id="Hb9NXS" name="ugen_Minima.h" compile="0" resource="0" file="../../UGen/analysis/ugen_Minima.h"/>
+          <FILE id="HVm78L" name="ugen_Poll.cpp" compile="1" resource="0" file="../../UGen/analysis/ugen_Poll.cpp"/>
+          <FILE id="MGu2Ni" name="ugen_Poll.h" compile="0" resource="0" file="../../UGen/analysis/ugen_Poll.h"/>
+          <FILE id="BKUyuD" name="ugen_Schmidt.cpp" compile="1" resource="0"
+                file="../../UGen/analysis/ugen_Schmidt.cpp"/>
+          <FILE id="o6Q0Kk" name="ugen_Schmidt.h" compile="0" resource="0" file="../../UGen/analysis/ugen_Schmidt.h"/>
+          <FILE id="DcoBqu" name="ugen_Trig.cpp" compile="1" resource="0" file="../../UGen/analysis/ugen_Trig.cpp"/>
+          <FILE id="wcs4pC" name="ugen_Trig.h" compile="0" resource="0" file="../../UGen/analysis/ugen_Trig.h"/>
+          <FILE id="DqnMtU" name="ugen_TrigProcess.cpp" compile="1" resource="0"
+                file="../../UGen/analysis/ugen_TrigProcess.cpp"/>
+          <FILE id="qABmCQ" name="ugen_TrigProcess.h" compile="0" resource="0"
+                file="../../UGen/analysis/ugen_TrigProcess.h"/>
+        </GROUP>
+        <GROUP id="{4A68FFE3-7CF8-8A5F-1C7E-2A60DD659100}" name="android">
+          <FILE id="MCukU1" name="ugen_AndroidUGenAudio.cpp" compile="1" resource="0"
+                file="../../UGen/android/ugen_AndroidUGenAudio.cpp"/>
+          <FILE id="kAl9Pe" name="ugen_UGenAndroid.cpp" compile="1" resource="0"
+                file="../../UGen/android/ugen_UGenAndroid.cpp"/>
+          <FILE id="cAvGnN" name="ugen_UGenAndroid.h" compile="0" resource="0"
+                file="../../UGen/android/ugen_UGenAndroid.h"/>
+        </GROUP>
+        <GROUP id="{72D627E7-BD24-76A5-A0D6-E1AA375BA98C}" name="basics">
+          <FILE id="dpK70Q" name="ugen_BinaryOpUGens.cpp" compile="1" resource="0"
+                file="../../UGen/basics/ugen_BinaryOpUGens.cpp"/>
+          <FILE id="VPhlFQ" name="ugen_BinaryOpUGens.h" compile="0" resource="0"
+                file="../../UGen/basics/ugen_BinaryOpUGens.h"/>
+          <FILE id="zV2Yg3" name="ugen_Chain.cpp" compile="1" resource="0" file="../../UGen/basics/ugen_Chain.cpp"/>
+          <FILE id="PrHSD9" name="ugen_Chain.h" compile="0" resource="0" file="../../UGen/basics/ugen_Chain.h"/>
+          <FILE id="xkIuyG" name="ugen_InlineBinaryOps.h" compile="0" resource="0"
+                file="../../UGen/basics/ugen_InlineBinaryOps.h"/>
+          <FILE id="YDdhFB" name="ugen_InlineUnaryOps.h" compile="0" resource="0"
+                file="../../UGen/basics/ugen_InlineUnaryOps.h"/>
+          <FILE id="W8KUei" name="ugen_MappingUGens.cpp" compile="1" resource="0"
+                file="../../UGen/basics/ugen_MappingUGens.cpp"/>
+          <FILE id="Tv8uZr" name="ugen_MappingUGens.h" compile="0" resource="0"
+                file="../../UGen/basics/ugen_MappingUGens.h"/>
+          <FILE id="DZTHcA" name="ugen_MixUGen.cpp" compile="1" resource="0"
+                file="../../UGen/basics/ugen_MixUGen.cpp"/>
+          <FILE id="IC6Fzp" name="ugen_MixUGen.h" compile="0" resource="0" file="../../UGen/basics/ugen_MixUGen.h"/>
+          <FILE id="NNKlL2" name="ugen_MulAdd.cpp" compile="1" resource="0" file="../../UGen/basics/ugen_MulAdd.cpp"/>
+          <FILE id="eE4Q2A" name="ugen_MulAdd.h" compile="0" resource="0" file="../../UGen/basics/ugen_MulAdd.h"/>
+          <FILE id="Zag3dq" name="ugen_Pause.cpp" compile="1" resource="0" file="../../UGen/basics/ugen_Pause.cpp"/>
+          <FILE id="kworJF" name="ugen_Pause.h" compile="0" resource="0" file="../../UGen/basics/ugen_Pause.h"/>
+          <FILE id="xlbLKz" name="ugen_Plug.cpp" compile="1" resource="0" file="../../UGen/basics/ugen_Plug.cpp"/>
+          <FILE id="hbfCC4" name="ugen_Plug.h" compile="0" resource="0" file="../../UGen/basics/ugen_Plug.h"/>
+          <FILE id="iIV7nS" name="ugen_RawInputUGens.cpp" compile="1" resource="0"
+                file="../../UGen/basics/ugen_RawInputUGens.cpp"/>
+          <FILE id="qVrVTE" name="ugen_RawInputUGens.h" compile="0" resource="0"
+                file="../../UGen/basics/ugen_RawInputUGens.h"/>
+          <FILE id="el73HI" name="ugen_ScalarUGens.cpp" compile="1" resource="0"
+                file="../../UGen/basics/ugen_ScalarUGens.cpp"/>
+          <FILE id="Ukg71U" name="ugen_ScalarUGens.h" compile="0" resource="0"
+                file="../../UGen/basics/ugen_ScalarUGens.h"/>
+          <FILE id="Hj1avv" name="ugen_Temporary.h" compile="0" resource="0"
+                file="../../UGen/basics/ugen_Temporary.h"/>
+          <FILE id="ShVqBe" name="ugen_Thru.cpp" compile="1" resource="0" file="../../UGen/basics/ugen_Thru.cpp"/>
+          <FILE id="epXMQm" name="ugen_Thru.h" compile="0" resource="0" file="../../UGen/basics/ugen_Thru.h"/>
+          <FILE id="nPAgRE" name="ugen_UnaryOpUGens.cpp" compile="1" resource="0"
+                file="../../UGen/basics/ugen_UnaryOpUGens.cpp"/>
+          <FILE id="lU9vCT" name="ugen_UnaryOpUGens.h" compile="0" resource="0"
+                file="../../UGen/basics/ugen_UnaryOpUGens.h"/>
+          <FILE id="rOMEKK" name="ugen_WrapFold.cpp" compile="1" resource="0"
+                file="../../UGen/basics/ugen_WrapFold.cpp"/>
+          <FILE id="UolKCH" name="ugen_WrapFold.h" compile="0" resource="0" file="../../UGen/basics/ugen_WrapFold.h"/>
+        </GROUP>
+        <GROUP id="{711B155F-5966-DE5B-5EA5-702EBB0D696C}" name="buffers">
+          <FILE id="VbzvkR" name="ugen_Buffer.cpp" compile="1" resource="0" file="../../UGen/buffers/ugen_Buffer.cpp"/>
+          <FILE id="qPWFYu" name="ugen_Buffer.h" compile="0" resource="0" file="../../UGen/buffers/ugen_Buffer.h"/>
+          <FILE id="aWMR8I" name="ugen_IntBuffer.cpp" compile="1" resource="0"
+                file="../../UGen/buffers/ugen_IntBuffer.cpp"/>
+          <FILE id="Hm2ckt" name="ugen_IntBuffer.h" compile="0" resource="0"
+                file="../../UGen/buffers/ugen_IntBuffer.h"/>
+          <FILE id="wkZKSr" name="ugen_PlayBuf.cpp" compile="1" resource="0"
+                file="../../UGen/buffers/ugen_PlayBuf.cpp"/>
+          <FILE id="Z9A2vo" name="ugen_PlayBuf.h" compile="0" resource="0" file="../../UGen/buffers/ugen_PlayBuf.h"/>
+          <FILE id="T9NNFr" name="ugen_XFadePlayBuf.cpp" compile="1" resource="0"
+                file="../../UGen/buffers/ugen_XFadePlayBuf.cpp"/>
+          <FILE id="v918yD" name="ugen_XFadePlayBuf.h" compile="0" resource="0"
+                file="../../UGen/buffers/ugen_XFadePlayBuf.h"/>
+        </GROUP>
+        <GROUP id="{7C0568E8-6A17-3BB2-65B2-6DB5C4327E81}" name="convolution">
+          <FILE id="f1Rra4" name="ugen_Convolution.cpp" compile="1" resource="0"
+                file="../../UGen/convolution/ugen_Convolution.cpp"/>
+          <FILE id="QZJJSX" name="ugen_Convolution.h" compile="0" resource="0"
+                file="../../UGen/convolution/ugen_Convolution.h"/>
+          <FILE id="qhWCy5" name="ugen_Correlation.cpp" compile="1" resource="0"
+                file="../../UGen/convolution/ugen_Correlation.cpp"/>
+          <FILE id="obSbnQ" name="ugen_Correlation.h" compile="0" resource="0"
+                file="../../UGen/convolution/ugen_Correlation.h"/>
+          <FILE id="y5Wlly" name="ugen_HRTF.cpp" compile="1" resource="0" file="../../UGen/convolution/ugen_HRTF.cpp"/>
+          <FILE id="VgnMDl" name="ugen_HRTF.h" compile="0" resource="0" file="../../UGen/convolution/ugen_HRTF.h"/>
+          <FILE id="cDWoQh" name="ugen_SimpleConvolution.cpp" compile="1" resource="0"
+                file="../../UGen/convolution/ugen_SimpleConvolution.cpp"/>
+          <FILE id="aieLTL" name="ugen_SimpleConvolution.h" compile="0" resource="0"
+                file="../../UGen/convolution/ugen_SimpleConvolution.h"/>
+        </GROUP>
+        <GROUP id="{E2CAB1DC-FC3A-E696-7214-6DEBBE7ACEF1}" name="core">
+          <FILE id="KrXi3k" name="ugen_Arrays.cpp" compile="1" resource="0" file="../../UGen/core/ugen_Arrays.cpp"/>
+          <FILE id="wF984j" name="ugen_Arrays.h" compile="0" resource="0" file="../../UGen/core/ugen_Arrays.h"/>
+          <FILE id="EV73N6" name="ugen_Bits.cpp" compile="1" resource="0" file="../../UGen/core/ugen_Bits.cpp"/>
+          <FILE id="t9qY0q" name="ugen_Bits.h" compile="0" resource="0" file="../../UGen/core/ugen_Bits.h"/>
+          <FILE id="czSEdx" name="ugen_Collections.cpp" compile="1" resource="0"
+                file="../../UGen/core/ugen_Collections.cpp"/>
+          <FILE id="qxujCl" name="ugen_Collections.h" compile="0" resource="0"
+                file="../../UGen/core/ugen_Collections.h"/>
+          <FILE id="HRvsA8" name="ugen_Constants.h" compile="0" resource="0"
+                file="../../UGen/core/ugen_Constants.h"/>
+          <FILE id="mWu2Y2" name="ugen_Deleter.cpp" compile="1" resource="0"
+                file="../../UGen/core/ugen_Deleter.cpp"/>
+          <FILE id="RLdacH" name="ugen_Deleter.h" compile="0" resource="0" file="../../UGen/core/ugen_Deleter.h"/>
+          <FILE id="SkINDJ" name="ugen_ExternalControlSource.cpp" compile="1"
+                resource="0" file="../../UGen/core/ugen_ExternalControlSource.cpp"/>
+          <FILE id="sSZg8P" name="ugen_ExternalControlSource.h" compile="0" resource="0"
+                file="../../UGen/core/ugen_ExternalControlSource.h"/>
+          <FILE id="Ht66cA" name="ugen_Random.cpp" compile="1" resource="0" file="../../UGen/core/ugen_Random.cpp"/>
+          <FILE id="NP8Yuq" name="ugen_Random.h" compile="0" resource="0" file="../../UGen/core/ugen_Random.h"/>
+          <FILE id="BzHDft" name="ugen_SmartPointer.cpp" compile="1" resource="0"
+                file="../../UGen/core/ugen_SmartPointer.cpp"/>
+          <FILE id="NyiFOO" name="ugen_SmartPointer.h" compile="0" resource="0"
+                file="../../UGen/core/ugen_SmartPointer.h"/>
+          <FILE id="wWjoPi" name="ugen_StandardHeader.h" compile="0" resource="0"
+                file="../../UGen/core/ugen_StandardHeader.h"/>
+          <FILE id="eT4XVg" name="ugen_Text.cpp" compile="1" resource="0" file="../../UGen/core/ugen_Text.cpp"/>
+          <FILE id="egHV3P" name="ugen_Text.h" compile="0" resource="0" file="../../UGen/core/ugen_Text.h"/>
+          <FILE id="INLOnK" name="ugen_TextFile.cpp" compile="1" resource="0"
+                file="../../UGen/core/ugen_TextFile.cpp"/>
+          <FILE id="psuSdd" name="ugen_TextFile.h" compile="0" resource="0" file="../../UGen/core/ugen_TextFile.h"/>
+          <FILE id="cSfMap" name="ugen_UGen.cpp" compile="1" resource="0" file="../../UGen/core/ugen_UGen.cpp"/>
+          <FILE id="c3bLhK" name="ugen_UGen.h" compile="0" resource="0" file="../../UGen/core/ugen_UGen.h"/>
+          <FILE id="EHWJb4" name="ugen_UGenArray.cpp" compile="1" resource="0"
+                file="../../UGen/core/ugen_UGenArray.cpp"/>
+          <FILE id="otjTkO" name="ugen_UGenArray.h" compile="0" resource="0"
+                file="../../UGen/core/ugen_UGenArray.h"/>
+          <FILE id="DWP8Su" name="ugen_UGenInternal.cpp" compile="1" resource="0"
+                file="../../UGen/core/ugen_UGenInternal.cpp"/>
+          <FILE id="GJCeM4" name="ugen_UGenInternal.h" compile="0" resource="0"
+                file="../../UGen/core/ugen_UGenInternal.h"/>
+          <FILE id="uZuZvN" name="ugen_Value.cpp" compile="1" resource="0" file="../../UGen/core/ugen_Value.cpp"/>
+          <FILE id="A3owp6" name="ugen_Value.h" compile="0" resource="0" file="../../UGen/core/ugen_Value.h"/>
+        </GROUP>
+        <GROUP id="{656687AC-121B-E5C0-1F38-E3A2380B40A0}" name="delays">
+          <FILE id="vgD3aD" name="ugen_BlockDelay.cpp" compile="1" resource="0"
+                file="../../UGen/delays/ugen_BlockDelay.cpp"/>
+          <FILE id="Xk1j6L" name="ugen_BlockDelay.h" compile="0" resource="0"
+                file="../../UGen/delays/ugen_BlockDelay.h"/>
+          <FILE id="c50QNS" name="ugen_Delay.cpp" compile="1" resource="0" file="../../UGen/delays/ugen_Delay.cpp"/>
+          <FILE id="iecGj6" name="ugen_Delay.h" compile="0" resource="0" file="../../UGen/delays/ugen_Delay.h"/>
+        </GROUP>
+        <GROUP id="{C084166A-F789-8103-E38A-3294ECD77BEC}" name="envelopes">
+          <FILE id="VlyIQ3" name="ugen_ASR.cpp" compile="1" resource="0" file="../../UGen/envelopes/ugen_ASR.cpp"/>
+          <FILE id="qstzK1" name="ugen_ASR.h" compile="0" resource="0" file="../../UGen/envelopes/ugen_ASR.h"/>
+          <FILE id="gVVoJn" name="ugen_Env.cpp" compile="1" resource="0" file="../../UGen/envelopes/ugen_Env.cpp"/>
+          <FILE id="uMEeLO" name="ugen_Env.h" compile="0" resource="0" file="../../UGen/envelopes/ugen_Env.h"/>
+          <FILE id="KB6NM8" name="ugen_EnvCurve.cpp" compile="1" resource="0"
+                file="../../UGen/envelopes/ugen_EnvCurve.cpp"/>
+          <FILE id="wJFbzJ" name="ugen_EnvCurve.h" compile="0" resource="0" file="../../UGen/envelopes/ugen_EnvCurve.h"/>
+          <FILE id="i2hF1E" name="ugen_EnvGen.cpp" compile="1" resource="0" file="../../UGen/envelopes/ugen_EnvGen.cpp"/>
+          <FILE id="TjUaUo" name="ugen_EnvGen.h" compile="0" resource="0" file="../../UGen/envelopes/ugen_EnvGen.h"/>
+          <FILE id="bXyyQm" name="ugen_Lines.cpp" compile="1" resource="0" file="../../UGen/envelopes/ugen_Lines.cpp"/>
+          <FILE id="G7E7qu" name="ugen_Lines.h" compile="0" resource="0" file="../../UGen/envelopes/ugen_Lines.h"/>
+        </GROUP>
+        <GROUP id="{F154255C-68D3-1391-C8A1-FD7056D35FE4}" name="fft">
+          <FILE id="DUkgaR" name="ugen_FFTEngine.cpp" compile="1" resource="0"
+                file="../../UGen/fft/ugen_FFTEngine.cpp"/>
+          <FILE id="heU5fr" name="ugen_FFTEngine.h" compile="0" resource="0"
+                file="../../UGen/fft/ugen_FFTEngine.h"/>
+          <FILE id="ZvWPI0" name="ugen_FFTEngineInternal.cpp" compile="1" resource="0"
+                file="../../UGen/fft/ugen_FFTEngineInternal.cpp"/>
+          <FILE id="YRFytF" name="ugen_FFTEngineInternal.h" compile="0" resource="0"
+                file="../../UGen/fft/ugen_FFTEngineInternal.h"/>
+          <FILE id="IuoTIn" name="ugen_FFTMagnitude.cpp" compile="1" resource="0"
+                file="../../UGen/fft/ugen_FFTMagnitude.cpp"/>
+          <FILE id="e5HGsZ" name="ugen_FFTMagnitude.h" compile="0" resource="0"
+                file="../../UGen/fft/ugen_FFTMagnitude.h"/>
+          <FILE id="zrO6gB" name="ugen_FFTMagnitudeSelection.cpp" compile="1"
+                resource="0" file="../../UGen/fft/ugen_FFTMagnitudeSelection.cpp"/>
+          <FILE id="ijiTmp" name="ugen_FFTMagnitudeSelection.h" compile="0" resource="0"
+                file="../../UGen/fft/ugen_FFTMagnitudeSelection.h"/>
+        </GROUP>
+        <GROUP id="{6FAB728C-5E3D-1977-BFE6-DB303B1CDACC}" name="fftreal">
+          <FILE id="Lhiyeb" name="Array.h" compile="0" resource="0" file="../../UGen/fftreal/Array.h"/>
+          <FILE id="HRE97M" name="Array.hpp" compile="0" resource="0" file="../../UGen/fftreal/Array.hpp"/>
+          <FILE id="tC6f6k" name="def.h" compile="0" resource="0" file="../../UGen/fftreal/def.h"/>
+          <FILE id="A629FF" name="DynArray.h" compile="0" resource="0" file="../../UGen/fftreal/DynArray.h"/>
+          <FILE id="lblZI6" name="DynArray.hpp" compile="0" resource="0" file="../../UGen/fftreal/DynArray.hpp"/>
+          <FILE id="HlXLju" name="FFTReal.h" compile="0" resource="0" file="../../UGen/fftreal/FFTReal.h"/>
+          <FILE id="FTACRm" name="FFTReal.hpp" compile="0" resource="0" file="../../UGen/fftreal/FFTReal.hpp"/>
+          <FILE id="qyuR30" name="FFTRealFixLen.h" compile="0" resource="0" file="../../UGen/fftreal/FFTRealFixLen.h"/>
+          <FILE id="jEkxZa" name="FFTRealFixLen.hpp" compile="0" resource="0"
+                file="../../UGen/fftreal/FFTRealFixLen.hpp"/>
+          <FILE id="LRD35j" name="FFTRealFixLenParam.h" compile="0" resource="0"
+                file="../../UGen/fftreal/FFTRealFixLenParam.h"/>
+          <FILE id="YhOp3k" name="FFTRealPassDirect.h" compile="0" resource="0"
+                file="../../UGen/fftreal/FFTRealPassDirect.h"/>
+          <FILE id="TXaTBQ" name="FFTRealPassDirect.hpp" compile="0" resource="0"
+                file="../../UGen/fftreal/FFTRealPassDirect.hpp"/>
+          <FILE id="yKtWCM" name="FFTRealPassInverse.h" compile="0" resource="0"
+                file="../../UGen/fftreal/FFTRealPassInverse.h"/>
+          <FILE id="mrRZfk" name="FFTRealPassInverse.hpp" compile="0" resource="0"
+                file="../../UGen/fftreal/FFTRealPassInverse.hpp"/>
+          <FILE id="HiwP7J" name="FFTRealSelect.h" compile="0" resource="0" file="../../UGen/fftreal/FFTRealSelect.h"/>
+          <FILE id="dqEp1L" name="FFTRealSelect.hpp" compile="0" resource="0"
+                file="../../UGen/fftreal/FFTRealSelect.hpp"/>
+          <FILE id="dGE9HH" name="FFTRealUseTrigo.h" compile="0" resource="0"
+                file="../../UGen/fftreal/FFTRealUseTrigo.h"/>
+          <FILE id="zVtr5T" name="FFTRealUseTrigo.hpp" compile="0" resource="0"
+                file="../../UGen/fftreal/FFTRealUseTrigo.hpp"/>
+          <FILE id="sjKg23" name="OscSinCos.h" compile="0" resource="0" file="../../UGen/fftreal/OscSinCos.h"/>
+          <FILE id="ff1Hvr" name="OscSinCos.hpp" compile="0" resource="0" file="../../UGen/fftreal/OscSinCos.hpp"/>
+        </GROUP>
+        <GROUP id="{30431167-EBF6-4D13-20EB-961A9B96295D}" name="filters">
+          <GROUP id="{9BDB845C-B0E0-6E54-EBE0-7A3D33305319}" name="control">
+            <FILE id="YlMYL3" name="ugen_Decay.cpp" compile="1" resource="0" file="../../UGen/filters/control/ugen_Decay.cpp"/>
+            <FILE id="EcvGVO" name="ugen_Decay.h" compile="0" resource="0" file="../../UGen/filters/control/ugen_Decay.h"/>
+            <FILE id="AVDuLU" name="ugen_Lag.cpp" compile="1" resource="0" file="../../UGen/filters/control/ugen_Lag.cpp"/>
+            <FILE id="LsiqlZ" name="ugen_Lag.h" compile="0" resource="0" file="../../UGen/filters/control/ugen_Lag.h"/>
+          </GROUP>
+          <GROUP id="{1EF569E5-26C0-46C1-E385-FE44EF6EC9D5}" name="dynamics">
+            <FILE id="rYghm7" name="ugen_Normaliser.cpp" compile="1" resource="0"
+                  file="../../UGen/filters/dynamics/ugen_Normaliser.cpp"/>
+            <FILE id="dCwyEv" name="ugen_Normaliser.h" compile="0" resource="0"
+                  file="../../UGen/filters/dynamics/ugen_Normaliser.h"/>
+          </GROUP>
+          <GROUP id="{7EC708A9-C05A-E556-3D7A-FB0E9E57A319}" name="simple">
+            <FILE id="VUMakU" name="ugen_HPF.cpp" compile="1" resource="0" file="../../UGen/filters/simple/ugen_HPF.cpp"/>
+            <FILE id="UuPfeY" name="ugen_HPF.h" compile="0" resource="0" file="../../UGen/filters/simple/ugen_HPF.h"/>
+            <FILE id="qBz898" name="ugen_LPF.cpp" compile="1" resource="0" file="../../UGen/filters/simple/ugen_LPF.cpp"/>
+            <FILE id="KJ6FWV" name="ugen_LPF.h" compile="0" resource="0" file="../../UGen/filters/simple/ugen_LPF.h"/>
+          </GROUP>
+          <FILE id="cRiY5a" name="ugen_BEQ.cpp" compile="1" resource="0" file="../../UGen/filters/ugen_BEQ.cpp"/>
+          <FILE id="jHYwe7" name="ugen_BEQ.h" compile="0" resource="0" file="../../UGen/filters/ugen_BEQ.h"/>
+          <FILE id="D3x4is" name="ugen_LeakDC.cpp" compile="1" resource="0" file="../../UGen/filters/ugen_LeakDC.cpp"/>
+          <FILE id="FYUlMc" name="ugen_LeakDC.h" compile="0" resource="0" file="../../UGen/filters/ugen_LeakDC.h"/>
+          <FILE id="aepXuP" name="ugen_SOS.cpp" compile="1" resource="0" file="../../UGen/filters/ugen_SOS.cpp"/>
+          <FILE id="rnDRD1" name="ugen_SOS.h" compile="0" resource="0" file="../../UGen/filters/ugen_SOS.h"/>
+        </GROUP>
+        <GROUP id="{37679D24-5E75-BAD3-F82C-8E876A61079F}" name="gui">
+          <FILE id="DIrTpJ" name="ugen_GUI.h" compile="0" resource="0" file="../../UGen/gui/ugen_GUI.h"/>
+          <FILE id="W9neP0" name="ugen_Scope.cpp" compile="1" resource="0" file="../../UGen/gui/ugen_Scope.cpp"/>
+          <FILE id="Xq9Gmu" name="ugen_Scope.h" compile="0" resource="0" file="../../UGen/gui/ugen_Scope.h"/>
+        </GROUP>
+        <GROUP id="{24EABE7E-055E-552B-E948-27EF4DEFA751}" name="iphone">
+          <GROUP id="{A6C2BC80-86F2-73D0-F427-A1C2A58D4382}" name="armasm">
+            <FILE id="qQHmUQ" name="ugen_neon_Basics.cpp" compile="1" resource="0"
+                  file="../../UGen/iphone/armasm/ugen_neon_Basics.cpp"/>
+            <FILE id="K4NyVp" name="ugen_neon_BinaryOpUGens.cpp" compile="1" resource="0"
+                  file="../../UGen/iphone/armasm/ugen_neon_BinaryOpUGens.cpp"/>
+            <FILE id="SunE1y" name="ugen_neon_FFTUtilities.h" compile="0" resource="0"
+                  file="../../UGen/iphone/armasm/ugen_neon_FFTUtilities.h"/>
+            <FILE id="qdTDZL" name="ugen_neon_Filters.cpp" compile="1" resource="0"
+                  file="../../UGen/iphone/armasm/ugen_neon_Filters.cpp"/>
+            <FILE id="uvz2ay" name="ugen_neon_UnaryOpUGens.cpp" compile="1" resource="0"
+                  file="../../UGen/iphone/armasm/ugen_neon_UnaryOpUGens.cpp"/>
+            <FILE id="sHTawe" name="ugen_neon_Utilities.cpp" compile="1" resource="0"
+                  file="../../UGen/iphone/armasm/ugen_neon_Utilities.cpp"/>
+            <FILE id="I7UOjn" name="ugen_neon_Utilities.h" compile="0" resource="0"
+                  file="../../UGen/iphone/armasm/ugen_neon_Utilities.h"/>
+            <FILE id="WIxuaE" name="ugen_vfp_Basics.cpp" compile="1" resource="0"
+                  file="../../UGen/iphone/armasm/ugen_vfp_Basics.cpp"/>
+            <FILE id="A7AyYi" name="ugen_vfp_BinaryOpUGens.cpp" compile="1" resource="0"
+                  file="../../UGen/iphone/armasm/ugen_vfp_BinaryOpUGens.cpp"/>
+            <FILE id="cbCb40" name="ugen_vfp_clobbers.h" compile="0" resource="0"
+                  file="../../UGen/iphone/armasm/ugen_vfp_clobbers.h"/>
+            <FILE id="n4xaTj" name="ugen_vfp_FFTUtilities.h" compile="0" resource="0"
+                  file="../../UGen/iphone/armasm/ugen_vfp_FFTUtilities.h"/>
+            <FILE id="orq712" name="ugen_vfp_Filters.cpp" compile="1" resource="0"
+                  file="../../UGen/iphone/armasm/ugen_vfp_Filters.cpp"/>
+            <FILE id="FPON6F" name="ugen_vfp_macros.h" compile="0" resource="0"
+                  file="../../UGen/iphone/armasm/ugen_vfp_macros.h"/>
+            <FILE id="da9nWg" name="ugen_vfp_UnaryOpUGens.cpp" compile="1" resource="0"
+                  file="../../UGen/iphone/armasm/ugen_vfp_UnaryOpUGens.cpp"/>
+            <FILE id="VIDeDE" name="ugen_vfp_Utilities.cpp" compile="1" resource="0"
+                  file="../../UGen/iphone/armasm/ugen_vfp_Utilities.cpp"/>
+            <FILE id="X83Wvn" name="ugen_vfp_Utilities.h" compile="0" resource="0"
+                  file="../../UGen/iphone/armasm/ugen_vfp_Utilities.h"/>
+          </GROUP>
+          <FILE id="tDtVy6" name="ugen_AudioQueueIOHost.h" compile="0" resource="0"
+                file="../../UGen/iphone/ugen_AudioQueueIOHost.h"/>
+          <FILE id="IM60ps" name="ugen_AudioQueueIOHost.mm" compile="1" resource="0"
+                file="../../UGen/iphone/ugen_AudioQueueIOHost.mm"/>
+          <FILE id="dZ1JQS" name="ugen_iOSMidiInput.h" compile="0" resource="0"
+                file="../../UGen/iphone/ugen_iOSMidiInput.h"/>
+          <FILE id="OpZUiB" name="ugen_iOSMidiInput.mm" compile="1" resource="0"
+                file="../../UGen/iphone/ugen_iOSMidiInput.mm"/>
+          <FILE id="WdoN3z" name="ugen_iOSVersionDetection.h" compile="0" resource="0"
+                file="../../UGen/iphone/ugen_iOSVersionDetection.h"/>
+          <FILE id="A6YekV" name="ugen_iPhoneAudioFileDiskIn.cpp" compile="1"
+                resource="0" file="../../UGen/iphone/ugen_iPhoneAudioFileDiskIn.cpp"/>
+          <FILE id="jFgyAU" name="ugen_iPhoneAudioFileDiskIn.h" compile="0" resource="0"
+                file="../../UGen/iphone/ugen_iPhoneAudioFileDiskIn.h"/>
+          <FILE id="HEsq09" name="ugen_iPhoneAudioFileDiskOut.cpp" compile="1"
+                resource="0" file="../../UGen/iphone/ugen_iPhoneAudioFileDiskOut.cpp"/>
+          <FILE id="a3Rsyb" name="ugen_iPhoneAudioFileDiskOut.h" compile="0"
+                resource="0" file="../../UGen/iphone/ugen_iPhoneAudioFileDiskOut.h"/>
+          <FILE id="ctw4RD" name="ugen_NSDeleter.h" compile="0" resource="0"
+                file="../../UGen/iphone/ugen_NSDeleter.h"/>
+          <FILE id="LyyBx8" name="ugen_NSDeleter.mm" compile="1" resource="0"
+                file="../../UGen/iphone/ugen_NSDeleter.mm"/>
+          <FILE id="azHOyA" name="ugen_NSUtilities.h" compile="0" resource="0"
+                file="../../UGen/iphone/ugen_NSUtilities.h"/>
+          <FILE id="ldcUdD" name="ugen_NSUtilities.mm" compile="1" resource="0"
+                file="../../UGen/iphone/ugen_NSUtilities.mm"/>
+          <FILE id="GCNECB" name="ugen_ScopeView.h" compile="0" resource="0"
+                file="../../UGen/iphone/ugen_ScopeView.h"/>
+          <FILE id="cEZ4SJ" name="ugen_ScopeView.mm" compile="1" resource="0"
+                file="../../UGen/iphone/ugen_ScopeView.mm"/>
+          <FILE id="keAKsE" name="ugen_UIAcceleration.h" compile="0" resource="0"
+                file="../../UGen/iphone/ugen_UIAcceleration.h"/>
+          <FILE id="m0gVVC" name="ugen_UIAcceleration.mm" compile="1" resource="0"
+                file="../../UGen/iphone/ugen_UIAcceleration.mm"/>
+          <FILE id="tHhg0d" name="ugen_UIButton.h" compile="0" resource="0" file="../../UGen/iphone/ugen_UIButton.h"/>
+          <FILE id="vF62Wg" name="ugen_UIButton.mm" compile="1" resource="0"
+                file="../../UGen/iphone/ugen_UIButton.mm"/>
+          <FILE id="gYocfM" name="ugen_UIKitAUIOHost.h" compile="0" resource="0"
+                file="../../UGen/iphone/ugen_UIKitAUIOHost.h"/>
+          <FILE id="TPI7mY" name="ugen_UIKitAUIOHost.mm" compile="1" resource="0"
+                file="../../UGen/iphone/ugen_UIKitAUIOHost.mm"/>
+          <FILE id="YcxBIE" name="ugen_UISlider.h" compile="0" resource="0" file="../../UGen/iphone/ugen_UISlider.h"/>
+          <FILE id="VtAa4E" name="ugen_UISlider.mm" compile="1" resource="0"
+                file="../../UGen/iphone/ugen_UISlider.mm"/>
+        </GROUP>
+        <GROUP id="{166B7FED-0E4A-3769-0AAD-84B3321B26DC}" name="juce">
+          <GROUP id="{52C5F595-4CAC-3091-D679-E9807153BD57}" name="gui">
+            <FILE id="K7whz6" name="ugen_JuceEnvelopeComponent.cpp" compile="1"
+                  resource="0" file="../../UGen/juce/gui/ugen_JuceEnvelopeComponent.cpp"/>
+            <FILE id="YbUy04" name="ugen_JuceEnvelopeComponent.h" compile="0" resource="0"
+                  file="../../UGen/juce/gui/ugen_JuceEnvelopeComponent.h"/>
+            <FILE id="AI6Ppy" name="ugen_JuceMultiSlider.cpp" compile="1" resource="0"
+                  file="../../UGen/juce/gui/ugen_JuceMultiSlider.cpp"/>
+            <FILE id="tC09rD" name="ugen_JuceMultiSlider.h" compile="0" resource="0"
+                  file="../../UGen/juce/gui/ugen_JuceMultiSlider.h"/>
+            <FILE id="kB2Wqr" name="ugen_JuceScope.cpp" compile="1" resource="0"
+                  file="../../UGen/juce/gui/ugen_JuceScope.cpp"/>
+            <FILE id="mDQCnQ" name="ugen_JuceScope.h" compile="0" resource="0"
+                  file="../../UGen/juce/gui/ugen_JuceScope.h"/>
+            <FILE id="mJiJX6" name="ugen_JuceScopeProperties.h" compile="0" resource="0"
+                  file="../../UGen/juce/gui/ugen_JuceScopeProperties.h"/>
+          </GROUP>
+          <GROUP id="{B66FF850-F280-3460-7231-32AE46088C2B}" name="io">
+            <FILE id="JGeAsM" name="ugen_AudioFilePlayer.cpp" compile="1" resource="0"
+                  file="../../UGen/juce/io/ugen_AudioFilePlayer.cpp"/>
+            <FILE id="Y0HvSD" name="ugen_AudioFilePlayer.h" compile="0" resource="0"
+                  file="../../UGen/juce/io/ugen_AudioFilePlayer.h"/>
+            <FILE id="ohrMJU" name="ugen_DiskIn.cpp" compile="1" resource="0" file="../../UGen/juce/io/ugen_DiskIn.cpp"/>
+            <FILE id="ga3Sk5" name="ugen_DiskIn.h" compile="0" resource="0" file="../../UGen/juce/io/ugen_DiskIn.h"/>
+            <FILE id="gNfkg1" name="ugen_DiskOut.cpp" compile="1" resource="0"
+                  file="../../UGen/juce/io/ugen_DiskOut.cpp"/>
+            <FILE id="nIRdXs" name="ugen_DiskOut.h" compile="0" resource="0" file="../../UGen/juce/io/ugen_DiskOut.h"/>
+            <FILE id="AZ37cn" name="ugen_JuceIOHost.h" compile="0" resource="0"
+                  file="../../UGen/juce/io/ugen_JuceIOHost.h"/>
+            <FILE id="duhA1o" name="ugen_JuceMIDIController.cpp" compile="1" resource="0"
+                  file="../../UGen/juce/io/ugen_JuceMIDIController.cpp"/>
+            <FILE id="mnIfdq" name="ugen_JuceMIDIController.h" compile="0" resource="0"
+                  file="../../UGen/juce/io/ugen_JuceMIDIController.h"/>
+            <FILE id="u1oGDq" name="ugen_JuceMIDIInputBroadcaster.cpp" compile="1"
+                  resource="0" file="../../UGen/juce/io/ugen_JuceMIDIInputBroadcaster.cpp"/>
+            <FILE id="BD37Yd" name="ugen_JuceMIDIInputBroadcaster.h" compile="0"
+                  resource="0" file="../../UGen/juce/io/ugen_JuceMIDIInputBroadcaster.h"/>
+            <FILE id="JbPjAQ" name="ugen_JuceMIDIMostRecentNote.cpp" compile="1"
+                  resource="0" file="../../UGen/juce/io/ugen_JuceMIDIMostRecentNote.cpp"/>
+            <FILE id="xlKumM" name="ugen_JuceMIDIMostRecentNote.h" compile="0"
+                  resource="0" file="../../UGen/juce/io/ugen_JuceMIDIMostRecentNote.h"/>
+          </GROUP>
+          <FILE id="DApxWl" name="ugen_JuceSlider.cpp" compile="1" resource="0"
+                file="../../UGen/juce/ugen_JuceSlider.cpp"/>
+          <FILE id="He80pz" name="ugen_JuceSlider.h" compile="0" resource="0"
+                file="../../UGen/juce/ugen_JuceSlider.h"/>
+          <FILE id="gBWlIw" name="ugen_JuceTimerDeleter.cpp" compile="1" resource="0"
+                file="../../UGen/juce/ugen_JuceTimerDeleter.cpp"/>
+          <FILE id="Lw8shW" name="ugen_JuceTimerDeleter.h" compile="0" resource="0"
+                file="../../UGen/juce/ugen_JuceTimerDeleter.h"/>
+          <FILE id="GKhb6p" name="ugen_JuceUtility.cpp" compile="1" resource="0"
+                file="../../UGen/juce/ugen_JuceUtility.cpp"/>
+          <FILE id="MLvqbY" name="ugen_JuceUtility.h" compile="0" resource="0"
+                file="../../UGen/juce/ugen_JuceUtility.h"/>
+          <FILE id="Bdj41P" name="ugen_JuceVoicer.cpp" compile="1" resource="0"
+                file="../../UGen/juce/ugen_JuceVoicer.cpp"/>
+          <FILE id="jksxAA" name="ugen_JuceVoicer.h" compile="0" resource="0"
+                file="../../UGen/juce/ugen_JuceVoicer.h"/>
+        </GROUP>
+        <GROUP id="{132190DD-1732-A2EF-1321-070537E7F15E}" name="neuralnet">
+          <FILE id="ZDQ7QT" name="ugen_NeuralLayer.cpp" compile="1" resource="0"
+                file="../../UGen/neuralnet/ugen_NeuralLayer.cpp"/>
+          <FILE id="GRZBnS" name="ugen_NeuralLayer.h" compile="0" resource="0"
+                file="../../UGen/neuralnet/ugen_NeuralLayer.h"/>
+          <FILE id="uQXlcN" name="ugen_NeuralNetwork.cpp" compile="1" resource="0"
+                file="../../UGen/neuralnet/ugen_NeuralNetwork.cpp"/>
+          <FILE id="wW8fzY" name="ugen_NeuralNetwork.h" compile="0" resource="0"
+                file="../../UGen/neuralnet/ugen_NeuralNetwork.h"/>
+          <FILE id="SBHo0q" name="ugen_NeuralNetworkConfig.h" compile="0" resource="0"
+                file="../../UGen/neuralnet/ugen_NeuralNetworkConfig.h"/>
+          <FILE id="OkV3h5" name="ugen_NeuralNetworkUGen.cpp" compile="1" resource="0"
+                file="../../UGen/neuralnet/ugen_NeuralNetworkUGen.cpp"/>
+          <FILE id="o8xWC4" name="ugen_NeuralNetworkUGen.h" compile="0" resource="0"
+                file="../../UGen/neuralnet/ugen_NeuralNetworkUGen.h"/>
+          <FILE id="dzUKGj" name="ugen_NeuralNode.cpp" compile="1" resource="0"
+                file="../../UGen/neuralnet/ugen_NeuralNode.cpp"/>
+          <FILE id="gK0teb" name="ugen_NeuralNode.h" compile="0" resource="0"
+                file="../../UGen/neuralnet/ugen_NeuralNode.h"/>
+          <FILE id="Mr9FHQ" name="ugen_NeuralPattern.cpp" compile="1" resource="0"
+                file="../../UGen/neuralnet/ugen_NeuralPattern.cpp"/>
+          <FILE id="aXyisw" name="ugen_NeuralPattern.h" compile="0" resource="0"
+                file="../../UGen/neuralnet/ugen_NeuralPattern.h"/>
+        </GROUP>
+        <GROUP id="{88EB07F4-217A-C095-9E47-1DBCF168D047}" name="noise">
+          <FILE id="oO9bNr" name="ugen_BrownNoise.cpp" compile="1" resource="0"
+                file="../../UGen/noise/ugen_BrownNoise.cpp"/>
+          <FILE id="GVW2dV" name="ugen_BrownNoise.h" compile="0" resource="0"
+                file="../../UGen/noise/ugen_BrownNoise.h"/>
+          <FILE id="uGiMSi" name="ugen_Dust.cpp" compile="1" resource="0" file="../../UGen/noise/ugen_Dust.cpp"/>
+          <FILE id="R1ATBa" name="ugen_Dust.h" compile="0" resource="0" file="../../UGen/noise/ugen_Dust.h"/>
+          <FILE id="HU3G7G" name="ugen_LFNoise.cpp" compile="1" resource="0"
+                file="../../UGen/noise/ugen_LFNoise.cpp"/>
+          <FILE id="FBBDD9" name="ugen_LFNoise.h" compile="0" resource="0" file="../../UGen/noise/ugen_LFNoise.h"/>
+          <FILE id="oYAsvU" name="ugen_PinkNoise.cpp" compile="1" resource="0"
+                file="../../UGen/noise/ugen_PinkNoise.cpp"/>
+          <FILE id="n5yG8O" name="ugen_PinkNoise.h" compile="0" resource="0"
+                file="../../UGen/noise/ugen_PinkNoise.h"/>
+          <FILE id="bZuxoB" name="ugen_WhiteNoise.cpp" compile="1" resource="0"
+                file="../../UGen/noise/ugen_WhiteNoise.cpp"/>
+          <FILE id="iijpL3" name="ugen_WhiteNoise.h" compile="0" resource="0"
+                file="../../UGen/noise/ugen_WhiteNoise.h"/>
+        </GROUP>
+        <GROUP id="{8D8606FD-94AF-9A45-4428-0A7089CA40C1}" name="oscillators">
+          <GROUP id="{60AFF9DF-F6D7-E707-78D0-57DF468AF326}" name="simple">
+            <FILE id="lStQ3I" name="ugen_FSinOsc.cpp" compile="1" resource="0"
+                  file="../../UGen/oscillators/simple/ugen_FSinOsc.cpp"/>
+            <FILE id="IAuATk" name="ugen_FSinOsc.h" compile="0" resource="0" file="../../UGen/oscillators/simple/ugen_FSinOsc.h"/>
+            <FILE id="ufbIf4" name="ugen_Impulse.cpp" compile="1" resource="0"
+                  file="../../UGen/oscillators/simple/ugen_Impulse.cpp"/>
+            <FILE id="lsl63W" name="ugen_Impulse.h" compile="0" resource="0" file="../../UGen/oscillators/simple/ugen_Impulse.h"/>
+            <FILE id="YXux6v" name="ugen_LFPulse.cpp" compile="1" resource="0"
+                  file="../../UGen/oscillators/simple/ugen_LFPulse.cpp"/>
+            <FILE id="sVzli8" name="ugen_LFPulse.h" compile="0" resource="0" file="../../UGen/oscillators/simple/ugen_LFPulse.h"/>
+            <FILE id="EScusy" name="ugen_LFSaw.cpp" compile="1" resource="0" file="../../UGen/oscillators/simple/ugen_LFSaw.cpp"/>
+            <FILE id="KlgeaI" name="ugen_LFSaw.h" compile="0" resource="0" file="../../UGen/oscillators/simple/ugen_LFSaw.h"/>
+            <FILE id="N6Rydm" name="ugen_Triggers.cpp" compile="1" resource="0"
+                  file="../../UGen/oscillators/simple/ugen_Triggers.cpp"/>
+            <FILE id="AAuUtI" name="ugen_Triggers.h" compile="0" resource="0" file="../../UGen/oscillators/simple/ugen_Triggers.h"/>
+          </GROUP>
+          <FILE id="SRtSd3" name="ugen_OscillatorUGens.cpp" compile="1" resource="0"
+                file="../../UGen/oscillators/ugen_OscillatorUGens.cpp"/>
+          <FILE id="g7QIaD" name="ugen_OscillatorUGens.h" compile="0" resource="0"
+                file="../../UGen/oscillators/ugen_OscillatorUGens.h"/>
+          <GROUP id="{1D90826C-D017-950D-9867-8D5D13E71952}" name="wavetable">
+            <FILE id="lkfkfV" name="ugen_TableOsc.cpp" compile="1" resource="0"
+                  file="../../UGen/oscillators/wavetable/ugen_TableOsc.cpp"/>
+            <FILE id="b0WVhx" name="ugen_TableOsc.h" compile="0" resource="0" file="../../UGen/oscillators/wavetable/ugen_TableOsc.h"/>
+          </GROUP>
+        </GROUP>
+        <GROUP id="{92F6F37B-FDDD-07BC-D8E8-AD305BDBC030}" name="pan">
+          <FILE id="YBdPt1" name="ugen_Ambisonic.cpp" compile="1" resource="0"
+                file="../../UGen/pan/ugen_Ambisonic.cpp"/>
+          <FILE id="hYwFBX" name="ugen_Ambisonic.h" compile="0" resource="0"
+                file="../../UGen/pan/ugen_Ambisonic.h"/>
+          <FILE id="hSqIYn" name="ugen_BasicPan.cpp" compile="1" resource="0"
+                file="../../UGen/pan/ugen_BasicPan.cpp"/>
+          <FILE id="zRCcQO" name="ugen_BasicPan.h" compile="0" resource="0" file="../../UGen/pan/ugen_BasicPan.h"/>
+        </GROUP>
+        <GROUP id="{78BF8856-5D5E-9E76-C610-04D9C3EA9DEC}" name="spawn">
+          <FILE id="jvjqWN" name="ugen_Spawn.cpp" compile="1" resource="0" file="../../UGen/spawn/ugen_Spawn.cpp"/>
+          <FILE id="uyhUL4" name="ugen_Spawn.h" compile="0" resource="0" file="../../UGen/spawn/ugen_Spawn.h"/>
+          <FILE id="M921h2" name="ugen_Textures.cpp" compile="1" resource="0"
+                file="../../UGen/spawn/ugen_Textures.cpp"/>
+          <FILE id="Q2yv8r" name="ugen_Textures.h" compile="0" resource="0" file="../../UGen/spawn/ugen_Textures.h"/>
+          <FILE id="K8G0yu" name="ugen_TSpawn.cpp" compile="1" resource="0" file="../../UGen/spawn/ugen_TSpawn.cpp"/>
+          <FILE id="k6Bal5" name="ugen_TSpawn.h" compile="0" resource="0" file="../../UGen/spawn/ugen_TSpawn.h"/>
+          <FILE id="yuV5qF" name="ugen_VoicerBase.cpp" compile="1" resource="0"
+                file="../../UGen/spawn/ugen_VoicerBase.cpp"/>
+          <FILE id="tuFZdr" name="ugen_VoicerBase.h" compile="0" resource="0"
+                file="../../UGen/spawn/ugen_VoicerBase.h"/>
+        </GROUP>
+        <FILE id="rwfOgD" name="UGen.h" compile="0" resource="0" file="../../UGen/UGen.h"/>
+        <GROUP id="{62DECD87-50F6-2E79-9EE5-14BD3836B69D}" name="vec">
+          <FILE id="x2Mfjx" name="ugen_vdsp_Basics.cpp" compile="1" resource="0"
+                file="../../UGen/vec/ugen_vdsp_Basics.cpp"/>
+          <FILE id="dbbGCG" name="ugen_vdsp_BinaryOpUGens.cpp" compile="1" resource="0"
+                file="../../UGen/vec/ugen_vdsp_BinaryOpUGens.cpp"/>
+          <FILE id="ZXjFc7" name="ugen_vdsp_UnaryOpUGens.cpp" compile="1" resource="0"
+                file="../../UGen/vec/ugen_vdsp_UnaryOpUGens.cpp"/>
+        </GROUP>
+      </GROUP>
+      <FILE id="IgtQNg" name="UGenCommon.h" compile="0" resource="0" file="Source/UGenCommon.h"/>
+      <FILE id="qLufgr" name="UGenPlugin.cpp" compile="1" resource="0" file="Source/UGenPlugin.cpp"/>
+      <FILE id="ThXJSF" name="UGenPlugin.h" compile="0" resource="0" file="Source/UGenPlugin.h"/>
+      <FILE id="ePmimR" name="UGenEditorComponent.cpp" compile="1" resource="0"
+            file="Source/UGenEditorComponent.cpp"/>
+      <FILE id="R0429D" name="UGenEditorComponent.h" compile="0" resource="0"
+            file="Source/UGenEditorComponent.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <MODULES>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_gui_audio" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="1"/>
+  </MODULES>
+  <JUCEOPTIONS JUCE_QUICKTIME="disabled"/>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX" juceFolder="../../../../juce_code/juce2/juce/modules"
+               vstFolder="../../../../vstsdk2.4" postbuildCommand="&#13;&#10;# This script takes the build product and copies it to the AU, VST, and RTAS folders, depending on &#13;&#10;# which plugin types you've built&#13;&#10;&#13;&#10;original=$CONFIGURATION_BUILD_DIR/$FULL_PRODUCT_NAME&#13;&#10;&#13;&#10;# this looks inside the binary to detect which platforms are needed.. &#13;&#10;copyAU=&#96;nm -g &quot;$CONFIGURATION_BUILD_DIR/$EXECUTABLE_PATH&quot; | grep -i 'AudioUnit' | wc -l&#96;&#13;&#10;copyVST=&#96;nm -g &quot;$CONFIGURATION_BUILD_DIR/$EXECUTABLE_PATH&quot; | grep -i 'VSTPlugin' | wc -l&#96;&#13;&#10;copyRTAS=&#96;nm -g &quot;$CONFIGURATION_BUILD_DIR/$EXECUTABLE_PATH&quot; | grep -i 'CProcess' | wc -l&#96;&#13;&#10;copyAAX=&#96;nm -g &quot;$CONFIGURATION_BUILD_DIR/$EXECUTABLE_PATH&quot; | grep -i 'GetEffectDescriptions' | wc -l&#96;&#13;&#10;&#13;&#10;if [ $copyAU -gt 0 ]; then&#13;&#10;  echo &quot;Copying to AudioUnit folder...&quot;&#13;&#10;  AU=~/Library/Audio/Plug-Ins/Components/$PRODUCT_NAME.component&#13;&#10;  if [ -d &quot;$AU&quot; ]; then &#13;&#10;    rm -r &quot;$AU&quot;&#13;&#10;  fi&#13;&#10;&#13;&#10;  cp -r &quot;$original&quot; &quot;$AU&quot;&#13;&#10;  sed -i &quot;&quot; -e 's/TDMwPTul/BNDLPTul/g' &quot;$AU/Contents/PkgInfo&quot;&#13;&#10;  sed -i &quot;&quot; -e 's/TDMw/BNDL/g' &quot;$AU/Contents/$INFOPLIST_FILE&quot;&#13;&#10;fi&#13;&#10;&#13;&#10;if [ $copyVST -gt 0 ]; then&#13;&#10;  echo &quot;Copying to VST folder...&quot;&#13;&#10;  VST=~/Library/Audio/Plug-Ins/VST/$PRODUCT_NAME.vst&#13;&#10;  if [ -d &quot;$VST&quot; ]; then &#13;&#10;    rm -r &quot;$VST&quot;&#13;&#10;  fi&#13;&#10;&#13;&#10;  cp -r &quot;$original&quot; &quot;$VST&quot;&#13;&#10;  sed -i &quot;&quot; -e 's/TDMwPTul/BNDLPTul/g' &quot;$VST/Contents/PkgInfo&quot;&#13;&#10;  sed -i &quot;&quot; -e 's/TDMw/BNDL/g' &quot;$VST/Contents/$INFOPLIST_FILE&quot;&#13;&#10;fi&#13;&#10;&#13;&#10;if [ $copyRTAS -gt 0 ]; then&#13;&#10;  echo &quot;Copying to RTAS folder...&quot;&#13;&#10;  RTAS=/Library/Application\ Support/Digidesign/Plug-Ins/$PRODUCT_NAME.dpm&#13;&#10;  if [ -d &quot;$RTAS&quot; ]; then&#13;&#10;    rm -r &quot;$RTAS&quot;&#13;&#10;  fi&#13;&#10;&#13;&#10;  cp -r &quot;$original&quot; &quot;$RTAS&quot;&#13;&#10;fi&#13;&#10;&#13;&#10;if [ $copyAAX -gt 0 ]; then&#13;&#10;  echo &quot;Copying to AAX folder...&quot;&#13;&#10;&#13;&#10;  if [ -d &quot;/Applications/ProTools_3PDev/Plug-Ins&quot; ]; then&#13;&#10;    AAX1=&quot;/Applications/ProTools_3PDev/Plug-Ins/$PRODUCT_NAME.aaxplugin&quot;&#13;&#10;&#13;&#10;    if [ -d &quot;$AAX1&quot; ]; then&#13;&#10;      rm -r &quot;$AAX1&quot;&#13;&#10;    fi&#13;&#10;&#13;&#10;    cp -r &quot;$original&quot; &quot;$AAX1&quot;&#13;&#10;  fi&#13;&#10;&#13;&#10;  if [ -d &quot;/Library/Application Support/Avid/Audio/Plug-Ins&quot; ]; then&#13;&#10;    AAX2=&quot;/Library/Application Support/Avid/Audio/Plug-Ins/$PRODUCT_NAME.aaxplugin&quot;&#13;&#10;&#13;&#10;    if [ -d &quot;$AAX2&quot; ]; then&#13;&#10;      rm -r &quot;$AAX2&quot;&#13;&#10;    fi&#13;&#10;&#13;&#10;    cp -r &quot;$original&quot; &quot;$AAX2&quot;&#13;&#10;  fi&#13;&#10;fi&#13;&#10;"
+               extraFrameworks="Accelerate" extraCompilerFlags="">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="UGenIR"
+                       osxSDK="default" osxCompatibility="default" osxArchitecture="default"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="2" targetName="UGenIR"
+                       osxSDK="default" osxCompatibility="default" osxArchitecture="default"/>
+      </CONFIGURATIONS>
+    </XCODE_MAC>
+    <VS2010 targetFolder="Builds/VisualStudio2010" libraryType="1" juceFolder="../../../../juce_code/juce2/juce/modules"
+            vstFolder="../../../../vstsdk2.4">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="1" optimisation="1" targetName="UGenIR"/>
+        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="0" optimisation="2" targetName="UGenIR"/>
+      </CONFIGURATIONS>
+    </VS2010>
+  </EXPORTFORMATS>
+</JUCERPROJECT>

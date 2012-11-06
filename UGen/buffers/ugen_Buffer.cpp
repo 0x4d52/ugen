@@ -626,19 +626,19 @@ bool Buffer::initFromJuceFile(const File& audioFile,
 							  bool overwriteExisitingFile, 
 							  int bitDepth,
 							  MetaData const& metaData) throw()
-{	
+{
 	if(numChannels_ < 1) return false;
 	if(size_ < 1) return false;
 	
 	File outputFile;
 	
 	if(audioFile.isDirectory()) 
-		outputFile = audioFile.getChildFile(getFileNameWithTimeIdentifier(T("Buffer")));
+		outputFile = audioFile.getChildFile(getFileNameWithTimeIdentifier("Buffer"));
 	else
 		outputFile = audioFile;
 		
 	if(outputFile.getFileExtension().isEmpty())
-		outputFile = outputFile.withFileExtension(T("wav"));
+		outputFile = outputFile.withFileExtension("wav");
 	
 	if(overwriteExisitingFile == true && outputFile.exists())
 		outputFile.deleteFile();
@@ -682,8 +682,13 @@ bool Buffer::initFromJuceFile(const File& audioFile,
 	}
 	
 	AudioSampleBuffer audioSampleBuffer(bufferData, getNumChannels(), size());
+    
+#if JUCE_MAJOR_VERSION < 2
 	audioSampleBuffer.writeToAudioWriter(audioFormatWriter, 0, size());
-	
+#else
+    audioFormatWriter->writeFromAudioSampleBuffer(audioSampleBuffer, 0, size());
+#endif
+    
 	if(metaData.getCuePoints().length() > 0)
 	{
 		AudioIOHelper::writeCuePoints(audioFormatWriter, fileOutputStream, metaData.getCuePoints());

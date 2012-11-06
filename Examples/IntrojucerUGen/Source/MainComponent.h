@@ -20,8 +20,8 @@
 #endif
 
 class MainComponent :	public Component,
-public JuceIOHost,
-public Timer
+                        public JuceIOHost,
+                        public Timer
 {
 private:
 	Label cpu;
@@ -53,9 +53,7 @@ public:
 	
 	UGen constructGraph(UGen const& input)
 	{
-		//return SinOsc::AR(Lag::AR(&slider), 0, 0.2);
-        
-        return DiskIn::AR("/sdcard/beat.wav", true);
+		return DiskIn::AR("/Users/martinrobinson/Desktop/beatpan44k1-16.aif");
 	}
 };
 

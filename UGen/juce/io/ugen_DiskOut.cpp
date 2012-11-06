@@ -61,7 +61,7 @@ DiskOutUGenInternal::DiskOutUGenInternal(File const& file, UGen const& input, bo
 	File outputFile(file);
 	
 	if(outputFile.getFileExtension().isEmpty())
-		outputFile = outputFile.withFileExtension(T("wav"));
+		outputFile = outputFile.withFileExtension("wav");
 	
 	if(overwriteExisitingFile == true && outputFile.exists())
 		outputFile.deleteFile();
@@ -116,10 +116,15 @@ void DiskOutUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 		memcpy(outputSamples, inputSamples, blockSize * sizeof(float));
 		bufferData[i] = inputSamples;
 	}
-		
+
 	// should really buffer this data in larger chunks that the block size before writing
 	AudioSampleBuffer audioSampleBuffer(bufferData, numInputChannels, blockSize);
+    
+#if JUCE_MAJOR_VERSION < 2
 	audioSampleBuffer.writeToAudioWriter(audioFormatWriter, 0, blockSize);
+#else
+    audioFormatWriter->writeFromAudioSampleBuffer(audioSampleBuffer, 0, blockSize);
+#endif
 }
 
 DiskOut::DiskOut(File const& file, UGen const& input, bool overwriteExisitingFile, int bitDepth) throw()
@@ -144,7 +149,7 @@ void DiskOut::initWithJuceFile(File const& file, UGen const& input, bool overwri
 	
 	if(file.isDirectory()) 
 	{
-		internal = new DiskOutUGenInternal(file.getChildFile(getFileNameWithTimeIdentifier(T("DiskOut"))), 
+		internal = new DiskOutUGenInternal(file.getChildFile(getFileNameWithTimeIdentifier("DiskOut")), 
 										   input, 
 										   overwriteExisitingFile, 
 										   bitDepth);
