@@ -107,16 +107,20 @@ class PluginSlider : public Slider
 public:
 	PluginSlider(const String& componentName = String::empty,
 				 double minimum = 0.0, 
-				 double maximum = 1.0, 
+				 double maximum = 1.0,
+                 double nominal = 0.5,
 				 bool isExponential = false,
 				 String const& units = String::empty) throw();
 	
 	double getValueFromText (const String& text);
-	const String getTextFromValue (double value);
-	
+    
+#if JUCE_MAJOR_VERSION < 2
+    const
+#endif
+    String getTextFromValue (double value);
 	
 private:
-	double minimum, maximum;
+	double minimum, maximum, nominal;
 	bool isExponential;
 };
 

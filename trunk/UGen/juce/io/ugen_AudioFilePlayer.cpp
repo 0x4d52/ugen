@@ -81,8 +81,15 @@ void AudioFilePlayer::startFromZero()
 	start();
 }
 
+
+
 bool AudioFilePlayer::setFile(const File& audioFile, const int readAheadBufferSize)
 {
+#if JUCE_MAJOR_VERSION >= 2
+    static TimeSliceThread thread ("AudioFilePlayerThread");
+    thread.startThread();
+#endif
+    
 	stop();
 	setSource (0);
 	deleteAndZero (currentAudioFileSource);
@@ -94,8 +101,13 @@ bool AudioFilePlayer::setFile(const File& audioFile, const int readAheadBufferSi
 		currentAudioFileSource = new AudioFormatReaderSource (reader, true);
 		sampleRate = reader->sampleRate;
 		reciprocalSampleRate = 1.0 / sampleRate;
-		setSource (currentAudioFileSource, readAheadBufferSize, sampleRate);
-		
+        
+#if JUCE_MAJOR_VERSION >= 2
+		setSource (currentAudioFileSource, readAheadBufferSize, &thread, sampleRate);
+#else
+        setSource (currentAudioFileSource, readAheadBufferSize, sampleRate);
+#endif
+        
 		return true;
 	}
 	

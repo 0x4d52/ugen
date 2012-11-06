@@ -398,9 +398,9 @@ void ScopeComponent::paintXScale(Graphics& g, const int y)
 						const double binFreq = (audioIndex + offsetSamples) * fftFreq;
 						
 						if(binFreq >= 1000.0)
-							label = String(binFreq * 0.001, 2) + T("kHz");
+							label = String(binFreq * 0.001, 2) + "kHz";
 						else
-							label = String((int)(binFreq + 0.5)) + T("Hz");
+							label = String((int)(binFreq + 0.5)) + "Hz";
 					}
 					else
 					{
@@ -2110,7 +2110,7 @@ void ScopeControlComponent::addPointLabel(ScopeCuePointLabel* label)
 
 void ScopeControlComponent::removePointLabel(ScopeCuePointLabel* label)
 {
-	pointLabels.removeValue(label);
+	pointLabels.removeFirstMatchingValue(label);
 	removeChildComponent(label);
 }
 
@@ -2282,7 +2282,7 @@ void ScopeControlComponent::removeCuePoint(ScopeCuePointComponent* cuePointCompo
 {
 	if(cuePointComponent != 0)
 	{
-		scopeCuePoints.removeValue(cuePointComponent);
+		scopeCuePoints.removeFirstMatchingValue(cuePointComponent);
 		removeChildComponent(cuePointComponent);
 		deleteAndZero(cuePointComponent);
 		avoidPointLabelCollisions();
@@ -2394,7 +2394,7 @@ void ScopeControlComponent::removeLoopPoint(ScopeLoopComponent* loopComponent)
 {
 	if(loopComponent != 0)
 	{
-		scopeLoops.removeValue(loopComponent);
+		scopeLoops.removeFirstMatchingValue(loopComponent);
 		removeChildComponent(loopComponent);
 		deleteAndZero(loopComponent);
 		avoidPointLabelCollisions();
@@ -2500,7 +2500,7 @@ void ScopeControlComponent::removeRegion(ScopeRegionComponent* regionComponent)
 {
 	if(regionComponent != 0)
 	{
-		scopeRegions.removeValue(regionComponent);
+		scopeRegions.removeFirstMatchingValue(regionComponent);
 		removeChildComponent(regionComponent);
 		deleteAndZero(regionComponent);
 		avoidPointLabelCollisions();
@@ -2791,9 +2791,9 @@ void RadialScopeComponent::paintXScale(Graphics& g, const int radius)
 						const double binFreq = (audioIndex + offsetSamples) * fftFreq;
 						
 						if(binFreq >= 1000.0)
-							label = String(binFreq * 0.001, 2) + T("kHz");
+							label = String(binFreq * 0.001, 2) + "kHz";
 						else
-							label = String((int)(binFreq + 0.5)) + T("Hz");
+							label = String((int)(binFreq + 0.5)) + "Hz";
 					}
 					else
 					{

@@ -125,8 +125,9 @@ END_UGEN_NAMESPACE
 
 
 
-
-
+#ifdef UGEN_INTROJUCER
+    #define UGEN_JUCE 1
+#endif
 
 
 // UGEN_JUCE should be defined in the target/project's preprocessor macros or
@@ -151,6 +152,11 @@ END_UGEN_NAMESPACE
 		 */
 		#include <juce/juce.h>
 	#endif
+
+    #if JUCE_MAJOR_VERSION < 2
+        #define removeFirstMatchingValue removeValue
+    #endif
+
 #else
 
 	#ifdef UGEN_ANDROID

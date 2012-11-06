@@ -44,15 +44,15 @@
  @return The time string. */
 inline String getCurrentTimeIdentifier() throw()
 {
-	String ms = String(Time::getMillisecondCounter() % 1000).paddedLeft(T('0'), 3);
-	return Time::getCurrentTime().formatted(T("%Y%m%d_%H%M%S_")) + ms; 
+	String ms = String(Time::getMillisecondCounter() % 1000).paddedLeft('0', 3);
+	return Time::getCurrentTime().formatted("%Y%m%d_%H%M%S_") + ms; 
 }
 
 /** Append a time identifier to t string useful as a filename.
  @todo Check if there's a extension and insert the identifier before the dot. */
 inline String getFileNameWithTimeIdentifier(String const& filename) throw()
 {
-	return filename + T("_") + getCurrentTimeIdentifier();
+	return filename + "_" + getCurrentTimeIdentifier();
 }
 
 /** A little Juce class used as a pop-up editor. */

@@ -142,12 +142,14 @@ LabelValue::LabelValue(Label* label) throw()
 
 PluginSlider::PluginSlider(const String& componentName,
 						   double minimumToUse, 
-						   double maximumToUse, 
+						   double maximumToUse,
+                           double nominalToUse,
 						   bool isExponentialToUse,
 						   String const& units) throw()
 :	Slider(componentName),
 	minimum(minimumToUse),
 	maximum(maximumToUse),
+    nominal(nominalToUse),
 	isExponential(isExponentialToUse)
 {
 	// with exponential, the range can't cross zero
@@ -156,6 +158,11 @@ PluginSlider::PluginSlider(const String& componentName,
 	
 	setRange (0.0, 1.0);
 	setTextValueSuffix(units);
+    
+    if(isExponential)
+        setDoubleClickReturnValue(true, explin(nominal, minimum, maximum, 0.0, 1.0));
+	else
+        setDoubleClickReturnValue(true, linlin(nominal, minimum, maximum, 0.0, 1.0));
 }
 
 double PluginSlider::getValueFromText (const String& text)
@@ -163,27 +170,22 @@ double PluginSlider::getValueFromText (const String& text)
 	double realValue = Slider::getValueFromText(text);
 	
 	if(isExponential)
-	{
 		return explin(realValue, minimum, maximum, 0.0, 1.0);
-	}
 	else
-	{
 		return linlin(realValue, minimum, maximum, 0.0, 1.0);
-	}
 }
 
-const String PluginSlider::getTextFromValue (double normalisedValue)
+#if JUCE_MAJOR_VERSION < 2
+const
+#endif
+String PluginSlider::getTextFromValue (double normalisedValue)
 {
 	double realValue = 0.0;
 	
 	if(isExponential)
-	{
 		realValue = linexp(normalisedValue, 0.0, 1.0, minimum, maximum);
-	}
 	else
-	{
 		realValue = linlin(normalisedValue, 0.0, 1.0, minimum, maximum);
-	}
 	
 	int intValue = (int)realValue;
 	int digits = 0;	
