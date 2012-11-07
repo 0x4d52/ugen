@@ -36,7 +36,7 @@
 #include "UGenPlugin.h"
 #include "UGenEditorComponent.h"
 
-#define UGENIR_VERSION "alpha 0.1"
+#define UGENIR_VERSION "alpha 0.1.1"
 
 static const char* ugen_IR_aboutText =
     "UGen++ IR Convolution " UGENIR_VERSION "\n"
@@ -47,9 +47,33 @@ static const char* ugen_IR_aboutText =
     "\n"
     "The plug-in stores the file path to the impulse response relative to the user's home directory.\n"
     "\n"
+    "Bug fixes:\n"
+    " - Deplpoyment target on OS X\n"
+    "\n"
     "To do:\n"
     " - add optional channel modes for mono, stereo and true stereo;\n"
     " - add amplitude and filter envelope overlays to the 'IR View'\n"
+    "\n"
+    "License\n"
+    "This software is part of the UGEN++ library and uses Juce (www.juce.com)\n"
+    "\n"
+    "Copyright 2008-12 The University of the West of England.\n"
+    "by Martin Robinson\n"
+    "\n"
+    "UGEN++ can be redistributed and/or modified under the terms of the\n"
+    "GNU General Public License, as published by the Free Software Foundation;\n"
+    "either version 2 of the License, or (at your option) any later version.\n"
+    "\n"
+    "UGEN++ is distributed in the hope that it will be useful,\n"
+    "but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+    "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+    "GNU General Public License for more details.\n"
+    "\n"
+    "You should have received a copy of the GNU General Public License\n"
+    "along with UGEN++; if not, visit www.gnu.org/licenses or write to the\n"
+    "Free Software Foundation, Inc., 59 Temple Place, Suite 330,\n"
+    "Boston, MA 02111-1307 USA\n"
+    "\n"
 ;
 
 //==============================================================================
