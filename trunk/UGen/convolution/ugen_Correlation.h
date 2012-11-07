@@ -40,49 +40,49 @@
 #include "../core/ugen_UGen.h"
 #include "../fft/ugen_FFTEngineInternal.h"
 
-class CorrelationUGenInternal : public UGenInternal
-{
-public:
-	CorrelationUGenInternal(UGen const& inputA, 
-                            UGen const& inputB, 
-                            const int length, 
-                            const int initialDelay) throw();
-	~CorrelationUGenInternal();
-	UGenInternal* getChannel(const int channel) throw();
-	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
-	
-    void outputIndex(float* outputSamples, int numSamplesToProcess);
-    void outputBuffer(float* outputSamples, int numSamplesToProcess);
-    void outputScore(float* outputSamples, int numSamplesToProcess);
-    
-    static int findPeak(float* buffer, int length);
-    
-	enum Inputs { InputA, InputB, NumInputs };
-	enum Buffers { InputBufferA, InputBufferB, OutputBuffer, NumBuffers };
-	
-	
-protected:
-    const int length_;
-	const int bufferSize_;
-	const int initialDelay_;
-	Buffer buffers;
-    Buffer window;
-    Buffer score;
-	int bufferIndex;
-    int indexOfMax;
-    int lockedIndexOfMax;
-};
-
-
-UGenSublcassDeclaration(Correlation, 
-						(inputA, inputB, length, initialDelay),
-						(UGen const& inputA, UGen const& inputB, const int length = 512, const int initialDelay = 0), 
-						COMMON_UGEN_DOCS);
-
-//UGenSublcassDeclaration(OverlapCorrelation, 
-//						(inputA, inputB, fftSize, overlap),
-//						(UGen const& inputA, UGen const& inputB, const int length = 512, const int overlap = 2), 
+//class CorrelationUGenInternal : public UGenInternal
+//{
+//public:
+//	CorrelationUGenInternal(UGen const& inputA, 
+//                            UGen const& inputB, 
+//                            const int length, 
+//                            const int initialDelay) throw();
+//	~CorrelationUGenInternal();
+//	UGenInternal* getChannel(const int channel) throw();
+//	void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
+//	
+//    void outputIndex(float* outputSamples, int numSamplesToProcess);
+//    void outputBuffer(float* outputSamples, int numSamplesToProcess);
+//    void outputScore(float* outputSamples, int numSamplesToProcess);
+//    
+//    static int findPeak(float* buffer, int length);
+//    
+//	enum Inputs { InputA, InputB, NumInputs };
+//	enum Buffers { InputBufferA, InputBufferB, OutputBuffer, NumBuffers };
+//	
+//	
+//protected:
+//    const int length_;
+//	const int bufferSize_;
+//	const int initialDelay_;
+//	Buffer buffers;
+//    Buffer window;
+//    Buffer score;
+//	int bufferIndex;
+//    int indexOfMax;
+//    int lockedIndexOfMax;
+//};
+//
+//
+//UGenSublcassDeclaration(Correlation, 
+//						(inputA, inputB, length, initialDelay),
+//						(UGen const& inputA, UGen const& inputB, const int length = 512, const int initialDelay = 0), 
 //						COMMON_UGEN_DOCS);
+//
+////UGenSublcassDeclaration(OverlapCorrelation, 
+////						(inputA, inputB, fftSize, overlap),
+////						(UGen const& inputA, UGen const& inputB, const int length = 512, const int overlap = 2), 
+////						COMMON_UGEN_DOCS);
 
 
 
