@@ -346,17 +346,17 @@ public:
 	 Obviously this is more useful with ToggleButton type buttons (which would output
 	 0 or 1 depending on their state).
 	 @param button The Button to use.*/
-	UGen(Button* button) throw();
+	UGen(juce::Button* button) throw();
 	
-	UGen(ToggleButton* button) throw();
+	UGen(juce::ToggleButton* button) throw();
 	
-	UGen(TextButton* button) throw();
+	UGen(juce::TextButton* button) throw();
 	
 	/** Construct a UGen from a Juce Label. 
 	 This registers listeners to the Label and changes the UGen output value accordingly.
 	 The contents of the label will be converted to a float.
 	 @param label The Label to use.*/
-	UGen(Label* label) throw();
+	UGen(juce::Label* label) throw();
 #endif
 #if defined(UGEN_IPHONE) || defined(DOXYGEN)
 	/** Construct a UGen from a UISlider (iPhone) Slider. 

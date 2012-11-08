@@ -24,8 +24,8 @@
 */
 
 class ProcessorParameterPropertyComp   : public PropertyComponent,
-                                         public AudioProcessorListener,
-                                         public Timer
+                                         private AudioProcessorListener,
+                                         private Timer
 {
 public:
     ProcessorParameterPropertyComp (const String& name, AudioProcessor& owner_, const int index_)
@@ -48,7 +48,7 @@ public:
     void refresh()
     {
         paramHasChanged = false;
-        slider.setValue (owner.getParameter (index), false);
+        slider.setValue (owner.getParameter (index), dontSendNotification);
     }
 
     void audioProcessorChanged (AudioProcessor*)  {}
@@ -92,7 +92,7 @@ private:
             const float newVal = (float) getValue();
 
             if (owner.getParameter (index) != newVal)
-                owner.setParameter (index, newVal);
+                owner.setParameterNotifyingHost (index, newVal);
         }
 
         String getTextFromValue (double /*value*/)

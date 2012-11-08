@@ -25,58 +25,6 @@
 
 namespace LookAndFeelHelpers
 {
-    static void createRoundedPath (Path& p,
-                                   const float x, const float y,
-                                   const float w, const float h,
-                                   const float cs,
-                                   const bool curveTopLeft, const bool curveTopRight,
-                                   const bool curveBottomLeft, const bool curveBottomRight) noexcept
-    {
-        const float cs2 = 2.0f * cs;
-
-        if (curveTopLeft)
-        {
-            p.startNewSubPath (x, y + cs);
-            p.addArc (x, y, cs2, cs2, float_Pi * 1.5f, float_Pi * 2.0f);
-        }
-        else
-        {
-            p.startNewSubPath (x, y);
-        }
-
-        if (curveTopRight)
-        {
-            p.lineTo (x + w - cs, y);
-            p.addArc (x + w - cs2, y, cs2, cs2, 0.0f, float_Pi * 0.5f);
-        }
-        else
-        {
-            p.lineTo (x + w, y);
-        }
-
-        if (curveBottomRight)
-        {
-            p.lineTo (x + w, y + h - cs);
-            p.addArc (x + w - cs2, y + h - cs2, cs2, cs2, float_Pi * 0.5f, float_Pi);
-        }
-        else
-        {
-            p.lineTo (x + w, y + h);
-        }
-
-        if (curveBottomLeft)
-        {
-            p.lineTo (x + cs, y + h);
-            p.addArc (x, y + h - cs2, cs2, cs2, float_Pi, float_Pi * 1.5f);
-        }
-        else
-        {
-            p.lineTo (x, y + h);
-        }
-
-        p.closeSubPath();
-    }
-
     static Colour createBaseColour (const Colour& buttonColour,
                                     const bool hasKeyboardFocus,
                                     const bool isMouseOverButton,
@@ -85,10 +33,8 @@ namespace LookAndFeelHelpers
         const float sat = hasKeyboardFocus ? 1.3f : 0.9f;
         const Colour baseColour (buttonColour.withMultipliedSaturation (sat));
 
-        if (isButtonDown)
-            return baseColour.contrasting (0.2f);
-        else if (isMouseOverButton)
-            return baseColour.contrasting (0.1f);
+        if (isButtonDown)      return baseColour.contrasting (0.2f);
+        if (isMouseOverButton) return baseColour.contrasting (0.1f);
 
         return baseColour;
     }
@@ -106,16 +52,16 @@ namespace LookAndFeelHelpers
         tl.createLayoutWithBalancedLineLengths (s, (float) maxToolTipWidth);
         return tl;
     }
+
+    static Typeface::Ptr getTypefaceForFontFromLookAndFeel (const Font& font)
+    {
+        return LookAndFeel::getDefaultLookAndFeel().getTypefaceForFont (font);
+    }
 }
 
 //==============================================================================
 typedef Typeface::Ptr (*GetTypefaceForFont) (const Font&);
 extern GetTypefaceForFont juce_getTypefaceForFont;
-
-static Typeface::Ptr getTypefaceForFontFromLookAndFeel (const Font& font)
-{
-    return LookAndFeel::getDefaultLookAndFeel().getTypefaceForFont (font);
-}
 
 //==============================================================================
 LookAndFeel::LookAndFeel()
@@ -139,9 +85,6 @@ LookAndFeel::LookAndFeel()
         TextButton::buttonOnColourId,               0xff4444ff,
         TextButton::textColourOnId,                 0xff000000,
         TextButton::textColourOffId,                0xff000000,
-
-        ComboBox::buttonColourId,                   0xffbbbbff,
-        ComboBox::outlineColourId,                  standardOutlineColour,
 
         ToggleButton::textColourId,                 0xff000000,
 
@@ -172,9 +115,15 @@ LookAndFeel::LookAndFeel()
         PopupMenu::highlightedTextColourId,         0xffffffff,
         PopupMenu::highlightedBackgroundColourId,   0x991111aa,
 
+        ComboBox::buttonColourId,                   0xffbbbbff,
+        ComboBox::outlineColourId,                  standardOutlineColour,
         ComboBox::textColourId,                     0xff000000,
         ComboBox::backgroundColourId,               0xffffffff,
         ComboBox::arrowColourId,                    0x99000000,
+
+        TextPropertyComponent::backgroundColourId,  0xffffffff,
+        TextPropertyComponent::textColourId,        0xff000000,
+        TextPropertyComponent::outlineColourId,     standardOutlineColour,
 
         ListBox::backgroundColourId,                0xffffffff,
         ListBox::outlineColourId,                   standardOutlineColour,
@@ -216,10 +165,16 @@ LookAndFeel::LookAndFeel()
         Toolbar::labelTextColourId,                 0xff000000,
         Toolbar::editingModeOutlineColourId,        0xffff0000,
 
+        DrawableButton::backgroundColourId,         0x00000000,
+        DrawableButton::backgroundOnColourId,       0xaabbbbff,
+
         HyperlinkButton::textColourId,              0xcc1111ee,
 
         GroupComponent::outlineColourId,            0x66000000,
         GroupComponent::textColourId,               0xff000000,
+
+        BubbleComponent::backgroundColourId,        0xeeeeeebb,
+        BubbleComponent::outlineColourId,           0x77000000,
 
         DirectoryContentsDisplayComponent::highlightColourId,   textHighlightColour,
         DirectoryContentsDisplayComponent::textColourId,        0xff000000,
@@ -256,9 +211,9 @@ LookAndFeel::LookAndFeel()
     };
 
     for (int i = 0; i < numElementsInArray (standardColours); i += 2)
-        setColour (standardColours [i], Colour ((uint32) standardColours [i + 1]));
+        setColour ((int) standardColours [i], Colour ((uint32) standardColours [i + 1]));
 
-    juce_getTypefaceForFont = getTypefaceForFontFromLookAndFeel;
+    juce_getTypefaceForFont = LookAndFeelHelpers::getTypefaceForFontFromLookAndFeel;
 }
 
 LookAndFeel::~LookAndFeel()
@@ -334,7 +289,16 @@ void LookAndFeel::setDefaultSansSerifTypefaceName (const String& newName)
 //==============================================================================
 MouseCursor LookAndFeel::getMouseCursorFor (Component& component)
 {
-    return component.getMouseCursor();
+    MouseCursor m (component.getMouseCursor());
+
+    Component* parent = component.getParentComponent();
+    while (parent != nullptr && m == MouseCursor::ParentCursor)
+    {
+        m = parent->getMouseCursor();
+        parent = parent->getParentComponent();
+    }
+
+    return m;
 }
 
 LowLevelGraphicsContext* LookAndFeel::createGraphicsContext (const Image& imageToRenderOn, const Point<int>& origin, const RectangleList& initialClip)
@@ -498,8 +462,8 @@ AlertWindow* LookAndFeel::createAlertWindow (const String& title,
     if (numButtons == 1)
     {
         aw->addButton (button1, 0,
-                       KeyPress (KeyPress::escapeKey, 0, 0),
-                       KeyPress (KeyPress::returnKey, 0, 0));
+                       KeyPress (KeyPress::escapeKey),
+                       KeyPress (KeyPress::returnKey));
     }
     else
     {
@@ -510,14 +474,14 @@ AlertWindow* LookAndFeel::createAlertWindow (const String& title,
 
         if (numButtons == 2)
         {
-            aw->addButton (button1, 1, KeyPress (KeyPress::returnKey, 0, 0), button1ShortCut);
-            aw->addButton (button2, 0, KeyPress (KeyPress::escapeKey, 0, 0), button2ShortCut);
+            aw->addButton (button1, 1, KeyPress (KeyPress::returnKey), button1ShortCut);
+            aw->addButton (button2, 0, KeyPress (KeyPress::escapeKey), button2ShortCut);
         }
         else if (numButtons == 3)
         {
             aw->addButton (button1, 1, button1ShortCut);
             aw->addButton (button2, 2, button2ShortCut);
-            aw->addButton (button3, 0, KeyPress (KeyPress::escapeKey, 0, 0));
+            aw->addButton (button3, 0, KeyPress (KeyPress::escapeKey));
         }
     }
 
@@ -605,12 +569,12 @@ int LookAndFeel::getAlertWindowButtonHeight()
     return 28;
 }
 
-const Font LookAndFeel::getAlertWindowMessageFont()
+Font LookAndFeel::getAlertWindowMessageFont()
 {
     return Font (15.0f);
 }
 
-const Font LookAndFeel::getAlertWindowFont()
+Font LookAndFeel::getAlertWindowFont()
 {
     return Font (12.0f);
 }
@@ -711,6 +675,11 @@ void LookAndFeel::drawSpinningWaitAnimation (Graphics& g, const Colour& colour, 
         g.fillPath (p, AffineTransform::rotation (i * (float_Pi / 6.0f))
                                        .translated (cx, cy));
     }
+}
+
+bool LookAndFeel::areScrollbarButtonsVisible()
+{
+    return true;
 }
 
 void LookAndFeel::drawScrollbarButton (Graphics& g,
@@ -882,7 +851,7 @@ int LookAndFeel::getScrollbarButtonSize (ScrollBar& scrollbar)
 }
 
 //==============================================================================
-const Path LookAndFeel::getTickShape (const float height)
+Path LookAndFeel::getTickShape (const float height)
 {
     static const unsigned char tickShapeData[] =
     {
@@ -899,7 +868,7 @@ const Path LookAndFeel::getTickShape (const float height)
     return p;
 }
 
-const Path LookAndFeel::getCrossShape (const float height)
+Path LookAndFeel::getCrossShape (const float height)
 {
     static const unsigned char crossShapeData[] =
     {
@@ -944,25 +913,17 @@ void LookAndFeel::drawTreeviewPlusMinusBox (Graphics& g, int x, int y, int w, in
 }
 
 //==============================================================================
-void LookAndFeel::drawBubble (Graphics& g,
-                              float tipX, float tipY,
-                              float boxX, float boxY,
-                              float boxW, float boxH)
+void LookAndFeel::drawBubble (Graphics& g, BubbleComponent& comp,
+                              const Point<float>& tip, const Rectangle<float>& body)
 {
-    const Rectangle<float> body (boxX, boxY, boxW, boxH);
-
     Path p;
-    p.addBubble (body,
-                 body.getUnion (Rectangle<float> (tipX, tipY, 1.0f, 1.0f)),
-                 Point<float> (tipX, tipY),
-                 5.0f, jmin (15.0f, boxW * 0.2f, boxH * 0.2f));
+    p.addBubble (body, body.getUnion (Rectangle<float> (tip.x, tip.y, 1.0f, 1.0f)),
+                 tip, 5.0f, jmin (15.0f, body.getWidth() * 0.2f, body.getHeight() * 0.2f));
 
-    //xxx need to take comp as param for colour
-    g.setColour (findColour (TooltipWindow::backgroundColourId).withAlpha (0.9f));
+    g.setColour (comp.findColour (BubbleComponent::backgroundColourId));
     g.fillPath (p);
 
-    //xxx as above
-    g.setColour (findColour (TooltipWindow::textColourId).withAlpha (0.4f));
+    g.setColour (comp.findColour (BubbleComponent::outlineColourId));
     g.strokePath (p, PathStrokeType (1.33f));
 }
 
@@ -1112,8 +1073,7 @@ void LookAndFeel::drawPopupMenuItem (Graphics& g,
         }
 
         g.drawFittedText (text,
-                          leftBorder, 0,
-                          width - (leftBorder + rightBorder), height,
+                          leftBorder, 0, width - (leftBorder + rightBorder), height,
                           Justification::centredLeft, 1);
 
         if (shortcutKeyText.isNotEmpty())
@@ -1124,10 +1084,7 @@ void LookAndFeel::drawPopupMenuItem (Graphics& g,
             g.setFont (f2);
 
             g.drawText (shortcutKeyText,
-                        leftBorder,
-                        0,
-                        width - (leftBorder + rightBorder + 4),
-                        height,
+                        leftBorder, 0, width - (leftBorder + rightBorder + 4), height,
                         Justification::centredRight,
                         true);
         }
@@ -1233,7 +1190,7 @@ void LookAndFeel::drawTextEditorOutline (Graphics& g, int width, int height, Tex
 
             g.setOpacity (1.0f);
             const Colour shadowColour (textEditor.findColour (TextEditor::shadowColourId).withMultipliedAlpha (0.75f));
-            g.drawBevel (0, 0, width, height + 2, border + 2, shadowColour, shadowColour);
+            drawBevel (g, 0, 0, width, height + 2, border + 2, shadowColour, shadowColour);
         }
         else
         {
@@ -1242,7 +1199,7 @@ void LookAndFeel::drawTextEditorOutline (Graphics& g, int width, int height, Tex
 
             g.setOpacity (1.0f);
             const Colour shadowColour (textEditor.findColour (TextEditor::shadowColourId));
-            g.drawBevel (0, 0, width, height + 2, 3, shadowColour, shadowColour);
+            drawBevel (g, 0, 0, width, height + 2, 3, shadowColour, shadowColour);
         }
     }
 }
@@ -1263,7 +1220,7 @@ void LookAndFeel::drawComboBox (Graphics& g, int width, int height,
 
     if (box.isEnabled() && box.hasKeyboardFocus (false))
     {
-        g.setColour (box.findColour (TextButton::buttonColourId));
+        g.setColour (box.findColour (ComboBox::buttonColourId));
         g.drawRect (0, 0, width, height, 2);
     }
     else
@@ -1605,7 +1562,7 @@ Button* LookAndFeel::createSliderButton (const bool isIncrement)
     return new TextButton (isIncrement ? "+" : "-", String::empty);
 }
 
-class SliderLabelComp : public Label
+class LookAndFeel::SliderLabelComp : public Label
 {
 public:
     SliderLabelComp() : Label (String::empty, String::empty) {}
@@ -1686,6 +1643,19 @@ void LookAndFeel::layoutFilenameComponent (FilenameComponent& filenameComp,
     filenameBox->setBounds (0, 0, browseButton->getX(), filenameComp.getHeight());
 }
 
+//==============================================================================
+void LookAndFeel::drawConcertinaPanelHeader (Graphics& g, const Rectangle<int>& area,
+                                             bool isMouseOver, bool /*isMouseDown*/,
+                                             ConcertinaPanel&, Component& panel)
+{
+    g.fillAll (Colours::grey.withAlpha (isMouseOver ? 0.9f : 0.7f));
+    g.setColour (Colours::black.withAlpha (0.5f));
+    g.drawRect (area);
+
+    g.setColour (Colours::white);
+    g.setFont (Font (area.getHeight() * 0.7f).boldened());
+    g.drawFittedText (panel.getName(), 4, 0, area.getWidth() - 6, area.getHeight(), Justification::centredLeft, 1);
+}
 
 //==============================================================================
 void LookAndFeel::drawImageButton (Graphics& g, Image* image,
@@ -1819,7 +1789,7 @@ void LookAndFeel::drawDocumentWindowTitleBar (DocumentWindow& window,
     }
 
     if (window.isColourSpecified (DocumentWindow::textColourId) || isColourSpecified (DocumentWindow::textColourId))
-        g.setColour (findColour (DocumentWindow::textColourId));
+        g.setColour (window.findColour (DocumentWindow::textColourId));
     else
         g.setColour (window.getBackgroundColour().contrasting (isActive ? 0.7f : 0.4f));
 
@@ -1827,7 +1797,7 @@ void LookAndFeel::drawDocumentWindowTitleBar (DocumentWindow& window,
 }
 
 //==============================================================================
-class GlassWindowButton   : public Button
+class LookAndFeel::GlassWindowButton   : public Button
 {
 public:
     //==============================================================================
@@ -1838,10 +1808,6 @@ public:
           colour (col),
           normalShape (normalShape_),
           toggledShape (toggledShape_)
-    {
-    }
-
-    ~GlassWindowButton()
     {
     }
 
@@ -1977,9 +1943,8 @@ int LookAndFeel::getDefaultMenuBarHeight()
 //==============================================================================
 DropShadower* LookAndFeel::createDropShadowerForComponent (Component*)
 {
-    return new DropShadower (0.4f, 1, 5, 10);
+    return new DropShadower (DropShadow (Colours::black.withAlpha (0.4f), 10, Point<int> (0, 2)));
 }
-
 
 //==============================================================================
 void LookAndFeel::drawStretchableLayoutResizerBar (Graphics& g,
@@ -2079,60 +2044,104 @@ int LookAndFeel::getTabButtonSpaceAroundImage()
     return 4;
 }
 
-void LookAndFeel::createTabButtonShape (Path& p, int width, int height, int /*tabIndex*/,
-                                        const String& /*text*/, Button& /*button*/, TabbedButtonBar::Orientation orientation,
-                                        const bool /*isMouseOver*/, const bool /*isMouseDown*/, const bool /*isFrontTab*/)
+int LookAndFeel::getTabButtonBestWidth (TabBarButton& button, int tabDepth)
 {
-    const float w = (float) width;
-    const float h = (float) height;
+    int width = Font (tabDepth * 0.6f).getStringWidth (button.getButtonText().trim())
+                  + getTabButtonOverlap (tabDepth) * 2;
+
+    Component* const extraComponent = button.getExtraComponent();
+
+    if (extraComponent != nullptr)
+        width += button.getTabbedButtonBar().isVertical() ? extraComponent->getHeight()
+                                                          : extraComponent->getWidth();
+
+    return jlimit (tabDepth * 2, tabDepth * 8, width);
+}
+
+Rectangle<int> LookAndFeel::getTabButtonExtraComponentBounds (const TabBarButton& button, Rectangle<int>& textArea, Component& comp)
+{
+    Rectangle<int> extraComp;
+
+    const TabbedButtonBar::Orientation orientation = button.getTabbedButtonBar().getOrientation();
+
+    if (button.getExtraComponentPlacement() == TabBarButton::beforeText)
+    {
+        switch (orientation)
+        {
+            case TabbedButtonBar::TabsAtBottom:
+            case TabbedButtonBar::TabsAtTop:     extraComp = textArea.removeFromLeft   (comp.getWidth()); break;
+            case TabbedButtonBar::TabsAtLeft:    extraComp = textArea.removeFromBottom (comp.getHeight()); break;
+            case TabbedButtonBar::TabsAtRight:   extraComp = textArea.removeFromTop    (comp.getHeight()); break;
+            default:                             jassertfalse; break;
+        }
+    }
+    else
+    {
+        switch (orientation)
+        {
+            case TabbedButtonBar::TabsAtBottom:
+            case TabbedButtonBar::TabsAtTop:     extraComp = textArea.removeFromRight  (comp.getWidth()); break;
+            case TabbedButtonBar::TabsAtLeft:    extraComp = textArea.removeFromTop    (comp.getHeight()); break;
+            case TabbedButtonBar::TabsAtRight:   extraComp = textArea.removeFromBottom (comp.getHeight()); break;
+            default:                             jassertfalse; break;
+        }
+    }
+
+    return extraComp;
+}
+
+void LookAndFeel::createTabButtonShape (TabBarButton& button, Path& p, bool /*isMouseOver*/, bool /*isMouseDown*/)
+{
+    const Rectangle<int> activeArea (button.getActiveArea());
+    const float w = (float) activeArea.getWidth();
+    const float h = (float) activeArea.getHeight();
 
     float length = w;
     float depth = h;
 
-    if (orientation == TabbedButtonBar::TabsAtLeft
-         || orientation == TabbedButtonBar::TabsAtRight)
-    {
+    if (button.getTabbedButtonBar().isVertical())
         std::swap (length, depth);
-    }
 
     const float indent = (float) getTabButtonOverlap ((int) depth);
     const float overhang = 4.0f;
 
-    if (orientation == TabbedButtonBar::TabsAtLeft)
+    switch (button.getTabbedButtonBar().getOrientation())
     {
-        p.startNewSubPath (w, 0.0f);
-        p.lineTo (0.0f, indent);
-        p.lineTo (0.0f, h - indent);
-        p.lineTo (w, h);
-        p.lineTo (w + overhang, h + overhang);
-        p.lineTo (w + overhang, -overhang);
-    }
-    else if (orientation == TabbedButtonBar::TabsAtRight)
-    {
-        p.startNewSubPath (0.0f, 0.0f);
-        p.lineTo (w, indent);
-        p.lineTo (w, h - indent);
-        p.lineTo (0.0f, h);
-        p.lineTo (-overhang, h + overhang);
-        p.lineTo (-overhang, -overhang);
-    }
-    else if (orientation == TabbedButtonBar::TabsAtBottom)
-    {
-        p.startNewSubPath (0.0f, 0.0f);
-        p.lineTo (indent, h);
-        p.lineTo (w - indent, h);
-        p.lineTo (w, 0.0f);
-        p.lineTo (w + overhang, -overhang);
-        p.lineTo (-overhang, -overhang);
-    }
-    else
-    {
-        p.startNewSubPath (0.0f, h);
-        p.lineTo (indent, 0.0f);
-        p.lineTo (w - indent, 0.0f);
-        p.lineTo (w, h);
-        p.lineTo (w + overhang, h + overhang);
-        p.lineTo (-overhang, h + overhang);
+        case TabbedButtonBar::TabsAtLeft:
+            p.startNewSubPath (w, 0.0f);
+            p.lineTo (0.0f, indent);
+            p.lineTo (0.0f, h - indent);
+            p.lineTo (w, h);
+            p.lineTo (w + overhang, h + overhang);
+            p.lineTo (w + overhang, -overhang);
+            break;
+
+        case TabbedButtonBar::TabsAtRight:
+            p.startNewSubPath (0.0f, 0.0f);
+            p.lineTo (w, indent);
+            p.lineTo (w, h - indent);
+            p.lineTo (0.0f, h);
+            p.lineTo (-overhang, h + overhang);
+            p.lineTo (-overhang, -overhang);
+            break;
+
+        case TabbedButtonBar::TabsAtBottom:
+            p.startNewSubPath (0.0f, 0.0f);
+            p.lineTo (indent, h);
+            p.lineTo (w - indent, h);
+            p.lineTo (w, 0.0f);
+            p.lineTo (w + overhang, -overhang);
+            p.lineTo (-overhang, -overhang);
+            break;
+
+        default:
+            p.startNewSubPath (0.0f, h);
+            p.lineTo (indent, 0.0f);
+            p.lineTo (w - indent, 0.0f);
+            p.lineTo (w, h);
+            p.lineTo (w + overhang, h + overhang);
+            p.lineTo (-overhang, h + overhang);
+            break;
     }
 
     p.closeSubPath();
@@ -2140,13 +2149,13 @@ void LookAndFeel::createTabButtonShape (Path& p, int width, int height, int /*ta
     p = p.createPathWithRoundedCorners (3.0f);
 }
 
-void LookAndFeel::fillTabButtonShape (Graphics& g, const Path& path, const Colour& preferredColour,
-                                      int /*tabIndex*/, const String& /*text*/, Button& button,
-                                      TabbedButtonBar::Orientation /*orientation*/, const bool /*isMouseOver*/,
-                                      const bool /*isMouseDown*/, const bool isFrontTab)
+void LookAndFeel::fillTabButtonShape (TabBarButton& button, Graphics& g, const Path& path,  bool /*isMouseOver*/, bool /*isMouseDown*/)
 {
-    g.setColour (isFrontTab ? preferredColour
-                            : preferredColour.withMultipliedAlpha (0.9f));
+    const Colour tabBackground (button.getTabBackgroundColour());
+    const bool isFrontTab = button.isFrontTab();
+
+    g.setColour (isFrontTab ? tabBackground
+                            : tabBackground.withMultipliedAlpha (0.9f));
 
     g.fillPath (path);
 
@@ -2157,133 +2166,108 @@ void LookAndFeel::fillTabButtonShape (Graphics& g, const Path& path, const Colou
     g.strokePath (path, PathStrokeType (isFrontTab ? 1.0f : 0.5f));
 }
 
-void LookAndFeel::drawTabButtonText (Graphics& g, int x, int y, int w, int h,
-                                     const Colour& preferredBackgroundColour, int /*tabIndex*/,
-                                     const String& text, Button& button, TabbedButtonBar::Orientation orientation,
-                                     const bool isMouseOver, const bool isMouseDown, const bool isFrontTab)
+void LookAndFeel::drawTabButtonText (TabBarButton& button, Graphics& g, bool isMouseOver, bool isMouseDown)
 {
-    int length = w;
-    int depth = h;
+    const Rectangle<float> area (button.getTextArea().toFloat());
 
-    if (orientation == TabbedButtonBar::TabsAtLeft
-         || orientation == TabbedButtonBar::TabsAtRight)
-    {
+    float length = area.getWidth();
+    float depth  = area.getHeight();
+
+    if (button.getTabbedButtonBar().isVertical())
         std::swap (length, depth);
-    }
 
     Font font (depth * 0.6f);
     font.setUnderline (button.hasKeyboardFocus (false));
 
     GlyphArrangement textLayout;
-    textLayout.addFittedText (font, text.trim(),
+    textLayout.addFittedText (font, button.getButtonText().trim(),
                               0.0f, 0.0f, (float) length, (float) depth,
                               Justification::centred,
-                              jmax (1, depth / 12));
+                              jmax (1, ((int) depth) / 12));
 
     AffineTransform t;
 
-    switch (orientation)
+    switch (button.getTabbedButtonBar().getOrientation())
     {
-        case TabbedButtonBar::TabsAtLeft:   t = t.rotated (float_Pi * -0.5f).translated ((float) x, (float) (y + h)); break;
-        case TabbedButtonBar::TabsAtRight:  t = t.rotated (float_Pi *  0.5f).translated ((float) (x + w), (float) y); break;
-        default:                            t = t.translated ((float) x, (float) y);
+        case TabbedButtonBar::TabsAtLeft:   t = t.rotated (float_Pi * -0.5f).translated (area.getX(), area.getBottom()); break;
+        case TabbedButtonBar::TabsAtRight:  t = t.rotated (float_Pi *  0.5f).translated (area.getRight(), area.getY()); break;
+        case TabbedButtonBar::TabsAtTop:
+        case TabbedButtonBar::TabsAtBottom: t = t.translated (area.getX(), area.getY()); break;
+        default:                            jassertfalse; break;
     }
 
-    if (isFrontTab && (button.isColourSpecified (TabbedButtonBar::frontTextColourId) || isColourSpecified (TabbedButtonBar::frontTextColourId)))
-        g.setColour (findColour (TabbedButtonBar::frontTextColourId));
-    else if (button.isColourSpecified (TabbedButtonBar::tabTextColourId) || isColourSpecified (TabbedButtonBar::tabTextColourId))
-        g.setColour (findColour (TabbedButtonBar::tabTextColourId));
+    Colour col;
+
+    if (button.isFrontTab() && (button.isColourSpecified (TabbedButtonBar::frontTextColourId)
+                                    || isColourSpecified (TabbedButtonBar::frontTextColourId)))
+        col = findColour (TabbedButtonBar::frontTextColourId);
+    else if (button.isColourSpecified (TabbedButtonBar::tabTextColourId)
+                 || isColourSpecified (TabbedButtonBar::tabTextColourId))
+        col = findColour (TabbedButtonBar::tabTextColourId);
     else
-        g.setColour (preferredBackgroundColour.contrasting());
+        col = button.getTabBackgroundColour().contrasting();
 
-    if (! (isMouseOver || isMouseDown))
-        g.setOpacity (0.8f);
+    const float alpha = button.isEnabled() ? ((isMouseOver || isMouseDown) ? 1.0f : 0.8f) : 0.3f;
 
-    if (! button.isEnabled())
-        g.setOpacity (0.3f);
-
+    g.setColour (col.withMultipliedAlpha (alpha));
     textLayout.draw (g, t);
 }
 
-int LookAndFeel::getTabButtonBestWidth (int /*tabIndex*/, const String& text, int tabDepth, Button&)
-{
-    Font f (tabDepth * 0.6f);
-    return f.getStringWidth (text.trim()) + getTabButtonOverlap (tabDepth) * 2;
-}
-
-void LookAndFeel::drawTabButton (Graphics& g, int w, int h, const Colour& preferredColour,
-                                 int tabIndex, const String& text, Button& button, TabbedButtonBar::Orientation orientation,
-                                 const bool isMouseOver, const bool isMouseDown, const bool isFrontTab)
+void LookAndFeel::drawTabButton (TabBarButton& button, Graphics& g, bool isMouseOver, bool isMouseDown)
 {
     Path tabShape;
-    createTabButtonShape (tabShape, w, h, tabIndex, text, button, orientation,
-                          isMouseOver, isMouseDown, isFrontTab);
+    createTabButtonShape (button, tabShape, isMouseOver, isMouseDown);
 
-    fillTabButtonShape (g, tabShape, preferredColour,
-                        tabIndex, text, button, orientation,
-                        isMouseOver, isMouseDown, isFrontTab);
+    const Rectangle<int> activeArea (button.getActiveArea());
+    tabShape.applyTransform (AffineTransform::translation ((float) activeArea.getX(),
+                                                           (float) activeArea.getY()));
 
-    const int depth = (orientation == TabbedButtonBar::TabsAtLeft || orientation == TabbedButtonBar::TabsAtRight) ? w : h;
-    const int indent = getTabButtonOverlap (depth);
-    int x = 0, y = 0;
+    DropShadow (Colours::black.withAlpha (0.5f), 2, Point<int> (0, 1)).drawForPath (g, tabShape);
 
-    if (orientation == TabbedButtonBar::TabsAtLeft || orientation == TabbedButtonBar::TabsAtRight)
-    {
-        y += indent;
-        h -= indent * 2;
-    }
-    else
-    {
-        x += indent;
-        w -= indent * 2;
-    }
-
-    drawTabButtonText (g, x, y, w, h, preferredColour,
-                       tabIndex, text, button, orientation,
-                       isMouseOver, isMouseDown, isFrontTab);
+    fillTabButtonShape (button, g, tabShape, isMouseOver, isMouseDown);
+    drawTabButtonText (button, g, isMouseOver, isMouseDown);
 }
 
-void LookAndFeel::drawTabAreaBehindFrontButton (Graphics& g, int w, int h, TabbedButtonBar& tabBar,
-                                                TabbedButtonBar::Orientation orientation)
+void LookAndFeel::drawTabAreaBehindFrontButton (TabbedButtonBar& bar, Graphics& g, const int w, const int h)
 {
     const float shadowSize = 0.2f;
 
-    float x1 = 0, y1 = 0, x2 = 0, y2 = 0;
     Rectangle<int> shadowRect, line;
+    ColourGradient gradient (Colours::black.withAlpha (bar.isEnabled() ? 0.3f : 0.15f), 0, 0,
+                             Colours::transparentBlack, 0, 0, false);
 
-    switch (orientation)
+    switch (bar.getOrientation())
     {
         case TabbedButtonBar::TabsAtLeft:
-            x1 = (float) w;
-            x2 = w * (1.0f - shadowSize);
-            shadowRect.setBounds ((int) x2, 0, w - (int) x2, h);
+            gradient.point1.x = (float) w;
+            gradient.point2.x = w * (1.0f - shadowSize);
+            shadowRect.setBounds ((int) gradient.point2.x, 0, w - (int) gradient.point2.x, h);
             line.setBounds (w - 1, 0, 1, h);
             break;
 
         case TabbedButtonBar::TabsAtRight:
-            x2 = w * shadowSize;
-            shadowRect.setBounds (0, 0, (int) x2, h);
+            gradient.point2.x = w * shadowSize;
+            shadowRect.setBounds (0, 0, (int) gradient.point2.x, h);
             line.setBounds (0, 0, 1, h);
             break;
 
         case TabbedButtonBar::TabsAtTop:
-            y1 = (float) h;
-            y2 = h * (1.0f - shadowSize);
-            shadowRect.setBounds (0, (int) y2, w, h - (int) y2);
+            gradient.point1.y = (float) h;
+            gradient.point2.y = h * (1.0f - shadowSize);
+            shadowRect.setBounds (0, (int) gradient.point2.y, w, h - (int) gradient.point2.y);
             line.setBounds (0, h - 1, w, 1);
             break;
 
         case TabbedButtonBar::TabsAtBottom:
-            y2 = h * shadowSize;
-            shadowRect.setBounds (0, 0, w, (int) y2);
+            gradient.point2.y = h * shadowSize;
+            shadowRect.setBounds (0, 0, w, (int) gradient.point2.y);
             line.setBounds (0, 0, w, 1);
             break;
 
         default: break;
     }
 
-    g.setGradientFill (ColourGradient (Colours::black.withAlpha (tabBar.isEnabled() ? 0.3f : 0.15f), x1, y1,
-                                       Colours::transparentBlack, x2, y2, false));
+    g.setGradientFill (gradient);
     g.fillRect (shadowRect.expanded (2, 2));
 
     g.setColour (Colour (0x80000000));
@@ -2383,6 +2367,16 @@ void LookAndFeel::drawTableHeaderColumn (Graphics& g, const String& columnName, 
     g.drawFittedText (columnName, textX, 0, rightOfText - textX, height, Justification::centredLeft, 1);
 }
 
+//==============================================================================
+void LookAndFeel::drawLasso (Graphics& g, Component& lassoComp)
+{
+    const int outlineThickness = 1;
+
+    g.fillAll (lassoComp.findColour (0x1000440 /*lassoFillColourId*/));
+
+    g.setColour (lassoComp.findColour (0x1000441 /*lassoOutlineColourId*/));
+    g.drawRect (lassoComp.getLocalBounds(), outlineThickness);
+}
 
 //==============================================================================
 void LookAndFeel::paintToolbarBackground (Graphics& g, int w, int h, Toolbar& toolbar)
@@ -2479,21 +2473,10 @@ void LookAndFeel::drawCallOutBoxBackground (CallOutBox& box, Graphics& g,
 {
     if (cachedImage.isNull())
     {
-        const int w = box.getWidth();
-        const int h = box.getHeight();
-
-        Image renderedPath (Image::ARGB, w, h, true);
-
-        {
-            Graphics g2 (renderedPath);
-
-            g2.setColour (Colour::greyLevel (0.23f).withAlpha (0.9f));
-            g2.fillPath (path);
-        }
-
-        cachedImage = Image (Image::ARGB, w, h, true);
+        cachedImage = Image (Image::ARGB, box.getWidth(), box.getHeight(), true);
         Graphics g2 (cachedImage);
-        DropShadowEffect::drawShadow (g2, renderedPath, 5.0f, 0.4f, 0, 2);
+
+        DropShadow (Colours::black.withAlpha (0.7f), 8, Point<int> (0, 2)).drawForPath (g2, path);
     }
 
     g.setColour (Colours::black);
@@ -2750,7 +2733,7 @@ void LookAndFeel::drawKeymapChangeButton (Graphics& g, int width, int height, Bu
             g.fillAll (textColour.withAlpha (alpha));
 
             g.setOpacity (0.3f);
-            g.drawBevel (0, 0, width, height, 2);
+            drawBevel (g, 0, 0, width, height, 2);
         }
 
         g.setColour (textColour);
@@ -2783,6 +2766,35 @@ void LookAndFeel::drawKeymapChangeButton (Graphics& g, int width, int height, Bu
 }
 
 //==============================================================================
+void LookAndFeel::drawBevel (Graphics& g, const int x, const int y, const int width, const int height,
+                             const int bevelThickness, const Colour& topLeftColour, const Colour& bottomRightColour,
+                             const bool useGradient, const bool sharpEdgeOnOutside)
+{
+    if (g.clipRegionIntersects (Rectangle<int> (x, y, width, height)))
+    {
+        LowLevelGraphicsContext& context = g.getInternalContext();
+        context.saveState();
+
+        for (int i = bevelThickness; --i >= 0;)
+        {
+            const float op = useGradient ? (sharpEdgeOnOutside ? bevelThickness - i : i) / (float) bevelThickness
+                                         : 1.0f;
+
+            context.setFill (topLeftColour.withMultipliedAlpha (op));
+            context.fillRect (Rectangle<int> (x + i, y + i, width - i * 2, 1), false);
+            context.setFill (topLeftColour.withMultipliedAlpha (op * 0.75f));
+            context.fillRect (Rectangle<int> (x + i, y + i + 1, 1, height - i * 2 - 2), false);
+            context.setFill (bottomRightColour.withMultipliedAlpha (op));
+            context.fillRect (Rectangle<int> (x + i, y + height - i - 1, width - i * 2, 1), false);
+            context.setFill (bottomRightColour.withMultipliedAlpha (op  * 0.75f));
+            context.fillRect (Rectangle<int> (x + width - i - 1, y + i + 1, 1, height - i * 2 - 2), false);
+        }
+
+        context.restoreState();
+    }
+}
+
+//==============================================================================
 void LookAndFeel::drawShinyButtonShape (Graphics& g,
                                         float x, float y, float w, float h,
                                         float maxCornerSize,
@@ -2799,17 +2811,17 @@ void LookAndFeel::drawShinyButtonShape (Graphics& g,
     const float cs = jmin (maxCornerSize, w * 0.5f, h * 0.5f);
 
     Path outline;
-    LookAndFeelHelpers::createRoundedPath (outline, x, y, w, h, cs,
-                                            ! (flatOnLeft || flatOnTop),
-                                            ! (flatOnRight || flatOnTop),
-                                            ! (flatOnLeft || flatOnBottom),
-                                            ! (flatOnRight || flatOnBottom));
+    outline.addRoundedRectangle (x, y, w, h, cs, cs,
+                                 ! (flatOnLeft  || flatOnTop),
+                                 ! (flatOnRight || flatOnTop),
+                                 ! (flatOnLeft  || flatOnBottom),
+                                 ! (flatOnRight || flatOnBottom));
 
     ColourGradient cg (baseColour, 0.0f, y,
                        baseColour.overlaidWith (Colour (0x070000ff)), 0.0f, y + h,
                        false);
 
-    cg.addColour (0.5, baseColour.overlaidWith (Colour (0x33ffffff)));
+    cg.addColour (0.5,  baseColour.overlaidWith (Colour (0x33ffffff)));
     cg.addColour (0.51, baseColour.overlaidWith (Colour (0x110000ff)));
 
     g.setGradientFill (cg);
@@ -2931,11 +2943,11 @@ void LookAndFeel::drawGlassLozenge (Graphics& g,
     const int intEdge = (int) edgeBlurRadius;
 
     Path outline;
-    LookAndFeelHelpers::createRoundedPath (outline, x, y, width, height, cs,
-                                            ! (flatOnLeft || flatOnTop),
-                                            ! (flatOnRight || flatOnTop),
-                                            ! (flatOnLeft || flatOnBottom),
-                                            ! (flatOnRight || flatOnBottom));
+    outline.addRoundedRectangle (x, y, width, height, cs, cs,
+                                 ! (flatOnLeft || flatOnTop),
+                                 ! (flatOnRight || flatOnTop),
+                                 ! (flatOnLeft || flatOnBottom),
+                                 ! (flatOnRight || flatOnBottom));
 
     {
         ColourGradient cg (colour.darker (0.2f), 0, y,
@@ -2981,15 +2993,16 @@ void LookAndFeel::drawGlassLozenge (Graphics& g,
         const float rightIndent = flatOnTop || flatOnRight ? 0.0f : cs * 0.4f;
 
         Path highlight;
-        LookAndFeelHelpers::createRoundedPath (highlight,
-                                               x + leftIndent,
-                                               y + cs * 0.1f,
-                                               width - (leftIndent + rightIndent),
-                                               height * 0.4f, cs * 0.4f,
-                                               ! (flatOnLeft || flatOnTop),
-                                               ! (flatOnRight || flatOnTop),
-                                               ! (flatOnLeft || flatOnBottom),
-                                               ! (flatOnRight || flatOnBottom));
+        highlight.addRoundedRectangle (x + leftIndent,
+                                       y + cs * 0.1f,
+                                       width - (leftIndent + rightIndent),
+                                       height * 0.4f,
+                                       cs * 0.4f,
+                                       cs * 0.4f,
+                                       ! (flatOnLeft || flatOnTop),
+                                       ! (flatOnRight || flatOnTop),
+                                       ! (flatOnLeft || flatOnBottom),
+                                       ! (flatOnRight || flatOnBottom));
 
         g.setGradientFill (ColourGradient (colour.brighter (10.0f), 0, y + height * 0.06f,
                                            Colours::transparentWhite, 0, y + height * 0.4f, false));

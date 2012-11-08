@@ -116,7 +116,7 @@ namespace juce {
 #endif
 
 //==============================================================================
-class WebBrowserComponentInternal
+class WebBrowserComponent::Pimpl
                                    #if JUCE_MAC
                                     : public NSViewComponent
                                    #else
@@ -124,7 +124,7 @@ class WebBrowserComponentInternal
                                    #endif
 {
 public:
-    WebBrowserComponentInternal (WebBrowserComponent* owner)
+    Pimpl (WebBrowserComponent* owner)
     {
        #if JUCE_MAC
         webView = [[WebView alloc] initWithFrame: NSMakeRect (0, 0, 100.0f, 100.0f)
@@ -148,7 +148,7 @@ public:
        #endif
     }
 
-    ~WebBrowserComponentInternal()
+    ~Pimpl()
     {
        #if JUCE_MAC
         [webView setPolicyDelegate: nil];
@@ -234,14 +234,14 @@ private:
 };
 
 //==============================================================================
-WebBrowserComponent::WebBrowserComponent (const bool unloadPageWhenBrowserIsHidden_)
+WebBrowserComponent::WebBrowserComponent (const bool unloadWhenHidden)
     : browser (nullptr),
       blankPageShown (false),
-      unloadPageWhenBrowserIsHidden (unloadPageWhenBrowserIsHidden_)
+      unloadPageWhenBrowserIsHidden (unloadWhenHidden)
 {
     setOpaque (true);
 
-    addAndMakeVisible (browser = new WebBrowserComponentInternal (this));
+    addAndMakeVisible (browser = new Pimpl (this));
 }
 
 WebBrowserComponent::~WebBrowserComponent()
@@ -301,6 +301,8 @@ void WebBrowserComponent::checkWindowAssociation()
 {
     if (isShowing())
     {
+        reloadLastURL();
+
         if (blankPageShown)
             goBack();
     }

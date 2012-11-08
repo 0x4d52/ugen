@@ -133,9 +133,9 @@ public:
 	
 	
 #if defined(JUCE_VERSION) || defined(DOXYGEN)
-	Value(Slider *slider) throw();
-	Value(Button *button) throw();
-	Value(Label *label) throw();
+	Value(juce::Slider *slider) throw();
+	Value(juce::Button *button) throw();
+	Value(juce::Label *label) throw();
 #endif
 #if defined(UGEN_IPHONE) || defined(DOXYGEN)
 	Value(UISlider *slider) throw();

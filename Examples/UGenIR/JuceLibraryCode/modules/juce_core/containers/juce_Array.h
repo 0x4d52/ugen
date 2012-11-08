@@ -142,6 +142,7 @@ public:
    #if JUCE_COMPILER_SUPPORTS_MOVE_SEMANTICS
     Array& operator= (Array&& other) noexcept
     {
+        const ScopedLockType lock (getLock());
         data = static_cast <ArrayAllocationBase<ElementType, TypeOfCriticalSectionToUse>&&> (other.data);
         numUsed = other.numUsed;
         other.numUsed = 0;
@@ -219,7 +220,7 @@ public:
 
     /** Returns one of the elements in the array.
         If the index passed in is beyond the range of valid elements, this
-        will return zero.
+        will return a default value.
 
         If you're certain that the index will always be a valid element, you
         can call getUnchecked() instead, which is faster.
@@ -266,7 +267,7 @@ public:
         return data.elements [index];
     }
 
-    /** Returns the first element in the array, or 0 if the array is empty.
+    /** Returns the first element in the array, or a default value if the array is empty.
 
         @see operator[], getUnchecked, getLast
     */
@@ -277,7 +278,7 @@ public:
                              : ElementType();
     }
 
-    /** Returns the last element in the array, or 0 if the array is empty.
+    /** Returns the last element in the array, or a default value if the array is empty.
 
         @see operator[], getUnchecked, getFirst
     */
@@ -460,17 +461,17 @@ public:
         {
             const ScopedLockType lock (getLock());
             data.ensureAllocatedSize (numUsed + numberOfElements);
-            ElementType* insertPos;
+            ElementType* insertPos = data.elements;
 
             if (isPositiveAndBelow (indexToInsertAt, numUsed))
             {
-                insertPos = data.elements + indexToInsertAt;
+                insertPos += indexToInsertAt;
                 const int numberToMove = numUsed - indexToInsertAt;
                 memmove (insertPos + numberOfElements, insertPos, numberToMove * sizeof (ElementType));
             }
             else
             {
-                insertPos = data.elements + numUsed;
+                insertPos += numUsed;
             }
 
             numUsed += numberOfElements;
@@ -570,7 +571,7 @@ public:
         const ScopedLockType lock2 (otherArray.getLock());
 
         data.swapWith (otherArray.data);
-        swapVariables (numUsed, otherArray.numUsed);
+        std::swap (numUsed, otherArray.numUsed);
     }
 
     /** Adds elements from another array to the end of this array.
@@ -769,10 +770,9 @@ public:
     void removeAllInstancesOf (ParameterType valueToRemove)
     {
         const ScopedLockType lock (getLock());
-        ElementType* const e = data.elements;
 
         for (int i = numUsed; --i >= 0;)
-            if (valueToRemove == e[i])
+            if (valueToRemove == data.elements[i])
                 remove (i);
     }
 
@@ -900,8 +900,8 @@ public:
         if (isPositiveAndBelow (index1, numUsed)
              && isPositiveAndBelow (index2, numUsed))
         {
-            swapVariables (data.elements [index1],
-                           data.elements [index2]);
+            std::swap (data.elements [index1],
+                       data.elements [index2]);
         }
     }
 

@@ -76,8 +76,10 @@ public:
 			colourSelector.setSize (240, 320);
 			colourSelector.setCurrentColour(Colour::fromString(owner->getText()));	
 
-			CallOutBox callOut (colourSelector, *owner, 0);
-			callOut.runModalLoop();			
+//			CallOutBox callOut (colourSelector, *owner, 0);
+            CallOutBox callOut (colourSelector, owner->getBounds(), 0);
+
+			callOut.runModalLoop();
 		}
 		
 		void changeListenerCallback (ChangeBroadcaster* source)

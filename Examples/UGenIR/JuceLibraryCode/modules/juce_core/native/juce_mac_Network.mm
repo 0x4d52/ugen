@@ -160,8 +160,8 @@ public:
             if (available > 0)
             {
                 const ScopedLock sl (dataLock);
-                [data getBytes: dest length: available];
-                [data replaceBytesInRange: NSMakeRange (0, available) withBytes: nil length: 0];
+                [data getBytes: dest length: (NSUInteger) available];
+                [data replaceBytesInRange: NSMakeRange (0, (NSUInteger) available) withBytes: nil length: 0];
 
                 numDone += available;
                 numBytes -= available;
@@ -211,6 +211,10 @@ public:
         initialised = true;
     }
 
+    void didSendBodyData (int /*totalBytesWritten*/, int /*totalBytesExpected*/)
+    {
+    }
+
     void finishedLoading()
     {
         hasFinished = true;
@@ -249,6 +253,8 @@ private:
             addMethod (@selector (connection:didReceiveResponse:), didReceiveResponse,         "v@:@@");
             addMethod (@selector (connection:didFailWithError:),   didFailWithError,           "v@:@@");
             addMethod (@selector (connection:didReceiveData:),     didReceiveData,             "v@:@@");
+            addMethod (@selector (connection:didSendBodyData:totalBytesWritten:totalBytesExpectedToWrite:totalBytesExpectedToWrite:),
+                                                                   connectionDidSendBodyData,  "v@:@iii");
             addMethod (@selector (connectionDidFinishLoading:),    connectionDidFinishLoading, "v@:@");
 
             registerClass();
@@ -271,6 +277,11 @@ private:
         static void didReceiveData (id self, SEL, NSURLConnection*, NSData* newData)
         {
             getState (self)->didReceiveData (newData);
+        }
+
+        static void connectionDidSendBodyData (id self, SEL, NSURLConnection*, NSInteger, NSInteger totalBytesWritten, NSInteger totalBytesExpected)
+        {
+            getState (self)->didSendBodyData (totalBytesWritten, totalBytesExpected);
         }
 
         static void connectionDidFinishLoading (id self, SEL, NSURLConnection*)

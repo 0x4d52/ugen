@@ -647,7 +647,7 @@ public:
     */
     String fromFirstOccurrenceOf (const String& substringToStartFrom,
                                   bool includeSubStringInResult,
-                                        bool ignoreCase) const;
+                                  bool ignoreCase) const;
 
     /** Returns a section of the string starting from the last occurrence of a given substring.
 
@@ -1262,6 +1262,8 @@ JUCE_API String& JUCE_CALLTYPE operator<< (String& string1, short number);
 JUCE_API String& JUCE_CALLTYPE operator<< (String& string1, int number);
 /** Appends a decimal number at the end of a string. */
 JUCE_API String& JUCE_CALLTYPE operator<< (String& string1, long number);
+/** Appends a decimal number at the end of a string. */
+JUCE_API String& JUCE_CALLTYPE operator<< (String& string1, int64 number);
 /** Appends a decimal number at the end of a string. */
 JUCE_API String& JUCE_CALLTYPE operator<< (String& string1, float number);
 /** Appends a decimal number at the end of a string. */

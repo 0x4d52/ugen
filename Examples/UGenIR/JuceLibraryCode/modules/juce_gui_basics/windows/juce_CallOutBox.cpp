@@ -23,20 +23,15 @@
   ==============================================================================
 */
 
-CallOutBox::CallOutBox (Component& contentComponent,
-                        Component& componentToPointTo,
-                        Component* const parent)
-    : borderSpace (20), arrowSize (16.0f), content (contentComponent)
+CallOutBox::CallOutBox (Component& c, const Rectangle<int>& area, Component* const parent)
+    : borderSpace (20), arrowSize (16.0f), content (c)
 {
     addAndMakeVisible (&content);
 
     if (parent != nullptr)
     {
         parent->addChildComponent (this);
-
-        updatePosition (parent->getLocalArea (&componentToPointTo, componentToPointTo.getLocalBounds()),
-                        parent->getLocalBounds());
-
+        updatePosition (area, parent->getLocalBounds());
         setVisible (true);
     }
     else
@@ -44,8 +39,8 @@ CallOutBox::CallOutBox (Component& contentComponent,
         if (! JUCEApplication::isStandaloneApp())
             setAlwaysOnTop (true); // for a plugin, make it always-on-top because the host windows are often top-level
 
-        updatePosition (componentToPointTo.getScreenBounds(),
-                        componentToPointTo.getParentMonitorArea());
+        updatePosition (area, Desktop::getInstance().getDisplays()
+                                .getDisplayContaining (area.getCentre()).userArea);
 
         addToDesktop (ComponentPeer::windowIsTemporary);
     }
@@ -53,6 +48,34 @@ CallOutBox::CallOutBox (Component& contentComponent,
 
 CallOutBox::~CallOutBox()
 {
+}
+
+//==============================================================================
+class CallOutBoxCallback  : public ModalComponentManager::Callback
+{
+public:
+    CallOutBoxCallback (Component* c, const Rectangle<int>& area, Component* parent)
+        : content (c), callout (*c, area, parent)
+    {
+        callout.setVisible (true);
+        callout.enterModalState (true, this);
+    }
+
+    void modalStateFinished (int) {}
+
+    ScopedPointer<Component> content;
+    CallOutBox callout;
+
+    JUCE_DECLARE_NON_COPYABLE (CallOutBoxCallback);
+};
+
+CallOutBox& CallOutBox::launchAsynchronously (Component* content,
+                                              const Rectangle<int>& area,
+                                              Component* parent)
+{
+    jassert (content != nullptr); // must be a valid content component!
+
+    return (new CallOutBoxCallback (content, area, parent))->callout;
 }
 
 //==============================================================================
@@ -156,6 +179,7 @@ void CallOutBox::updatePosition (const Rectangle<int>& newAreaToPointTo, const R
                              Line<float> (targets[3].translated (-hwReduced, -(hh - arrowIndent)), targets[3].translated (hwReduced, -(hh - arrowIndent))) };
 
     const Rectangle<float> centrePointArea (newAreaToFitIn.reduced (hw, hh).toFloat());
+    const Point<float> targetCentre (targetArea.getCentre().toFloat());
 
     float nearest = 1.0e9f;
 
@@ -164,19 +188,19 @@ void CallOutBox::updatePosition (const Rectangle<int>& newAreaToPointTo, const R
         Line<float> constrainedLine (centrePointArea.getConstrainedPoint (lines[i].getStart()),
                                      centrePointArea.getConstrainedPoint (lines[i].getEnd()));
 
-        const Point<float> centre (constrainedLine.findNearestPointTo (centrePointArea.getCentre()));
-        float distanceFromCentre = centre.getDistanceFrom (centrePointArea.getCentre());
+        const Point<float> centre (constrainedLine.findNearestPointTo (targetCentre));
+        float distanceFromCentre = centre.getDistanceFrom (targets[i]);
 
         if (! (centrePointArea.contains (lines[i].getStart()) || centrePointArea.contains (lines[i].getEnd())))
-            distanceFromCentre *= 2.0f;
+            distanceFromCentre += 1000.0f;
 
         if (distanceFromCentre < nearest)
         {
             nearest = distanceFromCentre;
 
             targetPoint = targets[i];
-            newBounds.setPosition ((int) (centre.getX() - hw),
-                                   (int) (centre.getY() - hh));
+            newBounds.setPosition ((int) (centre.x - hw),
+                                   (int) (centre.y - hh));
         }
     }
 

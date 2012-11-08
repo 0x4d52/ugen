@@ -254,6 +254,11 @@ bool UGenPlugin::producesMidi() const
     return false;
 }
 
+bool UGenPlugin::silenceInProducesSilenceOut() const
+{
+    return false;
+}
+
 //==============================================================================
 void UGenPlugin::prepareToPlay (double sampleRate, int samplesPerBlock)
 {

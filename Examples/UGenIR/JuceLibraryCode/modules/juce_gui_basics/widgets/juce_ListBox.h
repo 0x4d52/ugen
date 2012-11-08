@@ -286,7 +286,7 @@ public:
         @see getSelectedRows
     */
     void setSelectedRows (const SparseSet<int>& setOfRowsToBeSelected,
-                          bool sendNotificationEventToModel = true);
+                          NotificationType sendNotificationEventToModel = sendNotification);
 
     /** Checks whether a row is selected.
     */
@@ -526,14 +526,6 @@ public:
     Viewport* getViewport() const noexcept;
 
     //==============================================================================
-    struct Ids
-    {
-        static const Identifier rowHeight, borderThickness;
-    };
-
-    void refreshFromValueTree (const ValueTree&, ComponentBuilder&);
-
-    //==============================================================================
     /** @internal */
     bool keyPressed (const KeyPress&);
     /** @internal */
@@ -561,7 +553,8 @@ public:
 
 private:
     //==============================================================================
-    class ListViewport;
+    JUCE_PUBLIC_IN_DLL_BUILD (class ListViewport);
+    JUCE_PUBLIC_IN_DLL_BUILD (class RowComponent);
     friend class ListViewport;
     friend class TableListBox;
     ListBoxModel* model;
@@ -575,6 +568,11 @@ private:
 
     void selectRowInternal (int rowNumber, bool dontScrollToShowThisRow,
                             bool deselectOthersFirst, bool isMouseClick);
+
+   #if JUCE_CATCH_DEPRECATED_CODE_MISUSE
+    // This method's bool parameter has changed: see the new method signature.
+    JUCE_DEPRECATED (void setSelectedRows (const SparseSet<int>&, bool));
+   #endif
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ListBox);
 };
