@@ -89,7 +89,22 @@ public:
             {
                 forEachXmlChildElementWithTagName (*fontsInfo, e, "dir")
                 {
-                    fontDirs.add (e->getAllSubText().trim());
+                    String fontPath (e->getAllSubText().trim());
+
+                    if (fontPath.isNotEmpty())
+                    {
+                        if (e->getStringAttribute ("prefix") == "xdg")
+                        {
+                            String xdgDataHome (SystemStats::getEnvironmentVariable ("XDG_DATA_HOME", String::empty));
+
+                            if (xdgDataHome.trimStart().isEmpty())
+                                xdgDataHome = "~/.local/share";
+
+                            fontPath = File (xdgDataHome).getChildFile (fontPath).getFullPathName();
+                        }
+
+                        fontDirs.add (fontPath);
+                    }
                 }
             }
         }
@@ -97,7 +112,7 @@ public:
         if (fontDirs.size() == 0)
             fontDirs.add ("/usr/X11R6/lib/X11/fonts");
 
-        fontDirs.removeEmptyStrings (true);
+        fontDirs.removeDuplicates (false);
     }
 
     bool next()
@@ -112,7 +127,8 @@ public:
         if (index >= fontDirs.size())
             return false;
 
-        iter = new DirectoryIterator (fontDirs [index++], true);
+        iter = new DirectoryIterator (File::getCurrentWorkingDirectory()
+                                         .getChildFile (fontDirs [index++]), true);
         return next();
     }
 
@@ -127,7 +143,7 @@ private:
 };
 
 //==============================================================================
-class FTTypefaceList  : public DeletedAtShutdown
+class FTTypefaceList  : private DeletedAtShutdown
 {
 public:
     FTTypefaceList()
@@ -167,11 +183,11 @@ public:
     //==============================================================================
     struct KnownTypeface
     {
-        KnownTypeface (const File& file_, const int faceIndex_, const FTFaceWrapper& face)
-           : file (file_),
+        KnownTypeface (const File& f, const int index, const FTFaceWrapper& face)
+           : file (f),
              family (face.face->family_name),
              style (face.face->style_name),
-             faceIndex (faceIndex_),
+             faceIndex (index),
              isMonospaced ((face.face->face_flags & FT_FACE_FLAG_FIXED_WIDTH) != 0),
              isSansSerif (isFaceSansSerif (family))
         {
@@ -190,17 +206,12 @@ public:
     {
         const KnownTypeface* ftFace = matchTypeface (fontName, fontStyle);
 
-        if (ftFace == nullptr)
-            ftFace = matchTypeface (fontName, "Regular");
-
-        if (ftFace == nullptr)
-            ftFace = matchTypeface (fontName, String::empty);
+        if (ftFace == nullptr)  ftFace = matchTypeface (fontName, "Regular");
+        if (ftFace == nullptr)  ftFace = matchTypeface (fontName, String::empty);
 
         if (ftFace != nullptr)
         {
-            FTFaceWrapper::Ptr face (new FTFaceWrapper (library, ftFace->file, ftFace->faceIndex));
-
-            if (face->face != 0)
+            if (FTFaceWrapper::Ptr face = new FTFaceWrapper (library, ftFace->file, ftFace->faceIndex))
             {
                 // If there isn't a unicode charmap then select the first one.
                 if (FT_Select_Charmap (face->face, ft_encoding_unicode) != 0)
@@ -533,8 +544,8 @@ private:
         StringArray allFonts;
         FTTypefaceList::getInstance()->getMonospacedNames (allFonts);
 
-        const char* targets[] = { "Bitstream Vera Sans Mono", "Courier", "Sans Mono",
-                                  "Liberation Mono", "DejaVu Mono", "Mono", 0 };
+        const char* targets[] = { "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Sans Mono",
+                                  "Liberation Mono", "Courier", "DejaVu Mono", "Mono", 0 };
         return pickBestFont (allFonts, targets);
     }
 

@@ -27,7 +27,6 @@
 #define JUCE_MODULE_AVAILABLE_juce_audio_processors         1
 #define JUCE_MODULE_AVAILABLE_juce_audio_utils              1
 #define JUCE_MODULE_AVAILABLE_juce_core                     1
-#define JUCE_MODULE_AVAILABLE_juce_cryptography             1
 #define JUCE_MODULE_AVAILABLE_juce_data_structures          1
 #define JUCE_MODULE_AVAILABLE_juce_events                   1
 #define JUCE_MODULE_AVAILABLE_juce_graphics                 1
@@ -213,11 +212,14 @@
 #ifndef  JucePlugin_EditorRequiresKeyboardFocus
  #define JucePlugin_EditorRequiresKeyboardFocus  0
 #endif
+#ifndef  JucePlugin_Version
+ #define JucePlugin_Version                0.1.0
+#endif
 #ifndef  JucePlugin_VersionCode
- #define JucePlugin_VersionCode            0x012
+ #define JucePlugin_VersionCode            0x100
 #endif
 #ifndef  JucePlugin_VersionString
- #define JucePlugin_VersionString          "0.1.2"
+ #define JucePlugin_VersionString          "0.1.0"
 #endif
 #ifndef  JucePlugin_VSTUniqueID
  #define JucePlugin_VSTUniqueID            JucePlugin_PluginCode
@@ -255,6 +257,12 @@
 #ifndef  JucePlugin_RTASProductId
  #define JucePlugin_RTASProductId          JucePlugin_PluginCode
 #endif
+#ifndef  JucePlugin_RTASDisableBypass
+ #define JucePlugin_RTASDisableBypass      0
+#endif
+#ifndef  JucePlugin_RTASDisableMultiMono
+ #define JucePlugin_RTASDisableMultiMono   0
+#endif
 #ifndef  JucePlugin_AAXIdentifier
  #define JucePlugin_AAXIdentifier          com.yourcompany.ModulesUGenPlug
 #endif
@@ -269,6 +277,9 @@
 #endif
 #ifndef  JucePlugin_AAXCategory
  #define JucePlugin_AAXCategory            AAX_ePlugInCategory_Dynamics
+#endif
+#ifndef  JucePlugin_AAXDisableBypass
+ #define JucePlugin_AAXDisableBypass       0
 #endif
 
 #endif  // __JUCE_APPCONFIG_RQEOXS__

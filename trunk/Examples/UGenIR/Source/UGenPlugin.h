@@ -91,6 +91,7 @@ public:
 
     bool acceptsMidi() const;
     bool producesMidi() const;
+    bool silenceInProducesSilenceOut() const;
 
     //==============================================================================
     int getNumPrograms()                                        { return 0; }
@@ -100,7 +101,7 @@ public:
     void changeProgramName (int index, const String& newName)   { }
 
     //==============================================================================
-    void getStateInformation (MemoryBlock& destData);
+    void getStateInformation (juce::MemoryBlock& destData);
     void setStateInformation (const void* data, int sizeInBytes);
 
     //==============================================================================

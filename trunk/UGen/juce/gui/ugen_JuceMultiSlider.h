@@ -203,7 +203,11 @@ public:
 		Slider* slider = sliders[index];
 		if(slider)
 		{
+#ifdef __JUCE_NOTIFICATIONTYPE_JUCEHEADER__
+            slider->setValue(newValue, sendNotificationSync);
+#else
 			slider->setValue(newValue, sendUpdateMessage, sendMessageSynchronously);
+#endif
 		}
 	}
 	
@@ -214,7 +218,11 @@ public:
 		const int size = jmin(values.size(), sliders.size());
 		for(int i = 0; i < size; i++)
 		{
+#ifdef __JUCE_NOTIFICATIONTYPE_JUCEHEADER__
+            sliders[i]->setValue(values[i], sendNotificationSync);
+#else
 			sliders[i]->setValue(values[i], sendUpdateMessage, sendMessageSynchronously);
+#endif
 		}
 	}
 	
@@ -292,7 +300,11 @@ public:
 		const int size = jmin(values.length(), sliders.size());
 		for(int i = 0; i < size; i++)
 		{
+#ifdef __JUCE_NOTIFICATIONTYPE_JUCEHEADER__
+            sliders[i]->setValue((double)values[i], sendNotificationSync);
+#else
 			sliders[i]->setValue((double)values[i], sendUpdateMessage, sendMessageSynchronously);
+#endif
 		}
 	}
 	
@@ -303,7 +315,11 @@ public:
 		const int size = jmin(values.size(), sliders.size());
 		for(int i = 0; i < size; i++)
 		{
+#ifdef __JUCE_NOTIFICATIONTYPE_JUCEHEADER__
+            sliders[i]->setValue((double)values.getSampleUnchecked(i), sendNotificationSync);
+#else
 			sliders[i]->setValue((double)values.getSampleUnchecked(i), sendUpdateMessage, sendMessageSynchronously);
+#endif
 		}
 	}
 	

@@ -398,6 +398,11 @@ public:
     */
     virtual void createAudioDeviceTypes (OwnedArray <AudioIODeviceType>& types);
 
+    /** Adds a new device type to the list of types.
+        The manager will take ownership of the object that is passed-in.
+    */
+    void addAudioDeviceType (AudioIODeviceType* newDeviceType);
+
     //==============================================================================
     /** Plays a beep through the current audio device.
 
@@ -472,27 +477,16 @@ private:
     double cpuUsageMs, timeToCpuScale;
 
     //==============================================================================
-    class CallbackHandler  : public AudioIODeviceCallback,
-                             public MidiInputCallback,
-                             public AudioIODeviceType::Listener
-    {
-    public:
-        void audioDeviceIOCallback (const float**, int, float**, int, int);
-        void audioDeviceAboutToStart (AudioIODevice*);
-        void audioDeviceStopped();
-        void handleIncomingMidiMessage (MidiInput*, const MidiMessage&);
-        void audioDeviceListChanged();
-
-        AudioDeviceManager* owner;
-    };
-
-    CallbackHandler callbackHandler;
+    class CallbackHandler;
     friend class CallbackHandler;
+    friend class ScopedPointer<CallbackHandler>;
+    ScopedPointer<CallbackHandler> callbackHandler;
 
     void audioDeviceIOCallbackInt (const float** inputChannelData, int totalNumInputChannels,
                                    float** outputChannelData, int totalNumOutputChannels, int numSamples);
     void audioDeviceAboutToStartInt (AudioIODevice*);
     void audioDeviceStoppedInt();
+    void audioDeviceErrorInt (const String&);
     void handleIncomingMidiMessageInt (MidiInput*, const MidiMessage&);
     void audioDeviceListChanged();
 

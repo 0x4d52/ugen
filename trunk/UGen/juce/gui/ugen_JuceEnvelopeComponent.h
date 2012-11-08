@@ -401,7 +401,7 @@ public:
 	~EnvelopeNodePopup();
 	void resized();
 	void comboBoxChanged (ComboBox* comboBoxThatHasChanged);
-	void buttonClicked(Button *button);
+	void buttonClicked(juce::Button *button);
 };
 
 #endif // gpl

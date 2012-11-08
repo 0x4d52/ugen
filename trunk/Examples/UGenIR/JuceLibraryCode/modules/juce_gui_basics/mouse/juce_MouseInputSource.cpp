@@ -23,7 +23,7 @@
   ==============================================================================
 */
 
-class MouseInputSourceInternal   : public AsyncUpdater
+class MouseInputSourceInternal   : private AsyncUpdater
 {
 public:
     //==============================================================================
@@ -60,16 +60,14 @@ public:
 
     Component* findComponentAt (const Point<int>& screenPos)
     {
-        ComponentPeer* const peer = getPeer();
-
-        if (peer != nullptr)
+        if (ComponentPeer* const peer = getPeer())
         {
-            Component* const comp = peer->getComponent();
-            const Point<int> relativePos (comp->getLocalPoint (nullptr, screenPos));
+            Component& comp = peer->getComponent();
+            const Point<int> relativePos (comp.getLocalPoint (nullptr, screenPos));
 
             // (the contains() call is needed to test for overlapping desktop windows)
-            if (comp->contains (relativePos))
-                return comp->getComponentAt (relativePos);
+            if (comp.contains (relativePos))
+                return comp.getComponentAt (relativePos);
         }
 
         return nullptr;
@@ -148,9 +146,7 @@ public:
 
         if (buttonState.isAnyMouseButtonDown())
         {
-            Component* const current = getComponentUnderMouse();
-
-            if (current != nullptr)
+            if (Component* const current = getComponentUnderMouse())
             {
                 const ModifierKeys oldMods (getCurrentModifiers());
                 buttonState = newButtonState; // must change this before calling sendMouseUp, in case it runs a modal loop
@@ -167,9 +163,7 @@ public:
         {
             Desktop::getInstance().incrementMouseClickCounter();
 
-            Component* const current = getComponentUnderMouse();
-
-            if (current != nullptr)
+            if (Component* const current = getComponentUnderMouse())
             {
                 registerMouseDown (screenPos, time, current, buttonState);
                 sendMouseDown (current, screenPos, time);
@@ -232,11 +226,9 @@ public:
         if (newScreenPos != lastScreenPos || forceUpdate)
         {
             cancelPendingUpdate();
-
             lastScreenPos = newScreenPos;
-            Component* const current = getComponentUnderMouse();
 
-            if (current != nullptr)
+            if (Component* const current = getComponentUnderMouse())
             {
                 if (isDragging())
                 {
@@ -272,8 +264,7 @@ public:
         {
             setPeer (newPeer, screenPos, time);
 
-            ComponentPeer* peer = getPeer();
-            if (peer != nullptr)
+            if (ComponentPeer* peer = getPeer())
             {
                 if (setButtons (screenPos, time, newMods))
                     return; // some modal events have been dispatched, so the current event is now out-of-date
@@ -291,16 +282,16 @@ public:
         jassert (peer != nullptr);
         lastTime = time;
         ++mouseEventCounter;
-        const Point<int> screenPos (peer->localToGlobal (positionWithinPeer));
+        Desktop::getInstance().incrementMouseWheelCounter();
 
+        const Point<int> screenPos (peer->localToGlobal (positionWithinPeer));
         setPeer (peer, screenPos, time);
         setScreenPos (screenPos, time, false);
         triggerFakeMove();
 
         if (! isDragging())
         {
-            Component* current = getComponentUnderMouse();
-            if (current != nullptr)
+            if (Component* current = getComponentUnderMouse())
                 sendMouseWheel (current, screenPos, time, wheel);
         }
     }
@@ -358,8 +349,7 @@ public:
             if ((! enable) && ((! isCursorVisibleUntilOffscreen) || ! unboundedMouseOffset.isOrigin()))
             {
                 // when released, return the mouse to within the component's bounds
-                Component* current = getComponentUnderMouse();
-                if (current != nullptr)
+                if (Component* current = getComponentUnderMouse())
                     Desktop::setMousePosition (current->getScreenBounds()
                                                  .getConstrainedPoint (lastScreenPos));
             }
@@ -415,8 +405,7 @@ public:
     {
         MouseCursor mc (MouseCursor::NormalCursor);
 
-        Component* current = getComponentUnderMouse();
-        if (current != nullptr)
+        if (Component* current = getComponentUnderMouse())
             mc = current->getLookAndFeel().getMouseCursorFor (*current);
 
         showMouseCursor (mc, forcedUpdate);
@@ -479,7 +468,7 @@ private:
                || mouseDowns[0].position.getDistanceFrom (screenPos) >= 4;
     }
 
-    JUCE_DECLARE_NON_COPYABLE (MouseInputSourceInternal);
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MouseInputSourceInternal);
 };
 
 //==============================================================================
@@ -488,9 +477,7 @@ MouseInputSource::MouseInputSource (const int index, const bool isMouseDevice)
     pimpl = new MouseInputSourceInternal (*this, index, isMouseDevice);
 }
 
-MouseInputSource::~MouseInputSource()
-{
-}
+MouseInputSource::~MouseInputSource() {}
 
 bool MouseInputSource::isMouse() const                                  { return pimpl->isMouseDevice; }
 bool MouseInputSource::isTouch() const                                  { return ! isMouse(); }

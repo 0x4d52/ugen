@@ -1404,7 +1404,12 @@ EnvelopeCurvePopup::EnvelopeCurvePopup(EnvelopeHandleComponent* handleToEdit)
 	slider->setSliderStyle(Slider::LinearBar);
 	//slider->setTextBoxStyle(Slider::NoTextBox, false, 0,0);
 	slider->setRange(-1, 1, 0.0);
+    
+#ifdef __JUCE_NOTIFICATIONTYPE_JUCEHEADER__
+    slider->setValue(curveValue, dontSendNotification);
+#else
 	slider->setValue(curveValue, false);
+#endif
 	
 	
 	addAndMakeVisible(combo = new ComboBox("combo"));	

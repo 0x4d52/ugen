@@ -140,7 +140,12 @@ UGenEditorComponent::UGenEditorComponent (UGenPlugin* const ownerFilter)
 			PluginSlider* slider = new PluginSlider(name, minimum, maximum, nominal, warp, units);
 			addAndMakeVisible(slider);
 			slider->addListener (this);
+                        
+#ifdef __JUCE_NOTIFICATIONTYPE_JUCEHEADER__
+            slider->setValue(getPlugin()->getParameter(index), dontSendNotification);
+#else
 			slider->setValue(getPlugin()->getParameter(index), false);
+#endif
 			sliders.add(slider);
 			
 			// ...and its label
@@ -448,7 +453,11 @@ void UGenEditorComponent::updateParametersFromFilter()
 		   message, because that would cause it to call the filter with a parameter
 		   change message again, and the values would drift out.
 		*/
+#ifdef __JUCE_NOTIFICATIONTYPE_JUCEHEADER__
+        sliders[index]->setValue (newValue, dontSendNotification);
+#else
 		sliders[index]->setValue (newValue, false);
+#endif
 	}
 	
 	// get the menu selection, if we have any menu items
