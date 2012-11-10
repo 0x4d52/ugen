@@ -394,8 +394,9 @@ void UGenPlugin::replaceIR(Buffer const& newIRBuffer)
         editor->setIRDisplay(irBuffer);
     
     UGen conv = getConv();
+
     const ScopedLock sl(getCallbackLock());
-    plug.fadeSourceAndRelease(conv, 0.05);
+    plug.fadeSourceAndRelease(conv, 0.005);
 }
 
 UGen UGenPlugin::getConv()

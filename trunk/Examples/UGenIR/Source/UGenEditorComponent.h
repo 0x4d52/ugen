@@ -92,7 +92,8 @@ class UGenEditorComponent  : public AudioProcessorEditor,
 							public ButtonListener,
 							public ComboBoxListener,
                             public FileBrowserListener,
-                            public EnvelopeComponentListener
+                            public EnvelopeComponentListener,
+                            public Timer
 {
 public:
     /** Constructor.
@@ -119,6 +120,8 @@ public:
     void envelopeStartDrag(EnvelopeComponent* changedEnvelope);
     void envelopeEndDrag(EnvelopeComponent* changedEnvelope);
 
+    void timerCallback();
+    
     void selectionChanged();
     void fileClicked (const File& file, const MouseEvent& e);
     void fileDoubleClicked (const File& file);
