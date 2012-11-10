@@ -110,6 +110,7 @@ private:
 	ObjectArray<UGen> graphs;
 	IntArray ids;
 	CriticalSection lock;
+    WaitableEvent event;
 };
 
 

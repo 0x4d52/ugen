@@ -451,10 +451,20 @@ void UGenEditorComponent::comboBoxChanged(ComboBox* changedComboBox)
 
 void UGenEditorComponent::envelopeChanged(EnvelopeComponent* changedEnvelope)
 {
-//    if (irDisplay->getAmpEnvEditor()->getEnvelopeComponent() == changedEnvelope)
-//    {
-//        //..
-//    }
+    startTimer(250);
+}
+
+void UGenEditorComponent::envelopeStartDrag(EnvelopeComponent* changedEnvelope)
+{
+}
+
+void UGenEditorComponent::envelopeEndDrag(EnvelopeComponent* changedEnvelope)
+{
+}
+
+void UGenEditorComponent::timerCallback()
+{
+    stopTimer();
     
     Buffer originalBuffer = getPlugin()->getOriginalBuffer();
     Env ampEnv = irDisplay->getAmpEnvEditor()->getEnv().timeScale(originalBuffer.duration());
@@ -462,23 +472,6 @@ void UGenEditorComponent::envelopeChanged(EnvelopeComponent* changedEnvelope)
     UGen player = PlayBuf::AR(originalBuffer, 1.0, 0, 0, 0, UGen::DoNothing) * EnvGen::AR(ampEnv);
     
     processManager.add(originalBuffer.size(), player);
-}
-
-void UGenEditorComponent::envelopeStartDrag(EnvelopeComponent* changedEnvelope)
-{
-    //DBG("start drag");
-}
-
-void UGenEditorComponent::envelopeEndDrag(EnvelopeComponent* changedEnvelope)
-{
-    //DBG("end drag");
-    
-//    Buffer originalBuffer = getPlugin()->getOriginalBuffer();
-//    Env ampEnv = irDisplay->getAmpEnvEditor()->getEnv().timeScale(originalBuffer.duration());
-//    
-//    UGen player = PlayBuf::AR(originalBuffer, 1.0, 0, 0, 0, UGen::DoNothing) * EnvGen::AR(ampEnv);
-//        
-//    processManager.add(originalBuffer.size(), player);
 }
 
 void UGenEditorComponent::selectionChanged()

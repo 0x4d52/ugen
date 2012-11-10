@@ -107,6 +107,9 @@ BufferProcess::BufferProcess() throw()
 
 BufferProcess::~BufferProcess()
 {
+    signalThreadShouldExit();
+    event.signal();
+
 	stopThread(4000);
 }
 
@@ -123,6 +126,8 @@ void BufferProcess::add(Buffer const& buffer, UGen const& input, UGen const& gra
 	inputs.add(input);
 	graphs.add(graph);
 	ids.add(bufferID);
+    
+    event.signal();
 }
 
 void BufferProcess::add(const int size, UGen const& graph, const int bufferID) throw()
@@ -136,6 +141,8 @@ void BufferProcess::add(const int size, UGen const& graph, const int bufferID) t
 	inputs.add(UGen::getNull());
 	graphs.add(graph);
 	ids.add(bufferID);
+    
+    event.signal();
 }
 
 
@@ -143,7 +150,7 @@ void BufferProcess::run() throw()
 {
 	while(threadShouldExit() == false)
 	{
-		Thread::yield();
+		event.wait();
 		
 		const ScopedLock sl(lock);
 		
