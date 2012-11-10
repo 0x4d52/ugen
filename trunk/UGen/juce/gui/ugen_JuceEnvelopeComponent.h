@@ -191,6 +191,7 @@ public:
 	void setLegendTextToDefault();
 	int getHandleIndex(EnvelopeHandleComponent* handle) const;
 	EnvelopeHandleComponent* getHandle(const int index) const;
+    int getNumHandles() const { return handles.size(); }
 	
 	EnvelopeHandleComponent* getPreviousHandle(const EnvelopeHandleComponent* thisHandle) const;
 	EnvelopeHandleComponent* getNextHandle(const EnvelopeHandleComponent* thisHandle) const;

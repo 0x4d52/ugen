@@ -62,6 +62,9 @@ public:
     
     void resized();
     
+    void setEnvLocks();
+    void unsetEnvLocks();
+    
     inline ScopeComponent* getIRScope() { return irScope; }
     inline EnvelopeContainerComponent* getAmpEnvEditor() { return ampEnvEditor; }
     
@@ -138,6 +141,7 @@ public:
     /** Standard Juce resize callback. */
     void resized();
 	
+    friend class IRComponent;
 
 private:
     //==============================================================================
@@ -159,7 +163,6 @@ private:
     FileBrowserComponent* fileBrowser;
     
     IRComponent* irDisplay;
-    BufferProcess processManager;
     
     TooltipWindow tooltipWindow;
 	

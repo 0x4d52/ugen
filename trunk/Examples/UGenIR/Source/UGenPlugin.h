@@ -125,6 +125,11 @@ public:
     inline Buffer getIRBuffer() { return irBuffer; }
     inline Buffer getOriginalBuffer() { return originalBuffer; }
     
+    inline Env getIRAmpEnv() { return ampEnv; }
+    inline void setIRAmpEnv(Env const& env) { ampEnv = env; }
+    
+    void processEnvs();
+    
     void handleBuffer(Buffer const& buffer, const double value1, const int value2);
 	
 	UGen constructGraph(UGen const& input);
@@ -150,8 +155,14 @@ private:
     File irFile;
     Buffer irBuffer;
     Buffer originalBuffer;
+    Env ampEnv;
 //    String lastPath;
     int selectedTab;
+    
+    CriticalSection outputLock;
+    //CriticalSection meterLock;
+    
+    BufferProcess processManager;
 };
 
 

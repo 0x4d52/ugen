@@ -254,9 +254,13 @@ void EnvelopeHandleComponent::mouseDown(const MouseEvent& e)
 	
 	if(e.mods.isShiftDown()) {
 		
-		getParentComponent()->setLegendTextToDefault();
-		removeThisHandle();
-		return; // dont send drag msg
+        if(!shouldLockTime && !shouldLockValue)
+        {
+            getParentComponent()->setLegendTextToDefault();
+            removeThisHandle();
+		}
+        
+        return; // dont send drag msg
 		
 	} 
 	else if(e.mods.isCtrlDown())
@@ -1229,7 +1233,7 @@ Env EnvelopeComponent::getEnv() const
 
 void EnvelopeComponent::setEnv(Env const& env)
 {
-	double time = 0.0;
+    double time = 0.0;
 	
 	const Buffer& levels = env.getLevels();
 	const Buffer& times = env.getTimes();

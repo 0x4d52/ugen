@@ -380,7 +380,7 @@ private:
 #if defined(UGEN_VDSP)
 
 #define TEMPSIZE 65536
-static float tempData[TEMPSIZE];
+static float tempData[TEMPSIZE] __attribute__((aligned(16)));
 
 inline void MultAndAdd(DSPSplitComplex& In1, DSPSplitComplex& In2, DSPSplitComplex& Out, const int VecLength) throw()
 {
@@ -400,7 +400,7 @@ inline void MultAndAdd(DSPSplitComplex& In1, DSPSplitComplex& In2, DSPSplitCompl
 	
 	DSPSplitComplex temp;
 	temp.realp = tempData;
-	temp.imagp = tempData + VecLengthX4;
+	temp.imagp = temp.realp + VecLengthX4;
 	
 	vDSP_zvmul(&In1, 1, &In2, 1, &temp, 1, VecLengthX4, 1);
 	vDSP_zvadd(&temp, 1, &Out, 1, &Out, 1, VecLengthX4);
