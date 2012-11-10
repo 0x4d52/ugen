@@ -199,6 +199,8 @@ void PartBuffer::partitionImpulseChannel(Buffer const& original, const int chann
 	this->numPartitions = numPartitions;
 }
 
+#define UGEN_PARTCONVOLVE_CLEARBUFFERS false
+
 PartConvolveUGenInternal::PartConvolveUGenInternal(UGen const& input, 
 												   PartBuffer const& partImpulse) throw()
 :	UGenInternal(NumInputs),
@@ -211,11 +213,11 @@ PartConvolveUGenInternal::PartConvolveUGenInternal(UGen const& input,
 	fftEngine(partImpulse.getFFTEngine()),
 	scaleMultD(1.0 / (double) (fftSize)),// * 4)),	// trying without * 4 not sure the level output is right... yes without the *4 seems correct? not checked with fftw though (FFTReal and vDSP checked I think)
 	scaleMult(vecSplat((float) (scaleMultD))),
-	inputBuffer(BufferSpec((int)(bufferSize * 2), 1, false)),
+	inputBuffer(BufferSpec((int)(bufferSize * 2), 1, UGEN_PARTCONVOLVE_CLEARBUFFERS)),
 	inputBufferSamples(inputBuffer.getData()),
-	fftBuffersMemory(BufferSpec(fftSize * 4, 1, false)),
+	fftBuffersMemory(BufferSpec(fftSize * 4, 1, UGEN_PARTCONVOLVE_CLEARBUFFERS)),
 	fftBuffersMemorySamples(fftBuffersMemory.getData()),
-	fftTempBuffer(BufferSpec(fftSize + 2, 1, false)),
+	fftTempBuffer(BufferSpec(fftSize + 2, 1, UGEN_PARTCONVOLVE_CLEARBUFFERS)),
 	fftTempBufferSamples(fftTempBuffer.getData())
 {		
 	inputs[Input] = input;

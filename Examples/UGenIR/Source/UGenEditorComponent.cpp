@@ -105,11 +105,11 @@ IRComponent::IRComponent(UGenEditorComponent* o)
     ampEnvEditor->setEnvColour(EnvelopeComponent::Background, RGBAColour(0.f, 0.f, 0.f, 0.f));
     ampEnvEditor->setAllowNodeEditing(false);
     ampEnvEditor->setAllowCurveEditing(false);
-    ampEnvEditor->getEnvelopeComponent()->addHandle(0.0, 1.0, EnvCurve::Linear);
-    ampEnvEditor->getEnvelopeComponent()->addHandle(1.0, 1.0, EnvCurve::Linear);
-    ampEnvEditor->getEnvelopeComponent()->getHandle(0)->lockTime(0.0);
-    ampEnvEditor->getEnvelopeComponent()->getHandle(1)->lockTime(1.0);
-    ampEnvEditor->getEnvelopeComponent()->setMinMaxNumHandles(2, 20);
+//    ampEnvEditor->getEnvelopeComponent()->addHandle(0.0, 1.0, EnvCurve::Linear);
+//    ampEnvEditor->getEnvelopeComponent()->addHandle(1.0, 1.0, EnvCurve::Linear);
+    
+    ampEnvEditor->setEnv(owner->getPlugin()->getIRAmpEnv());
+    setEnvLocks();
     
     ampEnvEditor->setLegendComponent(new IRLegendComponent (owner, "Amplitude Envelope"));
     ampEnvEditor->addListener(owner);
@@ -125,6 +125,20 @@ void IRComponent::resized()
 {
     irScope->setBounds(0, 0, getWidth(), getHeight() - ampEnvEditor->getLegendComponent()->getHeight());
     ampEnvEditor->setBounds(0, 0, getWidth(), getHeight());
+}
+
+void IRComponent::setEnvLocks()
+{
+    ampEnvEditor->getEnvelopeComponent()->getHandle(0)->lockTime(0.0);
+    ampEnvEditor->getEnvelopeComponent()->getHandle(ampEnvEditor->getEnvelopeComponent()->getNumHandles()-1)->lockTime(1.0);
+    ampEnvEditor->getEnvelopeComponent()->setMinMaxNumHandles(2, 50);
+}
+
+void IRComponent::unsetEnvLocks()
+{
+    ampEnvEditor->getEnvelopeComponent()->setMinMaxNumHandles(0, 0xffffff);
+    ampEnvEditor->getEnvelopeComponent()->getHandle(0)->unlockTime();
+    ampEnvEditor->getEnvelopeComponent()->getHandle(ampEnvEditor->getEnvelopeComponent()->getNumHandles()-1)->unlockTime();
 }
 
 
@@ -318,13 +332,10 @@ UGenEditorComponent::UGenEditorComponent (UGenPlugin* const ownerFilter)
     // register ourselves with the filter - it will use its ChangeBroadcaster base class to
     // tell us when something has changed, and this will call our changeListenerCallback() method.
     getPlugin()->addChangeListener (this);
-    processManager.addBufferReceiver(getPlugin());
 }
 
 UGenEditorComponent::~UGenEditorComponent()
 {
-    processManager.removeBufferReceiver(getPlugin());
-
     getPlugin()->removeChangeListener (this);
     tabButtons->removeChangeListener(this);
     
@@ -451,6 +462,7 @@ void UGenEditorComponent::comboBoxChanged(ComboBox* changedComboBox)
 
 void UGenEditorComponent::envelopeChanged(EnvelopeComponent* changedEnvelope)
 {
+    getPlugin()->setIRAmpEnv(irDisplay->getAmpEnvEditor()->getEnv());
     startTimer(250);
 }
 
@@ -465,13 +477,7 @@ void UGenEditorComponent::envelopeEndDrag(EnvelopeComponent* changedEnvelope)
 void UGenEditorComponent::timerCallback()
 {
     stopTimer();
-    
-    Buffer originalBuffer = getPlugin()->getOriginalBuffer();
-    Env ampEnv = irDisplay->getAmpEnvEditor()->getEnv().timeScale(originalBuffer.duration());
-    
-    UGen player = PlayBuf::AR(originalBuffer, 1.0, 0, 0, 0, UGen::DoNothing) * EnvGen::AR(ampEnv);
-    
-    processManager.add(originalBuffer.size(), player);
+    getPlugin()->processEnvs();
 }
 
 void UGenEditorComponent::selectionChanged()
@@ -552,10 +558,14 @@ void UGenEditorComponent::updateParametersFromFilter()
     
     setIRDisplay(getPlugin()->getIRBuffer());
     
-    Text filename ((const char*)getPlugin()->getIRFile().getFullPathName().toUTF8());
-    irDisplay->getIRScope()->setChannelLabels(filename + Text(":ch%d"));
+//    Text filename ((const char*)getPlugin()->getIRFile().getFullPathName().toUTF8());
+//    irDisplay->getIRScope()->setChannelLabels(filename + Text(":ch%d"));
     
     tabs->setCurrentTabIndex(getPlugin()->getSelectedTab());
 //    fileBrowser->setRoot(File::getSpecialLocation(File::userHomeDirectory).getChildFile(getPlugin()->getLastPath()));
 //    fileBrowser->refresh();
+    
+//    irDisplay->unsetEnvLocks();
+//    irDisplay->getAmpEnvEditor()->setEnv(getPlugin()->getIRAmpEnv());
+//    irDisplay->setEnvLocks();
 }

@@ -47,6 +47,11 @@ AudioProcessor* JUCE_CALLTYPE createPluginFilter()
     return new UGenPlugin();
 }
 
+static Env getDefaultAmpEnv()
+{
+    return Env(Buffer(1.0, 1.0), Buffer(1.0), EnvCurve::Linear);
+}
+
 //==============================================================================
 UGenPlugin::UGenPlugin()
 {
@@ -71,10 +76,15 @@ UGenPlugin::UGenPlugin()
 	blockID = 0;
     
     selectedTab = -1;
+    
+    ampEnv = getDefaultAmpEnv();
+    processManager.addBufferReceiver(this);
 }
 
 UGenPlugin::~UGenPlugin()
 {
+    processManager.removeBufferReceiver(this);
+
 	delete [] parameters;
 	parameters = 0;
 	delete [] meterLevels;
@@ -320,7 +330,9 @@ void UGenPlugin::processBlock(AudioSampleBuffer& buffer,
 		outputUGen.setOutput(buffer.getSampleData(i), numSamples, i);
 	}
 	
+    outputLock.enter();
 	outputUGen.prepareAndProcessBlock(numSamples, blockID, -1);
+    outputLock.exit();
 	
 	// quick and dirty metering...
 	channelLevel0 += buffer.getRMSLevel(UGenAudio::Output0, 0, buffer.getNumSamples());
@@ -355,7 +367,7 @@ void UGenPlugin::clearExtraChannels(AudioSampleBuffer& buffer)
 
 void UGenPlugin::setMeterLevel(int index, float value)
 {
-	const ScopedLock sl(getCallbackLock());
+	//const ScopedLock sl(meterLock);
 	meterLevels[index] = value;
 }
 
@@ -395,13 +407,17 @@ void UGenPlugin::replaceIR(Buffer const& newIRBuffer)
     
     UGen conv = getConv();
 
-    const ScopedLock sl(getCallbackLock());
-    plug.fadeSourceAndRelease(conv, 0.005);
+    const ScopedLock sl(outputLock);
+    plug.fadeSourceAndRelease(conv, 0.1);
 }
 
 UGen UGenPlugin::getConv()
 {
-    return ZeroLatencyConvolve::AR(inputUGen, irBuffer) * 0.005;
+    Env pause = Env(Buffer(0.0, 0.0, 1.0, 0.0),
+                    Buffer(0.5, 0.1, 0.0),
+                    EnvCurve::Linear, 2);
+    
+    return ZeroLatencyConvolve::AR(inputUGen, irBuffer) * 0.005 * EnvGen::AR(pause);
 }
 
 void UGenPlugin::handleBuffer(Buffer const& buffer, const double value1, const int value2)
@@ -445,12 +461,22 @@ void UGenPlugin::getStateInformation (MemoryBlock& destData)
 //    xmlState.setAttribute("lastPath", lastPath);
     xmlState.setAttribute("selectedTab", selectedTab);
     
-    // you could also add as many child elements as you need to here..
+    const Buffer& ampEnvLevels = ampEnv.getLevels();
+    const Buffer& ampEnvTimes = ampEnv.getTimes();
+    
+    xmlState.setAttribute("ampEnvNumLevels", ampEnvLevels.size());
+    for (int i = 0; i < ampEnvLevels.size(); i++)
+        xmlState.setAttribute(String("ampEnvLevel")+String(i), (double)ampEnvLevels.getSampleUnchecked(i));
 
+    xmlState.setAttribute("ampEnvNumTimes", ampEnvTimes.size());
+    for (int i = 0; i < ampEnvTimes.size(); i++)
+        xmlState.setAttribute(String("ampEnvTime")+String(i), (double)ampEnvTimes.getSampleUnchecked(i));
+    
+    
     // then use this helper function to stuff it into the binary blob and return it..
     copyXmlToBinary (xmlState, destData);
     
-    DBG(xmlState.getAllSubText());
+    //DBG(xmlState.getAllSubText());
 }
 
 void UGenPlugin::setStateInformation (const void* data, int sizeInBytes)
@@ -481,11 +507,40 @@ void UGenPlugin::setStateInformation (const void* data, int sizeInBytes)
             
 //            lastPath = xmlState->getStringAttribute("lastPath", String::empty);
             selectedTab = xmlState->getIntAttribute("selectedTab", -1);
-            			
+            
+            
+            const int ampEnvNumLevels = xmlState->getIntAttribute("ampEnvNumLevels", 0);
+            const int ampEnvNumTimes = xmlState->getIntAttribute("ampEnvNumTimes", 0);
+            
+            if ((ampEnvNumTimes >= 1) && (ampEnvNumLevels == (ampEnvNumTimes + 1)))
+            {
+                Buffer ampEnvLevels = BufferSpec(ampEnvNumLevels);
+                Buffer ampEnvTimes  = BufferSpec(ampEnvNumTimes);
+                
+                for (int i = 0; i < ampEnvLevels.size(); i++)
+                    ampEnvLevels.setSampleUnchecked(i, (float)xmlState->getDoubleAttribute(String("ampEnvLevel")+String(i), 0.0));
+                
+                for (int i = 0; i < ampEnvTimes.size(); i++)
+                    ampEnvTimes.setSampleUnchecked(i, (float)xmlState->getDoubleAttribute(String("ampEnvTime")+String(i), 0.0));
+                
+                ampEnv = Env(ampEnvLevels, ampEnvTimes, EnvCurve::Linear);
+
+            }
+            else ampEnv = getDefaultAmpEnv();
+            
+            processEnvs();
+            
             sendChangeMessage();
         }
 
         delete xmlState;
     }
+}
+
+void UGenPlugin::processEnvs()
+{
+    Env ampEnvScaled = ampEnv.timeScale(originalBuffer.duration());
+    UGen player = PlayBuf::AR(originalBuffer, 1.0, 0, 0, 0, UGen::DoNothing) * EnvGen::AR(ampEnvScaled);
+    processManager.add(originalBuffer.size(), player);
 }
 
