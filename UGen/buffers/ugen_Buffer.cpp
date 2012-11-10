@@ -2632,7 +2632,7 @@ Buffer Buffer::blackmanWindow(const int size, const float alpha) throw()
 //	return result;	
 //}
 
-Buffer Buffer::synth(const int size, UGen const& graph, const bool allAtOnce) throw()
+Buffer Buffer::synth(const int size, UGen const& graph, const bool allAtOnce, bool* cancel) throw()
 {
 	ugen_assert(size > 0);
 	
@@ -2641,13 +2641,13 @@ Buffer Buffer::synth(const int size, UGen const& graph, const bool allAtOnce) th
 	
 	Buffer result = Buffer::withSize(size, numChannels);
 	
-	result.synthInPlace(graph, 0, size, allAtOnce);	
+	result.synthInPlace(graph, 0, size, allAtOnce, cancel);
 	
 	return result;	
 }
 
 
-void Buffer::synthInPlace(UGen const& graph_, const int offset, const int numSamples_, const bool allAtOnce) throw()
+void Buffer::synthInPlace(UGen const& graph_, const int offset, const int numSamples_, const bool allAtOnce, bool* cancel) throw()
 {
 	UGen graph = graph_;	
 	
@@ -2687,6 +2687,9 @@ void Buffer::synthInPlace(UGen const& graph_, const int offset, const int numSam
 #ifdef UGEN_JUCE
 			Thread::yield();
 #endif
+            
+            if (cancel != 0)
+                if (*cancel) return;
 		}
 	}
 	
@@ -2701,12 +2704,16 @@ void Buffer::synthInPlace(UGen const& graph_, const int offset, const int numSam
 	}	
 }
 
-void Buffer::synthAndSend(const int size, UGen const& graph, BufferReceiver* receiver, const int bufferID) throw()
+void Buffer::synthAndSend(const int size, UGen const& graph, BufferReceiver* receiver, const int bufferID, bool* cancel) throw()
 {
 	ugen_assert(receiver != 0);
 	
-	Buffer result = synth(size, graph, false);
-	receiver->handleBuffer(result, 0.0, bufferID);	
+	Buffer result = synth(size, graph, false, cancel);
+    
+//    if (cancel != 0)
+//        if (*cancel) return
+    
+	receiver->handleBuffer(result, 0.0, bufferID);
 }
 
 Buffer Buffer::reciprocalExceptZero() const throw()

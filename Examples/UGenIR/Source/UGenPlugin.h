@@ -42,7 +42,8 @@
 
 
 class UGenPlugin  :	public AudioProcessor,
-					public ChangeBroadcaster
+					public ChangeBroadcaster,
+                    public BufferReceiver
 {
 public:
     //==============================================================================
@@ -122,6 +123,9 @@ public:
     void replaceIR(Buffer const& irBuffer);
     UGen getConv();
     inline Buffer getIRBuffer() { return irBuffer; }
+    inline Buffer getOriginalBuffer() { return originalBuffer; }
+    
+    void handleBuffer(Buffer const& buffer, const double value1, const int value2);
 	
 	UGen constructGraph(UGen const& input);
 		
@@ -145,6 +149,7 @@ private:
     UGen plug;
     File irFile;
     Buffer irBuffer;
+    Buffer originalBuffer;
 //    String lastPath;
     int selectedTab;
 };

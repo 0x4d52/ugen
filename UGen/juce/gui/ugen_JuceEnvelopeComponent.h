@@ -110,6 +110,11 @@ public:
 	void offsetTimeAndValue(double offsetTime, double offsetValue, double quantise = 0.0);
 	double constrainDomain(double domainToConstrain) const;
 	double constrainValue(double valueToConstrain) const;
+    
+    void lockTime(double time);
+    void lockValue(double value);
+    void unlockTime();
+    void unlockValue();
 	
 	friend class EnvelopeComponent;
 	
@@ -123,6 +128,7 @@ private:
 	EnvelopeHandleComponentConstrainer resizeLimits;
 	
 	double time, value;
+    bool shouldLockTime, shouldLockValue;
 	EnvCurve curve;
 	bool ignoreDrag;
 };
@@ -134,6 +140,8 @@ public:
 	EnvelopeComponentListener() throw() {}
 	virtual ~EnvelopeComponentListener() {}
 	virtual void envelopeChanged(EnvelopeComponent* changedEnvelope) = 0;
+    virtual void envelopeStartDrag(EnvelopeComponent*) { }
+    virtual void envelopeEndDrag(EnvelopeComponent*) { }
 };
 
 /** For displaying and editing a breakpoint envelope. 
@@ -175,6 +183,8 @@ public:
 	void addListener (EnvelopeComponentListener* const listener);
     void removeListener (EnvelopeComponentListener* const listener);
 	void sendChangeMessage();
+    void sendStartDrag();
+    void sendEndDrag();
 	
 	EnvelopeLegendComponent* getLegend();
 	void setLegendText(Text const& legendText);
@@ -374,6 +384,7 @@ public:
 	void resized();
 	void sliderValueChanged(Slider* sliderThatChanged);
 	void comboBoxChanged (ComboBox* comboBoxThatHasChanged);
+    void expired();
 	
 };
 
@@ -402,6 +413,7 @@ public:
 	void resized();
 	void comboBoxChanged (ComboBox* comboBoxThatHasChanged);
 	void buttonClicked(juce::Button *button);
+    void expired();
 };
 
 #endif // gpl

@@ -69,6 +69,8 @@ public:
 	~PopupComponent();
 	void paint(Graphics &g);	
 	void mouseDown(MouseEvent const& e);
+    
+    virtual void expired() = 0;
 	
 	static int getActivePopups() { return activePopups; }
 
