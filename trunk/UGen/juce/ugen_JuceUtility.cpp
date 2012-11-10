@@ -91,6 +91,7 @@ void PopupComponent::timerCallback()
 
 void PopupComponent::expire()
 {
+    expired();
 	counter = -1;
 }
 

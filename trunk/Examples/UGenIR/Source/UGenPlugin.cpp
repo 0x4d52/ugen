@@ -379,7 +379,9 @@ void UGenPlugin::loadIR(File const& newIRFile)
     
     DBG(String("irPath: ") + irFile.getFullPathName());
     
-    replaceIR(irFile);
+    originalBuffer = Buffer(irFile);
+    
+    replaceIR(originalBuffer);
 }
 
 void UGenPlugin::replaceIR(Buffer const& newIRBuffer)
@@ -399,6 +401,11 @@ void UGenPlugin::replaceIR(Buffer const& newIRBuffer)
 UGen UGenPlugin::getConv()
 {
     return ZeroLatencyConvolve::AR(inputUGen, irBuffer) * 0.005;
+}
+
+void UGenPlugin::handleBuffer(Buffer const& buffer, const double value1, const int value2)
+{
+    replaceIR(buffer);
 }
 
 //==============================================================================

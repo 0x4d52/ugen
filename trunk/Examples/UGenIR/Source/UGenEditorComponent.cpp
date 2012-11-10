@@ -36,7 +36,7 @@
 #include "UGenPlugin.h"
 #include "UGenEditorComponent.h"
 
-#define UGENIR_VERSION "alpha 0.1.1"
+#define UGENIR_VERSION "alpha v" JucePlugin_VersionString
 
 static const char* ugen_IR_aboutText =
     "UGen++ IR Convolution " UGENIR_VERSION "\n"
@@ -75,6 +75,58 @@ static const char* ugen_IR_aboutText =
     "Boston, MA 02111-1307 USA\n"
     "\n"
 ;
+
+//==============================================================================
+
+IRLegendComponent::IRLegendComponent(UGenEditorComponent* o, Text const& defaultText)
+:   EnvelopeLegendComponent(defaultText),
+    owner(o)
+{
+}
+
+double IRLegendComponent::mapTime(double time)
+{
+    return owner->getIRDuration() * time;
+}
+
+
+//==============================================================================
+
+IRComponent::IRComponent(UGenEditorComponent* o)
+:   owner(o)
+{
+    addAndMakeVisible(irScope = new ScopeComponent());
+    irScope->setScaleY(ScopeGUI::LabelYAmplitude);
+    irScope->setScopeColour(ScopeGUI::Trace, RGBAColour(0.5f, 0.4f, 0.4f, 0.6f));
+    irScope->setScopeColour(ScopeGUI::LabelMarks, RGBAColour(0.1f, 0.9f, 0.1f, 0.5f));
+    irScope->setScopeColour(ScopeGUI::ZeroLine, RGBAColour(0.1f, 0.7f, 0.1f, 0.5f));
+    
+    addAndMakeVisible(ampEnvEditor = new EnvelopeContainerComponent());
+    ampEnvEditor->setEnvColour(EnvelopeComponent::Background, RGBAColour(0.f, 0.f, 0.f, 0.f));
+    ampEnvEditor->setAllowNodeEditing(false);
+    ampEnvEditor->setAllowCurveEditing(false);
+    ampEnvEditor->getEnvelopeComponent()->addHandle(0.0, 1.0, EnvCurve::Linear);
+    ampEnvEditor->getEnvelopeComponent()->addHandle(1.0, 1.0, EnvCurve::Linear);
+    ampEnvEditor->getEnvelopeComponent()->getHandle(0)->lockTime(0.0);
+    ampEnvEditor->getEnvelopeComponent()->getHandle(1)->lockTime(1.0);
+    ampEnvEditor->getEnvelopeComponent()->setMinMaxNumHandles(2, 20);
+    
+    ampEnvEditor->setLegendComponent(new IRLegendComponent (owner, "Amplitude Envelope"));
+    ampEnvEditor->addListener(owner);
+    
+}
+
+IRComponent::~IRComponent()
+{
+    deleteAllChildren();
+}
+
+void IRComponent::resized()
+{
+    irScope->setBounds(0, 0, getWidth(), getHeight() - ampEnvEditor->getLegendComponent()->getHeight());
+    ampEnvEditor->setBounds(0, 0, getWidth(), getHeight());
+}
+
 
 //==============================================================================
 UGenEditorComponent::UGenEditorComponent (UGenPlugin* const ownerFilter)
@@ -225,16 +277,12 @@ UGenEditorComponent::UGenEditorComponent (UGenPlugin* const ownerFilter)
 
     // ir view
     {
-        irScope = new ScopeComponent();
-        irScope->setScaleY(ScopeGUI::LabelYAmplitude);
-        irScope->setScopeColour(ScopeGUI::Trace, RGBAColour(0.5f, 0.4f, 0.4f, 0.6f));
-        irScope->setScopeColour(ScopeGUI::LabelMarks, RGBAColour(0.1f, 0.9f, 0.1f, 0.5f));
-        irScope->setScopeColour(ScopeGUI::ZeroLine, RGBAColour(0.1f, 0.7f, 0.1f, 0.5f));
+        irDisplay = new IRComponent(this);
 
         Text filename ((const char*)getPlugin()->getIRFile().getFullPathName().toUTF8());
-        irScope->setChannelLabels(filename + Text(":ch%d"));
+        irDisplay->getIRScope()->setChannelLabels(filename + Text(":ch%d"));
 
-        tabs->addTab("IR View", Colour::greyLevel(0.75f).withAlpha(0.5f), irScope, true);
+        tabs->addTab("IR View", Colour::greyLevel(0.75f).withAlpha(0.5f), irDisplay, true);
         setIRDisplay(getPlugin()->getIRBuffer());
     }
     
@@ -270,10 +318,13 @@ UGenEditorComponent::UGenEditorComponent (UGenPlugin* const ownerFilter)
     // register ourselves with the filter - it will use its ChangeBroadcaster base class to
     // tell us when something has changed, and this will call our changeListenerCallback() method.
     getPlugin()->addChangeListener (this);
+    processManager.addBufferReceiver(getPlugin());
 }
 
 UGenEditorComponent::~UGenEditorComponent()
 {
+    processManager.removeBufferReceiver(getPlugin());
+
     getPlugin()->removeChangeListener (this);
     tabButtons->removeChangeListener(this);
     
@@ -398,6 +449,38 @@ void UGenEditorComponent::comboBoxChanged(ComboBox* changedComboBox)
 	getPlugin()->setMenuItem(changedComboBox->getSelectedId()-MENU_ID_OFFSET);
 }
 
+void UGenEditorComponent::envelopeChanged(EnvelopeComponent* changedEnvelope)
+{
+//    if (irDisplay->getAmpEnvEditor()->getEnvelopeComponent() == changedEnvelope)
+//    {
+//        //..
+//    }
+    
+    Buffer originalBuffer = getPlugin()->getOriginalBuffer();
+    Env ampEnv = irDisplay->getAmpEnvEditor()->getEnv().timeScale(originalBuffer.duration());
+    
+    UGen player = PlayBuf::AR(originalBuffer, 1.0, 0, 0, 0, UGen::DoNothing) * EnvGen::AR(ampEnv);
+    
+    processManager.add(originalBuffer.size(), player);
+}
+
+void UGenEditorComponent::envelopeStartDrag(EnvelopeComponent* changedEnvelope)
+{
+    //DBG("start drag");
+}
+
+void UGenEditorComponent::envelopeEndDrag(EnvelopeComponent* changedEnvelope)
+{
+    //DBG("end drag");
+    
+//    Buffer originalBuffer = getPlugin()->getOriginalBuffer();
+//    Env ampEnv = irDisplay->getAmpEnvEditor()->getEnv().timeScale(originalBuffer.duration());
+//    
+//    UGen player = PlayBuf::AR(originalBuffer, 1.0, 0, 0, 0, UGen::DoNothing) * EnvGen::AR(ampEnv);
+//        
+//    processManager.add(originalBuffer.size(), player);
+}
+
 void UGenEditorComponent::selectionChanged()
 {
 //    // set the currently viewed path...
@@ -431,7 +514,12 @@ void UGenEditorComponent::setFile (const File& file)
 void UGenEditorComponent::setIRDisplay(Buffer const& irBuffer)
 {
     if (!irBuffer.isNull())
-        irScope->setAudioBuffer(irBuffer);
+        irDisplay->getIRScope()->setAudioBuffer(irBuffer);
+}
+
+double UGenEditorComponent::getIRDuration()
+{
+    return getPlugin()->getIRBuffer().isNull() ? 1.0 : getPlugin()->getIRBuffer().duration();
 }
 
 //==============================================================================
@@ -472,7 +560,8 @@ void UGenEditorComponent::updateParametersFromFilter()
     setIRDisplay(getPlugin()->getIRBuffer());
     
     Text filename ((const char*)getPlugin()->getIRFile().getFullPathName().toUTF8());
-    irScope->setChannelLabels(filename + Text(":ch%d"));
+    irDisplay->getIRScope()->setChannelLabels(filename + Text(":ch%d"));
+    
     tabs->setCurrentTabIndex(getPlugin()->getSelectedTab());
 //    fileBrowser->setRoot(File::getSpecialLocation(File::userHomeDirectory).getChildFile(getPlugin()->getLastPath()));
 //    fileBrowser->refresh();

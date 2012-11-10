@@ -101,8 +101,9 @@ EnvelopeHandleComponent::EnvelopeHandleComponent()
 		lastX(-1),
 		lastY(-1),
 		resizeLimits(this),
+        shouldLockTime(false),
+        shouldLockValue(false),
 		ignoreDrag(false)
-		
 {
 	setMouseCursor(MouseCursor::CrosshairCursor);
 	resetOffsets();
@@ -115,8 +116,19 @@ EnvelopeComponent* EnvelopeHandleComponent::getParentComponent() const
 
 void EnvelopeHandleComponent::updateTimeAndValue()
 {
-	time = getParentComponent()->convertPixelsToDomain(getX());
-	value = getParentComponent()->convertPixelsToValue(getY());
+    if (shouldLockTime)
+    {
+        setTopLeftPosition(getParentComponent()->convertDomainToPixels(time),
+                           getY());
+    }
+    else time = getParentComponent()->convertPixelsToDomain(getX());
+    
+    if (shouldLockValue)
+    {
+        setTopLeftPosition(getX(),
+                           getParentComponent()->convertValueToPixels(value));
+    }
+    else value = getParentComponent()->convertPixelsToValue(getY());
 	
 #ifdef MYDEBUG
 	printf("MyEnvelopeHandleComponent::updateTimeAndValue(%f, %f)\n", time, value);
@@ -244,7 +256,7 @@ void EnvelopeHandleComponent::mouseDown(const MouseEvent& e)
 		
 		getParentComponent()->setLegendTextToDefault();
 		removeThisHandle();
-		
+		return; // dont send drag msg
 		
 	} 
 	else if(e.mods.isCtrlDown())
@@ -281,6 +293,8 @@ void EnvelopeHandleComponent::mouseDown(const MouseEvent& e)
 		dragger.startDraggingComponent(this, e);//&resizeLimits);
 	
 	}
+    
+    getParentComponent()->sendStartDrag();
 }
 
 void EnvelopeHandleComponent::mouseDrag(const MouseEvent& e)
@@ -333,6 +347,8 @@ void EnvelopeHandleComponent::mouseDrag(const MouseEvent& e)
 
 void EnvelopeHandleComponent::mouseUp(const MouseEvent& e)
 {
+    EnvelopeComponent *env = getParentComponent();
+
 #ifdef MYDEBUG
 	printf("MyEnvelopeHandleComponent::mouseUp\n");
 #endif
@@ -340,12 +356,11 @@ void EnvelopeHandleComponent::mouseUp(const MouseEvent& e)
 	if(ignoreDrag == true)
 	{
 		ignoreDrag = false;
-		return;
+		goto exit;
 	}
 		
 //	if(e.mods.isCtrlDown() == false)
 //	{
-		EnvelopeComponent *env = getParentComponent();
 		env->quantiseHandle(this);
 //	}
 	
@@ -354,6 +369,9 @@ void EnvelopeHandleComponent::mouseUp(const MouseEvent& e)
 	
 	offsetX = 0;
 	offsetY = 0;
+    
+exit:
+    getParentComponent()->sendEndDrag();
 }
 
 
@@ -478,12 +496,34 @@ double EnvelopeHandleComponent::constrainDomain(double domainToConstrain) const
 	if(previousHandle != 0) left += FINETUNE;
 	if(nextHandle != 0) right -= FINETUNE;
 		
-	return jlimit(left, right, domainToConstrain); 
+	return jlimit(left, right, shouldLockTime ? time : domainToConstrain);
 }
 
 double EnvelopeHandleComponent::constrainValue(double valueToConstrain) const
 {
-	return getParentComponent()->constrainValue(valueToConstrain);
+	return getParentComponent()->constrainValue(shouldLockValue ? value : valueToConstrain);
+}
+
+void EnvelopeHandleComponent::lockTime(double timeToLock)
+{
+    setTime(timeToLock);
+    shouldLockTime = true;
+}
+
+void EnvelopeHandleComponent::lockValue(double valueToLock)
+{
+    setValue(valueToLock);
+    shouldLockValue = true;
+}
+
+void EnvelopeHandleComponent::unlockTime()
+{
+    shouldLockTime = false;
+}
+
+void EnvelopeHandleComponent::unlockValue()
+{
+    shouldLockValue = false;
 }
 
 void EnvelopeHandleComponent::recalculatePosition()
@@ -856,6 +896,7 @@ void EnvelopeComponent::mouseUp(const MouseEvent& e)
 		draggingHandle->setMousePositionToThisHandle();
 		draggingHandle->resetOffsets();
 		draggingHandle = 0;
+        sendEndDrag();
 	} else {
 		setMouseCursor(MouseCursor::NormalCursor);
 	}
@@ -877,6 +918,24 @@ void EnvelopeComponent::sendChangeMessage()
 	for (int i = listeners.size(); --i >= 0;)
     {
         ((EnvelopeComponentListener*) listeners.getUnchecked (i))->envelopeChanged (this);
+        i = jmin (i, listeners.size());
+    }
+}
+
+void EnvelopeComponent::sendStartDrag()
+{
+    for (int i = listeners.size(); --i >= 0;)
+    {
+        ((EnvelopeComponentListener*) listeners.getUnchecked (i))->envelopeStartDrag (this);
+        i = jmin (i, listeners.size());
+    }
+}
+
+void EnvelopeComponent::sendEndDrag()
+{
+    for (int i = listeners.size(); --i >= 0;)
+    {
+        ((EnvelopeComponentListener*) listeners.getUnchecked (i))->envelopeEndDrag (this);
         i = jmin (i, listeners.size());
     }
 }
@@ -1260,6 +1319,7 @@ double EnvelopeComponent::constrainValue(double valueToConstrain) const
 	return jlimit(valueMin, valueMax, valueToConstrain); 
 }
 
+
 //double EnvelopeComponent::quantiseDomain(double value)
 //{
 //	if((gridQuantiseMode & GridDomain) && (domainGrid > 0.0))
@@ -1519,6 +1579,11 @@ void EnvelopeCurvePopup::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 	}
 }
 
+void EnvelopeCurvePopup::expired()
+{
+    handle->getParentComponent()->sendEndDrag();
+}
+
 const int EnvelopeCurvePopup::idOffset = 1000;
 
 
@@ -1709,6 +1774,10 @@ void EnvelopeNodePopup::buttonClicked(Button *button)
 			
 		}
 	}
+}
+
+void EnvelopeNodePopup::expired()
+{
 }
 
 const int EnvelopeNodePopup::idOffset = 2000;

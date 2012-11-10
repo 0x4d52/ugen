@@ -549,7 +549,8 @@ public:
 	 @param allAtOnce	If true the processing is done all in one go, if false it may yield the current thread. 	*/
 	static Buffer synth(const int size, 
 						UGen const& graph, 
-						const bool allAtOnce = true) throw();
+						const bool allAtOnce = true,
+                        bool* cancel = 0) throw();
 	
 	/** Synthesise into an exisiting Buffer using a UGen graph. 
 	 Be very careful that none of the UGens in the graph 
@@ -563,7 +564,8 @@ public:
 	void synthInPlace(UGen const& graph, 
 					  const int offset = 0, 
 					  const int numSamples = 0, 
-					  const bool allAtOnce = true) throw();
+					  const bool allAtOnce = true,
+                      bool* cancel = 0) throw();
 	
 	/** Process this Buffer and send it to a BufferReceiver.
 	 This would be useful when run on a backgrond thread especially if the 
@@ -572,7 +574,7 @@ public:
 	 @param graph		The audio graph to process to synthesise the audio Buffer.
 	 @param receiver	The BufferReceiver to recevie the Buffer when it's done.
 	 @param bufferID	A number to pass to the third argument of handleBuffer() when the Buffer is sent. */
-	static void synthAndSend(const int size, UGen const& graph, BufferReceiver* receiver, const int bufferID = 0) throw();
+	static void synthAndSend(const int size, UGen const& graph, BufferReceiver* receiver, const int bufferID = 0, bool* cancel = 0) throw();
 	
 	/** Constuct a single-channel Buffer from data in a raw float array. 
 	 Here there's an option to copy the data or just use the data from the original array directly. In the

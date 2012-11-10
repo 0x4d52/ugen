@@ -40,7 +40,37 @@
 #include "UGenCommon.h"
 #include "UGenPlugin.h"
 
+class UGenEditorComponent;
 
+class IRLegendComponent : public EnvelopeLegendComponent
+{
+public:
+    IRLegendComponent(UGenEditorComponent* owner, Text const& defaultText = Text::empty);
+    
+    double mapTime(double time);
+    String getTimeUnits() { return "s"; }
+    
+private:
+    UGenEditorComponent* owner;
+};
+
+class IRComponent : public Component
+{
+public:
+    IRComponent(UGenEditorComponent* owner);
+    ~IRComponent();
+    
+    void resized();
+    
+    inline ScopeComponent* getIRScope() { return irScope; }
+    inline EnvelopeContainerComponent* getAmpEnvEditor() { return ampEnvEditor; }
+    
+    
+private:
+    UGenEditorComponent* owner;
+    ScopeComponent* irScope;
+    EnvelopeContainerComponent* ampEnvEditor;
+};
 
 
 //==============================================================================
@@ -61,7 +91,8 @@ class UGenEditorComponent  : public AudioProcessorEditor,
 							public SliderListener,
 							public ButtonListener,
 							public ComboBoxListener,
-                            public FileBrowserListener
+                            public FileBrowserListener,
+                            public EnvelopeComponentListener
 {
 public:
     /** Constructor.
@@ -83,6 +114,10 @@ public:
     void sliderValueChanged (Slider*);
 	void buttonClicked(Button* clickedButton);
 	void comboBoxChanged(ComboBox* changedComboBox);
+    
+    void envelopeChanged(EnvelopeComponent* changedEnvelope);
+    void envelopeStartDrag(EnvelopeComponent* changedEnvelope);
+    void envelopeEndDrag(EnvelopeComponent* changedEnvelope);
 
     void selectionChanged();
     void fileClicked (const File& file, const MouseEvent& e);
@@ -91,6 +126,7 @@ public:
     void setFile (const File& file);
     
     void setIRDisplay(Buffer const& irBuffer);
+    double getIRDuration();
 
     //==============================================================================
     /** Standard Juce paint callback. */
@@ -119,8 +155,8 @@ private:
     const WildcardFileFilter fileFilter;
     FileBrowserComponent* fileBrowser;
     
-    ScopeComponent* irScope;
-    
+    IRComponent* irDisplay;
+    BufferProcess processManager;
     
     TooltipWindow tooltipWindow;
 	

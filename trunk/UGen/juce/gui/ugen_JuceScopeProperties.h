@@ -76,9 +76,12 @@ public:
 			colourSelector.setSize (240, 320);
 			colourSelector.setCurrentColour(Colour::fromString(owner->getText()));	
 
-//			CallOutBox callOut (colourSelector, *owner, 0);
+#if UGEN_JUCE_NEWCALLOUTBOX
             CallOutBox callOut (colourSelector, owner->getBounds(), 0);
-
+#else
+			CallOutBox callOut (colourSelector, *owner, 0);
+#endif
+            
 			callOut.runModalLoop();
 		}
 		

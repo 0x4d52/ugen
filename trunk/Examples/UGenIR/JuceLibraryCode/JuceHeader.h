@@ -36,8 +36,8 @@
 namespace ProjectInfo
 {
     const char* const  projectName    = "UGenIR";
-    const char* const  versionString  = "0.1.0";
-    const int          versionNumber  = 0x100;
+    const char* const  versionString  = "0.1.2";
+    const int          versionNumber  = 0x102;
 }
 
 #endif   // __APPHEADERFILE_RQEOXS__
