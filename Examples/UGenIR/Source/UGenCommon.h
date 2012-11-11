@@ -142,14 +142,14 @@ namespace UGenInterface
 	
 	namespace Buttons
 	{
-		static const char UNUSED_NOWARN *Names[] = { 0
-//            "Reset Amp",
-//            "Reset Filter"
+		static const char UNUSED_NOWARN *Names[] = {
+            "Reset Amp",
+            "Reset Filter"
         };
 		
         enum {
-//            ResetAmp,
-//            ResetFilter,
+            ResetAmp,
+            ResetFilter,
             
             Count
         };

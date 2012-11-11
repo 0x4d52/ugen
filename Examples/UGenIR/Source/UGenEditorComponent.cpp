@@ -206,6 +206,15 @@ void IRComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     }
 }
 
+//void IRComponent::handleCommandMessage(int commandId)
+//{
+//    switch (commandId)
+//    {
+//        case SetEnvLocks: setEnvLocks(); break;
+//        case UnsetEnvLocks: unsetEnvLocks(); break;
+//    }
+//}
+
 //==============================================================================
 UGenEditorComponent::UGenEditorComponent (UGenPlugin* const ownerFilter)
     :	AudioProcessorEditor (ownerFilter),

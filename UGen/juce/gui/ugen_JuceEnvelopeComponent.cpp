@@ -944,6 +944,14 @@ void EnvelopeComponent::sendEndDrag()
     }
 }
 
+void EnvelopeComponent::clear()
+{
+    int i = getNumHandles();
+    
+    while (i > 0)
+        removeHandle(handles[--i]);
+}
+
 EnvelopeLegendComponent* EnvelopeComponent::getLegend()
 {
 	EnvelopeContainerComponent* container = 
@@ -1233,6 +1241,8 @@ Env EnvelopeComponent::getEnv() const
 
 void EnvelopeComponent::setEnv(Env const& env)
 {
+    clear();
+    
     double time = 0.0;
 	
 	const Buffer& levels = env.getLevels();

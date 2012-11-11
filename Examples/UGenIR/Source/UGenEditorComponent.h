@@ -85,11 +85,19 @@ public:
     void setEnvLocks();
     void unsetEnvLocks();
     
+//    enum Messages
+//    {
+//        SetEnvLocks,
+//        UnsetEnvLocks
+//    };
+    
     inline ScopeComponent* getIRScope() { return irScope; }
     inline EnvelopeContainerComponent* getAmpEnvEditor() { return ampEnvEditor; }
     inline EnvelopeContainerComponent* getFilterEnvEditor() { return filterEnvEditor; }
     
     void comboBoxChanged (ComboBox* comboBoxThatHasChanged);
+    
+//    void handleCommandMessage(int commandId);
     
     enum EnvSelect
     {
@@ -161,6 +169,8 @@ public:
     
     void setIRDisplay(Buffer const& irBuffer);
     double getIRDuration();
+    
+    IRComponent* getIRComponent() { return irDisplay; }
 
     //==============================================================================
     /** Standard Juce paint callback. */

@@ -380,15 +380,41 @@ void UGenPlugin::setMeterLevel(int index, float value)
 
 void UGenPlugin::buttonClicked(int buttonIndex)
 {
-//    switch ((const int)buttonIndex)
-//    {
-//        case UGenInterface::Buttons::ResetAmp: ampEnv = getDefaultEnv(); break;
-//        case UGenInterface::Buttons::ResetFilter: filterEnv = getDefaultEnv();  break;
-//        default: return;
-//    }
-//    
+    UGenEditorComponent* editor = static_cast<UGenEditorComponent*> (getActiveEditor());
+    
+    switch ((const int)buttonIndex)
+    {
+        case UGenInterface::Buttons::ResetAmp: {
+            ampEnv = getDefaultEnv();
+            
+            if (editor != 0)
+            {
+                editor->getIRComponent()->unsetEnvLocks();
+                editor->getIRComponent()->getAmpEnvEditor()->setEnv(getDefaultEnv());
+                editor->getIRComponent()->setEnvLocks();
+                //editor->getIRComponent()->postCommandMessage(IRComponent::SetEnvLocks);
+            }
+
+        } break;
+            
+        case UGenInterface::Buttons::ResetFilter: {
+            filterEnv = getDefaultEnv();
+            
+            if (editor != 0)
+            {
+                editor->getIRComponent()->unsetEnvLocks();
+                editor->getIRComponent()->getFilterEnvEditor()->setEnv(getDefaultEnv());
+                editor->getIRComponent()->setEnvLocks();
+                //editor->getIRComponent()->postCommandMessage(IRComponent::SetEnvLocks);
+                
+            }
+            
+        } break;
+        default: return;
+    }
+    
 //    sendChangeMessage();
-//    startTimer(UGENIR_IRREFRESHTIME);
+    startTimer(UGENIR_IRREFRESHTIME);
 }
 
 void UGenPlugin::setMenuItem(int menuItemIndex)

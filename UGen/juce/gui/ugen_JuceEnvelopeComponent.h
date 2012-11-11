@@ -186,6 +186,8 @@ public:
     void sendStartDrag();
     void sendEndDrag();
 	
+    void clear();
+    
 	EnvelopeLegendComponent* getLegend();
 	void setLegendText(Text const& legendText);
 	void setLegendTextToDefault();
