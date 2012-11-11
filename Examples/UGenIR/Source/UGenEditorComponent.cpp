@@ -38,51 +38,56 @@
 
 #define UGENIR_VERSION "beta v" JucePlugin_VersionString
 
+static const char* ugen_IR_aboutHeading =
+    "UGen++ IR Convolution " UGENIR_VERSION "\n";
+
 
 static const char* ugen_IR_aboutText =
-    "UGen++ IR Convolution " UGENIR_VERSION "\n"
     "\n"
     "This plug-in is designed to be a simple impulse-response convolution plug-in.\n"
     "\n"
-    " - Simply select a file via the 'IR File' page to load an impulse response from a WAV or AIFF file.\n"
+    " - Simply select a file via the 'IR File' page to load an impulse response\n"
+    "    from a WAV or AIFF file.\n"
     " - The wet/dry mix can be set or automated via your DAW.\n"
     " - Amplitude and filter envelopes can be applied to the impulse response. \n"
-    " - Select which envelope to edit using the menu at the bottom of the 'IR Display' page."
-    " - When either of the envelopes are change the impulse response is re-processed and normalized.\n"
+    " - Select which envelope to edit using the menu at the bottom of the 'IR Display' page.\n"
+    " - When either of the envelopes are change the impulse response is re-processed\n"
+    "    and normalized.\n"
     " - Depending on the length of the impulse response, this may take a short time. \n"
-    " - The plug-in stores the file path to the impulse response relative to the user's home directory.\n"
+    " - The plug-in stores the file path to the impulse response relative to the user's\n"
+    "    home directory.\n"
     "\n"
     "What's new:\n"
+    " - [0.1.3] Added reset buttons for the envelopes.\n"
+    " - [0.1.3] Improved the layour of the about box.\n"
     " - [0.1.3] Added tooltips to the sliders.\n"
     " - [0.1.3] Now with adjustable speed control for the impulse response.\n"
-    " - [0.1.3] Now with a choice of filter types: LPF, HPF, BPF, BRF.\n "
+    " - [0.1.3] Now with a choice of filter types: LPF, HPF, BPF, BRF.\n"
     " - [0.1.2] Now with amplitude and filter envelope editors.\n"
-    " - [0.1.1] (Fixed) Deplpoyment target on OS X.\n"
+    " - [0.1.1] (Fixed) Deployment target on OS X.\n"
     "\n"
     "To do:\n"
     " - add optional channel modes for mono, stereo and true stereo;\n"
-    " - add reset buttons for the filter and amp envelopes;\n"
-    " - make the formatting of this about page a bit nicer!\n"
     "\n"
     "License\n"
     "This software is part of the UGEN++ library and uses Juce (www.juce.com)\n"
     "\n"
     "Copyright 2008-12 The University of the West of England.\n"
-    "by Martin Robinson\n"
+    " by Martin Robinson\n"
     "\n"
-    "UGEN++ can be redistributed and/or modified under the terms of the\n"
-    "GNU General Public License, as published by the Free Software Foundation;\n"
-    "either version 2 of the License, or (at your option) any later version.\n"
+    " UGEN++ can be redistributed and/or modified under the terms of the\n"
+    " GNU General Public License, as published by the Free Software Foundation;\n"
+    " either version 2 of the License, or (at your option) any later version.\n"
     "\n"
-    "UGEN++ is distributed in the hope that it will be useful,\n"
-    "but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
-    "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
-    "GNU General Public License for more details.\n"
+    " UGEN++ is distributed in the hope that it will be useful,\n"
+    " but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+    " MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+    " GNU General Public License for more details.\n"
     "\n"
-    "You should have received a copy of the GNU General Public License\n"
-    "along with UGEN++; if not, visit www.gnu.org/licenses or write to the\n"
-    "Free Software Foundation, Inc., 59 Temple Place, Suite 330,\n"
-    "Boston, MA 02111-1307 USA\n"
+    " You should have received a copy of the GNU General Public License\n"
+    " along with UGEN++; if not, visit www.gnu.org/licenses or write to the\n"
+    " Free Software Foundation, Inc., 59 Temple Place, Suite 330,\n"
+    " Boston, MA 02111-1307 USA\n"
     "\n"
 ;
 
@@ -366,7 +371,10 @@ UGenEditorComponent::UGenEditorComponent (UGenPlugin* const ownerFilter)
         TextEditor* text = new TextEditor();
         text->setMultiLine(true);
         text->setReadOnly(true);
-        text->setText(ugen_IR_aboutText);
+        text->setFont(Font(18.f, Font::italic|Font::bold));
+        text->insertTextAtCaret(ugen_IR_aboutHeading);
+        text->setFont(Font(13.f, Font::plain));
+        text->insertTextAtCaret(ugen_IR_aboutText);
         tabs->addTab("About", Colour::greyLevel(0.75f).withAlpha(0.5f), text, true);
     }
 
