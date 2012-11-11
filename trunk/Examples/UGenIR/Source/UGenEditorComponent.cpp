@@ -36,7 +36,7 @@
 #include "UGenPlugin.h"
 #include "UGenEditorComponent.h"
 
-#define UGENIR_VERSION "alpha v" JucePlugin_VersionString
+#define UGENIR_VERSION "beta v" JucePlugin_VersionString
 
 
 static const char* ugen_IR_aboutText =
@@ -50,16 +50,19 @@ static const char* ugen_IR_aboutText =
     " - Select which envelope to edit using the menu at the bottom of the 'IR Display' page."
     " - When either of the envelopes are change the impulse response is re-processed and normalized.\n"
     " - Depending on the length of the impulse response, this may take a short time. \n"
-    "\n"
-    "The plug-in stores the file path to the impulse response relative to the user's home directory.\n"
+    " - The plug-in stores the file path to the impulse response relative to the user's home directory.\n"
     "\n"
     "What's new:\n"
+    " - [0.1.3] Added tooltips to the sliders.\n"
+    " - [0.1.3] Now with adjustable speed control for the impulse response.\n"
+    " - [0.1.3] Now with a choice of filter types: LPF, HPF, BPF, BRF.\n "
     " - [0.1.2] Now with amplitude and filter envelope editors.\n"
     " - [0.1.1] (Fixed) Deplpoyment target on OS X.\n"
     "\n"
     "To do:\n"
     " - add optional channel modes for mono, stereo and true stereo;\n"
-    " - add amplitude and filter envelope overlays to the 'IR View'\n"
+    " - add reset buttons for the filter and amp envelopes;\n"
+    " - make the formatting of this about page a bit nicer!\n"
     "\n"
     "License\n"
     "This software is part of the UGEN++ library and uses Juce (www.juce.com)\n"
@@ -94,6 +97,11 @@ IRAmpLegendComponent::IRAmpLegendComponent(UGenEditorComponent* o, Text const& d
 double IRAmpLegendComponent::mapTime(double time)
 {
     return owner->getIRDuration() * time;
+}
+
+double IRAmpLegendComponent::mapValue(double value)
+{
+    return ampdb(value);
 }
 
 IRFilterLegendComponent::IRFilterLegendComponent(UGenEditorComponent* o, Text const& defaultText)
@@ -204,8 +212,8 @@ UGenEditorComponent::UGenEditorComponent (UGenPlugin* const ownerFilter)
         fileFilter("*.aif;*.aiff;*.wav", "", "Audio files"),
 		margin(20),
 		sliderHeight(22),
-		sliderWidth(400),
-		sliderLabelWidth(60),
+		sliderWidth(360),
+		sliderLabelWidth(100),
 		meterWidth(40),
 		buttonHeight(22),
 		menuLabelWidth(100),
@@ -268,7 +276,8 @@ UGenEditorComponent::UGenEditorComponent (UGenPlugin* const ownerFilter)
 #else
 			slider->setValue(getPlugin()->getParameter(index), false);
 #endif
-			sliders.add(slider);
+			
+            sliders.add(slider);
 			
 			// ...and its label
 			Label* sliderLabel;
@@ -278,6 +287,13 @@ UGenEditorComponent::UGenEditorComponent (UGenPlugin* const ownerFilter)
 			
 			// keep track of the height needed to display our sliders
 			height += sliderHeight;
+            
+            String desc = getPlugin()->getParameterDescription(index);
+            if (desc.length() > 0)
+            {
+                slider->setTooltip(desc);
+                sliderLabel->setTooltip(desc);
+            }
 		}
 		
 		width += margin;
@@ -383,6 +399,8 @@ UGenEditorComponent::UGenEditorComponent (UGenPlugin* const ownerFilter)
 	
 	if(height < 120) height = 120;
 	
+    tooltipWindow.setMillisecondsBeforeTipAppears(1500);
+    
     setSize (width, height);
 
     // register ourselves with the filter - it will use its ChangeBroadcaster base class to
