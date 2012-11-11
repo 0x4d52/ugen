@@ -465,7 +465,8 @@ UGen UGenPlugin::getConv()
 
 void UGenPlugin::handleBuffer(Buffer const& buffer, const double value1, const int value2)
 {
-    replaceIR(buffer.zap().normalise());
+    if (!buffer.isNull())
+        replaceIR(buffer.zap().normalise());
 }
 
 //==============================================================================
