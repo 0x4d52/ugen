@@ -38,17 +38,24 @@
 
 #define UGENIR_VERSION "alpha v" JucePlugin_VersionString
 
+
 static const char* ugen_IR_aboutText =
     "UGen++ IR Convolution " UGENIR_VERSION "\n"
     "\n"
     "This plug-in is designed to be a simple impulse-response convolution plug-in.\n"
-    "Simply select a file via the 'IR File' tab to load an impulse response from a WAV or AIFF file.\n"
-    "The wet/dry mix can be set or automated via your DAW.\n"
+    "\n"
+    " - Simply select a file via the 'IR File' page to load an impulse response from a WAV or AIFF file.\n"
+    " - The wet/dry mix can be set or automated via your DAW.\n"
+    " - Amplitude and filter envelopes can be applied to the impulse response. \n"
+    " - Select which envelope to edit using the menu at the bottom of the 'IR Display' page."
+    " - When either of the envelopes are change the impulse response is re-processed and normalized.\n"
+    " - Depending on the length of the impulse response, this may take a short time. \n"
     "\n"
     "The plug-in stores the file path to the impulse response relative to the user's home directory.\n"
     "\n"
-    "Bug fixes:\n"
-    " - Deplpoyment target on OS X\n"
+    "What's new:\n"
+    " - [0.1.2] Now with amplitude and filter envelope editors.\n"
+    " - [0.1.1] (Fixed) Deplpoyment target on OS X.\n"
     "\n"
     "To do:\n"
     " - add optional channel modes for mono, stereo and true stereo;\n"
@@ -78,17 +85,32 @@ static const char* ugen_IR_aboutText =
 
 //==============================================================================
 
-IRLegendComponent::IRLegendComponent(UGenEditorComponent* o, Text const& defaultText)
+IRAmpLegendComponent::IRAmpLegendComponent(UGenEditorComponent* o, Text const& defaultText)
 :   EnvelopeLegendComponent(defaultText),
     owner(o)
 {
 }
 
-double IRLegendComponent::mapTime(double time)
+double IRAmpLegendComponent::mapTime(double time)
 {
     return owner->getIRDuration() * time;
 }
 
+IRFilterLegendComponent::IRFilterLegendComponent(UGenEditorComponent* o, Text const& defaultText)
+:   EnvelopeLegendComponent(defaultText),
+    owner(o)
+{
+}
+
+double IRFilterLegendComponent::mapTime(double time)
+{
+    return owner->getIRDuration() * time;
+}
+
+double IRFilterLegendComponent::mapValue(double value)
+{
+    return linexp(value, 0.0, 1.0, owner->getPlugin()->getFilterMin(), owner->getPlugin()->getFilterMax());
+}
 
 //==============================================================================
 
@@ -97,23 +119,37 @@ IRComponent::IRComponent(UGenEditorComponent* o)
 {
     addAndMakeVisible(irScope = new ScopeComponent());
     irScope->setScaleY(ScopeGUI::LabelYAmplitude);
-    irScope->setScopeColour(ScopeGUI::Trace, RGBAColour(0.5f, 0.4f, 0.4f, 0.6f));
+    irScope->setScopeColour(ScopeGUI::Trace, RGBAColour(0.8f, 0.7f, 0.7f, 0.8f));
     irScope->setScopeColour(ScopeGUI::LabelMarks, RGBAColour(0.1f, 0.9f, 0.1f, 0.5f));
     irScope->setScopeColour(ScopeGUI::ZeroLine, RGBAColour(0.1f, 0.7f, 0.1f, 0.5f));
     
+    addAndMakeVisible(filterEnvEditor = new EnvelopeContainerComponent());
+    filterEnvEditor->setEnvColour(EnvelopeComponent::Background, RGBAColour(0.1f, 0.1f, 0.1f, 0.4f));
+    filterEnvEditor->setEnvColour(EnvelopeComponent::Node, RGBAColour(0.9f, 0.7f, 0.7f, 0.6f));
+    filterEnvEditor->setEnvColour(EnvelopeComponent::Line, RGBAColour(1.0f, 0.7f, 0.7f, 0.6f));
+    filterEnvEditor->setAllowNodeEditing(false);
+    filterEnvEditor->setAllowCurveEditing(false);
+    filterEnvEditor->setEnv(owner->getPlugin()->getIRFilterEnv());
+    filterEnvEditor->setLegendComponent(new IRFilterLegendComponent (owner, ""));
+
     addAndMakeVisible(ampEnvEditor = new EnvelopeContainerComponent());
-    ampEnvEditor->setEnvColour(EnvelopeComponent::Background, RGBAColour(0.f, 0.f, 0.f, 0.f));
+    ampEnvEditor->setEnvColour(EnvelopeComponent::Background, RGBAColour(0.1f, 0.1f, 0.1f, 0.4f));
+    ampEnvEditor->setEnvColour(EnvelopeComponent::Node, RGBAColour(0.7f, 0.9f, 0.7f, 0.6f));
+    ampEnvEditor->setEnvColour(EnvelopeComponent::Line, RGBAColour(0.7f, 1.0f, 0.7f, 0.6f));
     ampEnvEditor->setAllowNodeEditing(false);
     ampEnvEditor->setAllowCurveEditing(false);
-//    ampEnvEditor->getEnvelopeComponent()->addHandle(0.0, 1.0, EnvCurve::Linear);
-//    ampEnvEditor->getEnvelopeComponent()->addHandle(1.0, 1.0, EnvCurve::Linear);
-    
     ampEnvEditor->setEnv(owner->getPlugin()->getIRAmpEnv());
+    ampEnvEditor->setLegendComponent(new IRAmpLegendComponent (owner, ""));
+    
     setEnvLocks();
-    
-    ampEnvEditor->setLegendComponent(new IRLegendComponent (owner, "Amplitude Envelope"));
+    filterEnvEditor->addListener(owner);
     ampEnvEditor->addListener(owner);
-    
+
+    addAndMakeVisible(envSelect = new ComboBox());
+    envSelect->addItem("Amplitude Envelope", SelectAmpEnv);
+    envSelect->addItem("Filter Envelope", SelectFilterEnv);
+    envSelect->addListener(this);
+    envSelect->setSelectedId(SelectAmpEnv);
 }
 
 IRComponent::~IRComponent()
@@ -123,8 +159,11 @@ IRComponent::~IRComponent()
 
 void IRComponent::resized()
 {
-    irScope->setBounds(0, 0, getWidth(), getHeight() - ampEnvEditor->getLegendComponent()->getHeight());
-    ampEnvEditor->setBounds(0, 0, getWidth(), getHeight());
+    const int legendHeight = ampEnvEditor->getLegendComponent()->getHeight();
+    irScope->setBounds(0, 0, getWidth(), getHeight() - legendHeight - legendHeight);
+    ampEnvEditor->setBounds(0, 0, getWidth(), getHeight() - legendHeight);
+    filterEnvEditor->setBounds(0, 0, getWidth(), getHeight() - legendHeight);
+    envSelect->setBounds(0, getHeight()-legendHeight, getWidth(), legendHeight);
 }
 
 void IRComponent::setEnvLocks()
@@ -132,6 +171,10 @@ void IRComponent::setEnvLocks()
     ampEnvEditor->getEnvelopeComponent()->getHandle(0)->lockTime(0.0);
     ampEnvEditor->getEnvelopeComponent()->getHandle(ampEnvEditor->getEnvelopeComponent()->getNumHandles()-1)->lockTime(1.0);
     ampEnvEditor->getEnvelopeComponent()->setMinMaxNumHandles(2, 50);
+    
+    filterEnvEditor->getEnvelopeComponent()->getHandle(0)->lockTime(0.0);
+    filterEnvEditor->getEnvelopeComponent()->getHandle(filterEnvEditor->getEnvelopeComponent()->getNumHandles()-1)->lockTime(1.0);
+    filterEnvEditor->getEnvelopeComponent()->setMinMaxNumHandles(2, 50);
 }
 
 void IRComponent::unsetEnvLocks()
@@ -139,8 +182,21 @@ void IRComponent::unsetEnvLocks()
     ampEnvEditor->getEnvelopeComponent()->setMinMaxNumHandles(0, 0xffffff);
     ampEnvEditor->getEnvelopeComponent()->getHandle(0)->unlockTime();
     ampEnvEditor->getEnvelopeComponent()->getHandle(ampEnvEditor->getEnvelopeComponent()->getNumHandles()-1)->unlockTime();
+    
+    filterEnvEditor->getEnvelopeComponent()->setMinMaxNumHandles(0, 0xffffff);
+    filterEnvEditor->getEnvelopeComponent()->getHandle(0)->unlockTime();
+    filterEnvEditor->getEnvelopeComponent()->getHandle(filterEnvEditor->getEnvelopeComponent()->getNumHandles()-1)->unlockTime();
 }
 
+void IRComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
+{
+    //DBG(String("Selected: ")+ comboBoxThatHasChanged->getText());
+    switch (comboBoxThatHasChanged->getSelectedId())
+    {
+        case SelectAmpEnv: ampEnvEditor->toFront(false); break;
+        case SelectFilterEnv: filterEnvEditor->toFront(false); break;
+    }
+}
 
 //==============================================================================
 UGenEditorComponent::UGenEditorComponent (UGenPlugin* const ownerFilter)
@@ -463,7 +519,8 @@ void UGenEditorComponent::comboBoxChanged(ComboBox* changedComboBox)
 void UGenEditorComponent::envelopeChanged(EnvelopeComponent* changedEnvelope)
 {
     getPlugin()->setIRAmpEnv(irDisplay->getAmpEnvEditor()->getEnv());
-    startTimer(250);
+    getPlugin()->setIRFilterEnv(irDisplay->getFilterEnvEditor()->getEnv());
+    getPlugin()->startTimer(250);
 }
 
 void UGenEditorComponent::envelopeStartDrag(EnvelopeComponent* changedEnvelope)
@@ -472,12 +529,6 @@ void UGenEditorComponent::envelopeStartDrag(EnvelopeComponent* changedEnvelope)
 
 void UGenEditorComponent::envelopeEndDrag(EnvelopeComponent* changedEnvelope)
 {
-}
-
-void UGenEditorComponent::timerCallback()
-{
-    stopTimer();
-    getPlugin()->processEnvs();
 }
 
 void UGenEditorComponent::selectionChanged()

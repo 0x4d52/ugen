@@ -42,10 +42,10 @@
 
 class UGenEditorComponent;
 
-class IRLegendComponent : public EnvelopeLegendComponent
+class IRAmpLegendComponent : public EnvelopeLegendComponent
 {
 public:
-    IRLegendComponent(UGenEditorComponent* owner, Text const& defaultText = Text::empty);
+    IRAmpLegendComponent(UGenEditorComponent* owner, Text const& defaultText = Text::empty);
     
     double mapTime(double time);
     String getTimeUnits() { return "s"; }
@@ -54,7 +54,24 @@ private:
     UGenEditorComponent* owner;
 };
 
-class IRComponent : public Component
+class IRFilterLegendComponent : public EnvelopeLegendComponent
+{
+public:
+    IRFilterLegendComponent(UGenEditorComponent* owner, Text const& defaultText = Text::empty);
+    
+    double mapTime(double time);
+    String getTimeUnits() { return "s"; }
+    double mapValue(double value);
+    String getValueUnits() { return "Hz"; }
+
+    
+private:
+    UGenEditorComponent* owner;
+};
+
+
+class IRComponent : public Component,
+                    public ComboBox::Listener
 {
 public:
     IRComponent(UGenEditorComponent* owner);
@@ -67,12 +84,23 @@ public:
     
     inline ScopeComponent* getIRScope() { return irScope; }
     inline EnvelopeContainerComponent* getAmpEnvEditor() { return ampEnvEditor; }
+    inline EnvelopeContainerComponent* getFilterEnvEditor() { return filterEnvEditor; }
     
+    void comboBoxChanged (ComboBox* comboBoxThatHasChanged);
+    
+    enum EnvSelect
+    {
+        SelectAmpEnv = 1,
+        SelectFilterEnv = 2
+    };
     
 private:
     UGenEditorComponent* owner;
     ScopeComponent* irScope;
     EnvelopeContainerComponent* ampEnvEditor;
+    EnvelopeContainerComponent* filterEnvEditor;
+    ComboBox* envSelect;
+
 };
 
 
@@ -95,8 +123,7 @@ class UGenEditorComponent  : public AudioProcessorEditor,
 							public ButtonListener,
 							public ComboBoxListener,
                             public FileBrowserListener,
-                            public EnvelopeComponentListener,
-                            public Timer
+                            public EnvelopeComponentListener
 {
 public:
     /** Constructor.
@@ -122,8 +149,6 @@ public:
     void envelopeChanged(EnvelopeComponent* changedEnvelope);
     void envelopeStartDrag(EnvelopeComponent* changedEnvelope);
     void envelopeEndDrag(EnvelopeComponent* changedEnvelope);
-
-    void timerCallback();
     
     void selectionChanged();
     void fileClicked (const File& file, const MouseEvent& e);
@@ -142,6 +167,7 @@ public:
     void resized();
 	
     friend class IRComponent;
+    friend class IRFilterLegendComponent;
 
 private:
     //==============================================================================

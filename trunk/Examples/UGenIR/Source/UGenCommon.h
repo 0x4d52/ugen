@@ -74,6 +74,8 @@
 
 #define LINEAR false
 #define EXPONENTIAL true
+#define NONAUTOMATABLE false
+#define AUTOMATABLE true
 
 struct UGenRange
 {
@@ -82,6 +84,7 @@ struct UGenRange
     double nominal;
 	bool warp;		// true for exponential, false for linear
 	char units[64];	// use 0 for no units, e.g., "Hz" for freqency
+    bool automatable;
 };
 
 /**
@@ -94,16 +97,19 @@ namespace UGenInterface
 		static const char UNUSED_NOWARN *Names[] = { 
 			"Wet", 
 			"Dry",
+            "Resonance"
 		};
 		
 		static const UGenRange Ranges[] = {
-			{-80, 18, 0, LINEAR, " dB"},
-			{-80, 18, 0, LINEAR, " dB"}
+			{-80, 18, 0, LINEAR, " dB", AUTOMATABLE},
+			{-80, 18, 0, LINEAR, " dB", AUTOMATABLE},
+            {0.5, 100, 0, EXPONENTIAL, " Q", NONAUTOMATABLE}
 		};
 				
 		enum { 
 			Wet,
 			Dry,
+            Resonance,
 		
 			Count 
 		};
