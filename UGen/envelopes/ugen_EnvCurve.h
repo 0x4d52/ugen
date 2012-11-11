@@ -77,6 +77,20 @@ public:
 	void setCurve(const float newCurve) throw()		{ curve_ = newCurve; }
 
 	bool equalsInfinity() const throw()	{ return type_ == Numerical && curve_ == INFINITY; }
+    
+    bool operator==(EnvCurve const& other) const
+    {
+        if (type_ != other.type_)
+            return false;
+        
+        if (type_ == Numerical)
+            return curve_ == other.curve_;
+        
+        return true;
+    }
+    
+    bool operator!=(EnvCurve const& other) const { return !(*this==other); }
+
 	
 	/// @} <!-- end Curve access ----------------------------------------------------------- -->
 	

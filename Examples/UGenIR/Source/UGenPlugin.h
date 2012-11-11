@@ -43,7 +43,8 @@
 
 class UGenPlugin  :	public AudioProcessor,
 					public ChangeBroadcaster,
-                    public BufferReceiver
+                    public BufferReceiver,
+                    public Timer
 {
 public:
     //==============================================================================
@@ -70,7 +71,8 @@ public:
 	const float* getParameterPtr (int index) const;
     float getParameter (int index);
     void setParameter (int index, float newValue);
-	
+	bool isParameterAutomatable (int parameterIndex);
+    
 	float getMappedParameter(int index);
 	void setMappedParameter(int index, float newValue);
 	void setMappedParameterNotifyingHost(int index, float newValue);
@@ -127,7 +129,27 @@ public:
     
     inline Env getIRAmpEnv() { return ampEnv; }
     inline void setIRAmpEnv(Env const& env) { ampEnv = env; }
+    inline Env getIRFilterEnv() { return filterEnv; }
+    inline void setIRFilterEnv(Env const& env) { filterEnv = env; }
+
+    const double getFilterMin() const
+    {
+        return 20.0;
+    }
+
+    const double getFilterMax() const
+    {
+        const double nyquist = UGen::getSampleRate() * 0.5;
+        
+        double max = 0.0;
+        
+        while (max < nyquist)
+            max += 1000.0;
+
+        return max - 1000.0;
+    }
     
+    void timerCallback();
     void processEnvs();
     
     void handleBuffer(Buffer const& buffer, const double value1, const int value2);
@@ -155,7 +177,7 @@ private:
     File irFile;
     Buffer irBuffer;
     Buffer originalBuffer;
-    Env ampEnv;
+    Env ampEnv, filterEnv;
 //    String lastPath;
     int selectedTab;
     

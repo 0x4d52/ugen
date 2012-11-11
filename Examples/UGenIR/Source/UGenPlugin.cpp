@@ -47,7 +47,7 @@ AudioProcessor* JUCE_CALLTYPE createPluginFilter()
     return new UGenPlugin();
 }
 
-static Env getDefaultAmpEnv()
+static Env getDefaultEnv()
 {
     return Env(Buffer(1.0, 1.0), Buffer(1.0), EnvCurve::Linear);
 }
@@ -77,7 +77,9 @@ UGenPlugin::UGenPlugin()
     
     selectedTab = -1;
     
-    ampEnv = getDefaultAmpEnv();
+    ampEnv = getDefaultEnv();
+    filterEnv = getDefaultEnv();
+    
     processManager.addBufferReceiver(this);
 }
 
@@ -125,6 +127,14 @@ void UGenPlugin::setParameter (int index, float newValue)
 		// our editor will pick up.
 		sendChangeMessage();
 	}
+    
+    if (index == UGenInterface::Parameters::Resonance)
+        startTimer(250);
+}
+
+bool UGenPlugin::isParameterAutomatable (int index)
+{
+    return UGenInterface::Parameters::Ranges[index].automatable;
 }
 
 float UGenPlugin::getMappedParameter(int index)
@@ -422,7 +432,7 @@ UGen UGenPlugin::getConv()
 
 void UGenPlugin::handleBuffer(Buffer const& buffer, const double value1, const int value2)
 {
-    replaceIR(buffer);
+    replaceIR(buffer.normalise());
 }
 
 //==============================================================================
@@ -472,6 +482,17 @@ void UGenPlugin::getStateInformation (MemoryBlock& destData)
     for (int i = 0; i < ampEnvTimes.size(); i++)
         xmlState.setAttribute(String("ampEnvTime")+String(i), (double)ampEnvTimes.getSampleUnchecked(i));
     
+    const Buffer& filterEnvLevels = filterEnv.getLevels();
+    const Buffer& filterEnvTimes = filterEnv.getTimes();
+    
+    xmlState.setAttribute("filterEnvNumLevels", filterEnvLevels.size());
+    for (int i = 0; i < filterEnvLevels.size(); i++)
+        xmlState.setAttribute(String("filterEnvLevel")+String(i), (double)filterEnvLevels.getSampleUnchecked(i));
+    
+    xmlState.setAttribute("filterEnvNumTimes", filterEnvTimes.size());
+    for (int i = 0; i < filterEnvTimes.size(); i++)
+        xmlState.setAttribute(String("filterEnvTime")+String(i), (double)filterEnvTimes.getSampleUnchecked(i));
+
     
     // then use this helper function to stuff it into the binary blob and return it..
     copyXmlToBinary (xmlState, destData);
@@ -526,8 +547,27 @@ void UGenPlugin::setStateInformation (const void* data, int sizeInBytes)
                 ampEnv = Env(ampEnvLevels, ampEnvTimes, EnvCurve::Linear);
 
             }
-            else ampEnv = getDefaultAmpEnv();
+            else ampEnv = getDefaultEnv();
             
+            const int filterEnvNumLevels = xmlState->getIntAttribute("filterEnvNumLevels", 0);
+            const int filterEnvNumTimes = xmlState->getIntAttribute("filterEnvNumTimes", 0);
+            
+            if ((filterEnvNumTimes >= 1) && (filterEnvNumLevels == (filterEnvNumTimes + 1)))
+            {
+                Buffer filterEnvLevels = BufferSpec(filterEnvNumLevels);
+                Buffer filterEnvTimes  = BufferSpec(filterEnvNumTimes);
+                
+                for (int i = 0; i < filterEnvLevels.size(); i++)
+                    filterEnvLevels.setSampleUnchecked(i, (float)xmlState->getDoubleAttribute(String("filterEnvLevel")+String(i), 0.0));
+                
+                for (int i = 0; i < filterEnvTimes.size(); i++)
+                    filterEnvTimes.setSampleUnchecked(i, (float)xmlState->getDoubleAttribute(String("filterEnvTime")+String(i), 0.0));
+                
+                filterEnv = Env(filterEnvLevels, filterEnvTimes, EnvCurve::Linear);
+                
+            }
+            else filterEnv = getDefaultEnv();
+
             processEnvs();
             
             sendChangeMessage();
@@ -537,10 +577,57 @@ void UGenPlugin::setStateInformation (const void* data, int sizeInBytes)
     }
 }
 
+static bool isEnvDefault(Env const& env)
+{
+    Env defaultEnv = getDefaultEnv();
+    
+    const Buffer& envLevels = env.getLevels();
+    const Buffer& envTimes = env.getTimes();
+    const EnvCurveList& envCurves = env.getCurves();
+    const Buffer& defaultLevels = defaultEnv.getLevels();
+    const Buffer& defaultTimes = defaultEnv.getTimes();
+    const EnvCurveList& defaultCurves = defaultEnv.getCurves();
+
+    
+    if (envLevels.size() != defaultLevels.size()) return false;
+    if (envTimes.size() != defaultTimes.size()) return false;
+    if (envCurves.size() != defaultCurves.size()) return false;
+    
+    for (int i = 0; i < envLevels.size(); i++)
+        if (envLevels.getSampleUnchecked(i) != defaultLevels.getSampleUnchecked(i))
+            return false;
+    
+    for (int i = 0; i < envTimes.size(); i++)
+        if (envTimes.getSampleUnchecked(i) != defaultTimes.getSampleUnchecked(i))
+            return false;
+    
+    for (int i = 0; i < envCurves.size(); i++)
+        if (envCurves.getData()[i] != defaultCurves.getData()[i])
+            return false;
+    
+    return true;
+}
+
+
 void UGenPlugin::processEnvs()
 {
     Env ampEnvScaled = ampEnv.timeScale(originalBuffer.duration());
     UGen player = PlayBuf::AR(originalBuffer, 1.0, 0, 0, 0, UGen::DoNothing) * EnvGen::AR(ampEnvScaled);
+    
+    if (!isEnvDefault(filterEnv))
+    {
+        Env filterEnvScaled = filterEnv.timeScale(originalBuffer.duration());
+        player = BLowPass::AR(player,
+                              EnvGen::AR(filterEnvScaled).linexp(0, 1, getFilterMin(), getFilterMax()),
+                              getMappedParameterControl(UGenInterface::Parameters::Resonance).reciprocal());
+    }
+    
     processManager.add(originalBuffer.size(), player);
+}
+
+void UGenPlugin::timerCallback()
+{
+    stopTimer();
+    processEnvs();
 }
 

@@ -2130,18 +2130,18 @@ float Buffer::findMaximum(const int channel) const throw()
 	if(channel >= 0)
 	{
 		value = getSampleUnchecked(channel, 0);
-		for(int channel = 0; channel < size_; channel++)
+		for(int i = 1; i < size_; i++)
 		{
-			float newValue = getSampleUnchecked(channel, channel);
+			float newValue = getSampleUnchecked(channel, i);
 			value = newValue > value ? newValue : value;
 		}
 	}
 	else
 	{
 		value = getSampleUnchecked(0, 0);
-		for(int channel = 0; channel < numChannels_; channel++)
+		for(int i = 0; i < numChannels_; i++)
 		{
-			float newValue = findMaximum(channel);
+			float newValue = findMaximum(i);
 			value = newValue > value ? newValue : value;
 		}
 	}
@@ -2162,18 +2162,18 @@ float Buffer::findMinimum(const int channel) const throw()
 	if(channel >= 0)
 	{
 		value = getSampleUnchecked(channel, 0);
-		for(int channel = 0; channel < size_; channel++)
+		for(int i = 1; i < size_; i++)
 		{
-			float newValue = getSampleUnchecked(channel, channel);
+			float newValue = getSampleUnchecked(channel, i);
 			value = newValue < value ? newValue : value;
 		}
 	}
 	else
 	{
 		value = getSampleUnchecked(0, 0);
-		for(int channel = 0; channel < numChannels_; channel++)
+		for(int i = 0; i < numChannels_; i++)
 		{
-			float newValue = findMinimum(channel);
+			float newValue = findMinimum(i);
 			value = newValue < value ? newValue : value;
 		}
 	}
@@ -2194,18 +2194,18 @@ float Buffer::findPeak(const int channel) const throw()
 	if(channel >= 0)
 	{
 		value = getSampleUnchecked(channel, 0);
-		for(int channel = 0; channel < size_; channel++)
+		for(int i = 1; i < size_; i++)
 		{
-			float newValue = ugen::abs(getSampleUnchecked(channel, channel));
+			float newValue = ugen::abs(getSampleUnchecked(channel, i));
 			value = newValue > value ? newValue : value;
 		}
 	}
 	else
 	{
 		value = getSampleUnchecked(0, 0);
-		for(int channel = 0; channel < numChannels_; channel++)
+		for(int i = 0; i < numChannels_; i++)
 		{
-			float newValue = findPeak(channel);
+			float newValue = findPeak(i);
 			value = newValue > value ? newValue : value;
 		}
 	}
