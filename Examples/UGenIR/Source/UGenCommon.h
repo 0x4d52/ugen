@@ -97,19 +97,29 @@ namespace UGenInterface
 		static const char UNUSED_NOWARN *Names[] = { 
 			"Wet", 
 			"Dry",
-            "Resonance"
+            "Resonance",
+            "Speed"
+		};
+        
+        static const char UNUSED_NOWARN *Descriptions[] = {
+			"Wet mix control",
+			"Dry mix control",
+            "Resonance control for the filter applied to the impulse response",
+            "Speed control for the playback of the impulse response (normal speed = 1)"
 		};
 		
 		static const UGenRange Ranges[] = {
 			{-80, 18, 0, LINEAR, " dB", AUTOMATABLE},
 			{-80, 18, 0, LINEAR, " dB", AUTOMATABLE},
-            {0.5, 100, 0, EXPONENTIAL, " Q", NONAUTOMATABLE}
+            {0.5, 100, 1, EXPONENTIAL, " Q", NONAUTOMATABLE},
+            {0.02, 50, 1, EXPONENTIAL, " x", NONAUTOMATABLE}
 		};
 				
 		enum { 
 			Wet,
 			Dry,
             Resonance,
+            Speed,
 		
 			Count 
 		};
@@ -132,16 +142,39 @@ namespace UGenInterface
 	
 	namespace Buttons
 	{
-		static const char UNUSED_NOWARN *Names[] = { 0 };
-		enum { Count };
+		static const char UNUSED_NOWARN *Names[] = { 0
+//            "Reset Amp",
+//            "Reset Filter"
+        };
+		
+        enum {
+//            ResetAmp,
+//            ResetFilter,
+            
+            Count
+        };
 	}
 	
 	namespace MenuOptions
 	{
-		static const char UNUSED_NOWARN *Label = 0;
-		static const char UNUSED_NOWARN *Names[] = { 0 };
+		static const char UNUSED_NOWARN *Label = "Filter Type";
+		static const char UNUSED_NOWARN *Names[] = {
+            "Low Pass",
+            "High Pass",
+//            "Peak-Notch",
+            "Band Pass",
+            "Band Reject",
+        };
 		
-		enum { Count };
+		enum {
+            LowPass,
+            HighPass,
+//            PeakNotch,
+            BandPass,
+            BandReject,
+            
+            Count
+        };
 	}
 	
 }

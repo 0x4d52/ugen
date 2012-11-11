@@ -49,6 +49,9 @@ public:
     
     double mapTime(double time);
     String getTimeUnits() { return "s"; }
+    double mapValue(double value);
+    String getValueUnits() { return "dB"; }
+
     
 private:
     UGenEditorComponent* owner;

@@ -73,6 +73,8 @@ public:
     void setParameter (int index, float newValue);
 	bool isParameterAutomatable (int parameterIndex);
     
+    float calculateNormalisedParameter(int index, float mappedValue);
+    
 	float getMappedParameter(int index);
 	void setMappedParameter(int index, float newValue);
 	void setMappedParameterNotifyingHost(int index, float newValue);
@@ -86,6 +88,8 @@ public:
 	
     const String getParameterName (int index);
     const String getParameterText (int index);	
+
+    const String getParameterDescription (int index);
 
     const String getInputChannelName (const int channelIndex) const;
     const String getOutputChannelName (const int channelIndex) const;
@@ -134,12 +138,19 @@ public:
 
     const double getFilterMin() const
     {
-        return 20.0;
+        const double lowest = UGen::getSampleRate() * 0.0005;
+        
+        double min = 0.0;
+        
+        while (min < lowest)
+            min += 5;
+        
+        return min;
     }
 
     const double getFilterMax() const
     {
-        const double nyquist = UGen::getSampleRate() * 0.5;
+        const double nyquist = UGen::getSampleRate() * 0.5 * 0.95;
         
         double max = 0.0;
         

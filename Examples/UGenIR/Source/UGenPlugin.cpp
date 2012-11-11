@@ -37,6 +37,8 @@
 #include "UGenEditorComponent.h"
 
 
+#define UGENIR_IRREFRESHTIME 400
+
 //==============================================================================
 /**
     This function must be implemented to create a new instance of your
@@ -60,7 +62,7 @@ UGenPlugin::UGenPlugin()
 	parameters = new float[UGenInterface::Parameters::Count];
 	for(int index = 0; index < UGenInterface::Parameters::Count; index++)
 	{
-		parameters[index] = 0.f;
+		parameters[index] = calculateNormalisedParameter(index, getParameterNominal(index));
 	}
 	
 	meterLevels = new float[UGenInterface::Meters::Count];
@@ -126,15 +128,35 @@ void UGenPlugin::setParameter (int index, float newValue)
 		// if this is changing a parameter, broadcast a change message which
 		// our editor will pick up.
 		sendChangeMessage();
-	}
-    
-    if (index == UGenInterface::Parameters::Resonance)
-        startTimer(250);
+        
+        if (!isParameterAutomatable(index))
+            startTimer(UGENIR_IRREFRESHTIME);
+	}    
 }
 
 bool UGenPlugin::isParameterAutomatable (int index)
 {
     return UGenInterface::Parameters::Ranges[index].automatable;
+}
+
+float UGenPlugin::calculateNormalisedParameter(int index, float mappedValue)
+{
+    float normalisedValue;
+	
+	if(getParameterWarp(index))
+	{
+		normalisedValue = explin(mappedValue,
+								 getParameterMin(index), getParameterMax(index),
+								 0.f, 1.f);
+	}
+	else
+	{
+		normalisedValue = linlin(mappedValue,
+								 getParameterMin(index), getParameterMax(index),
+								 0.f, 1.f);
+	}
+
+    return normalisedValue;
 }
 
 float UGenPlugin::getMappedParameter(int index)
@@ -155,42 +177,12 @@ float UGenPlugin::getMappedParameter(int index)
 
 void UGenPlugin::setMappedParameter(int index, float newValue)
 {	
-	float normalisedValue;
-	
-	if(getParameterWarp(index))
-	{
-		normalisedValue = explin(newValue, 
-								 getParameterMin(index), getParameterMax(index),
-								 0.f, 1.f);
-	}
-	else
-	{
-		normalisedValue = linlin(newValue, 
-								 getParameterMin(index), getParameterMax(index),
-								 0.f, 1.f);
-	}	
-	
-	setParameter(index, normalisedValue);
+	setParameter(index, calculateNormalisedParameter(index, newValue));
 }
 
 void UGenPlugin::setMappedParameterNotifyingHost(int index, float newValue)
 {
-	float normalisedValue;
-	
-	if(getParameterWarp(index))
-	{
-		normalisedValue = explin(newValue, 
-								 getParameterMin(index), getParameterMax(index),
-								 0.f, 1.f);
-	}
-	else
-	{
-		normalisedValue = linlin(newValue, 
-								 getParameterMin(index), getParameterMax(index),
-								 0.f, 1.f);
-	}	
-	
-	setParameterNotifyingHost(index, normalisedValue);
+	setParameterNotifyingHost(index, calculateNormalisedParameter(index, newValue));
 }
 
 UGen UGenPlugin::getMappedParameterControl(int index) const
@@ -242,6 +234,11 @@ const String UGenPlugin::getParameterName (int index)
 const String UGenPlugin::getParameterText (int index)
 {
 	return String (getMappedParameter(index), 2);
+}
+
+const String UGenPlugin::getParameterDescription (int index)
+{
+    return String(UGenInterface::Parameters::Descriptions[index]);
 }
 
 const String UGenPlugin::getInputChannelName (const int channelIndex) const
@@ -383,11 +380,21 @@ void UGenPlugin::setMeterLevel(int index, float value)
 
 void UGenPlugin::buttonClicked(int buttonIndex)
 {
+//    switch ((const int)buttonIndex)
+//    {
+//        case UGenInterface::Buttons::ResetAmp: ampEnv = getDefaultEnv(); break;
+//        case UGenInterface::Buttons::ResetFilter: filterEnv = getDefaultEnv();  break;
+//        default: return;
+//    }
+//    
+//    sendChangeMessage();
+//    startTimer(UGENIR_IRREFRESHTIME);
 }
 
 void UGenPlugin::setMenuItem(int menuItemIndex)
 {
 	menuItem = menuItemIndex;
+    startTimer(UGENIR_IRREFRESHTIME);
 }
 
 int UGenPlugin::getMenuItem()
@@ -432,7 +439,7 @@ UGen UGenPlugin::getConv()
 
 void UGenPlugin::handleBuffer(Buffer const& buffer, const double value1, const int value2)
 {
-    replaceIR(buffer.normalise());
+    replaceIR(buffer.zap().normalise());
 }
 
 //==============================================================================
@@ -518,9 +525,11 @@ void UGenPlugin::setStateInformation (const void* data, int sizeInBytes)
 				String parameterName = UGenUtility::stringToSafeName(String(UGenInterface::Parameters::Names[index]));
 				parameterName += "_";
 				parameterName += String(index);		// try to ensure the name is unique, not foolproof
-				parameters[index] = (float) xmlState->getDoubleAttribute (parameterName, parameters[index]);
+				parameters[index] = (float) xmlState->getDoubleAttribute (parameterName,
+                                                                          calculateNormalisedParameter(index, getParameterNominal(index)));
 			}
-			menuItem = xmlState->getIntAttribute("menuItem", menuItem);
+            
+			menuItem = xmlState->getIntAttribute("menuItem", UGenInterface::MenuOptions::LowPass);
             
             const String relative = xmlState->getStringAttribute("irFile", String::empty);
             if(relative.isNotEmpty())
@@ -608,21 +617,57 @@ static bool isEnvDefault(Env const& env)
     return true;
 }
 
+static float convertQtoOctaves(float q)
+{
+    const float twoLn2 = 2.f / log(2.f);
+    const float rTwoQ = reciprocal(2.f * q);
+    return twoLn2 * asinh(rTwoQ);
+}
 
 void UGenPlugin::processEnvs()
 {
-    Env ampEnvScaled = ampEnv.timeScale(originalBuffer.duration());
-    UGen player = PlayBuf::AR(originalBuffer, 1.0, 0, 0, 0, UGen::DoNothing) * EnvGen::AR(ampEnvScaled);
+    const float speed = getMappedParameter(UGenInterface::Parameters::Speed);
+    const float duration = originalBuffer.duration() / speed;
+    const float newSize = originalBuffer.size() / speed;
     
+    Env ampEnvScaled = ampEnv.timeScale(duration);
+    UGen player = PlayBuf::AR(originalBuffer,
+                              speed,
+                              0, 0, 0, UGen::DoNothing);
+        
     if (!isEnvDefault(filterEnv))
     {
-        Env filterEnvScaled = filterEnv.timeScale(originalBuffer.duration());
-        player = BLowPass::AR(player,
-                              EnvGen::AR(filterEnvScaled).linexp(0, 1, getFilterMin(), getFilterMax()),
-                              getMappedParameterControl(UGenInterface::Parameters::Resonance).reciprocal());
+        Env filterEnvScaled = filterEnv.timeScale(duration);
+        
+        UGen envgen = EnvGen::AR(filterEnvScaled).linexp(0, 1, getFilterMin(), getFilterMax());
+        
+        switch (menuItem) {
+            case UGenInterface::MenuOptions::LowPass:
+                player = BLowPass::AR(player, envgen,
+                                      reciprocal(getMappedParameter(UGenInterface::Parameters::Resonance)));
+                break;
+            case UGenInterface::MenuOptions::HighPass:
+                player = BHiPass::AR(player, envgen,
+                                     reciprocal(getMappedParameter(UGenInterface::Parameters::Resonance)));
+                break;
+//            case UGenInterface::MenuOptions::PeakNotch:
+//                player = BPeakEQ::AR(player,
+//                                      EnvGen::AR(filterEnvScaled).linexp(0, 1, getFilterMin(), getFilterMax()),
+//                                      getMappedParameterControl(UGenInterface::Parameters::Resonance).reciprocal());
+//                break;
+            case UGenInterface::MenuOptions::BandPass:
+                player = BBandPass::AR(player, envgen,
+                                       convertQtoOctaves(getMappedParameter(UGenInterface::Parameters::Resonance)));
+                break;
+            case UGenInterface::MenuOptions::BandReject:
+                player = BBandStop::AR(player, envgen,
+                                       convertQtoOctaves(getMappedParameter(UGenInterface::Parameters::Resonance)));
+                break;
+        }
+        
     }
     
-    processManager.add(originalBuffer.size(), player);
+    processManager.add(newSize, player * EnvGen::AR(ampEnvScaled));
 }
 
 void UGenPlugin::timerCallback()
