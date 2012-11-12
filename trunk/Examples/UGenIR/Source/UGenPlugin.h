@@ -194,6 +194,8 @@ private:
     
     CriticalSection outputLock;
     //CriticalSection meterLock;
+    CriticalSection bufferLock;
+    CriticalSection backgroundLock;
     
     BufferProcess processManager;
 };

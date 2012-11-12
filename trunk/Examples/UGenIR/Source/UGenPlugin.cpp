@@ -434,14 +434,18 @@ void UGenPlugin::loadIR(File const& newIRFile)
     
     DBG(String("irPath: ") + irFile.getFullPathName());
     
+    bufferLock.enter();
     originalBuffer = Buffer(irFile);
+    bufferLock.exit();
     
     replaceIR(originalBuffer);
 }
 
 void UGenPlugin::replaceIR(Buffer const& newIRBuffer)
 {
+    bufferLock.enter();
     irBuffer = newIRBuffer;
+    bufferLock.exit();
     
     UGenEditorComponent* editor = static_cast<UGenEditorComponent*> (getActiveEditor());
     
@@ -456,11 +460,17 @@ void UGenPlugin::replaceIR(Buffer const& newIRBuffer)
 
 UGen UGenPlugin::getConv()
 {
+    const ScopedLock sl (backgroundLock);
+    
     Env pause = Env(Buffer(0.0, 0.0, 1.0, 0.0),
                     Buffer(0.5, 0.1, 0.0),
                     EnvCurve::Linear, 2);
     
-    return ZeroLatencyConvolve::AR(inputUGen, irBuffer) * 0.005 * EnvGen::AR(pause);
+    bufferLock.enter();
+    Buffer irBufferCopy = irBuffer;
+    bufferLock.exit();
+    
+    return ZeroLatencyConvolve::AR(inputUGen, irBufferCopy) * 0.005 * EnvGen::AR(pause);
 }
 
 void UGenPlugin::handleBuffer(Buffer const& buffer, const double value1, const int value2)
@@ -644,19 +654,33 @@ static bool isEnvDefault(Env const& env)
     return true;
 }
 
+double myasinh(float value)
+{   
+	float returned;
+
+	if(value > 0.f)
+		returned = ugen::log(value + ugen::sqrt(value * value + 1.f));
+	else
+		returned = -ugen::log(-value + ugen::sqrt(value * value + 1.f));
+
+	return returned;
+}
+
 static float convertQtoOctaves(float q)
 {
-    const float twoLn2 = 2.f / log(2.f);
+    const float twoLn2 = 2.f / ugen::log(2.f);
     const float rTwoQ = reciprocal(2.f * q);
-    return twoLn2 * asinh(rTwoQ);
+    return twoLn2 * myasinh(rTwoQ);
 }
 
 void UGenPlugin::processEnvs()
 {
+    backgroundLock.enter();
+    
     const float speed = getMappedParameter(UGenInterface::Parameters::Speed);
     const float duration = originalBuffer.duration() / speed;
     const float newSize = originalBuffer.size() / speed;
-    
+        
     Env ampEnvScaled = ampEnv.timeScale(duration);
     UGen player = PlayBuf::AR(originalBuffer,
                               speed,
@@ -677,11 +701,6 @@ void UGenPlugin::processEnvs()
                 player = BHiPass::AR(player, envgen,
                                      reciprocal(getMappedParameter(UGenInterface::Parameters::Resonance)));
                 break;
-//            case UGenInterface::MenuOptions::PeakNotch:
-//                player = BPeakEQ::AR(player,
-//                                      EnvGen::AR(filterEnvScaled).linexp(0, 1, getFilterMin(), getFilterMax()),
-//                                      getMappedParameterControl(UGenInterface::Parameters::Resonance).reciprocal());
-//                break;
             case UGenInterface::MenuOptions::BandPass:
                 player = BBandPass::AR(player, envgen,
                                        convertQtoOctaves(getMappedParameter(UGenInterface::Parameters::Resonance)));
@@ -694,7 +713,11 @@ void UGenPlugin::processEnvs()
         
     }
     
-    processManager.add(newSize, player * EnvGen::AR(ampEnvScaled));
+    player *= EnvGen::AR(ampEnvScaled);
+    
+    backgroundLock.exit();
+    
+    processManager.add(newSize, player);
 }
 
 void UGenPlugin::timerCallback()

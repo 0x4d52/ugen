@@ -59,7 +59,7 @@ static const char* ugen_IR_aboutText =
     "\n"
     "What's new:\n"
     " - [0.1.3] Added reset buttons for the envelopes.\n"
-    " - [0.1.3] Improved the layour of the about box.\n"
+    " - [0.1.3] Improved the layout of the about box.\n"
     " - [0.1.3] Added tooltips to the sliders.\n"
     " - [0.1.3] Now with adjustable speed control for the impulse response.\n"
     " - [0.1.3] Now with a choice of filter types: LPF, HPF, BPF, BRF.\n"
