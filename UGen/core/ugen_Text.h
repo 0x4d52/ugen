@@ -205,7 +205,7 @@ public:
 			  Text const &i14 = Text(),
 			  Text const &i15 = Text())
 	:	ObjectArray2DBase<char, Text>(i00, i01, i02, i03,
-									  i04, i05, i05, i07,
+									  i04, i05, i06, i07,
 									  i08, i09, i10, i11, 
 									  i12, i13, i14, i15)
 	{
@@ -244,7 +244,7 @@ public:
 			  Text const &i30 = Text(),
 			  Text const &i31 = Text())
 	:	ObjectArray2DBase<char, Text>(i00, i01, i02, i03,
-									  i04, i05, i05, i07,
+									  i04, i05, i06, i07,
 									  i08, i09, i10, i11, 
 									  i12, i13, i14, i15, 
 									  i16, i17, i18, i19,
