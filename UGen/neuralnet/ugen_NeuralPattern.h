@@ -76,7 +76,7 @@ class NeuralPattern : public SmartPointerContainer<NeuralPatternBaseInternal>
 public:
 	NeuralPattern(const int null = 0) throw() 
 	:	SmartPointerContainer<NeuralPatternBaseInternal>(0)
-	{ }
+	{ (void)null; }
 	
 	NeuralPattern(NumericalArray<float> inputVector,
 				  NumericalArray<float> outputVector) throw()

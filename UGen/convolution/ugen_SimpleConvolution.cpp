@@ -165,7 +165,7 @@ SimpleConvolution::SimpleConvolution(UGen const& inputA,
 	const int numInputChannels = ugen::max(inputA.getNumChannels(), inputB.getNumChannels());
 	initInternal(numInputChannels);
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new SimpleConvolutionUGenInternal(inputA, 
 															 inputB, 
@@ -192,7 +192,7 @@ OverlapConvolution::OverlapConvolution(UGen const& inputA, UGen const& inputB, c
 	const int numInputChannels = ugen::max(inputA.getNumChannels(), inputB.getNumChannels());
 	initInternal(numInputChannels);
 	
-	for(int i = 0; i < numInternalUGens; i++)
+	for(unsigned int i = 0; i < numInternalUGens; i++)
 	{
 		internalUGens[i] = new BinaryMultiplyUGenInternal(mixer, 1.0 / overlapChecked);
 	}

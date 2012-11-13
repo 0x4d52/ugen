@@ -51,7 +51,7 @@ WhiteNoiseUGenInternal::WhiteNoiseUGenInternal() throw()
 	initValue(random.nextBiFloat());
 }
 
-void WhiteNoiseUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void WhiteNoiseUGenInternal::processBlock(bool& /*shouldDelete*/, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();

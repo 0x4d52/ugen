@@ -96,7 +96,7 @@ class NeuralLayer : public SmartPointerContainer<NeuralLayerBaseInternal>
 public:
 	NeuralLayer(const int null = 0) throw() 
 	:	SmartPointerContainer<NeuralLayerBaseInternal>(0)
-	{ }
+	{ (void)null;}
 	
 	NeuralLayer(const int numNodes, const int numNodesOnPreviousLayer) throw()
 	:	SmartPointerContainer<NeuralLayerBaseInternal>

@@ -59,13 +59,13 @@ ASRUGenInternal::ASRUGenInternal(const float attackTime, const float sustainLeve
 	setAttackSegment();
 }
 
-void ASRUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
+void ASRUGenInternal::prepareForBlock(const int /*actualBlockSize*/, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {
 	senderUserData = userData;
 	if(isDone()) sendDoneInternal();
 }
 
-void ASRUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void ASRUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();

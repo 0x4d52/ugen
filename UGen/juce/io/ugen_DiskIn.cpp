@@ -79,13 +79,13 @@ DiskInUGenInternal::~DiskInUGenInternal() throw()
 	delete [] bufferData;
 }
 
-void DiskInUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
+void DiskInUGenInternal::prepareForBlock(const int /*actualBlockSize*/, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {
 	senderUserData = userData;
 	if(isDone()) sendDoneInternal();
 }
 
-void DiskInUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void DiskInUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {
 	int numChannels = getNumChannels();
 	int blockSize = uGenOutput.getBlockSize();

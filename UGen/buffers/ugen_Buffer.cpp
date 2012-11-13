@@ -61,7 +61,7 @@ BufferChannelInternal::BufferChannelInternal(const unsigned int size, bool zeroD
 :	data(0),
 	size_(size),
 	allocatedSize(size),
-	currentWriteBlockID(-1),
+	currentWriteBlockID((unsigned int)-1), //FIMXE
 	circularHead(-1), previousCircularHead(-1)
 {
 //	ugen_assert(size > 0);
@@ -88,7 +88,7 @@ BufferChannelInternal::BufferChannelInternal(const unsigned int size,
 :	data(0),
 	size_(size),
 	allocatedSize(0),
-	currentWriteBlockID(-1),
+	currentWriteBlockID((unsigned int)-1), // FIXME
 	circularHead(-1), previousCircularHead(-1)
 {
 	ugen_assert(size > 0);
@@ -124,7 +124,7 @@ BufferChannelInternal::BufferChannelInternal(const unsigned int size,
 BufferChannelInternal::BufferChannelInternal(const unsigned int size, const double start, const double end) throw()
 :	size_(size),
 	allocatedSize(size),
-	currentWriteBlockID(-1),
+	currentWriteBlockID((unsigned int)-1), //FIXME
 	circularHead(-1), previousCircularHead(-1)
 {
 	ugen_assert(size >= 2);
@@ -154,7 +154,7 @@ BufferChannelInternal::~BufferChannelInternal() throw()
 	data = 0;
 	size_= 0;
 	allocatedSize = 0;
-	currentWriteBlockID = -1;
+	currentWriteBlockID = (unsigned int)-1; //FIXME
 	circularHead = -1;
 	previousCircularHead = -1;
 }
@@ -671,6 +671,10 @@ bool Buffer::initFromJuceFile(const File& audioFile,
 															UGen::getSampleRate(), 
 															getNumChannels(), 
 															bitDepth, 0, 0);
+	}
+	else
+	{
+		return false;
 	}
 	
 	float **bufferData = new float*[getNumChannels()];
@@ -1680,8 +1684,8 @@ void Buffer::copyFrom(Buffer const& source, const int sourceOffset, const int de
 	
 	for(int channel = 0; channel < getNumChannels(); channel++)
 	{
-		float *destData = getData(channel);
-		const float* sourceData = source.getData(channel % source.getNumChannels());
+		float *destData = getData(channel) + destOffset;
+		const float* sourceData = source.getData(channel % source.getNumChannels()) + sourceOffset;
 		
 		memcpy(destData, sourceData, sizeof(float) * numSamples);
 	}
@@ -2387,8 +2391,8 @@ Buffer Buffer::blend(Buffer const& other, double dfraction) const throw()
 
 
 Buffer Buffer::loopFade(const float fadeTime, 
-						EnvCurve const& fadeInShape, 
-						EnvCurve const& fadeOutShape) const throw()
+						EnvCurve const& /*fadeInShape*/, 
+						EnvCurve const& /*fadeOutShape*/) const throw()
 {
 	ugen_assert(fadeTime >= 0.f);
 	

@@ -59,7 +59,7 @@ UGenInternal* NullUGenInternal::getKr() throw()
 	return newNullKr;
 }
 
-void NullUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
+void NullUGenInternal::processBlock(bool& /*shouldDelete*/, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {	
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
@@ -97,7 +97,7 @@ ScalarUGenInternal::ScalarUGenInternal(const float value) throw()
 
 
 #if !defined(UGEN_VFP) && !defined(UGEN_NEON) && !defined(UGEN_VDSP)
-void ScalarUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
+void ScalarUGenInternal::processBlock(bool& /*shouldDelete*/, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {		
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
@@ -120,7 +120,7 @@ FloatPtrUGenInternal::FloatPtrUGenInternal(float const *valuePtr) throw()
 }
 
 #if !defined(UGEN_VFP) && !defined(UGEN_NEON) && !defined(UGEN_VDSP)
-void FloatPtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
+void FloatPtrUGenInternal::processBlock(bool& /*shouldDelete*/, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {
 	PtrUGenProcessBlock();
 }
@@ -133,7 +133,7 @@ DoublePtrUGenInternal::DoublePtrUGenInternal(double const *valuePtr) throw()
 }
 
 #if !defined(UGEN_VFP) && !defined(UGEN_NEON) && !defined(UGEN_VDSP)
-void DoublePtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
+void DoublePtrUGenInternal::processBlock(bool& /*shouldDelete*/, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {
 	PtrUGenProcessBlock();
 }
@@ -147,7 +147,7 @@ IntPtrUGenInternal::IntPtrUGenInternal(int const *valuePtr) throw()
 }
 
 #if !defined(UGEN_VFP) && !defined(UGEN_NEON) && !defined(UGEN_VDSP)
-void IntPtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
+void IntPtrUGenInternal::processBlock(bool& /*shouldDelete*/, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {
 	PtrUGenProcessBlock();
 }
@@ -161,7 +161,7 @@ BoolPtrUGenInternal::BoolPtrUGenInternal(bool const *valuePtr) throw()
 }
 
 #if !defined(UGEN_VFP) && !defined(UGEN_NEON) && !defined(UGEN_VDSP)
-void BoolPtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
+void BoolPtrUGenInternal::processBlock(bool& /*shouldDelete*/, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
@@ -179,7 +179,7 @@ CharPtrUGenInternal::CharPtrUGenInternal(char const *valuePtr) throw()
 {
 }
 
-void CharPtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
+void CharPtrUGenInternal::processBlock(bool& /*shouldDelete*/, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {
 	PtrUGenProcessBlock();
 }
@@ -190,7 +190,7 @@ UnsignedCharPtrUGenInternal::UnsignedCharPtrUGenInternal(unsigned char const *va
 {
 }
 
-void UnsignedCharPtrUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
+void UnsignedCharPtrUGenInternal::processBlock(bool& /*shouldDelete*/, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {
 	PtrUGenProcessBlock();
 }

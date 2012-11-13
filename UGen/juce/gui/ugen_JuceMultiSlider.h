@@ -62,7 +62,8 @@ public:
 					const double sliderMaximum = 1.0) throw()
 	:	interceptor(0), horizontal(true)
 	{
-		setNumSlidersInternal(numSliders, canDragAcross, slidersAreHorizontal);
+		setNumSlidersInternal(numSliders, canDragAcross, slidersAreHorizontal,
+			sliderMinimum, sliderMaximum);
 	}
 	
 	~MultiSliderBase()
@@ -195,6 +196,19 @@ public:
 		}
 	}
 	
+#ifdef __JUCE_NOTIFICATIONTYPE_JUCEHEADER__
+	void setValue (const int index,
+				   double newValue,
+				   const NotificationType notification = sendNotificationAsync)
+	{
+		Slider* slider = sliders[index];
+		if(slider)
+		{
+			slider->setValue(newValue, notification);
+		}
+	}
+	
+#else
 	void setValue (const int index,
 				   double newValue,
 				   const bool sendUpdateMessage = true,
@@ -203,14 +217,22 @@ public:
 		Slider* slider = sliders[index];
 		if(slider)
 		{
-#ifdef __JUCE_NOTIFICATIONTYPE_JUCEHEADER__
-            slider->setValue(newValue, sendNotificationSync);
-#else
 			slider->setValue(newValue, sendUpdateMessage, sendMessageSynchronously);
-#endif
 		}
 	}
+#endif
 	
+#ifdef __JUCE_NOTIFICATIONTYPE_JUCEHEADER__
+	void setValues(Array<double> const& values,
+				   const NotificationType notification = sendNotificationAsync)
+	{
+		const int size = jmin(values.size(), sliders.size());
+		for(int i = 0; i < size; i++)
+		{
+			sliders[i]->setValue(values[i], notification);
+		}
+	}
+#else
 	void setValues(Array<double> const& values,
 				   const bool sendUpdateMessage = true,
 				   const bool sendMessageSynchronously = false)
@@ -218,13 +240,10 @@ public:
 		const int size = jmin(values.size(), sliders.size());
 		for(int i = 0; i < size; i++)
 		{
-#ifdef __JUCE_NOTIFICATIONTYPE_JUCEHEADER__
-            sliders[i]->setValue(values[i], sendNotificationSync);
-#else
 			sliders[i]->setValue(values[i], sendUpdateMessage, sendMessageSynchronously);
-#endif
 		}
 	}
+#endif
 	
 	void addListener (MultiSliderBaseListener* const listener)
 	{
@@ -308,6 +327,17 @@ public:
 		}
 	}
 	
+#ifdef __JUCE_NOTIFICATIONTYPE_JUCEHEADER__
+	void setValues(Buffer const& values,
+				   const NotificationType notification = sendNotificationAsync)
+	{
+		const int size = jmin(values.size(), sliders.size());
+		for(int i = 0; i < size; i++)
+		{
+			sliders[i]->setValue((double)values.getSampleUnchecked(i), notification);
+		}
+	}
+#else
 	void setValues(Buffer const& values,
 				   const bool sendUpdateMessage = true,
 				   const bool sendMessageSynchronously = false)
@@ -315,13 +345,10 @@ public:
 		const int size = jmin(values.size(), sliders.size());
 		for(int i = 0; i < size; i++)
 		{
-#ifdef __JUCE_NOTIFICATIONTYPE_JUCEHEADER__
-            sliders[i]->setValue((double)values.getSampleUnchecked(i), sendNotificationSync);
-#else
 			sliders[i]->setValue((double)values.getSampleUnchecked(i), sendUpdateMessage, sendMessageSynchronously);
-#endif
 		}
 	}
+#endif
 	
 	bool attachToMultiSliderUGenInternal() throw()
 	{
@@ -345,7 +372,7 @@ public:
 			return false;
 	}
 	
-	void handleBuffer(Buffer const& buffer, const double value1, const int value2)
+	void handleBuffer(Buffer const& buffer, const double /*value1*/, const int /*value2*/)
 	{
 		if(lock.tryEnter())
 		{

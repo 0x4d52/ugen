@@ -67,7 +67,7 @@ UGenInternal* LLineUGenInternal::getKr() throw()
 }
 
 
-void LLineUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void LLineUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {	
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
@@ -121,7 +121,7 @@ LLineUGenInternalK::LLineUGenInternalK(const float start, const float end, const
 	rate = ControlRate;
 }
 
-void LLineUGenInternalK::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void LLineUGenInternalK::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {	
 	const int krBlockSize = UGen::getControlRateBlockSize();
 	unsigned int blockPosition = blockID % krBlockSize;
@@ -295,7 +295,7 @@ UGenInternal* LinenUGenInternal::getKr() throw()
 }
 
 
-void LinenUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void LinenUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {	
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
@@ -389,7 +389,7 @@ LinenUGenInternalK::LinenUGenInternalK(const float attackTime,
 	rate = ControlRate;
 }
 
-void LinenUGenInternalK::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void LinenUGenInternalK::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {	
 	const int krBlockSize = UGen::getControlRateBlockSize();
 	unsigned int blockPosition = blockID % krBlockSize;

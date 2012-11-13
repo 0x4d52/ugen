@@ -196,7 +196,7 @@
 			{ rate = ControlRate; }																							\
 																															\
 			UGenInternal* getKr() throw()					{ incrementRefCount(); return this; }							\
-			float getValue(const int channel) const throw()	{ return value;						}							\
+			float getValue(const int channel) const throw()	{ (void)channel; return value;		}							\
 			void setValue(const float newValue) throw()		{ value = newValue;					}							\
 			void processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw();					\
 		private:																											\

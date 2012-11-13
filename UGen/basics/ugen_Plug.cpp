@@ -55,6 +55,7 @@ PlugUGenInternal::PlugUGenInternal(UGen const& source, bool shouldAllowAutoDelet
 
 void PlugUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
 {
+	(void)channel;
 	const int size = sources.size();
 	for(int i = 0; i < size; i++)
 	{

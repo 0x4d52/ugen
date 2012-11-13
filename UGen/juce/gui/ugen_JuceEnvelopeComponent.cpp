@@ -220,6 +220,7 @@ void EnvelopeHandleComponent::moved()
 
 void EnvelopeHandleComponent::mouseMove(const MouseEvent& e)
 {
+	(void)e;
 #ifdef MYDEBUG
 	printf("MyEnvelopeHandleComponent::mouseMove\n");
 #endif
@@ -227,6 +228,7 @@ void EnvelopeHandleComponent::mouseMove(const MouseEvent& e)
 
 void EnvelopeHandleComponent::mouseEnter(const MouseEvent& e)
 {
+	(void)e;
 #ifdef MYDEBUG
 	printf("MyEnvelopeHandleComponent::mouseEnter\n");
 #endif
@@ -237,6 +239,7 @@ void EnvelopeHandleComponent::mouseEnter(const MouseEvent& e)
 
 void EnvelopeHandleComponent::mouseExit(const MouseEvent& e)
 {
+	(void)e;
 #ifdef MYDEBUG
 	printf("MyEnvelopeHandleComponent::mouseExit\n");
 #endif
@@ -351,6 +354,7 @@ void EnvelopeHandleComponent::mouseDrag(const MouseEvent& e)
 
 void EnvelopeHandleComponent::mouseUp(const MouseEvent& e)
 {
+	(void)e;
     EnvelopeComponent *env = getParentComponent();
 
 #ifdef MYDEBUG
@@ -811,11 +815,15 @@ void EnvelopeComponent::resized()
 }
 
 
-void EnvelopeComponent::mouseEnter(const MouseEvent& e) {
+void EnvelopeComponent::mouseEnter(const MouseEvent& e) 
+{
+	(void)e;
 	setMouseCursor(MouseCursor::NormalCursor);
 }
 
-void EnvelopeComponent::mouseMove(const MouseEvent& e) {
+void EnvelopeComponent::mouseMove(const MouseEvent& e) 
+{
+	(void)e;
 	setMouseCursor(MouseCursor::NormalCursor);
 }
 
@@ -838,7 +846,7 @@ void EnvelopeComponent::mouseDown(const MouseEvent& e)
 			float timeAtClick = convertPixelsToDomain(e.x);
 			
 			int i;
-			EnvelopeHandleComponent* handle;
+			EnvelopeHandleComponent* handle = 0;
 			
 			for(i = 0; i < handles.size(); i++) {
 				handle = handles.getUnchecked(i);

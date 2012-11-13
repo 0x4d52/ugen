@@ -54,7 +54,7 @@ UGenInternal* BlockDelayUGenInternal::getChannel(const int channel) throw()
 	return new BlockDelayUGenInternal(inputs[Input].getChannel(channel));
 }
 
-void BlockDelayUGenInternal::prepareForBlockInternal(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
+void BlockDelayUGenInternal::prepareForBlockInternal(const int actualBlockSize, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {
 	int previousBlockSize = uGenOutput.getBlockSize();
 	
@@ -71,7 +71,7 @@ void BlockDelayUGenInternal::prepareForBlockInternal(const int actualBlockSize, 
 	uGenOutput.prepareForBlock(actualBlockSize); // only prepare the output block
 }
 
-void BlockDelayUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void BlockDelayUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int channel) throw()
 {
 	// this assumes that blocks will all be the same size, which they may not be!!
 	// this will only work if block sizes are consistent

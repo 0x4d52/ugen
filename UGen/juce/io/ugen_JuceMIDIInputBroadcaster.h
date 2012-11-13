@@ -106,6 +106,7 @@ public:
 	
 private:
 	const bool active;
+	JuceMIDIInputListener& operator=(JuceMIDIInputListener const&);
 };
 
 /** Broadcasts received MIDI data to its listeners.

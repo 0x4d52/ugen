@@ -598,7 +598,7 @@ void ScopeCuePointLabel::editorShown (TextEditor* editorComponent)
 	editorComponent->setSize(jmin(oldWidth, 100), oldHeight + 2);
 }
 
-void ScopeCuePointLabel::editorAboutToBeHidden (TextEditor* editorComponent)
+void ScopeCuePointLabel::editorAboutToBeHidden (TextEditor* /*editorComponent*/)
 {
 	setSize(getWidth(), oldHeight);
 }
@@ -714,7 +714,7 @@ void ScopeCuePointComponent::choosePopupMenu(const int offset)
 	}	
 }
 
-void ScopeCuePointComponent::showPopupMenu(const int offset)
+void ScopeCuePointComponent::showPopupMenu(const int /*offset*/)
 {
 	PopupMenu m;
 	m.setLookAndFeel(owner);
@@ -743,7 +743,7 @@ void ScopeCuePointComponent::showPopupMenu(const int offset)
 	if(result != 0) doCommand(result);
 }
 
-void ScopeCuePointComponent::doCommand(const int commandID)
+void ScopeCuePointComponent::doCommand(int commandID)
 {
 	switch (commandID)
 	{
@@ -1031,7 +1031,7 @@ ScopeInsertComponent::ScopeInsertComponent(ScopeControlComponent* owner,
 	setColours(lineColour, textColour);
 }
 
-void ScopeInsertComponent::showPopupMenu(const int offset)
+void ScopeInsertComponent::showPopupMenu(const int /*offset*/)
 {
 	PopupMenu m;
 	m.setLookAndFeel(owner);
@@ -1125,6 +1125,8 @@ ScopeRegionComponent::~ScopeRegionComponent()
 
 bool ScopeRegionComponent::hitTest (int x, int y)
 {
+	(void)x;
+	(void)y;
 	bool allowsClicksOnThisComponent;
 	bool allowsClicksOnChildComponents;
 	
@@ -1601,11 +1603,11 @@ ScopeControlComponent::ScopeControlComponent(CriticalSection& criticalSection, S
 	controlColours[SelectionTextColour]		= RGBAColour(1.0, 1.0, 1.0, 1.0);
 	
 	addChildComponent(scopeInsert = new ScopeInsertComponent(this, 0));
-	scopeInsert->setVisible(options & DisplayInsert);
+	scopeInsert->setVisible((options & DisplayInsert) != 0);
 	scopeInsert->setLabel("play");
 
 	addChildComponent(scopeSelection = new ScopeSelectionComponent(this), 0);
-	scopeSelection->setVisible(options & DisplaySelection);
+	scopeSelection->setVisible((options & DisplaySelection) != 0);
 	scopeSelection->getStartPoint()->setLabel("<");
 	scopeSelection->getEndPoint()->setLabel(">");
 }
@@ -1957,7 +1959,7 @@ void ScopeControlComponent::setDisplayOptions(int newOptions)
 	{
 		for(int i = 0; i < scopeLoops.size(); i++)
 		{
-			scopeLoops[i]->setVisible(newOptions & DisplayLoopPoints);
+			scopeLoops[i]->setVisible((newOptions & DisplayLoopPoints) != 0);
 		}
 	}
 	
@@ -1965,18 +1967,18 @@ void ScopeControlComponent::setDisplayOptions(int newOptions)
 	{
 		for(int i = 0; i < scopeRegions.size(); i++)
 		{
-			scopeRegions[i]->setVisible(newOptions & DisplayRegions);
+			scopeRegions[i]->setVisible((newOptions & DisplayRegions) != 0);
 		}
 	}
 	
 	if((options & DisplayInsert) != (newOptions & DisplayInsert))
 	{
-		scopeInsert->setVisible(newOptions & DisplayInsert);
+		scopeInsert->setVisible((newOptions & DisplayInsert) != 0);
 	}
 	
 	if((options & DisplaySelection) != (newOptions & DisplaySelection))
 	{
-		scopeSelection->setVisible(newOptions & DisplaySelection);
+		scopeSelection->setVisible((newOptions & DisplaySelection) != 0);
 	}
 	
 	options = newOptions;
@@ -2335,7 +2337,7 @@ ScopeCuePointComponent* ScopeControlComponent::addLoopPoint(LoopPoint const& loo
 {
 	ScopeLoopComponent* loopComponent;
 	addChildComponent(loopComponent = new ScopeLoopComponent(this, loopPoint, createdFromMousClick), 0);
-	loopComponent->setVisible(options & DisplayLoopPoints);
+	loopComponent->setVisible((options & DisplayLoopPoints) != 0);
 	scopeLoops.add(loopComponent);
 	loopComponent->setHeight(getHeight());
 	
@@ -2443,7 +2445,7 @@ ScopeCuePointComponent* ScopeControlComponent::addRegion(Region const& region,
 {
 	ScopeRegionComponent* regionComponent;
 	addChildComponent(regionComponent = new ScopeRegionComponent(this, region, createdFromMousClick), 0);
-	regionComponent->setVisible(options & DisplayRegions);
+	regionComponent->setVisible((options & DisplayRegions) != 0);
 	scopeRegions.add(regionComponent);
 	regionComponent->setHeight(getHeight());
 	
@@ -2828,7 +2830,9 @@ void RadialScopeComponent::paintXScale(Graphics& g, const int radius)
 
 void RadialScopeComponent::paintYScale(Graphics& g, const int zero, const int maximum)
 {	
-
+	(void)g;
+	(void)zero;
+	(void)maximum;
 }
 
 double RadialScopeComponent::getDelta() const throw()

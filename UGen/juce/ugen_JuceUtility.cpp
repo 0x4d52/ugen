@@ -64,6 +64,7 @@ void PopupComponent::paint(Graphics &g)
 
 void PopupComponent::mouseDown(MouseEvent const& e)
 {
+	(void)e;
 	resetCounter();
 }	
 

@@ -64,7 +64,7 @@ PinkNoiseUGenInternal::PinkNoiseUGenInternal() throw()
 	initValue(random.nextBiFloat());
 }
 
-void PinkNoiseUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void PinkNoiseUGenInternal::processBlock(bool& /*shouldDelete*/, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();

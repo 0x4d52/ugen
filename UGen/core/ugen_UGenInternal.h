@@ -172,7 +172,12 @@ public:
 	/// @{
 	
 	virtual void prepareForBlockInternal(const int actualBlockSize, const unsigned int blockID, const int channel) throw();
-	virtual void prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel)	 throw() { }
+	virtual void prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel)	 throw() 
+	{ 
+		(void)actualBlockSize;
+		(void)blockID;
+		(void)channel;
+	}
 	
 	virtual float* processBlockInternal(bool& shouldDelete, const unsigned int blockID, const int channel) throw();
 	
@@ -225,12 +230,31 @@ public:
 	/// @name Necessary for some RTTI avoidance
 	/// @{
 	
-	virtual bool setInput(const float* block, const int channel) throw() { return false; }
-	virtual bool setSource(UGen const& source, const bool releasePreviousSources = false, const float fadeTime = 0.f) { return false;}
+	virtual bool setInput(const float* block, const int channel) throw() 
+	{ 
+		(void)block;
+		(void)channel;
+		return false; 
+	}
+
+	virtual bool setSource(UGen const& /*source*/, const bool releasePreviousSources = false, const float fadeTime = 0.f) 
+	{
+		//(void)source;
+		(void)releasePreviousSources;
+		(void)fadeTime;
+		return false;
+	}
+
 	virtual UGen& getSource();
-	virtual bool setValue(Value const& other) throw() { return false; }
-	virtual bool sendMidiNote(const int midiChannel, const int midiNote, const int velocity) throw() { return false; }
-	virtual bool trigger(void* extraArgs = 0) throw() { return false; }
+	virtual bool setValue(Value const& /*other*/) throw() { /*(void)other;*/ return false; }
+	virtual bool sendMidiNote(const int midiChannel, const int midiNote, const int velocity) throw() 
+	{
+		(void)midiChannel;
+		(void)midiNote;
+		(void)velocity;
+		return false; 
+	}
+	virtual bool trigger(void* extraArgs = 0) throw() { (void)extraArgs; return false; }
 	virtual bool stopAllEvents() throw() { return false; }
 	
 	/** Get the maximum duration of the seekable.
@@ -247,7 +271,7 @@ public:
 	 The units will be dependent on the UGenInternal in question. 
 	 For longer sounds as sound files it is likely to be in seconds. 
 	 For wavetables it will 0...1. Returns false if this UGen is not seekable.*/		
-	virtual bool setPosition(const double newPosition) { return false; };
+	virtual bool setPosition(const double newPosition) { (void)newPosition; return false; };
 		
 	
 	/// @} <!-- end Memory -->

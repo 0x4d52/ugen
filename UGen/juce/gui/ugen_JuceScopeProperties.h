@@ -85,7 +85,7 @@ public:
 			callOut.runModalLoop();
 		}
 		
-		void changeListenerCallback (ChangeBroadcaster* source)
+		void changeListenerCallback (ChangeBroadcaster* /*source*/)
 		{
 			owner->setText(colourSelector.getCurrentColour().toString());
 			repaint();
@@ -771,7 +771,7 @@ public:
 	{
 		ugen_assert(Bits::countOnes(thisOption) == 1);
 		
-		setState(scope->getDisplayOptions() & thisOption);
+		setState((scope->getDisplayOptions() & thisOption) != 0); // FIXME bool issue
 	}
 	
 	void stateChanged(const bool state)

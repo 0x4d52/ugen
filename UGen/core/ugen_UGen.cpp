@@ -1083,7 +1083,7 @@ void UGen::setOutputs(float** block, const int blockSize, const int numChannels)
 	}
 }
 
-bool UGen::setInput(const float* block, const int blockSize, const int channel) throw()
+bool UGen::setInput(const float* block, const int /*blockSize*/, const int channel) throw()
 {	
 	if(block == 0 || channel < 0 || (unsigned int)channel >= numInternalUGens) return false;
 			
@@ -1883,7 +1883,7 @@ UGen UGen::kr(UGen const& arg1, UGen const& arg2) const throw()
 
 UGen UGen::kr(UGen const& arg1, UGen const& arg2, UGen const& arg3) const throw()
 {
-	return UGen(arg1.kr(), arg2.kr(), arg2.kr());
+	return UGen(arg1.kr(), arg2.kr(), arg3.kr());
 }
 
 UGen UGen::kr(UGen const& arg1, UGen const& arg2, UGen const& arg3, UGen const& arg4) const throw()

@@ -420,7 +420,7 @@ void ScopeGUI::calculateBuffers()
 				{
 					double drawIndex = 0.0;			
 					int previousDrawIndex = -1;
-					float minimum, maximum;
+					float minimum = 0.f, maximum = 0.f;
 					
 					for(int sample = 0; sample < audioBufferSize; sample++, drawIndex += drawIndexInc)
 					{
@@ -853,7 +853,7 @@ FFTSenderUGenInternal::FFTSenderUGenInternal(UGen const& input,
 
 void FFTSenderUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {
-	int channelBufferIndex;
+	int channelBufferIndex = 0;
 
 	// keep filling the buffer until it has enough samples...
 	for(int channel = 0; channel < inputBuffer.getNumChannels(); channel++)

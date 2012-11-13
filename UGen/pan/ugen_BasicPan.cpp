@@ -144,7 +144,7 @@ Pan2UGenInternal::Pan2UGenInternal(UGen const& input,
 	inputs[Level] = level;	
 }
 
-void Pan2UGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void Pan2UGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {		
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples0 = proxies[0]->getSampleData();

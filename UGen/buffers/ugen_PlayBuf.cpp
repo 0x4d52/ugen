@@ -120,7 +120,7 @@ UGenInternal* PlayBufUGenInternal::getChannel(const int channel) throw()
 	// what about MetaDataSender?
 }
 
-void PlayBufUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
+void PlayBufUGenInternal::prepareForBlock(const int /*actualBlockSize*/, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {
 	senderUserData = userData;
 	if(isDone()) sendDoneInternal();
@@ -134,7 +134,7 @@ void PlayBufUGenInternal::processBlock(bool& shouldDelete, const unsigned int bl
 	const int bufferSize = buffer_.size();
 	const double lastBufferPosition = bufferSize-1;
 	
-	double channelBufferPos;
+	double channelBufferPos = 0.0;
 	
 	for(int channel = 0; channel < getNumChannels(); channel++)
 	{
@@ -329,8 +329,8 @@ BufferValuesUGenInternal::BufferValuesUGenInternal(Buffer const& bufferToUse)
 {
 }
 
-void BufferValuesUGenInternal::processBlock(bool& shouldDelete, 
-											const unsigned int blockID, 
+void BufferValuesUGenInternal::processBlock(bool& /*shouldDelete*/, 
+											const unsigned int /*blockID*/, 
 											const int /*channel*/) throw()
 {
 	for(int channel = 0; channel < getNumChannels(); channel++)
@@ -343,7 +343,7 @@ void BufferValuesUGenInternal::processBlock(bool& shouldDelete,
 	}
 }
 
-void BufferValuesUGenInternal::handleBuffer(Buffer const& bufferReceived, const double value1, const int value2) throw()
+void BufferValuesUGenInternal::handleBuffer(Buffer const& bufferReceived, const double /*value1*/, const int /*value2*/) throw()
 {
 	buffer = bufferReceived;
 }
@@ -391,7 +391,7 @@ UGenInternal* RecordBufUGenInternal::getChannel(const int channel) throw()
 									 doneAction_);
 }
 
-void RecordBufUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
+void RecordBufUGenInternal::prepareForBlock(const int /*actualBlockSize*/, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {
 	senderUserData = userData;
 	if(isDone()) sendDoneInternal();
@@ -401,7 +401,7 @@ void RecordBufUGenInternal::processBlock(bool& shouldDelete, const unsigned int 
 {
 	const int blockSize = uGenOutput.getBlockSize();
 	
-	int channelBufferPos;
+	int channelBufferPos = 0;
 	
 	for(int channel = 0; channel < getNumChannels(); channel++)
 	{
@@ -514,13 +514,13 @@ LoopPointsUGenInternal::LoopPointsUGenInternal(Buffer const& buffer,
 	inputs[PlayToEnd] = playToEnd;
 }
 
-void LoopPointsUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
+void LoopPointsUGenInternal::prepareForBlock(const int /*actualBlockSize*/, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {
 	senderUserData = userData;
 	if(isDone()) sendDoneInternal();
 }
 
-void LoopPointsUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void LoopPointsUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {
 	const int numCuesPoints = metaData.getNumCuePoints();
 
