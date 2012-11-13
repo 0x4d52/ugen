@@ -281,7 +281,7 @@ void VoicerUGenInternal::processBlock(bool& shouldDelete, const unsigned int blo
 	}	
 }
 
-void VoicerUGenInternal::handleIncomingMidiMessage (MidiInput* source, const MidiMessage& message) throw()
+void VoicerUGenInternal::handleIncomingMidiMessage (MidiInput* /*source*/, const MidiMessage& message) throw()
 {
 	if(message.isForChannel(midiChannel_) == false)	return;
 	

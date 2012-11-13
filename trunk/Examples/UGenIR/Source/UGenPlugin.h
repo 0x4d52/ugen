@@ -91,8 +91,8 @@ public:
 
     const String getParameterDescription (int index);
 
-    const String getInputChannelName (const int channelIndex) const;
-    const String getOutputChannelName (const int channelIndex) const;
+    const String getInputChannelName (int channelIndex) const;
+    const String getOutputChannelName (int channelIndex) const;
     bool isInputChannelStereoPair (int index) const;
     bool isOutputChannelStereoPair (int index) const;
 
@@ -103,9 +103,9 @@ public:
     //==============================================================================
     int getNumPrograms()                                        { return 0; }
     int getCurrentProgram()                                     { return 0; }
-    void setCurrentProgram (int index)                          { }
-    const String getProgramName (int index)                     { return String::empty; }
-    void changeProgramName (int index, const String& newName)   { }
+    void setCurrentProgram (int index)                          { (void)index; }
+    const String getProgramName (int index)                     { (void)index; return String::empty; }
+    void changeProgramName (int index, const String& newName)   { (void)index; (void)newName; }
 
     //==============================================================================
     void getStateInformation (juce::MemoryBlock& destData);

@@ -66,7 +66,7 @@ PanBUGenInternal::PanBUGenInternal(UGen const& input, UGen const& azimuth, UGen 
 void PanBUGenInternal::calculate(const float azimuth, const float elevation, const float distance,  
 								 float& w, float& x, float& y, float& z) throw()
 {
-	static const float dBFactor = (-6.0/20.0);
+	static const float dBFactor = float(-6.0/20.0);
 	
 	const float cosElevation = cos(elevation);
 	x = cos(-azimuth) * cosElevation;
@@ -190,7 +190,7 @@ DecodeBUGenInternal::DecodeBUGenInternal(UGen const& bFormat,
 	inputs[BFormat] = bFormat;
 }
 
-void DecodeBUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void DecodeBUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	const float* wSamples = inputs[BFormat].processBlock(shouldDelete, blockID, W);
@@ -247,7 +247,7 @@ RotateBUGenInternal::RotateBUGenInternal(UGen const& bFormat, UGen const& param)
 {
 }
 
-void RotateBUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void RotateBUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	const float* inputSamplesW = inputs[BFormat].processBlock(shouldDelete, blockID, W);
@@ -309,7 +309,7 @@ TiltBUGenInternal::TiltBUGenInternal(UGen const& bFormat, UGen const& param) thr
 {
 }
 
-void TiltBUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void TiltBUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	const float* inputSamplesW = inputs[BFormat].processBlock(shouldDelete, blockID, W);
@@ -371,7 +371,7 @@ TumbleBUGenInternal::TumbleBUGenInternal(UGen const& bFormat, UGen const& param)
 {
 }
 
-void TumbleBUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void TumbleBUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	const float* inputSamplesW = inputs[BFormat].processBlock(shouldDelete, blockID, W);
@@ -516,7 +516,7 @@ void ZoomBUGenInternal::calculateZoom(const float zoom,
 	zoomZZ = zoomYY;
 }
 
-void ZoomBUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void ZoomBUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {	
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	const float* inputSamplesW = inputs[BFormat].processBlock(shouldDelete, blockID, W);

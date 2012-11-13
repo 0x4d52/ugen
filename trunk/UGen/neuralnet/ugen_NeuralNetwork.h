@@ -132,6 +132,7 @@ public:
 	NeuralNetwork(const int null = 0)
 	:	SmartPointerContainer<NeuralNetworkBaseInternal>(0)
 	{
+		(void)null;
 	}
 	
 	NeuralNetwork(const int numLayers, 

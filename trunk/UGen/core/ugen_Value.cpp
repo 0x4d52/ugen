@@ -746,7 +746,7 @@ UGenInternal* ValueUGenInternal::getKr() throw()
 	return result;
 }
 
-void ValueUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void ValueUGenInternal::processBlock(bool& /*shouldDelete*/, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
@@ -774,7 +774,7 @@ bool ValueUGenInternal::setValue(Value const& other) throw()
 	return true;
 }
 
-void ValueUGenInternalK::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void ValueUGenInternalK::processBlock(bool& /*shouldDelete*/, const unsigned int blockID, const int /*channel*/) throw()
 {
 	const int krBlockSize = UGen::getControlRateBlockSize();
 	unsigned int blockPosition = blockID % krBlockSize;

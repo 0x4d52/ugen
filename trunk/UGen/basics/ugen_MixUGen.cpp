@@ -59,6 +59,7 @@ MixUGenInternal::MixUGenInternal(UGen const& array, bool shouldAllowAutoDelete) 
 
 void MixUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
 {
+	(void)channel;
 	inputs[0].prepareForBlock(actualBlockSize, blockID, -1);
 }
 
@@ -112,6 +113,7 @@ MixArrayUGenInternal::MixArrayUGenInternal(UGenArray const& array,
 
 void MixArrayUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
 {
+	(void)channel;
     array_.removeNulls();
 
 	const int size = array_.size();

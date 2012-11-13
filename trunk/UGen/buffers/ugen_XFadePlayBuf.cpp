@@ -72,9 +72,9 @@ XFadeLoopPlayBufUGenInternal::OnsetLoopXFade::OnsetLoopXFade(XFadeLoopPlayBufUGe
 {
 }
 
-UGen XFadeLoopPlayBufUGenInternal::OnsetLoopXFade::spawnEvent(TrigXFadeUGenInternal& spawn, 
+UGen XFadeLoopPlayBufUGenInternal::OnsetLoopXFade::spawnEvent(TrigXFadeUGenInternal& /*spawn*/, 
 															  const int eventCount, 
-															  void* extraArgs)
+															  void* /*extraArgs*/)
 {
 	if(eventCount == 0)
 		return PlayBuf::AR(getOwner()->soundOnset, getOwner()->inputs[XFadeLoopPlayBufUGenInternal::Rate], 0, 0, 0);

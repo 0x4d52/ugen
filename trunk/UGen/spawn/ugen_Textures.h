@@ -500,7 +500,7 @@ public:
 	{ 
 	}
 	
-	UGen spawnEvent(TSpawnUGenInternal& spawn, const int eventCount, void* extraArgs = 0)
+	UGen spawnEvent(TSpawnUGenInternal& /*spawn*/, const int eventCount, void* extraArgs = 0)
 	{
 		events.release();
 		UGen event = event_.spawnEvent(*this, eventCount, extraArgs);
@@ -674,16 +674,16 @@ class GenericEventBase<void> : 	public MixFillEventBase<void>,
 								public VoicerEventBase<void>
 {	
 public:
-	UGen spawnEvent(SpawnUGenInternal& spawn, const int eventCount) { return this->createEvent(eventCount); }
-	UGen spawnEvent(TSpawnUGenInternal& spawn, const int eventCount, void* extraArgs) { return this->createEvent(eventCount); }
-	UGen spawnEvent(XFadeTextureUGenInternal& spawn, const int eventCount) { return this->createEvent(eventCount); }
-	UGen spawnEvent(TrigXFadeUGenInternal& spawn, const int eventCount, void* extraArgs) { return this->createEvent(eventCount); }
-	UGen spawnEvent(OverlapTextureUGenInternal& spawn, const int eventCount) { return this->createEvent(eventCount); }
-	UGen spawnEvent(VoicerBaseUGenInternal& spawn, 
+	UGen spawnEvent(SpawnUGenInternal& /*spawn*/, const int eventCount) { return this->createEvent(eventCount); }
+	UGen spawnEvent(TSpawnUGenInternal& /*spawn*/, const int eventCount, void* /*extraArgs*/) { return this->createEvent(eventCount); }
+	UGen spawnEvent(XFadeTextureUGenInternal& /*spawn*/, const int eventCount) { return this->createEvent(eventCount); }
+	UGen spawnEvent(TrigXFadeUGenInternal& /*spawn*/, const int eventCount, void* /*extraArgs*/) { return this->createEvent(eventCount); }
+	UGen spawnEvent(OverlapTextureUGenInternal& /*spawn*/, const int eventCount) { return this->createEvent(eventCount); }
+	UGen spawnEvent(VoicerBaseUGenInternal& /*spawn*/, 
 					const int eventCount,
-					const int midiChannel,
-					const int midiNote,
-					const int velocity) { return this->createEvent(eventCount); }
+					const int /*midiChannel*/,
+					const int /*midiNote*/,
+					const int /*velocity*/) { return this->createEvent(eventCount); }
 };
 
 typedef GenericEventBase<> GenericEventDefault;

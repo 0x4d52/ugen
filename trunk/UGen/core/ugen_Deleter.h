@@ -79,7 +79,7 @@ public:
 class LeakingDeleter : public Deleter
 {
 public:
-	void deleteInternal(SmartPointer* internalToDelete) throw() { } // just leak!
+	void deleteInternal(SmartPointer* internalToDelete) throw() { (void)internalToDelete; } // just leak!
 };
 
 

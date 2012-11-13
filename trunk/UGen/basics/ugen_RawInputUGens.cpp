@@ -58,6 +58,10 @@ RawInputUGenInternal::~RawInputUGenInternal() throw()
 
 void RawInputUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
 {
+	(void)shouldDelete;
+	(void)blockID;
+	(void)channel;
+
 	const int blockSize = uGenOutput.getBlockSize();
 	const int numChannels = getNumChannels();
 	

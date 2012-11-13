@@ -61,7 +61,7 @@ private:
 	CriticalSection juceLock;
 	
 	enum CommandIDs { Repaint, NumCommandIDs };
-	void handleCommandMessage (const int commandId);
+	void handleCommandMessage (int commandId);
 };
 
 

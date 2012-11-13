@@ -106,7 +106,7 @@ public:
 			   const int numOutputs = 2, 
 			   const int preferredBufferSize = 0, 
 			   const bool useTimerDeleter = false) throw()
-	:	internal(new JuceIOHostInternal(this, numInputs, numOutputs, preferredBufferSize, useTimerDeleter)),
+	:	internal(new JuceIOHostInternal(this, numInputs, numOutputs, preferredBufferSize, useTimerDeleter)), // FIXME this issue
 		lock(internal->lock)
 	{
 	}
@@ -226,10 +226,10 @@ public:
 	virtual UGen constructGraph(UGen const& input) = 0;
 	
 	/** Called just before processing an audio block on the audio thread. */
-	virtual void preTick(const int actualBlockSize, const unsigned int blockID) throw()  { }
+	virtual void preTick(const int actualBlockSize, const unsigned int blockID) throw()  { (void)actualBlockSize; (void)blockID; }
 	
 	/** Called just after processing an audio block on the audio thread. */
-	virtual void postTick(const int actualBlockSize, const unsigned int blockID) throw() { }
+	virtual void postTick(const int actualBlockSize, const unsigned int blockID) throw() { (void)actualBlockSize; (void)blockID; }
 	
 private:
 	JuceIOHost (const JuceIOHost&);

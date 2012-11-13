@@ -257,7 +257,7 @@ UGenInternal* DelayLMultiUGenInternal::getChannel(const int channel) throw()
 									   delayBuffer_);
 }
 
-void DelayLMultiUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void DelayLMultiUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {
 	const float sampleRate = UGen::getSampleRate();
 	
@@ -919,7 +919,7 @@ UGenInternal* TapOutNUGenInternal::getChannel(const int channel) throw()
 	return new TapOutNUGenInternal(buffer_.getChannel(channel), inputs[DelayTime].getChannel(channel));	
 }
 
-void TapOutNUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void TapOutNUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {
 	const float sampleRate = UGen::getSampleRate();
 	const int blockSize = uGenOutput.getBlockSize();
@@ -966,7 +966,7 @@ UGenInternal* TapOutLUGenInternal::getChannel(const int channel) throw()
 	return new TapOutLUGenInternal(buffer_.getChannel(channel), inputs[DelayTime].getChannel(channel));	
 }
 
-void TapOutLUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void TapOutLUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {
 	const float sampleRate = UGen::getSampleRate();
 	const int blockSize = uGenOutput.getBlockSize();

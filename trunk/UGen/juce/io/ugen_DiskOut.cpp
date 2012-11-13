@@ -103,7 +103,7 @@ DiskOutUGenInternal::~DiskOutUGenInternal() throw()
 	delete [] bufferData;
 }
 
-void DiskOutUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void DiskOutUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {
 	if(audioFormatWriter == 0) return;
 	

@@ -1585,6 +1585,9 @@ public:
 	
 	const int size_;
 	const bool zeroData_;
+
+private:
+	NumericalArraySpec& operator=(NumericalArraySpec const&);
 };
 
 #define END InitialNumber()
@@ -1607,6 +1610,9 @@ public:
 		
 		const NumericalType value;
 		const bool valid;
+	private:
+		InitialNumber& operator= (InitialNumber&);
+
 	};
 	
 	NumericalArray() throw()

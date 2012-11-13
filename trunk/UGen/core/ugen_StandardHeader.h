@@ -38,6 +38,8 @@
 #ifndef UGEN_STANDARDHEADER_H
 #define UGEN_STANDARDHEADER_H
 
+// should make windows-only
+#define _CRT_SECURE_NO_WARNINGS 1
 
 #define UGEN_NAMESPACE ugen
 
@@ -195,8 +197,11 @@ END_UGEN_NAMESPACE
 #if (defined (_WIN32) || defined (_WIN64))
 	#define snprintf _snprintf
 	#pragma warning(disable : 4244) // loss of precision
+	#pragma warning(disable : 4702) // unreachable code
+	#pragma warning(disable : 4355) // use of 'this' in base member init
+	#pragma warning(disable : 4127) // conditional expression is constant - dumb MSVC wouldn't let me replace these with compile time ones!
+	#pragma warning(disable : 4800) // bool int nonsense
 #endif
-
 
 #ifdef UGEN_IPHONE
 	#ifdef __OBJC__

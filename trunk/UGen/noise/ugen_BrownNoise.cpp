@@ -52,7 +52,7 @@ BrownNoiseUGenInternal::BrownNoiseUGenInternal() throw()
 	initValue(currentValue);
 }
 
-void BrownNoiseUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void BrownNoiseUGenInternal::processBlock(bool& /*shouldDelete*/, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();

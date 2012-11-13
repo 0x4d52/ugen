@@ -45,7 +45,7 @@ BEGIN_UGEN_NAMESPACE
 
 static const double randomFactor = 1.0 / RAND_MAX;
 
-const float NeuralNodeSimpleInternal::defaultWeight = 0.1;
+const float NeuralNodeSimpleInternal::defaultWeight = (float)0.1;
 const float NeuralNodeSimpleInternal::ne1 = (float)e1;
 const float NeuralNodeSimpleInternal::one = (float)1.0;
 const float NeuralNodeSimpleInternal::zero = (float)0.0;

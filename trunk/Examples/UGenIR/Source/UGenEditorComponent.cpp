@@ -551,18 +551,18 @@ void UGenEditorComponent::comboBoxChanged(ComboBox* changedComboBox)
 	getPlugin()->setMenuItem(changedComboBox->getSelectedId()-MENU_ID_OFFSET);
 }
 
-void UGenEditorComponent::envelopeChanged(EnvelopeComponent* changedEnvelope)
+void UGenEditorComponent::envelopeChanged(EnvelopeComponent* /*changedEnvelope*/)
 {
     getPlugin()->setIRAmpEnv(irDisplay->getAmpEnvEditor()->getEnv());
     getPlugin()->setIRFilterEnv(irDisplay->getFilterEnvEditor()->getEnv());
     getPlugin()->startTimer(250);
 }
 
-void UGenEditorComponent::envelopeStartDrag(EnvelopeComponent* changedEnvelope)
+void UGenEditorComponent::envelopeStartDrag(EnvelopeComponent* /*changedEnvelope*/)
 {
 }
 
-void UGenEditorComponent::envelopeEndDrag(EnvelopeComponent* changedEnvelope)
+void UGenEditorComponent::envelopeEndDrag(EnvelopeComponent* /*changedEnvelope*/)
 {
 }
 
@@ -577,6 +577,7 @@ void UGenEditorComponent::selectionChanged()
 
 void UGenEditorComponent::fileClicked (const File& file, const MouseEvent& e)
 {
+	(void)e;
     setFile(file);
 }
 
@@ -587,6 +588,7 @@ void UGenEditorComponent::fileDoubleClicked (const File& file)
 
 void UGenEditorComponent::browserRootChanged (const File& newRoot)
 {
+	(void)newRoot;
     //..
 }
 

@@ -163,7 +163,7 @@ UGenInternal::UGenInternal(const int numInputs) throw()
 	ownsInputsPointer(true),
 	isScheduledForDeletion(false),
 	inputs(numInputs_ > 0 ? new UGen[numInputs_] : 0),
-	lastBlockID(-1),
+	lastBlockID((unsigned int)-1), //FIXME
 	blockIDtoBeDeletedAfter(0xFFFFFFFF)
 {
 	ugen_assert(numInputs >= 0);
@@ -176,7 +176,7 @@ UGenInternal::UGenInternal(UGen *mixInputToUse) throw()
 	ownsInputsPointer(false),
 	isScheduledForDeletion(false),
 	inputs(mixInputToUse),
-	lastBlockID(-1),
+	lastBlockID((unsigned int)-1),
 	blockIDtoBeDeletedAfter(0xFFFFFFFF)
 {
 }
@@ -331,7 +331,7 @@ void UGenInternal::initValue(const float value) throw()
 	uGenOutput.initValue(value);
 }
 
-float UGenInternal::getValue(const int channel) const throw()			
+float UGenInternal::getValue(const int /*channel*/) const throw()			
 { 
 	const int blockSize = uGenOutput.getBlockSize();
 	
@@ -618,7 +618,7 @@ ReleasableUGenInternal::ReleasableUGenInternal(const int numInputs) throw()
 { 
 }
 
-void ReleasableUGenInternal::prepareForBlock(const int actualBlockSize, const unsigned int blockID, const int channel) throw()
+void ReleasableUGenInternal::prepareForBlock(const int /*actualBlockSize*/, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {
 	senderUserData = userData;
 	

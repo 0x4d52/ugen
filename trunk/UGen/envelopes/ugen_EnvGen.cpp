@@ -67,7 +67,7 @@ UGenInternal* EnvGenUGenInternal::getKr() throw()
 	return new EnvGenUGenInternalK(env_, doneAction_); 
 }
 
-void EnvGenUGenInternal::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void EnvGenUGenInternal::processBlock(bool& shouldDelete, const unsigned int /*blockID*/, const int /*channel*/) throw()
 {
 	int numSamplesToProcess = uGenOutput.getBlockSize();
 	float* outputSamples = uGenOutput.getSampleData();
@@ -456,7 +456,7 @@ EnvGenUGenInternalK::EnvGenUGenInternalK (Env const& env, const UGen::DoneAction
 	setSegment(0, UGen::getSampleRate() / UGen::getControlRateBlockSize());
 } 
 
-void EnvGenUGenInternalK::processBlock(bool& shouldDelete, const unsigned int blockID, const int channel) throw()
+void EnvGenUGenInternalK::processBlock(bool& shouldDelete, const unsigned int blockID, const int /*channel*/) throw()
 {
 	const int krBlockSize = UGen::getControlRateBlockSize();
 	unsigned int blockPosition = blockID % krBlockSize;

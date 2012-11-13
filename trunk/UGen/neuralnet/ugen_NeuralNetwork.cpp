@@ -275,7 +275,7 @@ void NeuralNetwork::read(TextFileReader const& _file) throw()
 	Text text;
 	int line = 0;
 	int numLayers = -1;
-	float learnRate, actFuncOffset;
+	float learnRate = 0.f, actFuncOffset = 0.f;
 	
 	IntArray nodes;
 	

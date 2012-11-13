@@ -241,23 +241,25 @@ const String UGenPlugin::getParameterDescription (int index)
     return String(UGenInterface::Parameters::Descriptions[index]);
 }
 
-const String UGenPlugin::getInputChannelName (const int channelIndex) const
+const String UGenPlugin::getInputChannelName (int channelIndex) const
 {
     return String (channelIndex + 1);
 }
 
-const String UGenPlugin::getOutputChannelName (const int channelIndex) const
+const String UGenPlugin::getOutputChannelName (int channelIndex) const
 {
     return String (channelIndex + 1);
 }
 
 bool UGenPlugin::isInputChannelStereoPair (int index) const
 {
+	(void)index;
     return true;
 }
 
 bool UGenPlugin::isOutputChannelStereoPair (int index) const
 {
+	(void)index;
     return true;
 }
 
@@ -315,7 +317,7 @@ void UGenPlugin::releaseResources()
 }
 
 void UGenPlugin::processBlock(AudioSampleBuffer& buffer,
-							  MidiBuffer& midiMessages)
+							  MidiBuffer& /*midiMessages*/)
 {	
 	clearExtraChannels(buffer); // see below
 	
@@ -443,8 +445,10 @@ void UGenPlugin::loadIR(File const& newIRFile)
 
 void UGenPlugin::replaceIR(Buffer const& newIRBuffer)
 {
+	if (newIRBuffer.isNull()) return;
+
     bufferLock.enter();
-    irBuffer = newIRBuffer;
+    irBuffer = newIRBuffer.zap().normalise();
     bufferLock.exit();
     
     UGenEditorComponent* editor = static_cast<UGenEditorComponent*> (getActiveEditor());
@@ -455,7 +459,7 @@ void UGenPlugin::replaceIR(Buffer const& newIRBuffer)
     UGen conv = getConv();
 
     const ScopedLock sl(outputLock);
-    plug.fadeSourceAndRelease(conv, 0.1);
+    plug.fadeSourceAndRelease(conv, 0.1f);
 }
 
 UGen UGenPlugin::getConv()
@@ -473,10 +477,10 @@ UGen UGenPlugin::getConv()
     return ZeroLatencyConvolve::AR(inputUGen, irBufferCopy) * 0.005 * EnvGen::AR(pause);
 }
 
-void UGenPlugin::handleBuffer(Buffer const& buffer, const double value1, const int value2)
+void UGenPlugin::handleBuffer(Buffer const& buffer, const double /*value1*/, const int /*value2*/)
 {
     if (!buffer.isNull())
-        replaceIR(buffer.zap().normalise());
+        replaceIR(buffer);
 }
 
 //==============================================================================
