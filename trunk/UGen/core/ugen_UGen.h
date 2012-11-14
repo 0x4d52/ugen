@@ -1246,7 +1246,12 @@ public:
 	/** A control rate null UGen.
 	 Equivalent but more convenient and efficient than using the default constructor and a kr() call: UGen().kr() */
 	inline static const UGen& getNullKr() throw() { static UGen null = UGen().kr(); return null; }
-	
+
+
+	inline static const UGen& get0() throw() { static UGen v (0); return v; }
+	inline static const UGen& get1() throw() { static UGen v (1); return v; }
+	inline static const UGen& get2() throw() { static UGen v (2); return v; }
+
 	static const int defaultUserData; ///< the default state of the userData member in all UGen instances.
 	int userData; /**<	May be used to store custom user data, the Voicer class uses it to store MIDI 
 						note numbers for example so it knows which UGen to release when it gets

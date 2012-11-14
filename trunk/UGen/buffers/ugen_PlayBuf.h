@@ -150,10 +150,10 @@ protected:
  @see PlayBufUGenInternal */
 UGenSublcassDeclaration(PlayBuf, (buffer, rate, trig, offset, loop, doneAction, metaData),
 						(Buffer const& buffer, 
-						 UGen const& rate = 1.f, 
-						 UGen const& trig = 0.f, 
-						 UGen const& offset = 0.f, 
-						 UGen const& loop = 0.f,
+						 UGen const& rate = UGen::get1(), 
+						 UGen const& trig = UGen::get0(), 
+						 UGen const& offset = UGen::get0(), 
+						 UGen const& loop = UGen::get0(),
 						 const UGen::DoneAction doneAction = UGen::DeleteWhenDone,
 						 MetaData const& metaData = MetaData()), COMMON_UGEN_DOCS PlayBuf_Docs);
 
