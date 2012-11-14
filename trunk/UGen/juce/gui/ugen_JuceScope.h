@@ -56,6 +56,11 @@ public:
 	void lock() throw();
 	void unlock() throw();
 	bool tryLock() throw();
+    
+    void repaint() throw()
+    {
+        Component::repaint();
+    }
 	
 private:
 	CriticalSection juceLock;

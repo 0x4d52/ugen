@@ -2653,22 +2653,21 @@ Buffer Buffer::synth(const int size, UGen const& graph, const bool allAtOnce, bo
 
 void Buffer::synthInPlace(UGen const& graph_, const int offset, const int numSamples_, const bool allAtOnce, bool* cancel) throw()
 {
-	UGen graph = graph_;	
+	UGen graph = graph_;
 	
-	int numSamples = (numSamples_ <= 0) ? size() : numSamples_;
+	const int numSamples = (numSamples_ <= 0) ? size() : numSamples_;
 	ugen_assert(numSamples > 0);
 	
-	int numChannels = ugen::min(getNumChannels(), graph.getNumChannels());
+	const int numChannels = ugen::min(getNumChannels(), graph.getNumChannels());
 	ugen_assert(numChannels > 0);
 		
-	for(int channel = 0; channel < numChannels; channel++)
-	{
-		graph.setOutput(getData(channel) + offset, numSamples, channel);
-	}
 			
 	if(allAtOnce)
 	{
-		graph.prepareAndProcessBlock(numSamples, 0, -1);	
+        for(int channel = 0; channel < numChannels; channel++)
+            graph.setOutput(getData(channel) + offset, numSamples, channel);
+
+		graph.prepareAndProcessBlock(numSamples, 0, -1);
 	}
 	else
 	{
@@ -2683,6 +2682,9 @@ void Buffer::synthInPlace(UGen const& graph_, const int offset, const int numSam
 			if(numSamplesRemaining < blockSize)
 				blockSize = numSamplesRemaining;
 			
+            for(int channel = 0; channel < numChannels; channel++)
+                graph.setOutput(getData(channel) + offset + blockID, blockSize, channel);
+            
 			graph.prepareAndProcessBlock(blockSize, blockID, -1);	
 			
 			numSamplesRemaining -= blockSize;

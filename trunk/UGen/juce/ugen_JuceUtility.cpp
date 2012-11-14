@@ -128,6 +128,8 @@ void BufferProcess::add(Buffer const& buffer, UGen const& input, UGen const& gra
 	graphs.add(graph);
 	ids.add(bufferID);
     
+    DBG(String("BufferProcess items=")+String(ids.length()));
+    
     event.signal();
 }
 
@@ -142,6 +144,8 @@ void BufferProcess::add(const int size, UGen const& graph, const int bufferID) t
 	inputs.add(UGen::getNull());
 	graphs.add(graph);
 	ids.add(bufferID);
+    
+    DBG(String("BufferProcess items=")+String(ids.length()));
     
     event.signal();
 }
@@ -168,12 +172,12 @@ void BufferProcess::run() throw()
 			
 			if(inputs[cueIndex].isNull())
 			{
-				buffer.synthInPlace(graphs[cueIndex]);
+				buffer.synthInPlace(graphs[cueIndex], 0, 0, false);
 				sendBuffer(buffer, 0.0, ids[cueIndex]);
 			}
 			else
 			{
-				Buffer result = buffer.process(inputs[cueIndex], graphs[cueIndex]);
+				Buffer result = buffer.process(inputs[cueIndex], graphs[cueIndex]);//, 0, 0, false);
 				sendBuffer(result, 0.0, ids[cueIndex]);
 			}
 		}
