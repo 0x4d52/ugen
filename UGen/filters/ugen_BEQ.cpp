@@ -171,7 +171,7 @@ void BEQBaseUGenInternal::initValue(const float value) throw()
 }
 
 BLowPassUGenInternal::BLowPassUGenInternal(UGen const& input, UGen const& freq, UGen const& rq) throw()
-:	BEQBaseUGenInternal(input, freq, rq, 0.f)
+:	BEQBaseUGenInternal(input, freq, rq, UGen::get0())
 {	
 }
 
@@ -283,7 +283,7 @@ BLowPass4::BLowPass4(UGen const& input, UGen const& freq, UGen const& rq) throw(
 }
 
 BHiPassUGenInternal::BHiPassUGenInternal(UGen const& input, UGen const& freq, UGen const& rq) throw()
-:	BEQBaseUGenInternal(input, freq, rq, 0.f)
+:	BEQBaseUGenInternal(input, freq, rq, UGen::get0())
 {	
 }
 
@@ -385,7 +385,7 @@ BBandPass::BBandPass(UGen const& input, UGen const& freq, UGen const& bw) throw(
 }
 
 BBandStopUGenInternal::BBandStopUGenInternal(UGen const& input, UGen const& freq, UGen const& bw) throw()
-:	BEQBaseUGenInternal(input, freq, bw, 0.f)
+:	BEQBaseUGenInternal(input, freq, bw, UGen::get0())
 {	
 }
 
