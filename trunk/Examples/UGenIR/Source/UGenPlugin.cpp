@@ -419,15 +419,26 @@ void UGenPlugin::buttonClicked(int buttonIndex)
     startTimer(UGENIR_IRREFRESHTIME);
 }
 
-void UGenPlugin::setMenuItem(int menuItemIndex)
+void UGenPlugin::setMenuItem(int whichMenu, int menuItemIndex)
 {
-	menuItem = menuItemIndex;
+    switch(whichMenu)
+    {
+        case 1: menuItem = menuItemIndex; break;
+        case 2: menu2Item = menuItemIndex; break;
+        default: return;
+    }
+    
     startTimer(UGENIR_IRREFRESHTIME);
 }
 
-int UGenPlugin::getMenuItem()
+int UGenPlugin::getMenuItem(int whichMenu)
 {
-	return menuItem;
+	switch(whichMenu)
+    {
+        case 1: return menuItem;
+        case 2: return menu2Item;
+        default: return -1;
+    }
 }
 
 void UGenPlugin::loadIR(File const& newIRFile)
@@ -512,7 +523,9 @@ void UGenPlugin::getStateInformation (MemoryBlock& destData)
 		parameterName += String(index);		// try to ensure the name is unique, not foolproof
 		xmlState.setAttribute (parameterName, parameters[index]);
 	}
+
 	xmlState.setAttribute ("menuItem", menuItem);
+	xmlState.setAttribute ("menu2Item", menu2Item);
 	
     const String relative = irFile.getRelativePathFrom(File::getSpecialLocation(File::userHomeDirectory));
     xmlState.setAttribute("irFile", relative);
@@ -571,6 +584,7 @@ void UGenPlugin::setStateInformation (const void* data, int sizeInBytes)
 			}
             
 			menuItem = xmlState->getIntAttribute("menuItem", UGenInterface::MenuOptions::LowPass);
+			menu2Item = xmlState->getIntAttribute("menu2Item", UGenInterface::MenuOptions2::DualMono);
             
             const String relative = xmlState->getStringAttribute("irFile", String::empty);
             if(relative.isNotEmpty())

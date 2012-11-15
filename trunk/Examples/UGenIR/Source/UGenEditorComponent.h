@@ -194,6 +194,9 @@ private:
 	
 	Label* menuLabel;
 	ComboBox* menu;
+	Label* menu2Label;
+	ComboBox* menu2;
+
     
     TabbedComponent* tabs;
     TabbedButtonBar* tabButtons;
