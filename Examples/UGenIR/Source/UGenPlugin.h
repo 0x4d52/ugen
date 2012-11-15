@@ -116,8 +116,8 @@ public:
 	float* getMeterLevelPtr(int index) { return meterLevels + index; }
 	void setMeterLevel(int index, float value);
 	void buttonClicked(int buttonIndex);
-	void setMenuItem(int menuItemIndex);
-	int getMenuItem();
+	void setMenuItem(int whichMenu, int menuItemIndex);
+	int getMenuItem(int whichMenu);
     
 //    void setLastPath(String const& path) { lastPath = path; }
 //    String getLastPath() { return lastPath; }
@@ -176,7 +176,7 @@ private:
 	float channelLevel0, channelLevel1;
 	int numMeasurements;
 	
-	int menuItem;
+	int menuItem, menu2Item;
 	
 	UGen inputUGen;
 	UGen outputUGen;

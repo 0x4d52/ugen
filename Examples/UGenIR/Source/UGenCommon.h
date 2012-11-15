@@ -176,6 +176,23 @@ namespace UGenInterface
             Count
         };
 	}
+    
+    namespace MenuOptions2
+	{
+		static const char UNUSED_NOWARN *Label = "Channel Mode";
+		static const char UNUSED_NOWARN *Names[] = {
+            "Dual Mono",
+            "True Stereo"
+        };
+		
+		enum {
+            DualMono,
+            TrueStereo,
+            
+            Count
+        };
+	}
+
 	
 }
 

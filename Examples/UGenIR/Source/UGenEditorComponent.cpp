@@ -248,14 +248,19 @@ UGenEditorComponent::UGenEditorComponent (UGenPlugin* const ownerFilter)
 												String(UGenInterface::MenuOptions::Label)));
 		menuLabel->setJustificationType(Justification::right);
 	}
-	else
+	else menuLabel = 0;
+    
+    if(UGenInterface::MenuOptions2::Label != 0)
 	{
-		menuLabel = 0;
+		addAndMakeVisible(menu2Label = new Label("menu2Label",
+                                                 String(UGenInterface::MenuOptions2::Label)));
+		menu2Label->setJustificationType(Justification::right);
 	}
+	else menu2Label = 0;
 	
 	if(UGenInterface::MenuOptions::Count > 0)
 	{
-		addAndMakeVisible(menu = new ComboBox("menu"));
+		addAndMakeVisible(menu = new ComboBox("menu2"));
 		
 		for(int index = 0; index < UGenInterface::MenuOptions::Count; index++)
 		{
@@ -267,7 +272,22 @@ UGenEditorComponent::UGenEditorComponent (UGenPlugin* const ownerFilter)
 		
 		height += menuHeight + margin;
 	}
-	
+    
+    if(UGenInterface::MenuOptions2::Count > 0)
+	{
+		addAndMakeVisible(menu2 = new ComboBox("menu2"));
+		
+		for(int index = 0; index < UGenInterface::MenuOptions2::Count; index++)
+		{
+			menu2->addItem(UGenInterface::MenuOptions2::Names[index], index + MENU_ID_OFFSET);
+		}
+		
+		menu2->setText(UGenInterface::MenuOptions2::Names[0], false);
+		menu2->addListener(this);
+		
+		height += menuHeight + margin;
+	}
+
 	if(UGenInterface::Parameters::Count > 0)
 	{
 		for(int index = 0; index < getPlugin()->getNumParameters(); index++)
@@ -461,12 +481,29 @@ void UGenEditorComponent::resized()
 							getWidth() - margin - margin - menuLabelWidth, menuHeight - padding);
 		}
 	}
+    
+    int numMenuItems2 = UGenInterface::MenuOptions2::Count;
+	
+	if(numMenuItems2 > 0)
+	{
+		if(menu2Label == 0)
+			menu2->setBounds(margin, margin + menuHeight + padding, getWidth() - margin - margin, menuHeight - padding);
+		else
+		{
+			menu2Label->setBounds(margin, margin + menuHeight + padding,
+								  menuLabelWidth - padding, menuHeight - padding);
+			menu2->setBounds(margin + menuLabelWidth, margin + menuHeight + padding,
+							 getWidth() - margin - margin - menuLabelWidth, menuHeight - padding);
+		}
+	}
 	
 	for(int index = 0; index < sliders.size(); index++)
 	{
 		int y = (index+1) * sliderHeight - padding;
-		if(numMenuItems > 0)
-			y += menuHeight + margin;
+
+		if(numMenuItems > 0) y += menuHeight + margin;
+        if(numMenuItems2 > 0) y += menuHeight + margin;
+
 		sliders[index]->setBounds (sliderLabelWidth + margin + margin, y, sliderWidth, sliderHeight - padding);
 		sliderLabels[index]->setBounds (margin, y, sliderLabelWidth, sliderHeight - padding);
 	}
@@ -479,8 +516,9 @@ void UGenEditorComponent::resized()
 			height = sliderHeight;
 		
 		int y = margin * 0.5;
-		if(numMenuItems > 0)
-			y += menuHeight + margin;
+
+		if(numMenuItems > 0) y += menuHeight + margin;
+		if(numMenuItems2 > 0) y += menuHeight + margin;
 		
 		meters[index]->setBounds (meterWidth * index + sliderWidth + sliderLabelWidth + margin + margin + margin, 
 								  y, 
@@ -502,9 +540,9 @@ void UGenEditorComponent::resized()
 		
 		y += sliderHeight + margin;
 		
-		if(numMenuItems > 0)
-			y += menuHeight + margin;
-		
+		if(numMenuItems > 0) y += menuHeight + margin;
+		if(numMenuItems2 > 0) y += menuHeight + margin;
+
 		for(int index = 0; index < numButtons; index++)
 		{
 			buttons[index]->setBounds(width * index + margin, y, width - padding, buttonHeight - padding);
@@ -548,7 +586,11 @@ void UGenEditorComponent::buttonClicked(Button* clickedButton)
 void UGenEditorComponent::comboBoxChanged(ComboBox* changedComboBox)
 {
 	const ScopedLock sl(getPlugin()->getCallbackLock());
-	getPlugin()->setMenuItem(changedComboBox->getSelectedId()-MENU_ID_OFFSET);
+    
+    if (changedComboBox == menu)
+        getPlugin()->setMenuItem(1, changedComboBox->getSelectedId()-MENU_ID_OFFSET);
+    else if (changedComboBox == menu)
+        getPlugin()->setMenuItem(2, changedComboBox->getSelectedId()-MENU_ID_OFFSET);
 }
 
 void UGenEditorComponent::envelopeChanged(EnvelopeComponent* /*changedEnvelope*/)
@@ -639,9 +681,11 @@ void UGenEditorComponent::updateParametersFromFilter()
 	if(UGenInterface::MenuOptions::Count > 0)
 	{
 		getPlugin()->getCallbackLock().enter();
-		const int newMenuItem = getPlugin()->getMenuItem();
+		const int newMenuItem = getPlugin()->getMenuItem(1);
+        const int newMenu2Item = getPlugin()->getMenuItem(2);
 		getPlugin()->getCallbackLock().exit();
 		menu->setSelectedId(newMenuItem + MENU_ID_OFFSET, false);
+        menu2->setSelectedId(newMenu2Item + MENU_ID_OFFSET, false);
 	}
     
     setIRDisplay(getPlugin()->getIRBuffer());
