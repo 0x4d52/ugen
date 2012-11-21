@@ -21,6 +21,7 @@ class MainComponent :	public Component,
 private:
 	Label cpu;
 	ScopeControlComponent scope;
+	UGen sender;
 	
 public:
 	MainComponent()
@@ -33,7 +34,7 @@ public:
 
 	~MainComponent()
 	{
-        TextEditor
+		sender.removeBufferReceiver(scope);
 	}
 	
 	void resized()
@@ -49,8 +50,12 @@ public:
 	
 	UGen constructGraph(UGen const& input)
 	{
-
-		return SinOsc::AR(SinOsc::AR(1, 0, 200, 1000), 0, 0.1);
+		(void)input;
+		UGen output = SinOsc::AR(SinOsc::AR(1, 0, 200, 1000), 0, 0.1);
+		sender = Sender::AR(output, 0.01);
+		sender.addBufferReceiver(scope);
+		addOther(sender);
+		return output;
 	}
 };
 
