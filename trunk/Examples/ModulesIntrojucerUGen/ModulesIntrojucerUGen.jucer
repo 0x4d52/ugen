@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="Vq2ZV8" name="ModulesIntrojucerUGen" projectType="guiapp"
-              version="1.0.0" jucerVersion="3.0.0" defines="UGEN_INTROJUCER=1">
+              version="1.0.0" jucerVersion="3.0.0" defines="UGEN_INTROJUCER=1 UGEN_JUCE_NEWCALLOUTBOX=1"
+              bundleIdentifier="com.yourcompany.ModulesIntrojucerUGen">
   <MAINGROUP id="HtESUr" name="ModulesIntrojucerUGen">
     <GROUP id="{168651FF-ADE0-6A86-1371-53F214442B61}" name="Source">
       <FILE id="s9dz67" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
@@ -107,10 +108,6 @@
                 file="../../UGen/convolution/ugen_Correlation.cpp"/>
           <FILE id="wg7q4q" name="ugen_Correlation.h" compile="0" resource="0"
                 file="../../UGen/convolution/ugen_Correlation.h"/>
-          <FILE id="CPhW2y" name="ugen_Correlation_20120321_1005.zip" compile="0"
-                resource="1" file="../../UGen/convolution/ugen_Correlation_20120321_1005.zip"/>
-          <FILE id="SB3Zih" name="ugen_Correlation_old.zip" compile="0" resource="1"
-                file="../../UGen/convolution/ugen_Correlation_old.zip"/>
           <FILE id="wrQSB9" name="ugen_HRTF.cpp" compile="1" resource="0" file="../../UGen/convolution/ugen_HRTF.cpp"/>
           <FILE id="rNxHDe" name="ugen_HRTF.h" compile="0" resource="0" file="../../UGen/convolution/ugen_HRTF.h"/>
           <FILE id="KPyJ9D" name="ugen_SimpleConvolution.cpp" compile="1" resource="0"
@@ -510,26 +507,28 @@
     </GROUP>
   </MAINGROUP>
   <MODULES>
-    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="1"/>
     <MODULE id="juce_gui_audio" showAllCode="1" useLocalCopy="1"/>
-    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="1"/>
   </MODULES>
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX" juceFolder="../../../../juce_code/juce2/juce/modules"
                extraDefs="">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="ModulesIntrojucerUGen"/>
-        <CONFIGURATION name="Release" isDebug="0" optimisation="2" targetName="ModulesIntrojucerUGen"/>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="ModulesIntrojucerUGen"
+                       osxSDK="default" osxCompatibility="default" osxArchitecture="default"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="2" targetName="ModulesIntrojucerUGen"
+                       osxSDK="default" osxCompatibility="default" osxArchitecture="default"/>
       </CONFIGURATIONS>
     </XCODE_MAC>
     <VS2010 targetFolder="Builds/VisualStudio2010" libraryType="1" juceFolder="../../../../juce_code/juce2/juce/modules">
