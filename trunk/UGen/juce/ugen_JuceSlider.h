@@ -68,18 +68,18 @@ class ButtonValueInternal :	public ValueInternal,
 							public ButtonListener
 {
 public:
-	ButtonValueInternal(juce::Button* button) throw();
+	ButtonValueInternal(Button* button) throw();
 	~ButtonValueInternal() throw();
-	void buttonClicked(juce::Button* button) throw();
+	void buttonClicked(Button* button) throw();
 	
 private:
-	Component::SafePointer<juce::Button> button_;
+	Component::SafePointer<Button> button_;
 };
 
 class ButtonValue : public Value 
 {
 public:
-	ButtonValue(juce::Button* button) throw();
+	ButtonValue(Button* button) throw();
 };
 
 

@@ -203,7 +203,7 @@
 			float value;																									\
 		}
 
-#define ReportSize(CLASSNAME) printf(#CLASSNAME " size = %ld\n", sizeof(CLASSNAME))
+#define ReportSize(CLASSNAME) printf(#CLASSNAME " size = %lu\n", (unsigned long)sizeof(CLASSNAME))
 
 
 class UGenArray;
@@ -346,7 +346,7 @@ public:
 	 Obviously this is more useful with ToggleButton type buttons (which would output
 	 0 or 1 depending on their state).
 	 @param button The Button to use.*/
-	UGen(juce::Button* button) throw();
+	UGen(Button* button) throw();
 	
 	UGen(juce::ToggleButton* button) throw();
 	
