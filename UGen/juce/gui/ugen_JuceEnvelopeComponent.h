@@ -415,7 +415,7 @@ public:
 	~EnvelopeNodePopup();
 	void resized();
 	void comboBoxChanged (ComboBox* comboBoxThatHasChanged);
-	void buttonClicked(juce::Button *button);
+	void buttonClicked(Button *button);
     void expired();
 };
 

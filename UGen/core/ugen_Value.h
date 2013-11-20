@@ -134,7 +134,7 @@ public:
 	
 #if defined(JUCE_VERSION) || defined(DOXYGEN)
 	Value(juce::Slider *slider) throw();
-	Value(juce::Button *button) throw();
+	Value(Button *button) throw();
 	Value(juce::Label *label) throw();
 #endif
 #if defined(UGEN_IPHONE) || defined(DOXYGEN)

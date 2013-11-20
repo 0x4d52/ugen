@@ -181,8 +181,8 @@ typedef float (*BinaryOpFunction)(float,float);
 	CLASSNAME ring2(CLASSNAME const& rightOperand) const throw();							\
 	CLASSNAME ring3(CLASSNAME const& rightOperand) const throw();							\
 	CLASSNAME ring4(CLASSNAME const& rightOperand) const throw();							\
-	CLASSNAME round(CLASSNAME const& rightOperand = 1) const throw();							\
-	CLASSNAME trunc(CLASSNAME const& rightOperand = 1) const throw();							\
+	CLASSNAME round(CLASSNAME const& rightOperand) const throw();							\
+	CLASSNAME trunc(CLASSNAME const& rightOperand) const throw();							\
 	CLASSNAME sumsqr(CLASSNAME const& rightOperand) const throw();							\
 	CLASSNAME difsqr(CLASSNAME const& rightOperand) const throw();							\
 	CLASSNAME sqrsum(CLASSNAME const& rightOperand) const throw();							\

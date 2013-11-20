@@ -89,6 +89,7 @@
 #include "../../juce_core/native/juce_osx_ObjCHelpers.h"
 
 //// UGenAUPatch - add this line ////
+#define Button juce::Button
 #include "UGenPlugin.h"
 
 

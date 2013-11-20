@@ -350,11 +350,10 @@ inline int quantiseDown(const int a, const int q)
 	#define numElementsInArray(a)   ((int) (sizeof (a) / sizeof ((a)[0])))
 #endif
 
-#ifdef WIN32
-	#define LITTLE_ENDIAN 1234
-	#define BIG_ENDIAN 4321
-	#define BYTE_ORDER LITTLE_ENDIAN
-#endif
+#define LITTLE_ENDIAN 1234
+#define BIG_ENDIAN 4321
+#define BYTE_ORDER LITTLE_ENDIAN
+// may need to add Big Endian support
 
 // define ALIGN to do nothing if it's not defined...
 #ifndef UGEN_ALIGN
