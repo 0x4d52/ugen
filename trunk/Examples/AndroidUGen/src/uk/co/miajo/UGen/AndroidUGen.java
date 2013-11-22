@@ -93,18 +93,18 @@ public class AndroidUGen extends Activity implements OnSeekBarChangeListener, On
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int sliderVal, boolean fromUser) 
 	{
-//		if (seekBar == freqSlider) {
-//			// set frequency to slider value (scale and shift (200 - 1000Hz)
-//			audioThread.setParameter(Freq, ((float) Integer.valueOf(sliderVal) * 0.1) + 200.0);
-//		} else if (seekBar == ampSlider) {
-//			// set amplitude to slider value (up to 0.9)
-//			audioThread.setParameter(Amp,(float) Integer.valueOf(sliderVal) * 0.009);
-//		}
-		
-		if (seekBar == freqSlider) 
-		{
-			audioThread.setParameter(10, ((float) Integer.valueOf(sliderVal) * 0.1) + 200.0);
+		if (seekBar == freqSlider) {
+			// set frequency to slider value 0-8000 (scale and shift (200 - 1000Hz)
+			audioThread.setParameter(Freq, ((float) Integer.valueOf(sliderVal) * 0.1) + 200.0);
+		} else if (seekBar == ampSlider) {
+			// set amplitude to slider value 0-100 (up to 0.9)
+			audioThread.setParameter(Amp, (float) Integer.valueOf(sliderVal) * 0.009);
 		}
+		
+//		if (seekBar == freqSlider) 
+//		{
+//			audioThread.setParameter(10, ((float) Integer.valueOf(sliderVal) * 0.1) + 200.0);
+//		}
 	}
 
 	@Override
@@ -112,17 +112,17 @@ public class AndroidUGen extends Activity implements OnSeekBarChangeListener, On
 	{
 		if (v == onOff) 
 		{
-//			// turn audio on/off with checkbox
-//			audioThread.setParameter(On, onOff.isChecked() ? 1 : 0);
+			// turn audio on/off with checkbox
+			audioThread.setParameter(On, onOff.isChecked() ? 1 : 0);
 			
-			if(onOff.isChecked())
-			{
-				audioThread.sendTrigger(10);
-			}
-			else
-			{
-				audioThread.sendTrigger(-10);
-			}
+//			if(onOff.isChecked())
+//			{
+//				audioThread.sendTrigger(10);
+//			}
+//			else
+//			{
+//				audioThread.sendTrigger(-10);
+//			}
 			
 		}
 
