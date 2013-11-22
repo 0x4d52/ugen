@@ -15,18 +15,3 @@ private:
 	Value amp;
 	Value on;
 };
-
-//class MyAndroidAudio : public AndroidIOHost
-//{
-//public:
-//	MyAndroidAudio(const double sampleRate, const int numInputs, const int numOutputs, const int preferredBufferSize) throw();
-//	UGen constructGraph(UGen const& input) throw();
-//	int setParameter(const int index, const float value) throw();
-//	int sendTrigger(const int index) throw();
-//	
-//private:
-//	ObjectArray<int> ids;
-//	ObjectArray<Value> freqs;
-//	UGenArray events;
-//
-//};
