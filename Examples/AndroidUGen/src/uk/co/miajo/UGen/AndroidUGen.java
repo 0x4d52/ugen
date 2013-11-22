@@ -46,10 +46,10 @@ public class AndroidUGen extends Activity implements OnSeekBarChangeListener, On
 		
 		// find views
 		freqSlider = (SeekBar) findViewById(R.id.freqslider);
-		ampSlider = (SeekBar) findViewById(R.id.ampslider);
-		onOff = (CheckBox) findViewById(R.id.onOffbutton);
-		freqText = (TextView) findViewById(R.id.freq_label);
-		ampText = (TextView) findViewById(R.id.amp_label);
+		ampSlider  = (SeekBar) findViewById(R.id.ampslider);
+		onOff      = (CheckBox) findViewById(R.id.onOffbutton);
+		freqText   = (TextView) findViewById(R.id.freq_label);
+		ampText    = (TextView) findViewById(R.id.amp_label);
 
 		// set listeners
 		freqSlider.setOnSeekBarChangeListener(this);
@@ -63,7 +63,7 @@ public class AndroidUGen extends Activity implements OnSeekBarChangeListener, On
 
 		/* UGen setup */
 		
-		audioThread = new UGenAudio("/data/data/uk.co.miajo.UGen/lib"); // ??
+		audioThread = new UGenAudio("/data/data/uk.co.miajo.UGen/lib"); // ?? Context.getFilesDir().getPath()
 		
 		// initial values
 		freqSlider.setProgress(2000);
@@ -100,11 +100,6 @@ public class AndroidUGen extends Activity implements OnSeekBarChangeListener, On
 			// set amplitude to slider value 0-100 (up to 0.9)
 			audioThread.setParameter(Amp, (float) Integer.valueOf(sliderVal) * 0.009);
 		}
-		
-//		if (seekBar == freqSlider) 
-//		{
-//			audioThread.setParameter(10, ((float) Integer.valueOf(sliderVal) * 0.1) + 200.0);
-//		}
 	}
 
 	@Override
@@ -114,18 +109,7 @@ public class AndroidUGen extends Activity implements OnSeekBarChangeListener, On
 		{
 			// turn audio on/off with checkbox
 			audioThread.setParameter(On, onOff.isChecked() ? 1 : 0);
-			
-//			if(onOff.isChecked())
-//			{
-//				audioThread.sendTrigger(10);
-//			}
-//			else
-//			{
-//				audioThread.sendTrigger(-10);
-//			}
-			
 		}
-
 	}
 	
 	/* unused methods */
