@@ -14,8 +14,10 @@
  * limitations under the License.
  */
 
-package uk.co.miajo.UGen;
+package uk.co.miajo.UGen.Example;
 
+import uk.co.miajo.UGen.Example.R;
+import uk.co.miajo.UGen.UGenAudio;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View.OnClickListener;

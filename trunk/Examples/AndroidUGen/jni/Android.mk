@@ -15,7 +15,8 @@
 
 
 
-LOCAL_PATH:= $(call my-dir)/../../..
+LOCAL_PATH:= $(call my-dir)
+UGEN_PATH:= ../../../UGen
 
 # UGen++ lib, which will be built statically
 #
@@ -23,7 +24,7 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE    := libugen
 LOCAL_CFLAGS    += -DUGEN_ANDROID=1
-LOCAL_SRC_FILES := UGen/android/ugen_UGenAndroid.cpp
+LOCAL_SRC_FILES := $(UGEN_PATH)/android/ugen_UGenAndroid.cpp
 
 include $(BUILD_STATIC_LIBRARY)
 
@@ -34,7 +35,7 @@ include $(CLEAR_VARS)
 LOCAL_LDLIBS    += -llog
 LOCAL_MODULE    := UGenAudio
 LOCAL_CFLAGS    += -DUGEN_ANDROID=1
-LOCAL_SRC_FILES := UGen/android/ugen_AndroidUGenAudio.cpp Examples/AndroidUGen/jni/AndroidUGen.cpp
+LOCAL_SRC_FILES := $(UGEN_PATH)/android/ugen_AndroidUGenAudio.cpp AndroidUGen.cpp
 
 LOCAL_STATIC_LIBRARIES := libugen
 
