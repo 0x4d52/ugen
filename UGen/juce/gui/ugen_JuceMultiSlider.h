@@ -196,7 +196,6 @@ public:
 		}
 	}
 	
-#ifdef __JUCE_NOTIFICATIONTYPE_JUCEHEADER__
 	void setValue (const int index,
 				   double newValue,
 				   const NotificationType notification = sendNotificationAsync)
@@ -207,22 +206,7 @@ public:
 			slider->setValue(newValue, notification);
 		}
 	}
-	
-#else
-	void setValue (const int index,
-				   double newValue,
-				   const bool sendUpdateMessage = true,
-				   const bool sendMessageSynchronously = false)
-	{
-		Slider* slider = sliders[index];
-		if(slider)
-		{
-			slider->setValue(newValue, sendUpdateMessage, sendMessageSynchronously);
-		}
-	}
-#endif
-	
-#ifdef __JUCE_NOTIFICATIONTYPE_JUCEHEADER__
+		
 	void setValues(Array<double> const& values,
 				   const NotificationType notification = sendNotificationAsync)
 	{
@@ -232,18 +216,6 @@ public:
 			sliders[i]->setValue(values[i], notification);
 		}
 	}
-#else
-	void setValues(Array<double> const& values,
-				   const bool sendUpdateMessage = true,
-				   const bool sendMessageSynchronously = false)
-	{
-		const int size = jmin(values.size(), sliders.size());
-		for(int i = 0; i < size; i++)
-		{
-			sliders[i]->setValue(values[i], sendUpdateMessage, sendMessageSynchronously);
-		}
-	}
-#endif
 	
 	void addListener (MultiSliderBaseListener* const listener)
 	{
@@ -319,15 +291,10 @@ public:
 		const int size = jmin(values.length(), sliders.size());
 		for(int i = 0; i < size; i++)
 		{
-#ifdef __JUCE_NOTIFICATIONTYPE_JUCEHEADER__
             sliders[i]->setValue((double)values[i], sendNotificationSync);
-#else
-			sliders[i]->setValue((double)values[i], sendUpdateMessage, sendMessageSynchronously);
-#endif
 		}
 	}
 	
-#ifdef __JUCE_NOTIFICATIONTYPE_JUCEHEADER__
 	void setValues(Buffer const& values,
 				   const NotificationType notification = sendNotificationAsync)
 	{
@@ -337,18 +304,6 @@ public:
 			sliders[i]->setValue((double)values.getSampleUnchecked(i), notification);
 		}
 	}
-#else
-	void setValues(Buffer const& values,
-				   const bool sendUpdateMessage = true,
-				   const bool sendMessageSynchronously = false)
-	{
-		const int size = jmin(values.size(), sliders.size());
-		for(int i = 0; i < size; i++)
-		{
-			sliders[i]->setValue((double)values.getSampleUnchecked(i), sendUpdateMessage, sendMessageSynchronously);
-		}
-	}
-#endif
 	
 	bool attachToMultiSliderUGenInternal() throw()
 	{

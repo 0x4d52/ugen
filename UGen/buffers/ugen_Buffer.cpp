@@ -439,7 +439,7 @@ Buffer::Buffer(AudioSampleBuffer& audioSampleBuffer, const bool copyTheData) thr
 	channels = numChannels_ <= 0 ? 0 : new BufferChannelInternal*[numChannels_];
 	for(int channel = 0; channel < numChannels_; channel++)
 	{
-		channels[channel] = new BufferChannelInternal(size_, size_, audioSampleBuffer.getSampleData(channel), copyTheData);
+		channels[channel] = new BufferChannelInternal(size_, size_, audioSampleBuffer.getWritePointer (channel), copyTheData);
 	}
 }
 

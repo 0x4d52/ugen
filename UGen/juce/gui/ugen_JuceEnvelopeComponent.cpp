@@ -1420,13 +1420,13 @@ void EnvelopeLegendComponent::paint(Graphics& g)
 
 void EnvelopeLegendComponent::setText(Text const& legendText)
 {
-	text->setText(legendText, false);
+	text->setText(legendText, dontSendNotification);
 	repaint();
 }
 
 void EnvelopeLegendComponent::setText()
 {
-	text->setText(defaultText, false);
+	text->setText(defaultText, dontSendNotification);
 	repaint();
 }
 
@@ -1487,11 +1487,7 @@ EnvelopeCurvePopup::EnvelopeCurvePopup(EnvelopeHandleComponent* handleToEdit)
 	//slider->setTextBoxStyle(Slider::NoTextBox, false, 0,0);
 	slider->setRange(-1, 1, 0.0);
     
-#ifdef __JUCE_NOTIFICATIONTYPE_JUCEHEADER__
     slider->setValue(curveValue, dontSendNotification);
-#else
-	slider->setValue(curveValue, false);
-#endif
 	
 	
 	addAndMakeVisible(combo = new ComboBox("combo"));	
@@ -1517,13 +1513,13 @@ EnvelopeCurvePopup::EnvelopeCurvePopup(EnvelopeHandleComponent* handleToEdit)
 	
 	switch(type)
 	{
-		case EnvCurve::Empty:		combo->setSelectedId(idOffset + (int)EnvCurve::Empty,		false); break;
-		case EnvCurve::Numerical:	combo->setSelectedId(idOffset + (int)EnvCurve::Numerical,	false); break;
-		case EnvCurve::Step:		combo->setSelectedId(idOffset + (int)EnvCurve::Step,		false); break;
-		case EnvCurve::Linear:		combo->setSelectedId(idOffset + (int)EnvCurve::Linear,		false); break;
-		case EnvCurve::Exponential: combo->setSelectedId(idOffset + (int)EnvCurve::Exponential, false); break;
-		case EnvCurve::Sine:		combo->setSelectedId(idOffset + (int)EnvCurve::Sine,		false); break;
-		case EnvCurve::Welch:		combo->setSelectedId(idOffset + (int)EnvCurve::Welch,		false); break;
+		case EnvCurve::Empty:		combo->setSelectedId(idOffset + (int)EnvCurve::Empty,		dontSendNotification); break;
+		case EnvCurve::Numerical:	combo->setSelectedId(idOffset + (int)EnvCurve::Numerical,	dontSendNotification); break;
+		case EnvCurve::Step:		combo->setSelectedId(idOffset + (int)EnvCurve::Step,		dontSendNotification); break;
+		case EnvCurve::Linear:		combo->setSelectedId(idOffset + (int)EnvCurve::Linear,		dontSendNotification); break;
+		case EnvCurve::Exponential: combo->setSelectedId(idOffset + (int)EnvCurve::Exponential, dontSendNotification); break;
+		case EnvCurve::Sine:		combo->setSelectedId(idOffset + (int)EnvCurve::Sine,		dontSendNotification); break;
+		case EnvCurve::Welch:		combo->setSelectedId(idOffset + (int)EnvCurve::Welch,		dontSendNotification); break;
 	}
 	
 	slider->addListener(this);

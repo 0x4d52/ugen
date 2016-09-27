@@ -130,7 +130,7 @@ inline float neg (const float a) throw()			{	return -a;									}
 inline double neg (const double a) throw()			{	return -a;									}
 inline int abs (const int a) throw()				{	return (a < 0) ? -a : a;					}
 inline float abs (const float a) throw()			{	return fabs(a);								}
-inline double abs (const double a) throw()			{	return ::abs(a);							}
+inline double abs (const double a) throw()			{	return ::fabs(a);							}
 inline float reciprocal (const float a) throw()		{	return 1.f	/ a;							}
 inline double reciprocal (const double a) throw()	{	return 1.0	/ a;							}
 inline float sin (const float a) throw()			{	return (float)::sin(a);						}

@@ -541,7 +541,7 @@ ScopeCuePointLabel::ScopeCuePointLabel(ScopeCuePointComponent *o)
 	setFont(11);
 #endif
 	
-	setBorderSize(2, 2);	
+	setBorderSize(BorderSize<int>(2, 2, 2, 2));
 }
 
 void ScopeCuePointLabel::showPopupMenu()
@@ -918,7 +918,7 @@ void ScopeCuePointComponent::setLabelPosition(const bool checkLabel)
 	if(label != 0 && owner != 0)
 	{
 		label->checkPosition();
-		if(checkLabel) label->setText(getLabel(), false);
+		if(checkLabel) label->setText(getLabel(), dontSendNotification);
 	}	
 }
 
@@ -939,7 +939,7 @@ void ScopeCuePointComponent::setLabel(Text const& text)
 		int h = font.getHeight();
 		
 		label->setSize(w,h);
-		label->setText((const char*)text, false);
+		label->setText((const char*)text, dontSendNotification);
 	}
 	
 	cueData.cuePoint.getLabel() = text;
@@ -1620,7 +1620,7 @@ ScopeControlComponent::~ScopeControlComponent()
 	deleteAllChildren();
 }
 
-const Font ScopeControlComponent::getPopupMenuFont()
+Font ScopeControlComponent::getPopupMenuFont()
 {
 	return 12;
 }
@@ -2806,7 +2806,8 @@ void RadialScopeComponent::paintXScale(Graphics& g, const int radius)
 					const double rotation = -piOverTwo+angle;
 					//if(angle > pi) rotation += pi;
 					AffineTransform transform = AffineTransform::identity.rotated(rotation).translated(centreX+endX*1.01, centreY-endY*1.01);
-					g.drawTextAsPath(label, transform);
+                    g.addTransform(transform);
+                    g.drawText(label, getLocalBounds(), Justification::centred);
 					g.setColour(Colour(colours[LabelMarks].get32bitColour()));
 				}
 			}

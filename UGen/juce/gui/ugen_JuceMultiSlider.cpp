@@ -102,11 +102,7 @@ void MultiSliderUGenInternal::timerCallback()
 {
 	for(int i = 0; i < getNumChannels(); i++)
 	{
-#ifdef __JUCE_NOTIFICATIONTYPE_JUCEHEADER__
         sliders->getSlider(i)->setValue(values[i], sendNotificationAsync);
-#else
-		sliders->getSlider(i)->setValue(values[i], true, false);
-#endif
 	}
 }
 

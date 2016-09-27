@@ -315,7 +315,7 @@ private:
 
 
 class ScopeControlComponent :	public ScopeComponent,
-								public LookAndFeel
+								public LookAndFeel_V3
 {
 public:
 	enum DisplayOptions
@@ -340,7 +340,7 @@ public:
 	ScopeControlComponent(CriticalSection& criticalSection, ScopeStyles style = Lines, DisplayOptions options = DisplayAll);
 	~ScopeControlComponent();
 	
-	const Font getPopupMenuFont();
+    Font getPopupMenuFont();
 	void choosePopupMenu(const int offset);
 	void showPopupMenu(const int offset);
 	void doCommand(const int commandID, const int offset);
